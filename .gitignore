@@ -19,3 +19,5 @@ codegen/sdk-codegen/smithy-build.json
 .idea/
 *.iml
 *.iws
+
+aws-sdk-lua-wt
