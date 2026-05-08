@@ -12,6 +12,17 @@ codegen-deps:
 # Run the SDK smithy build + copy to service/
 smithy-build:
 	cd codegen && ./gradlew clean build
+	@$(MAKE) teal-build
+
+TL := $(shell command -v tl 2>/dev/null || echo $(HOME)/.luarocks/bin/tl)
+
+# Generate .lua from .tl files in service/
+teal-build:
+	@find service -name "*.tl" ! -name "*.d.tl" -print0 | while IFS= read -r -d '' f; do \
+		out="$${f%.tl}.lua"; \
+		$(TL) gen --gen-target=5.1 --gen-compat=off "$$f" -o "$$out" || exit 1; \
+	done
+	@echo "teal-build: done"
 
 SMITHY_LUA_RUNTIME := $(SMITHY_LUA_DIR)/runtime
 # Include smithy runtime at both levels:

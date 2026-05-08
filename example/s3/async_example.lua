@@ -17,6 +17,7 @@ local s3 = require("s3.client")
 local async = require("smithy.async")
 local http = require("smithy.http")
 local curl_async = require("smithy.http.curl_async")
+local curl_ffi = require("smithy.http.curl_ffi")
 
 local bucket = arg[1]
 local prefix = arg[2]
@@ -27,7 +28,7 @@ if not bucket or not prefix then
     os.exit(1)
 end
 
-local sync_client = s3.new({ region = region })
+local sync_client = s3.new({ region = region, http_client = curl_ffi.new() })
 local async_client = s3.new({ region = region, http_client = curl_async.new() })
 local keys = {}
 for i = 1, 100 do keys[i] = prefix .. "/" .. i end
