@@ -1,6 +1,9 @@
 # macOS
 .DS_Store
 
+# Compiled Lua from teal-build
+service/**/*.lua
+
 # Gradle
 .gradle/
 build/
