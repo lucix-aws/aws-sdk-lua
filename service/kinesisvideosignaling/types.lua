@@ -1,6 +1,21 @@
 
 
-local M = { GetIceServerConfigInput = {}, GetIceServerConfigOutput = {}, SendAlexaOfferToMasterInput = {}, SendAlexaOfferToMasterOutput = {}, ClientLimitExceededException = {}, InvalidArgumentException = {}, InvalidClientException = {}, NotAuthorizedException = {}, ResourceNotFoundException = {}, SessionExpiredException = {} }
+local M = { ClientLimitExceededException = {}, GetIceServerConfigInput = {}, IceServer = {}, GetIceServerConfigOutput = {}, InvalidArgumentException = {}, InvalidClientException = {}, NotAuthorizedException = {}, ResourceNotFoundException = {}, SessionExpiredException = {}, SendAlexaOfferToMasterInput = {}, SendAlexaOfferToMasterOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

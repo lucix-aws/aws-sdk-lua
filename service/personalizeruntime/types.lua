@@ -1,6 +1,65 @@
 
 
-local M = { GetActionRecommendationsInput = {}, GetActionRecommendationsOutput = {}, GetPersonalizedRankingInput = {}, GetPersonalizedRankingOutput = {}, GetRecommendationsInput = {}, GetRecommendationsOutput = {}, InvalidInputException = {}, ResourceNotFoundException = {} }
+local M = { PredictedAction = {}, GetActionRecommendationsInput = {}, GetActionRecommendationsOutput = {}, InvalidInputException = {}, ResourceNotFoundException = {}, GetPersonalizedRankingInput = {}, PredictedItem = {}, GetPersonalizedRankingOutput = {}, Promotion = {}, GetRecommendationsInput = {}, GetRecommendationsOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

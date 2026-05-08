@@ -1,6 +1,83 @@
 
 
-local M = { CreateMonitorInput = {}, CreateMonitorOutput = {}, CreateProbeInput = {}, CreateProbeOutput = {}, DeleteMonitorInput = {}, DeleteMonitorOutput = {}, DeleteProbeInput = {}, DeleteProbeOutput = {}, GetMonitorInput = {}, GetMonitorOutput = {}, GetProbeInput = {}, GetProbeOutput = {}, ListMonitorsInput = {}, ListMonitorsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, UpdateMonitorInput = {}, UpdateMonitorOutput = {}, UpdateProbeInput = {}, UpdateProbeOutput = {}, AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationException = {}, ResourceNotFoundException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, CreateMonitorProbeInput = {}, CreateMonitorInput = {}, CreateMonitorOutput = {}, InternalServerException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationException = {}, ProbeInput = {}, CreateProbeInput = {}, CreateProbeOutput = {}, ResourceNotFoundException = {}, DeleteMonitorInput = {}, DeleteMonitorOutput = {}, DeleteProbeInput = {}, DeleteProbeOutput = {}, GetMonitorInput = {}, Probe = {}, GetMonitorOutput = {}, GetProbeInput = {}, GetProbeOutput = {}, ListMonitorsInput = {}, MonitorSummary = {}, ListMonitorsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, UpdateMonitorInput = {}, UpdateMonitorOutput = {}, UpdateProbeInput = {}, UpdateProbeOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

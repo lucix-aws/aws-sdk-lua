@@ -1,6 +1,32 @@
 
 
-local M = { InvokeEndpointInput = {}, InvokeEndpointOutput = {}, InvokeEndpointAsyncInput = {}, InvokeEndpointAsyncOutput = {}, InvokeEndpointWithResponseStreamInput = {}, InvokeEndpointWithResponseStreamOutput = {}, InternalDependencyException = {}, InternalFailure = {}, ModelError = {}, ModelNotReadyException = {}, ServiceUnavailable = {}, ValidationError = {}, InternalStreamFailure = {}, ModelStreamError = {} }
+local M = { InternalDependencyException = {}, InternalFailure = {}, InvokeEndpointInput = {}, InvokeEndpointOutput = {}, ModelError = {}, ModelNotReadyException = {}, ServiceUnavailable = {}, ValidationError = {}, InvokeEndpointAsyncInput = {}, InvokeEndpointAsyncOutput = {}, InternalStreamFailure = {}, InvokeEndpointWithResponseStreamInput = {}, ModelStreamError = {}, PayloadPart = {}, ResponseStream = {}, InvokeEndpointWithResponseStreamOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,38 @@
 
 
-local M = { GetLatestConfigurationInput = {}, GetLatestConfigurationOutput = {}, StartConfigurationSessionInput = {}, StartConfigurationSessionOutput = {}, BadRequestException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {} }
+local M = { InvalidParameterDetail = {}, BadRequestDetails = {}, BadRequestException = {}, InternalServerException = {}, ResourceNotFoundException = {}, StartConfigurationSessionInput = {}, StartConfigurationSessionOutput = {}, ThrottlingException = {}, GetLatestConfigurationInput = {}, GetLatestConfigurationOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

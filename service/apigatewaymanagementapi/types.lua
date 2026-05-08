@@ -1,6 +1,14 @@
 
 
-local M = { DeleteConnectionInput = {}, DeleteConnectionOutput = {}, GetConnectionInput = {}, GetConnectionOutput = {}, PostToConnectionInput = {}, PostToConnectionOutput = {}, ForbiddenException = {}, GoneException = {}, LimitExceededException = {}, PayloadTooLargeException = {} }
+local M = { DeleteConnectionInput = {}, DeleteConnectionOutput = {}, ForbiddenException = {}, GoneException = {}, LimitExceededException = {}, GetConnectionInput = {}, Identity = {}, GetConnectionOutput = {}, PayloadTooLargeException = {}, PostToConnectionInput = {}, PostToConnectionOutput = {} }
+
+
+
+
+
+
+
+
 
 
 

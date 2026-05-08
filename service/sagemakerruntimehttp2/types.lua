@@ -1,6 +1,47 @@
 
 
-local M = { InvokeEndpointWithBidirectionalStreamInput = {}, InvokeEndpointWithBidirectionalStreamOutput = {}, InputValidationError = {}, InternalServerError = {}, InternalStreamFailure = {}, ModelError = {}, ModelStreamError = {}, ServiceUnavailableError = {} }
+local M = { InputValidationError = {}, InternalServerError = {}, InternalStreamFailure = {}, RequestPayloadPart = {}, RequestStreamEvent = {}, InvokeEndpointWithBidirectionalStreamInput = {}, ModelStreamError = {}, ResponsePayloadPart = {}, ResponseStreamEvent = {}, InvokeEndpointWithBidirectionalStreamOutput = {}, ModelError = {}, ServiceUnavailableError = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

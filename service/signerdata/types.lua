@@ -1,6 +1,7 @@
 
 
-local M = { GetRevocationStatusInput = {}, GetRevocationStatusOutput = {}, AccessDeniedException = {}, InternalServiceErrorException = {}, TooManyRequestsException = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, GetRevocationStatusInput = {}, GetRevocationStatusOutput = {}, InternalServiceErrorException = {}, TooManyRequestsException = {}, ValidationException = {} }
+
 
 
 

@@ -1,6 +1,71 @@
 
 
-local M = { CreateLinkInput = {}, CreateLinkOutput = {}, CreateSinkInput = {}, CreateSinkOutput = {}, DeleteLinkInput = {}, DeleteLinkOutput = {}, DeleteSinkInput = {}, DeleteSinkOutput = {}, GetLinkInput = {}, GetLinkOutput = {}, GetSinkInput = {}, GetSinkOutput = {}, GetSinkPolicyInput = {}, GetSinkPolicyOutput = {}, ListAttachedLinksInput = {}, ListAttachedLinksOutput = {}, ListLinksInput = {}, ListLinksOutput = {}, ListSinksInput = {}, ListSinksOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, PutSinkPolicyInput = {}, PutSinkPolicyOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, UpdateLinkInput = {}, UpdateLinkOutput = {}, ConflictException = {}, InternalServiceFault = {}, InvalidParameterException = {}, MissingRequiredParameterException = {}, ServiceQuotaExceededException = {}, ResourceNotFoundException = {}, ValidationException = {}, TooManyTagsException = {} }
+local M = { ConflictException = {}, LogGroupConfiguration = {}, MetricConfiguration = {}, LinkConfiguration = {}, CreateLinkInput = {}, CreateLinkOutput = {}, InternalServiceFault = {}, InvalidParameterException = {}, MissingRequiredParameterException = {}, ServiceQuotaExceededException = {}, CreateSinkInput = {}, CreateSinkOutput = {}, DeleteLinkInput = {}, DeleteLinkOutput = {}, ResourceNotFoundException = {}, DeleteSinkInput = {}, DeleteSinkOutput = {}, GetLinkInput = {}, GetLinkOutput = {}, GetSinkInput = {}, GetSinkOutput = {}, GetSinkPolicyInput = {}, GetSinkPolicyOutput = {}, ListAttachedLinksInput = {}, ListAttachedLinksItem = {}, ListAttachedLinksOutput = {}, ListLinksInput = {}, ListLinksItem = {}, ListLinksOutput = {}, ListSinksInput = {}, ListSinksItem = {}, ListSinksOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, ValidationException = {}, PutSinkPolicyInput = {}, PutSinkPolicyOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, TooManyTagsException = {}, UntagResourceInput = {}, UntagResourceOutput = {}, UpdateLinkInput = {}, UpdateLinkOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

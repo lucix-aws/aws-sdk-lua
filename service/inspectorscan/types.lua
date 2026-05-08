@@ -1,6 +1,28 @@
 
 
-local M = { ScanSbomInput = {}, ScanSbomOutput = {}, AccessDeniedException = {}, InternalServerException = {}, ThrottlingException = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, InternalServerException = {}, ScanSbomInput = {}, ScanSbomOutput = {}, ThrottlingException = {}, ValidationExceptionField = {}, ValidationException = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

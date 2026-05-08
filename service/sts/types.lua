@@ -1,6 +1,80 @@
 
 
-local M = { AssumeRoleInput = {}, AssumeRoleOutput = {}, AssumeRoleWithSAMLInput = {}, AssumeRoleWithSAMLOutput = {}, AssumeRoleWithWebIdentityInput = {}, AssumeRoleWithWebIdentityOutput = {}, AssumeRootInput = {}, AssumeRootOutput = {}, DecodeAuthorizationMessageInput = {}, DecodeAuthorizationMessageOutput = {}, GetAccessKeyInfoInput = {}, GetAccessKeyInfoOutput = {}, GetCallerIdentityInput = {}, GetCallerIdentityOutput = {}, GetDelegatedAccessTokenInput = {}, GetDelegatedAccessTokenOutput = {}, GetFederationTokenInput = {}, GetFederationTokenOutput = {}, GetSessionTokenInput = {}, GetSessionTokenOutput = {}, GetWebIdentityTokenInput = {}, GetWebIdentityTokenOutput = {}, ExpiredTokenException = {}, MalformedPolicyDocumentException = {}, PackedPolicyTooLargeException = {}, RegionDisabledException = {}, IDPRejectedClaimException = {}, InvalidIdentityTokenException = {}, IDPCommunicationErrorException = {}, InvalidAuthorizationMessageException = {}, ExpiredTradeInTokenException = {}, JWTPayloadSizeExceededException = {}, OutboundWebIdentityFederationDisabledException = {}, SessionDurationEscalationException = {} }
+local M = { AssumedRoleUser = {}, PolicyDescriptorType = {}, ProvidedContext = {}, Tag = {}, AssumeRoleInput = {}, Credentials = {}, AssumeRoleOutput = {}, ExpiredTokenException = {}, MalformedPolicyDocumentException = {}, PackedPolicyTooLargeException = {}, RegionDisabledException = {}, AssumeRoleWithSAMLInput = {}, AssumeRoleWithSAMLOutput = {}, IDPRejectedClaimException = {}, InvalidIdentityTokenException = {}, AssumeRoleWithWebIdentityInput = {}, AssumeRoleWithWebIdentityOutput = {}, IDPCommunicationErrorException = {}, AssumeRootInput = {}, AssumeRootOutput = {}, DecodeAuthorizationMessageInput = {}, DecodeAuthorizationMessageOutput = {}, InvalidAuthorizationMessageException = {}, GetAccessKeyInfoInput = {}, GetAccessKeyInfoOutput = {}, GetCallerIdentityInput = {}, GetCallerIdentityOutput = {}, ExpiredTradeInTokenException = {}, GetDelegatedAccessTokenInput = {}, GetDelegatedAccessTokenOutput = {}, GetFederationTokenInput = {}, FederatedUser = {}, GetFederationTokenOutput = {}, GetSessionTokenInput = {}, GetSessionTokenOutput = {}, GetWebIdentityTokenInput = {}, GetWebIdentityTokenOutput = {}, JWTPayloadSizeExceededException = {}, OutboundWebIdentityFederationDisabledException = {}, SessionDurationEscalationException = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

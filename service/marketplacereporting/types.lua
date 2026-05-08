@@ -1,6 +1,7 @@
 
 
-local M = { GetBuyerDashboardInput = {}, GetBuyerDashboardOutput = {}, AccessDeniedException = {}, BadRequestException = {}, InternalServerException = {}, UnauthorizedException = {} }
+local M = { AccessDeniedException = {}, BadRequestException = {}, GetBuyerDashboardInput = {}, GetBuyerDashboardOutput = {}, InternalServerException = {}, UnauthorizedException = {} }
+
 
 
 

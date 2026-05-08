@@ -1,6 +1,47 @@
 
 
-local M = { DeleteHumanLoopInput = {}, DeleteHumanLoopOutput = {}, DescribeHumanLoopInput = {}, DescribeHumanLoopOutput = {}, ListHumanLoopsInput = {}, ListHumanLoopsOutput = {}, StartHumanLoopInput = {}, StartHumanLoopOutput = {}, StopHumanLoopInput = {}, StopHumanLoopOutput = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationException = {}, ConflictException = {}, ServiceQuotaExceededException = {} }
+local M = { DeleteHumanLoopInput = {}, DeleteHumanLoopOutput = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationException = {}, DescribeHumanLoopInput = {}, HumanLoopOutput = {}, DescribeHumanLoopOutput = {}, ListHumanLoopsInput = {}, HumanLoopSummary = {}, ListHumanLoopsOutput = {}, ConflictException = {}, ServiceQuotaExceededException = {}, HumanLoopDataAttributes = {}, HumanLoopInput = {}, StartHumanLoopInput = {}, StartHumanLoopOutput = {}, StopHumanLoopInput = {}, StopHumanLoopOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

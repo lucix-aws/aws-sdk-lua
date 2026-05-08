@@ -1,6 +1,16 @@
 
 
-local M = { AddTagsToResourceInput = {}, AddTagsToResourceOutput = {}, CreateHapgInput = {}, CreateHapgOutput = {}, CreateHsmInput = {}, CreateHsmOutput = {}, CreateLunaClientInput = {}, CreateLunaClientOutput = {}, DeleteHapgInput = {}, DeleteHapgOutput = {}, DeleteHsmInput = {}, DeleteHsmOutput = {}, DeleteLunaClientInput = {}, DeleteLunaClientOutput = {}, DescribeHapgInput = {}, DescribeHapgOutput = {}, DescribeHsmInput = {}, DescribeHsmOutput = {}, DescribeLunaClientInput = {}, DescribeLunaClientOutput = {}, GetConfigInput = {}, GetConfigOutput = {}, ListAvailableZonesInput = {}, ListAvailableZonesOutput = {}, ListHapgsInput = {}, ListHapgsOutput = {}, ListHsmsInput = {}, ListHsmsOutput = {}, ListLunaClientsInput = {}, ListLunaClientsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, ModifyHapgInput = {}, ModifyHapgOutput = {}, ModifyHsmInput = {}, ModifyHsmOutput = {}, ModifyLunaClientInput = {}, ModifyLunaClientOutput = {}, RemoveTagsFromResourceInput = {}, RemoveTagsFromResourceOutput = {}, CloudHsmInternalException = {}, CloudHsmServiceException = {}, InvalidRequestException = {} }
+local M = { Tag = {}, AddTagsToResourceInput = {}, AddTagsToResourceOutput = {}, CloudHsmInternalException = {}, CloudHsmServiceException = {}, InvalidRequestException = {}, CreateHapgInput = {}, CreateHapgOutput = {}, CreateHsmInput = {}, CreateHsmOutput = {}, CreateLunaClientInput = {}, CreateLunaClientOutput = {}, DeleteHapgInput = {}, DeleteHapgOutput = {}, DeleteHsmInput = {}, DeleteHsmOutput = {}, DeleteLunaClientInput = {}, DeleteLunaClientOutput = {}, DescribeHapgInput = {}, DescribeHapgOutput = {}, DescribeHsmInput = {}, DescribeHsmOutput = {}, DescribeLunaClientInput = {}, DescribeLunaClientOutput = {}, GetConfigInput = {}, GetConfigOutput = {}, ListAvailableZonesInput = {}, ListAvailableZonesOutput = {}, ListHapgsInput = {}, ListHapgsOutput = {}, ListHsmsInput = {}, ListHsmsOutput = {}, ListLunaClientsInput = {}, ListLunaClientsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, ModifyHapgInput = {}, ModifyHapgOutput = {}, ModifyHsmInput = {}, ModifyHsmOutput = {}, ModifyLunaClientInput = {}, ModifyLunaClientOutput = {}, RemoveTagsFromResourceInput = {}, RemoveTagsFromResourceOutput = {} }
+
+
+
+
+
+
+
+
+
+
 
 
 

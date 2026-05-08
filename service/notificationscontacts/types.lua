@@ -1,6 +1,41 @@
 
 
-local M = { ActivateEmailContactInput = {}, ActivateEmailContactOutput = {}, CreateEmailContactInput = {}, CreateEmailContactOutput = {}, DeleteEmailContactInput = {}, DeleteEmailContactOutput = {}, GetEmailContactInput = {}, GetEmailContactOutput = {}, ListEmailContactsInput = {}, ListEmailContactsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, SendActivationCodeInput = {}, SendActivationCodeOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationException = {}, ServiceQuotaExceededException = {} }
+local M = { AccessDeniedException = {}, ActivateEmailContactInput = {}, ActivateEmailContactOutput = {}, ConflictException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationExceptionField = {}, ValidationException = {}, CreateEmailContactInput = {}, CreateEmailContactOutput = {}, ServiceQuotaExceededException = {}, DeleteEmailContactInput = {}, DeleteEmailContactOutput = {}, EmailContact = {}, GetEmailContactInput = {}, GetEmailContactOutput = {}, ListEmailContactsInput = {}, ListEmailContactsOutput = {}, SendActivationCodeInput = {}, SendActivationCodeOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

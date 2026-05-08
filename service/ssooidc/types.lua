@@ -1,6 +1,28 @@
 
 
-local M = { CreateTokenInput = {}, CreateTokenOutput = {}, CreateTokenWithIAMInput = {}, CreateTokenWithIAMOutput = {}, RegisterClientInput = {}, RegisterClientOutput = {}, StartDeviceAuthorizationInput = {}, StartDeviceAuthorizationOutput = {}, AccessDeniedException = {}, AuthorizationPendingException = {}, ExpiredTokenException = {}, InternalServerException = {}, InvalidClientException = {}, InvalidGrantException = {}, InvalidRequestException = {}, InvalidScopeException = {}, SlowDownException = {}, UnauthorizedClientException = {}, UnsupportedGrantTypeException = {}, InvalidRequestRegionException = {}, InvalidClientMetadataException = {}, InvalidRedirectUriException = {} }
+local M = { AccessDeniedException = {}, AuthorizationPendingException = {}, AwsAdditionalDetails = {}, CreateTokenInput = {}, CreateTokenOutput = {}, ExpiredTokenException = {}, InternalServerException = {}, InvalidClientException = {}, InvalidGrantException = {}, InvalidRequestException = {}, InvalidScopeException = {}, SlowDownException = {}, UnauthorizedClientException = {}, UnsupportedGrantTypeException = {}, CreateTokenWithIAMInput = {}, CreateTokenWithIAMOutput = {}, InvalidRequestRegionException = {}, InvalidClientMetadataException = {}, InvalidRedirectUriException = {}, RegisterClientInput = {}, RegisterClientOutput = {}, StartDeviceAuthorizationInput = {}, StartDeviceAuthorizationOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

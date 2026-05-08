@@ -1,6 +1,77 @@
 
 
-local M = { CompleteSnapshotInput = {}, CompleteSnapshotOutput = {}, GetSnapshotBlockInput = {}, GetSnapshotBlockOutput = {}, ListChangedBlocksInput = {}, ListChangedBlocksOutput = {}, ListSnapshotBlocksInput = {}, ListSnapshotBlocksOutput = {}, PutSnapshotBlockInput = {}, PutSnapshotBlockOutput = {}, StartSnapshotInput = {}, StartSnapshotOutput = {}, AccessDeniedException = {}, InternalServerException = {}, RequestThrottledException = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ValidationException = {}, ConcurrentLimitExceededException = {}, ConflictException = {} }
+local M = { AccessDeniedException = {}, Block = {}, ChangedBlock = {}, CompleteSnapshotInput = {}, CompleteSnapshotOutput = {}, InternalServerException = {}, RequestThrottledException = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ValidationException = {}, ConcurrentLimitExceededException = {}, ConflictException = {}, GetSnapshotBlockInput = {}, GetSnapshotBlockOutput = {}, ListChangedBlocksInput = {}, ListChangedBlocksOutput = {}, ListSnapshotBlocksInput = {}, ListSnapshotBlocksOutput = {}, PutSnapshotBlockInput = {}, PutSnapshotBlockOutput = {}, Tag = {}, StartSnapshotInput = {}, StartSnapshotOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

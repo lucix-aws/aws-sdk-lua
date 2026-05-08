@@ -1,6 +1,29 @@
 
 
-local M = { DeleteKeyInput = {}, DeleteKeyOutput = {}, DescribeKeyValueStoreInput = {}, DescribeKeyValueStoreOutput = {}, GetKeyInput = {}, GetKeyOutput = {}, ListKeysInput = {}, ListKeysOutput = {}, PutKeyInput = {}, PutKeyOutput = {}, UpdateKeysInput = {}, UpdateKeysOutput = {}, AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, DeleteKeyInput = {}, DeleteKeyOutput = {}, InternalServerException = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ValidationException = {}, DescribeKeyValueStoreInput = {}, DescribeKeyValueStoreOutput = {}, GetKeyInput = {}, GetKeyOutput = {}, ListKeysInput = {}, ListKeysResponseListItem = {}, ListKeysOutput = {}, PutKeyInput = {}, PutKeyOutput = {}, DeleteKeyRequestListItem = {}, PutKeyRequestListItem = {}, UpdateKeysInput = {}, UpdateKeysOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,77 @@
 
 
-local M = { CreateOAuth2TokenInput = {}, CreateOAuth2TokenOutput = {}, AccessDeniedException = {}, InternalServerException = {}, TooManyRequestsError = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, AccessToken = {}, CreateOAuth2TokenRequestBody = {}, CreateOAuth2TokenInput = {}, CreateOAuth2TokenResponseBody = {}, CreateOAuth2TokenOutput = {}, InternalServerException = {}, TooManyRequestsError = {}, ValidationException = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

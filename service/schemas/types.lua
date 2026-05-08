@@ -1,6 +1,76 @@
 
 
-local M = { CreateDiscovererInput = {}, CreateDiscovererOutput = {}, CreateRegistryInput = {}, CreateRegistryOutput = {}, CreateSchemaInput = {}, CreateSchemaOutput = {}, DeleteDiscovererInput = {}, DeleteDiscovererOutput = {}, DeleteRegistryInput = {}, DeleteRegistryOutput = {}, DeleteResourcePolicyInput = {}, DeleteResourcePolicyOutput = {}, DeleteSchemaInput = {}, DeleteSchemaOutput = {}, DeleteSchemaVersionInput = {}, DeleteSchemaVersionOutput = {}, DescribeCodeBindingInput = {}, DescribeCodeBindingOutput = {}, DescribeDiscovererInput = {}, DescribeDiscovererOutput = {}, DescribeRegistryInput = {}, DescribeRegistryOutput = {}, DescribeSchemaInput = {}, DescribeSchemaOutput = {}, ExportSchemaInput = {}, ExportSchemaOutput = {}, GetCodeBindingSourceInput = {}, GetCodeBindingSourceOutput = {}, GetDiscoveredSchemaInput = {}, GetDiscoveredSchemaOutput = {}, GetResourcePolicyInput = {}, GetResourcePolicyOutput = {}, ListDiscoverersInput = {}, ListDiscoverersOutput = {}, ListRegistriesInput = {}, ListRegistriesOutput = {}, ListSchemasInput = {}, ListSchemasOutput = {}, ListSchemaVersionsInput = {}, ListSchemaVersionsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, PutCodeBindingInput = {}, PutCodeBindingOutput = {}, PutResourcePolicyInput = {}, PutResourcePolicyOutput = {}, SearchSchemasInput = {}, SearchSchemasOutput = {}, StartDiscovererInput = {}, StartDiscovererOutput = {}, StopDiscovererInput = {}, StopDiscovererOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, UpdateDiscovererInput = {}, UpdateDiscovererOutput = {}, UpdateRegistryInput = {}, UpdateRegistryOutput = {}, UpdateSchemaInput = {}, UpdateSchemaOutput = {}, BadRequestException = {}, ConflictException = {}, ForbiddenException = {}, InternalServerErrorException = {}, ServiceUnavailableException = {}, UnauthorizedException = {}, NotFoundException = {}, TooManyRequestsException = {}, GoneException = {}, PreconditionFailedException = {} }
+local M = { DiscovererSummary = {}, RegistrySummary = {}, SchemaSummary = {}, SchemaVersionSummary = {}, SearchSchemaVersionSummary = {}, SearchSchemaSummary = {}, BadRequestException = {}, ConflictException = {}, CreateDiscovererInput = {}, CreateDiscovererOutput = {}, ForbiddenException = {}, InternalServerErrorException = {}, ServiceUnavailableException = {}, UnauthorizedException = {}, CreateRegistryInput = {}, CreateRegistryOutput = {}, CreateSchemaInput = {}, CreateSchemaOutput = {}, DeleteDiscovererInput = {}, DeleteDiscovererOutput = {}, NotFoundException = {}, DeleteRegistryInput = {}, DeleteRegistryOutput = {}, DeleteResourcePolicyInput = {}, DeleteResourcePolicyOutput = {}, DeleteSchemaInput = {}, DeleteSchemaOutput = {}, DeleteSchemaVersionInput = {}, DeleteSchemaVersionOutput = {}, DescribeCodeBindingInput = {}, DescribeCodeBindingOutput = {}, TooManyRequestsException = {}, DescribeDiscovererInput = {}, DescribeDiscovererOutput = {}, DescribeRegistryInput = {}, DescribeRegistryOutput = {}, DescribeSchemaInput = {}, DescribeSchemaOutput = {}, ExportSchemaInput = {}, ExportSchemaOutput = {}, GetCodeBindingSourceInput = {}, GetCodeBindingSourceOutput = {}, GetDiscoveredSchemaInput = {}, GetDiscoveredSchemaOutput = {}, GetResourcePolicyInput = {}, GetResourcePolicyOutput = {}, GoneException = {}, ListDiscoverersInput = {}, ListDiscoverersOutput = {}, ListRegistriesInput = {}, ListRegistriesOutput = {}, ListSchemasInput = {}, ListSchemasOutput = {}, ListSchemaVersionsInput = {}, ListSchemaVersionsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, PreconditionFailedException = {}, PutCodeBindingInput = {}, PutCodeBindingOutput = {}, PutResourcePolicyInput = {}, PutResourcePolicyOutput = {}, SearchSchemasInput = {}, SearchSchemasOutput = {}, StartDiscovererInput = {}, StartDiscovererOutput = {}, StopDiscovererInput = {}, StopDiscovererOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, UpdateDiscovererInput = {}, UpdateDiscovererOutput = {}, UpdateRegistryInput = {}, UpdateRegistryOutput = {}, UpdateSchemaInput = {}, UpdateSchemaOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

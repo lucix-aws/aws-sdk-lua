@@ -1,6 +1,54 @@
 
 
-local M = { DeleteReportDefinitionInput = {}, DeleteReportDefinitionOutput = {}, GetReportDefinitionInput = {}, GetReportDefinitionOutput = {}, ImportApplicationUsageInput = {}, ImportApplicationUsageOutput = {}, ListReportDefinitionsInput = {}, ListReportDefinitionsOutput = {}, PutReportDefinitionInput = {}, PutReportDefinitionOutput = {}, UpdateReportDefinitionInput = {}, UpdateReportDefinitionOutput = {}, AccessDeniedException = {}, InternalServerException = {}, ThrottlingException = {}, ValidationException = {}, ServiceQuotaExceededException = {} }
+local M = { AccessDeniedException = {}, DeleteReportDefinitionInput = {}, DeleteReportDefinitionOutput = {}, InternalServerException = {}, ThrottlingException = {}, ValidationException = {}, GetReportDefinitionInput = {}, S3Location = {}, GetReportDefinitionOutput = {}, SourceS3Location = {}, ImportApplicationUsageInput = {}, ImportApplicationUsageOutput = {}, ListReportDefinitionsInput = {}, ReportDefinition = {}, ListReportDefinitionsOutput = {}, PutReportDefinitionInput = {}, PutReportDefinitionOutput = {}, ServiceQuotaExceededException = {}, UpdateReportDefinitionInput = {}, UpdateReportDefinitionOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

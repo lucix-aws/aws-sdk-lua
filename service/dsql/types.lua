@@ -1,6 +1,61 @@
 
 
-local M = { CreateClusterInput = {}, CreateClusterOutput = {}, DeleteClusterInput = {}, DeleteClusterOutput = {}, DeleteClusterPolicyInput = {}, DeleteClusterPolicyOutput = {}, GetClusterInput = {}, GetClusterOutput = {}, GetClusterPolicyInput = {}, GetClusterPolicyOutput = {}, GetVpcEndpointServiceNameInput = {}, GetVpcEndpointServiceNameOutput = {}, ListClustersInput = {}, ListClustersOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, PutClusterPolicyInput = {}, PutClusterPolicyOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, UpdateClusterInput = {}, UpdateClusterOutput = {}, ConflictException = {}, ServiceQuotaExceededException = {}, ValidationException = {}, AccessDeniedException = {}, InternalServerException = {}, ThrottlingException = {}, ResourceNotFoundException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, MultiRegionProperties = {}, CreateClusterInput = {}, EncryptionDetails = {}, CreateClusterOutput = {}, InternalServerException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationExceptionField = {}, ValidationException = {}, DeleteClusterInput = {}, DeleteClusterOutput = {}, ResourceNotFoundException = {}, DeleteClusterPolicyInput = {}, DeleteClusterPolicyOutput = {}, GetClusterInput = {}, GetClusterOutput = {}, GetClusterPolicyInput = {}, GetClusterPolicyOutput = {}, GetVpcEndpointServiceNameInput = {}, GetVpcEndpointServiceNameOutput = {}, ListClustersInput = {}, ClusterSummary = {}, ListClustersOutput = {}, PutClusterPolicyInput = {}, PutClusterPolicyOutput = {}, UpdateClusterInput = {}, UpdateClusterOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

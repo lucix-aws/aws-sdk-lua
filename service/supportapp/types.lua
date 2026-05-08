@@ -1,6 +1,54 @@
 
 
-local M = { CreateSlackChannelConfigurationInput = {}, CreateSlackChannelConfigurationOutput = {}, DeleteAccountAliasInput = {}, DeleteAccountAliasOutput = {}, DeleteSlackChannelConfigurationInput = {}, DeleteSlackChannelConfigurationOutput = {}, DeleteSlackWorkspaceConfigurationInput = {}, DeleteSlackWorkspaceConfigurationOutput = {}, GetAccountAliasInput = {}, GetAccountAliasOutput = {}, ListSlackChannelConfigurationsInput = {}, ListSlackChannelConfigurationsOutput = {}, ListSlackWorkspaceConfigurationsInput = {}, ListSlackWorkspaceConfigurationsOutput = {}, PutAccountAliasInput = {}, PutAccountAliasOutput = {}, RegisterSlackWorkspaceForOrganizationInput = {}, RegisterSlackWorkspaceForOrganizationOutput = {}, UpdateSlackChannelConfigurationInput = {}, UpdateSlackChannelConfigurationOutput = {}, AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, ServiceQuotaExceededException = {}, ValidationException = {}, ResourceNotFoundException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, CreateSlackChannelConfigurationInput = {}, CreateSlackChannelConfigurationOutput = {}, InternalServerException = {}, ServiceQuotaExceededException = {}, ValidationException = {}, DeleteAccountAliasInput = {}, DeleteAccountAliasOutput = {}, ResourceNotFoundException = {}, DeleteSlackChannelConfigurationInput = {}, DeleteSlackChannelConfigurationOutput = {}, DeleteSlackWorkspaceConfigurationInput = {}, DeleteSlackWorkspaceConfigurationOutput = {}, GetAccountAliasInput = {}, GetAccountAliasOutput = {}, ListSlackChannelConfigurationsInput = {}, SlackChannelConfiguration = {}, ListSlackChannelConfigurationsOutput = {}, ListSlackWorkspaceConfigurationsInput = {}, SlackWorkspaceConfiguration = {}, ListSlackWorkspaceConfigurationsOutput = {}, PutAccountAliasInput = {}, PutAccountAliasOutput = {}, RegisterSlackWorkspaceForOrganizationInput = {}, RegisterSlackWorkspaceForOrganizationOutput = {}, UpdateSlackChannelConfigurationInput = {}, UpdateSlackChannelConfigurationOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

@@ -1,6 +1,7 @@
 
 
-local M = { SendSerialConsoleSSHPublicKeyInput = {}, SendSerialConsoleSSHPublicKeyOutput = {}, SendSSHPublicKeyInput = {}, SendSSHPublicKeyOutput = {}, AuthException = {}, EC2InstanceNotFoundException = {}, EC2InstanceStateInvalidException = {}, EC2InstanceTypeInvalidException = {}, EC2InstanceUnavailableException = {}, InvalidArgsException = {}, SerialConsoleAccessDisabledException = {}, SerialConsoleSessionLimitExceededException = {}, SerialConsoleSessionUnavailableException = {}, SerialConsoleSessionUnsupportedException = {}, ServiceException = {}, ThrottlingException = {} }
+local M = { AuthException = {}, EC2InstanceNotFoundException = {}, EC2InstanceStateInvalidException = {}, EC2InstanceTypeInvalidException = {}, EC2InstanceUnavailableException = {}, InvalidArgsException = {}, SendSerialConsoleSSHPublicKeyInput = {}, SendSerialConsoleSSHPublicKeyOutput = {}, SerialConsoleAccessDisabledException = {}, SerialConsoleSessionLimitExceededException = {}, SerialConsoleSessionUnavailableException = {}, SerialConsoleSessionUnsupportedException = {}, ServiceException = {}, ThrottlingException = {}, SendSSHPublicKeyInput = {}, SendSSHPublicKeyOutput = {} }
+
 
 
 

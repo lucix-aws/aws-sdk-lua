@@ -1,6 +1,18 @@
 
 
-local M = { ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, PutDeploymentParameterInput = {}, PutDeploymentParameterOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, AccessDeniedException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationException = {}, ConflictException = {}, ServiceQuotaExceededException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, DeploymentParameterInput = {}, PutDeploymentParameterInput = {}, PutDeploymentParameterOutput = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationException = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

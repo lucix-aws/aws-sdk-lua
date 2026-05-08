@@ -1,6 +1,74 @@
 
 
-local M = { CreateEndpointInput = {}, CreateEndpointOutput = {}, DeleteEndpointInput = {}, DeleteEndpointOutput = {}, ListEndpointsInput = {}, ListEndpointsOutput = {}, ListOutpostsWithS3Input = {}, ListOutpostsWithS3Output = {}, ListSharedEndpointsInput = {}, ListSharedEndpointsOutput = {}, AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, OutpostOfflineException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, CreateEndpointInput = {}, CreateEndpointOutput = {}, InternalServerException = {}, OutpostOfflineException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationException = {}, DeleteEndpointInput = {}, DeleteEndpointOutput = {}, FailedReason = {}, NetworkInterface = {}, Endpoint = {}, ListEndpointsInput = {}, ListEndpointsOutput = {}, ListOutpostsWithS3Input = {}, Outpost = {}, ListOutpostsWithS3Output = {}, ListSharedEndpointsInput = {}, ListSharedEndpointsOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

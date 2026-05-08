@@ -1,6 +1,41 @@
 
 
-local M = { CreateHomeRegionControlInput = {}, CreateHomeRegionControlOutput = {}, DeleteHomeRegionControlInput = {}, DeleteHomeRegionControlOutput = {}, DescribeHomeRegionControlsInput = {}, DescribeHomeRegionControlsOutput = {}, GetHomeRegionInput = {}, GetHomeRegionOutput = {}, AccessDeniedException = {}, DryRunOperation = {}, InternalServerError = {}, InvalidInputException = {}, ServiceUnavailableException = {}, ThrottlingException = {} }
+local M = { AccessDeniedException = {}, Target = {}, CreateHomeRegionControlInput = {}, HomeRegionControl = {}, CreateHomeRegionControlOutput = {}, DryRunOperation = {}, InternalServerError = {}, InvalidInputException = {}, ServiceUnavailableException = {}, ThrottlingException = {}, DeleteHomeRegionControlInput = {}, DeleteHomeRegionControlOutput = {}, DescribeHomeRegionControlsInput = {}, DescribeHomeRegionControlsOutput = {}, GetHomeRegionInput = {}, GetHomeRegionOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

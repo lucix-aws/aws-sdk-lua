@@ -1,6 +1,28 @@
 
 
-local M = { DeleteObjectInput = {}, DeleteObjectOutput = {}, DescribeObjectInput = {}, DescribeObjectOutput = {}, GetObjectInput = {}, GetObjectOutput = {}, ListItemsInput = {}, ListItemsOutput = {}, PutObjectInput = {}, PutObjectOutput = {}, ContainerNotFoundException = {}, InternalServerError = {}, ObjectNotFoundException = {}, RequestedRangeNotSatisfiableException = {} }
+local M = { ContainerNotFoundException = {}, DeleteObjectInput = {}, DeleteObjectOutput = {}, InternalServerError = {}, ObjectNotFoundException = {}, DescribeObjectInput = {}, DescribeObjectOutput = {}, GetObjectInput = {}, GetObjectOutput = {}, RequestedRangeNotSatisfiableException = {}, Item = {}, ListItemsInput = {}, ListItemsOutput = {}, PutObjectInput = {}, PutObjectOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

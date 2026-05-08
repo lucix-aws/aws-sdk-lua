@@ -1,6 +1,15 @@
 
 
-local M = { GetAccountCustomizationsInput = {}, GetAccountCustomizationsOutput = {}, ListServicesInput = {}, ListServicesOutput = {}, UpdateAccountCustomizationsInput = {}, UpdateAccountCustomizationsOutput = {}, AccessDeniedException = {}, InternalServerException = {}, ThrottlingException = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, GetAccountCustomizationsInput = {}, GetAccountCustomizationsOutput = {}, InternalServerException = {}, ThrottlingException = {}, ValidationExceptionField = {}, ValidationException = {}, ListServicesInput = {}, ListServicesOutput = {}, UpdateAccountCustomizationsInput = {}, UpdateAccountCustomizationsOutput = {} }
+
+
+
+
+
+
+
+
+
 
 
 

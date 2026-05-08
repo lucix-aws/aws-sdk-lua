@@ -1,6 +1,7 @@
 
 
-local M = { JoinStorageSessionInput = {}, JoinStorageSessionOutput = {}, JoinStorageSessionAsViewerInput = {}, JoinStorageSessionAsViewerOutput = {}, AccessDeniedException = {}, ClientLimitExceededException = {}, InvalidArgumentException = {}, ResourceNotFoundException = {} }
+local M = { AccessDeniedException = {}, ClientLimitExceededException = {}, InvalidArgumentException = {}, JoinStorageSessionInput = {}, JoinStorageSessionOutput = {}, ResourceNotFoundException = {}, JoinStorageSessionAsViewerInput = {}, JoinStorageSessionAsViewerOutput = {} }
+
 
 
 

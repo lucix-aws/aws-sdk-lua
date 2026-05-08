@@ -1,6 +1,55 @@
 
 
-local M = { GetMediaInput = {}, GetMediaOutput = {}, ClientLimitExceededException = {}, ConnectionLimitExceededException = {}, InvalidArgumentException = {}, InvalidEndpointException = {}, NotAuthorizedException = {}, ResourceNotFoundException = {} }
+local M = { ClientLimitExceededException = {}, ConnectionLimitExceededException = {}, StartSelector = {}, GetMediaInput = {}, GetMediaOutput = {}, InvalidArgumentException = {}, InvalidEndpointException = {}, NotAuthorizedException = {}, ResourceNotFoundException = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

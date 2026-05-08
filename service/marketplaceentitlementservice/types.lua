@@ -1,6 +1,60 @@
 
 
-local M = { GetEntitlementsInput = {}, GetEntitlementsOutput = {}, InternalServiceErrorException = {}, InvalidParameterException = {}, ThrottlingException = {} }
+local M = { GetEntitlementsInput = {}, EntitlementValue = {}, Entitlement = {}, GetEntitlementsOutput = {}, InternalServiceErrorException = {}, InvalidParameterException = {}, ThrottlingException = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

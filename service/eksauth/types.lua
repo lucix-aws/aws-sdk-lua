@@ -1,6 +1,55 @@
 
 
-local M = { AssumeRoleForPodIdentityInput = {}, AssumeRoleForPodIdentityOutput = {}, AccessDeniedException = {}, ExpiredTokenException = {}, InternalServerException = {}, InvalidParameterException = {}, InvalidRequestException = {}, InvalidTokenException = {}, ResourceNotFoundException = {}, ServiceUnavailableException = {}, ThrottlingException = {} }
+local M = { AccessDeniedException = {}, AssumedRoleUser = {}, AssumeRoleForPodIdentityInput = {}, Credentials = {}, PodIdentityAssociation = {}, Subject = {}, AssumeRoleForPodIdentityOutput = {}, ExpiredTokenException = {}, InternalServerException = {}, InvalidParameterException = {}, InvalidRequestException = {}, InvalidTokenException = {}, ResourceNotFoundException = {}, ServiceUnavailableException = {}, ThrottlingException = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

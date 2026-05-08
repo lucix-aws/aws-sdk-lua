@@ -1,6 +1,21 @@
 
 
-local M = { GetExportInput = {}, GetExportOutput = {}, ListExportsInput = {}, ListExportsOutput = {}, StartDomainExportInput = {}, StartDomainExportOutput = {}, InvalidParameterValueException = {}, NoSuchExportException = {}, InvalidNextTokenException = {}, NoSuchDomainException = {}, ConflictException = {}, InvalidParameterCombinationException = {}, NumberExportsLimitExceeded = {} }
+local M = { ConflictException = {}, ExportSummary = {}, GetExportInput = {}, GetExportOutput = {}, InvalidParameterValueException = {}, NoSuchExportException = {}, InvalidNextTokenException = {}, InvalidParameterCombinationException = {}, ListExportsInput = {}, ListExportsOutput = {}, NoSuchDomainException = {}, NumberExportsLimitExceeded = {}, StartDomainExportInput = {}, StartDomainExportOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

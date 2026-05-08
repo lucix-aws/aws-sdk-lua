@@ -1,6 +1,41 @@
 
 
-local M = { GetRoleCredentialsInput = {}, GetRoleCredentialsOutput = {}, ListAccountRolesInput = {}, ListAccountRolesOutput = {}, ListAccountsInput = {}, ListAccountsOutput = {}, LogoutInput = {}, LogoutOutput = {}, InvalidRequestException = {}, ResourceNotFoundException = {}, TooManyRequestsException = {}, UnauthorizedException = {} }
+local M = { AccountInfo = {}, GetRoleCredentialsInput = {}, RoleCredentials = {}, GetRoleCredentialsOutput = {}, InvalidRequestException = {}, ResourceNotFoundException = {}, TooManyRequestsException = {}, UnauthorizedException = {}, ListAccountRolesInput = {}, RoleInfo = {}, ListAccountRolesOutput = {}, ListAccountsInput = {}, ListAccountsOutput = {}, LogoutInput = {}, LogoutOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

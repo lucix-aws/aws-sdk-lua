@@ -1,6 +1,36 @@
 
 
-local M = { GetRawMessageContentInput = {}, GetRawMessageContentOutput = {}, PutRawMessageContentInput = {}, PutRawMessageContentOutput = {}, ResourceNotFoundException = {}, InvalidContentLocation = {}, MessageFrozen = {}, MessageRejected = {} }
+local M = { GetRawMessageContentInput = {}, GetRawMessageContentOutput = {}, ResourceNotFoundException = {}, InvalidContentLocation = {}, MessageFrozen = {}, MessageRejected = {}, S3Reference = {}, RawMessageContent = {}, PutRawMessageContentInput = {}, PutRawMessageContentOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

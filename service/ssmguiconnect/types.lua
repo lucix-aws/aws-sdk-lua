@@ -1,6 +1,29 @@
 
 
-local M = { DeleteConnectionRecordingPreferencesInput = {}, DeleteConnectionRecordingPreferencesOutput = {}, GetConnectionRecordingPreferencesInput = {}, GetConnectionRecordingPreferencesOutput = {}, UpdateConnectionRecordingPreferencesInput = {}, UpdateConnectionRecordingPreferencesOutput = {}, AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, S3Bucket = {}, RecordingDestinations = {}, ConnectionRecordingPreferences = {}, DeleteConnectionRecordingPreferencesInput = {}, DeleteConnectionRecordingPreferencesOutput = {}, InternalServerException = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationException = {}, GetConnectionRecordingPreferencesInput = {}, GetConnectionRecordingPreferencesOutput = {}, UpdateConnectionRecordingPreferencesInput = {}, UpdateConnectionRecordingPreferencesOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

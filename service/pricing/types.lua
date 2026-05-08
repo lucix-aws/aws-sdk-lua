@@ -1,6 +1,51 @@
 
 
-local M = { DescribeServicesInput = {}, DescribeServicesOutput = {}, GetAttributeValuesInput = {}, GetAttributeValuesOutput = {}, GetPriceListFileUrlInput = {}, GetPriceListFileUrlOutput = {}, GetProductsInput = {}, GetProductsOutput = {}, ListPriceListsInput = {}, ListPriceListsOutput = {}, AccessDeniedException = {}, ExpiredNextTokenException = {}, InternalErrorException = {}, InvalidNextTokenException = {}, InvalidParameterException = {}, NotFoundException = {}, ThrottlingException = {}, ResourceNotFoundException = {} }
+local M = { AccessDeniedException = {}, AttributeValue = {}, DescribeServicesInput = {}, Service = {}, DescribeServicesOutput = {}, ExpiredNextTokenException = {}, InternalErrorException = {}, InvalidNextTokenException = {}, InvalidParameterException = {}, NotFoundException = {}, ThrottlingException = {}, GetAttributeValuesInput = {}, GetAttributeValuesOutput = {}, GetPriceListFileUrlInput = {}, GetPriceListFileUrlOutput = {}, ResourceNotFoundException = {}, Filter = {}, GetProductsInput = {}, GetProductsOutput = {}, ListPriceListsInput = {}, PriceList = {}, ListPriceListsOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

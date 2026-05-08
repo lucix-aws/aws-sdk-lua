@@ -1,6 +1,32 @@
 
 
-local M = { CreateInvestigationGroupInput = {}, CreateInvestigationGroupOutput = {}, DeleteInvestigationGroupInput = {}, DeleteInvestigationGroupOutput = {}, DeleteInvestigationGroupPolicyInput = {}, DeleteInvestigationGroupPolicyOutput = {}, GetInvestigationGroupInput = {}, GetInvestigationGroupOutput = {}, GetInvestigationGroupPolicyInput = {}, GetInvestigationGroupPolicyOutput = {}, ListInvestigationGroupsInput = {}, ListInvestigationGroupsOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, PutInvestigationGroupPolicyInput = {}, PutInvestigationGroupPolicyOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {}, UpdateInvestigationGroupInput = {}, UpdateInvestigationGroupOutput = {}, AccessDeniedException = {}, ConflictException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationException = {}, ForbiddenException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, ForbiddenException = {}, InternalServerException = {}, CrossAccountConfiguration = {}, EncryptionConfiguration = {}, CreateInvestigationGroupInput = {}, CreateInvestigationGroupOutput = {}, ResourceNotFoundException = {}, ServiceQuotaExceededException = {}, ThrottlingException = {}, ValidationException = {}, DeleteInvestigationGroupInput = {}, DeleteInvestigationGroupOutput = {}, GetInvestigationGroupInput = {}, GetInvestigationGroupOutput = {}, ListInvestigationGroupsInput = {}, ListInvestigationGroupsModel = {}, ListInvestigationGroupsOutput = {}, UpdateInvestigationGroupInput = {}, UpdateInvestigationGroupOutput = {}, DeleteInvestigationGroupPolicyInput = {}, DeleteInvestigationGroupPolicyOutput = {}, GetInvestigationGroupPolicyInput = {}, GetInvestigationGroupPolicyOutput = {}, PutInvestigationGroupPolicyInput = {}, PutInvestigationGroupPolicyOutput = {}, ListTagsForResourceInput = {}, ListTagsForResourceOutput = {}, TagResourceInput = {}, TagResourceOutput = {}, UntagResourceInput = {}, UntagResourceOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

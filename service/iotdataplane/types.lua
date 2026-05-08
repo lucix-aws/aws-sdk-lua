@@ -1,6 +1,19 @@
 
 
-local M = { DeleteConnectionInput = {}, DeleteConnectionOutput = {}, DeleteThingShadowInput = {}, DeleteThingShadowOutput = {}, GetRetainedMessageInput = {}, GetRetainedMessageOutput = {}, GetThingShadowInput = {}, GetThingShadowOutput = {}, ListNamedShadowsForThingInput = {}, ListNamedShadowsForThingOutput = {}, ListRetainedMessagesInput = {}, ListRetainedMessagesOutput = {}, PublishInput = {}, PublishOutput = {}, UpdateThingShadowInput = {}, UpdateThingShadowOutput = {}, ForbiddenException = {}, InternalFailureException = {}, InvalidRequestException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, MethodNotAllowedException = {}, ServiceUnavailableException = {}, UnauthorizedException = {}, UnsupportedDocumentEncodingException = {}, ConflictException = {}, RequestEntityTooLargeException = {} }
+local M = { ConflictException = {}, DeleteConnectionInput = {}, DeleteConnectionOutput = {}, ForbiddenException = {}, InternalFailureException = {}, InvalidRequestException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, DeleteThingShadowInput = {}, DeleteThingShadowOutput = {}, MethodNotAllowedException = {}, ServiceUnavailableException = {}, UnauthorizedException = {}, UnsupportedDocumentEncodingException = {}, GetRetainedMessageInput = {}, GetRetainedMessageOutput = {}, GetThingShadowInput = {}, GetThingShadowOutput = {}, ListNamedShadowsForThingInput = {}, ListNamedShadowsForThingOutput = {}, ListRetainedMessagesInput = {}, RetainedMessageSummary = {}, ListRetainedMessagesOutput = {}, PublishInput = {}, PublishOutput = {}, RequestEntityTooLargeException = {}, UpdateThingShadowInput = {}, UpdateThingShadowOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

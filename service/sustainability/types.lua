@@ -1,6 +1,75 @@
 
 
-local M = { GetEstimatedCarbonEmissionsInput = {}, GetEstimatedCarbonEmissionsOutput = {}, GetEstimatedCarbonEmissionsDimensionValuesInput = {}, GetEstimatedCarbonEmissionsDimensionValuesOutput = {}, AccessDeniedException = {}, InternalServerException = {}, ThrottlingException = {}, ValidationException = {} }
+local M = { AccessDeniedException = {}, FilterExpression = {}, GranularityConfiguration = {}, TimePeriod = {}, GetEstimatedCarbonEmissionsInput = {}, Emissions = {}, EstimatedCarbonEmissions = {}, GetEstimatedCarbonEmissionsOutput = {}, InternalServerException = {}, ThrottlingException = {}, ValidationException = {}, GetEstimatedCarbonEmissionsDimensionValuesInput = {}, DimensionEntry = {}, GetEstimatedCarbonEmissionsDimensionValuesOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

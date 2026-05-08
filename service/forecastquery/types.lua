@@ -1,6 +1,28 @@
 
 
-local M = { QueryForecastInput = {}, QueryForecastOutput = {}, QueryWhatIfForecastInput = {}, QueryWhatIfForecastOutput = {}, InvalidInputException = {}, InvalidNextTokenException = {}, LimitExceededException = {}, ResourceInUseException = {}, ResourceNotFoundException = {} }
+local M = { InvalidInputException = {}, InvalidNextTokenException = {}, LimitExceededException = {}, QueryForecastInput = {}, DataPoint = {}, Forecast = {}, QueryForecastOutput = {}, ResourceInUseException = {}, ResourceNotFoundException = {}, QueryWhatIfForecastInput = {}, QueryWhatIfForecastOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

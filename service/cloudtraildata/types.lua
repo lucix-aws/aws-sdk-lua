@@ -1,6 +1,41 @@
 
 
-local M = { PutAuditEventsInput = {}, PutAuditEventsOutput = {}, ChannelInsufficientPermission = {}, ChannelNotFound = {}, ChannelUnsupportedSchema = {}, DuplicatedAuditEventId = {}, InvalidChannelARN = {}, UnsupportedOperationException = {} }
+local M = { AuditEvent = {}, AuditEventResultEntry = {}, ChannelInsufficientPermission = {}, ChannelNotFound = {}, ChannelUnsupportedSchema = {}, DuplicatedAuditEventId = {}, InvalidChannelARN = {}, PutAuditEventsInput = {}, ResultErrorEntry = {}, PutAuditEventsOutput = {}, UnsupportedOperationException = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

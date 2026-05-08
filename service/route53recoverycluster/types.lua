@@ -1,6 +1,50 @@
 
 
-local M = { GetRoutingControlStateInput = {}, GetRoutingControlStateOutput = {}, ListRoutingControlsInput = {}, ListRoutingControlsOutput = {}, UpdateRoutingControlStateInput = {}, UpdateRoutingControlStateOutput = {}, UpdateRoutingControlStatesInput = {}, UpdateRoutingControlStatesOutput = {}, AccessDeniedException = {}, EndpointTemporarilyUnavailableException = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationException = {}, ConflictException = {}, ServiceLimitExceededException = {} }
+local M = { AccessDeniedException = {}, ConflictException = {}, EndpointTemporarilyUnavailableException = {}, GetRoutingControlStateInput = {}, GetRoutingControlStateOutput = {}, InternalServerException = {}, ResourceNotFoundException = {}, ThrottlingException = {}, ValidationExceptionField = {}, ValidationException = {}, ListRoutingControlsInput = {}, RoutingControl = {}, ListRoutingControlsOutput = {}, ServiceLimitExceededException = {}, UpdateRoutingControlStateInput = {}, UpdateRoutingControlStateOutput = {}, UpdateRoutingControlStateEntry = {}, UpdateRoutingControlStatesInput = {}, UpdateRoutingControlStatesOutput = {} }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
