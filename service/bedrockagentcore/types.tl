@@ -2039,6 +2039,88 @@ local record M
         sessionStatus: string
     end
 
+    enum PaymentHttpMethodType
+        "GET"
+        "POST"
+        "PUT"
+        "DELETE"
+        "PATCH"
+    end
+
+    -- Coinbase CDP token request parameters
+    record CoinbaseCdpTokenRequestInput
+        -- The HTTP method for the payment API request.
+        requestMethod: string
+        -- Optional - defaults to "api.cdp.coinbase.com"
+        requestHost: string
+        -- The path of the payment API request.
+        requestPath: string
+        -- Set to true for wallet write operations (requires walletSecret configured)
+        includeWalletAuthToken: boolean
+        -- Request body JSON - used to generate wallet auth JWT
+        requestBody: string
+    end
+
+    -- StripePrivy token request parameters
+    record StripePrivyTokenRequestInput
+        -- Optional - defaults to "api.privy.io"
+        requestHost: string
+        -- The path of the Stripe Privy API request.
+        requestPath: string
+        -- Request body JSON for the Privy API call
+        requestBody: string
+        -- Set to true to generate privy-authorization-signature
+        includeAuthorizationSignature: boolean
+    end
+
+    -- VENDOR-SPECIFIC TOKEN REQUEST CONFIGURATION - Input
+    record PaymentTokenRequestInput
+        coinbaseCdpTokenRequest: CoinbaseCdpTokenRequestInput
+        stripePrivyTokenRequest: StripePrivyTokenRequestInput
+    end
+
+    record GetResourcePaymentTokenInput
+        -- Workload access token for authorization. Named workloadIdentityToken for consistency with APIKey and OAuth2CredentialProvider.
+        workloadIdentityToken: string
+        -- Name of the payment credential provider to use
+        resourceCredentialProviderName: string
+        -- Vendor-specific token request input
+        -- Contains all request parameters in a type-safe, vendor-specific structure
+        paymentTokenRequest: PaymentTokenRequestInput
+    end
+
+    -- Coinbase CDP token response
+    record CoinbaseCdpTokenResponseOutput
+        -- Bearer Token for Authorization header
+        bearerToken: string
+        -- Wallet Auth Token for X-Wallet-Auth header
+        walletAuthToken: string
+    end
+
+    -- StripePrivy token response containing appId, basicAuthToken, and optionally authorizationSignature
+    record StripePrivyTokenResponseOutput
+        -- Base64-encoded ECDSA P-256 authorization signature (only present when includeAuthorizationSignature is true)
+        authorizationSignature: string
+        -- Unix timestamp in milliseconds when the authorization signature expires. Set as privy-request-expiry header.
+        requestExpiry: number
+        -- The Privy app ID for the privy-app-id header
+        appId: string
+        -- Base64-encoded Basic Auth token (appId:appSecret) for the Authorization header
+        basicAuthToken: string
+    end
+
+    -- VENDOR-SPECIFIC TOKEN RESPONSE CONFIGURATION - Output
+    record PaymentTokenResponseOutput
+        coinbaseCdpTokenResponse: CoinbaseCdpTokenResponseOutput
+        stripePrivyTokenResponse: StripePrivyTokenResponseOutput
+    end
+
+    record GetResourcePaymentTokenOutput
+        -- Vendor-specific token response output
+        -- Contains all response data in a type-safe, vendor-specific structure
+        paymentTokenResponse: PaymentTokenResponseOutput
+    end
+
     record GetWorkloadAccessTokenInput
         -- The unique identifier for the registered workload.
         workloadName: string
@@ -2407,6 +2489,7 @@ local record M
     enum OAuthGrantType
         "CLIENT_CREDENTIALS"
         "AUTHORIZATION_CODE"
+        "TOKEN_EXCHANGE"
     end
 
     -- Configuration for an OAuth 2.0 credential provider used to authenticate tool calls.
@@ -3296,6 +3379,515 @@ local record M
     record StartMemoryExtractionJobOutput
         -- Extraction Job ID that was attempted to start.
         jobId: string
+    end
+
+    -- Authentication method using JWT with key ID and subject claims.
+    record LinkedAccountDeveloperJwt
+        -- The key ID (kid) from the JWT header.
+        -- Identifies which key was used to sign the JWT.
+        kid: string
+        -- The subject (sub) claim from the JWT payload.
+        -- Identifies the principal that is the subject of the JWT.
+        sub: string
+    end
+
+    -- LinkedAccount using an email address.
+    record LinkedAccountEmail
+        -- The email address used for linkedAccount.
+        -- Must be a valid email format.
+        emailAddress: string
+    end
+
+    -- OAuth2 authentication information for third-party providers.
+    -- Supports Google, Apple, X, Telegram, and GitHub providers.
+    record OAuth2Authentication
+        -- The subject (sub) claim from the OAuth2 provider.
+        -- Uniquely identifies the user at the provider.
+        sub: string
+        -- The email address from the OAuth2 provider (optional).
+        emailAddress: string
+        -- The user's name from the OAuth2 provider (optional).
+        name: string
+        -- The username from the OAuth2 provider (optional).
+        username: string
+    end
+
+    -- Authentication method using OAuth2 providers.
+    -- Supports Google, Apple, X, Telegram, and GitHub providers.
+    record LinkedAccountOAuth2
+        -- Google OAuth2 authentication
+        google: OAuth2Authentication
+        -- Apple OAuth2 authentication
+        apple: OAuth2Authentication
+        -- X (formerly Twitter) OAuth2 authentication
+        x: OAuth2Authentication
+        -- Telegram OAuth2 authentication
+        telegram: OAuth2Authentication
+        -- GitHub OAuth2 authentication
+        github: OAuth2Authentication
+    end
+
+    -- LinkedAccount using a phone number in E.164 format.
+    record LinkedAccountSms
+        -- The phone number in E.164 format (e.g., +1234567890).
+        -- Must be a valid E.164 formatted phone number starting with + and containing 1-15 digits.
+        phoneNumber: string
+    end
+
+    -- Represents different linkedAccounts that can be linked to an embedded wallet.
+    -- This union supports multiple linkedAccount approaches: email, SMS, JWT, and OAuth2.
+    record LinkedAccount
+        -- Email-based linkedAccount
+        email: LinkedAccountEmail
+        -- SMS-based linkedAccount using phone number
+        sms: LinkedAccountSms
+        -- Developer JWT linkedAccount with key ID and subject
+        developerJwt: LinkedAccountDeveloperJwt
+        -- OAuth2 provider linkedAccount (Google, Apple, X, Telegram, GitHub)
+        oAuth2: LinkedAccountOAuth2
+    end
+
+    enum CryptoWalletNetwork
+        "ETHEREUM"
+        "SOLANA"
+    end
+
+    -- Embedded Crypto wallet instrument details
+    record EmbeddedCryptoWallet
+        -- The blockchain network for this embedded crypto wallet.
+        -- Supported networks: ETHEREUM, SOLANA
+        network: string
+        -- List of linkedAccounts linked to this wallet.
+        -- Each linkedAccount represents a way the end user can authenticate to this wallet.
+        -- Can be empty when adding a new linkedAccount to an existing wallet.
+        linkedAccounts: {LinkedAccount}
+        -- The wallet address on the specified blockchain network.
+        walletAddress: string
+        -- URL for the end user to complete a provider-specific action (e.g., wallet linking, onboarding).
+        -- Returned by the payment connector during instrument creation.
+        redirectUrl: string
+    end
+
+    -- Details specific to the instrument type
+    record PaymentInstrumentDetails
+        -- Embedded crypto wallet managed directly by end user
+        embeddedCryptoWallet: EmbeddedCryptoWallet
+    end
+
+    enum PaymentInstrumentType
+        "EMBEDDED_CRYPTO_WALLET"
+    end
+
+    -- Request structure for creating a payment instrument
+    record CreatePaymentInstrumentInput
+        -- The user ID associated with this payment instrument.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager that owns this payment instrument.
+        paymentManagerArn: string
+        -- The ID of the payment connector to use for this instrument.
+        paymentConnectorId: string
+        -- The type of payment instrument being created.
+        paymentInstrumentType: string
+        -- The details of the payment instrument.
+        paymentInstrumentDetails: PaymentInstrumentDetails
+        -- Idempotency token to ensure request uniqueness.
+        clientToken: string
+    end
+
+    enum PaymentInstrumentStatus
+        "INITIATED"
+        "ACTIVE"
+        "FAILED"
+        "DELETED"
+    end
+
+    -- Represents a payment instrument
+    record PaymentInstrument
+        -- The unique identifier for this payment instrument.
+        paymentInstrumentId: string
+        -- The ARN of the payment manager that owns this payment instrument.
+        paymentManagerArn: string
+        -- The ID of the payment connector associated with this instrument.
+        paymentConnectorId: string
+        -- The user ID associated with this payment instrument.
+        userId: string
+        -- The type of payment instrument (e.g., EMBEDDED_CRYPTO_WALLET).
+        paymentInstrumentType: string
+        -- The details specific to the payment instrument type.
+        paymentInstrumentDetails: PaymentInstrumentDetails
+        -- The timestamp when this payment instrument was created.
+        createdAt: number
+        -- The current status of this payment instrument.
+        status: string
+        -- The timestamp when this payment instrument was last updated.
+        updatedAt: number
+    end
+
+    -- Response structure for creating a payment instrument
+    record CreatePaymentInstrumentOutput
+        paymentInstrument: PaymentInstrument
+    end
+
+    -- Request structure for deleting a payment instrument
+    -- All fields are required and must match the instrument owner's identifiers for authorization to succeed.
+    record DeletePaymentInstrumentInput
+        -- The user ID making the delete request. Must match the instrument's userId.
+        userId: string
+        -- The payment manager ARN. Must match the instrument's paymentManagerArn.
+        paymentManagerArn: string
+        -- The payment connector ID. Must match the instrument's paymentConnectorId.
+        paymentConnectorId: string
+        -- The payment instrument ID to delete.
+        paymentInstrumentId: string
+    end
+
+    -- Response structure for deleting a payment instrument
+    -- Returns the deletion status with HTTP 200 OK status code on successful soft deletion.
+    record DeletePaymentInstrumentOutput
+        -- The status of the instrument after deletion. Always DELETED for successful soft delete.
+        status: string
+    end
+
+    -- Request structure for getting a payment instrument
+    record GetPaymentInstrumentInput
+        -- The user ID associated with this payment instrument.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager that owns this payment instrument.
+        paymentManagerArn: string
+        -- The ID of the payment connector.
+        paymentConnectorId: string
+        -- The ID of the payment instrument to retrieve.
+        paymentInstrumentId: string
+    end
+
+    -- Response structure for getting a payment instrument
+    record GetPaymentInstrumentOutput
+        paymentInstrument: PaymentInstrument
+    end
+
+    enum BlockchainChainId
+        "BASE"
+        "BASE_SEPOLIA"
+        "ETHEREUM"
+        "SOLANA"
+        "SOLANA_DEVNET"
+    end
+
+    enum InstrumentBalanceToken
+        "USDC"
+    end
+
+    -- Request structure for getting payment instrument balance
+    record GetPaymentInstrumentBalanceInput
+        -- The user ID associated with this payment instrument.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager that owns this payment instrument.
+        paymentManagerArn: string
+        -- The ID of the payment connector associated with this instrument.
+        paymentConnectorId: string
+        -- The ID of the payment instrument to query balance for.
+        paymentInstrumentId: string
+        -- The specific blockchain chain to query balance on.
+        -- Required because balances are chain-specific — the same wallet address may hold
+        -- different token balances on different chains.
+        chain: string
+        -- The token to query balance for.
+        -- Required to specify which supported token's balance to return.
+        token: string
+    end
+
+    -- A single token balance entry
+    record TokenBalance
+        -- Raw balance in the smallest denomination (e.g., USDC base units where 1 USDC = 1000000).
+        amount: string
+        -- Number of decimal places for the token (e.g., 6 for USDC).
+        decimals: number
+        -- The supported token for this balance.
+        token: string
+        -- The blockchain network family (ETHEREUM or SOLANA).
+        network: string
+        -- The specific blockchain chain.
+        chain: string
+    end
+
+    -- Response structure for getting payment instrument balance
+    record GetPaymentInstrumentBalanceOutput
+        -- The ID of the payment instrument.
+        paymentInstrumentId: string
+        -- The balance of the supported token on the requested chain.
+        tokenBalance: TokenBalance
+    end
+
+    -- Request structure for listing payment instruments
+    record ListPaymentInstrumentsInput
+        -- The user ID associated with the payment instruments.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager that owns the payment instruments.
+        paymentManagerArn: string
+        -- The ID of the payment connector to filter by.
+        paymentConnectorId: string
+        -- Token for pagination to retrieve the next set of results.
+        nextToken: string
+        -- Maximum number of results to return in a single response.
+        maxResults: number
+    end
+
+    -- Summary of a payment instrument for list operations
+    record PaymentInstrumentSummary
+        -- The unique identifier for this payment instrument.
+        paymentInstrumentId: string
+        -- The ARN of the payment manager that owns this payment instrument.
+        paymentManagerArn: string
+        -- The ID of the payment connector associated with this instrument.
+        paymentConnectorId: string
+        -- The user ID associated with this payment instrument.
+        userId: string
+        -- The type of payment instrument (e.g., EMBEDDED_CRYPTO_WALLET).
+        paymentInstrumentType: string
+        -- The current status of this payment instrument.
+        status: string
+        -- The timestamp when this payment instrument was created.
+        createdAt: number
+        -- The timestamp when this payment instrument was last updated.
+        updatedAt: number
+    end
+
+    -- Response structure for listing payment instruments
+    record ListPaymentInstrumentsOutput
+        -- List of payment instrument summaries matching the request criteria.
+        paymentInstruments: {PaymentInstrumentSummary}
+        -- Token for pagination to retrieve the next set of results.
+        nextToken: string
+    end
+
+    enum Currency
+        "USD"
+    end
+
+    -- Money amount with currency
+    record Amount
+        -- The numeric value of the amount.
+        value: string
+        -- The currency code for this amount.
+        currency: string
+    end
+
+    -- Session spending limits
+    record SessionLimits
+        -- The maximum amount that can be spent in this session.
+        maxSpendAmount: Amount
+    end
+
+    -- Request structure for creating a payment session
+    record CreatePaymentSessionInput
+        -- The user ID associated with this payment session.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager that owns this session.
+        paymentManagerArn: string
+        -- The spending limits for this payment session.
+        limits: SessionLimits
+        -- The session expiry time in minutes. Must be between 15 and 480 minutes.
+        expiryTimeInMinutes: number
+        -- Idempotency token to ensure request uniqueness.
+        clientToken: string
+    end
+
+    -- Available session limits. Currently only budget is supported.
+    record AvailableLimits
+        -- The available spend amount for this session.
+        availableSpendAmount: Amount
+        -- The timestamp when the available limits were last updated.
+        updatedAt: number
+    end
+
+    -- Payment manager session
+    record PaymentSession
+        -- The unique identifier for this payment session.
+        paymentSessionId: string
+        -- The ARN of the payment manager that owns this session.
+        paymentManagerArn: string
+        -- The spending limits for this session.
+        limits: SessionLimits
+        -- The user ID associated with this payment session.
+        userId: string
+        -- The session expiry time in minutes.
+        expiryTimeInMinutes: number
+        -- The timestamp when this payment session was created.
+        createdAt: number
+        -- The available limits for this session after accounting for processed payments.
+        availableLimits: AvailableLimits
+        -- The timestamp when this payment session was last updated.
+        updatedAt: number
+    end
+
+    -- Response structure for creating a payment session
+    record CreatePaymentSessionOutput
+        paymentSession: PaymentSession
+    end
+
+    -- Request structure for deleting a payment session
+    -- All fields are required and must match the session owner's identifiers for authorization to succeed.
+    record DeletePaymentSessionInput
+        -- The user ID making the delete request. Must match the session's userId.
+        userId: string
+        -- The payment manager ARN. Must match the session's paymentManagerArn.
+        paymentManagerArn: string
+        -- The payment session ID to delete.
+        paymentSessionId: string
+    end
+
+    enum PaymentSessionStatus
+        "ACTIVE"
+        "EXPIRED"
+        "DELETED"
+    end
+
+    -- Response structure for deleting a payment session
+    -- Returns the deletion status with HTTP 200 status code on successful deletion.
+    record DeletePaymentSessionOutput
+        -- The status of the deletion. Always DELETED for successful hard delete.
+        status: string
+    end
+
+    -- Request structure for getting a payment session
+    record GetPaymentSessionInput
+        -- The user ID associated with this payment session.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager that owns this session.
+        paymentManagerArn: string
+        -- The ID of the payment session to retrieve.
+        paymentSessionId: string
+    end
+
+    -- Response structure for getting a payment session
+    record GetPaymentSessionOutput
+        paymentSession: PaymentSession
+    end
+
+    -- Request structure for listing payment sessions
+    record ListPaymentSessionsInput
+        -- The user ID associated with the payment sessions.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager that owns the sessions.
+        paymentManagerArn: string
+        -- Token for pagination to retrieve the next set of results.
+        nextToken: string
+        -- Maximum number of results to return in a single response.
+        maxResults: number
+    end
+
+    -- Summary of a payment session for list operations
+    record PaymentSessionSummary
+        -- The unique identifier for this payment session.
+        paymentSessionId: string
+        -- The ARN of the payment manager that owns this session.
+        paymentManagerArn: string
+        -- The user ID associated with this payment session.
+        userId: string
+        -- The session expiry time in minutes.
+        expiryTimeInMinutes: number
+        -- The timestamp when this payment session was created.
+        createdAt: number
+        -- The timestamp when this payment session was last updated.
+        updatedAt: number
+    end
+
+    -- Response structure for listing payment sessions
+    record ListPaymentSessionsOutput
+        -- List of payment session summaries matching the request criteria.
+        paymentSessions: {PaymentSessionSummary}
+        -- Token for pagination to retrieve the next set of results.
+        nextToken: string
+    end
+
+    -- X402 payment requirement input
+    record CryptoX402PaymentInput
+        -- The X402 protocol version (e.g., "v1", "v2")
+        version: string
+        -- This can hold any JSON-like object
+        payload: any
+    end
+
+    -- Payment request details union
+    record PaymentInput
+        cryptoX402: CryptoX402PaymentInput
+    end
+
+    enum PaymentType
+        "CRYPTO_X402"
+    end
+
+    -- Request structure for processing a payment
+    record ProcessPaymentInput
+        -- The user ID associated with this payment.
+        userId: string
+        -- The agent name associated with this request, used for observability.
+        agentName: string
+        -- The ARN of the payment manager handling this payment.
+        paymentManagerArn: string
+        -- The ID of the payment session for this transaction.
+        paymentSessionId: string
+        -- The ID of the payment instrument to use for this transaction.
+        paymentInstrumentId: string
+        -- The type of payment being processed.
+        paymentType: string
+        -- The payment input details specific to the payment type.
+        paymentInput: PaymentInput
+        -- Idempotency token to ensure request uniqueness.
+        clientToken: string
+    end
+
+    -- X402 payment requirement output
+    record CryptoX402PaymentOutput
+        -- The X402 protocol version (e.g., "1", "2")
+        version: string
+        -- This can hold any JSON-like object
+        payload: any
+    end
+
+    -- Payment response payload union. We will support versioning by introducing other model in this union
+    record PaymentOutput
+        cryptoX402: CryptoX402PaymentOutput
+    end
+
+    enum PaymentStatus
+        "PROOF_GENERATED"
+    end
+
+    -- Response structure for processing a payment
+    record ProcessPaymentOutput
+        -- The unique ID of the processed payment transaction.
+        processPaymentId: string
+        -- The ARN of the payment manager that processed this payment.
+        paymentManagerArn: string
+        -- The ID of the payment session for this transaction.
+        paymentSessionId: string
+        -- The ID of the payment instrument used for this transaction.
+        paymentInstrumentId: string
+        -- The type of payment that was processed.
+        paymentType: string
+        -- The status of the payment transaction.
+        status: string
+        -- The payment output details specific to the payment type.
+        paymentOutput: PaymentOutput
+        -- The timestamp when the payment was created.
+        createdAt: number
+        -- The timestamp when the payment was last updated.
+        updatedAt: number
     end
 
     record SearchRegistryRecordsInput

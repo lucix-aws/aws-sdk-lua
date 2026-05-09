@@ -43,6 +43,8 @@ M.SupplementalDocuments = schema.new({ type = "list", list_member = M.Supplement
 
 M.InvoiceUnitNames = schema.new({ type = "list", list_member = prelude.String })
 
+M.BillSourceAccountList = schema.new({ type = "list", list_member = prelude.String })
+
 M.DiscountsBreakdownAmountList = schema.new({ type = "list", list_member = M.DiscountsBreakdownAmount })
 
 M.TaxesBreakdownAmountList = schema.new({ type = "list", list_member = M.TaxesBreakdownAmount })
@@ -1128,6 +1130,12 @@ M.Entity = schema.new({
             name = "InvoicingEntity",
             target_id = prelude.String.id,
         }),
+        BillingEntity = schema.new({
+            id = id.from(_N, "Entity", "BillingEntity"),
+            type = "string",
+            name = "BillingEntity",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1186,6 +1194,18 @@ M.SupplementalDocument = schema.new({
     id = id.from(_N, "SupplementalDocument"),
     type = "structure",
     members = {
+        DocumentType = schema.new({
+            id = id.from(_N, "SupplementalDocument", "DocumentType"),
+            type = "string",
+            name = "DocumentType",
+            target_id = prelude.String.id,
+        }),
+        DocumentId = schema.new({
+            id = id.from(_N, "SupplementalDocument", "DocumentId"),
+            type = "string",
+            name = "DocumentId",
+            target_id = prelude.String.id,
+        }),
         DocumentUrl = schema.new({
             id = id.from(_N, "SupplementalDocument", "DocumentUrl"),
             type = "string",
@@ -1668,6 +1688,25 @@ M.InvoiceSummary = schema.new({
             name = "DueDate",
             target_id = prelude.Timestamp.id,
         }),
+        BillSourceAccounts = schema.new({
+            id = id.from(_N, "InvoiceSummary", "BillSourceAccounts"),
+            type = "list",
+            name = "BillSourceAccounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        BillSourceAccountsTotalCount = schema.new({
+            id = id.from(_N, "InvoiceSummary", "BillSourceAccountsTotalCount"),
+            type = "integer",
+            name = "BillSourceAccountsTotalCount",
+            target_id = prelude.Integer.id,
+        }),
+        ReceiverRole = schema.new({
+            id = id.from(_N, "InvoiceSummary", "ReceiverRole"),
+            type = "string",
+            name = "ReceiverRole",
+            target_id = prelude.String.id,
+        }),
         Entity = schema.new({
             id = id.from(_N, "InvoiceSummary", "Entity"),
             type = "structure",
@@ -1682,10 +1721,28 @@ M.InvoiceSummary = schema.new({
             target_id = id.from(_N, "BillingPeriod"),
             target = M.BillingPeriod,
         }),
+        InvoiceFrequency = schema.new({
+            id = id.from(_N, "InvoiceSummary", "InvoiceFrequency"),
+            type = "string",
+            name = "InvoiceFrequency",
+            target_id = prelude.String.id,
+        }),
+        BillType = schema.new({
+            id = id.from(_N, "InvoiceSummary", "BillType"),
+            type = "string",
+            name = "BillType",
+            target_id = prelude.String.id,
+        }),
         InvoiceType = schema.new({
             id = id.from(_N, "InvoiceSummary", "InvoiceType"),
             type = "string",
             name = "InvoiceType",
+            target_id = prelude.String.id,
+        }),
+        CommercialInvoiceId = schema.new({
+            id = id.from(_N, "InvoiceSummary", "CommercialInvoiceId"),
+            type = "string",
+            name = "CommercialInvoiceId",
             target_id = prelude.String.id,
         }),
         OriginalInvoiceId = schema.new({
@@ -1698,6 +1755,18 @@ M.InvoiceSummary = schema.new({
             id = id.from(_N, "InvoiceSummary", "PurchaseOrderNumber"),
             type = "string",
             name = "PurchaseOrderNumber",
+            target_id = prelude.String.id,
+        }),
+        EinvoiceDeliveryStatus = schema.new({
+            id = id.from(_N, "InvoiceSummary", "EinvoiceDeliveryStatus"),
+            type = "string",
+            name = "EinvoiceDeliveryStatus",
+            target_id = prelude.String.id,
+        }),
+        TaxAuthorityStatus = schema.new({
+            id = id.from(_N, "InvoiceSummary", "TaxAuthorityStatus"),
+            type = "string",
+            name = "TaxAuthorityStatus",
             target_id = prelude.String.id,
         }),
         BaseCurrencyAmount = schema.new({
@@ -1746,6 +1815,12 @@ M.InvoiceSummariesFilter = schema.new({
             id = id.from(_N, "InvoiceSummariesFilter", "InvoicingEntity"),
             type = "string",
             name = "InvoicingEntity",
+            target_id = prelude.String.id,
+        }),
+        ReceiverRole = schema.new({
+            id = id.from(_N, "InvoiceSummariesFilter", "ReceiverRole"),
+            type = "string",
+            name = "ReceiverRole",
             target_id = prelude.String.id,
         }),
     },

@@ -27,6 +27,8 @@ local record M
 
     enum S3OutputType
         "CUSTOM"
+        "ATHENA"
+        "REDSHIFT"
     end
 
     enum OverwriteOption

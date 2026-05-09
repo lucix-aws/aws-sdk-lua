@@ -112,6 +112,42 @@ function M.items_list_memory_records(client, input)
     })
 end
 
+--- Returns a page iterator for listPaymentInstruments.
+function M.pages_list_payment_instruments(client, input)
+    return paginator.pages(client, "listPaymentInstruments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentInstruments",
+    })
+end
+
+--- Returns an item iterator for listPaymentInstruments.
+function M.items_list_payment_instruments(client, input)
+    return paginator.items(client, "listPaymentInstruments", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentInstruments",
+    })
+end
+
+--- Returns a page iterator for listPaymentSessions.
+function M.pages_list_payment_sessions(client, input)
+    return paginator.pages(client, "listPaymentSessions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentSessions",
+    })
+end
+
+--- Returns an item iterator for listPaymentSessions.
+function M.items_list_payment_sessions(client, input)
+    return paginator.items(client, "listPaymentSessions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentSessions",
+    })
+end
+
 --- Returns a page iterator for listRecommendations.
 function M.pages_list_recommendations(client, input)
     return paginator.pages(client, "listRecommendations", input, {

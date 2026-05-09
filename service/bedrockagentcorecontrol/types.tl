@@ -464,7 +464,7 @@ local record M
         -- An array of objects that define a custom claim validation name, value, and operation
         customClaims: {CustomClaimValidationType}
         privateEndpoint: PrivateEndpoint
-        -- A list of private endpoint overrides for the JWT authorizer. Each override maps a specific domain to a private endpoint, enabling secure connectivity through VPC Lattice resource configurations.
+        -- The private endpoint overrides for the custom JWT authorizer configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
     end
 
@@ -4165,7 +4165,7 @@ local record M
         clientSecret: string
         -- The default private endpoint for the custom OAuth2 provider, enabling secure connectivity through a VPC Lattice resource configuration.
         privateEndpoint: PrivateEndpoint
-        -- The list of private endpoint overrides for the custom OAuth2 provider. Each override maps a specific domain to a private endpoint, enabling secure connectivity through VPC Lattice resource configurations.
+        -- The private endpoint overrides for the custom OAuth2 provider configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
         -- The configuration for on-behalf-of token exchange. This enables authentication flows that use RFC 8693 token exchange or RFC 7523 JWT authorization grants.
         onBehalfOfTokenExchangeConfig: OnBehalfOfTokenExchangeConfigType
@@ -4285,7 +4285,7 @@ local record M
         clientId: string
         -- The default private endpoint for the custom OAuth2 provider, enabling secure connectivity through a VPC Lattice resource configuration.
         privateEndpoint: PrivateEndpoint
-        -- The list of private endpoint overrides for the custom OAuth2 provider. Each override maps a specific domain to a private endpoint, enabling secure connectivity through VPC Lattice resource configurations.
+        -- The private endpoint overrides for the custom OAuth2 provider configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
         -- The configuration for on-behalf-of token exchange.
         onBehalfOfTokenExchangeConfig: OnBehalfOfTokenExchangeConfigType
@@ -4425,7 +4425,7 @@ local record M
         lastUpdatedTime: number
         -- The current status of the OAuth2 credential provider.
         status: string
-        -- The reason for the failure if the OAuth2 credential provider is in a failed state.
+        -- The reason for failure if the OAuth2 credential provider is in a failed state.
         failureReason: string
     end
 
@@ -4483,7 +4483,7 @@ local record M
         createdTime: number
         -- The timestamp when the OAuth2 credential provider was last updated.
         lastUpdatedTime: number
-        -- The current status of the OAuth2 credential provider.
+        -- The current status of the updated OAuth2 credential provider.
         status: string
     end
 
@@ -4742,6 +4742,481 @@ local record M
         executionStatus: string
         -- The reason for failure if the online evaluation configuration update or execution failed.
         failureReason: string
+    end
+
+    enum PaymentCredentialProviderVendorType
+        "CoinbaseCDP"
+        "StripePrivy"
+    end
+
+    -- Coinbase CDP configuration - credentials provided by Coinbase Developer Platform
+    record CoinbaseCdpConfigurationInput
+        -- The API key identifier provided by Coinbase Developer Platform.
+        apiKeyId: string
+        -- The API key secret provided by Coinbase Developer Platform.
+        apiKeySecret: string
+        -- The wallet secret provided by Coinbase Developer Platform.
+        walletSecret: string
+    end
+
+    -- StripePrivy configuration - credentials provided by Stripe + Privy
+    record StripePrivyConfigurationInput
+        -- The app ID provided by Privy.
+        appId: string
+        -- The app secret provided by Privy.
+        appSecret: string
+        -- The authorization private key for the Stripe Privy integration.
+        authorizationPrivateKey: string
+        -- The authorization ID for the Stripe Privy integration.
+        authorizationId: string
+    end
+
+    -- PROVIDER CONFIGURATION INPUT - Contains secrets for creation/update
+    record PaymentProviderConfigurationInput
+        coinbaseCdpConfiguration: CoinbaseCdpConfigurationInput
+        stripePrivyConfiguration: StripePrivyConfigurationInput
+    end
+
+    record CreatePaymentCredentialProviderInput
+        -- Unique name for the payment credential provider
+        name: string
+        -- The vendor type (e.g., CoinbaseCDP)
+        credentialProviderVendor: string
+        -- Configuration specific to the vendor, including API credentials
+        providerConfigurationInput: PaymentProviderConfigurationInput
+        -- Optional tags for resource organization
+        tags: {string : string}
+    end
+
+    -- Coinbase CDP configuration output with secret ARNs
+    record CoinbaseCdpConfigurationOutput
+        -- The API key identifier provided by Coinbase Developer Platform.
+        apiKeyId: string
+        apiKeySecretArn: Secret
+        walletSecretArn: Secret
+    end
+
+    -- StripePrivy configuration output with secret ARNs
+    record StripePrivyConfigurationOutput
+        -- The app ID provided by Privy.
+        appId: string
+        appSecretArn: Secret
+        authorizationPrivateKeyArn: Secret
+        -- The authorization ID for the Stripe Privy integration.
+        authorizationId: string
+    end
+
+    -- PROVIDER CONFIGURATION OUTPUT - No raw secrets, only ARNs
+    record PaymentProviderConfigurationOutput
+        coinbaseCdpConfiguration: CoinbaseCdpConfigurationOutput
+        stripePrivyConfiguration: StripePrivyConfigurationOutput
+    end
+
+    record CreatePaymentCredentialProviderOutput
+        -- The name of the created payment credential provider.
+        name: string
+        credentialProviderVendor: string
+        -- The Amazon Resource Name (ARN) of the created payment credential provider.
+        credentialProviderArn: string
+        -- Output configuration (contains secret ARNs, excludes actual secret values)
+        providerConfigurationOutput: PaymentProviderConfigurationOutput
+    end
+
+    record DeletePaymentCredentialProviderInput
+        -- The name of the payment credential provider to delete.
+        name: string
+    end
+
+    record DeletePaymentCredentialProviderOutput
+    end
+
+    record GetPaymentCredentialProviderInput
+        -- The name of the payment credential provider to retrieve.
+        name: string
+    end
+
+    record GetPaymentCredentialProviderOutput
+        -- The name of the payment credential provider.
+        name: string
+        -- The Amazon Resource Name (ARN) of the payment credential provider.
+        credentialProviderArn: string
+        credentialProviderVendor: string
+        -- Output configuration (contains secret ARNs, excludes actual secret values)
+        providerConfigurationOutput: PaymentProviderConfigurationOutput
+        -- The timestamp when the payment credential provider was created.
+        createdTime: number
+        -- The timestamp when the payment credential provider was last updated.
+        lastUpdatedTime: number
+        -- The tags associated with the payment credential provider.
+        tags: {string : string}
+    end
+
+    record ListPaymentCredentialProvidersInput
+        -- Pagination token.
+        nextToken: string
+        -- Maximum number of results to return.
+        maxResults: number
+    end
+
+    -- Contains summary information about a payment credential provider.
+    record PaymentCredentialProviderItem
+        -- The name of the payment credential provider.
+        name: string
+        credentialProviderVendor: string
+        -- The Amazon Resource Name (ARN) of the payment credential provider.
+        credentialProviderArn: string
+        -- The timestamp when the payment credential provider was created.
+        createdTime: number
+        -- The timestamp when the payment credential provider was last updated.
+        lastUpdatedTime: number
+    end
+
+    record ListPaymentCredentialProvidersOutput
+        -- The list of payment credential providers.
+        credentialProviders: {PaymentCredentialProviderItem}
+        -- Pagination token for the next page of results.
+        nextToken: string
+    end
+
+    record UpdatePaymentCredentialProviderInput
+        -- The name of the payment credential provider to update.
+        name: string
+        credentialProviderVendor: string
+        -- Configuration specific to the vendor, including API credentials
+        providerConfigurationInput: PaymentProviderConfigurationInput
+    end
+
+    record UpdatePaymentCredentialProviderOutput
+        -- The name of the updated payment credential provider.
+        name: string
+        credentialProviderVendor: string
+        -- The Amazon Resource Name (ARN) of the updated payment credential provider.
+        credentialProviderArn: string
+        -- Output configuration (contains secret ARNs, excludes actual secret values)
+        providerConfigurationOutput: PaymentProviderConfigurationOutput
+        -- The timestamp when the payment credential provider was created.
+        createdTime: number
+        -- The timestamp when the payment credential provider was last updated.
+        lastUpdatedTime: number
+    end
+
+    enum PaymentsAuthorizerType
+        "CUSTOM_JWT"
+        "AWS_IAM"
+    end
+
+    record CreatePaymentManagerInput
+        -- The name of the payment manager.
+        name: string
+        -- A description of the payment manager.
+        description: string
+        -- The type of authorizer to use for the payment manager. CUSTOM_JWT - Authorize with a bearer token. AWS_IAM - Authorize with your Amazon Web Services IAM credentials.
+        authorizerType: string
+        -- The authorizer configuration for the payment manager.
+        authorizerConfiguration: AuthorizerConfiguration
+        -- The Amazon Resource Name (ARN) of the IAM role that the payment manager assumes to access resources on your behalf.
+        roleArn: string
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+        -- A map of tag keys and values to assign to the payment manager.
+        tags: {string : string}
+    end
+
+    enum PaymentManagerStatus
+        "CREATING"
+        "UPDATING"
+        "DELETING"
+        "READY"
+        "CREATE_FAILED"
+        "UPDATE_FAILED"
+        "DELETE_FAILED"
+    end
+
+    record CreatePaymentManagerOutput
+        -- The Amazon Resource Name (ARN) of the created payment manager.
+        paymentManagerArn: string
+        -- The unique identifier of the created payment manager.
+        paymentManagerId: string
+        -- The name of the created payment manager.
+        name: string
+        -- The type of authorizer for the created payment manager.
+        authorizerType: string
+        authorizerConfiguration: AuthorizerConfiguration
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the created payment manager.
+        roleArn: string
+        workloadIdentityDetails: WorkloadIdentityDetails
+        -- The timestamp when the payment manager was created.
+        createdAt: number
+        -- The current status of the payment manager. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+        -- The tags associated with the created payment manager.
+        tags: {string : string}
+    end
+
+    record DeletePaymentManagerInput
+        -- The unique identifier of the payment manager to delete.
+        paymentManagerId: string
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    record DeletePaymentManagerOutput
+        -- The current status of the payment manager, set to DELETING when deletion is initiated. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+        -- The unique identifier of the deleted payment manager.
+        paymentManagerId: string
+    end
+
+    record GetPaymentManagerInput
+        -- The unique identifier of the payment manager to retrieve.
+        paymentManagerId: string
+    end
+
+    record GetPaymentManagerOutput
+        -- The Amazon Resource Name (ARN) of the payment manager.
+        paymentManagerArn: string
+        -- The unique identifier of the payment manager.
+        paymentManagerId: string
+        -- The name of the payment manager.
+        name: string
+        -- The description of the payment manager.
+        description: string
+        -- The type of authorizer used by the payment manager. CUSTOM_JWT - Authorize with a bearer token. AWS_IAM - Authorize with your Amazon Web Services IAM credentials.
+        authorizerType: string
+        authorizerConfiguration: AuthorizerConfiguration
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the payment manager.
+        roleArn: string
+        workloadIdentityDetails: WorkloadIdentityDetails
+        -- The timestamp when the payment manager was created.
+        createdAt: number
+        -- The timestamp when the payment manager was last updated.
+        lastUpdatedAt: number
+        -- The current status of the payment manager. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+        -- The tags associated with the payment manager.
+        tags: {string : string}
+    end
+
+    record ListPaymentManagersInput
+        -- The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results.
+        maxResults: number
+        -- If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results.
+        nextToken: string
+    end
+
+    -- Contains summary information about a payment manager.
+    record PaymentManagerSummary
+        -- The Amazon Resource Name (ARN) of the payment manager.
+        paymentManagerArn: string
+        -- The unique identifier of the payment manager.
+        paymentManagerId: string
+        -- The name of the payment manager.
+        name: string
+        -- The description of the payment manager.
+        description: string
+        -- The type of authorizer used by the payment manager. CUSTOM_JWT - Authorize with a bearer token. AWS_IAM - Authorize with your Amazon Web Services IAM credentials.
+        authorizerType: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the payment manager.
+        roleArn: string
+        -- The current status of the payment manager. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+        -- The timestamp when the payment manager was created.
+        createdAt: number
+        -- The timestamp when the payment manager was last updated.
+        lastUpdatedAt: number
+    end
+
+    record ListPaymentManagersOutput
+        -- The list of payment manager summaries. For details about the fields in each summary, see the PaymentManagerSummary data type.
+        paymentManagers: {PaymentManagerSummary}
+        -- If the total number of results is greater than the maxResults value provided in the request, use this token when making another request in the nextToken field to return the next batch of results.
+        nextToken: string
+    end
+
+    -- Configuration for a payment credential provider that stores authentication credentials for a payment provider.
+    record PaymentCredentialProviderConfiguration
+        -- The Amazon Resource Name (ARN) of the credential provider that stores the authentication credentials for the payment provider.
+        credentialProviderArn: string
+    end
+
+    -- The credential provider configuration for a payment connector. Specifies the payment provider type and its associated credential provider.
+    record CredentialsProviderConfiguration
+        -- The credential provider configuration for a Coinbase CDP payment connector.
+        coinbaseCDP: PaymentCredentialProviderConfiguration
+        -- The credential provider configuration for a Stripe Privy payment connector.
+        stripePrivy: PaymentCredentialProviderConfiguration
+    end
+
+    enum PaymentConnectorType
+        "CoinbaseCDP"
+        "StripePrivy"
+    end
+
+    record CreatePaymentConnectorInput
+        -- The unique identifier of the payment manager to create the connector for.
+        paymentManagerId: string
+        -- The name of the payment connector.
+        name: string
+        -- A description of the payment connector.
+        description: string
+        -- The credential provider configurations for the payment connector. These configurations specify how the connector authenticates with the payment provider.
+        credentialProviderConfigurations: {CredentialsProviderConfiguration}
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    enum PaymentConnectorStatus
+        "CREATING"
+        "UPDATING"
+        "DELETING"
+        "READY"
+        "CREATE_FAILED"
+        "UPDATE_FAILED"
+        "DELETE_FAILED"
+    end
+
+    record CreatePaymentConnectorOutput
+        -- The unique identifier of the created payment connector.
+        paymentConnectorId: string
+        -- The unique identifier of the parent payment manager.
+        paymentManagerId: string
+        -- The name of the created payment connector.
+        name: string
+        -- The credential provider configurations for the created payment connector.
+        credentialProviderConfigurations: {CredentialsProviderConfiguration}
+        -- The timestamp when the payment connector was created.
+        createdAt: number
+        -- The current status of the payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+    end
+
+    record DeletePaymentConnectorInput
+        -- The unique identifier of the parent payment manager.
+        paymentManagerId: string
+        -- The unique identifier of the payment connector to delete.
+        paymentConnectorId: string
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    record DeletePaymentConnectorOutput
+        -- The current status of the payment connector, set to DELETING when deletion is initiated. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+        -- The unique identifier of the deleted payment connector.
+        paymentConnectorId: string
+    end
+
+    record GetPaymentConnectorInput
+        -- The unique identifier of the parent payment manager.
+        paymentManagerId: string
+        -- The unique identifier of the payment connector to retrieve.
+        paymentConnectorId: string
+    end
+
+    record GetPaymentConnectorOutput
+        -- The unique identifier of the payment connector.
+        paymentConnectorId: string
+        -- The name of the payment connector.
+        name: string
+        -- The description of the payment connector.
+        description: string
+        -- The credential provider configurations for the payment connector.
+        credentialProviderConfigurations: {CredentialsProviderConfiguration}
+        -- The timestamp when the payment connector was created.
+        createdAt: number
+        -- The timestamp when the payment connector was last updated.
+        lastUpdatedAt: number
+        -- The current status of the payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+    end
+
+    record ListPaymentConnectorsInput
+        -- The unique identifier of the payment manager whose connectors to list.
+        paymentManagerId: string
+        -- The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results.
+        maxResults: number
+        -- If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results.
+        nextToken: string
+    end
+
+    -- Contains summary information about a payment connector.
+    record PaymentConnectorSummary
+        -- The unique identifier of the payment connector.
+        paymentConnectorId: string
+        -- The name of the payment connector.
+        name: string
+        -- The current status of the payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+        -- The timestamp when the payment connector was last updated.
+        lastUpdatedAt: number
+    end
+
+    record ListPaymentConnectorsOutput
+        -- The list of payment connector summaries. For details about the fields in each summary, see the PaymentConnectorSummary data type.
+        paymentConnectors: {PaymentConnectorSummary}
+        -- If the total number of results is greater than the maxResults value provided in the request, use this token when making another request in the nextToken field to return the next batch of results.
+        nextToken: string
+    end
+
+    record UpdatePaymentConnectorInput
+        -- The unique identifier of the parent payment manager.
+        paymentManagerId: string
+        -- The unique identifier of the payment connector to update.
+        paymentConnectorId: string
+        -- The updated description of the payment connector.
+        description: string
+        -- The updated credential provider configurations for the payment connector.
+        credentialProviderConfigurations: {CredentialsProviderConfiguration}
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    record UpdatePaymentConnectorOutput
+        -- The unique identifier of the updated payment connector.
+        paymentConnectorId: string
+        -- The unique identifier of the parent payment manager.
+        paymentManagerId: string
+        -- The name of the updated payment connector.
+        name: string
+        -- The credential provider configurations for the updated payment connector.
+        credentialProviderConfigurations: {CredentialsProviderConfiguration}
+        -- The timestamp when the payment connector was last updated.
+        lastUpdatedAt: number
+        -- The current status of the updated payment connector. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
+    end
+
+    record UpdatePaymentManagerInput
+        -- The unique identifier of the payment manager to update.
+        paymentManagerId: string
+        -- The updated description of the payment manager.
+        description: string
+        -- The updated authorizer type for the payment manager.
+        authorizerType: string
+        -- The updated authorizer configuration for the payment manager.
+        authorizerConfiguration: AuthorizerConfiguration
+        -- The updated Amazon Resource Name (ARN) of the IAM role for the payment manager.
+        roleArn: string
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    record UpdatePaymentManagerOutput
+        -- The Amazon Resource Name (ARN) of the updated payment manager.
+        paymentManagerArn: string
+        -- The unique identifier of the updated payment manager.
+        paymentManagerId: string
+        -- The name of the updated payment manager.
+        name: string
+        -- The type of authorizer for the updated payment manager.
+        authorizerType: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the updated payment manager.
+        roleArn: string
+        workloadIdentityDetails: WorkloadIdentityDetails
+        -- The timestamp when the payment manager was last updated.
+        lastUpdatedAt: number
+        -- The current status of the updated payment manager. Possible values include CREATING, READY, UPDATING, DELETING, CREATE_FAILED, UPDATE_FAILED, and DELETE_FAILED.
+        status: string
     end
 
     record CreatePolicyEngineInput

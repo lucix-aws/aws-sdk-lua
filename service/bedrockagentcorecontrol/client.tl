@@ -33,6 +33,9 @@ local record Client
     createMemory: function(Client, types.CreateMemoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateMemoryOutput>
     createOauth2CredentialProvider: function(Client, types.CreateOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateOauth2CredentialProviderOutput>
     createOnlineEvaluationConfig: function(Client, types.CreateOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateOnlineEvaluationConfigOutput>
+    createPaymentConnector: function(Client, types.CreatePaymentConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreatePaymentConnectorOutput>
+    createPaymentCredentialProvider: function(Client, types.CreatePaymentCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreatePaymentCredentialProviderOutput>
+    createPaymentManager: function(Client, types.CreatePaymentManagerInput, ? base_client.InvokeOptions): async.Operation<types.CreatePaymentManagerOutput>
     createPolicy: function(Client, types.CreatePolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyOutput>
     createPolicyEngine: function(Client, types.CreatePolicyEngineInput, ? base_client.InvokeOptions): async.Operation<types.CreatePolicyEngineOutput>
     createRegistry: function(Client, types.CreateRegistryInput, ? base_client.InvokeOptions): async.Operation<types.CreateRegistryOutput>
@@ -53,6 +56,9 @@ local record Client
     deleteMemory: function(Client, types.DeleteMemoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemoryOutput>
     deleteOauth2CredentialProvider: function(Client, types.DeleteOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOauth2CredentialProviderOutput>
     deleteOnlineEvaluationConfig: function(Client, types.DeleteOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOnlineEvaluationConfigOutput>
+    deletePaymentConnector: function(Client, types.DeletePaymentConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeletePaymentConnectorOutput>
+    deletePaymentCredentialProvider: function(Client, types.DeletePaymentCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeletePaymentCredentialProviderOutput>
+    deletePaymentManager: function(Client, types.DeletePaymentManagerInput, ? base_client.InvokeOptions): async.Operation<types.DeletePaymentManagerOutput>
     deletePolicy: function(Client, types.DeletePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
     deletePolicyEngine: function(Client, types.DeletePolicyEngineInput, ? base_client.InvokeOptions): async.Operation<types.DeletePolicyEngineOutput>
     deleteRegistry: function(Client, types.DeleteRegistryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistryOutput>
@@ -75,6 +81,9 @@ local record Client
     getMemory: function(Client, types.GetMemoryInput, ? base_client.InvokeOptions): async.Operation<types.GetMemoryOutput>
     getOauth2CredentialProvider: function(Client, types.GetOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetOauth2CredentialProviderOutput>
     getOnlineEvaluationConfig: function(Client, types.GetOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetOnlineEvaluationConfigOutput>
+    getPaymentConnector: function(Client, types.GetPaymentConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetPaymentConnectorOutput>
+    getPaymentCredentialProvider: function(Client, types.GetPaymentCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetPaymentCredentialProviderOutput>
+    getPaymentManager: function(Client, types.GetPaymentManagerInput, ? base_client.InvokeOptions): async.Operation<types.GetPaymentManagerOutput>
     getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
     getPolicyEngine: function(Client, types.GetPolicyEngineInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyEngineOutput>
     getPolicyGeneration: function(Client, types.GetPolicyGenerationInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyGenerationOutput>
@@ -100,6 +109,9 @@ local record Client
     listMemories: function(Client, types.ListMemoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListMemoriesOutput>
     listOauth2CredentialProviders: function(Client, types.ListOauth2CredentialProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListOauth2CredentialProvidersOutput>
     listOnlineEvaluationConfigs: function(Client, types.ListOnlineEvaluationConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListOnlineEvaluationConfigsOutput>
+    listPaymentConnectors: function(Client, types.ListPaymentConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListPaymentConnectorsOutput>
+    listPaymentCredentialProviders: function(Client, types.ListPaymentCredentialProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListPaymentCredentialProvidersOutput>
+    listPaymentManagers: function(Client, types.ListPaymentManagersInput, ? base_client.InvokeOptions): async.Operation<types.ListPaymentManagersOutput>
     listPolicies: function(Client, types.ListPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
     listPolicyEngines: function(Client, types.ListPolicyEnginesInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyEnginesOutput>
     listPolicyGenerationAssets: function(Client, types.ListPolicyGenerationAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationAssetsOutput>
@@ -127,6 +139,9 @@ local record Client
     updateMemory: function(Client, types.UpdateMemoryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMemoryOutput>
     updateOauth2CredentialProvider: function(Client, types.UpdateOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOauth2CredentialProviderOutput>
     updateOnlineEvaluationConfig: function(Client, types.UpdateOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOnlineEvaluationConfigOutput>
+    updatePaymentConnector: function(Client, types.UpdatePaymentConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePaymentConnectorOutput>
+    updatePaymentCredentialProvider: function(Client, types.UpdatePaymentCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePaymentCredentialProviderOutput>
+    updatePaymentManager: function(Client, types.UpdatePaymentManagerInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePaymentManagerOutput>
     updatePolicy: function(Client, types.UpdatePolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePolicyOutput>
     updatePolicyEngine: function(Client, types.UpdatePolicyEngineInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePolicyEngineOutput>
     updateRegistry: function(Client, types.UpdateRegistryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRegistryOutput>
@@ -237,6 +252,18 @@ function C:createOnlineEvaluationConfig(input: types.CreateOnlineEvaluationConfi
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOnlineEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.CreateOnlineEvaluationConfigOutput>
 end
 
+function C:createPaymentConnector(input: types.CreatePaymentConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePaymentConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePaymentConnector as schema.OperationSchema, input, options) as async.Operation<types.CreatePaymentConnectorOutput>
+end
+
+function C:createPaymentCredentialProvider(input: types.CreatePaymentCredentialProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePaymentCredentialProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePaymentCredentialProvider as schema.OperationSchema, input, options) as async.Operation<types.CreatePaymentCredentialProviderOutput>
+end
+
+function C:createPaymentManager(input: types.CreatePaymentManagerInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePaymentManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePaymentManager as schema.OperationSchema, input, options) as async.Operation<types.CreatePaymentManagerOutput>
+end
+
 function C:createPolicy(input: types.CreatePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePolicy as schema.OperationSchema, input, options) as async.Operation<types.CreatePolicyOutput>
 end
@@ -315,6 +342,18 @@ end
 
 function C:deleteOnlineEvaluationConfig(input: types.DeleteOnlineEvaluationConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOnlineEvaluationConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOnlineEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.DeleteOnlineEvaluationConfigOutput>
+end
+
+function C:deletePaymentConnector(input: types.DeletePaymentConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePaymentConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePaymentConnector as schema.OperationSchema, input, options) as async.Operation<types.DeletePaymentConnectorOutput>
+end
+
+function C:deletePaymentCredentialProvider(input: types.DeletePaymentCredentialProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePaymentCredentialProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePaymentCredentialProvider as schema.OperationSchema, input, options) as async.Operation<types.DeletePaymentCredentialProviderOutput>
+end
+
+function C:deletePaymentManager(input: types.DeletePaymentManagerInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePaymentManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePaymentManager as schema.OperationSchema, input, options) as async.Operation<types.DeletePaymentManagerOutput>
 end
 
 function C:deletePolicy(input: types.DeletePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePolicyOutput>
@@ -403,6 +442,18 @@ end
 
 function C:getOnlineEvaluationConfig(input: types.GetOnlineEvaluationConfigInput, options?: base_client.InvokeOptions): async.Operation<types.GetOnlineEvaluationConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOnlineEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.GetOnlineEvaluationConfigOutput>
+end
+
+function C:getPaymentConnector(input: types.GetPaymentConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetPaymentConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPaymentConnector as schema.OperationSchema, input, options) as async.Operation<types.GetPaymentConnectorOutput>
+end
+
+function C:getPaymentCredentialProvider(input: types.GetPaymentCredentialProviderInput, options?: base_client.InvokeOptions): async.Operation<types.GetPaymentCredentialProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPaymentCredentialProvider as schema.OperationSchema, input, options) as async.Operation<types.GetPaymentCredentialProviderOutput>
+end
+
+function C:getPaymentManager(input: types.GetPaymentManagerInput, options?: base_client.InvokeOptions): async.Operation<types.GetPaymentManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPaymentManager as schema.OperationSchema, input, options) as async.Operation<types.GetPaymentManagerOutput>
 end
 
 function C:getPolicy(input: types.GetPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
@@ -503,6 +554,18 @@ end
 
 function C:listOnlineEvaluationConfigs(input: types.ListOnlineEvaluationConfigsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOnlineEvaluationConfigsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOnlineEvaluationConfigs as schema.OperationSchema, input, options) as async.Operation<types.ListOnlineEvaluationConfigsOutput>
+end
+
+function C:listPaymentConnectors(input: types.ListPaymentConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPaymentConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPaymentConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListPaymentConnectorsOutput>
+end
+
+function C:listPaymentCredentialProviders(input: types.ListPaymentCredentialProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListPaymentCredentialProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPaymentCredentialProviders as schema.OperationSchema, input, options) as async.Operation<types.ListPaymentCredentialProvidersOutput>
+end
+
+function C:listPaymentManagers(input: types.ListPaymentManagersInput, options?: base_client.InvokeOptions): async.Operation<types.ListPaymentManagersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPaymentManagers as schema.OperationSchema, input, options) as async.Operation<types.ListPaymentManagersOutput>
 end
 
 function C:listPolicies(input: types.ListPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
@@ -611,6 +674,18 @@ end
 
 function C:updateOnlineEvaluationConfig(input: types.UpdateOnlineEvaluationConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOnlineEvaluationConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOnlineEvaluationConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateOnlineEvaluationConfigOutput>
+end
+
+function C:updatePaymentConnector(input: types.UpdatePaymentConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePaymentConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePaymentConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdatePaymentConnectorOutput>
+end
+
+function C:updatePaymentCredentialProvider(input: types.UpdatePaymentCredentialProviderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePaymentCredentialProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePaymentCredentialProvider as schema.OperationSchema, input, options) as async.Operation<types.UpdatePaymentCredentialProviderOutput>
+end
+
+function C:updatePaymentManager(input: types.UpdatePaymentManagerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePaymentManagerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePaymentManager as schema.OperationSchema, input, options) as async.Operation<types.UpdatePaymentManagerOutput>
 end
 
 function C:updatePolicy(input: types.UpdatePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePolicyOutput>

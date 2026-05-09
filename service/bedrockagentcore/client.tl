@@ -24,10 +24,14 @@ local record Client
     completeResourceTokenAuth: function(Client, types.CompleteResourceTokenAuthInput, ? base_client.InvokeOptions): async.Operation<types.CompleteResourceTokenAuthOutput>
     createABTest: function(Client, types.CreateABTestInput, ? base_client.InvokeOptions): async.Operation<types.CreateABTestOutput>
     createEvent: function(Client, types.CreateEventInput, ? base_client.InvokeOptions): async.Operation<types.CreateEventOutput>
+    createPaymentInstrument: function(Client, types.CreatePaymentInstrumentInput, ? base_client.InvokeOptions): async.Operation<types.CreatePaymentInstrumentOutput>
+    createPaymentSession: function(Client, types.CreatePaymentSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePaymentSessionOutput>
     deleteABTest: function(Client, types.DeleteABTestInput, ? base_client.InvokeOptions): async.Operation<types.DeleteABTestOutput>
     deleteBatchEvaluation: function(Client, types.DeleteBatchEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBatchEvaluationOutput>
     deleteEvent: function(Client, types.DeleteEventInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventOutput>
     deleteMemoryRecord: function(Client, types.DeleteMemoryRecordInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemoryRecordOutput>
+    deletePaymentInstrument: function(Client, types.DeletePaymentInstrumentInput, ? base_client.InvokeOptions): async.Operation<types.DeletePaymentInstrumentOutput>
+    deletePaymentSession: function(Client, types.DeletePaymentSessionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePaymentSessionOutput>
     deleteRecommendation: function(Client, types.DeleteRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecommendationOutput>
     evaluate: function(Client, types.EvaluateInput, ? base_client.InvokeOptions): async.Operation<types.EvaluateOutput>
     getABTest: function(Client, types.GetABTestInput, ? base_client.InvokeOptions): async.Operation<types.GetABTestOutput>
@@ -37,9 +41,13 @@ local record Client
     getCodeInterpreterSession: function(Client, types.GetCodeInterpreterSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeInterpreterSessionOutput>
     getEvent: function(Client, types.GetEventInput, ? base_client.InvokeOptions): async.Operation<types.GetEventOutput>
     getMemoryRecord: function(Client, types.GetMemoryRecordInput, ? base_client.InvokeOptions): async.Operation<types.GetMemoryRecordOutput>
+    getPaymentInstrument: function(Client, types.GetPaymentInstrumentInput, ? base_client.InvokeOptions): async.Operation<types.GetPaymentInstrumentOutput>
+    getPaymentInstrumentBalance: function(Client, types.GetPaymentInstrumentBalanceInput, ? base_client.InvokeOptions): async.Operation<types.GetPaymentInstrumentBalanceOutput>
+    getPaymentSession: function(Client, types.GetPaymentSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetPaymentSessionOutput>
     getRecommendation: function(Client, types.GetRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
     getResourceApiKey: function(Client, types.GetResourceApiKeyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceApiKeyOutput>
     getResourceOauth2Token: function(Client, types.GetResourceOauth2TokenInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceOauth2TokenOutput>
+    getResourcePaymentToken: function(Client, types.GetResourcePaymentTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePaymentTokenOutput>
     getWorkloadAccessToken: function(Client, types.GetWorkloadAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenOutput>
     getWorkloadAccessTokenForJWT: function(Client, types.GetWorkloadAccessTokenForJWTInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForJWTOutput>
     getWorkloadAccessTokenForUserId: function(Client, types.GetWorkloadAccessTokenForUserIdInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenForUserIdOutput>
@@ -56,8 +64,11 @@ local record Client
     listEvents: function(Client, types.ListEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListEventsOutput>
     listMemoryExtractionJobs: function(Client, types.ListMemoryExtractionJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListMemoryExtractionJobsOutput>
     listMemoryRecords: function(Client, types.ListMemoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListMemoryRecordsOutput>
+    listPaymentInstruments: function(Client, types.ListPaymentInstrumentsInput, ? base_client.InvokeOptions): async.Operation<types.ListPaymentInstrumentsOutput>
+    listPaymentSessions: function(Client, types.ListPaymentSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPaymentSessionsOutput>
     listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
     listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    processPayment: function(Client, types.ProcessPaymentInput, ? base_client.InvokeOptions): async.Operation<types.ProcessPaymentOutput>
     retrieveMemoryRecords: function(Client, types.RetrieveMemoryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.RetrieveMemoryRecordsOutput>
     saveBrowserSessionProfile: function(Client, types.SaveBrowserSessionProfileInput, ? base_client.InvokeOptions): async.Operation<types.SaveBrowserSessionProfileOutput>
     searchRegistryRecords: function(Client, types.SearchRegistryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.SearchRegistryRecordsOutput>
@@ -140,6 +151,14 @@ function C:createEvent(input: types.CreateEventInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEvent as schema.OperationSchema, input, options) as async.Operation<types.CreateEventOutput>
 end
 
+function C:createPaymentInstrument(input: types.CreatePaymentInstrumentInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePaymentInstrumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePaymentInstrument as schema.OperationSchema, input, options) as async.Operation<types.CreatePaymentInstrumentOutput>
+end
+
+function C:createPaymentSession(input: types.CreatePaymentSessionInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePaymentSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePaymentSession as schema.OperationSchema, input, options) as async.Operation<types.CreatePaymentSessionOutput>
+end
+
 function C:deleteABTest(input: types.DeleteABTestInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteABTestOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteABTest as schema.OperationSchema, input, options) as async.Operation<types.DeleteABTestOutput>
 end
@@ -154,6 +173,14 @@ end
 
 function C:deleteMemoryRecord(input: types.DeleteMemoryRecordInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMemoryRecordOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMemoryRecord as schema.OperationSchema, input, options) as async.Operation<types.DeleteMemoryRecordOutput>
+end
+
+function C:deletePaymentInstrument(input: types.DeletePaymentInstrumentInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePaymentInstrumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePaymentInstrument as schema.OperationSchema, input, options) as async.Operation<types.DeletePaymentInstrumentOutput>
+end
+
+function C:deletePaymentSession(input: types.DeletePaymentSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePaymentSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePaymentSession as schema.OperationSchema, input, options) as async.Operation<types.DeletePaymentSessionOutput>
 end
 
 function C:deleteRecommendation(input: types.DeleteRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecommendationOutput>
@@ -192,6 +219,18 @@ function C:getMemoryRecord(input: types.GetMemoryRecordInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMemoryRecord as schema.OperationSchema, input, options) as async.Operation<types.GetMemoryRecordOutput>
 end
 
+function C:getPaymentInstrument(input: types.GetPaymentInstrumentInput, options?: base_client.InvokeOptions): async.Operation<types.GetPaymentInstrumentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPaymentInstrument as schema.OperationSchema, input, options) as async.Operation<types.GetPaymentInstrumentOutput>
+end
+
+function C:getPaymentInstrumentBalance(input: types.GetPaymentInstrumentBalanceInput, options?: base_client.InvokeOptions): async.Operation<types.GetPaymentInstrumentBalanceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPaymentInstrumentBalance as schema.OperationSchema, input, options) as async.Operation<types.GetPaymentInstrumentBalanceOutput>
+end
+
+function C:getPaymentSession(input: types.GetPaymentSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetPaymentSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPaymentSession as schema.OperationSchema, input, options) as async.Operation<types.GetPaymentSessionOutput>
+end
+
 function C:getRecommendation(input: types.GetRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecommendation as schema.OperationSchema, input, options) as async.Operation<types.GetRecommendationOutput>
 end
@@ -202,6 +241,10 @@ end
 
 function C:getResourceOauth2Token(input: types.GetResourceOauth2TokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceOauth2TokenOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceOauth2Token as schema.OperationSchema, input, options) as async.Operation<types.GetResourceOauth2TokenOutput>
+end
+
+function C:getResourcePaymentToken(input: types.GetResourcePaymentTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePaymentTokenOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePaymentToken as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePaymentTokenOutput>
 end
 
 function C:getWorkloadAccessToken(input: types.GetWorkloadAccessTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkloadAccessTokenOutput>
@@ -268,12 +311,24 @@ function C:listMemoryRecords(input: types.ListMemoryRecordsInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMemoryRecords as schema.OperationSchema, input, options) as async.Operation<types.ListMemoryRecordsOutput>
 end
 
+function C:listPaymentInstruments(input: types.ListPaymentInstrumentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPaymentInstrumentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPaymentInstruments as schema.OperationSchema, input, options) as async.Operation<types.ListPaymentInstrumentsOutput>
+end
+
+function C:listPaymentSessions(input: types.ListPaymentSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPaymentSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPaymentSessions as schema.OperationSchema, input, options) as async.Operation<types.ListPaymentSessionsOutput>
+end
+
 function C:listRecommendations(input: types.ListRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsOutput>
 end
 
 function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
+end
+
+function C:processPayment(input: types.ProcessPaymentInput, options?: base_client.InvokeOptions): async.Operation<types.ProcessPaymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ProcessPayment as schema.OperationSchema, input, options) as async.Operation<types.ProcessPaymentOutput>
 end
 
 function C:retrieveMemoryRecords(input: types.RetrieveMemoryRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.RetrieveMemoryRecordsOutput>

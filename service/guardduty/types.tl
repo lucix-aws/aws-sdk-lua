@@ -80,9 +80,9 @@ local record M
         UserType: string
     end
 
-    -- Contains information about the account.
+    -- Contains information about the Amazon Web Services account within which the activity took place.
     record Account
-        -- ID of the member's Amazon Web Services account
+        -- The Amazon Web Services account ID within which the activity took place. This may differ from the account that owns the user identity.
         Uid: string
         -- Name of the member's Amazon Web Services account.
         Name: string
@@ -493,7 +493,7 @@ local record M
         Type: string
         -- The credentials of the user ID.
         CredentialUid: string
-        -- Contains information about the Amazon Web Services account.
+        -- Contains information about the Amazon Web Services account within which the activity took place. This is not necessarily the account that owns the user identity.
         Account: Account
     end
 

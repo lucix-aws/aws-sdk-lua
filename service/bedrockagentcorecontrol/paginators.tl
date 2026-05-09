@@ -310,6 +310,60 @@ function M.items_list_online_evaluation_configs(client, input)
     })
 end
 
+--- Returns a page iterator for listPaymentConnectors.
+function M.pages_list_payment_connectors(client, input)
+    return paginator.pages(client, "listPaymentConnectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentConnectors",
+    })
+end
+
+--- Returns an item iterator for listPaymentConnectors.
+function M.items_list_payment_connectors(client, input)
+    return paginator.items(client, "listPaymentConnectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentConnectors",
+    })
+end
+
+--- Returns a page iterator for listPaymentCredentialProviders.
+function M.pages_list_payment_credential_providers(client, input)
+    return paginator.pages(client, "listPaymentCredentialProviders", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "credentialProviders",
+    })
+end
+
+--- Returns an item iterator for listPaymentCredentialProviders.
+function M.items_list_payment_credential_providers(client, input)
+    return paginator.items(client, "listPaymentCredentialProviders", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "credentialProviders",
+    })
+end
+
+--- Returns a page iterator for listPaymentManagers.
+function M.pages_list_payment_managers(client, input)
+    return paginator.pages(client, "listPaymentManagers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentManagers",
+    })
+end
+
+--- Returns an item iterator for listPaymentManagers.
+function M.items_list_payment_managers(client, input)
+    return paginator.items(client, "listPaymentManagers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "paymentManagers",
+    })
+end
+
 --- Returns a page iterator for listPolicies.
 function M.pages_list_policies(client, input)
     return paginator.pages(client, "listPolicies", input, {

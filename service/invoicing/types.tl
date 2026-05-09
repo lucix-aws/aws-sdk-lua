@@ -178,12 +178,23 @@ local record M
         fieldList: {ValidationExceptionField}
     end
 
+    enum BillingEntity
+        "AWS"
+        "AWS_MARKETPLACE"
+    end
+
     -- The billing period for which you want to retrieve invoice-related documents.
     record BillingPeriod
         -- The billing period month.
         Month: number
         -- The billing period year.
         Year: number
+    end
+
+    enum BillType
+        "ANNIVERSARY"
+        "PURCHASE"
+        "REFUND"
     end
 
     enum BuyerDomain
@@ -224,7 +235,7 @@ local record M
     record InvoiceUnitRule
         -- The list of LINKED_ACCOUNT IDs where charges are included within the invoice unit.
         LinkedAccounts: {string}
-        -- A list of Amazon Web Services account account IDs that have delegated their billing responsibility to the receiver account through transfer billing. Unlike linked accounts, these bill source accounts can be payer accounts from other organizations that have authorized billing transfer to this account.
+        -- A list of Amazon Web Services account IDs that have delegated their billing responsibility to the receiver account through transfer billing. Unlike linked accounts, these bill source accounts can be payer accounts from other organizations that have authorized billing transfer to this account.
         BillSourceAccounts: {string}
     end
 
@@ -407,10 +418,17 @@ local record M
         ProcurementPortalPreferenceArn: string
     end
 
+    enum EinvoiceDeliveryStatus
+        "DELIVERED"
+        "NOT_DELIVERED"
+    end
+
     -- The organization name providing Amazon Web Services services.
     record Entity
         -- The name of the entity that issues the Amazon Web Services invoice.
         InvoicingEntity: string
+        -- Helps you identify whether your invoices are for Amazon Web Services Marketplace or for purchases of other Amazon Web Services services.
+        BillingEntity: string
     end
 
     -- An optional input to the list API. If multiple filters are specified, the returned list will be a configuration that match all of the provided filters. Supported filter types are InvoiceReceivers, Names, and Accounts.
@@ -421,7 +439,7 @@ local record M
         InvoiceReceivers: {string}
         -- You can specify a list of Amazon Web Services account IDs inside filters to return invoice units that match only the specified accounts. If multiple accounts are provided, the result is an OR condition (match any) of the specified accounts. The specified account IDs are matched with either the receiver or the linked accounts in the rules.
         Accounts: {string}
-        -- A list of Amazon Web Services account account IDs used to filter invoice units. These are payer accounts from other Organizations that have delegated their billing responsibility to the receiver account through the billing transfer feature.
+        -- A list of Amazon Web Services account IDs used to filter invoice units. These are payer accounts from other Organizations that have delegated their billing responsibility to the receiver account through the billing transfer feature.
         BillSourceAccounts: {string}
     end
 
@@ -430,8 +448,19 @@ local record M
         InvoiceId: string
     end
 
+    enum SupplementalDocumentType
+        "GOVERNMENT_INVOICE"
+        "TAX_E_INVOICE"
+        "PAYMENT_RECEIPT"
+        "SUPPLEMENT"
+    end
+
     -- Supplemental document associated with the invoice.
     record SupplementalDocument
+        -- The type of supplemental document.
+        DocumentType: string
+        -- The ID of the supplemental document.
+        DocumentId: string
         -- The pre-signed URL to download invoice supplemental document.
         DocumentUrl: string
         -- The pre-signed URL expiration date of invoice supplemental document.
@@ -578,9 +607,26 @@ local record M
         CurrencyExchangeDetails: CurrencyExchangeDetails
     end
 
+    enum InvoiceFrequency
+        "ONE_TIME"
+        "RECURRING"
+    end
+
     enum InvoiceType
         "INVOICE"
         "CREDIT_MEMO"
+        "PAYMENT_RECEIPT"
+    end
+
+    enum ReceiverRole
+        "SELLER"
+        "RESELLER"
+        "BUYER"
+    end
+
+    enum TaxAuthorityStatus
+        "ISSUED"
+        "CANCELLED"
     end
 
     -- The invoice that the API retrieved.
@@ -593,16 +639,32 @@ local record M
         IssuedDate: number
         -- The invoice due date.
         DueDate: number
+        -- The list of Amazon Web Services account IDs that are the bill source of the invoice. Currently, only a single bill source account is returned.
+        BillSourceAccounts: {string}
+        -- The total number of accounts that are the bill source of the invoice.
+        BillSourceAccountsTotalCount: number
+        -- The role of the invoice receiver.
+        ReceiverRole: string
         -- The organization name providing Amazon Web Services services.
         Entity: Entity
         -- The billing period of the invoice-related document.
         BillingPeriod: BillingPeriod
+        -- The frequency of the invoice.
+        InvoiceFrequency: string
+        -- The type of the bill.
+        BillType: string
         -- The type of invoice.
         InvoiceType: string
+        -- The commercial invoice ID. This is only applicable for tax invoices and identifies the associated commercial invoice.
+        CommercialInvoiceId: string
         -- The initial or original invoice ID.
         OriginalInvoiceId: string
         -- The purchase order number associated to the invoice.
         PurchaseOrderNumber: string
+        -- The e-invoice delivery status.
+        EinvoiceDeliveryStatus: string
+        -- The current status of an invoice as reported to the tax authority. This captures scenarios where an invoice may be cancelled after issuance.
+        TaxAuthorityStatus: string
         -- The summary with the product and service currency.
         BaseCurrencyAmount: InvoiceCurrencyAmount
         -- The summary with the tax currency.
@@ -619,6 +681,8 @@ local record M
         BillingPeriod: BillingPeriod
         -- The name of the entity that issues the Amazon Web Services invoice.
         InvoicingEntity: string
+        -- The role of the invoice receiver to filter by. When ReceiverRole is specified: Data is available starting 2025-06-01. Queries for periods before 2025-06-01 return a validation error. TimeInterval supports a time interval of up to 5 years. Without ReceiverRole, TimeInterval is limited to one month.
+        ReceiverRole: string
     end
 
     enum ListInvoiceSummariesResourceType

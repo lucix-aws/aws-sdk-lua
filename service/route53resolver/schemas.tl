@@ -542,6 +542,18 @@ M.ResolverEndpoint = schema.new({
             name = "TargetNameServerMetricsEnabled",
             target_id = prelude.Boolean.id,
         }),
+        Dns64Enabled = schema.new({
+            id = id.from(_N, "ResolverEndpoint", "Dns64Enabled"),
+            type = "boolean",
+            name = "Dns64Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Ipv6InternetAccessEnabled = schema.new({
+            id = id.from(_N, "ResolverEndpoint", "Ipv6InternetAccessEnabled"),
+            type = "boolean",
+            name = "Ipv6InternetAccessEnabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -1561,6 +1573,18 @@ M.CreateResolverEndpointInput = schema.new({
             id = id.from(_N, "CreateResolverEndpointInput", "TargetNameServerMetricsEnabled"),
             type = "boolean",
             name = "TargetNameServerMetricsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Dns64Enabled = schema.new({
+            id = id.from(_N, "CreateResolverEndpointInput", "Dns64Enabled"),
+            type = "boolean",
+            name = "Dns64Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Ipv6InternetAccessEnabled = schema.new({
+            id = id.from(_N, "CreateResolverEndpointInput", "Ipv6InternetAccessEnabled"),
+            type = "boolean",
+            name = "Ipv6InternetAccessEnabled",
             target_id = prelude.Boolean.id,
         }),
     },
@@ -4640,6 +4664,18 @@ M.UpdateResolverEndpointInput = schema.new({
             id = id.from(_N, "UpdateResolverEndpointInput", "TargetNameServerMetricsEnabled"),
             type = "boolean",
             name = "TargetNameServerMetricsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Dns64Enabled = schema.new({
+            id = id.from(_N, "UpdateResolverEndpointInput", "Dns64Enabled"),
+            type = "boolean",
+            name = "Dns64Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        Ipv6InternetAccessEnabled = schema.new({
+            id = id.from(_N, "UpdateResolverEndpointInput", "Ipv6InternetAccessEnabled"),
+            type = "boolean",
+            name = "Ipv6InternetAccessEnabled",
             target_id = prelude.Boolean.id,
         }),
     },

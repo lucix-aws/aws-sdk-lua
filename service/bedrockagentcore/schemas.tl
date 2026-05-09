@@ -79,6 +79,10 @@ M.MemoryRecordSummaryList = schema.new({ type = "list", list_member = M.MemoryRe
 
 M.SessionSummaryList = schema.new({ type = "list", list_member = M.SessionSummary })
 
+M.PaymentInstrumentSummaryList = schema.new({ type = "list", list_member = M.PaymentInstrumentSummary })
+
+M.PaymentSessionSummaryList = schema.new({ type = "list", list_member = M.PaymentSessionSummary })
+
 M.RegistryIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RegistryRecordSummaryList = schema.new({ type = "list", list_member = M.RegistryRecordSummary })
@@ -126,6 +130,8 @@ M.IgnoredReferenceInputFields = schema.new({ type = "list", list_member = prelud
 M.EvaluationStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ToolDescriptionResultList = schema.new({ type = "list", list_member = M.ToolDescriptionOutput })
+
+M.LinkedAccountList = schema.new({ type = "list", list_member = M.LinkedAccount })
 
 M.HarnessToolResultBlocksDelta = schema.new({ type = "list", list_member = M.HarnessToolResultBlockDelta })
 
@@ -6652,6 +6658,245 @@ M.GetResourceOauth2TokenOutput = schema.new({
     },
 })
 
+M.CoinbaseCdpTokenRequestInput = schema.new({
+    id = id.from(_N, "CoinbaseCdpTokenRequestInput"),
+    type = "structure",
+    members = {
+        requestMethod = schema.new({
+            id = id.from(_N, "CoinbaseCdpTokenRequestInput", "requestMethod"),
+            type = "string",
+            name = "requestMethod",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestHost = schema.new({
+            id = id.from(_N, "CoinbaseCdpTokenRequestInput", "requestHost"),
+            type = "string",
+            name = "requestHost",
+            target_id = prelude.String.id,
+        }),
+        requestPath = schema.new({
+            id = id.from(_N, "CoinbaseCdpTokenRequestInput", "requestPath"),
+            type = "string",
+            name = "requestPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        includeWalletAuthToken = schema.new({
+            id = id.from(_N, "CoinbaseCdpTokenRequestInput", "includeWalletAuthToken"),
+            type = "boolean",
+            name = "includeWalletAuthToken",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        requestBody = schema.new({
+            id = id.from(_N, "CoinbaseCdpTokenRequestInput", "requestBody"),
+            type = "string",
+            name = "requestBody",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StripePrivyTokenRequestInput = schema.new({
+    id = id.from(_N, "StripePrivyTokenRequestInput"),
+    type = "structure",
+    members = {
+        requestHost = schema.new({
+            id = id.from(_N, "StripePrivyTokenRequestInput", "requestHost"),
+            type = "string",
+            name = "requestHost",
+            target_id = prelude.String.id,
+        }),
+        requestPath = schema.new({
+            id = id.from(_N, "StripePrivyTokenRequestInput", "requestPath"),
+            type = "string",
+            name = "requestPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requestBody = schema.new({
+            id = id.from(_N, "StripePrivyTokenRequestInput", "requestBody"),
+            type = "string",
+            name = "requestBody",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        includeAuthorizationSignature = schema.new({
+            id = id.from(_N, "StripePrivyTokenRequestInput", "includeAuthorizationSignature"),
+            type = "boolean",
+            name = "includeAuthorizationSignature",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.PaymentTokenRequestInput = schema.new({
+    id = id.from(_N, "PaymentTokenRequestInput"),
+    type = "union",
+    members = {
+        coinbaseCdpTokenRequest = schema.new({
+            id = id.from(_N, "PaymentTokenRequestInput", "coinbaseCdpTokenRequest"),
+            type = "structure",
+            name = "coinbaseCdpTokenRequest",
+            target_id = id.from(_N, "CoinbaseCdpTokenRequestInput"),
+            target = M.CoinbaseCdpTokenRequestInput,
+        }),
+        stripePrivyTokenRequest = schema.new({
+            id = id.from(_N, "PaymentTokenRequestInput", "stripePrivyTokenRequest"),
+            type = "structure",
+            name = "stripePrivyTokenRequest",
+            target_id = id.from(_N, "StripePrivyTokenRequestInput"),
+            target = M.StripePrivyTokenRequestInput,
+        }),
+    },
+})
+
+M.GetResourcePaymentTokenInput = schema.new({
+    id = id.from(_N, "GetResourcePaymentTokenRequest"),
+    type = "structure",
+    members = {
+        workloadIdentityToken = schema.new({
+            id = id.from(_N, "GetResourcePaymentTokenInput", "workloadIdentityToken"),
+            type = "string",
+            name = "workloadIdentityToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceCredentialProviderName = schema.new({
+            id = id.from(_N, "GetResourcePaymentTokenInput", "resourceCredentialProviderName"),
+            type = "string",
+            name = "resourceCredentialProviderName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentTokenRequest = schema.new({
+            id = id.from(_N, "GetResourcePaymentTokenInput", "paymentTokenRequest"),
+            type = "union",
+            name = "paymentTokenRequest",
+            target_id = id.from(_N, "PaymentTokenRequestInput"),
+            target = M.PaymentTokenRequestInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CoinbaseCdpTokenResponseOutput = schema.new({
+    id = id.from(_N, "CoinbaseCdpTokenResponseOutput"),
+    type = "structure",
+    members = {
+        bearerToken = schema.new({
+            id = id.from(_N, "CoinbaseCdpTokenResponseOutput", "bearerToken"),
+            type = "string",
+            name = "bearerToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        walletAuthToken = schema.new({
+            id = id.from(_N, "CoinbaseCdpTokenResponseOutput", "walletAuthToken"),
+            type = "string",
+            name = "walletAuthToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StripePrivyTokenResponseOutput = schema.new({
+    id = id.from(_N, "StripePrivyTokenResponseOutput"),
+    type = "structure",
+    members = {
+        authorizationSignature = schema.new({
+            id = id.from(_N, "StripePrivyTokenResponseOutput", "authorizationSignature"),
+            type = "string",
+            name = "authorizationSignature",
+            target_id = prelude.String.id,
+        }),
+        requestExpiry = schema.new({
+            id = id.from(_N, "StripePrivyTokenResponseOutput", "requestExpiry"),
+            type = "long",
+            name = "requestExpiry",
+            target_id = prelude.Long.id,
+        }),
+        appId = schema.new({
+            id = id.from(_N, "StripePrivyTokenResponseOutput", "appId"),
+            type = "string",
+            name = "appId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        basicAuthToken = schema.new({
+            id = id.from(_N, "StripePrivyTokenResponseOutput", "basicAuthToken"),
+            type = "string",
+            name = "basicAuthToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PaymentTokenResponseOutput = schema.new({
+    id = id.from(_N, "PaymentTokenResponseOutput"),
+    type = "union",
+    members = {
+        coinbaseCdpTokenResponse = schema.new({
+            id = id.from(_N, "PaymentTokenResponseOutput", "coinbaseCdpTokenResponse"),
+            type = "structure",
+            name = "coinbaseCdpTokenResponse",
+            target_id = id.from(_N, "CoinbaseCdpTokenResponseOutput"),
+            target = M.CoinbaseCdpTokenResponseOutput,
+        }),
+        stripePrivyTokenResponse = schema.new({
+            id = id.from(_N, "PaymentTokenResponseOutput", "stripePrivyTokenResponse"),
+            type = "structure",
+            name = "stripePrivyTokenResponse",
+            target_id = id.from(_N, "StripePrivyTokenResponseOutput"),
+            target = M.StripePrivyTokenResponseOutput,
+        }),
+    },
+})
+
+M.GetResourcePaymentTokenOutput = schema.new({
+    id = id.from(_N, "GetResourcePaymentTokenResponse"),
+    type = "structure",
+    members = {
+        paymentTokenResponse = schema.new({
+            id = id.from(_N, "GetResourcePaymentTokenOutput", "paymentTokenResponse"),
+            type = "union",
+            name = "paymentTokenResponse",
+            target_id = id.from(_N, "PaymentTokenResponseOutput"),
+            target = M.PaymentTokenResponseOutput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetWorkloadAccessTokenInput = schema.new({
     id = id.from(_N, "GetWorkloadAccessTokenRequest"),
     type = "structure",
@@ -10333,6 +10578,1573 @@ M.StartMemoryExtractionJobOutput = schema.new({
     },
 })
 
+M.LinkedAccountDeveloperJwt = schema.new({
+    id = id.from(_N, "LinkedAccountDeveloperJwt"),
+    type = "structure",
+    members = {
+        kid = schema.new({
+            id = id.from(_N, "LinkedAccountDeveloperJwt", "kid"),
+            type = "string",
+            name = "kid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sub = schema.new({
+            id = id.from(_N, "LinkedAccountDeveloperJwt", "sub"),
+            type = "string",
+            name = "sub",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LinkedAccountEmail = schema.new({
+    id = id.from(_N, "LinkedAccountEmail"),
+    type = "structure",
+    members = {
+        emailAddress = schema.new({
+            id = id.from(_N, "LinkedAccountEmail", "emailAddress"),
+            type = "string",
+            name = "emailAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OAuth2Authentication = schema.new({
+    id = id.from(_N, "OAuth2Authentication"),
+    type = "structure",
+    members = {
+        sub = schema.new({
+            id = id.from(_N, "OAuth2Authentication", "sub"),
+            type = "string",
+            name = "sub",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        emailAddress = schema.new({
+            id = id.from(_N, "OAuth2Authentication", "emailAddress"),
+            type = "string",
+            name = "emailAddress",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "OAuth2Authentication", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        username = schema.new({
+            id = id.from(_N, "OAuth2Authentication", "username"),
+            type = "string",
+            name = "username",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LinkedAccountOAuth2 = schema.new({
+    id = id.from(_N, "LinkedAccountOAuth2"),
+    type = "union",
+    members = {
+        google = schema.new({
+            id = id.from(_N, "LinkedAccountOAuth2", "google"),
+            type = "structure",
+            name = "google",
+            target_id = id.from(_N, "OAuth2Authentication"),
+            target = M.OAuth2Authentication,
+        }),
+        apple = schema.new({
+            id = id.from(_N, "LinkedAccountOAuth2", "apple"),
+            type = "structure",
+            name = "apple",
+            target_id = id.from(_N, "OAuth2Authentication"),
+            target = M.OAuth2Authentication,
+        }),
+        x = schema.new({
+            id = id.from(_N, "LinkedAccountOAuth2", "x"),
+            type = "structure",
+            name = "x",
+            target_id = id.from(_N, "OAuth2Authentication"),
+            target = M.OAuth2Authentication,
+        }),
+        telegram = schema.new({
+            id = id.from(_N, "LinkedAccountOAuth2", "telegram"),
+            type = "structure",
+            name = "telegram",
+            target_id = id.from(_N, "OAuth2Authentication"),
+            target = M.OAuth2Authentication,
+        }),
+        github = schema.new({
+            id = id.from(_N, "LinkedAccountOAuth2", "github"),
+            type = "structure",
+            name = "github",
+            target_id = id.from(_N, "OAuth2Authentication"),
+            target = M.OAuth2Authentication,
+        }),
+    },
+})
+
+M.LinkedAccountSms = schema.new({
+    id = id.from(_N, "LinkedAccountSms"),
+    type = "structure",
+    members = {
+        phoneNumber = schema.new({
+            id = id.from(_N, "LinkedAccountSms", "phoneNumber"),
+            type = "string",
+            name = "phoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LinkedAccount = schema.new({
+    id = id.from(_N, "LinkedAccount"),
+    type = "union",
+    members = {
+        email = schema.new({
+            id = id.from(_N, "LinkedAccount", "email"),
+            type = "structure",
+            name = "email",
+            target_id = id.from(_N, "LinkedAccountEmail"),
+            target = M.LinkedAccountEmail,
+        }),
+        sms = schema.new({
+            id = id.from(_N, "LinkedAccount", "sms"),
+            type = "structure",
+            name = "sms",
+            target_id = id.from(_N, "LinkedAccountSms"),
+            target = M.LinkedAccountSms,
+        }),
+        developerJwt = schema.new({
+            id = id.from(_N, "LinkedAccount", "developerJwt"),
+            type = "structure",
+            name = "developerJwt",
+            target_id = id.from(_N, "LinkedAccountDeveloperJwt"),
+            target = M.LinkedAccountDeveloperJwt,
+        }),
+        oAuth2 = schema.new({
+            id = id.from(_N, "LinkedAccount", "oAuth2"),
+            type = "union",
+            name = "oAuth2",
+            target_id = id.from(_N, "LinkedAccountOAuth2"),
+            target = M.LinkedAccountOAuth2,
+        }),
+    },
+})
+
+M.EmbeddedCryptoWallet = schema.new({
+    id = id.from(_N, "EmbeddedCryptoWallet"),
+    type = "structure",
+    members = {
+        network = schema.new({
+            id = id.from(_N, "EmbeddedCryptoWallet", "network"),
+            type = "string",
+            name = "network",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        linkedAccounts = schema.new({
+            id = id.from(_N, "EmbeddedCryptoWallet", "linkedAccounts"),
+            type = "list",
+            name = "linkedAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.LinkedAccount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        walletAddress = schema.new({
+            id = id.from(_N, "EmbeddedCryptoWallet", "walletAddress"),
+            type = "string",
+            name = "walletAddress",
+            target_id = prelude.String.id,
+        }),
+        redirectUrl = schema.new({
+            id = id.from(_N, "EmbeddedCryptoWallet", "redirectUrl"),
+            type = "string",
+            name = "redirectUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PaymentInstrumentDetails = schema.new({
+    id = id.from(_N, "PaymentInstrumentDetails"),
+    type = "union",
+    members = {
+        embeddedCryptoWallet = schema.new({
+            id = id.from(_N, "PaymentInstrumentDetails", "embeddedCryptoWallet"),
+            type = "structure",
+            name = "embeddedCryptoWallet",
+            target_id = id.from(_N, "EmbeddedCryptoWallet"),
+            target = M.EmbeddedCryptoWallet,
+        }),
+    },
+})
+
+M.CreatePaymentInstrumentInput = schema.new({
+    id = id.from(_N, "CreatePaymentInstrumentRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentInput", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentType = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentInput", "paymentInstrumentType"),
+            type = "string",
+            name = "paymentInstrumentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentDetails = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentInput", "paymentInstrumentDetails"),
+            type = "union",
+            name = "paymentInstrumentDetails",
+            target_id = id.from(_N, "PaymentInstrumentDetails"),
+            target = M.PaymentInstrumentDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PaymentInstrument = schema.new({
+    id = id.from(_N, "PaymentInstrument"),
+    type = "structure",
+    members = {
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "PaymentInstrument", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "PaymentInstrument", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "PaymentInstrument", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userId = schema.new({
+            id = id.from(_N, "PaymentInstrument", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentType = schema.new({
+            id = id.from(_N, "PaymentInstrument", "paymentInstrumentType"),
+            type = "string",
+            name = "paymentInstrumentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentDetails = schema.new({
+            id = id.from(_N, "PaymentInstrument", "paymentInstrumentDetails"),
+            type = "union",
+            name = "paymentInstrumentDetails",
+            target_id = id.from(_N, "PaymentInstrumentDetails"),
+            target = M.PaymentInstrumentDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "PaymentInstrument", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "PaymentInstrument", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PaymentInstrument", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreatePaymentInstrumentOutput = schema.new({
+    id = id.from(_N, "CreatePaymentInstrumentResponse"),
+    type = "structure",
+    members = {
+        paymentInstrument = schema.new({
+            id = id.from(_N, "CreatePaymentInstrumentOutput", "paymentInstrument"),
+            type = "structure",
+            name = "paymentInstrument",
+            target_id = id.from(_N, "PaymentInstrument"),
+            target = M.PaymentInstrument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeletePaymentInstrumentInput = schema.new({
+    id = id.from(_N, "DeletePaymentInstrumentRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "DeletePaymentInstrumentInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "DeletePaymentInstrumentInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "DeletePaymentInstrumentInput", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "DeletePaymentInstrumentInput", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeletePaymentInstrumentOutput = schema.new({
+    id = id.from(_N, "DeletePaymentInstrumentResponse"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "DeletePaymentInstrumentOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPaymentInstrumentInput = schema.new({
+    id = id.from(_N, "GetPaymentInstrumentRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentInput", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+        }),
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentInput", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPaymentInstrumentOutput = schema.new({
+    id = id.from(_N, "GetPaymentInstrumentResponse"),
+    type = "structure",
+    members = {
+        paymentInstrument = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentOutput", "paymentInstrument"),
+            type = "structure",
+            name = "paymentInstrument",
+            target_id = id.from(_N, "PaymentInstrument"),
+            target = M.PaymentInstrument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPaymentInstrumentBalanceInput = schema.new({
+    id = id.from(_N, "GetPaymentInstrumentBalanceRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceInput", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceInput", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        chain = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceInput", "chain"),
+            type = "string",
+            name = "chain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        token = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceInput", "token"),
+            type = "string",
+            name = "token",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TokenBalance = schema.new({
+    id = id.from(_N, "TokenBalance"),
+    type = "structure",
+    members = {
+        amount = schema.new({
+            id = id.from(_N, "TokenBalance", "amount"),
+            type = "string",
+            name = "amount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        decimals = schema.new({
+            id = id.from(_N, "TokenBalance", "decimals"),
+            type = "integer",
+            name = "decimals",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        token = schema.new({
+            id = id.from(_N, "TokenBalance", "token"),
+            type = "string",
+            name = "token",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        network = schema.new({
+            id = id.from(_N, "TokenBalance", "network"),
+            type = "string",
+            name = "network",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        chain = schema.new({
+            id = id.from(_N, "TokenBalance", "chain"),
+            type = "string",
+            name = "chain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPaymentInstrumentBalanceOutput = schema.new({
+    id = id.from(_N, "GetPaymentInstrumentBalanceResponse"),
+    type = "structure",
+    members = {
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceOutput", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tokenBalance = schema.new({
+            id = id.from(_N, "GetPaymentInstrumentBalanceOutput", "tokenBalance"),
+            type = "structure",
+            name = "tokenBalance",
+            target_id = id.from(_N, "TokenBalance"),
+            target = M.TokenBalance,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListPaymentInstrumentsInput = schema.new({
+    id = id.from(_N, "ListPaymentInstrumentsRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsInput", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PaymentInstrumentSummary = schema.new({
+    id = id.from(_N, "PaymentInstrumentSummary"),
+    type = "structure",
+    members = {
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentConnectorId = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "paymentConnectorId"),
+            type = "string",
+            name = "paymentConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userId = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentType = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "paymentInstrumentType"),
+            type = "string",
+            name = "paymentInstrumentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PaymentInstrumentSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListPaymentInstrumentsOutput = schema.new({
+    id = id.from(_N, "ListPaymentInstrumentsResponse"),
+    type = "structure",
+    members = {
+        paymentInstruments = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsOutput", "paymentInstruments"),
+            type = "list",
+            name = "paymentInstruments",
+            target_id = prelude.Document.id,
+            list_member = M.PaymentInstrumentSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPaymentInstrumentsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Amount = schema.new({
+    id = id.from(_N, "Amount"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "Amount", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        currency = schema.new({
+            id = id.from(_N, "Amount", "currency"),
+            type = "string",
+            name = "currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionLimits = schema.new({
+    id = id.from(_N, "SessionLimits"),
+    type = "structure",
+    members = {
+        maxSpendAmount = schema.new({
+            id = id.from(_N, "SessionLimits", "maxSpendAmount"),
+            type = "structure",
+            name = "maxSpendAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreatePaymentSessionInput = schema.new({
+    id = id.from(_N, "CreatePaymentSessionRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "CreatePaymentSessionInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "CreatePaymentSessionInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "CreatePaymentSessionInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        limits = schema.new({
+            id = id.from(_N, "CreatePaymentSessionInput", "limits"),
+            type = "structure",
+            name = "limits",
+            target_id = id.from(_N, "SessionLimits"),
+            target = M.SessionLimits,
+        }),
+        expiryTimeInMinutes = schema.new({
+            id = id.from(_N, "CreatePaymentSessionInput", "expiryTimeInMinutes"),
+            type = "integer",
+            name = "expiryTimeInMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreatePaymentSessionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.AvailableLimits = schema.new({
+    id = id.from(_N, "AvailableLimits"),
+    type = "structure",
+    members = {
+        availableSpendAmount = schema.new({
+            id = id.from(_N, "AvailableLimits", "availableSpendAmount"),
+            type = "structure",
+            name = "availableSpendAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "AvailableLimits", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.PaymentSession = schema.new({
+    id = id.from(_N, "PaymentSession"),
+    type = "structure",
+    members = {
+        paymentSessionId = schema.new({
+            id = id.from(_N, "PaymentSession", "paymentSessionId"),
+            type = "string",
+            name = "paymentSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "PaymentSession", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        limits = schema.new({
+            id = id.from(_N, "PaymentSession", "limits"),
+            type = "structure",
+            name = "limits",
+            target_id = id.from(_N, "SessionLimits"),
+            target = M.SessionLimits,
+        }),
+        userId = schema.new({
+            id = id.from(_N, "PaymentSession", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expiryTimeInMinutes = schema.new({
+            id = id.from(_N, "PaymentSession", "expiryTimeInMinutes"),
+            type = "integer",
+            name = "expiryTimeInMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "PaymentSession", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        availableLimits = schema.new({
+            id = id.from(_N, "PaymentSession", "availableLimits"),
+            type = "structure",
+            name = "availableLimits",
+            target_id = id.from(_N, "AvailableLimits"),
+            target = M.AvailableLimits,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PaymentSession", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreatePaymentSessionOutput = schema.new({
+    id = id.from(_N, "CreatePaymentSessionResponse"),
+    type = "structure",
+    members = {
+        paymentSession = schema.new({
+            id = id.from(_N, "CreatePaymentSessionOutput", "paymentSession"),
+            type = "structure",
+            name = "paymentSession",
+            target_id = id.from(_N, "PaymentSession"),
+            target = M.PaymentSession,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeletePaymentSessionInput = schema.new({
+    id = id.from(_N, "DeletePaymentSessionRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "DeletePaymentSessionInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "DeletePaymentSessionInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentSessionId = schema.new({
+            id = id.from(_N, "DeletePaymentSessionInput", "paymentSessionId"),
+            type = "string",
+            name = "paymentSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeletePaymentSessionOutput = schema.new({
+    id = id.from(_N, "DeletePaymentSessionResponse"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "DeletePaymentSessionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPaymentSessionInput = schema.new({
+    id = id.from(_N, "GetPaymentSessionRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "GetPaymentSessionInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "GetPaymentSessionInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "GetPaymentSessionInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentSessionId = schema.new({
+            id = id.from(_N, "GetPaymentSessionInput", "paymentSessionId"),
+            type = "string",
+            name = "paymentSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPaymentSessionOutput = schema.new({
+    id = id.from(_N, "GetPaymentSessionResponse"),
+    type = "structure",
+    members = {
+        paymentSession = schema.new({
+            id = id.from(_N, "GetPaymentSessionOutput", "paymentSession"),
+            type = "structure",
+            name = "paymentSession",
+            target_id = id.from(_N, "PaymentSession"),
+            target = M.PaymentSession,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListPaymentSessionsInput = schema.new({
+    id = id.from(_N, "ListPaymentSessionsRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "ListPaymentSessionsInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "ListPaymentSessionsInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "ListPaymentSessionsInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPaymentSessionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListPaymentSessionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PaymentSessionSummary = schema.new({
+    id = id.from(_N, "PaymentSessionSummary"),
+    type = "structure",
+    members = {
+        paymentSessionId = schema.new({
+            id = id.from(_N, "PaymentSessionSummary", "paymentSessionId"),
+            type = "string",
+            name = "paymentSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "PaymentSessionSummary", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userId = schema.new({
+            id = id.from(_N, "PaymentSessionSummary", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expiryTimeInMinutes = schema.new({
+            id = id.from(_N, "PaymentSessionSummary", "expiryTimeInMinutes"),
+            type = "integer",
+            name = "expiryTimeInMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "PaymentSessionSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PaymentSessionSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListPaymentSessionsOutput = schema.new({
+    id = id.from(_N, "ListPaymentSessionsResponse"),
+    type = "structure",
+    members = {
+        paymentSessions = schema.new({
+            id = id.from(_N, "ListPaymentSessionsOutput", "paymentSessions"),
+            type = "list",
+            name = "paymentSessions",
+            target_id = prelude.Document.id,
+            list_member = M.PaymentSessionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPaymentSessionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CryptoX402PaymentInput = schema.new({
+    id = id.from(_N, "CryptoX402PaymentInput"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "CryptoX402PaymentInput", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        payload = schema.new({
+            id = id.from(_N, "CryptoX402PaymentInput", "payload"),
+            type = "document",
+            name = "payload",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PaymentInput = schema.new({
+    id = id.from(_N, "PaymentInput"),
+    type = "union",
+    members = {
+        cryptoX402 = schema.new({
+            id = id.from(_N, "PaymentInput", "cryptoX402"),
+            type = "structure",
+            name = "cryptoX402",
+            target_id = id.from(_N, "CryptoX402PaymentInput"),
+            target = M.CryptoX402PaymentInput,
+        }),
+    },
+})
+
+M.ProcessPaymentInput = schema.new({
+    id = id.from(_N, "ProcessPaymentRequest"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-User-Id" },
+            },
+        }),
+        agentName = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "agentName"),
+            type = "string",
+            name = "agentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Payments-Agent-Name" },
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentSessionId = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "paymentSessionId"),
+            type = "string",
+            name = "paymentSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentType = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "paymentType"),
+            type = "string",
+            name = "paymentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInput = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "paymentInput"),
+            type = "union",
+            name = "paymentInput",
+            target_id = id.from(_N, "PaymentInput"),
+            target = M.PaymentInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "ProcessPaymentInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CryptoX402PaymentOutput = schema.new({
+    id = id.from(_N, "CryptoX402PaymentOutput"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "CryptoX402PaymentOutput", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        payload = schema.new({
+            id = id.from(_N, "CryptoX402PaymentOutput", "payload"),
+            type = "document",
+            name = "payload",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PaymentOutput = schema.new({
+    id = id.from(_N, "PaymentOutput"),
+    type = "union",
+    members = {
+        cryptoX402 = schema.new({
+            id = id.from(_N, "PaymentOutput", "cryptoX402"),
+            type = "structure",
+            name = "cryptoX402",
+            target_id = id.from(_N, "CryptoX402PaymentOutput"),
+            target = M.CryptoX402PaymentOutput,
+        }),
+    },
+})
+
+M.ProcessPaymentOutput = schema.new({
+    id = id.from(_N, "ProcessPaymentResponse"),
+    type = "structure",
+    members = {
+        processPaymentId = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "processPaymentId"),
+            type = "string",
+            name = "processPaymentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentManagerArn = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "paymentManagerArn"),
+            type = "string",
+            name = "paymentManagerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentSessionId = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "paymentSessionId"),
+            type = "string",
+            name = "paymentSessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentInstrumentId = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "paymentInstrumentId"),
+            type = "string",
+            name = "paymentInstrumentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentType = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "paymentType"),
+            type = "string",
+            name = "paymentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentOutput = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "paymentOutput"),
+            type = "union",
+            name = "paymentOutput",
+            target_id = id.from(_N, "PaymentOutput"),
+            target = M.PaymentOutput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "ProcessPaymentOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SearchRegistryRecordsInput = schema.new({
     id = id.from(_N, "SearchRegistryRecordsRequest"),
     type = "structure",
@@ -10713,6 +12525,30 @@ M.CreateEvent = schema.operation({
     },
 })
 
+M.CreatePaymentInstrument = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "CreatePaymentInstrument"),
+    input = M.CreatePaymentInstrumentInput,
+    output = M.CreatePaymentInstrumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/createPaymentInstrument" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreatePaymentSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "CreatePaymentSession"),
+    input = M.CreatePaymentSessionInput,
+    output = M.CreatePaymentSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/createPaymentSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteABTest = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcore", "DeleteABTest"),
     input = M.DeleteABTestInput,
@@ -10755,6 +12591,30 @@ M.DeleteMemoryRecord = schema.operation({
     output = M.DeleteMemoryRecordOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/memories/{memoryId}/memoryRecords/{memoryRecordId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePaymentInstrument = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "DeletePaymentInstrument"),
+    input = M.DeletePaymentInstrumentInput,
+    output = M.DeletePaymentInstrumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/deletePaymentInstrument" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeletePaymentSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "DeletePaymentSession"),
+    input = M.DeletePaymentSessionInput,
+    output = M.DeletePaymentSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/deletePaymentSession" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -10869,6 +12729,42 @@ M.GetMemoryRecord = schema.operation({
     },
 })
 
+M.GetPaymentInstrument = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "GetPaymentInstrument"),
+    input = M.GetPaymentInstrumentInput,
+    output = M.GetPaymentInstrumentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/getPaymentInstrument" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPaymentInstrumentBalance = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "GetPaymentInstrumentBalance"),
+    input = M.GetPaymentInstrumentBalanceInput,
+    output = M.GetPaymentInstrumentBalanceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/getPaymentInstrumentBalance" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPaymentSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "GetPaymentSession"),
+    input = M.GetPaymentSessionInput,
+    output = M.GetPaymentSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/getPaymentSession" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetRecommendation = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcore", "GetRecommendation"),
     input = M.GetRecommendationInput,
@@ -10899,6 +12795,18 @@ M.GetResourceOauth2Token = schema.operation({
     output = M.GetResourceOauth2TokenOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/identities/oauth2/token" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePaymentToken = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "GetResourcePaymentToken"),
+    input = M.GetResourcePaymentTokenInput,
+    output = M.GetResourcePaymentTokenOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/identities/payment/token" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11100,6 +13008,30 @@ M.ListMemoryRecords = schema.operation({
     },
 })
 
+M.ListPaymentInstruments = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "ListPaymentInstruments"),
+    input = M.ListPaymentInstrumentsInput,
+    output = M.ListPaymentInstrumentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/listPaymentInstruments" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPaymentSessions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "ListPaymentSessions"),
+    input = M.ListPaymentSessionsInput,
+    output = M.ListPaymentSessionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/listPaymentSessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListRecommendations = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcore", "ListRecommendations"),
     input = M.ListRecommendationsInput,
@@ -11118,6 +13050,18 @@ M.ListSessions = schema.operation({
     output = M.ListSessionsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/memories/{memoryId}/actor/{actorId}/sessions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ProcessPayment = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "ProcessPayment"),
+    input = M.ProcessPaymentInput,
+    output = M.ProcessPaymentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/payments/processPayment" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

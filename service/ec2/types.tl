@@ -24741,6 +24741,9 @@ local record M
         MaxResults: number
         -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
         NextToken: string
+        -- If true, the response includes instance types that are not supported
+        -- in the current Region, in addition to the supported types. Default: false.
+        IncludeUnsupportedInRegion: boolean
     end
 
     enum AttachmentLimitType
@@ -25299,6 +25302,8 @@ local record M
         -- see Enable or disable reboot migration in the
         -- Amazon EC2 User Guide.
         RebootMigrationSupport: string
+        -- Indicates whether the instance type is supported in the current Region.
+        SupportedInRegion: boolean
     end
 
     record DescribeInstanceTypesOutput

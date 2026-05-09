@@ -60175,6 +60175,12 @@ M.DescribeInstanceTypesInput = schema.new({
             name = "NextToken",
             target_id = prelude.String.id,
         }),
+        IncludeUnsupportedInRegion = schema.new({
+            id = id.from(_N, "DescribeInstanceTypesInput", "IncludeUnsupportedInRegion"),
+            type = "boolean",
+            name = "IncludeUnsupportedInRegion",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -61862,6 +61868,16 @@ M.InstanceTypeInfo = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "rebootMigrationSupport" },
                 [traits.EC2_QUERY_NAME] = { name = "RebootMigrationSupport" },
+            },
+        }),
+        SupportedInRegion = schema.new({
+            id = id.from(_N, "InstanceTypeInfo", "SupportedInRegion"),
+            type = "boolean",
+            name = "SupportedInRegion",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "supportedInRegion" },
+                [traits.EC2_QUERY_NAME] = { name = "SupportedInRegion" },
             },
         }),
     },
