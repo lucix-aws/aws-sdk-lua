@@ -72,16 +72,16 @@ tasks.register("generate-smithy-build") {
     }
 }
 
-// Copy generated Lua files from build output to ../../service/
+// Copy generated Lua files from build output to ../../src/aws/sdk/service/
 tasks.register("copyToService") {
     doLast {
         val buildOutput = file("build/smithyprojections/sdk-codegen")
-        val serviceDir = project.file("../../service")
+        val serviceDir = project.file("../../src/aws/sdk/service")
         serviceDir.mkdirs()
 
         buildOutput.listFiles()?.forEach { projDir: File ->
             if (!projDir.isDirectory) return@forEach
-            val luaOutput = File(projDir, "lua-client-codegen")
+            val luaOutput = File(projDir, "lua-client-codegen/aws/sdk/service")
             if (!luaOutput.exists()) return@forEach
             luaOutput.listFiles()?.forEach { svcDir: File ->
                 if (!svcDir.isDirectory) return@forEach

@@ -21,7 +21,7 @@ public final class S3ExpressIntegration implements LuaIntegration {
     public List<ConfigResolver> getConfigResolvers(LuaContext context) {
         return List.of(
                 new ConfigResolver(
-                        "aws.s3express_defaults",
+                        "aws.sdk.runtime.s3express_defaults",
                         "s3express_defaults",
                         "s3express_defaults.resolve(cfg)"
                 )
@@ -32,7 +32,7 @@ public final class S3ExpressIntegration implements LuaIntegration {
     public List<ConfigResolver> getConfigFinalizers(LuaContext context) {
         return List.of(
                 new ConfigResolver(
-                        "aws.s3express_defaults",
+                        "aws.sdk.runtime.s3express_defaults",
                         "s3express_defaults",
                         "s3express_defaults.finalize(cfg, self)"
                 )

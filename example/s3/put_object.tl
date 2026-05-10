@@ -8,7 +8,7 @@
 --   make run-example EXAMPLE="s3_put_object <bucket> <key> [region]"
 --
 
-local s3 = require("s3.client")
+local s3 = require("aws.sdk.service.s3")
 
 local bucket = arg[1]
 local key = arg[2]

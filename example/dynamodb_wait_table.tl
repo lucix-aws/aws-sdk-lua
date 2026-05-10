@@ -13,8 +13,8 @@
 --   LUA_PATH="..." luajit example/dynamodb_wait_table.lua [table-name] [region]
 --
 
-local dynamodb = require("dynamodb.client")
-local waiters = require("dynamodb.waiters")
+local dynamodb = require("aws.sdk.service.dynamodb")
+local waiters = require("aws.sdk.service.dynamodb.waiters")
 
 local table_name = arg[1] or "lua-sdk-waiter-example"
 local region = arg[2] or os.getenv("AWS_REGION") or "us-east-1"

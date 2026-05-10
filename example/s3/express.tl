@@ -12,7 +12,7 @@
 -- The bucket name must be a directory bucket (e.g. mybucket--use1-az4--x-s3).
 --
 
-local s3 = require("s3.client")
+local s3 = require("aws.sdk.service.s3")
 
 local bucket = arg[1]
 local key = arg[2]

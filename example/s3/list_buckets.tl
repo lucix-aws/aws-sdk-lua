@@ -8,7 +8,7 @@
 --   ./example/s3_list_buckets.lua [region]
 --
 
-local s3 = require("s3.client")
+local s3 = require("aws.sdk.service.s3")
 
 local region = arg[1] or os.getenv("AWS_REGION") or "us-east-1"
 local client = s3.new({ region = region })

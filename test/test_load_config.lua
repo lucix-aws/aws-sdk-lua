@@ -3,7 +3,7 @@
 
 package.path = "runtime/?.lua;" .. package.path
 
-local load_config = require("load_config")
+local load_config = require("aws.sdk.runtime.load_config")
 local ffi = require("ffi")
 
 ffi.cdef[[

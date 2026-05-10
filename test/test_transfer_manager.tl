@@ -1,7 +1,7 @@
 #!/usr/bin/env tl run
 -- Unit test for S3 Transfer Manager (mock client, no network)
 
-local tm_mod = require("s3.transfermanager")
+local tm_mod = require("aws.sdk.hll.s3.transfermanager")
 
 local passed = 0
 local failed = 0

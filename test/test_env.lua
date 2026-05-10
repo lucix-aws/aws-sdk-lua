@@ -3,7 +3,7 @@
 
 package.path = "runtime/?.lua;" .. package.path
 
-local env = require("env")
+local env = require("aws.sdk.runtime.env")
 local ffi = require("ffi")
 
 ffi.cdef[[

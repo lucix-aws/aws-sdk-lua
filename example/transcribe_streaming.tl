@@ -8,7 +8,7 @@
 --   LUA_PATH="..." luajit example/transcribe_streaming.lua [region]
 --
 
-local transcribe = require("transcribestreaming.client")
+local transcribe = require("aws.sdk.service.transcribestreaming")
 
 local region = arg[1] or os.getenv("AWS_REGION") or "us-east-1"
 

@@ -3,7 +3,7 @@
 
 package.path = "../smithy-lua-s3express/runtime/?.lua;runtime/?.lua;service/?.lua;;" .. package.path
 
-local s3express = require("aws.s3express")
+local s3express = require("aws.sdk.runtime.s3express")
 
 local pass, fail = 0, 0
 

@@ -12,7 +12,7 @@
 --   ./example/s3_get_object.lua <bucket> <key> [region]
 --
 
-local s3 = require("s3.client")
+local s3 = require("aws.sdk.service.s3")
 local logging = require("smithy.interceptor.logging")
 
 local bucket = arg[1]

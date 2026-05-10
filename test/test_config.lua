@@ -3,7 +3,7 @@
 
 package.path = "runtime/?.lua;" .. package.path
 
-local config = require("config")
+local config = require("aws.sdk.runtime.config")
 
 local pass, fail = 0, 0
 

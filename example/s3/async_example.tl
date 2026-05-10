@@ -12,7 +12,7 @@
 -- Create them with: for i in $(seq 1 10); do aws s3 cp /etc/hosts s3://<bucket>/<prefix>/$i; done
 --
 
-local s3 = require("s3.client")
+local s3 = require("aws.sdk.service.s3")
 local async = require("smithy.async")
 local http = require("smithy.http")
 local curl_async = require("smithy.http.curl_async")

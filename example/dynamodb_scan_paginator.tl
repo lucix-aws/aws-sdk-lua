@@ -14,8 +14,8 @@
 --   LUA_PATH="..." luajit example/dynamodb_scan_paginator.lua <table-name> [region]
 --
 
-local dynamodb = require("dynamodb.client")
-local paginators = require("dynamodb.paginators")
+local dynamodb = require("aws.sdk.service.dynamodb")
+local paginators = require("aws.sdk.service.dynamodb.paginators")
 
 local table_name = arg[1]
 local region = arg[2] or os.getenv("AWS_REGION") or "us-east-1"

@@ -15,19 +15,16 @@ smithy-build:
 
 TL := $(shell command -v tl 2>/dev/null || echo $(HOME)/.luarocks/bin/tl)
 
-# Generate .lua from .tl files in service/
+# Generate .lua from .tl files in src/
 teal-build:
-	@find service -name "*.tl" -print0 | while IFS= read -r -d '' f; do \
+	@find src -name "*.tl" -print0 | while IFS= read -r -d '' f; do \
 		out="$${f%.tl}.lua"; \
 		$(TL) gen --gen-target=5.1 --gen-compat=off "$$f" -o "$$out" || exit 1; \
 	done
 	@echo "teal-build: done"
 
 SMITHY_LUA_RUNTIME := $(SMITHY_LUA_DIR)/runtime
-# Include smithy runtime at both levels:
-#   .../runtime/?.lua resolves smithy.endpoint -> runtime/smithy/endpoint.lua
-#   .../runtime/smithy/?.lua resolves bare endpoint -> runtime/smithy/endpoint.lua (compat for generated code)
-SDK_LUA_PATH := $(SMITHY_LUA_RUNTIME)/?.lua;$(SMITHY_LUA_RUNTIME)/smithy/?.lua;runtime/?.lua;runtime/aws/?.lua;service/?.lua;;
+SDK_LUA_PATH := $(SMITHY_LUA_RUNTIME)/?.lua;$(SMITHY_LUA_RUNTIME)/?/init.lua;src/?.lua;src/?/init.lua;;
 
 # Run an example: make run-example EXAMPLE=dynamodb_list_tables
 run-example:
@@ -36,11 +33,11 @@ run-example:
 # Run endpoint tests for all services (or SERVICE=sts for one)
 test-endpoints:
 ifdef SERVICE
-	@LUA_PATH="$(SDK_LUA_PATH)" luajit service/$(SERVICE)/test_endpoint_rules.lua
+	@LUA_PATH="$(SDK_LUA_PATH)" luajit src/aws/sdk/service/$(SERVICE)/test_endpoint_rules.lua
 else
 	@failed=0; total=0; \
-	for f in service/*/test_endpoint_rules.lua; do \
-		svc=$$(echo $$f | cut -d/ -f2); \
+	for f in src/aws/sdk/service/*/test_endpoint_rules.lua; do \
+		svc=$$(echo $$f | sed 's|src/aws/sdk/service/\([^/]*\)/.*|\1|'); \
 		total=$$((total + 1)); \
 		if LUA_PATH="$(SDK_LUA_PATH)" luajit $$f > /dev/null 2>&1; then \
 			printf "."; \
@@ -78,4 +75,4 @@ sync-models:
 
 clean:
 	cd codegen && ./gradlew clean
-	rm -rf service/*/
+	rm -rf src/aws/sdk/service/*/

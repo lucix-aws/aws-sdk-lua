@@ -13,7 +13,7 @@
 --   LUA_PATH="..." luajit example/bedrock_converse_stream.lua [region] [model-id]
 --
 
-local bedrockruntime = require("bedrockruntime.client")
+local bedrockruntime = require("aws.sdk.service.bedrockruntime")
 
 local region = arg[1] or os.getenv("AWS_REGION") or "us-east-1"
 local model_id = arg[2] or "us.amazon.nova-lite-v1:0"

@@ -17,7 +17,7 @@
 --     luajit example/dynamodb_list_tables.lua [region]
 --
 
-local dynamodb = require("dynamodb.client")
+local dynamodb = require("aws.sdk.service.dynamodb")
 
 local region = arg[1] or os.getenv("AWS_REGION") or "us-east-1"
 local client = dynamodb.new({ region = region })

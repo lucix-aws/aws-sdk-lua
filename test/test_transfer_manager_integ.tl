@@ -5,8 +5,8 @@
 --   export TEST_BUCKET=my-test-bucket
 --   tl gen test/test_transfer_manager_integ.tl && luajit test/test_transfer_manager_integ.lua
 
-local s3 = require("s3.client")
-local tm_mod = require("s3.transfermanager")
+local s3 = require("aws.sdk.service.s3")
+local tm_mod = require("aws.sdk.hll.s3.transfermanager")
 
 local bucket = os.getenv("TEST_BUCKET") or arg[1]
 local region = os.getenv("AWS_REGION") or "us-east-1"
