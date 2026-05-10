@@ -67,3 +67,11 @@ for _, name in ipairs(result.TableNames) do
     print(name)
 end
 ```
+
+### Examples
+
+Various examples are available in the `example/` directory.
+
+```bash
+tl run example/s3/list_buckets.tl
+```

@@ -1,4 +1,3 @@
-#!/usr/bin/env luajit
 --
 -- Example: S3 GetObject (streaming)
 --

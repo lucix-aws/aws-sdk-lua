@@ -1,4 +1,3 @@
-#!/usr/bin/env luajit
 --
 -- Example: DynamoDB Scan with Paginator
 --

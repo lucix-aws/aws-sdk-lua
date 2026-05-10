@@ -1,4 +1,3 @@
-#!/usr/bin/env luajit
 --
 -- Example: TranscribeStreaming (bidirectional event stream)
 --
