@@ -454,6 +454,30 @@ local record M
         integratedRepositories: {IntegratedRepository}
     end
 
+    -- Input for deleting multiple code reviews.
+    record BatchDeleteCodeReviewsInput
+        -- The list of code review identifiers to delete.
+        codeReviewIds: {string}
+        -- The unique identifier of the agent space that contains the code reviews to delete.
+        agentSpaceId: string
+    end
+
+    -- Contains information about a code review that failed to delete.
+    record DeleteCodeReviewFailure
+        -- The unique identifier of the code review that failed to delete.
+        codeReviewId: string
+        -- The reason the code review failed to delete.
+        reason: string
+    end
+
+    -- Output for the BatchDeleteCodeReviews operation.
+    record BatchDeleteCodeReviewsOutput
+        -- The list of identifiers of the code reviews that were successfully deleted.
+        deleted: {string}
+        -- The list of code reviews that failed to delete, including the reason for each failure.
+        failed: {DeleteCodeReviewFailure}
+    end
+
     -- Input for deleting multiple pentests.
     record BatchDeletePentestsInput
         -- The list of pentest identifiers to delete.
@@ -597,117 +621,11 @@ local record M
         artifactMetadataList: {ArtifactMetadataItem}
     end
 
-    -- Input for BatchGetFindings operation.
-    record BatchGetFindingsInput
-        -- The list of finding identifiers to retrieve.
-        findingIds: {string}
-        -- The unique identifier of the agent space that contains the findings.
-        agentSpaceId: string
-    end
-
-    enum CodeRemediationTaskStatus
-        "IN_PROGRESS"
-        "COMPLETED"
-        "FAILED"
-    end
-
-    -- Contains details about a code remediation task, including links to the code diff and pull request.
-    record CodeRemediationTaskDetails
-        -- The name of the repository where the remediation was applied.
-        repoName: string
-        -- The link to the code diff for the remediation.
-        codeDiffLink: string
-        -- The link to the pull request created for the remediation.
-        pullRequestLink: string
-    end
-
-    -- Represents a code remediation task that was initiated to fix a security finding.
-    record CodeRemediationTask
-        -- The current status of the code remediation task.
-        status: string
-        -- The reason for the current status of the code remediation task.
-        statusReason: string
-        -- The list of details for the code remediation task, including repository name, code diff link, and pull request link.
-        taskDetails: {CodeRemediationTaskDetails}
-    end
-
-    enum ConfidenceLevel
-        "FALSE_POSITIVE"
-        "UNCONFIRMED"
-        "LOW"
-        "MEDIUM"
-        "HIGH"
-    end
-
-    enum RiskLevel
-        "UNKNOWN"
-        "INFORMATIONAL"
-        "LOW"
-        "MEDIUM"
-        "HIGH"
-        "CRITICAL"
-    end
-
-    enum FindingStatus
-        "ACTIVE"
-        "RESOLVED"
-        "ACCEPTED"
-        "FALSE_POSITIVE"
-    end
-
-    -- Represents a security finding discovered during a pentest job. A finding contains details about a vulnerability, including its risk level, confidence, and remediation status.
-    record Finding
-        -- The unique identifier of the finding.
-        findingId: string
-        -- The unique identifier of the agent space associated with the finding.
-        agentSpaceId: string
-        -- The unique identifier of the pentest associated with the finding.
-        pentestId: string
-        -- The unique identifier of the pentest job that produced the finding.
-        pentestJobId: string
-        -- The unique identifier of the task that produced the finding.
-        taskId: string
-        -- The name of the finding.
-        name: string
-        -- A description of the finding.
-        description: string
-        -- The current status of the finding. Valid values include ACTIVE, RESOLVED, ACCEPTED, and FALSE_POSITIVE.
-        status: string
-        -- The type of security risk identified by the finding.
-        riskType: string
-        -- The risk level of the finding. Valid values include UNKNOWN, INFORMATIONAL, LOW, MEDIUM, HIGH, and CRITICAL.
-        riskLevel: string
-        -- The numerical risk score of the finding.
-        riskScore: string
-        -- The reasoning behind the finding, explaining why it was identified as a vulnerability.
-        reasoning: string
-        -- The confidence level of the finding. Valid values include FALSE_POSITIVE, UNCONFIRMED, LOW, MEDIUM, and HIGH.
-        confidence: string
-        -- The attack script used to reproduce the finding.
-        attackScript: string
-        -- The code remediation task associated with the finding, if code remediation was initiated.
-        codeRemediationTask: CodeRemediationTask
-        -- The identifier of the entity that last updated the finding.
-        lastUpdatedBy: string
-        -- The date and time the finding was created, in UTC format.
-        createdAt: number
-        -- The date and time the finding was last updated, in UTC format.
-        updatedAt: number
-    end
-
-    -- Output for the BatchGetFindings operation.
-    record BatchGetFindingsOutput
-        -- The list of findings that were found.
-        findings: {Finding}
-        -- The list of finding identifiers that were not found.
-        notFound: {string}
-    end
-
-    -- Input for BatchGetPentestJobs operation.
-    record BatchGetPentestJobsInput
-        -- The list of pentest job identifiers to retrieve.
-        pentestJobIds: {string}
-        -- The unique identifier of the agent space that contains the pentest jobs.
+    -- Input for BatchGetCodeReviewJobs operation.
+    record BatchGetCodeReviewJobsInput
+        -- The list of code review job identifiers to retrieve.
+        codeReviewJobIds: {string}
+        -- The unique identifier of the agent space that contains the code review jobs.
         agentSpaceId: string
     end
 
@@ -777,6 +695,292 @@ local record M
         updatedAt: number
     end
 
+    -- Represents a code review job, which is an execution instance of a code review. A code review job progresses through preflight, static analysis, and finalizing steps.
+    record CodeReviewJob
+        -- The unique identifier of the code review job.
+        codeReviewJobId: string
+        -- The unique identifier of the code review associated with the job.
+        codeReviewId: string
+        -- The title of the code review job.
+        title: string
+        -- An overview of the code review job results.
+        overview: string
+        -- The current status of the code review job.
+        status: string
+        -- The list of documents providing context for the code review job.
+        documents: {DocumentInfo}
+        -- The list of source code repositories analyzed during the code review job.
+        sourceCode: {SourceCodeRepository}
+        -- The list of steps in the code review job execution.
+        steps: {Step}
+        -- The execution context messages for the code review job.
+        executionContext: {ExecutionContext}
+        -- The IAM service role used for the code review job.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the code review job.
+        logConfig: CloudWatchLog
+        -- Error information if the code review job encountered an error.
+        errorInformation: ErrorInformation
+        -- The list of integrated repositories associated with the code review job.
+        integratedRepositories: {IntegratedRepository}
+        -- The code remediation strategy for the code review job.
+        codeRemediationStrategy: string
+        -- The date and time the code review job was created, in UTC format.
+        createdAt: number
+        -- The date and time the code review job was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the BatchGetCodeReviewJobs operation.
+    record BatchGetCodeReviewJobsOutput
+        -- The list of code review jobs that were found.
+        codeReviewJobs: {CodeReviewJob}
+        -- The list of code review job identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Input for retrieving multiple tasks associated with a code review job.
+    record BatchGetCodeReviewJobTasksInput
+        -- The unique identifier of the agent space that contains the tasks.
+        agentSpaceId: string
+        -- The list of task identifiers to retrieve.
+        codeReviewJobTaskIds: {string}
+    end
+
+    -- Represents a category assigned to a security testing task.
+    record Category
+        -- The name of the category.
+        name: string
+        -- Indicates whether this is the primary category for the task.
+        isPrimary: boolean
+    end
+
+    enum TaskExecutionStatus
+        "IN_PROGRESS"
+        "ABORTED"
+        "COMPLETED"
+        "INTERNAL_ERROR"
+        "FAILED"
+    end
+
+    enum LogType
+        "CLOUDWATCH"
+    end
+
+    -- The log location for a task, specifying where task execution logs are stored.
+    record LogLocation
+        -- The type of log storage. Currently, only CLOUDWATCH is supported.
+        logType: string
+        -- The CloudWatch Logs location for the task logs.
+        cloudWatchLog: CloudWatchLog
+    end
+
+    -- Represents an individual security test task within a code review job. Each task targets a specific risk type and executes independently.
+    record CodeReviewJobTask
+        -- The unique identifier of the task.
+        taskId: string
+        -- The unique identifier of the code review associated with the task.
+        codeReviewId: string
+        -- The unique identifier of the code review job that contains the task.
+        codeReviewJobId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The title of the task.
+        title: string
+        -- A description of the task.
+        description: string
+        -- The list of categories assigned to the task.
+        categories: {Category}
+        -- The type of security risk the task is testing for.
+        riskType: string
+        -- The current execution status of the task.
+        executionStatus: string
+        -- The location of the task execution logs.
+        logsLocation: LogLocation
+        -- The date and time the task was created, in UTC format.
+        createdAt: number
+        -- The date and time the task was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the BatchGetCodeReviewJobTasks operation.
+    record BatchGetCodeReviewJobTasksOutput
+        -- The list of code review job tasks that were found.
+        codeReviewJobTasks: {CodeReviewJobTask}
+        -- The list of task identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Input for retrieving multiple code reviews by their IDs.
+    record BatchGetCodeReviewsInput
+        -- The list of code review identifiers to retrieve.
+        codeReviewIds: {string}
+        -- The unique identifier of the agent space that contains the code reviews.
+        agentSpaceId: string
+    end
+
+    -- Represents a code review configuration that defines the parameters for automated security-focused code analysis, including target assets and logging configuration.
+    record CodeReview
+        -- The unique identifier of the code review.
+        codeReviewId: string
+        -- The unique identifier of the agent space that contains the code review.
+        agentSpaceId: string
+        -- The title of the code review.
+        title: string
+        -- The assets included in the code review.
+        assets: Assets
+        -- The IAM service role used for the code review.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the code review.
+        logConfig: CloudWatchLog
+        -- The code remediation strategy for the code review.
+        codeRemediationStrategy: string
+        -- The date and time the code review was created, in UTC format.
+        createdAt: number
+        -- The date and time the code review was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the BatchGetCodeReviews operation.
+    record BatchGetCodeReviewsOutput
+        -- The list of code reviews that were found.
+        codeReviews: {CodeReview}
+        -- The list of code review identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Input for BatchGetFindings operation.
+    record BatchGetFindingsInput
+        -- The list of finding identifiers to retrieve.
+        findingIds: {string}
+        -- The unique identifier of the agent space that contains the findings.
+        agentSpaceId: string
+    end
+
+    -- Represents a location in source code associated with a security finding.
+    record CodeLocation
+        -- The absolute path to the file containing the code location.
+        filePath: string
+        -- The starting line number of the code location.
+        lineStart: number
+        -- The ending line number of the code location.
+        lineEnd: number
+        -- The role of this location in the vulnerability, such as source or sink.
+        label: string
+    end
+
+    enum CodeRemediationTaskStatus
+        "IN_PROGRESS"
+        "COMPLETED"
+        "FAILED"
+    end
+
+    -- Contains details about a code remediation task, including links to the code diff and pull request.
+    record CodeRemediationTaskDetails
+        -- The name of the repository where the remediation was applied.
+        repoName: string
+        -- The link to the code diff for the remediation.
+        codeDiffLink: string
+        -- The link to the pull request created for the remediation.
+        pullRequestLink: string
+    end
+
+    -- Represents a code remediation task that was initiated to fix a security finding.
+    record CodeRemediationTask
+        -- The current status of the code remediation task.
+        status: string
+        -- The reason for the current status of the code remediation task.
+        statusReason: string
+        -- The list of details for the code remediation task, including repository name, code diff link, and pull request link.
+        taskDetails: {CodeRemediationTaskDetails}
+    end
+
+    enum ConfidenceLevel
+        "FALSE_POSITIVE"
+        "UNCONFIRMED"
+        "LOW"
+        "MEDIUM"
+        "HIGH"
+    end
+
+    enum RiskLevel
+        "UNKNOWN"
+        "INFORMATIONAL"
+        "LOW"
+        "MEDIUM"
+        "HIGH"
+        "CRITICAL"
+    end
+
+    enum FindingStatus
+        "ACTIVE"
+        "RESOLVED"
+        "ACCEPTED"
+        "FALSE_POSITIVE"
+    end
+
+    -- Represents a security finding discovered during a pentest job. A finding contains details about a vulnerability, including its risk level, confidence, and remediation status.
+    record Finding
+        -- The unique identifier of the finding.
+        findingId: string
+        -- The unique identifier of the agent space associated with the finding.
+        agentSpaceId: string
+        -- The unique identifier of the pentest associated with the finding.
+        pentestId: string
+        -- The unique identifier of the pentest job that produced the finding.
+        pentestJobId: string
+        -- The unique identifier of the code review associated with the finding.
+        codeReviewId: string
+        -- The unique identifier of the code review job that produced the finding.
+        codeReviewJobId: string
+        -- The unique identifier of the task that produced the finding.
+        taskId: string
+        -- The name of the finding.
+        name: string
+        -- A description of the finding.
+        description: string
+        -- The current status of the finding. Valid values include ACTIVE, RESOLVED, ACCEPTED, and FALSE_POSITIVE.
+        status: string
+        -- The type of security risk identified by the finding.
+        riskType: string
+        -- The risk level of the finding. Valid values include UNKNOWN, INFORMATIONAL, LOW, MEDIUM, HIGH, and CRITICAL.
+        riskLevel: string
+        -- The numerical risk score of the finding.
+        riskScore: string
+        -- The reasoning behind the finding, explaining why it was identified as a vulnerability.
+        reasoning: string
+        -- The confidence level of the finding. Valid values include FALSE_POSITIVE, UNCONFIRMED, LOW, MEDIUM, and HIGH.
+        confidence: string
+        -- The attack script used to reproduce the finding.
+        attackScript: string
+        -- The code remediation task associated with the finding, if code remediation was initiated.
+        codeRemediationTask: CodeRemediationTask
+        -- The identifier of the entity that last updated the finding.
+        lastUpdatedBy: string
+        -- The file locations involved in the vulnerability, as reported by the code scanner.
+        codeLocations: {CodeLocation}
+        -- The date and time the finding was created, in UTC format.
+        createdAt: number
+        -- The date and time the finding was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the BatchGetFindings operation.
+    record BatchGetFindingsOutput
+        -- The list of findings that were found.
+        findings: {Finding}
+        -- The list of finding identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Input for BatchGetPentestJobs operation.
+    record BatchGetPentestJobsInput
+        -- The list of pentest job identifiers to retrieve.
+        pentestJobIds: {string}
+        -- The unique identifier of the agent space that contains the pentest jobs.
+        agentSpaceId: string
+    end
+
     -- Represents a pentest job, which is an execution instance of a pentest. A pentest job progresses through preflight, static analysis, pentest, and finalizing steps.
     record PentestJob
         -- The unique identifier of the pentest job.
@@ -841,34 +1045,6 @@ local record M
         agentSpaceId: string
         -- The list of task identifiers to retrieve.
         taskIds: {string}
-    end
-
-    -- Represents a category assigned to a security testing task.
-    record Category
-        -- The name of the category.
-        name: string
-        -- Indicates whether this is the primary category for the task.
-        isPrimary: boolean
-    end
-
-    enum TaskExecutionStatus
-        "IN_PROGRESS"
-        "ABORTED"
-        "COMPLETED"
-        "INTERNAL_ERROR"
-        "FAILED"
-    end
-
-    enum LogType
-        "CLOUDWATCH"
-    end
-
-    -- The log location for a task, specifying where task execution logs are stored.
-    record LogLocation
-        -- The type of log storage. Currently, only CLOUDWATCH is supported.
-        logType: string
-        -- The CloudWatch Logs location for the task logs.
-        cloudWatchLog: CloudWatchLog
     end
 
     -- Represents an individual security test task within a pentest job. Each task targets a specific risk type or endpoint and executes independently.
@@ -1002,10 +1178,100 @@ local record M
         notFound: {string}
     end
 
+    -- Contains summary information about a code review job.
+    record CodeReviewJobSummary
+        -- The unique identifier of the code review job.
+        codeReviewJobId: string
+        -- The unique identifier of the code review associated with the job.
+        codeReviewId: string
+        -- The title of the code review job.
+        title: string
+        -- The current status of the code review job.
+        status: string
+        -- The date and time the code review job was created, in UTC format.
+        createdAt: number
+        -- The date and time the code review job was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Contains summary information about a code review job task.
+    record CodeReviewJobTaskSummary
+        -- The unique identifier of the task.
+        taskId: string
+        -- The unique identifier of the code review associated with the task.
+        codeReviewId: string
+        -- The unique identifier of the code review job that contains the task.
+        codeReviewJobId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The title of the task.
+        title: string
+        -- The type of security risk the task is testing for.
+        riskType: string
+        -- The current execution status of the task.
+        executionStatus: string
+        -- The date and time the task was created, in UTC format.
+        createdAt: number
+        -- The date and time the task was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Contains summary information about a code review.
+    record CodeReviewSummary
+        -- The unique identifier of the code review.
+        codeReviewId: string
+        -- The unique identifier of the agent space that contains the code review.
+        agentSpaceId: string
+        -- The title of the code review.
+        title: string
+        -- The date and time the code review was created, in UTC format.
+        createdAt: number
+        -- The date and time the code review was last updated, in UTC format.
+        updatedAt: number
+    end
+
     -- The request could not be completed due to a conflict with the current state of the resource.
     record ConflictException
         -- Error description.
         message: string
+    end
+
+    -- Input for creating a new code review.
+    record CreateCodeReviewInput
+        -- The title of the code review.
+        title: string
+        -- The unique identifier of the agent space to create the code review in.
+        agentSpaceId: string
+        -- The assets to include in the code review, such as documents and source code.
+        assets: Assets
+        -- The IAM service role to use for the code review.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the code review.
+        logConfig: CloudWatchLog
+        -- The code remediation strategy for the code review. Valid values are AUTOMATIC and DISABLED.
+        codeRemediationStrategy: string
+    end
+
+    -- Output for the CreateCodeReview operation.
+    record CreateCodeReviewOutput
+        -- The unique identifier of the created code review.
+        codeReviewId: string
+        -- The title of the code review.
+        title: string
+        -- The date and time the code review was created, in UTC format.
+        createdAt: number
+        -- The date and time the code review was last updated, in UTC format.
+        updatedAt: number
+        -- The assets included in the code review.
+        assets: Assets
+        -- The IAM service role used for the code review.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the code review.
+        logConfig: CloudWatchLog
+        -- The unique identifier of the agent space that contains the code review.
+        agentSpaceId: string
+        -- The code remediation strategy for the code review.
+        codeRemediationStrategy: string
     end
 
     -- The input required to create a GitHub integration, including the OAuth authorization code and CSRF state.
@@ -1230,6 +1496,10 @@ local record M
         pentestId: string
         -- The unique identifier of the pentest job that produced the finding.
         pentestJobId: string
+        -- The unique identifier of the code review associated with the finding.
+        codeReviewId: string
+        -- The unique identifier of the code review job that produced the finding.
+        codeReviewJobId: string
         -- The name of the finding.
         name: string
         -- The current status of the finding.
@@ -1421,6 +1691,68 @@ local record M
         nextToken: string
     end
 
+    -- Input for ListCodeReviewJobsForCodeReview operation.
+    record ListCodeReviewJobsForCodeReviewInput
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The unique identifier of the code review to list jobs for.
+        codeReviewId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+    end
+
+    -- Output for the ListCodeReviewJobsForCodeReview operation.
+    record ListCodeReviewJobsForCodeReviewOutput
+        -- The list of code review job summaries.
+        codeReviewJobSummaries: {CodeReviewJobSummary}
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+    end
+
+    -- Input for listing tasks associated with a code review job.
+    record ListCodeReviewJobTasksInput
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The unique identifier of the code review job to list tasks for.
+        codeReviewJobId: string
+        -- Filter tasks by step name.
+        stepName: string
+        -- Filter tasks by category name.
+        categoryName: string
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+    end
+
+    -- Output for the ListCodeReviewJobTasks operation.
+    record ListCodeReviewJobTasksOutput
+        -- The list of code review job task summaries.
+        codeReviewJobTaskSummaries: {CodeReviewJobTaskSummary}
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+    end
+
+    -- Input for listing code reviews with optional filtering.
+    record ListCodeReviewsInput
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+        -- The unique identifier of the agent space to list code reviews for.
+        agentSpaceId: string
+    end
+
+    -- Output for the ListCodeReviews operation.
+    record ListCodeReviewsOutput
+        -- The list of code review summaries.
+        codeReviewSummaries: {CodeReviewSummary}
+        -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+    end
+
     -- Input for ListDiscoveredEndpoints operation.
     record ListDiscoveredEndpointsInput
         -- The maximum number of results to return in a single call.
@@ -1449,6 +1781,8 @@ local record M
         maxResults: number
         -- The unique identifier of the pentest job to list findings for.
         pentestJobId: string
+        -- The unique identifier of the code review job to list findings for. Mutually exclusive with pentestJobId.
+        codeReviewJobId: string
         -- The unique identifier of the agent space.
         agentSpaceId: string
         -- A token to use for paginating results that are returned in the response. Set the value of this parameter to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
@@ -1718,14 +2052,42 @@ local record M
     record StartCodeRemediationInput
         -- The unique identifier of the agent space.
         agentSpaceId: string
-        -- The unique identifier of the pentest job that produced the findings.
+        -- The unique identifier of the pentest job that produced the findings. Mutually exclusive with codeReviewJobId.
         pentestJobId: string
+        -- The unique identifier of the code review job that produced the findings. Mutually exclusive with pentestJobId.
+        codeReviewJobId: string
         -- The list of finding identifiers to initiate code remediation for.
         findingIds: {string}
     end
 
     -- Output for the StartCodeRemediation operation.
     record StartCodeRemediationOutput
+    end
+
+    -- Input for starting the execution of a code review.
+    record StartCodeReviewJobInput
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The unique identifier of the code review to start a job for.
+        codeReviewId: string
+    end
+
+    -- Output for the StartCodeReviewJob operation.
+    record StartCodeReviewJobOutput
+        -- The title of the code review job.
+        title: string
+        -- The current status of the code review job.
+        status: string
+        -- The date and time the code review job was created, in UTC format.
+        createdAt: number
+        -- The date and time the code review job was last updated, in UTC format.
+        updatedAt: number
+        -- The unique identifier of the code review.
+        codeReviewId: string
+        -- The unique identifier of the started code review job.
+        codeReviewJobId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
     end
 
     -- Input for starting the execution of a pentest.
@@ -1752,6 +2114,18 @@ local record M
         pentestJobId: string
         -- The unique identifier of the agent space.
         agentSpaceId: string
+    end
+
+    -- Input for stopping the execution of a code review job.
+    record StopCodeReviewJobInput
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The unique identifier of the code review job to stop.
+        codeReviewJobId: string
+    end
+
+    -- Output for the StopCodeReviewJob operation.
+    record StopCodeReviewJobOutput
     end
 
     -- Input for stopping the execution of a pentest.
@@ -1814,6 +2188,46 @@ local record M
 
     -- Output for UntagResource operation.
     record UntagResourceOutput
+    end
+
+    -- Input for updating an existing code review.
+    record UpdateCodeReviewInput
+        -- The unique identifier of the code review to update.
+        codeReviewId: string
+        -- The unique identifier of the agent space that contains the code review.
+        agentSpaceId: string
+        -- The updated title of the code review.
+        title: string
+        -- The updated assets for the code review.
+        assets: Assets
+        -- The updated IAM service role for the code review.
+        serviceRole: string
+        -- The updated CloudWatch Logs configuration for the code review.
+        logConfig: CloudWatchLog
+        -- The updated code remediation strategy for the code review.
+        codeRemediationStrategy: string
+    end
+
+    -- Output for the UpdateCodeReview operation.
+    record UpdateCodeReviewOutput
+        -- The unique identifier of the code review.
+        codeReviewId: string
+        -- The title of the code review.
+        title: string
+        -- The date and time the code review was created, in UTC format.
+        createdAt: number
+        -- The date and time the code review was last updated, in UTC format.
+        updatedAt: number
+        -- The assets included in the code review.
+        assets: Assets
+        -- The IAM service role used for the code review.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the code review.
+        logConfig: CloudWatchLog
+        -- The unique identifier of the agent space that contains the code review.
+        agentSpaceId: string
+        -- The code remediation strategy for the code review.
+        codeRemediationStrategy: string
     end
 
     -- Input for updating an existing security finding.

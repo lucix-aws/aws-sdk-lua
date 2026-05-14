@@ -25788,6 +25788,36 @@ M.Capabilities = schema.new({
             name = "Flow",
             target_id = prelude.String.id,
         }),
+        Apps = schema.new({
+            id = id.from(_N, "Capabilities", "Apps"),
+            type = "string",
+            name = "Apps",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateApps = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateApps"),
+            type = "string",
+            name = "CreateAndUpdateApps",
+            target_id = prelude.String.id,
+        }),
+        ShareApps = schema.new({
+            id = id.from(_N, "Capabilities", "ShareApps"),
+            type = "string",
+            name = "ShareApps",
+            target_id = prelude.String.id,
+        }),
+        InvokeAppsAIInference = schema.new({
+            id = id.from(_N, "Capabilities", "InvokeAppsAIInference"),
+            type = "string",
+            name = "InvokeAppsAIInference",
+            target_id = prelude.String.id,
+        }),
+        AccessAppsNativeDataStore = schema.new({
+            id = id.from(_N, "Capabilities", "AccessAppsNativeDataStore"),
+            type = "string",
+            name = "AccessAppsNativeDataStore",
+            target_id = prelude.String.id,
+        }),
         PublishWithoutApproval = schema.new({
             id = id.from(_N, "Capabilities", "PublishWithoutApproval"),
             type = "string",

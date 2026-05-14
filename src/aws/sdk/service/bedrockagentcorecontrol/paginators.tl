@@ -382,6 +382,24 @@ function M.items_list_policies(client, input)
     })
 end
 
+--- Returns a page iterator for listPolicyEngineSummaries.
+function M.pages_list_policy_engine_summaries(client, input)
+    return paginator.pages(client, "listPolicyEngineSummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "policyEngines",
+    })
+end
+
+--- Returns an item iterator for listPolicyEngineSummaries.
+function M.items_list_policy_engine_summaries(client, input)
+    return paginator.items(client, "listPolicyEngineSummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "policyEngines",
+    })
+end
+
 --- Returns a page iterator for listPolicyEngines.
 function M.pages_list_policy_engines(client, input)
     return paginator.pages(client, "listPolicyEngines", input, {
@@ -418,6 +436,24 @@ function M.items_list_policy_generation_assets(client, input)
     })
 end
 
+--- Returns a page iterator for listPolicyGenerationSummaries.
+function M.pages_list_policy_generation_summaries(client, input)
+    return paginator.pages(client, "listPolicyGenerationSummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "policyGenerations",
+    })
+end
+
+--- Returns an item iterator for listPolicyGenerationSummaries.
+function M.items_list_policy_generation_summaries(client, input)
+    return paginator.items(client, "listPolicyGenerationSummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "policyGenerations",
+    })
+end
+
 --- Returns a page iterator for listPolicyGenerations.
 function M.pages_list_policy_generations(client, input)
     return paginator.pages(client, "listPolicyGenerations", input, {
@@ -433,6 +469,24 @@ function M.items_list_policy_generations(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "policyGenerations",
+    })
+end
+
+--- Returns a page iterator for listPolicySummaries.
+function M.pages_list_policy_summaries(client, input)
+    return paginator.pages(client, "listPolicySummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "policies",
+    })
+end
+
+--- Returns an item iterator for listPolicySummaries.
+function M.items_list_policy_summaries(client, input)
+    return paginator.items(client, "listPolicySummaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "policies",
     })
 end
 

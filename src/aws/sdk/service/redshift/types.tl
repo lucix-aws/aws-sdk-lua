@@ -1594,7 +1594,7 @@ local record M
         -- go to Working with
         -- Clusters in the Amazon Redshift Cluster Management Guide.
         -- Valid Values:
-        -- dc2.large | dc2.8xlarge |
+        -- dc2.large | dc2.8xlarge| rg.xlarge | rg.4xlarge |
         -- ra3.large | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
         NodeType: string
         -- The user name associated with the admin user account for the cluster that is being
@@ -1661,7 +1661,7 @@ local record M
         -- The number of days that automated snapshots are retained. If the value is 0,
         -- automated snapshots are disabled. Even if automated snapshots are disabled, you can
         -- still create manual snapshots when you want with CreateClusterSnapshot.
-        -- You can't disable automated snapshots for RA3 node types. Set the automated retention period from 1-35 days.
+        -- You can't disable automated snapshots for RG or RA3 node types. Set the automated retention period from 1-35 days.
         -- Default: 1
         -- Constraints: Must be a value from 0 to 35.
         AutomatedSnapshotRetentionPeriod: number
@@ -1676,8 +1676,8 @@ local record M
         -- connections.
         -- Default: 5439
         -- Valid Values:
-        -- For clusters with ra3 nodes - Select a port within the ranges 5431-5455 or 8191-8215. (If you have an existing cluster
-        -- with ra3 nodes, it isn't required that you change the port to these ranges.)
+        -- For clusters with RG or RA3 nodes - Select a port within the ranges 5431-5455 or 8191-8215. (If you have an existing cluster
+        -- with RG or RA3 nodes, it isn't required that you change the port to these ranges.)
         -- For clusters with dc2 nodes - Select a port within the range 1150-65535.
         Port: number
         -- The version of the Amazon Redshift engine software that you want to deploy on the
@@ -5875,7 +5875,7 @@ local record M
         -- Resizing Clusters in Amazon Redshift
         -- in the Amazon Redshift Cluster Management Guide.
         -- Valid Values:
-        -- dc2.large | dc2.8xlarge |
+        -- dc2.large | dc2.8xlarge| rg.xlarge | rg.4xlarge |
         -- ra3.large | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
         NodeType: string
         -- The new number of nodes of the cluster. If you specify a new number of nodes, you
@@ -5926,7 +5926,7 @@ local record M
         -- If you decrease the automated snapshot retention period from its current value,
         -- existing automated snapshots that fall outside of the new retention period will be
         -- immediately deleted.
-        -- You can't disable automated snapshots for RA3 node types. Set the automated retention period from 1-35 days.
+        -- You can't disable automated snapshots for RG or RA3 node types. Set the automated retention period from 1-35 days.
         -- Default: Uses existing setting.
         -- Constraints: Must be a value from 0 to 35.
         AutomatedSnapshotRetentionPeriod: number
@@ -6016,8 +6016,8 @@ local record M
         AvailabilityZone: string
         -- The option to change the port of an Amazon Redshift cluster.
         -- Valid Values:
-        -- For clusters with ra3 nodes - Select a port within the ranges 5431-5455 or 8191-8215. (If you have an existing cluster
-        -- with ra3 nodes, it isn't required that you change the port to these ranges.)
+        -- For clusters with RG or RA3 nodes - Select a port within the ranges 5431-5455 or 8191-8215. (If you have an existing cluster
+        -- with RG or RA3 nodes, it isn't required that you change the port to these ranges.)
         -- For clusters with dc2 nodes - Select a port within the range 1150-65535.
         Port: number
         -- If true, Amazon Redshift uses Secrets Manager to manage this cluster's admin credentials.
@@ -6670,7 +6670,7 @@ local record M
         SnapshotClusterIdentifier: string
         -- The port number on which the cluster accepts connections.
         -- Default: The same port as the original cluster.
-        -- Valid values: For clusters with DC2 nodes, must be within the range 1150-65535. For clusters with ra3 nodes, must be
+        -- Valid values: For clusters with DC2 nodes, must be within the range 1150-65535. For clusters with RG or RA3 nodes, must be
         -- within the ranges 5431-5455 or 8191-8215.
         Port: number
         -- The Amazon EC2 Availability Zone in which to restore the cluster.
@@ -6729,7 +6729,7 @@ local record M
         -- The number of days that automated snapshots are retained. If the value is 0,
         -- automated snapshots are disabled. Even if automated snapshots are disabled, you can
         -- still create manual snapshots when you want with CreateClusterSnapshot.
-        -- You can't disable automated snapshots for RA3 node types. Set the automated retention period from 1-35 days.
+        -- You can't disable automated snapshots for RG or RA3 node types. Set the automated retention period from 1-35 days.
         -- Default: The value selected for the cluster from which the snapshot was
         -- taken.
         -- Constraints: Must be a value from 0 to 35.

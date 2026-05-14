@@ -156,6 +156,8 @@ local record M
         "LIMIT_EXCEEDED_NUMBER_OF_CONNECTION_INVITATION_PER_DAY"
         "LIMIT_EXCEEDED_NUMBER_OF_ACTIVE_CONNECTION"
         "LIMIT_EXCEEDED_NUMBER_OF_OPEN_CONNECTION_INVITATION"
+        "LIMIT_EXCEEDED_NUMBER_OF_PROFILE_UPDATE_PER_DAY"
+        "LIMIT_EXCEEDED_NUMBER_OF_PROFILE_VISIBILITY_UPDATE_PER_DAY"
     end
 
     -- The request was rejected because it would exceed a service quota or limit. This may occur when trying to create more resources than allowed by the service limits.
@@ -182,6 +184,7 @@ local record M
         "INVALID_ACCOUNT_LINKING_STATUS"
         "INVALID_ACCOUNT_STATE"
         "INCOMPATIBLE_DOMAIN"
+        "INELIGIBLE_ACCOUNT_TIER"
     end
 
     -- Contains information about a business rule validation error that occurred during an operation.

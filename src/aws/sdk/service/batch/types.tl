@@ -348,6 +348,7 @@ local record M
         -- If no new jobs are placed on the instance during this delay, Batch terminates the instance once
         -- the delay expires.
         -- Valid Range: Minimum value of 20. Maximum value of 10080. Use 0 to unset and disable the scale down delay.
+        -- Idle instances retained during the scale-down delay period are billable at standard EC2 pricing.
         -- The scale down delay does not apply to:
         -- Instances being replaced during infrastructure updates
         -- Newly launched instances that have not yet run any jobs
@@ -592,8 +593,7 @@ local record M
         -- continue to progress normally. Managed compute environments in the DISABLED state
         -- don't scale out.
         -- Compute environments in a DISABLED state may continue to incur billing
-        -- charges. To prevent additional charges, turn off and then delete the compute environment.
-        -- For more information, see State in the Batch User Guide.
+        -- charges, for example, if they have running instances due to jobs that are still executing or a non-zero minvCpus setting. To prevent additional charges, disable and delete the compute environment.
         -- When an instance is idle, the instance scales down to the minvCpus value.
         -- However, the instance size doesn't change. For example, consider a c5.8xlarge
         -- instance with a minvCpus value of 4 and a desiredvCpus
@@ -1138,8 +1138,7 @@ local record M
         -- continue to progress normally. Managed compute environments in the DISABLED state
         -- don't scale out.
         -- Compute environments in a DISABLED state may continue to incur billing
-        -- charges. To prevent additional charges, turn off and then delete the compute environment. For
-        -- more information, see State in the Batch User Guide.
+        -- charges, for example, if they have running instances due to jobs that are still executing or a non-zero minvCpus setting. To prevent additional charges, disable and delete the compute environment.
         -- When an instance is idle, the instance scales down to the minvCpus value.
         -- However, the instance size doesn't change. For example, consider a c5.8xlarge
         -- instance with a minvCpus value of 4 and a desiredvCpus
@@ -5033,8 +5032,7 @@ local record M
         -- continue to progress normally. Managed compute environments in the DISABLED state
         -- don't scale out.
         -- Compute environments in a DISABLED state may continue to incur billing
-        -- charges. To prevent additional charges, turn off and then delete the compute environment.
-        -- For more information, see State in the Batch User Guide.
+        -- charges, for example, if they have running instances due to jobs that are still executing or a non-zero minvCpus setting. To prevent additional charges, disable and delete the compute environment.
         -- When an instance is idle, the instance scales down to the minvCpus value.
         -- However, the instance size doesn't change. For example, consider a c5.8xlarge
         -- instance with a minvCpus value of 4 and a desiredvCpus

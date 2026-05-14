@@ -4,6 +4,108 @@ local waiter = require("smithy.waiter")
 
 local M = {}
 
+--- Wait until CertificateAssociated.
+function M.wait_until_certificate_associated(client, input, options)
+    return waiter.wait(client, "getCertificateAssociation", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "ASSOCIATED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DISASSOCIATED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "PENDING_DISASSOCIATION",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until CertificateDisassociated.
+function M.wait_until_certificate_disassociated(client, input, options)
+    return waiter.wait(client, "getCertificateAssociation", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DISASSOCIATED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "PENDING_ASSOCIATION",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until InboundExternalLinkActive.
 function M.wait_until_inbound_external_link_active(client, input, options)
     return waiter.wait(client, "getInboundExternalLink", input, {
@@ -236,6 +338,82 @@ function M.wait_until_link_deleted(client, input, options)
                     output = {
                         path = "status",
                         expected = "REJECTED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until LinkRoutingRuleActive.
+function M.wait_until_link_routing_rule_active(client, input, options)
+    return waiter.wait(client, "getLinkRoutingRule", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until LinkRoutingRuleDeleted.
+function M.wait_until_link_routing_rule_deleted(client, input, options)
+    return waiter.wait(client, "getLinkRoutingRule", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "DELETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "FAILED",
                         comparator = "stringEquals",
                     },
                 },

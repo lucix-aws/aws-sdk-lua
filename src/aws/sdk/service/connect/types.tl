@@ -3369,6 +3369,10 @@ local record M
         "OnCaseCreate"
         "OnCaseUpdate"
         "OnSlaBreach"
+        "OnAlertUpdate"
+        "OnSchedulePublish"
+        "OnScheduleUpdate"
+        "OnScheduleTimeOffRequestActivity"
     end
 
     -- The name of the event source. This field is required if TriggerEventSource is one of the following values:

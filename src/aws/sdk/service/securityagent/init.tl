@@ -19,9 +19,13 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addArtifact: function(Client, types.AddArtifactInput, ? base_client.InvokeOptions): async.Operation<types.AddArtifactOutput>
+    batchDeleteCodeReviews: function(Client, types.BatchDeleteCodeReviewsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteCodeReviewsOutput>
     batchDeletePentests: function(Client, types.BatchDeletePentestsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeletePentestsOutput>
     batchGetAgentSpaces: function(Client, types.BatchGetAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAgentSpacesOutput>
     batchGetArtifactMetadata: function(Client, types.BatchGetArtifactMetadataInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetArtifactMetadataOutput>
+    batchGetCodeReviewJobs: function(Client, types.BatchGetCodeReviewJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewJobsOutput>
+    batchGetCodeReviewJobTasks: function(Client, types.BatchGetCodeReviewJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewJobTasksOutput>
+    batchGetCodeReviews: function(Client, types.BatchGetCodeReviewsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewsOutput>
     batchGetFindings: function(Client, types.BatchGetFindingsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetFindingsOutput>
     batchGetPentestJobs: function(Client, types.BatchGetPentestJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobsOutput>
     batchGetPentestJobTasks: function(Client, types.BatchGetPentestJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobTasksOutput>
@@ -29,6 +33,7 @@ local record Client
     batchGetTargetDomains: function(Client, types.BatchGetTargetDomainsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetTargetDomainsOutput>
     createAgentSpace: function(Client, types.CreateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
     createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    createCodeReview: function(Client, types.CreateCodeReviewInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeReviewOutput>
     createIntegration: function(Client, types.CreateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationOutput>
     createMembership: function(Client, types.CreateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
     createPentest: function(Client, types.CreatePentestInput, ? base_client.InvokeOptions): async.Operation<types.CreatePentestOutput>
@@ -46,6 +51,9 @@ local record Client
     listAgentSpaces: function(Client, types.ListAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
     listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
     listArtifacts: function(Client, types.ListArtifactsInput, ? base_client.InvokeOptions): async.Operation<types.ListArtifactsOutput>
+    listCodeReviewJobsForCodeReview: function(Client, types.ListCodeReviewJobsForCodeReviewInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeReviewJobsForCodeReviewOutput>
+    listCodeReviewJobTasks: function(Client, types.ListCodeReviewJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeReviewJobTasksOutput>
+    listCodeReviews: function(Client, types.ListCodeReviewsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeReviewsOutput>
     listDiscoveredEndpoints: function(Client, types.ListDiscoveredEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListDiscoveredEndpointsOutput>
     listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
     listIntegratedResources: function(Client, types.ListIntegratedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegratedResourcesOutput>
@@ -57,12 +65,15 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listTargetDomains: function(Client, types.ListTargetDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetDomainsOutput>
     startCodeRemediation: function(Client, types.StartCodeRemediationInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeRemediationOutput>
+    startCodeReviewJob: function(Client, types.StartCodeReviewJobInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeReviewJobOutput>
     startPentestJob: function(Client, types.StartPentestJobInput, ? base_client.InvokeOptions): async.Operation<types.StartPentestJobOutput>
+    stopCodeReviewJob: function(Client, types.StopCodeReviewJobInput, ? base_client.InvokeOptions): async.Operation<types.StopCodeReviewJobOutput>
     stopPentestJob: function(Client, types.StopPentestJobInput, ? base_client.InvokeOptions): async.Operation<types.StopPentestJobOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
     updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
+    updateCodeReview: function(Client, types.UpdateCodeReviewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCodeReviewOutput>
     updateFinding: function(Client, types.UpdateFindingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingOutput>
     updateIntegratedResources: function(Client, types.UpdateIntegratedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegratedResourcesOutput>
     updatePentest: function(Client, types.UpdatePentestInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePentestOutput>
@@ -116,6 +127,10 @@ function C:addArtifact(input: types.AddArtifactInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddArtifact as schema.OperationSchema, input, options) as async.Operation<types.AddArtifactOutput>
 end
 
+function C:batchDeleteCodeReviews(input: types.BatchDeleteCodeReviewsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteCodeReviewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteCodeReviews as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteCodeReviewsOutput>
+end
+
 function C:batchDeletePentests(input: types.BatchDeletePentestsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeletePentestsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeletePentests as schema.OperationSchema, input, options) as async.Operation<types.BatchDeletePentestsOutput>
 end
@@ -126,6 +141,18 @@ end
 
 function C:batchGetArtifactMetadata(input: types.BatchGetArtifactMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetArtifactMetadataOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetArtifactMetadata as schema.OperationSchema, input, options) as async.Operation<types.BatchGetArtifactMetadataOutput>
+end
+
+function C:batchGetCodeReviewJobs(input: types.BatchGetCodeReviewJobsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCodeReviewJobs as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCodeReviewJobsOutput>
+end
+
+function C:batchGetCodeReviewJobTasks(input: types.BatchGetCodeReviewJobTasksInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewJobTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCodeReviewJobTasks as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCodeReviewJobTasksOutput>
+end
+
+function C:batchGetCodeReviews(input: types.BatchGetCodeReviewsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetCodeReviews as schema.OperationSchema, input, options) as async.Operation<types.BatchGetCodeReviewsOutput>
 end
 
 function C:batchGetFindings(input: types.BatchGetFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetFindingsOutput>
@@ -154,6 +181,10 @@ end
 
 function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
+end
+
+function C:createCodeReview(input: types.CreateCodeReviewInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCodeReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCodeReview as schema.OperationSchema, input, options) as async.Operation<types.CreateCodeReviewOutput>
 end
 
 function C:createIntegration(input: types.CreateIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIntegrationOutput>
@@ -224,6 +255,18 @@ function C:listArtifacts(input: types.ListArtifactsInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListArtifacts as schema.OperationSchema, input, options) as async.Operation<types.ListArtifactsOutput>
 end
 
+function C:listCodeReviewJobsForCodeReview(input: types.ListCodeReviewJobsForCodeReviewInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeReviewJobsForCodeReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeReviewJobsForCodeReview as schema.OperationSchema, input, options) as async.Operation<types.ListCodeReviewJobsForCodeReviewOutput>
+end
+
+function C:listCodeReviewJobTasks(input: types.ListCodeReviewJobTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeReviewJobTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeReviewJobTasks as schema.OperationSchema, input, options) as async.Operation<types.ListCodeReviewJobTasksOutput>
+end
+
+function C:listCodeReviews(input: types.ListCodeReviewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeReviewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeReviews as schema.OperationSchema, input, options) as async.Operation<types.ListCodeReviewsOutput>
+end
+
 function C:listDiscoveredEndpoints(input: types.ListDiscoveredEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDiscoveredEndpointsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDiscoveredEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListDiscoveredEndpointsOutput>
 end
@@ -268,8 +311,16 @@ function C:startCodeRemediation(input: types.StartCodeRemediationInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCodeRemediation as schema.OperationSchema, input, options) as async.Operation<types.StartCodeRemediationOutput>
 end
 
+function C:startCodeReviewJob(input: types.StartCodeReviewJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartCodeReviewJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartCodeReviewJob as schema.OperationSchema, input, options) as async.Operation<types.StartCodeReviewJobOutput>
+end
+
 function C:startPentestJob(input: types.StartPentestJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartPentestJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPentestJob as schema.OperationSchema, input, options) as async.Operation<types.StartPentestJobOutput>
+end
+
+function C:stopCodeReviewJob(input: types.StopCodeReviewJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopCodeReviewJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCodeReviewJob as schema.OperationSchema, input, options) as async.Operation<types.StopCodeReviewJobOutput>
 end
 
 function C:stopPentestJob(input: types.StopPentestJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopPentestJobOutput>
@@ -290,6 +341,10 @@ end
 
 function C:updateApplication(input: types.UpdateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateApplicationOutput>
+end
+
+function C:updateCodeReview(input: types.UpdateCodeReviewInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCodeReviewOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCodeReview as schema.OperationSchema, input, options) as async.Operation<types.UpdateCodeReviewOutput>
 end
 
 function C:updateFinding(input: types.UpdateFindingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFindingOutput>

@@ -22,4 +22,22 @@ function M.items_list_clusters(client, input)
     })
 end
 
+--- Returns a page iterator for listStreams.
+function M.pages_list_streams(client, input)
+    return paginator.pages(client, "listStreams", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "streams",
+    })
+end
+
+--- Returns an item iterator for listStreams.
+function M.items_list_streams(client, input)
+    return paginator.items(client, "listStreams", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "streams",
+    })
+end
+
 return M

@@ -416,6 +416,12 @@ M.AssociateWhatsAppBusinessAccountOutput = schema.new({
             name = "statusCode",
             target_id = prelude.Integer.id,
         }),
+        linkedWhatsAppBusinessAccountId = schema.new({
+            id = id.from(_N, "AssociateWhatsAppBusinessAccountOutput", "linkedWhatsAppBusinessAccountId"),
+            type = "string",
+            name = "linkedWhatsAppBusinessAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1106,6 +1112,12 @@ M.LinkedWhatsAppBusinessAccount = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        marketingMessagesOnboardingStatus = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccount", "marketingMessagesOnboardingStatus"),
+            type = "string",
+            name = "marketingMessagesOnboardingStatus",
+            target_id = prelude.String.id,
+        }),
         phoneNumbers = schema.new({
             id = id.from(_N, "LinkedWhatsAppBusinessAccount", "phoneNumbers"),
             type = "list",
@@ -1271,7 +1283,6 @@ M.GetWhatsAppMessageTemplateInput = schema.new({
             name = "metaTemplateId",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
                 [traits.HTTP_QUERY] = { name = "metaTemplateId" },
             },
         }),
@@ -1283,6 +1294,24 @@ M.GetWhatsAppMessageTemplateInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_QUERY] = { name = "id" },
+            },
+        }),
+        templateName = schema.new({
+            id = id.from(_N, "GetWhatsAppMessageTemplateInput", "templateName"),
+            type = "string",
+            name = "templateName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "templateName" },
+            },
+        }),
+        templateLanguageCode = schema.new({
+            id = id.from(_N, "GetWhatsAppMessageTemplateInput", "templateLanguageCode"),
+            type = "string",
+            name = "templateLanguageCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "templateLanguageCode" },
             },
         }),
     },
@@ -1443,6 +1472,12 @@ M.LinkedWhatsAppBusinessAccountSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        marketingMessagesOnboardingStatus = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccountSummary", "marketingMessagesOnboardingStatus"),
+            type = "string",
+            name = "marketingMessagesOnboardingStatus",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1747,9 +1782,18 @@ M.UpdateWhatsAppMessageTemplateInput = schema.new({
             type = "string",
             name = "metaTemplateId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        templateName = schema.new({
+            id = id.from(_N, "UpdateWhatsAppMessageTemplateInput", "templateName"),
+            type = "string",
+            name = "templateName",
+            target_id = prelude.String.id,
+        }),
+        templateLanguageCode = schema.new({
+            id = id.from(_N, "UpdateWhatsAppMessageTemplateInput", "templateLanguageCode"),
+            type = "string",
+            name = "templateLanguageCode",
+            target_id = prelude.String.id,
         }),
         parameterFormat = schema.new({
             id = id.from(_N, "UpdateWhatsAppMessageTemplateInput", "parameterFormat"),

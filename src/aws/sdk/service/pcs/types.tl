@@ -55,6 +55,7 @@ local record M
         "ONDEMAND"
         "SPOT"
         "CAPACITY_BLOCK"
+        "INTERRUPTIBLE_CAPACITY_RESERVATION"
     end
 
     -- Specifies the boundaries of the compute node group auto scaling.
@@ -100,7 +101,7 @@ local record M
         amiId: string
         -- The list of subnet IDs where the compute node group launches instances. Subnets must be in the same VPC as the cluster.
         subnetIds: {string}
-        -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. If you don't provide this option, it defaults to On-Demand.
+        -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, Interruptible Capacity Reservations, On-Demand Capacity Reservations, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. For more information about PCS support for interruptible capacity reservations, see Using I-ODCRs with PCS in the PCS User Guide. Choose On-Demand if you plan to use an On-Demand Capacity Reservation (ODCR). For more information, see Using ODCRs with PCS. If you don't provide this option, it defaults to On-Demand.
         purchaseOption: string
         customLaunchTemplate: CustomLaunchTemplate
         -- The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have the pcs:RegisterComputeNodeGroupInstance permission and the role name must start with AWSPCS or must have the path /aws-pcs/. For more information, see IAM instance profiles for PCS in the PCS User Guide.
@@ -174,7 +175,7 @@ local record M
         amiId: string
         -- The list of subnet IDs where instances are provisioned by the compute node group. The subnets must be in the same VPC as the cluster.
         subnetIds: {string}
-        -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. If you don't provide this option, it defaults to On-Demand.
+        -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, Interruptible Capacity Reservations, On-Demand Capacity Reservations, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. For more information about PCS support for interruptible capacity reservations, see Using I-ODCRs with PCS in the PCS User Guide. Choose On-Demand if you plan to use an On-Demand Capacity Reservation (ODCR). For more information, see Using ODCRs with PCS. If you don't provide this option, it defaults to On-Demand.
         purchaseOption: string
         customLaunchTemplate: CustomLaunchTemplate
         -- The Amazon Resource Name (ARN) of the IAM instance profile used to pass an IAM role when launching EC2 instances. The role contained in your instance profile must have the pcs:RegisterComputeNodeGroupInstance permission and the role name must start with AWSPCS or must have the path /aws-pcs/. For more information, see IAM instance profiles for PCS in the PCS User Guide.
@@ -323,7 +324,7 @@ local record M
         -- The list of subnet IDs where the compute node group provisions instances. The subnets must be in the same VPC as the cluster.
         subnetIds: {string}
         customLaunchTemplate: CustomLaunchTemplate
-        -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. If you don't provide this option, it defaults to On-Demand.
+        -- Specifies how EC2 instances are purchased on your behalf. PCS supports On-Demand Instances, Spot Instances, Interruptible Capacity Reservations, On-Demand Capacity Reservations, and Amazon EC2 Capacity Blocks for ML. For more information, see Amazon EC2 billing and purchasing options in the Amazon Elastic Compute Cloud User Guide. For more information about PCS support for Capacity Blocks, see Using Amazon EC2 Capacity Blocks for ML with PCS in the PCS User Guide. For more information about PCS support for interruptible capacity reservations, see Using I-ODCRs with PCS in the PCS User Guide. Choose On-Demand if you plan to use an On-Demand Capacity Reservation (ODCR). For more information, see Using ODCRs with PCS. If you don't provide this option, it defaults to On-Demand.
         purchaseOption: string
         spotOptions: SpotOptions
         -- Specifies the boundaries of the compute node group auto scaling.

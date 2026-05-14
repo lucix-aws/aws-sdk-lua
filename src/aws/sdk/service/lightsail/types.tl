@@ -2582,6 +2582,12 @@ local record M
         "ipv6"
     end
 
+    enum OriginIpAddressTypeEnum
+        "ipv4"
+        "ipv6"
+        "dualstack"
+    end
+
     enum OriginProtocolPolicyEnum
         "http-only"
         "https-only"
@@ -2604,6 +2610,10 @@ local record M
         -- forwarding a request to the origin. The minimum timeout is 1 second, the maximum is 60
         -- seconds, and the default (if you don't specify otherwise) is 30 seconds.
         responseTimeout: number
+        -- The IP address type that the distribution uses when connecting to the origin.
+        -- The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only,
+        -- and dualstack for IPv4 and IPv6.
+        ipAddressType: string
     end
 
     enum ViewerMinimumTlsProtocolVersionEnum
@@ -2667,6 +2677,10 @@ local record M
         -- forwarding a request to the origin. The minimum timeout is 1 second, the maximum is 60
         -- seconds, and the default (if you don't specify otherwise) is 30 seconds.
         responseTimeout: number
+        -- The IP address type that the distribution uses when connecting to the origin.
+        -- The possible values are ipv4 for IPv4 only, ipv6 for IPv6 only,
+        -- and dualstack for IPv4 and IPv6.
+        ipAddressType: string
     end
 
     -- Describes an Amazon Lightsail content delivery network (CDN) distribution.

@@ -19,21 +19,29 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     acceptLink: function(Client, types.AcceptLinkInput, ? base_client.InvokeOptions): async.Operation<types.AcceptLinkOutput>
+    associateCertificate: function(Client, types.AssociateCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCertificateOutput>
     createInboundExternalLink: function(Client, types.CreateInboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateInboundExternalLinkOutput>
     createLink: function(Client, types.CreateLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
+    createLinkRoutingRule: function(Client, types.CreateLinkRoutingRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateLinkRoutingRuleOutput>
     createOutboundExternalLink: function(Client, types.CreateOutboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.CreateOutboundExternalLinkOutput>
     createRequesterGateway: function(Client, types.CreateRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateRequesterGatewayOutput>
     createResponderGateway: function(Client, types.CreateResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateResponderGatewayOutput>
     deleteInboundExternalLink: function(Client, types.DeleteInboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInboundExternalLinkOutput>
     deleteLink: function(Client, types.DeleteLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLinkOutput>
+    deleteLinkRoutingRule: function(Client, types.DeleteLinkRoutingRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLinkRoutingRuleOutput>
     deleteOutboundExternalLink: function(Client, types.DeleteOutboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOutboundExternalLinkOutput>
     deleteRequesterGateway: function(Client, types.DeleteRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRequesterGatewayOutput>
     deleteResponderGateway: function(Client, types.DeleteResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResponderGatewayOutput>
+    disassociateCertificate: function(Client, types.DisassociateCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCertificateOutput>
+    getCertificateAssociation: function(Client, types.GetCertificateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetCertificateAssociationOutput>
     getInboundExternalLink: function(Client, types.GetInboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetInboundExternalLinkOutput>
     getLink: function(Client, types.GetLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkOutput>
+    getLinkRoutingRule: function(Client, types.GetLinkRoutingRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetLinkRoutingRuleOutput>
     getOutboundExternalLink: function(Client, types.GetOutboundExternalLinkInput, ? base_client.InvokeOptions): async.Operation<types.GetOutboundExternalLinkOutput>
     getRequesterGateway: function(Client, types.GetRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetRequesterGatewayOutput>
     getResponderGateway: function(Client, types.GetResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetResponderGatewayOutput>
+    listCertificateAssociations: function(Client, types.ListCertificateAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificateAssociationsOutput>
+    listLinkRoutingRules: function(Client, types.ListLinkRoutingRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListLinkRoutingRulesOutput>
     listLinks: function(Client, types.ListLinksInput, ? base_client.InvokeOptions): async.Operation<types.ListLinksOutput>
     listRequesterGateways: function(Client, types.ListRequesterGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListRequesterGatewaysOutput>
     listResponderGateways: function(Client, types.ListResponderGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListResponderGatewaysOutput>
@@ -43,6 +51,7 @@ local record Client
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateLink: function(Client, types.UpdateLinkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkOutput>
     updateLinkModuleFlow: function(Client, types.UpdateLinkModuleFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkModuleFlowOutput>
+    updateLinkRoutingRule: function(Client, types.UpdateLinkRoutingRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateLinkRoutingRuleOutput>
     updateRequesterGateway: function(Client, types.UpdateRequesterGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRequesterGatewayOutput>
     updateResponderGateway: function(Client, types.UpdateResponderGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResponderGatewayOutput>
 end
@@ -93,12 +102,20 @@ function C:acceptLink(input: types.AcceptLinkInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AcceptLink as schema.OperationSchema, input, options) as async.Operation<types.AcceptLinkOutput>
 end
 
+function C:associateCertificate(input: types.AssociateCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCertificate as schema.OperationSchema, input, options) as async.Operation<types.AssociateCertificateOutput>
+end
+
 function C:createInboundExternalLink(input: types.CreateInboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInboundExternalLinkOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.CreateInboundExternalLinkOutput>
 end
 
 function C:createLink(input: types.CreateLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLinkOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLink as schema.OperationSchema, input, options) as async.Operation<types.CreateLinkOutput>
+end
+
+function C:createLinkRoutingRule(input: types.CreateLinkRoutingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLinkRoutingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLinkRoutingRule as schema.OperationSchema, input, options) as async.Operation<types.CreateLinkRoutingRuleOutput>
 end
 
 function C:createOutboundExternalLink(input: types.CreateOutboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOutboundExternalLinkOutput>
@@ -121,6 +138,10 @@ function C:deleteLink(input: types.DeleteLinkInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteLinkOutput>
 end
 
+function C:deleteLinkRoutingRule(input: types.DeleteLinkRoutingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLinkRoutingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLinkRoutingRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteLinkRoutingRuleOutput>
+end
+
 function C:deleteOutboundExternalLink(input: types.DeleteOutboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOutboundExternalLinkOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOutboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.DeleteOutboundExternalLinkOutput>
 end
@@ -133,12 +154,24 @@ function C:deleteResponderGateway(input: types.DeleteResponderGatewayInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResponderGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteResponderGatewayOutput>
 end
 
+function C:disassociateCertificate(input: types.DisassociateCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCertificate as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCertificateOutput>
+end
+
+function C:getCertificateAssociation(input: types.GetCertificateAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCertificateAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCertificateAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetCertificateAssociationOutput>
+end
+
 function C:getInboundExternalLink(input: types.GetInboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetInboundExternalLinkOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInboundExternalLink as schema.OperationSchema, input, options) as async.Operation<types.GetInboundExternalLinkOutput>
 end
 
 function C:getLink(input: types.GetLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLink as schema.OperationSchema, input, options) as async.Operation<types.GetLinkOutput>
+end
+
+function C:getLinkRoutingRule(input: types.GetLinkRoutingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetLinkRoutingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLinkRoutingRule as schema.OperationSchema, input, options) as async.Operation<types.GetLinkRoutingRuleOutput>
 end
 
 function C:getOutboundExternalLink(input: types.GetOutboundExternalLinkInput, options?: base_client.InvokeOptions): async.Operation<types.GetOutboundExternalLinkOutput>
@@ -151,6 +184,14 @@ end
 
 function C:getResponderGateway(input: types.GetResponderGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.GetResponderGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResponderGateway as schema.OperationSchema, input, options) as async.Operation<types.GetResponderGatewayOutput>
+end
+
+function C:listCertificateAssociations(input: types.ListCertificateAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificateAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificateAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListCertificateAssociationsOutput>
+end
+
+function C:listLinkRoutingRules(input: types.ListLinkRoutingRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListLinkRoutingRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLinkRoutingRules as schema.OperationSchema, input, options) as async.Operation<types.ListLinkRoutingRulesOutput>
 end
 
 function C:listLinks(input: types.ListLinksInput, options?: base_client.InvokeOptions): async.Operation<types.ListLinksOutput>
@@ -187,6 +228,10 @@ end
 
 function C:updateLinkModuleFlow(input: types.UpdateLinkModuleFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLinkModuleFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLinkModuleFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateLinkModuleFlowOutput>
+end
+
+function C:updateLinkRoutingRule(input: types.UpdateLinkRoutingRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateLinkRoutingRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateLinkRoutingRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateLinkRoutingRuleOutput>
 end
 
 function C:updateRequesterGateway(input: types.UpdateRequesterGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRequesterGatewayOutput>

@@ -40,4 +40,40 @@ function M.wait_until_cluster_not_exists(client, input, options)
     }, options)
 end
 
+--- Wait until StreamActive.
+function M.wait_until_stream_active(client, input, options)
+    return waiter.wait(client, "getStream", input, {
+        min_delay = 2,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "status",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until StreamNotExists.
+function M.wait_until_stream_not_exists(client, input, options)
+    return waiter.wait(client, "getStream", input, {
+        min_delay = 2,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
 return M

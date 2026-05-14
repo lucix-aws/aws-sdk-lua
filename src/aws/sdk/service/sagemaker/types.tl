@@ -1975,6 +1975,8 @@ local record M
         InstanceType: string
         -- The Amazon Resource Name (ARN) of the Lifecycle Configuration attached to the Resource.
         LifecycleConfigArn: string
+        -- The ARN of the SageMaker AI Training Plan to use for this app. When you specify a training plan, the app launches on reserved GPU capacity. This field is supported for JupyterLab and CodeEditor app types. For more information about how to reserve GPU capacity with SageMaker AI Training Plans, see Using training plans in Studio applications.
+        TrainingPlanArn: string
     end
 
     enum AppStatus
@@ -3943,12 +3945,22 @@ local record M
         SlrAccessEntry: string
     end
 
+    -- The customer ENI and additional ENIs associated with a network interface category.
+    record InstanceRequirementsEniConfiguration
+        -- The ID of the customer-managed Elastic Network Interface (ENI) associated with the instance type category.
+        CustomerEni: string
+        -- Information about additional Elastic Network Interfaces (ENIs) associated with the instance type category.
+        AdditionalEnis: AdditionalEnis
+    end
+
     -- Metadata information about an instance in a HyperPod cluster.
     record InstanceMetadata
         -- The ID of the customer-managed Elastic Network Interface (ENI) associated with the instance.
         CustomerEni: string
         -- Information about additional Elastic Network Interfaces (ENIs) associated with the instance.
         AdditionalEnis: AdditionalEnis
+        -- The ENI configurations for the instance types in the instance requirements, grouped by network interface category (for example, ENI-only or EFA with ENIs). At most one configuration per category.
+        InstanceRequirementsEniConfigurations: {InstanceRequirementsEniConfiguration}
         -- Information about the Capacity Reservation used by the instance.
         CapacityReservation: CapacityReservation
         -- An error message describing why the instance creation or update failed, if applicable.
@@ -4005,6 +4017,12 @@ local record M
         EventMetadata: EventMetadata
     end
 
+    enum ClusterEventLevel
+        "Info"
+        "Warn"
+        "Error"
+    end
+
     enum ClusterEventResourceType
         "Cluster"
         "InstanceGroup"
@@ -4031,6 +4049,8 @@ local record M
         EventDetails: EventDetails
         -- A human-readable description of the event.
         Description: string
+        -- The severity level of the event. Valid values are Info, Warn, and Error.
+        EventLevel: string
     end
 
     -- A summary of an event in a HyperPod cluster.
@@ -4051,6 +4071,8 @@ local record M
         EventTime: number
         -- A brief, human-readable description of the event.
         Description: string
+        -- The severity level of the event. Valid values are Info, Warn, and Error.
+        EventLevel: string
     end
 
     -- Defines the configuration for attaching an Amazon FSx for Lustre file system to instances in a SageMaker HyperPod cluster instance group.
@@ -6079,6 +6101,11 @@ local record M
         "DISABLED"
     end
 
+    enum ExecutionRoleSessionNameMode
+        "STATIC"
+        "USER_IDENTITY"
+    end
+
     enum MlTools
         "DataWrangler"
         "FeatureStore"
@@ -6127,6 +6154,8 @@ local record M
         HiddenInstanceTypes: {string}
         -- The version aliases you are hiding from the Studio user interface.
         HiddenSageMakerImageVersionAliases: {HiddenSageMakerImage}
+        -- The execution role session name mode. If this value is set to USER_IDENTITY, the session name of the execution role corresponds to the user's identity. For IAM domains, the session name is the IAM session name used to generate the presigned URL. For IAM Identity Center domains, the session name is the username of the associated IAM Identity Center user. If this value is set to STATIC or is not set, the session name defaults to SageMaker.
+        ExecutionRoleSessionNameMode: string
     end
 
     -- The TensorBoard app settings.
@@ -7369,182 +7398,6 @@ local record M
         "RealTimeInference"
     end
 
-    enum InstanceType
-        "ml.t2.medium"
-        "ml.t2.large"
-        "ml.t2.xlarge"
-        "ml.t2.2xlarge"
-        "ml.t3.medium"
-        "ml.t3.large"
-        "ml.t3.xlarge"
-        "ml.t3.2xlarge"
-        "ml.m4.xlarge"
-        "ml.m4.2xlarge"
-        "ml.m4.4xlarge"
-        "ml.m4.10xlarge"
-        "ml.m4.16xlarge"
-        "ml.m5.xlarge"
-        "ml.m5.2xlarge"
-        "ml.m5.4xlarge"
-        "ml.m5.12xlarge"
-        "ml.m5.24xlarge"
-        "ml.m5d.large"
-        "ml.m5d.xlarge"
-        "ml.m5d.2xlarge"
-        "ml.m5d.4xlarge"
-        "ml.m5d.8xlarge"
-        "ml.m5d.12xlarge"
-        "ml.m5d.16xlarge"
-        "ml.m5d.24xlarge"
-        "ml.c4.xlarge"
-        "ml.c4.2xlarge"
-        "ml.c4.4xlarge"
-        "ml.c4.8xlarge"
-        "ml.c5.xlarge"
-        "ml.c5.2xlarge"
-        "ml.c5.4xlarge"
-        "ml.c5.9xlarge"
-        "ml.c5.18xlarge"
-        "ml.c5d.xlarge"
-        "ml.c5d.2xlarge"
-        "ml.c5d.4xlarge"
-        "ml.c5d.9xlarge"
-        "ml.c5d.18xlarge"
-        "ml.p2.xlarge"
-        "ml.p2.8xlarge"
-        "ml.p2.16xlarge"
-        "ml.p3.2xlarge"
-        "ml.p3.8xlarge"
-        "ml.p3.16xlarge"
-        "ml.p3dn.24xlarge"
-        "ml.g4dn.xlarge"
-        "ml.g4dn.2xlarge"
-        "ml.g4dn.4xlarge"
-        "ml.g4dn.8xlarge"
-        "ml.g4dn.12xlarge"
-        "ml.g4dn.16xlarge"
-        "ml.r5.large"
-        "ml.r5.xlarge"
-        "ml.r5.2xlarge"
-        "ml.r5.4xlarge"
-        "ml.r5.8xlarge"
-        "ml.r5.12xlarge"
-        "ml.r5.16xlarge"
-        "ml.r5.24xlarge"
-        "ml.g5.xlarge"
-        "ml.g5.2xlarge"
-        "ml.g5.4xlarge"
-        "ml.g5.8xlarge"
-        "ml.g5.16xlarge"
-        "ml.g5.12xlarge"
-        "ml.g5.24xlarge"
-        "ml.g5.48xlarge"
-        "ml.inf1.xlarge"
-        "ml.inf1.2xlarge"
-        "ml.inf1.6xlarge"
-        "ml.inf1.24xlarge"
-        "ml.trn1.2xlarge"
-        "ml.trn1.32xlarge"
-        "ml.trn1n.32xlarge"
-        "ml.inf2.xlarge"
-        "ml.inf2.8xlarge"
-        "ml.inf2.24xlarge"
-        "ml.inf2.48xlarge"
-        "ml.p4d.24xlarge"
-        "ml.p4de.24xlarge"
-        "ml.p5.48xlarge"
-        "ml.p6-b200.48xlarge"
-        "ml.m6i.large"
-        "ml.m6i.xlarge"
-        "ml.m6i.2xlarge"
-        "ml.m6i.4xlarge"
-        "ml.m6i.8xlarge"
-        "ml.m6i.12xlarge"
-        "ml.m6i.16xlarge"
-        "ml.m6i.24xlarge"
-        "ml.m6i.32xlarge"
-        "ml.m7i.large"
-        "ml.m7i.xlarge"
-        "ml.m7i.2xlarge"
-        "ml.m7i.4xlarge"
-        "ml.m7i.8xlarge"
-        "ml.m7i.12xlarge"
-        "ml.m7i.16xlarge"
-        "ml.m7i.24xlarge"
-        "ml.m7i.48xlarge"
-        "ml.c6i.large"
-        "ml.c6i.xlarge"
-        "ml.c6i.2xlarge"
-        "ml.c6i.4xlarge"
-        "ml.c6i.8xlarge"
-        "ml.c6i.12xlarge"
-        "ml.c6i.16xlarge"
-        "ml.c6i.24xlarge"
-        "ml.c6i.32xlarge"
-        "ml.c7i.large"
-        "ml.c7i.xlarge"
-        "ml.c7i.2xlarge"
-        "ml.c7i.4xlarge"
-        "ml.c7i.8xlarge"
-        "ml.c7i.12xlarge"
-        "ml.c7i.16xlarge"
-        "ml.c7i.24xlarge"
-        "ml.c7i.48xlarge"
-        "ml.r6i.large"
-        "ml.r6i.xlarge"
-        "ml.r6i.2xlarge"
-        "ml.r6i.4xlarge"
-        "ml.r6i.8xlarge"
-        "ml.r6i.12xlarge"
-        "ml.r6i.16xlarge"
-        "ml.r6i.24xlarge"
-        "ml.r6i.32xlarge"
-        "ml.r7i.large"
-        "ml.r7i.xlarge"
-        "ml.r7i.2xlarge"
-        "ml.r7i.4xlarge"
-        "ml.r7i.8xlarge"
-        "ml.r7i.12xlarge"
-        "ml.r7i.16xlarge"
-        "ml.r7i.24xlarge"
-        "ml.r7i.48xlarge"
-        "ml.m6id.large"
-        "ml.m6id.xlarge"
-        "ml.m6id.2xlarge"
-        "ml.m6id.4xlarge"
-        "ml.m6id.8xlarge"
-        "ml.m6id.12xlarge"
-        "ml.m6id.16xlarge"
-        "ml.m6id.24xlarge"
-        "ml.m6id.32xlarge"
-        "ml.c6id.large"
-        "ml.c6id.xlarge"
-        "ml.c6id.2xlarge"
-        "ml.c6id.4xlarge"
-        "ml.c6id.8xlarge"
-        "ml.c6id.12xlarge"
-        "ml.c6id.16xlarge"
-        "ml.c6id.24xlarge"
-        "ml.c6id.32xlarge"
-        "ml.r6id.large"
-        "ml.r6id.xlarge"
-        "ml.r6id.2xlarge"
-        "ml.r6id.4xlarge"
-        "ml.r6id.8xlarge"
-        "ml.r6id.12xlarge"
-        "ml.r6id.16xlarge"
-        "ml.r6id.24xlarge"
-        "ml.r6id.32xlarge"
-        "ml.g6.xlarge"
-        "ml.g6.2xlarge"
-        "ml.g6.4xlarge"
-        "ml.g6.8xlarge"
-        "ml.g6.12xlarge"
-        "ml.g6.16xlarge"
-        "ml.g6.24xlarge"
-        "ml.g6.48xlarge"
-    end
-
     -- The infrastructure configuration for deploying the model to a real-time inference endpoint.
     record RealTimeInferenceConfig
         -- The instance type the model is deployed to.
@@ -8276,6 +8129,10 @@ local record M
         ModelDataQuality: DriftCheckModelDataQuality
     end
 
+    enum ManagedStorageType
+        "Restricted"
+    end
+
     -- The model card associated with the model package. Since ModelPackageModelCard is tied to a model package, it is a specific usage of a model card and its schema is simplified compared to the schema of ModelCard. The ModelPackageModelCard schema does not include model_package_details, and model_overview is composed of the model_creator and model_artifact properties. For more information about the model package model card schema, see Model package model card schema. For more information about the model card associated with the model package, see View the Details of a Model Version.
     record ModelPackageModelCard
         -- The content of the model card. The content must follow the schema described in Model Package Model Card Schema.
@@ -8421,11 +8278,19 @@ local record M
         ModelCard: ModelPackageModelCard
         -- A structure describing the current state of the model in its life cycle.
         ModelLifeCycle: ModelLifeCycle
+        -- The storage type of the model package.
+        ManagedStorageType: string
     end
 
     record CreateModelPackageOutput
         -- The Amazon Resource Name (ARN) of the new model package.
         ModelPackageArn: string
+    end
+
+    -- The managed configuration of a model package group.
+    record ManagedConfiguration
+        -- The storage type of the model package.
+        ManagedStorageType: string
     end
 
     record CreateModelPackageGroupInput
@@ -8435,6 +8300,8 @@ local record M
         ModelPackageGroupDescription: string
         -- A list of key value pairs associated with the model group. For more information, see Tagging Amazon Web Services resources in the Amazon Web Services General Reference Guide.
         Tags: {Tag}
+        -- The managed configuration of the model package group.
+        ManagedConfiguration: ManagedConfiguration
     end
 
     record CreateModelPackageGroupOutput
@@ -8631,6 +8498,182 @@ local record M
     record InstanceMetadataServiceConfiguration
         -- Indicates the minimum IMDS version that the notebook instance supports. When passed as part of CreateNotebookInstance, if no value is selected, then it defaults to IMDSv1. This means that both IMDSv1 and IMDSv2 are supported. If passed as part of UpdateNotebookInstance, there is no default.
         MinimumInstanceMetadataServiceVersion: string
+    end
+
+    enum InstanceType
+        "ml.t2.medium"
+        "ml.t2.large"
+        "ml.t2.xlarge"
+        "ml.t2.2xlarge"
+        "ml.t3.medium"
+        "ml.t3.large"
+        "ml.t3.xlarge"
+        "ml.t3.2xlarge"
+        "ml.m4.xlarge"
+        "ml.m4.2xlarge"
+        "ml.m4.4xlarge"
+        "ml.m4.10xlarge"
+        "ml.m4.16xlarge"
+        "ml.m5.xlarge"
+        "ml.m5.2xlarge"
+        "ml.m5.4xlarge"
+        "ml.m5.12xlarge"
+        "ml.m5.24xlarge"
+        "ml.m5d.large"
+        "ml.m5d.xlarge"
+        "ml.m5d.2xlarge"
+        "ml.m5d.4xlarge"
+        "ml.m5d.8xlarge"
+        "ml.m5d.12xlarge"
+        "ml.m5d.16xlarge"
+        "ml.m5d.24xlarge"
+        "ml.c4.xlarge"
+        "ml.c4.2xlarge"
+        "ml.c4.4xlarge"
+        "ml.c4.8xlarge"
+        "ml.c5.xlarge"
+        "ml.c5.2xlarge"
+        "ml.c5.4xlarge"
+        "ml.c5.9xlarge"
+        "ml.c5.18xlarge"
+        "ml.c5d.xlarge"
+        "ml.c5d.2xlarge"
+        "ml.c5d.4xlarge"
+        "ml.c5d.9xlarge"
+        "ml.c5d.18xlarge"
+        "ml.p2.xlarge"
+        "ml.p2.8xlarge"
+        "ml.p2.16xlarge"
+        "ml.p3.2xlarge"
+        "ml.p3.8xlarge"
+        "ml.p3.16xlarge"
+        "ml.p3dn.24xlarge"
+        "ml.g4dn.xlarge"
+        "ml.g4dn.2xlarge"
+        "ml.g4dn.4xlarge"
+        "ml.g4dn.8xlarge"
+        "ml.g4dn.12xlarge"
+        "ml.g4dn.16xlarge"
+        "ml.r5.large"
+        "ml.r5.xlarge"
+        "ml.r5.2xlarge"
+        "ml.r5.4xlarge"
+        "ml.r5.8xlarge"
+        "ml.r5.12xlarge"
+        "ml.r5.16xlarge"
+        "ml.r5.24xlarge"
+        "ml.g5.xlarge"
+        "ml.g5.2xlarge"
+        "ml.g5.4xlarge"
+        "ml.g5.8xlarge"
+        "ml.g5.16xlarge"
+        "ml.g5.12xlarge"
+        "ml.g5.24xlarge"
+        "ml.g5.48xlarge"
+        "ml.inf1.xlarge"
+        "ml.inf1.2xlarge"
+        "ml.inf1.6xlarge"
+        "ml.inf1.24xlarge"
+        "ml.trn1.2xlarge"
+        "ml.trn1.32xlarge"
+        "ml.trn1n.32xlarge"
+        "ml.inf2.xlarge"
+        "ml.inf2.8xlarge"
+        "ml.inf2.24xlarge"
+        "ml.inf2.48xlarge"
+        "ml.p4d.24xlarge"
+        "ml.p4de.24xlarge"
+        "ml.p5.48xlarge"
+        "ml.p6-b200.48xlarge"
+        "ml.m6i.large"
+        "ml.m6i.xlarge"
+        "ml.m6i.2xlarge"
+        "ml.m6i.4xlarge"
+        "ml.m6i.8xlarge"
+        "ml.m6i.12xlarge"
+        "ml.m6i.16xlarge"
+        "ml.m6i.24xlarge"
+        "ml.m6i.32xlarge"
+        "ml.m7i.large"
+        "ml.m7i.xlarge"
+        "ml.m7i.2xlarge"
+        "ml.m7i.4xlarge"
+        "ml.m7i.8xlarge"
+        "ml.m7i.12xlarge"
+        "ml.m7i.16xlarge"
+        "ml.m7i.24xlarge"
+        "ml.m7i.48xlarge"
+        "ml.c6i.large"
+        "ml.c6i.xlarge"
+        "ml.c6i.2xlarge"
+        "ml.c6i.4xlarge"
+        "ml.c6i.8xlarge"
+        "ml.c6i.12xlarge"
+        "ml.c6i.16xlarge"
+        "ml.c6i.24xlarge"
+        "ml.c6i.32xlarge"
+        "ml.c7i.large"
+        "ml.c7i.xlarge"
+        "ml.c7i.2xlarge"
+        "ml.c7i.4xlarge"
+        "ml.c7i.8xlarge"
+        "ml.c7i.12xlarge"
+        "ml.c7i.16xlarge"
+        "ml.c7i.24xlarge"
+        "ml.c7i.48xlarge"
+        "ml.r6i.large"
+        "ml.r6i.xlarge"
+        "ml.r6i.2xlarge"
+        "ml.r6i.4xlarge"
+        "ml.r6i.8xlarge"
+        "ml.r6i.12xlarge"
+        "ml.r6i.16xlarge"
+        "ml.r6i.24xlarge"
+        "ml.r6i.32xlarge"
+        "ml.r7i.large"
+        "ml.r7i.xlarge"
+        "ml.r7i.2xlarge"
+        "ml.r7i.4xlarge"
+        "ml.r7i.8xlarge"
+        "ml.r7i.12xlarge"
+        "ml.r7i.16xlarge"
+        "ml.r7i.24xlarge"
+        "ml.r7i.48xlarge"
+        "ml.m6id.large"
+        "ml.m6id.xlarge"
+        "ml.m6id.2xlarge"
+        "ml.m6id.4xlarge"
+        "ml.m6id.8xlarge"
+        "ml.m6id.12xlarge"
+        "ml.m6id.16xlarge"
+        "ml.m6id.24xlarge"
+        "ml.m6id.32xlarge"
+        "ml.c6id.large"
+        "ml.c6id.xlarge"
+        "ml.c6id.2xlarge"
+        "ml.c6id.4xlarge"
+        "ml.c6id.8xlarge"
+        "ml.c6id.12xlarge"
+        "ml.c6id.16xlarge"
+        "ml.c6id.24xlarge"
+        "ml.c6id.32xlarge"
+        "ml.r6id.large"
+        "ml.r6id.xlarge"
+        "ml.r6id.2xlarge"
+        "ml.r6id.4xlarge"
+        "ml.r6id.8xlarge"
+        "ml.r6id.12xlarge"
+        "ml.r6id.16xlarge"
+        "ml.r6id.24xlarge"
+        "ml.r6id.32xlarge"
+        "ml.g6.xlarge"
+        "ml.g6.2xlarge"
+        "ml.g6.4xlarge"
+        "ml.g6.8xlarge"
+        "ml.g6.12xlarge"
+        "ml.g6.16xlarge"
+        "ml.g6.24xlarge"
+        "ml.g6.48xlarge"
     end
 
     enum RootAccess
@@ -13156,6 +13199,8 @@ local record M
         ModelCard: ModelPackageModelCard
         -- A structure describing the current state of the model in its life cycle.
         ModelLifeCycle: ModelLifeCycle
+        -- The storage type of the model package.
+        ManagedStorageType: string
     end
 
     record DescribeModelPackageGroupInput
@@ -13184,6 +13229,8 @@ local record M
         CreatedBy: UserContext
         -- The status of the model group.
         ModelPackageGroupStatus: string
+        -- The managed configuration of the model package group.
+        ManagedConfiguration: ManagedConfiguration
     end
 
     record DescribeModelQualityJobDefinitionInput
@@ -14144,6 +14191,7 @@ local record M
         "training-job"
         "hyperpod-cluster"
         "endpoint"
+        "studio-apps"
     end
 
     record DescribeTrainingPlanOutput
@@ -14179,7 +14227,7 @@ local record M
         AvailableSpareInstanceCount: number
         -- The total number of UltraServers reserved to this training plan.
         TotalUltraServerCount: number
-        -- The target resources (e.g., SageMaker Training Jobs, SageMaker HyperPod, SageMaker Endpoints) that can use this training plan. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment.
+        -- The target resources (e.g., SageMaker Training Jobs, SageMaker HyperPod, SageMaker Endpoints, Studio apps) that can use this training plan. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment. A training plan for Studio apps can be used to launch JupyterLab and Code Editor apps on reserved training plan capacity.
         TargetResources: {string}
         -- The list of Reserved Capacity providing the underlying compute resources of the plan.
         ReservedCapacitySummaries: {ReservedCapacitySummary}
@@ -17504,6 +17552,8 @@ local record M
         CreationTime: number
         -- The status of the model group.
         ModelPackageGroupStatus: string
+        -- The managed configuration of the model package group.
+        ManagedConfiguration: ManagedConfiguration
     end
 
     record ListModelPackageGroupsOutput
@@ -18854,7 +18904,7 @@ local record M
         InUseInstanceCount: number
         -- The total number of UltraServers allocated to this training plan.
         TotalUltraServerCount: number
-        -- The target resources (e.g., training jobs, HyperPod clusters, Endpoints) that can use this training plan. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment.
+        -- The target resources (e.g., training jobs, HyperPod clusters, Endpoints, Studio apps) that can use this training plan. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment. A training plan for Studio apps can be used to launch JupyterLab and Code Editor apps on reserved training plan capacity.
         TargetResources: {string}
         -- A list of reserved capacities associated with this training plan, including details such as instance types, counts, and availability zones.
         ReservedCapacitySummaries: {ReservedCapacitySummary}
@@ -19821,6 +19871,8 @@ local record M
         OutputDataConfig: OutputDataConfig
         -- Resources, including ML compute instances and ML storage volumes, that are configured for model training.
         ResourceConfig: ResourceConfig
+        -- The status of the warm pool associated with the training job.
+        WarmPoolStatus: WarmPoolStatus
         -- A VpcConfig object that specifies the VPC that this training job has access to. For more information, see Protect Training Jobs by Using an Amazon Virtual Private Cloud.
         VpcConfig: VpcConfig
         -- Specifies a limit to how long a model training job can run. It also specifies how long a managed Spot training job has to complete. When the job reaches the time limit, SageMaker ends the training job. Use this API to cap model training costs. To stop a job, SageMaker sends the algorithm the SIGTERM signal, which delays job termination for 120 seconds. Algorithms can use this 120-second window to save the model artifacts, so the results of training are not lost.
@@ -20021,7 +20073,7 @@ local record M
         EndTimeBefore: number
         -- The desired duration in hours for the training plan offerings.
         DurationHours: number
-        -- The target resources (e.g., SageMaker Training Jobs, SageMaker HyperPod, SageMaker Endpoints) to search for in the offerings. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment.
+        -- The target resources (e.g., SageMaker Training Jobs, SageMaker HyperPod, SageMaker Endpoints, Studio apps) to search for in the offerings. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment. A training plan for Studio apps can be used to launch JupyterLab and Code Editor apps on reserved training plan capacity.
         TargetResources: {string}
         -- The Amazon Resource Name (ARN); of an existing training plan to search for extension offerings. When specified, the API returns extension offerings that can be used to extend the specified training plan.
         TrainingPlanArn: string
@@ -20049,7 +20101,7 @@ local record M
     record TrainingPlanOffering
         -- The unique identifier for this training plan offering.
         TrainingPlanOfferingId: string
-        -- The target resources (e.g., SageMaker Training Jobs, SageMaker HyperPod, SageMaker Endpoints) for this training plan offering. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment.
+        -- The target resources (e.g., SageMaker Training Jobs, SageMaker HyperPod, SageMaker Endpoints, Studio apps) for this training plan offering. Training plans are specific to their target resource. A training plan designed for SageMaker training jobs can only be used to schedule and run training jobs. A training plan for HyperPod clusters can be used exclusively to provide compute resources to a cluster's instance group. A training plan for SageMaker endpoints can be used exclusively to provide compute resources to SageMaker endpoints for model deployment. A training plan for Studio apps can be used to launch JupyterLab and Code Editor apps on reserved training plan capacity.
         TargetResources: {string}
         -- The requested start time that the user specified when searching for the training plan offering.
         RequestedStartTimeAfter: number

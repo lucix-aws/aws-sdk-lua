@@ -30446,7 +30446,6 @@ local record M
         StartTime: number
         -- The modification completion or failure time.
         EndTime: number
-        Operator: OperatorResponse
     end
 
     record DescribeVolumesModificationsOutput

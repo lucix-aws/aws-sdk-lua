@@ -307,6 +307,93 @@ local record M
         creationTime: number
     end
 
+    enum StreamFormat
+        "JSON"
+    end
+
+    enum StreamOrdering
+        "UNORDERED"
+    end
+
+    -- Kinesis stream target configuration.
+    record KinesisTargetDefinition
+        -- The ARN of the Kinesis stream.
+        streamArn: string
+        -- The ARN of the IAM role that grants permission to write to the Kinesis stream. This can be a standard role (arn:aws:iam::account-id:role/role-name) or a role with a path prefix (arn:aws:iam::account-id:role/service-role/role-name), such as roles auto-created by the console.
+        roleArn: string
+    end
+
+    -- Target definition for stream destination.
+    record TargetDefinition
+        -- Kinesis stream target configuration.
+        kinesis: KinesisTargetDefinition
+    end
+
+    record CreateStreamInput
+        -- The ID of the cluster for which to create the stream.
+        clusterIdentifier: string
+        -- The target destination configuration for the stream. Contains Kinesis stream configuration including stream ARN and IAM role ARN.
+        targetDefinition: TargetDefinition
+        -- The ordering mode for the stream. Determines how change events are ordered when delivered to the target.
+        ordering: string
+        -- The format of the stream records.
+        format: string
+        -- A map of key and value pairs to use to tag your stream.
+        tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the Amazon Web Services SDK automatically generates one.
+        clientToken: string
+    end
+
+    enum StreamStatus
+        "CREATING"
+        "ACTIVE"
+        "DELETING"
+        "DELETED"
+        "FAILED"
+        "IMPAIRED"
+    end
+
+    -- The output of a created stream.
+    record CreateStreamOutput
+        -- The ID of the cluster for the created stream.
+        clusterIdentifier: string
+        -- The ID of the created stream.
+        streamIdentifier: string
+        -- The ARN of the created stream.
+        arn: string
+        -- The status of the created stream.
+        status: string
+        -- The time when created the stream.
+        creationTime: number
+        -- The ordering mode of the created stream.
+        ordering: string
+        -- The format of the created stream records.
+        format: string
+    end
+
+    record DeleteStreamInput
+        -- The ID of the cluster containing the stream to delete.
+        clusterIdentifier: string
+        -- The ID of the stream to delete.
+        streamIdentifier: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the Amazon Web Services SDK automatically generates one.
+        clientToken: string
+    end
+
+    -- The output from a deleted stream.
+    record DeleteStreamOutput
+        -- The ID of the cluster for the deleted stream.
+        clusterIdentifier: string
+        -- The ID of the deleted stream.
+        streamIdentifier: string
+        -- The ARN of the deleted stream.
+        arn: string
+        -- The status of the stream.
+        status: string
+        -- The time when the stream was created.
+        creationTime: number
+    end
+
     record ListTagsForResourceInput
         -- The ARN of the resource for which you want to list the tags.
         resourceArn: string
@@ -315,6 +402,86 @@ local record M
     record ListTagsForResourceOutput
         -- A map of key and value pairs that you used to tag your resource.
         tags: {string : string}
+    end
+
+    record GetStreamInput
+        -- The ID of the cluster containing the stream to retrieve.
+        clusterIdentifier: string
+        -- The ID of the stream to retrieve.
+        streamIdentifier: string
+    end
+
+    enum StreamFailureErrorCode
+        "KINESIS_THROUGHPUT_EXCEEDED"
+        "KINESIS_STREAM_NOT_FOUND"
+        "ROLE_ACCESS_DENIED"
+        "KINESIS_ACCESS_DENIED"
+        "KINESIS_KMS_ACCESS_DENIED"
+        "KINESIS_OVERSIZE_RECORD"
+        "CLUSTER_CMK_INACCESSIBLE"
+        "INTERNAL_ERROR"
+    end
+
+    -- Stream status reason with error and timestamp.
+    record StatusReason
+        -- The error code for the stream failure.
+        error: string
+        -- The timestamp when the status was updated.
+        updatedAt: number
+    end
+
+    -- The output of a retrieved stream.
+    record GetStreamOutput
+        -- The ID of the cluster for the retrieved stream.
+        clusterIdentifier: string
+        -- The ID of the retrieved stream.
+        streamIdentifier: string
+        -- The ARN of the retrieved stream.
+        arn: string
+        -- The current status of the retrieved stream.
+        status: string
+        -- The time when the stream was created.
+        creationTime: number
+        -- The ordering mode of the stream.
+        ordering: string
+        -- The format of the stream records.
+        format: string
+        -- The target definition for the stream destination.
+        targetDefinition: TargetDefinition
+        -- Stream status reason with error code and timestamp (if applicable).
+        statusReason: StatusReason
+        -- A map of tags associated with the stream.
+        tags: {string : string}
+    end
+
+    record ListStreamsInput
+        -- The ID of the cluster for which to list streams.
+        clusterIdentifier: string
+        -- An optional parameter that specifies the maximum number of results to return. You can use nextToken to display the next page of results. Default: 10.
+        maxResults: number
+        -- If your initial ListStreams operation returns a nextToken, you can include the returned nextToken in following ListStreams operations, which returns results in the next page.
+        nextToken: string
+    end
+
+    -- Summary information about a stream.
+    record StreamSummary
+        -- The ID of the cluster.
+        clusterIdentifier: string
+        -- The ID of the stream.
+        streamIdentifier: string
+        -- The ARN of the stream.
+        arn: string
+        -- The timestamp when the stream was created.
+        creationTime: number
+        -- The current status of the stream.
+        status: string
+    end
+
+    record ListStreamsOutput
+        -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. To retrieve the next page, make the call again using the returned token.
+        nextToken: string
+        -- An array of the returned streams.
+        streams: {StreamSummary}
     end
 
     record TagResourceInput

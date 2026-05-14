@@ -99,11 +99,17 @@ M.PolicyEngines = schema.new({ type = "list", list_member = M.PolicyEngine })
 
 M.PolicyStatusReasons = schema.new({ type = "list", list_member = prelude.String })
 
+M.PolicyEngineSummaryList = schema.new({ type = "list", list_member = M.PolicyEngineSummary })
+
 M.PolicyGenerations = schema.new({ type = "list", list_member = M.PolicyGeneration })
 
 M.PolicyGenerationAssets = schema.new({ type = "list", list_member = M.PolicyGenerationAsset })
 
+M.PolicyGenerationSummaryList = schema.new({ type = "list", list_member = M.PolicyGenerationSummary })
+
 M.Policies = schema.new({ type = "list", list_member = M.Policy })
+
+M.PolicySummaryList = schema.new({ type = "list", list_member = M.PolicySummary })
 
 M.RegistryRecordSummaryList = schema.new({ type = "list", list_member = M.RegistryRecordSummary })
 
@@ -1790,6 +1796,12 @@ M.VpcConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        requireServiceS3Endpoint = schema.new({
+            id = id.from(_N, "VpcConfig", "requireServiceS3Endpoint"),
+            type = "boolean",
+            name = "requireServiceS3Endpoint",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -16663,12 +16675,6 @@ M.CreatePolicyEngineOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        description = schema.new({
-            id = id.from(_N, "CreatePolicyEngineOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "CreatePolicyEngineOutput", "createdAt"),
             type = "timestamp",
@@ -16713,6 +16719,18 @@ M.CreatePolicyEngineOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "CreatePolicyEngineOutput", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreatePolicyEngineOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "CreatePolicyEngineOutput", "statusReasons"),
             type = "list",
@@ -16722,12 +16740,6 @@ M.CreatePolicyEngineOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        encryptionKeyArn = schema.new({
-            id = id.from(_N, "CreatePolicyEngineOutput", "encryptionKeyArn"),
-            type = "string",
-            name = "encryptionKeyArn",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -16770,12 +16782,6 @@ M.DeletePolicyEngineOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        description = schema.new({
-            id = id.from(_N, "DeletePolicyEngineOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "DeletePolicyEngineOutput", "createdAt"),
@@ -16821,6 +16827,18 @@ M.DeletePolicyEngineOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "DeletePolicyEngineOutput", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "DeletePolicyEngineOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "DeletePolicyEngineOutput", "statusReasons"),
             type = "list",
@@ -16830,12 +16848,6 @@ M.DeletePolicyEngineOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        encryptionKeyArn = schema.new({
-            id = id.from(_N, "DeletePolicyEngineOutput", "encryptionKeyArn"),
-            type = "string",
-            name = "encryptionKeyArn",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -16878,12 +16890,6 @@ M.GetPolicyEngineOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        description = schema.new({
-            id = id.from(_N, "GetPolicyEngineOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "GetPolicyEngineOutput", "createdAt"),
@@ -16929,6 +16935,18 @@ M.GetPolicyEngineOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "GetPolicyEngineOutput", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetPolicyEngineOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "GetPolicyEngineOutput", "statusReasons"),
             type = "list",
@@ -16939,8 +16957,94 @@ M.GetPolicyEngineOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+    },
+})
+
+M.GetPolicyEngineSummaryInput = schema.new({
+    id = id.from(_N, "GetPolicyEngineSummaryRequest"),
+    type = "structure",
+    members = {
+        policyEngineId = schema.new({
+            id = id.from(_N, "GetPolicyEngineSummaryInput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetPolicyEngineSummaryOutput = schema.new({
+    id = id.from(_N, "GetPolicyEngineSummaryResponse"),
+    type = "structure",
+    members = {
+        policyEngineId = schema.new({
+            id = id.from(_N, "GetPolicyEngineSummaryOutput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetPolicyEngineSummaryOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetPolicyEngineSummaryOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetPolicyEngineSummaryOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyEngineArn = schema.new({
+            id = id.from(_N, "GetPolicyEngineSummaryOutput", "policyEngineArn"),
+            type = "string",
+            name = "policyEngineArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetPolicyEngineSummaryOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
         encryptionKeyArn = schema.new({
-            id = id.from(_N, "GetPolicyEngineOutput", "encryptionKeyArn"),
+            id = id.from(_N, "GetPolicyEngineSummaryOutput", "encryptionKeyArn"),
             type = "string",
             name = "encryptionKeyArn",
             target_id = prelude.String.id,
@@ -16995,12 +17099,6 @@ M.PolicyEngine = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        description = schema.new({
-            id = id.from(_N, "PolicyEngine", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "PolicyEngine", "createdAt"),
             type = "timestamp",
@@ -17045,6 +17143,18 @@ M.PolicyEngine = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "PolicyEngine", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "PolicyEngine", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "PolicyEngine", "statusReasons"),
             type = "list",
@@ -17054,12 +17164,6 @@ M.PolicyEngine = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        encryptionKeyArn = schema.new({
-            id = id.from(_N, "PolicyEngine", "encryptionKeyArn"),
-            type = "string",
-            name = "encryptionKeyArn",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -17080,6 +17184,129 @@ M.ListPolicyEnginesOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPolicyEnginesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPolicyEngineSummariesInput = schema.new({
+    id = id.from(_N, "ListPolicyEngineSummariesRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicyEngineSummariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListPolicyEngineSummariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.PolicyEngineSummary = schema.new({
+    id = id.from(_N, "PolicyEngineSummary"),
+    type = "structure",
+    members = {
+        policyEngineId = schema.new({
+            id = id.from(_N, "PolicyEngineSummary", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "PolicyEngineSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "PolicyEngineSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PolicyEngineSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyEngineArn = schema.new({
+            id = id.from(_N, "PolicyEngineSummary", "policyEngineArn"),
+            type = "string",
+            name = "policyEngineArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "PolicyEngineSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "PolicyEngineSummary", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPolicyEngineSummariesOutput = schema.new({
+    id = id.from(_N, "ListPolicyEngineSummariesResponse"),
+    type = "structure",
+    members = {
+        policyEngines = schema.new({
+            id = id.from(_N, "ListPolicyEngineSummariesOutput", "policyEngines"),
+            type = "list",
+            name = "policyEngines",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyEngineSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicyEngineSummariesOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -17146,12 +17373,6 @@ M.UpdatePolicyEngineOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        description = schema.new({
-            id = id.from(_N, "UpdatePolicyEngineOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "UpdatePolicyEngineOutput", "createdAt"),
             type = "timestamp",
@@ -17196,6 +17417,18 @@ M.UpdatePolicyEngineOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "UpdatePolicyEngineOutput", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdatePolicyEngineOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "UpdatePolicyEngineOutput", "statusReasons"),
             type = "list",
@@ -17205,12 +17438,6 @@ M.UpdatePolicyEngineOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        encryptionKeyArn = schema.new({
-            id = id.from(_N, "UpdatePolicyEngineOutput", "encryptionKeyArn"),
-            type = "string",
-            name = "encryptionKeyArn",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -17340,6 +17567,12 @@ M.GetPolicyGenerationOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        findings = schema.new({
+            id = id.from(_N, "GetPolicyGenerationOutput", "findings"),
+            type = "string",
+            name = "findings",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "GetPolicyGenerationOutput", "statusReasons"),
             type = "list",
@@ -17350,8 +17583,123 @@ M.GetPolicyGenerationOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+    },
+})
+
+M.GetPolicyGenerationSummaryInput = schema.new({
+    id = id.from(_N, "GetPolicyGenerationSummaryRequest"),
+    type = "structure",
+    members = {
+        policyGenerationId = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryInput", "policyGenerationId"),
+            type = "string",
+            name = "policyGenerationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policyEngineId = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryInput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetPolicyGenerationSummaryOutput = schema.new({
+    id = id.from(_N, "GetPolicyGenerationSummaryResponse"),
+    type = "structure",
+    members = {
+        policyEngineId = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyGenerationId = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "policyGenerationId"),
+            type = "string",
+            name = "policyGenerationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyGenerationArn = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "policyGenerationArn"),
+            type = "string",
+            name = "policyGenerationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resource = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "resource"),
+            type = "union",
+            name = "resource",
+            target_id = id.from(_N, "Resource"),
+            target = M.Resource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
         findings = schema.new({
-            id = id.from(_N, "GetPolicyGenerationOutput", "findings"),
+            id = id.from(_N, "GetPolicyGenerationSummaryOutput", "findings"),
             type = "string",
             name = "findings",
             target_id = prelude.String.id,
@@ -17667,6 +18015,12 @@ M.PolicyGeneration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        findings = schema.new({
+            id = id.from(_N, "PolicyGeneration", "findings"),
+            type = "string",
+            name = "findings",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "PolicyGeneration", "statusReasons"),
             type = "list",
@@ -17676,12 +18030,6 @@ M.PolicyGeneration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        findings = schema.new({
-            id = id.from(_N, "PolicyGeneration", "findings"),
-            type = "string",
-            name = "findings",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -17702,6 +18050,158 @@ M.ListPolicyGenerationsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPolicyGenerationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPolicyGenerationSummariesInput = schema.new({
+    id = id.from(_N, "ListPolicyGenerationSummariesRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicyGenerationSummariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListPolicyGenerationSummariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        policyEngineId = schema.new({
+            id = id.from(_N, "ListPolicyGenerationSummariesInput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.PolicyGenerationSummary = schema.new({
+    id = id.from(_N, "PolicyGenerationSummary"),
+    type = "structure",
+    members = {
+        policyEngineId = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyGenerationId = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "policyGenerationId"),
+            type = "string",
+            name = "policyGenerationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyGenerationArn = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "policyGenerationArn"),
+            type = "string",
+            name = "policyGenerationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resource = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "resource"),
+            type = "union",
+            name = "resource",
+            target_id = id.from(_N, "Resource"),
+            target = M.Resource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        findings = schema.new({
+            id = id.from(_N, "PolicyGenerationSummary", "findings"),
+            type = "string",
+            name = "findings",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPolicyGenerationSummariesOutput = schema.new({
+    id = id.from(_N, "ListPolicyGenerationSummariesResponse"),
+    type = "structure",
+    members = {
+        policyGenerations = schema.new({
+            id = id.from(_N, "ListPolicyGenerationSummariesOutput", "policyGenerations"),
+            type = "list",
+            name = "policyGenerations",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyGenerationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicyGenerationSummariesOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -17862,6 +18362,12 @@ M.StartPolicyGenerationOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        findings = schema.new({
+            id = id.from(_N, "StartPolicyGenerationOutput", "findings"),
+            type = "string",
+            name = "findings",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "StartPolicyGenerationOutput", "statusReasons"),
             type = "list",
@@ -17871,12 +18377,6 @@ M.StartPolicyGenerationOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-        findings = schema.new({
-            id = id.from(_N, "StartPolicyGenerationOutput", "findings"),
-            type = "string",
-            name = "findings",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -17972,22 +18472,6 @@ M.CreatePolicyOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        definition = schema.new({
-            id = id.from(_N, "CreatePolicyOutput", "definition"),
-            type = "union",
-            name = "definition",
-            target_id = id.from(_N, "PolicyDefinition"),
-            target = M.PolicyDefinition,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        description = schema.new({
-            id = id.from(_N, "CreatePolicyOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "CreatePolicyOutput", "createdAt"),
             type = "timestamp",
@@ -18031,6 +18515,22 @@ M.CreatePolicyOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        definition = schema.new({
+            id = id.from(_N, "CreatePolicyOutput", "definition"),
+            type = "union",
+            name = "definition",
+            target_id = id.from(_N, "PolicyDefinition"),
+            target = M.PolicyDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreatePolicyOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
         }),
         statusReasons = schema.new({
             id = id.from(_N, "CreatePolicyOutput", "statusReasons"),
@@ -18103,22 +18603,6 @@ M.DeletePolicyOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        definition = schema.new({
-            id = id.from(_N, "DeletePolicyOutput", "definition"),
-            type = "union",
-            name = "definition",
-            target_id = id.from(_N, "PolicyDefinition"),
-            target = M.PolicyDefinition,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        description = schema.new({
-            id = id.from(_N, "DeletePolicyOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "DeletePolicyOutput", "createdAt"),
             type = "timestamp",
@@ -18162,6 +18646,22 @@ M.DeletePolicyOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        definition = schema.new({
+            id = id.from(_N, "DeletePolicyOutput", "definition"),
+            type = "union",
+            name = "definition",
+            target_id = id.from(_N, "PolicyDefinition"),
+            target = M.PolicyDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "DeletePolicyOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
         }),
         statusReasons = schema.new({
             id = id.from(_N, "DeletePolicyOutput", "statusReasons"),
@@ -18234,22 +18734,6 @@ M.GetPolicyOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        definition = schema.new({
-            id = id.from(_N, "GetPolicyOutput", "definition"),
-            type = "union",
-            name = "definition",
-            target_id = id.from(_N, "PolicyDefinition"),
-            target = M.PolicyDefinition,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        description = schema.new({
-            id = id.from(_N, "GetPolicyOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "GetPolicyOutput", "createdAt"),
             type = "timestamp",
@@ -18294,12 +18778,133 @@ M.GetPolicyOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        definition = schema.new({
+            id = id.from(_N, "GetPolicyOutput", "definition"),
+            type = "union",
+            name = "definition",
+            target_id = id.from(_N, "PolicyDefinition"),
+            target = M.PolicyDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetPolicyOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "GetPolicyOutput", "statusReasons"),
             type = "list",
             name = "statusReasons",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetPolicySummaryInput = schema.new({
+    id = id.from(_N, "GetPolicySummaryRequest"),
+    type = "structure",
+    members = {
+        policyEngineId = schema.new({
+            id = id.from(_N, "GetPolicySummaryInput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policyId = schema.new({
+            id = id.from(_N, "GetPolicySummaryInput", "policyId"),
+            type = "string",
+            name = "policyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetPolicySummaryOutput = schema.new({
+    id = id.from(_N, "GetPolicySummaryResponse"),
+    type = "structure",
+    members = {
+        policyId = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "policyId"),
+            type = "string",
+            name = "policyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyEngineId = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyArn = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "policyArn"),
+            type = "string",
+            name = "policyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -18382,22 +18987,6 @@ M.Policy = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        definition = schema.new({
-            id = id.from(_N, "Policy", "definition"),
-            type = "union",
-            name = "definition",
-            target_id = id.from(_N, "PolicyDefinition"),
-            target = M.PolicyDefinition,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        description = schema.new({
-            id = id.from(_N, "Policy", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "Policy", "createdAt"),
             type = "timestamp",
@@ -18442,6 +19031,22 @@ M.Policy = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        definition = schema.new({
+            id = id.from(_N, "Policy", "definition"),
+            type = "union",
+            name = "definition",
+            target_id = id.from(_N, "PolicyDefinition"),
+            target = M.PolicyDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "Policy", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
         statusReasons = schema.new({
             id = id.from(_N, "Policy", "statusReasons"),
             type = "list",
@@ -18471,6 +19076,151 @@ M.ListPoliciesOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListPoliciesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPolicySummariesInput = schema.new({
+    id = id.from(_N, "ListPolicySummariesRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicySummariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListPolicySummariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        policyEngineId = schema.new({
+            id = id.from(_N, "ListPolicySummariesInput", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        targetResourceScope = schema.new({
+            id = id.from(_N, "ListPolicySummariesInput", "targetResourceScope"),
+            type = "string",
+            name = "targetResourceScope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "targetResourceScope" },
+            },
+        }),
+    },
+})
+
+M.PolicySummary = schema.new({
+    id = id.from(_N, "PolicySummary"),
+    type = "structure",
+    members = {
+        policyId = schema.new({
+            id = id.from(_N, "PolicySummary", "policyId"),
+            type = "string",
+            name = "policyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "PolicySummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyEngineId = schema.new({
+            id = id.from(_N, "PolicySummary", "policyEngineId"),
+            type = "string",
+            name = "policyEngineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "PolicySummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PolicySummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyArn = schema.new({
+            id = id.from(_N, "PolicySummary", "policyArn"),
+            type = "string",
+            name = "policyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "PolicySummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListPolicySummariesOutput = schema.new({
+    id = id.from(_N, "ListPolicySummariesResponse"),
+    type = "structure",
+    members = {
+        policies = schema.new({
+            id = id.from(_N, "ListPolicySummariesOutput", "policies"),
+            type = "list",
+            name = "policies",
+            target_id = prelude.Document.id,
+            list_member = M.PolicySummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListPolicySummariesOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -18559,22 +19309,6 @@ M.UpdatePolicyOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        definition = schema.new({
-            id = id.from(_N, "UpdatePolicyOutput", "definition"),
-            type = "union",
-            name = "definition",
-            target_id = id.from(_N, "PolicyDefinition"),
-            target = M.PolicyDefinition,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        description = schema.new({
-            id = id.from(_N, "UpdatePolicyOutput", "description"),
-            type = "string",
-            name = "description",
-            target_id = prelude.String.id,
-        }),
         createdAt = schema.new({
             id = id.from(_N, "UpdatePolicyOutput", "createdAt"),
             type = "timestamp",
@@ -18618,6 +19352,22 @@ M.UpdatePolicyOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        definition = schema.new({
+            id = id.from(_N, "UpdatePolicyOutput", "definition"),
+            type = "union",
+            name = "definition",
+            target_id = id.from(_N, "PolicyDefinition"),
+            target = M.PolicyDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdatePolicyOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
         }),
         statusReasons = schema.new({
             id = id.from(_N, "UpdatePolicyOutput", "statusReasons"),
@@ -20295,6 +21045,15 @@ M.ListRegistriesInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        authorizerType = schema.new({
+            id = id.from(_N, "ListRegistriesInput", "authorizerType"),
+            type = "string",
+            name = "authorizerType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "authorizerType" },
             },
         }),
     },
@@ -22781,12 +23540,48 @@ M.GetPolicyEngine = schema.operation({
     },
 })
 
+M.GetPolicyEngineSummary = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetPolicyEngineSummary"),
+    input = M.GetPolicyEngineSummaryInput,
+    output = M.GetPolicyEngineSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engine-summaries/{policyEngineId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetPolicyGeneration = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetPolicyGeneration"),
     input = M.GetPolicyGenerationInput,
     output = M.GetPolicyGenerationOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-generations/{policyGenerationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicyGenerationSummary = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetPolicyGenerationSummary"),
+    input = M.GetPolicyGenerationSummaryInput,
+    output = M.GetPolicyGenerationSummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-generation-summaries/{policyGenerationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPolicySummary = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetPolicySummary"),
+    input = M.GetPolicySummaryInput,
+    output = M.GetPolicySummaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-summaries/{policyId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -23117,6 +23912,18 @@ M.ListPolicyEngines = schema.operation({
     },
 })
 
+M.ListPolicyEngineSummaries = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicyEngineSummaries"),
+    input = M.ListPolicyEngineSummariesInput,
+    output = M.ListPolicyEngineSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engine-summaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListPolicyGenerationAssets = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicyGenerationAssets"),
     input = M.ListPolicyGenerationAssetsInput,
@@ -23135,6 +23942,30 @@ M.ListPolicyGenerations = schema.operation({
     output = M.ListPolicyGenerationsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-generations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicyGenerationSummaries = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicyGenerationSummaries"),
+    input = M.ListPolicyGenerationSummariesInput,
+    output = M.ListPolicyGenerationSummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-generation-summaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPolicySummaries = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListPolicySummaries"),
+    input = M.ListPolicySummariesInput,
+    output = M.ListPolicySummariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/policy-engines/{policyEngineId}/policy-summaries" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

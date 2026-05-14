@@ -525,6 +525,8 @@ local record M
         securityGroups: {string}
         -- The subnets associated with the VPC configuration.
         subnets: {string}
+        -- This field applies only to Agent Runtimes. It is not applicable to Browsers or Code Interpreters. Controls whether a service-managed Amazon S3 gateway endpoint is provisioned in the VPC network topology for the agent runtime. This gateway is used by Amazon Bedrock AgentCore Runtime to download code and container images during agent startup. Starting May 5, 2026, Amazon Bedrock AgentCore Runtime is gradually rolling out a change to how network isolation is configured for VPC mode agents. Agent runtimes created on or after this rollout will no longer include the service-managed Amazon S3 gateway. Instead, all network access, including to Amazon S3, is governed exclusively by your VPC configuration. This field cannot be set on agent runtimes created after the rollout. Passing this field in an UpdateAgentRuntime request for these agent runtimes returns a ValidationException. Agent runtimes created before the rollout are not affected and continue to operate with the service-managed Amazon S3 gateway. To enforce full VPC network isolation on these existing agent runtimes, set this field to false via the UpdateAgentRuntime API. Before opting out, ensure your VPC provides the Amazon S3 access required for agent startup. If this field is not specified or is set to true, the service-managed Amazon S3 gateway remains provisioned. This field is only supported in the UpdateAgentRuntime API for pre-rollout agent runtimes. Passing this field in a CreateAgentRuntime request returns a ValidationException.
+        requireServiceS3Endpoint: boolean
     end
 
     -- SecurityConfig for the Agent.
@@ -1078,6 +1080,7 @@ local record M
     record BrowserNetworkConfiguration
         -- The network mode for the browser. This field specifies how the browser connects to the network.
         networkMode: string
+        -- The VPC configuration for the browser. This configuration is required when the network mode is set to VPC.
         vpcConfig: VpcConfig
     end
 
@@ -1235,6 +1238,7 @@ local record M
     record CodeInterpreterNetworkConfiguration
         -- The network mode for the code interpreter. This field specifies how the code interpreter connects to the network.
         networkMode: string
+        -- The VPC configuration for the code interpreter. This configuration is required when the network mode is set to VPC.
         vpcConfig: VpcConfig
     end
 
@@ -2201,7 +2205,6 @@ local record M
     end
 
     -- Union for principal matching. Currently supports IAM principal ARN glob matching.
-    -- Extensible for future principal types (e.g., OAuth client ID).
     record MatchPrincipalEntry
         -- An IAM principal to match against, specified by ARN.
         iamPrincipal: IamPrincipal
@@ -2435,7 +2438,7 @@ local record M
         scopes: {string}
         -- The custom parameters for the OAuth credential provider. These parameters provide additional configuration for the OAuth authentication process.
         customParameters: {string : string}
-        -- Specifies the kind of credentials to use for authorization: CLIENT_CREDENTIALS - Authorization with a client ID and secret. AUTHORIZATION_CODE - Authorization with a token that is specific to an individual end user.
+        -- Specifies the kind of credentials to use for authorization: CLIENT_CREDENTIALS - Authorization with a client ID and secret. AUTHORIZATION_CODE - Authorization with a token that is specific to an individual end user. TOKEN_EXCHANGE - Authorization using on-behalf-of token exchange. An inbound user token is exchanged for a downstream access token scoped to the target audience.
         grantType: string
         -- The URL where the end user's browser is redirected after obtaining the authorization code. Generally points to the customer's application.
         defaultReturnUrl: string
@@ -3295,7 +3298,7 @@ local record M
         appendToPrompt: string
         -- The model ID to use for the reflection step of the episodic memory strategy.
         modelId: string
-        -- The namespaces to use for episodic reflection. Can be less nested than the episodic namespaces.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces to use for episodic reflection. Can be less nested than the episodic namespaces.
         namespaces: {string}
         -- The namespaceTemplates to use for episodic reflection. Can be less nested than the episodic namespaces.
         namespaceTemplates: {string}
@@ -3441,7 +3444,7 @@ local record M
         name: string
         -- The description of the custom memory strategy.
         description: string
-        -- The namespaces associated with the custom memory strategy.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces associated with the custom memory strategy.
         namespaces: {string}
         -- The namespaceTemplates associated with the custom memory strategy.
         namespaceTemplates: {string}
@@ -3453,7 +3456,7 @@ local record M
 
     -- An episodic reflection configuration input.
     record EpisodicReflectionConfigurationInput
-        -- The namespaces over which to create reflections. Can be less nested than episode namespaces.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces over which to create reflections. Can be less nested than episode namespaces.
         namespaces: {string}
         -- The namespaceTemplates over which to create reflections. Can be less nested than episode namespaces.
         namespaceTemplates: {string}
@@ -3467,7 +3470,7 @@ local record M
         name: string
         -- The description of the episodic memory strategy.
         description: string
-        -- The namespaces for which to create episodes.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces for which to create episodes.
         namespaces: {string}
         -- The namespaceTemplates for which to create episodes.
         namespaceTemplates: {string}
@@ -3483,7 +3486,7 @@ local record M
         name: string
         -- The description of the semantic memory strategy.
         description: string
-        -- The namespaces associated with the semantic memory strategy.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces associated with the semantic memory strategy.
         namespaces: {string}
         -- The namespaceTemplates associated with the semantic memory strategy.
         namespaceTemplates: {string}
@@ -3496,7 +3499,7 @@ local record M
         name: string
         -- The description of the summary memory strategy.
         description: string
-        -- The namespaces associated with the summary memory strategy.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces associated with the summary memory strategy.
         namespaces: {string}
         -- The namespaceTemplates associated with the summary memory strategy.
         namespaceTemplates: {string}
@@ -3510,7 +3513,7 @@ local record M
         name: string
         -- The description of the user preference memory strategy.
         description: string
-        -- The namespaces associated with the user preference memory strategy.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces associated with the user preference memory strategy.
         namespaces: {string}
         -- The namespaceTemplates associated with the user preference memory strategy.
         namespaceTemplates: {string}
@@ -3693,7 +3696,7 @@ local record M
         appendToPrompt: string
         -- The model ID used for the reflection step of the episodic memory strategy.
         modelId: string
-        -- The namespaces over which reflections were created. Can be less nested than the episodic namespaces.
+        -- This is a legacy parameter. The namespaces over which reflections were created. Can be less nested than the episodic namespaces.
         namespaces: {string}
         -- The namespaceTemplates over which reflections were created. Can be less nested than the episodic namespaces.
         namespaceTemplates: {string}
@@ -3709,7 +3712,7 @@ local record M
 
     -- The configuration for the reflections created with the episodic memory strategy.
     record EpisodicReflectionConfiguration
-        -- The namespaces for which to create reflections. Can be less nested than the episodic namespaces.
+        -- This is a legacy parameter, use namespaceTemplates. The namespaces for which to create reflections. Can be less nested than the episodic namespaces.
         namespaces: {string}
         -- The namespaceTemplates for which to create reflections. Can be less nested than the episodic namespaces.
         namespaceTemplates: {string}
@@ -3816,7 +3819,7 @@ local record M
         description: string
         -- The configuration of the memory strategy.
         configuration: StrategyConfiguration
-        -- The namespaces associated with the memory strategy.
+        -- This is a legacy parameter. The namespaces associated with the memory strategy.
         namespaces: {string}
         -- The namespaceTemplates associated with the memory strategy.
         namespaceTemplates: {string}
@@ -4026,7 +4029,7 @@ local record M
         memoryStrategyId: string
         -- The updated description of the memory strategy.
         description: string
-        -- The updated namespaces for the memory strategy.
+        -- This is a legacy parameter, use namespaceTemplates. The updated namespaces for the memory strategy.
         namespaces: {string}
         -- The updated namespaceTemplates for the memory strategy.
         namespaceTemplates: {string}
@@ -4749,7 +4752,7 @@ local record M
         "StripePrivy"
     end
 
-    -- Coinbase CDP configuration - credentials provided by Coinbase Developer Platform
+    -- Coinbase CDP configuration — credentials provided by Coinbase Developer Platform.
     record CoinbaseCdpConfigurationInput
         -- The API key identifier provided by Coinbase Developer Platform.
         apiKeyId: string
@@ -4759,7 +4762,7 @@ local record M
         walletSecret: string
     end
 
-    -- StripePrivy configuration - credentials provided by Stripe + Privy
+    -- Stripe Privy configuration — credentials provided by Stripe and Privy.
     record StripePrivyConfigurationInput
         -- The app ID provided by Privy.
         appId: string
@@ -4771,24 +4774,26 @@ local record M
         authorizationId: string
     end
 
-    -- PROVIDER CONFIGURATION INPUT - Contains secrets for creation/update
+    -- Provider configuration input — contains secrets for creation and update. Varies by vendor type.
     record PaymentProviderConfigurationInput
+        -- The Coinbase CDP configuration.
         coinbaseCdpConfiguration: CoinbaseCdpConfigurationInput
+        -- The Stripe Privy configuration.
         stripePrivyConfiguration: StripePrivyConfigurationInput
     end
 
     record CreatePaymentCredentialProviderInput
-        -- Unique name for the payment credential provider
+        -- Unique name for the payment credential provider.
         name: string
-        -- The vendor type (e.g., CoinbaseCDP)
+        -- The vendor type for the payment credential provider (e.g., CoinbaseCDP, StripePrivy).
         credentialProviderVendor: string
-        -- Configuration specific to the vendor, including API credentials
+        -- Configuration specific to the vendor, including API credentials.
         providerConfigurationInput: PaymentProviderConfigurationInput
-        -- Optional tags for resource organization
+        -- Optional tags for resource organization.
         tags: {string : string}
     end
 
-    -- Coinbase CDP configuration output with secret ARNs
+    -- Coinbase CDP configuration output with secret ARNs.
     record CoinbaseCdpConfigurationOutput
         -- The API key identifier provided by Coinbase Developer Platform.
         apiKeyId: string
@@ -4796,7 +4801,7 @@ local record M
         walletSecretArn: Secret
     end
 
-    -- StripePrivy configuration output with secret ARNs
+    -- Stripe Privy configuration output with secret ARNs.
     record StripePrivyConfigurationOutput
         -- The app ID provided by Privy.
         appId: string
@@ -4806,19 +4811,22 @@ local record M
         authorizationId: string
     end
 
-    -- PROVIDER CONFIGURATION OUTPUT - No raw secrets, only ARNs
+    -- Provider configuration output — no raw secrets, only ARNs. Varies by vendor type.
     record PaymentProviderConfigurationOutput
+        -- The Coinbase CDP configuration.
         coinbaseCdpConfiguration: CoinbaseCdpConfigurationOutput
+        -- The Stripe Privy configuration.
         stripePrivyConfiguration: StripePrivyConfigurationOutput
     end
 
     record CreatePaymentCredentialProviderOutput
         -- The name of the created payment credential provider.
         name: string
+        -- The vendor type for the created payment credential provider.
         credentialProviderVendor: string
         -- The Amazon Resource Name (ARN) of the created payment credential provider.
         credentialProviderArn: string
-        -- Output configuration (contains secret ARNs, excludes actual secret values)
+        -- Output configuration (contains secret ARNs, excludes actual secret values).
         providerConfigurationOutput: PaymentProviderConfigurationOutput
     end
 
@@ -4840,8 +4848,9 @@ local record M
         name: string
         -- The Amazon Resource Name (ARN) of the payment credential provider.
         credentialProviderArn: string
+        -- The vendor type for the payment credential provider.
         credentialProviderVendor: string
-        -- Output configuration (contains secret ARNs, excludes actual secret values)
+        -- Output configuration (contains secret ARNs, excludes actual secret values).
         providerConfigurationOutput: PaymentProviderConfigurationOutput
         -- The timestamp when the payment credential provider was created.
         createdTime: number
@@ -4862,6 +4871,7 @@ local record M
     record PaymentCredentialProviderItem
         -- The name of the payment credential provider.
         name: string
+        -- The vendor type for the payment credential provider.
         credentialProviderVendor: string
         -- The Amazon Resource Name (ARN) of the payment credential provider.
         credentialProviderArn: string
@@ -4881,18 +4891,20 @@ local record M
     record UpdatePaymentCredentialProviderInput
         -- The name of the payment credential provider to update.
         name: string
+        -- The vendor type for the payment credential provider (e.g., CoinbaseCDP, StripePrivy).
         credentialProviderVendor: string
-        -- Configuration specific to the vendor, including API credentials
+        -- Configuration specific to the vendor, including API credentials.
         providerConfigurationInput: PaymentProviderConfigurationInput
     end
 
     record UpdatePaymentCredentialProviderOutput
         -- The name of the updated payment credential provider.
         name: string
+        -- The vendor type for the updated payment credential provider.
         credentialProviderVendor: string
         -- The Amazon Resource Name (ARN) of the updated payment credential provider.
         credentialProviderArn: string
-        -- Output configuration (contains secret ARNs, excludes actual secret values)
+        -- Output configuration (contains secret ARNs, excludes actual secret values).
         providerConfigurationOutput: PaymentProviderConfigurationOutput
         -- The timestamp when the payment credential provider was created.
         createdTime: number
@@ -5247,8 +5259,6 @@ local record M
         policyEngineId: string
         -- The customer-assigned name of the created policy engine. This matches the name provided in the request and serves as the human-readable identifier.
         name: string
-        -- A human-readable description of the policy engine's purpose.
-        description: string
         -- The timestamp when the policy engine was created. This is automatically set by the service and used for auditing and lifecycle management.
         createdAt: number
         -- The timestamp when the policy engine was last updated. For newly created policy engines, this matches the createdAt timestamp.
@@ -5257,10 +5267,12 @@ local record M
         policyEngineArn: string
         -- The current status of the policy engine. A status of ACTIVE indicates the policy engine is ready for use.
         status: string
-        -- Additional information about the policy engine status. This provides details about any failures or the current state of the policy engine creation process.
-        statusReasons: {string}
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the policy engine data.
         encryptionKeyArn: string
+        -- A human-readable description of the policy engine's purpose.
+        description: string
+        -- Additional information about the policy engine status. This provides details about any failures or the current state of the policy engine creation process.
+        statusReasons: {string}
     end
 
     record DeletePolicyEngineInput
@@ -5273,8 +5285,6 @@ local record M
         policyEngineId: string
         -- The customer-assigned name of the deleted policy engine.
         name: string
-        -- The human-readable description of the deleted policy engine.
-        description: string
         -- The timestamp when the deleted policy engine was originally created.
         createdAt: number
         -- The timestamp when the deleted policy engine was last modified before deletion. This tracks the final state of the policy engine before it was removed from the system.
@@ -5283,10 +5293,12 @@ local record M
         policyEngineArn: string
         -- The status of the policy engine deletion operation. This provides status about any issues that occurred during the deletion process.
         status: string
-        -- Additional information about the deletion status. This provides details about the deletion process or any issues that may have occurred.
-        statusReasons: {string}
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the policy engine data.
         encryptionKeyArn: string
+        -- The human-readable description of the deleted policy engine.
+        description: string
+        -- Additional information about the deletion status. This provides details about the deletion process or any issues that may have occurred.
+        statusReasons: {string}
     end
 
     record GetPolicyEngineInput
@@ -5299,8 +5311,6 @@ local record M
         policyEngineId: string
         -- The customer-assigned name of the policy engine. This is the human-readable identifier that was specified when the policy engine was created.
         name: string
-        -- The human-readable description of the policy engine's purpose and scope. This helps administrators understand the policy engine's role in governance.
-        description: string
         -- The timestamp when the policy engine was originally created.
         createdAt: number
         -- The timestamp when the policy engine was last modified. This tracks the most recent changes to the policy engine configuration.
@@ -5309,8 +5319,32 @@ local record M
         policyEngineArn: string
         -- The current status of the policy engine.
         status: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the policy engine data.
+        encryptionKeyArn: string
+        -- The human-readable description of the policy engine's purpose and scope. This helps administrators understand the policy engine's role in governance.
+        description: string
         -- Additional information about the policy engine status. This provides details about any failures or the current state of the policy engine.
         statusReasons: {string}
+    end
+
+    record GetPolicyEngineSummaryInput
+        -- The unique identifier of the policy engine to retrieve the summary for. This must be a valid policy engine ID that exists within the account.
+        policyEngineId: string
+    end
+
+    record GetPolicyEngineSummaryOutput
+        -- The unique identifier of the policy engine.
+        policyEngineId: string
+        -- The customer-assigned name of the policy engine.
+        name: string
+        -- The timestamp when the policy engine was originally created.
+        createdAt: number
+        -- The timestamp when the policy engine was last modified.
+        updatedAt: number
+        -- The Amazon Resource Name (ARN) of the policy engine.
+        policyEngineArn: string
+        -- The current status of the policy engine.
+        status: string
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the policy engine data.
         encryptionKeyArn: string
     end
@@ -5328,8 +5362,6 @@ local record M
         policyEngineId: string
         -- The customer-assigned immutable name for the policy engine. This human-readable identifier must be unique within the account and cannot exceed 48 characters.
         name: string
-        -- A human-readable description of the policy engine's purpose and scope. Limited to 4,096 characters, this helps administrators understand the policy engine's role in the overall governance strategy.
-        description: string
         -- The timestamp when the policy engine was originally created. This is automatically set by the service and used for auditing and lifecycle management.
         createdAt: number
         -- The timestamp when the policy engine was last modified. This tracks the most recent changes to the policy engine configuration or metadata.
@@ -5338,16 +5370,50 @@ local record M
         policyEngineArn: string
         -- The current status of the policy engine.
         status: string
-        -- Additional information about the policy engine status. This provides details about any failures or the current state of the policy engine lifecycle.
-        statusReasons: {string}
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the policy engine data.
         encryptionKeyArn: string
+        -- A human-readable description of the policy engine's purpose and scope. Limited to 4,096 characters, this helps administrators understand the policy engine's role in the overall governance strategy.
+        description: string
+        -- Additional information about the policy engine status. This provides details about any failures or the current state of the policy engine lifecycle.
+        statusReasons: {string}
     end
 
     record ListPolicyEnginesOutput
         -- An array of policy engine objects that exist in the account. Each policy engine object contains the engine metadata, status, and key identifiers for further operations.
         policyEngines: {PolicyEngine}
         -- A pagination token that can be used in subsequent ListPolicyEngines calls to retrieve additional results. This token is only present when there are more results available.
+        nextToken: string
+    end
+
+    record ListPolicyEngineSummariesInput
+        -- A pagination token returned from a previous ListPolicyEngineSummaries call. Use this token to retrieve the next page of results when the response is paginated.
+        nextToken: string
+        -- The maximum number of policy engine summaries to return in a single response.
+        maxResults: number
+    end
+
+    -- Represents a metadata-only summary of a policy engine resource. This structure contains resource identifiers, status, and timestamps without customer-encrypted fields such as description or status reasons. Policy engine summaries are returned by operations that do not require access to the customer's KMS key.
+    record PolicyEngineSummary
+        -- The unique identifier for the policy engine.
+        policyEngineId: string
+        -- The customer-assigned name of the policy engine.
+        name: string
+        -- The timestamp when the policy engine was originally created.
+        createdAt: number
+        -- The timestamp when the policy engine was last modified.
+        updatedAt: number
+        -- The Amazon Resource Name (ARN) of the policy engine.
+        policyEngineArn: string
+        -- The current status of the policy engine.
+        status: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the policy engine data.
+        encryptionKeyArn: string
+    end
+
+    record ListPolicyEngineSummariesOutput
+        -- An array of policy engine summary objects that exist in the account. Each summary contains resource identifiers, status, and timestamps without customer-encrypted content.
+        policyEngines: {PolicyEngineSummary}
+        -- A pagination token that can be used in subsequent ListPolicyEngineSummaries calls to retrieve additional results. This token is only present when there are more results available.
         nextToken: string
     end
 
@@ -5369,8 +5435,6 @@ local record M
         policyEngineId: string
         -- The name of the updated policy engine.
         name: string
-        -- The updated description of the policy engine.
-        description: string
         -- The original creation timestamp of the policy engine.
         createdAt: number
         -- The timestamp when the policy engine was last updated.
@@ -5379,10 +5443,12 @@ local record M
         policyEngineArn: string
         -- The current status of the updated policy engine.
         status: string
-        -- Additional information about the update status.
-        statusReasons: {string}
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the policy engine data.
         encryptionKeyArn: string
+        -- The updated description of the policy engine.
+        description: string
+        -- Additional information about the update status.
+        statusReasons: {string}
     end
 
     record GetPolicyGenerationInput
@@ -5422,9 +5488,37 @@ local record M
         updatedAt: number
         -- The current status of the policy generation. This indicates whether the generation is in progress, completed successfully, or failed during processing.
         status: string
+        -- The findings and results from the policy generation process. This includes any issues, recommendations, validation results, or insights from the generated policies.
+        findings: string
         -- Additional information about the generation status. This provides details about any failures, warnings, or the current state of the generation process.
         statusReasons: {string}
-        -- The findings and results from the policy generation process. This includes any issues, recommendations, validation results, or insights from the generated policies.
+    end
+
+    record GetPolicyGenerationSummaryInput
+        -- The unique identifier of the policy generation request to retrieve the summary for.
+        policyGenerationId: string
+        -- The identifier of the policy engine associated with the policy generation request.
+        policyEngineId: string
+    end
+
+    record GetPolicyGenerationSummaryOutput
+        -- The identifier of the policy engine associated with this policy generation.
+        policyEngineId: string
+        -- The unique identifier of the policy generation request.
+        policyGenerationId: string
+        -- The customer-assigned name for the policy generation request.
+        name: string
+        -- The Amazon Resource Name (ARN) of the policy generation request.
+        policyGenerationArn: string
+        -- The resource information associated with the policy generation.
+        resource: Resource
+        -- The timestamp when the policy generation request was created.
+        createdAt: number
+        -- The timestamp when the policy generation was last updated.
+        updatedAt: number
+        -- The current status of the policy generation request.
+        status: string
+        -- The findings from the policy generation process, if available.
         findings: string
     end
 
@@ -5522,16 +5616,54 @@ local record M
         updatedAt: number
         -- The current status of this policy generation request.
         status: string
-        -- Additional information about the generation status.
-        statusReasons: {string}
         -- Findings and insights from this policy generation process.
         findings: string
+        -- Additional information about the generation status.
+        statusReasons: {string}
     end
 
     record ListPolicyGenerationsOutput
         -- An array of policy generation objects that match the specified criteria.
         policyGenerations: {PolicyGeneration}
         -- A pagination token for retrieving additional policy generations if more results are available.
+        nextToken: string
+    end
+
+    record ListPolicyGenerationSummariesInput
+        -- A pagination token returned from a previous ListPolicyGenerationSummaries call. Use this token to retrieve the next page of results when the response is paginated.
+        nextToken: string
+        -- The maximum number of policy generation summaries to return in a single response.
+        maxResults: number
+        -- The identifier of the policy engine whose policy generation summaries to retrieve.
+        policyEngineId: string
+    end
+
+    -- Represents a metadata-only summary of a policy generation resource. This structure contains resource identifiers, status, timestamps, and findings without customer-encrypted fields such as status reasons. Policy generation summaries are returned by operations that do not require access to the customer's KMS key.
+    record PolicyGenerationSummary
+        -- The identifier of the policy engine associated with this generation request.
+        policyEngineId: string
+        -- The unique identifier for this policy generation request.
+        policyGenerationId: string
+        -- The customer-assigned name for this policy generation request.
+        name: string
+        -- The ARN of this policy generation request.
+        policyGenerationArn: string
+        -- The resource information associated with this policy generation.
+        resource: Resource
+        -- The timestamp when this policy generation request was created.
+        createdAt: number
+        -- The timestamp when this policy generation was last updated.
+        updatedAt: number
+        -- The current status of this policy generation request.
+        status: string
+        -- Findings and insights from this policy generation process.
+        findings: string
+    end
+
+    record ListPolicyGenerationSummariesOutput
+        -- An array of policy generation summary objects that match the specified criteria. Each summary contains resource identifiers, status, timestamps, and findings without customer-encrypted content.
+        policyGenerations: {PolicyGenerationSummary}
+        -- A pagination token that can be used in subsequent ListPolicyGenerationSummaries calls to retrieve additional results. This token is only present when there are more results available.
         nextToken: string
     end
 
@@ -5571,10 +5703,10 @@ local record M
         updatedAt: number
         -- The initial status of the policy generation request.
         status: string
-        -- Additional information about the generation status.
-        statusReasons: {string}
         -- Initial findings from the policy generation process.
         findings: string
+        -- Additional information about the generation status.
+        statusReasons: {string}
     end
 
     enum PolicyValidationMode
@@ -5614,10 +5746,6 @@ local record M
         name: string
         -- The identifier of the policy engine that manages this policy. This confirms the policy engine assignment and is used for policy evaluation routing.
         policyEngineId: string
-        -- The Cedar policy statement that was created. This is the validated policy definition that will be used for agent behavior control and access decisions.
-        definition: PolicyDefinition
-        -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
-        description: string
         -- The timestamp when the policy was created. This is automatically set by the service and used for auditing and lifecycle management.
         createdAt: number
         -- The timestamp when the policy was last updated. For newly created policies, this matches the createdAt timestamp.
@@ -5626,6 +5754,10 @@ local record M
         policyArn: string
         -- The current status of the policy. A status of ACTIVE indicates the policy is ready for use.
         status: string
+        -- The Cedar policy statement that was created. This is the validated policy definition that will be used for agent behavior control and access decisions.
+        definition: PolicyDefinition
+        -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
+        description: string
         -- Additional information about the policy status. This provides details about any failures or the current state of the policy creation process.
         statusReasons: {string}
     end
@@ -5644,9 +5776,6 @@ local record M
         name: string
         -- The identifier of the policy engine from which the policy was deleted. This confirms the policy engine context for the deletion operation.
         policyEngineId: string
-        definition: PolicyDefinition
-        -- The human-readable description of the deleted policy.
-        description: string
         -- The timestamp when the deleted policy was originally created.
         createdAt: number
         -- The timestamp when the deleted policy was last modified before deletion. This tracks the final state of the policy before it was removed from the system.
@@ -5655,6 +5784,9 @@ local record M
         policyArn: string
         -- The status of the policy deletion operation. This provides information about any issues that occurred during the deletion process.
         status: string
+        definition: PolicyDefinition
+        -- The human-readable description of the deleted policy.
+        description: string
         -- Additional information about the deletion status. This provides details about the deletion process or any issues that may have occurred.
         statusReasons: {string}
     end
@@ -5673,10 +5805,6 @@ local record M
         name: string
         -- The identifier of the policy engine that manages this policy. This confirms the policy engine context for the retrieved policy.
         policyEngineId: string
-        -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
-        definition: PolicyDefinition
-        -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
-        description: string
         -- The timestamp when the policy was originally created.
         createdAt: number
         -- The timestamp when the policy was last modified. This tracks the most recent changes to the policy configuration.
@@ -5685,8 +5813,36 @@ local record M
         policyArn: string
         -- The current status of the policy.
         status: string
+        -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
+        definition: PolicyDefinition
+        -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
+        description: string
         -- Additional information about the policy status. This provides details about any failures or the current state of the policy.
         statusReasons: {string}
+    end
+
+    record GetPolicySummaryInput
+        -- The identifier of the policy engine that manages the policy to retrieve the summary for.
+        policyEngineId: string
+        -- The unique identifier of the policy to retrieve the summary for. This must be a valid policy ID that exists within the specified policy engine.
+        policyId: string
+    end
+
+    record GetPolicySummaryOutput
+        -- The unique identifier of the policy.
+        policyId: string
+        -- The customer-assigned name of the policy.
+        name: string
+        -- The identifier of the policy engine that manages this policy.
+        policyEngineId: string
+        -- The timestamp when the policy was originally created.
+        createdAt: number
+        -- The timestamp when the policy was last modified.
+        updatedAt: number
+        -- The Amazon Resource Name (ARN) of the policy.
+        policyArn: string
+        -- The current status of the policy.
+        status: string
     end
 
     record ListPoliciesInput
@@ -5708,10 +5864,6 @@ local record M
         name: string
         -- The identifier of the policy engine that manages this policy. This establishes the policy engine context for policy evaluation and management.
         policyEngineId: string
-        -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
-        definition: PolicyDefinition
-        -- A human-readable description of the policy's purpose and functionality. Limited to 4,096 characters, this helps administrators understand and manage the policy.
-        description: string
         -- The timestamp when the policy was originally created. This is automatically set by the service and used for auditing and lifecycle management.
         createdAt: number
         -- The timestamp when the policy was last modified. This tracks the most recent changes to the policy configuration or metadata.
@@ -5720,6 +5872,10 @@ local record M
         policyArn: string
         -- The current status of the policy.
         status: string
+        -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
+        definition: PolicyDefinition
+        -- A human-readable description of the policy's purpose and functionality. Limited to 4,096 characters, this helps administrators understand and manage the policy.
+        description: string
         -- Additional information about the policy status. This provides details about any failures or the current state of the policy lifecycle.
         statusReasons: {string}
     end
@@ -5728,6 +5884,42 @@ local record M
         -- An array of policy objects that match the specified criteria. Each policy object contains the policy metadata, status, and key identifiers for further operations.
         policies: {Policy}
         -- A pagination token that can be used in subsequent ListPolicies calls to retrieve additional results. This token is only present when there are more results available.
+        nextToken: string
+    end
+
+    record ListPolicySummariesInput
+        -- A pagination token returned from a previous ListPolicySummaries call. Use this token to retrieve the next page of results when the response is paginated.
+        nextToken: string
+        -- The maximum number of policy summaries to return in a single response.
+        maxResults: number
+        -- The identifier of the policy engine whose policy summaries to retrieve.
+        policyEngineId: string
+        -- Optional filter to list policy summaries that apply to a specific resource scope or resource type. This helps narrow down results to those relevant for particular Amazon Web Services resources, agent tools, or operational contexts within the policy engine ecosystem.
+        targetResourceScope: string
+    end
+
+    -- Represents a metadata-only summary of a policy resource. This structure contains resource identifiers, status, and timestamps without customer-encrypted fields such as definition, description, or status reasons. Policy summaries are returned by operations that do not require access to the customer's KMS key.
+    record PolicySummary
+        -- The unique identifier for the policy.
+        policyId: string
+        -- The customer-assigned name of the policy.
+        name: string
+        -- The identifier of the policy engine that manages this policy.
+        policyEngineId: string
+        -- The timestamp when the policy was originally created.
+        createdAt: number
+        -- The timestamp when the policy was last modified.
+        updatedAt: number
+        -- The Amazon Resource Name (ARN) of the policy.
+        policyArn: string
+        -- The current status of the policy.
+        status: string
+    end
+
+    record ListPolicySummariesOutput
+        -- An array of policy summary objects that match the specified criteria. Each summary contains resource identifiers, status, and timestamps without customer-encrypted content.
+        policies: {PolicySummary}
+        -- A pagination token that can be used in subsequent ListPolicySummaries calls to retrieve additional results. This token is only present when there are more results available.
         nextToken: string
     end
 
@@ -5751,10 +5943,6 @@ local record M
         name: string
         -- The identifier of the policy engine managing the updated policy.
         policyEngineId: string
-        -- The updated Cedar policy statement.
-        definition: PolicyDefinition
-        -- The updated description of the policy.
-        description: string
         -- The original creation timestamp of the policy.
         createdAt: number
         -- The timestamp when the policy was last updated.
@@ -5763,6 +5951,10 @@ local record M
         policyArn: string
         -- The current status of the updated policy.
         status: string
+        -- The updated Cedar policy statement.
+        definition: PolicyDefinition
+        -- The updated description of the policy.
+        description: string
         -- Additional information about the update status.
         statusReasons: {string}
     end
@@ -6309,6 +6501,8 @@ local record M
         nextToken: string
         -- Filter registries by their current status. Possible values include CREATING, READY, UPDATING, CREATE_FAILED, UPDATE_FAILED, DELETING, and DELETE_FAILED.
         status: string
+        -- Filter registries by their authorizer type. Possible values are CUSTOM_JWT and AWS_IAM. For more information about authorizer types, see the RegistryAuthorizerType enum.
+        authorizerType: string
     end
 
     -- Contains summary information about a registry.

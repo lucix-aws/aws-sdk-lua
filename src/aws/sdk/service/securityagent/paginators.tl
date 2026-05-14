@@ -58,6 +58,60 @@ function M.items_list_artifacts(client, input)
     })
 end
 
+--- Returns a page iterator for listCodeReviewJobTasks.
+function M.pages_list_code_review_job_tasks(client, input)
+    return paginator.pages(client, "listCodeReviewJobTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeReviewJobTaskSummaries",
+    })
+end
+
+--- Returns an item iterator for listCodeReviewJobTasks.
+function M.items_list_code_review_job_tasks(client, input)
+    return paginator.items(client, "listCodeReviewJobTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeReviewJobTaskSummaries",
+    })
+end
+
+--- Returns a page iterator for listCodeReviewJobsForCodeReview.
+function M.pages_list_code_review_jobs_for_code_review(client, input)
+    return paginator.pages(client, "listCodeReviewJobsForCodeReview", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeReviewJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listCodeReviewJobsForCodeReview.
+function M.items_list_code_review_jobs_for_code_review(client, input)
+    return paginator.items(client, "listCodeReviewJobsForCodeReview", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeReviewJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listCodeReviews.
+function M.pages_list_code_reviews(client, input)
+    return paginator.pages(client, "listCodeReviews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeReviewSummaries",
+    })
+end
+
+--- Returns an item iterator for listCodeReviews.
+function M.items_list_code_reviews(client, input)
+    return paginator.items(client, "listCodeReviews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "codeReviewSummaries",
+    })
+end
+
 --- Returns a page iterator for listDiscoveredEndpoints.
 function M.pages_list_discovered_endpoints(client, input)
     return paginator.pages(client, "listDiscoveredEndpoints", input, {

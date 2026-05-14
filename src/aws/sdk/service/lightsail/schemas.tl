@@ -3784,6 +3784,12 @@ M.InputOrigin = schema.new({
             name = "responseTimeout",
             target_id = prelude.Integer.id,
         }),
+        ipAddressType = schema.new({
+            id = id.from(_N, "InputOrigin", "ipAddressType"),
+            type = "string",
+            name = "ipAddressType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3904,6 +3910,12 @@ M.Origin = schema.new({
             type = "integer",
             name = "responseTimeout",
             target_id = prelude.Integer.id,
+        }),
+        ipAddressType = schema.new({
+            id = id.from(_N, "Origin", "ipAddressType"),
+            type = "string",
+            name = "ipAddressType",
+            target_id = prelude.String.id,
         }),
     },
 })

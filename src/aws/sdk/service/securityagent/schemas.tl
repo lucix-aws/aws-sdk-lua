@@ -13,6 +13,10 @@ M.TargetDomainIdList = schema.new({ type = "list", list_member = prelude.String 
 
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
+M.CodeReviewIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DeleteCodeReviewFailureList = schema.new({ type = "list", list_member = M.DeleteCodeReviewFailure })
+
 M.PentestIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PentestList = schema.new({ type = "list", list_member = M.Pentest })
@@ -23,6 +27,16 @@ M.ArtifactIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.ArtifactMetadataList = schema.new({ type = "list", list_member = M.ArtifactMetadataItem })
 
+M.CodeReviewJobIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeReviewJobList = schema.new({ type = "list", list_member = M.CodeReviewJob })
+
+M.TaskIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CodeReviewJobTaskList = schema.new({ type = "list", list_member = M.CodeReviewJobTask })
+
+M.CodeReviewList = schema.new({ type = "list", list_member = M.CodeReview })
+
 M.FindingIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.FindingList = schema.new({ type = "list", list_member = M.Finding })
@@ -31,13 +45,17 @@ M.PentestJobIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PentestJobList = schema.new({ type = "list", list_member = M.PentestJob })
 
-M.TaskIdList = schema.new({ type = "list", list_member = prelude.String })
-
 M.TaskList = schema.new({ type = "list", list_member = M.Task })
 
 M.RiskTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ArtifactSummaryList = schema.new({ type = "list", list_member = M.ArtifactSummary })
+
+M.CodeReviewJobSummaryList = schema.new({ type = "list", list_member = M.CodeReviewJobSummary })
+
+M.CodeReviewJobTaskSummaryList = schema.new({ type = "list", list_member = M.CodeReviewJobTaskSummary })
+
+M.CodeReviewSummaryList = schema.new({ type = "list", list_member = M.CodeReviewSummary })
 
 M.DiscoveredEndpointList = schema.new({ type = "list", list_member = M.DiscoveredEndpoint })
 
@@ -108,6 +126,8 @@ M.StepList = schema.new({ type = "list", list_member = M.Step })
 M.ExecutionContextList = schema.new({ type = "list", list_member = M.ExecutionContext })
 
 M.CategoryList = schema.new({ type = "list", list_member = M.Category })
+
+M.CodeLocationList = schema.new({ type = "list", list_member = M.CodeLocation })
 
 M.CodeRemediationTaskDetailsList = schema.new({ type = "list", list_member = M.CodeRemediationTaskDetails })
 
@@ -1434,6 +1454,72 @@ M.Assets = schema.new({
     },
 })
 
+M.BatchDeleteCodeReviewsInput = schema.new({
+    id = id.from(_N, "BatchDeleteCodeReviewsInput"),
+    type = "structure",
+    members = {
+        codeReviewIds = schema.new({
+            id = id.from(_N, "BatchDeleteCodeReviewsInput", "codeReviewIds"),
+            type = "list",
+            name = "codeReviewIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "BatchDeleteCodeReviewsInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCodeReviewFailure = schema.new({
+    id = id.from(_N, "DeleteCodeReviewFailure"),
+    type = "structure",
+    members = {
+        codeReviewId = schema.new({
+            id = id.from(_N, "DeleteCodeReviewFailure", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "DeleteCodeReviewFailure", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteCodeReviewsOutput = schema.new({
+    id = id.from(_N, "BatchDeleteCodeReviewsOutput"),
+    type = "structure",
+    members = {
+        deleted = schema.new({
+            id = id.from(_N, "BatchDeleteCodeReviewsOutput", "deleted"),
+            type = "list",
+            name = "deleted",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        failed = schema.new({
+            id = id.from(_N, "BatchDeleteCodeReviewsOutput", "failed"),
+            type = "list",
+            name = "failed",
+            target_id = prelude.Document.id,
+            list_member = M.DeleteCodeReviewFailure,
+        }),
+    },
+})
+
 M.BatchDeletePentestsInput = schema.new({
     id = id.from(_N, "BatchDeletePentestsInput"),
     type = "structure",
@@ -1729,6 +1815,557 @@ M.BatchGetArtifactMetadataOutput = schema.new({
     },
 })
 
+M.BatchGetCodeReviewJobsInput = schema.new({
+    id = id.from(_N, "BatchGetCodeReviewJobsInput"),
+    type = "structure",
+    members = {
+        codeReviewJobIds = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobsInput", "codeReviewJobIds"),
+            type = "list",
+            name = "codeReviewJobIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobsInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ErrorInformation = schema.new({
+    id = id.from(_N, "ErrorInformation"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "ErrorInformation", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "ErrorInformation", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExecutionContext = schema.new({
+    id = id.from(_N, "ExecutionContext"),
+    type = "structure",
+    members = {
+        contextType = schema.new({
+            id = id.from(_N, "ExecutionContext", "contextType"),
+            type = "string",
+            name = "contextType",
+            target_id = prelude.String.id,
+        }),
+        context = schema.new({
+            id = id.from(_N, "ExecutionContext", "context"),
+            type = "string",
+            name = "context",
+            target_id = prelude.String.id,
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "ExecutionContext", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.Step = schema.new({
+    id = id.from(_N, "Step"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Step", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "Step", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Step", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "Step", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CodeReviewJob = schema.new({
+    id = id.from(_N, "CodeReviewJob"),
+    type = "structure",
+    members = {
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "CodeReviewJob", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "CodeReviewJob", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+        }),
+        title = schema.new({
+            id = id.from(_N, "CodeReviewJob", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        overview = schema.new({
+            id = id.from(_N, "CodeReviewJob", "overview"),
+            type = "string",
+            name = "overview",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CodeReviewJob", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        documents = schema.new({
+            id = id.from(_N, "CodeReviewJob", "documents"),
+            type = "list",
+            name = "documents",
+            target_id = prelude.Document.id,
+            list_member = M.DocumentInfo,
+        }),
+        sourceCode = schema.new({
+            id = id.from(_N, "CodeReviewJob", "sourceCode"),
+            type = "list",
+            name = "sourceCode",
+            target_id = prelude.Document.id,
+            list_member = M.SourceCodeRepository,
+        }),
+        steps = schema.new({
+            id = id.from(_N, "CodeReviewJob", "steps"),
+            type = "list",
+            name = "steps",
+            target_id = prelude.Document.id,
+            list_member = M.Step,
+        }),
+        executionContext = schema.new({
+            id = id.from(_N, "CodeReviewJob", "executionContext"),
+            type = "list",
+            name = "executionContext",
+            target_id = prelude.Document.id,
+            list_member = M.ExecutionContext,
+        }),
+        serviceRole = schema.new({
+            id = id.from(_N, "CodeReviewJob", "serviceRole"),
+            type = "string",
+            name = "serviceRole",
+            target_id = prelude.String.id,
+        }),
+        logConfig = schema.new({
+            id = id.from(_N, "CodeReviewJob", "logConfig"),
+            type = "structure",
+            name = "logConfig",
+            target_id = id.from(_N, "CloudWatchLog"),
+            target = M.CloudWatchLog,
+        }),
+        errorInformation = schema.new({
+            id = id.from(_N, "CodeReviewJob", "errorInformation"),
+            type = "structure",
+            name = "errorInformation",
+            target_id = id.from(_N, "ErrorInformation"),
+            target = M.ErrorInformation,
+        }),
+        integratedRepositories = schema.new({
+            id = id.from(_N, "CodeReviewJob", "integratedRepositories"),
+            type = "list",
+            name = "integratedRepositories",
+            target_id = prelude.Document.id,
+            list_member = M.IntegratedRepository,
+        }),
+        codeRemediationStrategy = schema.new({
+            id = id.from(_N, "CodeReviewJob", "codeRemediationStrategy"),
+            type = "string",
+            name = "codeRemediationStrategy",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CodeReviewJob", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CodeReviewJob", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.BatchGetCodeReviewJobsOutput = schema.new({
+    id = id.from(_N, "BatchGetCodeReviewJobsOutput"),
+    type = "structure",
+    members = {
+        codeReviewJobs = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobsOutput", "codeReviewJobs"),
+            type = "list",
+            name = "codeReviewJobs",
+            target_id = prelude.Document.id,
+            list_member = M.CodeReviewJob,
+        }),
+        notFound = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobsOutput", "notFound"),
+            type = "list",
+            name = "notFound",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchGetCodeReviewJobTasksInput = schema.new({
+    id = id.from(_N, "BatchGetCodeReviewJobTasksInput"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobTasksInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        codeReviewJobTaskIds = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobTasksInput", "codeReviewJobTaskIds"),
+            type = "list",
+            name = "codeReviewJobTaskIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Category = schema.new({
+    id = id.from(_N, "Category"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Category", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        isPrimary = schema.new({
+            id = id.from(_N, "Category", "isPrimary"),
+            type = "boolean",
+            name = "isPrimary",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.LogLocation = schema.new({
+    id = id.from(_N, "LogLocation"),
+    type = "structure",
+    members = {
+        logType = schema.new({
+            id = id.from(_N, "LogLocation", "logType"),
+            type = "string",
+            name = "logType",
+            target_id = prelude.String.id,
+        }),
+        cloudWatchLog = schema.new({
+            id = id.from(_N, "LogLocation", "cloudWatchLog"),
+            type = "structure",
+            name = "cloudWatchLog",
+            target_id = id.from(_N, "CloudWatchLog"),
+            target = M.CloudWatchLog,
+        }),
+    },
+})
+
+M.CodeReviewJobTask = schema.new({
+    id = id.from(_N, "CodeReviewJobTask"),
+    type = "structure",
+    members = {
+        taskId = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "taskId"),
+            type = "string",
+            name = "taskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+        }),
+        title = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        categories = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "categories"),
+            type = "list",
+            name = "categories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+        riskType = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "riskType"),
+            type = "string",
+            name = "riskType",
+            target_id = prelude.String.id,
+        }),
+        executionStatus = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "executionStatus"),
+            type = "string",
+            name = "executionStatus",
+            target_id = prelude.String.id,
+        }),
+        logsLocation = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "logsLocation"),
+            type = "structure",
+            name = "logsLocation",
+            target_id = id.from(_N, "LogLocation"),
+            target = M.LogLocation,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CodeReviewJobTask", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.BatchGetCodeReviewJobTasksOutput = schema.new({
+    id = id.from(_N, "BatchGetCodeReviewJobTasksOutput"),
+    type = "structure",
+    members = {
+        codeReviewJobTasks = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobTasksOutput", "codeReviewJobTasks"),
+            type = "list",
+            name = "codeReviewJobTasks",
+            target_id = prelude.Document.id,
+            list_member = M.CodeReviewJobTask,
+        }),
+        notFound = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewJobTasksOutput", "notFound"),
+            type = "list",
+            name = "notFound",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchGetCodeReviewsInput = schema.new({
+    id = id.from(_N, "BatchGetCodeReviewsInput"),
+    type = "structure",
+    members = {
+        codeReviewIds = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewsInput", "codeReviewIds"),
+            type = "list",
+            name = "codeReviewIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewsInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CodeReview = schema.new({
+    id = id.from(_N, "CodeReview"),
+    type = "structure",
+    members = {
+        codeReviewId = schema.new({
+            id = id.from(_N, "CodeReview", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CodeReview", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "CodeReview", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        assets = schema.new({
+            id = id.from(_N, "CodeReview", "assets"),
+            type = "structure",
+            name = "assets",
+            target_id = id.from(_N, "Assets"),
+            target = M.Assets,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceRole = schema.new({
+            id = id.from(_N, "CodeReview", "serviceRole"),
+            type = "string",
+            name = "serviceRole",
+            target_id = prelude.String.id,
+        }),
+        logConfig = schema.new({
+            id = id.from(_N, "CodeReview", "logConfig"),
+            type = "structure",
+            name = "logConfig",
+            target_id = id.from(_N, "CloudWatchLog"),
+            target = M.CloudWatchLog,
+        }),
+        codeRemediationStrategy = schema.new({
+            id = id.from(_N, "CodeReview", "codeRemediationStrategy"),
+            type = "string",
+            name = "codeRemediationStrategy",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CodeReview", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CodeReview", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.BatchGetCodeReviewsOutput = schema.new({
+    id = id.from(_N, "BatchGetCodeReviewsOutput"),
+    type = "structure",
+    members = {
+        codeReviews = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewsOutput", "codeReviews"),
+            type = "list",
+            name = "codeReviews",
+            target_id = prelude.Document.id,
+            list_member = M.CodeReview,
+        }),
+        notFound = schema.new({
+            id = id.from(_N, "BatchGetCodeReviewsOutput", "notFound"),
+            type = "list",
+            name = "notFound",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.BatchGetFindingsInput = schema.new({
     id = id.from(_N, "BatchGetFindingsInput"),
     type = "structure",
@@ -1751,6 +2388,40 @@ M.BatchGetFindingsInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CodeLocation = schema.new({
+    id = id.from(_N, "CodeLocation"),
+    type = "structure",
+    members = {
+        filePath = schema.new({
+            id = id.from(_N, "CodeLocation", "filePath"),
+            type = "string",
+            name = "filePath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lineStart = schema.new({
+            id = id.from(_N, "CodeLocation", "lineStart"),
+            type = "integer",
+            name = "lineStart",
+            target_id = prelude.Integer.id,
+        }),
+        lineEnd = schema.new({
+            id = id.from(_N, "CodeLocation", "lineEnd"),
+            type = "integer",
+            name = "lineEnd",
+            target_id = prelude.Integer.id,
+        }),
+        label = schema.new({
+            id = id.from(_N, "CodeLocation", "label"),
+            type = "string",
+            name = "label",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1843,6 +2514,18 @@ M.Finding = schema.new({
             name = "pentestJobId",
             target_id = prelude.String.id,
         }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "Finding", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "Finding", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
         taskId = schema.new({
             id = id.from(_N, "Finding", "taskId"),
             type = "string",
@@ -1916,6 +2599,13 @@ M.Finding = schema.new({
             name = "lastUpdatedBy",
             target_id = prelude.String.id,
         }),
+        codeLocations = schema.new({
+            id = id.from(_N, "Finding", "codeLocations"),
+            type = "list",
+            name = "codeLocations",
+            target_id = prelude.Document.id,
+            list_member = M.CodeLocation,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "Finding", "createdAt"),
             type = "timestamp",
@@ -1979,90 +2669,6 @@ M.BatchGetPentestJobsInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ErrorInformation = schema.new({
-    id = id.from(_N, "ErrorInformation"),
-    type = "structure",
-    members = {
-        code = schema.new({
-            id = id.from(_N, "ErrorInformation", "code"),
-            type = "string",
-            name = "code",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "ErrorInformation", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ExecutionContext = schema.new({
-    id = id.from(_N, "ExecutionContext"),
-    type = "structure",
-    members = {
-        contextType = schema.new({
-            id = id.from(_N, "ExecutionContext", "contextType"),
-            type = "string",
-            name = "contextType",
-            target_id = prelude.String.id,
-        }),
-        context = schema.new({
-            id = id.from(_N, "ExecutionContext", "context"),
-            type = "string",
-            name = "context",
-            target_id = prelude.String.id,
-        }),
-        timestamp = schema.new({
-            id = id.from(_N, "ExecutionContext", "timestamp"),
-            type = "timestamp",
-            name = "timestamp",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
-            },
-        }),
-    },
-})
-
-M.Step = schema.new({
-    id = id.from(_N, "Step"),
-    type = "structure",
-    members = {
-        name = schema.new({
-            id = id.from(_N, "Step", "name"),
-            type = "string",
-            name = "name",
-            target_id = prelude.String.id,
-        }),
-        status = schema.new({
-            id = id.from(_N, "Step", "status"),
-            type = "string",
-            name = "status",
-            target_id = prelude.String.id,
-        }),
-        createdAt = schema.new({
-            id = id.from(_N, "Step", "createdAt"),
-            type = "timestamp",
-            name = "createdAt",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
-            },
-        }),
-        updatedAt = schema.new({
-            id = id.from(_N, "Step", "updatedAt"),
-            type = "timestamp",
-            name = "updatedAt",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
     },
@@ -2276,45 +2882,6 @@ M.BatchGetPentestJobTasksInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.Category = schema.new({
-    id = id.from(_N, "Category"),
-    type = "structure",
-    members = {
-        name = schema.new({
-            id = id.from(_N, "Category", "name"),
-            type = "string",
-            name = "name",
-            target_id = prelude.String.id,
-        }),
-        isPrimary = schema.new({
-            id = id.from(_N, "Category", "isPrimary"),
-            type = "boolean",
-            name = "isPrimary",
-            target_id = prelude.Boolean.id,
-        }),
-    },
-})
-
-M.LogLocation = schema.new({
-    id = id.from(_N, "LogLocation"),
-    type = "structure",
-    members = {
-        logType = schema.new({
-            id = id.from(_N, "LogLocation", "logType"),
-            type = "string",
-            name = "logType",
-            target_id = prelude.String.id,
-        }),
-        cloudWatchLog = schema.new({
-            id = id.from(_N, "LogLocation", "cloudWatchLog"),
-            type = "structure",
-            name = "cloudWatchLog",
-            target_id = id.from(_N, "CloudWatchLog"),
-            target = M.CloudWatchLog,
         }),
     },
 })
@@ -2655,6 +3222,183 @@ M.BatchGetTargetDomainsOutput = schema.new({
     },
 })
 
+M.CodeReviewJobSummary = schema.new({
+    id = id.from(_N, "CodeReviewJobSummary"),
+    type = "structure",
+    members = {
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "CodeReviewJobSummary", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "CodeReviewJobSummary", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "CodeReviewJobSummary", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CodeReviewJobSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CodeReviewJobSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CodeReviewJobSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CodeReviewJobTaskSummary = schema.new({
+    id = id.from(_N, "CodeReviewJobTaskSummary"),
+    type = "structure",
+    members = {
+        taskId = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "taskId"),
+            type = "string",
+            name = "taskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+        }),
+        title = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        riskType = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "riskType"),
+            type = "string",
+            name = "riskType",
+            target_id = prelude.String.id,
+        }),
+        executionStatus = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "executionStatus"),
+            type = "string",
+            name = "executionStatus",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CodeReviewJobTaskSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.CodeReviewSummary = schema.new({
+    id = id.from(_N, "CodeReviewSummary"),
+    type = "structure",
+    members = {
+        codeReviewId = schema.new({
+            id = id.from(_N, "CodeReviewSummary", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CodeReviewSummary", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "CodeReviewSummary", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CodeReviewSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CodeReviewSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",
@@ -2670,6 +3414,132 @@ M.ConflictException = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CreateCodeReviewInput = schema.new({
+    id = id.from(_N, "CreateCodeReviewInput"),
+    type = "structure",
+    members = {
+        title = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        assets = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "assets"),
+            type = "structure",
+            name = "assets",
+            target_id = id.from(_N, "Assets"),
+            target = M.Assets,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceRole = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "serviceRole"),
+            type = "string",
+            name = "serviceRole",
+            target_id = prelude.String.id,
+        }),
+        logConfig = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "logConfig"),
+            type = "structure",
+            name = "logConfig",
+            target_id = id.from(_N, "CloudWatchLog"),
+            target = M.CloudWatchLog,
+        }),
+        codeRemediationStrategy = schema.new({
+            id = id.from(_N, "CreateCodeReviewInput", "codeRemediationStrategy"),
+            type = "string",
+            name = "codeRemediationStrategy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateCodeReviewOutput = schema.new({
+    id = id.from(_N, "CreateCodeReviewOutput"),
+    type = "structure",
+    members = {
+        codeReviewId = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        assets = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "assets"),
+            type = "structure",
+            name = "assets",
+            target_id = id.from(_N, "Assets"),
+            target = M.Assets,
+        }),
+        serviceRole = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "serviceRole"),
+            type = "string",
+            name = "serviceRole",
+            target_id = prelude.String.id,
+        }),
+        logConfig = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "logConfig"),
+            type = "structure",
+            name = "logConfig",
+            target_id = id.from(_N, "CloudWatchLog"),
+            target = M.CloudWatchLog,
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+        }),
+        codeRemediationStrategy = schema.new({
+            id = id.from(_N, "CreateCodeReviewOutput", "codeRemediationStrategy"),
+            type = "string",
+            name = "codeRemediationStrategy",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3326,6 +4196,18 @@ M.FindingSummary = schema.new({
             name = "pentestJobId",
             target_id = prelude.String.id,
         }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "FindingSummary", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "FindingSummary", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
         name = schema.new({
             id = id.from(_N, "FindingSummary", "name"),
             type = "string",
@@ -3922,6 +4804,177 @@ M.ListArtifactsOutput = schema.new({
     },
 })
 
+M.ListCodeReviewJobsForCodeReviewInput = schema.new({
+    id = id.from(_N, "ListCodeReviewJobsForCodeReviewInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListCodeReviewJobsForCodeReviewInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "ListCodeReviewJobsForCodeReviewInput", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListCodeReviewJobsForCodeReviewInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCodeReviewJobsForCodeReviewInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCodeReviewJobsForCodeReviewOutput = schema.new({
+    id = id.from(_N, "ListCodeReviewJobsForCodeReviewOutput"),
+    type = "structure",
+    members = {
+        codeReviewJobSummaries = schema.new({
+            id = id.from(_N, "ListCodeReviewJobsForCodeReviewOutput", "codeReviewJobSummaries"),
+            type = "list",
+            name = "codeReviewJobSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.CodeReviewJobSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCodeReviewJobsForCodeReviewOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCodeReviewJobTasksInput = schema.new({
+    id = id.from(_N, "ListCodeReviewJobTasksInput"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksInput", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+        }),
+        stepName = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksInput", "stepName"),
+            type = "string",
+            name = "stepName",
+            target_id = prelude.String.id,
+        }),
+        categoryName = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksInput", "categoryName"),
+            type = "string",
+            name = "categoryName",
+            target_id = prelude.String.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCodeReviewJobTasksOutput = schema.new({
+    id = id.from(_N, "ListCodeReviewJobTasksOutput"),
+    type = "structure",
+    members = {
+        codeReviewJobTaskSummaries = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksOutput", "codeReviewJobTaskSummaries"),
+            type = "list",
+            name = "codeReviewJobTaskSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.CodeReviewJobTaskSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCodeReviewJobTasksOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCodeReviewsInput = schema.new({
+    id = id.from(_N, "ListCodeReviewsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListCodeReviewsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCodeReviewsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListCodeReviewsInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListCodeReviewsOutput = schema.new({
+    id = id.from(_N, "ListCodeReviewsOutput"),
+    type = "structure",
+    members = {
+        codeReviewSummaries = schema.new({
+            id = id.from(_N, "ListCodeReviewsOutput", "codeReviewSummaries"),
+            type = "list",
+            name = "codeReviewSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.CodeReviewSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCodeReviewsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListDiscoveredEndpointsInput = schema.new({
     id = id.from(_N, "ListDiscoveredEndpointsInput"),
     type = "structure",
@@ -4000,9 +5053,12 @@ M.ListFindingsInput = schema.new({
             type = "string",
             name = "pentestJobId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "ListFindingsInput", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
         }),
         agentSpaceId = schema.new({
             id = id.from(_N, "ListFindingsInput", "agentSpaceId"),
@@ -4803,9 +5859,12 @@ M.StartCodeRemediationInput = schema.new({
             type = "string",
             name = "pentestJobId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "StartCodeRemediationInput", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
         }),
         findingIds = schema.new({
             id = id.from(_N, "StartCodeRemediationInput", "findingIds"),
@@ -4823,6 +5882,92 @@ M.StartCodeRemediationInput = schema.new({
 M.StartCodeRemediationOutput = schema.new({
     id = id.from(_N, "StartCodeRemediationOutput"),
     type = "structure",
+})
+
+M.StartCodeReviewJobInput = schema.new({
+    id = id.from(_N, "StartCodeReviewJobInput"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "StartCodeReviewJobInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "StartCodeReviewJobInput", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartCodeReviewJobOutput = schema.new({
+    id = id.from(_N, "StartCodeReviewJobOutput"),
+    type = "structure",
+    members = {
+        title = schema.new({
+            id = id.from(_N, "StartCodeReviewJobOutput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartCodeReviewJobOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "StartCodeReviewJobOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "StartCodeReviewJobOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        codeReviewId = schema.new({
+            id = id.from(_N, "StartCodeReviewJobOutput", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "StartCodeReviewJobOutput", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "StartCodeReviewJobOutput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.StartPentestJobInput = schema.new({
@@ -4903,6 +6048,36 @@ M.StartPentestJobOutput = schema.new({
             target_id = prelude.String.id,
         }),
     },
+})
+
+M.StopCodeReviewJobInput = schema.new({
+    id = id.from(_N, "StopCodeReviewJobInput"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "StopCodeReviewJobInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        codeReviewJobId = schema.new({
+            id = id.from(_N, "StopCodeReviewJobInput", "codeReviewJobId"),
+            type = "string",
+            name = "codeReviewJobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopCodeReviewJobOutput = schema.new({
+    id = id.from(_N, "StopCodeReviewJobOutput"),
+    type = "structure",
 })
 
 M.StopPentestJobInput = schema.new({
@@ -5089,6 +6264,135 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceOutput"),
     type = "structure",
+})
+
+M.UpdateCodeReviewInput = schema.new({
+    id = id.from(_N, "UpdateCodeReviewInput"),
+    type = "structure",
+    members = {
+        codeReviewId = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        assets = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "assets"),
+            type = "structure",
+            name = "assets",
+            target_id = id.from(_N, "Assets"),
+            target = M.Assets,
+        }),
+        serviceRole = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "serviceRole"),
+            type = "string",
+            name = "serviceRole",
+            target_id = prelude.String.id,
+        }),
+        logConfig = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "logConfig"),
+            type = "structure",
+            name = "logConfig",
+            target_id = id.from(_N, "CloudWatchLog"),
+            target = M.CloudWatchLog,
+        }),
+        codeRemediationStrategy = schema.new({
+            id = id.from(_N, "UpdateCodeReviewInput", "codeRemediationStrategy"),
+            type = "string",
+            name = "codeRemediationStrategy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateCodeReviewOutput = schema.new({
+    id = id.from(_N, "UpdateCodeReviewOutput"),
+    type = "structure",
+    members = {
+        codeReviewId = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "codeReviewId"),
+            type = "string",
+            name = "codeReviewId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        title = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "title"),
+            type = "string",
+            name = "title",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        assets = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "assets"),
+            type = "structure",
+            name = "assets",
+            target_id = id.from(_N, "Assets"),
+            target = M.Assets,
+        }),
+        serviceRole = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "serviceRole"),
+            type = "string",
+            name = "serviceRole",
+            target_id = prelude.String.id,
+        }),
+        logConfig = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "logConfig"),
+            type = "structure",
+            name = "logConfig",
+            target_id = id.from(_N, "CloudWatchLog"),
+            target = M.CloudWatchLog,
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+        }),
+        codeRemediationStrategy = schema.new({
+            id = id.from(_N, "UpdateCodeReviewOutput", "codeRemediationStrategy"),
+            type = "string",
+            name = "codeRemediationStrategy",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.UpdateFindingInput = schema.new({
@@ -5432,6 +6736,18 @@ M.AddArtifact = schema.operation({
     },
 })
 
+M.BatchDeleteCodeReviews = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchDeleteCodeReviews"),
+    input = M.BatchDeleteCodeReviewsInput,
+    output = M.BatchDeleteCodeReviewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchDeleteCodeReviews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchDeletePentests = schema.operation({
     id = id.from("com.amazonaws.securityagent", "BatchDeletePentests"),
     input = M.BatchDeletePentestsInput,
@@ -5462,6 +6778,42 @@ M.BatchGetArtifactMetadata = schema.operation({
     output = M.BatchGetArtifactMetadataOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/BatchGetArtifactMetadata" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCodeReviewJobs = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetCodeReviewJobs"),
+    input = M.BatchGetCodeReviewJobsInput,
+    output = M.BatchGetCodeReviewJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetCodeReviewJobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCodeReviewJobTasks = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetCodeReviewJobTasks"),
+    input = M.BatchGetCodeReviewJobTasksInput,
+    output = M.BatchGetCodeReviewJobTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetCodeReviewJobTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetCodeReviews = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "BatchGetCodeReviews"),
+    input = M.BatchGetCodeReviewsInput,
+    output = M.BatchGetCodeReviewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchGetCodeReviews" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5546,6 +6898,18 @@ M.CreateApplication = schema.operation({
     output = M.CreateApplicationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/CreateApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCodeReview = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "CreateCodeReview"),
+    input = M.CreateCodeReviewInput,
+    output = M.CreateCodeReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/CreateCodeReview" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5756,6 +7120,42 @@ M.ListArtifacts = schema.operation({
     },
 })
 
+M.ListCodeReviewJobsForCodeReview = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListCodeReviewJobsForCodeReview"),
+    input = M.ListCodeReviewJobsForCodeReviewInput,
+    output = M.ListCodeReviewJobsForCodeReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListCodeReviewJobsForCodeReview" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeReviewJobTasks = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListCodeReviewJobTasks"),
+    input = M.ListCodeReviewJobTasksInput,
+    output = M.ListCodeReviewJobTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListCodeReviewJobTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCodeReviews = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "ListCodeReviews"),
+    input = M.ListCodeReviewsInput,
+    output = M.ListCodeReviewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListCodeReviews" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListDiscoveredEndpoints = schema.operation({
     id = id.from("com.amazonaws.securityagent", "ListDiscoveredEndpoints"),
     input = M.ListDiscoveredEndpointsInput,
@@ -5888,12 +7288,36 @@ M.StartCodeRemediation = schema.operation({
     },
 })
 
+M.StartCodeReviewJob = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "StartCodeReviewJob"),
+    input = M.StartCodeReviewJobInput,
+    output = M.StartCodeReviewJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartCodeReviewJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StartPentestJob = schema.operation({
     id = id.from("com.amazonaws.securityagent", "StartPentestJob"),
     input = M.StartPentestJobInput,
     output = M.StartPentestJobOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/StartPentestJob" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopCodeReviewJob = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "StopCodeReviewJob"),
+    input = M.StopCodeReviewJobInput,
+    output = M.StopCodeReviewJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StopCodeReviewJob" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -5954,6 +7378,18 @@ M.UpdateApplication = schema.operation({
     output = M.UpdateApplicationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/UpdateApplication" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateCodeReview = schema.operation({
+    id = id.from("com.amazonaws.securityagent", "UpdateCodeReview"),
+    input = M.UpdateCodeReviewInput,
+    output = M.UpdateCodeReviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateCodeReview" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

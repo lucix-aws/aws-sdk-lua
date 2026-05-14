@@ -63,6 +63,8 @@ M.DocumentDbClusterArns = schema.new({ type = "list", list_member = prelude.Stri
 
 M.RdsDbInstanceArnMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.RegionEventSourceMappingMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EventSourceMapping })
+
 M.ArcRoutingControlStates = schema.new({ type = "list", list_member = M.ArcRoutingControlState })
 
 M.KubernetesScalingApplication = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionalScalingResource })
@@ -1522,6 +1524,93 @@ M.GlobalAuroraConfiguration = schema.new({
     },
 })
 
+M.EventSourceMapping = schema.new({
+    id = id.from(_N, "EventSourceMapping"),
+    type = "structure",
+    members = {
+        crossAccountRole = schema.new({
+            id = id.from(_N, "EventSourceMapping", "crossAccountRole"),
+            type = "string",
+            name = "crossAccountRole",
+            target_id = prelude.String.id,
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "EventSourceMapping", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "EventSourceMapping", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LambdaEventSourceMappingUngraceful = schema.new({
+    id = id.from(_N, "LambdaEventSourceMappingUngraceful"),
+    type = "structure",
+    members = {
+        behavior = schema.new({
+            id = id.from(_N, "LambdaEventSourceMappingUngraceful", "behavior"),
+            type = "string",
+            name = "behavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "skip" },
+            },
+        }),
+    },
+})
+
+M.LambdaEventSourceMappingConfiguration = schema.new({
+    id = id.from(_N, "LambdaEventSourceMappingConfiguration"),
+    type = "structure",
+    members = {
+        timeoutMinutes = schema.new({
+            id = id.from(_N, "LambdaEventSourceMappingConfiguration", "timeoutMinutes"),
+            type = "integer",
+            name = "timeoutMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "LambdaEventSourceMappingConfiguration", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regionEventSourceMappings = schema.new({
+            id = id.from(_N, "LambdaEventSourceMappingConfiguration", "regionEventSourceMappings"),
+            type = "map",
+            name = "regionEventSourceMappings",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.EventSourceMapping,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ungraceful = schema.new({
+            id = id.from(_N, "LambdaEventSourceMappingConfiguration", "ungraceful"),
+            type = "structure",
+            name = "ungraceful",
+            target_id = id.from(_N, "LambdaEventSourceMappingUngraceful"),
+            target = M.LambdaEventSourceMappingUngraceful,
+        }),
+    },
+})
+
 M.RdsCreateCrossRegionReplicaConfiguration = schema.new({
     id = id.from(_N, "RdsCreateCrossRegionReplicaConfiguration"),
     type = "structure",
@@ -2667,6 +2756,13 @@ M.ExecutionBlockConfiguration = schema.new({
             name = "rdsCreateCrossRegionReadReplicaConfig",
             target_id = id.from(_N, "RdsCreateCrossRegionReplicaConfiguration"),
             target = M.RdsCreateCrossRegionReplicaConfiguration,
+        }),
+        lambdaEventSourceMappingConfig = schema.new({
+            id = id.from(_N, "ExecutionBlockConfiguration", "lambdaEventSourceMappingConfig"),
+            type = "structure",
+            name = "lambdaEventSourceMappingConfig",
+            target_id = id.from(_N, "LambdaEventSourceMappingConfiguration"),
+            target = M.LambdaEventSourceMappingConfiguration,
         }),
     },
 })

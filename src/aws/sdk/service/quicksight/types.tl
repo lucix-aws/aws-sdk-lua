@@ -10382,6 +10382,16 @@ local record M
         Automate: string
         -- The ability to perform flow-related actions.
         Flow: string
+        -- The ability to perform apps-related actions.
+        Apps: string
+        -- The ability to create or update apps.
+        CreateAndUpdateApps: string
+        -- The ability to share apps with other users.
+        ShareApps: string
+        -- The ability to add and invoke AI inference in new and existing apps.
+        InvokeAppsAIInference: string
+        -- The ability to access the native data store for new and existing apps.
+        AccessAppsNativeDataStore: string
         -- The ability to enable approvals for flow share.
         PublishWithoutApproval: string
         -- The ability to use Bedrock models for general knowledge step in flows.

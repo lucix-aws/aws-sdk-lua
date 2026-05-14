@@ -1095,6 +1095,34 @@ M.CancelElasticsearchServiceSoftwareUpdateOutput = schema.new({
     },
 })
 
+M.AutomatedSnapshotPauseRequestOptions = schema.new({
+    id = id.from(_N, "AutomatedSnapshotPauseRequestOptions"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseRequestOptions", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseRequestOptions", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseRequestOptions", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.Duration = schema.new({
     id = id.from(_N, "Duration"),
     type = "structure",
@@ -1595,6 +1623,47 @@ M.CreateElasticsearchDomainInput = schema.new({
             target_id = id.from(_N, "DeploymentStrategyOptions"),
             target = M.DeploymentStrategyOptions,
         }),
+        AutomatedSnapshotPauseOptions = schema.new({
+            id = id.from(_N, "CreateElasticsearchDomainInput", "AutomatedSnapshotPauseOptions"),
+            type = "structure",
+            name = "AutomatedSnapshotPauseOptions",
+            target_id = id.from(_N, "AutomatedSnapshotPauseRequestOptions"),
+            target = M.AutomatedSnapshotPauseRequestOptions,
+        }),
+    },
+})
+
+M.AutomatedSnapshotPauseOptions = schema.new({
+    id = id.from(_N, "AutomatedSnapshotPauseOptions"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseOptions", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseOptions", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseOptions", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseOptions", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1928,6 +1997,13 @@ M.ElasticsearchDomainStatus = schema.new({
             name = "DeploymentStrategyOptions",
             target_id = id.from(_N, "DeploymentStrategyOptions"),
             target = M.DeploymentStrategyOptions,
+        }),
+        AutomatedSnapshotPauseOptions = schema.new({
+            id = id.from(_N, "ElasticsearchDomainStatus", "AutomatedSnapshotPauseOptions"),
+            type = "structure",
+            name = "AutomatedSnapshotPauseOptions",
+            target_id = id.from(_N, "AutomatedSnapshotPauseOptions"),
+            target = M.AutomatedSnapshotPauseOptions,
         }),
     },
 })
@@ -2851,6 +2927,33 @@ M.DescribeElasticsearchDomainConfigInput = schema.new({
     },
 })
 
+M.AutomatedSnapshotPauseOptionsStatus = schema.new({
+    id = id.from(_N, "AutomatedSnapshotPauseOptionsStatus"),
+    type = "structure",
+    members = {
+        Options = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseOptionsStatus", "Options"),
+            type = "structure",
+            name = "Options",
+            target_id = id.from(_N, "AutomatedSnapshotPauseOptions"),
+            target = M.AutomatedSnapshotPauseOptions,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AutomatedSnapshotPauseOptionsStatus", "Status"),
+            type = "structure",
+            name = "Status",
+            target_id = id.from(_N, "OptionStatus"),
+            target = M.OptionStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AutoTuneOptions = schema.new({
     id = id.from(_N, "AutoTuneOptions"),
     type = "structure",
@@ -3366,6 +3469,13 @@ M.ElasticsearchDomainConfig = schema.new({
             name = "DeploymentStrategyOptions",
             target_id = id.from(_N, "DeploymentStrategyOptionsStatus"),
             target = M.DeploymentStrategyOptionsStatus,
+        }),
+        AutomatedSnapshotPauseOptions = schema.new({
+            id = id.from(_N, "ElasticsearchDomainConfig", "AutomatedSnapshotPauseOptions"),
+            type = "structure",
+            name = "AutomatedSnapshotPauseOptions",
+            target_id = id.from(_N, "AutomatedSnapshotPauseOptionsStatus"),
+            target = M.AutomatedSnapshotPauseOptionsStatus,
         }),
     },
 })
@@ -5214,6 +5324,13 @@ M.UpdateElasticsearchDomainConfigInput = schema.new({
             name = "DeploymentStrategyOptions",
             target_id = id.from(_N, "DeploymentStrategyOptions"),
             target = M.DeploymentStrategyOptions,
+        }),
+        AutomatedSnapshotPauseOptions = schema.new({
+            id = id.from(_N, "UpdateElasticsearchDomainConfigInput", "AutomatedSnapshotPauseOptions"),
+            type = "structure",
+            name = "AutomatedSnapshotPauseOptions",
+            target_id = id.from(_N, "AutomatedSnapshotPauseRequestOptions"),
+            target = M.AutomatedSnapshotPauseRequestOptions,
         }),
     },
 })

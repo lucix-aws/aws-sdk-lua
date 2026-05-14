@@ -4,6 +4,42 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listCertificateAssociations.
+function M.pages_list_certificate_associations(client, input)
+    return paginator.pages(client, "listCertificateAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "certificateAssociations",
+    })
+end
+
+--- Returns an item iterator for listCertificateAssociations.
+function M.items_list_certificate_associations(client, input)
+    return paginator.items(client, "listCertificateAssociations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "certificateAssociations",
+    })
+end
+
+--- Returns a page iterator for listLinkRoutingRules.
+function M.pages_list_link_routing_rules(client, input)
+    return paginator.pages(client, "listLinkRoutingRules", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "rules",
+    })
+end
+
+--- Returns an item iterator for listLinkRoutingRules.
+function M.items_list_link_routing_rules(client, input)
+    return paginator.items(client, "listLinkRoutingRules", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "rules",
+    })
+end
+
 --- Returns a page iterator for listLinks.
 function M.pages_list_links(client, input)
     return paginator.pages(client, "listLinks", input, {

@@ -741,6 +741,8 @@ M.AIRecommendationOptimizationConfigMap = schema.new({ type = "map", map_key = p
 
 M.EksRoleAccessEntries = schema.new({ type = "list", list_member = prelude.String })
 
+M.InstanceRequirementsEniConfigurations = schema.new({ type = "list", list_member = M.InstanceRequirementsEniConfiguration })
+
 M.MapString2048 = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AssociationInfoList = schema.new({ type = "list", list_member = M.AssociationInfo })
@@ -3363,6 +3365,12 @@ M.ResourceSpec = schema.new({
             id = id.from(_N, "ResourceSpec", "LifecycleConfigArn"),
             type = "string",
             name = "LifecycleConfigArn",
+            target_id = prelude.String.id,
+        }),
+        TrainingPlanArn = schema.new({
+            id = id.from(_N, "ResourceSpec", "TrainingPlanArn"),
+            type = "string",
+            name = "TrainingPlanArn",
             target_id = prelude.String.id,
         }),
     },
@@ -7735,6 +7743,26 @@ M.ClusterMetadata = schema.new({
     },
 })
 
+M.InstanceRequirementsEniConfiguration = schema.new({
+    id = id.from(_N, "InstanceRequirementsEniConfiguration"),
+    type = "structure",
+    members = {
+        CustomerEni = schema.new({
+            id = id.from(_N, "InstanceRequirementsEniConfiguration", "CustomerEni"),
+            type = "string",
+            name = "CustomerEni",
+            target_id = prelude.String.id,
+        }),
+        AdditionalEnis = schema.new({
+            id = id.from(_N, "InstanceRequirementsEniConfiguration", "AdditionalEnis"),
+            type = "structure",
+            name = "AdditionalEnis",
+            target_id = id.from(_N, "AdditionalEnis"),
+            target = M.AdditionalEnis,
+        }),
+    },
+})
+
 M.InstanceMetadata = schema.new({
     id = id.from(_N, "InstanceMetadata"),
     type = "structure",
@@ -7751,6 +7779,13 @@ M.InstanceMetadata = schema.new({
             name = "AdditionalEnis",
             target_id = id.from(_N, "AdditionalEnis"),
             target = M.AdditionalEnis,
+        }),
+        InstanceRequirementsEniConfigurations = schema.new({
+            id = id.from(_N, "InstanceMetadata", "InstanceRequirementsEniConfigurations"),
+            type = "list",
+            name = "InstanceRequirementsEniConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.InstanceRequirementsEniConfiguration,
         }),
         CapacityReservation = schema.new({
             id = id.from(_N, "InstanceMetadata", "CapacityReservation"),
@@ -7979,6 +8014,12 @@ M.ClusterEventDetail = schema.new({
             name = "Description",
             target_id = prelude.String.id,
         }),
+        EventLevel = schema.new({
+            id = id.from(_N, "ClusterEventDetail", "EventLevel"),
+            type = "string",
+            name = "EventLevel",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -8047,6 +8088,12 @@ M.ClusterEventSummary = schema.new({
             id = id.from(_N, "ClusterEventSummary", "Description"),
             type = "string",
             name = "Description",
+            target_id = prelude.String.id,
+        }),
+        EventLevel = schema.new({
+            id = id.from(_N, "ClusterEventSummary", "EventLevel"),
+            type = "string",
+            name = "EventLevel",
             target_id = prelude.String.id,
         }),
     },
@@ -13172,6 +13219,12 @@ M.StudioWebPortalSettings = schema.new({
             name = "HiddenSageMakerImageVersionAliases",
             target_id = prelude.Document.id,
             list_member = M.HiddenSageMakerImage,
+        }),
+        ExecutionRoleSessionNameMode = schema.new({
+            id = id.from(_N, "StudioWebPortalSettings", "ExecutionRoleSessionNameMode"),
+            type = "string",
+            name = "ExecutionRoleSessionNameMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -19166,6 +19219,12 @@ M.CreateModelPackageInput = schema.new({
             target_id = id.from(_N, "ModelLifeCycle"),
             target = M.ModelLifeCycle,
         }),
+        ManagedStorageType = schema.new({
+            id = id.from(_N, "CreateModelPackageInput", "ManagedStorageType"),
+            type = "string",
+            name = "ManagedStorageType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -19181,6 +19240,19 @@ M.CreateModelPackageOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.ManagedConfiguration = schema.new({
+    id = id.from(_N, "ManagedConfiguration"),
+    type = "structure",
+    members = {
+        ManagedStorageType = schema.new({
+            id = id.from(_N, "ManagedConfiguration", "ManagedStorageType"),
+            type = "string",
+            name = "ManagedStorageType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -19210,6 +19282,13 @@ M.CreateModelPackageGroupInput = schema.new({
             name = "Tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        ManagedConfiguration = schema.new({
+            id = id.from(_N, "CreateModelPackageGroupInput", "ManagedConfiguration"),
+            type = "structure",
+            name = "ManagedConfiguration",
+            target_id = id.from(_N, "ManagedConfiguration"),
+            target = M.ManagedConfiguration,
         }),
     },
 })
@@ -32827,6 +32906,12 @@ M.DescribeModelPackageOutput = schema.new({
             target_id = id.from(_N, "ModelLifeCycle"),
             target = M.ModelLifeCycle,
         }),
+        ManagedStorageType = schema.new({
+            id = id.from(_N, "DescribeModelPackageOutput", "ManagedStorageType"),
+            type = "string",
+            name = "ManagedStorageType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -32901,6 +32986,13 @@ M.DescribeModelPackageGroupOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ManagedConfiguration = schema.new({
+            id = id.from(_N, "DescribeModelPackageGroupOutput", "ManagedConfiguration"),
+            type = "structure",
+            name = "ManagedConfiguration",
+            target_id = id.from(_N, "ManagedConfiguration"),
+            target = M.ManagedConfiguration,
         }),
     },
 })
@@ -44909,6 +45001,13 @@ M.ModelPackageGroupSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        ManagedConfiguration = schema.new({
+            id = id.from(_N, "ModelPackageGroupSummary", "ManagedConfiguration"),
+            type = "structure",
+            name = "ManagedConfiguration",
+            target_id = id.from(_N, "ManagedConfiguration"),
+            target = M.ManagedConfiguration,
+        }),
     },
 })
 
@@ -51455,6 +51554,13 @@ M.TrainingJob = schema.new({
             name = "ResourceConfig",
             target_id = id.from(_N, "ResourceConfig"),
             target = M.ResourceConfig,
+        }),
+        WarmPoolStatus = schema.new({
+            id = id.from(_N, "TrainingJob", "WarmPoolStatus"),
+            type = "structure",
+            name = "WarmPoolStatus",
+            target_id = id.from(_N, "WarmPoolStatus"),
+            target = M.WarmPoolStatus,
         }),
         VpcConfig = schema.new({
             id = id.from(_N, "TrainingJob", "VpcConfig"),

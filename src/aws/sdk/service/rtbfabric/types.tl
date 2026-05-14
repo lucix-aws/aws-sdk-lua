@@ -241,6 +241,37 @@ local record M
         message: string
     end
 
+    record AssociateCertificateInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The Amazon Resource Name (ARN) of the ACM certificate to associate.
+        acmCertificateArn: string
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same ClientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
+        clientToken: string
+    end
+
+    enum CertificateAssociationStatus
+        "PENDING_ASSOCIATION"
+        "ASSOCIATED"
+        "PENDING_DISASSOCIATION"
+        "DISASSOCIATED"
+        "FAILED"
+    end
+
+    record AssociateCertificateOutput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The Amazon Resource Name (ARN) of the ACM certificate.
+        acmCertificateArn: string
+        -- The status of the certificate association.
+        status: string
+    end
+
+    -- The request could not be completed because you exceeded a service quota.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
     enum Protocol
         "HTTP"
         "HTTPS"
@@ -276,6 +307,18 @@ local record M
         healthCheckConfig: HealthCheckConfig
     end
 
+    -- Describes a summary of a certificate association.
+    record CertificateAssociationSummary
+        -- The Amazon Resource Name (ARN) of the ACM certificate.
+        acmCertificateArn: string
+        -- The status of the certificate association.
+        status: string
+        -- The timestamp of when the certificate was associated.
+        associatedAt: number
+        -- The timestamp of when the certificate association was last updated.
+        updatedAt: number
+    end
+
     record CreateInboundExternalLinkInput
         -- The unique client token.
         clientToken: string
@@ -298,11 +341,6 @@ local record M
         status: string
         -- The domain name.
         domainName: string
-    end
-
-    -- The request could not be completed because you exceeded a service quota.
-    record ServiceQuotaExceededException
-        message: string
     end
 
     record CreateLinkInput
@@ -348,6 +386,65 @@ local record M
         linkId: string
         -- The customer-provided unique identifier of the link.
         customerProvidedId: string
+    end
+
+    -- Key-value pair for query string matching
+    record QueryStringKeyValuePair
+        -- RFC 3986 unreserved characters
+        key: string
+        -- RFC 3986 unreserved characters
+        value: string
+    end
+
+    -- Conditions bag for a routing rule.
+    -- All non-null fields must match (AND logic). At least one field must be set (enforced by CP).
+    record RuleCondition
+        -- Exact host match — RFC 3986 unreserved characters
+        hostHeader: string
+        -- Wildcard host pattern (e.g., *.example.com) — RFC 3986 unreserved plus *
+        hostHeaderWildcard: string
+        -- Path prefix matching — strict starts-with, no wildcard (preferred for new rules).
+        -- Must start with /; RFC 3986 unreserved plus /
+        pathPrefix: string
+        -- Exact path match — must start with /; RFC 3986 unreserved plus /
+        pathExact: string
+        -- Query string key=value pair match (single pair)
+        queryStringEquals: QueryStringKeyValuePair
+        -- Query string key presence check (any value accepted) — RFC 3986 unreserved characters
+        queryStringExists: string
+    end
+
+    record CreateLinkRoutingRuleInput
+        -- Specifies a unique, case-sensitive identifier that you provide to ensure the idempotency of the request. This lets you safely retry the request without accidentally performing the same operation a second time. Passing the same value to a later call to an operation requires that you also pass the same value for all other parameters. We recommend that you use a UUID type of value. If you don't provide this value, then Amazon Web Services generates a random one for you. If you retry the operation with the same ClientToken, but with different parameters, the retry fails with an IdempotentParameterMismatch error.
+        clientToken: string
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The unique identifier of the link.
+        linkId: string
+        -- The priority of the routing rule. Lower numbers are evaluated first. Valid values are 1 to 1000. Priority must be unique among non-deleted rules within a link.
+        priority: number
+        -- The conditions for the routing rule. All specified fields must match for the rule to apply. At least one condition field must be set.
+        conditions: RuleCondition
+        -- A map of the key-value pairs of the tag or tags to assign to the resource.
+        tags: {string : string}
+    end
+
+    enum RuleStatus
+        "CREATION_IN_PROGRESS"
+        "ACTIVE"
+        "UPDATE_IN_PROGRESS"
+        "DELETION_IN_PROGRESS"
+        "DELETED"
+        "FAILED"
+    end
+
+    record CreateLinkRoutingRuleOutput
+        -- The unique identifier of the routing rule.
+        ruleId: string
+        -- The status of the routing rule.
+        status: string
+        -- The timestamp of when the routing rule was created.
+        createdAt: number
     end
 
     record CreateOutboundExternalLinkInput
@@ -530,6 +627,22 @@ local record M
         status: string
     end
 
+    record DeleteLinkRoutingRuleInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The unique identifier of the link.
+        linkId: string
+        -- The unique identifier of the routing rule.
+        ruleId: string
+    end
+
+    record DeleteLinkRoutingRuleOutput
+        -- The unique identifier of the routing rule.
+        ruleId: string
+        -- The status of the routing rule.
+        status: string
+    end
+
     record DeleteOutboundExternalLinkInput
         -- The unique identifier of the gateway.
         gatewayId: string
@@ -565,6 +678,22 @@ local record M
         -- The unique identifier of the gateway.
         gatewayId: string
         -- The status of the request.
+        status: string
+    end
+
+    record DisassociateCertificateInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The Amazon Resource Name (ARN) of the ACM certificate to disassociate.
+        acmCertificateArn: string
+    end
+
+    record DisassociateCertificateOutput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The Amazon Resource Name (ARN) of the ACM certificate.
+        acmCertificateArn: string
+        -- The status of the certificate association.
         status: string
     end
 
@@ -606,6 +735,92 @@ local record M
         httpResponderAllowed: boolean
         -- The timeout value in milliseconds.
         timeoutInMillis: number
+    end
+
+    record GetLinkRoutingRuleInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The unique identifier of the link.
+        linkId: string
+        -- The unique identifier of the routing rule.
+        ruleId: string
+    end
+
+    record GetLinkRoutingRuleOutput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The unique identifier of the link.
+        linkId: string
+        -- The unique identifier of the routing rule.
+        ruleId: string
+        -- The priority of the routing rule.
+        priority: number
+        -- The conditions for the routing rule.
+        conditions: RuleCondition
+        -- The status of the routing rule.
+        status: string
+        -- The timestamp of when the routing rule was created.
+        createdAt: number
+        -- The timestamp of when the routing rule was last updated.
+        updatedAt: number
+        -- A map of the key-value pairs for the tag or tags assigned to the specified resource.
+        tags: {string : string}
+    end
+
+    record ListLinkRoutingRulesInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The unique identifier of the link.
+        linkId: string
+        -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
+        nextToken: string
+        -- The maximum number of results that are returned per call. You can use nextToken to obtain further pages of results. This is only an upper limit. The actual number of results returned per call might be fewer than the specified maximum.
+        maxResults: number
+    end
+
+    -- Summary of a routing rule for list responses
+    record LinkRoutingRuleSummary
+        -- The unique identifier of the routing rule.
+        ruleId: string
+        -- The priority of the routing rule.
+        priority: number
+        -- The conditions for the routing rule.
+        conditions: RuleCondition
+        -- The status of the routing rule.
+        status: string
+        -- The timestamp of when the routing rule was created.
+        createdAt: number
+        -- The timestamp of when the routing rule was last updated.
+        updatedAt: number
+    end
+
+    record ListLinkRoutingRulesOutput
+        -- The list of routing rules for the link.
+        rules: {LinkRoutingRuleSummary}
+        -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
+        nextToken: string
+    end
+
+    record UpdateLinkRoutingRuleInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The unique identifier of the link.
+        linkId: string
+        -- The unique identifier of the routing rule.
+        ruleId: string
+        -- The updated priority of the routing rule. Lower numbers are evaluated first. Valid values are 1 to 1000. Priority must be unique among non-deleted rules within a link.
+        priority: number
+        -- The updated conditions for the routing rule. All specified fields must match for the rule to apply. At least one condition field must be set.
+        conditions: RuleCondition
+    end
+
+    record UpdateLinkRoutingRuleOutput
+        -- The unique identifier of the routing rule.
+        ruleId: string
+        -- The status of the routing rule.
+        status: string
+        -- The timestamp of when the routing rule was last updated.
+        updatedAt: number
     end
 
     record ListLinksInput
@@ -724,6 +939,26 @@ local record M
         linkId: string
         -- The status of the request.
         status: string
+    end
+
+    record GetCertificateAssociationInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The Amazon Resource Name (ARN) of the ACM certificate.
+        acmCertificateArn: string
+    end
+
+    record GetCertificateAssociationOutput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- The Amazon Resource Name (ARN) of the ACM certificate.
+        acmCertificateArn: string
+        -- The status of the certificate association.
+        status: string
+        -- The timestamp of when the certificate was associated.
+        associatedAt: number
+        -- The timestamp of when the certificate association was last updated.
+        updatedAt: number
     end
 
     record GetInboundExternalLinkInput
@@ -871,6 +1106,22 @@ local record M
         gatewayType: string
         -- The external inbound endpoint for the responder gateway.
         externalInboundEndpoint: string
+    end
+
+    record ListCertificateAssociationsInput
+        -- The unique identifier of the gateway.
+        gatewayId: string
+        -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
+        nextToken: string
+        -- The maximum number of results that are returned per call. You can use nextToken to obtain further pages of results. This is only an upper limit. The actual number of results returned per call might be fewer than the specified maximum.
+        maxResults: number
+    end
+
+    record ListCertificateAssociationsOutput
+        -- The list of certificate associations for the gateway.
+        certificateAssociations: {CertificateAssociationSummary}
+        -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page. Make the call again using the returned token to retrieve the next page. Keep all other arguments unchanged. Each pagination token expires after 24 hours. Using an expired pagination token will return an HTTP 400 InvalidToken error.
+        nextToken: string
     end
 
     record ListRequesterGatewaysInput

@@ -780,6 +780,12 @@ M.LocalTimeZoneConfig = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        localTimeZoneDetectionScope = schema.new({
+            id = id.from(_N, "LocalTimeZoneConfig", "localTimeZoneDetectionScope"),
+            type = "string",
+            name = "localTimeZoneDetectionScope",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

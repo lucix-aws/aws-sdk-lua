@@ -19,12 +19,16 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
+    createStream: function(Client, types.CreateStreamInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
     deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
     deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterPolicyOutput>
+    deleteStream: function(Client, types.DeleteStreamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamOutput>
     getCluster: function(Client, types.GetClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetClusterOutput>
     getClusterPolicy: function(Client, types.GetClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetClusterPolicyOutput>
+    getStream: function(Client, types.GetStreamInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamOutput>
     getVpcEndpointServiceName: function(Client, types.GetVpcEndpointServiceNameInput, ? base_client.InvokeOptions): async.Operation<types.GetVpcEndpointServiceNameOutput>
     listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
+    listStreams: function(Client, types.ListStreamsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putClusterPolicy: function(Client, types.PutClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutClusterPolicyOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -78,12 +82,20 @@ function C:createCluster(input: types.CreateClusterInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
 
+function C:createStream(input: types.CreateStreamInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStream as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamOutput>
+end
+
 function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
 
 function C:deleteClusterPolicy(input: types.DeleteClusterPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterPolicyOutput>
+end
+
+function C:deleteStream(input: types.DeleteStreamInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStream as schema.OperationSchema, input, options) as async.Operation<types.DeleteStreamOutput>
 end
 
 function C:getCluster(input: types.GetClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetClusterOutput>
@@ -94,12 +106,20 @@ function C:getClusterPolicy(input: types.GetClusterPolicyInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetClusterPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetClusterPolicyOutput>
 end
 
+function C:getStream(input: types.GetStreamInput, options?: base_client.InvokeOptions): async.Operation<types.GetStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStream as schema.OperationSchema, input, options) as async.Operation<types.GetStreamOutput>
+end
+
 function C:getVpcEndpointServiceName(input: types.GetVpcEndpointServiceNameInput, options?: base_client.InvokeOptions): async.Operation<types.GetVpcEndpointServiceNameOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVpcEndpointServiceName as schema.OperationSchema, input, options) as async.Operation<types.GetVpcEndpointServiceNameOutput>
 end
 
 function C:listClusters(input: types.ListClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListClusters as schema.OperationSchema, input, options) as async.Operation<types.ListClustersOutput>
+end
+
+function C:listStreams(input: types.ListStreamsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreams as schema.OperationSchema, input, options) as async.Operation<types.ListStreamsOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>

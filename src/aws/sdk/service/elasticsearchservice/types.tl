@@ -430,6 +430,21 @@ local record M
         ServiceSoftwareOptions: ServiceSoftwareOptions
     end
 
+    -- Specifies the automated snapshot pause request options for the domain.
+    -- Suspending snapshots reduces data protection. You cannot restore your domain to
+    -- points in time when snapshots are suspended. Use this feature only for short-term
+    -- operational needs such as migrations or maintenance windows.
+    -- Maximum suspension duration: 3 days.
+    record AutomatedSnapshotPauseRequestOptions
+        -- Whether to enable or disable automated snapshot pause for the domain.
+        Enabled: boolean
+        -- The timestamp at which the automated snapshot pause should begin.
+        StartTime: number
+        -- The timestamp at which the automated snapshot pause should end. The maximum allowed
+        -- duration between StartTime and EndTime is 3 days.
+        EndTime: number
+    end
+
     enum AutoTuneDesiredState
         "ENABLED"
         "DISABLED"
@@ -721,6 +736,31 @@ local record M
         TagList: {Tag}
         -- Specifies the deployment strategy options.
         DeploymentStrategyOptions: DeploymentStrategyOptions
+        -- Specifies the automated snapshot pause options for the domain.
+        -- Suspending snapshots reduces data protection. You cannot restore your domain to
+        -- points in time when snapshots are suspended. Use this feature only for short-term
+        -- operational needs such as migrations or maintenance windows.
+        -- Maximum suspension duration: 3 days.
+        AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseRequestOptions
+    end
+
+    enum PauseState
+        "Active"
+        "Completed"
+        "Scheduled"
+        "Disabled"
+    end
+
+    -- Specifies the automated snapshot pause options for the domain. These options allow you to temporarily pause automated snapshots for a specified time period.
+    record AutomatedSnapshotPauseOptions
+        -- Whether automated snapshot pause is enabled for the domain.
+        Enabled: boolean
+        -- The timestamp at which the automated snapshot pause begins.
+        StartTime: number
+        -- The timestamp at which the automated snapshot pause ends.
+        EndTime: number
+        -- The current state of the automated snapshot pause. Valid values are Active, Completed, Scheduled, and Disabled.
+        State: string
     end
 
     enum AutoTuneState
@@ -873,6 +913,8 @@ local record M
         ModifyingProperties: {ModifyingProperties}
         -- The current status of the Elasticsearch domain's deployment strategy options.
         DeploymentStrategyOptions: DeploymentStrategyOptions
+        -- The current status of the Elasticsearch domain's automated snapshot pause options.
+        AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseOptions
     end
 
     -- The result of a CreateElasticsearchDomain operation. Contains the status of the newly created Elasticsearch domain.
@@ -1282,6 +1324,14 @@ local record M
         DomainName: string
     end
 
+    -- The status of automated snapshot pause options for the specified Elasticsearch domain.
+    record AutomatedSnapshotPauseOptionsStatus
+        -- Automated snapshot pause options for the specified Elasticsearch domain.
+        Options: AutomatedSnapshotPauseOptions
+        -- The current status of the automated snapshot pause options for the specified Elasticsearch domain.
+        Status: OptionStatus
+    end
+
     enum RollbackOnDisable
         "NO_ROLLBACK"
         "DEFAULT_ROLLBACK"
@@ -1445,6 +1495,8 @@ local record M
         ModifyingProperties: {ModifyingProperties}
         -- Specifies DeploymentStrategyOptions for the domain.
         DeploymentStrategyOptions: DeploymentStrategyOptionsStatus
+        -- Specifies AutomatedSnapshotPauseOptions for the domain.
+        AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseOptionsStatus
     end
 
     -- The result of a DescribeElasticsearchDomainConfig request. Contains the configuration information of the requested domain.
@@ -2255,6 +2307,12 @@ local record M
         DryRun: boolean
         -- Specifies the deployment strategy options.
         DeploymentStrategyOptions: DeploymentStrategyOptions
+        -- Specifies the automated snapshot pause options for the domain.
+        -- Suspending snapshots reduces data protection. You cannot restore your domain to
+        -- points in time when snapshots are suspended. Use this feature only for short-term
+        -- operational needs such as migrations or maintenance windows.
+        -- Maximum suspension duration: 3 days.
+        AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseRequestOptions
     end
 
     record DryRunResults

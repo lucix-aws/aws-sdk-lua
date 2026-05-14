@@ -19,9 +19,13 @@ M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.CertificateAssociationSummaryList = schema.new({ type = "list", list_member = M.CertificateAssociationSummary })
+
 M.LinkList = schema.new({ type = "list", list_member = M.ListLinksResponseStructure })
 
 M.ModuleConfigurationList = schema.new({ type = "list", list_member = M.ModuleConfiguration })
+
+M.LinkRoutingRuleList = schema.new({ type = "list", list_member = M.LinkRoutingRuleSummary })
 
 M.ProtocolList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -675,6 +679,95 @@ M.ValidationException = schema.new({
     },
 })
 
+M.AssociateCertificateInput = schema.new({
+    id = id.from(_N, "AssociateCertificateRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "AssociateCertificateInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "AssociateCertificateInput", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "AssociateCertificateInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateCertificateOutput = schema.new({
+    id = id.from(_N, "AssociateCertificateResponse"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "AssociateCertificateOutput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "AssociateCertificateOutput", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AssociateCertificateOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.HealthCheckConfig = schema.new({
     id = id.from(_N, "HealthCheckConfig"),
     type = "structure",
@@ -769,6 +862,43 @@ M.AutoScalingGroupsConfiguration = schema.new({
     },
 })
 
+M.CertificateAssociationSummary = schema.new({
+    id = id.from(_N, "CertificateAssociationSummary"),
+    type = "structure",
+    members = {
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "CertificateAssociationSummary", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CertificateAssociationSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        associatedAt = schema.new({
+            id = id.from(_N, "CertificateAssociationSummary", "associatedAt"),
+            type = "timestamp",
+            name = "associatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CertificateAssociationSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.CreateInboundExternalLinkInput = schema.new({
     id = id.from(_N, "CreateInboundExternalLinkRequest"),
     type = "structure",
@@ -856,25 +986,6 @@ M.CreateInboundExternalLinkOutput = schema.new({
             id = id.from(_N, "CreateInboundExternalLinkOutput", "domainName"),
             type = "string",
             name = "domainName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -1049,6 +1160,173 @@ M.CreateLinkOutput = schema.new({
             type = "string",
             name = "customerProvidedId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.QueryStringKeyValuePair = schema.new({
+    id = id.from(_N, "QueryStringKeyValuePair"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "QueryStringKeyValuePair", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "QueryStringKeyValuePair", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RuleCondition = schema.new({
+    id = id.from(_N, "RuleCondition"),
+    type = "structure",
+    members = {
+        hostHeader = schema.new({
+            id = id.from(_N, "RuleCondition", "hostHeader"),
+            type = "string",
+            name = "hostHeader",
+            target_id = prelude.String.id,
+        }),
+        hostHeaderWildcard = schema.new({
+            id = id.from(_N, "RuleCondition", "hostHeaderWildcard"),
+            type = "string",
+            name = "hostHeaderWildcard",
+            target_id = prelude.String.id,
+        }),
+        pathPrefix = schema.new({
+            id = id.from(_N, "RuleCondition", "pathPrefix"),
+            type = "string",
+            name = "pathPrefix",
+            target_id = prelude.String.id,
+        }),
+        pathExact = schema.new({
+            id = id.from(_N, "RuleCondition", "pathExact"),
+            type = "string",
+            name = "pathExact",
+            target_id = prelude.String.id,
+        }),
+        queryStringEquals = schema.new({
+            id = id.from(_N, "RuleCondition", "queryStringEquals"),
+            type = "structure",
+            name = "queryStringEquals",
+            target_id = id.from(_N, "QueryStringKeyValuePair"),
+            target = M.QueryStringKeyValuePair,
+        }),
+        queryStringExists = schema.new({
+            id = id.from(_N, "RuleCondition", "queryStringExists"),
+            type = "string",
+            name = "queryStringExists",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateLinkRoutingRuleInput = schema.new({
+    id = id.from(_N, "CreateLinkRoutingRuleRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        gatewayId = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        linkId = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleInput", "linkId"),
+            type = "string",
+            name = "linkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        priority = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleInput", "priority"),
+            type = "integer",
+            name = "priority",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        conditions = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleInput", "conditions"),
+            type = "structure",
+            name = "conditions",
+            target_id = id.from(_N, "RuleCondition"),
+            target = M.RuleCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateLinkRoutingRuleOutput = schema.new({
+    id = id.from(_N, "CreateLinkRoutingRuleResponse"),
+    type = "structure",
+    members = {
+        ruleId = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleOutput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateLinkRoutingRuleOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1611,6 +1889,68 @@ M.DeleteLinkOutput = schema.new({
     },
 })
 
+M.DeleteLinkRoutingRuleInput = schema.new({
+    id = id.from(_N, "DeleteLinkRoutingRuleRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "DeleteLinkRoutingRuleInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        linkId = schema.new({
+            id = id.from(_N, "DeleteLinkRoutingRuleInput", "linkId"),
+            type = "string",
+            name = "linkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "DeleteLinkRoutingRuleInput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteLinkRoutingRuleOutput = schema.new({
+    id = id.from(_N, "DeleteLinkRoutingRuleResponse"),
+    type = "structure",
+    members = {
+        ruleId = schema.new({
+            id = id.from(_N, "DeleteLinkRoutingRuleOutput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteLinkRoutingRuleOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteOutboundExternalLinkInput = schema.new({
     id = id.from(_N, "DeleteOutboundExternalLinkRequest"),
     type = "structure",
@@ -1737,6 +2077,67 @@ M.DeleteResponderGatewayOutput = schema.new({
         }),
         status = schema.new({
             id = id.from(_N, "DeleteResponderGatewayOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateCertificateInput = schema.new({
+    id = id.from(_N, "DisassociateCertificateRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "DisassociateCertificateInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "DisassociateCertificateInput", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "acmCertificateArn" },
+            },
+        }),
+    },
+})
+
+M.DisassociateCertificateOutput = schema.new({
+    id = id.from(_N, "DisassociateCertificateResponse"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "DisassociateCertificateOutput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "DisassociateCertificateOutput", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DisassociateCertificateOutput", "status"),
             type = "string",
             name = "status",
             target_id = prelude.String.id,
@@ -1891,6 +2292,349 @@ M.GetLinkOutput = schema.new({
             type = "long",
             name = "timeoutInMillis",
             target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.GetLinkRoutingRuleInput = schema.new({
+    id = id.from(_N, "GetLinkRoutingRuleRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        linkId = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleInput", "linkId"),
+            type = "string",
+            name = "linkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleInput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetLinkRoutingRuleOutput = schema.new({
+    id = id.from(_N, "GetLinkRoutingRuleResponse"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        linkId = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "linkId"),
+            type = "string",
+            name = "linkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        priority = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "priority"),
+            type = "integer",
+            name = "priority",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        conditions = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "conditions"),
+            type = "structure",
+            name = "conditions",
+            target_id = id.from(_N, "RuleCondition"),
+            target = M.RuleCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetLinkRoutingRuleOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListLinkRoutingRulesInput = schema.new({
+    id = id.from(_N, "ListLinkRoutingRulesRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "ListLinkRoutingRulesInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        linkId = schema.new({
+            id = id.from(_N, "ListLinkRoutingRulesInput", "linkId"),
+            type = "string",
+            name = "linkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListLinkRoutingRulesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListLinkRoutingRulesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 10 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.LinkRoutingRuleSummary = schema.new({
+    id = id.from(_N, "LinkRoutingRuleSummary"),
+    type = "structure",
+    members = {
+        ruleId = schema.new({
+            id = id.from(_N, "LinkRoutingRuleSummary", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        priority = schema.new({
+            id = id.from(_N, "LinkRoutingRuleSummary", "priority"),
+            type = "integer",
+            name = "priority",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        conditions = schema.new({
+            id = id.from(_N, "LinkRoutingRuleSummary", "conditions"),
+            type = "structure",
+            name = "conditions",
+            target_id = id.from(_N, "RuleCondition"),
+            target = M.RuleCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "LinkRoutingRuleSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "LinkRoutingRuleSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "LinkRoutingRuleSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListLinkRoutingRulesOutput = schema.new({
+    id = id.from(_N, "ListLinkRoutingRulesResponse"),
+    type = "structure",
+    members = {
+        rules = schema.new({
+            id = id.from(_N, "ListLinkRoutingRulesOutput", "rules"),
+            type = "list",
+            name = "rules",
+            target_id = prelude.Document.id,
+            list_member = M.LinkRoutingRuleSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListLinkRoutingRulesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateLinkRoutingRuleInput = schema.new({
+    id = id.from(_N, "UpdateLinkRoutingRuleRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        linkId = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleInput", "linkId"),
+            type = "string",
+            name = "linkId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ruleId = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleInput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        priority = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleInput", "priority"),
+            type = "integer",
+            name = "priority",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        conditions = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleInput", "conditions"),
+            type = "structure",
+            name = "conditions",
+            target_id = id.from(_N, "RuleCondition"),
+            target = M.RuleCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateLinkRoutingRuleOutput = schema.new({
+    id = id.from(_N, "UpdateLinkRoutingRuleResponse"),
+    type = "structure",
+    members = {
+        ruleId = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleOutput", "ruleId"),
+            type = "string",
+            name = "ruleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "UpdateLinkRoutingRuleOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2335,6 +3079,79 @@ M.UpdateLinkModuleFlowOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.GetCertificateAssociationInput = schema.new({
+    id = id.from(_N, "GetCertificateAssociationRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "GetCertificateAssociationInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "GetCertificateAssociationInput", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "acmCertificateArn" },
+            },
+        }),
+    },
+})
+
+M.GetCertificateAssociationOutput = schema.new({
+    id = id.from(_N, "GetCertificateAssociationResponse"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "GetCertificateAssociationOutput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        acmCertificateArn = schema.new({
+            id = id.from(_N, "GetCertificateAssociationOutput", "acmCertificateArn"),
+            type = "string",
+            name = "acmCertificateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetCertificateAssociationOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        associatedAt = schema.new({
+            id = id.from(_N, "GetCertificateAssociationOutput", "associatedAt"),
+            type = "timestamp",
+            name = "associatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetCertificateAssociationOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -2877,6 +3694,65 @@ M.GetResponderGatewayOutput = schema.new({
     },
 })
 
+M.ListCertificateAssociationsInput = schema.new({
+    id = id.from(_N, "ListCertificateAssociationsRequest"),
+    type = "structure",
+    members = {
+        gatewayId = schema.new({
+            id = id.from(_N, "ListCertificateAssociationsInput", "gatewayId"),
+            type = "string",
+            name = "gatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCertificateAssociationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListCertificateAssociationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 5 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListCertificateAssociationsOutput = schema.new({
+    id = id.from(_N, "ListCertificateAssociationsResponse"),
+    type = "structure",
+    members = {
+        certificateAssociations = schema.new({
+            id = id.from(_N, "ListCertificateAssociationsOutput", "certificateAssociations"),
+            type = "list",
+            name = "certificateAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.CertificateAssociationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCertificateAssociationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListRequesterGatewaysInput = schema.new({
     id = id.from(_N, "ListRequesterGatewaysRequest"),
     type = "structure",
@@ -3265,6 +4141,18 @@ M.AcceptLink = schema.operation({
     },
 })
 
+M.AssociateCertificate = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "AssociateCertificate"),
+    input = M.AssociateCertificateInput,
+    output = M.AssociateCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/responder-gateway/{gatewayId}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateInboundExternalLink = schema.operation({
     id = id.from("com.amazonaws.rtbfabric", "CreateInboundExternalLink"),
     input = M.CreateInboundExternalLinkInput,
@@ -3283,6 +4171,18 @@ M.CreateLink = schema.operation({
     output = M.CreateLinkOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/gateway/{gatewayId}/create-link" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateLinkRoutingRule = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "CreateLinkRoutingRule"),
+    input = M.CreateLinkRoutingRuleInput,
+    output = M.CreateLinkRoutingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/responder-gateway/{gatewayId}/link/{linkId}/routing-rule" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3349,6 +4249,18 @@ M.DeleteLink = schema.operation({
     },
 })
 
+M.DeleteLinkRoutingRule = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "DeleteLinkRoutingRule"),
+    input = M.DeleteLinkRoutingRuleInput,
+    output = M.DeleteLinkRoutingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/responder-gateway/{gatewayId}/link/{linkId}/routing-rule/{ruleId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteOutboundExternalLink = schema.operation({
     id = id.from("com.amazonaws.rtbfabric", "DeleteOutboundExternalLink"),
     input = M.DeleteOutboundExternalLinkInput,
@@ -3385,6 +4297,30 @@ M.DeleteResponderGateway = schema.operation({
     },
 })
 
+M.DisassociateCertificate = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "DisassociateCertificate"),
+    input = M.DisassociateCertificateInput,
+    output = M.DisassociateCertificateOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/responder-gateway/{gatewayId}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCertificateAssociation = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "GetCertificateAssociation"),
+    input = M.GetCertificateAssociationInput,
+    output = M.GetCertificateAssociationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/responder-gateway/{gatewayId}/certificate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetInboundExternalLink = schema.operation({
     id = id.from("com.amazonaws.rtbfabric", "GetInboundExternalLink"),
     input = M.GetInboundExternalLinkInput,
@@ -3403,6 +4339,18 @@ M.GetLink = schema.operation({
     output = M.GetLinkOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/gateway/{gatewayId}/link/{linkId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetLinkRoutingRule = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "GetLinkRoutingRule"),
+    input = M.GetLinkRoutingRuleInput,
+    output = M.GetLinkRoutingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/responder-gateway/{gatewayId}/link/{linkId}/routing-rule/{ruleId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3439,6 +4387,30 @@ M.GetResponderGateway = schema.operation({
     output = M.GetResponderGatewayOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/responder-gateway/{gatewayId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCertificateAssociations = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "ListCertificateAssociations"),
+    input = M.ListCertificateAssociationsInput,
+    output = M.ListCertificateAssociationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/responder-gateway/{gatewayId}/certificates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListLinkRoutingRules = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "ListLinkRoutingRules"),
+    input = M.ListLinkRoutingRulesInput,
+    output = M.ListLinkRoutingRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/responder-gateway/{gatewayId}/link/{linkId}/routing-rules" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3547,6 +4519,18 @@ M.UpdateLinkModuleFlow = schema.operation({
     output = M.UpdateLinkModuleFlowOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/gateway/{gatewayId}/link/{linkId}/module-flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateLinkRoutingRule = schema.operation({
+    id = id.from("com.amazonaws.rtbfabric", "UpdateLinkRoutingRule"),
+    input = M.UpdateLinkRoutingRuleInput,
+    output = M.UpdateLinkRoutingRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/responder-gateway/{gatewayId}/link/{linkId}/routing-rule/{ruleId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -1333,7 +1333,7 @@ M.ImageProviderRequestList = schema.new({ type = "list", list_member = prelude.S
 
 M.MarketplaceProductCodeRequestList = schema.new({ type = "list", list_member = prelude.String })
 
-M.ImageNameRequestList = schema.new({ type = "list", list_member = prelude.String })
+M.ImageNameCriteriaRequestList = schema.new({ type = "list", list_member = prelude.String })
 
 M.InstanceSecondaryInterfacePrivateIpAddressListRequest = schema.new({ type = "list", list_member = M.InstanceSecondaryInterfacePrivateIpAddressRequest })
 
@@ -74748,17 +74748,6 @@ M.VolumeModification = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "endTime" },
                 [traits.EC2_QUERY_NAME] = { name = "EndTime" },
-            },
-        }),
-        Operator = schema.new({
-            id = id.from(_N, "VolumeModification", "Operator"),
-            type = "structure",
-            name = "Operator",
-            target_id = id.from(_N, "OperatorResponse"),
-            target = M.OperatorResponse,
-            traits = {
-                [traits.XML_NAME] = { name = "operator" },
-                [traits.EC2_QUERY_NAME] = { name = "Operator" },
             },
         }),
     },

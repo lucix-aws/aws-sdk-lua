@@ -86,7 +86,10 @@ local record Client
     getPaymentManager: function(Client, types.GetPaymentManagerInput, ? base_client.InvokeOptions): async.Operation<types.GetPaymentManagerOutput>
     getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
     getPolicyEngine: function(Client, types.GetPolicyEngineInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyEngineOutput>
+    getPolicyEngineSummary: function(Client, types.GetPolicyEngineSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyEngineSummaryOutput>
     getPolicyGeneration: function(Client, types.GetPolicyGenerationInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyGenerationOutput>
+    getPolicyGenerationSummary: function(Client, types.GetPolicyGenerationSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyGenerationSummaryOutput>
+    getPolicySummary: function(Client, types.GetPolicySummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicySummaryOutput>
     getRegistry: function(Client, types.GetRegistryInput, ? base_client.InvokeOptions): async.Operation<types.GetRegistryOutput>
     getRegistryRecord: function(Client, types.GetRegistryRecordInput, ? base_client.InvokeOptions): async.Operation<types.GetRegistryRecordOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
@@ -114,8 +117,11 @@ local record Client
     listPaymentManagers: function(Client, types.ListPaymentManagersInput, ? base_client.InvokeOptions): async.Operation<types.ListPaymentManagersOutput>
     listPolicies: function(Client, types.ListPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
     listPolicyEngines: function(Client, types.ListPolicyEnginesInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyEnginesOutput>
+    listPolicyEngineSummaries: function(Client, types.ListPolicyEngineSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyEngineSummariesOutput>
     listPolicyGenerationAssets: function(Client, types.ListPolicyGenerationAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationAssetsOutput>
     listPolicyGenerations: function(Client, types.ListPolicyGenerationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationsOutput>
+    listPolicyGenerationSummaries: function(Client, types.ListPolicyGenerationSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationSummariesOutput>
+    listPolicySummaries: function(Client, types.ListPolicySummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicySummariesOutput>
     listRegistries: function(Client, types.ListRegistriesInput, ? base_client.InvokeOptions): async.Operation<types.ListRegistriesOutput>
     listRegistryRecords: function(Client, types.ListRegistryRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegistryRecordsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -464,8 +470,20 @@ function C:getPolicyEngine(input: types.GetPolicyEngineInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyEngine as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyEngineOutput>
 end
 
+function C:getPolicyEngineSummary(input: types.GetPolicyEngineSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyEngineSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyEngineSummary as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyEngineSummaryOutput>
+end
+
 function C:getPolicyGeneration(input: types.GetPolicyGenerationInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyGenerationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyGeneration as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyGenerationOutput>
+end
+
+function C:getPolicyGenerationSummary(input: types.GetPolicyGenerationSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicyGenerationSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicyGenerationSummary as schema.OperationSchema, input, options) as async.Operation<types.GetPolicyGenerationSummaryOutput>
+end
+
+function C:getPolicySummary(input: types.GetPolicySummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetPolicySummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPolicySummary as schema.OperationSchema, input, options) as async.Operation<types.GetPolicySummaryOutput>
 end
 
 function C:getRegistry(input: types.GetRegistryInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegistryOutput>
@@ -576,12 +594,24 @@ function C:listPolicyEngines(input: types.ListPolicyEnginesInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyEngines as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyEnginesOutput>
 end
 
+function C:listPolicyEngineSummaries(input: types.ListPolicyEngineSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyEngineSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyEngineSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyEngineSummariesOutput>
+end
+
 function C:listPolicyGenerationAssets(input: types.ListPolicyGenerationAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationAssetsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyGenerationAssets as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyGenerationAssetsOutput>
 end
 
 function C:listPolicyGenerations(input: types.ListPolicyGenerationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyGenerations as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyGenerationsOutput>
+end
+
+function C:listPolicyGenerationSummaries(input: types.ListPolicyGenerationSummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicyGenerationSummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicyGenerationSummaries as schema.OperationSchema, input, options) as async.Operation<types.ListPolicyGenerationSummariesOutput>
+end
+
+function C:listPolicySummaries(input: types.ListPolicySummariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPolicySummariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPolicySummaries as schema.OperationSchema, input, options) as async.Operation<types.ListPolicySummariesOutput>
 end
 
 function C:listRegistries(input: types.ListRegistriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRegistriesOutput>

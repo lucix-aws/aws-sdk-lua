@@ -212,10 +212,16 @@ local record M
         "AREA_CODE"
     end
 
+    enum LocalTimeZoneDetectionScope
+        "PRIMARY_ONLY"
+        "ALL_AVAILABLE"
+    end
+
     -- Local time zone config
     record LocalTimeZoneConfig
         defaultTimeZone: string
         localTimeZoneDetection: {string}
+        localTimeZoneDetectionScope: string
     end
 
     -- Campaign communication time config

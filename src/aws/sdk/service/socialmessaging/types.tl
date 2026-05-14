@@ -154,6 +154,8 @@ local record M
         signupCallbackResult: WhatsAppSignupCallbackResult
         -- The status code for the response.
         statusCode: number
+        -- The ID of the WhatsApp Business Account that was linked to your Amazon Web Services account.
+        linkedWhatsAppBusinessAccountId: string
     end
 
     -- Thrown when performing an action because a dependency would be broken.
@@ -376,6 +378,8 @@ local record M
         wabaName: string
         -- The event destinations for the linked WhatsApp Business Account.
         eventDestinations: {WhatsAppBusinessAccountEventDestination}
+        -- The onboarding status for the Marketing Messages API. This value is fetched from Meta and indicates whether the WhatsApp Business Account is onboarded for Meta's Marketing Messages API.
+        marketingMessagesOnboardingStatus: string
         -- The phone numbers associated with the Linked WhatsApp Business Account.
         phoneNumbers: {WhatsAppPhoneNumberSummary}
     end
@@ -439,6 +443,10 @@ local record M
         metaTemplateId: string
         -- The ID of the WhatsApp Business Account associated with this template.
         id: string
+        -- The name of the message template. Use together with templateLanguageCode as an alternative to metaTemplateId to identify a template.
+        templateName: string
+        -- The language code of the message template (for example, en or en_US). Use together with templateName as an alternative to metaTemplateId to identify a template.
+        templateLanguageCode: string
     end
 
     record GetWhatsAppMessageTemplateOutput
@@ -485,6 +493,8 @@ local record M
         wabaName: string
         -- The event destinations for the linked WhatsApp Business Account.
         eventDestinations: {WhatsAppBusinessAccountEventDestination}
+        -- The onboarding status for the Marketing Messages API. This value is fetched from Meta and indicates whether the WhatsApp Business Account is onboarded for Meta's Marketing Messages API.
+        marketingMessagesOnboardingStatus: string
     end
 
     record ListLinkedWhatsAppBusinessAccountsOutput
@@ -587,6 +597,10 @@ local record M
         id: string
         -- The numeric ID of the template assigned by Meta.
         metaTemplateId: string
+        -- The name of the message template. Use together with templateLanguageCode as an alternative to metaTemplateId to identify a template.
+        templateName: string
+        -- The language code of the message template (for example, en or en_US). Use together with templateName as an alternative to metaTemplateId to identify a template.
+        templateLanguageCode: string
         -- The format specification for parameters in the template, this can be either 'named' or 'positional'.
         parameterFormat: string
         -- The new category for the template (for example, UTILITY or MARKETING).

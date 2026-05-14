@@ -17,6 +17,8 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ClusterList = schema.new({ type = "list", list_member = M.ClusterSummary })
 
+M.StreamList = schema.new({ type = "list", list_member = M.StreamSummary })
+
 M.ClusterArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
@@ -1001,6 +1003,266 @@ M.UpdateClusterOutput = schema.new({
     },
 })
 
+M.KinesisTargetDefinition = schema.new({
+    id = id.from(_N, "KinesisTargetDefinition"),
+    type = "structure",
+    members = {
+        streamArn = schema.new({
+            id = id.from(_N, "KinesisTargetDefinition", "streamArn"),
+            type = "string",
+            name = "streamArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "KinesisTargetDefinition", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TargetDefinition = schema.new({
+    id = id.from(_N, "TargetDefinition"),
+    type = "union",
+    members = {
+        kinesis = schema.new({
+            id = id.from(_N, "TargetDefinition", "kinesis"),
+            type = "structure",
+            name = "kinesis",
+            target_id = id.from(_N, "KinesisTargetDefinition"),
+            target = M.KinesisTargetDefinition,
+        }),
+    },
+})
+
+M.CreateStreamInput = schema.new({
+    id = id.from(_N, "CreateStreamInput"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "CreateStreamInput", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        targetDefinition = schema.new({
+            id = id.from(_N, "CreateStreamInput", "targetDefinition"),
+            type = "union",
+            name = "targetDefinition",
+            target_id = id.from(_N, "TargetDefinition"),
+            target = M.TargetDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ordering = schema.new({
+            id = id.from(_N, "CreateStreamInput", "ordering"),
+            type = "string",
+            name = "ordering",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "CreateStreamInput", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateStreamInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateStreamInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateStreamOutput = schema.new({
+    id = id.from(_N, "CreateStreamOutput"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "CreateStreamOutput", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        streamIdentifier = schema.new({
+            id = id.from(_N, "CreateStreamOutput", "streamIdentifier"),
+            type = "string",
+            name = "streamIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateStreamOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateStreamOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "CreateStreamOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ordering = schema.new({
+            id = id.from(_N, "CreateStreamOutput", "ordering"),
+            type = "string",
+            name = "ordering",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "CreateStreamOutput", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteStreamInput = schema.new({
+    id = id.from(_N, "DeleteStreamInput"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "DeleteStreamInput", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        streamIdentifier = schema.new({
+            id = id.from(_N, "DeleteStreamInput", "streamIdentifier"),
+            type = "string",
+            name = "streamIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteStreamInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "client-token" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteStreamOutput = schema.new({
+    id = id.from(_N, "DeleteStreamOutput"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "DeleteStreamOutput", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        streamIdentifier = schema.new({
+            id = id.from(_N, "DeleteStreamOutput", "streamIdentifier"),
+            type = "string",
+            name = "streamIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "DeleteStreamOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteStreamOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "DeleteStreamOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceInput"),
     type = "structure",
@@ -1029,6 +1291,261 @@ M.ListTagsForResourceOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetStreamInput = schema.new({
+    id = id.from(_N, "GetStreamInput"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "GetStreamInput", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        streamIdentifier = schema.new({
+            id = id.from(_N, "GetStreamInput", "streamIdentifier"),
+            type = "string",
+            name = "streamIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.StatusReason = schema.new({
+    id = id.from(_N, "StatusReason"),
+    type = "structure",
+    members = {
+        error = schema.new({
+            id = id.from(_N, "StatusReason", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "StatusReason", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetStreamOutput = schema.new({
+    id = id.from(_N, "GetStreamOutput"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "GetStreamOutput", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        streamIdentifier = schema.new({
+            id = id.from(_N, "GetStreamOutput", "streamIdentifier"),
+            type = "string",
+            name = "streamIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetStreamOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetStreamOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetStreamOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ordering = schema.new({
+            id = id.from(_N, "GetStreamOutput", "ordering"),
+            type = "string",
+            name = "ordering",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        format = schema.new({
+            id = id.from(_N, "GetStreamOutput", "format"),
+            type = "string",
+            name = "format",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetDefinition = schema.new({
+            id = id.from(_N, "GetStreamOutput", "targetDefinition"),
+            type = "union",
+            name = "targetDefinition",
+            target_id = id.from(_N, "TargetDefinition"),
+            target = M.TargetDefinition,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "GetStreamOutput", "statusReason"),
+            type = "structure",
+            name = "statusReason",
+            target_id = id.from(_N, "StatusReason"),
+            target = M.StatusReason,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetStreamOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListStreamsInput = schema.new({
+    id = id.from(_N, "ListStreamsInput"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "ListStreamsInput", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListStreamsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 10 },
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListStreamsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.StreamSummary = schema.new({
+    id = id.from(_N, "StreamSummary"),
+    type = "structure",
+    members = {
+        clusterIdentifier = schema.new({
+            id = id.from(_N, "StreamSummary", "clusterIdentifier"),
+            type = "string",
+            name = "clusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        streamIdentifier = schema.new({
+            id = id.from(_N, "StreamSummary", "streamIdentifier"),
+            type = "string",
+            name = "streamIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "StreamSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "StreamSummary", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "StreamSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListStreamsOutput = schema.new({
+    id = id.from(_N, "ListStreamsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListStreamsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        streams = schema.new({
+            id = id.from(_N, "ListStreamsOutput", "streams"),
+            type = "list",
+            name = "streams",
+            target_id = prelude.Document.id,
+            list_member = M.StreamSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1130,6 +1647,18 @@ M.CreateCluster = schema.operation({
     },
 })
 
+M.CreateStream = schema.operation({
+    id = id.from("com.amazonaws.dsql", "CreateStream"),
+    input = M.CreateStreamInput,
+    output = M.CreateStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/stream/{clusterIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteCluster = schema.operation({
     id = id.from("com.amazonaws.dsql", "DeleteCluster"),
     input = M.DeleteClusterInput,
@@ -1148,6 +1677,18 @@ M.DeleteClusterPolicy = schema.operation({
     output = M.DeleteClusterPolicyOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/cluster/{identifier}/policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteStream = schema.operation({
+    id = id.from("com.amazonaws.dsql", "DeleteStream"),
+    input = M.DeleteStreamInput,
+    output = M.DeleteStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/stream/{clusterIdentifier}/{streamIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -1178,6 +1719,18 @@ M.GetClusterPolicy = schema.operation({
     },
 })
 
+M.GetStream = schema.operation({
+    id = id.from("com.amazonaws.dsql", "GetStream"),
+    input = M.GetStreamInput,
+    output = M.GetStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/stream/{clusterIdentifier}/{streamIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetVpcEndpointServiceName = schema.operation({
     id = id.from("com.amazonaws.dsql", "GetVpcEndpointServiceName"),
     input = M.GetVpcEndpointServiceNameInput,
@@ -1196,6 +1749,18 @@ M.ListClusters = schema.operation({
     output = M.ListClustersOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/cluster" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListStreams = schema.operation({
+    id = id.from("com.amazonaws.dsql", "ListStreams"),
+    input = M.ListStreamsInput,
+    output = M.ListStreamsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/stream/{clusterIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

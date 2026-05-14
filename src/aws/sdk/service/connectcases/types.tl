@@ -1439,7 +1439,7 @@ local record M
 
     -- A compound condition that combines multiple boolean conditions using logical operators. In the Amazon Connect admin website, case rules are known as case field conditions. For more information about case field conditions, see Add case field conditions to a case template.
     record CompoundCondition
-        -- The list of conditions to combine using the logical operator.
+        -- The list of conditions to combine using the logical operator. For API users: A case rule can have a maximum of 5 conditions, spread across a maximum of 2 levels of nesting.
         conditions: {BooleanCondition}
     end
 

@@ -442,7 +442,7 @@ local record M
         asgs: {Asg}
         -- The settings for ungraceful execution.
         ungraceful: Ec2Ungraceful
-        -- The target percentage that you specify for EC2 Auto Scaling groups.
+        -- The target percentage that you specify for EC2 Auto Scaling groups. The default is 100.
         targetPercent: number
         -- The monitoring approach that you specify EC2 Auto Scaling groups for the configuration.
         capacityMonitoringApproach: string
@@ -479,7 +479,7 @@ local record M
         services: {Service}
         -- The settings for ungraceful execution.
         ungraceful: EcsUngraceful
-        -- The target percentage specified for the configuration.
+        -- The target percentage specified for the configuration. The default is 100.
         targetPercent: number
         -- The monitoring approach specified for the configuration, for example, Most_Recent.
         capacityMonitoringApproach: string
@@ -535,7 +535,7 @@ local record M
         eksClusters: {EksCluster}
         -- The settings for ungraceful execution.
         ungraceful: EksResourceScalingUngraceful
-        -- The target percentage for the configuration.
+        -- The target percentage for the configuration. The default is 100.
         targetPercent: number
         -- The monitoring approach for the configuration, that is, whether it was sampled in the last 24 hours or autoscaled in the last 24 hours.
         capacityMonitoringApproach: string
@@ -580,6 +580,43 @@ local record M
         globalClusterIdentifier: string
         -- The database cluster Amazon Resource Names (ARNs) for a global database.
         databaseClusterArns: {string}
+    end
+
+    enum EventSourceMappingAction
+        "enable"
+        "disable"
+    end
+
+    -- The Amazon Web Services Lambda event source mapping configuration, containing the resource ARN and optional cross-account configuration.
+    record EventSourceMapping
+        -- The cross account role for the configuration.
+        crossAccountRole: string
+        -- The external ID (secret key) for the configuration.
+        externalId: string
+        -- The Amazon Resource Name (ARN) of the Lambda event source mapping.
+        arn: string
+    end
+
+    enum LambdaEventSourceMappingUngracefulBehavior
+        "skip"
+    end
+
+    -- Specifies whether to skip enabling or disabling an event source mapping during an ungraceful execution.
+    record LambdaEventSourceMappingUngraceful
+        -- Set to skip to skip executing this event source mapping step during an ungraceful execution.
+        behavior: string
+    end
+
+    -- Configuration for Amazon Web Services Lambda event source mappings used in a Region switch plan.
+    record LambdaEventSourceMappingConfiguration
+        -- The timeout value specified for the configuration.
+        timeoutMinutes: number
+        -- The action to take - whether to enable or disable an event source mapping.
+        action: string
+        -- Per-region configuration for which Lambda event source mapping to enable or disable when activating or deactivating a region.
+        regionEventSourceMappings: {string : EventSourceMapping}
+        -- The settings for ungraceful execution.
+        ungraceful: LambdaEventSourceMappingUngraceful
     end
 
     -- Configuration for creating an Amazon RDS cross-Region read replica during post-recovery in a Region switch.
@@ -654,6 +691,7 @@ local record M
         "DocumentDb"
         "RdsPromoteReadReplica"
         "RdsCreateCrossRegionReplica"
+        "LambdaEventSourceMapping"
     end
 
     enum StepStatus
@@ -1017,6 +1055,8 @@ local record M
         rdsPromoteReadReplicaConfig: RdsPromoteReadReplicaConfiguration
         -- An Amazon RDS create cross-Region replica execution block.
         rdsCreateCrossRegionReadReplicaConfig: RdsCreateCrossRegionReplicaConfiguration
+        -- A Lambda event source mapping execution block.
+        lambdaEventSourceMappingConfig: LambdaEventSourceMappingConfiguration
     end
 
     -- Configuration for steps that should be executed in parallel during a Region switch.
