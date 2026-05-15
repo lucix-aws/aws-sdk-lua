@@ -1030,7 +1030,7 @@ local record M
         IAMCertificateId: string
         -- If the distribution uses Aliases (alternate domain names or CNAMEs) and the SSL/TLS certificate is stored in Certificate Manager (ACM), provide the Amazon Resource Name (ARN) of the ACM certificate. CloudFront only supports ACM certificates in the US East (N. Virginia) Region (us-east-1). If you specify an ACM certificate ARN, you must also specify values for MinimumProtocolVersion and SSLSupportMethod.
         ACMCertificateArn: string
-        -- If the distribution uses Aliases (alternate domain names or CNAMEs), specify which viewers the distribution accepts HTTPS connections from. sni-only – The distribution accepts HTTPS connections from only viewers that support server name indication (SNI). This is recommended. Most browsers and clients support SNI. vip – The distribution accepts HTTPS connections from all viewers including those that don't support SNI. This is not recommended, and results in additional monthly charges from CloudFront. static-ip - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the Amazon Web ServicesSupport Center. If the distribution uses the CloudFront domain name such as d111111abcdef8.cloudfront.net, don't set a value for this field.
+        -- If the distribution uses Aliases (alternate domain names or CNAMEs), specify which viewers the distribution accepts HTTPS connections from. sni-only – The distribution accepts HTTPS connections from only viewers that support server name indication (SNI). This is recommended. Most browsers and clients support SNI. vip – The distribution accepts HTTPS connections from all viewers including those that don't support SNI. This is not recommended, and results in additional monthly charges from CloudFront. static-ip - Do not specify this value unless your distribution has been enabled for this feature by the CloudFront team. If you have a use case that requires static IP addresses for a distribution, contact CloudFront through the Amazon Web Services Support Center. If the distribution uses the CloudFront domain name such as d111111abcdef8.cloudfront.net, don't set a value for this field.
         SSLSupportMethod: string
         -- If the distribution uses Aliases (alternate domain names or CNAMEs), specify the security policy that you want CloudFront to use for HTTPS connections with viewers. The security policy determines two settings: The minimum SSL/TLS protocol that CloudFront can use to communicate with viewers. The ciphers that CloudFront can use to encrypt the content that it returns to viewers. For more information, see Security Policy and Supported Protocols and Ciphers Between Viewers and CloudFront in the Amazon CloudFront Developer Guide. On the CloudFront console, this setting is called Security Policy. When you're using SNI only (you set SSLSupportMethod to sni-only), you must specify TLSv1 or higher. If the distribution uses the CloudFront domain name such as d111111abcdef8.cloudfront.net (you set CloudFrontDefaultCertificate to true), CloudFront automatically sets the security policy to TLSv1 regardless of the value that you set here.
         MinimumProtocolVersion: string
@@ -1043,6 +1043,7 @@ local record M
     enum ViewerMtlsMode
         "required"
         "optional"
+        "passthrough"
     end
 
     -- A trust store configuration.
@@ -3062,6 +3063,8 @@ local record M
         Name: string
         -- The CA certificates bundle source for the trust store.
         CaCertificatesBundleSource: CaCertificatesBundleSource
+        -- A Boolean that determines whether to use the CA certificate's OCSP endpoint to check certificate revocation status.
+        UseClientCertificateOCSPEndpoint: boolean
         Tags: Tags
     end
 
@@ -3087,6 +3090,8 @@ local record M
         LastModifiedTime: number
         -- The trust store's reason.
         Reason: string
+        -- A Boolean that determines whether the trust store uses the CA certificate's OCSP endpoint to check certificate revocation status.
+        UseClientCertificateOCSPEndpoint: boolean
     end
 
     record CreateTrustStoreOutput
@@ -5712,6 +5717,8 @@ local record M
         Id: string
         -- The CA certificates bundle source.
         CaCertificatesBundleSource: CaCertificatesBundleSource
+        -- A Boolean that determines whether to use the CA certificate's OCSP endpoint to check certificate revocation status.
+        UseClientCertificateOCSPEndpoint: boolean
         -- The current version (ETag value) of the trust store you are updating.
         IfMatch: string
     end

@@ -1934,6 +1934,8 @@ local record M
         mapperSegmentID: string
         -- A list of artifacts generated for this segment.
         artifacts: {NetworkMigrationCodeGenerationArtifact}
+        -- A list of other segments that this segment depends on or references.
+        referencedSegments: {string}
         -- The timestamp when the segment was created.
         createdAt: number
     end
@@ -2378,6 +2380,7 @@ local record M
     enum SecurityGroupMappingStrategy
         "MAP"
         "SKIP"
+        "MAP_DHCP"
     end
 
     record StartNetworkMigrationMappingInput

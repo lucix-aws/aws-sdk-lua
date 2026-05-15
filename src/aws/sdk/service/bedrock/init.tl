@@ -18,8 +18,10 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchDeleteAdvancedPromptOptimizationJob: function(Client, types.BatchDeleteAdvancedPromptOptimizationJobInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteAdvancedPromptOptimizationJobOutput>
     batchDeleteEvaluationJob: function(Client, types.BatchDeleteEvaluationJobInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteEvaluationJobOutput>
     cancelAutomatedReasoningPolicyBuildWorkflow: function(Client, types.CancelAutomatedReasoningPolicyBuildWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CancelAutomatedReasoningPolicyBuildWorkflowOutput>
+    createAdvancedPromptOptimizationJob: function(Client, types.CreateAdvancedPromptOptimizationJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateAdvancedPromptOptimizationJobOutput>
     createAutomatedReasoningPolicy: function(Client, types.CreateAutomatedReasoningPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutomatedReasoningPolicyOutput>
     createAutomatedReasoningPolicyTestCase: function(Client, types.CreateAutomatedReasoningPolicyTestCaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutomatedReasoningPolicyTestCaseOutput>
     createAutomatedReasoningPolicyVersion: function(Client, types.CreateAutomatedReasoningPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutomatedReasoningPolicyVersionOutput>
@@ -54,6 +56,7 @@ local record Client
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     deregisterMarketplaceModelEndpoint: function(Client, types.DeregisterMarketplaceModelEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterMarketplaceModelEndpointOutput>
     exportAutomatedReasoningPolicyVersion: function(Client, types.ExportAutomatedReasoningPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.ExportAutomatedReasoningPolicyVersionOutput>
+    getAdvancedPromptOptimizationJob: function(Client, types.GetAdvancedPromptOptimizationJobInput, ? base_client.InvokeOptions): async.Operation<types.GetAdvancedPromptOptimizationJobOutput>
     getAutomatedReasoningPolicy: function(Client, types.GetAutomatedReasoningPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomatedReasoningPolicyOutput>
     getAutomatedReasoningPolicyAnnotations: function(Client, types.GetAutomatedReasoningPolicyAnnotationsInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomatedReasoningPolicyAnnotationsOutput>
     getAutomatedReasoningPolicyBuildWorkflow: function(Client, types.GetAutomatedReasoningPolicyBuildWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomatedReasoningPolicyBuildWorkflowOutput>
@@ -79,6 +82,7 @@ local record Client
     getProvisionedModelThroughput: function(Client, types.GetProvisionedModelThroughputInput, ? base_client.InvokeOptions): async.Operation<types.GetProvisionedModelThroughputOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     getUseCaseForModelAccess: function(Client, types.GetUseCaseForModelAccessInput, ? base_client.InvokeOptions): async.Operation<types.GetUseCaseForModelAccessOutput>
+    listAdvancedPromptOptimizationJobs: function(Client, types.ListAdvancedPromptOptimizationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAdvancedPromptOptimizationJobsOutput>
     listAutomatedReasoningPolicies: function(Client, types.ListAutomatedReasoningPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomatedReasoningPoliciesOutput>
     listAutomatedReasoningPolicyBuildWorkflows: function(Client, types.ListAutomatedReasoningPolicyBuildWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomatedReasoningPolicyBuildWorkflowsOutput>
     listAutomatedReasoningPolicyTestCases: function(Client, types.ListAutomatedReasoningPolicyTestCasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutomatedReasoningPolicyTestCasesOutput>
@@ -107,6 +111,7 @@ local record Client
     registerMarketplaceModelEndpoint: function(Client, types.RegisterMarketplaceModelEndpointInput, ? base_client.InvokeOptions): async.Operation<types.RegisterMarketplaceModelEndpointOutput>
     startAutomatedReasoningPolicyBuildWorkflow: function(Client, types.StartAutomatedReasoningPolicyBuildWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.StartAutomatedReasoningPolicyBuildWorkflowOutput>
     startAutomatedReasoningPolicyTestWorkflow: function(Client, types.StartAutomatedReasoningPolicyTestWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.StartAutomatedReasoningPolicyTestWorkflowOutput>
+    stopAdvancedPromptOptimizationJob: function(Client, types.StopAdvancedPromptOptimizationJobInput, ? base_client.InvokeOptions): async.Operation<types.StopAdvancedPromptOptimizationJobOutput>
     stopEvaluationJob: function(Client, types.StopEvaluationJobInput, ? base_client.InvokeOptions): async.Operation<types.StopEvaluationJobOutput>
     stopModelCustomizationJob: function(Client, types.StopModelCustomizationJobInput, ? base_client.InvokeOptions): async.Operation<types.StopModelCustomizationJobOutput>
     stopModelInvocationJob: function(Client, types.StopModelInvocationJobInput, ? base_client.InvokeOptions): async.Operation<types.StopModelInvocationJobOutput>
@@ -163,12 +168,20 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:batchDeleteAdvancedPromptOptimizationJob(input: types.BatchDeleteAdvancedPromptOptimizationJobInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteAdvancedPromptOptimizationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteAdvancedPromptOptimizationJob as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteAdvancedPromptOptimizationJobOutput>
+end
+
 function C:batchDeleteEvaluationJob(input: types.BatchDeleteEvaluationJobInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteEvaluationJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteEvaluationJob as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteEvaluationJobOutput>
 end
 
 function C:cancelAutomatedReasoningPolicyBuildWorkflow(input: types.CancelAutomatedReasoningPolicyBuildWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.CancelAutomatedReasoningPolicyBuildWorkflowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelAutomatedReasoningPolicyBuildWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CancelAutomatedReasoningPolicyBuildWorkflowOutput>
+end
+
+function C:createAdvancedPromptOptimizationJob(input: types.CreateAdvancedPromptOptimizationJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAdvancedPromptOptimizationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAdvancedPromptOptimizationJob as schema.OperationSchema, input, options) as async.Operation<types.CreateAdvancedPromptOptimizationJobOutput>
 end
 
 function C:createAutomatedReasoningPolicy(input: types.CreateAutomatedReasoningPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutomatedReasoningPolicyOutput>
@@ -307,6 +320,10 @@ function C:exportAutomatedReasoningPolicyVersion(input: types.ExportAutomatedRea
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportAutomatedReasoningPolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.ExportAutomatedReasoningPolicyVersionOutput>
 end
 
+function C:getAdvancedPromptOptimizationJob(input: types.GetAdvancedPromptOptimizationJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetAdvancedPromptOptimizationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAdvancedPromptOptimizationJob as schema.OperationSchema, input, options) as async.Operation<types.GetAdvancedPromptOptimizationJobOutput>
+end
+
 function C:getAutomatedReasoningPolicy(input: types.GetAutomatedReasoningPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutomatedReasoningPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutomatedReasoningPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetAutomatedReasoningPolicyOutput>
 end
@@ -405,6 +422,10 @@ end
 
 function C:getUseCaseForModelAccess(input: types.GetUseCaseForModelAccessInput, options?: base_client.InvokeOptions): async.Operation<types.GetUseCaseForModelAccessOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUseCaseForModelAccess as schema.OperationSchema, input, options) as async.Operation<types.GetUseCaseForModelAccessOutput>
+end
+
+function C:listAdvancedPromptOptimizationJobs(input: types.ListAdvancedPromptOptimizationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAdvancedPromptOptimizationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAdvancedPromptOptimizationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListAdvancedPromptOptimizationJobsOutput>
 end
 
 function C:listAutomatedReasoningPolicies(input: types.ListAutomatedReasoningPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutomatedReasoningPoliciesOutput>
@@ -517,6 +538,10 @@ end
 
 function C:startAutomatedReasoningPolicyTestWorkflow(input: types.StartAutomatedReasoningPolicyTestWorkflowInput, options?: base_client.InvokeOptions): async.Operation<types.StartAutomatedReasoningPolicyTestWorkflowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAutomatedReasoningPolicyTestWorkflow as schema.OperationSchema, input, options) as async.Operation<types.StartAutomatedReasoningPolicyTestWorkflowOutput>
+end
+
+function C:stopAdvancedPromptOptimizationJob(input: types.StopAdvancedPromptOptimizationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopAdvancedPromptOptimizationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopAdvancedPromptOptimizationJob as schema.OperationSchema, input, options) as async.Operation<types.StopAdvancedPromptOptimizationJobOutput>
 end
 
 function C:stopEvaluationJob(input: types.StopEvaluationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopEvaluationJobOutput>

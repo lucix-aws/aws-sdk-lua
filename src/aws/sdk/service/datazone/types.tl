@@ -1735,7 +1735,7 @@ local record M
         retainPermissions: boolean
     end
 
-    -- The information about a cell in a notebook run in Amazon DataZone.
+    -- The information about a cell in a notebook run in Amazon SageMaker Unified Studio.
     record CellInformation
     end
 
@@ -1750,7 +1750,7 @@ local record M
         templateUrl: string
     end
 
-    -- The compute configuration for a notebook run in Amazon DataZone.
+    -- The compute configuration for a notebook run in Amazon SageMaker Unified Studio.
     record ComputeConfig
         -- The instance type for the notebook run compute.
         instanceType: string
@@ -3640,6 +3640,95 @@ local record M
         listingRevision: string
         -- Specifies the status of the listing.
         status: string
+    end
+
+    record CreateNotebookInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which to create the notebook.
+        domainIdentifier: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectIdentifier: string
+        -- The name of the notebook. The name must be between 1 and 256 characters.
+        name: string
+        -- The description of the notebook.
+        description: string
+        -- The metadata for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.
+        metadata: {string : string}
+        -- The sensitive parameters for the notebook, specified as key-value pairs. You can specify up to 50 entries, with keys up to 128 characters and values up to 1024 characters.
+        parameters: {string : string}
+        -- A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.
+        clientToken: string
+    end
+
+    enum PackageManager
+        "UV"
+    end
+
+    -- The package configuration for a notebook run environment in Amazon SageMaker Unified Studio.
+    record PackageConfig
+        -- The package manager for the notebook run environment. The default value is UV.
+        packageManager: string
+        -- The package specification content for the notebook run environment. The maximum length is 10240 characters.
+        packageSpecification: string
+    end
+
+    -- The environment configuration for a notebook run in Amazon SageMaker Unified Studio.
+    record EnvironmentConfig
+        -- The image version for the notebook run environment.
+        imageVersion: string
+        -- The package configuration for the notebook run environment.
+        packageConfig: PackageConfig
+    end
+
+    -- The error details of a notebook in Amazon SageMaker Unified Studio.
+    record NotebookError
+        -- The error message. The maximum length is 256 characters.
+        message: string
+    end
+
+    enum NotebookStatus
+        "ACTIVE"
+        "ARCHIVED"
+    end
+
+    record CreateNotebookOutput
+        -- The identifier of the notebook.
+        id: string
+        -- The name of the notebook.
+        name: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectId: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The ordered list of cells in the notebook.
+        cellOrder: {CellInformation}
+        -- The status of the notebook.
+        status: string
+        -- The description of the notebook.
+        description: string
+        -- The timestamp of when the notebook was created.
+        createdAt: number
+        -- The identifier of the user who created the notebook.
+        createdBy: string
+        -- The timestamp of when the notebook was last updated.
+        updatedAt: number
+        -- The identifier of the user who last updated the notebook.
+        updatedBy: string
+        -- The identifier of the user who locked the notebook.
+        lockedBy: string
+        -- The timestamp of when the notebook was locked.
+        lockedAt: number
+        -- The timestamp of when the notebook lock expires.
+        lockExpiresAt: number
+        -- The identifier of the compute associated with the notebook.
+        computeId: string
+        -- The metadata of the notebook.
+        metadata: {string : string}
+        -- The sensitive parameters of the notebook.
+        parameters: {string : string}
+        -- The environment configuration of the notebook.
+        environmentConfiguration: EnvironmentConfig
+        -- The error details if the notebook creation failed.
+        error: NotebookError
     end
 
     enum UserDesignation
@@ -7905,34 +7994,277 @@ local record M
         owningProjectId: string
     end
 
-    enum PackageManager
-        "UV"
+    record DeleteNotebookInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which the notebook exists.
+        domainIdentifier: string
+        -- The identifier of the notebook to delete.
+        identifier: string
     end
 
-    -- The package configuration for a notebook run environment in Amazon DataZone.
-    record PackageConfig
-        -- The package manager for the notebook run environment. The default value is UV.
-        packageManager: string
-        -- The package specification content for the notebook run environment. The maximum length is 10240 characters.
-        packageSpecification: string
+    record DeleteNotebookOutput
     end
 
-    -- The environment configuration for a notebook run in Amazon DataZone.
-    record EnvironmentConfig
-        -- The image version for the notebook run environment.
-        imageVersion: string
-        -- The package configuration for the notebook run environment.
-        packageConfig: PackageConfig
+    record GetNotebookInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which the notebook exists.
+        domainIdentifier: string
+        -- The identifier of the notebook.
+        identifier: string
+    end
+
+    record GetNotebookOutput
+        -- The identifier of the notebook.
+        id: string
+        -- The name of the notebook.
+        name: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectId: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The ordered list of cells in the notebook.
+        cellOrder: {CellInformation}
+        -- The status of the notebook.
+        status: string
+        -- The description of the notebook.
+        description: string
+        -- The timestamp of when the notebook was created.
+        createdAt: number
+        -- The identifier of the user who created the notebook.
+        createdBy: string
+        -- The timestamp of when the notebook was last updated.
+        updatedAt: number
+        -- The identifier of the user who last updated the notebook.
+        updatedBy: string
+        -- The identifier of the user who locked the notebook.
+        lockedBy: string
+        -- The timestamp of when the notebook was locked.
+        lockedAt: number
+        -- The timestamp of when the notebook lock expires.
+        lockExpiresAt: number
+        -- The identifier of the compute associated with the notebook.
+        computeId: string
+        -- The metadata of the notebook.
+        metadata: {string : string}
+        -- The sensitive parameters of the notebook.
+        parameters: {string : string}
+        -- The environment configuration of the notebook.
+        environmentConfiguration: EnvironmentConfig
+        -- The error details if the notebook is in a failed state.
+        error: NotebookError
+    end
+
+    record ListNotebooksInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which to list notebooks.
+        domainIdentifier: string
+        -- The identifier of the project that owns the notebooks.
+        owningProjectIdentifier: string
+        -- The maximum number of notebooks to return in a single call. When the number of notebooks exceeds the value of MaxResults, the response contains a NextToken value.
+        maxResults: number
+        -- The sort order for the results.
+        sortOrder: string
+        -- The field to sort the results by.
+        sortBy: string
+        -- The status to filter notebooks by.
+        status: string
+        -- When the number of notebooks is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of notebooks, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListNotebooks to list the next set of notebooks.
+        nextToken: string
+    end
+
+    -- The summary of a notebook in Amazon SageMaker Unified Studio.
+    record NotebookSummary
+        -- The identifier of the notebook.
+        id: string
+        -- The name of the notebook.
+        name: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectId: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The status of the notebook.
+        status: string
+        -- The description of the notebook.
+        description: string
+        -- The timestamp of when the notebook was created.
+        createdAt: number
+        -- The identifier of the user who created the notebook.
+        createdBy: string
+        -- The timestamp of when the notebook was last updated.
+        updatedAt: number
+        -- The identifier of the user who last updated the notebook.
+        updatedBy: string
+    end
+
+    record ListNotebooksOutput
+        -- The results of the ListNotebooks action.
+        items: {NotebookSummary}
+        -- When the number of notebooks is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of notebooks, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListNotebooks to list the next set of notebooks.
+        nextToken: string
+    end
+
+    record UpdateNotebookInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which the notebook exists.
+        domainIdentifier: string
+        -- The identifier of the notebook to update.
+        identifier: string
+        -- The updated description of the notebook.
+        description: string
+        -- The updated status of the notebook.
+        status: string
+        -- The updated name of the notebook.
+        name: string
+        -- The updated ordered list of cells in the notebook.
+        cellOrder: {CellInformation}
+        -- The updated metadata for the notebook, specified as key-value pairs.
+        metadata: {string : string}
+        -- The updated sensitive parameters for the notebook, specified as key-value pairs.
+        parameters: {string : string}
+        -- The updated environment configuration for the notebook.
+        environmentConfiguration: EnvironmentConfig
+        -- A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.
+        clientToken: string
+    end
+
+    record UpdateNotebookOutput
+        -- The identifier of the notebook.
+        id: string
+        -- The name of the notebook.
+        name: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectId: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The ordered list of cells in the notebook.
+        cellOrder: {CellInformation}
+        -- The status of the notebook.
+        status: string
+        -- The description of the notebook.
+        description: string
+        -- The timestamp of when the notebook was created.
+        createdAt: number
+        -- The identifier of the user who created the notebook.
+        createdBy: string
+        -- The timestamp of when the notebook was last updated.
+        updatedAt: number
+        -- The identifier of the user who last updated the notebook.
+        updatedBy: string
+        -- The identifier of the user who locked the notebook.
+        lockedBy: string
+        -- The timestamp of when the notebook was locked.
+        lockedAt: number
+        -- The timestamp of when the notebook lock expires.
+        lockExpiresAt: number
+        -- The identifier of the compute associated with the notebook.
+        computeId: string
+        -- The metadata of the notebook.
+        metadata: {string : string}
+        -- The sensitive parameters of the notebook.
+        parameters: {string : string}
+        -- The environment configuration of the notebook.
+        environmentConfiguration: EnvironmentConfig
+        -- The error details if the notebook is in a failed state.
+        error: NotebookError
+    end
+
+    enum FileFormat
+        "PDF"
+        "IPYNB"
+    end
+
+    record GetNotebookExportInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which the notebook export exists.
+        domainIdentifier: string
+        -- The identifier of the notebook export.
+        identifier: string
+    end
+
+    -- The error details of a failed notebook export in Amazon SageMaker Unified Studio.
+    record NotebookExportError
+        -- The error message. The maximum length is 256 characters.
+        message: string
+    end
+
+    -- The Amazon Simple Storage Service destination for a notebook export in Amazon SageMaker Unified Studio.
+    record S3Destination
+        -- The Amazon Simple Storage Service URI of the exported notebook.
+        uri: string
+    end
+
+    -- The output location for a notebook export in Amazon SageMaker Unified Studio.
+    record OutputLocation
+        -- The Amazon Simple Storage Service destination for the notebook export.
+        s3: S3Destination
+    end
+
+    enum NotebookExportStatus
+        "IN_PROGRESS"
+        "SUCCEEDED"
+        "FAILED"
+    end
+
+    record GetNotebookExportOutput
+        -- The identifier of the notebook export.
+        id: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectId: string
+        -- The identifier of the notebook.
+        notebookId: string
+        -- The file format of the notebook export.
+        fileFormat: string
+        -- The status of the notebook export.
+        status: string
+        -- The output location of the exported notebook in Amazon Simple Storage Service.
+        outputLocation: OutputLocation
+        -- The error details if the notebook export failed.
+        error: NotebookExportError
+        -- The timestamp of when the notebook export completed.
+        completedAt: number
+        -- The timestamp of when the notebook export was started.
+        createdAt: number
+        -- The identifier of the user who started the notebook export.
+        createdBy: string
+    end
+
+    record StartNotebookExportInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which to export the notebook.
+        domainIdentifier: string
+        -- The identifier of the notebook to export.
+        notebookIdentifier: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectIdentifier: string
+        -- The file format for the notebook export. Valid values are PDF and IPYNB.
+        fileFormat: string
+        -- A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.
+        clientToken: string
+    end
+
+    record StartNotebookExportOutput
+        -- The identifier of the notebook export.
+        id: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The identifier of the project that owns the notebook.
+        owningProjectId: string
+        -- The identifier of the notebook.
+        notebookId: string
+        -- The file format of the notebook export.
+        fileFormat: string
+        -- The status of the notebook export.
+        status: string
+        -- The timestamp of when the notebook export was started.
+        createdAt: number
+        -- The identifier of the user who started the notebook export.
+        createdBy: string
     end
 
     record GetNotebookRunInput
-        -- The identifier of the Amazon DataZone domain in which the notebook run exists.
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which the notebook run exists.
         domainIdentifier: string
         -- The identifier of the notebook run.
         identifier: string
     end
 
-    -- The error details of a failed notebook run in Amazon DataZone.
+    -- The error details of a failed notebook run in Amazon SageMaker Unified Studio.
     record NotebookRunError
         -- The error message. The maximum length is 1024 characters.
         message: string
@@ -7943,7 +8275,7 @@ local record M
         "VPC_ONLY"
     end
 
-    -- The network configuration for a notebook run in Amazon DataZone.
+    -- The network configuration for a notebook run in Amazon SageMaker Unified Studio.
     record NetworkConfig
         -- The network access type for the notebook run. Valid values are PUBLIC_INTERNET_ONLY and VPC_ONLY.
         networkAccessType: string
@@ -7965,7 +8297,7 @@ local record M
         "FAILED"
     end
 
-    -- The storage configuration for a notebook run in Amazon DataZone.
+    -- The storage configuration for a notebook run in Amazon SageMaker Unified Studio.
     record StorageConfig
         -- The Amazon Simple Storage Service path for the project storage.
         projectS3Path: string
@@ -7973,7 +8305,7 @@ local record M
         kmsKeyArn: string
     end
 
-    -- The timeout configuration for a notebook run in Amazon DataZone.
+    -- The timeout configuration for a notebook run in Amazon SageMaker Unified Studio.
     record TimeoutConfig
         -- The timeout for the notebook run, in minutes. The minimum value is 60 minutes (1 hour), the maximum value is 1440 minutes (24 hours), and the default value is 720 minutes (12 hours).
         runTimeoutInMinutes: number
@@ -7985,7 +8317,7 @@ local record M
         "WORKFLOW"
     end
 
-    -- The source that triggered a notebook run in Amazon DataZone.
+    -- The source that triggered a notebook run in Amazon SageMaker Unified Studio.
     record TriggerSource
         -- The name of the trigger source.
         name: string
@@ -7994,7 +8326,7 @@ local record M
     record GetNotebookRunOutput
         -- The identifier of the notebook run.
         id: string
-        -- The identifier of the Amazon DataZone domain.
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
         domainId: string
         -- The identifier of the project that owns the notebook run.
         owningProjectId: string
@@ -8039,7 +8371,7 @@ local record M
     end
 
     record ListNotebookRunsInput
-        -- The identifier of the Amazon DataZone domain in which to list notebook runs.
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which to list notebook runs.
         domainIdentifier: string
         -- The identifier of the project that owns the notebook runs.
         owningProjectIdentifier: string
@@ -8057,11 +8389,11 @@ local record M
         nextToken: string
     end
 
-    -- The summary of a notebook run in Amazon DataZone.
+    -- The summary of a notebook run in Amazon SageMaker Unified Studio.
     record NotebookRunSummary
         -- The identifier of the notebook run.
         id: string
-        -- The identifier of the Amazon DataZone domain.
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
         domainId: string
         -- The identifier of the project that owns the notebook run.
         owningProjectId: string
@@ -8095,7 +8427,7 @@ local record M
     end
 
     record StartNotebookRunInput
-        -- The identifier of the Amazon DataZone domain in which the notebook run is started.
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which the notebook run is started.
         domainIdentifier: string
         -- The identifier of the project that owns the notebook run.
         owningProjectIdentifier: string
@@ -8122,7 +8454,7 @@ local record M
     record StartNotebookRunOutput
         -- The identifier of the notebook run.
         id: string
-        -- The identifier of the Amazon DataZone domain.
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
         domainId: string
         -- The identifier of the project that owns the notebook run.
         owningProjectId: string
@@ -8167,7 +8499,7 @@ local record M
     end
 
     record StopNotebookRunInput
-        -- The identifier of the Amazon DataZone domain in which the notebook run is stopped.
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which the notebook run is stopped.
         domainIdentifier: string
         -- The identifier of the notebook run to stop.
         identifier: string
@@ -8178,7 +8510,7 @@ local record M
     record StopNotebookRunOutput
         -- The identifier of the notebook run.
         id: string
-        -- The identifier of the Amazon DataZone domain.
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
         domainId: string
         -- The identifier of the project that owns the notebook run.
         owningProjectId: string
@@ -8945,6 +9277,48 @@ local record M
         items: {UserProfileSummary}
         -- When the number of results is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of results, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to SearchUserProfiles to list the next set of results.
         nextToken: string
+    end
+
+    -- The source location for a notebook import in Amazon SageMaker Unified Studio.
+    record SourceLocation
+        -- The Amazon Simple Storage Service URI of the notebook source file.
+        s3: string
+    end
+
+    record StartNotebookImportInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which to import the notebook.
+        domainIdentifier: string
+        -- The identifier of the project that will own the imported notebook.
+        owningProjectIdentifier: string
+        -- The source location of the notebook to import. This specifies the Amazon Simple Storage Service URI of the notebook file.
+        sourceLocation: SourceLocation
+        -- The name of the imported notebook. The name must be between 1 and 256 characters.
+        name: string
+        -- The description of the imported notebook.
+        description: string
+        -- A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.
+        clientToken: string
+    end
+
+    record StartNotebookImportOutput
+        -- The identifier of the imported notebook.
+        notebookId: string
+        -- The status of the notebook import.
+        status: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The identifier of the project that owns the imported notebook.
+        owningProjectId: string
+        -- The name of the imported notebook.
+        name: string
+        -- The description of the imported notebook.
+        description: string
+        -- The source location from which the notebook was imported.
+        sourceLocation: SourceLocation
+        -- The timestamp of when the notebook import was started.
+        createdAt: number
+        -- The identifier of the user who started the notebook import.
+        createdBy: string
     end
 
     record TagResourceInput

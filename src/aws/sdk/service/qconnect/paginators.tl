@@ -274,6 +274,24 @@ function M.items_list_messages(client, input)
     })
 end
 
+--- Returns a page iterator for listModels.
+function M.pages_list_models(client, input)
+    return paginator.pages(client, "listModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelSummaries",
+    })
+end
+
+--- Returns an item iterator for listModels.
+function M.items_list_models(client, input)
+    return paginator.items(client, "listModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "modelSummaries",
+    })
+end
+
 --- Returns a page iterator for listQuickResponses.
 function M.pages_list_quick_responses(client, input)
     return paginator.pages(client, "listQuickResponses", input, {

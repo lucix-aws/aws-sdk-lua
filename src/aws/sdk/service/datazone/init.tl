@@ -48,6 +48,7 @@ local record Client
     createGlossaryTerm: function(Client, types.CreateGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlossaryTermOutput>
     createGroupProfile: function(Client, types.CreateGroupProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupProfileOutput>
     createListingChangeSet: function(Client, types.CreateListingChangeSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateListingChangeSetOutput>
+    createNotebook: function(Client, types.CreateNotebookInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotebookOutput>
     createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
     createProjectMembership: function(Client, types.CreateProjectMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectMembershipOutput>
     createProjectProfile: function(Client, types.CreateProjectProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectProfileOutput>
@@ -75,6 +76,7 @@ local record Client
     deleteGlossary: function(Client, types.DeleteGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlossaryOutput>
     deleteGlossaryTerm: function(Client, types.DeleteGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlossaryTermOutput>
     deleteListing: function(Client, types.DeleteListingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteListingOutput>
+    deleteNotebook: function(Client, types.DeleteNotebookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotebookOutput>
     deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
     deleteProjectMembership: function(Client, types.DeleteProjectMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectMembershipOutput>
     deleteProjectProfile: function(Client, types.DeleteProjectProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectProfileOutput>
@@ -112,6 +114,8 @@ local record Client
     getLineageNode: function(Client, types.GetLineageNodeInput, ? base_client.InvokeOptions): async.Operation<types.GetLineageNodeOutput>
     getListing: function(Client, types.GetListingInput, ? base_client.InvokeOptions): async.Operation<types.GetListingOutput>
     getMetadataGenerationRun: function(Client, types.GetMetadataGenerationRunInput, ? base_client.InvokeOptions): async.Operation<types.GetMetadataGenerationRunOutput>
+    getNotebook: function(Client, types.GetNotebookInput, ? base_client.InvokeOptions): async.Operation<types.GetNotebookOutput>
+    getNotebookExport: function(Client, types.GetNotebookExportInput, ? base_client.InvokeOptions): async.Operation<types.GetNotebookExportOutput>
     getNotebookRun: function(Client, types.GetNotebookRunInput, ? base_client.InvokeOptions): async.Operation<types.GetNotebookRunOutput>
     getProject: function(Client, types.GetProjectInput, ? base_client.InvokeOptions): async.Operation<types.GetProjectOutput>
     getProjectProfile: function(Client, types.GetProjectProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetProjectProfileOutput>
@@ -144,6 +148,7 @@ local record Client
     listLineageNodeHistory: function(Client, types.ListLineageNodeHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListLineageNodeHistoryOutput>
     listMetadataGenerationRuns: function(Client, types.ListMetadataGenerationRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetadataGenerationRunsOutput>
     listNotebookRuns: function(Client, types.ListNotebookRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotebookRunsOutput>
+    listNotebooks: function(Client, types.ListNotebooksInput, ? base_client.InvokeOptions): async.Operation<types.ListNotebooksOutput>
     listNotifications: function(Client, types.ListNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationsOutput>
     listPolicyGrants: function(Client, types.ListPolicyGrantsInput, ? base_client.InvokeOptions): async.Operation<types.ListPolicyGrantsOutput>
     listProjectMemberships: function(Client, types.ListProjectMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectMembershipsOutput>
@@ -173,6 +178,8 @@ local record Client
     searchUserProfiles: function(Client, types.SearchUserProfilesInput, ? base_client.InvokeOptions): async.Operation<types.SearchUserProfilesOutput>
     startDataSourceRun: function(Client, types.StartDataSourceRunInput, ? base_client.InvokeOptions): async.Operation<types.StartDataSourceRunOutput>
     startMetadataGenerationRun: function(Client, types.StartMetadataGenerationRunInput, ? base_client.InvokeOptions): async.Operation<types.StartMetadataGenerationRunOutput>
+    startNotebookExport: function(Client, types.StartNotebookExportInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookExportOutput>
+    startNotebookImport: function(Client, types.StartNotebookImportInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookImportOutput>
     startNotebookRun: function(Client, types.StartNotebookRunInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookRunOutput>
     stopNotebookRun: function(Client, types.StopNotebookRunInput, ? base_client.InvokeOptions): async.Operation<types.StopNotebookRunOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -190,6 +197,7 @@ local record Client
     updateGlossary: function(Client, types.UpdateGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlossaryOutput>
     updateGlossaryTerm: function(Client, types.UpdateGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlossaryTermOutput>
     updateGroupProfile: function(Client, types.UpdateGroupProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupProfileOutput>
+    updateNotebook: function(Client, types.UpdateNotebookInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotebookOutput>
     updateProject: function(Client, types.UpdateProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
     updateProjectProfile: function(Client, types.UpdateProjectProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectProfileOutput>
     updateRootDomainUnitOwner: function(Client, types.UpdateRootDomainUnitOwnerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRootDomainUnitOwnerOutput>
@@ -362,6 +370,10 @@ function C:createListingChangeSet(input: types.CreateListingChangeSetInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateListingChangeSet as schema.OperationSchema, input, options) as async.Operation<types.CreateListingChangeSetOutput>
 end
 
+function C:createNotebook(input: types.CreateNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotebook as schema.OperationSchema, input, options) as async.Operation<types.CreateNotebookOutput>
+end
+
 function C:createProject(input: types.CreateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
@@ -468,6 +480,10 @@ end
 
 function C:deleteListing(input: types.DeleteListingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteListingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteListing as schema.OperationSchema, input, options) as async.Operation<types.DeleteListingOutput>
+end
+
+function C:deleteNotebook(input: types.DeleteNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotebook as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotebookOutput>
 end
 
 function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
@@ -618,6 +634,14 @@ function C:getMetadataGenerationRun(input: types.GetMetadataGenerationRunInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMetadataGenerationRun as schema.OperationSchema, input, options) as async.Operation<types.GetMetadataGenerationRunOutput>
 end
 
+function C:getNotebook(input: types.GetNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotebook as schema.OperationSchema, input, options) as async.Operation<types.GetNotebookOutput>
+end
+
+function C:getNotebookExport(input: types.GetNotebookExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotebookExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotebookExport as schema.OperationSchema, input, options) as async.Operation<types.GetNotebookExportOutput>
+end
+
 function C:getNotebookRun(input: types.GetNotebookRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetNotebookRunOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetNotebookRun as schema.OperationSchema, input, options) as async.Operation<types.GetNotebookRunOutput>
 end
@@ -746,6 +770,10 @@ function C:listNotebookRuns(input: types.ListNotebookRunsInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotebookRuns as schema.OperationSchema, input, options) as async.Operation<types.ListNotebookRunsOutput>
 end
 
+function C:listNotebooks(input: types.ListNotebooksInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotebooksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotebooks as schema.OperationSchema, input, options) as async.Operation<types.ListNotebooksOutput>
+end
+
 function C:listNotifications(input: types.ListNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotifications as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationsOutput>
 end
@@ -862,6 +890,14 @@ function C:startMetadataGenerationRun(input: types.StartMetadataGenerationRunInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMetadataGenerationRun as schema.OperationSchema, input, options) as async.Operation<types.StartMetadataGenerationRunOutput>
 end
 
+function C:startNotebookExport(input: types.StartNotebookExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartNotebookExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNotebookExport as schema.OperationSchema, input, options) as async.Operation<types.StartNotebookExportOutput>
+end
+
+function C:startNotebookImport(input: types.StartNotebookImportInput, options?: base_client.InvokeOptions): async.Operation<types.StartNotebookImportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNotebookImport as schema.OperationSchema, input, options) as async.Operation<types.StartNotebookImportOutput>
+end
+
 function C:startNotebookRun(input: types.StartNotebookRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartNotebookRunOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNotebookRun as schema.OperationSchema, input, options) as async.Operation<types.StartNotebookRunOutput>
 end
@@ -928,6 +964,10 @@ end
 
 function C:updateGroupProfile(input: types.UpdateGroupProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGroupProfileOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGroupProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateGroupProfileOutput>
+end
+
+function C:updateNotebook(input: types.UpdateNotebookInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotebookOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateNotebook as schema.OperationSchema, input, options) as async.Operation<types.UpdateNotebookOutput>
 end
 
 function C:updateProject(input: types.UpdateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>

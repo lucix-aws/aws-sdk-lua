@@ -81,6 +81,7 @@ local record Client
     listMessages: function(Client, types.ListMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListMessagesOutput>
     listMessageTemplates: function(Client, types.ListMessageTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListMessageTemplatesOutput>
     listMessageTemplateVersions: function(Client, types.ListMessageTemplateVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListMessageTemplateVersionsOutput>
+    listModels: function(Client, types.ListModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListModelsOutput>
     listQuickResponses: function(Client, types.ListQuickResponsesInput, ? base_client.InvokeOptions): async.Operation<types.ListQuickResponsesOutput>
     listSpans: function(Client, types.ListSpansInput, ? base_client.InvokeOptions): async.Operation<types.ListSpansOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
@@ -405,6 +406,10 @@ end
 
 function C:listMessageTemplateVersions(input: types.ListMessageTemplateVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMessageTemplateVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMessageTemplateVersions as schema.OperationSchema, input, options) as async.Operation<types.ListMessageTemplateVersionsOutput>
+end
+
+function C:listModels(input: types.ListModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListModels as schema.OperationSchema, input, options) as async.Operation<types.ListModelsOutput>
 end
 
 function C:listQuickResponses(input: types.ListQuickResponsesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQuickResponsesOutput>

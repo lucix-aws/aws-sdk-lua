@@ -18762,6 +18762,12 @@ M.GetCatalogsInput = schema.new({
             name = "IncludeRoot",
             target_id = prelude.Boolean.id,
         }),
+        HasDatabases = schema.new({
+            id = id.from(_N, "GetCatalogsInput", "HasDatabases"),
+            type = "boolean",
+            name = "HasDatabases",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 

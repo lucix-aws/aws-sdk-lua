@@ -9321,6 +9321,12 @@ M.CreateTrustStoreInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        UseClientCertificateOCSPEndpoint = schema.new({
+            id = id.from(_N, "CreateTrustStoreInput", "UseClientCertificateOCSPEndpoint"),
+            type = "boolean",
+            name = "UseClientCertificateOCSPEndpoint",
+            target_id = prelude.Boolean.id,
+        }),
         Tags = schema.new({
             id = id.from(_N, "CreateTrustStoreInput", "Tags"),
             type = "structure",
@@ -9376,6 +9382,12 @@ M.TrustStore = schema.new({
             type = "string",
             name = "Reason",
             target_id = prelude.String.id,
+        }),
+        UseClientCertificateOCSPEndpoint = schema.new({
+            id = id.from(_N, "TrustStore", "UseClientCertificateOCSPEndpoint"),
+            type = "boolean",
+            name = "UseClientCertificateOCSPEndpoint",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -18312,8 +18324,16 @@ M.UpdateTrustStoreInput = schema.new({
             target_id = id.from(_N, "CaCertificatesBundleSource"),
             target = M.CaCertificatesBundleSource,
             traits = {
-                [traits.REQUIRED] = {},
                 [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        UseClientCertificateOCSPEndpoint = schema.new({
+            id = id.from(_N, "UpdateTrustStoreInput", "UseClientCertificateOCSPEndpoint"),
+            type = "boolean",
+            name = "UseClientCertificateOCSPEndpoint",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "UseClientCertificateOCSPEndpoint" },
             },
         }),
         IfMatch = schema.new({

@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listAdvancedPromptOptimizationJobs.
+function M.pages_list_advanced_prompt_optimization_jobs(client, input)
+    return paginator.pages(client, "listAdvancedPromptOptimizationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobSummaries",
+    })
+end
+
+--- Returns an item iterator for listAdvancedPromptOptimizationJobs.
+function M.items_list_advanced_prompt_optimization_jobs(client, input)
+    return paginator.items(client, "listAdvancedPromptOptimizationJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "jobSummaries",
+    })
+end
+
 --- Returns a page iterator for listAutomatedReasoningPolicies.
 function M.pages_list_automated_reasoning_policies(client, input)
     return paginator.pages(client, "listAutomatedReasoningPolicies", input, {

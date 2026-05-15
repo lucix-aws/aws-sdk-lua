@@ -185,6 +185,11 @@ local record M
         "TWINMAKER"
     end
 
+    enum IPAddressType
+        "IPv4"
+        "DualStack"
+    end
+
     -- The configuration settings for in-bound network access to your workspace. When this is configured, only listed IP addresses and VPC endpoints will be able to access your workspace. Standard Grafana authentication and authorization are still required. Access is granted to a caller that is in either the IP address list or the VPC endpoint list - they do not need to be in both. If this is not configured, or is removed, then all IP addresses and VPC endpoints are allowed. Standard Grafana authentication and authorization are still required. While both prefixListIds and vpceIds are required, you can pass in an empty array of strings for either parameter if you do not want to allow any of that type. If both are passed as empty arrays, no traffic is allowed to the workspace, because only explicitly allowed connections are accepted.
     record NetworkAccessConfiguration
         -- An array of prefix list IDs. A prefix list is a list of CIDR ranges of IP addresses. The IP addresses specified are allowed to access your workspace. If the list is not included in the configuration (passed an empty array) then no IP addresses are allowed to access the workspace. You create a prefix list using the Amazon VPC console. Prefix list IDs have the format pl-1a2b3c4d . For more information about prefix lists, see Group CIDR blocks using managed prefix listsin the Amazon Virtual Private Cloud User Guide.
@@ -278,6 +283,8 @@ local record M
         networkAccessControl: NetworkAccessConfiguration
         -- The token that ties this workspace to a Grafana Labs account. For more information, see Link your account with Grafana Labs.
         grafanaToken: string
+        -- The type of IP addresses supported for connection to the workspace. Valid values are IPv4 and DualStack.
+        ipAddressType: string
         -- The ID or ARN of the Key Management Service key used for encrypting workspace data.
         kmsKeyId: string
     end
@@ -714,6 +721,8 @@ local record M
         networkAccessControl: NetworkAccessConfiguration
         -- Specifies the version of Grafana to support in the new workspace. If not specified, defaults to the latest version (for example, 10.4). To get a list of supported versions, use the ListVersions operation.
         grafanaVersion: string
+        -- Specifies whether the workspace supports IPv4 only, or IPv4 and IPv6. Valid values are IPv4 and DualStack. For more information about IP address types, see Network access control.
+        ipAddressType: string
         -- The ID or ARN of the Key Management Service key to use for encrypting workspace data.
         kmsKeyId: string
     end
@@ -818,6 +827,8 @@ local record M
         networkAccessControl: NetworkAccessConfiguration
         -- Whether to remove the network access configuration from the workspace. Setting this to true and providing a networkAccessControl to set will return an error. If you remove this configuration by setting this to true, then all IP addresses and VPC endpoints will be allowed. Standard Grafana authentication and authorization will still be required.
         removeNetworkAccessConfiguration: boolean
+        -- Specifies whether the workspace supports IPv4 only, or IPv4 and IPv6. Valid values are IPv4 and DualStack. For more information about IP address types, see Network access control.
+        ipAddressType: string
     end
 
     record UpdateWorkspaceOutput

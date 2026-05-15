@@ -9,9 +9,19 @@ local _N = "com.amazonaws.bedrock"
 
 local M: {string:any} = {}
 
-M.AutomatedReasoningPolicySummaries = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicySummary })
+M.AdvancedPromptOptimizationJobIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.BatchDeleteAdvancedPromptOptimizationJobErrors = schema.new({ type = "list", list_member = M.BatchDeleteAdvancedPromptOptimizationJobError })
+
+M.BatchDeleteAdvancedPromptOptimizationJobItems = schema.new({ type = "list", list_member = M.BatchDeleteAdvancedPromptOptimizationJobItem })
 
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ModelConfigurations = schema.new({ type = "list", list_member = M.ModelConfiguration })
+
+M.AdvancedPromptOptimizationJobSummaries = schema.new({ type = "list", list_member = M.AdvancedPromptOptimizationJobSummary })
+
+M.AutomatedReasoningPolicySummaries = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicySummary })
 
 M.AutomatedReasoningPolicyAnnotationList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyAnnotation })
 
@@ -133,6 +143,8 @@ M.ModelCustomizationList = schema.new({ type = "list", list_member = prelude.Str
 
 M.InferenceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AdditionalModelRequestFields = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
 M.AutomatedReasoningPolicyDefinitionTypeNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AutomatedReasoningPolicyDefinitionTypeValuePairList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDefinitionTypeValuePair })
@@ -174,6 +186,8 @@ M.EvaluationBedrockModelIdentifiers = schema.new({ type = "list", list_member = 
 M.EvaluationBedrockKnowledgeBaseIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
 M.EvaluatorModelIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AutomatedReasoningPolicyDefinitionTypeValueList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyDefinitionTypeValue })
 
@@ -236,8 +250,6 @@ M.RatingScale = schema.new({ type = "list", list_member = M.RatingScaleItem })
 M.ExternalSources = schema.new({ type = "list", list_member = M.ExternalSource })
 
 M.AutomatedReasoningPolicyLineNumberList = schema.new({ type = "list", list_member = prelude.Integer })
-
-M.AdditionalModelRequestFields = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
 
 M.RetrievalFilterList = schema.new({ type = "list", list_member = M.RetrievalFilter })
 
@@ -435,6 +447,696 @@ M.AccountEnforcedGuardrailOutputConfiguration = schema.new({
     },
 })
 
+M.AdvancedPromptOptimizationInputConfig = schema.new({
+    id = id.from(_N, "AdvancedPromptOptimizationInputConfig"),
+    type = "structure",
+    members = {
+        s3Uri = schema.new({
+            id = id.from(_N, "AdvancedPromptOptimizationInputConfig", "s3Uri"),
+            type = "string",
+            name = "s3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteAdvancedPromptOptimizationJobInput = schema.new({
+    id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobRequest"),
+    type = "structure",
+    members = {
+        jobIdentifiers = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobInput", "jobIdentifiers"),
+            type = "list",
+            name = "jobIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteAdvancedPromptOptimizationJobItem = schema.new({
+    id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobItem"),
+    type = "structure",
+    members = {
+        jobIdentifier = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobItem", "jobIdentifier"),
+            type = "string",
+            name = "jobIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobStatus = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobItem", "jobStatus"),
+            type = "string",
+            name = "jobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteAdvancedPromptOptimizationJobError = schema.new({
+    id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobError"),
+    type = "structure",
+    members = {
+        jobIdentifier = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobError", "jobIdentifier"),
+            type = "string",
+            name = "jobIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        code = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteAdvancedPromptOptimizationJobOutput = schema.new({
+    id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobResponse"),
+    type = "structure",
+    members = {
+        errors = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobOutput", "errors"),
+            type = "list",
+            name = "errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchDeleteAdvancedPromptOptimizationJobError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        advancedPromptOptimizationJobs = schema.new({
+            id = id.from(_N, "BatchDeleteAdvancedPromptOptimizationJobOutput", "advancedPromptOptimizationJobs"),
+            type = "list",
+            name = "advancedPromptOptimizationJobs",
+            target_id = prelude.Document.id,
+            list_member = M.BatchDeleteAdvancedPromptOptimizationJobItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InferenceConfiguration = schema.new({
+    id = id.from(_N, "InferenceConfiguration"),
+    type = "structure",
+    members = {
+        maxTokens = schema.new({
+            id = id.from(_N, "InferenceConfiguration", "maxTokens"),
+            type = "integer",
+            name = "maxTokens",
+            target_id = prelude.Integer.id,
+        }),
+        temperature = schema.new({
+            id = id.from(_N, "InferenceConfiguration", "temperature"),
+            type = "float",
+            name = "temperature",
+            target_id = prelude.Float.id,
+        }),
+        topP = schema.new({
+            id = id.from(_N, "InferenceConfiguration", "topP"),
+            type = "float",
+            name = "topP",
+            target_id = prelude.Float.id,
+        }),
+        stopSequences = schema.new({
+            id = id.from(_N, "InferenceConfiguration", "stopSequences"),
+            type = "list",
+            name = "stopSequences",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ModelConfiguration = schema.new({
+    id = id.from(_N, "ModelConfiguration"),
+    type = "structure",
+    members = {
+        modelId = schema.new({
+            id = id.from(_N, "ModelConfiguration", "modelId"),
+            type = "string",
+            name = "modelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inferenceConfig = schema.new({
+            id = id.from(_N, "ModelConfiguration", "inferenceConfig"),
+            type = "structure",
+            name = "inferenceConfig",
+            target_id = id.from(_N, "InferenceConfiguration"),
+            target = M.InferenceConfiguration,
+        }),
+        additionalModelRequestFields = schema.new({
+            id = id.from(_N, "ModelConfiguration", "additionalModelRequestFields"),
+            type = "map",
+            name = "additionalModelRequestFields",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+    },
+})
+
+M.AdvancedPromptOptimizationOutputConfig = schema.new({
+    id = id.from(_N, "AdvancedPromptOptimizationOutputConfig"),
+    type = "structure",
+    members = {
+        s3Uri = schema.new({
+            id = id.from(_N, "AdvancedPromptOptimizationOutputConfig", "s3Uri"),
+            type = "string",
+            name = "s3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "Tag", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "Tag", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAdvancedPromptOptimizationJobInput = schema.new({
+    id = id.from(_N, "CreateAdvancedPromptOptimizationJobRequest"),
+    type = "structure",
+    members = {
+        jobName = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobDescription = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "jobDescription"),
+            type = "string",
+            name = "jobDescription",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        inputConfig = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "inputConfig"),
+            type = "structure",
+            name = "inputConfig",
+            target_id = id.from(_N, "AdvancedPromptOptimizationInputConfig"),
+            target = M.AdvancedPromptOptimizationInputConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outputConfig = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "outputConfig"),
+            type = "structure",
+            name = "outputConfig",
+            target_id = id.from(_N, "AdvancedPromptOptimizationOutputConfig"),
+            target = M.AdvancedPromptOptimizationOutputConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "tags"),
+            type = "list",
+            name = "tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        modelConfigurations = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobInput", "modelConfigurations"),
+            type = "list",
+            name = "modelConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ModelConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAdvancedPromptOptimizationJobOutput = schema.new({
+    id = id.from(_N, "CreateAdvancedPromptOptimizationJobResponse"),
+    type = "structure",
+    members = {
+        jobArn = schema.new({
+            id = id.from(_N, "CreateAdvancedPromptOptimizationJobOutput", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TooManyTagsException = schema.new({
+    id = id.from(_N, "TooManyTagsException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TooManyTagsException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        resourceName = schema.new({
+            id = id.from(_N, "TooManyTagsException", "resourceName"),
+            type = "string",
+            name = "resourceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAdvancedPromptOptimizationJobInput = schema.new({
+    id = id.from(_N, "GetAdvancedPromptOptimizationJobRequest"),
+    type = "structure",
+    members = {
+        jobIdentifier = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobInput", "jobIdentifier"),
+            type = "string",
+            name = "jobIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAdvancedPromptOptimizationJobOutput = schema.new({
+    id = id.from(_N, "GetAdvancedPromptOptimizationJobResponse"),
+    type = "structure",
+    members = {
+        jobArn = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobName = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobDescription = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "jobDescription"),
+            type = "string",
+            name = "jobDescription",
+            target_id = prelude.String.id,
+        }),
+        jobStatus = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "jobStatus"),
+            type = "string",
+            name = "jobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inputConfig = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "inputConfig"),
+            type = "structure",
+            name = "inputConfig",
+            target_id = id.from(_N, "AdvancedPromptOptimizationInputConfig"),
+            target = M.AdvancedPromptOptimizationInputConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outputConfig = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "outputConfig"),
+            type = "structure",
+            name = "outputConfig",
+            target_id = id.from(_N, "AdvancedPromptOptimizationOutputConfig"),
+            target = M.AdvancedPromptOptimizationOutputConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        failureMessage = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "failureMessage"),
+            type = "string",
+            name = "failureMessage",
+            target_id = prelude.String.id,
+        }),
+        modelConfigurations = schema.new({
+            id = id.from(_N, "GetAdvancedPromptOptimizationJobOutput", "modelConfigurations"),
+            type = "list",
+            name = "modelConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ModelConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAdvancedPromptOptimizationJobsInput = schema.new({
+    id = id.from(_N, "ListAdvancedPromptOptimizationJobsRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAdvancedPromptOptimizationJobsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAdvancedPromptOptimizationJobsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        sortBy = schema.new({
+            id = id.from(_N, "ListAdvancedPromptOptimizationJobsInput", "sortBy"),
+            type = "string",
+            name = "sortBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "sortBy" },
+            },
+        }),
+        sortOrder = schema.new({
+            id = id.from(_N, "ListAdvancedPromptOptimizationJobsInput", "sortOrder"),
+            type = "string",
+            name = "sortOrder",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "sortOrder" },
+            },
+        }),
+    },
+})
+
+M.AdvancedPromptOptimizationJobSummary = schema.new({
+    id = id.from(_N, "AdvancedPromptOptimizationJobSummary"),
+    type = "structure",
+    members = {
+        jobArn = schema.new({
+            id = id.from(_N, "AdvancedPromptOptimizationJobSummary", "jobArn"),
+            type = "string",
+            name = "jobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobName = schema.new({
+            id = id.from(_N, "AdvancedPromptOptimizationJobSummary", "jobName"),
+            type = "string",
+            name = "jobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jobStatus = schema.new({
+            id = id.from(_N, "AdvancedPromptOptimizationJobSummary", "jobStatus"),
+            type = "string",
+            name = "jobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "AdvancedPromptOptimizationJobSummary", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastModifiedTime = schema.new({
+            id = id.from(_N, "AdvancedPromptOptimizationJobSummary", "lastModifiedTime"),
+            type = "timestamp",
+            name = "lastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListAdvancedPromptOptimizationJobsOutput = schema.new({
+    id = id.from(_N, "ListAdvancedPromptOptimizationJobsResponse"),
+    type = "structure",
+    members = {
+        jobSummaries = schema.new({
+            id = id.from(_N, "ListAdvancedPromptOptimizationJobsOutput", "jobSummaries"),
+            type = "list",
+            name = "jobSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.AdvancedPromptOptimizationJobSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAdvancedPromptOptimizationJobsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopAdvancedPromptOptimizationJobInput = schema.new({
+    id = id.from(_N, "StopAdvancedPromptOptimizationJobRequest"),
+    type = "structure",
+    members = {
+        jobIdentifier = schema.new({
+            id = id.from(_N, "StopAdvancedPromptOptimizationJobInput", "jobIdentifier"),
+            type = "string",
+            name = "jobIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.StopAdvancedPromptOptimizationJobOutput = schema.new({
+    id = id.from(_N, "StopAdvancedPromptOptimizationJobResponse"),
+    type = "structure",
+})
+
 M.AgreementAvailability = schema.new({
     id = id.from(_N, "AgreementAvailability"),
     type = "structure",
@@ -474,70 +1176,6 @@ M.GetUseCaseForModelAccessOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.InternalServerException = schema.new({
-    id = id.from(_N, "InternalServerException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InternalServerException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ThrottlingException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -593,22 +1231,6 @@ M.CancelAutomatedReasoningPolicyBuildWorkflowInput = schema.new({
 M.CancelAutomatedReasoningPolicyBuildWorkflowOutput = schema.new({
     id = id.from(_N, "CancelAutomatedReasoningPolicyBuildWorkflowResponse"),
     type = "structure",
-})
-
-M.ConflictException = schema.new({
-    id = id.from(_N, "ConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ConflictException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
 })
 
 M.AutomatedReasoningPolicyDefinitionRule = schema.new({
@@ -767,31 +1389,6 @@ M.AutomatedReasoningPolicyDefinition = schema.new({
     },
 })
 
-M.Tag = schema.new({
-    id = id.from(_N, "Tag"),
-    type = "structure",
-    members = {
-        key = schema.new({
-            id = id.from(_N, "Tag", "key"),
-            type = "string",
-            name = "key",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        value = schema.new({
-            id = id.from(_N, "Tag", "value"),
-            type = "string",
-            name = "value",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.CreateAutomatedReasoningPolicyInput = schema.new({
     id = id.from(_N, "CreateAutomatedReasoningPolicyRequest"),
     type = "structure",
@@ -911,44 +1508,6 @@ M.CreateAutomatedReasoningPolicyOutput = schema.new({
             direct_traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.TooManyTagsException = schema.new({
-    id = id.from(_N, "TooManyTagsException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "TooManyTagsException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-        resourceName = schema.new({
-            id = id.from(_N, "TooManyTagsException", "resourceName"),
-            type = "string",
-            name = "resourceName",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -15444,6 +16003,19 @@ M.Service = schema.service({
     },
 })
 
+M.BatchDeleteAdvancedPromptOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "BatchDeleteAdvancedPromptOptimizationJob"),
+    input = M.BatchDeleteAdvancedPromptOptimizationJobInput,
+    output = M.BatchDeleteAdvancedPromptOptimizationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/advanced-prompt-optimization-job/batch-delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
 M.BatchDeleteEvaluationJob = schema.operation({
     id = id.from("com.amazonaws.bedrock", "BatchDeleteEvaluationJob"),
     input = M.BatchDeleteEvaluationJobInput,
@@ -15463,6 +16035,19 @@ M.CancelAutomatedReasoningPolicyBuildWorkflow = schema.operation({
     output = M.CancelAutomatedReasoningPolicyBuildWorkflowOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/cancel" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.CreateAdvancedPromptOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "CreateAdvancedPromptOptimizationJob"),
+    input = M.CreateAdvancedPromptOptimizationJobInput,
+    output = M.CreateAdvancedPromptOptimizationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/advanced-prompt-optimization-jobs" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
             { scheme_id = "smithy.api#httpBearerAuth" },
@@ -15912,6 +16497,19 @@ M.ExportAutomatedReasoningPolicyVersion = schema.operation({
     },
 })
 
+M.GetAdvancedPromptOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAdvancedPromptOptimizationJob"),
+    input = M.GetAdvancedPromptOptimizationJobInput,
+    output = M.GetAdvancedPromptOptimizationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/advanced-prompt-optimization-jobs/{jobIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
 M.GetAutomatedReasoningPolicy = schema.operation({
     id = id.from("com.amazonaws.bedrock", "GetAutomatedReasoningPolicy"),
     input = M.GetAutomatedReasoningPolicyInput,
@@ -16230,6 +16828,19 @@ M.GetUseCaseForModelAccess = schema.operation({
     output = M.GetUseCaseForModelAccessOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/use-case-for-model-access" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.ListAdvancedPromptOptimizationJobs = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "ListAdvancedPromptOptimizationJobs"),
+    input = M.ListAdvancedPromptOptimizationJobsInput,
+    output = M.ListAdvancedPromptOptimizationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/advanced-prompt-optimization-jobs" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
             { scheme_id = "smithy.api#httpBearerAuth" },
@@ -16594,6 +17205,19 @@ M.StartAutomatedReasoningPolicyTestWorkflow = schema.operation({
     output = M.StartAutomatedReasoningPolicyTestWorkflowOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/automated-reasoning-policies/{policyArn}/build-workflows/{buildWorkflowId}/test-workflows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.StopAdvancedPromptOptimizationJob = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "StopAdvancedPromptOptimizationJob"),
+    input = M.StopAdvancedPromptOptimizationJobInput,
+    output = M.StopAdvancedPromptOptimizationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/advanced-prompt-optimization-jobs/{jobIdentifier}/stop" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
             { scheme_id = "smithy.api#httpBearerAuth" },

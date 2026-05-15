@@ -217,6 +217,8 @@ M.MetadataGenerationRuns = schema.new({ type = "list", list_member = M.MetadataG
 
 M.MetadataGenerationRunTypeStats = schema.new({ type = "list", list_member = M.MetadataGenerationRunTypeStat })
 
+M.NotebookSummaryList = schema.new({ type = "list", list_member = M.NotebookSummary })
+
 M.NotebookRunSummaryList = schema.new({ type = "list", list_member = M.NotebookRunSummary })
 
 M.ProjectIds = schema.new({ type = "list", list_member = prelude.String })
@@ -10529,6 +10531,277 @@ M.CreateListingChangeSetOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CreateNotebookInput = schema.new({
+    id = id.from(_N, "CreateNotebookInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        owningProjectIdentifier = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "owningProjectIdentifier"),
+            type = "string",
+            name = "owningProjectIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateNotebookInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PackageConfig = schema.new({
+    id = id.from(_N, "PackageConfig"),
+    type = "structure",
+    members = {
+        packageManager = schema.new({
+            id = id.from(_N, "PackageConfig", "packageManager"),
+            type = "string",
+            name = "packageManager",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "UV" },
+            },
+        }),
+        packageSpecification = schema.new({
+            id = id.from(_N, "PackageConfig", "packageSpecification"),
+            type = "string",
+            name = "packageSpecification",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EnvironmentConfig = schema.new({
+    id = id.from(_N, "EnvironmentConfig"),
+    type = "structure",
+    members = {
+        imageVersion = schema.new({
+            id = id.from(_N, "EnvironmentConfig", "imageVersion"),
+            type = "string",
+            name = "imageVersion",
+            target_id = prelude.String.id,
+        }),
+        packageConfig = schema.new({
+            id = id.from(_N, "EnvironmentConfig", "packageConfig"),
+            type = "structure",
+            name = "packageConfig",
+            target_id = id.from(_N, "PackageConfig"),
+            target = M.PackageConfig,
+        }),
+    },
+})
+
+M.NotebookError = schema.new({
+    id = id.from(_N, "NotebookError"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "NotebookError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateNotebookOutput = schema.new({
+    id = id.from(_N, "CreateNotebookOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cellOrder = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "cellOrder"),
+            type = "list",
+            name = "cellOrder",
+            target_id = prelude.Document.id,
+            list_member = M.CellInformation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedBy = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "updatedBy"),
+            type = "string",
+            name = "updatedBy",
+            target_id = prelude.String.id,
+        }),
+        lockedBy = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "lockedBy"),
+            type = "string",
+            name = "lockedBy",
+            target_id = prelude.String.id,
+        }),
+        lockedAt = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "lockedAt"),
+            type = "timestamp",
+            name = "lockedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        lockExpiresAt = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "lockExpiresAt"),
+            type = "timestamp",
+            name = "lockExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        computeId = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "computeId"),
+            type = "string",
+            name = "computeId",
+            target_id = prelude.String.id,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        environmentConfiguration = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "environmentConfiguration"),
+            type = "structure",
+            name = "environmentConfiguration",
+            target_id = id.from(_N, "EnvironmentConfig"),
+            target = M.EnvironmentConfig,
+        }),
+        error = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "NotebookError"),
+            target = M.NotebookError,
         }),
     },
 })
@@ -24920,45 +25193,900 @@ M.StartMetadataGenerationRunOutput = schema.new({
     },
 })
 
-M.PackageConfig = schema.new({
-    id = id.from(_N, "PackageConfig"),
+M.DeleteNotebookInput = schema.new({
+    id = id.from(_N, "DeleteNotebookInput"),
     type = "structure",
     members = {
-        packageManager = schema.new({
-            id = id.from(_N, "PackageConfig", "packageManager"),
+        domainIdentifier = schema.new({
+            id = id.from(_N, "DeleteNotebookInput", "domainIdentifier"),
             type = "string",
-            name = "packageManager",
+            name = "domainIdentifier",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
-                [traits.DEFAULT] = { value = "UV" },
+                [traits.HTTP_LABEL] = {},
             },
         }),
-        packageSpecification = schema.new({
-            id = id.from(_N, "PackageConfig", "packageSpecification"),
+        identifier = schema.new({
+            id = id.from(_N, "DeleteNotebookInput", "identifier"),
             type = "string",
-            name = "packageSpecification",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteNotebookOutput = schema.new({
+    id = id.from(_N, "DeleteNotebookOutput"),
+    type = "structure",
+})
+
+M.GetNotebookInput = schema.new({
+    id = id.from(_N, "GetNotebookInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "GetNotebookInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "GetNotebookInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetNotebookOutput = schema.new({
+    id = id.from(_N, "GetNotebookOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cellOrder = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "cellOrder"),
+            type = "list",
+            name = "cellOrder",
+            target_id = prelude.Document.id,
+            list_member = M.CellInformation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedBy = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "updatedBy"),
+            type = "string",
+            name = "updatedBy",
+            target_id = prelude.String.id,
+        }),
+        lockedBy = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "lockedBy"),
+            type = "string",
+            name = "lockedBy",
+            target_id = prelude.String.id,
+        }),
+        lockedAt = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "lockedAt"),
+            type = "timestamp",
+            name = "lockedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        lockExpiresAt = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "lockExpiresAt"),
+            type = "timestamp",
+            name = "lockExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        computeId = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "computeId"),
+            type = "string",
+            name = "computeId",
+            target_id = prelude.String.id,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        environmentConfiguration = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "environmentConfiguration"),
+            type = "structure",
+            name = "environmentConfiguration",
+            target_id = id.from(_N, "EnvironmentConfig"),
+            target = M.EnvironmentConfig,
+        }),
+        error = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "NotebookError"),
+            target = M.NotebookError,
+        }),
+    },
+})
+
+M.ListNotebooksInput = schema.new({
+    id = id.from(_N, "ListNotebooksInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        owningProjectIdentifier = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "owningProjectIdentifier"),
+            type = "string",
+            name = "owningProjectIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "owningProjectIdentifier" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        sortOrder = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "sortOrder"),
+            type = "string",
+            name = "sortOrder",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "sortOrder" },
+            },
+        }),
+        sortBy = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "sortBy"),
+            type = "string",
+            name = "sortBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "sortBy" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotebooksInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.NotebookSummary = schema.new({
+    id = id.from(_N, "NotebookSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "NotebookSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "NotebookSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "NotebookSummary", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "NotebookSummary", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "NotebookSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "NotebookSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "NotebookSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "NotebookSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "NotebookSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedBy = schema.new({
+            id = id.from(_N, "NotebookSummary", "updatedBy"),
+            type = "string",
+            name = "updatedBy",
             target_id = prelude.String.id,
         }),
     },
 })
 
-M.EnvironmentConfig = schema.new({
-    id = id.from(_N, "EnvironmentConfig"),
+M.ListNotebooksOutput = schema.new({
+    id = id.from(_N, "ListNotebooksOutput"),
     type = "structure",
     members = {
-        imageVersion = schema.new({
-            id = id.from(_N, "EnvironmentConfig", "imageVersion"),
+        items = schema.new({
+            id = id.from(_N, "ListNotebooksOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.NotebookSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListNotebooksOutput", "nextToken"),
             type = "string",
-            name = "imageVersion",
+            name = "nextToken",
             target_id = prelude.String.id,
         }),
-        packageConfig = schema.new({
-            id = id.from(_N, "EnvironmentConfig", "packageConfig"),
+    },
+})
+
+M.UpdateNotebookInput = schema.new({
+    id = id.from(_N, "UpdateNotebookInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        cellOrder = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "cellOrder"),
+            type = "list",
+            name = "cellOrder",
+            target_id = prelude.Document.id,
+            list_member = M.CellInformation,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        environmentConfiguration = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "environmentConfiguration"),
             type = "structure",
-            name = "packageConfig",
-            target_id = id.from(_N, "PackageConfig"),
-            target = M.PackageConfig,
+            name = "environmentConfiguration",
+            target_id = id.from(_N, "EnvironmentConfig"),
+            target = M.EnvironmentConfig,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateNotebookInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateNotebookOutput = schema.new({
+    id = id.from(_N, "UpdateNotebookOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cellOrder = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "cellOrder"),
+            type = "list",
+            name = "cellOrder",
+            target_id = prelude.Document.id,
+            list_member = M.CellInformation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedBy = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "updatedBy"),
+            type = "string",
+            name = "updatedBy",
+            target_id = prelude.String.id,
+        }),
+        lockedBy = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "lockedBy"),
+            type = "string",
+            name = "lockedBy",
+            target_id = prelude.String.id,
+        }),
+        lockedAt = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "lockedAt"),
+            type = "timestamp",
+            name = "lockedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        lockExpiresAt = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "lockExpiresAt"),
+            type = "timestamp",
+            name = "lockExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        computeId = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "computeId"),
+            type = "string",
+            name = "computeId",
+            target_id = prelude.String.id,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        environmentConfiguration = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "environmentConfiguration"),
+            type = "structure",
+            name = "environmentConfiguration",
+            target_id = id.from(_N, "EnvironmentConfig"),
+            target = M.EnvironmentConfig,
+        }),
+        error = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "NotebookError"),
+            target = M.NotebookError,
+        }),
+    },
+})
+
+M.GetNotebookExportInput = schema.new({
+    id = id.from(_N, "GetNotebookExportInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "GetNotebookExportInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "GetNotebookExportInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.NotebookExportError = schema.new({
+    id = id.from(_N, "NotebookExportError"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "NotebookExportError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3Destination = schema.new({
+    id = id.from(_N, "S3Destination"),
+    type = "structure",
+    members = {
+        uri = schema.new({
+            id = id.from(_N, "S3Destination", "uri"),
+            type = "string",
+            name = "uri",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OutputLocation = schema.new({
+    id = id.from(_N, "OutputLocation"),
+    type = "union",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "OutputLocation", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "S3Destination"),
+            target = M.S3Destination,
+        }),
+    },
+})
+
+M.GetNotebookExportOutput = schema.new({
+    id = id.from(_N, "GetNotebookExportOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notebookId = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "notebookId"),
+            type = "string",
+            name = "notebookId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileFormat = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "fileFormat"),
+            type = "string",
+            name = "fileFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outputLocation = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "outputLocation"),
+            type = "union",
+            name = "outputLocation",
+            target_id = id.from(_N, "OutputLocation"),
+            target = M.OutputLocation,
+        }),
+        error = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "NotebookExportError"),
+            target = M.NotebookExportError,
+        }),
+        completedAt = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "completedAt"),
+            type = "timestamp",
+            name = "completedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "GetNotebookExportOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartNotebookExportInput = schema.new({
+    id = id.from(_N, "StartNotebookExportInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "StartNotebookExportInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        notebookIdentifier = schema.new({
+            id = id.from(_N, "StartNotebookExportInput", "notebookIdentifier"),
+            type = "string",
+            name = "notebookIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        owningProjectIdentifier = schema.new({
+            id = id.from(_N, "StartNotebookExportInput", "owningProjectIdentifier"),
+            type = "string",
+            name = "owningProjectIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileFormat = schema.new({
+            id = id.from(_N, "StartNotebookExportInput", "fileFormat"),
+            type = "string",
+            name = "fileFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartNotebookExportInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartNotebookExportOutput = schema.new({
+    id = id.from(_N, "StartNotebookExportOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        notebookId = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "notebookId"),
+            type = "string",
+            name = "notebookId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileFormat = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "fileFormat"),
+            type = "string",
+            name = "fileFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "StartNotebookExportOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -28199,6 +29327,141 @@ M.SearchUserProfilesOutput = schema.new({
             id = id.from(_N, "SearchUserProfilesOutput", "nextToken"),
             type = "string",
             name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SourceLocation = schema.new({
+    id = id.from(_N, "SourceLocation"),
+    type = "union",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "SourceLocation", "s3"),
+            type = "string",
+            name = "s3",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartNotebookImportInput = schema.new({
+    id = id.from(_N, "StartNotebookImportInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "StartNotebookImportInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        owningProjectIdentifier = schema.new({
+            id = id.from(_N, "StartNotebookImportInput", "owningProjectIdentifier"),
+            type = "string",
+            name = "owningProjectIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceLocation = schema.new({
+            id = id.from(_N, "StartNotebookImportInput", "sourceLocation"),
+            type = "union",
+            name = "sourceLocation",
+            target_id = id.from(_N, "SourceLocation"),
+            target = M.SourceLocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "StartNotebookImportInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "StartNotebookImportInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartNotebookImportInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartNotebookImportOutput = schema.new({
+    id = id.from(_N, "StartNotebookImportOutput"),
+    type = "structure",
+    members = {
+        notebookId = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "notebookId"),
+            type = "string",
+            name = "notebookId",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        sourceLocation = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "sourceLocation"),
+            type = "union",
+            name = "sourceLocation",
+            target_id = id.from(_N, "SourceLocation"),
+            target = M.SourceLocation,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "StartNotebookImportOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
             target_id = prelude.String.id,
         }),
     },
@@ -31562,6 +32825,18 @@ M.CreateListingChangeSet = schema.operation({
     },
 })
 
+M.CreateNotebook = schema.operation({
+    id = id.from("com.amazonaws.datazone", "CreateNotebook"),
+    input = M.CreateNotebookInput,
+    output = M.CreateNotebookOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/notebooks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateProject = schema.operation({
     id = id.from("com.amazonaws.datazone", "CreateProject"),
     input = M.CreateProjectInput,
@@ -31880,6 +33155,18 @@ M.DeleteListing = schema.operation({
     output = M.DeleteListingOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/listings/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteNotebook = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteNotebook"),
+    input = M.DeleteNotebookInput,
+    output = M.DeleteNotebookOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/notebooks/{identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -32330,6 +33617,30 @@ M.GetMetadataGenerationRun = schema.operation({
     },
 })
 
+M.GetNotebook = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetNotebook"),
+    input = M.GetNotebookInput,
+    output = M.GetNotebookOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/notebooks/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetNotebookExport = schema.operation({
+    id = id.from("com.amazonaws.datazone", "GetNotebookExport"),
+    input = M.GetNotebookExportInput,
+    output = M.GetNotebookExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/notebook-exports/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetNotebookRun = schema.operation({
     id = id.from("com.amazonaws.datazone", "GetNotebookRun"),
     input = M.GetNotebookRunInput,
@@ -32714,6 +34025,18 @@ M.ListNotebookRuns = schema.operation({
     },
 })
 
+M.ListNotebooks = schema.operation({
+    id = id.from("com.amazonaws.datazone", "ListNotebooks"),
+    input = M.ListNotebooksInput,
+    output = M.ListNotebooksOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/domains/{domainIdentifier}/notebooks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListNotifications = schema.operation({
     id = id.from("com.amazonaws.datazone", "ListNotifications"),
     input = M.ListNotificationsInput,
@@ -33062,6 +34385,30 @@ M.StartMetadataGenerationRun = schema.operation({
     },
 })
 
+M.StartNotebookExport = schema.operation({
+    id = id.from("com.amazonaws.datazone", "StartNotebookExport"),
+    input = M.StartNotebookExportInput,
+    output = M.StartNotebookExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/notebook-exports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNotebookImport = schema.operation({
+    id = id.from("com.amazonaws.datazone", "StartNotebookImport"),
+    input = M.StartNotebookImportInput,
+    output = M.StartNotebookImportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/notebook-imports" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StartNotebookRun = schema.operation({
     id = id.from("com.amazonaws.datazone", "StartNotebookRun"),
     input = M.StartNotebookRunInput,
@@ -33260,6 +34607,18 @@ M.UpdateGroupProfile = schema.operation({
     output = M.UpdateGroupProfileOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v2/domains/{domainIdentifier}/group-profiles/{groupIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateNotebook = schema.operation({
+    id = id.from("com.amazonaws.datazone", "UpdateNotebook"),
+    input = M.UpdateNotebookInput,
+    output = M.UpdateNotebookOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v2/domains/{domainIdentifier}/notebooks/{identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

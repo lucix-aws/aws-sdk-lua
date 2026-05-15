@@ -5309,6 +5309,13 @@ M.NetworkMigrationCodeGenerationSegment = schema.new({
             target_id = prelude.Document.id,
             list_member = M.NetworkMigrationCodeGenerationArtifact,
         }),
+        referencedSegments = schema.new({
+            id = id.from(_N, "NetworkMigrationCodeGenerationSegment", "referencedSegments"),
+            type = "list",
+            name = "referencedSegments",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "NetworkMigrationCodeGenerationSegment", "createdAt"),
             type = "timestamp",

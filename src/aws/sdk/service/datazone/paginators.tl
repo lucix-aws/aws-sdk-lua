@@ -400,6 +400,24 @@ function M.items_list_notebook_runs(client, input)
     })
 end
 
+--- Returns a page iterator for listNotebooks.
+function M.pages_list_notebooks(client, input)
+    return paginator.pages(client, "listNotebooks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listNotebooks.
+function M.items_list_notebooks(client, input)
+    return paginator.items(client, "listNotebooks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listNotifications.
 function M.pages_list_notifications(client, input)
     return paginator.pages(client, "listNotifications", input, {

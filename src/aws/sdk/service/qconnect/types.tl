@@ -1786,6 +1786,57 @@ local record M
         nextToken: string
     end
 
+    enum ModelLifecycle
+        "ACTIVE"
+        "LEGACY"
+    end
+
+    record ListModelsInput
+        -- The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN. The assistant's region determines which models are available.
+        assistantId: string
+        -- The type of the AI Prompt to filter models by. When specified, only models that support the given AI Prompt type are returned.
+        aiPromptType: string
+        -- The lifecycle status of models to filter by. When specified, only models with the given lifecycle status are returned.
+        modelLifecycle: string
+        -- The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.
+        nextToken: string
+        -- The maximum number of results to return per page.
+        maxResults: number
+    end
+
+    enum CrossRegionStatus
+        "NONE"
+        "REGIONAL"
+        "GLOBAL"
+    end
+
+    -- The summary of a model available to an Amazon Q in Connect assistant.
+    record ModelSummary
+        -- The identifier of the model.
+        modelId: string
+        -- The display name of the model.
+        displayName: string
+        -- The cross-region availability status of the model. NONE indicates the model is only available in a single region, REGIONAL indicates the model is available through regional inference, and GLOBAL indicates the model is available through global cross-region inference.
+        crossRegionStatus: string
+        -- Whether the model supports prompt caching.
+        supportsPromptCaching: boolean
+        -- The list of AI Prompt types that the model supports.
+        supportedAIPromptTypes: {string}
+        -- The current lifecycle of the model. ACTIVE indicates the model is recommended for use and LEGACY indicates the model is still usable but is deprecated.
+        modelLifecycle: string
+        -- The timestamp when the model lifecycle will transition from ACTIVE to LEGACY.
+        legacyTimestamp: number
+        -- The timestamp when the model will reach end of life and no longer be available for use.
+        endOfLifeTimestamp: number
+    end
+
+    record ListModelsOutput
+        -- The summaries of the models available to the assistant.
+        modelSummaries: {ModelSummary}
+        -- If there are additional results, this is the token for the next set of results.
+        nextToken: string
+    end
+
     record NotifyRecommendationsReceivedInput
         -- The identifier of the Amazon Q in Connect assistant. Can be either the ID or the ARN. URLs cannot contain the ARN.
         assistantId: string

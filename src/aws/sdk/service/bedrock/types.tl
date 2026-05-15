@@ -77,6 +77,238 @@ local record M
         modelEnforcement: ModelEnforcement
     end
 
+    -- Input data configuration for the advanced prompt optimization job.
+    record AdvancedPromptOptimizationInputConfig
+        -- S3 URI of the input JSONL file.
+        s3Uri: string
+    end
+
+    -- Batch Delete Advanced Prompt Optimization Jobs Request
+    record BatchDeleteAdvancedPromptOptimizationJobInput
+        -- List of advanced prompt optimization job identifiers to delete.
+        jobIdentifiers: {string}
+    end
+
+    enum AdvancedPromptOptimizationJobStatus
+        "InProgress"
+        "Completed"
+        "Failed"
+        "PartiallyCompleted"
+        "Stopping"
+        "Stopped"
+        "Deleting"
+    end
+
+    -- Successfully deleted advanced prompt optimization job.
+    record BatchDeleteAdvancedPromptOptimizationJobItem
+        -- Identifier of the deleted job.
+        jobIdentifier: string
+        -- Status of the deleted job.
+        jobStatus: string
+    end
+
+    -- Batch deletion error for an advanced prompt optimization job.
+    record BatchDeleteAdvancedPromptOptimizationJobError
+        -- Identifier of the job that failed to delete.
+        jobIdentifier: string
+        -- Error code for the deletion failure.
+        code: string
+        -- Error message describing the deletion failure.
+        message: string
+    end
+
+    -- Batch Delete Advanced Prompt Optimization Jobs Response
+    record BatchDeleteAdvancedPromptOptimizationJobOutput
+        -- List of errors encountered during batch deletion.
+        errors: {BatchDeleteAdvancedPromptOptimizationJobError}
+        -- List of successfully deleted advanced prompt optimization jobs.
+        advancedPromptOptimizationJobs: {BatchDeleteAdvancedPromptOptimizationJobItem}
+    end
+
+    -- An internal server error occurred. Retry your request.
+    record InternalServerException
+        message: string
+    end
+
+    -- The number of requests exceeds the limit. Resubmit your request later.
+    record ThrottlingException
+        message: string
+    end
+
+    -- Input validation failed. Check your request parameters and retry the request.
+    record ValidationException
+        message: string
+    end
+
+    -- Error occurred because of a conflict while performing an operation.
+    record ConflictException
+        message: string
+    end
+
+    -- Inference configuration for a model.
+    record InferenceConfiguration
+        -- The maximum number of tokens to generate.
+        maxTokens: number
+        -- The temperature for sampling.
+        temperature: number
+        -- The top-p value for nucleus sampling.
+        topP: number
+        -- Stop sequences that end generation.
+        stopSequences: {string}
+    end
+
+    -- Configuration for a model used in advanced prompt optimization.
+    record ModelConfiguration
+        -- The model ID.
+        modelId: string
+        -- Inference configuration for the model.
+        inferenceConfig: InferenceConfiguration
+        -- Additional model request fields.
+        additionalModelRequestFields: {string : any}
+    end
+
+    -- Output data configuration for the advanced prompt optimization job.
+    record AdvancedPromptOptimizationOutputConfig
+        -- S3 URI prefix for the output location.
+        s3Uri: string
+    end
+
+    -- Definition of the key/value pair for a tag.
+    record Tag
+        -- Key for the tag.
+        key: string
+        -- Value for the tag.
+        value: string
+    end
+
+    -- Create Advanced Prompt Optimization Job Request
+    record CreateAdvancedPromptOptimizationJobInput
+        -- Name of the advanced prompt optimization job.
+        jobName: string
+        -- Description of the advanced prompt optimization job.
+        jobDescription: string
+        -- Idempotency token for the request.
+        clientToken: string
+        -- Input data configuration for the advanced prompt optimization job.
+        inputConfig: AdvancedPromptOptimizationInputConfig
+        -- Output data configuration for the advanced prompt optimization job.
+        outputConfig: AdvancedPromptOptimizationOutputConfig
+        -- KMS key ARN for encrypting output data.
+        encryptionKeyArn: string
+        -- Tags to associate with the job.
+        tags: {Tag}
+        -- Model configurations for advanced prompt optimization.
+        modelConfigurations: {ModelConfiguration}
+    end
+
+    -- Create Advanced Prompt Optimization Job Response
+    record CreateAdvancedPromptOptimizationJobOutput
+        -- ARN of the created advanced prompt optimization job.
+        jobArn: string
+    end
+
+    -- The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.
+    record ResourceNotFoundException
+        message: string
+    end
+
+    -- The number of requests exceeds the service quota. Resubmit your request later.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
+    -- The request contains more tags than can be associated with a resource (50 tags per resource). The maximum number of tags includes both existing tags and those included in your current request.
+    record TooManyTagsException
+        message: string
+        -- The name of the resource with too many tags.
+        resourceName: string
+    end
+
+    -- Get Advanced Prompt Optimization Job Request
+    record GetAdvancedPromptOptimizationJobInput
+        -- ARN or ID of the advanced prompt optimization job.
+        jobIdentifier: string
+    end
+
+    -- Get Advanced Prompt Optimization Job Response
+    record GetAdvancedPromptOptimizationJobOutput
+        -- ARN of the advanced prompt optimization job.
+        jobArn: string
+        -- Name of the advanced prompt optimization job.
+        jobName: string
+        -- Description of the advanced prompt optimization job.
+        jobDescription: string
+        -- Status of the advanced prompt optimization job.
+        jobStatus: string
+        -- Input data configuration for the advanced prompt optimization job.
+        inputConfig: AdvancedPromptOptimizationInputConfig
+        -- Output data configuration for the advanced prompt optimization job.
+        outputConfig: AdvancedPromptOptimizationOutputConfig
+        -- KMS key ARN used for encrypting output data.
+        encryptionKeyArn: string
+        -- Creation time of the advanced prompt optimization job.
+        creationTime: number
+        -- Last modified time of the advanced prompt optimization job.
+        lastModifiedTime: number
+        -- Failure message if the advanced prompt optimization job failed.
+        failureMessage: string
+        -- Model configurations for advanced prompt optimization.
+        modelConfigurations: {ModelConfiguration}
+    end
+
+    enum SortJobsBy
+        "CreationTime"
+    end
+
+    enum SortOrder
+        "Ascending"
+        "Descending"
+    end
+
+    -- List Advanced Prompt Optimization Jobs Request
+    record ListAdvancedPromptOptimizationJobsInput
+        -- Maximum number of results to return.
+        maxResults: number
+        -- Pagination token for the next page of results.
+        nextToken: string
+        -- Field to sort by in the returned list of jobs.
+        sortBy: string
+        -- Sort order for the results.
+        sortOrder: string
+    end
+
+    -- Summary of an advanced prompt optimization job.
+    record AdvancedPromptOptimizationJobSummary
+        -- ARN of the advanced prompt optimization job.
+        jobArn: string
+        -- Name of the advanced prompt optimization job.
+        jobName: string
+        -- Status of the advanced prompt optimization job.
+        jobStatus: string
+        -- Creation time of the advanced prompt optimization job.
+        creationTime: number
+        -- Last modified time of the advanced prompt optimization job.
+        lastModifiedTime: number
+    end
+
+    -- List Advanced Prompt Optimization Jobs Response
+    record ListAdvancedPromptOptimizationJobsOutput
+        -- List of advanced prompt optimization job summaries.
+        jobSummaries: {AdvancedPromptOptimizationJobSummary}
+        -- Pagination token for the next page of results.
+        nextToken: string
+    end
+
+    -- Stop Advanced Prompt Optimization Job Request
+    record StopAdvancedPromptOptimizationJobInput
+        -- ARN or ID of the advanced prompt optimization job to stop.
+        jobIdentifier: string
+    end
+
+    -- Stop Advanced Prompt Optimization Job Response
+    record StopAdvancedPromptOptimizationJobOutput
+    end
+
     enum AgreementStatus
         "AVAILABLE"
         "PENDING"
@@ -100,26 +332,6 @@ local record M
         formData: string
     end
 
-    -- An internal server error occurred. Retry your request.
-    record InternalServerException
-        message: string
-    end
-
-    -- The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.
-    record ResourceNotFoundException
-        message: string
-    end
-
-    -- The number of requests exceeds the limit. Resubmit your request later.
-    record ThrottlingException
-        message: string
-    end
-
-    -- Input validation failed. Check your request parameters and retry the request.
-    record ValidationException
-        message: string
-    end
-
     record PutUseCaseForModelAccessInput
         -- Put customer profile Request.
         formData: string
@@ -136,11 +348,6 @@ local record M
     end
 
     record CancelAutomatedReasoningPolicyBuildWorkflowOutput
-    end
-
-    -- Error occurred because of a conflict while performing an operation.
-    record ConflictException
-        message: string
     end
 
     -- Represents a formal logic rule in an Automated Reasoning policy. For example, rules can be expressed as if-then statements that define logical constraints.
@@ -191,14 +398,6 @@ local record M
         variables: {AutomatedReasoningPolicyDefinitionVariable}
     end
 
-    -- Definition of the key/value pair for a tag.
-    record Tag
-        -- Key for the tag.
-        key: string
-        -- Value for the tag.
-        value: string
-    end
-
     record CreateAutomatedReasoningPolicyInput
         -- A unique name for the Automated Reasoning policy. The name must be between 1 and 63 characters and can contain letters, numbers, hyphens, and underscores.
         name: string
@@ -229,18 +428,6 @@ local record M
         createdAt: number
         -- The timestamp when the policy was last updated.
         updatedAt: number
-    end
-
-    -- The number of requests exceeds the service quota. Resubmit your request later.
-    record ServiceQuotaExceededException
-        message: string
-    end
-
-    -- The request contains more tags than can be associated with a resource (50 tags per resource). The maximum number of tags includes both existing tags and those included in your current request.
-    record TooManyTagsException
-        message: string
-        -- The name of the resource with too many tags.
-        resourceName: string
     end
 
     enum AutomatedReasoningCheckResult
@@ -1724,11 +1911,6 @@ local record M
         "CreationTime"
     end
 
-    enum SortOrder
-        "Ascending"
-        "Descending"
-    end
-
     record ListCustomModelDeploymentsInput
         -- Filters deployments created before the specified date and time.
         createdBefore: number
@@ -2580,10 +2762,6 @@ local record M
     enum EvaluationJobType
         "Human"
         "Automated"
-    end
-
-    enum SortJobsBy
-        "CreationTime"
     end
 
     record ListEvaluationJobsInput

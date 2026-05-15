@@ -19,6 +19,8 @@ M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendatio
 
 M.RecommendationTriggerList = schema.new({ type = "list", list_member = M.RecommendationTrigger })
 
+M.ModelSummaryList = schema.new({ type = "list", list_member = M.ModelSummary })
+
 M.RecommendationIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NotifyRecommendationsReceivedErrorList = schema.new({ type = "list", list_member = M.NotifyRecommendationsReceivedError })
@@ -124,6 +126,8 @@ M.CustomAttributes = schema.new({ type = "map", map_key = prelude.String, map_va
 M.GroupingValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.MessageTemplateAttributeTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIPromptTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AssistantAssociationIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -5383,6 +5387,144 @@ M.ListAssistantsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListAssistantsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListModelsInput = schema.new({
+    id = id.from(_N, "ListModelsRequest"),
+    type = "structure",
+    members = {
+        assistantId = schema.new({
+            id = id.from(_N, "ListModelsInput", "assistantId"),
+            type = "string",
+            name = "assistantId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        aiPromptType = schema.new({
+            id = id.from(_N, "ListModelsInput", "aiPromptType"),
+            type = "string",
+            name = "aiPromptType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "aiPromptType" },
+            },
+        }),
+        modelLifecycle = schema.new({
+            id = id.from(_N, "ListModelsInput", "modelLifecycle"),
+            type = "string",
+            name = "modelLifecycle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "modelLifecycle" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListModelsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListModelsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ModelSummary = schema.new({
+    id = id.from(_N, "ModelSummary"),
+    type = "structure",
+    members = {
+        modelId = schema.new({
+            id = id.from(_N, "ModelSummary", "modelId"),
+            type = "string",
+            name = "modelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "ModelSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        crossRegionStatus = schema.new({
+            id = id.from(_N, "ModelSummary", "crossRegionStatus"),
+            type = "string",
+            name = "crossRegionStatus",
+            target_id = prelude.String.id,
+        }),
+        supportsPromptCaching = schema.new({
+            id = id.from(_N, "ModelSummary", "supportsPromptCaching"),
+            type = "boolean",
+            name = "supportsPromptCaching",
+            target_id = prelude.Boolean.id,
+        }),
+        supportedAIPromptTypes = schema.new({
+            id = id.from(_N, "ModelSummary", "supportedAIPromptTypes"),
+            type = "list",
+            name = "supportedAIPromptTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        modelLifecycle = schema.new({
+            id = id.from(_N, "ModelSummary", "modelLifecycle"),
+            type = "string",
+            name = "modelLifecycle",
+            target_id = prelude.String.id,
+        }),
+        legacyTimestamp = schema.new({
+            id = id.from(_N, "ModelSummary", "legacyTimestamp"),
+            type = "timestamp",
+            name = "legacyTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        endOfLifeTimestamp = schema.new({
+            id = id.from(_N, "ModelSummary", "endOfLifeTimestamp"),
+            type = "timestamp",
+            name = "endOfLifeTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListModelsOutput = schema.new({
+    id = id.from(_N, "ListModelsResponse"),
+    type = "structure",
+    members = {
+        modelSummaries = schema.new({
+            id = id.from(_N, "ListModelsOutput", "modelSummaries"),
+            type = "list",
+            name = "modelSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ModelSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListModelsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -15467,6 +15609,18 @@ M.ListMessageTemplateVersions = schema.operation({
     output = M.ListMessageTemplateVersionsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/knowledgeBases/{knowledgeBaseId}/messageTemplates/{messageTemplateId}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListModels = schema.operation({
+    id = id.from("com.amazonaws.qconnect", "ListModels"),
+    input = M.ListModelsInput,
+    output = M.ListModelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assistants/{assistantId}/models" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

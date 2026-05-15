@@ -799,6 +799,12 @@ M.WorkspaceDescription = schema.new({
             name = "grafanaToken",
             target_id = prelude.String.id,
         }),
+        ipAddressType = schema.new({
+            id = id.from(_N, "WorkspaceDescription", "ipAddressType"),
+            type = "string",
+            name = "ipAddressType",
+            target_id = prelude.String.id,
+        }),
         kmsKeyId = schema.new({
             id = id.from(_N, "WorkspaceDescription", "kmsKeyId"),
             type = "string",
@@ -2283,6 +2289,12 @@ M.CreateWorkspaceInput = schema.new({
             name = "grafanaVersion",
             target_id = prelude.String.id,
         }),
+        ipAddressType = schema.new({
+            id = id.from(_N, "CreateWorkspaceInput", "ipAddressType"),
+            type = "string",
+            name = "ipAddressType",
+            target_id = prelude.String.id,
+        }),
         kmsKeyId = schema.new({
             id = id.from(_N, "CreateWorkspaceInput", "kmsKeyId"),
             type = "string",
@@ -2637,6 +2649,12 @@ M.UpdateWorkspaceInput = schema.new({
             type = "boolean",
             name = "removeNetworkAccessConfiguration",
             target_id = prelude.Boolean.id,
+        }),
+        ipAddressType = schema.new({
+            id = id.from(_N, "UpdateWorkspaceInput", "ipAddressType"),
+            type = "string",
+            name = "ipAddressType",
+            target_id = prelude.String.id,
         }),
     },
 })

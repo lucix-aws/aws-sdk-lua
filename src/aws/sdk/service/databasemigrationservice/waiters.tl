@@ -40,6 +40,276 @@ function M.wait_until_endpoint_deleted(client, input, options)
     }, options)
 end
 
+--- Wait until ExtensionPackAssociated.
+function M.wait_until_extension_pack_associated(client, input, options)
+    return waiter.wait(client, "describeExtensionPackAssociations", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "SUCCESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelAssessed.
+function M.wait_until_metadata_model_assessed(client, input, options)
+    return waiter.wait(client, "describeMetadataModelAssessments", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "SUCCESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelConversionCancelled.
+function M.wait_until_metadata_model_conversion_cancelled(client, input, options)
+    return waiter.wait(client, "describeMetadataModelConversions", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "CANCELED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelConverted.
+function M.wait_until_metadata_model_converted(client, input, options)
+    return waiter.wait(client, "describeMetadataModelConversions", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "SUCCESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelCreated.
+function M.wait_until_metadata_model_created(client, input, options)
+    return waiter.wait(client, "describeMetadataModelCreations", input, {
+        min_delay = 15,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "SUCCESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelCreationCancelled.
+function M.wait_until_metadata_model_creation_cancelled(client, input, options)
+    return waiter.wait(client, "describeMetadataModelCreations", input, {
+        min_delay = 10,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "CANCELED",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelExportedAsScript.
+function M.wait_until_metadata_model_exported_as_script(client, input, options)
+    return waiter.wait(client, "describeMetadataModelExportsAsScript", input, {
+        min_delay = 20,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "SUCCESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelExportedToTarget.
+function M.wait_until_metadata_model_exported_to_target(client, input, options)
+    return waiter.wait(client, "describeMetadataModelExportsToTarget", input, {
+        min_delay = 20,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "SUCCESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until MetadataModelImported.
+function M.wait_until_metadata_model_imported(client, input, options)
+    return waiter.wait(client, "describeMetadataModelImports", input, {
+        min_delay = 60,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "SUCCESS",
+                        comparator = "allStringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "Requests[].Status",
+                        expected = "FAILED",
+                        comparator = "anyStringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until ReplicationInstanceAvailable.
 function M.wait_until_replication_instance_available(client, input, options)
     return waiter.wait(client, "describeReplicationInstances", input, {
