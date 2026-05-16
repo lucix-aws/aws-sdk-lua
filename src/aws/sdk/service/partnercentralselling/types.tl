@@ -861,7 +861,7 @@ local record M
     record ExpectedCustomerSpend
         -- Represents the estimated monthly revenue that the partner expects to earn from the opportunity. This helps in forecasting financial returns.
         Amount: string
-        -- Currency code for the expected customer spend. Supported currencies: USD, EUR
+        -- Indicates the currency in which the revenue estimate is provided. This helps in understanding the financial impact across different markets. Accepted values are USD (US Dollars) and EUR (Euros). If the AWS Partition is aws-eusc (AWS European Sovereign Cloud), the currency code must be EUR.
         CurrencyCode: string
         -- Indicates how frequently the customer is expected to spend the projected amount. Only the value Monthly is allowed for the Frequency field, representing recurring monthly spend.
         Frequency: string
@@ -1918,6 +1918,18 @@ local record M
         "Other"
     end
 
+    enum ExpectedContractDurationTerm
+        "Months"
+    end
+
+    -- The expected duration of a partner's contract with the customer. Used to convert Total Contract Value (TCV) to Monthly Recurring Revenue (MRR) for opportunity dealsizing calculations.
+    record ExpectedContractDuration
+        -- The unit of measurement for the contract duration value. Currently accepts only Months.
+        Term: string
+        -- A String representation of the contract duration as an integer, expressed in the unit defined by Term. Valid values range from 1 to 144.
+        Value: string
+    end
+
     enum SalesActivity
         "Initialized discussions with customer"
         "Customer has shown interest in solution"
@@ -1935,6 +1947,8 @@ local record M
         DeliveryModels: {string}
         -- Represents the estimated amount that the customer is expected to spend on AWS services related to the opportunity. This helps in evaluating the potential financial value of the opportunity for AWS.
         ExpectedCustomerSpend: {ExpectedCustomerSpend}
+        -- Optional. The expected duration of the contract associated with this opportunity. Partners use this value alongside expected customer spend to convert Total Contract Value (TCV) into Monthly Recurring Revenue (MRR).
+        ExpectedContractDuration: ExpectedContractDuration
         -- Specifies the Opportunity's title or name.
         Title: string
         -- Specifies the Amazon Partner Network (APN) program that influenced the Opportunity. APN programs refer to specific partner programs or initiatives that can impact the Opportunity. Valid values: APN Immersion Days | APN Solution Space | ATO (Authority to Operate) | AWS Marketplace Campaign | IS Immersion Day SFID Program | ISV Workload Migration | Migration Acceleration Program | P3 | Partner Launch Initiative | Partner Opportunity Acceleration Funded | The Next Smart | VMware Cloud on AWS | Well-Architected | Windows | Workspaces/AppStream Accelerator Program | WWPS NDPP
@@ -2222,6 +2236,8 @@ local record M
         DeliveryModels: {string}
         -- Provides a summary of the expected customer spend for the project, offering a high-level view of the potential financial impact.
         ExpectedCustomerSpend: {ExpectedCustomerSpend}
+        -- Optional. The expected contract duration for this opportunity, representing the anticipated length of the contract in the unit specified by Term.
+        ExpectedContractDuration: ExpectedContractDuration
     end
 
     -- An object that contains an Opportunity's subset of fields.
@@ -2463,6 +2479,8 @@ local record M
         DeliveryModels: {string}
         -- Provides information about the anticipated customer spend related to this project. This may include details such as amount, frequency, and currency of expected expenditure.
         ExpectedCustomerSpend: {ExpectedCustomerSpend}
+        -- Optional. The expected contract duration for this opportunity, representing the anticipated length of the contract in the unit specified by Term.
+        ExpectedContractDuration: ExpectedContractDuration
         -- Specifies the proposed solution focus or type of workload for the project.
         CustomerUseCase: string
         -- Lists the pre-sales activities that have occurred with the end-customer related to the opportunity. This field is conditionally mandatory when the project is qualified for Co-Sell and helps drive assignment priority on the AWS side. It provides insight into the engagement level with the customer.

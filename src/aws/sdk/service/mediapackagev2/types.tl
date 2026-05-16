@@ -403,6 +403,12 @@ local record M
         "ISM"
     end
 
+    -- The configuration for the DASH availabilityStartTime attribute of the Media Presentation Description (MPD). Use this configuration to set a custom availability start time for your DASH manifest.
+    record DashAvailabilityStartTimeConfiguration
+        -- The fixed availability start time for the DASH manifest, in ISO 8601 date-time format. The value must have hourly granularity, meaning that the minutes, seconds, and fractional seconds must be zero. The value must be on or after 2024-01-01T00:00:00Z and must be at least 14 days before the current time.
+        FixedAvailabilityStartTime: number
+    end
+
     -- The base URLs to use for retrieving segments. You can specify multiple locations and indicate the priority and weight for when each should be used, for use in mutli-CDN workflows.
     record DashBaseUrl
         -- A source location for segments.
@@ -584,6 +590,8 @@ local record M
         SubtitleConfiguration: DashSubtitleConfiguration
         -- The type of path to use in manifest URIs. LEAF uses leaf-relative paths (for example, index_1.mpd). ROOT uses root-relative paths that include the full path from root (for example, /out/v1/channel-group/channel/endpoint/index_1.mpd). If you don't specify a value, the default is LEAF.
         UriPathType: string
+        -- The configuration for the DASH availabilityStartTime attribute of the Media Presentation Description (MPD). If you don't specify a value, MediaPackage uses the default availability start time of 2024-01-01T00:00:00Z.
+        AvailabilityStartTimeConfiguration: DashAvailabilityStartTimeConfiguration
     end
 
     enum EndpointErrorCondition
@@ -898,6 +906,8 @@ local record M
         SubtitleConfiguration: DashSubtitleConfiguration
         -- The type of path used in manifest URIs. LEAF indicates leaf-relative paths. ROOT indicates root-relative paths that include the full path from root.
         UriPathType: string
+        -- The configuration for the DASH availabilityStartTime attribute of the Media Presentation Description (MPD).
+        AvailabilityStartTimeConfiguration: DashAvailabilityStartTimeConfiguration
     end
 
     -- Retrieve the HTTP live streaming (HLS) manifest configuration.

@@ -3667,6 +3667,31 @@ M.Marketing = schema.new({
     },
 })
 
+M.ExpectedContractDuration = schema.new({
+    id = id.from(_N, "ExpectedContractDuration"),
+    type = "structure",
+    members = {
+        Term = schema.new({
+            id = id.from(_N, "ExpectedContractDuration", "Term"),
+            type = "string",
+            name = "Term",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ExpectedContractDuration", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Project = schema.new({
     id = id.from(_N, "Project"),
     type = "structure",
@@ -3684,6 +3709,13 @@ M.Project = schema.new({
             name = "ExpectedCustomerSpend",
             target_id = prelude.Document.id,
             list_member = M.ExpectedCustomerSpend,
+        }),
+        ExpectedContractDuration = schema.new({
+            id = id.from(_N, "Project", "ExpectedContractDuration"),
+            type = "structure",
+            name = "ExpectedContractDuration",
+            target_id = id.from(_N, "ExpectedContractDuration"),
+            target = M.ExpectedContractDuration,
         }),
         Title = schema.new({
             id = id.from(_N, "Project", "Title"),
@@ -4561,6 +4593,13 @@ M.ProjectSummary = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ExpectedCustomerSpend,
         }),
+        ExpectedContractDuration = schema.new({
+            id = id.from(_N, "ProjectSummary", "ExpectedContractDuration"),
+            type = "structure",
+            name = "ExpectedContractDuration",
+            target_id = id.from(_N, "ExpectedContractDuration"),
+            target = M.ExpectedContractDuration,
+        }),
     },
 })
 
@@ -5347,6 +5386,13 @@ M.ProjectView = schema.new({
             name = "ExpectedCustomerSpend",
             target_id = prelude.Document.id,
             list_member = M.ExpectedCustomerSpend,
+        }),
+        ExpectedContractDuration = schema.new({
+            id = id.from(_N, "ProjectView", "ExpectedContractDuration"),
+            type = "structure",
+            name = "ExpectedContractDuration",
+            target_id = id.from(_N, "ExpectedContractDuration"),
+            target = M.ExpectedContractDuration,
         }),
         CustomerUseCase = schema.new({
             id = id.from(_N, "ProjectView", "CustomerUseCase"),

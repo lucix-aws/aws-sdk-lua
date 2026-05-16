@@ -2835,7 +2835,9 @@ local record M
         queryId: string
         -- The token for the next set of items to return. The token expires after 1 hour.
         nextToken: string
-        -- The maximum number of log events to return in the response. The maximum is 10,000 log events.
+        -- The maximum number of log events to return in the response. The maximum is 10,000 log
+        -- events per request. You can retrieve up to 100,000 log event results from a query by
+        -- paginating with the nextToken.
         maxItems: number
     end
 
@@ -2905,7 +2907,8 @@ local record M
         encryptionKey: string
         -- If there are more log events remaining in the results, the response includes a
         -- nextToken. You can use this token in a subsequent GetQueryResults
-        -- request to get the next set of results.
+        -- request to get the next set of results. You can retrieve up to 100,000 log event results
+        -- from a query by paginating with this token.
         nextToken: string
     end
 
@@ -4584,6 +4587,7 @@ local record M
         -- The maximum number of log events to return in the query. If the query string uses the
         -- fields command, only the specified fields and their values are returned. The
         -- default is 10,000.
+        -- The maximum value is 100,000.
         limit: number
     end
 

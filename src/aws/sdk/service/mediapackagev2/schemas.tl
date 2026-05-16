@@ -978,6 +978,22 @@ M.ListChannelsOutput = schema.new({
     },
 })
 
+M.DashAvailabilityStartTimeConfiguration = schema.new({
+    id = id.from(_N, "DashAvailabilityStartTimeConfiguration"),
+    type = "union",
+    members = {
+        FixedAvailabilityStartTime = schema.new({
+            id = id.from(_N, "DashAvailabilityStartTimeConfiguration", "FixedAvailabilityStartTime"),
+            type = "timestamp",
+            name = "FixedAvailabilityStartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.DashBaseUrl = schema.new({
     id = id.from(_N, "DashBaseUrl"),
     type = "structure",
@@ -1351,6 +1367,13 @@ M.CreateDashManifestConfiguration = schema.new({
             type = "string",
             name = "UriPathType",
             target_id = prelude.String.id,
+        }),
+        AvailabilityStartTimeConfiguration = schema.new({
+            id = id.from(_N, "CreateDashManifestConfiguration", "AvailabilityStartTimeConfiguration"),
+            type = "union",
+            name = "AvailabilityStartTimeConfiguration",
+            target_id = id.from(_N, "DashAvailabilityStartTimeConfiguration"),
+            target = M.DashAvailabilityStartTimeConfiguration,
         }),
     },
 })
@@ -2067,6 +2090,13 @@ M.GetDashManifestConfiguration = schema.new({
             type = "string",
             name = "UriPathType",
             target_id = prelude.String.id,
+        }),
+        AvailabilityStartTimeConfiguration = schema.new({
+            id = id.from(_N, "GetDashManifestConfiguration", "AvailabilityStartTimeConfiguration"),
+            type = "union",
+            name = "AvailabilityStartTimeConfiguration",
+            target_id = id.from(_N, "DashAvailabilityStartTimeConfiguration"),
+            target = M.DashAvailabilityStartTimeConfiguration,
         }),
     },
 })
