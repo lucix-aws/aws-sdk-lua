@@ -169,6 +169,8 @@ M.SystemControls = schema.new({ type = "list", list_member = M.SystemControl })
 
 M.ServiceRevisionsSummaryList = schema.new({ type = "list", list_member = M.ServiceRevisionSummary })
 
+M.DeploymentLifecycleHookDetailList = schema.new({ type = "list", list_member = M.DeploymentLifecycleHookDetail })
+
 M.LogConfigurationOptionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.IngressPathSummaries = schema.new({ type = "list", list_member = M.IngressPathSummary })
@@ -3780,6 +3782,66 @@ M.UpdateContainerInstancesStateOutput = schema.new({
             name = "failures",
             target_id = prelude.Document.id,
             list_member = M.Failure,
+        }),
+    },
+})
+
+M.ContinueServiceDeploymentInput = schema.new({
+    id = id.from(_N, "ContinueServiceDeploymentRequest"),
+    type = "structure",
+    members = {
+        serviceDeploymentArn = schema.new({
+            id = id.from(_N, "ContinueServiceDeploymentInput", "serviceDeploymentArn"),
+            type = "string",
+            name = "serviceDeploymentArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        hookId = schema.new({
+            id = id.from(_N, "ContinueServiceDeploymentInput", "hookId"),
+            type = "string",
+            name = "hookId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "ContinueServiceDeploymentInput", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContinueServiceDeploymentOutput = schema.new({
+    id = id.from(_N, "ContinueServiceDeploymentResponse"),
+    type = "structure",
+    members = {
+        serviceDeploymentArn = schema.new({
+            id = id.from(_N, "ContinueServiceDeploymentOutput", "serviceDeploymentArn"),
+            type = "string",
+            name = "serviceDeploymentArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceDeploymentNotFoundException = schema.new({
+    id = id.from(_N, "ServiceDeploymentNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceDeploymentNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7522,10 +7584,35 @@ M.DeploymentCircuitBreaker = schema.new({
     },
 })
 
+M.DeploymentLifecycleHookTimeoutConfiguration = schema.new({
+    id = id.from(_N, "DeploymentLifecycleHookTimeoutConfiguration"),
+    type = "structure",
+    members = {
+        timeoutInMinutes = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookTimeoutConfiguration", "timeoutInMinutes"),
+            type = "integer",
+            name = "timeoutInMinutes",
+            target_id = prelude.Integer.id,
+        }),
+        action = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookTimeoutConfiguration", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeploymentLifecycleHook = schema.new({
     id = id.from(_N, "DeploymentLifecycleHook"),
     type = "structure",
     members = {
+        targetType = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHook", "targetType"),
+            type = "string",
+            name = "targetType",
+            target_id = prelude.String.id,
+        }),
         hookTargetArn = schema.new({
             id = id.from(_N, "DeploymentLifecycleHook", "hookTargetArn"),
             type = "string",
@@ -7550,6 +7637,13 @@ M.DeploymentLifecycleHook = schema.new({
             type = "document",
             name = "hookDetails",
             target_id = prelude.Document.id,
+        }),
+        timeoutConfiguration = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHook", "timeoutConfiguration"),
+            type = "structure",
+            name = "timeoutConfiguration",
+            target_id = id.from(_N, "DeploymentLifecycleHookTimeoutConfiguration"),
+            target = M.DeploymentLifecycleHookTimeoutConfiguration,
         }),
     },
 })
@@ -7641,6 +7735,49 @@ M.DeploymentConfiguration = schema.new({
             name = "canaryConfiguration",
             target_id = id.from(_N, "CanaryConfiguration"),
             target = M.CanaryConfiguration,
+        }),
+    },
+})
+
+M.DeploymentLifecycleHookDetail = schema.new({
+    id = id.from(_N, "DeploymentLifecycleHookDetail"),
+    type = "structure",
+    members = {
+        hookId = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookDetail", "hookId"),
+            type = "string",
+            name = "hookId",
+            target_id = prelude.String.id,
+        }),
+        targetType = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookDetail", "targetType"),
+            type = "string",
+            name = "targetType",
+            target_id = prelude.String.id,
+        }),
+        targetArn = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookDetail", "targetArn"),
+            type = "string",
+            name = "targetArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookDetail", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        expiresAt = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookDetail", "expiresAt"),
+            type = "timestamp",
+            name = "expiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        timeoutAction = schema.new({
+            id = id.from(_N, "DeploymentLifecycleHookDetail", "timeoutAction"),
+            type = "string",
+            name = "timeoutAction",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -7811,6 +7948,13 @@ M.ServiceDeployment = schema.new({
             type = "string",
             name = "lifecycleStage",
             target_id = prelude.String.id,
+        }),
+        lifecycleHookDetails = schema.new({
+            id = id.from(_N, "ServiceDeployment", "lifecycleHookDetails"),
+            type = "list",
+            name = "lifecycleHookDetails",
+            target_id = prelude.Document.id,
+            list_member = M.DeploymentLifecycleHookDetail,
         }),
         deploymentConfiguration = schema.new({
             id = id.from(_N, "ServiceDeployment", "deploymentConfiguration"),
@@ -10202,22 +10346,6 @@ M.ConflictException = schema.new({
         }),
         message = schema.new({
             id = id.from(_N, "ConflictException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ServiceDeploymentNotFoundException = schema.new({
-    id = id.from(_N, "ServiceDeploymentNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceDeploymentNotFoundException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -13308,6 +13436,17 @@ end
 M.Service = schema.service({
     id = id.from("com.amazonaws.ecs", "AmazonEC2ContainerServiceV20141113"),
     version = "2014-11-13",
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ContinueServiceDeployment = schema.operation({
+    id = id.from("com.amazonaws.ecs", "ContinueServiceDeployment"),
+    input = M.ContinueServiceDeploymentInput,
+    output = M.ContinueServiceDeploymentOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

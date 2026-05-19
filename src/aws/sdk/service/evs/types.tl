@@ -498,7 +498,7 @@ local record M
         networkInterfaceId: string
     end
 
-    -- An ESX host that runs on an Amazon EC2 bare metal instance. Four hosts are created in an Amazon EVS environment during environment creation. You can add hosts to an environment using the CreateEnvironmentHost operation. Amazon EVS supports 4-16 hosts per environment.
+    -- An ESX host that runs on an Amazon EC2 bare metal instance. Four hosts are created in an Amazon EVS environment during environment creation. You can add hosts to an environment using the CreateEnvironmentHost operation. Amazon EVS supports 4-32 hosts per environment.
     record Host
         -- The DNS hostname of the host. DNS hostnames for hosts must be unique across Amazon EVS environments and within VCF.
         hostName: string

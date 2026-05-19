@@ -358,6 +358,7 @@ local record Client
     describeIpamByoasn: function(Client, types.DescribeIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamByoasnOutput>
     describeIpamExternalResourceVerificationTokens: function(Client, types.DescribeIpamExternalResourceVerificationTokensInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
     describeIpamPolicies: function(Client, types.DescribeIpamPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoliciesOutput>
+    describeIpamPoolAllocations: function(Client, types.DescribeIpamPoolAllocationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolAllocationsOutput>
     describeIpamPools: function(Client, types.DescribeIpamPoolsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolsOutput>
     describeIpamPrefixListResolvers: function(Client, types.DescribeIpamPrefixListResolversInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPrefixListResolversOutput>
     describeIpamPrefixListResolverTargets: function(Client, types.DescribeIpamPrefixListResolverTargetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPrefixListResolverTargetsOutput>
@@ -651,6 +652,7 @@ local record Client
     modifyIpam: function(Client, types.ModifyIpamInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamOutput>
     modifyIpamPolicyAllocationRules: function(Client, types.ModifyIpamPolicyAllocationRulesInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPolicyAllocationRulesOutput>
     modifyIpamPool: function(Client, types.ModifyIpamPoolInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPoolOutput>
+    modifyIpamPoolAllocation: function(Client, types.ModifyIpamPoolAllocationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPoolAllocationOutput>
     modifyIpamPrefixListResolver: function(Client, types.ModifyIpamPrefixListResolverInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverOutput>
     modifyIpamPrefixListResolverTarget: function(Client, types.ModifyIpamPrefixListResolverTargetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
     modifyIpamResourceCidr: function(Client, types.ModifyIpamResourceCidrInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceCidrOutput>
@@ -2185,6 +2187,10 @@ function C:describeIpamPolicies(input: types.DescribeIpamPoliciesInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamPolicies as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamPoliciesOutput>
 end
 
+function C:describeIpamPoolAllocations(input: types.DescribeIpamPoolAllocationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolAllocationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamPoolAllocations as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamPoolAllocationsOutput>
+end
+
 function C:describeIpamPools(input: types.DescribeIpamPoolsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamPools as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamPoolsOutput>
 end
@@ -3355,6 +3361,10 @@ end
 
 function C:modifyIpamPool(input: types.ModifyIpamPoolInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamPoolOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamPool as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamPoolOutput>
+end
+
+function C:modifyIpamPoolAllocation(input: types.ModifyIpamPoolAllocationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamPoolAllocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamPoolAllocation as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamPoolAllocationOutput>
 end
 
 function C:modifyIpamPrefixListResolver(input: types.ModifyIpamPrefixListResolverInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverOutput>

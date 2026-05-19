@@ -1415,6 +1415,31 @@ local record M
         failures: {Failure}
     end
 
+    enum DeploymentLifecycleHookAction
+        "ROLLBACK"
+        "CONTINUE"
+    end
+
+    record ContinueServiceDeploymentInput
+        -- The ARN of the service deployment to continue or roll back.
+        serviceDeploymentArn: string
+        -- The ID of the paused lifecycle hook to act on. You can find the hookId by calling DescribeServiceDeployments and inspecting the lifecycleHookDetails field of the service deployment.
+        hookId: string
+        -- The action to take on the paused lifecycle hook. Valid values are: CONTINUE - Proceeds the deployment to the next lifecycle stage. ROLLBACK - Rolls back the deployment to the previous service revision. If no value is specified, the default action is CONTINUE.
+        action: string
+    end
+
+    record ContinueServiceDeploymentOutput
+        -- The ARN of the service deployment that was continued or rolled back.
+        serviceDeploymentArn: string
+    end
+
+    -- The service deploy ARN that you specified in the StopServiceDeployment doesn't exist. You can use ListServiceDeployments to retrieve the service deployment ARNs.
+    record ServiceDeploymentNotFoundException
+        -- Message that describes the cause of the exception.
+        message: string
+    end
+
     record DescribeDaemonDeploymentsInput
         -- The ARN of the daemon deployments to describe. You can specify up to 20 ARNs.
         daemonDeploymentArns: {string}
@@ -2595,7 +2620,7 @@ local record M
         authorizationConfig: FSxWindowsFileServerAuthorizationConfig
     end
 
-    -- This parameter is specified when you're using an Amazon S3 Files file system for task storage. For more information, see Amazon S3 Files volumes in the Amazon Elastic Container Service Developer Guide. Your task definition must include a Task IAM Role. See IAM role for attaching your file system to AWS compute resources for required permissions.
+    -- This parameter is specified when you're using an Amazon S3 Files file system for task storage. For more information, see Amazon S3 Files volumes in the Amazon Elastic Container Service Developer Guide. Your task definition must include a Task IAM Role. See IAM role for attaching your file system to Amazon Web Services compute resources for required permissions.
     record S3FilesVolumeConfiguration
         -- The full ARN of the S3 Files file system to mount.
         fileSystemArn: string
@@ -2882,12 +2907,28 @@ local record M
         "POST_SCALE_UP"
         "TEST_TRAFFIC_SHIFT"
         "POST_TEST_TRAFFIC_SHIFT"
+        "PRE_PRODUCTION_TRAFFIC_SHIFT"
         "PRODUCTION_TRAFFIC_SHIFT"
         "POST_PRODUCTION_TRAFFIC_SHIFT"
     end
 
+    enum DeploymentLifecycleHookTargetType
+        "AWS_LAMBDA"
+        "PAUSE"
+    end
+
+    -- The timeout configuration for a deployment lifecycle hook. This determines how long Amazon ECS waits for the hook to complete before taking the specified timeout action.
+    record DeploymentLifecycleHookTimeoutConfiguration
+        -- The number of minutes Amazon ECS waits for the lifecycle hook to complete before taking the timeout action.
+        timeoutInMinutes: number
+        -- The action Amazon ECS takes when the lifecycle hook times out. Valid values are: CONTINUE - Proceeds the deployment to the next lifecycle stage. ROLLBACK - Rolls back the deployment to the previous service revision.
+        action: string
+    end
+
     -- A deployment lifecycle hook runs custom logic at specific stages of the deployment process. Currently, you can use Lambda functions as hook targets. For more information, see Lifecycle hooks for Amazon ECS service deployments in the Amazon Elastic Container Service Developer Guide.
     record DeploymentLifecycleHook
+        -- The type of action the lifecycle hook performs. Valid values are: AWS_LAMBDA - Invokes a Lambda function at the specified lifecycle stage. This is the default value. PAUSE - Pauses the deployment at the specified lifecycle stage until you call ContinueServiceDeployment to continue or roll back. This field is optional. If not specified, the default value is AWS_LAMBDA.
+        targetType: string
         -- The Amazon Resource Name (ARN) of the hook target. Currently, only Lambda function ARNs are supported. You must provide this parameter when configuring a deployment lifecycle hook.
         hookTargetArn: string
         -- The Amazon Resource Name (ARN) of the IAM role that grants Amazon ECS permission to call Lambda functions on your behalf. For more information, see Permissions required for Lambda functions in Amazon ECS blue/green deployments in the Amazon Elastic Container Service Developer Guide.
@@ -2896,6 +2937,8 @@ local record M
         lifecycleStages: {string}
         -- Use this field to specify custom parameters that Amazon ECS will pass to your hook target invocations (such as a Lambda function).
         hookDetails: any
+        -- The timeout configuration for the lifecycle hook. This specifies how long Amazon ECS waits before taking the timeout action if the hook is not resolved.
+        timeoutConfiguration: DeploymentLifecycleHookTimeoutConfiguration
     end
 
     -- Configuration for linear deployment strategy that shifts production traffic in equal percentage increments with configurable wait times between each step until 100% of traffic is shifted to the new service revision. This is only valid when you run CreateService or UpdateService with deploymentController set to ECS and a deploymentConfiguration with a strategy set to LINEAR.
@@ -2933,6 +2976,30 @@ local record M
         linearConfiguration: LinearConfiguration
         -- Configuration for canary deployment strategy. Only valid when the deployment strategy is CANARY. This configuration enables shifting a fixed percentage of traffic for testing, followed by shifting the remaining traffic after a bake period.
         canaryConfiguration: CanaryConfiguration
+    end
+
+    enum DeploymentLifecycleHookStatus
+        "AWAITING_ACTION"
+        "IN_PROGRESS"
+        "SUCCEEDED"
+        "FAILED"
+        "TIMED_OUT"
+    end
+
+    -- The details of a deployment lifecycle hook that is active during a service deployment. You can view lifecycle hook details by calling DescribeServiceDeployments.
+    record DeploymentLifecycleHookDetail
+        -- The ID of the lifecycle hook. Use this value when calling ContinueServiceDeployment to continue or roll back a paused deployment.
+        hookId: string
+        -- The type of action the lifecycle hook performs, such as AWS_LAMBDA or PAUSE.
+        targetType: string
+        -- The Amazon Resource Name (ARN) of the hook target. For AWS_LAMBDA hooks, this is the Lambda function ARN. For PAUSE hooks, this field is not set.
+        targetArn: string
+        -- The status of the lifecycle hook. Valid values depend on the hook type: For AWS_LAMBDA hooks: IN_PROGRESS, SUCCEEDED, FAILED, and TIMED_OUT. For PAUSE hooks: AWAITING_ACTION, SUCCEEDED, FAILED, and TIMED_OUT.
+        status: string
+        -- The time when the lifecycle hook times out. If the hook has not been completed by this time, Amazon ECS takes the timeout action.
+        expiresAt: number
+        -- The action Amazon ECS takes when the lifecycle hook times out. Valid values are CONTINUE and ROLLBACK.
+        timeoutAction: string
     end
 
     enum ServiceDeploymentLifecycleStage
@@ -3014,6 +3081,8 @@ local record M
         statusReason: string
         -- The current lifecycle stage of the deployment. Possible values include: RECONCILE_SERVICE The reconciliation stage that only happens when you start a new service deployment with more than 1 service revision in an ACTIVE state. PRE_SCALE_UP The green service revision has not started. The blue service revision is handling 100% of the production traffic. There is no test traffic. SCALE_UP The stage when the green service revision scales up to 100% and launches new tasks. The green service revision is not serving any traffic at this point. POST_SCALE_UP The green service revision has started. The blue service revision is handling 100% of the production traffic. There is no test traffic. TEST_TRAFFIC_SHIFT The blue and green service revisions are running. The blue service revision handles 100% of the production traffic. The green service revision is migrating from 0% to 100% of test traffic. POST_TEST_TRAFFIC_SHIFT The test traffic shift is complete. The green service revision handles 100% of the test traffic. PRODUCTION_TRAFFIC_SHIFT Production traffic is shifting to the green service revision. The green service revision is migrating from 0% to 100% of production traffic. POST_PRODUCTION_TRAFFIC_SHIFT The production traffic shift is complete. BAKE_TIME The stage when both blue and green service revisions are running simultaneously after the production traffic has shifted. CLEAN_UP The stage when the blue service revision has completely scaled down to 0 running tasks. The green service revision is now the production service revision after this stage.
         lifecycleStage: string
+        -- The details of the lifecycle hooks for the current service deployment.
+        lifecycleHookDetails: {DeploymentLifecycleHookDetail}
         deploymentConfiguration: DeploymentConfiguration
         -- The rollback options the service deployment uses when the deployment fails.
         rollback: Rollback
@@ -3754,7 +3823,7 @@ local record M
     end
 
     record CreateServiceOutput
-        -- The full description of your service following the create call. A service will return either a capacityProviderStrategy or launchType parameter, but not both, depending where one was specified when it was created. If a service is using the ECS deployment controller, the deploymentController and taskSets parameters will not be returned. if the service uses the CODE_DEPLOY deployment controller, the deploymentController, taskSets and deployments parameters will be returned, however the deployments parameter will be an empty list.
+        -- The full description of your service following the create call. A service will return either a capacityProviderStrategy or launchType parameter, but not both, depending where one was specified when it was created. If a service is using the ECS deployment controller, the deploymentController and taskSets parameters will not be returned. if the service uses the CODE_DEPLOY deployment controller, the deploymentController, taskSets and deployments parameters will be returned, however the deployments parameter will be an empty list. The response includes a lifecycleHookDetails field, which is an empty array when the service is created or updated. The values are populated when a lifecycle hook executes and are available as part of the service deployment details (DescribeServiceDeployments).
         service: Service
     end
 
@@ -3904,12 +3973,6 @@ local record M
         message: string
     end
 
-    -- The service deploy ARN that you specified in the StopServiceDeployment doesn't exist. You can use ListServiceDeployments to retrieve the service deployment ARNs.
-    record ServiceDeploymentNotFoundException
-        -- Message that describes the cause of the exception.
-        message: string
-    end
-
     enum StopServiceDeploymentStopType
         "ABORT"
         "ROLLBACK"
@@ -4018,7 +4081,7 @@ local record M
     end
 
     record UpdateServiceOutput
-        -- The full description of your service following the update call.
+        -- The full description of your service following the update call. The response includes a lifecycleHookDetails field, which is an empty array when the service is created or updated. The values are populated when a lifecycle hook executes and are available as part of the service deployment details (DescribeServiceDeployments).
         service: Service
     end
 

@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    continueServiceDeployment: function(Client, types.ContinueServiceDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.ContinueServiceDeploymentOutput>
     createCapacityProvider: function(Client, types.CreateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>
     createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
     createDaemon: function(Client, types.CreateDaemonInput, ? base_client.InvokeOptions): async.Operation<types.CreateDaemonOutput>
@@ -136,6 +137,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     sdk_defaults.resolve_identity_resolver(c)
     local self = setmetatable(base_client.new(c) as Client, Client_mt)
     return self
+end
+
+function C:continueServiceDeployment(input: types.ContinueServiceDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.ContinueServiceDeploymentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ContinueServiceDeployment as schema.OperationSchema, input, options) as async.Operation<types.ContinueServiceDeploymentOutput>
 end
 
 function C:createCapacityProvider(input: types.CreateCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>

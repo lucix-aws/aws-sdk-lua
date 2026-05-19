@@ -401,6 +401,8 @@ M.IpamExternalResourceVerificationTokenSet = schema.new({ type = "list", list_me
 
 M.IpamPolicySet = schema.new({ type = "list", list_member = M.IpamPolicy })
 
+M.IpamPoolAllocationSet = schema.new({ type = "list", list_member = M.IpamPoolAllocation })
+
 M.IpamPoolSet = schema.new({ type = "list", list_member = M.IpamPool })
 
 M.IpamPrefixListResolverSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolver })
@@ -828,8 +830,6 @@ M.IpamDiscoveredResourceCidrSet = schema.new({ type = "list", list_member = M.Ip
 M.IpamPolicyDocumentSet = schema.new({ type = "list", list_member = M.IpamPolicyDocument })
 
 M.IpamPolicyOrganizationTargetSet = schema.new({ type = "list", list_member = M.IpamPolicyOrganizationTarget })
-
-M.IpamPoolAllocationSet = schema.new({ type = "list", list_member = M.IpamPoolAllocation })
 
 M.IpamPoolCidrSet = schema.new({ type = "list", list_member = M.IpamPoolCidr })
 
@@ -6155,6 +6155,16 @@ M.AllocateIpamPoolCidrInput = schema.new({
                 [traits.XML_NAME] = { name = "DisallowedCidr" },
             },
         }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "AllocateIpamPoolCidrInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagSpecification" },
+            },
+        }),
     },
 })
 
@@ -6230,6 +6240,17 @@ M.IpamPoolAllocation = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "resourceOwner" },
                 [traits.EC2_QUERY_NAME] = { name = "ResourceOwner" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "IpamPoolAllocation", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
             },
         }),
     },
@@ -62188,6 +62209,79 @@ M.DescribeIpamPoliciesOutput = schema.new({
     },
 })
 
+M.DescribeIpamPoolAllocationsInput = schema.new({
+    id = id.from(_N, "DescribeIpamPoolAllocationsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeIpamPoolAllocationsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamPoolAllocationIds = schema.new({
+            id = id.from(_N, "DescribeIpamPoolAllocationsInput", "IpamPoolAllocationIds"),
+            type = "list",
+            name = "IpamPoolAllocationIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "IpamPoolAllocationId" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeIpamPoolAllocationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeIpamPoolAllocationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeIpamPoolAllocationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeIpamPoolAllocationsOutput = schema.new({
+    id = id.from(_N, "DescribeIpamPoolAllocationsResult"),
+    type = "structure",
+    members = {
+        IpamPoolAllocations = schema.new({
+            id = id.from(_N, "DescribeIpamPoolAllocationsOutput", "IpamPoolAllocations"),
+            type = "list",
+            name = "IpamPoolAllocations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamPoolAllocation, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamPoolAllocationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamPoolAllocationSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeIpamPoolAllocationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
 M.DescribeIpamPoolsInput = schema.new({
     id = id.from(_N, "DescribeIpamPoolsRequest"),
     type = "structure",
@@ -74748,6 +74842,17 @@ M.VolumeModification = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "endTime" },
                 [traits.EC2_QUERY_NAME] = { name = "EndTime" },
+            },
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "VolumeModification", "Operator"),
+            type = "structure",
+            name = "Operator",
+            target_id = id.from(_N, "OperatorResponse"),
+            target = M.OperatorResponse,
+            traits = {
+                [traits.XML_NAME] = { name = "operator" },
+                [traits.EC2_QUERY_NAME] = { name = "Operator" },
             },
         }),
     },
@@ -93688,6 +93793,52 @@ M.ModifyIpamPoolOutput = schema.new({
     },
 })
 
+M.ModifyIpamPoolAllocationInput = schema.new({
+    id = id.from(_N, "ModifyIpamPoolAllocationRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyIpamPoolAllocationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamPoolAllocationId = schema.new({
+            id = id.from(_N, "ModifyIpamPoolAllocationInput", "IpamPoolAllocationId"),
+            type = "string",
+            name = "IpamPoolAllocationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ModifyIpamPoolAllocationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ModifyIpamPoolAllocationOutput = schema.new({
+    id = id.from(_N, "ModifyIpamPoolAllocationResult"),
+    type = "structure",
+    members = {
+        IpamPoolAllocation = schema.new({
+            id = id.from(_N, "ModifyIpamPoolAllocationOutput", "IpamPoolAllocation"),
+            type = "structure",
+            name = "IpamPoolAllocation",
+            target_id = id.from(_N, "IpamPoolAllocation"),
+            target = M.IpamPoolAllocation,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamPoolAllocation" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamPoolAllocation" },
+            },
+        }),
+    },
+})
+
 M.ModifyIpamPrefixListResolverInput = schema.new({
     id = id.from(_N, "ModifyIpamPrefixListResolverRequest"),
     type = "structure",
@@ -108728,6 +108879,17 @@ M.DescribeIpamPolicies = schema.operation({
     },
 })
 
+M.DescribeIpamPoolAllocations = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeIpamPoolAllocations"),
+    input = M.DescribeIpamPoolAllocationsInput,
+    output = M.DescribeIpamPoolAllocationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeIpamPools = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeIpamPools"),
     input = M.DescribeIpamPoolsInput,
@@ -111944,6 +112106,17 @@ M.ModifyIpamPool = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyIpamPool"),
     input = M.ModifyIpamPoolInput,
     output = M.ModifyIpamPoolOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyIpamPoolAllocation = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyIpamPoolAllocation"),
+    input = M.ModifyIpamPoolAllocationInput,
+    output = M.ModifyIpamPoolAllocationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

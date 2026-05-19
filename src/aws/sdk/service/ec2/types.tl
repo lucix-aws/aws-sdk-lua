@@ -191,6 +191,7 @@ local record M
         "secondary-subnet"
         "capacity-manager-data-export"
         "vpn-concentrator"
+        "ipam-pool-allocation"
     end
 
     -- Describes a tag.
@@ -1650,6 +1651,10 @@ local record M
         AllowedCidrs: {string}
         -- Exclude a particular CIDR range from being returned by the pool. Disallowed CIDRs are only allowed if using netmask length for allocation.
         DisallowedCidrs: {string}
+        -- The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value.
+        -- For example, to find all resources that have a tag with the key Owner and the value TeamA, specify tag:Owner for the filter name and TeamA for the filter value.
+        -- If you specify tags, the request is authorized against the allocation resource in addition to the pool resource.
+        TagSpecifications: {TagSpecification}
     end
 
     enum IpamPoolAllocationResourceType
@@ -1679,6 +1684,8 @@ local record M
         ResourceRegion: string
         -- The owner of the resource.
         ResourceOwner: string
+        -- The tags for the IPAM pool allocation.
+        Tags: {Tag}
     end
 
     record AllocateIpamPoolCidrOutput
@@ -25421,6 +25428,28 @@ local record M
         IpamPolicies: {IpamPolicy}
     end
 
+    record DescribeIpamPoolAllocationsInput
+        -- A check for whether you have the required permissions for the action without actually making the request
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The IDs of the IPAM pool allocations you want to describe.
+        IpamPoolAllocationIds: {string}
+        -- One or more filters for the request. For more information about filtering, see Filtering CLI output.
+        Filters: {Filter}
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see Pagination.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record DescribeIpamPoolAllocationsOutput
+        -- Information about the IPAM pool allocations.
+        IpamPoolAllocations: {IpamPoolAllocation}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
     record DescribeIpamPoolsInput
         -- A check for whether you have the required permissions for the action without actually making the request
         -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
@@ -25428,7 +25457,7 @@ local record M
         DryRun: boolean
         -- One or more filters for the request. For more information about filtering, see Filtering CLI output.
         Filters: {Filter}
-        -- The maximum number of results to return in the request.
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see Pagination.
         MaxResults: number
         -- The token for the next page of results.
         NextToken: string
@@ -25540,7 +25569,7 @@ local record M
         DryRun: boolean
         -- One or more filters for the request. For more information about filtering, see Filtering CLI output.
         Filters: {Filter}
-        -- The maximum number of results to return in the request.
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see Pagination.
         MaxResults: number
         -- The token for the next page of results.
         NextToken: string
@@ -25562,7 +25591,7 @@ local record M
         DryRun: boolean
         -- One or more filters for the request. For more information about filtering, see Filtering CLI output.
         Filters: {Filter}
-        -- The maximum number of results to return in the request.
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see Pagination.
         MaxResults: number
         -- The token for the next page of results.
         NextToken: string
@@ -30446,6 +30475,7 @@ local record M
         StartTime: number
         -- The modification completion or failure time.
         EndTime: number
+        Operator: OperatorResponse
     end
 
     record DescribeVolumesModificationsOutput
@@ -34554,7 +34584,7 @@ local record M
         IpamPoolId: string
         -- One or more filters for the request. For more information about filtering, see Filtering CLI output.
         Filters: {Filter}
-        -- The maximum number of results to return in the request.
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see Pagination.
         MaxResults: number
         -- The token for the next page of results.
         NextToken: string
@@ -34728,7 +34758,7 @@ local record M
         DryRun: boolean
         -- One or more filters for the request. For more information about filtering, see Filtering CLI output.
         Filters: {Filter}
-        -- The maximum number of results to return in the request.
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information, see Pagination.
         MaxResults: number
         -- The token for the next page of results.
         NextToken: string
@@ -37549,6 +37579,22 @@ local record M
     record ModifyIpamPoolOutput
         -- The results of the modification.
         IpamPool: IpamPool
+    end
+
+    record ModifyIpamPoolAllocationInput
+        -- A check for whether you have the required permissions for the action without actually making the request
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM pool allocation you want to modify.
+        IpamPoolAllocationId: string
+        -- The new description for the IPAM pool allocation. If you submit a null value, the description is removed from the allocation.
+        Description: string
+    end
+
+    record ModifyIpamPoolAllocationOutput
+        -- The modified IPAM pool allocation.
+        IpamPoolAllocation: IpamPoolAllocation
     end
 
     record ModifyIpamPrefixListResolverInput

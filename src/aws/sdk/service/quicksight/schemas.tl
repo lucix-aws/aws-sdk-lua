@@ -227,6 +227,8 @@ M.DestinationTableMap = schema.new({ type = "map", map_key = prelude.String, map
 
 M.SemanticTableMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.SemanticTable })
 
+M.DataSetSemanticMetadataList = schema.new({ type = "list", list_member = M.DataSetSemanticMetadata })
+
 M.IdentityNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataSetConfigurationList = schema.new({ type = "list", list_member = M.DataSetConfiguration })
@@ -395,6 +397,8 @@ M.ColumnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.UniqueKeyColumnNameList = schema.new({ type = "list", list_member = prelude.String })
 
+M.CustomInstructionList = schema.new({ type = "list", list_member = M.CustomInstruction })
+
 M.DatabaseGroupList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ColumnGroupSchemaList = schema.new({ type = "list", list_member = M.ColumnGroupSchema })
@@ -469,6 +473,8 @@ M.ColumnToUnpivotList = schema.new({ type = "list", list_member = M.ColumnToUnpi
 
 M.AppendedColumnList = schema.new({ type = "list", list_member = M.AppendedColumn })
 
+M.SharedColumnSemanticMetadataList = schema.new({ type = "list", list_member = M.SharedColumnSemanticMetadata })
+
 M.ColumnSchemaList = schema.new({ type = "list", list_member = M.ColumnSchema })
 
 M.AssetBundlePrincipalList = schema.new({ type = "list", list_member = prelude.String })
@@ -528,6 +534,10 @@ M.ColumnHierarchyList = schema.new({ type = "list", list_member = M.ColumnHierar
 M.GeocodePreferenceList = schema.new({ type = "list", list_member = M.GeocodePreference })
 
 M.AggregationSortConfigurationList = schema.new({ type = "list", list_member = M.AggregationSortConfiguration })
+
+M.ColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnSemanticPropertyList = schema.new({ type = "list", list_member = M.ColumnSemanticProperty })
 
 M.TypeParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -1414,6 +1424,19 @@ M.ActiveIAMPolicyAssignment = schema.new({
             id = id.from(_N, "ActiveIAMPolicyAssignment", "PolicyArn"),
             type = "string",
             name = "PolicyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AdditionalNotes = schema.new({
+    id = id.from(_N, "AdditionalNotes"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "AdditionalNotes", "Text"),
+            type = "string",
+            name = "Text",
             target_id = prelude.String.id,
         }),
     },
@@ -27242,6 +27265,47 @@ M.ColumnSchema = schema.new({
     },
 })
 
+M.ColumnSemanticType = schema.new({
+    id = id.from(_N, "ColumnSemanticType"),
+    type = "structure",
+    members = {
+        GeographicalRole = schema.new({
+            id = id.from(_N, "ColumnSemanticType", "GeographicalRole"),
+            type = "string",
+            name = "GeographicalRole",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ColumnSemanticProperty = schema.new({
+    id = id.from(_N, "ColumnSemanticProperty"),
+    type = "structure",
+    members = {
+        Description = schema.new({
+            id = id.from(_N, "ColumnSemanticProperty", "Description"),
+            type = "structure",
+            name = "Description",
+            target_id = id.from(_N, "ColumnDescription"),
+            target = M.ColumnDescription,
+        }),
+        AdditionalNotes = schema.new({
+            id = id.from(_N, "ColumnSemanticProperty", "AdditionalNotes"),
+            type = "structure",
+            name = "AdditionalNotes",
+            target_id = id.from(_N, "AdditionalNotes"),
+            target = M.AdditionalNotes,
+        }),
+        SemanticType = schema.new({
+            id = id.from(_N, "ColumnSemanticProperty", "SemanticType"),
+            type = "structure",
+            name = "SemanticType",
+            target_id = id.from(_N, "ColumnSemanticType"),
+            target = M.ColumnSemanticType,
+        }),
+    },
+})
+
 M.ColumnTag = schema.new({
     id = id.from(_N, "ColumnTag"),
     type = "structure",
@@ -31063,6 +31127,93 @@ M.RowLevelPermissionTagConfiguration = schema.new({
     },
 })
 
+M.UploadedDocumentMetadata = schema.new({
+    id = id.from(_N, "UploadedDocumentMetadata"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "UploadedDocumentMetadata", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InlineCustomInstruction = schema.new({
+    id = id.from(_N, "InlineCustomInstruction"),
+    type = "structure",
+    members = {
+        InstructionText = schema.new({
+            id = id.from(_N, "InlineCustomInstruction", "InstructionText"),
+            type = "string",
+            name = "InstructionText",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UploadedDocumentMetadata = schema.new({
+            id = id.from(_N, "InlineCustomInstruction", "UploadedDocumentMetadata"),
+            type = "structure",
+            name = "UploadedDocumentMetadata",
+            target_id = id.from(_N, "UploadedDocumentMetadata"),
+            target = M.UploadedDocumentMetadata,
+        }),
+    },
+})
+
+M.CustomInstruction = schema.new({
+    id = id.from(_N, "CustomInstruction"),
+    type = "structure",
+    members = {
+        InlineCustomInstruction = schema.new({
+            id = id.from(_N, "CustomInstruction", "InlineCustomInstruction"),
+            type = "structure",
+            name = "InlineCustomInstruction",
+            target_id = id.from(_N, "InlineCustomInstruction"),
+            target = M.InlineCustomInstruction,
+        }),
+    },
+})
+
+M.DataSetSemanticDescription = schema.new({
+    id = id.from(_N, "DataSetSemanticDescription"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "DataSetSemanticDescription", "Text"),
+            type = "string",
+            name = "Text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DataSetSemanticMetadata = schema.new({
+    id = id.from(_N, "DataSetSemanticMetadata"),
+    type = "structure",
+    members = {
+        Description = schema.new({
+            id = id.from(_N, "DataSetSemanticMetadata", "Description"),
+            type = "structure",
+            name = "Description",
+            target_id = id.from(_N, "DataSetSemanticDescription"),
+            target = M.DataSetSemanticDescription,
+        }),
+        CustomInstructions = schema.new({
+            id = id.from(_N, "DataSetSemanticMetadata", "CustomInstructions"),
+            type = "list",
+            name = "CustomInstructions",
+            target_id = prelude.Document.id,
+            list_member = M.CustomInstruction,
+        }),
+    },
+})
+
 M.RowLevelPermissionConfiguration = schema.new({
     id = id.from(_N, "RowLevelPermissionConfiguration"),
     type = "structure",
@@ -31080,6 +31231,44 @@ M.RowLevelPermissionConfiguration = schema.new({
             name = "RowLevelPermissionDataSet",
             target_id = id.from(_N, "RowLevelPermissionDataSet"),
             target = M.RowLevelPermissionDataSet,
+        }),
+    },
+})
+
+M.SharedColumnSemanticMetadata = schema.new({
+    id = id.from(_N, "SharedColumnSemanticMetadata"),
+    type = "structure",
+    members = {
+        ColumnNames = schema.new({
+            id = id.from(_N, "SharedColumnSemanticMetadata", "ColumnNames"),
+            type = "list",
+            name = "ColumnNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ColumnProperties = schema.new({
+            id = id.from(_N, "SharedColumnSemanticMetadata", "ColumnProperties"),
+            type = "list",
+            name = "ColumnProperties",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnSemanticProperty,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TableSemanticMetadata = schema.new({
+    id = id.from(_N, "TableSemanticMetadata"),
+    type = "structure",
+    members = {
+        ColumnMetadata = schema.new({
+            id = id.from(_N, "TableSemanticMetadata", "ColumnMetadata"),
+            type = "list",
+            name = "ColumnMetadata",
+            target_id = prelude.Document.id,
+            list_member = M.SharedColumnSemanticMetadata,
         }),
     },
 })
@@ -31113,6 +31302,13 @@ M.SemanticTable = schema.new({
             target_id = id.from(_N, "RowLevelPermissionConfiguration"),
             target = M.RowLevelPermissionConfiguration,
         }),
+        SemanticMetadata = schema.new({
+            id = id.from(_N, "SemanticTable", "SemanticMetadata"),
+            type = "structure",
+            name = "SemanticMetadata",
+            target_id = id.from(_N, "TableSemanticMetadata"),
+            target = M.TableSemanticMetadata,
+        }),
     },
 })
 
@@ -31127,6 +31323,13 @@ M.SemanticModelConfiguration = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.SemanticTable,
+        }),
+        SemanticMetadata = schema.new({
+            id = id.from(_N, "SemanticModelConfiguration", "SemanticMetadata"),
+            type = "list",
+            name = "SemanticMetadata",
+            target_id = prelude.Document.id,
+            list_member = M.DataSetSemanticMetadata,
         }),
     },
 })

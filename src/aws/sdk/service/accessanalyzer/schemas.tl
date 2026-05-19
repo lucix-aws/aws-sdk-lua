@@ -17,6 +17,8 @@ M.ReasonSummaryList = schema.new({ type = "list", list_member = M.ReasonSummary 
 
 M.ConfigurationsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Configuration })
 
+M.InlineArchiveRulesList = schema.new({ type = "list", list_member = M.InlineArchiveRule })
+
 M.RecommendedStepList = schema.new({ type = "list", list_member = M.RecommendedStep })
 
 M.FindingsStatisticsList = schema.new({ type = "list", list_member = M.FindingsStatistics })
@@ -46,8 +48,6 @@ M.FindingIdList = schema.new({ type = "list", list_member = prelude.String })
 M.ValidatePolicyFindingList = schema.new({ type = "list", list_member = M.ValidatePolicyFinding })
 
 M.AnalyzersList = schema.new({ type = "list", list_member = M.AnalyzerSummary })
-
-M.InlineArchiveRulesList = schema.new({ type = "list", list_member = M.InlineArchiveRule })
 
 M.ActionList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -91,6 +91,10 @@ M.S3AccessPointConfigurationsMap = schema.new({ type = "map", map_key = prelude.
 
 M.S3ExpressDirectoryAccessPointConfigurationsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.S3ExpressDirectoryAccessPointConfiguration })
 
+M.AnalysisRuleCriteriaList = schema.new({ type = "list", list_member = M.AnalysisRuleCriteria })
+
+M.InternalAccessAnalysisRuleCriteriaList = schema.new({ type = "list", list_member = M.InternalAccessAnalysisRuleCriteria })
+
 M.ResourceTypeStatisticsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ResourceTypeDetails })
 
 M.InternalAccessResourceTypeStatisticsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.InternalAccessResourceTypeDetails })
@@ -105,10 +109,6 @@ M.TrailPropertiesList = schema.new({ type = "list", list_member = M.TrailPropert
 
 M.RegionList = schema.new({ type = "list", list_member = prelude.String })
 
-M.AnalysisRuleCriteriaList = schema.new({ type = "list", list_member = M.AnalysisRuleCriteria })
-
-M.InternalAccessAnalysisRuleCriteriaList = schema.new({ type = "list", list_member = M.InternalAccessAnalysisRuleCriteria })
-
 M.PathElementList = schema.new({ type = "list", list_member = M.PathElement })
 
 M.KmsGrantOperationsList = schema.new({ type = "list", list_member = prelude.String })
@@ -117,8 +117,6 @@ M.RdsDbClusterSnapshotAccountIdsList = schema.new({ type = "list", list_member =
 
 M.RdsDbSnapshotAccountIdsList = schema.new({ type = "list", list_member = prelude.String })
 
-M.FindingAggregationAccountDetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
-
 M.AccountIdsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagsList = schema.new({ type = "list", list_member = M.TagsMap })
@@ -126,6 +124,8 @@ M.TagsList = schema.new({ type = "list", list_member = M.TagsMap })
 M.ResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourceArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FindingAggregationAccountDetailsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
 
 M.KmsConstraintsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -984,6 +984,35 @@ M.DeleteAnalyzerInput = schema.new({
 
 M.DeleteAnalyzerOutput = prelude.Unit
 
+M.DeleteServiceLinkedAnalyzerInput = schema.new({
+    id = id.from(_N, "DeleteServiceLinkedAnalyzerRequest"),
+    type = "structure",
+    members = {
+        analyzerName = schema.new({
+            id = id.from(_N, "DeleteServiceLinkedAnalyzerInput", "analyzerName"),
+            type = "string",
+            name = "analyzerName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteServiceLinkedAnalyzerInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteServiceLinkedAnalyzerOutput = prelude.Unit
+
 M.GetAnalyzerInput = schema.new({
     id = id.from(_N, "GetAnalyzerRequest"),
     type = "structure",
@@ -1106,6 +1135,12 @@ M.AnalyzerSummary = schema.new({
             name = "configuration",
             target_id = id.from(_N, "AnalyzerConfiguration"),
             target = M.AnalyzerConfiguration,
+        }),
+        managedBy = schema.new({
+            id = id.from(_N, "AnalyzerSummary", "managedBy"),
+            type = "string",
+            name = "managedBy",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2183,6 +2218,58 @@ M.CreateAccessPreviewOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CreateServiceLinkedAnalyzerInput = schema.new({
+    id = id.from(_N, "CreateServiceLinkedAnalyzerRequest"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "CreateServiceLinkedAnalyzerInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        archiveRules = schema.new({
+            id = id.from(_N, "CreateServiceLinkedAnalyzerInput", "archiveRules"),
+            type = "list",
+            name = "archiveRules",
+            target_id = prelude.Document.id,
+            list_member = M.InlineArchiveRule,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateServiceLinkedAnalyzerInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "CreateServiceLinkedAnalyzerInput", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "AnalyzerConfiguration"),
+            target = M.AnalyzerConfiguration,
+        }),
+    },
+})
+
+M.CreateServiceLinkedAnalyzerOutput = schema.new({
+    id = id.from(_N, "CreateServiceLinkedAnalyzerResponse"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "CreateServiceLinkedAnalyzerOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5527,6 +5614,18 @@ M.CreateArchiveRule = schema.operation({
     },
 })
 
+M.CreateServiceLinkedAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "CreateServiceLinkedAnalyzer"),
+    input = M.CreateServiceLinkedAnalyzerInput,
+    output = M.CreateServiceLinkedAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/service-linked-analyzer" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteAnalyzer = schema.operation({
     id = id.from("com.amazonaws.accessanalyzer", "DeleteAnalyzer"),
     input = M.DeleteAnalyzerInput,
@@ -5545,6 +5644,18 @@ M.DeleteArchiveRule = schema.operation({
     output = M.DeleteArchiveRuleOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/analyzer/{analyzerName}/archive-rule/{ruleName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteServiceLinkedAnalyzer = schema.operation({
+    id = id.from("com.amazonaws.accessanalyzer", "DeleteServiceLinkedAnalyzer"),
+    input = M.DeleteServiceLinkedAnalyzerInput,
+    output = M.DeleteServiceLinkedAnalyzerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/service-linked-analyzer/{analyzerName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

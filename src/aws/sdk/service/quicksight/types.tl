@@ -324,6 +324,12 @@ local record M
         PolicyArn: string
     end
 
+    -- Additional notes that provide supplementary context for a column.
+    record AdditionalNotes
+        -- The additional notes text.
+        Text: string
+    end
+
     enum DashboardBehavior
         "ENABLED"
         "DISABLED"
@@ -10934,6 +10940,22 @@ local record M
         "LATITUDE"
     end
 
+    -- The semantic type information for a column in the new data preparation experience.
+    record ColumnSemanticType
+        -- The geographical role of the column in the new data preparation experience.
+        GeographicalRole: string
+    end
+
+    -- A semantic property for a column.
+    record ColumnSemanticProperty
+        -- A description of the column.
+        Description: ColumnDescription
+        -- Additional notes for the column.
+        AdditionalNotes: AdditionalNotes
+        -- The semantic type of the column.
+        SemanticType: ColumnSemanticType
+    end
+
     -- A tag for a column in a
     -- TagColumnOperation
     -- structure. This is a
@@ -12443,10 +12465,58 @@ local record M
         TagRuleConfigurations: {{string}}
     end
 
+    -- Metadata for an uploaded document associated with a custom instruction.
+    record UploadedDocumentMetadata
+        -- The name of the uploaded document.
+        Name: string
+    end
+
+    -- An inline custom instruction with text content and optional file upload metadata.
+    record InlineCustomInstruction
+        -- The instruction text content.
+        InstructionText: string
+        -- Metadata about an uploaded document associated with this instruction.
+        UploadedDocumentMetadata: UploadedDocumentMetadata
+    end
+
+    -- A custom instruction that provides guidance on how the dataset should be consumed.
+    record CustomInstruction
+        -- An inline custom instruction containing text and optional uploaded document metadata.
+        InlineCustomInstruction: InlineCustomInstruction
+    end
+
+    -- A description structure for dataset-level semantic metadata.
+    record DataSetSemanticDescription
+        -- The descriptive text for the dataset.
+        Text: string
+    end
+
+    -- Semantic metadata for a dataset, including a description and custom instructions.
+    record DataSetSemanticMetadata
+        -- A description of the dataset.
+        Description: DataSetSemanticDescription
+        -- A list of custom instructions that guide how the dataset should be consumed.
+        CustomInstructions: {CustomInstruction}
+    end
+
     -- Configuration for row level security.
     record RowLevelPermissionConfiguration
         TagConfiguration: RowLevelPermissionTagConfiguration
         RowLevelPermissionDataSet: RowLevelPermissionDataSet
+    end
+
+    -- Semantic metadata shared across one or more columns.
+    record SharedColumnSemanticMetadata
+        -- The names of the columns this metadata applies to.
+        ColumnNames: {string}
+        -- The semantic properties for the specified columns.
+        ColumnProperties: {ColumnSemanticProperty}
+    end
+
+    -- Column-level semantic metadata for a semantic table.
+    record TableSemanticMetadata
+        -- A list of column semantic metadata entries.
+        ColumnMetadata: {SharedColumnSemanticMetadata}
     end
 
     -- A semantic table that represents the final analytical structure of the data.
@@ -12457,12 +12527,16 @@ local record M
         DestinationTableId: string
         -- Configuration for row level security that control data access for this semantic table.
         RowLevelPermissionConfiguration: RowLevelPermissionConfiguration
+        -- The column-level semantic metadata for this semantic table.
+        SemanticMetadata: TableSemanticMetadata
     end
 
     -- Configuration for the semantic model that defines how prepared data is structured for analysis and reporting.
     record SemanticModelConfiguration
         -- A map of semantic tables that define the analytical structure.
         TableMap: {string : SemanticTable}
+        -- The dataset-level semantic metadata, including a description and custom instructions.
+        SemanticMetadata: {DataSetSemanticMetadata}
     end
 
     enum DataSetUseAs

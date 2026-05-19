@@ -886,6 +886,24 @@ function M.items_describe_internet_gateways(client, input)
     })
 end
 
+--- Returns a page iterator for describeIpamPoolAllocations.
+function M.pages_describe_ipam_pool_allocations(client, input)
+    return paginator.pages(client, "describeIpamPoolAllocations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPoolAllocations",
+    })
+end
+
+--- Returns an item iterator for describeIpamPoolAllocations.
+function M.items_describe_ipam_pool_allocations(client, input)
+    return paginator.items(client, "describeIpamPoolAllocations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "IpamPoolAllocations",
+    })
+end
+
 --- Returns a page iterator for describeIpamPools.
 function M.pages_describe_ipam_pools(client, input)
     return paginator.pages(client, "describeIpamPools", input, {

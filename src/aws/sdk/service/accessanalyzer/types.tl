@@ -298,6 +298,17 @@ local record M
     record DeleteAnalyzerOutput
     end
 
+    -- Deletes a service-linked analyzer.
+    record DeleteServiceLinkedAnalyzerInput
+        -- The name of the service-linked analyzer to delete. Service-linked analyzer names follow the format _AccessAnalyzerFor{ServiceName}-{Id}.
+        analyzerName: string
+        -- A client token.
+        clientToken: string
+    end
+
+    record DeleteServiceLinkedAnalyzerOutput
+    end
+
     -- Retrieves an analyzer.
     record GetAnalyzerInput
         -- The name of the analyzer retrieved.
@@ -344,6 +355,8 @@ local record M
         statusReason: StatusReason
         -- Specifies if the analyzer is an external access, unused access, or internal access analyzer. The GetAnalyzer action includes this property in its response if a configuration is specified, while the ListAnalyzers action omits it.
         configuration: AnalyzerConfiguration
+        -- The service principal that manages this analyzer (for example, securityhubv2.amazonaws.com). This field is only present for service-linked analyzers and is not included for customer-managed analyzers.
+        managedBy: string
     end
 
     -- The response to the request.
@@ -785,6 +798,22 @@ local record M
     record CreateAccessPreviewOutput
         -- The unique ID for the access preview.
         id: string
+    end
+
+    -- Creates a service-linked analyzer.
+    record CreateServiceLinkedAnalyzerInput
+        -- Specifies the archive rules to add for the analyzer. Archive rules automatically archive findings that meet the criteria you define for the rule.
+        archiveRules: {InlineArchiveRule}
+        -- A client token.
+        clientToken: string
+        -- Specifies the configuration of the analyzer. The specified scope of unused access is used for the configuration.
+        configuration: AnalyzerConfiguration
+    end
+
+    -- The response to the request to create a service-linked analyzer.
+    record CreateServiceLinkedAnalyzerOutput
+        -- The ARN of the service-linked analyzer that was created by the request. The analyzer name follows the format _AccessAnalyzerFor{ServiceName}-{Id} where Id is a randomly generated identifier.
+        arn: string
     end
 
     record GenerateFindingRecommendationInput

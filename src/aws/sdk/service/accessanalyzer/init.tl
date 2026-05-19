@@ -26,8 +26,10 @@ local record Client
     createAccessPreview: function(Client, types.CreateAccessPreviewInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPreviewOutput>
     createAnalyzer: function(Client, types.CreateAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnalyzerOutput>
     createArchiveRule: function(Client, types.CreateArchiveRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateArchiveRuleOutput>
+    createServiceLinkedAnalyzer: function(Client, types.CreateServiceLinkedAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceLinkedAnalyzerOutput>
     deleteAnalyzer: function(Client, types.DeleteAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalyzerOutput>
     deleteArchiveRule: function(Client, types.DeleteArchiveRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteArchiveRuleOutput>
+    deleteServiceLinkedAnalyzer: function(Client, types.DeleteServiceLinkedAnalyzerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceLinkedAnalyzerOutput>
     generateFindingRecommendation: function(Client, types.GenerateFindingRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GenerateFindingRecommendationOutput>
     getAccessPreview: function(Client, types.GetAccessPreviewInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessPreviewOutput>
     getAnalyzedResource: function(Client, types.GetAnalyzedResourceInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalyzedResourceOutput>
@@ -131,12 +133,20 @@ function C:createArchiveRule(input: types.CreateArchiveRuleInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateArchiveRule as schema.OperationSchema, input, options) as async.Operation<types.CreateArchiveRuleOutput>
 end
 
+function C:createServiceLinkedAnalyzer(input: types.CreateServiceLinkedAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceLinkedAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateServiceLinkedAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.CreateServiceLinkedAnalyzerOutput>
+end
+
 function C:deleteAnalyzer(input: types.DeleteAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnalyzerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnalyzerOutput>
 end
 
 function C:deleteArchiveRule(input: types.DeleteArchiveRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteArchiveRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteArchiveRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteArchiveRuleOutput>
+end
+
+function C:deleteServiceLinkedAnalyzer(input: types.DeleteServiceLinkedAnalyzerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceLinkedAnalyzerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceLinkedAnalyzer as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceLinkedAnalyzerOutput>
 end
 
 function C:generateFindingRecommendation(input: types.GenerateFindingRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateFindingRecommendationOutput>

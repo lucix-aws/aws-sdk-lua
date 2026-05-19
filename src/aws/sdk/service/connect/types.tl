@@ -30,7 +30,7 @@ local record M
     end
 
     record ActivateEvaluationFormInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The unique identifier for the evaluation form.
         EvaluationFormId: string
@@ -171,7 +171,7 @@ local record M
 
     -- Information about the contact associated to the user.
     record AgentContactReference
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The channel of the contact.
         Channel: string
@@ -223,7 +223,7 @@ local record M
 
     -- A structure that defines search criteria for contacts using agent hierarchy group levels. For more information
     -- about agent hierarchies, see Set Up
-    -- Agent Hierarchies in the Amazon Connect Administrator Guide.
+    -- Agent Hierarchies in the Connect Customer Administrator Guide.
     record AgentHierarchyGroups
         -- The identifiers for level 1 hierarchy groups.
         L1Ids: {string}
@@ -247,7 +247,7 @@ local record M
 
     -- The configuration for the allowed video and screen sharing capabilities for participants present over the call.
     -- For more information, see Set up
-    -- in-app, web, video calling, and screen sharing capabilities in the Amazon Connect Administrator
+    -- in-app, web, video calling, and screen sharing capabilities in the Connect Customer Administrator
     -- Guide.
     record ParticipantCapabilities
         -- The configuration having the video and screen sharing capabilities for participants over the call.
@@ -540,12 +540,12 @@ local record M
     end
 
     record AssociateAnalyticsDataSetInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the dataset to associate with the target account.
         DataSetId: string
         -- The identifier of the target account. Use to associate a dataset to a different account than the one containing
-        -- the Amazon Connect instance. If not specified, by default this value is the Amazon Web Services account that has the Amazon Connect instance.
+        -- the Connect Customer instance. If not specified, by default this value is the Amazon Web Services account that has the Connect Customer instance.
         TargetAccountId: string
     end
 
@@ -580,7 +580,7 @@ local record M
     end
 
     record AssociateApprovedOriginInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The domain to add to your allow list.
         Origin: string
@@ -626,7 +626,7 @@ local record M
     end
 
     record AssociateBotInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         LexBot: LexBot
         -- The Amazon Lex V2 bot to associate with the instance.
@@ -648,9 +648,9 @@ local record M
     end
 
     record AssociateContactWithUserInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The identifier for the user. This can be the ID or the ARN of the user.
         UserId: string
@@ -696,7 +696,7 @@ local record M
     end
 
     record AssociateDefaultVocabularyInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The language code of the vocabulary entries. For a list of languages and their corresponding language codes, see
         -- What is Amazon Transcribe?
@@ -711,10 +711,10 @@ local record M
     record AssociateEmailAddressAliasInput
         -- The identifier of the email address.
         EmailAddressId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- Configuration object that specifies which email address will serve as the alias. The specified email address
-        -- must already exist in the Amazon Connect instance and cannot already be configured as an alias or have an alias
+        -- must already exist in the Connect Customer instance and cannot already be configured as an alias or have an alias
         -- of its own.
         AliasConfiguration: AliasConfiguration
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
@@ -741,7 +741,7 @@ local record M
     end
 
     record AssociateFlowInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the resource.
         -- Amazon Web Services End User Messaging SMS phone number ARN when using SMS_PHONE_NUMBER
@@ -819,7 +819,7 @@ local record M
         EncryptionType: string
         -- The full ARN of the encryption key.
         -- Be sure to provide the full ARN of the encryption key, not just the ID.
-        -- Amazon Connect supports only KMS keys with the default key spec of
+        -- Connect Customer supports only KMS keys with the default key spec of
         -- SYMMETRIC_DEFAULT
         -- .
         KeyId: string
@@ -872,7 +872,7 @@ local record M
     end
 
     record AssociateInstanceStorageConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A valid resource type. To enable streaming for real-time analysis
         -- of contacts, use the following types:
@@ -899,7 +899,7 @@ local record M
     end
 
     record AssociateLambdaFunctionInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The Amazon Resource Name (ARN) for the Lambda function being associated. Maximum number of characters allowed is 140.
         FunctionArn: string
@@ -914,7 +914,7 @@ local record M
     end
 
     record AssociateLexBotInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The Amazon Lex bot to associate with the instance.
         LexBot: LexBot
@@ -931,7 +931,7 @@ local record M
     record AssociatePhoneNumberContactFlowInput
         -- A unique identifier for the phone number.
         PhoneNumberId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -942,12 +942,12 @@ local record M
 
     -- Configuration object that specifies an email address to be associated with a queue. This configuration contains the identifier of the email address that should be linked to the queue for routing email contacts.
     record EmailAddressConfig
-        -- The identifier of the email address that should be associated with the queue. This email address must already exist in the Amazon Connect instance and will be used to route incoming email contacts to the specified queue.
+        -- The identifier of the email address that should be associated with the queue. This email address must already exist in the Connect Customer instance and will be used to route incoming email contacts to the specified queue.
         EmailAddressId: string
     end
 
     record AssociateQueueEmailAddressesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -964,7 +964,7 @@ local record M
     end
 
     record AssociateQueueQuickConnectsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -996,12 +996,12 @@ local record M
         -- delay.
         Priority: number
         -- The delay, in seconds, a contact should be in the queue before they are routed to an available agent. For more
-        -- information, see Queues: priority and delay in the Amazon Connect Administrator Guide.
+        -- information, see Queues: priority and delay in the Connect Customer Administrator Guide.
         Delay: number
     end
 
     record AssociateRoutingProfileQueuesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -1016,7 +1016,7 @@ local record M
     end
 
     record AssociateSecurityKeyInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A valid security key in PEM format as a String.
         Key: string
@@ -1064,7 +1064,7 @@ local record M
         TrafficDistributionGroupId: string
         -- The identifier of the user account. This can be the ID or the ARN of the user.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -1073,9 +1073,9 @@ local record M
 
     -- Information about proficiency of a user.
     record UserProficiency
-        -- The name of user's proficiency. You must use name of predefined attribute present in the Amazon Connect instance.
+        -- The name of user's proficiency. You must use name of predefined attribute present in the Connect Customer instance.
         AttributeName: string
-        -- The value of user's proficiency. You must use value of predefined attribute present in the Amazon Connect
+        -- The value of user's proficiency. You must use value of predefined attribute present in the Connect Customer
         -- instance.
         AttributeValue: string
         -- The level of the proficiency. The valid values are 1, 2, 3, 4 and 5.
@@ -1083,7 +1083,7 @@ local record M
     end
 
     record AssociateUserProficienciesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN of the
         -- instance).
         InstanceId: string
         -- The identifier of the user account.
@@ -1136,16 +1136,16 @@ local record M
     end
 
     record BatchAssociateAnalyticsDataSetInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- An array of dataset identifiers to associate.
         DataSetIds: {string}
         -- The identifier of the target account. Use to associate a dataset to a different account than the one containing
-        -- the Amazon Connect instance. If not specified, by default this value is the Amazon Web Services account that has the Amazon Connect instance.
+        -- the Connect Customer instance. If not specified, by default this value is the Amazon Web Services account that has the Connect Customer instance.
         TargetAccountId: string
     end
 
-    -- This API is in preview release for Amazon Connect and is subject to change.
+    -- This API is in preview release for Connect Customer and is subject to change.
     -- Information about associations that are successfully created: DataSetId,
     -- TargetAccountId, ResourceShareId,
     -- ResourceShareArn.
@@ -1162,7 +1162,7 @@ local record M
         ResourceShareStatus: string
     end
 
-    -- This API is in preview release for Amazon Connect and is subject to change.
+    -- This API is in preview release for Connect Customer and is subject to change.
     -- List of errors for dataset association failures.
     record ErrorResult
         -- The error code.
@@ -1383,12 +1383,12 @@ local record M
     end
 
     record BatchDisassociateAnalyticsDataSetInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- An array of associated dataset identifiers to remove.
         DataSetIds: {string}
         -- The identifier of the target account. Use to disassociate a dataset from a different account than the one containing
-        -- the Amazon Connect instance. If not specified, by default this value is the Amazon Web Services account that has the Amazon Connect instance.
+        -- the Connect Customer instance. If not specified, by default this value is the Amazon Web Services account that has the Connect Customer instance.
         TargetAccountId: string
     end
 
@@ -1489,7 +1489,7 @@ local record M
     end
 
     record BatchGetFlowAssociationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A list of resource identifiers to retrieve flow associations.
         -- Amazon Web Services End User Messaging SMS phone number ARN when using SMS_PHONE_NUMBER
@@ -1557,14 +1557,14 @@ local record M
 
     -- Request object with information to create a contact.
     record ContactDataRequest
-        -- Endpoint associated with the Amazon Connect instance from which outbound contact will be initiated for the
+        -- Endpoint associated with the Connect Customer instance from which outbound contact will be initiated for the
         -- campaign.
         SystemEndpoint: Endpoint
         -- Endpoint of the customer for which contact will be initiated.
         CustomerEndpoint: Endpoint
         -- Identifier to uniquely identify individual requests in the batch.
         RequestIdentifier: string
-        -- The identifier of the queue associated with the Amazon Connect instance in which contacts that are created
+        -- The identifier of the queue associated with the Connect Customer instance in which contacts that are created
         -- will be queued.
         QueueId: string
         -- List of attributes to be stored in a contact.
@@ -1581,7 +1581,7 @@ local record M
         -- SDK populates this field. For more information about idempotency, see
         -- Making retries safe with idempotent APIs.
         ClientToken: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- List of individual contact requests.
         ContactDataRequestList: {ContactDataRequest}
@@ -1663,9 +1663,9 @@ local record M
     end
 
     record ClaimPhoneNumberInput
-        -- The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through. You must enter InstanceId or TargetArn.
+        -- The Amazon Resource Name (ARN) for Connect Customer instances or traffic distribution groups that phone number inbound traffic is routed through. You must enter InstanceId or TargetArn.
         TargetArn: string
-        -- The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        -- The identifier of the Connect Customer instance that phone numbers are claimed to. You
         -- can find the
         -- instance ID in the Amazon Resource Name (ARN) of the instance. You must enter InstanceId or TargetArn.
         InstanceId: string
@@ -1693,7 +1693,7 @@ local record M
 
     -- Request to CompleteAttachedFileUpload API
     record CompleteAttachedFileUploadInput
-        -- The unique identifier of the Amazon Connect instance.
+        -- The unique identifier of the Connect Customer instance.
         InstanceId: string
         -- The unique identifier of the attached file resource.
         FileId: string
@@ -1707,7 +1707,7 @@ local record M
     end
 
     record CreateAgentStatusInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the status.
         Name: string
@@ -1779,7 +1779,7 @@ local record M
     end
 
     record CreateContactOutput
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The Amazon Resource Name (ARN) of the created contact.
         ContactArn: string
@@ -1804,17 +1804,17 @@ local record M
     end
 
     record CreateContactFlowInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The name of the flow.
         Name: string
         -- The type of the flow. For descriptions of the available types, see Choose a flow type in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         Type: string
         -- The description of the flow.
         Description: string
         -- The JSON string that represents the content of the flow. For an example, see Example
-        -- flow in Amazon Connect Flow language.
+        -- flow in Connect Customer Flow language.
         -- Length Constraints: Minimum length of 1. Maximum length of 256000.
         Content: string
         -- Indicates the flow status as either SAVED or PUBLISHED. The PUBLISHED
@@ -1853,14 +1853,14 @@ local record M
     end
 
     record CreateContactFlowModuleInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the flow module.
         Name: string
         -- The description of the flow module.
         Description: string
         -- The JSON string that represents the content of the flow. For an example, see Example
-        -- flow in Amazon Connect Flow language.
+        -- flow in Connect Customer Flow language.
         Content: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
         Tags: {string : string}
@@ -1888,7 +1888,7 @@ local record M
     end
 
     record CreateContactFlowModuleAliasInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The description of the alias.
         Description: string
@@ -1908,7 +1908,7 @@ local record M
     end
 
     record CreateContactFlowModuleVersionInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The description of the flow module version.
         Description: string
@@ -1926,7 +1926,7 @@ local record M
     end
 
     record CreateContactFlowVersionInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The description of the flow version.
         Description: string
@@ -2097,7 +2097,7 @@ local record M
     record CreateEmailAddressInput
         -- The description of the email address.
         Description: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The email address, including the domain.
         EmailAddress: string
@@ -2518,7 +2518,7 @@ local record M
     end
 
     record CreateHoursOfOperationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the hours of operation.
         Name: string
@@ -2612,7 +2612,7 @@ local record M
     end
 
     record CreateHoursOfOperationOverrideInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier for the hours of operation
         HoursOfOperationId: string
@@ -2648,7 +2648,7 @@ local record M
     record CreateInstanceInput
         -- The idempotency token.
         ClientToken: string
-        -- The type of identity management for your Amazon Connect users.
+        -- The type of identity management for your Connect Customer users.
         IdentityManagementType: string
         -- The name for your instance.
         InstanceAlias: string
@@ -2695,12 +2695,12 @@ local record M
     end
 
     record CreateIntegrationAssociationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The type of information to be ingested.
         IntegrationType: string
         -- The Amazon Resource Name (ARN) of the integration.
-        -- When integrating with Amazon Web Services End User Messaging, the Amazon Connect and Amazon Web Services End
+        -- When integrating with Amazon Web Services End User Messaging, the Connect Customer and Amazon Web Services End
         -- User Messaging instances must be in the same account.
         IntegrationArn: string
         -- The URL for the external application. This field is only required for the EVENT integration type.
@@ -2785,9 +2785,9 @@ local record M
     end
 
     record CreateParticipantInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect. Supports contacts in the CHAT channel and VOICE (WebRTC) channels. For WebRTC calls, this should be
+        -- The identifier of the contact in this instance of Connect Customer. Supports contacts in the CHAT channel and VOICE (WebRTC) channels. For WebRTC calls, this should be
         -- the initial contact ID that was generated when the contact was first created (from the StartWebRTCContact API) in the
         -- VOICE channel
         ContactId: string
@@ -2826,7 +2826,7 @@ local record M
     end
 
     record CreatePersistentContactAssociationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- This is the contactId of the current contact that the CreatePersistentContactAssociation API is
         -- being called from.
@@ -2834,7 +2834,7 @@ local record M
         -- The contactId chosen for rehydration depends on the type chosen.
         -- ENTIRE_PAST_SESSION: Rehydrates a chat from the most recently terminated past chat contact of the
         -- specified past ended chat session. To use this type, provide the initialContactId of the past ended
-        -- chat session in the sourceContactId field. In this type, Amazon Connect determines what the most
+        -- chat session in the sourceContactId field. In this type, Connect Customer determines what the most
         -- recent chat contact on the past ended chat session and uses it to start a persistent chat.
         -- FROM_SEGMENT: Rehydrates a chat from the specified past chat contact provided in the
         -- sourceContactId field.
@@ -2881,9 +2881,9 @@ local record M
     end
 
     -- Custom metadata that is associated to predefined attributes to control behavior in upstream services, such as
-    -- controlling how a predefined attribute should be displayed in the Amazon Connect admin website.
+    -- controlling how a predefined attribute should be displayed in the Connect Customer admin website.
     record InputPredefinedAttributeConfiguration
-        -- When this parameter is set to true, Amazon Connect enforces strict validation on the specific values, if the
+        -- When this parameter is set to true, Connect Customer enforces strict validation on the specific values, if the
         -- values are predefined in attributes. The contact will store only valid and predefined values for the predefined
         -- attribute key.
         EnableValueValidationOnAssociation: boolean
@@ -2896,18 +2896,18 @@ local record M
     end
 
     record CreatePredefinedAttributeInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The name of the predefined attribute.
         Name: string
         -- The values of the predefined attribute.
         Values: PredefinedAttributeValues
-        -- Values that enable you to categorize your predefined attributes. You can use them in custom UI elements across the Amazon Connect admin website.
+        -- Values that enable you to categorize your predefined attributes. You can use them in custom UI elements across the Connect Customer admin website.
         Purposes: {string}
         -- Custom metadata that is associated to predefined attributes to control behavior
         -- in upstream services, such as controlling
-        -- how a predefined attribute should be displayed in the Amazon Connect admin website.
+        -- how a predefined attribute should be displayed in the Connect Customer admin website.
         AttributeConfiguration: InputPredefinedAttributeConfiguration
     end
 
@@ -2915,7 +2915,7 @@ local record M
     end
 
     record CreatePromptInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the prompt.
         Name: string
@@ -2995,7 +2995,7 @@ local record M
     end
 
     record CreateQueueInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the queue.
         Name: string
@@ -3062,7 +3062,7 @@ local record M
 
     -- Contains configuration settings for a quick connect.
     record QuickConnectConfig
-        -- The type of quick connect. In the Amazon Connect admin website, when you create a quick connect, you are
+        -- The type of quick connect. In the Connect Customer admin website, when you create a quick connect, you are
         -- prompted to assign one of the following types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
         QuickConnectType: string
         -- The user configuration. This is required only if QuickConnectType is USER.
@@ -3076,7 +3076,7 @@ local record M
     end
 
     record CreateQuickConnectInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique name of the quick connect.
         Name: string
@@ -3124,7 +3124,7 @@ local record M
     end
 
     record CreateRoutingProfileInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the routing profile. Must not be more than 127 characters.
         Name: string
@@ -3136,12 +3136,12 @@ local record M
         -- calls.
         -- The limit of 10 array members applies to the maximum number of RoutingProfileQueueConfig objects
         -- that can be passed during a CreateRoutingProfile API request. It is different from the quota of 50 queues per routing
-        -- profile per instance that is listed in Amazon Connect service quotas.
+        -- profile per instance that is listed in Connect Customer service quotas.
         QueueConfigs: {RoutingProfileQueueConfig}
         -- The manual assignment queues associated with the routing profile. If no queue is added, agents and supervisors
         -- can't pick or assign any contacts from this routing profile. The limit of 10 array members applies to the maximum
         -- number of RoutingProfileManualAssignmentQueueConfig objects that can be passed during a CreateRoutingProfile API
-        -- request. It is different from the quota of 50 queues per routing profile per instance that is listed in Amazon Connect service quotas.
+        -- request. It is different from the quota of 50 queues per routing profile per instance that is listed in Connect Customer service quotas.
         -- Note: Use this config for chat, email, and task contacts. It does not support voice contacts.
         ManualAssignmentQueueConfigs: {RoutingProfileManualAssignmentQueueConfig}
         -- The channels that agents can handle in the Contact Control Panel (CCP) for this routing profile.
@@ -3251,7 +3251,7 @@ local record M
 
     -- The type of notification recipient.
     record NotificationRecipientType
-        -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Amazon Connect users with the specified tags will be notified.
+        -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }. Connect Customer users with the specified tags will be notified.
         UserTags: {string : string}
         -- A list of user IDs. Supports variable injection of $.ContactLens.ContactEvaluation.Agent.AgentId
         -- for OnContactEvaluationSubmit event source.
@@ -3264,11 +3264,11 @@ local record M
         DeliveryMethod: string
         -- The subject of the email if the delivery method is EMAIL. Supports variable injection. For more information, see
         -- JSONPath reference
-        -- in the Amazon Connect Administrators Guide.
+        -- in the Connect Customer Administrators Guide.
         Subject: string
         -- Notification content. Supports variable injection. For more information, see
         -- JSONPath reference
-        -- in the Amazon Connect Administrators Guide.
+        -- in the Connect Customer Administrators Guide.
         Content: string
         -- Content type format.
         ContentType: string
@@ -3288,11 +3288,11 @@ local record M
     record TaskActionDefinition
         -- The name. Supports variable injection. For more information, see
         -- JSONPath reference
-        -- in the Amazon Connect Administrators Guide.
+        -- in the Connect Customer Administrators Guide.
         Name: string
         -- The description. Supports variable injection. For more information, see
         -- JSONPath reference
-        -- in the Amazon Connect Administrators Guide.
+        -- in the Connect Customer Administrators Guide.
         Description: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -3386,7 +3386,7 @@ local record M
     end
 
     record CreateRuleInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique name for the rule.
         Name: string
@@ -3417,7 +3417,7 @@ local record M
         "THIRD_PARTY_APPLICATION"
     end
 
-    -- This API is in preview release for Amazon Connect and is subject to change.
+    -- This API is in preview release for Connect Customer and is subject to change.
     -- A third-party application's metadata.
     record Application
         -- Namespace of the application that you want to give access to.
@@ -3466,20 +3466,20 @@ local record M
         Description: string
         -- Permissions assigned to the security profile. For a list of valid permissions, see List of security profile permissions.
         Permissions: {string}
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
         Tags: {string : string}
-        -- The list of tags that a security profile uses to restrict access to resources in Amazon Connect.
+        -- The list of tags that a security profile uses to restrict access to resources in Connect Customer.
         AllowedAccessControlTags: {string : string}
-        -- The list of resources that a security profile applies tag restrictions to in Amazon Connect. For a list of Amazon Connect resources that you can tag, see Add tags to resources in Amazon Connect in the Amazon Connect Administrator Guide.
+        -- The list of resources that a security profile applies tag restrictions to in Connect Customer. For a list of Connect Customer resources that you can tag, see Add tags to resources in Connect Customer in the Connect Customer Administrator Guide.
         TagRestrictedResources: {string}
         -- A list of third-party applications or MCP Servers that the security profile will give access to.
         Applications: {Application}
-        -- The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect. Following
+        -- The list of resources that a security profile applies hierarchy restrictions to in Connect Customer. Following
         -- are acceptable ResourceNames: User.
         HierarchyRestrictedResources: {string}
-        -- The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.
+        -- The identifier of the hierarchy group that a security profile uses to restrict access to resources in Connect Customer.
         AllowedAccessControlHierarchyGroupId: string
         -- A list of Flow Modules an AI Agent can invoke as a tool.
         AllowedFlowModules: {FlowModule}
@@ -3577,7 +3577,7 @@ local record M
     end
 
     record CreateTaskTemplateInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the task template.
         Name: string
@@ -3715,7 +3715,7 @@ local record M
         Name: string
         -- A description for the traffic distribution group.
         Description: string
-        -- The identifier of the Amazon Connect instance that has been replicated. You can find the
+        -- The identifier of the Connect Customer instance that has been replicated. You can find the
         -- instanceId in the ARN of the instance.
         InstanceId: string
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
@@ -3746,7 +3746,7 @@ local record M
     end
 
     record CreateUseCaseInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the integration association.
         IntegrationAssociationId: string
@@ -3775,17 +3775,17 @@ local record M
     end
 
     -- Contains information about the identity of a user.
-    -- For Amazon Connect instances that are created with the EXISTING_DIRECTORY identity management
-    -- type, FirstName, LastName, and Email cannot be updated from within Amazon Connect because they are managed by the directory.
+    -- For Connect Customer instances that are created with the EXISTING_DIRECTORY identity management
+    -- type, FirstName, LastName, and Email cannot be updated from within Connect Customer because they are managed by the directory.
     -- The FirstName and LastName length constraints below apply only to instances using
-    -- SAML for identity management. If you are using Amazon Connect for identity management, the length constraints
+    -- SAML for identity management. If you are using Connect Customer for identity management, the length constraints
     -- are 1-255 for FirstName, and 1-256 for LastName.
     record UserIdentityInfo
-        -- The first name. This is required if you are using Amazon Connect or SAML for identity management. Inputs
+        -- The first name. This is required if you are using Connect Customer or SAML for identity management. Inputs
         -- must be in Unicode Normalization Form C (NFC). Text containing characters in a non-NFC form (for example, decomposed
         -- characters or combining marks) are not accepted.
         FirstName: string
-        -- The last name. This is required if you are using Amazon Connect or SAML for identity management. Inputs must
+        -- The last name. This is required if you are using Connect Customer or SAML for identity management. Inputs must
         -- be in Unicode Normalization Form C (NFC). Text containing characters in a non-NFC form (for example, decomposed
         -- characters or combining marks) are not accepted.
         LastName: string
@@ -3859,19 +3859,19 @@ local record M
         -- Correct: testuser@example.com
         -- Incorrect: testuser@example
         Username: string
-        -- The password for the user account. A password is required if you are using Amazon Connect for identity
+        -- The password for the user account. A password is required if you are using Connect Customer for identity
         -- management. Otherwise, it is an error to include a password.
         Password: string
         -- The information about the identity of the user.
         IdentityInfo: UserIdentityInfo
         -- The phone settings for the user. This parameter is optional. If not provided, the user can be configured using channel-specific parameters such as AutoAcceptConfigs, AfterContactWorkConfigs, PhoneNumberConfigs, PersistentConnectionConfigs, and VoiceEnhancementConfigs.
         PhoneConfig: UserPhoneConfig
-        -- The identifier of the user account in the directory used for identity management. If Amazon Connect cannot
+        -- The identifier of the user account in the directory used for identity management. If Connect Customer cannot
         -- access the directory, you can specify this identifier to authenticate users. If you include the identifier, we assume
-        -- that Amazon Connect cannot access the directory. Otherwise, the identity information is used to authenticate
+        -- that Connect Customer cannot access the directory. Otherwise, the identity information is used to authenticate
         -- users from your directory.
-        -- This parameter is required if you are using an existing directory for identity management in Amazon Connect
-        -- when Amazon Connect cannot access your directory to authenticate users. If you are using SAML for identity
+        -- This parameter is required if you are using an existing directory for identity management in Connect Customer
+        -- when Connect Customer cannot access your directory to authenticate users. If you are using SAML for identity
         -- management and include this parameter, an error is returned.
         DirectoryUserId: string
         -- The identifier of the security profile for the user.
@@ -3880,7 +3880,7 @@ local record M
         RoutingProfileId: string
         -- The identifier of the hierarchy group for the user.
         HierarchyGroupId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The list of auto-accept configuration settings for each channel.
         AutoAcceptConfigs: {AutoAcceptConfig}
@@ -3909,7 +3909,7 @@ local record M
         -- The identifier for the parent hierarchy group. The user hierarchy is created at level one if the parent group ID
         -- is null.
         ParentGroupId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
         Tags: {string : string}
@@ -3937,7 +3937,7 @@ local record M
     end
 
     record CreateViewInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- A unique Id for each create view request to avoid duplicate view creation. For example, the view is idempotent
@@ -4037,7 +4037,7 @@ local record M
     end
 
     record CreateViewVersionInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the view. Both ViewArn and ViewId can be used.
@@ -4060,7 +4060,7 @@ local record M
         -- Making retries safe with idempotent APIs. If a create request is received more than once with same client token, subsequent requests return
         -- the previous response without creating a vocabulary again.
         ClientToken: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique name of the custom vocabulary.
         VocabularyName: string
@@ -4253,7 +4253,7 @@ local record M
     end
 
     record DeactivateEvaluationFormInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The unique identifier for the evaluation form.
         EvaluationFormId: string
@@ -4288,7 +4288,7 @@ local record M
     end
 
     record DeleteContactEvaluationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the contact evaluation.
         EvaluationId: string
@@ -4298,7 +4298,7 @@ local record M
     end
 
     record DeleteContactFlowInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -4308,7 +4308,7 @@ local record M
     end
 
     record DeleteContactFlowModuleInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -4318,7 +4318,7 @@ local record M
     end
 
     record DeleteContactFlowModuleAliasInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -4330,7 +4330,7 @@ local record M
     end
 
     record DeleteContactFlowModuleVersionInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -4342,7 +4342,7 @@ local record M
     end
 
     record DeleteContactFlowVersionInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -4379,7 +4379,7 @@ local record M
     end
 
     record DeleteEmailAddressInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the email address.
         EmailAddressId: string
@@ -4389,7 +4389,7 @@ local record M
     end
 
     record DeleteEvaluationFormInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The unique identifier for the evaluation form.
         EvaluationFormId: string
@@ -4401,7 +4401,7 @@ local record M
     end
 
     record DeleteHoursOfOperationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the hours of operation.
         HoursOfOperationId: string
@@ -4411,7 +4411,7 @@ local record M
     end
 
     record DeleteHoursOfOperationOverrideInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier for the hours of operation.
         HoursOfOperationId: string
@@ -4423,7 +4423,7 @@ local record M
     end
 
     record DeleteInstanceInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
@@ -4436,7 +4436,7 @@ local record M
     end
 
     record DeleteIntegrationAssociationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the integration association.
         IntegrationAssociationId: string
@@ -4457,7 +4457,7 @@ local record M
     end
 
     record DeletePredefinedAttributeInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The name of the predefined attribute.
@@ -4468,7 +4468,7 @@ local record M
     end
 
     record DeletePromptInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the prompt.
         PromptId: string
@@ -4483,7 +4483,7 @@ local record M
         InstanceId: string
         -- The identifier for the registration.
         RegistrationId: string
-        -- The identifier of the contact within the Amazon Connect instance.
+        -- The identifier of the contact within the Connect Customer instance.
         ContactId: string
     end
 
@@ -4491,7 +4491,7 @@ local record M
     end
 
     record DeleteQueueInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -4501,7 +4501,7 @@ local record M
     end
 
     record DeleteQuickConnectInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the quick connect.
         QuickConnectId: string
@@ -4511,7 +4511,7 @@ local record M
     end
 
     record DeleteRoutingProfileInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -4521,7 +4521,7 @@ local record M
     end
 
     record DeleteRuleInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the rule.
         RuleId: string
@@ -4531,7 +4531,7 @@ local record M
     end
 
     record DeleteSecurityProfileInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the security profle.
         SecurityProfileId: string
@@ -4541,7 +4541,7 @@ local record M
     end
 
     record DeleteTaskTemplateInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the task template.
         TaskTemplateId: string
@@ -4570,7 +4570,7 @@ local record M
     end
 
     record DeleteUseCaseInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the integration association.
         IntegrationAssociationId: string
@@ -4582,7 +4582,7 @@ local record M
     end
 
     record DeleteUserInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the user.
         UserId: string
@@ -4594,7 +4594,7 @@ local record M
     record DeleteUserHierarchyGroupInput
         -- The identifier of the hierarchy group.
         HierarchyGroupId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -4602,7 +4602,7 @@ local record M
     end
 
     record DeleteViewInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the view. Both ViewArn and ViewId can be used.
@@ -4613,7 +4613,7 @@ local record M
     end
 
     record DeleteViewVersionInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the view. Both ViewArn and ViewId can be used.
@@ -4626,7 +4626,7 @@ local record M
     end
 
     record DeleteVocabularyInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the custom vocabulary.
         VocabularyId: string
@@ -4687,7 +4687,7 @@ local record M
     end
 
     record DescribeAgentStatusInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the agent status.
         AgentStatusId: string
@@ -4706,7 +4706,7 @@ local record M
     end
 
     record DescribeAttachedFilesConfigurationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The scope of the attachment. Valid values are EMAIL, CHAT, CASE, and TASK.
         AttachmentScope: string
@@ -4720,7 +4720,7 @@ local record M
 
     -- The configuration for attached files for a specific attachment scope.
     record AttachedFilesConfiguration
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The scope of the attachment. Valid values are EMAIL, CHAT, CASE, and TASK.
         AttachmentScope: string
@@ -4740,11 +4740,11 @@ local record M
     record DescribeAuthenticationProfileInput
         -- A unique identifier for the authentication profile.
         AuthenticationProfileId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
-    -- This API is in preview release for Amazon Connect and is subject to change. To
+    -- This API is in preview release for Connect Customer and is subject to change. To
     -- request access to this API, contact Amazon Web Services Support.
     -- Information about an authentication profile. An authentication profile is a resource that stores the
     -- authentication settings for users in your contact center. You use authentication profiles to set up IP address range
@@ -4759,16 +4759,16 @@ local record M
         Name: string
         -- The description for the authentication profile.
         Description: string
-        -- A list of IP address range strings that are allowed to access the Amazon Connect instance. For more
+        -- A list of IP address range strings that are allowed to access the Connect Customer instance. For more
         -- information about how to configure IP addresses, see Configure IP address based access
-        -- control in the Amazon Connect Administrator Guide.
+        -- control in the Connect Customer Administrator Guide.
         AllowedIps: {string}
-        -- A list of IP address range strings that are blocked from accessing the Amazon Connect instance. For more
+        -- A list of IP address range strings that are blocked from accessing the Connect Customer instance. For more
         -- information about how to configure IP addresses, see Configure IP address based access
-        -- control in the Amazon Connect Administrator Guide.
+        -- control in the Connect Customer Administrator Guide.
         BlockedIps: {string}
-        -- Shows whether the authentication profile is the default authentication profile for the Amazon Connect
-        -- instance. The default authentication profile applies to all agents in an Amazon Connect instance, unless
+        -- Shows whether the authentication profile is the default authentication profile for the Connect Customer
+        -- instance. The default authentication profile applies to all agents in an Connect Customer instance, unless
         -- overridden by another authentication profile.
         IsDefault: boolean
         -- The timestamp when the authentication profile was created.
@@ -4777,12 +4777,12 @@ local record M
         LastModifiedTime: number
         -- The Amazon Web Services Region where the authentication profile was last modified.
         LastModifiedRegion: string
-        -- The short lived session duration configuration for users logged in to Amazon Connect, in minutes. This value
-        -- determines the maximum possible time before an agent is authenticated. For more information, see Configure the session duration in the Amazon Connect Administrator Guide.
+        -- The short lived session duration configuration for users logged in to Connect Customer, in minutes. This value
+        -- determines the maximum possible time before an agent is authenticated. For more information, see Configure the session duration in the Connect Customer Administrator Guide.
         PeriodicSessionDuration: number
-        -- The long lived session duration for users logged in to Amazon Connect, in minutes. After this time period,
+        -- The long lived session duration for users logged in to Connect Customer, in minutes. After this time period,
         -- users must log in again. For more information, see Configure the session
-        -- duration in the Amazon Connect Administrator Guide.
+        -- duration in the Connect Customer Administrator Guide.
         MaxSessionDuration: number
         -- The period, in minutes, before an agent is automatically signed out of the contact center when they go
         -- inactive.
@@ -4797,7 +4797,7 @@ local record M
     end
 
     record DescribeContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -5108,7 +5108,7 @@ local record M
         Name: string
     end
 
-    -- Information about Amazon Connect Wisdom.
+    -- Information about Connect Customer Wisdom.
     record WisdomInfo
         -- The Amazon Resource Name (ARN) of the Wisdom session.
         SessionArn: string
@@ -5117,7 +5117,7 @@ local record M
     end
 
     record DescribeContactEvaluationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the contact evaluation.
         EvaluationId: string
@@ -5319,7 +5319,7 @@ local record M
 
     -- Metadata information about a contact evaluation.
     record EvaluationMetadata
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The Amazon Resource Name (ARN) of the user who last updated the evaluation.
         EvaluatorArn: string
@@ -5389,7 +5389,7 @@ local record M
     end
 
     record DescribeContactFlowInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -5409,7 +5409,7 @@ local record M
         -- The name of the flow.
         Name: string
         -- The type of the flow. For descriptions of the available types, see Choose a flow type in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         Type: string
         -- The type of flow.
         State: string
@@ -5418,7 +5418,7 @@ local record M
         -- The description of the flow.
         Description: string
         -- The JSON string that represents the content of the flow. For an example, see Example
-        -- flow in Amazon Connect Flow language.
+        -- flow in Connect Customer Flow language.
         -- Length Constraints: Minimum length of 1. Maximum length of 256000.
         Content: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
@@ -5441,7 +5441,7 @@ local record M
     end
 
     record DescribeContactFlowModuleInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -5466,7 +5466,7 @@ local record M
         -- The name of the flow module.
         Name: string
         -- The JSON string that represents the content of the flow. For an example, see Example
-        -- flow in Amazon Connect Flow language.
+        -- flow in Connect Customer Flow language.
         Content: string
         -- The description of the flow module.
         Description: string
@@ -5494,7 +5494,7 @@ local record M
     end
 
     record DescribeContactFlowModuleAliasInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -5630,7 +5630,7 @@ local record M
     end
 
     record DescribeEmailAddressInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the email address.
         EmailAddressId: string
@@ -5659,7 +5659,7 @@ local record M
     end
 
     record DescribeEvaluationFormInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the contact evaluation.
         EvaluationFormId: string
@@ -5673,7 +5673,7 @@ local record M
     end
 
     record DescribeHoursOfOperationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the hours of operation.
         HoursOfOperationId: string
@@ -5719,7 +5719,7 @@ local record M
     end
 
     record DescribeHoursOfOperationOverrideInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier for the hours of operation.
         HoursOfOperationId: string
@@ -5757,7 +5757,7 @@ local record M
     end
 
     record DescribeInstanceInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -5774,9 +5774,9 @@ local record M
         Message: string
     end
 
-    -- The Amazon Connect instance.
+    -- The Connect Customer instance.
     record Instance
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         Id: string
         -- The Amazon Resource Name (ARN) of the instance.
         Arn: string
@@ -5797,7 +5797,7 @@ local record M
         InboundCallsEnabled: boolean
         -- Whether outbound calls are enabled.
         OutboundCallsEnabled: boolean
-        -- This URL allows contact center users to access the Amazon Connect admin website.
+        -- This URL allows contact center users to access the Connect Customer admin website.
         InstanceAccessUrl: string
         -- The tags of an instance.
         Tags: {string : string}
@@ -5813,8 +5813,8 @@ local record M
     end
 
     -- Status information about the replication process, where you use the ReplicateInstance API to create a replica of
-    -- your Amazon Connect instance in another Amazon Web Services Region. For more information, see Set up Amazon Connect
-    -- Global Resiliency in the Amazon Connect Administrator Guide.
+    -- your Connect Customer instance in another Amazon Web Services Region. For more information, see Set up Connect Customer
+    -- Global Resiliency in the Connect Customer Administrator Guide.
     record ReplicationStatusSummary
         -- The Amazon Web Services Region. This can be either the source or the replica Region, depending where it appears
         -- in the summary list.
@@ -5822,25 +5822,25 @@ local record M
         -- The state of the replication.
         ReplicationStatus: string
         -- A description of the replication status. Use this information to resolve any issues that are preventing the
-        -- successful replication of your Amazon Connect instance to another Region.
+        -- successful replication of your Connect Customer instance to another Region.
         ReplicationStatusReason: string
     end
 
-    -- Details about the status of the replication of a source Amazon Connect instance across Amazon Web Services
+    -- Details about the status of the replication of a source Connect Customer instance across Amazon Web Services
     -- Regions. Use these details to understand the general status of a given replication. For information about why a
     -- replication process may fail, see Why a
-    -- ReplicateInstance call fails in the Create a replica of your existing Amazon Connect
-    -- instance topic in the Amazon Connect Administrator Guide.
+    -- ReplicateInstance call fails in the Create a replica of your existing Connect Customer
+    -- instance topic in the Connect Customer Administrator Guide.
     record ReplicationConfiguration
         -- A list of replication status summaries. The summaries contain details about the replication of configuration
-        -- information for Amazon Connect resources, for each Amazon Web Services Region.
+        -- information for Connect Customer resources, for each Amazon Web Services Region.
         ReplicationStatusSummaryList: {ReplicationStatusSummary}
-        -- The Amazon Web Services Region where the source Amazon Connect instance was created. This is the Region where
+        -- The Amazon Web Services Region where the source Connect Customer instance was created. This is the Region where
         -- the ReplicateInstance API was called to start the replication process.
         SourceRegion: string
-        -- The URL that is used to sign-in to your Amazon Connect instance according to your traffic distribution group
+        -- The URL that is used to sign-in to your Connect Customer instance according to your traffic distribution group
         -- configuration. For more information about sign-in and traffic distribution groups, see Important things to know in the
-        -- Create traffic distribution groups topic in the Amazon Connect Administrator
+        -- Create traffic distribution groups topic in the Connect Customer Administrator
         -- Guide.
         GlobalSignInEndpoint: string
     end
@@ -5849,7 +5849,7 @@ local record M
         -- The name of the instance.
         Instance: Instance
         -- Status information about the replication process. This field is included only when you are using the ReplicateInstance API to
-        -- replicate an Amazon Connect instance across Amazon Web Services Regions. For information about replicating Amazon Connect instances, see Create a replica of your existing Amazon Connect instance in the Amazon Connect Administrator Guide.
+        -- replicate an Connect Customer instance across Amazon Web Services Regions. For information about replicating Connect Customer instances, see Create a replica of your existing Connect Customer instance in the Connect Customer Administrator Guide.
         ReplicationConfiguration: ReplicationConfiguration
     end
 
@@ -5870,7 +5870,7 @@ local record M
     end
 
     record DescribeInstanceAttributeInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The type of attribute.
         AttributeType: string
@@ -5892,7 +5892,7 @@ local record M
     end
 
     record DescribeInstanceStorageConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.
         AssociationId: string
@@ -6226,7 +6226,7 @@ local record M
         "SHORT_CODE"
     end
 
-    -- Information about a phone number that has been claimed to your Amazon Connect instance or traffic distribution group.
+    -- Information about a phone number that has been claimed to your Connect Customer instance or traffic distribution group.
     record ClaimedPhoneNumberSummary
         -- A unique identifier for the phone number.
         PhoneNumberId: string
@@ -6240,9 +6240,9 @@ local record M
         PhoneNumberType: string
         -- The description of the phone number.
         PhoneNumberDescription: string
-        -- The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through.
+        -- The Amazon Resource Name (ARN) for Connect Customer instances or traffic distribution groups that phone number inbound traffic is routed through.
         TargetArn: string
-        -- The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        -- The identifier of the Connect Customer instance that phone numbers are claimed to. You
         -- can find the
         -- instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -6268,12 +6268,12 @@ local record M
     end
 
     record DescribePhoneNumberOutput
-        -- Information about a phone number that's been claimed to your Amazon Connect instance or traffic distribution group.
+        -- Information about a phone number that's been claimed to your Connect Customer instance or traffic distribution group.
         ClaimedPhoneNumberSummary: ClaimedPhoneNumberSummary
     end
 
     record DescribePredefinedAttributeInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The name of the predefined attribute.
@@ -6281,13 +6281,13 @@ local record M
     end
 
     -- Custom metadata that is associated to predefined attributes to control behavior in upstream services, such as
-    -- controlling how a predefined attribute should be displayed in the Amazon Connect admin website.
+    -- controlling how a predefined attribute should be displayed in the Connect Customer admin website.
     record PredefinedAttributeConfiguration
-        -- When this parameter is set to true, Amazon Connect enforces strict validation on the specific values, if the
+        -- When this parameter is set to true, Connect Customer enforces strict validation on the specific values, if the
         -- values are predefined in attributes. The contact will store only valid and predefined values for teh predefined
         -- attribute key.
         EnableValueValidationOnAssociation: boolean
-        -- A boolean flag used to indicate whether a predefined attribute should be displayed in the Amazon Connect admin website.
+        -- A boolean flag used to indicate whether a predefined attribute should be displayed in the Connect Customer admin website.
         IsReadOnly: boolean
     end
 
@@ -6297,11 +6297,11 @@ local record M
         Name: string
         -- The values of the predefined attribute.
         Values: PredefinedAttributeValues
-        -- Values that enable you to categorize your predefined attributes. You can use them in custom UI elements across the Amazon Connect admin website.
+        -- Values that enable you to categorize your predefined attributes. You can use them in custom UI elements across the Connect Customer admin website.
         Purposes: {string}
         -- Custom metadata that is associated to predefined attributes to control behavior
         -- in upstream services, such as controlling
-        -- how a predefined attribute should be displayed in the Amazon Connect admin website.
+        -- how a predefined attribute should be displayed in the Connect Customer admin website.
         AttributeConfiguration: PredefinedAttributeConfiguration
         -- Last modified time.
         LastModifiedTime: number
@@ -6315,7 +6315,7 @@ local record M
     end
 
     record DescribePromptInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the prompt.
         PromptId: string
@@ -6345,7 +6345,7 @@ local record M
     end
 
     record DescribeQueueInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -6390,7 +6390,7 @@ local record M
     end
 
     record DescribeQuickConnectInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the quick connect.
         QuickConnectId: string
@@ -6422,7 +6422,7 @@ local record M
     end
 
     record DescribeRoutingProfileInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -6430,7 +6430,7 @@ local record M
 
     -- Contains information about a routing profile.
     record RoutingProfile
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the routing profile.
         Name: string
@@ -6473,7 +6473,7 @@ local record M
     end
 
     record DescribeRuleInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the rule.
         RuleId: string
@@ -6513,7 +6513,7 @@ local record M
     record DescribeSecurityProfileInput
         -- The identifier for the security profle.
         SecurityProfileId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -6531,18 +6531,18 @@ local record M
         Description: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
         Tags: {string : string}
-        -- The list of tags that a security profile uses to restrict access to resources in Amazon Connect.
+        -- The list of tags that a security profile uses to restrict access to resources in Connect Customer.
         AllowedAccessControlTags: {string : string}
-        -- The list of resources that a security profile applies tag restrictions to in Amazon Connect.
+        -- The list of resources that a security profile applies tag restrictions to in Connect Customer.
         TagRestrictedResources: {string}
         -- The timestamp when this resource was last modified.
         LastModifiedTime: number
         -- The Amazon Web Services Region where this resource was last modified.
         LastModifiedRegion: string
-        -- The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect. Following
+        -- The list of resources that a security profile applies hierarchy restrictions to in Connect Customer. Following
         -- are acceptable ResourceNames: User.
         HierarchyRestrictedResources: {string}
-        -- The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.
+        -- The identifier of the hierarchy group that a security profile uses to restrict access to resources in Connect Customer.
         AllowedAccessControlHierarchyGroupId: string
         -- The granular access control configuration for the security profile, including data table permissions.
         GranularAccessControlConfiguration: GranularAccessControlConfiguration
@@ -6662,11 +6662,11 @@ local record M
     record DescribeUserInput
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
-    -- Contains information about a user account for an Amazon Connect instance.
+    -- Contains information about a user account for an Connect Customer instance.
     record User
         -- The identifier of the user account.
         Id: string
@@ -6713,7 +6713,7 @@ local record M
     record DescribeUserHierarchyGroupInput
         -- The identifier of the hierarchy group.
         HierarchyGroupId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -6771,7 +6771,7 @@ local record M
     end
 
     record DescribeUserHierarchyStructureInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -6809,7 +6809,7 @@ local record M
     end
 
     record DescribeViewInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The ViewId of the view. This must be an ARN for Amazon Web Services managed views.
@@ -6822,7 +6822,7 @@ local record M
     end
 
     record DescribeVocabularyInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the custom vocabulary.
         VocabularyId: string
@@ -6856,7 +6856,7 @@ local record M
     end
 
     record DescribeVocabularyOutput
-        -- A list of specific words that you want Contact Lens for Amazon Connect to recognize in your audio input. They are generally
+        -- A list of specific words that you want Contact Lens for Connect Customer to recognize in your audio input. They are generally
         -- domain-specific words and phrases, words that Contact Lens is not recognizing, or proper nouns.
         Vocabulary: Vocabulary
     end
@@ -6906,12 +6906,12 @@ local record M
     end
 
     record DisassociateAnalyticsDataSetInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the dataset to remove.
         DataSetId: string
         -- The identifier of the target account. Use to associate a dataset to a different account than the one containing
-        -- the Amazon Connect instance. If not specified, by default this value is the Amazon Web Services account that has the Amazon Connect instance.
+        -- the Connect Customer instance. If not specified, by default this value is the Amazon Web Services account that has the Connect Customer instance.
         TargetAccountId: string
     end
 
@@ -6919,7 +6919,7 @@ local record M
     end
 
     record DisassociateApprovedOriginInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The domain URL of the integrated application.
         Origin: string
@@ -6934,7 +6934,7 @@ local record M
     end
 
     record DisassociateBotInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         LexBot: LexBot
         -- The Amazon Lex V2 bot to disassociate from the instance.
@@ -6952,7 +6952,7 @@ local record M
     record DisassociateEmailAddressAliasInput
         -- The identifier of the email address.
         EmailAddressId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- Configuration object that specifies which alias relationship to remove. The alias association must currently
         -- exist between the primary email address and the specified alias email address.
@@ -6968,7 +6968,7 @@ local record M
     end
 
     record DisassociateFlowInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the resource.
         -- Amazon Web Services End User Messaging SMS phone number ARN when using SMS_PHONE_NUMBER
@@ -6996,7 +6996,7 @@ local record M
     end
 
     record DisassociateInstanceStorageConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.
         AssociationId: string
@@ -7013,7 +7013,7 @@ local record M
     end
 
     record DisassociateLambdaFunctionInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance..
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance..
         InstanceId: string
         -- The Amazon Resource Name (ARN) of the Lambda function being disassociated.
         FunctionArn: string
@@ -7028,7 +7028,7 @@ local record M
     end
 
     record DisassociateLexBotInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the Amazon Lex bot. Maximum character limit of 50.
         BotName: string
@@ -7047,7 +7047,7 @@ local record M
     record DisassociatePhoneNumberContactFlowInput
         -- A unique identifier for the phone number.
         PhoneNumberId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -7055,7 +7055,7 @@ local record M
     end
 
     record DisassociateQueueEmailAddressesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -7072,7 +7072,7 @@ local record M
     end
 
     record DisassociateQueueQuickConnectsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -7084,7 +7084,7 @@ local record M
     end
 
     record DisassociateRoutingProfileQueuesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -7098,7 +7098,7 @@ local record M
     end
 
     record DisassociateSecurityKeyInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.
         AssociationId: string
@@ -7133,7 +7133,7 @@ local record M
         TrafficDistributionGroupId: string
         -- The identifier for the user. This can be the ID or the ARN of the user.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -7149,7 +7149,7 @@ local record M
     end
 
     record DisassociateUserProficienciesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The identifier of the user account.
@@ -7181,7 +7181,7 @@ local record M
     record DismissUserContactInput
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -7241,7 +7241,7 @@ local record M
 
     -- Request to GetAttachedFile API.
     record GetAttachedFileInput
-        -- The unique identifier of the Amazon Connect instance.
+        -- The unique identifier of the Connect Customer instance.
         InstanceId: string
         -- The unique identifier of the attached file resource.
         FileId: string
@@ -7291,7 +7291,7 @@ local record M
     end
 
     record GetContactAttributesInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier of the initial contact.
         InitialContactId: string
@@ -7316,9 +7316,9 @@ local record M
     end
 
     record GetContactMetricsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- A list of contact level metrics to retrieve.Supported metrics include POSITION_IN_QUEUE (the contact's
         -- current position in the queue) and ESTIMATED_WAIT_TIME (the predicted time in seconds until the contact is
@@ -7380,7 +7380,7 @@ local record M
         "PERCENT"
     end
 
-    -- Contains information about a real-time metric. For a description of each metric, see Metrics definitions in the Amazon Connect Administrator Guide.
+    -- Contains information about a real-time metric. For a description of each metric, see Metrics definitions in the Connect Customer Administrator Guide.
     -- Only one of either the Name or MetricId is required.
     record CurrentMetric
         -- The name of the metric.
@@ -7437,7 +7437,7 @@ local record M
     end
 
     record GetCurrentMetricDataInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The filters to apply to returned metrics. You can filter up to the following limits:
         -- Queues: 100
@@ -7476,7 +7476,7 @@ local record M
         -- required.
         Groupings: {string}
         -- The metrics to retrieve. Specify the name or metricId, and unit for each metric. The following metrics are available. For a
-        -- description of all the metrics, see Metrics definitions in the Amazon Connect Administrator Guide.
+        -- description of all the metrics, see Metrics definitions in the Connect Customer Administrator Guide.
         -- MetricId should be used to reference custom metrics or out of the box metrics as Arn. If using MetricId, the limit is 10 MetricId per request.
         -- AGENTS_AFTER_CONTACT_WORK
         -- Unit: COUNT
@@ -7626,7 +7626,7 @@ local record M
     end
 
     record GetCurrentUserDataInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The filters to apply to returned user data. You can filter up to the following limits:
         -- Queues: 100
@@ -7713,7 +7713,7 @@ local record M
     end
 
     record GetEffectiveHoursOfOperationsInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier for the hours of operation.
         HoursOfOperationId: string
@@ -7774,17 +7774,17 @@ local record M
     end
 
     record GetFederationTokenInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
     -- Contains credentials to use for federation.
     record Credentials
-        -- An access token generated for a federated user to access Amazon Connect.
+        -- An access token generated for a federated user to access Connect Customer.
         AccessToken: string
-        -- A token generated with an expiration time for the session a user is logged in to Amazon Connect.
+        -- A token generated with an expiration time for the session a user is logged in to Connect Customer.
         AccessTokenExpiration: number
-        -- Renews a token generated for a user to access the Amazon Connect instance.
+        -- Renews a token generated for a user to access the Connect Customer instance.
         RefreshToken: string
         -- Renews the expiration timer for a generated token.
         RefreshTokenExpiration: number
@@ -7801,13 +7801,13 @@ local record M
         UserId: string
     end
 
-    -- No user with the specified credentials was found in the Amazon Connect instance.
+    -- No user with the specified credentials was found in the Connect Customer instance.
     record UserNotFoundException
         Message: string
     end
 
     record GetFlowAssociationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the resource.
         -- Amazon Web Services End User Messaging SMS phone number ARN when using SMS_PHONE_NUMBER
@@ -7876,7 +7876,7 @@ local record M
     -- Contains information about a historical metric.
     record HistoricalMetric
         -- The name of the metric. Following is a list of each supported metric mapped to the UI name, linked to a detailed
-        -- description in the Amazon Connect Administrator Guide.
+        -- description in the Connect Customer Administrator Guide.
         -- ABANDON_TIME
         -- Unit: SECONDS
         -- Statistic: AVG
@@ -8003,7 +8003,7 @@ local record M
     end
 
     record GetMetricDataInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of
         -- historical metrics data. The time must be specified using a multiple of 5 minutes, such as 10:05, 10:10,
@@ -8032,7 +8032,7 @@ local record M
         -- more up-to-date features.
         Groupings: {string}
         -- The metrics to retrieve. Specify the name, unit, and statistic for each metric. The following historical metrics
-        -- are available. For a description of each metric, see Metrics definition in the Amazon Connect Administrator Guide.
+        -- are available. For a description of each metric, see Metrics definition in the Connect Customer Administrator Guide.
         -- This API does not support a contacts incoming metric (there's
         -- no CONTACTS_INCOMING metric missing from the documented list).
         -- ABANDON_TIME
@@ -8231,8 +8231,8 @@ local record M
         -- IntervalPeriod values are: FIFTEEN_MIN | THIRTY_MIN | HOUR |
         -- DAY | WEEK | TOTAL.
         -- For example, if IntervalPeriod is selected THIRTY_MIN, StartTime and
-        -- EndTime differs by 1 day, then Amazon Connect returns 48 results in the response. Each result is
-        -- aggregated by the THIRTY_MIN period. By default Amazon Connect aggregates results based on the TOTAL
+        -- EndTime differs by 1 day, then Connect Customer returns 48 results in the response. Each result is
+        -- aggregated by the THIRTY_MIN period. By default Connect Customer aggregates results based on the TOTAL
         -- interval period.
         -- The following list describes restrictions on StartTime and EndTime based on what
         -- IntervalPeriod is requested.
@@ -8270,14 +8270,14 @@ local record M
         -- customized list, depending on the use case.
         -- For valid values of metric-level filters INITIATION_METHOD, DISCONNECT_REASON, and
         -- ANSWERING_MACHINE_DETECTION_STATUS, see ContactTraceRecord in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         -- For valid values of the metric-level filter FLOWS_OUTCOME_TYPE, see the description for the Flow outcome
-        -- metric in the Amazon Connect Administrator Guide.
+        -- metric in the Connect Customer Administrator Guide.
         -- For valid values of the metric-level filter BOT_CONVERSATION_OUTCOME_TYPE, see the description for
-        -- the Bot conversations completed in the Amazon Connect Administrator Guide.
+        -- the Bot conversations completed in the Connect Customer Administrator Guide.
         -- For valid values of the metric-level filter BOT_INTENT_OUTCOME_TYPE, see the description for the
         -- Bot
-        -- intents completed metric in the Amazon Connect Administrator Guide.
+        -- intents completed metric in the Connect Customer Administrator Guide.
         MetricFilterValues: {string}
         -- If set to true, the API response contains results that filter out the results matched by the
         -- metric-level filters condition. By default, Negate is set to false.
@@ -8300,7 +8300,7 @@ local record M
         Name: string
         -- Contains information about the threshold for service level metrics.
         Threshold: {ThresholdV2}
-        -- Historical metrics or custom metrics can be referenced via this field. This field is a valid Amazon Connect
+        -- Historical metrics or custom metrics can be referenced via this field. This field is a valid Connect Customer
         -- Arn or a UUID
         MetricId: string
         -- Contains the filters to be used when returning data.
@@ -8308,7 +8308,7 @@ local record M
     end
 
     record GetMetricDataV2Input
-        -- The Amazon Resource Name (ARN) of the resource. This includes the instanceId an Amazon Connect instance.
+        -- The Amazon Resource Name (ARN) of the resource. This includes the instanceId an Connect Customer instance.
         ResourceArn: string
         -- The timestamp, in UNIX Epoch time format, at which to start the reporting interval for the retrieval of
         -- historical metrics data. The time must be before the end time timestamp. The start and end time depends on the
@@ -8324,8 +8324,8 @@ local record M
         -- IntervalPeriod values are: FIFTEEN_MIN | THIRTY_MIN | HOUR |
         -- DAY | WEEK | TOTAL.
         -- For example, if IntervalPeriod is selected THIRTY_MIN, StartTime and
-        -- EndTime differs by 1 day, then Amazon Connect returns 48 results in the response. Each result is
-        -- aggregated by the THIRTY_MIN period. By default Amazon Connect aggregates results based on the
+        -- EndTime differs by 1 day, then Connect Customer returns 48 results in the response. Each result is
+        -- aggregated by the THIRTY_MIN period. By default Connect Customer aggregates results based on the
         -- TOTAL interval period.
         -- The following list describes restrictions on StartTime and EndTime based on which
         -- IntervalPeriod is requested.
@@ -8367,7 +8367,7 @@ local record M
         -- ROUTING_STEP_EXPRESSION | TEST_CASE |
         -- TEST_CASE_EXECUTION_FAILURE_REASON | TEST_CASE_EXECUTION_RESULT |
         -- TEST_CASE_EXECUTION_STATE
-        -- The following filter keys correspond to Amazon Connect resources and are used for authorizing requests.
+        -- The following filter keys correspond to Connect Customer resources and are used for authorizing requests.
         -- A GetMetricDataV2 request requires at least one of these filters:
         -- QUEUE, ROUTING_PROFILE, AGENT,
         -- AGENT_HIERARCHY_LEVEL_ONE, AGENT_HIERARCHY_LEVEL_TWO,
@@ -8396,7 +8396,7 @@ local record M
         -- contact record-driven metrics.
         -- Campaign ARNs are valid filter values for the CAMPAIGN filter key.
         -- To filter by phone number, see Create a historical metrics report in
-        -- the Amazon Connect Administrator Guide.
+        -- the Connect Customer Administrator Guide.
         Filters: {FilterV2}
         -- The grouping applied to the metrics that are returned. For example, when results are grouped by queue, the
         -- metrics returned are grouped by queue. The values that are returned apply to the metrics for each queue. They are not
@@ -8426,7 +8426,7 @@ local record M
         -- Required: No
         Groupings: {string}
         -- The metrics to retrieve. Specify the name or metricId, groupings, and filters for each metric. The following
-        -- historical metrics are available. For a description of each metric, see Metrics definition in the Amazon Connect Administrator Guide.
+        -- historical metrics are available. For a description of each metric, see Metrics definition in the Connect Customer Administrator Guide.
         -- MetricId should be used to reference custom metrics or out of the box metrics as Arn. If using MetricId, the
         -- limit is 20 MetricId per request.
         -- ABANDONMENT_RATE
@@ -9349,7 +9349,7 @@ local record M
     end
 
     record GetPromptFileInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the prompt.
         PromptId: string
@@ -9366,7 +9366,7 @@ local record M
     end
 
     record GetTaskTemplateInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the task template.
         TaskTemplateId: string
@@ -9375,7 +9375,7 @@ local record M
     end
 
     record GetTaskTemplateOutput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the task template.
         Id: string
@@ -9490,7 +9490,7 @@ local record M
     end
 
     record ImportPhoneNumberInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The claimed phone number ARN being imported from the external service, such as Amazon Web Services End User
         -- Messaging. If it is from Amazon Web Services End User Messaging, it looks like the ARN of the phone number to import
@@ -9531,7 +9531,7 @@ local record M
     end
 
     record ListAgentStatusesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -9550,7 +9550,7 @@ local record M
     end
 
     record ListAnalyticsDataAssociationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the dataset to get the association status.
         DataSetId: string
@@ -9571,7 +9571,7 @@ local record M
     end
 
     record ListAnalyticsDataLakeDataSetsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -9598,7 +9598,7 @@ local record M
     end
 
     record ListApprovedOriginsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -9615,9 +9615,9 @@ local record M
     end
 
     record ListAssociatedContactsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The maximum number of results to return per page.
         MaxResults: number
@@ -9628,7 +9628,7 @@ local record M
 
     -- Contact summary of a contact in contact tree associated with unique identifier.
     record AssociatedContactSummary
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The Amazon Resource Name (ARN) of the contact
         ContactArn: string
@@ -9658,7 +9658,7 @@ local record M
     end
 
     record ListAttachedFilesConfigurationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The maximum number of results to return per page. The default MaxResult size is 100.
         MaxResults: number
@@ -9669,7 +9669,7 @@ local record M
 
     -- A summary of the attached files configuration.
     record AttachedFilesConfigurationSummary
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The scope of the attachment. Valid values are EMAIL, CHAT, CASE, and TASK.
         AttachmentScope: string
@@ -9686,7 +9686,7 @@ local record M
     end
 
     record ListAuthenticationProfilesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The maximum number of results to return per page.
         MaxResults: number
@@ -9695,7 +9695,7 @@ local record M
         NextToken: string
     end
 
-    -- This API is in preview release for Amazon Connect and is subject to change. To
+    -- This API is in preview release for Connect Customer and is subject to change. To
     -- request access to this API, contact Amazon Web Services Support.
     -- A summary of a given authentication profile.
     record AuthenticationProfileSummary
@@ -9705,8 +9705,8 @@ local record M
         Arn: string
         -- The name of the authentication profile summary.
         Name: string
-        -- Shows whether the authentication profile is the default authentication profile for the Amazon Connect
-        -- instance. The default authentication profile applies to all agents in an Amazon Connect instance, unless
+        -- Shows whether the authentication profile is the default authentication profile for the Connect Customer
+        -- instance. The default authentication profile applies to all agents in an Connect Customer instance, unless
         -- overridden by another authentication profile.
         IsDefault: boolean
         -- The timestamp when the authentication profile summary was last modified.
@@ -9728,7 +9728,7 @@ local record M
     end
 
     record ListBotsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -9779,9 +9779,9 @@ local record M
     end
 
     record ListContactEvaluationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -9842,7 +9842,7 @@ local record M
     end
 
     record ListContactFlowModuleAliasesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -9877,7 +9877,7 @@ local record M
     end
 
     record ListContactFlowModulesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -9908,7 +9908,7 @@ local record M
     end
 
     record ListContactFlowModuleVersionsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -9937,7 +9937,7 @@ local record M
     end
 
     record ListContactFlowsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The type of flow.
         ContactFlowTypes: {string}
@@ -9949,7 +9949,7 @@ local record M
     end
 
     -- Contains summary information about a flow.
-    -- You can also create and update flows using the Amazon Connect
+    -- You can also create and update flows using the Connect Customer
     -- Flow language.
     record ContactFlowSummary
         -- The identifier of the flow.
@@ -9974,7 +9974,7 @@ local record M
     end
 
     record ListContactFlowVersionsInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -10003,7 +10003,7 @@ local record M
     end
 
     record ListContactReferencesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the initial contact.
         ContactId: string
@@ -10251,7 +10251,7 @@ local record M
     end
 
     record ListDefaultVocabulariesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The language code of the vocabulary entries. For a list of languages and their corresponding language codes, see
         -- What is Amazon Transcribe?
@@ -10265,7 +10265,7 @@ local record M
 
     -- Contains information about a default vocabulary.
     record DefaultVocabulary
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The language code of the vocabulary entries. For a list of languages and their corresponding language codes, see
         -- What is Amazon Transcribe?
@@ -10307,7 +10307,7 @@ local record M
     end
 
     record ListEvaluationFormsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The maximum number of results to return per page.
         MaxResults: number
@@ -10350,7 +10350,7 @@ local record M
     end
 
     record ListEvaluationFormVersionsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The unique identifier for the evaluation form.
         EvaluationFormId: string
@@ -10391,7 +10391,7 @@ local record M
     end
 
     record ListFlowAssociationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A valid resource type.
         ResourceType: string
@@ -10410,7 +10410,7 @@ local record M
     end
 
     record ListHoursOfOperationOverridesInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier for the hours of operation.
         HoursOfOperationId: string
@@ -10434,7 +10434,7 @@ local record M
     end
 
     record ListHoursOfOperationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -10465,7 +10465,7 @@ local record M
     end
 
     record ListInstanceAttributesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -10509,7 +10509,7 @@ local record M
         InboundCallsEnabled: boolean
         -- Whether outbound calls are enabled.
         OutboundCallsEnabled: boolean
-        -- This URL allows contact center users to access the Amazon Connect admin website.
+        -- This URL allows contact center users to access the Connect Customer admin website.
         InstanceAccessUrl: string
     end
 
@@ -10521,7 +10521,7 @@ local record M
     end
 
     record ListInstanceStorageConfigsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A valid resource type.
         ResourceType: string
@@ -10540,7 +10540,7 @@ local record M
     end
 
     record ListIntegrationAssociationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The integration type.
         IntegrationType: string
@@ -10559,7 +10559,7 @@ local record M
         IntegrationAssociationId: string
         -- The Amazon Resource Name (ARN) for the AppIntegration association.
         IntegrationAssociationArn: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The integration type.
         IntegrationType: string
@@ -10581,7 +10581,7 @@ local record M
     end
 
     record ListLambdaFunctionsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -10598,7 +10598,7 @@ local record M
     end
 
     record ListLexBotsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -10632,7 +10632,7 @@ local record M
     end
 
     record ListPhoneNumbersInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The type of phone number.
         -- We recommend using ListPhoneNumbersV2 to return phone number types. While ListPhoneNumbers returns number types
@@ -10670,13 +10670,13 @@ local record M
     end
 
     record ListPhoneNumbersV2Input
-        -- The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through. If both TargetArn and InstanceId input are not provided, this API lists
-        -- numbers claimed to all the Amazon Connect instances belonging to your account in the same Amazon Web Services Region as the request.
+        -- The Amazon Resource Name (ARN) for Connect Customer instances or traffic distribution groups that phone number inbound traffic is routed through. If both TargetArn and InstanceId input are not provided, this API lists
+        -- numbers claimed to all the Connect Customer instances belonging to your account in the same Amazon Web Services Region as the request.
         TargetArn: string
-        -- The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        -- The identifier of the Connect Customer instance that phone numbers are claimed to. You
         -- can find the
         -- instance ID in the Amazon Resource Name (ARN) of the instance. If both TargetArn and InstanceId are not provided, this API lists
-        -- numbers claimed to all the Amazon Connect instances belonging to your account in the same Amazon Web Services Region as the request.
+        -- numbers claimed to all the Connect Customer instances belonging to your account in the same Amazon Web Services Region as the request.
         InstanceId: string
         -- The maximum number of results to return per page.
         MaxResults: number
@@ -10691,7 +10691,7 @@ local record M
         PhoneNumberPrefix: string
     end
 
-    -- Information about phone numbers that have been claimed to your Amazon Connect instance or traffic distribution group.
+    -- Information about phone numbers that have been claimed to your Connect Customer instance or traffic distribution group.
     record ListPhoneNumbersSummary
         -- A unique identifier for the phone number.
         PhoneNumberId: string
@@ -10703,9 +10703,9 @@ local record M
         PhoneNumberCountryCode: string
         -- The type of phone number.
         PhoneNumberType: string
-        -- The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through.
+        -- The Amazon Resource Name (ARN) for Connect Customer instances or traffic distribution groups that phone number inbound traffic is routed through.
         TargetArn: string
-        -- The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        -- The identifier of the Connect Customer instance that phone numbers are claimed to. You
         -- can find the
         -- instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -10720,12 +10720,12 @@ local record M
     record ListPhoneNumbersV2Output
         -- If there are additional results, this is the token for the next set of results.
         NextToken: string
-        -- Information about phone numbers that have been claimed to your Amazon Connect instances or traffic distribution groups.
+        -- Information about phone numbers that have been claimed to your Connect Customer instances or traffic distribution groups.
         ListPhoneNumbersSummaryList: {ListPhoneNumbersSummary}
     end
 
     record ListPredefinedAttributesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
@@ -10753,7 +10753,7 @@ local record M
     end
 
     record ListPromptsInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
         -- retrieve the next set of results.
@@ -10784,7 +10784,7 @@ local record M
     end
 
     record ListQueueEmailAddressesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -10817,7 +10817,7 @@ local record M
     end
 
     record ListQueueQuickConnectsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -10836,7 +10836,7 @@ local record M
         Arn: string
         -- The name of the quick connect.
         Name: string
-        -- The type of quick connect. In the Amazon Connect admin website, when you create a quick connect, you are
+        -- The type of quick connect. In the Connect Customer admin website, when you create a quick connect, you are
         -- prompted to assign one of the following types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
         QuickConnectType: string
         -- The timestamp when this resource was last modified.
@@ -10862,7 +10862,7 @@ local record M
     end
 
     record ListQueuesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The type of queue.
         QueueTypes: {string}
@@ -10897,14 +10897,14 @@ local record M
     end
 
     record ListQuickConnectsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance. Both Instance ID and Instance ARN are supported input formats.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance. Both Instance ID and Instance ARN are supported input formats.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
         NextToken: string
         -- The maximum number of results to return per page. The default MaxResult size is 100.
         MaxResults: number
-        -- The type of quick connect. In the Amazon Connect admin website, when you create a quick connect, you are
+        -- The type of quick connect. In the Connect Customer admin website, when you create a quick connect, you are
         -- prompted to assign one of the following types: Agent (USER), External (PHONE_NUMBER), or Queue (QUEUE).
         QuickConnectTypes: {string}
     end
@@ -10931,9 +10931,9 @@ local record M
     end
 
     record ListRealtimeContactAnalysisSegmentsV2Input
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The maximum number of results to return per page.
         MaxResults: number
@@ -10964,7 +10964,7 @@ local record M
         -- A case-sensitive name of the attachment being uploaded. Can be redacted.
         AttachmentName: string
         -- Describes the MIME file type of the attachment. For a list of supported file types, see Feature specifications in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         ContentType: string
         -- A unique identifier for the attachment.
         AttachmentId: string
@@ -11177,7 +11177,7 @@ local record M
     end
 
     record ListRoutingProfileManualAssignmentQueuesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -11213,7 +11213,7 @@ local record M
     end
 
     record ListRoutingProfileQueuesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -11237,7 +11237,7 @@ local record M
         Priority: number
         -- The delay, in seconds, that a contact should be in the queue before they are routed to an available agent. For
         -- more information, see Queues: priority and delay in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         Delay: number
         -- The channels this queue supports.
         Channel: string
@@ -11255,7 +11255,7 @@ local record M
     end
 
     record ListRoutingProfilesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11286,7 +11286,7 @@ local record M
     end
 
     record ListRulesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The publish status of the rule.
         PublishStatus: string
@@ -11327,7 +11327,7 @@ local record M
     end
 
     record ListSecurityKeysInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11356,7 +11356,7 @@ local record M
     record ListSecurityProfileApplicationsInput
         -- The identifier for the security profle.
         SecurityProfileId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11379,7 +11379,7 @@ local record M
     record ListSecurityProfileFlowModulesInput
         -- The identifier for the security profile.
         SecurityProfileId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
         -- retrieve the next set of results.
@@ -11403,7 +11403,7 @@ local record M
     record ListSecurityProfilePermissionsInput
         -- The identifier for the security profle.
         SecurityProfileId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11425,7 +11425,7 @@ local record M
     end
 
     record ListSecurityProfilesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11456,8 +11456,8 @@ local record M
     end
 
     record ListTagsForResourceInput
-        -- The Amazon Resource Name (ARN) of the resource. All Amazon Connect resources (instances, queues, flows, routing profiles, etc) have
-        -- an ARN. To locate the ARN for an instance, for example, see Find your Amazon Connect instance ID/ARN.
+        -- The Amazon Resource Name (ARN) of the resource. All Connect Customer resources (instances, queues, flows, routing profiles, etc) have
+        -- an ARN. To locate the ARN for an instance, for example, see Find your Connect Customer instance ID/ARN.
         resourceArn: string
     end
 
@@ -11467,7 +11467,7 @@ local record M
     end
 
     record ListTaskTemplatesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11636,7 +11636,7 @@ local record M
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
         NextToken: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -11707,7 +11707,7 @@ local record M
 
     -- Provides summary information about the use cases for the specified integration association.
     record ListUseCasesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the integration association.
         IntegrationAssociationId: string
@@ -11739,7 +11739,7 @@ local record M
     end
 
     record ListUserHierarchyGroupsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11808,7 +11808,7 @@ local record M
     end
 
     record ListUserProficienciesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The identifier of the user account.
@@ -11832,7 +11832,7 @@ local record M
     end
 
     record ListUsersInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -11847,7 +11847,7 @@ local record M
         Id: string
         -- The Amazon Resource Name (ARN) of the user account.
         Arn: string
-        -- The Amazon Connect user name of the user account.
+        -- The Connect Customer user name of the user account.
         Username: string
         -- The timestamp when this resource was last modified.
         LastModifiedTime: number
@@ -11863,7 +11863,7 @@ local record M
     end
 
     record ListViewsInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The type of the view.
@@ -11901,7 +11901,7 @@ local record M
     end
 
     record ListViewVersionsInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the view. Both ViewArn and ViewId can be used.
@@ -12026,7 +12026,7 @@ local record M
     end
 
     record MonitorContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the contact.
@@ -12053,7 +12053,7 @@ local record M
     record PauseContactInput
         -- The identifier of the contact.
         ContactId: string
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the flow.
@@ -12066,7 +12066,7 @@ local record M
     record PutUserStatusInput
         -- The identifier of the user.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the agent status.
         AgentStatusId: string
@@ -12089,9 +12089,9 @@ local record M
     end
 
     record ReplicateInstanceInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance. You can provide the InstanceId, or the entire ARN.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance. You can provide the InstanceId, or the entire ARN.
         InstanceId: string
-        -- The Amazon Web Services Region where to replicate the Amazon Connect instance.
+        -- The Amazon Web Services Region where to replicate the Connect Customer instance.
         ReplicaRegion: string
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
@@ -12113,7 +12113,7 @@ local record M
     record ResumeContactInput
         -- The identifier of the contact.
         ContactId: string
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the flow.
@@ -12135,7 +12135,7 @@ local record M
     end
 
     record ResumeContactRecordingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -12159,9 +12159,9 @@ local record M
     end
 
     record SearchAvailablePhoneNumbersInput
-        -- The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through. You must enter InstanceId or TargetArn.
+        -- The Amazon Resource Name (ARN) for Connect Customer instances or traffic distribution groups that phone number inbound traffic is routed through. You must enter InstanceId or TargetArn.
         TargetArn: string
-        -- The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        -- The identifier of the Connect Customer instance that phone numbers are claimed to. You
         -- can find the
         -- instance ID in the Amazon Resource Name (ARN) of the instance. You must enter InstanceId or TargetArn.
         InstanceId: string
@@ -12191,7 +12191,7 @@ local record M
     record SearchAvailablePhoneNumbersOutput
         -- If there are additional results, this is the token for the next set of results.
         NextToken: string
-        -- A list of available phone numbers that you can claim to your Amazon Connect instance or traffic distribution group.
+        -- A list of available phone numbers that you can claim to your Connect Customer instance or traffic distribution group.
         AvailableNumbersList: {AvailableNumberSummary}
     end
 
@@ -12281,7 +12281,7 @@ local record M
 
     -- Metadata information about an evaluation search.
     record EvaluationSearchMetadata
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The Amazon Resource Name (ARN) of the person who evaluated the contact.
         EvaluatorArn: string
@@ -12486,7 +12486,7 @@ local record M
     end
 
     -- A structure that defines search criteria and matching logic to search for contacts by matching text with
-    -- transcripts analyzed by Amazon Connect Contact Lens.
+    -- transcripts analyzed by Connect Customer Contact Lens.
     record Transcript
         -- The list of search criteria based on Contact Lens conversational analytics transcript.
         Criteria: {TranscriptCriteria}
@@ -12494,10 +12494,10 @@ local record M
         MatchType: string
     end
 
-    -- A structure that defines search criteria for contacts using analysis outputs from Amazon Connect Contact
+    -- A structure that defines search criteria for contacts using analysis outputs from Connect Customer Contact
     -- Lens.
     record ContactAnalysis
-        -- Search criteria based on transcript analyzed by Amazon Connect Contact Lens.
+        -- Search criteria based on transcript analyzed by Connect Customer Contact Lens.
         Transcript: Transcript
     end
 
@@ -12572,7 +12572,7 @@ local record M
         AgentHierarchyGroups: AgentHierarchyGroups
         -- The list of channels associated with contacts.
         Channels: {string}
-        -- Search criteria based on analysis outputs from Amazon Connect Contact Lens.
+        -- Search criteria based on analysis outputs from Connect Customer Contact Lens.
         ContactAnalysis: ContactAnalysis
         -- The list of initiation methods associated with contacts.
         InitiationMethods: {string}
@@ -12583,11 +12583,11 @@ local record M
         -- Additional TimeRange used to filter contacts.
         AdditionalTimeRange: SearchContactsAdditionalTimeRange
         -- The search criteria based on user-defined contact attributes that have been configured for contact search. For
-        -- more information, see Search by custom contact attributes in the Amazon Connect Administrator
+        -- more information, see Search by custom contact attributes in the Connect Customer Administrator
         -- Guide.
         -- To use SearchableContactAttributes in a search request, the GetContactAttributes
         -- action is required to perform an API request. For more information, see https://docs.aws.amazon.com/service-authorization/latest/reference/list_amazonconnect.html#amazonconnect-actions-as-permissionsActions
-        -- defined by Amazon Connect.
+        -- defined by Connect Customer.
         SearchableContactAttributes: SearchableContactAttributes
         -- The search criteria based on searchable segment attributes of a contact.
         SearchableSegmentAttributes: SearchableSegmentAttributes
@@ -12615,7 +12615,7 @@ local record M
     end
 
     record SearchContactsInput
-        -- The identifier of Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of
+        -- The identifier of Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of
         -- the instance.
         InstanceId: string
         -- Time range that you want to search results.
@@ -12909,7 +12909,7 @@ local record M
     end
 
     record SearchResourceTagsInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the Amazon Resource Name (ARN)
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the Amazon Resource Name (ARN)
         -- of the instance.
         InstanceId: string
         -- The list of resource types to be used to search tags from. If not provided or if any empty list is provided,
@@ -12944,7 +12944,7 @@ local record M
     end
 
     record SearchResourceTagsOutput
-        -- A list of tags used in the Amazon Connect instance.
+        -- A list of tags used in the Connect Customer instance.
         Tags: {TagSet}
         -- If there are additional results, this is the token for the next set of results.
         NextToken: string
@@ -13165,7 +13165,7 @@ local record M
     end
 
     record SearchVocabulariesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The maximum number of results to return per page.
         MaxResults: number
@@ -13287,14 +13287,14 @@ local record M
         Type: string
         -- Type of content. This is required when Type is MESSAGE or EVENT.
         -- For allowed message content types, see the ContentType parameter in the SendMessage topic
-        -- in the Amazon Connect Participant Service API Reference.
-        -- For allowed event content types, see the ContentType parameter in the SendEvent topic in the Amazon Connect Participant Service API Reference.
+        -- in the Connect Customer Participant Service API Reference.
+        -- For allowed event content types, see the ContentType parameter in the SendEvent topic in the Connect Customer Participant Service API Reference.
         ContentType: string
         -- Content of the message or event. This is required when Type is MESSAGE and for certain
         -- ContentTypes when Type is EVENT.
         -- For allowed message content, see the Content parameter in the SendMessage topic in the
-        -- Amazon Connect Participant Service API Reference.
-        -- For allowed event content, see the Content parameter in the SendEvent topic in the Amazon Connect Participant Service API Reference.
+        -- Connect Customer Participant Service API Reference.
+        -- For allowed event content, see the Content parameter in the SendEvent topic in the Connect Customer Participant Service API Reference.
         Content: string
     end
 
@@ -13323,7 +13323,7 @@ local record M
         -- application/json, application/vnd.amazonaws.connect.message.interactive.response].
         SupportedMessagingContentTypes: {string}
         ParticipantDetails: ParticipantDetails
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes. They
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes. They
         -- can be accessed in flows just like any other contact attributes.
         -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
         -- alphanumeric, dash, and underscore characters.
@@ -13335,7 +13335,7 @@ local record M
         -- External identifier of chat customer participant, used in part to uniquely identify a chat. For SMS, this is the
         -- E164 phone number of the chat customer participant.
         SourceId: string
-        -- Chat system identifier, used in part to uniquely identify chat. This is associated with the Amazon Connect
+        -- Chat system identifier, used in part to uniquely identify chat. This is associated with the Connect Customer
         -- instance and flow to be used to start chats. For Server Migration Service, this is the phone number destination of inbound
         -- Server Migration Service messages represented by an Amazon Web Services End User Messaging phone number ARN.
         DestinationId: string
@@ -13432,7 +13432,7 @@ local record M
     end
 
     record SendOutboundEmailInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The email address to be used for sending email.
         FromEmailAddress: EmailAddressInfo
@@ -13463,7 +13463,7 @@ local record M
         -- SDK populates this field. For more information about idempotency, see
         -- Making retries safe with idempotent APIs.
         ClientToken: string
-        -- The unique identifier of the Amazon Connect instance.
+        -- The unique identifier of the Connect Customer instance.
         InstanceId: string
         -- A case-sensitive name of the attached file being uploaded.
         FileName: string
@@ -13550,7 +13550,7 @@ local record M
         -- persistent chat.
         -- ENTIRE_PAST_SESSION: Rehydrates a chat from the most recently terminated past chat contact of the
         -- specified past ended chat session. To use this type, provide the initialContactId of the past ended
-        -- chat session in the sourceContactId field. In this type, Amazon Connect determines the most recent
+        -- chat session in the sourceContactId field. In this type, Connect Customer determines the most recent
         -- chat contact on the specified chat session that has ended, and uses it to start a persistent chat.
         -- FROM_SEGMENT: Rehydrates a chat from the past chat contact that is specified in the
         -- sourceContactId field.
@@ -13561,7 +13561,7 @@ local record M
     end
 
     record StartChatContactOutput
-        -- The identifier of this contact within the Amazon Connect instance.
+        -- The identifier of this contact within the Connect Customer instance.
         ContactId: string
         -- The identifier for a chat participant. The participantId for a chat participant is the same throughout the chat
         -- lifecycle.
@@ -13580,9 +13580,9 @@ local record M
     end
 
     record StartContactEvaluationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The unique identifier for the evaluation form.
         EvaluationFormId: string
@@ -13610,7 +13610,7 @@ local record M
     end
 
     record StartContactMediaProcessingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -13644,7 +13644,7 @@ local record M
     end
 
     record StartContactRecordingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -13659,7 +13659,7 @@ local record M
     end
 
     record StartContactStreamingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact. This is the identifier of the contact associated with the first interaction with
         -- the contact center.
@@ -13734,21 +13734,21 @@ local record M
     end
 
     record StartEmailContactOutput
-        -- The identifier of this contact within the Amazon Connect instance.
+        -- The identifier of this contact within the Connect Customer instance.
         ContactId: string
     end
 
     record StartOutboundChatContactOutput
-        -- The identifier of this contact within the Amazon Connect instance.
+        -- The identifier of this contact within the Connect Customer instance.
         ContactId: string
     end
 
     record StartOutboundEmailContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
-        -- The email address associated with the Amazon Connect instance.
+        -- The email address associated with the Connect Customer instance.
         FromEmailAddress: EmailAddressInfo
         -- The email address of the customer.
         DestinationEmailAddress: EmailAddressInfo
@@ -13764,7 +13764,7 @@ local record M
     end
 
     record StartOutboundEmailContactOutput
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
     end
 
@@ -13794,7 +13794,7 @@ local record M
         Name: string
         -- A description of the voice contact that appears in the agent's snapshot in the CCP logs. For more information
         -- about CCP logs, see Download and
-        -- review CCP logs in the Amazon Connect Administrator Guide.
+        -- review CCP logs in the Connect Customer Administrator Guide.
         Description: string
         -- A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Contacts can have the following
         -- reference types at the time of creation: URL | NUMBER | STRING |
@@ -13809,13 +13809,13 @@ local record M
         -- The phone number of the customer, in E.164 format.
         DestinationPhoneNumber: string
         -- The
-        -- identifier of the flow for the outbound call. To see the ContactFlowId in the Amazon Connect admin website, on the navigation menu go to
+        -- identifier of the flow for the outbound call. To see the ContactFlowId in the Connect Customer admin website, on the navigation menu go to
         -- Routing, Contact Flows. Choose the flow. On the
         -- flow page, under the name of the flow, choose Show additional flow information. The
         -- ContactFlowId is the last part of the ARN, shown here in bold:
         -- arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
         ContactFlowId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
@@ -13823,14 +13823,14 @@ local record M
         -- Making retries safe with idempotent APIs. The token is valid for 7 days after creation. If a contact is already started, the contact ID is
         -- returned.
         ClientToken: string
-        -- The phone number associated with the Amazon Connect instance, in E.164 format. If you do not specify a
+        -- The phone number associated with the Connect Customer instance, in E.164 format. If you do not specify a
         -- source phone number, you must specify a queue.
         SourcePhoneNumber: string
         -- The queue for the call. If you specify a queue, the phone displayed for caller ID is the phone number specified
         -- in the queue. If you do not specify a queue, the queue defined in the flow is used. If you do not specify a queue,
         -- you must specify a source phone number.
         QueueId: string
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
         -- can be accessed in flows just like any other contact attributes.
         -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
         -- alphanumeric, dash, and underscore characters.
@@ -13839,7 +13839,7 @@ local record M
         AnswerMachineDetectionConfig: AnswerMachineDetectionConfig
         -- The campaign identifier of the outbound communication.
         CampaignId: string
-        -- Denotes the class of traffic. Calls with different traffic types are handled differently by Amazon Connect.
+        -- Denotes the class of traffic. Calls with different traffic types are handled differently by Connect Customer.
         -- The default value is GENERAL. Use CAMPAIGN if EnableAnswerMachineDetection is
         -- set to true. For all other cases, use GENERAL.
         TrafficType: string
@@ -13850,7 +13850,7 @@ local record M
     end
 
     record StartOutboundVoiceContactOutput
-        -- The identifier of this contact within the Amazon Connect instance.
+        -- The identifier of this contact within the Connect Customer instance.
         ContactId: string
     end
 
@@ -13860,9 +13860,9 @@ local record M
         -- SDK populates this field. For more information about idempotency, see
         -- Making retries safe with idempotent APIs.
         ClientToken: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
     end
 
@@ -13878,7 +13878,7 @@ local record M
     end
 
     record StartTaskContactOutput
-        -- The identifier of this contact within the Amazon Connect instance.
+        -- The identifier of this contact within the Connect Customer instance.
         ContactId: string
     end
 
@@ -13903,7 +13903,7 @@ local record M
     end
 
     record StartWebRTCContactInput
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
         -- can be accessed in flows just like any other contact attributes.
         -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
         -- alphanumeric, -, and _ characters.
@@ -13915,18 +13915,18 @@ local record M
         -- The token is valid for 7 days after creation. If a contact is already started, the contact ID is
         -- returned.
         ClientToken: string
-        -- The identifier of the flow for the call. To see the ContactFlowId in the Amazon Connect admin website, on the navigation menu go to
+        -- The identifier of the flow for the call. To see the ContactFlowId in the Connect Customer admin website, on the navigation menu go to
         -- Routing, Flows. Choose the flow. On the flow page,
         -- under the name of the flow, choose Show additional flow information. The
         -- ContactFlowId is the last part of the ARN, shown here in bold:
         -- arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
         ContactFlowId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- Information about the video sharing capabilities of the participants (customer, agent).
         AllowedCapabilities: AllowedCapabilities
         ParticipantDetails: ParticipantDetails
-        -- The unique identifier for an Amazon Connect contact. This identifier is related to the contact
+        -- The unique identifier for an Connect Customer contact. This identifier is related to the contact
         -- starting.
         RelatedContactId: string
         -- A formatted URL that is shown to an agent in the Contact Control Panel (CCP). Tasks can have the following
@@ -14001,7 +14001,7 @@ local record M
     record StartWebRTCContactOutput
         -- Information required for the client application (mobile application or website) to connect to the call.
         ConnectionData: ConnectionData
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The identifier for a contact participant. The ParticipantId for a contact participant is the same
         -- throughout the contact lifecycle.
@@ -14017,7 +14017,7 @@ local record M
         Message: string
     end
 
-    -- Contains details about why a contact was disconnected. Only Amazon Connect outbound campaigns can provide
+    -- Contains details about why a contact was disconnected. Only Connect Customer outbound campaigns can provide
     -- this field.
     record DisconnectReason
         -- A code that indicates how the contact was terminated.
@@ -14027,12 +14027,12 @@ local record M
     record StopContactInput
         -- The ID of the contact.
         ContactId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The reason a contact can be disconnected. Only Amazon Connect outbound campaigns can provide this field. For
+        -- The reason a contact can be disconnected. Only Connect Customer outbound campaigns can provide this field. For
         -- a list and description of all the possible disconnect reasons by channel (including outbound campaign voice contacts)
         -- see DisconnectReason under ContactTraceRecord in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         DisconnectReason: DisconnectReason
     end
 
@@ -14040,7 +14040,7 @@ local record M
     end
 
     record StopContactMediaProcessingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -14050,7 +14050,7 @@ local record M
     end
 
     record StopContactRecordingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -14065,7 +14065,7 @@ local record M
     end
 
     record StopContactStreamingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact. This is the identifier of the contact that is associated with the first
         -- interaction with the contact center.
@@ -14102,12 +14102,12 @@ local record M
 
     -- Represents the entity that performed the action on the evaluation.
     record EvaluatorUserUnion
-        -- Represents the Amazon Connect ARN of the user.
+        -- Represents the Connect Customer ARN of the user.
         ConnectUserArn: string
     end
 
     record SubmitContactEvaluationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the contact evaluation.
         EvaluationId: string
@@ -14127,7 +14127,7 @@ local record M
     end
 
     record SuspendContactRecordingInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -14142,9 +14142,9 @@ local record M
     end
 
     record TagContactInput
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The tags to be assigned to the contact resource. For example, { "Tags": {"key1":"value1", "key2":"value2"}
         -- }.
@@ -14166,9 +14166,9 @@ local record M
     end
 
     record TransferContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The identifier for the queue.
         QueueId: string
@@ -14184,16 +14184,16 @@ local record M
     end
 
     record TransferContactOutput
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The Amazon Resource Name (ARN) of the contact.
         ContactArn: string
     end
 
     record UntagContactInput
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A list of tag keys. Existing tags on the contact whose keys are members of this list will be removed.
         TagKeys: {string}
@@ -14213,7 +14213,7 @@ local record M
     end
 
     record UpdateAgentStatusInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the agent status.
         AgentStatusId: string
@@ -14233,7 +14233,7 @@ local record M
     end
 
     record UpdateAttachedFilesConfigurationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The scope of the attachment. Valid values are EMAIL, CHAT, CASE, and TASK.
         AttachmentScope: string
@@ -14244,7 +14244,7 @@ local record M
     end
 
     record UpdateAttachedFilesConfigurationOutput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The scope of the attachment.
         AttachmentScope: string
@@ -14259,7 +14259,7 @@ local record M
     record UpdateAuthenticationProfileInput
         -- A unique identifier for the authentication profile.
         AuthenticationProfileId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name for the authentication profile.
         Name: string
@@ -14267,16 +14267,16 @@ local record M
         Description: string
         -- A list of IP address range strings that are allowed to access the instance. For more information on how to
         -- configure IP addresses, seeConfigure session
-        -- timeouts in the Amazon Connect Administrator Guide.
+        -- timeouts in the Connect Customer Administrator Guide.
         AllowedIps: {string}
         -- A list of IP address range strings that are blocked from accessing the instance. For more information on how to
         -- configure IP addresses, For more information on how to configure IP addresses, see Configure IP-based access
-        -- control in the Amazon Connect Administrator Guide.
+        -- control in the Connect Customer Administrator Guide.
         BlockedIps: {string}
-        -- The short lived session duration configuration for users logged in to Amazon Connect, in minutes. This value
+        -- The short lived session duration configuration for users logged in to Connect Customer, in minutes. This value
         -- determines the maximum possible time before an agent is authenticated. For more information, For more information on
         -- how to configure IP addresses, see Configure session
-        -- timeouts in the Amazon Connect Administrator Guide.
+        -- timeouts in the Connect Customer Administrator Guide.
         PeriodicSessionDuration: number
         -- The period, in minutes, before an agent is automatically signed out of the contact center when they go
         -- inactive.
@@ -14301,9 +14301,9 @@ local record M
         -- The identifier of the contact. This is the identifier of the contact associated with the first interaction with
         -- the contact center.
         InitialContactId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The Amazon Connect attributes. These attributes can be accessed in flows just like any other contact
+        -- The Connect Customer attributes. These attributes can be accessed in flows just like any other contact
         -- attributes.
         -- You can have up to 32,768 UTF-8 bytes across all attributes for a contact. Attribute keys can include only
         -- alphanumeric, dash, and underscore characters.
@@ -14314,7 +14314,7 @@ local record M
         -- If the attributes are only used in one flow and don't need to be referred to outside of that flow (for
         -- example, by a Lambda or another flow), then use flow attributes. This way you aren't needlessly persisting the 32 KB
         -- of information from one flow to another. For more information, see Flow block: Set contact attributes in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         Attributes: {string : string}
     end
 
@@ -14322,7 +14322,7 @@ local record M
     end
 
     record UpdateContactEvaluationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the contact evaluation.
         EvaluationId: string
@@ -14342,12 +14342,12 @@ local record M
     end
 
     record UpdateContactFlowContentInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
         -- The JSON string that represents the content of the flow. For an example, see Example
-        -- flow in Amazon Connect Flow language.
+        -- flow in Connect Customer Flow language.
         -- Length Constraints: Minimum length of 1. Maximum length of 256000.
         Content: string
     end
@@ -14356,7 +14356,7 @@ local record M
     end
 
     record UpdateContactFlowMetadataInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -14372,7 +14372,7 @@ local record M
     end
 
     record UpdateContactFlowModuleAliasInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -14390,12 +14390,12 @@ local record M
     end
 
     record UpdateContactFlowModuleContentInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
         -- The JSON string that represents the content of the flow. For an example, see Example
-        -- flow in Amazon Connect Flow language.
+        -- flow in Connect Customer Flow language.
         Content: string
         -- Serialized JSON string of the flow module Settings schema.
         Settings: string
@@ -14405,7 +14405,7 @@ local record M
     end
 
     record UpdateContactFlowModuleMetadataInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow module.
         ContactFlowModuleId: string
@@ -14421,7 +14421,7 @@ local record M
     end
 
     record UpdateContactFlowNameInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier of the flow.
         ContactFlowId: string
@@ -14446,7 +14446,7 @@ local record M
     end
 
     record UpdateContactScheduleInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact.
         ContactId: string
@@ -14536,7 +14536,7 @@ local record M
     end
 
     record UpdateEmailAddressMetadataInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the email address.
         EmailAddressId: string
@@ -14568,7 +14568,7 @@ local record M
     end
 
     record UpdateHoursOfOperationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the hours of operation.
         HoursOfOperationId: string
@@ -14586,7 +14586,7 @@ local record M
     end
 
     record UpdateHoursOfOperationOverrideInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The identifier for the hours of operation.
         HoursOfOperationId: string
@@ -14614,7 +14614,7 @@ local record M
     end
 
     record UpdateInstanceAttributeInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The type of attribute.
         -- Only allowlisted customers can consume USE_CUSTOM_TTS_VOICES. To access this feature, contact Amazon Web Services Support for allowlisting.
@@ -14635,7 +14635,7 @@ local record M
     end
 
     record UpdateInstanceStorageConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The existing association identifier that uniquely identifies the resource type and storage config for the given instance ID.
         AssociationId: string
@@ -14670,7 +14670,7 @@ local record M
         -- also match the state parameter provided in the AuthenticationUrl from the GetAuthenticationUrl
         -- response.
         State: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The code query parameter provided by Cognito in the redirectUri.
         Code: string
@@ -14738,11 +14738,11 @@ local record M
     end
 
     record UpdateParticipantRoleConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
-        -- The Amazon Connect channel you want to configure.
+        -- The Connect Customer channel you want to configure.
         ChannelConfiguration: UpdateParticipantRoleConfigChannelInfo
     end
 
@@ -14752,9 +14752,9 @@ local record M
     record UpdatePhoneNumberInput
         -- A unique identifier for the phone number.
         PhoneNumberId: string
-        -- The Amazon Resource Name (ARN) for Amazon Connect instances or traffic distribution groups that phone number inbound traffic is routed through. You must enter InstanceId or TargetArn.
+        -- The Amazon Resource Name (ARN) for Connect Customer instances or traffic distribution groups that phone number inbound traffic is routed through. You must enter InstanceId or TargetArn.
         TargetArn: string
-        -- The identifier of the Amazon Connect instance that phone numbers are claimed to. You
+        -- The identifier of the Connect Customer instance that phone numbers are claimed to. You
         -- can find the
         -- instance ID in the Amazon Resource Name (ARN) of the instance. You must enter InstanceId or TargetArn.
         InstanceId: string
@@ -14788,18 +14788,18 @@ local record M
     end
 
     record UpdatePredefinedAttributeInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The name of the predefined attribute.
         Name: string
         -- The values of the predefined attribute.
         Values: PredefinedAttributeValues
-        -- Values that enable you to categorize your predefined attributes. You can use them in custom UI elements across the Amazon Connect admin website.
+        -- Values that enable you to categorize your predefined attributes. You can use them in custom UI elements across the Connect Customer admin website.
         Purposes: {string}
         -- Custom metadata that is associated to predefined attributes to control behavior
         -- in upstream services, such as controlling
-        -- how a predefined attribute should be displayed in the Amazon Connect admin website.
+        -- how a predefined attribute should be displayed in the Connect Customer admin website.
         AttributeConfiguration: InputPredefinedAttributeConfiguration
     end
 
@@ -14807,7 +14807,7 @@ local record M
     end
 
     record UpdatePromptInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique identifier for the prompt.
         PromptId: string
@@ -14829,7 +14829,7 @@ local record M
     end
 
     record UpdateQueueHoursOfOperationInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -14841,7 +14841,7 @@ local record M
     end
 
     record UpdateQueueMaxContactsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -14853,7 +14853,7 @@ local record M
     end
 
     record UpdateQueueNameInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -14867,7 +14867,7 @@ local record M
     end
 
     record UpdateQueueOutboundCallerConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -14879,7 +14879,7 @@ local record M
     end
 
     record UpdateQueueOutboundEmailConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -14891,7 +14891,7 @@ local record M
     end
 
     record UpdateQueueStatusInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the queue.
         QueueId: string
@@ -14903,7 +14903,7 @@ local record M
     end
 
     record UpdateQuickConnectConfigInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the quick connect.
         QuickConnectId: string
@@ -14915,7 +14915,7 @@ local record M
     end
 
     record UpdateQuickConnectNameInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier for the quick connect.
         QuickConnectId: string
@@ -14929,7 +14929,7 @@ local record M
     end
 
     record UpdateRoutingProfileAgentAvailabilityTimerInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -14942,7 +14942,7 @@ local record M
     end
 
     record UpdateRoutingProfileConcurrencyInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -14954,7 +14954,7 @@ local record M
     end
 
     record UpdateRoutingProfileDefaultOutboundQueueInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -14966,7 +14966,7 @@ local record M
     end
 
     record UpdateRoutingProfileNameInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -14980,7 +14980,7 @@ local record M
     end
 
     record UpdateRoutingProfileQueuesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the routing profile.
         RoutingProfileId: string
@@ -14995,7 +14995,7 @@ local record M
     record UpdateRuleInput
         -- A unique identifier for the rule.
         RuleId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the rule. You can change the name only if TriggerEventSource is one of the following
         -- values: OnZendeskTicketCreate | OnZendeskTicketStatusUpdate |
@@ -15019,18 +15019,18 @@ local record M
         Permissions: {string}
         -- The identifier for the security profle.
         SecurityProfileId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The list of tags that a security profile uses to restrict access to resources in Amazon Connect.
+        -- The list of tags that a security profile uses to restrict access to resources in Connect Customer.
         AllowedAccessControlTags: {string : string}
-        -- The list of resources that a security profile applies tag restrictions to in Amazon Connect.
+        -- The list of resources that a security profile applies tag restrictions to in Connect Customer.
         TagRestrictedResources: {string}
         -- A list of the third-party application's metadata.
         Applications: {Application}
-        -- The list of resources that a security profile applies hierarchy restrictions to in Amazon Connect. Following
+        -- The list of resources that a security profile applies hierarchy restrictions to in Connect Customer. Following
         -- are acceptable ResourceNames: User.
         HierarchyRestrictedResources: {string}
-        -- The identifier of the hierarchy group that a security profile uses to restrict access to resources in Amazon Connect.
+        -- The identifier of the hierarchy group that a security profile uses to restrict access to resources in Connect Customer.
         AllowedAccessControlHierarchyGroupId: string
         -- A list of Flow Modules an AI Agent can invoke as a tool
         AllowedFlowModules: {FlowModule}
@@ -15044,7 +15044,7 @@ local record M
     record UpdateTaskTemplateInput
         -- A unique identifier for the task template.
         TaskTemplateId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The name of the task template.
         Name: string
@@ -15067,7 +15067,7 @@ local record M
     end
 
     record UpdateTaskTemplateOutput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the task template resource.
         Id: string
@@ -15153,7 +15153,7 @@ local record M
         VoiceEnhancementConfigs: {VoiceEnhancementConfig}
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15165,7 +15165,7 @@ local record M
         HierarchyGroupId: string
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15177,7 +15177,7 @@ local record M
         Name: string
         -- The identifier of the hierarchy group.
         HierarchyGroupId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15209,7 +15209,7 @@ local record M
     record UpdateUserHierarchyStructureInput
         -- The hierarchy levels to update.
         HierarchyStructure: HierarchyStructureUpdate
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15221,7 +15221,7 @@ local record M
         IdentityInfo: UserIdentityInfo
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15252,7 +15252,7 @@ local record M
         PhoneConfig: UserPhoneConfig
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15260,7 +15260,7 @@ local record M
     end
 
     record UpdateUserProficienciesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The identifier of the user account.
@@ -15278,7 +15278,7 @@ local record M
         RoutingProfileId: string
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15290,7 +15290,7 @@ local record M
         SecurityProfileIds: {string}
         -- The identifier of the user account.
         UserId: string
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
     end
 
@@ -15298,7 +15298,7 @@ local record M
     end
 
     record UpdateViewContentInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the view. Both ViewArn and ViewId can be used.
@@ -15318,7 +15318,7 @@ local record M
     end
 
     record UpdateViewMetadataInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The identifier of the view. Both ViewArn and ViewId can be used.
@@ -15757,7 +15757,7 @@ local record M
     end
 
     record SearchAgentStatusesInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
@@ -15772,7 +15772,7 @@ local record M
     end
 
     record SearchContactEvaluationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -15786,7 +15786,7 @@ local record M
     end
 
     record SearchContactFlowModulesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name
         -- (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
@@ -15804,7 +15804,7 @@ local record M
     end
 
     record SearchContactFlowsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name
         -- (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
@@ -15837,7 +15837,7 @@ local record M
     end
 
     record SearchEmailAddressesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The maximum number of results to return per page.
         MaxResults: number
@@ -15851,7 +15851,7 @@ local record M
     end
 
     record SearchEvaluationFormsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -15865,7 +15865,7 @@ local record M
     end
 
     record SearchHoursOfOperationOverridesInput
-        -- The identifier of the Amazon Connect instance.
+        -- The identifier of the Connect Customer instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
         -- retrieve the next set of results.
@@ -15878,7 +15878,7 @@ local record M
     end
 
     record SearchHoursOfOperationsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -15905,7 +15905,7 @@ local record M
     end
 
     record SearchPredefinedAttributesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the
         -- instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
@@ -15918,7 +15918,7 @@ local record M
     end
 
     record SearchPromptsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -15932,7 +15932,7 @@ local record M
     end
 
     record SearchQueuesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -15949,7 +15949,7 @@ local record M
     end
 
     record SearchQuickConnectsInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -15963,7 +15963,7 @@ local record M
     end
 
     record SearchRoutingProfilesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -15980,7 +15980,7 @@ local record M
     end
 
     record SearchSecurityProfilesInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -16011,7 +16011,7 @@ local record M
     end
 
     record SearchUserHierarchyGroupsInput
-        -- The identifier of the Amazon Connect instance. You can find the instanceId in the ARN of the
+        -- The identifier of the Connect Customer instance. You can find the instanceId in the ARN of the
         -- instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
@@ -16026,7 +16026,7 @@ local record M
     end
 
     record SearchUsersInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The token for the next set of results. Use the value returned in the previous
         -- response in the next request to retrieve the next set of results.
@@ -16104,16 +16104,16 @@ local record M
     end
 
     record CreateContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
         -- SDK populates this field. For more information about idempotency, see
         -- Making retries safe with idempotent APIs.
         ClientToken: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         RelatedContactId: string
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
         -- can be accessed in flows just like any other contact attributes.
         -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
         -- alphanumeric, dash, and underscore characters.
@@ -16146,7 +16146,7 @@ local record M
         -- A description of the contact.
         Description: string
         -- A set of system defined key-value pairs stored on individual contact segments (unique contact ID) using an
-        -- attribute map. The attributes are standard Amazon Connect attributes. They can be accessed in flows.
+        -- attribute map. The attributes are standard Connect Customer attributes. They can be accessed in flows.
         -- Attribute keys can include only alphanumeric, -, and _.
         -- This field can be used to set Segment Contact Expiry as a duration in minutes.
         -- To set contact expiry, a ValueMap must be specified containing the integer number of minutes the contact will
@@ -16154,21 +16154,21 @@ local record M
         -- {"ValueMap" : { "ExpiryDuration": { "ValueInteger": 135}}}}.
         SegmentAttributes: {string : SegmentAttributeValue}
         -- The ID of the previous contact when creating a transfer contact. This value can be provided only for external
-        -- audio contacts. For more information, see Integrate Amazon Connect Contact Lens with external voice
-        -- systems in the Amazon Connect Administrator Guide.
+        -- audio contacts. For more information, see Integrate Connect Customer Contact Lens with external voice
+        -- systems in the Connect Customer Administrator Guide.
         PreviousContactId: string
     end
 
     record StartChatContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the flow for initiating the chat.
         -- To
-        -- see the ContactFlowId in the Amazon Connect admin website, on the navigation menu go to Routing, Flows. Choose the flow. On the flow page, under the name of the flow, choose Show additional flow information. The ContactFlowId is the last part of the ARN, shown here
+        -- see the ContactFlowId in the Connect Customer admin website, on the navigation menu go to Routing, Flows. Choose the flow. On the flow page, under the name of the flow, choose Show additional flow information. The ContactFlowId is the last part of the ARN, shown here
         -- in bold:
         -- arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
         ContactFlowId: string
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes. They
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes. They
         -- can be accessed in flows just like any other contact attributes.
         -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
         -- alphanumeric, dash, and underscore characters.
@@ -16201,11 +16201,11 @@ local record M
         -- to configure for them, see Enable
         -- persistent chat.
         PersistentChat: PersistentChat
-        -- The unique identifier for an Amazon Connect contact. This identifier is related to the chat starting.
+        -- The unique identifier for an Connect Customer contact. This identifier is related to the chat starting.
         -- You cannot provide data for both RelatedContactId and PersistentChat.
         RelatedContactId: string
         -- A set of system defined key-value pairs stored on individual contact segments using an attribute map. The
-        -- attributes are standard Amazon Connect attributes. They can be accessed in flows.
+        -- attributes are standard Connect Customer attributes. They can be accessed in flows.
         -- Attribute keys can include only alphanumeric, -, and _.
         -- This field can be used to show channel subtype, such as connect:Guide.
         -- The types application/vnd.amazonaws.connect.message.interactive and
@@ -16221,11 +16221,11 @@ local record M
     end
 
     record StartEmailContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The email address of the customer.
         FromEmailAddress: EmailAddressInfo
-        -- The email address associated with the Amazon Connect instance.
+        -- The email address associated with the Connect Customer instance.
         DestinationEmailAddress: string
         -- A description of the email contact.
         Description: string
@@ -16242,7 +16242,7 @@ local record M
         AdditionalRecipients: InboundAdditionalRecipients
         -- List of S3 presigned URLs of email attachments and their file name.
         Attachments: {EmailAttachment}
-        -- The identifier of the flow for initiating the emails. To see the ContactFlowId in the Amazon Connect admin website, on the navigation
+        -- The identifier of the flow for initiating the emails. To see the ContactFlowId in the Connect Customer admin website, on the navigation
         -- menu go to Routing, Flows. Choose the flow. On the
         -- flow page, under the name of the flow, choose Show additional flow information. The
         -- ContactFlowId is the last part of the ARN, shown here in bold:
@@ -16253,13 +16253,13 @@ local record M
         -- attributes in the new email contact are limited to the individual contact ID. There are no limits to the number of
         -- contacts that can be linked by using RelatedContactId.
         RelatedContactId: string
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
         -- can be accessed in flows just like any other contact attributes.
         -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
         -- alphanumeric, dash, and underscore characters.
         Attributes: {string : string}
         -- A set of system defined key-value pairs stored on individual contact segments using an attribute map. The
-        -- attributes are standard Amazon Connect attributes. They can be accessed in flows.
+        -- attributes are standard Connect Customer attributes. They can be accessed in flows.
         -- Attribute keys can include only alphanumeric, -, and _.
         -- This field can be used to show channel subtype, such as connect:Guide.
         -- To set contact expiry, a ValueMap must be specified containing the integer number of minutes the
@@ -16276,19 +16276,19 @@ local record M
     record StartOutboundChatContactInput
         SourceEndpoint: Endpoint
         DestinationEndpoint: Endpoint
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name
         -- (ARN) of the instance.
         InstanceId: string
         -- A set of system defined key-value pairs stored on individual contact segments using an attribute map. The
-        -- attributes are standard Amazon Connect attributes. They can be accessed in flows.
+        -- attributes are standard Connect Customer attributes. They can be accessed in flows.
         -- Attribute keys can include only alphanumeric, -, and _.
         -- This field can be used to show channel subtype, such as connect:SMS and
         -- connect:WhatsApp.
         SegmentAttributes: {string : SegmentAttributeValue}
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
         -- can be accessed in flows just like any other contact attributes.
         Attributes: {string : string}
-        -- The identifier of the flow for the call. To see the ContactFlowId in the Amazon Connect console user
+        -- The identifier of the flow for the call. To see the ContactFlowId in the Connect Customer console user
         -- interface, on the navigation menu go to Routing, Contact Flows. Choose the flow. On
         -- the flow page, under the name of the flow, choose Show additional flow information.
         -- The ContactFlowId is the last part of the ARN, shown here in bold:
@@ -16300,7 +16300,7 @@ local record M
         ParticipantDetails: ParticipantDetails
         InitialSystemMessage: ChatMessage
         InitialTemplatedSystemMessage: TemplatedMessageConfig
-        -- The unique identifier for an Amazon Connect contact. This identifier is related to the contact
+        -- The unique identifier for an Connect Customer contact. This identifier is related to the contact
         -- starting.
         RelatedContactId: string
         -- The supported chat message content types. Supported types are:
@@ -16323,19 +16323,19 @@ local record M
     end
 
     record StartTaskContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the previous chat, voice, or task contact. Any updates to user-defined attributes to task
         -- contacts linked using the same PreviousContactID will affect every contact in the chain. There can be a
         -- maximum of 12 linked task contacts in a chain.
         PreviousContactId: string
-        -- The identifier of the flow for initiating the tasks. To see the ContactFlowId in the Amazon Connect admin website, on the navigation
+        -- The identifier of the flow for initiating the tasks. To see the ContactFlowId in the Connect Customer admin website, on the navigation
         -- menu go to Routing, Flows. Choose the flow. On the
         -- flow page, under the name of the flow, choose Show additional flow information. The
         -- ContactFlowId is the last part of the ARN, shown here in bold:
         -- arn:aws:connect:us-west-2:xxxxxxxxxxxx:instance/xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx/contact-flow/846ec553-a005-41c0-8341-xxxxxxxxxxxx
         ContactFlowId: string
-        -- A custom key-value pair using an attribute map. The attributes are standard Amazon Connect attributes, and
+        -- A custom key-value pair using an attribute map. The attributes are standard Connect Customer attributes, and
         -- can be accessed in flows just like any other contact attributes.
         -- There can be up to 32,768 UTF-8 bytes across all key-value pairs per contact. Attribute keys can include only
         -- alphanumeric, dash, and underscore characters.
@@ -16356,7 +16356,7 @@ local record M
         ClientToken: string
         -- The timestamp, in Unix Epoch seconds format, at which to start running the inbound flow. The scheduled time cannot be in the past. It must be within up to 6 days in future.
         ScheduledTime: number
-        -- A unique identifier for the task template. For more information about task templates, see Create task templates in the Amazon Connect Administrator Guide.
+        -- A unique identifier for the task template. For more information about task templates, see Create task templates in the Connect Customer Administrator Guide.
         TaskTemplateId: string
         -- The identifier for the quick connect. Tasks that are created by using QuickConnectId will use the flow that is defined
         -- on agent or queue quick connect. For more information about quick connects, see Create quick connects.
@@ -16368,7 +16368,7 @@ local record M
         -- RelatedContactId.
         RelatedContactId: string
         -- A set of system defined key-value pairs stored on individual contact segments (unique contact ID) using an
-        -- attribute map. The attributes are standard Amazon Connect attributes. They can be accessed in flows.
+        -- attribute map. The attributes are standard Connect Customer attributes. They can be accessed in flows.
         -- Attribute keys can include only alphanumeric, -, and _.
         -- This field can be used to set Contact Expiry as a duration in minutes and set a UserId for the User who created
         -- a task.
@@ -16384,7 +16384,7 @@ local record M
     end
 
     record UpdateContactInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The identifier of the contact. This is the identifier of the contact associated with the first interaction with
         -- your contact center.
@@ -16396,30 +16396,30 @@ local record M
         -- Well-formed data on contact, shown to agents on Contact Control Panel (CCP).
         References: {string : Reference}
         -- A set of system defined key-value pairs stored on individual contact segments (unique contact ID) using an
-        -- attribute map. The attributes are standard Amazon Connect attributes. They can be accessed in flows.
+        -- attribute map. The attributes are standard Connect Customer attributes. They can be accessed in flows.
         -- Attribute keys can include only alphanumeric, -, and _.
         -- This field can be used to show channel subtype, such as connect:Guide.
         -- Contact Expiry, and user-defined attributes (String - String) that are defined in predefined attributes, can be
         -- updated by using the UpdateContact API.
         SegmentAttributes: {string : SegmentAttributeValue}
         -- Information about the queue associated with a contact. This parameter can only be updated for external audio
-        -- contacts. It is used when you integrate third-party systems with Contact Lens for analytics. For more information, see Amazon Connect Contact Lens integration in
+        -- contacts. It is used when you integrate third-party systems with Contact Lens for analytics. For more information, see Connect Customer Contact Lens integration in
         -- the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         QueueInfo: QueueInfoInput
         -- Information about the agent associated with a contact. This parameter can only be updated for external audio
-        -- contacts. It is used when you integrate third-party systems with Contact Lens for analytics. For more information, see Amazon Connect Contact Lens integration in
+        -- contacts. It is used when you integrate third-party systems with Contact Lens for analytics. For more information, see Connect Customer Contact Lens integration in
         -- the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         UserInfo: UserInfo
         -- The endpoint of the customer for which the contact was initiated. For external audio contacts, this is usually
         -- the end customer's phone number. This value can only be updated for external audio contacts. For more information,
-        -- see Amazon Connect
-        -- Contact Lens integration in the Amazon Connect Administrator Guide.
+        -- see Connect Customer
+        -- Contact Lens integration in the Connect Customer Administrator Guide.
         CustomerEndpoint: Endpoint
         -- External system endpoint for the contact was initiated. For external audio contacts, this is the phone number of
         -- the external system such as the contact center. This value can only be updated for external audio contacts. For more
-        -- information, see Amazon Connect Contact Lens integration in the Amazon Connect Administrator
+        -- information, see Connect Customer Contact Lens integration in the Connect Customer Administrator
         -- Guide.
         SystemEndpoint: Endpoint
     end
@@ -16434,7 +16434,7 @@ local record M
 
     -- Latest routing criteria on the contact.
     record RoutingCriteria
-        -- List of routing steps. When Amazon Connect does not find an available agent meeting the requirements in a
+        -- List of routing steps. When Connect Customer does not find an available agent meeting the requirements in a
         -- step for a given step duration, the routing criteria will move on to the next step sequentially until a join is
         -- completed with an agent. When all steps are exhausted, the contact will be offered to any agent in the queue.
         Steps: {Step}
@@ -16448,7 +16448,7 @@ local record M
 
     -- An object to define the RoutingCriteria.
     record RoutingCriteriaInput
-        -- When Amazon Connect does not find an available agent meeting the requirements in a step for a given step
+        -- When Connect Customer does not find an available agent meeting the requirements in a step for a given step
         -- duration, the routing criteria will move on to the next step sequentially until a join is completed with an agent.
         -- When all steps are exhausted, the contact will be offered to any agent in the queue.
         Steps: {RoutingCriteriaInputStep}
@@ -16470,7 +16470,7 @@ local record M
     end
 
     record CreateEvaluationFormInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- A title of the evaluation form.
         Title: string
@@ -16566,9 +16566,9 @@ local record M
     end
 
     record UpdateContactRoutingDataInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact in this instance of Amazon Connect.
+        -- The identifier of the contact in this instance of Connect Customer.
         ContactId: string
         -- The number of seconds to add or subtract from the contact's routing age. Contacts are routed to agents on a
         -- first-come, first-serve basis. This means that changing their amount of time in queue compared to others also changes
@@ -16583,7 +16583,7 @@ local record M
     end
 
     record UpdateEvaluationFormInput
-        -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
         -- The unique identifier for the evaluation form.
         EvaluationFormId: string
@@ -16680,11 +16680,11 @@ local record M
         ScheduledTimestamp: number
         -- The contactId that is related to this contact.
         RelatedContactId: string
-        -- Information about Amazon Connect Wisdom.
+        -- Information about Connect Customer Wisdom.
         WisdomInfo: WisdomInfo
         -- The customer's identification number. For example, the CustomerId may be a customer number from
         -- your CRM. You can create a Lambda function to pull the unique customer ID of the caller from your CRM system. If you
-        -- enable Amazon Connect Voice ID capability, this attribute is populated with the CustomerSpeakerId of
+        -- enable Connect Customer Voice ID capability, this attribute is populated with the CustomerSpeakerId of
         -- the caller.
         CustomerId: string
         -- The customer or external third party participant endpoint.
@@ -16704,14 +16704,14 @@ local record M
         QueuePriority: number
         -- Tags associated with the contact. This contains both Amazon Web Services generated and user-defined tags.
         Tags: {string : string}
-        -- The timestamp when customer endpoint connected to Amazon Connect.
+        -- The timestamp when customer endpoint connected to Connect Customer.
         ConnectedToSystemTimestamp: number
         -- Latest routing criteria on the contact.
         RoutingCriteria: RoutingCriteria
         -- Information about the Customer on the contact.
         Customer: Customer
         Campaign: Campaign
-        -- Indicates how an outbound campaign call is actually disposed if the contact is connected to Amazon Connect.
+        -- Indicates how an outbound campaign call is actually disposed if the contact is connected to Connect Customer.
         AnsweringMachineDetectionStatus: string
         -- Information about customer’s voice activity.
         CustomerVoiceActivity: CustomerVoiceActivity
@@ -16724,7 +16724,7 @@ local record M
         -- List of additional email addresses for an email contact.
         AdditionalEmailRecipients: AdditionalEmailRecipients
         -- A set of system defined key-value pairs stored on individual contact segments using an attribute map. The
-        -- attributes are standard Amazon Connect attributes and can be accessed in flows. Attribute keys can include only
+        -- attributes are standard Connect Customer attributes and can be accessed in flows. Attribute keys can include only
         -- alphanumeric, -, and _ characters. This field can be used to show channel subtype. For example,
         -- connect:Guide or connect:SMS.
         SegmentAttributes: {string : SegmentAttributeValue}
@@ -16732,7 +16732,7 @@ local record M
         Recordings: {RecordingInfo}
         -- The disconnect reason for the contact. For a list and description of all the possible disconnect reasons by
         -- channel, see DisconnectReason under ContactTraceRecord in the
-        -- Amazon Connect Administrator Guide.
+        -- Connect Customer Administrator Guide.
         DisconnectReason: string
         -- Information about the contact evaluations where the key is the FormId, which is a unique identifier for the
         -- form.
@@ -16777,7 +16777,7 @@ local record M
         -- started dialing the external participant. For MONITOR, this is when the supervisor started listening to
         -- a contact.
         InitiationTimestamp: number
-        -- The timestamp when the customer endpoint disconnected from Amazon Connect.
+        -- The timestamp when the customer endpoint disconnected from Connect Customer.
         DisconnectTimestamp: number
         -- The timestamp, in Unix epoch time format, at which to start running the inbound flow.
         ScheduledTimestamp: number
