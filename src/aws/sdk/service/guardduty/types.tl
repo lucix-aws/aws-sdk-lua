@@ -2204,6 +2204,11 @@ local record M
         "CRYPTOMINING_DOMAIN"
         "CRYPTOMINING_PROCESS"
         "MALICIOUS_FILE"
+        "VULNERABILITY"
+        "MALICIOUS_PACKAGE"
+        "MISCONFIGURATION"
+        "REACHABILITY"
+        "SENSITIVE_DATA"
     end
 
     -- Contains information about the indicators that include a set of signals observed in an attack sequence.

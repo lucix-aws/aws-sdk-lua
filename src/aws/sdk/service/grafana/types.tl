@@ -221,6 +221,7 @@ local record M
         "LICENSE_REMOVAL_FAILED"
         "VERSION_UPDATING"
         "VERSION_UPDATE_FAILED"
+        "DEGRADED"
     end
 
     -- The configuration settings for an Amazon VPC that contains data sources for your Grafana workspace to connect to. Provided securityGroupIds and subnetIds must be part of the same VPC. Connecting to a private VPC is not yet available in the Asia Pacific (Seoul) Region (ap-northeast-2).
@@ -287,6 +288,8 @@ local record M
         ipAddressType: string
         -- The ID or ARN of the Key Management Service key used for encrypting workspace data.
         kmsKeyId: string
+        -- If the workspace is in the DEGRADED status, this field describes the reason the workspace is degraded.
+        degradedWorkspaceReason: string
     end
 
     record AssociateLicenseOutput

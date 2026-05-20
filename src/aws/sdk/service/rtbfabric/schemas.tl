@@ -3679,6 +3679,12 @@ M.GetResponderGatewayOutput = schema.new({
             name = "inboundLinksCount",
             target_id = prelude.Integer.id,
         }),
+        linksRequestedCount = schema.new({
+            id = id.from(_N, "GetResponderGatewayOutput", "linksRequestedCount"),
+            type = "integer",
+            name = "linksRequestedCount",
+            target_id = prelude.Integer.id,
+        }),
         gatewayType = schema.new({
             id = id.from(_N, "GetResponderGatewayOutput", "gatewayType"),
             type = "string",

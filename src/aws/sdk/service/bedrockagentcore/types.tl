@@ -259,6 +259,11 @@ local record M
         statusCode: number
     end
 
+    -- The exception that occurs when there is a retryable conflict performing an operation. This is a temporary condition that may resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.
+    record RetryableConflictException
+        message: string
+    end
+
     -- The request body structure for the InvokeAgentRuntimeCommand operation, containing the command to execute and optional configuration parameters.
     record InvokeAgentRuntimeCommandRequestBody
         -- The shell command to execute on the agent runtime. This command is executed in the runtime environment and its output is streamed back to the caller.
@@ -1464,7 +1469,7 @@ local record M
         filterConfig: CloudWatchFilterConfig
     end
 
-    -- Where to pull session spans from
+    -- Configuration for the data source used in evaluation.
     record DataSourceConfig
         -- Pull session spans from CloudWatch
         cloudWatchLogs: CloudWatchLogsSource
@@ -1504,13 +1509,13 @@ local record M
         evaluatorSummaries: {EvaluatorSummary}
     end
 
-    -- An evaluator to run against sessions
+    -- An evaluator to run against sessions.
     record Evaluator
         -- The unique identifier of the evaluator. Can reference built-in evaluators (e.g., Builtin.Helpfulness) or custom evaluators.
         evaluatorId: string
     end
 
-    -- CloudWatch Logs destination for batch evaluation results
+    -- CloudWatch Logs destination for batch evaluation results.
     record CloudWatchOutputConfig
         -- The name of the CloudWatch log group where evaluation results will be written.
         logGroupName: string
@@ -1518,7 +1523,7 @@ local record M
         logStreamName: string
     end
 
-    -- Output destination configuration
+    -- Output destination configuration.
     record OutputConfig
         -- The CloudWatch Logs configuration for writing evaluation results.
         cloudWatchConfig: CloudWatchOutputConfig
@@ -1753,7 +1758,7 @@ local record M
         nextToken: string
     end
 
-    -- Summary representation for list responses
+    -- Summary representation for list responses.
     record BatchEvaluationSummary
         -- The unique identifier of the batch evaluation.
         batchEvaluationId: string
@@ -1834,7 +1839,7 @@ local record M
 
     -- Inline ground truth data containing assertions, expected trajectories, and per-turn expected responses.
     record InlineGroundTruth
-        -- assertions for evaluation, reuses common model EvaluationContentList
+        -- Assertions for evaluation, reuses common model EvaluationContentList.
         assertions: {EvaluationContent}
         -- expectedTrajectory for evaluation, reuses common model EvaluationExpectedTrajectory
         expectedTrajectory: EvaluationExpectedTrajectory
@@ -1842,7 +1847,7 @@ local record M
         turns: {GroundTruthTurn}
     end
 
-    -- Where to pull ground truth from
+    -- Where to pull ground truth from.
     record GroundTruthSource
         -- Provide ground truth inline
         inline: InlineGroundTruth
@@ -2047,77 +2052,79 @@ local record M
         "PATCH"
     end
 
-    -- Coinbase CDP token request parameters
+    -- Coinbase CDP token request parameters.
     record CoinbaseCdpTokenRequestInput
         -- The HTTP method for the payment API request.
         requestMethod: string
-        -- Optional - defaults to "api.cdp.coinbase.com"
+        -- The host for the payment API request. Defaults to "api.cdp.coinbase.com".
         requestHost: string
         -- The path of the payment API request.
         requestPath: string
-        -- Set to true for wallet write operations (requires walletSecret configured)
+        -- Set to true for wallet write operations (requires walletSecret configured).
         includeWalletAuthToken: boolean
-        -- Request body JSON - used to generate wallet auth JWT
+        -- Request body JSON — used to generate wallet auth JWT.
         requestBody: string
     end
 
-    -- StripePrivy token request parameters
+    -- Stripe Privy token request parameters.
     record StripePrivyTokenRequestInput
-        -- Optional - defaults to "api.privy.io"
+        -- The host for the Privy API request. Defaults to "api.privy.io".
         requestHost: string
         -- The path of the Stripe Privy API request.
         requestPath: string
-        -- Request body JSON for the Privy API call
+        -- Request body JSON for the Privy API call.
         requestBody: string
-        -- Set to true to generate privy-authorization-signature
+        -- Set to true to generate privy-authorization-signature.
         includeAuthorizationSignature: boolean
     end
 
-    -- VENDOR-SPECIFIC TOKEN REQUEST CONFIGURATION - Input
+    -- Vendor-specific token request configuration.
     record PaymentTokenRequestInput
+        -- The Coinbase CDP token request.
         coinbaseCdpTokenRequest: CoinbaseCdpTokenRequestInput
+        -- The Stripe Privy token request.
         stripePrivyTokenRequest: StripePrivyTokenRequestInput
     end
 
     record GetResourcePaymentTokenInput
-        -- Workload access token for authorization. Named workloadIdentityToken for consistency with APIKey and OAuth2CredentialProvider.
+        -- Workload access token for authorization.
         workloadIdentityToken: string
-        -- Name of the payment credential provider to use
+        -- Name of the payment credential provider to use.
         resourceCredentialProviderName: string
-        -- Vendor-specific token request input
-        -- Contains all request parameters in a type-safe, vendor-specific structure
+        -- Vendor-specific token request input. Contains all request parameters in a type-safe, vendor-specific structure.
         paymentTokenRequest: PaymentTokenRequestInput
     end
 
-    -- Coinbase CDP token response
+    -- Coinbase CDP token response.
     record CoinbaseCdpTokenResponseOutput
-        -- Bearer Token for Authorization header
+        -- Bearer Token for Authorization header.
         bearerToken: string
-        -- Wallet Auth Token for X-Wallet-Auth header
+        -- Wallet Auth Token for X-Wallet-Auth header.
         walletAuthToken: string
     end
 
-    -- StripePrivy token response containing appId, basicAuthToken, and optionally authorizationSignature
+    -- Stripe Privy token response containing appId, basicAuthToken, and optionally authorizationSignature.
     record StripePrivyTokenResponseOutput
-        -- Base64-encoded ECDSA P-256 authorization signature (only present when includeAuthorizationSignature is true)
+        -- Base64-encoded ECDSA P-256 authorization signature (only present when includeAuthorizationSignature is true).
         authorizationSignature: string
-        -- Unix timestamp in milliseconds when the authorization signature expires. Set as privy-request-expiry header.
+        -- Unix timestamp in milliseconds when the authorization signature expires.
         requestExpiry: number
-        -- The Privy app ID for the privy-app-id header
+        -- The Privy app ID for the privy-app-id header.
         appId: string
-        -- Base64-encoded Basic Auth token (appId:appSecret) for the Authorization header
+        -- Base64-encoded Basic Auth token (appId:appSecret) for the Authorization header.
         basicAuthToken: string
     end
 
-    -- VENDOR-SPECIFIC TOKEN RESPONSE CONFIGURATION - Output
+    -- Vendor-specific token response configuration.
     record PaymentTokenResponseOutput
+        -- The Coinbase CDP token response.
         coinbaseCdpTokenResponse: CoinbaseCdpTokenResponseOutput
+        -- The Stripe Privy token response.
         stripePrivyTokenResponse: StripePrivyTokenResponseOutput
     end
 
     record GetResourcePaymentTokenOutput
-        -- Vendor-specific token response output
-        -- Contains all response data in a type-safe, vendor-specific structure
+        -- Vendor-specific token response output. Contains all response data in a type-safe, vendor-specific structure.
         paymentTokenResponse: PaymentTokenResponseOutput
     end
 
@@ -2983,11 +2990,6 @@ local record M
         message: string
     end
 
-    -- The exception that occurs when there is a retryable conflict performing an operation. This is a temporary condition that may resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.
-    record RetryableConflictException
-        message: string
-    end
-
     record DeleteEventInput
         -- The identifier of the AgentCore Memory resource from which to delete the event.
         memoryId: string
@@ -3248,9 +3250,9 @@ local record M
     record ListMemoryRecordsInput
         -- The identifier of the AgentCore Memory resource for which to list memory records.
         memoryId: string
-        -- The namespace prefix to filter memory records by. Returns all memory records in namespaces that start with the provided prefix.
+        -- The namespace prefix to filter memory records by. Returns all memory records in namespaces that start with the provided prefix. Either namespace or namespacePath is required.
         namespace: string
-        -- Use namespacePath for hierarchical retrievals. Return all memory records where namespace falls under the same parent hierarchy.
+        -- Use namespacePath for hierarchical retrievals. Return all memory records where namespace falls under the same parent hierarchy. Either namespace or namespacePath is required.
         namespacePath: string
         -- The memory strategy identifier to filter memory records by. If specified, only memory records with this strategy ID are returned.
         memoryStrategyId: string
@@ -3342,9 +3344,9 @@ local record M
     record RetrieveMemoryRecordsInput
         -- The identifier of the AgentCore Memory resource from which to retrieve memory records.
         memoryId: string
-        -- The namespace prefix to filter memory records by. Searches for memory records in namespaces that start with the provided prefix.
+        -- The namespace prefix to filter memory records by. Searches for memory records in namespaces that start with the provided prefix. Either namespace or namespacePath is required.
         namespace: string
-        -- Use namespacePath for hierarchical retrievals. Return all memory records where namespace falls under the same parent hierarchy.
+        -- Use namespacePath for hierarchical retrievals. Return all memory records where namespace falls under the same parent hierarchy. Either namespace or namespacePath is required.
         namespacePath: string
         -- The search criteria to use for finding relevant memory records. This includes the search query, memory strategy ID, and other search parameters.
         searchCriteria: SearchCriteria
@@ -3383,67 +3385,59 @@ local record M
 
     -- Authentication method using JWT with key ID and subject claims.
     record LinkedAccountDeveloperJwt
-        -- The key ID (kid) from the JWT header.
-        -- Identifies which key was used to sign the JWT.
+        -- The key ID (kid) from the JWT header. Identifies which key was used to sign the JWT.
         kid: string
-        -- The subject (sub) claim from the JWT payload.
-        -- Identifies the principal that is the subject of the JWT.
+        -- The subject (sub) claim from the JWT payload. Identifies the principal that is the subject of the JWT.
         sub: string
     end
 
-    -- LinkedAccount using an email address.
+    -- Linked account using an email address.
     record LinkedAccountEmail
-        -- The email address used for linkedAccount.
-        -- Must be a valid email format.
+        -- The email address used for the linked account. Must be a valid email format.
         emailAddress: string
     end
 
     -- OAuth2 authentication information for third-party providers.
-    -- Supports Google, Apple, X, Telegram, and GitHub providers.
     record OAuth2Authentication
-        -- The subject (sub) claim from the OAuth2 provider.
-        -- Uniquely identifies the user at the provider.
+        -- The subject (sub) claim from the OAuth2 provider. Uniquely identifies the user at the provider.
         sub: string
-        -- The email address from the OAuth2 provider (optional).
+        -- The email address from the OAuth2 provider.
         emailAddress: string
-        -- The user's name from the OAuth2 provider (optional).
+        -- The user's name from the OAuth2 provider.
         name: string
-        -- The username from the OAuth2 provider (optional).
+        -- The username from the OAuth2 provider.
         username: string
     end
 
-    -- Authentication method using OAuth2 providers.
-    -- Supports Google, Apple, X, Telegram, and GitHub providers.
+    -- Authentication method using OAuth2 providers. Supports Google, Apple, X, Telegram, and GitHub providers.
     record LinkedAccountOAuth2
-        -- Google OAuth2 authentication
+        -- Google OAuth2 authentication.
         google: OAuth2Authentication
-        -- Apple OAuth2 authentication
+        -- Apple OAuth2 authentication.
         apple: OAuth2Authentication
-        -- X (formerly Twitter) OAuth2 authentication
+        -- X (formerly Twitter) OAuth2 authentication.
         x: OAuth2Authentication
-        -- Telegram OAuth2 authentication
+        -- Telegram OAuth2 authentication.
         telegram: OAuth2Authentication
-        -- GitHub OAuth2 authentication
+        -- GitHub OAuth2 authentication.
         github: OAuth2Authentication
     end
 
-    -- LinkedAccount using a phone number in E.164 format.
+    -- Linked account using a phone number in E.164 format.
     record LinkedAccountSms
         -- The phone number in E.164 format (e.g., +1234567890).
-        -- Must be a valid E.164 formatted phone number starting with + and containing 1-15 digits.
         phoneNumber: string
     end
 
-    -- Represents different linkedAccounts that can be linked to an embedded wallet.
-    -- This union supports multiple linkedAccount approaches: email, SMS, JWT, and OAuth2.
+    -- Represents different linked accounts that can be linked to an embedded wallet. Supports email, SMS, JWT, and OAuth2 approaches.
     record LinkedAccount
-        -- Email-based linkedAccount
+        -- Email-based linked account.
         email: LinkedAccountEmail
-        -- SMS-based linkedAccount using phone number
+        -- SMS-based linked account using phone number.
         sms: LinkedAccountSms
-        -- Developer JWT linkedAccount with key ID and subject
+        -- Developer JWT linked account with key ID and subject.
         developerJwt: LinkedAccountDeveloperJwt
-        -- OAuth2 provider linkedAccount (Google, Apple, X, Telegram, GitHub)
+        -- OAuth2 provider linked account (Google, Apple, X, Telegram, GitHub).
         oAuth2: LinkedAccountOAuth2
     end
 
@@ -3452,25 +3446,21 @@ local record M
         "SOLANA"
     end
 
-    -- Embedded Crypto wallet instrument details
+    -- Embedded crypto wallet instrument details.
     record EmbeddedCryptoWallet
-        -- The blockchain network for this embedded crypto wallet.
-        -- Supported networks: ETHEREUM, SOLANA
+        -- The blockchain network for this embedded crypto wallet. Supported networks: ETHEREUM, SOLANA.
         network: string
-        -- List of linkedAccounts linked to this wallet.
-        -- Each linkedAccount represents a way the end user can authenticate to this wallet.
-        -- Can be empty when adding a new linkedAccount to an existing wallet.
+        -- List of linked accounts linked to this wallet. Each represents a way the end user can authenticate to this wallet.
         linkedAccounts: {LinkedAccount}
         -- The wallet address on the specified blockchain network.
         walletAddress: string
-        -- URL for the end user to complete a provider-specific action (e.g., wallet linking, onboarding).
-        -- Returned by the payment connector during instrument creation.
+        -- URL for the end user to complete a provider-specific action such as wallet linking or onboarding.
         redirectUrl: string
     end
 
-    -- Details specific to the instrument type
+    -- Details specific to the instrument type.
     record PaymentInstrumentDetails
-        -- Embedded crypto wallet managed directly by end user
+        -- Embedded crypto wallet managed directly by end user.
         embeddedCryptoWallet: EmbeddedCryptoWallet
     end
 
@@ -3478,7 +3468,7 @@ local record M
         "EMBEDDED_CRYPTO_WALLET"
     end
 
-    -- Request structure for creating a payment instrument
+    -- Request structure for creating a payment instrument.
     record CreatePaymentInstrumentInput
         -- The user ID associated with this payment instrument.
         userId: string
@@ -3492,7 +3482,7 @@ local record M
         paymentInstrumentType: string
         -- The details of the payment instrument.
         paymentInstrumentDetails: PaymentInstrumentDetails
-        -- Idempotency token to ensure request uniqueness.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
         clientToken: string
     end
 
@@ -3503,7 +3493,7 @@ local record M
         "DELETED"
     end
 
-    -- Represents a payment instrument
+    -- Represents a payment instrument.
     record PaymentInstrument
         -- The unique identifier for this payment instrument.
         paymentInstrumentId: string
@@ -3525,13 +3515,13 @@ local record M
         updatedAt: number
     end
 
-    -- Response structure for creating a payment instrument
+    -- Response structure for creating a payment instrument.
     record CreatePaymentInstrumentOutput
+        -- The created payment instrument.
         paymentInstrument: PaymentInstrument
     end
 
-    -- Request structure for deleting a payment instrument
-    -- All fields are required and must match the instrument owner's identifiers for authorization to succeed.
+    -- Request structure for deleting a payment instrument.
     record DeletePaymentInstrumentInput
         -- The user ID making the delete request. Must match the instrument's userId.
         userId: string
@@ -3543,14 +3533,13 @@ local record M
         paymentInstrumentId: string
     end
 
-    -- Response structure for deleting a payment instrument
-    -- Returns the deletion status with HTTP 200 OK status code on successful soft deletion.
+    -- Response structure for deleting a payment instrument.
     record DeletePaymentInstrumentOutput
         -- The status of the instrument after deletion. Always DELETED for successful soft delete.
         status: string
     end
 
-    -- Request structure for getting a payment instrument
+    -- Request structure for getting a payment instrument.
     record GetPaymentInstrumentInput
         -- The user ID associated with this payment instrument.
         userId: string
@@ -3564,8 +3553,9 @@ local record M
         paymentInstrumentId: string
     end
 
-    -- Response structure for getting a payment instrument
+    -- Response structure for getting a payment instrument.
     record GetPaymentInstrumentOutput
+        -- The payment instrument details.
         paymentInstrument: PaymentInstrument
     end
 
@@ -3581,7 +3571,7 @@ local record M
         "USDC"
     end
 
-    -- Request structure for getting payment instrument balance
+    -- Request structure for getting payment instrument balance.
     record GetPaymentInstrumentBalanceInput
         -- The user ID associated with this payment instrument.
         userId: string
@@ -3593,16 +3583,13 @@ local record M
         paymentConnectorId: string
         -- The ID of the payment instrument to query balance for.
         paymentInstrumentId: string
-        -- The specific blockchain chain to query balance on.
-        -- Required because balances are chain-specific — the same wallet address may hold
-        -- different token balances on different chains.
+        -- The specific blockchain chain to query balance on. Required because balances are chain-specific.
         chain: string
-        -- The token to query balance for.
-        -- Required to specify which supported token's balance to return.
+        -- The token to query balance for. Only tokens supported for X402 payments are returned.
         token: string
     end
 
-    -- A single token balance entry
+    -- A single token balance entry.
     record TokenBalance
         -- Raw balance in the smallest denomination (e.g., USDC base units where 1 USDC = 1000000).
         amount: string
@@ -3616,7 +3603,7 @@ local record M
         chain: string
     end
 
-    -- Response structure for getting payment instrument balance
+    -- Response structure for getting payment instrument balance.
     record GetPaymentInstrumentBalanceOutput
         -- The ID of the payment instrument.
         paymentInstrumentId: string
@@ -3624,7 +3611,7 @@ local record M
         tokenBalance: TokenBalance
     end
 
-    -- Request structure for listing payment instruments
+    -- Request structure for listing payment instruments.
     record ListPaymentInstrumentsInput
         -- The user ID associated with the payment instruments.
         userId: string
@@ -3640,7 +3627,7 @@ local record M
         maxResults: number
     end
 
-    -- Summary of a payment instrument for list operations
+    -- Summary of a payment instrument for list operations.
     record PaymentInstrumentSummary
         -- The unique identifier for this payment instrument.
         paymentInstrumentId: string
@@ -3660,7 +3647,7 @@ local record M
         updatedAt: number
     end
 
-    -- Response structure for listing payment instruments
+    -- Response structure for listing payment instruments.
     record ListPaymentInstrumentsOutput
         -- List of payment instrument summaries matching the request criteria.
         paymentInstruments: {PaymentInstrumentSummary}
@@ -3672,21 +3659,21 @@ local record M
         "USD"
     end
 
-    -- Money amount with currency
+    -- Represents a monetary amount with a currency.
     record Amount
         -- The numeric value of the amount.
         value: string
-        -- The currency code for this amount.
+        -- The currency code for the amount.
         currency: string
     end
 
-    -- Session spending limits
+    -- The spending limits configuration for a payment session.
     record SessionLimits
-        -- The maximum amount that can be spent in this session.
+        -- The maximum amount that can be spent in the session.
         maxSpendAmount: Amount
     end
 
-    -- Request structure for creating a payment session
+    -- Request structure for creating a payment session.
     record CreatePaymentSessionInput
         -- The user ID associated with this payment session.
         userId: string
@@ -3698,45 +3685,45 @@ local record M
         limits: SessionLimits
         -- The session expiry time in minutes. Must be between 15 and 480 minutes.
         expiryTimeInMinutes: number
-        -- Idempotency token to ensure request uniqueness.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
         clientToken: string
     end
 
-    -- Available session limits. Currently only budget is supported.
+    -- The available spending limits for a payment session.
     record AvailableLimits
-        -- The available spend amount for this session.
+        -- The remaining available amount that can be spent.
         availableSpendAmount: Amount
         -- The timestamp when the available limits were last updated.
         updatedAt: number
     end
 
-    -- Payment manager session
+    -- A payment session for managing payment transactions.
     record PaymentSession
-        -- The unique identifier for this payment session.
+        -- The unique identifier of the payment session.
         paymentSessionId: string
         -- The ARN of the payment manager that owns this session.
         paymentManagerArn: string
-        -- The spending limits for this session.
+        -- The spending limits for the payment session.
         limits: SessionLimits
-        -- The user ID associated with this payment session.
+        -- The user ID associated with this session.
         userId: string
         -- The session expiry time in minutes.
         expiryTimeInMinutes: number
-        -- The timestamp when this payment session was created.
+        -- The timestamp when the session was created.
         createdAt: number
-        -- The available limits for this session after accounting for processed payments.
+        -- The current available spending limits.
         availableLimits: AvailableLimits
-        -- The timestamp when this payment session was last updated.
+        -- The timestamp when the session was last updated.
         updatedAt: number
     end
 
-    -- Response structure for creating a payment session
+    -- Response structure for creating a payment session.
     record CreatePaymentSessionOutput
+        -- The created payment session.
         paymentSession: PaymentSession
     end
 
-    -- Request structure for deleting a payment session
-    -- All fields are required and must match the session owner's identifiers for authorization to succeed.
+    -- Request structure for deleting a payment session.
     record DeletePaymentSessionInput
         -- The user ID making the delete request. Must match the session's userId.
         userId: string
@@ -3752,14 +3739,13 @@ local record M
         "DELETED"
     end
 
-    -- Response structure for deleting a payment session
-    -- Returns the deletion status with HTTP 200 status code on successful deletion.
+    -- Response structure for deleting a payment session.
     record DeletePaymentSessionOutput
         -- The status of the deletion. Always DELETED for successful hard delete.
         status: string
     end
 
-    -- Request structure for getting a payment session
+    -- Request structure for getting a payment session.
     record GetPaymentSessionInput
         -- The user ID associated with this payment session.
         userId: string
@@ -3771,12 +3757,13 @@ local record M
         paymentSessionId: string
     end
 
-    -- Response structure for getting a payment session
+    -- Response structure for getting a payment session.
     record GetPaymentSessionOutput
+        -- The payment session details.
         paymentSession: PaymentSession
     end
 
-    -- Request structure for listing payment sessions
+    -- Request structure for listing payment sessions.
     record ListPaymentSessionsInput
         -- The user ID associated with the payment sessions.
         userId: string
@@ -3790,23 +3777,23 @@ local record M
         maxResults: number
     end
 
-    -- Summary of a payment session for list operations
+    -- Summary information about a payment session.
     record PaymentSessionSummary
-        -- The unique identifier for this payment session.
+        -- The unique identifier of the payment session.
         paymentSessionId: string
         -- The ARN of the payment manager that owns this session.
         paymentManagerArn: string
-        -- The user ID associated with this payment session.
+        -- The user ID associated with this session.
         userId: string
         -- The session expiry time in minutes.
         expiryTimeInMinutes: number
-        -- The timestamp when this payment session was created.
+        -- The timestamp when the session was created.
         createdAt: number
-        -- The timestamp when this payment session was last updated.
+        -- The timestamp when the session was last updated.
         updatedAt: number
     end
 
-    -- Response structure for listing payment sessions
+    -- Response structure for listing payment sessions.
     record ListPaymentSessionsOutput
         -- List of payment session summaries matching the request criteria.
         paymentSessions: {PaymentSessionSummary}
@@ -3814,16 +3801,17 @@ local record M
         nextToken: string
     end
 
-    -- X402 payment requirement input
+    -- The input for a crypto X402 payment.
     record CryptoX402PaymentInput
-        -- The X402 protocol version (e.g., "v1", "v2")
+        -- The version of the X402 protocol.
         version: string
-        -- This can hold any JSON-like object
+        -- The X402 payment payload.
         payload: any
     end
 
-    -- Payment request details union
+    -- The payment input details, which vary by payment type.
     record PaymentInput
+        -- Input for a crypto X402 payment.
         cryptoX402: CryptoX402PaymentInput
     end
 
@@ -3831,36 +3819,37 @@ local record M
         "CRYPTO_X402"
     end
 
-    -- Request structure for processing a payment
+    -- Request structure for processing a payment.
     record ProcessPaymentInput
         -- The user ID associated with this payment.
         userId: string
         -- The agent name associated with this request, used for observability.
         agentName: string
-        -- The ARN of the payment manager handling this payment.
+        -- The ARN of the payment manager.
         paymentManagerArn: string
-        -- The ID of the payment session for this transaction.
+        -- The ID of the payment session.
         paymentSessionId: string
-        -- The ID of the payment instrument to use for this transaction.
+        -- The ID of the payment instrument to use.
         paymentInstrumentId: string
-        -- The type of payment being processed.
+        -- The type of payment to process.
         paymentType: string
         -- The payment input details specific to the payment type.
         paymentInput: PaymentInput
-        -- Idempotency token to ensure request uniqueness.
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
         clientToken: string
     end
 
-    -- X402 payment requirement output
+    -- The output from a crypto X402 payment.
     record CryptoX402PaymentOutput
-        -- The X402 protocol version (e.g., "1", "2")
+        -- The version of the X402 protocol.
         version: string
-        -- This can hold any JSON-like object
+        -- The X402 payment response payload.
         payload: any
     end
 
-    -- Payment response payload union. We will support versioning by introducing other model in this union
+    -- The payment output details, which vary by payment type.
     record PaymentOutput
+        -- Output from a crypto X402 payment.
         cryptoX402: CryptoX402PaymentOutput
     end
 
@@ -3868,19 +3857,19 @@ local record M
         "PROOF_GENERATED"
     end
 
-    -- Response structure for processing a payment
+    -- Response structure for processing a payment.
     record ProcessPaymentOutput
-        -- The unique ID of the processed payment transaction.
+        -- The unique identifier of the processed payment.
         processPaymentId: string
-        -- The ARN of the payment manager that processed this payment.
+        -- The ARN of the payment manager.
         paymentManagerArn: string
-        -- The ID of the payment session for this transaction.
+        -- The ID of the payment session used.
         paymentSessionId: string
-        -- The ID of the payment instrument used for this transaction.
+        -- The ID of the payment instrument used.
         paymentInstrumentId: string
-        -- The type of payment that was processed.
+        -- The type of payment processed.
         paymentType: string
-        -- The status of the payment transaction.
+        -- The status of the payment.
         status: string
         -- The payment output details specific to the payment type.
         paymentOutput: PaymentOutput

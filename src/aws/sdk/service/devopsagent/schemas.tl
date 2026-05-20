@@ -69,6 +69,8 @@ M.MCPToolsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PagerDutyServicesList = schema.new({ type = "list", list_member = prelude.String })
 
+M.CustomHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.PagerDutyScopesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ExchangeParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -324,6 +326,72 @@ M.RegisteredNewRelicDetails = schema.new({
     },
 })
 
+M.RegisteredMCPServerSigV4Details = schema.new({
+    id = id.from(_N, "RegisteredMCPServerSigV4Details"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        service = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        customHeaders = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "customHeaders"),
+            type = "map",
+            name = "customHeaders",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.RegisteredPagerDutyDetails = schema.new({
     id = id.from(_N, "RegisteredPagerDutyDetails"),
     type = "structure",
@@ -466,6 +534,13 @@ M.AdditionalServiceDetails = schema.new({
             name = "pagerduty",
             target_id = id.from(_N, "RegisteredPagerDutyDetails"),
             target = M.RegisteredPagerDutyDetails,
+        }),
+        mcpserversigv4 = schema.new({
+            id = id.from(_N, "AdditionalServiceDetails", "mcpserversigv4"),
+            type = "structure",
+            name = "mcpserversigv4",
+            target_id = id.from(_N, "RegisteredMCPServerSigV4Details"),
+            target = M.RegisteredMCPServerSigV4Details,
         }),
     },
 })
@@ -831,6 +906,23 @@ M.MCPServerNewRelicConfiguration = schema.new({
     },
 })
 
+M.MCPServerSigV4Configuration = schema.new({
+    id = id.from(_N, "MCPServerSigV4Configuration"),
+    type = "structure",
+    members = {
+        tools = schema.new({
+            id = id.from(_N, "MCPServerSigV4Configuration", "tools"),
+            type = "list",
+            name = "tools",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.MCPServerSplunkConfiguration = schema.new({
     id = id.from(_N, "MCPServerSplunkConfiguration"),
     type = "structure",
@@ -1118,6 +1210,13 @@ M.ServiceConfiguration = schema.new({
             name = "pagerduty",
             target_id = id.from(_N, "PagerDutyConfiguration"),
             target = M.PagerDutyConfiguration,
+        }),
+        mcpserversigv4 = schema.new({
+            id = id.from(_N, "ServiceConfiguration", "mcpserversigv4"),
+            type = "structure",
+            name = "mcpserversigv4",
+            target_id = id.from(_N, "MCPServerSigV4Configuration"),
+            target = M.MCPServerSigV4Configuration,
         }),
     },
 })
@@ -3582,6 +3681,21 @@ M.Recommendation = schema.new({
             name = "additionalContext",
             target_id = prelude.String.id,
         }),
+        rankPosition = schema.new({
+            id = id.from(_N, "Recommendation", "rankPosition"),
+            type = "integer",
+            name = "rankPosition",
+            target_id = prelude.Integer.id,
+        }),
+        rankedAt = schema.new({
+            id = id.from(_N, "Recommendation", "rankedAt"),
+            type = "timestamp",
+            name = "rankedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
         createdAt = schema.new({
             id = id.from(_N, "Recommendation", "createdAt"),
             type = "timestamp",
@@ -5976,6 +6090,89 @@ M.NewRelicServiceDetails = schema.new({
     },
 })
 
+M.MCPServerSigV4AuthorizationConfig = schema.new({
+    id = id.from(_N, "MCPServerSigV4AuthorizationConfig"),
+    type = "structure",
+    members = {
+        region = schema.new({
+            id = id.from(_N, "MCPServerSigV4AuthorizationConfig", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        service = schema.new({
+            id = id.from(_N, "MCPServerSigV4AuthorizationConfig", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "MCPServerSigV4AuthorizationConfig", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        customHeaders = schema.new({
+            id = id.from(_N, "MCPServerSigV4AuthorizationConfig", "customHeaders"),
+            type = "map",
+            name = "customHeaders",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.MCPServerSigV4ServiceDetails = schema.new({
+    id = id.from(_N, "MCPServerSigV4ServiceDetails"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "MCPServerSigV4ServiceDetails", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "MCPServerSigV4ServiceDetails", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "MCPServerSigV4ServiceDetails", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        authorizationConfig = schema.new({
+            id = id.from(_N, "MCPServerSigV4ServiceDetails", "authorizationConfig"),
+            type = "structure",
+            name = "authorizationConfig",
+            target_id = id.from(_N, "MCPServerSigV4AuthorizationConfig"),
+            target = M.MCPServerSigV4AuthorizationConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PagerDutyOAuthClientCredentialsConfig = schema.new({
     id = id.from(_N, "PagerDutyOAuthClientCredentialsConfig"),
     type = "structure",
@@ -6212,6 +6409,13 @@ M.ServiceDetails = schema.new({
             name = "azureidentity",
             target_id = id.from(_N, "RegisteredAzureIdentityDetails"),
             target = M.RegisteredAzureIdentityDetails,
+        }),
+        mcpserversigv4 = schema.new({
+            id = id.from(_N, "ServiceDetails", "mcpserversigv4"),
+            type = "structure",
+            name = "mcpserversigv4",
+            target_id = id.from(_N, "MCPServerSigV4ServiceDetails"),
+            target = M.MCPServerSigV4ServiceDetails,
         }),
     },
 })

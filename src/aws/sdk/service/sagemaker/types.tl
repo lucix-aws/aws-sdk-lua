@@ -8674,6 +8674,8 @@ local record M
         "ml.g6.16xlarge"
         "ml.g6.24xlarge"
         "ml.g6.48xlarge"
+        "ml.p5.4xlarge"
+        "ml.p5en.48xlarge"
     end
 
     enum RootAccess

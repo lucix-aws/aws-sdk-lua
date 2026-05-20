@@ -993,6 +993,25 @@ M.InvokeAgentRuntimeOutput = schema.new({
     },
 })
 
+M.RetryableConflictException = schema.new({
+    id = id.from(_N, "RetryableConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RetryableConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.InvokeAgentRuntimeCommandRequestBody = schema.new({
     id = id.from(_N, "InvokeAgentRuntimeCommandRequestBody"),
     type = "structure",
@@ -9323,25 +9342,6 @@ M.InvalidInputException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidInputException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.RetryableConflictException = schema.new({
-    id = id.from(_N, "RetryableConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "RetryableConflictException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,

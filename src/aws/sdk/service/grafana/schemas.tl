@@ -811,6 +811,12 @@ M.WorkspaceDescription = schema.new({
             name = "kmsKeyId",
             target_id = prelude.String.id,
         }),
+        degradedWorkspaceReason = schema.new({
+            id = id.from(_N, "WorkspaceDescription", "degradedWorkspaceReason"),
+            type = "string",
+            name = "degradedWorkspaceReason",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

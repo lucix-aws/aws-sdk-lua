@@ -388,29 +388,27 @@ local record M
         customerProvidedId: string
     end
 
-    -- Key-value pair for query string matching
+    -- A key-value pair for query string matching in a routing rule condition.
     record QueryStringKeyValuePair
-        -- RFC 3986 unreserved characters
+        -- The key of the query string parameter to match. Must contain only RFC 3986 unreserved characters.
         key: string
-        -- RFC 3986 unreserved characters
+        -- The value of the query string parameter to match. Must contain only RFC 3986 unreserved characters.
         value: string
     end
 
-    -- Conditions bag for a routing rule.
-    -- All non-null fields must match (AND logic). At least one field must be set (enforced by CP).
+    -- The conditions for a routing rule. All specified fields must match for the rule to apply (AND logic). At least one condition field must be set.
     record RuleCondition
-        -- Exact host match — RFC 3986 unreserved characters
+        -- The exact host header value to match.
         hostHeader: string
-        -- Wildcard host pattern (e.g., *.example.com) — RFC 3986 unreserved plus *
+        -- A wildcard pattern for host header matching (for example, *.example.com).
         hostHeaderWildcard: string
-        -- Path prefix matching — strict starts-with, no wildcard (preferred for new rules).
-        -- Must start with /; RFC 3986 unreserved plus /
+        -- The path prefix to match. The request path must start with this value. Must start with /.
         pathPrefix: string
-        -- Exact path match — must start with /; RFC 3986 unreserved plus /
+        -- The exact path to match. Must start with /.
         pathExact: string
-        -- Query string key=value pair match (single pair)
+        -- A query string key-value pair that must be present and match exactly.
         queryStringEquals: QueryStringKeyValuePair
-        -- Query string key presence check (any value accepted) — RFC 3986 unreserved characters
+        -- A query string key that must be present in the request (any value is accepted).
         queryStringExists: string
     end
 
@@ -778,7 +776,7 @@ local record M
         maxResults: number
     end
 
-    -- Summary of a routing rule for list responses
+    -- A summary of a link routing rule.
     record LinkRoutingRuleSummary
         -- The unique identifier of the routing rule.
         ruleId: string
@@ -1100,8 +1098,10 @@ local record M
         activeLinksCount: number
         -- The total count of links for the responder gateway.
         totalLinksCount: number
-        -- The count of inbound links for the responder gateway.
+        -- Deprecated. Use 'linksRequestedCount' instead.
         inboundLinksCount: number
+        -- The count of requested links waiting for the responder gateway to accept or reject.
+        linksRequestedCount: number
         -- The type of gateway. Valid values are EXTERNAL or INTERNAL.
         gatewayType: string
         -- The external inbound endpoint for the responder gateway.

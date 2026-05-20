@@ -100,6 +100,24 @@ local record M
         description: string
     end
 
+    -- Details specific to a registered SigV4-authenticated MCP server.
+    record RegisteredMCPServerSigV4Details
+        -- MCP server name.
+        name: string
+        -- MCP server endpoint URL.
+        endpoint: string
+        -- Optional description for the MCP server.
+        description: string
+        -- AWS region for SigV4 signing. Use '*' for SigV4a multi-region signing.
+        region: string
+        -- AWS service name for SigV4 signing.
+        service: string
+        -- IAM role ARN to assume for SigV4 signing.
+        roleArn: string
+        -- Custom headers for the SigV4 MCP server.
+        customHeaders: {string : string}
+    end
+
     -- Details specific to a registered PagerDuty service.
     record RegisteredPagerDutyDetails
         -- The scopes that were assigned to the service
@@ -146,6 +164,8 @@ local record M
         mcpservergrafana: RegisteredGrafanaServerDetails
         -- Pagerduty service details.
         pagerduty: RegisteredPagerDutyDetails
+        -- SigV4-authenticated MCP server-specific service details.
+        mcpserversigv4: RegisteredMCPServerSigV4Details
     end
 
     -- Details for completing OAuth authorization step.
@@ -271,6 +291,12 @@ local record M
         endpoint: string
     end
 
+    -- Configuration for SigV4-authenticated MCP server integration.
+    record MCPServerSigV4Configuration
+        -- List of MCP tools available for the association.
+        tools: {string}
+    end
+
     -- Mixin for webhook update support.
     record MCPServerSplunkConfiguration
     end
@@ -367,6 +393,8 @@ local record M
         mcpservergrafana: MCPServerGrafanaConfiguration
         -- PagerDuty integration configuration
         pagerduty: PagerDutyConfiguration
+        -- SigV4-authenticated MCP server integration configuration.
+        mcpserversigv4: MCPServerSigV4Configuration
     end
 
     -- Input for creating a new service association within an AgentSpace.
@@ -479,14 +507,11 @@ local record M
         message: string
     end
 
-    -- A standard error for input validation failures.
-    -- This should be thrown by services when a member of the input structure
-    -- falls outside of the modeled or documented constraints.
+    -- The input fails to satisfy the constraints specified by the service.
     record ValidationException
         -- A summary of the validation failure.
         message: string
-        -- A list of specific failures encountered while validating the input.
-        -- A member can appear in this list more than once if it failed to satisfy multiple constraints.
+        -- A list of specific failures encountered while validating the input. A member can appear in this list more than once if it failed to satisfy multiple constraints.
         fieldList: {ValidationExceptionField}
     end
 
@@ -1199,6 +1224,10 @@ local record M
         goalVersion: number
         -- Additional context for recommendation
         additionalContext: string
+        -- Position in ranked list (1 = highest priority)
+        rankPosition: number
+        -- Timestamp when the recommendation was last ranked
+        rankedAt: number
         -- Timestamp when this recommendation was created
         createdAt: number
         -- Timestamp when this recommendation was last updated
@@ -1243,20 +1272,13 @@ local record M
     record ListBacklogTasksInput
         -- The unique identifier for the agent space containing the tasks
         agentSpaceId: string
-        -- Filter criteria to apply when listing tasks
-        -- Filtering restrictions:
-        -- - Each filter field list is limited to a single value
-        -- - Filtering by Priority and Status at the same time when not filtering by Type is not permitted
-        -- - Timestamp filters (createdAfter, createdBefore) can be combined with other filters when not sorting by priority
+        -- Filter criteria to apply when listing tasks Filtering restrictions: - Each filter field list is limited to a single value - Filtering by Priority and Status at the same time when not filtering by Type is not permitted - Timestamp filters (createdAfter, createdBefore) can be combined with other filters when not sorting by priority
         filter: TaskFilter
         -- Maximum number of tasks to return in a single response (1-1000, default: 100)
         limit: number
         -- Token for retrieving the next page of results
         nextToken: string
-        -- Field to sort by
-        -- Sorting restrictions:
-        -- - Only sorting on createdAt is supported when using priority or status filters alone.
-        -- - Sorting by priority is not supported when using Timestamp filters (createdAfter, createdBefore)
+        -- Field to sort by Sorting restrictions: - Only sorting on createdAt is supported when using priority or status filters alone. - Sorting by priority is not supported when using Timestamp filters (createdAfter, createdBefore)
         sortField: string
         -- Sort order for the tasks based on sortField (default: DESC)
         order: string
@@ -1748,13 +1770,7 @@ local record M
         sequenceNumber: number
     end
 
-    -- Event stream for chat message responses using the content block model.
-    -- Events follow a lifecycle:
-    -- responseCreated -> responseInProgress ->
-    -- (contentBlockStart/contentBlockDelta/contentBlockStop events) ->
-    -- responseCompleted|responseFailed
-    -- SendMessage always uses content block mode — legacy per-field events
-    -- (outputTextDelta, functionCallArgumentsDelta, etc.) are not emitted.
+    -- Event stream for chat message responses using the content block model. Events follow a lifecycle: responseCreated -> responseInProgress -> (contentBlockStart/contentBlockDelta/contentBlockStop events) -> responseCompleted|responseFailed SendMessage always uses content block mode — legacy per-field events (outputTextDelta, functionCallArgumentsDelta, etc.) are not emitted.
     record SendMessageEvents
         -- Emitted when the response is created
         responseCreated: SendMessageResponseCreatedEvent
@@ -1804,6 +1820,7 @@ local record M
         "mcpserver"
         "mcpserversplunk"
         "azureidentity"
+        "mcpserversigv4"
     end
 
     -- Represents a registered service with its configuration and accessible resources.
@@ -1860,6 +1877,7 @@ local record M
         "mcpserver"
         "mcpserversplunk"
         "azureidentity"
+        "mcpserversigv4"
     end
 
     -- OAuth client credentials configuration for Dynatrace.
@@ -2032,6 +2050,30 @@ local record M
         authorizationConfig: NewRelicServiceAuthorizationConfig
     end
 
+    -- Authorization configuration for SigV4-authenticated MCP server.
+    record MCPServerSigV4AuthorizationConfig
+        -- AWS region for SigV4 signing. Use '*' for SigV4a multi-region signing.
+        region: string
+        -- AWS service name for SigV4 signing.
+        service: string
+        -- IAM role ARN to assume for SigV4 signing.
+        roleArn: string
+        -- Custom headers for the SigV4 MCP server.
+        customHeaders: {string : string}
+    end
+
+    -- Complete service details for SigV4-authenticated MCP server integration.
+    record MCPServerSigV4ServiceDetails
+        -- MCP server name.
+        name: string
+        -- MCP server endpoint URL.
+        endpoint: string
+        -- Optional description for the MCP server.
+        description: string
+        -- MCP Server SigV4 authorization configuration.
+        authorizationConfig: MCPServerSigV4AuthorizationConfig
+    end
+
     -- OAuth client credentials configuration for PagerDuty.
     record PagerDutyOAuthClientCredentialsConfig
         -- User friendly OAuth client name specified by end user.
@@ -2108,6 +2150,8 @@ local record M
         pagerduty: PagerDutyDetails
         -- Azure integration with AWS Outbound Identity Federation specific service details.
         azureidentity: RegisteredAzureIdentityDetails
+        -- SigV4-authenticated MCP server-specific service details.
+        mcpserversigv4: MCPServerSigV4ServiceDetails
     end
 
     -- Input for registering a new service with the platform.
