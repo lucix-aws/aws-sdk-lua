@@ -113,7 +113,7 @@ local record M
         WeeklyMaintenanceWindowStart: string
         -- The key-value tag pairs you want to associate to your environment. For example, "Environment": "Staging". For more information, refer to Tagging Amazon Web Services resources.
         Tags: {string : string}
-        -- Defines the access mode for the Apache Airflow web server. For more information, refer to Apache Airflow access modes.
+        -- Defines the access mode for the Apache Airflow web server. For more information, refer to Apache Airflow access modes. If set to PUBLIC_AND_PRIVATE, creates both a public network load balancer (NLB) for browser access and a private VPC endpoint (VPCE) for worker-to-webserver communication. This mode is only available for Apache Airflow version 3.2 and later.
         WebserverAccessMode: string
         -- The minimum number of workers that you want to run in your environment. MWAA scales the number of Apache Airflow workers up to the number you specify in the MaxWorkers field. When there are no more tasks running, and no more in the queue, MWAA disposes of the extra workers leaving the worker count you specify in the MinWorkers field. For example, 2.
         MinWorkers: number
@@ -300,7 +300,7 @@ local record M
         WeeklyMaintenanceWindowStart: string
         -- The key-value tag pairs associated to your environment. For example, "Environment": "Staging". For more information, refer to Tagging Amazon Web Services resources.
         Tags: {string : string}
-        -- The Apache Airflow web server access mode. For more information, refer to Apache Airflow access modes.
+        -- The Apache Airflow web server access mode. For more information, refer to Apache Airflow access modes. If set to PUBLIC_AND_PRIVATE, creates both a public network load balancer (NLB) for browser access and a private VPC endpoint (VPCE) for worker-to-webserver communication. This mode is only available for Apache Airflow version 3.2 and later.
         WebserverAccessMode: string
         -- The minimum number of workers that run in your environment. For example, 2.
         MinWorkers: number
@@ -538,7 +538,7 @@ local record M
         StartupScriptS3Path: string
         -- The version of the startup shell script in your Amazon S3 bucket. You must specify the version ID that Amazon S3 assigns to the file every time you update the script. Version IDs are Unicode, UTF-8 encoded, URL-ready, opaque strings that are no more than 1,024 bytes long. The following is an example: 3sL4kqtJlcpXroDTDmJ+rmSpXd3dIbrHY+MTRCxf3vjVBH40Nr8X8gdRQBpUMLUo For more information, refer to Using a startup script.
         StartupScriptS3ObjectVersion: string
-        -- The Apache Airflow Web server access mode. For more information, refer to Apache Airflow access modes.
+        -- The Apache Airflow Web server access mode. For more information, refer to Apache Airflow access modes. If set to PUBLIC_AND_PRIVATE, creates both a public network load balancer (NLB) for browser access and a private VPC endpoint (VPCE) for worker-to-webserver communication. This mode is only available for Apache Airflow version 3.2 and later.
         WebserverAccessMode: string
         -- The day and time of the week in Coordinated Universal Time (UTC) 24-hour standard time to start weekly maintenance updates of your environment in the following format: DAY:HH:MM. For example: TUE:03:30. You can specify a start time in 30 minute increments only.
         WeeklyMaintenanceWindowStart: string

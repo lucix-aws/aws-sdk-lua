@@ -504,11 +504,14 @@ local record M
     end
 
     -- Use this structure to allow cryptographic operations in the grant only when the operation request
-    -- includes the specified encryption context.
-    -- KMS applies the grant constraints only to cryptographic operations that support an
-    -- encryption context, that is, all cryptographic operations with a symmetric KMS key. Grant
-    -- constraints are not applied to operations that do not support an encryption context, such as
-    -- cryptographic operations with asymmetric KMS keys and management operations, such as DescribeKey or RetireGrant.
+    -- meets the specified constraints.
+    -- KMS supports the following grant constraints:
+    -- EncryptionContextEquals and EncryptionContextSubset —
+    -- These encryption context constraints apply only to cryptographic operations that support
+    -- an encryption context, that is, all cryptographic operations with a symmetric KMS key.
+    -- Encryption context grant constraints are not applied to operations that do not support an
+    -- encryption context, such as cryptographic operations with asymmetric KMS keys and
+    -- management operations, such as DescribeKey or RetireGrant.
     -- In a cryptographic operation, the encryption context in the decryption operation must be
     -- an exact, case-sensitive match for the keys and values in the encryption context of the
     -- encryption operation. Only the order of the pairs can vary.
@@ -520,6 +523,11 @@ local record M
     -- in an IAM or key policy. For details, see kms:EncryptionContext:context-key in the
     -- Key Management Service Developer Guide
     -- .
+    -- SourceArn — This grant constraint allows the permissions in the grant only when the
+    -- request is made on behalf of a specific Amazon Web Services resource, identified by its Amazon Resource Name (ARN). This is effectively
+    -- the same as having the aws:SourceArn global condition key in the grant. The SourceArn constraint is supported on grants
+    -- for all types of KMS keys and can also be applied to the DescribeKey operation when
+    -- specified in the request. However, it does not apply to RetireGrant operation.
     record GrantConstraints
         -- A list of key-value pairs that must be included in the encryption context of the
         -- cryptographic operation request. The grant allows the cryptographic operation only when the encryption
@@ -530,6 +538,11 @@ local record M
         -- request. The grant allows the operation only when the encryption context in the request is the
         -- same as the encryption context specified in this constraint.
         EncryptionContextEquals: {string : string}
+        -- The
+        -- Amazon Resource Name (ARN) of an Amazon Web Services resource on behalf of which the request is made.
+        -- This is effectively the same as having the aws:SourceArn global condition key in the grant. The SourceArn constraint ensures
+        -- that the principal can use the KMS key only when the request is made on behalf of the specified resource.
+        SourceArn: string
     end
 
     enum GrantOperation
@@ -569,6 +582,8 @@ local record M
         -- IAM ARNs in the
         -- Identity and Access Management User Guide
         -- .
+        -- You must specify either GranteePrincipal or
+        -- GranteeServicePrincipal, but not both.
         GranteePrincipal: string
         -- The principal that has permission to use the RetireGrant operation to
         -- retire the grant.
@@ -582,6 +597,8 @@ local record M
         -- retire the grant or revoke the grant. For details, see RevokeGrant and
         -- Retiring and revoking
         -- grants in the Key Management Service Developer Guide.
+        -- You can specify either RetiringPrincipal or
+        -- RetiringServicePrincipal, but not both.
         RetiringPrincipal: string
         -- A list of operations that the grant permits.
         -- This list must include only operations that are permitted in a grant. Also, the operation
@@ -593,28 +610,34 @@ local record M
         Operations: {string}
         -- Specifies a grant constraint.
         -- Do not include confidential or sensitive information in this field. This field may be displayed in plaintext in CloudTrail logs and other output.
-        -- KMS supports the EncryptionContextEquals and
-        -- EncryptionContextSubset grant constraints, which allow the permissions in the
-        -- grant only when the encryption context in the request matches
-        -- (EncryptionContextEquals) or includes (EncryptionContextSubset)
-        -- the encryption context specified in the constraint.
-        -- The encryption context grant constraints are supported only on grant operations that include
-        -- an EncryptionContext parameter, such as cryptographic operations on symmetric
-        -- encryption KMS keys. Grants with grant constraints can include the DescribeKey and RetireGrant operations, but the constraint doesn't apply to these
-        -- operations. If a grant with a grant constraint includes the CreateGrant
-        -- operation, the constraint requires that any grants created with the CreateGrant
-        -- permission have an equally strict or stricter encryption context constraint.
-        -- You cannot use an encryption context grant constraint for cryptographic operations with
-        -- asymmetric KMS keys or HMAC KMS keys. Operations with these keys don't support an encryption
-        -- context.
-        -- Each constraint value can include up to 8 encryption context pairs. The encryption context
-        -- value in each constraint cannot exceed 384 characters. For information about grant
-        -- constraints, see Using grant
-        -- constraints in the Key Management Service Developer Guide. For more information about encryption context,
-        -- see Encryption
-        -- context in the
+        -- KMS supports the following grant constraints.
+        -- EncryptionContextEquals and EncryptionContextSubset — These
+        -- encryption context grant constraints allow the permissions in the grant only when the
+        -- encryption context in the request matches (EncryptionContextEquals) or
+        -- includes (EncryptionContextSubset) the encryption context specified in the
+        -- constraint.
+        -- Encryption context grant constraints are supported only on grant operations that
+        -- include an EncryptionContext parameter, such as cryptographic operations on
+        -- symmetric encryption KMS keys. You cannot use an encryption context grant constraint for
+        -- cryptographic operations with asymmetric KMS keys or HMAC KMS keys. Operations with these
+        -- keys don't support an encryption context. Grants with encryption context grant constraints
+        -- can include the DescribeKey and RetireGrant operations,
+        -- but the constraint doesn't apply to these operations. If a grant with an encryption context
+        -- grant constraint includes the CreateGrant operation, the constraint requires
+        -- that any grants created with the CreateGrant permission have an equally strict
+        -- or stricter encryption context constraint.
+        -- Each constraint value can include up to 8 encryption context pairs. The encryption
+        -- context value in each constraint cannot exceed 384 characters. For more information about
+        -- encryption context, see Encryption context in the
         -- Key Management Service Developer Guide
         -- .
+        -- SourceArn — This grant constraint allows the permissions in the grant only when the
+        -- request is made on behalf of a specific Amazon Web Services resource, identified by its Amazon Resource Name (ARN). This is effectively
+        -- the same as having the aws:SourceArn global condition key in the grant. The SourceArn constraint is supported on grants
+        -- for all types of KMS keys and can also be applied to the DescribeKey operation when
+        -- specified in the request. However, it does not apply to RetireGrant operation.
+        -- For information about grant constraints, see Using grant
+        -- constraints in the Key Management Service Developer Guide.
         Constraints: GrantConstraints
         -- A list of grant tokens.
         -- Use a grant token when your permission to call this operation comes from a new grant that has not yet achieved eventual consistency. For more information, see Grant token and Using a grant token in the
@@ -635,6 +658,20 @@ local record M
         -- Checks if your request will succeed. DryRun is an optional parameter.
         -- To learn more about how to use this parameter, see Testing your permissions in the Key Management Service Developer Guide.
         DryRun: boolean
+        -- The Amazon Web Services service
+        -- principal that gets the permissions specified in the grant.
+        -- When you specify a GranteeServicePrincipal, you must also specify a
+        -- SourceArn grant constraint. In addition, you must specify either a
+        -- RetiringPrincipal or a RetiringServicePrincipal.
+        -- You must specify either GranteePrincipal or
+        -- GranteeServicePrincipal, but not both.
+        GranteeServicePrincipal: string
+        -- The Amazon Web Services service
+        -- principal that has permission to use the RetireGrant
+        -- operation to retire the grant.
+        -- You can specify either RetiringPrincipal or
+        -- RetiringServicePrincipal, but not both.
+        RetiringServicePrincipal: string
     end
 
     record CreateGrantOutput
@@ -2410,11 +2447,10 @@ local record M
         -- The date and time when the grant was created.
         CreationDate: number
         -- The identity that gets the permissions in the grant.
-        -- The GranteePrincipal field in the ListGrants response usually contains the
-        -- user or role designated as the grantee principal in the grant. However, when the grantee
-        -- principal in the grant is an Amazon Web Services service, the GranteePrincipal field contains
-        -- the service
-        -- principal, which might represent several different grantee principals.
+        -- When a grant is created with the GranteePrincipal field, the ListGrants
+        -- response usually contains the user or role designated as the grantee principal in the grant. However, if the grantee principal
+        -- is an Amazon Web Services service, the GranteePrincipal field contains an Amazon Web Services service principal, which
+        -- might correspond to several different grantee principals, such as an IAM user, IAM role, or Amazon Web Services account.
         GranteePrincipal: string
         -- The principal that can retire the grant.
         RetiringPrincipal: string
@@ -2422,9 +2458,15 @@ local record M
         IssuingAccount: string
         -- The list of operations permitted by the grant.
         Operations: {string}
-        -- A list of key-value pairs that must be present in the encryption context of certain
-        -- subsequent operations that the grant allows.
+        -- The constraints on the grant, such as encryption context pairs or a SourceArn,
+        -- that restrict the subsequent operations the grant allows.
         Constraints: GrantConstraints
+        -- The Amazon Web Services service
+        -- principal that gets the permissions in the grant.
+        GranteeServicePrincipal: string
+        -- The Amazon Web Services service
+        -- principal that can retire the grant.
+        RetiringServicePrincipal: string
     end
 
     enum ImportType
@@ -2631,7 +2673,14 @@ local record M
         GrantId: string
         -- Returns only grants where the specified principal is the grantee principal for the
         -- grant.
+        -- You can specify either GranteePrincipal or
+        -- GranteeServicePrincipal, but not both.
         GranteePrincipal: string
+        -- Returns only grants where the specified Amazon Web Services service principal is the grantee service
+        -- principal for the grant. This filter is only usable by callers in a service principal.
+        -- You can specify either GranteePrincipal or
+        -- GranteeServicePrincipal, but not both.
+        GranteeServicePrincipal: string
     end
 
     record ListGrantsOutput
@@ -2863,7 +2912,14 @@ local record M
         -- IAM ARNs in the
         -- Identity and Access Management User Guide
         -- .
+        -- You must specify either RetiringPrincipal or
+        -- RetiringServicePrincipal, but not both.
         RetiringPrincipal: string
+        -- The retiring service principal for which to list grants. This filter is only usable by
+        -- callers in a service principal.
+        -- You must specify either RetiringPrincipal or
+        -- RetiringServicePrincipal, but not both.
+        RetiringServicePrincipal: string
     end
 
     record ListRetirableGrantsOutput

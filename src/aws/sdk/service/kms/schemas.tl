@@ -724,6 +724,12 @@ M.GrantConstraints = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        SourceArn = schema.new({
+            id = id.from(_N, "GrantConstraints", "SourceArn"),
+            type = "string",
+            name = "SourceArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -745,9 +751,6 @@ M.CreateGrantInput = schema.new({
             type = "string",
             name = "GranteePrincipal",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         RetiringPrincipal = schema.new({
             id = id.from(_N, "CreateGrantInput", "RetiringPrincipal"),
@@ -790,6 +793,18 @@ M.CreateGrantInput = schema.new({
             type = "boolean",
             name = "DryRun",
             target_id = prelude.Boolean.id,
+        }),
+        GranteeServicePrincipal = schema.new({
+            id = id.from(_N, "CreateGrantInput", "GranteeServicePrincipal"),
+            type = "string",
+            name = "GranteeServicePrincipal",
+            target_id = prelude.String.id,
+        }),
+        RetiringServicePrincipal = schema.new({
+            id = id.from(_N, "CreateGrantInput", "RetiringServicePrincipal"),
+            type = "string",
+            name = "RetiringServicePrincipal",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2935,6 +2950,18 @@ M.GrantListEntry = schema.new({
             target_id = id.from(_N, "GrantConstraints"),
             target = M.GrantConstraints,
         }),
+        GranteeServicePrincipal = schema.new({
+            id = id.from(_N, "GrantListEntry", "GranteeServicePrincipal"),
+            type = "string",
+            name = "GranteeServicePrincipal",
+            target_id = prelude.String.id,
+        }),
+        RetiringServicePrincipal = schema.new({
+            id = id.from(_N, "GrantListEntry", "RetiringServicePrincipal"),
+            type = "string",
+            name = "RetiringServicePrincipal",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3209,6 +3236,12 @@ M.ListGrantsInput = schema.new({
             id = id.from(_N, "ListGrantsInput", "GranteePrincipal"),
             type = "string",
             name = "GranteePrincipal",
+            target_id = prelude.String.id,
+        }),
+        GranteeServicePrincipal = schema.new({
+            id = id.from(_N, "ListGrantsInput", "GranteeServicePrincipal"),
+            type = "string",
+            name = "GranteeServicePrincipal",
             target_id = prelude.String.id,
         }),
     },
@@ -3550,9 +3583,12 @@ M.ListRetirableGrantsInput = schema.new({
             type = "string",
             name = "RetiringPrincipal",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        RetiringServicePrincipal = schema.new({
+            id = id.from(_N, "ListRetirableGrantsInput", "RetiringServicePrincipal"),
+            type = "string",
+            name = "RetiringServicePrincipal",
+            target_id = prelude.String.id,
         }),
     },
 })

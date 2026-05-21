@@ -4502,6 +4502,15 @@ M.InvokeModelInput = schema.new({
                 [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-Service-Tier" },
             },
         }),
+        requestMetadata = schema.new({
+            id = id.from(_N, "InvokeModelInput", "requestMetadata"),
+            type = "string",
+            name = "requestMetadata",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-Request-Metadata" },
+            },
+        }),
     },
 })
 
@@ -4787,6 +4796,15 @@ M.InvokeModelWithResponseStreamInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-Service-Tier" },
+            },
+        }),
+        requestMetadata = schema.new({
+            id = id.from(_N, "InvokeModelWithResponseStreamInput", "requestMetadata"),
+            type = "string",
+            name = "requestMetadata",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-Request-Metadata" },
             },
         }),
     },

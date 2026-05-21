@@ -1707,6 +1707,8 @@ local record M
         performanceConfigLatency: string
         -- Specifies the processing tier type used for serving the request.
         serviceTier: string
+        -- Key-value pairs that you can use to filter invocation logs.
+        requestMetadata: string
     end
 
     record InvokeModelOutput
@@ -1787,6 +1789,8 @@ local record M
         performanceConfigLatency: string
         -- Specifies the processing tier type used for serving the request.
         serviceTier: string
+        -- Key-value pairs that you can use to filter invocation logs.
+        requestMetadata: string
     end
 
     -- Payload content included in the response.

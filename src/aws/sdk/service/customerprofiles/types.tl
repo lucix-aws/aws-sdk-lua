@@ -1350,7 +1350,7 @@ local record M
         -- S3.
         Matching: MatchingRequest
         -- The process of matching duplicate profiles using the Rule-Based matching. If
-        -- RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+        -- RuleBasedMatching = true, Connect Customer Customer Profiles will start
         -- to match and merge your profiles according to your configuration in the
         -- RuleBasedMatchingRequest. You can use the ListRuleBasedMatches
         -- and GetSimilarProfiles API to return and review the results. Also, if you have
@@ -1441,7 +1441,7 @@ local record M
         -- S3.
         Matching: MatchingResponse
         -- The process of matching duplicate profiles using the Rule-Based matching. If
-        -- RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+        -- RuleBasedMatching = true, Connect Customer Customer Profiles will start
         -- to match and merge your profiles according to your configuration in the
         -- RuleBasedMatchingRequest. You can use the ListRuleBasedMatches
         -- and GetSimilarProfiles API to return and review the results. Also, if you have
@@ -1756,12 +1756,14 @@ local record M
     record RecommenderConfig
         -- Configuration settings for how the recommender processes and uses events.
         EventsConfig: EventsConfig
-        -- How often the recommender should retrain its model with new data.
+        -- How often the recommender should retrain its model with new data. If set to 0, automatic retraining will not be enabled.
         TrainingFrequency: number
         -- Configuration settings for how the recommender handles inference requests.
         InferenceConfig: InferenceConfig
-        -- A map of dataset type to a list of column names to train on. The column names must be a subset of the columns defined in the recommender schema. If not specified, all columns in the schema are used for training. The following columns are always included and do not need to be specified: Item.Id, ItemList[].Id, EventTimestamp, EventType, and EventValue.
+        -- A map of dataset type to a list of column names to train on. The _webAnalytics and _catalogItem keys are supported. The column names must be a subset of the columns defined in the recommender schema. If not specified, all columns in the schema are used for training. The following columns are always included in training and do not need to be specified: Item.Id, EventTimestamp, and EventType for _webAnalytics; Id for _catalogItem. Mutually exclusive with ExcludedColumns — both cannot be specified in the same request.
         IncludedColumns: {string : {string}}
+        -- A map of dataset type to a list of column names to exclude from training. The _webAnalytics and _catalogItem keys are supported. The column names must be valid columns defined in the recommender schema. All columns in the schema except the listed columns will be used for training. The following columns are mandatory and cannot be excluded: Item.Id, EventTimestamp, and EventType for _webAnalytics; Id for _catalogItem. Mutually exclusive with IncludedColumns — both cannot be specified in the same request.
+        ExcludedColumns: {string : {string}}
     end
 
     enum RecommenderRecipeName
@@ -1839,7 +1841,7 @@ local record M
         DomainName: string
         -- The name of the recommender schema. The name must be unique within the domain.
         RecommenderSchemaName: string
-        -- A map of dataset type to column definitions that specifies which data columns to include in the schema. Currently only the _webAnalytics key is supported.
+        -- A map of dataset type to column definitions that specifies which data columns to include in the schema. The _webAnalytics and _catalogItem keys are supported.
         Fields: {string : {RecommenderSchemaField}}
         -- The tags used to organize, track, or control access for this resource.
         Tags: {string : string}
@@ -2108,7 +2110,7 @@ local record M
         -- principal to assume the role for conducting KMS and S3 operations.
         RoleArn: string
         -- The destination to which the segment will be exported. This field must be provided if
-        -- the request is not submitted from the Amazon Connect Admin Website.
+        -- the request is not submitted from the Connect Customer Admin Website.
         DestinationUri: string
     end
 
@@ -2540,7 +2542,7 @@ local record M
         -- S3.
         Matching: MatchingResponse
         -- The process of matching duplicate profiles using the Rule-Based matching. If
-        -- RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+        -- RuleBasedMatching = true, Connect Customer Customer Profiles will start
         -- to match and merge your profiles according to your configuration in the
         -- RuleBasedMatchingRequest. You can use the ListRuleBasedMatches
         -- and GetSimilarProfiles API to return and review the results. Also, if you have
@@ -3347,7 +3349,7 @@ local record M
         -- principal to assume the role for conducting KMS and S3 operations.
         RoleArn: string
         -- The destination to which the segment will be exported. This field must be provided if
-        -- the request is not submitted from the Amazon Connect Admin Website.
+        -- the request is not submitted from the Connect Customer Admin Website.
         DestinationUri: string
     end
 
@@ -4804,7 +4806,7 @@ local record M
         -- S3.
         Matching: MatchingRequest
         -- The process of matching duplicate profiles using the rule-Based matching. If
-        -- RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+        -- RuleBasedMatching = true, Connect Customer Customer Profiles will start
         -- to match and merge your profiles according to your configuration in the
         -- RuleBasedMatchingRequest. You can use the ListRuleBasedMatches
         -- and GetSimilarProfiles API to return and review the results. Also, if you have
@@ -4838,7 +4840,7 @@ local record M
         -- S3.
         Matching: MatchingResponse
         -- The process of matching duplicate profiles using the rule-Based matching. If
-        -- RuleBasedMatching = true, Amazon Connect Customer Profiles will start
+        -- RuleBasedMatching = true, Connect Customer Customer Profiles will start
         -- to match and merge your profiles according to your configuration in the
         -- RuleBasedMatchingRequest. You can use the ListRuleBasedMatches
         -- and GetSimilarProfiles API to return and review the results. Also, if you have

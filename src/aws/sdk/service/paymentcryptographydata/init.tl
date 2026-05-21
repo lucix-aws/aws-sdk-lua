@@ -21,6 +21,7 @@ local record Client
     decryptData: function(Client, types.DecryptDataInput, ? base_client.InvokeOptions): async.Operation<types.DecryptDataOutput>
     encryptData: function(Client, types.EncryptDataInput, ? base_client.InvokeOptions): async.Operation<types.EncryptDataOutput>
     generateAs2805KekValidation: function(Client, types.GenerateAs2805KekValidationInput, ? base_client.InvokeOptions): async.Operation<types.GenerateAs2805KekValidationOutput>
+    generateAuthRequestCryptogram: function(Client, types.GenerateAuthRequestCryptogramInput, ? base_client.InvokeOptions): async.Operation<types.GenerateAuthRequestCryptogramOutput>
     generateCardValidationData: function(Client, types.GenerateCardValidationDataInput, ? base_client.InvokeOptions): async.Operation<types.GenerateCardValidationDataOutput>
     generateMac: function(Client, types.GenerateMacInput, ? base_client.InvokeOptions): async.Operation<types.GenerateMacOutput>
     generateMacEmvPinChange: function(Client, types.GenerateMacEmvPinChangeInput, ? base_client.InvokeOptions): async.Operation<types.GenerateMacEmvPinChangeOutput>
@@ -86,6 +87,10 @@ end
 
 function C:generateAs2805KekValidation(input: types.GenerateAs2805KekValidationInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateAs2805KekValidationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateAs2805KekValidation as schema.OperationSchema, input, options) as async.Operation<types.GenerateAs2805KekValidationOutput>
+end
+
+function C:generateAuthRequestCryptogram(input: types.GenerateAuthRequestCryptogramInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateAuthRequestCryptogramOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GenerateAuthRequestCryptogram as schema.OperationSchema, input, options) as async.Operation<types.GenerateAuthRequestCryptogramOutput>
 end
 
 function C:generateCardValidationData(input: types.GenerateCardValidationDataInput, options?: base_client.InvokeOptions): async.Operation<types.GenerateCardValidationDataOutput>

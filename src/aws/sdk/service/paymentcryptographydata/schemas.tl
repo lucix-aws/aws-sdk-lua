@@ -165,6 +165,12 @@ M.KekValidationRequest = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        RandomKeyMaxLength = schema.new({
+            id = id.from(_N, "KekValidationRequest", "RandomKeyMaxLength"),
+            type = "string",
+            name = "RandomKeyMaxLength",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1521,6 +1527,287 @@ M.GenerateAs2805KekValidationOutput = schema.new({
             id = id.from(_N, "GenerateAs2805KekValidationOutput", "RandomKeyReceive"),
             type = "string",
             name = "RandomKeyReceive",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionKeyAmex = schema.new({
+    id = id.from(_N, "SessionKeyAmex"),
+    type = "structure",
+    members = {
+        PrimaryAccountNumber = schema.new({
+            id = id.from(_N, "SessionKeyAmex", "PrimaryAccountNumber"),
+            type = "string",
+            name = "PrimaryAccountNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PanSequenceNumber = schema.new({
+            id = id.from(_N, "SessionKeyAmex", "PanSequenceNumber"),
+            type = "string",
+            name = "PanSequenceNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionKeyEmv2000 = schema.new({
+    id = id.from(_N, "SessionKeyEmv2000"),
+    type = "structure",
+    members = {
+        PrimaryAccountNumber = schema.new({
+            id = id.from(_N, "SessionKeyEmv2000", "PrimaryAccountNumber"),
+            type = "string",
+            name = "PrimaryAccountNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PanSequenceNumber = schema.new({
+            id = id.from(_N, "SessionKeyEmv2000", "PanSequenceNumber"),
+            type = "string",
+            name = "PanSequenceNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationTransactionCounter = schema.new({
+            id = id.from(_N, "SessionKeyEmv2000", "ApplicationTransactionCounter"),
+            type = "string",
+            name = "ApplicationTransactionCounter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionKeyEmvCommon = schema.new({
+    id = id.from(_N, "SessionKeyEmvCommon"),
+    type = "structure",
+    members = {
+        PrimaryAccountNumber = schema.new({
+            id = id.from(_N, "SessionKeyEmvCommon", "PrimaryAccountNumber"),
+            type = "string",
+            name = "PrimaryAccountNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PanSequenceNumber = schema.new({
+            id = id.from(_N, "SessionKeyEmvCommon", "PanSequenceNumber"),
+            type = "string",
+            name = "PanSequenceNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationTransactionCounter = schema.new({
+            id = id.from(_N, "SessionKeyEmvCommon", "ApplicationTransactionCounter"),
+            type = "string",
+            name = "ApplicationTransactionCounter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionKeyMastercard = schema.new({
+    id = id.from(_N, "SessionKeyMastercard"),
+    type = "structure",
+    members = {
+        PrimaryAccountNumber = schema.new({
+            id = id.from(_N, "SessionKeyMastercard", "PrimaryAccountNumber"),
+            type = "string",
+            name = "PrimaryAccountNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PanSequenceNumber = schema.new({
+            id = id.from(_N, "SessionKeyMastercard", "PanSequenceNumber"),
+            type = "string",
+            name = "PanSequenceNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationTransactionCounter = schema.new({
+            id = id.from(_N, "SessionKeyMastercard", "ApplicationTransactionCounter"),
+            type = "string",
+            name = "ApplicationTransactionCounter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UnpredictableNumber = schema.new({
+            id = id.from(_N, "SessionKeyMastercard", "UnpredictableNumber"),
+            type = "string",
+            name = "UnpredictableNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionKeyVisa = schema.new({
+    id = id.from(_N, "SessionKeyVisa"),
+    type = "structure",
+    members = {
+        PrimaryAccountNumber = schema.new({
+            id = id.from(_N, "SessionKeyVisa", "PrimaryAccountNumber"),
+            type = "string",
+            name = "PrimaryAccountNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PanSequenceNumber = schema.new({
+            id = id.from(_N, "SessionKeyVisa", "PanSequenceNumber"),
+            type = "string",
+            name = "PanSequenceNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionKeyDerivation = schema.new({
+    id = id.from(_N, "SessionKeyDerivation"),
+    type = "union",
+    members = {
+        EmvCommon = schema.new({
+            id = id.from(_N, "SessionKeyDerivation", "EmvCommon"),
+            type = "structure",
+            name = "EmvCommon",
+            target_id = id.from(_N, "SessionKeyEmvCommon"),
+            target = M.SessionKeyEmvCommon,
+        }),
+        Mastercard = schema.new({
+            id = id.from(_N, "SessionKeyDerivation", "Mastercard"),
+            type = "structure",
+            name = "Mastercard",
+            target_id = id.from(_N, "SessionKeyMastercard"),
+            target = M.SessionKeyMastercard,
+        }),
+        Emv2000 = schema.new({
+            id = id.from(_N, "SessionKeyDerivation", "Emv2000"),
+            type = "structure",
+            name = "Emv2000",
+            target_id = id.from(_N, "SessionKeyEmv2000"),
+            target = M.SessionKeyEmv2000,
+        }),
+        Amex = schema.new({
+            id = id.from(_N, "SessionKeyDerivation", "Amex"),
+            type = "structure",
+            name = "Amex",
+            target_id = id.from(_N, "SessionKeyAmex"),
+            target = M.SessionKeyAmex,
+        }),
+        Visa = schema.new({
+            id = id.from(_N, "SessionKeyDerivation", "Visa"),
+            type = "structure",
+            name = "Visa",
+            target_id = id.from(_N, "SessionKeyVisa"),
+            target = M.SessionKeyVisa,
+        }),
+    },
+})
+
+M.GenerateAuthRequestCryptogramInput = schema.new({
+    id = id.from(_N, "GenerateAuthRequestCryptogramInput"),
+    type = "structure",
+    members = {
+        KeyIdentifier = schema.new({
+            id = id.from(_N, "GenerateAuthRequestCryptogramInput", "KeyIdentifier"),
+            type = "string",
+            name = "KeyIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TransactionData = schema.new({
+            id = id.from(_N, "GenerateAuthRequestCryptogramInput", "TransactionData"),
+            type = "string",
+            name = "TransactionData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MajorKeyDerivationMode = schema.new({
+            id = id.from(_N, "GenerateAuthRequestCryptogramInput", "MajorKeyDerivationMode"),
+            type = "string",
+            name = "MajorKeyDerivationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionKeyDerivationAttributes = schema.new({
+            id = id.from(_N, "GenerateAuthRequestCryptogramInput", "SessionKeyDerivationAttributes"),
+            type = "union",
+            name = "SessionKeyDerivationAttributes",
+            target_id = id.from(_N, "SessionKeyDerivation"),
+            target = M.SessionKeyDerivation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GenerateAuthRequestCryptogramOutput = schema.new({
+    id = id.from(_N, "GenerateAuthRequestCryptogramOutput"),
+    type = "structure",
+    members = {
+        KeyArn = schema.new({
+            id = id.from(_N, "GenerateAuthRequestCryptogramOutput", "KeyArn"),
+            type = "string",
+            name = "KeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KeyCheckValue = schema.new({
+            id = id.from(_N, "GenerateAuthRequestCryptogramOutput", "KeyCheckValue"),
+            type = "string",
+            name = "KeyCheckValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AuthRequestCryptogram = schema.new({
+            id = id.from(_N, "GenerateAuthRequestCryptogramOutput", "AuthRequestCryptogram"),
+            type = "string",
+            name = "AuthRequestCryptogram",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -3010,209 +3297,6 @@ M.VerificationFailedException = schema.new({
     },
 })
 
-M.SessionKeyAmex = schema.new({
-    id = id.from(_N, "SessionKeyAmex"),
-    type = "structure",
-    members = {
-        PrimaryAccountNumber = schema.new({
-            id = id.from(_N, "SessionKeyAmex", "PrimaryAccountNumber"),
-            type = "string",
-            name = "PrimaryAccountNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        PanSequenceNumber = schema.new({
-            id = id.from(_N, "SessionKeyAmex", "PanSequenceNumber"),
-            type = "string",
-            name = "PanSequenceNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.SessionKeyEmv2000 = schema.new({
-    id = id.from(_N, "SessionKeyEmv2000"),
-    type = "structure",
-    members = {
-        PrimaryAccountNumber = schema.new({
-            id = id.from(_N, "SessionKeyEmv2000", "PrimaryAccountNumber"),
-            type = "string",
-            name = "PrimaryAccountNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        PanSequenceNumber = schema.new({
-            id = id.from(_N, "SessionKeyEmv2000", "PanSequenceNumber"),
-            type = "string",
-            name = "PanSequenceNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ApplicationTransactionCounter = schema.new({
-            id = id.from(_N, "SessionKeyEmv2000", "ApplicationTransactionCounter"),
-            type = "string",
-            name = "ApplicationTransactionCounter",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.SessionKeyEmvCommon = schema.new({
-    id = id.from(_N, "SessionKeyEmvCommon"),
-    type = "structure",
-    members = {
-        PrimaryAccountNumber = schema.new({
-            id = id.from(_N, "SessionKeyEmvCommon", "PrimaryAccountNumber"),
-            type = "string",
-            name = "PrimaryAccountNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        PanSequenceNumber = schema.new({
-            id = id.from(_N, "SessionKeyEmvCommon", "PanSequenceNumber"),
-            type = "string",
-            name = "PanSequenceNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ApplicationTransactionCounter = schema.new({
-            id = id.from(_N, "SessionKeyEmvCommon", "ApplicationTransactionCounter"),
-            type = "string",
-            name = "ApplicationTransactionCounter",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.SessionKeyMastercard = schema.new({
-    id = id.from(_N, "SessionKeyMastercard"),
-    type = "structure",
-    members = {
-        PrimaryAccountNumber = schema.new({
-            id = id.from(_N, "SessionKeyMastercard", "PrimaryAccountNumber"),
-            type = "string",
-            name = "PrimaryAccountNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        PanSequenceNumber = schema.new({
-            id = id.from(_N, "SessionKeyMastercard", "PanSequenceNumber"),
-            type = "string",
-            name = "PanSequenceNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ApplicationTransactionCounter = schema.new({
-            id = id.from(_N, "SessionKeyMastercard", "ApplicationTransactionCounter"),
-            type = "string",
-            name = "ApplicationTransactionCounter",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        UnpredictableNumber = schema.new({
-            id = id.from(_N, "SessionKeyMastercard", "UnpredictableNumber"),
-            type = "string",
-            name = "UnpredictableNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.SessionKeyVisa = schema.new({
-    id = id.from(_N, "SessionKeyVisa"),
-    type = "structure",
-    members = {
-        PrimaryAccountNumber = schema.new({
-            id = id.from(_N, "SessionKeyVisa", "PrimaryAccountNumber"),
-            type = "string",
-            name = "PrimaryAccountNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        PanSequenceNumber = schema.new({
-            id = id.from(_N, "SessionKeyVisa", "PanSequenceNumber"),
-            type = "string",
-            name = "PanSequenceNumber",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.SessionKeyDerivation = schema.new({
-    id = id.from(_N, "SessionKeyDerivation"),
-    type = "union",
-    members = {
-        EmvCommon = schema.new({
-            id = id.from(_N, "SessionKeyDerivation", "EmvCommon"),
-            type = "structure",
-            name = "EmvCommon",
-            target_id = id.from(_N, "SessionKeyEmvCommon"),
-            target = M.SessionKeyEmvCommon,
-        }),
-        Mastercard = schema.new({
-            id = id.from(_N, "SessionKeyDerivation", "Mastercard"),
-            type = "structure",
-            name = "Mastercard",
-            target_id = id.from(_N, "SessionKeyMastercard"),
-            target = M.SessionKeyMastercard,
-        }),
-        Emv2000 = schema.new({
-            id = id.from(_N, "SessionKeyDerivation", "Emv2000"),
-            type = "structure",
-            name = "Emv2000",
-            target_id = id.from(_N, "SessionKeyEmv2000"),
-            target = M.SessionKeyEmv2000,
-        }),
-        Amex = schema.new({
-            id = id.from(_N, "SessionKeyDerivation", "Amex"),
-            type = "structure",
-            name = "Amex",
-            target_id = id.from(_N, "SessionKeyAmex"),
-            target = M.SessionKeyAmex,
-        }),
-        Visa = schema.new({
-            id = id.from(_N, "SessionKeyDerivation", "Visa"),
-            type = "structure",
-            name = "Visa",
-            target_id = id.from(_N, "SessionKeyVisa"),
-            target = M.SessionKeyVisa,
-        }),
-    },
-})
-
 M.VerifyAuthRequestCryptogramInput = schema.new({
     id = id.from(_N, "VerifyAuthRequestCryptogramInput"),
     type = "structure",
@@ -3671,6 +3755,18 @@ M.GenerateAs2805KekValidation = schema.operation({
     output = M.GenerateAs2805KekValidationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/as2805kekvalidation/generate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GenerateAuthRequestCryptogram = schema.operation({
+    id = id.from("com.amazonaws.paymentcryptographydata", "GenerateAuthRequestCryptogram"),
+    input = M.GenerateAuthRequestCryptogramInput,
+    output = M.GenerateAuthRequestCryptogramOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/cryptogram/generate" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

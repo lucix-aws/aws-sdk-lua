@@ -3883,6 +3883,14 @@ M.RecommenderConfig = schema.new({
             map_key = prelude.String,
             map_value = schema.new({ type = "list", list_member = prelude.String }),
         }),
+        ExcludedColumns = schema.new({
+            id = id.from(_N, "RecommenderConfig", "ExcludedColumns"),
+            type = "map",
+            name = "ExcludedColumns",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
     },
 })
 
