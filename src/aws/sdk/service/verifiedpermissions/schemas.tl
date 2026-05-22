@@ -2029,6 +2029,12 @@ M.DeletePolicyStoreAliasInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        deletionMode = schema.new({
+            id = id.from(_N, "DeletePolicyStoreAliasInput", "deletionMode"),
+            type = "string",
+            name = "deletionMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

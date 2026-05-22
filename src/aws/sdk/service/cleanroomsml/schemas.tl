@@ -3436,6 +3436,25 @@ M.ListCollaborationMLInputChannelsInput = schema.new({
     },
 })
 
+M.PayerConfiguration = schema.new({
+    id = id.from(_N, "PayerConfiguration"),
+    type = "structure",
+    members = {
+        computePayerAccountId = schema.new({
+            id = id.from(_N, "PayerConfiguration", "computePayerAccountId"),
+            type = "string",
+            name = "computePayerAccountId",
+            target_id = prelude.String.id,
+        }),
+        syntheticDataPayerAccountId = schema.new({
+            id = id.from(_N, "PayerConfiguration", "syntheticDataPayerAccountId"),
+            type = "string",
+            name = "syntheticDataPayerAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CollaborationMLInputChannelSummary = schema.new({
     id = id.from(_N, "CollaborationMLInputChannelSummary"),
     type = "structure",
@@ -3529,6 +3548,13 @@ M.CollaborationMLInputChannelSummary = schema.new({
             type = "string",
             name = "description",
             target_id = prelude.String.id,
+        }),
+        payerConfiguration = schema.new({
+            id = id.from(_N, "CollaborationMLInputChannelSummary", "payerConfiguration"),
+            type = "structure",
+            name = "payerConfiguration",
+            target_id = id.from(_N, "PayerConfiguration"),
+            target = M.PayerConfiguration,
         }),
     },
 })
@@ -3981,6 +4007,12 @@ M.CollaborationTrainedModelInferenceJobSummary = schema.new({
             name = "logsStatusDetails",
             target_id = prelude.String.id,
         }),
+        mlModelInferencePayerAccountId = schema.new({
+            id = id.from(_N, "CollaborationTrainedModelInferenceJobSummary", "mlModelInferencePayerAccountId"),
+            type = "string",
+            name = "mlModelInferencePayerAccountId",
+            target_id = prelude.String.id,
+        }),
         createTime = schema.new({
             id = id.from(_N, "CollaborationTrainedModelInferenceJobSummary", "createTime"),
             type = "timestamp",
@@ -4207,6 +4239,12 @@ M.CollaborationTrainedModelSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        mlModelTrainingPayerAccountId = schema.new({
+            id = id.from(_N, "CollaborationTrainedModelSummary", "mlModelTrainingPayerAccountId"),
+            type = "string",
+            name = "mlModelTrainingPayerAccountId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4565,6 +4603,13 @@ M.CreateMLInputChannelInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        payerConfiguration = schema.new({
+            id = id.from(_N, "CreateMLInputChannelInput", "payerConfiguration"),
+            type = "structure",
+            name = "payerConfiguration",
+            target_id = id.from(_N, "PayerConfiguration"),
+            target = M.PayerConfiguration,
+        }),
     },
 })
 
@@ -4921,6 +4966,13 @@ M.GetCollaborationMLInputChannelOutput = schema.new({
             target_id = id.from(_N, "SyntheticDataConfiguration"),
             target = M.SyntheticDataConfiguration,
         }),
+        payerConfiguration = schema.new({
+            id = id.from(_N, "GetCollaborationMLInputChannelOutput", "payerConfiguration"),
+            type = "structure",
+            name = "payerConfiguration",
+            target_id = id.from(_N, "PayerConfiguration"),
+            target = M.PayerConfiguration,
+        }),
         createTime = schema.new({
             id = id.from(_N, "GetCollaborationMLInputChannelOutput", "createTime"),
             type = "timestamp",
@@ -5080,6 +5132,13 @@ M.GetMLInputChannelOutput = schema.new({
             name = "syntheticDataConfiguration",
             target_id = id.from(_N, "SyntheticDataConfiguration"),
             target = M.SyntheticDataConfiguration,
+        }),
+        payerConfiguration = schema.new({
+            id = id.from(_N, "GetMLInputChannelOutput", "payerConfiguration"),
+            type = "structure",
+            name = "payerConfiguration",
+            target_id = id.from(_N, "PayerConfiguration"),
+            target = M.PayerConfiguration,
         }),
         createTime = schema.new({
             id = id.from(_N, "GetMLInputChannelOutput", "createTime"),
@@ -5271,6 +5330,13 @@ M.MLInputChannelSummary = schema.new({
             type = "string",
             name = "description",
             target_id = prelude.String.id,
+        }),
+        payerConfiguration = schema.new({
+            id = id.from(_N, "MLInputChannelSummary", "payerConfiguration"),
+            type = "structure",
+            name = "payerConfiguration",
+            target_id = id.from(_N, "PayerConfiguration"),
+            target = M.PayerConfiguration,
         }),
     },
 })
@@ -5595,6 +5661,12 @@ M.CreateTrainedModelInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        mlModelTrainingPayerAccountId = schema.new({
+            id = id.from(_N, "CreateTrainedModelInput", "mlModelTrainingPayerAccountId"),
+            type = "string",
+            name = "mlModelTrainingPayerAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5847,6 +5919,12 @@ M.GetCollaborationTrainedModelOutput = schema.new({
             name = "trainingContainerImageDigest",
             target_id = prelude.String.id,
         }),
+        mlModelTrainingPayerAccountId = schema.new({
+            id = id.from(_N, "GetCollaborationTrainedModelOutput", "mlModelTrainingPayerAccountId"),
+            type = "string",
+            name = "mlModelTrainingPayerAccountId",
+            target_id = prelude.String.id,
+        }),
         createTime = schema.new({
             id = id.from(_N, "GetCollaborationTrainedModelOutput", "createTime"),
             type = "timestamp",
@@ -6049,6 +6127,12 @@ M.GetTrainedModelOutput = schema.new({
             name = "trainingContainerImageDigest",
             target_id = prelude.String.id,
         }),
+        mlModelTrainingPayerAccountId = schema.new({
+            id = id.from(_N, "GetTrainedModelOutput", "mlModelTrainingPayerAccountId"),
+            type = "string",
+            name = "mlModelTrainingPayerAccountId",
+            target_id = prelude.String.id,
+        }),
         createTime = schema.new({
             id = id.from(_N, "GetTrainedModelOutput", "createTime"),
             type = "timestamp",
@@ -6243,6 +6327,12 @@ M.TrainedModelSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        mlModelTrainingPayerAccountId = schema.new({
+            id = id.from(_N, "TrainedModelSummary", "mlModelTrainingPayerAccountId"),
+            type = "string",
+            name = "mlModelTrainingPayerAccountId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -6700,6 +6790,12 @@ M.GetTrainedModelInferenceJobOutput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        mlModelInferencePayerAccountId = schema.new({
+            id = id.from(_N, "GetTrainedModelInferenceJobOutput", "mlModelInferencePayerAccountId"),
+            type = "string",
+            name = "mlModelInferencePayerAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -6866,6 +6962,12 @@ M.TrainedModelInferenceJobSummary = schema.new({
             name = "logsStatusDetails",
             target_id = prelude.String.id,
         }),
+        mlModelInferencePayerAccountId = schema.new({
+            id = id.from(_N, "TrainedModelInferenceJobSummary", "mlModelInferencePayerAccountId"),
+            type = "string",
+            name = "mlModelInferencePayerAccountId",
+            target_id = prelude.String.id,
+        }),
         createTime = schema.new({
             id = id.from(_N, "TrainedModelInferenceJobSummary", "createTime"),
             type = "timestamp",
@@ -7020,6 +7122,12 @@ M.StartTrainedModelInferenceJobInput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        mlModelInferencePayerAccountId = schema.new({
+            id = id.from(_N, "StartTrainedModelInferenceJobInput", "mlModelInferencePayerAccountId"),
+            type = "string",
+            name = "mlModelInferencePayerAccountId",
+            target_id = prelude.String.id,
         }),
     },
 })

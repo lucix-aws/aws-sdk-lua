@@ -13648,6 +13648,12 @@ M.CreateDomainInput = schema.new({
             name = "AppSecurityGroupManagement",
             target_id = prelude.String.id,
         }),
+        HomeEfsFileSystemCreation = schema.new({
+            id = id.from(_N, "CreateDomainInput", "HomeEfsFileSystemCreation"),
+            type = "string",
+            name = "HomeEfsFileSystemCreation",
+            target_id = prelude.String.id,
+        }),
         TagPropagation = schema.new({
             id = id.from(_N, "CreateDomainInput", "TagPropagation"),
             type = "string",
@@ -28035,6 +28041,12 @@ M.DescribeDomainOutput = schema.new({
             id = id.from(_N, "DescribeDomainOutput", "AppSecurityGroupManagement"),
             type = "string",
             name = "AppSecurityGroupManagement",
+            target_id = prelude.String.id,
+        }),
+        HomeEfsFileSystemCreation = schema.new({
+            id = id.from(_N, "DescribeDomainOutput", "HomeEfsFileSystemCreation"),
+            type = "string",
+            name = "HomeEfsFileSystemCreation",
             target_id = prelude.String.id,
         }),
         TagPropagation = schema.new({
@@ -53901,6 +53913,12 @@ M.UpdateDomainInput = schema.new({
             id = id.from(_N, "UpdateDomainInput", "TagPropagation"),
             type = "string",
             name = "TagPropagation",
+            target_id = prelude.String.id,
+        }),
+        HomeEfsFileSystemCreation = schema.new({
+            id = id.from(_N, "UpdateDomainInput", "HomeEfsFileSystemCreation"),
+            type = "string",
+            name = "HomeEfsFileSystemCreation",
             target_id = prelude.String.id,
         }),
         VpcId = schema.new({

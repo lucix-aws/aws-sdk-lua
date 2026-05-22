@@ -1332,6 +1332,8 @@ local record M
         accountId: string
         -- The abilities granted to the collaboration member. These determine what actions the member can perform within the collaboration. The following values are currently not supported: CAN_QUERY and CAN_RUN_JOB. Set the value of memberAbilities to [] to allow a member to contribute data. Set the value of memberAbilities to [CAN_RECEIVE_RESULTS] to allow a member to contribute data and receive results.
         memberAbilities: {string}
+        mlMemberAbilities: MLMemberAbilities
+        paymentConfiguration: PaymentConfiguration
         -- Specifies the display name that will be shown for this member in the collaboration. While this field is required when inviting new members, it becomes optional when modifying abilities of existing collaboration members.
         displayName: string
     end
@@ -1369,6 +1371,12 @@ local record M
         "GRANT_RECEIVE_RESULTS_ABILITY"
         "REVOKE_RECEIVE_RESULTS_ABILITY"
         "EDIT_AUTO_APPROVED_CHANGE_TYPES"
+        "ADD_PAYER_CANDIDATE"
+        "REMOVE_PAYER_CANDIDATE"
+        "GRANT_CAN_RECEIVE_MODEL_OUTPUT"
+        "GRANT_CAN_RECEIVE_INFERENCE_OUTPUT"
+        "REVOKE_CAN_RECEIVE_MODEL_OUTPUT"
+        "REVOKE_CAN_RECEIVE_INFERENCE_OUTPUT"
     end
 
     -- Represents a single change within a collaboration change request, containing the change identifier and specification.
@@ -3334,6 +3342,8 @@ local record M
         error: ProtectedJobError
         -- The compute configuration for the protected job.
         computeConfiguration: ProtectedJobComputeConfiguration
+        -- The account ID of the member that pays for the job compute costs.
+        jobComputePayerAccountId: string
     end
 
     record GetProtectedJobOutput
@@ -3524,6 +3534,8 @@ local record M
         differentialPrivacy: DifferentialPrivacyParameters
         -- The compute configuration for the protected query.
         computeConfiguration: ComputeConfiguration
+        -- The account ID of the member that pays for the query compute costs.
+        queryComputePayerAccountId: string
     end
 
     record GetProtectedQueryOutput
@@ -3670,6 +3682,8 @@ local record M
         status: string
         -- The receiver configurations for the protected job.
         receiverConfigurations: {ProtectedJobReceiverConfiguration}
+        -- The account ID of the member that pays for the job compute costs.
+        jobComputePayerAccountId: string
     end
 
     record ListProtectedJobsOutput
@@ -3724,6 +3738,8 @@ local record M
         status: string
         -- The receiver configuration.
         receiverConfigurations: {ReceiverConfiguration}
+        -- The account ID of the member that pays for the query compute costs.
+        queryComputePayerAccountId: string
     end
 
     record ListProtectedQueriesOutput
@@ -3808,6 +3824,8 @@ local record M
         resultConfiguration: ProtectedJobResultConfigurationInput
         -- The compute configuration for the protected job.
         computeConfiguration: ProtectedJobComputeConfiguration
+        -- The account ID of the member that pays for the job compute costs.
+        jobComputePayerAccountId: string
     end
 
     record StartProtectedJobOutput
@@ -3828,11 +3846,20 @@ local record M
         resultConfiguration: ProtectedQueryResultConfiguration
         -- The compute configuration for the protected query.
         computeConfiguration: ComputeConfiguration
+        -- The account ID of the member that pays for the query compute costs.
+        queryComputePayerAccountId: string
     end
 
     record StartProtectedQueryOutput
         -- The protected query.
         protectedQuery: ProtectedQuery
+    end
+
+    -- An object representing the payment responsibilities to update for the membership.
+    record UpdateMembershipPaymentConfiguration
+        queryCompute: MembershipQueryComputePaymentConfig
+        machineLearning: MembershipMLPaymentConfig
+        jobCompute: MembershipJobComputePaymentConfig
     end
 
     record UpdateMembershipInput
@@ -3846,6 +3873,8 @@ local record M
         defaultResultConfiguration: MembershipProtectedQueryResultConfiguration
         -- The default job result configuration.
         defaultJobResultConfiguration: MembershipProtectedJobResultConfiguration
+        -- The payment configuration to update for the membership.
+        membershipPaymentConfiguration: UpdateMembershipPaymentConfiguration
     end
 
     record UpdateMembershipOutput

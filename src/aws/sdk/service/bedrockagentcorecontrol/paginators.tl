@@ -166,6 +166,60 @@ function M.items_list_configuration_bundles(client, input)
     })
 end
 
+--- Returns a page iterator for listDatasetExamples.
+function M.pages_list_dataset_examples(client, input)
+    return paginator.pages(client, "listDatasetExamples", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "examples",
+    })
+end
+
+--- Returns an item iterator for listDatasetExamples.
+function M.items_list_dataset_examples(client, input)
+    return paginator.items(client, "listDatasetExamples", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "examples",
+    })
+end
+
+--- Returns a page iterator for listDatasetVersions.
+function M.pages_list_dataset_versions(client, input)
+    return paginator.pages(client, "listDatasetVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "versions",
+    })
+end
+
+--- Returns an item iterator for listDatasetVersions.
+function M.items_list_dataset_versions(client, input)
+    return paginator.items(client, "listDatasetVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "versions",
+    })
+end
+
+--- Returns a page iterator for listDatasets.
+function M.pages_list_datasets(client, input)
+    return paginator.pages(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
+--- Returns an item iterator for listDatasets.
+function M.items_list_datasets(client, input)
+    return paginator.items(client, "listDatasets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "datasets",
+    })
+end
+
 --- Returns a page iterator for listEvaluators.
 function M.pages_list_evaluators(client, input)
     return paginator.pages(client, "listEvaluators", input, {

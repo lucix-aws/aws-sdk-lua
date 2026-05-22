@@ -28,6 +28,7 @@ local record Client
     deleteEnvironmentConnector: function(Client, types.DeleteEnvironmentConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentConnectorOutput>
     deleteEnvironmentHost: function(Client, types.DeleteEnvironmentHostInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentHostOutput>
     disassociateEipFromVlan: function(Client, types.DisassociateEipFromVlanInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateEipFromVlanOutput>
+    getDepotUrl: function(Client, types.GetDepotUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetDepotUrlOutput>
     getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
     getVersions: function(Client, types.GetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetVersionsOutput>
     listEnvironmentConnectors: function(Client, types.ListEnvironmentConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentConnectorsOutput>
@@ -121,6 +122,10 @@ end
 
 function C:disassociateEipFromVlan(input: types.DisassociateEipFromVlanInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateEipFromVlanOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateEipFromVlan as schema.OperationSchema, input, options) as async.Operation<types.DisassociateEipFromVlanOutput>
+end
+
+function C:getDepotUrl(input: types.GetDepotUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetDepotUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDepotUrl as schema.OperationSchema, input, options) as async.Operation<types.GetDepotUrlOutput>
 end
 
 function C:getEnvironment(input: types.GetEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>

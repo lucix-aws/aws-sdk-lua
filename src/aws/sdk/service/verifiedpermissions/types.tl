@@ -641,9 +641,16 @@ local record M
         message: string
     end
 
+    enum DeletionMode
+        "SoftDelete"
+        "HardDelete"
+    end
+
     record DeletePolicyStoreAliasInput
         -- Specifies the name of the policy store alias that you want to delete. The alias name must always be prefixed with policy-store-alias/.
         aliasName: string
+        -- Specifies the deletion mode for the policy store alias. The valid values are: SoftDelete – The policy store alias enters the PendingDeletion state. This is the default behavior when no deletionMode is specified. HardDelete – The policy store alias is immediately deleted, bypassing the PendingDeletion state.
+        deletionMode: string
     end
 
     record DeletePolicyStoreAliasOutput

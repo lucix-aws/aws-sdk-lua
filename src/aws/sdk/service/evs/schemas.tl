@@ -1813,6 +1813,54 @@ M.DisassociateEipFromVlanOutput = schema.new({
     },
 })
 
+M.GetDepotUrlInput = schema.new({
+    id = id.from(_N, "GetDepotUrlRequest"),
+    type = "structure",
+    members = {
+        environmentId = schema.new({
+            id = id.from(_N, "GetDepotUrlInput", "environmentId"),
+            type = "string",
+            name = "environmentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        rotate = schema.new({
+            id = id.from(_N, "GetDepotUrlInput", "rotate"),
+            type = "boolean",
+            name = "rotate",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GetDepotUrlOutput = schema.new({
+    id = id.from(_N, "GetDepotUrlResponse"),
+    type = "structure",
+    members = {
+        depotUrl = schema.new({
+            id = id.from(_N, "GetDepotUrlOutput", "depotUrl"),
+            type = "string",
+            name = "depotUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        token = schema.new({
+            id = id.from(_N, "GetDepotUrlOutput", "token"),
+            type = "string",
+            name = "token",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetEnvironmentInput = schema.new({
     id = id.from(_N, "GetEnvironmentRequest"),
     type = "structure",
@@ -2598,6 +2646,17 @@ M.DisassociateEipFromVlan = schema.operation({
     id = id.from("com.amazonaws.evs", "DisassociateEipFromVlan"),
     input = M.DisassociateEipFromVlanInput,
     output = M.DisassociateEipFromVlanOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDepotUrl = schema.operation({
+    id = id.from("com.amazonaws.evs", "GetDepotUrl"),
+    input = M.GetDepotUrlInput,
+    output = M.GetDepotUrlOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -610,6 +610,20 @@ local record M
         vlan: Vlan
     end
 
+    record GetDepotUrlInput
+        -- The unique ID of the Amazon EVS environment to get the depot URL for.
+        environmentId: string
+        -- Revokes the current authentication token and returns a new depot URL with a new token. Previously issued depot URLs will stop working within 5 minutes of rotation.
+        rotate: boolean
+    end
+
+    record GetDepotUrlOutput
+        -- The URL for accessing the Amazon EVS Custom Addon depot. This URL includes the authentication token as a path component.
+        depotUrl: string
+        -- The authentication token for depot access. This token is included in the depot URL and is used to authenticate requests.
+        token: string
+    end
+
     record GetEnvironmentInput
         -- A unique ID for the environment.
         environmentId: string

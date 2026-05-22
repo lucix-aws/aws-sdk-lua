@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    addDatasetExamples: function(Client, types.AddDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.AddDatasetExamplesOutput>
     createAgentRuntime: function(Client, types.CreateAgentRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentRuntimeOutput>
     createAgentRuntimeEndpoint: function(Client, types.CreateAgentRuntimeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentRuntimeEndpointOutput>
     createApiKeyCredentialProvider: function(Client, types.CreateApiKeyCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateApiKeyCredentialProviderOutput>
@@ -25,6 +26,8 @@ local record Client
     createBrowserProfile: function(Client, types.CreateBrowserProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateBrowserProfileOutput>
     createCodeInterpreter: function(Client, types.CreateCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeInterpreterOutput>
     createConfigurationBundle: function(Client, types.CreateConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationBundleOutput>
+    createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createDatasetVersion: function(Client, types.CreateDatasetVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetVersionOutput>
     createEvaluator: function(Client, types.CreateEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.CreateEvaluatorOutput>
     createGateway: function(Client, types.CreateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
     createGatewayRule: function(Client, types.CreateGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayRuleOutput>
@@ -48,6 +51,8 @@ local record Client
     deleteBrowserProfile: function(Client, types.DeleteBrowserProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrowserProfileOutput>
     deleteCodeInterpreter: function(Client, types.DeleteCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeInterpreterOutput>
     deleteConfigurationBundle: function(Client, types.DeleteConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationBundleOutput>
+    deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    deleteDatasetExamples: function(Client, types.DeleteDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetExamplesOutput>
     deleteEvaluator: function(Client, types.DeleteEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEvaluatorOutput>
     deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
     deleteGatewayRule: function(Client, types.DeleteGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayRuleOutput>
@@ -73,6 +78,7 @@ local record Client
     getCodeInterpreter: function(Client, types.GetCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeInterpreterOutput>
     getConfigurationBundle: function(Client, types.GetConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleOutput>
     getConfigurationBundleVersion: function(Client, types.GetConfigurationBundleVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleVersionOutput>
+    getDataset: function(Client, types.GetDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
     getEvaluator: function(Client, types.GetEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.GetEvaluatorOutput>
     getGateway: function(Client, types.GetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayOutput>
     getGatewayRule: function(Client, types.GetGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayRuleOutput>
@@ -104,6 +110,9 @@ local record Client
     listCodeInterpreters: function(Client, types.ListCodeInterpretersInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeInterpretersOutput>
     listConfigurationBundles: function(Client, types.ListConfigurationBundlesInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationBundlesOutput>
     listConfigurationBundleVersions: function(Client, types.ListConfigurationBundleVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationBundleVersionsOutput>
+    listDatasetExamples: function(Client, types.ListDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetExamplesOutput>
+    listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listDatasetVersions: function(Client, types.ListDatasetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetVersionsOutput>
     listEvaluators: function(Client, types.ListEvaluatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListEvaluatorsOutput>
     listGatewayRules: function(Client, types.ListGatewayRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayRulesOutput>
     listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
@@ -137,6 +146,8 @@ local record Client
     updateAgentRuntimeEndpoint: function(Client, types.UpdateAgentRuntimeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentRuntimeEndpointOutput>
     updateApiKeyCredentialProvider: function(Client, types.UpdateApiKeyCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApiKeyCredentialProviderOutput>
     updateConfigurationBundle: function(Client, types.UpdateConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationBundleOutput>
+    updateDataset: function(Client, types.UpdateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    updateDatasetExamples: function(Client, types.UpdateDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetExamplesOutput>
     updateEvaluator: function(Client, types.UpdateEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEvaluatorOutput>
     updateGateway: function(Client, types.UpdateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
     updateGatewayRule: function(Client, types.UpdateGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayRuleOutput>
@@ -198,6 +209,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:addDatasetExamples(input: types.AddDatasetExamplesInput, options?: base_client.InvokeOptions): async.Operation<types.AddDatasetExamplesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddDatasetExamples as schema.OperationSchema, input, options) as async.Operation<types.AddDatasetExamplesOutput>
+end
+
 function C:createAgentRuntime(input: types.CreateAgentRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentRuntimeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentRuntime as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentRuntimeOutput>
 end
@@ -224,6 +239,14 @@ end
 
 function C:createConfigurationBundle(input: types.CreateConfigurationBundleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConfigurationBundleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationBundle as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationBundleOutput>
+end
+
+function C:createDataset(input: types.CreateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
+end
+
+function C:createDatasetVersion(input: types.CreateDatasetVersionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatasetVersion as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetVersionOutput>
 end
 
 function C:createEvaluator(input: types.CreateEvaluatorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEvaluatorOutput>
@@ -316,6 +339,14 @@ end
 
 function C:deleteConfigurationBundle(input: types.DeleteConfigurationBundleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationBundleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationBundle as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationBundleOutput>
+end
+
+function C:deleteDataset(input: types.DeleteDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataset as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetOutput>
+end
+
+function C:deleteDatasetExamples(input: types.DeleteDatasetExamplesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDatasetExamplesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDatasetExamples as schema.OperationSchema, input, options) as async.Operation<types.DeleteDatasetExamplesOutput>
 end
 
 function C:deleteEvaluator(input: types.DeleteEvaluatorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEvaluatorOutput>
@@ -416,6 +447,10 @@ end
 
 function C:getConfigurationBundleVersion(input: types.GetConfigurationBundleVersionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleVersionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationBundleVersion as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationBundleVersionOutput>
+end
+
+function C:getDataset(input: types.GetDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataset as schema.OperationSchema, input, options) as async.Operation<types.GetDatasetOutput>
 end
 
 function C:getEvaluator(input: types.GetEvaluatorInput, options?: base_client.InvokeOptions): async.Operation<types.GetEvaluatorOutput>
@@ -540,6 +575,18 @@ end
 
 function C:listConfigurationBundleVersions(input: types.ListConfigurationBundleVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConfigurationBundleVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationBundleVersions as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationBundleVersionsOutput>
+end
+
+function C:listDatasetExamples(input: types.ListDatasetExamplesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetExamplesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetExamples as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetExamplesOutput>
+end
+
+function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
+end
+
+function C:listDatasetVersions(input: types.ListDatasetVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetVersions as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetVersionsOutput>
 end
 
 function C:listEvaluators(input: types.ListEvaluatorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEvaluatorsOutput>
@@ -672,6 +719,14 @@ end
 
 function C:updateConfigurationBundle(input: types.UpdateConfigurationBundleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationBundleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationBundle as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationBundleOutput>
+end
+
+function C:updateDataset(input: types.UpdateDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataset as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetOutput>
+end
+
+function C:updateDatasetExamples(input: types.UpdateDatasetExamplesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDatasetExamplesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDatasetExamples as schema.OperationSchema, input, options) as async.Operation<types.UpdateDatasetExamplesOutput>
 end
 
 function C:updateEvaluator(input: types.UpdateEvaluatorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEvaluatorOutput>

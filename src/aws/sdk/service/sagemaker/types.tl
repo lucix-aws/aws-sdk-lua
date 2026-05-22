@@ -6281,6 +6281,11 @@ local record M
         IpAddressType: string
     end
 
+    enum HomeEfsFileSystemCreation
+        "Enabled"
+        "Disabled"
+    end
+
     enum TagPropagation
         "ENABLED"
         "DISABLED"
@@ -6309,6 +6314,8 @@ local record M
         KmsKeyId: string
         -- The entity that creates and manages the required security groups for inter-app communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided. If setting up the domain for use with RStudio, this value must be set to Service.
         AppSecurityGroupManagement: string
+        -- Indicates whether to create a home EFS file system for the domain. Defaults to Enabled. Set to Disabled to skip EFS creation and reduce domain creation time. You can enable EFS later by calling UpdateDomain.
+        HomeEfsFileSystemCreation: string
         -- Indicates whether custom tag propagation is supported for the domain. Defaults to DISABLED.
         TagPropagation: string
         -- The default settings for shared spaces that users create in the domain.
@@ -8714,7 +8721,7 @@ local record M
         AdditionalCodeRepositories: {string}
         -- Whether root access is enabled or disabled for users of the notebook instance. The default value is Enabled. Lifecycle configurations need root access to be able to set up a notebook instance. Because of this, lifecycle configurations associated with a notebook instance always run with root access even if you disable root access for users.
         RootAccess: string
-        -- The platform identifier of the notebook instance runtime environment. The default value is notebook-al2-v2.
+        -- The platform identifier of the notebook instance runtime environment. The default value is notebook-al2023-v1.
         PlatformIdentifier: string
         -- Information on the IMDS configuration of the notebook instance
         InstanceMetadataServiceConfiguration: InstanceMetadataServiceConfiguration
@@ -11508,6 +11515,8 @@ local record M
         KmsKeyId: string
         -- The entity that creates and manages the required security groups for inter-app communication in VPCOnly mode. Required when CreateDomain.AppNetworkAccessType is VPCOnly and DomainSettings.RStudioServerProDomainSettings.DomainExecutionRoleArn is provided.
         AppSecurityGroupManagement: string
+        -- Indicates whether a home EFS file system is created for the domain.
+        HomeEfsFileSystemCreation: string
         -- Indicates whether custom tag propagation is supported for the domain.
         TagPropagation: string
         -- The default settings for shared spaces that users create in the domain.
@@ -20630,6 +20639,8 @@ local record M
         AppNetworkAccessType: string
         -- Indicates whether custom tag propagation is supported for the domain. Defaults to DISABLED.
         TagPropagation: string
+        -- Indicates whether to create a home EFS file system for the domain. You can change from Disabled to Enabled to provision EFS on demand, but you cannot change from Enabled to Disabled.
+        HomeEfsFileSystemCreation: string
         -- The identifier for the VPC used by the domain for network communication. Use this field only when adding VPC configuration to a SageMaker AI domain used in Amazon SageMaker Unified Studio that was created without VPC settings. SageMaker AI doesn't automatically apply VPC updates to existing applications. Stop and restart your applications to apply the changes.
         VpcId: string
     end

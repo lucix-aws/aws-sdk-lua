@@ -1075,6 +1075,15 @@ M.AddOutputRequest = schema.new({
                 [traits.JSON_NAME] = { name = "routerIntegrationTransitEncryption" },
             },
         }),
+        NdiOutputTimecodeSource = schema.new({
+            id = id.from(_N, "AddOutputRequest", "NdiOutputTimecodeSource"),
+            type = "string",
+            name = "NdiOutputTimecodeSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ndiOutputTimecodeSource" },
+            },
+        }),
     },
 })
 
@@ -2802,6 +2811,15 @@ M.Transport = schema.new({
             target = M.NdiSourceSettings,
             traits = {
                 [traits.JSON_NAME] = { name = "ndiSourceSettings" },
+            },
+        }),
+        NdiOutputTimecodeSource = schema.new({
+            id = id.from(_N, "Transport", "NdiOutputTimecodeSource"),
+            type = "string",
+            name = "NdiOutputTimecodeSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ndiOutputTimecodeSource" },
             },
         }),
     },
@@ -10904,6 +10922,15 @@ M.UpdateFlowOutputInput = schema.new({
             target = M.FlowTransitEncryption,
             traits = {
                 [traits.JSON_NAME] = { name = "routerIntegrationTransitEncryption" },
+            },
+        }),
+        NdiOutputTimecodeSource = schema.new({
+            id = id.from(_N, "UpdateFlowOutputInput", "NdiOutputTimecodeSource"),
+            type = "string",
+            name = "NdiOutputTimecodeSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "ndiOutputTimecodeSource" },
             },
         }),
     },

@@ -3660,6 +3660,20 @@ M.MemberChangeSpecification = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        mlMemberAbilities = schema.new({
+            id = id.from(_N, "MemberChangeSpecification", "mlMemberAbilities"),
+            type = "structure",
+            name = "mlMemberAbilities",
+            target_id = id.from(_N, "MLMemberAbilities"),
+            target = M.MLMemberAbilities,
+        }),
+        paymentConfiguration = schema.new({
+            id = id.from(_N, "MemberChangeSpecification", "paymentConfiguration"),
+            type = "structure",
+            name = "paymentConfiguration",
+            target_id = id.from(_N, "PaymentConfiguration"),
+            target = M.PaymentConfiguration,
+        }),
         displayName = schema.new({
             id = id.from(_N, "MemberChangeSpecification", "displayName"),
             type = "string",
@@ -10509,6 +10523,12 @@ M.ProtectedJob = schema.new({
             target_id = id.from(_N, "ProtectedJobComputeConfiguration"),
             target = M.ProtectedJobComputeConfiguration,
         }),
+        jobComputePayerAccountId = schema.new({
+            id = id.from(_N, "ProtectedJob", "jobComputePayerAccountId"),
+            type = "string",
+            name = "jobComputePayerAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -11041,6 +11061,12 @@ M.ProtectedQuery = schema.new({
             name = "computeConfiguration",
             target_id = id.from(_N, "ComputeConfiguration"),
             target = M.ComputeConfiguration,
+        }),
+        queryComputePayerAccountId = schema.new({
+            id = id.from(_N, "ProtectedQuery", "queryComputePayerAccountId"),
+            type = "string",
+            name = "queryComputePayerAccountId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -11582,6 +11608,12 @@ M.ProtectedJobSummary = schema.new({
                 [traits.DEFAULT] = { value = {} },
             },
         }),
+        jobComputePayerAccountId = schema.new({
+            id = id.from(_N, "ProtectedJobSummary", "jobComputePayerAccountId"),
+            type = "string",
+            name = "jobComputePayerAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -11762,6 +11794,12 @@ M.ProtectedQuerySummary = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.DEFAULT] = { value = {} },
             },
+        }),
+        queryComputePayerAccountId = schema.new({
+            id = id.from(_N, "ProtectedQuerySummary", "queryComputePayerAccountId"),
+            type = "string",
+            name = "queryComputePayerAccountId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -12022,6 +12060,12 @@ M.StartProtectedJobInput = schema.new({
             target_id = id.from(_N, "ProtectedJobComputeConfiguration"),
             target = M.ProtectedJobComputeConfiguration,
         }),
+        jobComputePayerAccountId = schema.new({
+            id = id.from(_N, "StartProtectedJobInput", "jobComputePayerAccountId"),
+            type = "string",
+            name = "jobComputePayerAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -12089,6 +12133,12 @@ M.StartProtectedQueryInput = schema.new({
             target_id = id.from(_N, "ComputeConfiguration"),
             target = M.ComputeConfiguration,
         }),
+        queryComputePayerAccountId = schema.new({
+            id = id.from(_N, "StartProtectedQueryInput", "queryComputePayerAccountId"),
+            type = "string",
+            name = "queryComputePayerAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -12105,6 +12155,34 @@ M.StartProtectedQueryOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.UpdateMembershipPaymentConfiguration = schema.new({
+    id = id.from(_N, "UpdateMembershipPaymentConfiguration"),
+    type = "structure",
+    members = {
+        queryCompute = schema.new({
+            id = id.from(_N, "UpdateMembershipPaymentConfiguration", "queryCompute"),
+            type = "structure",
+            name = "queryCompute",
+            target_id = id.from(_N, "MembershipQueryComputePaymentConfig"),
+            target = M.MembershipQueryComputePaymentConfig,
+        }),
+        machineLearning = schema.new({
+            id = id.from(_N, "UpdateMembershipPaymentConfiguration", "machineLearning"),
+            type = "structure",
+            name = "machineLearning",
+            target_id = id.from(_N, "MembershipMLPaymentConfig"),
+            target = M.MembershipMLPaymentConfig,
+        }),
+        jobCompute = schema.new({
+            id = id.from(_N, "UpdateMembershipPaymentConfiguration", "jobCompute"),
+            type = "structure",
+            name = "jobCompute",
+            target_id = id.from(_N, "MembershipJobComputePaymentConfig"),
+            target = M.MembershipJobComputePaymentConfig,
         }),
     },
 })
@@ -12148,6 +12226,13 @@ M.UpdateMembershipInput = schema.new({
             name = "defaultJobResultConfiguration",
             target_id = id.from(_N, "MembershipProtectedJobResultConfiguration"),
             target = M.MembershipProtectedJobResultConfiguration,
+        }),
+        membershipPaymentConfiguration = schema.new({
+            id = id.from(_N, "UpdateMembershipInput", "membershipPaymentConfiguration"),
+            type = "structure",
+            name = "membershipPaymentConfiguration",
+            target_id = id.from(_N, "UpdateMembershipPaymentConfiguration"),
+            target = M.UpdateMembershipPaymentConfiguration,
         }),
     },
 })

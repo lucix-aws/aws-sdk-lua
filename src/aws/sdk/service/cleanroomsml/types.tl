@@ -1058,6 +1058,14 @@ local record M
         collaborationIdentifier: string
     end
 
+    -- Specifies which member accounts are responsible for paying for compute and synthetic data generation costs in a Clean Rooms ML collaboration.
+    record PayerConfiguration
+        -- The account ID of the member that is responsible for paying compute costs.
+        computePayerAccountId: string
+        -- The account ID of the member that is responsible for paying synthetic data generation costs.
+        syntheticDataPayerAccountId: string
+    end
+
     enum MLInputChannelStatus
         "CREATE_PENDING"
         "CREATE_IN_PROGRESS"
@@ -1091,6 +1099,8 @@ local record M
         creatorAccountId: string
         -- The description of the ML input channel.
         description: string
+        -- The payer configuration for the ML input channel.
+        payerConfiguration: PayerConfiguration
     end
 
     record ListCollaborationMLInputChannelsOutput
@@ -1243,6 +1253,8 @@ local record M
         logsStatus: string
         -- Details about the logs status for the trained model inference job.
         logsStatusDetails: string
+        -- The account ID of the member that is responsible for paying for model inference costs.
+        mlModelInferencePayerAccountId: string
         -- The time at which the trained model inference job was created.
         createTime: number
         -- The most recent time at which the trained model inference job was updated.
@@ -1317,6 +1329,8 @@ local record M
         configuredModelAlgorithmAssociationArn: string
         -- The account ID of the member that created the trained model.
         creatorAccountId: string
+        -- The account ID of the member that is responsible for paying for model training costs.
+        mlModelTrainingPayerAccountId: string
     end
 
     record ListCollaborationTrainedModelsOutput
@@ -1427,6 +1441,8 @@ local record M
         kmsKeyArn: string
         -- The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags: Maximum number of tags per resource - 50. For each resource, each tag key must be unique, and each tag key can have only one value. Maximum key length - 128 Unicode characters in UTF-8. Maximum value length - 256 Unicode characters in UTF-8. If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case sensitive. Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.
         tags: {string : string}
+        -- The payer configuration for the ML input channel. Determines which member account pays for compute and synthetic data costs.
+        payerConfiguration: PayerConfiguration
     end
 
     record CreateMLInputChannelOutput
@@ -1544,6 +1560,8 @@ local record M
         description: string
         -- The synthetic data configuration for this ML input channel, including parameters for generating privacy-preserving synthetic data and evaluation scores for measuring the privacy of the generated data.
         syntheticDataConfiguration: SyntheticDataConfiguration
+        -- The payer configuration for the ML input channel.
+        payerConfiguration: PayerConfiguration
         -- The time at which the ML input channel was created.
         createTime: number
         -- The most recent time at which the ML input channel was updated.
@@ -1583,6 +1601,8 @@ local record M
         description: string
         -- The synthetic data configuration for this ML input channel, including parameters for generating privacy-preserving synthetic data and evaluation scores for measuring the privacy of the generated data.
         syntheticDataConfiguration: SyntheticDataConfiguration
+        -- The payer configuration for the ML input channel.
+        payerConfiguration: PayerConfiguration
         -- The time at which the ML input channel was created.
         createTime: number
         -- The most recent time at which the ML input channel was updated.
@@ -1632,6 +1652,8 @@ local record M
         status: string
         -- The description of the ML input channel.
         description: string
+        -- The payer configuration for the ML input channel.
+        payerConfiguration: PayerConfiguration
     end
 
     record ListMLInputChannelsOutput
@@ -1873,6 +1895,8 @@ local record M
         kmsKeyArn: string
         -- The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags: Maximum number of tags per resource - 50. For each resource, each tag key must be unique, and each tag key can have only one value. Maximum key length - 128 Unicode characters in UTF-8. Maximum value length - 256 Unicode characters in UTF-8. If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case sensitive. Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.
         tags: {string : string}
+        -- The account ID of the member that is responsible for paying for model training costs.
+        mlModelTrainingPayerAccountId: string
     end
 
     record CreateTrainedModelOutput
@@ -1944,6 +1968,8 @@ local record M
         logsStatusDetails: string
         -- Information about the training container image.
         trainingContainerImageDigest: string
+        -- The account ID of the member that is responsible for paying for model training costs.
+        mlModelTrainingPayerAccountId: string
         -- The time at which the trained model was created.
         createTime: number
         -- The most recent time at which the trained model was updated.
@@ -1997,6 +2023,8 @@ local record M
         logsStatusDetails: string
         -- Information about the training image container.
         trainingContainerImageDigest: string
+        -- The account ID of the member that is responsible for paying for model training costs.
+        mlModelTrainingPayerAccountId: string
         -- The time at which the trained model was created.
         createTime: number
         -- The most recent time at which the trained model was updated.
@@ -2046,6 +2074,8 @@ local record M
         status: string
         -- The Amazon Resource Name (ARN) of the configured model algorithm association that was used to create this trained model.
         configuredModelAlgorithmAssociationArn: string
+        -- The account ID of the member that is responsible for paying for model training costs.
+        mlModelTrainingPayerAccountId: string
     end
 
     record ListTrainedModelsOutput
@@ -2273,6 +2303,8 @@ local record M
         logsStatusDetails: string
         -- The optional metadata that you applied to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags: Maximum number of tags per resource - 50. For each resource, each tag key must be unique, and each tag key can have only one value. Maximum key length - 128 Unicode characters in UTF-8. Maximum value length - 256 Unicode characters in UTF-8. If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case sensitive. Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.
         tags: {string : string}
+        -- The account ID of the member that is responsible for paying for model inference costs.
+        mlModelInferencePayerAccountId: string
     end
 
     record ListTrainedModelInferenceJobsInput
@@ -2318,6 +2350,8 @@ local record M
         logsStatus: string
         -- Details about the log status for the trained model inference job.
         logsStatusDetails: string
+        -- The account ID of the member that is responsible for paying for model inference costs.
+        mlModelInferencePayerAccountId: string
         -- The time at which the trained model inference job was created.
         createTime: number
         -- The most recent time at which the trained model inference job was updated.
@@ -2358,6 +2392,8 @@ local record M
         kmsKeyArn: string
         -- The optional metadata that you apply to the resource to help you categorize and organize them. Each tag consists of a key and an optional value, both of which you define. The following basic restrictions apply to tags: Maximum number of tags per resource - 50. For each resource, each tag key must be unique, and each tag key can have only one value. Maximum key length - 128 Unicode characters in UTF-8. Maximum value length - 256 Unicode characters in UTF-8. If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case sensitive. Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for keys as it is reserved for AWS use. You cannot edit or delete tag keys with this prefix. Values can have this prefix. If a tag value has aws as its prefix but the key does not, then Clean Rooms ML considers it to be a user tag and will count against the limit of 50 tags. Tags with only the key prefix of aws do not count against your tags per resource limit.
         tags: {string : string}
+        -- The account ID of the member that is responsible for paying for model inference costs.
+        mlModelInferencePayerAccountId: string
     end
 
     record StartTrainedModelInferenceJobOutput

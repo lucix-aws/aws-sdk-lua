@@ -371,6 +371,9 @@ local record M
         -- type in the Region or Amazon EC2 service limits. For more
         -- information, see Allocation strategies in the Batch User Guide.
         -- This parameter isn't applicable to jobs that are running on Fargate resources. Don't specify it.
+        -- This parameter is required for Amazon EKS compute environments. For Amazon ECS compute environments,
+        -- if this parameter isn't specified, the BEST_FIT allocation strategy is used by
+        -- default.
         -- BEST_FIT (default)
         -- Batch selects an instance type that best fits the needs of the jobs with a preference
         -- for the lowest-cost instance type. If additional instances of the selected instance type
@@ -581,7 +584,9 @@ local record M
         -- The name for your compute environment. It can be up to 128 characters long. It can contain uppercase and
         -- lowercase letters, numbers, hyphens (-), and underscores (_).
         computeEnvironmentName: string
-        -- The state of the compute environment. If the state is ENABLED, then the
+        -- The state of the compute environment. A compute environment must be created in the
+        -- ENABLED state.
+        -- If the state is ENABLED, then the
         -- compute environment accepts jobs from a queue and can scale out automatically based on
         -- queues.
         -- If the state is ENABLED, then the Batch scheduler can attempt to place jobs
@@ -617,6 +622,9 @@ local record M
         -- default for your compute environment unless you specify a different role here. If the
         -- Batch service-linked role doesn't exist in your account, and no role is specified here,
         -- the service attempts to create the Batch service-linked role in your account.
+        -- This automatic service-linked role creation only applies to MANAGED compute
+        -- environments. For UNMANAGED compute environments, you must explicitly specify a
+        -- serviceRole.
         -- If your specified role has a path other than /, then you must specify either
         -- the full role ARN (recommended) or prefix the role name with the path. For example, if a
         -- role with the name bar has a path of /foo/, specify

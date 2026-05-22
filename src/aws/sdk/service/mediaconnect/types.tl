@@ -253,6 +253,11 @@ local record M
         MediaStreamName: string
     end
 
+    enum NdiOutputTimecodeSource
+        "EMBEDDED_TIMECODE"
+        "UTC_SYSTEM_TIME"
+    end
+
     enum OutputStatus
         "ENABLED"
         "DISABLED"
@@ -337,6 +342,8 @@ local record M
         -- Indicates whether to enable or disable router integration when creating a new flow output.
         RouterIntegrationState: string
         RouterIntegrationTransitEncryption: FlowTransitEncryption
+        -- Controls how MediaConnect generates timecodes for NDI output frames. If you don't specify this field, MediaConnect uses EMBEDDED_TIMECODE. EMBEDDED_TIMECODE (default) - Preserves timecodes from the input transport stream. The timecodes must be embedded in the video stream as SEI timing messages. If no embedded timecode is detected, MediaConnect uses the UTC system time instead. UTC_SYSTEM_TIME - Generates timecodes based on the system clock time when each frame is sent.
+        NdiOutputTimecodeSource: string
     end
 
     -- Configures settings for the SilentAudio metric.
@@ -862,6 +869,8 @@ local record M
         NdiProgramName: string
         -- The settings for the NDI source. This includes the exact name of the upstream NDI sender that you want to connect to your source.
         NdiSourceSettings: NdiSourceSettings
+        -- The timecode source for NDI output frames. For NDI outputs, this field is always present and defaults to EMBEDDED_TIMECODE. EMBEDDED_TIMECODE - Preserves timecodes from the input transport stream. The timecodes must be embedded in the video stream as SEI timing messages. If no embedded timecode is detected, MediaConnect uses the UTC system time instead. UTC_SYSTEM_TIME - Generates timecodes based on the system clock time when each frame is sent.
+        NdiOutputTimecodeSource: string
     end
 
     -- The settings for an output.
@@ -3084,6 +3093,8 @@ local record M
         -- Indicates whether to enable or disable router integration for this flow output.
         RouterIntegrationState: string
         RouterIntegrationTransitEncryption: FlowTransitEncryption
+        -- Controls how MediaConnect generates timecodes for NDI output frames. If you don't specify this field, MediaConnect leaves the value unchanged. EMBEDDED_TIMECODE - Preserves timecodes from the input transport stream. The timecodes must be embedded in the video stream as SEI timing messages. If no embedded timecode is detected, MediaConnect uses the UTC system time instead. UTC_SYSTEM_TIME - Generates timecodes based on the system clock time when each frame is sent.
+        NdiOutputTimecodeSource: string
     end
 
     record UpdateFlowOutputOutput
