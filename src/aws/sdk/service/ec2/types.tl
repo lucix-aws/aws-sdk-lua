@@ -36924,6 +36924,16 @@ local record M
         NoDevice: string
     end
 
+    -- Indicates whether the instance is enabled for Amazon Web Services Nitro Enclaves. For
+    -- more information, see What is Amazon Web Services Nitro
+    -- Enclaves? in the Amazon Web Services Nitro Enclaves User
+    -- Guide.
+    record EnclaveOptionsRequest
+        -- To enable the instance for Amazon Web Services Nitro Enclaves, set this parameter to
+        -- true.
+        Enabled: boolean
+    end
+
     record BlobAttributeValue
         Value: string
     end
@@ -36936,6 +36946,10 @@ local record M
         -- checks if the instance runs services such as network address translation, routing, or
         -- firewalls.
         SourceDestCheck: AttributeBooleanValue
+        -- Enables or disables the instance for Amazon Web Services Nitro Enclaves. For more
+        -- information, see the Amazon Web Services Nitro Enclaves User
+        -- Guide.
+        EnclaveOptions: EnclaveOptionsRequest
         -- Indicates whether an instance is enabled for stop protection. For more information,
         -- see Enable stop
         -- protection for your instance.
@@ -40796,16 +40810,6 @@ local record M
         -- The number of elastic inference accelerators to attach to the instance.
         -- Default: 1
         Count: number
-    end
-
-    -- Indicates whether the instance is enabled for Amazon Web Services Nitro Enclaves. For
-    -- more information, see What is Amazon Web Services Nitro
-    -- Enclaves? in the Amazon Web Services Nitro Enclaves User
-    -- Guide.
-    record EnclaveOptionsRequest
-        -- To enable the instance for Amazon Web Services Nitro Enclaves, set this parameter to
-        -- true.
-        Enabled: boolean
     end
 
     -- Indicates whether your instance is configured for hibernation. This parameter is valid

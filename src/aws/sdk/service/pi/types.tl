@@ -43,6 +43,8 @@ local record M
         -- The recommendation details to help resolve the performance issue. For example,
         -- Investigate the following SQLs that contributed to 100% of the total DBLoad during that time period: sql-id
         RecommendationDescription: string
+        -- Detailed information about the recommendation, including steps to resolve the performance issue.
+        RecommendationDetails: string
     end
 
     enum Severity
@@ -713,6 +715,39 @@ local record M
         Metrics: {ResponseResourceMetric}
         -- A pagination token that indicates the response didn’t return all available records because MaxRecords was specified in the
         -- previous request. To get the remaining records, specify NextToken in a separate request with this value.
+        NextToken: string
+    end
+
+    record ListPerformanceAnalysisReportRecommendationsInput
+        -- The Amazon Web Services service for which Performance Insights returns metrics. Valid value is
+        -- RDS.
+        ServiceType: string
+        -- An immutable identifier for a data source that is unique for an Amazon Web Services Region. Performance Insights gathers metrics from this data source. In the
+        -- console, the identifier is shown as ResourceID. When you call DescribeDBInstances, the identifier is
+        -- returned as DbiResourceId.
+        -- To use a DB instance as a data source, specify its DbiResourceId value. For example, specify
+        -- db-ABCDEFGHIJKLMNOPQRSTU1VW2X.
+        Identifier: string
+        -- A unique identifier of the created analysis report. For example,
+        -- report-12345678901234567
+        AnalysisReportId: string
+        -- A list of recommendation identifiers to filter the results.
+        RecommendationIds: {string}
+        -- The maximum number of items to return in the response. If more items exist than the specified MaxResults value, a
+        -- pagination token is included in the response so that the remaining results can be retrieved.
+        MaxResults: number
+        -- An optional pagination token provided by a previous request.
+        -- If this parameter is specified, the response includes only records beyond
+        -- the token, up to the value specified by MaxResults.
+        NextToken: string
+    end
+
+    record ListPerformanceAnalysisReportRecommendationsOutput
+        -- The list of recommendations for the analysis report.
+        Recommendations: {Recommendation}
+        -- An optional pagination token provided by a previous request.
+        -- If this parameter is specified, the response includes only records beyond the token,
+        -- up to the value specified by MaxResults.
         NextToken: string
     end
 

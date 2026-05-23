@@ -252,6 +252,8 @@ local record M
         Rule: InvoiceUnitRule
         -- The tag structure that contains a tag key and value.
         ResourceTags: {ResourceTag}
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
     end
 
     record CreateInvoiceUnitOutput
@@ -401,6 +403,8 @@ local record M
     record DeleteInvoiceUnitInput
         -- The ARN to identify an invoice unit. This information can't be modified or deleted.
         InvoiceUnitArn: string
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
     end
 
     record DeleteInvoiceUnitOutput
@@ -411,6 +415,8 @@ local record M
     record DeleteProcurementPortalPreferenceInput
         -- The Amazon Resource Name (ARN) of the procurement portal preference to delete.
         ProcurementPortalPreferenceArn: string
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
     end
 
     record DeleteProcurementPortalPreferenceOutput
@@ -721,7 +727,7 @@ local record M
         Selector: InvoiceSummariesSelector
         -- Filters you can use to customize your invoice summary.
         Filter: InvoiceSummariesFilter
-        -- The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.
+        -- The token for the next set of results. (You received this token from a previous call.)
         NextToken: string
         -- The maximum number of invoice summaries a paginated response can contain.
         MaxResults: number
@@ -730,7 +736,7 @@ local record M
     record ListInvoiceSummariesOutput
         -- List of key (summary level) invoice details without line item details.
         InvoiceSummaries: {InvoiceSummary}
-        -- The token to retrieve the next set of results. Amazon Web Services provides the token when the response from a previous call has more results than the maximum page size.
+        -- The token to use to retrieve the next set of results, or null if there are no more results.
         NextToken: string
     end
 
@@ -831,6 +837,8 @@ local record M
         PurchaseOrderRetrievalEnabled: boolean
         -- Updated list of contact information for portal administrators and technical contacts.
         Contacts: {Contact}
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
     end
 
     record PutProcurementPortalPreferenceOutput
@@ -867,6 +875,8 @@ local record M
         TaxInheritanceDisabled: boolean
         -- The InvoiceUnitRule object used to update invoice units.
         Rule: InvoiceUnitRule
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
     end
 
     record UpdateInvoiceUnitOutput
@@ -885,6 +895,8 @@ local record M
         PurchaseOrderRetrievalPreferenceStatus: string
         -- The reason for the purchase order retrieval preference status update, providing context for the change.
         PurchaseOrderRetrievalPreferenceStatusReason: string
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
     end
 
     record UpdateProcurementPortalPreferenceStatusOutput

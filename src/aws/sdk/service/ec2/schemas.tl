@@ -92470,6 +92470,19 @@ M.InstanceBlockDeviceMappingSpecification = schema.new({
     },
 })
 
+M.EnclaveOptionsRequest = schema.new({
+    id = id.from(_N, "EnclaveOptionsRequest"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "EnclaveOptionsRequest", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.BlobAttributeValue = schema.new({
     id = id.from(_N, "BlobAttributeValue"),
     type = "structure",
@@ -92497,6 +92510,13 @@ M.ModifyInstanceAttributeInput = schema.new({
             name = "SourceDestCheck",
             target_id = id.from(_N, "AttributeBooleanValue"),
             target = M.AttributeBooleanValue,
+        }),
+        EnclaveOptions = schema.new({
+            id = id.from(_N, "ModifyInstanceAttributeInput", "EnclaveOptions"),
+            type = "structure",
+            name = "EnclaveOptions",
+            target_id = id.from(_N, "EnclaveOptionsRequest"),
+            target = M.EnclaveOptionsRequest,
         }),
         DisableApiStop = schema.new({
             id = id.from(_N, "ModifyInstanceAttributeInput", "DisableApiStop"),
@@ -102370,19 +102390,6 @@ M.ElasticInferenceAccelerator = schema.new({
             type = "integer",
             name = "Count",
             target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.EnclaveOptionsRequest = schema.new({
-    id = id.from(_N, "EnclaveOptionsRequest"),
-    type = "structure",
-    members = {
-        Enabled = schema.new({
-            id = id.from(_N, "EnclaveOptionsRequest", "Enabled"),
-            type = "boolean",
-            name = "Enabled",
-            target_id = prelude.Boolean.id,
         }),
     },
 })

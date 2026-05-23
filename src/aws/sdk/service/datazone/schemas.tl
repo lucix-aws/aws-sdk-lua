@@ -257,6 +257,8 @@ M.PropertyMap = schema.new({ type = "map", map_key = prelude.String, map_value =
 
 M.GlueConnectionNames = schema.new({ type = "list", list_member = prelude.String })
 
+M.VpcConnectionSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ConfigurableActionParameterList = schema.new({ type = "list", list_member = M.ConfigurableActionParameter })
 
 M.EnvironmentFailureReasonsList = schema.new({ type = "list", list_member = M.EnvironmentError })
@@ -6032,6 +6034,38 @@ M.SparkGluePropertiesInput = schema.new({
     },
 })
 
+M.VpcPropertiesInput = schema.new({
+    id = id.from(_N, "VpcPropertiesInput"),
+    type = "structure",
+    members = {
+        vpcId = schema.new({
+            id = id.from(_N, "VpcPropertiesInput", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "VpcPropertiesInput", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        securityGroupId = schema.new({
+            id = id.from(_N, "VpcPropertiesInput", "securityGroupId"),
+            type = "string",
+            name = "securityGroupId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.WorkflowsMwaaPropertiesInput = schema.new({
     id = id.from(_N, "WorkflowsMwaaPropertiesInput"),
     type = "structure",
@@ -6144,6 +6178,13 @@ M.ConnectionPropertiesInput = schema.new({
             name = "lakehouseProperties",
             target_id = id.from(_N, "LakehousePropertiesInput"),
             target = M.LakehousePropertiesInput,
+        }),
+        vpcProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesInput", "vpcProperties"),
+            type = "structure",
+            name = "vpcProperties",
+            target_id = id.from(_N, "VpcPropertiesInput"),
+            target = M.VpcPropertiesInput,
         }),
     },
 })
@@ -6548,6 +6589,54 @@ M.SparkGluePropertiesOutput = schema.new({
     },
 })
 
+M.VpcPropertiesOutput = schema.new({
+    id = id.from(_N, "VpcPropertiesOutput"),
+    type = "structure",
+    members = {
+        vpcId = schema.new({
+            id = id.from(_N, "VpcPropertiesOutput", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "VpcPropertiesOutput", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "VpcPropertiesOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        securityGroupId = schema.new({
+            id = id.from(_N, "VpcPropertiesOutput", "securityGroupId"),
+            type = "string",
+            name = "securityGroupId",
+            target_id = prelude.String.id,
+        }),
+        glueConnectionNames = schema.new({
+            id = id.from(_N, "VpcPropertiesOutput", "glueConnectionNames"),
+            type = "list",
+            name = "glueConnectionNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.WorkflowsMwaaPropertiesOutput = schema.new({
     id = id.from(_N, "WorkflowsMwaaPropertiesOutput"),
     type = "structure",
@@ -6660,6 +6749,13 @@ M.ConnectionPropertiesOutput = schema.new({
             name = "lakehouseProperties",
             target_id = id.from(_N, "LakehousePropertiesOutput"),
             target = M.LakehousePropertiesOutput,
+        }),
+        vpcProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesOutput", "vpcProperties"),
+            type = "structure",
+            name = "vpcProperties",
+            target_id = id.from(_N, "VpcPropertiesOutput"),
+            target = M.VpcPropertiesOutput,
         }),
     },
 })
@@ -6874,6 +6970,32 @@ M.SparkEmrPropertiesPatch = schema.new({
     },
 })
 
+M.VpcPropertiesPatch = schema.new({
+    id = id.from(_N, "VpcPropertiesPatch"),
+    type = "structure",
+    members = {
+        vpcId = schema.new({
+            id = id.from(_N, "VpcPropertiesPatch", "vpcId"),
+            type = "string",
+            name = "vpcId",
+            target_id = prelude.String.id,
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "VpcPropertiesPatch", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        securityGroupId = schema.new({
+            id = id.from(_N, "VpcPropertiesPatch", "securityGroupId"),
+            type = "string",
+            name = "securityGroupId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ConnectionPropertiesPatch = schema.new({
     id = id.from(_N, "ConnectionPropertiesPatch"),
     type = "union",
@@ -6940,6 +7062,13 @@ M.ConnectionPropertiesPatch = schema.new({
             name = "lakehouseProperties",
             target_id = id.from(_N, "LakehousePropertiesPatch"),
             target = M.LakehousePropertiesPatch,
+        }),
+        vpcProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesPatch", "vpcProperties"),
+            type = "structure",
+            name = "vpcProperties",
+            target_id = id.from(_N, "VpcPropertiesPatch"),
+            target = M.VpcPropertiesPatch,
         }),
     },
 })

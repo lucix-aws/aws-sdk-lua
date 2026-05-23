@@ -39,6 +39,10 @@ M.MetricTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResponseResourceMetricList = schema.new({ type = "list", list_member = M.ResponseResourceMetric })
 
+M.RecommendationIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
+
 M.AnalysisReportSummaryList = schema.new({ type = "list", list_member = M.AnalysisReportSummary })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -56,8 +60,6 @@ M.MetricValuesList = schema.new({ type = "list", list_member = prelude.Double })
 M.DataPointsList = schema.new({ type = "list", list_member = M.DataPoint })
 
 M.DimensionGroupDetailList = schema.new({ type = "list", list_member = M.DimensionGroupDetail })
-
-M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
 
 M.DataList = schema.new({ type = "list", list_member = M.Data })
 
@@ -134,6 +136,12 @@ M.Recommendation = schema.new({
             id = id.from(_N, "Recommendation", "RecommendationDescription"),
             type = "string",
             name = "RecommendationDescription",
+            target_id = prelude.String.id,
+        }),
+        RecommendationDetails = schema.new({
+            id = id.from(_N, "Recommendation", "RecommendationDetails"),
+            type = "string",
+            name = "RecommendationDetails",
             target_id = prelude.String.id,
         }),
     },
@@ -244,9 +252,6 @@ M.CreatePerformanceAnalysisReportInput = schema.new({
             type = "timestamp",
             name = "EndTime",
             target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         Tags = schema.new({
             id = id.from(_N, "CreatePerformanceAnalysisReportInput", "Tags"),
@@ -1211,6 +1216,79 @@ M.ListAvailableResourceMetricsOutput = schema.new({
     },
 })
 
+M.ListPerformanceAnalysisReportRecommendationsInput = schema.new({
+    id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsRequest"),
+    type = "structure",
+    members = {
+        ServiceType = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsInput", "ServiceType"),
+            type = "string",
+            name = "ServiceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AnalysisReportId = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsInput", "AnalysisReportId"),
+            type = "string",
+            name = "AnalysisReportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecommendationIds = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsInput", "RecommendationIds"),
+            type = "list",
+            name = "RecommendationIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListPerformanceAnalysisReportRecommendationsOutput = schema.new({
+    id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsResponse"),
+    type = "structure",
+    members = {
+        Recommendations = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsOutput", "Recommendations"),
+            type = "list",
+            name = "Recommendations",
+            target_id = prelude.Document.id,
+            list_member = M.Recommendation,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListPerformanceAnalysisReportRecommendationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListPerformanceAnalysisReportsInput = schema.new({
     id = id.from(_N, "ListPerformanceAnalysisReportsRequest"),
     type = "structure",
@@ -1663,6 +1741,17 @@ M.ListAvailableResourceMetrics = schema.operation({
     id = id.from("com.amazonaws.pi", "ListAvailableResourceMetrics"),
     input = M.ListAvailableResourceMetricsInput,
     output = M.ListAvailableResourceMetricsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListPerformanceAnalysisReportRecommendations = schema.operation({
+    id = id.from("com.amazonaws.pi", "ListPerformanceAnalysisReportRecommendations"),
+    input = M.ListPerformanceAnalysisReportRecommendationsInput,
+    output = M.ListPerformanceAnalysisReportRecommendationsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

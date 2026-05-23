@@ -27,6 +27,7 @@ local record Client
     getResourceMetrics: function(Client, types.GetResourceMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceMetricsOutput>
     listAvailableResourceDimensions: function(Client, types.ListAvailableResourceDimensionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableResourceDimensionsOutput>
     listAvailableResourceMetrics: function(Client, types.ListAvailableResourceMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableResourceMetricsOutput>
+    listPerformanceAnalysisReportRecommendations: function(Client, types.ListPerformanceAnalysisReportRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListPerformanceAnalysisReportRecommendationsOutput>
     listPerformanceAnalysisReports: function(Client, types.ListPerformanceAnalysisReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListPerformanceAnalysisReportsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -109,6 +110,10 @@ end
 
 function C:listAvailableResourceMetrics(input: types.ListAvailableResourceMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAvailableResourceMetricsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAvailableResourceMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListAvailableResourceMetricsOutput>
+end
+
+function C:listPerformanceAnalysisReportRecommendations(input: types.ListPerformanceAnalysisReportRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPerformanceAnalysisReportRecommendationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPerformanceAnalysisReportRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListPerformanceAnalysisReportRecommendationsOutput>
 end
 
 function C:listPerformanceAnalysisReports(input: types.ListPerformanceAnalysisReportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPerformanceAnalysisReportsOutput>

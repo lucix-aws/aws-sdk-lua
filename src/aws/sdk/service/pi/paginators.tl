@@ -36,6 +36,24 @@ function M.pages_list_available_resource_metrics(client, input)
     })
 end
 
+--- Returns a page iterator for listPerformanceAnalysisReportRecommendations.
+function M.pages_list_performance_analysis_report_recommendations(client, input)
+    return paginator.pages(client, "listPerformanceAnalysisReportRecommendations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recommendations",
+    })
+end
+
+--- Returns an item iterator for listPerformanceAnalysisReportRecommendations.
+function M.items_list_performance_analysis_report_recommendations(client, input)
+    return paginator.items(client, "listPerformanceAnalysisReportRecommendations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Recommendations",
+    })
+end
+
 --- Returns a page iterator for listPerformanceAnalysisReports.
 function M.pages_list_performance_analysis_reports(client, input)
     return paginator.pages(client, "listPerformanceAnalysisReports", input, {

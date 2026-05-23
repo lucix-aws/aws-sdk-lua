@@ -131,6 +131,8 @@ M.CodeLocationList = schema.new({ type = "list", list_member = M.CodeLocation })
 
 M.CodeRemediationTaskDetailsList = schema.new({ type = "list", list_member = M.CodeRemediationTaskDetails })
 
+M.VerificationScriptEnvVarList = schema.new({ type = "list", list_member = M.VerificationScriptEnvVar })
+
 M.UriList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
@@ -2480,6 +2482,57 @@ M.CodeRemediationTask = schema.new({
     },
 })
 
+M.VerificationScriptEnvVar = schema.new({
+    id = id.from(_N, "VerificationScriptEnvVar"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "VerificationScriptEnvVar", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "VerificationScriptEnvVar", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VerificationScript = schema.new({
+    id = id.from(_N, "VerificationScript"),
+    type = "structure",
+    members = {
+        scriptType = schema.new({
+            id = id.from(_N, "VerificationScript", "scriptType"),
+            type = "string",
+            name = "scriptType",
+            target_id = prelude.String.id,
+        }),
+        scriptUrl = schema.new({
+            id = id.from(_N, "VerificationScript", "scriptUrl"),
+            type = "string",
+            name = "scriptUrl",
+            target_id = prelude.String.id,
+        }),
+        instructions = schema.new({
+            id = id.from(_N, "VerificationScript", "instructions"),
+            type = "string",
+            name = "instructions",
+            target_id = prelude.String.id,
+        }),
+        envVars = schema.new({
+            id = id.from(_N, "VerificationScript", "envVars"),
+            type = "list",
+            name = "envVars",
+            target_id = prelude.Document.id,
+            list_member = M.VerificationScriptEnvVar,
+        }),
+    },
+})
+
 M.Finding = schema.new({
     id = id.from(_N, "Finding"),
     type = "structure",
@@ -2605,6 +2658,13 @@ M.Finding = schema.new({
             name = "codeLocations",
             target_id = prelude.Document.id,
             list_member = M.CodeLocation,
+        }),
+        verificationScript = schema.new({
+            id = id.from(_N, "Finding", "verificationScript"),
+            type = "structure",
+            name = "verificationScript",
+            target_id = id.from(_N, "VerificationScript"),
+            target = M.VerificationScript,
         }),
         createdAt = schema.new({
             id = id.from(_N, "Finding", "createdAt"),

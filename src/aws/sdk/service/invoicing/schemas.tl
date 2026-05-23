@@ -673,6 +673,15 @@ M.CreateInvoiceUnitInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ResourceTag,
         }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateInvoiceUnitInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
     },
 })
 
@@ -1072,6 +1081,15 @@ M.DeleteInvoiceUnitInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        ClientToken = schema.new({
+            id = id.from(_N, "DeleteInvoiceUnitInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
     },
 })
 
@@ -1099,6 +1117,15 @@ M.DeleteProcurementPortalPreferenceInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "DeleteProcurementPortalPreferenceInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
             },
         }),
     },
@@ -2310,6 +2337,15 @@ M.PutProcurementPortalPreferenceInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        ClientToken = schema.new({
+            id = id.from(_N, "PutProcurementPortalPreferenceInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
     },
 })
 
@@ -2426,6 +2462,15 @@ M.UpdateInvoiceUnitInput = schema.new({
             target_id = id.from(_N, "InvoiceUnitRule"),
             target = M.InvoiceUnitRule,
         }),
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateInvoiceUnitInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
     },
 })
 
@@ -2478,6 +2523,15 @@ M.UpdateProcurementPortalPreferenceStatusInput = schema.new({
             type = "string",
             name = "PurchaseOrderRetrievalPreferenceStatusReason",
             target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateProcurementPortalPreferenceStatusInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
         }),
     },
 })

@@ -2341,6 +2341,50 @@ local record M
         maxResults: number
     end
 
+    enum GuardrailAction
+        "NONE"
+        "BLOCKED"
+        "MASKED"
+    end
+
+    enum GuardrailPolicyType
+        "CONTENT_FILTER"
+        "TOPIC"
+        "WORD"
+        "SENSITIVE_INFORMATION_PII"
+        "SENSITIVE_INFORMATION_REGEX"
+        "CONTEXTUAL_GROUNDING"
+    end
+
+    -- Per-policy guardrail assessment result. Captures which policy triggered, its outcome, and a policy-specific detail string.
+    record GuardrailPolicyResult
+        -- The type of guardrail policy that was evaluated.
+        policyType: string
+        -- Outcome of this specific policy.
+        action: string
+        -- Policy-specific detail.
+        details: string
+    end
+
+    enum GuardrailSource
+        "INPUT"
+        "OUTPUT"
+    end
+
+    -- Result of a single guardrail assessment, covering either the input (customer/user message) or the output (LLM response) of a Bedrock Converse call.
+    record SpanGuardrailAssessment
+        -- Unique AI Guardrail identifier.
+        guardrailId: string
+        -- Customer-defined display name of the AI Guardrail resource.
+        guardrailName: string
+        -- Content source the guardrail was evaluated against.
+        source: string
+        -- Outcome of the guardrail assessment.
+        action: string
+        -- Per-policy assessment results. Absent or empty when action is NONE.
+        policies: {GuardrailPolicyResult}
+    end
+
     -- Model reasoning and it's internal decision making process
     record SpanReasoningValue
         -- The reasoning text content
@@ -4768,6 +4812,8 @@ local record M
         promptVersion: number
         -- Time to first token in milliseconds, measured from when Amazon Bedrock was invoked to when the first token was returned
         timeToFirstTokenMs: number
+        -- Guardrail assessments for the inference span. Absent on other span types and when no AI Guardrail is attached to the AI Agent.
+        guardrailAssessments: {SpanGuardrailAssessment}
     end
 
     -- A span represents a unit of work during AI agent execution, capturing timing, status, and contextual attributes.

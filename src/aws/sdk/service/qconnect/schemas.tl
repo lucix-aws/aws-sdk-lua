@@ -169,6 +169,8 @@ M.SpanMessageList = schema.new({ type = "list", list_member = M.SpanMessage })
 
 M.SpanMessageValueList = schema.new({ type = "list", list_member = M.SpanMessageValue })
 
+M.SpanGuardrailAssessmentList = schema.new({ type = "list", list_member = M.SpanGuardrailAssessment })
+
 M.Highlights = schema.new({ type = "list", list_member = M.Highlight })
 
 M.SeedUrls = schema.new({ type = "list", list_member = M.SeedUrl })
@@ -180,6 +182,8 @@ M.ToolOutputFilterList = schema.new({ type = "list", list_member = M.ToolOutputF
 M.DataSummaryList = schema.new({ type = "list", list_member = M.DataSummary })
 
 M.ToolExampleList = schema.new({ type = "list", list_member = prelude.String })
+
+M.GuardrailPolicyResultList = schema.new({ type = "list", list_member = M.GuardrailPolicyResult })
 
 M.SpanCitationList = schema.new({ type = "list", list_member = M.SpanCitation })
 
@@ -6971,6 +6975,87 @@ M.ListSpansInput = schema.new({
             traits = {
                 [traits.HTTP_QUERY] = { name = "maxResults" },
             },
+        }),
+    },
+})
+
+M.GuardrailPolicyResult = schema.new({
+    id = id.from(_N, "GuardrailPolicyResult"),
+    type = "structure",
+    members = {
+        policyType = schema.new({
+            id = id.from(_N, "GuardrailPolicyResult", "policyType"),
+            type = "string",
+            name = "policyType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "GuardrailPolicyResult", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        details = schema.new({
+            id = id.from(_N, "GuardrailPolicyResult", "details"),
+            type = "string",
+            name = "details",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SpanGuardrailAssessment = schema.new({
+    id = id.from(_N, "SpanGuardrailAssessment"),
+    type = "structure",
+    members = {
+        guardrailId = schema.new({
+            id = id.from(_N, "SpanGuardrailAssessment", "guardrailId"),
+            type = "string",
+            name = "guardrailId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        guardrailName = schema.new({
+            id = id.from(_N, "SpanGuardrailAssessment", "guardrailName"),
+            type = "string",
+            name = "guardrailName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        source = schema.new({
+            id = id.from(_N, "SpanGuardrailAssessment", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "SpanGuardrailAssessment", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policies = schema.new({
+            id = id.from(_N, "SpanGuardrailAssessment", "policies"),
+            type = "list",
+            name = "policies",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailPolicyResult,
         }),
     },
 })
@@ -14644,6 +14729,13 @@ M.SpanAttributes = schema.new({
             type = "integer",
             name = "timeToFirstTokenMs",
             target_id = prelude.Integer.id,
+        }),
+        guardrailAssessments = schema.new({
+            id = id.from(_N, "SpanAttributes", "guardrailAssessments"),
+            type = "list",
+            name = "guardrailAssessments",
+            target_id = prelude.Document.id,
+            list_member = M.SpanGuardrailAssessment,
         }),
     },
 })

@@ -919,6 +919,26 @@ local record M
         "FALSE_POSITIVE"
     end
 
+    -- Represents an environment variable required to run a verification script.
+    record VerificationScriptEnvVar
+        -- The name of the environment variable.
+        name: string
+        -- The value of the environment variable.
+        value: string
+    end
+
+    -- Contains metadata for a verification script that can be used to reproduce a security finding.
+    record VerificationScript
+        -- The type of script. Valid values are python and bash.
+        scriptType: string
+        -- URL to download the verification script.
+        scriptUrl: string
+        -- Instructions for running the verification script, including prerequisites and how to interpret results.
+        instructions: string
+        -- The list of environment variables required to run the verification script.
+        envVars: {VerificationScriptEnvVar}
+    end
+
     -- Represents a security finding discovered during a pentest job. A finding contains details about a vulnerability, including its risk level, confidence, and remediation status.
     record Finding
         -- The unique identifier of the finding.
@@ -959,6 +979,8 @@ local record M
         lastUpdatedBy: string
         -- The file locations involved in the vulnerability, as reported by the code scanner.
         codeLocations: {CodeLocation}
+        -- The verification script metadata for reproducing the finding, including download URL, instructions, and required environment variables.
+        verificationScript: VerificationScript
         -- The date and time the finding was created, in UTC format.
         createdAt: number
         -- The date and time the finding was last updated, in UTC format.

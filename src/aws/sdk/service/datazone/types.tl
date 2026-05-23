@@ -2008,6 +2008,16 @@ local record M
         workerType: string
     end
 
+    -- The VPC connection properties used when creating a connection.
+    record VpcPropertiesInput
+        -- The identifier of the VPC. Must match the pattern ^vpc-[a-z0-9]+$. Maximum length of 32.
+        vpcId: string
+        -- The subnet IDs of the VPC connection. You can specify between 1 and 16 subnet IDs.
+        subnetIds: {string}
+        -- The security group ID of the VPC connection. Must match the pattern ^sg-[a-z0-9]+$. Maximum length of 32.
+        securityGroupId: string
+    end
+
     -- The Amazon MWAA properties.
     record WorkflowsMwaaPropertiesInput
         -- The MWAA environment name.
@@ -2046,6 +2056,8 @@ local record M
         workflowsServerlessProperties: WorkflowsServerlessPropertiesInput
         -- The lakehouse properties of a connection.
         lakehouseProperties: LakehousePropertiesInput
+        -- The VPC properties of a connection.
+        vpcProperties: VpcPropertiesInput
     end
 
     enum ConnectionStatus
@@ -2215,6 +2227,20 @@ local record M
         workerType: string
     end
 
+    -- The VPC connection properties returned in responses.
+    record VpcPropertiesOutput
+        -- The identifier of the VPC.
+        vpcId: string
+        -- The subnet IDs of the VPC connection.
+        subnetIds: {string}
+        -- The status of the VPC connection.
+        status: string
+        -- The security group ID of the VPC connection.
+        securityGroupId: string
+        -- The Amazon Web Services Glue connection names associated with the VPC connection.
+        glueConnectionNames: {string}
+    end
+
     -- The Amazon MWAA properties.
     record WorkflowsMwaaPropertiesOutput
         -- The MWAA environment name.
@@ -2253,6 +2279,8 @@ local record M
         workflowsServerlessProperties: WorkflowsServerlessPropertiesOutput
         -- The lakehouse properties of a connection.
         lakehouseProperties: LakehousePropertiesOutput
+        -- The VPC properties of a connection.
+        vpcProperties: VpcPropertiesOutput
     end
 
     -- The Amazon Web Services Glue connection patch.
@@ -2335,6 +2363,16 @@ local record M
         managedEndpointArn: string
     end
 
+    -- The VPC connection properties used when updating a connection.
+    record VpcPropertiesPatch
+        -- The identifier of the VPC.
+        vpcId: string
+        -- The subnet IDs of the VPC connection.
+        subnetIds: {string}
+        -- The security group ID of the VPC connection.
+        securityGroupId: string
+    end
+
     -- The connection properties patch.
     record ConnectionPropertiesPatch
         -- The Amazon Athena properties of a connection properties patch.
@@ -2355,6 +2393,8 @@ local record M
         mlflowProperties: MlflowPropertiesPatch
         -- The lakehouse properties of a connection properties patch.
         lakehouseProperties: LakehousePropertiesPatch
+        -- The VPC properties of a connection properties patch.
+        vpcProperties: VpcPropertiesPatch
     end
 
     enum ConnectionScope
@@ -2385,6 +2425,7 @@ local record M
         "WORKFLOWS_MWAA"
         "AMAZON_Q"
         "MLFLOW"
+        "VPC"
     end
 
     -- The Amazon Web Services Glue connection.
