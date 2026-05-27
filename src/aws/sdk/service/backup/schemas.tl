@@ -4901,6 +4901,18 @@ M.DescribeScanJobOutput = schema.new({
             name = "CompletionDate",
             target_id = prelude.Timestamp.id,
         }),
+        ContinuousScanEndTime = schema.new({
+            id = id.from(_N, "DescribeScanJobOutput", "ContinuousScanEndTime"),
+            type = "timestamp",
+            name = "ContinuousScanEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ContinuousScanStartTime = schema.new({
+            id = id.from(_N, "DescribeScanJobOutput", "ContinuousScanStartTime"),
+            type = "timestamp",
+            name = "ContinuousScanStartTime",
+            target_id = prelude.Timestamp.id,
+        }),
         CreatedBy = schema.new({
             id = id.from(_N, "DescribeScanJobOutput", "CreatedBy"),
             type = "structure",
@@ -5580,6 +5592,97 @@ M.GetLegalHoldOutput = schema.new({
             name = "RecoveryPointSelection",
             target_id = id.from(_N, "RecoveryPointSelection"),
             target = M.RecoveryPointSelection,
+        }),
+    },
+})
+
+M.GetPITRMalwareScanResultsInput = schema.new({
+    id = id.from(_N, "GetPITRMalwareScanResultsInput"),
+    type = "structure",
+    members = {
+        RecoveryPointArn = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsInput", "RecoveryPointArn"),
+            type = "string",
+            name = "RecoveryPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "RecoveryPointArn" },
+            },
+        }),
+        BackupVaultName = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsInput", "BackupVaultName"),
+            type = "string",
+            name = "BackupVaultName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "BackupVaultName" },
+            },
+        }),
+        ScanEndTime = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsInput", "ScanEndTime"),
+            type = "timestamp",
+            name = "ScanEndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "ScanEndTime" },
+            },
+        }),
+        MalwareScanner = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsInput", "MalwareScanner"),
+            type = "string",
+            name = "MalwareScanner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "MalwareScanner" },
+            },
+        }),
+    },
+})
+
+M.GetPITRMalwareScanResultsOutput = schema.new({
+    id = id.from(_N, "GetPITRMalwareScanResultsOutput"),
+    type = "structure",
+    members = {
+        ScanEndTime = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsOutput", "ScanEndTime"),
+            type = "timestamp",
+            name = "ScanEndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScanResult = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsOutput", "ScanResult"),
+            type = "structure",
+            name = "ScanResult",
+            target_id = id.from(_N, "ScanResultInfo"),
+            target = M.ScanResultInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastScanJobTime = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsOutput", "LastScanJobTime"),
+            type = "timestamp",
+            name = "LastScanJobTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ScanId = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsOutput", "ScanId"),
+            type = "string",
+            name = "ScanId",
+            target_id = prelude.String.id,
+        }),
+        ScanMode = schema.new({
+            id = id.from(_N, "GetPITRMalwareScanResultsOutput", "ScanMode"),
+            type = "string",
+            name = "ScanMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -9138,6 +9241,18 @@ M.ScanJob = schema.new({
             name = "CompletionDate",
             target_id = prelude.Timestamp.id,
         }),
+        ContinuousScanEndTime = schema.new({
+            id = id.from(_N, "ScanJob", "ContinuousScanEndTime"),
+            type = "timestamp",
+            name = "ContinuousScanEndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ContinuousScanStartTime = schema.new({
+            id = id.from(_N, "ScanJob", "ContinuousScanStartTime"),
+            type = "timestamp",
+            name = "ContinuousScanStartTime",
+            target_id = prelude.Timestamp.id,
+        }),
         CreatedBy = schema.new({
             id = id.from(_N, "ScanJob", "CreatedBy"),
             type = "structure",
@@ -10106,6 +10221,12 @@ M.StartScanJobInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ContinuousScanEndTime = schema.new({
+            id = id.from(_N, "StartScanJobInput", "ContinuousScanEndTime"),
+            type = "timestamp",
+            name = "ContinuousScanEndTime",
+            target_id = prelude.Timestamp.id,
         }),
         IamRoleArn = schema.new({
             id = id.from(_N, "StartScanJobInput", "IamRoleArn"),
@@ -11576,6 +11697,18 @@ M.GetLegalHold = schema.operation({
     output = M.GetLegalHoldOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/legal-holds/{LegalHoldId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPITRMalwareScanResults = schema.operation({
+    id = id.from("com.amazonaws.backup", "GetPITRMalwareScanResults"),
+    input = M.GetPITRMalwareScanResultsInput,
+    output = M.GetPITRMalwareScanResultsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/scan/pitr-malware-scan-results" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

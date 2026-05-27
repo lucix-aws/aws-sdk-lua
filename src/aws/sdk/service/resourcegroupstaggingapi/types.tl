@@ -10,6 +10,10 @@ local record M
         -- These are keys defined in the effective policy that are on the resource with either
         -- incorrect case treatment or noncompliant values.
         KeysWithNoncompliantValues: {string}
+        -- These tag keys are defined as required in the
+        -- report_required_tag_for block of the effective tag policy, but are
+        -- missing from the resource.
+        MissingTagKeys: {string}
         -- Whether a resource is compliant with the effective tag policy.
         ComplianceStatus: boolean
     end

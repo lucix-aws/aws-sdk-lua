@@ -66,6 +66,7 @@ local record Client
     getBackupVaultAccessPolicy: function(Client, types.GetBackupVaultAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupVaultAccessPolicyOutput>
     getBackupVaultNotifications: function(Client, types.GetBackupVaultNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.GetBackupVaultNotificationsOutput>
     getLegalHold: function(Client, types.GetLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.GetLegalHoldOutput>
+    getPITRMalwareScanResults: function(Client, types.GetPITRMalwareScanResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetPITRMalwareScanResultsOutput>
     getRecoveryPointIndexDetails: function(Client, types.GetRecoveryPointIndexDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPointIndexDetailsOutput>
     getRecoveryPointRestoreMetadata: function(Client, types.GetRecoveryPointRestoreMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetRecoveryPointRestoreMetadataOutput>
     getRestoreJobMetadata: function(Client, types.GetRestoreJobMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetRestoreJobMetadataOutput>
@@ -360,6 +361,10 @@ end
 
 function C:getLegalHold(input: types.GetLegalHoldInput, options?: base_client.InvokeOptions): async.Operation<types.GetLegalHoldOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLegalHold as schema.OperationSchema, input, options) as async.Operation<types.GetLegalHoldOutput>
+end
+
+function C:getPITRMalwareScanResults(input: types.GetPITRMalwareScanResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetPITRMalwareScanResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPITRMalwareScanResults as schema.OperationSchema, input, options) as async.Operation<types.GetPITRMalwareScanResultsOutput>
 end
 
 function C:getRecoveryPointIndexDetails(input: types.GetRecoveryPointIndexDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecoveryPointIndexDetailsOutput>

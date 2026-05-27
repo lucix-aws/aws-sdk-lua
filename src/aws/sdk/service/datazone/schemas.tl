@@ -207,9 +207,13 @@ M.DomainUnitSummaries = schema.new({ type = "list", list_member = M.DomainUnitSu
 
 M.EnvironmentBlueprintConfigurations = schema.new({ type = "list", list_member = M.EnvironmentBlueprintConfigurationItem })
 
+M.PutResourceConfigurations = schema.new({ type = "list", list_member = M.PutResourceConfiguration })
+
 M.GlobalParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ProvisioningConfigurationList = schema.new({ type = "list", list_member = M.ProvisioningConfiguration })
+
+M.ResourceConfigurations = schema.new({ type = "list", list_member = M.ResourceConfiguration })
 
 M.ImportList = schema.new({ type = "list", list_member = M.Import })
 
@@ -280,6 +284,8 @@ M.RelationalFilterConfigurations = schema.new({ type = "list", list_member = M.R
 M.TrackingAssets = schema.new({ type = "map", map_key = prelude.String, map_value = M.TrackingAssetArns })
 
 M.SelfGrantStatusDetails = schema.new({ type = "list", list_member = M.SelfGrantStatusDetail })
+
+M.ResourceConfigurationParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.S3Permissions = schema.new({ type = "list", list_member = prelude.String })
 
@@ -16902,6 +16908,57 @@ M.ProvisioningConfiguration = schema.new({
     },
 })
 
+M.ResourceConfiguration = schema.new({
+    id = id.from(_N, "ResourceConfiguration"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "ResourceConfiguration", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "ResourceConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ResourceConfiguration", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "ResourceConfiguration", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "ResourceConfiguration", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetEnvironmentBlueprintConfigurationOutput = schema.new({
     id = id.from(_N, "GetEnvironmentBlueprintConfigurationOutput"),
     type = "structure",
@@ -16957,6 +17014,12 @@ M.GetEnvironmentBlueprintConfigurationOutput = schema.new({
             map_key = prelude.String,
             map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
+        allowUserProvidedConfigurations = schema.new({
+            id = id.from(_N, "GetEnvironmentBlueprintConfigurationOutput", "allowUserProvidedConfigurations"),
+            type = "boolean",
+            name = "allowUserProvidedConfigurations",
+            target_id = prelude.Boolean.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "GetEnvironmentBlueprintConfigurationOutput", "createdAt"),
             type = "timestamp",
@@ -16974,6 +17037,13 @@ M.GetEnvironmentBlueprintConfigurationOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        resourceConfigurations = schema.new({
+            id = id.from(_N, "GetEnvironmentBlueprintConfigurationOutput", "resourceConfigurations"),
+            type = "list",
+            name = "resourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceConfiguration,
         }),
         provisioningConfigurations = schema.new({
             id = id.from(_N, "GetEnvironmentBlueprintConfigurationOutput", "provisioningConfigurations"),
@@ -17075,6 +17145,12 @@ M.EnvironmentBlueprintConfigurationItem = schema.new({
             map_key = prelude.String,
             map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
+        allowUserProvidedConfigurations = schema.new({
+            id = id.from(_N, "EnvironmentBlueprintConfigurationItem", "allowUserProvidedConfigurations"),
+            type = "boolean",
+            name = "allowUserProvidedConfigurations",
+            target_id = prelude.Boolean.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "EnvironmentBlueprintConfigurationItem", "createdAt"),
             type = "timestamp",
@@ -17092,6 +17168,13 @@ M.EnvironmentBlueprintConfigurationItem = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        resourceConfigurations = schema.new({
+            id = id.from(_N, "EnvironmentBlueprintConfigurationItem", "resourceConfigurations"),
+            type = "list",
+            name = "resourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceConfiguration,
         }),
         provisioningConfigurations = schema.new({
             id = id.from(_N, "EnvironmentBlueprintConfigurationItem", "provisioningConfigurations"),
@@ -17119,6 +17202,48 @@ M.ListEnvironmentBlueprintConfigurationsOutput = schema.new({
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutResourceConfiguration = schema.new({
+    id = id.from(_N, "PutResourceConfiguration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "PutResourceConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "PutResourceConfiguration", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "PutResourceConfiguration", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "PutResourceConfiguration", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -17182,6 +17307,19 @@ M.PutEnvironmentBlueprintConfigurationInput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
+        }),
+        resourceConfigurations = schema.new({
+            id = id.from(_N, "PutEnvironmentBlueprintConfigurationInput", "resourceConfigurations"),
+            type = "list",
+            name = "resourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.PutResourceConfiguration,
+        }),
+        allowUserProvidedConfigurations = schema.new({
+            id = id.from(_N, "PutEnvironmentBlueprintConfigurationInput", "allowUserProvidedConfigurations"),
+            type = "boolean",
+            name = "allowUserProvidedConfigurations",
+            target_id = prelude.Boolean.id,
         }),
         globalParameters = schema.new({
             id = id.from(_N, "PutEnvironmentBlueprintConfigurationInput", "globalParameters"),
@@ -17256,6 +17394,12 @@ M.PutEnvironmentBlueprintConfigurationOutput = schema.new({
             map_key = prelude.String,
             map_value = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String }),
         }),
+        allowUserProvidedConfigurations = schema.new({
+            id = id.from(_N, "PutEnvironmentBlueprintConfigurationOutput", "allowUserProvidedConfigurations"),
+            type = "boolean",
+            name = "allowUserProvidedConfigurations",
+            target_id = prelude.Boolean.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "PutEnvironmentBlueprintConfigurationOutput", "createdAt"),
             type = "timestamp",
@@ -17273,6 +17417,13 @@ M.PutEnvironmentBlueprintConfigurationOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        resourceConfigurations = schema.new({
+            id = id.from(_N, "PutEnvironmentBlueprintConfigurationOutput", "resourceConfigurations"),
+            type = "list",
+            name = "resourceConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceConfiguration,
         }),
         provisioningConfigurations = schema.new({
             id = id.from(_N, "PutEnvironmentBlueprintConfigurationOutput", "provisioningConfigurations"),

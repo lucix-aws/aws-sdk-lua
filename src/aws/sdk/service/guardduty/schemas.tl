@@ -2772,6 +2772,32 @@ M.ContainerInstanceDetails = schema.new({
     },
 })
 
+M.ContinuousScanDetails = schema.new({
+    id = id.from(_N, "ContinuousScanDetails"),
+    type = "structure",
+    members = {
+        StartTime = schema.new({
+            id = id.from(_N, "ContinuousScanDetails", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "startTime" },
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "ContinuousScanDetails", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "endTime" },
+            },
+        }),
+    },
+})
+
 M.CoverageEc2InstanceDetails = schema.new({
     id = id.from(_N, "CoverageEc2InstanceDetails"),
     type = "structure",
@@ -11385,6 +11411,32 @@ M.GetMalwareScanInput = schema.new({
     },
 })
 
+M.ScanConfigurationContinuousScanDetails = schema.new({
+    id = id.from(_N, "ScanConfigurationContinuousScanDetails"),
+    type = "structure",
+    members = {
+        StartTime = schema.new({
+            id = id.from(_N, "ScanConfigurationContinuousScanDetails", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "startTime" },
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "ScanConfigurationContinuousScanDetails", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "endTime" },
+            },
+        }),
+    },
+})
+
 M.ScanConfigurationRecoveryPoint = schema.new({
     id = id.from(_N, "ScanConfigurationRecoveryPoint"),
     type = "structure",
@@ -11396,6 +11448,16 @@ M.ScanConfigurationRecoveryPoint = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "backupVaultName" },
+            },
+        }),
+        ContinuousScanDetails = schema.new({
+            id = id.from(_N, "ScanConfigurationRecoveryPoint", "ContinuousScanDetails"),
+            type = "structure",
+            name = "ContinuousScanDetails",
+            target_id = id.from(_N, "ScanConfigurationContinuousScanDetails"),
+            target = M.ScanConfigurationContinuousScanDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "continuousScanDetails" },
             },
         }),
     },
@@ -14488,6 +14550,16 @@ M.RecoveryPoint = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "backupVaultName" },
+            },
+        }),
+        ContinuousScanDetails = schema.new({
+            id = id.from(_N, "RecoveryPoint", "ContinuousScanDetails"),
+            type = "structure",
+            name = "ContinuousScanDetails",
+            target_id = id.from(_N, "ContinuousScanDetails"),
+            target = M.ContinuousScanDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "continuousScanDetails" },
             },
         }),
     },

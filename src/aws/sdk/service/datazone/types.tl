@@ -5638,6 +5638,20 @@ local record M
         lakeFormationConfiguration: LakeFormationConfiguration
     end
 
+    -- The details of the resource configuration.
+    record ResourceConfiguration
+        -- The identifier of the resource configuration.
+        identifier: string
+        -- The name of the resource configuration.
+        name: string
+        -- The description of the resource configuration.
+        description: string
+        -- The Amazon Web Services Region of the resource configuration.
+        region: string
+        -- The parameters of the resource configuration.
+        parameters: {string : string}
+    end
+
     record GetEnvironmentBlueprintConfigurationOutput
         -- The ID of the Amazon DataZone domain where this blueprint exists.
         domainId: string
@@ -5653,10 +5667,14 @@ local record M
         enabledRegions: {string}
         -- The regional parameters of the blueprint.
         regionalParameters: {string : {string : string}}
+        -- Specifies whether user-provided resource configurations are allowed for the environment blueprint.
+        allowUserProvidedConfigurations: boolean
         -- The timestamp of when this blueprint was created.
         createdAt: number
         -- The timestamp of when this blueprint was upated.
         updatedAt: number
+        -- The resource configurations of the environment blueprint.
+        resourceConfigurations: {ResourceConfiguration}
         -- The provisioning configuration of a blueprint.
         provisioningConfigurations: {ProvisioningConfiguration}
     end
@@ -5686,10 +5704,14 @@ local record M
         enabledRegions: {string}
         -- The regional parameters of the environment blueprint.
         regionalParameters: {string : {string : string}}
+        -- Specifies whether user-provided resource configurations are allowed for the environment blueprint.
+        allowUserProvidedConfigurations: boolean
         -- The timestamp of when an environment blueprint was created.
         createdAt: number
         -- The timestamp of when the environment blueprint was updated.
         updatedAt: number
+        -- The resource configurations of the environment blueprint.
+        resourceConfigurations: {ResourceConfiguration}
         -- The provisioning configuration of a blueprint.
         provisioningConfigurations: {ProvisioningConfiguration}
     end
@@ -5699,6 +5721,18 @@ local record M
         items: {EnvironmentBlueprintConfigurationItem}
         -- When the number of blueprint configurations is greater than the default value for the MaxResults parameter, or if you explicitly specify a value for MaxResults that is less than the number of configurations, the response includes a pagination token named NextToken. You can specify this NextToken value in a subsequent call to ListEnvironmentBlueprintConfigurations to list the next set of configurations.
         nextToken: string
+    end
+
+    -- The resource configuration that is used to configure the environment blueprint.
+    record PutResourceConfiguration
+        -- The name of the resource configuration.
+        name: string
+        -- The description of the resource configuration.
+        description: string
+        -- The Amazon Web Services Region of the resource configuration.
+        region: string
+        -- The parameters of the resource configuration.
+        parameters: {string : string}
     end
 
     record PutEnvironmentBlueprintConfigurationInput
@@ -5716,6 +5750,10 @@ local record M
         enabledRegions: {string}
         -- The regional parameters in the environment blueprint.
         regionalParameters: {string : {string : string}}
+        -- The resource configurations of the environment blueprint.
+        resourceConfigurations: {PutResourceConfiguration}
+        -- Specifies whether user-provided resource configurations are allowed for the environment blueprint.
+        allowUserProvidedConfigurations: boolean
         -- Region-agnostic environment blueprint parameters.
         globalParameters: {string : string}
         -- The provisioning configuration of a blueprint.
@@ -5737,10 +5775,14 @@ local record M
         enabledRegions: {string}
         -- The regional parameters in the environment blueprint.
         regionalParameters: {string : {string : string}}
+        -- Specifies whether user-provided resource configurations are allowed for the environment blueprint.
+        allowUserProvidedConfigurations: boolean
         -- The timestamp of when the environment blueprint was created.
         createdAt: number
         -- The timestamp of when the environment blueprint was updated.
         updatedAt: number
+        -- The resource configurations of the environment blueprint.
+        resourceConfigurations: {ResourceConfiguration}
         -- The provisioning configuration of a blueprint.
         provisioningConfigurations: {ProvisioningConfiguration}
     end

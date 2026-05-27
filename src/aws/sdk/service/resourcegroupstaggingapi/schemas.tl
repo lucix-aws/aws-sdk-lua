@@ -67,6 +67,13 @@ M.ComplianceDetails = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        MissingTagKeys = schema.new({
+            id = id.from(_N, "ComplianceDetails", "MissingTagKeys"),
+            type = "list",
+            name = "MissingTagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         ComplianceStatus = schema.new({
             id = id.from(_N, "ComplianceDetails", "ComplianceStatus"),
             type = "boolean",

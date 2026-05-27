@@ -761,6 +761,14 @@ local record M
         CompatibleContainerInstances: number
     end
 
+    -- Contains information about the time range within the continuous backup in Amazon Web Services Backup to scan for a point-in-time recovery resource.
+    record ContinuousScanDetails
+        -- The timestamp representing the start of the time range to scan. Reserved for internal use.
+        StartTime: number
+        -- The timestamp representing the end of the time range to scan.
+        EndTime: number
+    end
+
     enum CoverageStatus
         "HEALTHY"
         "UNHEALTHY"
@@ -3419,12 +3427,23 @@ local record M
         "EC2_RECOVERY_POINT"
         "S3_RECOVERY_POINT"
         "S3_BUCKET"
+        "S3_POINT_IN_TIME_RECOVERY"
+    end
+
+    -- Contains information about the time range within the continuous backup in Amazon Web Services Backup that was scanned for a point-in-time recovery resource.
+    record ScanConfigurationContinuousScanDetails
+        -- The timestamp representing the start of the time range that was scanned.
+        StartTime: number
+        -- The timestamp representing the end of the time range that was scanned.
+        EndTime: number
     end
 
     -- Contains information about the recovery point configuration used in the scan.
     record ScanConfigurationRecoveryPoint
         -- The name of the Amazon Web Services Backup vault that contains the recovery point for the scanned.
         BackupVaultName: string
+        -- The time range within the continuous backup in Amazon Web Services Backup that was scanned for a point-in-time recovery resource.
+        ContinuousScanDetails: ScanConfigurationContinuousScanDetails
     end
 
     -- Contains information about the configuration used for the malware scan.
@@ -4341,6 +4360,8 @@ local record M
     record RecoveryPoint
         -- The name of the Amazon Web Services Backup vault that contains the name of the recovery point to be scanned.
         BackupVaultName: string
+        -- Contains information about the time range within the continuous backup in Amazon Web Services Backup to scan.
+        ContinuousScanDetails: ContinuousScanDetails
     end
 
     -- Contains information about the configuration to be used for the malware scan.
