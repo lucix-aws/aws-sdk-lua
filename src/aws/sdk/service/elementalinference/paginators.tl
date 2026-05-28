@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listDictionaries.
+function M.pages_list_dictionaries(client, input)
+    return paginator.pages(client, "listDictionaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dictionaries",
+    })
+end
+
+--- Returns an item iterator for listDictionaries.
+function M.items_list_dictionaries(client, input)
+    return paginator.items(client, "listDictionaries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dictionaries",
+    })
+end
+
 --- Returns a page iterator for listFeeds.
 function M.pages_list_feeds(client, input)
     return paginator.pages(client, "listFeeds", input, {

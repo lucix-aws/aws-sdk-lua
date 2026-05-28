@@ -9346,6 +9346,99 @@ M.ClusterRestrictedInstanceGroupDetails = schema.new({
     },
 })
 
+M.ClusterSharedEnvironmentConfig = schema.new({
+    id = id.from(_N, "ClusterSharedEnvironmentConfig"),
+    type = "structure",
+    members = {
+        FSxLustreDeletionPolicy = schema.new({
+            id = id.from(_N, "ClusterSharedEnvironmentConfig", "FSxLustreDeletionPolicy"),
+            type = "string",
+            name = "FSxLustreDeletionPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FSxLustreConfig = schema.new({
+            id = id.from(_N, "ClusterSharedEnvironmentConfig", "FSxLustreConfig"),
+            type = "structure",
+            name = "FSxLustreConfig",
+            target_id = id.from(_N, "FSxLustreConfig"),
+            target = M.FSxLustreConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ClusterRestrictedInstanceGroupsConfig = schema.new({
+    id = id.from(_N, "ClusterRestrictedInstanceGroupsConfig"),
+    type = "structure",
+    members = {
+        SharedEnvironmentConfig = schema.new({
+            id = id.from(_N, "ClusterRestrictedInstanceGroupsConfig", "SharedEnvironmentConfig"),
+            type = "structure",
+            name = "SharedEnvironmentConfig",
+            target_id = id.from(_N, "ClusterSharedEnvironmentConfig"),
+            target = M.ClusterSharedEnvironmentConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ClusterSharedEnvironmentConfigDetails = schema.new({
+    id = id.from(_N, "ClusterSharedEnvironmentConfigDetails"),
+    type = "structure",
+    members = {
+        CurrentFSxLustreConfig = schema.new({
+            id = id.from(_N, "ClusterSharedEnvironmentConfigDetails", "CurrentFSxLustreConfig"),
+            type = "structure",
+            name = "CurrentFSxLustreConfig",
+            target_id = id.from(_N, "FSxLustreConfig"),
+            target = M.FSxLustreConfig,
+        }),
+        DesiredFSxLustreConfig = schema.new({
+            id = id.from(_N, "ClusterSharedEnvironmentConfigDetails", "DesiredFSxLustreConfig"),
+            type = "structure",
+            name = "DesiredFSxLustreConfig",
+            target_id = id.from(_N, "FSxLustreConfig"),
+            target = M.FSxLustreConfig,
+        }),
+        CurrentFSxLustreDeletionPolicy = schema.new({
+            id = id.from(_N, "ClusterSharedEnvironmentConfigDetails", "CurrentFSxLustreDeletionPolicy"),
+            type = "string",
+            name = "CurrentFSxLustreDeletionPolicy",
+            target_id = prelude.String.id,
+        }),
+        DesiredFSxLustreDeletionPolicy = schema.new({
+            id = id.from(_N, "ClusterSharedEnvironmentConfigDetails", "DesiredFSxLustreDeletionPolicy"),
+            type = "string",
+            name = "DesiredFSxLustreDeletionPolicy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ClusterRestrictedInstanceGroupsConfigOutput = schema.new({
+    id = id.from(_N, "ClusterRestrictedInstanceGroupsConfigOutput"),
+    type = "structure",
+    members = {
+        SharedEnvironmentConfig = schema.new({
+            id = id.from(_N, "ClusterRestrictedInstanceGroupsConfigOutput", "SharedEnvironmentConfig"),
+            type = "structure",
+            name = "SharedEnvironmentConfig",
+            target_id = id.from(_N, "ClusterSharedEnvironmentConfigDetails"),
+            target = M.ClusterSharedEnvironmentConfigDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.EnvironmentConfig = schema.new({
     id = id.from(_N, "EnvironmentConfig"),
     type = "structure",
@@ -11554,6 +11647,13 @@ M.CreateClusterInput = schema.new({
             name = "RestrictedInstanceGroups",
             target_id = prelude.Document.id,
             list_member = M.ClusterRestrictedInstanceGroupSpecification,
+        }),
+        RestrictedInstanceGroupsConfig = schema.new({
+            id = id.from(_N, "CreateClusterInput", "RestrictedInstanceGroupsConfig"),
+            type = "structure",
+            name = "RestrictedInstanceGroupsConfig",
+            target_id = id.from(_N, "ClusterRestrictedInstanceGroupsConfig"),
+            target = M.ClusterRestrictedInstanceGroupsConfig,
         }),
         VpcConfig = schema.new({
             id = id.from(_N, "CreateClusterInput", "VpcConfig"),
@@ -26763,6 +26863,13 @@ M.DescribeClusterOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ClusterRestrictedInstanceGroupDetails,
         }),
+        RestrictedInstanceGroupsConfig = schema.new({
+            id = id.from(_N, "DescribeClusterOutput", "RestrictedInstanceGroupsConfig"),
+            type = "structure",
+            name = "RestrictedInstanceGroupsConfig",
+            target_id = id.from(_N, "ClusterRestrictedInstanceGroupsConfigOutput"),
+            target = M.ClusterRestrictedInstanceGroupsConfigOutput,
+        }),
         VpcConfig = schema.new({
             id = id.from(_N, "DescribeClusterOutput", "VpcConfig"),
             type = "structure",
@@ -35597,6 +35704,12 @@ M.ReservedCapacitySummary = schema.new({
             id = id.from(_N, "ReservedCapacitySummary", "AvailabilityZone"),
             type = "string",
             name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "ReservedCapacitySummary", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
             target_id = prelude.String.id,
         }),
         DurationHours = schema.new({
@@ -53420,6 +53533,13 @@ M.UpdateClusterInput = schema.new({
             name = "RestrictedInstanceGroups",
             target_id = prelude.Document.id,
             list_member = M.ClusterRestrictedInstanceGroupSpecification,
+        }),
+        RestrictedInstanceGroupsConfig = schema.new({
+            id = id.from(_N, "UpdateClusterInput", "RestrictedInstanceGroupsConfig"),
+            type = "structure",
+            name = "RestrictedInstanceGroupsConfig",
+            target_id = id.from(_N, "ClusterRestrictedInstanceGroupsConfig"),
+            target = M.ClusterRestrictedInstanceGroupsConfig,
         }),
         TieredStorageConfig = schema.new({
             id = id.from(_N, "UpdateClusterInput", "TieredStorageConfig"),

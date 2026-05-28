@@ -7,14 +7,52 @@ local record M
         message: string
     end
 
+    -- The width and height of the output video. Used in SubtitlingConfig to determine subtitle layout.
+    record AspectRatio
+        -- The width component of the aspect ratio (for example, 16 in a 16:9 ratio).
+        width: number
+        -- The height component of the aspect ratio (for example, 9 in a 16:9 ratio).
+        height: number
+    end
+
     -- A type of OutputConfig, used when the output in a feed is for the clip feature.
     record ClippingConfig
-        -- The metadata that is the result of the clip request to Elemental Inference.
+        -- A string that you want Elemental Inference to always include in the event clipping metadata for this output. The string might identify the sports event in the source media, for example.
         callbackMetadata: string
     end
 
     -- A type of OutputConfig, used when the output in a feed is for the crop feature.
     record CroppingConfig
+    end
+
+    enum TranscriptionLanguage
+        "eng"
+        "eng-au"
+        "eng-gb"
+        "eng-us"
+        "fra"
+        "ita"
+        "deu"
+        "spa"
+        "por"
+    end
+
+    enum ProfanityFilterMode
+        "DISABLED"
+        "CENSOR"
+        "DROP"
+    end
+
+    -- A type of OutputConfig, used when the output in a feed is for the smart subtitling feature. smart subtitling uses automatic speech recognition (ASR) to generate live TTML subtitles from the audio in your source media.
+    record SubtitlingConfig
+        -- The language of the audio in the source media. Elemental Inference uses this setting to optimize transcription accuracy. Specify the language using an ISO 639-2/T three-letter code, optionally with a region subtag. Supported values: eng, eng-au, eng-gb, eng-us, fra, ita, deu, spa, por.
+        language: string
+        -- The aspect ratio of the output video, specified as width and height integer values. Elemental Inference uses the aspect ratio to determine subtitle layout and line lengths.
+        aspectRatio: AspectRatio
+        -- The ID of a custom dictionary to improve transcription accuracy for domain-specific terminology. Use the CreateDictionary operation to create a dictionary.
+        dictionary: string
+        -- Controls how profanity is handled in the generated subtitles. Valid values: DISABLED (no filtering, default), CENSOR (replace profanity with asterisks), DROP (remove profanity from the transcript).
+        profanityFilter: string
     end
 
     -- Contains one typed output. It is used in the CreateOutput, GetOutput, and Update Output structures.
@@ -23,6 +61,8 @@ local record M
         cropping: CroppingConfig
         -- The output config type that applies to the clipping feature.
         clipping: ClippingConfig
+        -- The output config type that applies to the smart subtitling feature.
+        subtitling: SubtitlingConfig
     end
 
     enum OutputStatus
@@ -34,7 +74,7 @@ local record M
     record CreateOutput
         -- A name for the output.
         name: string
-        -- A typed property for an output in a feed. It is used in the CreateFeed and AssociateFeed actions. It identifies the action for Elemental Inference to perform. It also provides a repository for the results of that action. For example, CroppingConfig output will contain the metadata for the crop feature.
+        -- A typed property for an output in a feed. It identifies the action for Elemental Inference to perform. It also provides a repository for the results of that action. For example, CroppingConfig output will contain the metadata for the crop feature.
         outputConfig: OutputConfig
         -- The status to assign to the output.
         status: string
@@ -45,18 +85,18 @@ local record M
     record AssociateFeedInput
         -- The ID of the feed.
         id: string
-        -- An identifier for the resource. If the resource is from an AWS service, this identifier must be the full ARN of that resource. Otherwise, the identifier is a name that you assign and that is appropriate for the application that owns the resource. This name must not resemble an ARN.
+        -- An identifier for the resource. This name must not resemble an ARN. The resource is the source media that the feed will process. The name you assign should help you to later identify the source media that belongs to the feed. In this way, you will know which source media to push to the feed (using PutMedia).
         associatedResourceName: string
-        -- The outputs to add to this feed. You must specify at least one output. You can later use the UpdateFeed action to change the list of outputs.
+        -- An array of one or more outputs that you want to add to this feed now, to supplement any outputs that you specified when you created or updated the feed.
         outputs: {CreateOutput}
-        -- Set to true if you want to do a dry run of the associate action.
+        -- Set to true if you want to do a dry run of the associate action. Elemental Inference will validate that the real request would succeed without actually making any changes. A dry run catches errors such as missing IAM permissions, quota limits exceeded, conflicting outputs, and so on. If the dry run fails, the action returns a 4xx error code. After you've fixed the errors, resubmit the request.
         dryRun: boolean
     end
 
     record AssociateFeedOutput
-        -- The AWS ARN for this association.
+        -- The ARN of the feed.
         arn: string
-        -- An ID for this response. It is unique in Elemental Inference for this AWS account.
+        -- The ID of the feed.
         id: string
     end
 
@@ -90,12 +130,57 @@ local record M
         message: string
     end
 
-    record CreateFeedInput
-        -- A name for this feed.
+    enum DictionaryLanguage
+        "eng"
+        "fra"
+        "ita"
+        "deu"
+        "spa"
+        "por"
+    end
+
+    record CreateDictionaryInput
+        -- A user-friendly name for this dictionary.
         name: string
-        -- An array of outputs for this feed. Each output represents a specific Elemental Inference feature. For example, an output might represent the crop feature.
+        -- The language of the dictionary entries. Specify the language using an ISO 639-2/T three-letter code. Supported values: eng, fra, ita, deu, spa, por.
+        language: string
+        -- The dictionary entries payload. Contains the custom words and phrases for the dictionary. Maximum size is 40,960 characters.
+        entries: string
+        -- Optional tags to associate with the dictionary.
+        tags: {string : string}
+    end
+
+    enum DictionaryStatus
+        "CREATING"
+        "AVAILABLE"
+        "REFERENCED"
+        "DELETING"
+        "DELETED"
+    end
+
+    record CreateDictionaryOutput
+        -- The name that you specified in the request.
+        name: string
+        -- The ARN of the dictionary.
+        arn: string
+        -- A unique ID that Elemental Inference assigns to the dictionary.
+        id: string
+        -- The language of the dictionary.
+        language: string
+        -- The current status of the dictionary. After creation succeeds, the status will be AVAILABLE.
+        status: string
+        -- A list of feed IDs that reference this dictionary.
+        references: {string}
+        -- Any tags that you included when you created the dictionary.
+        tags: {string : string}
+    end
+
+    record CreateFeedInput
+        -- A user-friendly name for this feed.
+        name: string
+        -- An array of outputs for this feed. Each output represents a specific Elemental Inference feature. For example, there is one output type for the smart crop feature. You must specify at least one output, but you can later add outputs using AssociateFeed, or add, modify, and delete outputs using UpdateFeed.
         outputs: {CreateOutput}
-        -- If you want to include tags, add them now. You won't be able to add them later.
+        -- Optional tags. You can also add tags later, using TagResource.
         tags: {string : string}
     end
 
@@ -105,17 +190,17 @@ local record M
         associatedResourceName: string
     end
 
-    -- Contains configuration information about one output in a feed. It is used in the GetFeed action.
+    -- Contains configuration information about one output in a feed. It is used in the GetFeed response.
     record GetOutput
-        -- The ARN of the output.
+        -- The name of the output.
         name: string
-        -- A typed property for an output in a feed. It is used in the GetFeed action. It identifies the action for Elemental Inference to perform. It also provides a repository for the results of that action. For example, CroppingConfig output will contain the metadata for the crop feature.
+        -- A typed property for an output in a feed. It identifies the action for Elemental Inference to perform. It also provides a repository for the results of that action. For example, CroppingConfig output will contain the metadata for the crop feature.
         outputConfig: OutputConfig
         -- The status of the output.
         status: string
         -- The description of the output.
         description: string
-        -- True means that the output was originally created in the feed by the AssociateFeed operation. False means it was created using CreateFeed or UpdateFeed. You will need this value if you use the UpdateFeed operation to modify the list of outputs in the feed.
+        -- True means that the output was originally created in the feed using AssociateFeed. False means it was created using CreateFeed or UpdateFeed. You will need this value if you use UpdateFeed to modify the list of outputs in the feed.
         fromAssociation: boolean
     end
 
@@ -132,20 +217,34 @@ local record M
     record CreateFeedOutput
         -- A unique ARN that Elemental Inference assigns to the feed.
         arn: string
-        -- The name that you specified.
+        -- The name that you specified in the request.
         name: string
         -- A unique ID that Elemental Inference assigns to the feed.
         id: string
-        -- A unique ARN that Elemental Inference assigns to the feed.
+        -- An array of endpoints for the feed. Typically, there is only one endpoint. The feed receives source media at this endpoint (when the calling application calls PutMedia) and returns the resulting metadata to this endpoint (when the calling application calls GetMetadata).
         dataEndpoints: {string}
-        -- Data endpoints that Elemental Inference assigns to the feed.
+        -- Repeats the outputs that you specified in the request.
         outputs: {GetOutput}
         -- The current status of the feed. After creation of the feed has succeeded, the status will be AVAILABLE.
         status: string
-        -- The association for this feed. When you create the feed, this property is empty. You must associate a resource with the feed using AssociateFeed.
+        -- The association for this feed. When you create the feed, this property is empty. You must associate a resource with the feed using AssociateFeed or UpdateFeed.
         association: FeedAssociation
         -- Any tags that you included when you created the feed.
         tags: {string : string}
+    end
+
+    record DeleteDictionaryInput
+        -- The ID of the dictionary to delete.
+        id: string
+    end
+
+    record DeleteDictionaryOutput
+        -- The ARN of the deleted dictionary.
+        arn: string
+        -- The ID of the deleted dictionary.
+        id: string
+        -- The status of the dictionary after deletion.
+        status: string
     end
 
     record DeleteFeedInput
@@ -162,19 +261,107 @@ local record M
         status: string
     end
 
+    record ExportDictionaryEntriesInput
+        -- The ID of the dictionary whose entries you want to export.
+        id: string
+    end
+
+    record ExportDictionaryEntriesOutput
+        -- The dictionary entries payload.
+        entries: string
+    end
+
+    record GetDictionaryInput
+        -- The ID of the dictionary to retrieve.
+        id: string
+    end
+
+    record GetDictionaryOutput
+        -- The name of the dictionary.
+        name: string
+        -- The ARN of the dictionary.
+        arn: string
+        -- The ID of the dictionary.
+        id: string
+        -- The language of the dictionary.
+        language: string
+        -- The current status of the dictionary.
+        status: string
+        -- A list of feed IDs that reference this dictionary.
+        references: {string}
+        -- The tags associated with the dictionary.
+        tags: {string : string}
+    end
+
+    record ListDictionariesInput
+        -- The maximum number of results to return per API request. Valid range: 1 to 100.
+        maxResults: number
+        -- The token that identifies the next batch of results to return.
+        nextToken: string
+    end
+
+    -- Contains summary information about a dictionary. Used in the ListDictionaries response.
+    record DictionarySummary
+        -- The ARN of the dictionary.
+        arn: string
+        -- The ID of the dictionary.
+        id: string
+        -- The name of the dictionary.
+        name: string
+        -- The language of the dictionary.
+        language: string
+        -- The status of the dictionary.
+        status: string
+    end
+
+    record ListDictionariesOutput
+        -- A list of DictionarySummary objects.
+        dictionaries: {DictionarySummary}
+        -- The token to use to retrieve the next batch of results.
+        nextToken: string
+    end
+
+    record UpdateDictionaryInput
+        -- The ID of the dictionary to update.
+        id: string
+        -- A new name for the dictionary. If not specified, the name is not changed.
+        name: string
+        -- A new language for the dictionary. If not specified, the language is not changed.
+        language: string
+        -- New dictionary entries. If not specified, the entries are not changed.
+        entries: string
+    end
+
+    record UpdateDictionaryOutput
+        -- The updated or original name of the dictionary.
+        name: string
+        -- The ARN of the dictionary.
+        arn: string
+        -- The ID of the dictionary.
+        id: string
+        -- The updated or original language of the dictionary.
+        language: string
+        -- The current status of the dictionary.
+        status: string
+        -- A list of feed IDs that reference this dictionary.
+        references: {string}
+        -- Any tags associated with the dictionary.
+        tags: {string : string}
+    end
+
     record DisassociateFeedInput
         -- The ID of the feed where you want to release the resource.
         id: string
-        -- The name of the resource currently associated with the feed'.
+        -- The name of the resource currently associated with the feed.
         associatedResourceName: string
-        -- Set to true if you want to do a dry run of the disassociate action.
+        -- Set to true if you want to do a dry run of the disassociate action. Elemental Inference will validate that the real request would succeed without actually making any changes. A dry run catches errors such as missing IAM permissions. If the dry run fails, the action returns a 4xx error code.
         dryRun: boolean
     end
 
     record DisassociateFeedOutput
-        -- The ID of the feed where you deleted the associated resource.
+        -- The ARN of the feed.
         arn: string
-        -- The ARN of the resource that you deleted.
+        -- The ID of the feed.
         id: string
     end
 
@@ -186,30 +373,30 @@ local record M
     record GetFeedOutput
         -- The ARN of the feed.
         arn: string
-        -- The name of the feed being queried.
+        -- The name of the feed.
         name: string
-        -- The ID of the feed being queried.
+        -- The ID of the feed.
         id: string
-        -- The dataEndpoints of the feed being queried.
+        -- The dataEndpoints of the feed.
         dataEndpoints: {string}
-        -- An array of the outputs in the feed being queried.
+        -- An array of the outputs in the feed.
         outputs: {GetOutput}
-        -- The status of the feed being queried.
+        -- The status of the feed.
         status: string
-        -- Information about the resource, if any, associated with the feed being queried.
+        -- Information about the resource that is associated with the feed. It's possible that there is no associated resource. This is not an error.
         association: FeedAssociation
-        -- A list of the tags, if any, for the feed being queried.
+        -- A list of the tags, if any, for the feed.
         tags: {string : string}
     end
 
     record ListFeedsInput
         -- The maximum number of results to return per API request. For example, you submit a list request with MaxResults set at 5. Although 20 items match your request, the service returns no more than the first 5 items. (The service also returns a NextToken value that you can use to fetch the next batch of results.) The service might return fewer results than the MaxResults value. If MaxResults is not included in the request, the service defaults to pagination with a maximum of 10 results per page. Valid Range: Minimum value of 1. Maximum value of 1000.
         maxResults: number
-        -- The token that identifies the batch of results that you want to see. For example, you submit a ListBridges request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListBridges request a second time and specify the NextToken value.
+        -- The token that identifies the batch of results that you want to see. For example, you submit a ListFeeds request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the ListFeeds request a second time and specify the NextToken value.
         nextToken: string
     end
 
-    -- Contains configuration information about a feed. It is used in the ListFeeds action.
+    -- Contains configuration information about a feed. It is used in the ListFeeds response.
     record FeedSummary
         -- The ARN of the feed.
         arn: string
@@ -224,7 +411,7 @@ local record M
     end
 
     record ListFeedsOutput
-        -- A list of feed summaries.
+        -- A list of FeedSummary objects.
         feeds: {FeedSummary}
         -- The token that identifies the batch of results that you want to see. For example, you submit a list request with MaxResults set at 5. The service returns the first batch of results (up to 5) and a NextToken value. To see the next batch of results, you can submit the list request a second time and specify the NextToken value.
         nextToken: string
@@ -232,15 +419,15 @@ local record M
 
     -- Contains configuration information about one output in a feed. It is used in the UpdateFeed action.
     record UpdateOutput
-        -- The name start here
+        -- The name of the output.
         name: string
-        -- A typed property for an output in a feed. It is used in the UpdateFeed action. It identifies the action for Elemental Inference to perform. It also provides a repository for the results of that action. For example, CroppingConfig output will contain the metadata for the crop feature.
+        -- A typed property for an output in a feed. It identifies the action for Elemental Inference to perform. It also provides a repository for the results of that action. For example, CroppingConfig output will contain the metadata for the crop feature.
         outputConfig: OutputConfig
         -- The status of the output.
         status: string
         -- A description of the output.
         description: string
-        -- This property is set by the service when you add the output to the feed, and indicates how you added the output. True means that you used the AssociateFeed operation. False means that you used the CreateFeed or UpdateFeed operation. Use GetFeed to obtain the value. If the value is True, include this field here with a value of True. If the value is False, omit the field here.
+        -- Elemental Inference originally sets this parameter to True if this output was created by AssociateFeed or to False if this output was created by CreateFeed or UpdateFeed. You must not change this value. Therefore, use GetFeed to determine the current value. Then in the UpdateFeed request, if the current value is True, include this parameter with a value of True. If it's False, omit the parameter.
         fromAssociation: boolean
     end
 
@@ -264,11 +451,11 @@ local record M
         dataEndpoints: {string}
         -- The array of outputs in the feed. You might have left this array unchanged, or you might have changed it.
         outputs: {GetOutput}
-        -- The status of the output.
+        -- The status of the feed.
         status: string
-        -- True means that the output was originally created in the feed by the AssociateFeed operation. False means it was created using CreateFeed or UpdateFeed. You will need this value if you use the UpdateFeed operation to modify the list of outputs in the feed.
+        -- Information about the resource that is associated with the feed, if any.
         association: FeedAssociation
-        -- The name of the resource currently associated with the feed, if any.
+        -- The tags associated with the feed.
         tags: {string : string}
     end
 

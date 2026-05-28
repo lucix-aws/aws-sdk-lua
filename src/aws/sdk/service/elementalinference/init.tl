@@ -19,14 +19,20 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     associateFeed: function(Client, types.AssociateFeedInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFeedOutput>
+    createDictionary: function(Client, types.CreateDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.CreateDictionaryOutput>
     createFeed: function(Client, types.CreateFeedInput, ? base_client.InvokeOptions): async.Operation<types.CreateFeedOutput>
+    deleteDictionary: function(Client, types.DeleteDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDictionaryOutput>
     deleteFeed: function(Client, types.DeleteFeedInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFeedOutput>
     disassociateFeed: function(Client, types.DisassociateFeedInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFeedOutput>
+    exportDictionaryEntries: function(Client, types.ExportDictionaryEntriesInput, ? base_client.InvokeOptions): async.Operation<types.ExportDictionaryEntriesOutput>
+    getDictionary: function(Client, types.GetDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.GetDictionaryOutput>
     getFeed: function(Client, types.GetFeedInput, ? base_client.InvokeOptions): async.Operation<types.GetFeedOutput>
+    listDictionaries: function(Client, types.ListDictionariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDictionariesOutput>
     listFeeds: function(Client, types.ListFeedsInput, ? base_client.InvokeOptions): async.Operation<types.ListFeedsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDictionary: function(Client, types.UpdateDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDictionaryOutput>
     updateFeed: function(Client, types.UpdateFeedInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFeedOutput>
 end
 
@@ -76,8 +82,16 @@ function C:associateFeed(input: types.AssociateFeedInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateFeed as schema.OperationSchema, input, options) as async.Operation<types.AssociateFeedOutput>
 end
 
+function C:createDictionary(input: types.CreateDictionaryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDictionaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDictionary as schema.OperationSchema, input, options) as async.Operation<types.CreateDictionaryOutput>
+end
+
 function C:createFeed(input: types.CreateFeedInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFeedOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFeed as schema.OperationSchema, input, options) as async.Operation<types.CreateFeedOutput>
+end
+
+function C:deleteDictionary(input: types.DeleteDictionaryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDictionaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDictionary as schema.OperationSchema, input, options) as async.Operation<types.DeleteDictionaryOutput>
 end
 
 function C:deleteFeed(input: types.DeleteFeedInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFeedOutput>
@@ -88,8 +102,20 @@ function C:disassociateFeed(input: types.DisassociateFeedInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateFeed as schema.OperationSchema, input, options) as async.Operation<types.DisassociateFeedOutput>
 end
 
+function C:exportDictionaryEntries(input: types.ExportDictionaryEntriesInput, options?: base_client.InvokeOptions): async.Operation<types.ExportDictionaryEntriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportDictionaryEntries as schema.OperationSchema, input, options) as async.Operation<types.ExportDictionaryEntriesOutput>
+end
+
+function C:getDictionary(input: types.GetDictionaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetDictionaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDictionary as schema.OperationSchema, input, options) as async.Operation<types.GetDictionaryOutput>
+end
+
 function C:getFeed(input: types.GetFeedInput, options?: base_client.InvokeOptions): async.Operation<types.GetFeedOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFeed as schema.OperationSchema, input, options) as async.Operation<types.GetFeedOutput>
+end
+
+function C:listDictionaries(input: types.ListDictionariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDictionariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDictionaries as schema.OperationSchema, input, options) as async.Operation<types.ListDictionariesOutput>
 end
 
 function C:listFeeds(input: types.ListFeedsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFeedsOutput>
@@ -106,6 +132,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateDictionary(input: types.UpdateDictionaryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDictionaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDictionary as schema.OperationSchema, input, options) as async.Operation<types.UpdateDictionaryOutput>
 end
 
 function C:updateFeed(input: types.UpdateFeedInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFeedOutput>

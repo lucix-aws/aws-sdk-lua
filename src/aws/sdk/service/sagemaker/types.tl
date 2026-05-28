@@ -1026,6 +1026,7 @@ local record M
         "ml.p5.48xlarge"
         "ml.p5e.48xlarge"
         "ml.p5en.48xlarge"
+        "ml.p6-b200.48xlarge"
     end
 
     -- An Amazon S3 data channel for a recommended deployment configuration, containing model artifacts or optimized model outputs.
@@ -4085,6 +4086,11 @@ local record M
         MountPath: string
     end
 
+    enum ClusterFSxLustreDeletionPolicy
+        "DeleteIfNotUsed"
+        "Keep"
+    end
+
     -- Defines the configuration for attaching an Amazon FSx for OpenZFS file system to instances in a SageMaker HyperPod cluster instance group.
     record ClusterFsxOpenZfsConfig
         -- The DNS name of the Amazon FSx for OpenZFS file system.
@@ -4553,6 +4559,38 @@ local record M
         ScheduledUpdateConfig: ScheduledUpdateConfig
         -- The configuration for the restricted instance groups (RIG) environment.
         EnvironmentConfig: EnvironmentConfigDetails
+    end
+
+    -- The shared environment configuration for the restricted instance groups (RIG).
+    record ClusterSharedEnvironmentConfig
+        -- The deletion policy for the Amazon FSx for Lustre file system in the shared environment.
+        FSxLustreDeletionPolicy: string
+        -- Configuration settings for an Amazon FSx for Lustre file system in the shared environment.
+        FSxLustreConfig: FSxLustreConfig
+    end
+
+    -- The configuration for the restricted instance groups (RIG) in the SageMaker HyperPod cluster.
+    record ClusterRestrictedInstanceGroupsConfig
+        -- The shared environment configuration for the restricted instance groups (RIG).
+        SharedEnvironmentConfig: ClusterSharedEnvironmentConfig
+    end
+
+    -- The shared environment configuration details for the restricted instance groups (RIG).
+    record ClusterSharedEnvironmentConfigDetails
+        -- The current Amazon FSx for Lustre file system configuration in the shared environment.
+        CurrentFSxLustreConfig: FSxLustreConfig
+        -- The desired Amazon FSx for Lustre file system configuration in the shared environment.
+        DesiredFSxLustreConfig: FSxLustreConfig
+        -- The current deletion policy for the Amazon FSx for Lustre file system in the shared environment.
+        CurrentFSxLustreDeletionPolicy: string
+        -- The desired deletion policy for the Amazon FSx for Lustre file system in the shared environment.
+        DesiredFSxLustreDeletionPolicy: string
+    end
+
+    -- The output configuration for the restricted instance groups (RIG) in the SageMaker HyperPod cluster.
+    record ClusterRestrictedInstanceGroupsConfigOutput
+        -- The shared environment configuration details for the restricted instance groups (RIG).
+        SharedEnvironmentConfig: ClusterSharedEnvironmentConfigDetails
     end
 
     -- The configuration for the restricted instance groups (RIG) environment.
@@ -5411,6 +5449,8 @@ local record M
         InstanceGroups: {ClusterInstanceGroupSpecification}
         -- The specialized instance groups for training models like Amazon Nova to be created in the SageMaker HyperPod cluster.
         RestrictedInstanceGroups: {ClusterRestrictedInstanceGroupSpecification}
+        -- The configuration for the restricted instance groups (RIG) in the SageMaker HyperPod cluster.
+        RestrictedInstanceGroupsConfig: ClusterRestrictedInstanceGroupsConfig
         -- Specifies the Amazon Virtual Private Cloud (VPC) that is associated with the Amazon SageMaker HyperPod cluster. You can control access to and from your resources by configuring your VPC. For more information, see Give SageMaker access to resources in your Amazon VPC. When your Amazon VPC and subnets support IPv6, network communications differ based on the cluster orchestration platform: Slurm-orchestrated clusters automatically configure nodes with dual IPv6 and IPv4 addresses, allowing immediate IPv6 network communications. In Amazon EKS-orchestrated clusters, nodes receive dual-stack addressing, but pods can only use IPv6 when the Amazon EKS cluster is explicitly IPv6-enabled. For information about deploying an IPv6 Amazon EKS cluster, see Amazon EKS IPv6 Cluster Deployment. Additional resources for IPv6 configuration: For information about adding IPv6 support to your VPC, see to IPv6 Support for VPC. For information about creating a new IPv6-compatible VPC, see Amazon VPC Creation Guide. To configure SageMaker HyperPod with a custom Amazon VPC, see Custom Amazon VPC Setup for SageMaker HyperPod.
         VpcConfig: VpcConfig
         -- Custom tags for managing the SageMaker HyperPod cluster as an Amazon Web Services resource. You can add tags to your cluster in the same way you add them in other Amazon Web Services services that support tagging. To learn more about tagging Amazon Web Services resources in general, see Tagging Amazon Web Services Resources User Guide.
@@ -11137,6 +11177,8 @@ local record M
         InstanceGroups: {ClusterInstanceGroupDetails}
         -- The specialized instance groups for training models like Amazon Nova to be created in the SageMaker HyperPod cluster.
         RestrictedInstanceGroups: {ClusterRestrictedInstanceGroupDetails}
+        -- The configuration for the restricted instance groups (RIG) in the SageMaker HyperPod cluster.
+        RestrictedInstanceGroupsConfig: ClusterRestrictedInstanceGroupsConfigOutput
         VpcConfig: VpcConfig
         -- The type of orchestrator used for the SageMaker HyperPod cluster.
         Orchestrator: ClusterOrchestrator
@@ -14180,6 +14222,8 @@ local record M
         Status: string
         -- The availability zone for the reserved capacity.
         AvailabilityZone: string
+        -- The Availability Zone ID of the reserved capacity.
+        AvailabilityZoneId: string
         -- The number of whole hours in the total duration for this reserved capacity.
         DurationHours: number
         -- The additional minutes beyond whole hours in the total duration for this reserved capacity.
@@ -20486,6 +20530,8 @@ local record M
         InstanceGroups: {ClusterInstanceGroupSpecification}
         -- The specialized instance groups for training models like Amazon Nova to be created in the SageMaker HyperPod cluster.
         RestrictedInstanceGroups: {ClusterRestrictedInstanceGroupSpecification}
+        -- The configuration for the restricted instance groups (RIG) in the SageMaker HyperPod cluster.
+        RestrictedInstanceGroupsConfig: ClusterRestrictedInstanceGroupsConfig
         -- Updates the configuration for managed tier checkpointing on the HyperPod cluster. For example, you can enable or disable the feature and modify the percentage of cluster memory allocated for checkpoint storage.
         TieredStorageConfig: ClusterTieredStorageConfig
         -- The node recovery mode to be applied to the SageMaker HyperPod cluster.

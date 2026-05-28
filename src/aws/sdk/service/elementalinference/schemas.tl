@@ -13,6 +13,10 @@ M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prel
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.DictionarySummaryList = schema.new({ type = "list", list_member = M.DictionarySummary })
+
+M.FeedReferences = schema.new({ type = "list", list_member = prelude.String })
+
 M.FeedSummaryList = schema.new({ type = "list", list_member = M.FeedSummary })
 
 M.CreateOutputList = schema.new({ type = "list", list_member = M.CreateOutput })
@@ -42,6 +46,31 @@ M.AccessDeniedException = schema.new({
     },
 })
 
+M.AspectRatio = schema.new({
+    id = id.from(_N, "AspectRatio"),
+    type = "structure",
+    members = {
+        width = schema.new({
+            id = id.from(_N, "AspectRatio", "width"),
+            type = "integer",
+            name = "width",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        height = schema.new({
+            id = id.from(_N, "AspectRatio", "height"),
+            type = "integer",
+            name = "height",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ClippingConfig = schema.new({
     id = id.from(_N, "ClippingConfig"),
     type = "structure",
@@ -58,6 +87,41 @@ M.ClippingConfig = schema.new({
 M.CroppingConfig = schema.new({
     id = id.from(_N, "CroppingConfig"),
     type = "structure",
+})
+
+M.SubtitlingConfig = schema.new({
+    id = id.from(_N, "SubtitlingConfig"),
+    type = "structure",
+    members = {
+        language = schema.new({
+            id = id.from(_N, "SubtitlingConfig", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        aspectRatio = schema.new({
+            id = id.from(_N, "SubtitlingConfig", "aspectRatio"),
+            type = "structure",
+            name = "aspectRatio",
+            target_id = id.from(_N, "AspectRatio"),
+            target = M.AspectRatio,
+        }),
+        dictionary = schema.new({
+            id = id.from(_N, "SubtitlingConfig", "dictionary"),
+            type = "string",
+            name = "dictionary",
+            target_id = prelude.String.id,
+        }),
+        profanityFilter = schema.new({
+            id = id.from(_N, "SubtitlingConfig", "profanityFilter"),
+            type = "string",
+            name = "profanityFilter",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.OutputConfig = schema.new({
@@ -77,6 +141,13 @@ M.OutputConfig = schema.new({
             name = "clipping",
             target_id = id.from(_N, "ClippingConfig"),
             target = M.ClippingConfig,
+        }),
+        subtitling = schema.new({
+            id = id.from(_N, "OutputConfig", "subtitling"),
+            type = "structure",
+            name = "subtitling",
+            target_id = id.from(_N, "SubtitlingConfig"),
+            target = M.SubtitlingConfig,
         }),
     },
 })
@@ -307,6 +378,112 @@ M.ValidationException = schema.new({
     },
 })
 
+M.CreateDictionaryInput = schema.new({
+    id = id.from(_N, "CreateDictionaryRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateDictionaryInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        language = schema.new({
+            id = id.from(_N, "CreateDictionaryInput", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entries = schema.new({
+            id = id.from(_N, "CreateDictionaryInput", "entries"),
+            type = "string",
+            name = "entries",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateDictionaryInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateDictionaryOutput = schema.new({
+    id = id.from(_N, "CreateDictionaryResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateDictionaryOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "CreateDictionaryOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "CreateDictionaryOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        language = schema.new({
+            id = id.from(_N, "CreateDictionaryOutput", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateDictionaryOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        references = schema.new({
+            id = id.from(_N, "CreateDictionaryOutput", "references"),
+            type = "list",
+            name = "references",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateDictionaryOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.CreateFeedInput = schema.new({
     id = id.from(_N, "CreateFeedRequest"),
     type = "structure",
@@ -482,6 +659,57 @@ M.CreateFeedOutput = schema.new({
     },
 })
 
+M.DeleteDictionaryInput = schema.new({
+    id = id.from(_N, "DeleteDictionaryRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteDictionaryInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDictionaryOutput = schema.new({
+    id = id.from(_N, "DeleteDictionaryResponse"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "DeleteDictionaryOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "DeleteDictionaryOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteDictionaryOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteFeedInput = schema.new({
     id = id.from(_N, "DeleteFeedRequest"),
     type = "structure",
@@ -529,6 +757,322 @@ M.DeleteFeedOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.ExportDictionaryEntriesInput = schema.new({
+    id = id.from(_N, "ExportDictionaryEntriesRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ExportDictionaryEntriesInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ExportDictionaryEntriesOutput = schema.new({
+    id = id.from(_N, "ExportDictionaryEntriesResponse"),
+    type = "structure",
+    members = {
+        entries = schema.new({
+            id = id.from(_N, "ExportDictionaryEntriesOutput", "entries"),
+            type = "string",
+            name = "entries",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDictionaryInput = schema.new({
+    id = id.from(_N, "GetDictionaryRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetDictionaryInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetDictionaryOutput = schema.new({
+    id = id.from(_N, "GetDictionaryResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "GetDictionaryOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetDictionaryOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "GetDictionaryOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        language = schema.new({
+            id = id.from(_N, "GetDictionaryOutput", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetDictionaryOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        references = schema.new({
+            id = id.from(_N, "GetDictionaryOutput", "references"),
+            type = "list",
+            name = "references",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetDictionaryOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListDictionariesInput = schema.new({
+    id = id.from(_N, "ListDictionariesRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListDictionariesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDictionariesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.DictionarySummary = schema.new({
+    id = id.from(_N, "DictionarySummary"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "DictionarySummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "DictionarySummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "DictionarySummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        language = schema.new({
+            id = id.from(_N, "DictionarySummary", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DictionarySummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListDictionariesOutput = schema.new({
+    id = id.from(_N, "ListDictionariesResponse"),
+    type = "structure",
+    members = {
+        dictionaries = schema.new({
+            id = id.from(_N, "ListDictionariesOutput", "dictionaries"),
+            type = "list",
+            name = "dictionaries",
+            target_id = prelude.Document.id,
+            list_member = M.DictionarySummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDictionariesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateDictionaryInput = schema.new({
+    id = id.from(_N, "UpdateDictionaryRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateDictionaryInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateDictionaryInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        language = schema.new({
+            id = id.from(_N, "UpdateDictionaryInput", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+        }),
+        entries = schema.new({
+            id = id.from(_N, "UpdateDictionaryInput", "entries"),
+            type = "string",
+            name = "entries",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateDictionaryOutput = schema.new({
+    id = id.from(_N, "UpdateDictionaryResponse"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "UpdateDictionaryOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "UpdateDictionaryOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "UpdateDictionaryOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        language = schema.new({
+            id = id.from(_N, "UpdateDictionaryOutput", "language"),
+            type = "string",
+            name = "language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateDictionaryOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        references = schema.new({
+            id = id.from(_N, "UpdateDictionaryOutput", "references"),
+            type = "list",
+            name = "references",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "UpdateDictionaryOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -1077,12 +1621,36 @@ M.AssociateFeed = schema.operation({
     },
 })
 
+M.CreateDictionary = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "CreateDictionary"),
+    input = M.CreateDictionaryInput,
+    output = M.CreateDictionaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/dictionary" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateFeed = schema.operation({
     id = id.from("com.amazonaws.elementalinference", "CreateFeed"),
     input = M.CreateFeedInput,
     output = M.CreateFeedOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/feed" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteDictionary = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "DeleteDictionary"),
+    input = M.DeleteDictionaryInput,
+    output = M.DeleteDictionaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/dictionary/{id}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -1113,12 +1681,48 @@ M.DisassociateFeed = schema.operation({
     },
 })
 
+M.ExportDictionaryEntries = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "ExportDictionaryEntries"),
+    input = M.ExportDictionaryEntriesInput,
+    output = M.ExportDictionaryEntriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/dictionary/{id}/entries/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDictionary = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "GetDictionary"),
+    input = M.GetDictionaryInput,
+    output = M.GetDictionaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/dictionary/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetFeed = schema.operation({
     id = id.from("com.amazonaws.elementalinference", "GetFeed"),
     input = M.GetFeedInput,
     output = M.GetFeedOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/feed/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDictionaries = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "ListDictionaries"),
+    input = M.ListDictionariesInput,
+    output = M.ListDictionariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/dictionaries" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -1167,6 +1771,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateDictionary = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "UpdateDictionary"),
+    input = M.UpdateDictionaryInput,
+    output = M.UpdateDictionaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/v1/dictionary/{id}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

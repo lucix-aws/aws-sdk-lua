@@ -1341,11 +1341,12 @@ local record M
 
     enum PlatformDeviceType
         "GPU"
+        "NEURON_DEVICE"
     end
 
-    -- The devices that are available on the container instance. The only supported device type is a GPU.
+    -- The devices that are available on the container instance. The supported device types are GPUs and Neuron devices.
     record PlatformDevice
-        -- The ID for the GPUs on the container instance. The available GPU IDs can also be obtained on the container instance in the /var/lib/ecs/gpu/nvidia_gpu_info.json file.
+        -- The ID for the GPU or Neuron device on the container instance. For GPUs, the available GPU IDs can also be obtained on the container instance in the /var/lib/ecs/gpu/nvidia_gpu_info.json file. For Neuron devices, the ID corresponds to the device index (for example, 0 for /dev/neuron0).
         id: string
     end
 
@@ -1364,7 +1365,7 @@ local record M
         containerInstanceArn: string
         -- The container instance attributes that this container instance supports.
         attributes: {Attribute}
-        -- The devices that are available on the container instance. The only supported device type is a GPU.
+        -- The devices that are available on the container instance. The supported device types are GPUs and Neuron devices.
         platformDevices: {PlatformDevice}
         -- The metadata that you apply to the container instance to help you categorize and organize them. Each tag consists of a key and an optional value. You define both. The following basic restrictions apply to tags: Maximum number of tags per resource - 50 For each resource, each tag key must be unique, and each tag key can have only one value. Maximum key length - 128 Unicode characters in UTF-8 Maximum value length - 256 Unicode characters in UTF-8 If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for Amazon Web Services use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.
         tags: {Tag}
@@ -2356,11 +2357,12 @@ local record M
     enum ResourceType
         "GPU"
         "InferenceAccelerator"
+        "NeuronDevice"
     end
 
-    -- The type and amount of a resource to assign to a container. The supported resource types are GPUs and Elastic Inference accelerators. For more information, see Working with GPUs on Amazon ECS or Working with Amazon Elastic Inference on Amazon ECS in the Amazon Elastic Container Service Developer Guide
+    -- The type and amount of a resource to assign to a container. The supported resource types are GPUs, Neuron devices, and Elastic Inference accelerators. For more information, see Working with GPUs on Amazon ECS or Working with Amazon Elastic Inference on Amazon ECS in the Amazon Elastic Container Service Developer Guide
     record ResourceRequirement
-        -- The value for the specified resource type. When the type is GPU, the value is the number of physical GPUs the Amazon ECS container agent reserves for the container. The number of GPUs that's reserved for all containers in a task can't exceed the number of available GPUs on the container instance that the task is launched on. When the type is InferenceAccelerator, the value matches the deviceName for an InferenceAccelerator specified in a task definition.
+        -- The value for the specified resource type. When the type is GPU, the value is the number of physical GPUs the Amazon ECS container agent reserves for the container. The number of GPUs that's reserved for all containers in a task can't exceed the number of available GPUs on the container instance that the task is launched on. You can also specify ALL to allocate all available GPUs on the instance to the container. When the type is NeuronDevice, the value must be ALL. This allocates all available Neuron devices on the instance to the container. Only one container in a task can specify NeuronDevice resources. This resource type is only supported on Managed Instances. When the type is InferenceAccelerator, the value matches the deviceName for an InferenceAccelerator specified in a task definition.
         value: string
     end
 
@@ -2457,7 +2459,7 @@ local record M
         healthCheck: HealthCheck
         -- A list of namespaced kernel parameters to set in the container. This parameter maps to Sysctls in the docker container create command and the --sysctl option to docker run. For example, you can configure net.ipv4.tcp_keepalive_time setting to maintain longer lived connections.
         systemControls: {SystemControl}
-        -- The type and amount of a resource to assign to a container. The only supported resource is a GPU.
+        -- The type and amount of a resource to assign to a container. The supported resources are GPUs and Neuron devices.
         resourceRequirements: {ResourceRequirement}
         -- The FireLens configuration for the container. This is used to specify and configure a log router for container logs. For more information, see Custom Log Routing in the Amazon Elastic Container Service Developer Guide.
         firelensConfiguration: FirelensConfiguration
@@ -4548,6 +4550,8 @@ local record M
         memoryReservation: string
         -- The IDs of each GPU assigned to the container.
         gpuIds: {string}
+        -- The IDs of each Neuron device assigned to the container.
+        neuronDeviceIds: {string}
     end
 
     -- The amount of ephemeral storage to allocate for the task.
@@ -4574,7 +4578,7 @@ local record M
         memory: number
         -- The soft limit (in MiB) of memory to reserve for the container, instead of the default value from the task definition. You must also specify a container name.
         memoryReservation: number
-        -- The type and amount of a resource to assign to a container, instead of the default value from the task definition. The only supported resource is a GPU.
+        -- The type and amount of a resource to assign to a container, instead of the default value from the task definition. The supported resources are GPUs and Neuron devices.
         resourceRequirements: {ResourceRequirement}
     end
 

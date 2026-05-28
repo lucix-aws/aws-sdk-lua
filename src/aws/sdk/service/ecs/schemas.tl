@@ -243,6 +243,8 @@ M.ManagedAgents = schema.new({ type = "list", list_member = M.ManagedAgent })
 
 M.GpuIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.NeuronDeviceIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.ManagedApplicationAutoScalingPolicies = schema.new({ type = "list", list_member = M.ManagedApplicationAutoScalingPolicy })
 
 M.DeviceCgroupPermissions = schema.new({ type = "list", list_member = prelude.String })
@@ -12079,6 +12081,13 @@ M.Container = schema.new({
             id = id.from(_N, "Container", "gpuIds"),
             type = "list",
             name = "gpuIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        neuronDeviceIds = schema.new({
+            id = id.from(_N, "Container", "neuronDeviceIds"),
+            type = "list",
+            name = "neuronDeviceIds",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),

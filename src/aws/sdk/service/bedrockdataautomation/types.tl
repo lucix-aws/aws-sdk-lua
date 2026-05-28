@@ -570,9 +570,15 @@ local record M
         blueprintStage: string
     end
 
+    -- Custom Configuration of Document
+    record DocumentCustomOutputConfiguration
+        fallbackBlueprints: {BlueprintItem}
+    end
+
     -- Custom output configuration
     record CustomOutputConfiguration
         blueprints: {BlueprintItem}
+        document: DocumentCustomOutputConfiguration
     end
 
     -- DataAutomationLibrary Item

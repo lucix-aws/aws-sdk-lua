@@ -147,6 +147,8 @@ M.__listOfOutputGroup = schema.new({ type = "list", list_member = M.OutputGroup 
 
 M.__listOfVideoDescription = schema.new({ type = "list", list_member = M.VideoDescription })
 
+M.__listOfAudioFeedInput = schema.new({ type = "list", list_member = M.AudioFeedInput })
+
 M.__listOfInterfaceMappingCreateRequest = schema.new({ type = "list", list_member = M.InterfaceMappingCreateRequest })
 
 M.__listOfInterfaceMapping = schema.new({ type = "list", list_member = M.InterfaceMapping })
@@ -1216,6 +1218,31 @@ M.AudioDescription = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "dvbDashAccessibility" },
+            },
+        }),
+    },
+})
+
+M.AudioFeedInput = schema.new({
+    id = id.from(_N, "AudioFeedInput"),
+    type = "structure",
+    members = {
+        AudioSelectorName = schema.new({
+            id = id.from(_N, "AudioFeedInput", "AudioSelectorName"),
+            type = "string",
+            name = "AudioSelectorName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "audioSelectorName" },
+            },
+        }),
+        FeedInput = schema.new({
+            id = id.from(_N, "AudioFeedInput", "FeedInput"),
+            type = "string",
+            name = "FeedInput",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "feedInput" },
             },
         }),
     },
@@ -2408,6 +2435,31 @@ M.Scte27SourceSettings = schema.new({
     },
 })
 
+M.SmartSubtitleSourceSettings = schema.new({
+    id = id.from(_N, "SmartSubtitleSourceSettings"),
+    type = "structure",
+    members = {
+        CaptionSynchronizationMode = schema.new({
+            id = id.from(_N, "SmartSubtitleSourceSettings", "CaptionSynchronizationMode"),
+            type = "string",
+            name = "CaptionSynchronizationMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "captionSynchronizationMode" },
+            },
+        }),
+        InferenceFeedOutput = schema.new({
+            id = id.from(_N, "SmartSubtitleSourceSettings", "InferenceFeedOutput"),
+            type = "string",
+            name = "InferenceFeedOutput",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "inferenceFeedOutput" },
+            },
+        }),
+    },
+})
+
 M.CaptionRectangle = schema.new({
     id = id.from(_N, "CaptionRectangle"),
     type = "structure",
@@ -2553,6 +2605,16 @@ M.CaptionSelectorSettings = schema.new({
             target = M.TeletextSourceSettings,
             traits = {
                 [traits.JSON_NAME] = { name = "teletextSourceSettings" },
+            },
+        }),
+        SmartSubtitleSourceSettings = schema.new({
+            id = id.from(_N, "CaptionSelectorSettings", "SmartSubtitleSourceSettings"),
+            type = "structure",
+            name = "SmartSubtitleSourceSettings",
+            target_id = id.from(_N, "SmartSubtitleSourceSettings"),
+            target = M.SmartSubtitleSourceSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "smartSubtitleSourceSettings" },
             },
         }),
     },
@@ -3042,6 +3104,16 @@ M.DescribeInferenceSettings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "feedArn" },
+            },
+        }),
+        AudioFeedInputs = schema.new({
+            id = id.from(_N, "DescribeInferenceSettings", "AudioFeedInputs"),
+            type = "list",
+            name = "AudioFeedInputs",
+            target_id = prelude.Document.id,
+            list_member = M.AudioFeedInput,
+            traits = {
+                [traits.JSON_NAME] = { name = "audioFeedInputs" },
             },
         }),
     },
@@ -16144,6 +16216,16 @@ M.InferenceSettings = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "feedArn" },
+            },
+        }),
+        AudioFeedInputs = schema.new({
+            id = id.from(_N, "InferenceSettings", "AudioFeedInputs"),
+            type = "list",
+            name = "AudioFeedInputs",
+            target_id = prelude.Document.id,
+            list_member = M.AudioFeedInput,
+            traits = {
+                [traits.JSON_NAME] = { name = "audioFeedInputs" },
             },
         }),
     },

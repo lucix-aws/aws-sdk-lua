@@ -534,6 +534,14 @@ local record M
         DvbDashAccessibility: string
     end
 
+    -- Maps an audio selector in the channel to a feed input on the associated Elemental Inference feed.
+    record AudioFeedInput
+        -- The name of the audio selector in the channel that will be sent to the Elemental Inference feed input.
+        AudioSelectorName: string
+        -- The name of the feed input on the Elemental Inference feed that will receive the audio from the specified audio selector.
+        FeedInput: string
+    end
+
     -- Audio Hls Rendition Selection
     record AudioHlsRenditionSelection
         -- Specifies the GROUP-ID in the #EXT-X-MEDIA tag of the target HLS audio rendition.
@@ -1048,6 +1056,19 @@ local record M
         Pid: number
     end
 
+    enum CaptionSynchronizationMode
+        "NO_VIDEO_DELAY"
+        "VIDEO_ALIGNED_CAPTIONS"
+    end
+
+    -- Smart Subtitle Source Settings
+    record SmartSubtitleSourceSettings
+        -- Controls whether MediaLive delays video to synchronize captions with audio and video output.
+        CaptionSynchronizationMode: string
+        -- The name of the Elemental Inference feed output that supplies subtitle input into this caption selector.
+        InferenceFeedOutput: string
+    end
+
     -- Caption Rectangle
     record CaptionRectangle
         -- See the description in leftOffset.
@@ -1086,6 +1107,7 @@ local record M
         Scte20SourceSettings: Scte20SourceSettings
         Scte27SourceSettings: Scte27SourceSettings
         TeletextSourceSettings: TeletextSourceSettings
+        SmartSubtitleSourceSettings: SmartSubtitleSourceSettings
     end
 
     -- Caption Selector
@@ -1255,6 +1277,8 @@ local record M
     record DescribeInferenceSettings
         -- The ARN of the feed resource that is associated with this channel. The feed is a resource in the Elemental Inference service.
         FeedArn: string
+        -- A list of audio feed inputs that map audio selectors in the channel to feed inputs on the associated Elemental Inference feed.
+        AudioFeedInputs: {AudioFeedInput}
     end
 
     -- Placeholder documentation for AudioSilenceFailoverSettings
@@ -6379,6 +6403,8 @@ local record M
     record InferenceSettings
         -- The ARN of the feed resource that is associated with this channel. The feed is a resource in the Elemental Inference service.
         FeedArn: string
+        -- A list of audio feed inputs that map audio selectors in the channel to feed inputs on the associated Elemental Inference feed.
+        AudioFeedInputs: {AudioFeedInput}
     end
 
     -- Settings for a follower channel in a linked pair

@@ -39,6 +39,8 @@ M.PhraseList = schema.new({ type = "list", list_member = M.Phrase })
 
 M.UpsertEntitiesInfo = schema.new({ type = "list", list_member = M.UpsertEntityInfo })
 
+M.FallbackBlueprintItems = schema.new({ type = "list", list_member = M.BlueprintItem })
+
 M.EntityIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ImageStandardGenerativeFieldTypes = schema.new({ type = "list", list_member = prelude.String })
@@ -1932,6 +1934,20 @@ M.BlueprintItem = schema.new({
     },
 })
 
+M.DocumentCustomOutputConfiguration = schema.new({
+    id = id.from(_N, "DocumentCustomOutputConfiguration"),
+    type = "structure",
+    members = {
+        fallbackBlueprints = schema.new({
+            id = id.from(_N, "DocumentCustomOutputConfiguration", "fallbackBlueprints"),
+            type = "list",
+            name = "fallbackBlueprints",
+            target_id = prelude.Document.id,
+            list_member = M.BlueprintItem,
+        }),
+    },
+})
+
 M.CustomOutputConfiguration = schema.new({
     id = id.from(_N, "CustomOutputConfiguration"),
     type = "structure",
@@ -1942,6 +1958,13 @@ M.CustomOutputConfiguration = schema.new({
             name = "blueprints",
             target_id = prelude.Document.id,
             list_member = M.BlueprintItem,
+        }),
+        document = schema.new({
+            id = id.from(_N, "CustomOutputConfiguration", "document"),
+            type = "structure",
+            name = "document",
+            target_id = id.from(_N, "DocumentCustomOutputConfiguration"),
+            target = M.DocumentCustomOutputConfiguration,
         }),
     },
 })
