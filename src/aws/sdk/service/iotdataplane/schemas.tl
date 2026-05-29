@@ -13,6 +13,8 @@ M.NamedShadowList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RetainedMessageList = schema.new({ type = "list", list_member = M.RetainedMessageSummary })
 
+M.SubscriptionList = schema.new({ type = "list", list_member = M.SubscriptionSummary })
+
 M.ConflictException = schema.new({
     id = id.from(_N, "ConflictException"),
     type = "structure",
@@ -250,6 +252,164 @@ M.UnsupportedDocumentEncodingException = schema.new({
             id = id.from(_N, "UnsupportedDocumentEncodingException", "message"),
             type = "string",
             name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GatewayTimeoutException = schema.new({
+    id = id.from(_N, "GatewayTimeoutException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "GatewayTimeoutException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetConnectionInput = schema.new({
+    id = id.from(_N, "GetConnectionRequest"),
+    type = "structure",
+    members = {
+        clientId = schema.new({
+            id = id.from(_N, "GetConnectionInput", "clientId"),
+            type = "string",
+            name = "clientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        includeSocketInformation = schema.new({
+            id = id.from(_N, "GetConnectionInput", "includeSocketInformation"),
+            type = "boolean",
+            name = "includeSocketInformation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+                [traits.HTTP_QUERY] = { name = "includeSocketInformation" },
+            },
+        }),
+    },
+})
+
+M.GetConnectionOutput = schema.new({
+    id = id.from(_N, "GetConnectionResponse"),
+    type = "structure",
+    members = {
+        connected = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "connected"),
+            type = "boolean",
+            name = "connected",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        thingName = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "thingName"),
+            type = "string",
+            name = "thingName",
+            target_id = prelude.String.id,
+        }),
+        cleanSession = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "cleanSession"),
+            type = "boolean",
+            name = "cleanSession",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        sourceIp = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "sourceIp"),
+            type = "string",
+            name = "sourceIp",
+            target_id = prelude.String.id,
+        }),
+        sourcePort = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "sourcePort"),
+            type = "integer",
+            name = "sourcePort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        targetIp = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "targetIp"),
+            type = "string",
+            name = "targetIp",
+            target_id = prelude.String.id,
+        }),
+        targetPort = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "targetPort"),
+            type = "integer",
+            name = "targetPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        keepAliveDuration = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "keepAliveDuration"),
+            type = "integer",
+            name = "keepAliveDuration",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        connectedSince = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "connectedSince"),
+            type = "long",
+            name = "connectedSince",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        disconnectedSince = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "disconnectedSince"),
+            type = "long",
+            name = "disconnectedSince",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        disconnectReason = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "disconnectReason"),
+            type = "string",
+            name = "disconnectReason",
+            target_id = prelude.String.id,
+        }),
+        sessionExpiry = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "sessionExpiry"),
+            type = "long",
+            name = "sessionExpiry",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        clientId = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "clientId"),
+            type = "string",
+            name = "clientId",
+            target_id = prelude.String.id,
+        }),
+        vpcEndpointId = schema.new({
+            id = id.from(_N, "GetConnectionOutput", "vpcEndpointId"),
+            type = "string",
+            name = "vpcEndpointId",
             target_id = prelude.String.id,
         }),
     },
@@ -506,6 +666,87 @@ M.ListRetainedMessagesOutput = schema.new({
     },
 })
 
+M.ListSubscriptionsInput = schema.new({
+    id = id.from(_N, "ListSubscriptionsRequest"),
+    type = "structure",
+    members = {
+        clientId = schema.new({
+            id = id.from(_N, "ListSubscriptionsInput", "clientId"),
+            type = "string",
+            name = "clientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSubscriptionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListSubscriptionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.SubscriptionSummary = schema.new({
+    id = id.from(_N, "SubscriptionSummary"),
+    type = "structure",
+    members = {
+        topicFilter = schema.new({
+            id = id.from(_N, "SubscriptionSummary", "topicFilter"),
+            type = "string",
+            name = "topicFilter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        qos = schema.new({
+            id = id.from(_N, "SubscriptionSummary", "qos"),
+            type = "integer",
+            name = "qos",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.ListSubscriptionsOutput = schema.new({
+    id = id.from(_N, "ListSubscriptionsResponse"),
+    type = "structure",
+    members = {
+        subscriptions = schema.new({
+            id = id.from(_N, "ListSubscriptionsOutput", "subscriptions"),
+            type = "list",
+            name = "subscriptions",
+            target_id = prelude.Document.id,
+            list_member = M.SubscriptionSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSubscriptionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PublishInput = schema.new({
     id = id.from(_N, "PublishRequest"),
     type = "structure",
@@ -629,6 +870,130 @@ M.RequestEntityTooLargeException = schema.new({
     },
 })
 
+M.SendDirectMessageInput = schema.new({
+    id = id.from(_N, "SendDirectMessageRequest"),
+    type = "structure",
+    members = {
+        clientId = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "clientId"),
+            type = "string",
+            name = "clientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        topic = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "topic"),
+            type = "string",
+            name = "topic",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "topic" },
+            },
+        }),
+        contentType = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "contentType"),
+            type = "string",
+            name = "contentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "contentType" },
+            },
+        }),
+        responseTopic = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "responseTopic"),
+            type = "string",
+            name = "responseTopic",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "responseTopic" },
+            },
+        }),
+        confirmation = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "confirmation"),
+            type = "boolean",
+            name = "confirmation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+                [traits.HTTP_QUERY] = { name = "confirmation" },
+            },
+        }),
+        timeout = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "timeout"),
+            type = "integer",
+            name = "timeout",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_QUERY] = { name = "timeout" },
+            },
+        }),
+        payload = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "payload"),
+            type = "blob",
+            name = "payload",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        userProperties = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "userProperties"),
+            type = "string",
+            name = "userProperties",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-mqtt5-user-properties" },
+                [traits.MEDIA_TYPE] = { value = "application/json" },
+            },
+            direct_traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-mqtt5-user-properties" },
+            },
+        }),
+        payloadFormatIndicator = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "payloadFormatIndicator"),
+            type = "string",
+            name = "payloadFormatIndicator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-mqtt5-payload-format-indicator" },
+            },
+        }),
+        correlationData = schema.new({
+            id = id.from(_N, "SendDirectMessageInput", "correlationData"),
+            type = "string",
+            name = "correlationData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-mqtt5-correlation-data" },
+            },
+        }),
+    },
+})
+
+M.SendDirectMessageOutput = schema.new({
+    id = id.from(_N, "SendDirectMessageResponse"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "SendDirectMessageOutput", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        traceId = schema.new({
+            id = id.from(_N, "SendDirectMessageOutput", "traceId"),
+            type = "string",
+            name = "traceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.UpdateThingShadowInput = schema.new({
     id = id.from(_N, "UpdateThingShadowRequest"),
     type = "structure",
@@ -730,6 +1095,18 @@ M.DeleteThingShadow = schema.operation({
     },
 })
 
+M.GetConnection = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "GetConnection"),
+    input = M.GetConnectionInput,
+    output = M.GetConnectionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connections/{clientId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetRetainedMessage = schema.operation({
     id = id.from("com.amazonaws.iotdataplane", "GetRetainedMessage"),
     input = M.GetRetainedMessageInput,
@@ -778,12 +1155,36 @@ M.ListRetainedMessages = schema.operation({
     },
 })
 
+M.ListSubscriptions = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "ListSubscriptions"),
+    input = M.ListSubscriptionsInput,
+    output = M.ListSubscriptionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connections/{clientId}/subscriptions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.Publish = schema.operation({
     id = id.from("com.amazonaws.iotdataplane", "Publish"),
     input = M.PublishInput,
     output = M.PublishOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/topics/{topic}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendDirectMessage = schema.operation({
+    id = id.from("com.amazonaws.iotdataplane", "SendDirectMessage"),
+    input = M.SendDirectMessageInput,
+    output = M.SendDirectMessageOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connections/{clientId}/messages" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

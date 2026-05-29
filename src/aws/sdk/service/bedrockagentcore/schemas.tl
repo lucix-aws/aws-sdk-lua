@@ -7696,6 +7696,18 @@ M.HarnessBedrockModelConfig = schema.new({
             name = "topP",
             target_id = prelude.Float.id,
         }),
+        apiFormat = schema.new({
+            id = id.from(_N, "HarnessBedrockModelConfig", "apiFormat"),
+            type = "string",
+            name = "apiFormat",
+            target_id = prelude.String.id,
+        }),
+        additionalParams = schema.new({
+            id = id.from(_N, "HarnessBedrockModelConfig", "additionalParams"),
+            type = "document",
+            name = "additionalParams",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 
@@ -7748,6 +7760,58 @@ M.HarnessGeminiModelConfig = schema.new({
     },
 })
 
+M.HarnessLiteLlmModelConfig = schema.new({
+    id = id.from(_N, "HarnessLiteLlmModelConfig"),
+    type = "structure",
+    members = {
+        modelId = schema.new({
+            id = id.from(_N, "HarnessLiteLlmModelConfig", "modelId"),
+            type = "string",
+            name = "modelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        apiKeyArn = schema.new({
+            id = id.from(_N, "HarnessLiteLlmModelConfig", "apiKeyArn"),
+            type = "string",
+            name = "apiKeyArn",
+            target_id = prelude.String.id,
+        }),
+        apiBase = schema.new({
+            id = id.from(_N, "HarnessLiteLlmModelConfig", "apiBase"),
+            type = "string",
+            name = "apiBase",
+            target_id = prelude.String.id,
+        }),
+        maxTokens = schema.new({
+            id = id.from(_N, "HarnessLiteLlmModelConfig", "maxTokens"),
+            type = "integer",
+            name = "maxTokens",
+            target_id = prelude.Integer.id,
+        }),
+        temperature = schema.new({
+            id = id.from(_N, "HarnessLiteLlmModelConfig", "temperature"),
+            type = "float",
+            name = "temperature",
+            target_id = prelude.Float.id,
+        }),
+        topP = schema.new({
+            id = id.from(_N, "HarnessLiteLlmModelConfig", "topP"),
+            type = "float",
+            name = "topP",
+            target_id = prelude.Float.id,
+        }),
+        additionalParams = schema.new({
+            id = id.from(_N, "HarnessLiteLlmModelConfig", "additionalParams"),
+            type = "document",
+            name = "additionalParams",
+            target_id = prelude.Document.id,
+        }),
+    },
+})
+
 M.HarnessOpenAiModelConfig = schema.new({
     id = id.from(_N, "HarnessOpenAiModelConfig"),
     type = "structure",
@@ -7788,6 +7852,18 @@ M.HarnessOpenAiModelConfig = schema.new({
             name = "topP",
             target_id = prelude.Float.id,
         }),
+        apiFormat = schema.new({
+            id = id.from(_N, "HarnessOpenAiModelConfig", "apiFormat"),
+            type = "string",
+            name = "apiFormat",
+            target_id = prelude.String.id,
+        }),
+        additionalParams = schema.new({
+            id = id.from(_N, "HarnessOpenAiModelConfig", "additionalParams"),
+            type = "document",
+            name = "additionalParams",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 
@@ -7816,6 +7892,80 @@ M.HarnessModelConfiguration = schema.new({
             target_id = id.from(_N, "HarnessGeminiModelConfig"),
             target = M.HarnessGeminiModelConfig,
         }),
+        liteLlmModelConfig = schema.new({
+            id = id.from(_N, "HarnessModelConfiguration", "liteLlmModelConfig"),
+            type = "structure",
+            name = "liteLlmModelConfig",
+            target_id = id.from(_N, "HarnessLiteLlmModelConfig"),
+            target = M.HarnessLiteLlmModelConfig,
+        }),
+    },
+})
+
+M.HarnessSkillGitAuth = schema.new({
+    id = id.from(_N, "HarnessSkillGitAuth"),
+    type = "structure",
+    members = {
+        credentialArn = schema.new({
+            id = id.from(_N, "HarnessSkillGitAuth", "credentialArn"),
+            type = "string",
+            name = "credentialArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        username = schema.new({
+            id = id.from(_N, "HarnessSkillGitAuth", "username"),
+            type = "string",
+            name = "username",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HarnessSkillGitSource = schema.new({
+    id = id.from(_N, "HarnessSkillGitSource"),
+    type = "structure",
+    members = {
+        url = schema.new({
+            id = id.from(_N, "HarnessSkillGitSource", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        path = schema.new({
+            id = id.from(_N, "HarnessSkillGitSource", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+        }),
+        auth = schema.new({
+            id = id.from(_N, "HarnessSkillGitSource", "auth"),
+            type = "structure",
+            name = "auth",
+            target_id = id.from(_N, "HarnessSkillGitAuth"),
+            target = M.HarnessSkillGitAuth,
+        }),
+    },
+})
+
+M.HarnessSkillS3Source = schema.new({
+    id = id.from(_N, "HarnessSkillS3Source"),
+    type = "structure",
+    members = {
+        uri = schema.new({
+            id = id.from(_N, "HarnessSkillS3Source", "uri"),
+            type = "string",
+            name = "uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
     },
 })
 
@@ -7828,6 +7978,20 @@ M.HarnessSkill = schema.new({
             type = "string",
             name = "path",
             target_id = prelude.String.id,
+        }),
+        s3 = schema.new({
+            id = id.from(_N, "HarnessSkill", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "HarnessSkillS3Source"),
+            target = M.HarnessSkillS3Source,
+        }),
+        git = schema.new({
+            id = id.from(_N, "HarnessSkill", "git"),
+            type = "structure",
+            name = "git",
+            target_id = id.from(_N, "HarnessSkillGitSource"),
+            target = M.HarnessSkillGitSource,
         }),
     },
 })
@@ -8115,6 +8279,15 @@ M.InvokeHarnessInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Runtime-Session-Id" },
+            },
+        }),
+        runtimeUserId = schema.new({
+            id = id.from(_N, "InvokeHarnessInput", "runtimeUserId"),
+            type = "string",
+            name = "runtimeUserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Runtime-User-Id" },
             },
         }),
         messages = schema.new({

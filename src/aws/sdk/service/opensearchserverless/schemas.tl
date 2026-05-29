@@ -690,6 +690,12 @@ M.CollectionDetail = schema.new({
             name = "standbyReplicas",
             target_id = prelude.String.id,
         }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CollectionDetail", "deletionProtection"),
+            type = "string",
+            name = "deletionProtection",
+            target_id = prelude.String.id,
+        }),
         vectorOptions = schema.new({
             id = id.from(_N, "CollectionDetail", "vectorOptions"),
             type = "structure",
@@ -853,6 +859,46 @@ M.CollectionGroupCapacityLimits = schema.new({
     },
 })
 
+M.CapacityDetails = schema.new({
+    id = id.from(_N, "CapacityDetails"),
+    type = "structure",
+    members = {
+        capacityInOcu = schema.new({
+            id = id.from(_N, "CapacityDetails", "capacityInOcu"),
+            type = "float",
+            name = "capacityInOcu",
+            target_id = prelude.Float.id,
+        }),
+        autoscalingStatus = schema.new({
+            id = id.from(_N, "CapacityDetails", "autoscalingStatus"),
+            type = "string",
+            name = "autoscalingStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CurrentCapacity = schema.new({
+    id = id.from(_N, "CurrentCapacity"),
+    type = "structure",
+    members = {
+        search = schema.new({
+            id = id.from(_N, "CurrentCapacity", "search"),
+            type = "structure",
+            name = "search",
+            target_id = id.from(_N, "CapacityDetails"),
+            target = M.CapacityDetails,
+        }),
+        indexing = schema.new({
+            id = id.from(_N, "CurrentCapacity", "indexing"),
+            type = "structure",
+            name = "indexing",
+            target_id = id.from(_N, "CapacityDetails"),
+            target = M.CapacityDetails,
+        }),
+    },
+})
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -932,11 +978,24 @@ M.CollectionGroupDetail = schema.new({
             target_id = id.from(_N, "CollectionGroupCapacityLimits"),
             target = M.CollectionGroupCapacityLimits,
         }),
+        currentCapacity = schema.new({
+            id = id.from(_N, "CollectionGroupDetail", "currentCapacity"),
+            type = "structure",
+            name = "currentCapacity",
+            target_id = id.from(_N, "CurrentCapacity"),
+            target = M.CurrentCapacity,
+        }),
         numberOfCollections = schema.new({
             id = id.from(_N, "CollectionGroupDetail", "numberOfCollections"),
             type = "integer",
             name = "numberOfCollections",
             target_id = prelude.Integer.id,
+        }),
+        generation = schema.new({
+            id = id.from(_N, "CollectionGroupDetail", "generation"),
+            type = "string",
+            name = "generation",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1476,6 +1535,12 @@ M.CreateCollectionInput = schema.new({
             target_id = id.from(_N, "EncryptionConfig"),
             target = M.EncryptionConfig,
         }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateCollectionInput", "deletionProtection"),
+            type = "string",
+            name = "deletionProtection",
+            target_id = prelude.String.id,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreateCollectionInput", "clientToken"),
             type = "string",
@@ -1538,6 +1603,12 @@ M.CreateCollectionDetail = schema.new({
             id = id.from(_N, "CreateCollectionDetail", "standbyReplicas"),
             type = "string",
             name = "standbyReplicas",
+            target_id = prelude.String.id,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "CreateCollectionDetail", "deletionProtection"),
+            type = "string",
+            name = "deletionProtection",
             target_id = prelude.String.id,
         }),
         vectorOptions = schema.new({
@@ -1646,6 +1717,12 @@ M.DeleteCollectionDetail = schema.new({
             id = id.from(_N, "DeleteCollectionDetail", "status"),
             type = "string",
             name = "status",
+            target_id = prelude.String.id,
+        }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "DeleteCollectionDetail", "deletionProtection"),
+            type = "string",
+            name = "deletionProtection",
             target_id = prelude.String.id,
         }),
     },
@@ -1805,6 +1882,12 @@ M.UpdateCollectionInput = schema.new({
             target_id = id.from(_N, "VectorOptions"),
             target = M.VectorOptions,
         }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateCollectionInput", "deletionProtection"),
+            type = "string",
+            name = "deletionProtection",
+            target_id = prelude.String.id,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateCollectionInput", "clientToken"),
             type = "string",
@@ -1876,6 +1959,12 @@ M.UpdateCollectionDetail = schema.new({
             name = "lastModifiedDate",
             target_id = prelude.Long.id,
         }),
+        deletionProtection = schema.new({
+            id = id.from(_N, "UpdateCollectionDetail", "deletionProtection"),
+            type = "string",
+            name = "deletionProtection",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1934,6 +2023,12 @@ M.CreateCollectionGroupInput = schema.new({
             name = "capacityLimits",
             target_id = id.from(_N, "CollectionGroupCapacityLimits"),
             target = M.CollectionGroupCapacityLimits,
+        }),
+        generation = schema.new({
+            id = id.from(_N, "CreateCollectionGroupInput", "generation"),
+            type = "string",
+            name = "generation",
+            target_id = prelude.String.id,
         }),
         clientToken = schema.new({
             id = id.from(_N, "CreateCollectionGroupInput", "clientToken"),
@@ -2000,6 +2095,12 @@ M.CreateCollectionGroupDetail = schema.new({
             name = "capacityLimits",
             target_id = id.from(_N, "CollectionGroupCapacityLimits"),
             target = M.CollectionGroupCapacityLimits,
+        }),
+        generation = schema.new({
+            id = id.from(_N, "CreateCollectionGroupDetail", "generation"),
+            type = "string",
+            name = "generation",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2108,6 +2209,12 @@ M.CollectionGroupSummary = schema.new({
             target_id = id.from(_N, "CollectionGroupCapacityLimits"),
             target = M.CollectionGroupCapacityLimits,
         }),
+        generation = schema.new({
+            id = id.from(_N, "CollectionGroupSummary", "generation"),
+            type = "string",
+            name = "generation",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2215,6 +2322,12 @@ M.UpdateCollectionGroupDetail = schema.new({
             type = "long",
             name = "lastModifiedDate",
             target_id = prelude.Long.id,
+        }),
+        generation = schema.new({
+            id = id.from(_N, "UpdateCollectionGroupDetail", "generation"),
+            type = "string",
+            name = "generation",
+            target_id = prelude.String.id,
         }),
     },
 })

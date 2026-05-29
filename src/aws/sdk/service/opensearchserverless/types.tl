@@ -159,11 +159,22 @@ local record M
         capacityLimits: CapacityLimits
     end
 
+    enum AutoscalingStatus
+        "ACTION_SCALING_UP"
+        "ACTION_SCALING_DOWN"
+        "NO_ACTION"
+    end
+
     record BatchGetCollectionInput
         -- A list of collection IDs. You can't provide names and IDs in the same request. The ID is part of the collection endpoint. You can also retrieve it using the ListCollections API.
         ids: {string}
         -- A list of collection names. You can't provide names and IDs in the same request.
         names: {string}
+    end
+
+    enum DeletionProtection
+        "ENABLED"
+        "DISABLED"
     end
 
     -- FIPS-compliant endpoint URLs for an OpenSearch Serverless collection. These endpoints ensure all data transmission uses FIPS 140-3 validated cryptographic implementations, meeting federal security requirements for government workloads.
@@ -222,6 +233,8 @@ local record M
         kmsKeyArn: string
         -- Details about an OpenSearch Serverless collection.
         standbyReplicas: string
+        -- Indicates whether deletion protection is ENABLED or DISABLED for the collection.
+        deletionProtection: string
         -- Configuration options for vector search capabilities in the collection.
         vectorOptions: VectorOptions
         -- The Epoch time when the collection was created.
@@ -280,6 +293,27 @@ local record M
         minSearchCapacityInOCU: number
     end
 
+    -- Capacity details for an OpenSearch Serverless collection group, including the current capacity and autoscaling status.
+    record CapacityDetails
+        -- The current capacity in OpenSearch Compute Units (OCUs).
+        capacityInOcu: number
+        -- The current autoscaling status for the collection group.
+        autoscalingStatus: string
+    end
+
+    -- Current search and indexing capacity for an OpenSearch Serverless collection group. Measured in OpenSearch Compute Units (OCUs).
+    record CurrentCapacity
+        -- The search capacity for the collection group.
+        search: CapacityDetails
+        -- The indexing capacity for the collection group.
+        indexing: CapacityDetails
+    end
+
+    enum ServerlessGeneration
+        "CLASSIC"
+        "NEXTGEN"
+    end
+
     -- A map of key-value pairs associated to an OpenSearch Serverless resource.
     record Tag
         -- The key to use in the tag.
@@ -306,8 +340,12 @@ local record M
         createdDate: number
         -- The capacity limits for the collection group, in OpenSearch Compute Units (OCUs).
         capacityLimits: CollectionGroupCapacityLimits
+        -- Current search and indexing capacity for the collection group.
+        currentCapacity: CurrentCapacity
         -- The number of collections associated with the collection group.
         numberOfCollections: number
+        -- The generation of Amazon OpenSearch Serverless for the collection group.
+        generation: string
     end
 
     -- Error details for a collection group operation.
@@ -497,6 +535,8 @@ local record M
         collectionGroupName: string
         -- Encryption settings for the collection.
         encryptionConfig: EncryptionConfig
+        -- Indicates whether to enable deletion protection for the collection. When set to ENABLED, the collection cannot be deleted.
+        deletionProtection: string
         -- Unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end
@@ -517,6 +557,8 @@ local record M
         kmsKeyArn: string
         -- Creates details about an OpenSearch Serverless collection.
         standbyReplicas: string
+        -- Indicates whether deletion protection is ENABLED or DISABLED for the collection.
+        deletionProtection: string
         -- Configuration options for vector search capabilities in the collection.
         vectorOptions: VectorOptions
         -- The Epoch time when the collection was created.
@@ -553,6 +595,8 @@ local record M
         name: string
         -- The current status of the collection.
         status: string
+        -- Indicates whether deletion protection is ENABLED or DISABLED for the collection.
+        deletionProtection: string
     end
 
     record DeleteCollectionOutput
@@ -609,6 +653,8 @@ local record M
         description: string
         -- Configuration options for vector search capabilities in the collection.
         vectorOptions: VectorOptions
+        -- Indicates whether to enable or disable deletion protection for the collection. When set to ENABLED, the collection cannot be deleted.
+        deletionProtection: string
         -- Unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end
@@ -631,6 +677,8 @@ local record M
         createdDate: number
         -- The date and time when the collection was last modified.
         lastModifiedDate: number
+        -- Indicates whether deletion protection is ENABLED or DISABLED for the collection.
+        deletionProtection: string
     end
 
     record UpdateCollectionOutput
@@ -649,6 +697,8 @@ local record M
         tags: {Tag}
         -- The capacity limits for the collection group, in OpenSearch Compute Units (OCUs). These limits control the maximum and minimum capacity for collections within the group.
         capacityLimits: CollectionGroupCapacityLimits
+        -- The generation of Amazon OpenSearch Serverless for the collection group. Valid values are CLASSIC and NEXTGEN.
+        generation: string
         -- Unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end
@@ -671,6 +721,8 @@ local record M
         createdDate: number
         -- The capacity limits for the collection group, in OpenSearch Compute Units (OCUs).
         capacityLimits: CollectionGroupCapacityLimits
+        -- The generation of Amazon OpenSearch Serverless for the collection group.
+        generation: string
     end
 
     record CreateCollectionGroupOutput
@@ -708,6 +760,8 @@ local record M
         -- The Epoch time when the collection group was created.
         createdDate: number
         capacityLimits: CollectionGroupCapacityLimits
+        -- The generation of Amazon OpenSearch Serverless for the collection group.
+        generation: string
     end
 
     record ListCollectionGroupsOutput
@@ -744,6 +798,8 @@ local record M
         createdDate: number
         -- The date and time when the collection group was last modified.
         lastModifiedDate: number
+        -- The generation of Amazon OpenSearch Serverless for the collection group.
+        generation: string
     end
 
     record UpdateCollectionGroupOutput

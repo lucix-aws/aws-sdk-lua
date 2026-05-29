@@ -962,6 +962,7 @@ local record M
         "EXPORTING"
         "COMPLETED"
         "FAILED"
+        "TIMED_OUT"
     end
 
     -- Information about an export image task, including its current state, timestamps, and any error details.
@@ -1601,8 +1602,10 @@ local record M
     record CreateImportedImageInput
         -- A unique name for the imported image. The name must be between 1 and 100 characters and can contain letters, numbers, underscores, periods, and hyphens.
         Name: string
-        -- The ID of the EC2 AMI to import. The AMI must meet specific requirements including Windows Server 2022 Full Base, UEFI boot mode, TPM 2.0 support, and proper drivers.
+        -- The ID of the EC2 AMI to import.
         SourceAmiId: string
+        -- The ID of the Workspaces Image to import.
+        WorkspaceImageId: string
         -- The ARN of the IAM role that allows WorkSpaces Applications to access your AMI. The role must have permissions to modify image attributes and describe images, with a trust relationship allowing appstream.amazonaws.com to assume the role.
         IamRoleArn: string
         -- An optional description for the imported image. The description must match approved regex patterns and can be up to 256 characters.
@@ -1642,6 +1645,7 @@ local record M
     enum ImageType
         "CUSTOM"
         "NATIVE"
+        "BYOL"
     end
 
     enum ImageState

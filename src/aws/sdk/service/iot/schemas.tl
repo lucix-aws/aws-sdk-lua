@@ -297,6 +297,8 @@ M.ClientProperties = schema.new({ type = "map", map_key = prelude.String, map_va
 
 M.KafkaHeaders = schema.new({ type = "list", list_member = M.KafkaActionHeader })
 
+M.FleetIndexingApiList = schema.new({ type = "list", list_member = prelude.String })
+
 M.Cidrs = schema.new({ type = "list", list_member = prelude.String })
 
 M.Ports = schema.new({ type = "list", list_member = prelude.Integer })
@@ -13263,6 +13265,20 @@ M.ThingGroupIndexingConfiguration = schema.new({
     },
 })
 
+M.ConnectivityFilter = schema.new({
+    id = id.from(_N, "ConnectivityFilter"),
+    type = "structure",
+    members = {
+        includeSocketInformation = schema.new({
+            id = id.from(_N, "ConnectivityFilter", "includeSocketInformation"),
+            type = "list",
+            name = "includeSocketInformation",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.GeoLocationTarget = schema.new({
     id = id.from(_N, "GeoLocationTarget"),
     type = "structure",
@@ -13299,6 +13315,13 @@ M.IndexingFilter = schema.new({
             name = "geoLocations",
             target_id = prelude.Document.id,
             list_member = M.GeoLocationTarget,
+        }),
+        connectivity = schema.new({
+            id = id.from(_N, "IndexingFilter", "connectivity"),
+            type = "structure",
+            name = "connectivity",
+            target_id = id.from(_N, "ConnectivityFilter"),
+            target = M.ConnectivityFilter,
         }),
     },
 })
@@ -14208,6 +14231,12 @@ M.GetThingConnectivityDataInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        includeSocketInformation = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataInput", "includeSocketInformation"),
+            type = "boolean",
+            name = "includeSocketInformation",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -14237,6 +14266,60 @@ M.GetThingConnectivityDataOutput = schema.new({
             id = id.from(_N, "GetThingConnectivityDataOutput", "disconnectReason"),
             type = "string",
             name = "disconnectReason",
+            target_id = prelude.String.id,
+        }),
+        sourceIp = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "sourceIp"),
+            type = "string",
+            name = "sourceIp",
+            target_id = prelude.String.id,
+        }),
+        sourcePort = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "sourcePort"),
+            type = "integer",
+            name = "sourcePort",
+            target_id = prelude.Integer.id,
+        }),
+        targetIp = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "targetIp"),
+            type = "string",
+            name = "targetIp",
+            target_id = prelude.String.id,
+        }),
+        targetPort = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "targetPort"),
+            type = "integer",
+            name = "targetPort",
+            target_id = prelude.Integer.id,
+        }),
+        vpcEndpointId = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "vpcEndpointId"),
+            type = "string",
+            name = "vpcEndpointId",
+            target_id = prelude.String.id,
+        }),
+        keepAliveDuration = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "keepAliveDuration"),
+            type = "integer",
+            name = "keepAliveDuration",
+            target_id = prelude.Integer.id,
+        }),
+        cleanSession = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "cleanSession"),
+            type = "boolean",
+            name = "cleanSession",
+            target_id = prelude.Boolean.id,
+        }),
+        sessionExpiry = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "sessionExpiry"),
+            type = "long",
+            name = "sessionExpiry",
+            target_id = prelude.Long.id,
+        }),
+        clientId = schema.new({
+            id = id.from(_N, "GetThingConnectivityDataOutput", "clientId"),
+            type = "string",
+            name = "clientId",
             target_id = prelude.String.id,
         }),
     },
@@ -20386,6 +20469,30 @@ M.ThingConnectivity = schema.new({
             id = id.from(_N, "ThingConnectivity", "disconnectReason"),
             type = "string",
             name = "disconnectReason",
+            target_id = prelude.String.id,
+        }),
+        keepAliveDuration = schema.new({
+            id = id.from(_N, "ThingConnectivity", "keepAliveDuration"),
+            type = "integer",
+            name = "keepAliveDuration",
+            target_id = prelude.Integer.id,
+        }),
+        cleanSession = schema.new({
+            id = id.from(_N, "ThingConnectivity", "cleanSession"),
+            type = "boolean",
+            name = "cleanSession",
+            target_id = prelude.Boolean.id,
+        }),
+        sessionExpiry = schema.new({
+            id = id.from(_N, "ThingConnectivity", "sessionExpiry"),
+            type = "long",
+            name = "sessionExpiry",
+            target_id = prelude.Long.id,
+        }),
+        clientId = schema.new({
+            id = id.from(_N, "ThingConnectivity", "clientId"),
+            type = "string",
+            name = "clientId",
             target_id = prelude.String.id,
         }),
     },

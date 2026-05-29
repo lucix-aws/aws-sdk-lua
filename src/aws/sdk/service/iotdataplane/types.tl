@@ -10,10 +10,11 @@ local record M
 
     record DeleteConnectionInput
         -- The unique identifier of the MQTT client to disconnect. The client ID can't start with a dollar sign ($).
+        -- MQTT client IDs must be URL encoded (percent-encoded) when they contain characters that are not valid in HTTP requests, such as spaces, forward slashes (/), and UTF-8 characters.
         clientId: string
-        -- Specifies whether to remove the client's session state when disconnecting. Set to TRUE to delete all session information, including subscriptions and queued messages. Set to FALSE to preserve the session state. By default, this is set to FALSE (preserves the session state).
+        -- Specifies whether to remove the client's persistent session state when disconnecting. Set to TRUE to delete all session information, including subscriptions and queued messages. Set to FALSE to preserve the session state for persistent sessions. For clean sessions this parameter will be ignored. By default, this is set to FALSE (preserves the session state).
         cleanSession: boolean
-        -- Controls if Amazon Web Services IoT Core publishes the client's Last Will and Testament (LWT) message upon disconnection. Set to TRUE to prevent publishing the LWT message. Set to FALSE to allow publishing. By default, this is set to FALSE (allows publishing the LWT message).
+        -- Controls if Amazon Web Services IoT Core publishes the client's Last Will and Testament (LWT) message upon disconnection. Set to TRUE to prevent publishing the LWT message. Set to FALSE to ensure that LWT is published. By default, this is set to FALSE (LWT message is published).
         preventWillMessage: boolean
     end
 
@@ -85,6 +86,51 @@ local record M
     record UnsupportedDocumentEncodingException
         -- The message for the exception.
         message: string
+    end
+
+    -- The delivery confirmation was not received from the client within the specified timeout period.
+    record GatewayTimeoutException
+        -- The message for the exception.
+        message: string
+    end
+
+    record GetConnectionInput
+        -- The unique identifier of the MQTT client to retrieve connection information. The client ID can't start with a dollar sign ($).
+        -- MQTT client IDs must be URL encoded (percent-encoded) when they contain characters that are not valid in HTTP requests, such as spaces, forward slashes (/), and UTF-8 characters.
+        clientId: string
+        -- Specifies if socket information (sourcePort, targetPort, sourceIp, targetIp) should be included in the GetConnection response. Set to TRUE to include socket information. Set to FALSE to omit socket information. By default, this is set to FALSE. See the developer guide for how to authorize this parameter.
+        includeSocketInformation: boolean
+    end
+
+    record GetConnectionOutput
+        -- The connection state of the client. Returns true if the client is currently connected, or false if the client is not connected.
+        connected: boolean
+        -- The name of the thing associated with the principal of the MQTT client, if applicable.
+        thingName: string
+        -- Indicates whether the client is using a clean session. Returns true for clean sessions or false for persistent sessions.
+        cleanSession: boolean
+        -- The IP address of the client that initiated the connection.
+        sourceIp: string
+        -- The client's source port.
+        sourcePort: number
+        -- The IP address of the Amazon Web Services IoT Core endpoint that the client connected to. For clients connected to VPC endpoints, this is the private IP address of the network interface the client is connected to.
+        targetIp: string
+        -- The port number of the Amazon Web Services IoT Core endpoint that the client connected to.
+        targetPort: number
+        -- The keep-alive interval in seconds that the client specified when establishing the connection.
+        keepAliveDuration: number
+        -- Unix timestamp (in milliseconds) indicating when the client connected. Present only when connected is true.
+        connectedSince: number
+        -- Unix timestamp (in milliseconds) indicating when the client disconnected. Present only when connected is false. This information is available for 30 minutes after the client disconnects.
+        disconnectedSince: number
+        -- The reason for the last disconnection, if the client is currently disconnected. See the developer guide for valid disconnect reasons.
+        disconnectReason: string
+        -- The session expiry interval in seconds for the MQTT client connection. This is configured by the user. This value indicates how long the session will remain active after the client disconnects.
+        sessionExpiry: number
+        -- The unique identifier of the MQTT client. This is the same client ID that was used when the client established the connection.
+        clientId: string
+        -- The ID of the VPC endpoint. Present for clients connected to IoT Core via a VPC endpoint.
+        vpcEndpointId: string
     end
 
     -- The input for the GetRetainedMessage operation.
@@ -172,6 +218,33 @@ local record M
         nextToken: string
     end
 
+    record ListSubscriptionsInput
+        -- The unique identifier of the MQTT client to list subscriptions for. The client ID can't start with a dollar sign ($).
+        -- MQTT client IDs must be URL encoded (percent-encoded) when they contain characters that are not valid in HTTP requests, such as spaces, forward slashes (/), and UTF-8 characters.
+        clientId: string
+        -- To retrieve the next set of results, the nextToken
+        -- value from a previous response; otherwise null to receive
+        -- the first set of results.
+        nextToken: string
+        -- The maximum number of subscriptions to return in a single request. By default, this is set to 20.
+        maxResults: number
+    end
+
+    -- Contains information about a subscription for an MQTT client, including the topic filter and Quality of Service (QoS) level.
+    record SubscriptionSummary
+        -- The topic filter pattern that the client is subscribed to. May include MQTT wildcards such as + (single-level) and # (multi-level).
+        topicFilter: string
+        -- The Quality of Service (QoS) level for the subscription. Valid values are 0 (at most once) and 1 (at least once).
+        qos: number
+    end
+
+    record ListSubscriptionsOutput
+        -- A list of topic filters and their associated Quality of Service (QoS) levels that the client is subscribed to.
+        subscriptions: {SubscriptionSummary}
+        -- The token to use to get the next set of results, or null if there are no additional results.
+        nextToken: string
+    end
+
     enum PayloadFormatIndicator
         "UNSPECIFIED_BYTES"
         "UTF8_DATA"
@@ -226,6 +299,73 @@ local record M
     record RequestEntityTooLargeException
         -- The message for the exception.
         message: string
+    end
+
+    record SendDirectMessageInput
+        -- The unique identifier of the MQTT client to send the message to.
+        -- Client IDs must not exceed 128 characters and can't start with a dollar sign ($).
+        -- MQTT client IDs must be URL encoded (percent-encoded) when they contain characters that are
+        -- not valid in HTTP requests, such as spaces, forward slashes (/), and UTF-8 characters.
+        -- For more information, see Amazon Web Services IoT Core message broker and
+        -- protocol limits and quotas.
+        clientId: string
+        -- The topic of the outbound MQTT Publish message to the receiving client.
+        -- For more information, see Amazon Web Services IoT Core message broker and
+        -- protocol limits and quotas.
+        topic: string
+        -- The MQTT5 content type property forwarded to the receiving client
+        -- (for example, application/json).
+        contentType: string
+        -- A UTF-8 encoded string that's used as the topic name for a response message. The response
+        -- topic describes the topic which the receiver should publish to as part of the
+        -- request-response flow. The topic must not contain wildcard characters.
+        -- For more information, see Amazon Web Services IoT Core message broker and
+        -- protocol limits and quotas.
+        responseTopic: string
+        -- A Boolean value that specifies whether to wait for delivery confirmation from the receiving client.
+        -- When set to true, the API delivers the message at QoS 1 and waits for
+        -- the client to send a delivery confirmation (PUBACK) before returning a successful response. If
+        -- delivery confirmation is not received within the specified timeout period,
+        -- the API returns HTTP 504.
+        -- When set to false, the API delivers the message at QoS 0 and returns
+        -- after Amazon Web Services IoT Core attempts to deliver the message.
+        -- Valid values: true | false
+        -- Default value: false
+        confirmation: boolean
+        -- An integer that represents the maximum time, in seconds, to wait for a delivery confirmation (PUBACK) from the
+        -- receiving client after the message has been delivered. This parameter is only used when
+        -- confirmation is set to true. If confirmation
+        -- is false, this parameter is ignored.
+        -- The total API response time may be higher than this value due to internal processing.
+        -- Set your HTTP client timeout to a value greater than this parameter.
+        -- Valid range: 1 to 15 seconds.
+        -- Default value: 5 seconds.
+        timeout: number
+        -- The message body. MQTT accepts text, binary, and empty (null) message payloads.
+        payload: string
+        -- A JSON string that contains an array of JSON objects. If you don't use Amazon Web Services SDK or CLI,
+        -- you must encode the JSON string to base64 format before adding it to the HTTP header.
+        -- userProperties is an HTTP header value in the API.
+        -- For MQTT 3.1.1 clients, user properties are silently dropped.
+        -- The following example userProperties parameter is a JSON string which
+        -- represents two User Properties. Note that it needs to be base64-encoded:
+        -- [{"deviceName": "alpha"}, {"deviceCnt": "45"}]
+        userProperties: string
+        -- An Enum string value that indicates whether the payload is formatted as
+        -- UTF-8. payloadFormatIndicator is an HTTP header value in the API.
+        payloadFormatIndicator: string
+        -- The base64-encoded binary data used by the sender of the request message to identify which
+        -- request the response message is for when it's received. correlationData is an
+        -- HTTP header value in the API.
+        correlationData: string
+    end
+
+    -- The output from the SendDirectMessage operation.
+    record SendDirectMessageOutput
+        -- The status message indicating the result of the operation.
+        message: string
+        -- A unique identifier for the request. Include this value when contacting Amazon Web Services Support for troubleshooting.
+        traceId: string
     end
 
     -- The input for the UpdateThingShadow operation.

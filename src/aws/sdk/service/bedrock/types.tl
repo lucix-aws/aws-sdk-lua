@@ -77,15 +77,15 @@ local record M
         modelEnforcement: ModelEnforcement
     end
 
-    -- Input data configuration for the advanced prompt optimization job.
+    -- Contains the input data configuration for an advanced prompt optimization job.
     record AdvancedPromptOptimizationInputConfig
-        -- S3 URI of the input JSONL file.
+        -- The S3 URI of the JSONL input file containing prompt templates and evaluation samples.
         s3Uri: string
     end
 
     -- Batch Delete Advanced Prompt Optimization Jobs Request
     record BatchDeleteAdvancedPromptOptimizationJobInput
-        -- List of advanced prompt optimization job identifiers to delete.
+        -- A list of advanced prompt optimization job identifiers (ARNs or IDs) to delete.
         jobIdentifiers: {string}
     end
 
@@ -99,29 +99,29 @@ local record M
         "Deleting"
     end
 
-    -- Successfully deleted advanced prompt optimization job.
+    -- Contains information about a successfully deleted advanced prompt optimization job.
     record BatchDeleteAdvancedPromptOptimizationJobItem
-        -- Identifier of the deleted job.
+        -- The identifier of the deleted job.
         jobIdentifier: string
-        -- Status of the deleted job.
+        -- The status of the deleted job.
         jobStatus: string
     end
 
-    -- Batch deletion error for an advanced prompt optimization job.
+    -- Contains information about an error that occurred when deleting an advanced prompt optimization job.
     record BatchDeleteAdvancedPromptOptimizationJobError
-        -- Identifier of the job that failed to delete.
+        -- The identifier of the job that could not be deleted.
         jobIdentifier: string
-        -- Error code for the deletion failure.
+        -- The error code for the deletion failure.
         code: string
-        -- Error message describing the deletion failure.
+        -- A message describing the error.
         message: string
     end
 
     -- Batch Delete Advanced Prompt Optimization Jobs Response
     record BatchDeleteAdvancedPromptOptimizationJobOutput
-        -- List of errors encountered during batch deletion.
+        -- A list of errors encountered during batch deletion.
         errors: {BatchDeleteAdvancedPromptOptimizationJobError}
-        -- List of successfully deleted advanced prompt optimization jobs.
+        -- A list of successfully deleted advanced prompt optimization jobs.
         advancedPromptOptimizationJobs: {BatchDeleteAdvancedPromptOptimizationJobItem}
     end
 
@@ -145,31 +145,31 @@ local record M
         message: string
     end
 
-    -- Inference configuration for a model.
+    -- Base inference parameters to pass to a model. For more information, see Inference parameters for foundation models.
     record InferenceConfiguration
-        -- The maximum number of tokens to generate.
+        -- The maximum number of tokens to allow in the generated response. The default value is the maximum allowed value for the model that you are using.
         maxTokens: number
-        -- The temperature for sampling.
+        -- The likelihood of the model selecting higher-probability options while generating a response. A lower value makes the model more likely to choose higher-probability options, while a higher value makes the model more likely to choose lower-probability options.
         temperature: number
-        -- The top-p value for nucleus sampling.
+        -- The percentage of most-likely candidates that the model considers for the next token. For example, if you choose a value of 0.8 for topP, the model selects from the top 80% of the probability distribution of tokens that could be next in the sequence.
         topP: number
-        -- Stop sequences that end generation.
+        -- A list of stop sequences. A stop sequence is a sequence of characters that causes the model to stop generating the response.
         stopSequences: {string}
     end
 
-    -- Configuration for a model used in advanced prompt optimization.
+    -- Contains the configuration for a model used in an advanced prompt optimization job, including the model ID and inference parameters.
     record ModelConfiguration
-        -- The model ID.
+        -- The ID of the model to use for optimization.
         modelId: string
-        -- Inference configuration for the model.
+        -- The inference configuration for the model, including parameters such as maximum tokens, temperature, and top-p.
         inferenceConfig: InferenceConfiguration
-        -- Additional model request fields.
+        -- Additional model request fields. Use this to pass model-specific parameters that are not included in the standard inference configuration.
         additionalModelRequestFields: {string : any}
     end
 
-    -- Output data configuration for the advanced prompt optimization job.
+    -- Contains the output data configuration for an advanced prompt optimization job.
     record AdvancedPromptOptimizationOutputConfig
-        -- S3 URI prefix for the output location.
+        -- The S3 URI prefix where the optimization results will be written.
         s3Uri: string
     end
 
@@ -183,27 +183,27 @@ local record M
 
     -- Create Advanced Prompt Optimization Job Request
     record CreateAdvancedPromptOptimizationJobInput
-        -- Name of the advanced prompt optimization job.
+        -- A name for the advanced prompt optimization job.
         jobName: string
-        -- Description of the advanced prompt optimization job.
+        -- A description of the advanced prompt optimization job.
         jobDescription: string
-        -- Idempotency token for the request.
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock ignores the request but does not return an error.
         clientToken: string
-        -- Input data configuration for the advanced prompt optimization job.
+        -- Specifies the S3 location of your JSONL input file containing prompt templates and evaluation samples.
         inputConfig: AdvancedPromptOptimizationInputConfig
-        -- Output data configuration for the advanced prompt optimization job.
+        -- Specifies the S3 location where optimization results will be stored.
         outputConfig: AdvancedPromptOptimizationOutputConfig
-        -- KMS key ARN for encrypting output data.
+        -- The Amazon Resource Name (ARN) of the KMS key used for encrypting the output data. If not specified, the output is encrypted with an Amazon-owned KMS key.
         encryptionKeyArn: string
-        -- Tags to associate with the job.
+        -- Tags to associate with the advanced prompt optimization job.
         tags: {Tag}
-        -- Model configurations for advanced prompt optimization.
+        -- A list of model configurations specifying the target models for prompt optimization. You can specify up to 5 models.
         modelConfigurations: {ModelConfiguration}
     end
 
     -- Create Advanced Prompt Optimization Job Response
     record CreateAdvancedPromptOptimizationJobOutput
-        -- ARN of the created advanced prompt optimization job.
+        -- The Amazon Resource Name (ARN) of the created advanced prompt optimization job.
         jobArn: string
     end
 
@@ -226,33 +226,33 @@ local record M
 
     -- Get Advanced Prompt Optimization Job Request
     record GetAdvancedPromptOptimizationJobInput
-        -- ARN or ID of the advanced prompt optimization job.
+        -- The ARN or ID of the advanced prompt optimization job.
         jobIdentifier: string
     end
 
     -- Get Advanced Prompt Optimization Job Response
     record GetAdvancedPromptOptimizationJobOutput
-        -- ARN of the advanced prompt optimization job.
+        -- The Amazon Resource Name (ARN) of the advanced prompt optimization job.
         jobArn: string
-        -- Name of the advanced prompt optimization job.
+        -- The name of the advanced prompt optimization job.
         jobName: string
-        -- Description of the advanced prompt optimization job.
+        -- The description of the advanced prompt optimization job.
         jobDescription: string
-        -- Status of the advanced prompt optimization job.
+        -- The status of the advanced prompt optimization job.
         jobStatus: string
-        -- Input data configuration for the advanced prompt optimization job.
+        -- The input data configuration for the optimization job.
         inputConfig: AdvancedPromptOptimizationInputConfig
-        -- Output data configuration for the advanced prompt optimization job.
+        -- The output data configuration for the optimization job.
         outputConfig: AdvancedPromptOptimizationOutputConfig
-        -- KMS key ARN used for encrypting output data.
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the output data.
         encryptionKeyArn: string
-        -- Creation time of the advanced prompt optimization job.
+        -- The time at which the advanced prompt optimization job was created.
         creationTime: number
-        -- Last modified time of the advanced prompt optimization job.
+        -- The time at which the advanced prompt optimization job was last modified.
         lastModifiedTime: number
-        -- Failure message if the advanced prompt optimization job failed.
+        -- If the job failed, a message describing the reason for the failure.
         failureMessage: string
-        -- Model configurations for advanced prompt optimization.
+        -- The model configurations used in the optimization job.
         modelConfigurations: {ModelConfiguration}
     end
 
@@ -267,41 +267,41 @@ local record M
 
     -- List Advanced Prompt Optimization Jobs Request
     record ListAdvancedPromptOptimizationJobsInput
-        -- Maximum number of results to return.
+        -- The maximum number of results to return in the response.
         maxResults: number
-        -- Pagination token for the next page of results.
+        -- If the total number of results is greater than the maxResults value provided in the request, use this token in a subsequent request to get the next set of results.
         nextToken: string
-        -- Field to sort by in the returned list of jobs.
+        -- The field to sort the results by.
         sortBy: string
-        -- Sort order for the results.
+        -- The sort order for the results.
         sortOrder: string
     end
 
-    -- Summary of an advanced prompt optimization job.
+    -- Contains a summary of an advanced prompt optimization job.
     record AdvancedPromptOptimizationJobSummary
-        -- ARN of the advanced prompt optimization job.
+        -- The Amazon Resource Name (ARN) of the job.
         jobArn: string
-        -- Name of the advanced prompt optimization job.
+        -- The name of the job.
         jobName: string
-        -- Status of the advanced prompt optimization job.
+        -- The status of the job.
         jobStatus: string
-        -- Creation time of the advanced prompt optimization job.
+        -- The time at which the job was created.
         creationTime: number
-        -- Last modified time of the advanced prompt optimization job.
+        -- The time at which the job was last modified.
         lastModifiedTime: number
     end
 
     -- List Advanced Prompt Optimization Jobs Response
     record ListAdvancedPromptOptimizationJobsOutput
-        -- List of advanced prompt optimization job summaries.
+        -- A list of advanced prompt optimization job summaries.
         jobSummaries: {AdvancedPromptOptimizationJobSummary}
-        -- Pagination token for the next page of results.
+        -- If the total number of results is greater than the maxResults value provided in the request, use this token in a subsequent request to get the next set of results.
         nextToken: string
     end
 
     -- Stop Advanced Prompt Optimization Job Request
     record StopAdvancedPromptOptimizationJobInput
-        -- ARN or ID of the advanced prompt optimization job to stop.
+        -- The ARN or ID of the advanced prompt optimization job to stop.
         jobIdentifier: string
     end
 
@@ -1969,6 +1969,18 @@ local record M
         customModelDeploymentArn: string
     end
 
+    -- Contains the Amazon Resource Name (ARN) of a SageMaker AI model package to use as the data source for a custom model.
+    record ModelPackageArnDataSource
+        -- The Amazon Resource Name (ARN) of the SageMaker AI model package. The ARN must be for a model package of restricted type. To use a model package ARN, you must have the sagemaker:DescribeModelPackage and sagemaker:AccessModelPackageData permissions on the model package resource.
+        modelPackageArn: string
+    end
+
+    -- The data source for a custom model. This is a union type that supports the following member: modelPackageArnDataSource — Specifies a SageMaker AI model package as the data source.
+    record CustomModelDataSource
+        -- A SageMaker AI model package ARN as the data source for the custom model. When you specify a model package ARN, Amazon Bedrock resolves the model package to retrieve the model artifacts.
+        modelPackageArnDataSource: ModelPackageArnDataSource
+    end
+
     -- The Amazon S3 data source of the model to import.
     record S3DataSource
         -- The URI of the Amazon S3 data source.
@@ -1986,9 +1998,11 @@ local record M
         modelName: string
         -- The data source for the model. The Amazon S3 URI in the model source must be for the Amazon-managed Amazon S3 bucket containing your model artifacts.
         modelSourceConfig: ModelDataSource
+        -- The data source for the custom model. Use this field to specify a SageMaker AI model package ARN as the source for your custom model. Amazon Bedrock resolves the model package to retrieve the model artifacts. You can specify either customModelDataSource or modelSourceConfig, but not both.
+        customModelDataSource: CustomModelDataSource
         -- The Amazon Resource Name (ARN) of the customer managed KMS key to encrypt the custom model. If you don't provide a KMS key, Amazon Bedrock uses an Amazon Web Services-managed KMS key to encrypt the model. If you provide a customer managed KMS key, your Amazon Bedrock service role must have permissions to use it. For more information see Encryption of imported models.
         modelKmsKeyArn: string
-        -- The Amazon Resource Name (ARN) of an IAM service role that Amazon Bedrock assumes to perform tasks on your behalf. This role must have permissions to access the Amazon S3 bucket containing your model artifacts and the KMS key (if specified). For more information, see Setting up an IAM service role for importing models in the Amazon Bedrock User Guide.
+        -- The Amazon Resource Name (ARN) of an IAM service role that Amazon Bedrock assumes to perform tasks on your behalf. This role must have permissions to access the Amazon S3 bucket containing your model artifacts and the KMS key (if specified). For more information, see Setting up an IAM service role for importing models in the Amazon Bedrock User Guide. This field is required when you use modelSourceConfig with an Amazon S3 data source. It is not required when you use customModelDataSource with a model package ARN, because Amazon Bedrock uses its own credentials to access the model artifacts.
         roleArn: string
         -- A list of key-value pairs to associate with the custom model resource. You can use these tags to organize and identify your resources. For more information, see Tagging resources in the Amazon Bedrock User Guide.
         modelTags: {Tag}

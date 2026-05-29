@@ -23,6 +23,12 @@ M.BatchGetProfileErrorList = schema.new({ type = "list", list_member = M.BatchGe
 
 M.ProfileList = schema.new({ type = "list", list_member = M.Profile })
 
+M.BatchPutProfileObjectRequestItemList = schema.new({ type = "list", list_member = M.BatchPutProfileObjectRequestItem })
+
+M.BatchPutProfileObjectResponseList = schema.new({ type = "list", list_member = M.BatchPutProfileObjectResponseItem })
+
+M.BatchPutProfileObjectErrorList = schema.new({ type = "list", list_member = M.BatchPutProfileObjectErrorItem })
+
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.EventTriggerConditions = schema.new({ type = "list", list_member = M.EventTriggerCondition })
@@ -1924,6 +1930,144 @@ M.BatchGetProfileOutput = schema.new({
             name = "Profiles",
             target_id = prelude.Document.id,
             list_member = M.Profile,
+        }),
+    },
+})
+
+M.BatchPutProfileObjectRequestItem = schema.new({
+    id = id.from(_N, "BatchPutProfileObjectRequestItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectRequestItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Object = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectRequestItem", "Object"),
+            type = "string",
+            name = "Object",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchPutProfileObjectInput = schema.new({
+    id = id.from(_N, "BatchPutProfileObjectRequest"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ObjectTypeName = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectInput", "ObjectTypeName"),
+            type = "string",
+            name = "ObjectTypeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Items = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectInput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.BatchPutProfileObjectRequestItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchPutProfileObjectErrorItem = schema.new({
+    id = id.from(_N, "BatchPutProfileObjectErrorItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectErrorItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectErrorItem", "Code"),
+            type = "integer",
+            name = "Code",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectErrorItem", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchPutProfileObjectResponseItem = schema.new({
+    id = id.from(_N, "BatchPutProfileObjectResponseItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectResponseItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileObjectUniqueKey = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectResponseItem", "ProfileObjectUniqueKey"),
+            type = "string",
+            name = "ProfileObjectUniqueKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchPutProfileObjectOutput = schema.new({
+    id = id.from(_N, "BatchPutProfileObjectResponse"),
+    type = "structure",
+    members = {
+        Successful = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectOutput", "Successful"),
+            type = "list",
+            name = "Successful",
+            target_id = prelude.Document.id,
+            list_member = M.BatchPutProfileObjectResponseItem,
+        }),
+        Failed = schema.new({
+            id = id.from(_N, "BatchPutProfileObjectOutput", "Failed"),
+            type = "list",
+            name = "Failed",
+            target_id = prelude.Document.id,
+            list_member = M.BatchPutProfileObjectErrorItem,
         }),
     },
 })
@@ -13649,6 +13793,18 @@ M.BatchGetProfile = schema.operation({
     output = M.BatchGetProfileOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/domains/{DomainName}/batch-get-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchPutProfileObject = schema.operation({
+    id = id.from("com.amazonaws.customerprofiles", "BatchPutProfileObject"),
+    input = M.BatchPutProfileObjectInput,
+    output = M.BatchPutProfileObjectOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/domains/{DomainName}/profiles/objects/batch-put-profile-object" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

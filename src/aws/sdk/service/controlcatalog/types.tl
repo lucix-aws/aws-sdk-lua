@@ -109,10 +109,23 @@ local record M
         Identifier: string
     end
 
+    enum ParameterRequirementSummary
+        "REQUIRED"
+        "OPTIONAL"
+        "NONE"
+    end
+
+    enum ControlParameterRequirement
+        "REQUIRED"
+        "OPTIONAL"
+    end
+
     -- Five types of control parameters are supported. AllowedRegions: List of Amazon Web Services Regions exempted from the control. Each string is expected to be an Amazon Web Services Region code. This parameter is mandatory for the OU Region deny control, CT.MULTISERVICE.PV.1. Example: ["us-east-1","us-west-2"] ExemptedActions: List of Amazon Web Services IAM actions exempted from the control. Each string is expected to be an IAM action. Example: ["logs:DescribeLogGroups","logs:StartQuery","logs:GetQueryResults"] ExemptedPrincipalArns: List of Amazon Web Services IAM principal ARNs exempted from the control. Each string is expected to be an IAM principal that follows the format arn:partition:service::account:resource Example: ["arn:aws:iam::*:role/ReadOnly","arn:aws:sts::*:assumed-role/ReadOnly/*"] ExemptedResourceArns: List of resource ARNs exempted from the control. Each string is expected to be a resource ARN. Example: ["arn:aws:s3:::my-bucket-name"] ExemptAssumeRoot: A parameter that lets you choose whether to exempt requests made with AssumeRoot from this control, for this OU. For member accounts, the AssumeRoot property is included in requests initiated by IAM centralized root access. This parameter applies only to the AWS-GR_RESTRICT_ROOT_USER control. If you add the parameter when enabling the control, the AssumeRoot exemption is allowed. If you omit the parameter, the AssumeRoot exception is not permitted. The parameter does not accept False as a value. Example: Enabling the control and allowing AssumeRoot { "controlIdentifier": "arn:aws:controlcatalog:::control/5kvme4m5d2b4d7if2fs5yg2ui", "parameters": [ { "key": "ExemptAssumeRoot", "value": true } ], "targetIdentifier": "arn:aws:organizations::8633900XXXXX:ou/o-6jmn81636m/ou-qsah-jtiihcla" }
     record ControlParameter
         -- The parameter name. This name is the parameter key when you call EnableControl or UpdateEnabledControl .
         Name: string
+        -- Indicates whether the parameter is required or optional when you enable the control.
+        Requirement: string
     end
 
     enum ControlScope
@@ -151,12 +164,16 @@ local record M
         RegionConfiguration: RegionConfiguration
         -- Returns information about the control, as an ImplementationDetails object that shows the underlying implementation type for a control.
         Implementation: ImplementationDetails
+        -- A summary that indicates whether the control requires parameters, accepts optional parameters, or does not support parameters. Use this field to determine whether you need to supply parameter values when you enable the control.
+        ParameterRequirementSummary: string
         -- Returns an array of ControlParameter objects that specify the parameters a control supports. An empty list is returned for controls that don’t support parameters.
         Parameters: {ControlParameter}
         -- A timestamp that notes the time when the control was released (start of its life) as a governance capability in Amazon Web Services.
         CreateTime: number
-        -- A list of Amazon Web Services resource types that are governed by this control. This information helps you understand which controls can govern certain types of resources, and conversely, which resources are affected when the control is implemented. The resources are represented as Amazon Web Services CloudFormation resource types. If GovernedResources cannot be represented by available CloudFormation resource types, it’s returned as an empty list.
+        -- A list of resource types that are governed by this control. This information helps you understand which controls can govern certain types of resources, and conversely, which resources are affected when the control is implemented. For Amazon Web Services controls, the resources are represented as CloudFormation resource types. For non-Amazon Web Services controls, the resources are represented in a provider-specific format. If GovernedResources cannot be represented by available resource types, it’s returned as an empty list.
         GovernedResources: {string}
+        -- A list of providers whose resources are governed by this control. For example, a value of AWS indicates that the control governs Amazon Web Services resources.
+        GovernedProviders: {string}
     end
 
     -- The requested resource does not exist.
@@ -176,6 +193,8 @@ local record M
     record ControlFilter
         -- A filter that narrows the results to controls with specific implementation types or identifiers. This field allows you to find controls that are implemented by specific Amazon Web Services services or with specific service identifiers.
         Implementations: ImplementationFilter
+        -- A filter that narrows the results to controls that govern a specific provider's resources.
+        GovernedProviders: {string}
     end
 
     record ListControlsInput
@@ -209,12 +228,16 @@ local record M
         Behavior: string
         -- An enumerated type, with the following possible values:
         Severity: string
+        -- A summary that indicates whether the control requires parameters, accepts optional parameters, or does not support parameters. Use this field to determine whether you need to supply parameter values when you enable the control.
+        ParameterRequirementSummary: string
         -- An object of type ImplementationSummary that describes how the control is implemented.
         Implementation: ImplementationSummary
         -- A timestamp that notes the time when the control was released (start of its life) as a governance capability in Amazon Web Services.
         CreateTime: number
-        -- A list of Amazon Web Services resource types that are governed by this control. This information helps you understand which controls can govern certain types of resources, and conversely, which resources are affected when the control is implemented. The resources are represented as Amazon Web Services CloudFormation resource types. If GovernedResources cannot be represented by available CloudFormation resource types, it’s returned as an empty list.
+        -- A list of resource types that are governed by this control. This information helps you understand which controls can govern certain types of resources, and conversely, which resources are affected when the control is implemented. For Amazon Web Services controls, the resources are represented as CloudFormation resource types. For non-Amazon Web Services controls, the resources are represented in a provider-specific format. If GovernedResources cannot be represented by available resource types, it’s returned as an empty list.
         GovernedResources: {string}
+        -- A list of providers whose resources are governed by this control. For example, a value of AWS indicates that the control governs Amazon Web Services resources.
+        GovernedProviders: {string}
     end
 
     record ListControlsOutput

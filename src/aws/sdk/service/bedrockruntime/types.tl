@@ -1147,6 +1147,7 @@ local record M
     enum ConversationRole
         "user"
         "assistant"
+        "system"
     end
 
     -- A message input, or returned from, a call to Converse or ConverseStream.

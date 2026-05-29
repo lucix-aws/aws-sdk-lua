@@ -21,6 +21,8 @@ M.ControlParameters = schema.new({ type = "list", list_member = M.ControlParamet
 
 M.GovernedResources = schema.new({ type = "list", list_member = prelude.String })
 
+M.GovernedProviders = schema.new({ type = "list", list_member = prelude.String })
+
 M.DomainSummaryList = schema.new({ type = "list", list_member = M.DomainSummary })
 
 M.ObjectiveSummaryList = schema.new({ type = "list", list_member = M.ObjectiveSummary })
@@ -32,6 +34,8 @@ M.CommonControlArnFilterList = schema.new({ type = "list", list_member = prelude
 M.MappingTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ObjectiveResourceFilterList = schema.new({ type = "list", list_member = M.ObjectiveResourceFilter })
+
+M.GovernedProviderFilterList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DeployableRegions = schema.new({ type = "list", list_member = prelude.String })
 
@@ -364,6 +368,12 @@ M.ControlParameter = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        Requirement = schema.new({
+            id = id.from(_N, "ControlParameter", "Requirement"),
+            type = "string",
+            name = "Requirement",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -460,6 +470,12 @@ M.GetControlOutput = schema.new({
             target_id = id.from(_N, "ImplementationDetails"),
             target = M.ImplementationDetails,
         }),
+        ParameterRequirementSummary = schema.new({
+            id = id.from(_N, "GetControlOutput", "ParameterRequirementSummary"),
+            type = "string",
+            name = "ParameterRequirementSummary",
+            target_id = prelude.String.id,
+        }),
         Parameters = schema.new({
             id = id.from(_N, "GetControlOutput", "Parameters"),
             type = "list",
@@ -477,6 +493,13 @@ M.GetControlOutput = schema.new({
             id = id.from(_N, "GetControlOutput", "GovernedResources"),
             type = "list",
             name = "GovernedResources",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        GovernedProviders = schema.new({
+            id = id.from(_N, "GetControlOutput", "GovernedProviders"),
+            type = "list",
+            name = "GovernedProviders",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -530,6 +553,13 @@ M.ControlFilter = schema.new({
             name = "Implementations",
             target_id = id.from(_N, "ImplementationFilter"),
             target = M.ImplementationFilter,
+        }),
+        GovernedProviders = schema.new({
+            id = id.from(_N, "ControlFilter", "GovernedProviders"),
+            type = "list",
+            name = "GovernedProviders",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -638,6 +668,12 @@ M.ControlSummary = schema.new({
             name = "Severity",
             target_id = prelude.String.id,
         }),
+        ParameterRequirementSummary = schema.new({
+            id = id.from(_N, "ControlSummary", "ParameterRequirementSummary"),
+            type = "string",
+            name = "ParameterRequirementSummary",
+            target_id = prelude.String.id,
+        }),
         Implementation = schema.new({
             id = id.from(_N, "ControlSummary", "Implementation"),
             type = "structure",
@@ -655,6 +691,13 @@ M.ControlSummary = schema.new({
             id = id.from(_N, "ControlSummary", "GovernedResources"),
             type = "list",
             name = "GovernedResources",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        GovernedProviders = schema.new({
+            id = id.from(_N, "ControlSummary", "GovernedProviders"),
+            type = "list",
+            name = "GovernedProviders",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),

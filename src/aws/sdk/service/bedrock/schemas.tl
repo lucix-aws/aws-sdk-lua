@@ -6466,6 +6466,36 @@ M.UpdateCustomModelDeploymentOutput = schema.new({
     },
 })
 
+M.ModelPackageArnDataSource = schema.new({
+    id = id.from(_N, "ModelPackageArnDataSource"),
+    type = "structure",
+    members = {
+        modelPackageArn = schema.new({
+            id = id.from(_N, "ModelPackageArnDataSource", "modelPackageArn"),
+            type = "string",
+            name = "modelPackageArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomModelDataSource = schema.new({
+    id = id.from(_N, "CustomModelDataSource"),
+    type = "union",
+    members = {
+        modelPackageArnDataSource = schema.new({
+            id = id.from(_N, "CustomModelDataSource", "modelPackageArnDataSource"),
+            type = "structure",
+            name = "modelPackageArnDataSource",
+            target_id = id.from(_N, "ModelPackageArnDataSource"),
+            target = M.ModelPackageArnDataSource,
+        }),
+    },
+})
+
 M.S3DataSource = schema.new({
     id = id.from(_N, "S3DataSource"),
     type = "structure",
@@ -6515,9 +6545,13 @@ M.CreateCustomModelInput = schema.new({
             name = "modelSourceConfig",
             target_id = id.from(_N, "ModelDataSource"),
             target = M.ModelDataSource,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        customModelDataSource = schema.new({
+            id = id.from(_N, "CreateCustomModelInput", "customModelDataSource"),
+            type = "union",
+            name = "customModelDataSource",
+            target_id = id.from(_N, "CustomModelDataSource"),
+            target = M.CustomModelDataSource,
         }),
         modelKmsKeyArn = schema.new({
             id = id.from(_N, "CreateCustomModelInput", "modelKmsKeyArn"),

@@ -263,6 +263,8 @@ local record M
         maxBatchSizeBytes: number
         -- Whether to allow batching messages from different MQTT topics into a single HTTP request.
         -- By default, only messages from the same topic are batched together. The default value is false.
+        -- When batchAcrossTopics is enabled, the error payload format changes: the topic field moves from the top level to inside each entry in the payloadsWithMetadata array, since each message in the batch may originate from a different topic.
+        -- Messages are always batched within the scope of the same account, rule name, target HTTP endpoint URL, and billing group. Messages that differ in any of these attributes are never combined into the same batch, regardless of the batchAcrossTopics setting.
         batchAcrossTopics: boolean
     end
 
@@ -5719,6 +5721,16 @@ local record M
         "VIOLATIONS"
     end
 
+    enum FleetIndexingApi
+        "GET_THING_CONNECTIVITY_DATA"
+    end
+
+    -- Provides connectivity filter selections for the fleet indexing configuration.
+    record ConnectivityFilter
+        -- A list of fleet indexing APIs for which to enable socket information retrieval. Currently, the only supported value is GET_THING_CONNECTIVITY_DATA.
+        includeSocketInformation: {string}
+    end
+
     enum TargetFieldOrder
         "LatLon"
         "LonLat"
@@ -5757,6 +5769,8 @@ local record M
         -- geolocation targets for indexing is 1. To increase the limit, see Amazon Web Services IoT Device
         -- Management Quotas in the Amazon Web Services General Reference.
         geoLocations: {GeoLocationTarget}
+        -- Provides additional connectivity filter selections for the fleet indexing configuration.
+        connectivity: ConnectivityFilter
     end
 
     enum NamedShadowIndexingMode
@@ -6121,6 +6135,8 @@ local record M
     record GetThingConnectivityDataInput
         -- The name of your IoT thing.
         thingName: string
+        -- Specifies if socket information (sourcePort, targetPort, sourceIp, targetIp, vpcEndpointId) should be included in the GetThingConnectivityData response. Set to true to include socket information. Set to false to omit socket information. By default, this is set to false.
+        includeSocketInformation: boolean
     end
 
     enum DisconnectReasonValue
@@ -6133,6 +6149,7 @@ local record M
         "MQTT_KEEP_ALIVE_TIMEOUT"
         "SERVER_ERROR"
         "SERVER_INITIATED_DISCONNECT"
+        "API_INITIATED_DISCONNECT"
         "THROTTLED"
         "WEBSOCKET_TTL_EXPIRATION"
         "CUSTOMAUTH_TTL_EXPIRATION"
@@ -6145,10 +6162,28 @@ local record M
         thingName: string
         -- A Boolean that indicates the connectivity status.
         connected: boolean
-        -- The timestamp of when the event occurred.
+        -- The timestamp of when the event occurred. When you enable or update the indexing configuration, this value might be the Unix epoch time (0) for devices that have never connected or have been disconnected for more than an hour.
         timestamp: number
-        -- The reason why the client is disconnecting.
+        -- The reason why the client is disconnecting. When you enable or update the indexing configuration, this value might be UNKNOWN for devices that have never connected or have been disconnected for more than an hour.
         disconnectReason: string
+        -- The IP address of the client that initiated the connection.
+        sourceIp: string
+        -- The client's source port.
+        sourcePort: number
+        -- The IP address of the Amazon Web Services IoT Core endpoint that the client connected to.
+        targetIp: string
+        -- The port number of the Amazon Web Services IoT Core endpoint that the client connected to.
+        targetPort: number
+        -- The ID of the VPC endpoint. Present for clients connected to Amazon Web Services IoT Core via a VPC endpoint.
+        vpcEndpointId: string
+        -- The keep-alive interval in seconds that the client specified when establishing the connection.
+        keepAliveDuration: number
+        -- Indicates whether the client is using a clean session. Returns true for clean sessions.
+        cleanSession: boolean
+        -- The session expiry interval in seconds for the MQTT client connection. This value indicates how long the session will remain active after the client disconnects.
+        sessionExpiry: number
+        -- The unique identifier of the MQTT client.
+        clientId: string
     end
 
     -- The input for the GetTopicRule operation.
@@ -8384,10 +8419,18 @@ local record M
         -- connected.
         connected: boolean
         -- The epoch time (in milliseconds) when the thing last connected or disconnected. If the
-        -- thing has been disconnected for approximately an hour, the time value might be missing.
+        -- thing has been disconnected for approximately an hour, the time value might be missing. When you enable or update the indexing configuration, this value might be 0 (the Unix epoch time) for devices that have never connected or have been disconnected for more than an hour.
         timestamp: number
-        -- The reason why the client is disconnected. If the thing has been disconnected for approximately an hour, the disconnectReason value might be missing.
+        -- The reason why the client is disconnected. When you enable or update the indexing configuration, this value might be missing for devices that have never connected or have been disconnected for more than an hour.
         disconnectReason: string
+        -- The keep-alive interval in seconds that the client specified when establishing the connection.
+        keepAliveDuration: number
+        -- Indicates whether the client is using a clean session. Returns true for clean sessions.
+        cleanSession: boolean
+        -- The session expiry interval in seconds for the MQTT client connection. This value indicates how long the session will remain active after the client disconnects.
+        sessionExpiry: number
+        -- The unique identifier of the MQTT client.
+        clientId: string
     end
 
     -- The thing search index document.

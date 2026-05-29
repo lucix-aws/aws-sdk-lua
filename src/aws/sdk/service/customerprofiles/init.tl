@@ -21,6 +21,7 @@ local record Client
     addProfileKey: function(Client, types.AddProfileKeyInput, ? base_client.InvokeOptions): async.Operation<types.AddProfileKeyOutput>
     batchGetCalculatedAttributeForProfile: function(Client, types.BatchGetCalculatedAttributeForProfileInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCalculatedAttributeForProfileOutput>
     batchGetProfile: function(Client, types.BatchGetProfileInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetProfileOutput>
+    batchPutProfileObject: function(Client, types.BatchPutProfileObjectInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutProfileObjectOutput>
     createCalculatedAttributeDefinition: function(Client, types.CreateCalculatedAttributeDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateCalculatedAttributeDefinitionOutput>
     createDomain: function(Client, types.CreateDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainOutput>
     createDomainLayout: function(Client, types.CreateDomainLayoutInput, ? base_client.InvokeOptions): async.Operation<types.CreateDomainLayoutOutput>
@@ -178,6 +179,10 @@ end
 
 function C:batchGetProfile(input: types.BatchGetProfileInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetProfileOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetProfile as schema.OperationSchema, input, options) as async.Operation<types.BatchGetProfileOutput>
+end
+
+function C:batchPutProfileObject(input: types.BatchPutProfileObjectInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutProfileObjectOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutProfileObject as schema.OperationSchema, input, options) as async.Operation<types.BatchPutProfileObjectOutput>
 end
 
 function C:createCalculatedAttributeDefinition(input: types.CreateCalculatedAttributeDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCalculatedAttributeDefinitionOutput>

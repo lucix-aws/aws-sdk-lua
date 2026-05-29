@@ -76,6 +76,8 @@ local record M
 
     -- Additional options related to the Slurm scheduler.
     record ComputeNodeGroupSlurmConfigurationRequest
+        -- The time (in seconds) before an idle node is scaled down. If not specified, the cluster-level setting applies. This overrides the cluster-level scaleDownIdleTimeInSeconds setting. A value of -1 removes the override and applies the cluster-level setting to this compute node group. Requires Slurm version 25.11 or later.
+        scaleDownIdleTimeInSeconds: number
         -- Additional Slurm-specific configuration that directly maps to Slurm settings.
         slurmCustomSettings: {SlurmCustomSetting}
     end
@@ -137,6 +139,8 @@ local record M
 
     -- Additional options related to the Slurm scheduler.
     record ComputeNodeGroupSlurmConfiguration
+        -- The time (in seconds) before an idle node is scaled down. If not specified, the cluster-level setting applies. This overrides the cluster-level scaleDownIdleTimeInSeconds setting. A value of -1 removes the override and applies the cluster-level setting to this compute node group. Requires Slurm version 25.11 or later.
+        scaleDownIdleTimeInSeconds: number
         -- Additional Slurm-specific configuration that directly maps to Slurm settings.
         slurmCustomSettings: {SlurmCustomSetting}
     end
@@ -310,6 +314,8 @@ local record M
 
     -- Additional options related to the Slurm scheduler.
     record UpdateComputeNodeGroupSlurmConfigurationRequest
+        -- The time (in seconds) before an idle node is scaled down. If not specified, the cluster-level setting applies. This overrides the cluster-level scaleDownIdleTimeInSeconds setting. A value of -1 removes the override and applies the cluster-level setting to this compute node group. Requires Slurm version 25.11 or later.
+        scaleDownIdleTimeInSeconds: number
         -- Additional Slurm-specific configuration that directly maps to Slurm settings.
         slurmCustomSettings: {SlurmCustomSetting}
     end

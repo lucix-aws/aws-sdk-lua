@@ -508,6 +508,24 @@ function M.items_list_tasks(client, input)
     })
 end
 
+--- Returns a page iterator for listVolumes.
+function M.pages_list_volumes(client, input)
+    return paginator.pages(client, "listVolumes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "volumes",
+    })
+end
+
+--- Returns an item iterator for listVolumes.
+function M.items_list_volumes(client, input)
+    return paginator.items(client, "listVolumes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "volumes",
+    })
+end
+
 --- Returns a page iterator for listWorkers.
 function M.pages_list_workers(client, input)
     return paginator.pages(client, "listWorkers", input, {

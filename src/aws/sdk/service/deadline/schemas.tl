@@ -131,6 +131,8 @@ M.QueueEnvironmentSummaries = schema.new({ type = "list", list_member = M.QueueE
 
 M.QueueMemberList = schema.new({ type = "list", list_member = M.QueueMember })
 
+M.VolumeSummaries = schema.new({ type = "list", list_member = M.VolumeSummary })
+
 M.WorkerSummaries = schema.new({ type = "list", list_member = M.WorkerSummary })
 
 M.JobEntityIdentifiers = schema.new({ type = "list", list_member = M.JobEntityIdentifiersUnion })
@@ -6185,6 +6187,58 @@ M.ServiceManagedEc2InstanceMarketOptions = schema.new({
     },
 })
 
+M.PersistentVolumeConfiguration = schema.new({
+    id = id.from(_N, "PersistentVolumeConfiguration"),
+    type = "structure",
+    members = {
+        sizeGiB = schema.new({
+            id = id.from(_N, "PersistentVolumeConfiguration", "sizeGiB"),
+            type = "integer",
+            name = "sizeGiB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 250 },
+            },
+        }),
+        iops = schema.new({
+            id = id.from(_N, "PersistentVolumeConfiguration", "iops"),
+            type = "integer",
+            name = "iops",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 3000 },
+            },
+        }),
+        throughputMiB = schema.new({
+            id = id.from(_N, "PersistentVolumeConfiguration", "throughputMiB"),
+            type = "integer",
+            name = "throughputMiB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 125 },
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "PersistentVolumeConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUsedTtlHours = schema.new({
+            id = id.from(_N, "PersistentVolumeConfiguration", "lastUsedTtlHours"),
+            type = "integer",
+            name = "lastUsedTtlHours",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 168 },
+            },
+        }),
+    },
+})
+
 M.VpcConfiguration = schema.new({
     id = id.from(_N, "VpcConfiguration"),
     type = "structure",
@@ -6235,6 +6289,13 @@ M.ServiceManagedEc2FleetConfiguration = schema.new({
             type = "string",
             name = "storageProfileId",
             target_id = prelude.String.id,
+        }),
+        persistentVolumeConfiguration = schema.new({
+            id = id.from(_N, "ServiceManagedEc2FleetConfiguration", "persistentVolumeConfiguration"),
+            type = "structure",
+            name = "persistentVolumeConfiguration",
+            target_id = id.from(_N, "PersistentVolumeConfiguration"),
+            target = M.PersistentVolumeConfiguration,
         }),
         autoScalingConfiguration = schema.new({
             id = id.from(_N, "ServiceManagedEc2FleetConfiguration", "autoScalingConfiguration"),
@@ -8390,6 +8451,349 @@ M.UpdateFleetInput = schema.new({
 M.UpdateFleetOutput = schema.new({
     id = id.from(_N, "UpdateFleetResponse"),
     type = "structure",
+})
+
+M.DeleteVolumeInput = schema.new({
+    id = id.from(_N, "DeleteVolumeRequest"),
+    type = "structure",
+    members = {
+        farmId = schema.new({
+            id = id.from(_N, "DeleteVolumeInput", "farmId"),
+            type = "string",
+            name = "farmId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        fleetId = schema.new({
+            id = id.from(_N, "DeleteVolumeInput", "fleetId"),
+            type = "string",
+            name = "fleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        volumeId = schema.new({
+            id = id.from(_N, "DeleteVolumeInput", "volumeId"),
+            type = "string",
+            name = "volumeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteVolumeOutput = schema.new({
+    id = id.from(_N, "DeleteVolumeResponse"),
+    type = "structure",
+})
+
+M.GetVolumeInput = schema.new({
+    id = id.from(_N, "GetVolumeRequest"),
+    type = "structure",
+    members = {
+        farmId = schema.new({
+            id = id.from(_N, "GetVolumeInput", "farmId"),
+            type = "string",
+            name = "farmId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        fleetId = schema.new({
+            id = id.from(_N, "GetVolumeInput", "fleetId"),
+            type = "string",
+            name = "fleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        volumeId = schema.new({
+            id = id.from(_N, "GetVolumeInput", "volumeId"),
+            type = "string",
+            name = "volumeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetVolumeOutput = schema.new({
+    id = id.from(_N, "GetVolumeResponse"),
+    type = "structure",
+    members = {
+        volumeId = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "volumeId"),
+            type = "string",
+            name = "volumeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        farmId = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "farmId"),
+            type = "string",
+            name = "farmId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fleetId = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "fleetId"),
+            type = "string",
+            name = "fleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sizeGiB = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "sizeGiB"),
+            type = "integer",
+            name = "sizeGiB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attachedWorkerId = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "attachedWorkerId"),
+            type = "string",
+            name = "attachedWorkerId",
+            target_id = prelude.String.id,
+        }),
+        volumeType = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "volumeType"),
+            type = "string",
+            name = "volumeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        iops = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "iops"),
+            type = "integer",
+            name = "iops",
+            target_id = prelude.Integer.id,
+        }),
+        throughputMiB = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "throughputMiB"),
+            type = "integer",
+            name = "throughputMiB",
+            target_id = prelude.Integer.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastAssignedAt = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "lastAssignedAt"),
+            type = "timestamp",
+            name = "lastAssignedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        lastReleasedAt = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "lastReleasedAt"),
+            type = "timestamp",
+            name = "lastReleasedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        expiresAt = schema.new({
+            id = id.from(_N, "GetVolumeOutput", "expiresAt"),
+            type = "timestamp",
+            name = "expiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ListVolumesInput = schema.new({
+    id = id.from(_N, "ListVolumesRequest"),
+    type = "structure",
+    members = {
+        farmId = schema.new({
+            id = id.from(_N, "ListVolumesInput", "farmId"),
+            type = "string",
+            name = "farmId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        fleetId = schema.new({
+            id = id.from(_N, "ListVolumesInput", "fleetId"),
+            type = "string",
+            name = "fleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListVolumesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListVolumesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.VolumeSummary = schema.new({
+    id = id.from(_N, "VolumeSummary"),
+    type = "structure",
+    members = {
+        volumeId = schema.new({
+            id = id.from(_N, "VolumeSummary", "volumeId"),
+            type = "string",
+            name = "volumeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        farmId = schema.new({
+            id = id.from(_N, "VolumeSummary", "farmId"),
+            type = "string",
+            name = "farmId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fleetId = schema.new({
+            id = id.from(_N, "VolumeSummary", "fleetId"),
+            type = "string",
+            name = "fleetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        state = schema.new({
+            id = id.from(_N, "VolumeSummary", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sizeGiB = schema.new({
+            id = id.from(_N, "VolumeSummary", "sizeGiB"),
+            type = "integer",
+            name = "sizeGiB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "VolumeSummary", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attachedWorkerId = schema.new({
+            id = id.from(_N, "VolumeSummary", "attachedWorkerId"),
+            type = "string",
+            name = "attachedWorkerId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListVolumesOutput = schema.new({
+    id = id.from(_N, "ListVolumesResponse"),
+    type = "structure",
+    members = {
+        volumes = schema.new({
+            id = id.from(_N, "ListVolumesOutput", "volumes"),
+            type = "list",
+            name = "volumes",
+            target_id = prelude.Document.id,
+            list_member = M.VolumeSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListVolumesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.DeleteWorkerInput = schema.new({
@@ -17662,6 +18066,18 @@ M.DeleteStorageProfile = schema.operation({
     },
 })
 
+M.DeleteVolume = schema.operation({
+    id = id.from("com.amazonaws.deadline", "DeleteVolume"),
+    input = M.DeleteVolumeInput,
+    output = M.DeleteVolumeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/volumes/{volumeId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteWorker = schema.operation({
     id = id.from("com.amazonaws.deadline", "DeleteWorker"),
     input = M.DeleteWorkerInput,
@@ -17944,6 +18360,18 @@ M.GetTask = schema.operation({
     output = M.GetTaskOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks/{taskId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetVolume = schema.operation({
+    id = id.from("com.amazonaws.deadline", "GetVolume"),
+    input = M.GetVolumeInput,
+    output = M.GetVolumeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/volumes/{volumeId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -18292,6 +18720,18 @@ M.ListTasks = schema.operation({
     output = M.ListTasksOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/queues/{queueId}/jobs/{jobId}/steps/{stepId}/tasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVolumes = schema.operation({
+    id = id.from("com.amazonaws.deadline", "ListVolumes"),
+    input = M.ListVolumesInput,
+    output = M.ListVolumesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/2023-10-12/farms/{farmId}/fleets/{fleetId}/volumes" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

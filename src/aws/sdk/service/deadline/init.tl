@@ -62,6 +62,7 @@ local record Client
     deleteQueueFleetAssociation: function(Client, types.DeleteQueueFleetAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueueFleetAssociationOutput>
     deleteQueueLimitAssociation: function(Client, types.DeleteQueueLimitAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQueueLimitAssociationOutput>
     deleteStorageProfile: function(Client, types.DeleteStorageProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStorageProfileOutput>
+    deleteVolume: function(Client, types.DeleteVolumeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
     deleteWorker: function(Client, types.DeleteWorkerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkerOutput>
     disassociateMemberFromFarm: function(Client, types.DisassociateMemberFromFarmInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMemberFromFarmOutput>
     disassociateMemberFromFleet: function(Client, types.DisassociateMemberFromFleetInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMemberFromFleetOutput>
@@ -86,6 +87,7 @@ local record Client
     getStorageProfile: function(Client, types.GetStorageProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageProfileOutput>
     getStorageProfileForQueue: function(Client, types.GetStorageProfileForQueueInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageProfileForQueueOutput>
     getTask: function(Client, types.GetTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetTaskOutput>
+    getVolume: function(Client, types.GetVolumeInput, ? base_client.InvokeOptions): async.Operation<types.GetVolumeOutput>
     getWorker: function(Client, types.GetWorkerInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkerOutput>
     listAvailableMeteredProducts: function(Client, types.ListAvailableMeteredProductsInput, ? base_client.InvokeOptions): async.Operation<types.ListAvailableMeteredProductsOutput>
     listBudgets: function(Client, types.ListBudgetsInput, ? base_client.InvokeOptions): async.Operation<types.ListBudgetsOutput>
@@ -115,6 +117,7 @@ local record Client
     listStorageProfilesForQueue: function(Client, types.ListStorageProfilesForQueueInput, ? base_client.InvokeOptions): async.Operation<types.ListStorageProfilesForQueueOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listTasks: function(Client, types.ListTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
+    listVolumes: function(Client, types.ListVolumesInput, ? base_client.InvokeOptions): async.Operation<types.ListVolumesOutput>
     listWorkers: function(Client, types.ListWorkersInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkersOutput>
     putMeteredProduct: function(Client, types.PutMeteredProductInput, ? base_client.InvokeOptions): async.Operation<types.PutMeteredProductOutput>
     searchJobs: function(Client, types.SearchJobsInput, ? base_client.InvokeOptions): async.Operation<types.SearchJobsOutput>
@@ -361,6 +364,10 @@ function C:deleteStorageProfile(input: types.DeleteStorageProfileInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteStorageProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteStorageProfileOutput>
 end
 
+function C:deleteVolume(input: types.DeleteVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVolume as schema.OperationSchema, input, options) as async.Operation<types.DeleteVolumeOutput>
+end
+
 function C:deleteWorker(input: types.DeleteWorkerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorker as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkerOutput>
 end
@@ -455,6 +462,10 @@ end
 
 function C:getTask(input: types.GetTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetTaskOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTask as schema.OperationSchema, input, options) as async.Operation<types.GetTaskOutput>
+end
+
+function C:getVolume(input: types.GetVolumeInput, options?: base_client.InvokeOptions): async.Operation<types.GetVolumeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVolume as schema.OperationSchema, input, options) as async.Operation<types.GetVolumeOutput>
 end
 
 function C:getWorker(input: types.GetWorkerInput, options?: base_client.InvokeOptions): async.Operation<types.GetWorkerOutput>
@@ -571,6 +582,10 @@ end
 
 function C:listTasks(input: types.ListTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTasks as schema.OperationSchema, input, options) as async.Operation<types.ListTasksOutput>
+end
+
+function C:listVolumes(input: types.ListVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVolumesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVolumes as schema.OperationSchema, input, options) as async.Operation<types.ListVolumesOutput>
 end
 
 function C:listWorkers(input: types.ListWorkersInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkersOutput>

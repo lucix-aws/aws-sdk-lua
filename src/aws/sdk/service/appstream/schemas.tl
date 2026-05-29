@@ -3212,18 +3212,18 @@ M.CreateImportedImageInput = schema.new({
             type = "string",
             name = "SourceAmiId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        WorkspaceImageId = schema.new({
+            id = id.from(_N, "CreateImportedImageInput", "WorkspaceImageId"),
+            type = "string",
+            name = "WorkspaceImageId",
+            target_id = prelude.String.id,
         }),
         IamRoleArn = schema.new({
             id = id.from(_N, "CreateImportedImageInput", "IamRoleArn"),
             type = "string",
             name = "IamRoleArn",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         Description = schema.new({
             id = id.from(_N, "CreateImportedImageInput", "Description"),

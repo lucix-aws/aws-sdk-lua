@@ -22,4 +22,22 @@ function M.items_list_retained_messages(client, input)
     })
 end
 
+--- Returns a page iterator for listSubscriptions.
+function M.pages_list_subscriptions(client, input)
+    return paginator.pages(client, "listSubscriptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscriptions",
+    })
+end
+
+--- Returns an item iterator for listSubscriptions.
+function M.items_list_subscriptions(client, input)
+    return paginator.items(client, "listSubscriptions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "subscriptions",
+    })
+end
+
 return M

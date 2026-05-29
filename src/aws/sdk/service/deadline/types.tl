@@ -2035,6 +2035,20 @@ local record M
     record ServiceManagedEc2InstanceMarketOptions
     end
 
+    -- Specifies the persistent EBS volume configuration for workers in a service managed fleet.
+    record PersistentVolumeConfiguration
+        -- The persistent volume size in GiB. The default is 250.
+        sizeGiB: number
+        -- The IOPS per persistent volume. The default is 3000.
+        iops: number
+        -- The throughput per persistent volume in MiB. The default is 125.
+        throughputMiB: number
+        -- The file system path where the persistent volume is mounted on the worker instance.
+        mountPath: string
+        -- The number of hours a persistent volume can remain unused before it is deleted. The default is 168 (7 days).
+        lastUsedTtlHours: number
+    end
+
     -- The configuration options for a service managed fleet's VPC.
     record VpcConfiguration
         -- The ARNs of the VPC Lattice resource configurations attached to the fleet.
@@ -2051,6 +2065,8 @@ local record M
         vpcConfiguration: VpcConfiguration
         -- The storage profile ID for the service managed EC2 fleet.
         storageProfileId: string
+        -- The persistent volume configuration for the service managed EC2 fleet.
+        persistentVolumeConfiguration: PersistentVolumeConfiguration
         -- The auto scaling configuration settings for the service managed EC2 fleet.
         autoScalingConfiguration: ServiceManagedEc2AutoScalingConfiguration
     end
@@ -2199,7 +2215,7 @@ local record M
         displayName: string
         -- The Amazon Resource Name of the IAM Identity Center instance that authenticates monitor users.
         identityCenterInstanceArn: string
-        -- The AWS Region where IAM Identity Center is enabled. Required when IAM Identity Center is in a different Region than the monitor.
+        -- The Region where IAM Identity Center is enabled. Required when IAM Identity Center is in a different Region than the monitor.
         identityCenterRegion: string
         -- The subdomain to use when creating the monitor URL. The full URL of the monitor is subdomain.Region.deadlinecloud.amazonaws.com.
         subdomain: string
@@ -2715,6 +2731,110 @@ local record M
     end
 
     record UpdateFleetOutput
+    end
+
+    record DeleteVolumeInput
+        -- The farm ID of the farm that contains the fleet.
+        farmId: string
+        -- The fleet ID of the fleet that contains the volume.
+        fleetId: string
+        -- The volume ID of the volume to delete.
+        volumeId: string
+    end
+
+    record DeleteVolumeOutput
+    end
+
+    record GetVolumeInput
+        -- The farm ID of the farm that contains the fleet.
+        farmId: string
+        -- The fleet ID of the fleet that contains the volume.
+        fleetId: string
+        -- The volume ID of the volume to retrieve.
+        volumeId: string
+    end
+
+    enum VolumeState
+        "PENDING_CREATION"
+        "PENDING_ATTACHMENT"
+        "IN_USE"
+        "AVAILABLE"
+        "PENDING_DELETION"
+    end
+
+    enum EbsVolumeType
+        "gp3"
+    end
+
+    -- Mixin that adds an optional ARN field to response structures.
+    -- Apply to SummaryMixins (flows into Get, Summary, and BatchGet) and Create outputs.
+    record GetVolumeOutput
+        -- The volume ID.
+        volumeId: string
+        -- The farm ID of the farm that contains the fleet.
+        farmId: string
+        -- The fleet ID of the fleet that contains the volume.
+        fleetId: string
+        -- The state of the volume.
+        state: string
+        -- The volume size in GiB.
+        sizeGiB: number
+        -- The Availability Zone ID of the volume.
+        availabilityZoneId: string
+        -- The worker ID of the worker the volume is attached to.
+        attachedWorkerId: string
+        -- The EBS volume type.
+        volumeType: string
+        -- The IOPS of the volume.
+        iops: number
+        -- The throughput of the volume in MiB.
+        throughputMiB: number
+        -- The date and time the resource was created.
+        createdAt: number
+        -- The date and time the volume was last assigned to a worker.
+        lastAssignedAt: number
+        -- The date and time the volume was last released from a worker.
+        lastReleasedAt: number
+        -- The date and time the volume expires and will be deleted.
+        expiresAt: number
+    end
+
+    -- Shared pagination fields for List operation inputs (nextToken + maxResults).
+    record ListVolumesInput
+        -- The farm ID of the farm that contains the fleet.
+        farmId: string
+        -- The fleet ID of the fleet that contains the volumes.
+        fleetId: string
+        -- The token for the next set of results, or null to start from the beginning.
+        nextToken: string
+        -- The maximum number of results to return. Use this parameter with NextToken to get results as a set of sequential pages.
+        maxResults: number
+    end
+
+    -- The summary of a persistent volume.
+    record VolumeSummary
+        -- The volume ID.
+        volumeId: string
+        -- The farm ID of the farm that contains the fleet.
+        farmId: string
+        -- The fleet ID of the fleet that contains the volume.
+        fleetId: string
+        -- The state of the volume.
+        state: string
+        -- The volume size in GiB.
+        sizeGiB: number
+        -- The Availability Zone ID of the volume.
+        availabilityZoneId: string
+        -- The worker ID of the worker the volume is attached to.
+        attachedWorkerId: string
+    end
+
+    -- Shared pagination field for List operation outputs (nextToken).
+    record ListVolumesOutput
+        -- The volumes on the list.
+        volumes: {VolumeSummary}
+        -- If Deadline Cloud returns nextToken, then there are more results available. The value of nextToken is a unique pagination token for each page. To retrieve the next page, call the operation again using the returned token. Keep all other arguments unchanged. If no results remain, then nextToken is set to null. Each pagination token expires after 24 hours. If you provide a token that isn't valid, then you receive an HTTP 400 ValidationException error.
+        nextToken: string
     end
 
     record DeleteWorkerInput
@@ -4712,7 +4832,7 @@ local record M
         roleArn: string
         -- The Amazon Resource Name of the IAM Identity Center instance responsible for authenticating monitor users.
         identityCenterInstanceArn: string
-        -- The AWS Region where IAM Identity Center is enabled.
+        -- The Region where IAM Identity Center is enabled.
         identityCenterRegion: string
         -- The Amazon Resource Name that the IAM Identity Center assigned to the monitor when it was created.
         identityCenterApplicationArn: string
@@ -4758,7 +4878,7 @@ local record M
         roleArn: string
         -- The Amazon Resource Name of the IAM Identity Center instance responsible for authenticating monitor users.
         identityCenterInstanceArn: string
-        -- The AWS Region where IAM Identity Center is enabled.
+        -- The Region where IAM Identity Center is enabled.
         identityCenterRegion: string
         -- The Amazon Resource Name that the IAM Identity Center assigned to the monitor when it was created.
         identityCenterApplicationArn: string

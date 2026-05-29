@@ -1323,6 +1323,7 @@ local record M
 
     -- A reference input containing ground truth data for evaluation, scoped to a specific context level (session or trace) through its span context.
     record EvaluationReferenceInput
+        -- The span context that identifies which session or trace this reference input applies to, used for correlating ground truth with agent output.
         context: Context
         -- The expected response for trace-level evaluation. Built-in evaluators that support this field compare the agent's actual response against this value for assessment. Custom evaluators can access it through the {expected_response} placeholder in their instructions.
         expectedResponse: EvaluationContent
@@ -1471,7 +1472,7 @@ local record M
 
     -- Configuration for the data source used in evaluation.
     record DataSourceConfig
-        -- Pull session spans from CloudWatch
+        -- Configuration for pulling agent session traces from CloudWatch Logs.
         cloudWatchLogs: CloudWatchLogsSource
     end
 
@@ -1841,7 +1842,7 @@ local record M
     record InlineGroundTruth
         -- Assertions for evaluation, reuses common model EvaluationContentList.
         assertions: {EvaluationContent}
-        -- expectedTrajectory for evaluation, reuses common model EvaluationExpectedTrajectory
+        -- The expected tool call sequence for trajectory evaluation.
         expectedTrajectory: EvaluationExpectedTrajectory
         -- A list of per-turn ground truth data, each containing an input prompt and expected response.
         turns: {GroundTruthTurn}
@@ -1849,7 +1850,7 @@ local record M
 
     -- Where to pull ground truth from.
     record GroundTruthSource
-        -- Provide ground truth inline
+        -- Inline ground truth data provided directly in the request.
         inline: InlineGroundTruth
     end
 
@@ -2414,6 +2415,12 @@ local record M
         content: {HarnessContentBlock}
     end
 
+    enum HarnessBedrockApiFormat
+        "converse_stream"
+        "responses"
+        "chat_completions"
+    end
+
     -- Configuration for an Amazon Bedrock model provider.
     record HarnessBedrockModelConfig
         -- The Bedrock model ID.
@@ -2424,6 +2431,10 @@ local record M
         temperature: number
         -- The topP set when calling the model.
         topP: number
+        -- The API format to use when calling the Bedrock provider.
+        apiFormat: string
+        -- Provider-specific parameters passed through to the model provider unchanged.
+        additionalParams: any
     end
 
     -- Configuration for a Google Gemini model provider. Requires an API key stored in AgentCore Identity.
@@ -2442,6 +2453,29 @@ local record M
         topK: number
     end
 
+    -- Configuration for a LiteLLM model provider, enabling connection to third-party model providers.
+    record HarnessLiteLlmModelConfig
+        -- The LiteLLM model identifier (e.g., "anthropic/claude-3-sonnet").
+        modelId: string
+        -- The ARN of the API key in AgentCore Identity for authenticating with the model provider.
+        apiKeyArn: string
+        -- The base URL for the model provider's API endpoint.
+        apiBase: string
+        -- The maximum number of tokens to allow in the generated response per iteration.
+        maxTokens: number
+        -- The temperature to set when calling the model.
+        temperature: number
+        -- The topP set when calling the model.
+        topP: number
+        -- Provider-specific parameters passed through to the model provider unchanged.
+        additionalParams: any
+    end
+
+    enum HarnessOpenAiApiFormat
+        "chat_completions"
+        "responses"
+    end
+
     -- Configuration for an OpenAI model provider. Requires an API key stored in AgentCore Identity.
     record HarnessOpenAiModelConfig
         -- The OpenAI model ID.
@@ -2454,6 +2488,10 @@ local record M
         temperature: number
         -- The topP set when calling the model.
         topP: number
+        -- The API format to use when calling the OpenAI provider.
+        apiFormat: string
+        -- Provider-specific parameters passed through to the model provider unchanged.
+        additionalParams: any
     end
 
     -- Specification of which model to use.
@@ -2464,12 +2502,42 @@ local record M
         openAiModelConfig: HarnessOpenAiModelConfig
         -- Configuration for a Google Gemini model.
         geminiModelConfig: HarnessGeminiModelConfig
+        -- The LiteLLM model configuration for connecting to third-party model providers.
+        liteLlmModelConfig: HarnessLiteLlmModelConfig
+    end
+
+    -- Authentication configuration for accessing a private git repository.
+    record HarnessSkillGitAuth
+        -- The ARN of the credential in AgentCore Identity containing the password or personal access token.
+        credentialArn: string
+        -- Username for authentication. Defaults to 'oauth2' if not specified.
+        username: string
+    end
+
+    -- A git repository source for a skill.
+    record HarnessSkillGitSource
+        -- The HTTPS URL of the git repository.
+        url: string
+        -- Subdirectory within the repository containing the skill.
+        path: string
+        -- Authentication configuration for private repositories.
+        auth: HarnessSkillGitAuth
+    end
+
+    -- An S3 source for a skill.
+    record HarnessSkillS3Source
+        -- The S3 URI pointing to the skill directory (e.g., s3://bucket/skills/my-skill/).
+        uri: string
     end
 
     -- A skill available to the agent.
     record HarnessSkill
         -- The filesystem path to the skill definition.
         path: string
+        -- An S3 source containing the skill.
+        s3: HarnessSkillS3Source
+        -- A git repository containing the skill.
+        git: HarnessSkillGitSource
     end
 
     -- A content block in the system prompt.
@@ -2582,6 +2650,8 @@ local record M
         harnessArn: string
         -- The session ID for the invocation. Use the same session ID across requests to continue a conversation.
         runtimeSessionId: string
+        -- An identifier for the end user making the request. This value is passed through to the runtime container.
+        runtimeUserId: string
         -- The messages to send to the agent.
         messages: {HarnessMessage}
         -- The model configuration to use for this invocation. If specified, overrides the harness default.
@@ -2761,6 +2831,7 @@ local record M
         metadata: HarnessMetadataEvent
         internalServerException: InternalServerException
         validationException: ValidationException
+        -- An error returned by the runtime container during agent execution.
         runtimeClientError: RuntimeClientError
     end
 

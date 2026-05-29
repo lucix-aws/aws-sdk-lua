@@ -1563,6 +1563,8 @@ local record M
         bundleName: string
         -- The description of the configuration bundle.
         description: string
+        -- The timestamp when the configuration bundle was created.
+        createdAt: number
     end
 
     record ListConfigurationBundlesOutput
@@ -3127,6 +3129,12 @@ local record M
         agentCoreMemoryConfiguration: HarnessAgentCoreMemoryConfiguration
     end
 
+    enum HarnessBedrockApiFormat
+        "converse_stream"
+        "responses"
+        "chat_completions"
+    end
+
     -- Configuration for an Amazon Bedrock model provider.
     record HarnessBedrockModelConfig
         -- The Bedrock model ID.
@@ -3137,6 +3145,10 @@ local record M
         temperature: number
         -- The topP set when calling the model.
         topP: number
+        -- The API format to use when calling the Bedrock provider.
+        apiFormat: string
+        -- Provider-specific parameters passed through to the model provider unchanged.
+        additionalParams: any
     end
 
     -- Configuration for a Google Gemini model provider. Requires an API key stored in AgentCore Identity.
@@ -3155,6 +3167,29 @@ local record M
         topK: number
     end
 
+    -- Configuration for a LiteLLM model provider, enabling connection to third-party model providers.
+    record HarnessLiteLlmModelConfig
+        -- The LiteLLM model identifier (e.g., "anthropic/claude-3-sonnet").
+        modelId: string
+        -- The ARN of the API key in AgentCore Identity for authenticating with the model provider.
+        apiKeyArn: string
+        -- The base URL for the model provider's API endpoint.
+        apiBase: string
+        -- The maximum number of tokens to allow in the generated response per iteration.
+        maxTokens: number
+        -- The temperature to set when calling the model.
+        temperature: number
+        -- The topP set when calling the model.
+        topP: number
+        -- Provider-specific parameters passed through to the model provider unchanged.
+        additionalParams: any
+    end
+
+    enum HarnessOpenAiApiFormat
+        "chat_completions"
+        "responses"
+    end
+
     -- Configuration for an OpenAI model provider. Requires an API key stored in AgentCore Identity.
     record HarnessOpenAiModelConfig
         -- The OpenAI model ID.
@@ -3167,6 +3202,10 @@ local record M
         temperature: number
         -- The topP set when calling the model.
         topP: number
+        -- The API format to use when calling the OpenAI provider.
+        apiFormat: string
+        -- Provider-specific parameters passed through to the model provider unchanged.
+        additionalParams: any
     end
 
     -- Specification of which model to use.
@@ -3177,12 +3216,42 @@ local record M
         openAiModelConfig: HarnessOpenAiModelConfig
         -- Configuration for a Google Gemini model.
         geminiModelConfig: HarnessGeminiModelConfig
+        -- The LiteLLM model configuration for connecting to third-party model providers.
+        liteLlmModelConfig: HarnessLiteLlmModelConfig
+    end
+
+    -- Authentication configuration for accessing a private git repository.
+    record HarnessSkillGitAuth
+        -- The ARN of the credential in AgentCore Identity containing the password or personal access token.
+        credentialArn: string
+        -- Username for authentication. Defaults to 'oauth2' if not specified.
+        username: string
+    end
+
+    -- A git repository source for a skill.
+    record HarnessSkillGitSource
+        -- The HTTPS URL of the git repository.
+        url: string
+        -- Subdirectory within the repository containing the skill.
+        path: string
+        -- Authentication configuration for private repositories.
+        auth: HarnessSkillGitAuth
+    end
+
+    -- An S3 source for a skill.
+    record HarnessSkillS3Source
+        -- The S3 URI pointing to the skill directory (e.g., s3://bucket/skills/my-skill/).
+        uri: string
     end
 
     -- A skill available to the agent.
     record HarnessSkill
         -- The filesystem path to the skill definition.
         path: string
+        -- An S3 source containing the skill.
+        s3: HarnessSkillS3Source
+        -- A git repository containing the skill.
+        git: HarnessSkillGitSource
     end
 
     -- A content block in the system prompt.
@@ -3212,6 +3281,7 @@ local record M
         awsIam: Unit
         -- No authentication.
         none: Unit
+        -- Use OAuth credentials for outbound authentication to the gateway.
         oauth: OAuthCredentialProvider
     end
 

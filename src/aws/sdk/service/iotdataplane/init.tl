@@ -20,11 +20,14 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     deleteConnection: function(Client, types.DeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectionOutput>
     deleteThingShadow: function(Client, types.DeleteThingShadowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteThingShadowOutput>
+    getConnection: function(Client, types.GetConnectionInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
     getRetainedMessage: function(Client, types.GetRetainedMessageInput, ? base_client.InvokeOptions): async.Operation<types.GetRetainedMessageOutput>
     getThingShadow: function(Client, types.GetThingShadowInput, ? base_client.InvokeOptions): async.Operation<types.GetThingShadowOutput>
     listNamedShadowsForThing: function(Client, types.ListNamedShadowsForThingInput, ? base_client.InvokeOptions): async.Operation<types.ListNamedShadowsForThingOutput>
     listRetainedMessages: function(Client, types.ListRetainedMessagesInput, ? base_client.InvokeOptions): async.Operation<types.ListRetainedMessagesOutput>
+    listSubscriptions: function(Client, types.ListSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSubscriptionsOutput>
     publish: function(Client, types.PublishInput, ? base_client.InvokeOptions): async.Operation<types.PublishOutput>
+    sendDirectMessage: function(Client, types.SendDirectMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendDirectMessageOutput>
     updateThingShadow: function(Client, types.UpdateThingShadowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThingShadowOutput>
 end
 
@@ -78,6 +81,10 @@ function C:deleteThingShadow(input: types.DeleteThingShadowInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteThingShadow as schema.OperationSchema, input, options) as async.Operation<types.DeleteThingShadowOutput>
 end
 
+function C:getConnection(input: types.GetConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnection as schema.OperationSchema, input, options) as async.Operation<types.GetConnectionOutput>
+end
+
 function C:getRetainedMessage(input: types.GetRetainedMessageInput, options?: base_client.InvokeOptions): async.Operation<types.GetRetainedMessageOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRetainedMessage as schema.OperationSchema, input, options) as async.Operation<types.GetRetainedMessageOutput>
 end
@@ -94,8 +101,16 @@ function C:listRetainedMessages(input: types.ListRetainedMessagesInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRetainedMessages as schema.OperationSchema, input, options) as async.Operation<types.ListRetainedMessagesOutput>
 end
 
+function C:listSubscriptions(input: types.ListSubscriptionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSubscriptionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSubscriptions as schema.OperationSchema, input, options) as async.Operation<types.ListSubscriptionsOutput>
+end
+
 function C:publish(input: types.PublishInput, options?: base_client.InvokeOptions): async.Operation<types.PublishOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Publish as schema.OperationSchema, input, options) as async.Operation<types.PublishOutput>
+end
+
+function C:sendDirectMessage(input: types.SendDirectMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendDirectMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendDirectMessage as schema.OperationSchema, input, options) as async.Operation<types.SendDirectMessageOutput>
 end
 
 function C:updateThingShadow(input: types.UpdateThingShadowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThingShadowOutput>
