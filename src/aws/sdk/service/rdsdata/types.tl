@@ -32,9 +32,7 @@ local record M
         message: string
     end
 
-    -- A request was cancelled because the Aurora Serverless v2 DB instance was paused.
-    -- The Data API request automatically resumes the DB instance. Wait a few seconds and
-    -- try again.
+    -- A request was cancelled because the Aurora Serverless v2 DB instance was paused. The Data API request automatically resumes the DB instance. Wait a few seconds and try again.
     record DatabaseResumingException
         message: string
     end
@@ -68,16 +66,12 @@ local record M
         message: string
     end
 
-    -- There was a problem with the Secrets Manager secret used with the request, caused by one of the following conditions:
-    -- RDS Data API timed out retrieving the secret.
-    -- The secret provided wasn't found.
-    -- The secret couldn't be decrypted.
+    -- There was a problem with the Secrets Manager secret used with the request, caused by one of the following conditions: RDS Data API timed out retrieving the secret. The secret provided wasn't found. The secret couldn't be decrypted.
     record SecretsErrorException
         message: string
     end
 
-    -- The service specified by the resourceArn parameter isn't
-    -- available.
+    -- The service specified by the resourceArn parameter isn't available.
     record ServiceUnavailableError
     end
 
@@ -94,8 +88,7 @@ local record M
         message: string
     end
 
-    -- The request parameters represent the input of a request to start a SQL
-    -- transaction.
+    -- The request parameters represent the input of a request to start a SQL transaction.
     record BeginTransactionInput
         -- The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
         resourceArn: string
@@ -107,8 +100,7 @@ local record M
         schema: string
     end
 
-    -- The response elements represent the output of a request to start a SQL
-    -- transaction.
+    -- The response elements represent the output of a request to start a SQL transaction.
     record BeginTransactionOutput
         -- The transaction ID of the transaction started by the call.
         transactionId: string
@@ -171,19 +163,13 @@ local record M
         "DOUBLE_OR_LONG"
     end
 
-    -- The request parameters represent the input of a request to run one or more SQL
-    -- statements.
+    -- The request parameters represent the input of a request to run one or more SQL statements.
     record ExecuteSqlInput
         -- The ARN of the Aurora Serverless DB cluster.
         dbClusterOrInstanceArn: string
-        -- The Amazon Resource Name (ARN) of the secret that enables access to the DB cluster. Enter the database user name and password
-        -- for the credentials in the secret.
-        -- For information about creating the secret, see Create a database secret.
+        -- The Amazon Resource Name (ARN) of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in the secret. For information about creating the secret, see Create a database secret.
         awsSecretStoreArn: string
-        -- One or more SQL statements to run on the DB cluster.
-        -- You can separate SQL statements from each other with a semicolon (;). Any valid SQL
-        -- statement is permitted, including data definition, data manipulation, and commit
-        -- statements.
+        -- One or more SQL statements to run on the DB cluster. You can separate SQL statements from each other with a semicolon (;). Any valid SQL statement is permitted, including data definition, data manipulation, and commit statements.
         sqlStatements: string
         -- The name of the database.
         database: string
@@ -211,31 +197,18 @@ local record M
 
     -- Options that control how the result set is returned.
     record ResultSetOptions
-        -- A value that indicates how a field of DECIMAL type is represented
-        -- in the response. The value of STRING, the default, specifies that
-        -- it is converted to a String value. The value of DOUBLE_OR_LONG
-        -- specifies that it is converted to a Long value if its scale is 0, or to a Double
-        -- value otherwise.
-        -- Conversion to Double or Long can result in roundoff errors due to precision loss.
-        -- We recommend converting to String, especially when working with currency values.
+        -- A value that indicates how a field of DECIMAL type is represented in the response. The value of STRING, the default, specifies that it is converted to a String value. The value of DOUBLE_OR_LONG specifies that it is converted to a Long value if its scale is 0, or to a Double value otherwise. Conversion to Double or Long can result in roundoff errors due to precision loss. We recommend converting to String, especially when working with currency values.
         decimalReturnType: string
-        -- A value that indicates how a field of LONG type is represented.
-        -- Allowed values are LONG and STRING. The default
-        -- is LONG. Specify STRING if the length or
-        -- precision of numeric values might cause truncation or rounding errors.
+        -- A value that indicates how a field of LONG type is represented. Allowed values are LONG and STRING. The default is LONG. Specify STRING if the length or precision of numeric values might cause truncation or rounding errors.
         longReturnType: string
     end
 
-    -- There was a problem with the result because of one of the following conditions:
-    -- It contained an unsupported data type.
-    -- It contained a multidimensional array.
-    -- The size was too large.
+    -- There was a problem with the result because of one of the following conditions: It contained an unsupported data type. It contained a multidimensional array. The size was too large.
     record UnsupportedResultException
         message: string
     end
 
-    -- The request parameters represent the input of a request to perform a rollback of a
-    -- transaction.
+    -- The request parameters represent the input of a request to perform a rollback of a transaction.
     record RollbackTransactionInput
         -- The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
         resourceArn: string
@@ -245,8 +218,7 @@ local record M
         transactionId: string
     end
 
-    -- The response elements represent the output of a request to perform a rollback of a
-    -- transaction.
+    -- The response elements represent the output of a request to perform a rollback of a transaction.
     record RollbackTransactionOutput
         -- The status of the rollback operation.
         transactionStatus: string
@@ -254,15 +226,15 @@ local record M
 
     -- Contains an array.
     record ArrayValue
-        -- An array of Boolean values.
+        -- An array of Boolean values. Can contain null values.
         booleanValues: {boolean}
-        -- An array of integers.
+        -- An array of integers. Can contain null values.
         longValues: {number}
-        -- An array of floating-point numbers.
+        -- An array of floating-point numbers. Can contain null values.
         doubleValues: {number}
-        -- An array of strings.
+        -- An array of strings. Can contain null values.
         stringValues: {string}
-        -- An array of arrays.
+        -- An array of arrays. Can contain null values.
         arrayValues: {ArrayValue}
     end
 
@@ -290,20 +262,7 @@ local record M
         name: string
         -- The value of the parameter.
         value: Field
-        -- A hint that specifies the correct object type for data type mapping. Possible values
-        -- are as follows:
-        -- DATE - The corresponding String parameter value is sent as an object
-        -- of DATE type to the database. The accepted format is YYYY-MM-DD.
-        -- DECIMAL - The corresponding String parameter value is sent as an object
-        -- of DECIMAL type to the database.
-        -- JSON - The corresponding String parameter value is sent as an
-        -- object of JSON type to the database.
-        -- TIME - The corresponding String parameter value is sent as an object
-        -- of TIME type to the database. The accepted format is HH:MM:SS[.FFF].
-        -- TIMESTAMP - The corresponding String parameter value is sent as an object
-        -- of TIMESTAMP type to the database. The accepted format is YYYY-MM-DD HH:MM:SS[.FFF].
-        -- UUID - The corresponding String parameter value is sent as an object of
-        -- UUID type to the database.
+        -- A hint that specifies the correct object type for data type mapping. Possible values are as follows: DATE - The corresponding String parameter value is sent as an object of DATE type to the database. The accepted format is YYYY-MM-DD. DECIMAL - The corresponding String parameter value is sent as an object of DECIMAL type to the database. JSON - The corresponding String parameter value is sent as an object of JSON type to the database. TIME - The corresponding String parameter value is sent as an object of TIME type to the database. The accepted format is HH:MM:SS[.FFF]. TIMESTAMP - The corresponding String parameter value is sent as an object of TIMESTAMP type to the database. The accepted format is YYYY-MM-DD HH:MM:SS[.FFF]. UUID - The corresponding String parameter value is sent as an object of UUID type to the database.
         typeHint: string
     end
 
@@ -313,9 +272,7 @@ local record M
         generatedFields: {Field}
     end
 
-    -- Contains the value of a column.
-    -- This data structure is only used with the deprecated ExecuteSql operation.
-    -- Use the BatchExecuteStatement or ExecuteStatement operation instead.
+    -- Contains the value of a column. This data structure is only used with the deprecated ExecuteSql operation. Use the BatchExecuteStatement or ExecuteStatement operation instead.
     record Value
         -- A NULL value.
         isNull: boolean
@@ -339,133 +296,83 @@ local record M
         structValue: StructValue
     end
 
-    -- The request parameters represent the input of a request to run a SQL statement against
-    -- a database.
+    -- The request parameters represent the input of a request to run a SQL statement against a database.
     record ExecuteStatementInput
         -- The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
         resourceArn: string
-        -- The ARN of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in
-        -- the secret.
-        -- For information about creating the secret, see Create a database secret.
+        -- The ARN of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in the secret. For information about creating the secret, see Create a database secret. When you use the CLI on Linux to reference a secret created in the RDS console, the ARN might include special characters like rds!cluster. If you enclose the ARN in double quotes, the ! character might trigger a shell expansion error, such as -bash: !cluster: event not found. To avoid this, escape the exclamation mark (\!) in the ARN or enclose the entire ARN in single quotes (') instead of double quotes. Alternatively, disable shell history expansion by running set +H before you execute the command.
         secretArn: string
         -- The SQL statement to run.
         sql: string
         -- The name of the database.
         database: string
-        -- The name of the database schema.
-        -- Currently, the schema parameter isn't supported.
+        -- The name of the database schema. Currently, the schema parameter isn't supported.
         schema: string
-        -- The parameters for the SQL statement.
-        -- Array parameters are not supported.
+        -- The parameters for the SQL statement. Array parameters are not supported.
         parameters: {SqlParameter}
-        -- The identifier of a transaction that was started by using the
-        -- BeginTransaction operation. Specify the transaction ID of the
-        -- transaction that you want to include the SQL statement in.
-        -- If the SQL statement is not part of a transaction, don't set this parameter.
+        -- The identifier of a transaction that was started by using the BeginTransaction operation. Specify the transaction ID of the transaction that you want to include the SQL statement in. If the SQL statement is not part of a transaction, don't set this parameter.
         transactionId: string
         -- A value that indicates whether to include metadata in the results.
         includeResultMetadata: boolean
-        -- A value that indicates whether to continue running the statement after
-        -- the call times out. By default, the statement stops running when the call
-        -- times out.
-        -- For DDL statements, we recommend continuing to run the statement after
-        -- the call times out. When a DDL statement terminates before it is finished
-        -- running, it can result in errors and possibly corrupted data structures.
+        -- A value that indicates whether to continue running the statement after the call times out. By default, the statement stops running when the call times out. For DDL statements, we recommend continuing to run the statement after the call times out. When a DDL statement terminates before it is finished running, it can result in errors and possibly corrupted data structures.
         continueAfterTimeout: boolean
         -- Options that control how the result set is returned.
         resultSetOptions: ResultSetOptions
-        -- A value that indicates whether to format the result set as a single JSON string.
-        -- This parameter only applies to SELECT statements and is ignored for
-        -- other types of statements. Allowed values are NONE and JSON.
-        -- The default value is NONE. The result is returned in the formattedRecords field.
-        -- For usage information about the JSON format for result sets, see
-        -- Using the Data API
-        -- in the Amazon Aurora User Guide.
+        -- A value that indicates whether to format the result set as a single JSON string. This parameter only applies to SELECT statements and is ignored for other types of statements. Allowed values are NONE and JSON. The default value is NONE. The result is returned in the formattedRecords field. For usage information about the JSON format for result sets, see Using the Data API in the Amazon Aurora User Guide.
         formatRecordsAs: string
     end
 
-    -- A structure value returned by a call.
-    -- This data structure is only used with the deprecated ExecuteSql operation.
-    -- Use the BatchExecuteStatement or ExecuteStatement operation instead.
+    -- A structure value returned by a call. This data structure is only used with the deprecated ExecuteSql operation. Use the BatchExecuteStatement or ExecuteStatement operation instead.
     record StructValue
         -- The attributes returned in the record.
         attributes: {Value}
     end
 
-    -- The request parameters represent the input of a SQL statement over an array of
-    -- data.
+    -- The request parameters represent the input of a SQL statement over an array of data.
     record BatchExecuteStatementInput
         -- The Amazon Resource Name (ARN) of the Aurora Serverless DB cluster.
         resourceArn: string
-        -- The ARN of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in
-        -- the secret.
-        -- For information about creating the secret, see Create a database secret.
+        -- The ARN of the secret that enables access to the DB cluster. Enter the database user name and password for the credentials in the secret. For information about creating the secret, see Create a database secret.
         secretArn: string
         -- The SQL statement to run. Don't include a semicolon (;) at the end of the SQL statement.
         sql: string
         -- The name of the database.
         database: string
-        -- The name of the database schema.
-        -- Currently, the schema parameter isn't supported.
+        -- The name of the database schema. Currently, the schema parameter isn't supported.
         schema: string
-        -- The parameter set for the batch operation.
-        -- The SQL statement is executed as many times as the number of parameter sets provided.
-        -- To execute a SQL statement with no parameters, use one of the following options:
-        -- Specify one or more empty parameter sets.
-        -- Use the ExecuteStatement operation instead of the BatchExecuteStatement operation.
-        -- Array parameters are not supported.
+        -- The parameter set for the batch operation. The SQL statement is executed as many times as the number of parameter sets provided. To execute a SQL statement with no parameters, use one of the following options: Specify one or more empty parameter sets. Use the ExecuteStatement operation instead of the BatchExecuteStatement operation. Array parameters are not supported.
         parameterSets: {{SqlParameter}}
-        -- The identifier of a transaction that was started by using the
-        -- BeginTransaction operation. Specify the transaction ID of the
-        -- transaction that you want to include the SQL statement in.
-        -- If the SQL statement is not part of a transaction, don't set this
-        -- parameter.
+        -- The identifier of a transaction that was started by using the BeginTransaction operation. Specify the transaction ID of the transaction that you want to include the SQL statement in. If the SQL statement is not part of a transaction, don't set this parameter.
         transactionId: string
     end
 
-    -- The response elements represent the output of a SQL statement over an array of
-    -- data.
+    -- The response elements represent the output of a SQL statement over an array of data.
     record BatchExecuteStatementOutput
         -- The execution results of each batch entry.
         updateResults: {UpdateResult}
     end
 
-    -- A record returned by a call.
-    -- This data structure is only used with the deprecated ExecuteSql operation.
-    -- Use the BatchExecuteStatement or ExecuteStatement operation instead.
+    -- A record returned by a call. This data structure is only used with the deprecated ExecuteSql operation. Use the BatchExecuteStatement or ExecuteStatement operation instead.
     record Record
         -- The values returned in the record.
         values: {Value}
     end
 
-    -- The response elements represent the output of a request to run a SQL statement against
-    -- a database.
+    -- The response elements represent the output of a request to run a SQL statement against a database.
     record ExecuteStatementOutput
-        -- The records returned by the SQL statement. This field is blank if the
-        -- formatRecordsAs parameter is set to JSON.
+        -- The records returned by the SQL statement. This field is blank if the formatRecordsAs parameter is set to JSON.
         records: {{Field}}
-        -- Metadata for the columns included in the results. This field is blank if the
-        -- formatRecordsAs parameter is set to JSON.
+        -- Metadata for the columns included in the results. This field is blank if the formatRecordsAs parameter is set to JSON.
         columnMetadata: {ColumnMetadata}
         -- The number of records updated by the request.
         numberOfRecordsUpdated: number
-        -- Values for fields generated during a DML request.
-        -- The generatedFields data isn't supported by Aurora PostgreSQL.
-        -- To get the values of generated fields, use the RETURNING clause. For
-        -- more information, see Returning Data From
-        -- Modified Rows in the PostgreSQL documentation.
+        -- Values for fields generated during a DML request. The generatedFields data isn't supported by Aurora PostgreSQL. To get the values of generated fields, use the RETURNING clause. For more information, see Returning Data From Modified Rows in the PostgreSQL documentation.
         generatedFields: {Field}
-        -- A string value that represents the result set of a SELECT statement
-        -- in JSON format. This value is only present when the formatRecordsAs
-        -- parameter is set to JSON.
-        -- The size limit for this field is currently 10 MB. If the JSON-formatted string representing the
-        -- result set requires more than 10 MB, the call returns an error.
+        -- A string value that represents the result set of a SELECT statement in JSON format. This value is only present when the formatRecordsAs parameter is set to JSON. The size limit for this field is currently 10 MB. If the JSON-formatted string representing the result set requires more than 10 MB, the call returns an error.
         formattedRecords: string
     end
 
-    -- The result set returned by a SQL statement.
-    -- This data structure is only used with the deprecated ExecuteSql operation.
-    -- Use the BatchExecuteStatement or ExecuteStatement operation instead.
+    -- The result set returned by a SQL statement. This data structure is only used with the deprecated ExecuteSql operation. Use the BatchExecuteStatement or ExecuteStatement operation instead.
     record ResultFrame
         -- The result-set metadata in the result set.
         resultSetMetadata: ResultSetMetadata
@@ -473,9 +380,7 @@ local record M
         records: {Record}
     end
 
-    -- The result of a SQL statement.
-    -- This data structure is only used with the deprecated ExecuteSql operation.
-    -- Use the BatchExecuteStatement or ExecuteStatement operation instead.
+    -- The result of a SQL statement. This data structure is only used with the deprecated ExecuteSql operation. Use the BatchExecuteStatement or ExecuteStatement operation instead.
     record SqlStatementResult
         -- The result set of the SQL statement.
         resultFrame: ResultFrame
@@ -483,8 +388,7 @@ local record M
         numberOfRecordsUpdated: number
     end
 
-    -- The response elements represent the output of a request to run one or more SQL
-    -- statements.
+    -- The response elements represent the output of a request to run one or more SQL statements.
     record ExecuteSqlOutput
         -- The results of the SQL statement or statements.
         sqlStatementResults: {SqlStatementResult}

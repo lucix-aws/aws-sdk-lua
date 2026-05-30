@@ -94,6 +94,24 @@ function M.items_list_firewall_rule_groups(client, input)
     })
 end
 
+--- Returns a page iterator for listFirewallRuleTypes.
+function M.pages_list_firewall_rule_types(client, input)
+    return paginator.pages(client, "listFirewallRuleTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRuleTypes",
+    })
+end
+
+--- Returns an item iterator for listFirewallRuleTypes.
+function M.items_list_firewall_rule_types(client, input)
+    return paginator.items(client, "listFirewallRuleTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "FirewallRuleTypes",
+    })
+end
+
 --- Returns a page iterator for listFirewallRules.
 function M.pages_list_firewall_rules(client, input)
     return paginator.pages(client, "listFirewallRules", input, {

@@ -764,6 +764,8 @@ local record M
         "IMPORT_POLICY"
         "GENERATE_FIDELITY_REPORT"
         "GENERATE_POLICY_SCENARIOS"
+        "RESOLVE_POLICY_AMBIGUITIES"
+        "ITERATIVELY_REFINE_POLICY"
     end
 
     enum AutomatedReasoningPolicyBuildDocumentContentType
@@ -1543,6 +1545,14 @@ local record M
         documents: {AutomatedReasoningPolicyBuildWorkflowDocument}
     end
 
+    -- Configuration for an iterative policy refinement workflow, including source documents to process and optional feedback to guide the refinement.
+    record AutomatedReasoningPolicyIterativeRefinementContent
+        -- Source documents used for iterative policy refinement. These documents provide context for refining the policy definition.
+        documents: {AutomatedReasoningPolicyBuildWorkflowDocument}
+        -- Optional feedback to guide the iterative refinement workflow. Provide specific instructions or constraints for policy refinement.
+        feedback: string
+    end
+
     -- Contains content and instructions for repairing or improving an existing Automated Reasoning policy.
     record AutomatedReasoningPolicyBuildWorkflowRepairContent
         -- Specific annotations or modifications to apply during the policy repair process, such as rule corrections or variable updates.
@@ -1557,6 +1567,8 @@ local record M
         policyRepairAssets: AutomatedReasoningPolicyBuildWorkflowRepairContent
         -- The content configuration for generating a fidelity report workflow. This can include source documents to analyze or an existing fidelity report to update with a new policy definition.
         generateFidelityReportContent: AutomatedReasoningPolicyGenerateFidelityReportContent
+        -- Content configuration to start an iterative policy refinement workflow that uses generative AI to automatically make changes to the policy based on test results and the optional feedback provided.
+        iterativeRefinementContent: AutomatedReasoningPolicyIterativeRefinementContent
     end
 
     -- Defines the source content for a policy build workflow, which can include documents, repair instructions, or other input materials.

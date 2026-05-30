@@ -400,6 +400,24 @@ function M.items_list_namespaces(client, input)
     })
 end
 
+--- Returns a page iterator for listOAuthClientApplications.
+function M.pages_list_o_auth_client_applications(client, input)
+    return paginator.pages(client, "listOAuthClientApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OAuthClientApplications",
+    })
+end
+
+--- Returns an item iterator for listOAuthClientApplications.
+function M.items_list_o_auth_client_applications(client, input)
+    return paginator.items(client, "listOAuthClientApplications", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "OAuthClientApplications",
+    })
+end
+
 --- Returns a page iterator for listRoleMemberships.
 function M.pages_list_role_memberships(client, input)
     return paginator.pages(client, "listRoleMemberships", input, {

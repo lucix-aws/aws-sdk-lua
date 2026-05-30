@@ -544,7 +544,7 @@ local record M
         -- meet the following criteria:
         -- It can only contain ASCII letters (a–z, A–Z), numbers (0–9),
         -- underscores (_), or dashes (-).
-        -- It can contain no more than 256 characters.
+        -- It can contain no more than 255 characters.
         DimensionName: string
         -- The location where the Amazon SES API v2 finds the value of a dimension to publish to Amazon CloudWatch. To
         -- use the message tags that you specify using an X-SES-MESSAGE-TAGS header or
@@ -557,7 +557,7 @@ local record M
         -- criteria:
         -- Can only contain ASCII letters (a–z, A–Z), numbers (0–9),
         -- underscores (_), or dashes (-), at signs (@), and periods (.).
-        -- It can contain no more than 256 characters.
+        -- It can contain no more than 255 characters.
         DefaultDimensionValue: string
     end
 
@@ -690,6 +690,11 @@ local record M
         "COMPLAINT"
     end
 
+    enum SuppressionListScope
+        "ACCOUNT"
+        "TENANT"
+    end
+
     enum FeatureStatus
         "ENABLED"
         "DISABLED"
@@ -725,18 +730,24 @@ local record M
     end
 
     -- An object that contains information about the suppression list preferences for your
-    -- account.
+    -- account or for a specific tenant.
     record SuppressionOptions
         -- A list that contains the reasons that email addresses are automatically added to the
-        -- suppression list for your account. This list can contain any or all of the
+        -- suppression list for your account or for a specific tenant. This list can contain any or all of the
         -- following:
         -- COMPLAINT – Amazon SES adds an email address to the suppression
-        -- list for your account when a message sent to that address results in a
+        -- list for your account or for a specific tenant when a message sent to that address results in a
         -- complaint.
         -- BOUNCE – Amazon SES adds an email address to the suppression
-        -- list for your account when a message sent to that address results in a hard
+        -- list for your account or for a specific tenant when a message sent to that address results in a hard
         -- bounce.
         SuppressedReasons: {string}
+        -- The suppression scope for the configuration set. This overrides the tenant or account
+        -- suppression scope for emails sent using this configuration set. Can be one of the
+        -- following:
+        -- TENANT – Use the tenant's suppression list.
+        -- ACCOUNT – Use the account-level suppression list.
+        SuppressionScope: string
         ValidationOptions: SuppressionValidationOptions
     end
 
@@ -849,6 +860,9 @@ local record M
         -- An array of objects that define the tags (keys and values) to associate with the
         -- configuration set.
         Tags: {Tag}
+        -- An object that contains information about the suppression list preferences for the
+        -- configuration set. You can optionally include a SuppressionScope to override the
+        -- tenant or account suppression scope for emails sent using this configuration set.
         SuppressionOptions: SuppressionOptions
         -- An object that defines the VDM options for emails that you send using the
         -- configuration set.
@@ -1725,6 +1739,23 @@ local record M
         EndpointId: string
     end
 
+    -- An object that contains the suppression list preferences for a tenant.
+    record TenantSuppressionAttributes
+        -- A list that contains the reasons that email addresses are automatically added to the
+        -- suppression list for the tenant. This list can contain any or all of the following:
+        -- COMPLAINT – Amazon SES adds an email address to the suppression
+        -- list when a message sent to that address results in a complaint.
+        -- BOUNCE – Amazon SES adds an email address to the suppression
+        -- list when a message sent to that address results in a hard bounce.
+        SuppressedReasons: {string}
+        -- The suppression scope for the tenant. Can be one of the following:
+        -- TENANT – The tenant uses its own suppression list.
+        -- ACCOUNT – The tenant uses the account-level suppression list.
+        -- If you don't specify a suppression scope, the tenant defaults to ACCOUNT scope
+        -- and uses the account-level suppression list.
+        SuppressionScope: string
+    end
+
     -- Represents a request to create a tenant.
     -- Tenants are logical containers that group related SES resources together.
     -- Each tenant can have its own set of resources like email identities, configuration sets, and templates,
@@ -1736,6 +1767,9 @@ local record M
         TenantName: string
         -- An array of objects that define the tags (keys and values) to associate with the tenant
         Tags: {Tag}
+        -- An object that contains information about the suppression list preferences for the tenant.
+        -- Use this to configure tenant-level suppression at creation time.
+        SuppressionAttributes: TenantSuppressionAttributes
     end
 
     enum SendingStatus
@@ -1758,6 +1792,7 @@ local record M
         Tags: {Tag}
         -- The status of email sending capability for the tenant.
         SendingStatus: string
+        SuppressionAttributes: TenantSuppressionAttributes
     end
 
     -- Represents a request to associate a resource with a tenant.
@@ -2020,11 +2055,16 @@ local record M
         Status: string
     end
 
-    -- A request to remove an email address from the suppression list for your
-    -- account.
+    -- A request to remove an email address from the suppression list for your account or
+    -- for a specific tenant.
     record DeleteSuppressedDestinationInput
-        -- The suppressed email destination to remove from the account suppression list.
+        -- The suppressed email destination to remove from the suppression list for your account
+        -- or for the specified tenant.
         EmailAddress: string
+        -- The name of the tenant whose suppression list you want to remove the address from. If
+        -- you omit this parameter, the address is removed from the account-level suppression
+        -- list.
+        TenantName: string
     end
 
     -- An HTTP 200 response if the request succeeds, or an error message if the request
@@ -2506,7 +2546,7 @@ local record M
         -- the configuration set.
         Tags: {Tag}
         -- An object that contains information about the suppression list preferences for your
-        -- account.
+        -- account or for a specific tenant.
         SuppressionOptions: SuppressionOptions
         -- An object that contains information about the VDM preferences for your configuration
         -- set.
@@ -3199,36 +3239,46 @@ local record M
     end
 
     -- A request to retrieve information about an email address that's on the suppression
-    -- list for your account.
+    -- list for your account or for a specific tenant.
     record GetSuppressedDestinationInput
-        -- The email address that's on the account suppression list.
+        -- The email address that's on the suppression list for your account or for the
+        -- specified tenant.
         EmailAddress: string
+        -- The name of the tenant whose suppression list you want to query. If you omit this
+        -- parameter, the operation targets the account-level suppression list.
+        TenantName: string
     end
 
     -- An object that contains additional attributes that are related an email address that
-    -- is on the suppression list for your account.
+    -- is on the suppression list for your account or for a specific tenant.
     record SuppressedDestinationAttributes
         -- The unique identifier of the email message that caused the email address to be added
-        -- to the suppression list for your account.
+        -- to the suppression list for your account or for a specific tenant.
         MessageId: string
         -- A unique identifier that's generated when an email address is added to the suppression
-        -- list for your account.
+        -- list for your account or for a specific tenant.
         FeedbackId: string
     end
 
     -- An object that contains information about an email address that is on the suppression
-    -- list for your account.
+    -- list for your account or for a specific tenant.
     record SuppressedDestination
-        -- The email address that is on the suppression list for your account.
+        -- The email address that is on the suppression list for your account or for a specific
+        -- tenant.
         EmailAddress: string
-        -- The reason that the address was added to the suppression list for your account.
+        -- The reason that the address was added to the suppression list for your account or for
+        -- a specific tenant.
         Reason: string
         -- The date and time when the suppressed destination was last updated, shown in Unix time
         -- format.
         LastUpdateTime: number
         -- An optional value that can contain additional information about the reasons that the
-        -- address was added to the suppression list for your account.
+        -- address was added to the suppression list for your account or for a specific
+        -- tenant.
         Attributes: SuppressedDestinationAttributes
+        -- The name of the tenant that the suppressed destination belongs to. This field is
+        -- present only when the suppressed destination is on a tenant's suppression list.
+        TenantName: string
     end
 
     -- Information about the suppressed email address.
@@ -3257,6 +3307,8 @@ local record M
         Tags: {Tag}
         -- The status of sending capability for the tenant.
         SendingStatus: string
+        -- An object that contains information about the suppression list preferences for the tenant.
+        SuppressionAttributes: TenantSuppressionAttributes
     end
 
     -- Information about a specific tenant.
@@ -3826,9 +3878,13 @@ local record M
     end
 
     -- A request to obtain a list of email destinations that are on the suppression list for
-    -- your account.
+    -- your account or for a specific tenant.
     record ListSuppressedDestinationsInput
-        -- The factors that caused the email address to be added to .
+        -- The name of the tenant whose suppression list you want to retrieve. If you omit this
+        -- parameter, the operation targets the account-level suppression list.
+        TenantName: string
+        -- The factors that caused the email address to be added to the suppression list for
+        -- your account or for a specific tenant.
         Reasons: {string}
         -- Used to filter the list of suppressed email destinations so that it only includes
         -- addresses that were added to the list after a specific date.
@@ -3849,9 +3905,11 @@ local record M
 
     -- A summary that describes the suppressed email address.
     record SuppressedDestinationSummary
-        -- The email address that's on the suppression list for your account.
+        -- The email address that's on the suppression list for your account or for a specific
+        -- tenant.
         EmailAddress: string
-        -- The reason that the address was added to the suppression list for your account.
+        -- The reason that the address was added to the suppression list for your account or for
+        -- a specific tenant.
         Reason: string
         -- The date and time when the suppressed destination was last updated, shown in Unix time
         -- format.
@@ -3864,9 +3922,9 @@ local record M
         -- destination.
         SuppressedDestinationSummaries: {SuppressedDestinationSummary}
         -- A token that indicates that there are additional email addresses on the suppression
-        -- list for your account. To view additional suppressed addresses, issue another request to
-        -- ListSuppressedDestinations, and pass this token in the
-        -- NextToken parameter.
+        -- list for your account or for the specified tenant. To view additional suppressed
+        -- addresses, issue another request to ListSuppressedDestinations, and pass
+        -- this token in the NextToken parameter.
         NextToken: string
     end
 
@@ -4112,20 +4170,26 @@ local record M
     record PutConfigurationSetSendingOptionsOutput
     end
 
-    -- A request to change the account suppression list preferences for a specific
+    -- A request to change the suppression list preferences for a specific
     -- configuration set.
     record PutConfigurationSetSuppressionOptionsInput
         -- The name of the configuration set to change the suppression list preferences
         -- for.
         ConfigurationSetName: string
+        -- The suppression scope for the configuration set. This overrides the tenant or account
+        -- suppression scope for emails sent using this configuration set. Can be one of the
+        -- following:
+        -- TENANT – Use the tenant's suppression list.
+        -- ACCOUNT – Use the account-level suppression list.
+        SuppressionScope: string
         -- A list that contains the reasons that email addresses are automatically added to the
-        -- suppression list for your account. This list can contain any or all of the
+        -- suppression list for your account or for a specific tenant. This list can contain any or all of the
         -- following:
         -- COMPLAINT – Amazon SES adds an email address to the suppression
-        -- list for your account when a message sent to that address results in a
+        -- list for your account or for a specific tenant when a message sent to that address results in a
         -- complaint.
         -- BOUNCE – Amazon SES adds an email address to the suppression
-        -- list for your account when a message sent to that address results in a hard
+        -- list for your account or for a specific tenant when a message sent to that address results in a hard
         -- bounce.
         SuppressedReasons: {string}
         -- An object that contains information about the email address suppression preferences for the configuration set in the current Amazon Web Services Region.
@@ -4370,19 +4434,46 @@ local record M
     record PutEmailIdentityMailFromAttributesOutput
     end
 
-    -- A request to add an email destination to the suppression list for your account.
+    -- A request to add an email destination to the suppression list for your account or
+    -- for a specific tenant.
     record PutSuppressedDestinationInput
-        -- The email address that should be added to the suppression list for your
-        -- account.
+        -- The email address that should be added to the suppression list for your account or
+        -- for the specified tenant.
         EmailAddress: string
         -- The factors that should cause the email address to be added to the suppression list
-        -- for your account.
+        -- for your account or for the specified tenant.
         Reason: string
+        -- The name of the tenant whose suppression list you want to add the address to. If you
+        -- omit this parameter, the address is added to the account-level suppression list.
+        TenantName: string
     end
 
     -- An HTTP 200 response if the request succeeds, or an error message if the request
     -- fails.
     record PutSuppressedDestinationOutput
+    end
+
+    -- A request to configure the suppression list preferences for a tenant.
+    record PutTenantSuppressionAttributesInput
+        -- The name of the tenant to configure suppression list preferences for.
+        TenantName: string
+        -- A list that contains the reasons that email addresses are automatically added to the
+        -- suppression list for the tenant. This list can contain any or all of the following:
+        -- COMPLAINT – Amazon SES adds an email address to the suppression
+        -- list when a message sent to that address results in a complaint.
+        -- BOUNCE – Amazon SES adds an email address to the suppression
+        -- list when a message sent to that address results in a hard bounce.
+        SuppressedReasons: {string}
+        -- The suppression scope for the tenant. Specify TENANT to use the tenant's
+        -- own suppression list, or ACCOUNT to use the account-level suppression list.
+        -- If you don't specify a suppression scope, the tenant defaults to ACCOUNT scope
+        -- and uses the account-level suppression list.
+        SuppressionScope: string
+    end
+
+    -- If the action is successful, the service sends back an HTTP 200 response with an empty
+    -- HTTP body.
+    record PutTenantSuppressionAttributesOutput
     end
 
     -- Represents a request to send email messages to multiple destinations using Amazon SES. For

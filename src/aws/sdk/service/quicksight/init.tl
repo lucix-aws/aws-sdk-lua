@@ -37,6 +37,7 @@ local record Client
     createIAMPolicyAssignment: function(Client, types.CreateIAMPolicyAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateIAMPolicyAssignmentOutput>
     createIngestion: function(Client, types.CreateIngestionInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestionOutput>
     createNamespace: function(Client, types.CreateNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
+    createOAuthClientApplication: function(Client, types.CreateOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuthClientApplicationOutput>
     createRefreshSchedule: function(Client, types.CreateRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRefreshScheduleOutput>
     createRoleMembership: function(Client, types.CreateRoleMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateRoleMembershipOutput>
     createTemplate: function(Client, types.CreateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
@@ -66,6 +67,7 @@ local record Client
     deleteIAMPolicyAssignment: function(Client, types.DeleteIAMPolicyAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIAMPolicyAssignmentOutput>
     deleteIdentityPropagationConfig: function(Client, types.DeleteIdentityPropagationConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityPropagationConfigOutput>
     deleteNamespace: function(Client, types.DeleteNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
+    deleteOAuthClientApplication: function(Client, types.DeleteOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOAuthClientApplicationOutput>
     deleteRefreshSchedule: function(Client, types.DeleteRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRefreshScheduleOutput>
     deleteRoleCustomPermission: function(Client, types.DeleteRoleCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRoleCustomPermissionOutput>
     deleteRoleMembership: function(Client, types.DeleteRoleMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRoleMembershipOutput>
@@ -117,6 +119,7 @@ local record Client
     describeIpRestriction: function(Client, types.DescribeIpRestrictionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpRestrictionOutput>
     describeKeyRegistration: function(Client, types.DescribeKeyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeKeyRegistrationOutput>
     describeNamespace: function(Client, types.DescribeNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNamespaceOutput>
+    describeOAuthClientApplication: function(Client, types.DescribeOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOAuthClientApplicationOutput>
     describeQPersonalizationConfiguration: function(Client, types.DescribeQPersonalizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQPersonalizationConfigurationOutput>
     describeQuickSightQSearchConfiguration: function(Client, types.DescribeQuickSightQSearchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQuickSightQSearchConfigurationOutput>
     describeRefreshSchedule: function(Client, types.DescribeRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRefreshScheduleOutput>
@@ -164,6 +167,7 @@ local record Client
     listIdentityPropagationConfigs: function(Client, types.ListIdentityPropagationConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdentityPropagationConfigsOutput>
     listIngestions: function(Client, types.ListIngestionsInput, ? base_client.InvokeOptions): async.Operation<types.ListIngestionsOutput>
     listNamespaces: function(Client, types.ListNamespacesInput, ? base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
+    listOAuthClientApplications: function(Client, types.ListOAuthClientApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOAuthClientApplicationsOutput>
     listRefreshSchedules: function(Client, types.ListRefreshSchedulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRefreshSchedulesOutput>
     listRoleMemberships: function(Client, types.ListRoleMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListRoleMembershipsOutput>
     listSelfUpgrades: function(Client, types.ListSelfUpgradesInput, ? base_client.InvokeOptions): async.Operation<types.ListSelfUpgradesOutput>
@@ -230,6 +234,7 @@ local record Client
     updateIdentityPropagationConfig: function(Client, types.UpdateIdentityPropagationConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentityPropagationConfigOutput>
     updateIpRestriction: function(Client, types.UpdateIpRestrictionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIpRestrictionOutput>
     updateKeyRegistration: function(Client, types.UpdateKeyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeyRegistrationOutput>
+    updateOAuthClientApplication: function(Client, types.UpdateOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOAuthClientApplicationOutput>
     updatePublicSharingSettings: function(Client, types.UpdatePublicSharingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePublicSharingSettingsOutput>
     updateQPersonalizationConfiguration: function(Client, types.UpdateQPersonalizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQPersonalizationConfigurationOutput>
     updateQuickSightQSearchConfiguration: function(Client, types.UpdateQuickSightQSearchConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQuickSightQSearchConfigurationOutput>
@@ -370,6 +375,10 @@ function C:createNamespace(input: types.CreateNamespaceInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNamespace as schema.OperationSchema, input, options) as async.Operation<types.CreateNamespaceOutput>
 end
 
+function C:createOAuthClientApplication(input: types.CreateOAuthClientApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOAuthClientApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOAuthClientApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateOAuthClientApplicationOutput>
+end
+
 function C:createRefreshSchedule(input: types.CreateRefreshScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRefreshScheduleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRefreshSchedule as schema.OperationSchema, input, options) as async.Operation<types.CreateRefreshScheduleOutput>
 end
@@ -484,6 +493,10 @@ end
 
 function C:deleteNamespace(input: types.DeleteNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNamespaceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNamespace as schema.OperationSchema, input, options) as async.Operation<types.DeleteNamespaceOutput>
+end
+
+function C:deleteOAuthClientApplication(input: types.DeleteOAuthClientApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOAuthClientApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOAuthClientApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteOAuthClientApplicationOutput>
 end
 
 function C:deleteRefreshSchedule(input: types.DeleteRefreshScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRefreshScheduleOutput>
@@ -690,6 +703,10 @@ function C:describeNamespace(input: types.DescribeNamespaceInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeNamespace as schema.OperationSchema, input, options) as async.Operation<types.DescribeNamespaceOutput>
 end
 
+function C:describeOAuthClientApplication(input: types.DescribeOAuthClientApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeOAuthClientApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeOAuthClientApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeOAuthClientApplicationOutput>
+end
+
 function C:describeQPersonalizationConfiguration(input: types.DescribeQPersonalizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeQPersonalizationConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeQPersonalizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeQPersonalizationConfigurationOutput>
 end
@@ -876,6 +893,10 @@ end
 
 function C:listNamespaces(input: types.ListNamespacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListNamespacesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNamespaces as schema.OperationSchema, input, options) as async.Operation<types.ListNamespacesOutput>
+end
+
+function C:listOAuthClientApplications(input: types.ListOAuthClientApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOAuthClientApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOAuthClientApplications as schema.OperationSchema, input, options) as async.Operation<types.ListOAuthClientApplicationsOutput>
 end
 
 function C:listRefreshSchedules(input: types.ListRefreshSchedulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListRefreshSchedulesOutput>
@@ -1140,6 +1161,10 @@ end
 
 function C:updateKeyRegistration(input: types.UpdateKeyRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKeyRegistrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKeyRegistration as schema.OperationSchema, input, options) as async.Operation<types.UpdateKeyRegistrationOutput>
+end
+
+function C:updateOAuthClientApplication(input: types.UpdateOAuthClientApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOAuthClientApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOAuthClientApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateOAuthClientApplicationOutput>
 end
 
 function C:updatePublicSharingSettings(input: types.UpdatePublicSharingSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePublicSharingSettingsOutput>

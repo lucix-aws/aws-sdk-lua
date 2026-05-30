@@ -1234,6 +1234,12 @@ M.SuppressionOptions = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        SuppressionScope = schema.new({
+            id = id.from(_N, "SuppressionOptions", "SuppressionScope"),
+            type = "string",
+            name = "SuppressionScope",
+            target_id = prelude.String.id,
+        }),
         ValidationOptions = schema.new({
             id = id.from(_N, "SuppressionOptions", "ValidationOptions"),
             type = "structure",
@@ -2710,6 +2716,26 @@ M.CreateMultiRegionEndpointOutput = schema.new({
     },
 })
 
+M.TenantSuppressionAttributes = schema.new({
+    id = id.from(_N, "TenantSuppressionAttributes"),
+    type = "structure",
+    members = {
+        SuppressedReasons = schema.new({
+            id = id.from(_N, "TenantSuppressionAttributes", "SuppressedReasons"),
+            type = "list",
+            name = "SuppressedReasons",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SuppressionScope = schema.new({
+            id = id.from(_N, "TenantSuppressionAttributes", "SuppressionScope"),
+            type = "string",
+            name = "SuppressionScope",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateTenantInput = schema.new({
     id = id.from(_N, "CreateTenantRequest"),
     type = "structure",
@@ -2729,6 +2755,13 @@ M.CreateTenantInput = schema.new({
             name = "Tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        SuppressionAttributes = schema.new({
+            id = id.from(_N, "CreateTenantInput", "SuppressionAttributes"),
+            type = "structure",
+            name = "SuppressionAttributes",
+            target_id = id.from(_N, "TenantSuppressionAttributes"),
+            target = M.TenantSuppressionAttributes,
         }),
     },
 })
@@ -2773,6 +2806,13 @@ M.CreateTenantOutput = schema.new({
             type = "string",
             name = "SendingStatus",
             target_id = prelude.String.id,
+        }),
+        SuppressionAttributes = schema.new({
+            id = id.from(_N, "CreateTenantOutput", "SuppressionAttributes"),
+            type = "structure",
+            name = "SuppressionAttributes",
+            target_id = id.from(_N, "TenantSuppressionAttributes"),
+            target = M.TenantSuppressionAttributes,
         }),
     },
 })
@@ -3287,6 +3327,15 @@ M.DeleteSuppressedDestinationInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TenantName = schema.new({
+            id = id.from(_N, "DeleteSuppressedDestinationInput", "TenantName"),
+            type = "string",
+            name = "TenantName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "TenantName" },
             },
         }),
     },
@@ -5552,6 +5601,15 @@ M.GetSuppressedDestinationInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        TenantName = schema.new({
+            id = id.from(_N, "GetSuppressedDestinationInput", "TenantName"),
+            type = "string",
+            name = "TenantName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "TenantName" },
+            },
+        }),
     },
 })
 
@@ -5611,6 +5669,12 @@ M.SuppressedDestination = schema.new({
             name = "Attributes",
             target_id = id.from(_N, "SuppressedDestinationAttributes"),
             target = M.SuppressedDestinationAttributes,
+        }),
+        TenantName = schema.new({
+            id = id.from(_N, "SuppressedDestination", "TenantName"),
+            type = "string",
+            name = "TenantName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5688,6 +5752,13 @@ M.Tenant = schema.new({
             type = "string",
             name = "SendingStatus",
             target_id = prelude.String.id,
+        }),
+        SuppressionAttributes = schema.new({
+            id = id.from(_N, "Tenant", "SuppressionAttributes"),
+            type = "structure",
+            name = "SuppressionAttributes",
+            target_id = id.from(_N, "TenantSuppressionAttributes"),
+            target = M.TenantSuppressionAttributes,
         }),
     },
 })
@@ -6727,6 +6798,15 @@ M.ListSuppressedDestinationsInput = schema.new({
     id = id.from(_N, "ListSuppressedDestinationsRequest"),
     type = "structure",
     members = {
+        TenantName = schema.new({
+            id = id.from(_N, "ListSuppressedDestinationsInput", "TenantName"),
+            type = "string",
+            name = "TenantName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "TenantName" },
+            },
+        }),
         Reasons = schema.new({
             id = id.from(_N, "ListSuppressedDestinationsInput", "Reasons"),
             type = "list",
@@ -7298,6 +7378,12 @@ M.PutConfigurationSetSuppressionOptionsInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        SuppressionScope = schema.new({
+            id = id.from(_N, "PutConfigurationSetSuppressionOptionsInput", "SuppressionScope"),
+            type = "string",
+            name = "SuppressionScope",
+            target_id = prelude.String.id,
+        }),
         SuppressedReasons = schema.new({
             id = id.from(_N, "PutConfigurationSetSuppressionOptionsInput", "SuppressedReasons"),
             type = "list",
@@ -7710,11 +7796,51 @@ M.PutSuppressedDestinationInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        TenantName = schema.new({
+            id = id.from(_N, "PutSuppressedDestinationInput", "TenantName"),
+            type = "string",
+            name = "TenantName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
 M.PutSuppressedDestinationOutput = schema.new({
     id = id.from(_N, "PutSuppressedDestinationResponse"),
+    type = "structure",
+})
+
+M.PutTenantSuppressionAttributesInput = schema.new({
+    id = id.from(_N, "PutTenantSuppressionAttributesRequest"),
+    type = "structure",
+    members = {
+        TenantName = schema.new({
+            id = id.from(_N, "PutTenantSuppressionAttributesInput", "TenantName"),
+            type = "string",
+            name = "TenantName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SuppressedReasons = schema.new({
+            id = id.from(_N, "PutTenantSuppressionAttributesInput", "SuppressedReasons"),
+            type = "list",
+            name = "SuppressedReasons",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SuppressionScope = schema.new({
+            id = id.from(_N, "PutTenantSuppressionAttributesInput", "SuppressionScope"),
+            type = "string",
+            name = "SuppressionScope",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutTenantSuppressionAttributesOutput = schema.new({
+    id = id.from(_N, "PutTenantSuppressionAttributesResponse"),
     type = "structure",
 })
 
@@ -9592,6 +9718,18 @@ M.PutSuppressedDestination = schema.operation({
     output = M.PutSuppressedDestinationOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v2/email/suppression/addresses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutTenantSuppressionAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutTenantSuppressionAttributes"),
+    input = M.PutTenantSuppressionAttributesInput,
+    output = M.PutTenantSuppressionAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/email/tenant/suppression" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -101,6 +101,10 @@ M.WorkflowExportList = schema.new({ type = "list", list_member = prelude.String 
 
 M.WorkflowMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.WorkflowProfileList = schema.new({ type = "list", list_member = prelude.String })
+
+M.WorkflowProfileParameterTemplates = schema.new({ type = "map", map_key = prelude.String, map_value = M.WorkflowParameterTemplate })
+
 M.ReferenceList = schema.new({ type = "list", list_member = M.ReferenceListItem })
 
 M.TaskList = schema.new({ type = "list", list_member = M.TaskListItem })
@@ -7055,6 +7059,12 @@ M.GetRunOutput = schema.new({
             target_id = id.from(_N, "VpcConfigResponse"),
             target = M.VpcConfigResponse,
         }),
+        engineSettings = schema.new({
+            id = id.from(_N, "GetRunOutput", "engineSettings"),
+            type = "document",
+            name = "engineSettings",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 
@@ -8186,6 +8196,21 @@ M.GetWorkflowOutput = schema.new({
             name = "readmePath",
             target_id = prelude.String.id,
         }),
+        profiles = schema.new({
+            id = id.from(_N, "GetWorkflowOutput", "profiles"),
+            type = "list",
+            name = "profiles",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        profileParameterTemplates = schema.new({
+            id = id.from(_N, "GetWorkflowOutput", "profileParameterTemplates"),
+            type = "map",
+            name = "profileParameterTemplates",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.WorkflowParameter }),
+        }),
     },
 })
 
@@ -8402,6 +8427,21 @@ M.GetWorkflowVersionOutput = schema.new({
             type = "string",
             name = "readmePath",
             target_id = prelude.String.id,
+        }),
+        profiles = schema.new({
+            id = id.from(_N, "GetWorkflowVersionOutput", "profiles"),
+            type = "list",
+            name = "profiles",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        profileParameterTemplates = schema.new({
+            id = id.from(_N, "GetWorkflowVersionOutput", "profileParameterTemplates"),
+            type = "map",
+            name = "profileParameterTemplates",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.WorkflowParameter }),
         }),
     },
 })
@@ -11899,6 +11939,12 @@ M.StartRunInput = schema.new({
             type = "string",
             name = "configurationName",
             target_id = prelude.String.id,
+        }),
+        engineSettings = schema.new({
+            id = id.from(_N, "StartRunInput", "engineSettings"),
+            type = "document",
+            name = "engineSettings",
+            target_id = prelude.Document.id,
         }),
     },
 })

@@ -125,6 +125,8 @@ M.Ingestions = schema.new({ type = "list", list_member = M.Ingestion })
 
 M.Namespaces = schema.new({ type = "list", list_member = M.NamespaceInfoV2 })
 
+M.OAuthClientApplicationSummaryList = schema.new({ type = "list", list_member = M.OAuthClientApplicationSummary })
+
 M.RefreshSchedules = schema.new({ type = "list", list_member = M.RefreshSchedule })
 
 M.SelfUpgradeRequestDetailList = schema.new({ type = "list", list_member = M.SelfUpgradeRequestDetail })
@@ -32567,6 +32569,150 @@ M.CreateNamespaceOutput = schema.new({
     },
 })
 
+M.CreateOAuthClientApplicationInput = schema.new({
+    id = id.from(_N, "CreateOAuthClientApplicationRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OAuthClientAuthenticationType = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "OAuthClientAuthenticationType"),
+            type = "string",
+            name = "OAuthClientAuthenticationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientSecret = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "ClientSecret"),
+            type = "string",
+            name = "ClientSecret",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OAuthTokenEndpointUrl = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "OAuthTokenEndpointUrl"),
+            type = "string",
+            name = "OAuthTokenEndpointUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OAuthAuthorizationEndpointUrl = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "OAuthAuthorizationEndpointUrl"),
+            type = "string",
+            name = "OAuthAuthorizationEndpointUrl",
+            target_id = prelude.String.id,
+        }),
+        OAuthScopes = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "OAuthScopes"),
+            type = "string",
+            name = "OAuthScopes",
+            target_id = prelude.String.id,
+        }),
+        DataSourceType = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "DataSourceType"),
+            type = "string",
+            name = "DataSourceType",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderVpcConnectionProperties = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "IdentityProviderVpcConnectionProperties"),
+            type = "structure",
+            name = "IdentityProviderVpcConnectionProperties",
+            target_id = id.from(_N, "VpcConnectionProperties"),
+            target = M.VpcConnectionProperties,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateOAuthClientApplicationOutput = schema.new({
+    id = id.from(_N, "CreateOAuthClientApplicationResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationOutput", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+        }),
+        CreationStatus = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationOutput", "CreationStatus"),
+            type = "string",
+            name = "CreationStatus",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateOAuthClientApplicationOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.ScheduleRefreshOnEntity = schema.new({
     id = id.from(_N, "ScheduleRefreshOnEntity"),
     type = "structure",
@@ -37172,6 +37318,68 @@ M.DeleteNamespaceOutput = schema.new({
     },
 })
 
+M.DeleteOAuthClientApplicationInput = schema.new({
+    id = id.from(_N, "DeleteOAuthClientApplicationRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DeleteOAuthClientApplicationInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "DeleteOAuthClientApplicationInput", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteOAuthClientApplicationOutput = schema.new({
+    id = id.from(_N, "DeleteOAuthClientApplicationResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeleteOAuthClientApplicationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "DeleteOAuthClientApplicationOutput", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DeleteOAuthClientApplicationOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DeleteOAuthClientApplicationOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteRefreshScheduleInput = schema.new({
     id = id.from(_N, "DeleteRefreshScheduleRequest"),
     type = "structure",
@@ -41442,6 +41650,137 @@ M.DescribeNamespaceOutput = schema.new({
         }),
         Status = schema.new({
             id = id.from(_N, "DescribeNamespaceOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeOAuthClientApplicationInput = schema.new({
+    id = id.from(_N, "DescribeOAuthClientApplicationRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeOAuthClientApplicationInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "DescribeOAuthClientApplicationInput", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.OAuthClientApplication = schema.new({
+    id = id.from(_N, "OAuthClientApplication"),
+    type = "structure",
+    members = {
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        OAuthClientAuthenticationType = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "OAuthClientAuthenticationType"),
+            type = "string",
+            name = "OAuthClientAuthenticationType",
+            target_id = prelude.String.id,
+        }),
+        OAuthTokenEndpointUrl = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "OAuthTokenEndpointUrl"),
+            type = "string",
+            name = "OAuthTokenEndpointUrl",
+            target_id = prelude.String.id,
+        }),
+        OAuthAuthorizationEndpointUrl = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "OAuthAuthorizationEndpointUrl"),
+            type = "string",
+            name = "OAuthAuthorizationEndpointUrl",
+            target_id = prelude.String.id,
+        }),
+        OAuthScopes = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "OAuthScopes"),
+            type = "string",
+            name = "OAuthScopes",
+            target_id = prelude.String.id,
+        }),
+        DataSourceType = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "DataSourceType"),
+            type = "string",
+            name = "DataSourceType",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderVpcConnectionProperties = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "IdentityProviderVpcConnectionProperties"),
+            type = "structure",
+            name = "IdentityProviderVpcConnectionProperties",
+            target_id = id.from(_N, "VpcConnectionProperties"),
+            target = M.VpcConnectionProperties,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "OAuthClientApplication", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeOAuthClientApplicationOutput = schema.new({
+    id = id.from(_N, "DescribeOAuthClientApplicationResponse"),
+    type = "structure",
+    members = {
+        OAuthClientApplication = schema.new({
+            id = id.from(_N, "DescribeOAuthClientApplicationOutput", "OAuthClientApplication"),
+            type = "structure",
+            name = "OAuthClientApplication",
+            target_id = id.from(_N, "OAuthClientApplication"),
+            target = M.OAuthClientApplication,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeOAuthClientApplicationOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeOAuthClientApplicationOutput", "Status"),
             type = "integer",
             name = "Status",
             target_id = prelude.Integer.id,
@@ -46394,6 +46733,133 @@ M.ListNamespacesOutput = schema.new({
         }),
         Status = schema.new({
             id = id.from(_N, "ListNamespacesOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.ListOAuthClientApplicationsInput = schema.new({
+    id = id.from(_N, "ListOAuthClientApplicationsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "ListOAuthClientApplicationsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListOAuthClientApplicationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListOAuthClientApplicationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+    },
+})
+
+M.OAuthClientApplicationSummary = schema.new({
+    id = id.from(_N, "OAuthClientApplicationSummary"),
+    type = "structure",
+    members = {
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        OAuthClientAuthenticationType = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "OAuthClientAuthenticationType"),
+            type = "string",
+            name = "OAuthClientAuthenticationType",
+            target_id = prelude.String.id,
+        }),
+        DataSourceType = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "DataSourceType"),
+            type = "string",
+            name = "DataSourceType",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderVpcConnectionProperties = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "IdentityProviderVpcConnectionProperties"),
+            type = "structure",
+            name = "IdentityProviderVpcConnectionProperties",
+            target_id = id.from(_N, "VpcConnectionProperties"),
+            target = M.VpcConnectionProperties,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "OAuthClientApplicationSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListOAuthClientApplicationsOutput = schema.new({
+    id = id.from(_N, "ListOAuthClientApplicationsResponse"),
+    type = "structure",
+    members = {
+        OAuthClientApplications = schema.new({
+            id = id.from(_N, "ListOAuthClientApplicationsOutput", "OAuthClientApplications"),
+            type = "list",
+            name = "OAuthClientApplications",
+            target_id = prelude.Document.id,
+            list_member = M.OAuthClientApplicationSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListOAuthClientApplicationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "ListOAuthClientApplicationsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListOAuthClientApplicationsOutput", "Status"),
             type = "integer",
             name = "Status",
             target_id = prelude.Integer.id,
@@ -52116,6 +52582,126 @@ M.UpdateKeyRegistrationOutput = schema.new({
     },
 })
 
+M.UpdateOAuthClientApplicationInput = schema.new({
+    id = id.from(_N, "UpdateOAuthClientApplicationRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+        }),
+        ClientSecret = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "ClientSecret"),
+            type = "string",
+            name = "ClientSecret",
+            target_id = prelude.String.id,
+        }),
+        OAuthTokenEndpointUrl = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "OAuthTokenEndpointUrl"),
+            type = "string",
+            name = "OAuthTokenEndpointUrl",
+            target_id = prelude.String.id,
+        }),
+        OAuthAuthorizationEndpointUrl = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "OAuthAuthorizationEndpointUrl"),
+            type = "string",
+            name = "OAuthAuthorizationEndpointUrl",
+            target_id = prelude.String.id,
+        }),
+        OAuthScopes = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "OAuthScopes"),
+            type = "string",
+            name = "OAuthScopes",
+            target_id = prelude.String.id,
+        }),
+        DataSourceType = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "DataSourceType"),
+            type = "string",
+            name = "DataSourceType",
+            target_id = prelude.String.id,
+        }),
+        IdentityProviderVpcConnectionProperties = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationInput", "IdentityProviderVpcConnectionProperties"),
+            type = "structure",
+            name = "IdentityProviderVpcConnectionProperties",
+            target_id = id.from(_N, "VpcConnectionProperties"),
+            target = M.VpcConnectionProperties,
+        }),
+    },
+})
+
+M.UpdateOAuthClientApplicationOutput = schema.new({
+    id = id.from(_N, "UpdateOAuthClientApplicationResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        OAuthClientApplicationId = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationOutput", "OAuthClientApplicationId"),
+            type = "string",
+            name = "OAuthClientApplicationId",
+            target_id = prelude.String.id,
+        }),
+        UpdateStatus = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationOutput", "UpdateStatus"),
+            type = "string",
+            name = "UpdateStatus",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateOAuthClientApplicationOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.UpdatePublicSharingSettingsInput = schema.new({
     id = id.from(_N, "UpdatePublicSharingSettingsRequest"),
     type = "structure",
@@ -54168,6 +54754,18 @@ M.CreateNamespace = schema.operation({
     },
 })
 
+M.CreateOAuthClientApplication = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateOAuthClientApplication"),
+    input = M.CreateOAuthClientApplicationInput,
+    output = M.CreateOAuthClientApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/oauth-client-applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateRefreshSchedule = schema.operation({
     id = id.from("com.amazonaws.quicksight", "CreateRefreshSchedule"),
     input = M.CreateRefreshScheduleInput,
@@ -54510,6 +55108,18 @@ M.DeleteNamespace = schema.operation({
     output = M.DeleteNamespaceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteOAuthClientApplication = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteOAuthClientApplication"),
+    input = M.DeleteOAuthClientApplicationInput,
+    output = M.DeleteOAuthClientApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/oauth-client-applications/{OAuthClientApplicationId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -55128,6 +55738,18 @@ M.DescribeNamespace = schema.operation({
     },
 })
 
+M.DescribeOAuthClientApplication = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeOAuthClientApplication"),
+    input = M.DescribeOAuthClientApplicationInput,
+    output = M.DescribeOAuthClientApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/oauth-client-applications/{OAuthClientApplicationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeQPersonalizationConfiguration = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DescribeQPersonalizationConfiguration"),
     input = M.DescribeQPersonalizationConfigurationInput,
@@ -55686,6 +56308,18 @@ M.ListNamespaces = schema.operation({
     output = M.ListNamespacesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListOAuthClientApplications = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListOAuthClientApplications"),
+    input = M.ListOAuthClientApplicationsInput,
+    output = M.ListOAuthClientApplicationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/oauth-client-applications" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -56478,6 +57112,18 @@ M.UpdateKeyRegistration = schema.operation({
     output = M.UpdateKeyRegistrationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/key-registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateOAuthClientApplication = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateOAuthClientApplication"),
+    input = M.UpdateOAuthClientApplicationInput,
+    output = M.UpdateOAuthClientApplicationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/oauth-client-applications/{OAuthClientApplicationId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -13081,6 +13081,49 @@ local record M
         Status: number
     end
 
+    enum OAuthClientAuthenticationType
+        "TOKEN"
+    end
+
+    record CreateOAuthClientApplicationInput
+        -- The Amazon Web Services account ID.
+        AwsAccountId: string
+        -- An ID for the OAuthClientApplication that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        OAuthClientApplicationId: string
+        -- The display name for the OAuthClientApplication.
+        Name: string
+        -- The authentication type to use for the OAuthClientApplication. This determines the OAuth 2.0 grant flow that is used when the data source connects to the identity provider. Valid values are TOKEN.
+        OAuthClientAuthenticationType: string
+        -- The client ID of the OAuth application that is registered with the identity provider.
+        ClientId: string
+        -- The client secret of the OAuth application that is registered with the identity provider.
+        ClientSecret: string
+        -- The token endpoint URL of the identity provider that is used to obtain access tokens.
+        OAuthTokenEndpointUrl: string
+        -- The authorization endpoint URL of the identity provider that is used to obtain authorization codes.
+        OAuthAuthorizationEndpointUrl: string
+        -- The OAuth scopes that are requested when the OAuthClientApplication obtains an access token from the identity provider.
+        OAuthScopes: string
+        -- The type of data source that the OAuthClientApplication is used with. Valid values are SNOWFLAKE.
+        DataSourceType: string
+        IdentityProviderVpcConnectionProperties: VpcConnectionProperties
+        -- Contains a map of the key-value pairs for the resource tag or tags assigned to the OAuthClientApplication.
+        Tags: {Tag}
+    end
+
+    record CreateOAuthClientApplicationOutput
+        -- The Amazon Resource Name (ARN) of the OAuthClientApplication.
+        Arn: string
+        -- The ID of the OAuthClientApplication. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        OAuthClientApplicationId: string
+        -- The status of creating the OAuthClientApplication.
+        CreationStatus: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     enum RefreshInterval
         "MINUTE15"
         "MINUTE30"
@@ -14931,6 +14974,24 @@ local record M
         Status: number
     end
 
+    record DeleteOAuthClientApplicationInput
+        -- The Amazon Web Services account ID.
+        AwsAccountId: string
+        -- The ID of the OAuthClientApplication that you want to delete.
+        OAuthClientApplicationId: string
+    end
+
+    record DeleteOAuthClientApplicationOutput
+        -- The Amazon Resource Name (ARN) of the OAuthClientApplication that you deleted.
+        Arn: string
+        -- The ID of the OAuthClientApplication. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        OAuthClientApplicationId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     record DeleteRefreshScheduleInput
         -- The ID of the dataset.
         DataSetId: string
@@ -16403,6 +16464,47 @@ local record M
         -- works for namespaces that are in the process of being created. For incomplete namespaces,
         -- this API operation lists the namespace error types and messages associated with the creation process.
         Namespace: NamespaceInfoV2
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record DescribeOAuthClientApplicationInput
+        -- The Amazon Web Services account ID.
+        AwsAccountId: string
+        -- The ID of the OAuthClientApplication that you want to describe.
+        OAuthClientApplicationId: string
+    end
+
+    -- An OAuth client application that is used to authenticate connections to a data source through an OAuth identity provider.
+    record OAuthClientApplication
+        -- The ID of the OAuthClientApplication. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        OAuthClientApplicationId: string
+        -- The display name of the OAuthClientApplication.
+        Name: string
+        -- The OAuth client authentication type used by the OAuthClientApplication. Valid values are TOKEN.
+        OAuthClientAuthenticationType: string
+        -- The token endpoint URL of the identity provider that is used to obtain access tokens.
+        OAuthTokenEndpointUrl: string
+        -- The authorization endpoint URL of the identity provider that is used to obtain authorization codes.
+        OAuthAuthorizationEndpointUrl: string
+        -- The OAuth scopes that are requested when the OAuthClientApplication obtains an access token from the identity provider.
+        OAuthScopes: string
+        -- The type of data source that the OAuthClientApplication is used with. Valid values are SNOWFLAKE.
+        DataSourceType: string
+        IdentityProviderVpcConnectionProperties: VpcConnectionProperties
+        -- The time that the OAuthClientApplication was created.
+        CreatedTime: number
+        -- The time that the OAuthClientApplication was last updated.
+        LastUpdatedTime: number
+        -- The Amazon Resource Name (ARN) of the OAuthClientApplication.
+        Arn: string
+    end
+
+    record DescribeOAuthClientApplicationOutput
+        -- The information about the OAuthClientApplication.
+        OAuthClientApplication: OAuthClientApplication
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
         -- The HTTP status of the request.
@@ -18284,6 +18386,45 @@ local record M
         -- identity store.
         Namespaces: {NamespaceInfoV2}
         -- A unique pagination token that can be used in a subsequent request. Receiving NextToken in your response inticates that there is more data that can be returned. To receive the data, make another ListNamespaces API call with the returned token to retrieve the next page of data. Each token is valid for 24 hours. If you try to make a ListNamespaces API call with an expired token, you will receive a HTTP 400 InvalidNextTokenException error.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record ListOAuthClientApplicationsInput
+        -- The Amazon Web Services account ID.
+        AwsAccountId: string
+        -- A pagination token that can be used in a subsequent request.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+    end
+
+    -- A summary of an OAuthClientApplication.
+    record OAuthClientApplicationSummary
+        -- The ID of the OAuthClientApplication. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        OAuthClientApplicationId: string
+        -- The display name of the OAuthClientApplication.
+        Name: string
+        -- The OAuth client authentication type used by the OAuthClientApplication. Valid values are TOKEN.
+        OAuthClientAuthenticationType: string
+        -- The type of data source that the OAuthClientApplication is used with. Valid values are SNOWFLAKE.
+        DataSourceType: string
+        IdentityProviderVpcConnectionProperties: VpcConnectionProperties
+        -- The time that the OAuthClientApplication was created.
+        CreatedTime: number
+        -- The time that the OAuthClientApplication was last updated.
+        LastUpdatedTime: number
+        -- The Amazon Resource Name (ARN) of the OAuthClientApplication.
+        Arn: string
+    end
+
+    record ListOAuthClientApplicationsOutput
+        -- A list of OAuthClientApplication summaries.
+        OAuthClientApplications: {OAuthClientApplicationSummary}
+        -- A pagination token that can be used in a subsequent request.
         NextToken: string
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
@@ -20206,6 +20347,41 @@ local record M
         SuccessfulKeyRegistration: {SuccessfulKeyRegistrationEntry}
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
+    end
+
+    record UpdateOAuthClientApplicationInput
+        -- The Amazon Web Services account ID.
+        AwsAccountId: string
+        -- The ID of the OAuthClientApplication that you want to update.
+        OAuthClientApplicationId: string
+        -- The display name for the OAuthClientApplication.
+        Name: string
+        -- The client ID of the OAuth application that is registered with the identity provider.
+        ClientId: string
+        -- The client secret of the OAuth application that is registered with the identity provider.
+        ClientSecret: string
+        -- The token endpoint URL of the identity provider that is used to obtain access tokens.
+        OAuthTokenEndpointUrl: string
+        -- The authorization endpoint URL of the identity provider that is used to obtain authorization codes.
+        OAuthAuthorizationEndpointUrl: string
+        -- The OAuth scopes that are requested when the OAuthClientApplication obtains an access token from the identity provider.
+        OAuthScopes: string
+        -- The type of data source that the OAuthClientApplication is used with. Valid values are SNOWFLAKE.
+        DataSourceType: string
+        IdentityProviderVpcConnectionProperties: VpcConnectionProperties
+    end
+
+    record UpdateOAuthClientApplicationOutput
+        -- The Amazon Resource Name (ARN) of the OAuthClientApplication.
+        Arn: string
+        -- The ID of the OAuthClientApplication. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        OAuthClientApplicationId: string
+        -- The status of updating the OAuthClientApplication.
+        UpdateStatus: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
     end
 
     record UpdatePublicSharingSettingsInput

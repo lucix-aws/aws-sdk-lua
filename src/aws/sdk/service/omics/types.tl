@@ -2367,6 +2367,8 @@ local record M
         configuration: ConfigurationDetails
         -- VPC configuration for the workflow run.
         vpcConfig: VpcConfigResponse
+        -- The engine-specific settings for the workflow run.
+        engineSettings: any
     end
 
     record GetRunCacheInput
@@ -2707,6 +2709,10 @@ local record M
         definitionRepositoryDetails: DefinitionRepositoryDetails
         -- The path to the workflow README markdown file within the repository. This file provides documentation and usage information for the workflow. If not specified, the README.md file from the root directory of the repository will be used.
         readmePath: string
+        -- The list of Nextflow profiles that are available for this workflow. Profiles allow you to select predefined configuration settings at runtime.
+        profiles: {string}
+        -- A mapping of profile names to their parameter templates. Each profile defines its own set of parameters that you can use when starting a run with that profile.
+        profileParameterTemplates: {string : {string : WorkflowParameter}}
     end
 
     record GetWorkflowVersionInput
@@ -2767,6 +2773,10 @@ local record M
         definitionRepositoryDetails: DefinitionRepositoryDetails
         -- The path to the workflow version README markdown file within the repository. This file provides documentation and usage information for the workflow. If not specified, the README.md file from the root directory of the repository will be used.
         readmePath: string
+        -- The list of Nextflow profiles that are available for this workflow version. Profiles allow you to select predefined configuration settings at runtime.
+        profiles: {string}
+        -- A mapping of profile names to their parameter templates. Each profile defines its own set of parameters that you can use when starting a run with that profile.
+        profileParameterTemplates: {string : {string : WorkflowParameter}}
     end
 
     -- A filter for import read set jobs.
@@ -3797,6 +3807,8 @@ local record M
         networkingMode: string
         -- Optional configuration name to use for the workflow run.
         configurationName: string
+        -- Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).
+        engineSettings: any
     end
 
     record StartRunOutput

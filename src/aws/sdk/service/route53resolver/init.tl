@@ -22,6 +22,9 @@ local record Client
     associateResolverEndpointIpAddress: function(Client, types.AssociateResolverEndpointIpAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResolverEndpointIpAddressOutput>
     associateResolverQueryLogConfig: function(Client, types.AssociateResolverQueryLogConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResolverQueryLogConfigOutput>
     associateResolverRule: function(Client, types.AssociateResolverRuleInput, ? base_client.InvokeOptions): async.Operation<types.AssociateResolverRuleOutput>
+    batchCreateFirewallRule: function(Client, types.BatchCreateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateFirewallRuleOutput>
+    batchDeleteFirewallRule: function(Client, types.BatchDeleteFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteFirewallRuleOutput>
+    batchUpdateFirewallRule: function(Client, types.BatchUpdateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateFirewallRuleOutput>
     createFirewallDomainList: function(Client, types.CreateFirewallDomainListInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallDomainListOutput>
     createFirewallRule: function(Client, types.CreateFirewallRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleOutput>
     createFirewallRuleGroup: function(Client, types.CreateFirewallRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallRuleGroupOutput>
@@ -62,6 +65,7 @@ local record Client
     listFirewallRuleGroupAssociations: function(Client, types.ListFirewallRuleGroupAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRuleGroupAssociationsOutput>
     listFirewallRuleGroups: function(Client, types.ListFirewallRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRuleGroupsOutput>
     listFirewallRules: function(Client, types.ListFirewallRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRulesOutput>
+    listFirewallRuleTypes: function(Client, types.ListFirewallRuleTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallRuleTypesOutput>
     listOutpostResolvers: function(Client, types.ListOutpostResolversInput, ? base_client.InvokeOptions): async.Operation<types.ListOutpostResolversOutput>
     listResolverConfigs: function(Client, types.ListResolverConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverConfigsOutput>
     listResolverDnssecConfigs: function(Client, types.ListResolverDnssecConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListResolverDnssecConfigsOutput>
@@ -144,6 +148,18 @@ end
 
 function C:associateResolverRule(input: types.AssociateResolverRuleInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateResolverRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateResolverRule as schema.OperationSchema, input, options) as async.Operation<types.AssociateResolverRuleOutput>
+end
+
+function C:batchCreateFirewallRule(input: types.BatchCreateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateFirewallRuleOutput>
+end
+
+function C:batchDeleteFirewallRule(input: types.BatchDeleteFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteFirewallRuleOutput>
+end
+
+function C:batchUpdateFirewallRule(input: types.BatchUpdateFirewallRuleInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateFirewallRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateFirewallRule as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateFirewallRuleOutput>
 end
 
 function C:createFirewallDomainList(input: types.CreateFirewallDomainListInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallDomainListOutput>
@@ -304,6 +320,10 @@ end
 
 function C:listFirewallRules(input: types.ListFirewallRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallRulesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallRules as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallRulesOutput>
+end
+
+function C:listFirewallRuleTypes(input: types.ListFirewallRuleTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallRuleTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallRuleTypes as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallRuleTypesOutput>
 end
 
 function C:listOutpostResolvers(input: types.ListOutpostResolversInput, options?: base_client.InvokeOptions): async.Operation<types.ListOutpostResolversOutput>

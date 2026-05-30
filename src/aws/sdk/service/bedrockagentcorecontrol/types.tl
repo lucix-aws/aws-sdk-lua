@@ -854,11 +854,28 @@ local record M
         skillDefinition: SkillDefinition
     end
 
+    -- Contains a reference to a secret stored in AWS Secrets Manager.
+    record SecretReference
+        -- The ID of the AWS Secrets Manager secret that stores the secret value.
+        secretId: string
+        -- The JSON key used to extract the secret value from the AWS Secrets Manager secret.
+        jsonKey: string
+    end
+
+    enum SecretSourceType
+        "MANAGED"
+        "EXTERNAL"
+    end
+
     record CreateApiKeyCredentialProviderInput
         -- The name of the API key credential provider. The name must be unique within your account.
         name: string
         -- The API key to use for authentication. This value is encrypted and stored securely.
         apiKey: string
+        -- A reference to the AWS Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
+        apiKeySecretConfig: SecretReference
+        -- The source type of the API key secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        apiKeySecretSource: string
         -- A map of tag keys and values to assign to the API key credential provider. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
         tags: {string : string}
     end
@@ -872,6 +889,10 @@ local record M
     record CreateApiKeyCredentialProviderOutput
         -- The Amazon Resource Name (ARN) of the secret containing the API key.
         apiKeySecretArn: Secret
+        -- The JSON key used to extract the API key value from the AWS Secrets Manager secret.
+        apiKeySecretJsonKey: string
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        apiKeySecretSource: string
         -- The name of the created API key credential provider.
         name: string
         -- The Amazon Resource Name (ARN) of the created API key credential provider.
@@ -914,6 +935,10 @@ local record M
     record GetApiKeyCredentialProviderOutput
         -- The Amazon Resource Name (ARN) of the API key secret in AWS Secrets Manager.
         apiKeySecretArn: Secret
+        -- The JSON key used to extract the API key value from the AWS Secrets Manager secret.
+        apiKeySecretJsonKey: string
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        apiKeySecretSource: string
         -- The name of the API key credential provider.
         name: string
         -- The Amazon Resource Name (ARN) of the API key credential provider.
@@ -955,11 +980,19 @@ local record M
         name: string
         -- The new API key to use for authentication. This value replaces the existing API key and is encrypted and stored securely.
         apiKey: string
+        -- A reference to the AWS Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
+        apiKeySecretConfig: SecretReference
+        -- The source type of the API key secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        apiKeySecretSource: string
     end
 
     record UpdateApiKeyCredentialProviderOutput
         -- The Amazon Resource Name (ARN) of the API key secret in AWS Secrets Manager.
         apiKeySecretArn: Secret
+        -- The JSON key used to extract the API key value from the AWS Secrets Manager secret.
+        apiKeySecretJsonKey: string
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        apiKeySecretSource: string
         -- The name of the API key credential provider.
         name: string
         -- The Amazon Resource Name (ARN) of the API key credential provider.
@@ -4520,6 +4553,10 @@ local record M
         clientId: string
         -- The client secret for the Atlassian OAuth2 provider. This secret is assigned by Atlassian and used along with the client ID to authenticate your application.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret for the Atlassian OAuth2 provider. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
     end
 
     enum ClientAuthenticationMethodType
@@ -4579,14 +4616,18 @@ local record M
         clientId: string
         -- The client secret for the custom OAuth2 provider.
         clientSecret: string
-        -- The default private endpoint for the custom OAuth2 provider, enabling secure connectivity through a VPC Lattice resource configuration.
-        privateEndpoint: PrivateEndpoint
-        -- The private endpoint overrides for the custom OAuth2 provider configuration.
-        privateEndpointOverrides: {PrivateEndpointOverride}
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
         -- The configuration for on-behalf-of token exchange. This enables authentication flows that use RFC 8693 token exchange or RFC 7523 JWT authorization grants.
         onBehalfOfTokenExchangeConfig: OnBehalfOfTokenExchangeConfigType
         -- The client authentication method to use when authenticating with the token endpoint.
         clientAuthenticationMethod: string
+        -- The default private endpoint for the custom OAuth2 provider, enabling secure connectivity through a VPC Lattice resource configuration.
+        privateEndpoint: PrivateEndpoint
+        -- The private endpoint overrides for the custom OAuth2 provider configuration.
+        privateEndpointOverrides: {PrivateEndpointOverride}
     end
 
     -- Input configuration for a GitHub OAuth2 provider.
@@ -4595,6 +4636,10 @@ local record M
         clientId: string
         -- The client secret for the GitHub OAuth2 provider.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
     end
 
     -- Input configuration for a Google OAuth2 provider.
@@ -4603,6 +4648,10 @@ local record M
         clientId: string
         -- The client secret for the Google OAuth2 provider.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
     end
 
     -- Configuration settings for connecting to a supported OAuth2 provider. This includes client credentials and OAuth2 discovery information for providers that have built-in support.
@@ -4611,6 +4660,10 @@ local record M
         clientId: string
         -- The client secret for the supported OAuth2 provider. This secret is assigned by the OAuth2 provider and used along with the client ID to authenticate your application.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
         -- Token issuer of your isolated OAuth2 application tenant. This URL identifies the authorization server that issues tokens for this provider.
         issuer: string
         -- OAuth2 authorization endpoint for your isolated OAuth2 application tenant. This is where users are redirected to authenticate and authorize access to their resources.
@@ -4625,6 +4678,10 @@ local record M
         clientId: string
         -- The client secret for the LinkedIn OAuth2 provider. This secret is assigned by LinkedIn and used along with the client ID to authenticate your application.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
     end
 
     -- Input configuration for a Microsoft OAuth2 provider.
@@ -4633,6 +4690,10 @@ local record M
         clientId: string
         -- The client secret for the Microsoft OAuth2 provider.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
         -- The Microsoft Entra ID (formerly Azure AD) tenant ID for your organization. This identifies the specific tenant within Microsoft's identity platform where your application is registered.
         tenantId: string
     end
@@ -4643,6 +4704,10 @@ local record M
         clientId: string
         -- The client secret for the Salesforce OAuth2 provider.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
     end
 
     -- Input configuration for a Slack OAuth2 provider.
@@ -4651,6 +4716,10 @@ local record M
         clientId: string
         -- The client secret for the Slack OAuth2 provider.
         clientSecret: string
+        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        clientSecretConfig: SecretReference
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        clientSecretSource: string
     end
 
     -- Contains the input configuration for an OAuth2 provider.
@@ -4798,6 +4867,10 @@ local record M
     record CreateOauth2CredentialProviderOutput
         -- The Amazon Resource Name (ARN) of the client secret in AWS Secrets Manager.
         clientSecretArn: Secret
+        -- The JSON key used to extract the client secret value from the AWS Secrets Manager secret.
+        clientSecretJsonKey: string
+        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        clientSecretSource: string
         -- The name of the OAuth2 credential provider.
         name: string
         -- The Amazon Resource Name (ARN) of the OAuth2 credential provider.
@@ -4825,6 +4898,10 @@ local record M
     record GetOauth2CredentialProviderOutput
         -- The Amazon Resource Name (ARN) of the client secret in AWS Secrets Manager.
         clientSecretArn: Secret
+        -- The JSON key used to extract the client secret value from the AWS Secrets Manager secret.
+        clientSecretJsonKey: string
+        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        clientSecretSource: string
         -- The name of the OAuth2 credential provider.
         name: string
         -- ARN of the credential provider requested.
@@ -4885,6 +4962,10 @@ local record M
     record UpdateOauth2CredentialProviderOutput
         -- The Amazon Resource Name (ARN) of the client secret in AWS Secrets Manager.
         clientSecretArn: Secret
+        -- The JSON key used to extract the client secret value from the AWS Secrets Manager secret.
+        clientSecretJsonKey: string
+        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        clientSecretSource: string
         -- The name of the OAuth2 credential provider.
         name: string
         -- The vendor of the OAuth2 credential provider.
@@ -5171,8 +5252,16 @@ local record M
         apiKeyId: string
         -- The API key secret provided by Coinbase Developer Platform.
         apiKeySecret: string
+        -- The source type of the API key secret for the Coinbase Developer Platform. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        apiKeySecretSource: string
+        -- A reference to the AWS Secrets Manager secret that stores the API key secret. This includes the secret ID and the JSON key used to extract the API key secret value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
+        apiKeySecretConfig: SecretReference
         -- The wallet secret provided by Coinbase Developer Platform.
         walletSecret: string
+        -- The source type of the wallet secret for the Coinbase Developer Platform. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        walletSecretSource: string
+        -- A reference to the AWS Secrets Manager secret that stores the wallet secret. This includes the secret ID and the JSON key used to extract the wallet secret value from the secret. Required when walletSecretSource is set to EXTERNAL.
+        walletSecretConfig: SecretReference
     end
 
     -- Stripe Privy configuration — credentials provided by Stripe and Privy.
@@ -5181,8 +5270,16 @@ local record M
         appId: string
         -- The app secret provided by Privy.
         appSecret: string
+        -- The source type of the app secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        appSecretSource: string
+        -- A reference to the AWS Secrets Manager secret that stores the app secret. This includes the secret ID and the JSON key used to extract the app secret value from the secret. Required when appSecretSource is set to EXTERNAL.
+        appSecretConfig: SecretReference
         -- The authorization private key for the Stripe Privy integration.
         authorizationPrivateKey: string
+        -- The source type of the authorization private key. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        authorizationPrivateKeySource: string
+        -- A reference to the AWS Secrets Manager secret that stores the authorization private key. This includes the secret ID and the JSON key used to extract the authorization private key value from the secret. Required when authorizationPrivateKeySource is set to EXTERNAL.
+        authorizationPrivateKeyConfig: SecretReference
         -- The authorization ID for the Stripe Privy integration.
         authorizationId: string
     end
@@ -5211,7 +5308,15 @@ local record M
         -- The API key identifier provided by Coinbase Developer Platform.
         apiKeyId: string
         apiKeySecretArn: Secret
+        -- The JSON key used to extract the API key secret value from the AWS Secrets Manager secret.
+        apiKeySecretJsonKey: string
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        apiKeySecretSource: string
         walletSecretArn: Secret
+        -- The JSON key used to extract the wallet secret value from the AWS Secrets Manager secret.
+        walletSecretJsonKey: string
+        -- The source type of the wallet secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        walletSecretSource: string
     end
 
     -- Stripe Privy configuration output with secret ARNs.
@@ -5219,7 +5324,15 @@ local record M
         -- The app ID provided by Privy.
         appId: string
         appSecretArn: Secret
+        -- The JSON key used to extract the app secret value from the AWS Secrets Manager secret.
+        appSecretJsonKey: string
+        -- The source type of the app secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        appSecretSource: string
         authorizationPrivateKeyArn: Secret
+        -- The JSON key used to extract the authorization private key value from the AWS Secrets Manager secret.
+        authorizationPrivateKeyJsonKey: string
+        -- The source type of the authorization private key. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        authorizationPrivateKeySource: string
         -- The authorization ID for the Stripe Privy integration.
         authorizationId: string
     end

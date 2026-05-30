@@ -2896,6 +2896,31 @@ M.AgentSkillsDescriptor = schema.new({
     },
 })
 
+M.SecretReference = schema.new({
+    id = id.from(_N, "SecretReference"),
+    type = "structure",
+    members = {
+        secretId = schema.new({
+            id = id.from(_N, "SecretReference", "secretId"),
+            type = "string",
+            name = "secretId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        jsonKey = schema.new({
+            id = id.from(_N, "SecretReference", "jsonKey"),
+            type = "string",
+            name = "jsonKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateApiKeyCredentialProviderInput = schema.new({
     id = id.from(_N, "CreateApiKeyCredentialProviderRequest"),
     type = "structure",
@@ -2915,8 +2940,21 @@ M.CreateApiKeyCredentialProviderInput = schema.new({
             name = "apiKey",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        apiKeySecretConfig = schema.new({
+            id = id.from(_N, "CreateApiKeyCredentialProviderInput", "apiKeySecretConfig"),
+            type = "structure",
+            name = "apiKeySecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        apiKeySecretSource = schema.new({
+            id = id.from(_N, "CreateApiKeyCredentialProviderInput", "apiKeySecretSource"),
+            type = "string",
+            name = "apiKeySecretSource",
+            target_id = prelude.String.id,
         }),
         tags = schema.new({
             id = id.from(_N, "CreateApiKeyCredentialProviderInput", "tags"),
@@ -2958,6 +2996,18 @@ M.CreateApiKeyCredentialProviderOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        apiKeySecretJsonKey = schema.new({
+            id = id.from(_N, "CreateApiKeyCredentialProviderOutput", "apiKeySecretJsonKey"),
+            type = "string",
+            name = "apiKeySecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        apiKeySecretSource = schema.new({
+            id = id.from(_N, "CreateApiKeyCredentialProviderOutput", "apiKeySecretSource"),
+            type = "string",
+            name = "apiKeySecretSource",
+            target_id = prelude.String.id,
         }),
         name = schema.new({
             id = id.from(_N, "CreateApiKeyCredentialProviderOutput", "name"),
@@ -3100,6 +3150,18 @@ M.GetApiKeyCredentialProviderOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        apiKeySecretJsonKey = schema.new({
+            id = id.from(_N, "GetApiKeyCredentialProviderOutput", "apiKeySecretJsonKey"),
+            type = "string",
+            name = "apiKeySecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        apiKeySecretSource = schema.new({
+            id = id.from(_N, "GetApiKeyCredentialProviderOutput", "apiKeySecretSource"),
+            type = "string",
+            name = "apiKeySecretSource",
+            target_id = prelude.String.id,
         }),
         name = schema.new({
             id = id.from(_N, "GetApiKeyCredentialProviderOutput", "name"),
@@ -3247,8 +3309,21 @@ M.UpdateApiKeyCredentialProviderInput = schema.new({
             name = "apiKey",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        apiKeySecretConfig = schema.new({
+            id = id.from(_N, "UpdateApiKeyCredentialProviderInput", "apiKeySecretConfig"),
+            type = "structure",
+            name = "apiKeySecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        apiKeySecretSource = schema.new({
+            id = id.from(_N, "UpdateApiKeyCredentialProviderInput", "apiKeySecretSource"),
+            type = "string",
+            name = "apiKeySecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3266,6 +3341,18 @@ M.UpdateApiKeyCredentialProviderOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        apiKeySecretJsonKey = schema.new({
+            id = id.from(_N, "UpdateApiKeyCredentialProviderOutput", "apiKeySecretJsonKey"),
+            type = "string",
+            name = "apiKeySecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        apiKeySecretSource = schema.new({
+            id = id.from(_N, "UpdateApiKeyCredentialProviderOutput", "apiKeySecretSource"),
+            type = "string",
+            name = "apiKeySecretSource",
+            target_id = prelude.String.id,
         }),
         name = schema.new({
             id = id.from(_N, "UpdateApiKeyCredentialProviderOutput", "name"),
@@ -14138,8 +14225,21 @@ M.AtlassianOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "AtlassianOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "AtlassianOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -14290,19 +14390,18 @@ M.CustomOauth2ProviderConfigInput = schema.new({
                 [traits.DEFAULT] = { value = "" },
             },
         }),
-        privateEndpoint = schema.new({
-            id = id.from(_N, "CustomOauth2ProviderConfigInput", "privateEndpoint"),
-            type = "union",
-            name = "privateEndpoint",
-            target_id = id.from(_N, "PrivateEndpoint"),
-            target = M.PrivateEndpoint,
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
         }),
-        privateEndpointOverrides = schema.new({
-            id = id.from(_N, "CustomOauth2ProviderConfigInput", "privateEndpointOverrides"),
-            type = "list",
-            name = "privateEndpointOverrides",
-            target_id = prelude.Document.id,
-            list_member = M.PrivateEndpointOverride,
+        clientSecretSource = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
         onBehalfOfTokenExchangeConfig = schema.new({
             id = id.from(_N, "CustomOauth2ProviderConfigInput", "onBehalfOfTokenExchangeConfig"),
@@ -14316,6 +14415,20 @@ M.CustomOauth2ProviderConfigInput = schema.new({
             type = "string",
             name = "clientAuthenticationMethod",
             target_id = prelude.String.id,
+        }),
+        privateEndpoint = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigInput", "privateEndpoint"),
+            type = "union",
+            name = "privateEndpoint",
+            target_id = id.from(_N, "PrivateEndpoint"),
+            target = M.PrivateEndpoint,
+        }),
+        privateEndpointOverrides = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigInput", "privateEndpointOverrides"),
+            type = "list",
+            name = "privateEndpointOverrides",
+            target_id = prelude.Document.id,
+            list_member = M.PrivateEndpointOverride,
         }),
     },
 })
@@ -14339,8 +14452,21 @@ M.GithubOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "GithubOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "GithubOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -14364,8 +14490,21 @@ M.GoogleOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "GoogleOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "GoogleOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -14389,8 +14528,21 @@ M.IncludedOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "IncludedOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "IncludedOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
         issuer = schema.new({
             id = id.from(_N, "IncludedOauth2ProviderConfigInput", "issuer"),
@@ -14432,8 +14584,21 @@ M.LinkedinOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "LinkedinOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "LinkedinOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -14457,8 +14622,21 @@ M.MicrosoftOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "MicrosoftOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "MicrosoftOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
         tenantId = schema.new({
             id = id.from(_N, "MicrosoftOauth2ProviderConfigInput", "tenantId"),
@@ -14488,8 +14666,21 @@ M.SalesforceOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "SalesforceOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "SalesforceOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -14513,8 +14704,21 @@ M.SlackOauth2ProviderConfigInput = schema.new({
             name = "clientSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        clientSecretConfig = schema.new({
+            id = id.from(_N, "SlackOauth2ProviderConfigInput", "clientSecretConfig"),
+            type = "structure",
+            name = "clientSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "SlackOauth2ProviderConfigInput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -14950,6 +15154,18 @@ M.CreateOauth2CredentialProviderOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        clientSecretJsonKey = schema.new({
+            id = id.from(_N, "CreateOauth2CredentialProviderOutput", "clientSecretJsonKey"),
+            type = "string",
+            name = "clientSecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "CreateOauth2CredentialProviderOutput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
+        }),
         name = schema.new({
             id = id.from(_N, "CreateOauth2CredentialProviderOutput", "name"),
             type = "string",
@@ -15040,6 +15256,18 @@ M.GetOauth2CredentialProviderOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        clientSecretJsonKey = schema.new({
+            id = id.from(_N, "GetOauth2CredentialProviderOutput", "clientSecretJsonKey"),
+            type = "string",
+            name = "clientSecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "GetOauth2CredentialProviderOutput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
         name = schema.new({
             id = id.from(_N, "GetOauth2CredentialProviderOutput", "name"),
@@ -15262,6 +15490,18 @@ M.UpdateOauth2CredentialProviderOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        clientSecretJsonKey = schema.new({
+            id = id.from(_N, "UpdateOauth2CredentialProviderOutput", "clientSecretJsonKey"),
+            type = "string",
+            name = "clientSecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        clientSecretSource = schema.new({
+            id = id.from(_N, "UpdateOauth2CredentialProviderOutput", "clientSecretSource"),
+            type = "string",
+            name = "clientSecretSource",
+            target_id = prelude.String.id,
         }),
         name = schema.new({
             id = id.from(_N, "UpdateOauth2CredentialProviderOutput", "name"),
@@ -16160,8 +16400,21 @@ M.CoinbaseCdpConfigurationInput = schema.new({
             name = "apiKeySecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        apiKeySecretSource = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationInput", "apiKeySecretSource"),
+            type = "string",
+            name = "apiKeySecretSource",
+            target_id = prelude.String.id,
+        }),
+        apiKeySecretConfig = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationInput", "apiKeySecretConfig"),
+            type = "structure",
+            name = "apiKeySecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
         }),
         walletSecret = schema.new({
             id = id.from(_N, "CoinbaseCdpConfigurationInput", "walletSecret"),
@@ -16169,8 +16422,21 @@ M.CoinbaseCdpConfigurationInput = schema.new({
             name = "walletSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        walletSecretSource = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationInput", "walletSecretSource"),
+            type = "string",
+            name = "walletSecretSource",
+            target_id = prelude.String.id,
+        }),
+        walletSecretConfig = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationInput", "walletSecretConfig"),
+            type = "structure",
+            name = "walletSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
         }),
     },
 })
@@ -16194,8 +16460,21 @@ M.StripePrivyConfigurationInput = schema.new({
             name = "appSecret",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        appSecretSource = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationInput", "appSecretSource"),
+            type = "string",
+            name = "appSecretSource",
+            target_id = prelude.String.id,
+        }),
+        appSecretConfig = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationInput", "appSecretConfig"),
+            type = "structure",
+            name = "appSecretConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
         }),
         authorizationPrivateKey = schema.new({
             id = id.from(_N, "StripePrivyConfigurationInput", "authorizationPrivateKey"),
@@ -16203,8 +16482,21 @@ M.StripePrivyConfigurationInput = schema.new({
             name = "authorizationPrivateKey",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        authorizationPrivateKeySource = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationInput", "authorizationPrivateKeySource"),
+            type = "string",
+            name = "authorizationPrivateKeySource",
+            target_id = prelude.String.id,
+        }),
+        authorizationPrivateKeyConfig = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationInput", "authorizationPrivateKeyConfig"),
+            type = "structure",
+            name = "authorizationPrivateKeyConfig",
+            target_id = id.from(_N, "SecretReference"),
+            target = M.SecretReference,
         }),
         authorizationId = schema.new({
             id = id.from(_N, "StripePrivyConfigurationInput", "authorizationId"),
@@ -16305,6 +16597,18 @@ M.CoinbaseCdpConfigurationOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        apiKeySecretJsonKey = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationOutput", "apiKeySecretJsonKey"),
+            type = "string",
+            name = "apiKeySecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        apiKeySecretSource = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationOutput", "apiKeySecretSource"),
+            type = "string",
+            name = "apiKeySecretSource",
+            target_id = prelude.String.id,
+        }),
         walletSecretArn = schema.new({
             id = id.from(_N, "CoinbaseCdpConfigurationOutput", "walletSecretArn"),
             type = "structure",
@@ -16314,6 +16618,18 @@ M.CoinbaseCdpConfigurationOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        walletSecretJsonKey = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationOutput", "walletSecretJsonKey"),
+            type = "string",
+            name = "walletSecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        walletSecretSource = schema.new({
+            id = id.from(_N, "CoinbaseCdpConfigurationOutput", "walletSecretSource"),
+            type = "string",
+            name = "walletSecretSource",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -16341,6 +16657,18 @@ M.StripePrivyConfigurationOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        appSecretJsonKey = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationOutput", "appSecretJsonKey"),
+            type = "string",
+            name = "appSecretJsonKey",
+            target_id = prelude.String.id,
+        }),
+        appSecretSource = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationOutput", "appSecretSource"),
+            type = "string",
+            name = "appSecretSource",
+            target_id = prelude.String.id,
+        }),
         authorizationPrivateKeyArn = schema.new({
             id = id.from(_N, "StripePrivyConfigurationOutput", "authorizationPrivateKeyArn"),
             type = "structure",
@@ -16350,6 +16678,18 @@ M.StripePrivyConfigurationOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        authorizationPrivateKeyJsonKey = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationOutput", "authorizationPrivateKeyJsonKey"),
+            type = "string",
+            name = "authorizationPrivateKeyJsonKey",
+            target_id = prelude.String.id,
+        }),
+        authorizationPrivateKeySource = schema.new({
+            id = id.from(_N, "StripePrivyConfigurationOutput", "authorizationPrivateKeySource"),
+            type = "string",
+            name = "authorizationPrivateKeySource",
+            target_id = prelude.String.id,
         }),
         authorizationId = schema.new({
             id = id.from(_N, "StripePrivyConfigurationOutput", "authorizationId"),

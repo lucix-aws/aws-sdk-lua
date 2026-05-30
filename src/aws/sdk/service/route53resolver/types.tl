@@ -450,6 +450,334 @@ local record M
         "HIGH"
     end
 
+    enum DnsThreatProtection
+        "DGA"
+        "DNS_TUNNELING"
+        "DICTIONARY_DGA"
+    end
+
+    enum FirewallDomainRedirectionAction
+        "INSPECT_REDIRECTION_DOMAIN"
+        "TRUST_REDIRECTION_DOMAIN"
+    end
+
+    -- The configuration for a DNS threat protection rule type within the rule type framework.
+    record DnsThreatProtectionRuleTypeConfig
+        -- The type of DNS threat protection. Valid values are:
+        -- DGA: Domain generation algorithms detection. DGAs are used by attackers to generate a large number of domains to launch malware attacks.
+        -- DNS_TUNNELING: DNS tunneling detection. DNS tunneling is used by attackers to exfiltrate data from the client by using the DNS tunnel without making a network connection to the client.
+        -- DICT_DGA: Dictionary-based domain generation algorithms detection. Dictionary DGAs use wordlists to generate domains that appear more legitimate, making them harder to detect than traditional DGAs.
+        Value: string
+        -- The confidence threshold for DNS Firewall Advanced. You must provide this value when you create or update a DNS Firewall Advanced rule. The confidence level values mean:
+        -- LOW: Provides the highest detection rate for threats, but also increases false positives.
+        -- MEDIUM: Provides a balance between detecting threats and false positives.
+        -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
+        ConfidenceThreshold: string
+    end
+
+    -- The configuration for a content category-based filtering rule. This specifies which content category to use for DNS query evaluation.
+    record FirewallAdvancedContentCategoryConfig
+        -- The content category identifier. To retrieve the list of available content categories, call ListFirewallRuleTypes with RuleType set to FirewallAdvancedContentCategory.
+        Category: string
+    end
+
+    -- The configuration for a threat category-based filtering rule. This specifies which threat category to use for DNS query evaluation.
+    record FirewallAdvancedThreatCategoryConfig
+        -- The threat category identifier. To retrieve the list of available threat categories, call ListFirewallRuleTypes with RuleType set to FirewallAdvancedThreatCategory.
+        Category: string
+    end
+
+    -- The configuration for a rule type in a DNS Firewall rule. This is a union type — exactly one member should be set.
+    record FirewallRuleType
+        -- The configuration for a content category-based filtering rule.
+        FirewallAdvancedContentCategory: FirewallAdvancedContentCategoryConfig
+        -- The configuration for a threat category-based filtering rule.
+        FirewallAdvancedThreatCategory: FirewallAdvancedThreatCategoryConfig
+        -- The configuration for a DNS threat protection rule type, such as DGA or DNS tunneling detection.
+        DnsThreatProtection: DnsThreatProtectionRuleTypeConfig
+    end
+
+    -- The details for creating a single firewall rule in a batch operation.
+    record CreateFirewallRuleEntry
+        -- A unique string that identifies the request and that allows you to retry failed requests without the risk of running the operation twice. CreatorRequestId can be any unique string, for example, a date/time stamp.
+        CreatorRequestId: string
+        -- The unique identifier of the firewall rule group where you want to create the rule.
+        FirewallRuleGroupId: string
+        -- The ID of the domain list that you want to use in the rule. This setting is mutually exclusive with DnsThreatProtection and FirewallRuleType.
+        FirewallDomainListId: string
+        -- The setting that determines the processing order of the rule in the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.
+        Priority: number
+        -- The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list, or a threat in a DNS Firewall Advanced rule:
+        -- ALLOW - Permit the request to go through. Not available for DNS Firewall Advanced rules.
+        -- ALERT - Permit the request and send metrics and logs to CloudWatch.
+        -- BLOCK - Disallow the request. This option requires additional details in the rule's BlockResponse.
+        Action: string
+        -- The way that you want DNS Firewall to block the request, used with the rule action setting BLOCK.
+        -- NODATA - Respond indicating that the query was successful, but no response is available for it.
+        -- NXDOMAIN - Respond indicating that the domain name that's in the query doesn't exist.
+        -- OVERRIDE - Provide a custom override in the response. This option requires custom handling details in the rule's BlockOverride* settings.
+        BlockResponse: string
+        -- The custom DNS record to send back in response to the query. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        BlockOverrideDomain: string
+        -- The DNS record's type. This determines the format of the record value that you provided in BlockOverrideDomain. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        BlockOverrideDnsType: string
+        -- The recommended amount of time, in seconds, for the DNS resolver or web browser to cache the provided override record. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        -- This setting is required if the BlockResponse setting is OVERRIDE.
+        BlockOverrideTtl: number
+        -- A name that lets you identify the rule in the rule group.
+        Name: string
+        -- How you want the rule to evaluate DNS redirection in the DNS redirection chain, such as CNAME or DNAME.
+        -- INSPECT_REDIRECTION_DOMAIN: (Default) inspects all domains in the redirection chain. The individual domains in the redirection chain must be added to the domain list.
+        -- TRUST_REDIRECTION_DOMAIN: Inspects only the first domain in the redirection chain. You don't need to add the subsequent domains in the redirection list to the domain list.
+        FirewallDomainRedirectionAction: string
+        -- The DNS query type you want the rule to evaluate. Allowed values are:
+        -- A: Returns an IPv4 address.
+        -- AAAA: Returns an IPv6 address.
+        -- CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+        -- CNAME: Returns another domain name.
+        -- DS: Record that identifies the DNSSEC signing key of a delegated zone.
+        -- MX: Specifies mail servers.
+        -- NAPTR: Regular-expression-based rewriting of domain names.
+        -- NS: Authoritative name servers.
+        -- PTR: Maps an IP address to a domain name.
+        -- SOA: Start of authority record for the zone.
+        -- SPF: Lists the servers authorized to send emails from a domain.
+        -- SRV: Application specific values that identify servers.
+        -- TXT: Verifies email senders and application-specific values.
+        -- A query type you define by using the DNS type ID, for example 28 for AAAA. The values must be defined as TYPENUMBER, where the NUMBER can be 1-65534, for example, TYPE28. For more information, see List of DNS record types.
+        Qtype: string
+        -- The type of the DNS Firewall Advanced rule. This setting is mutually exclusive with FirewallDomainListId and FirewallRuleType. Valid values are:
+        -- DGA: Domain generation algorithms detection. DGAs are used by attackers to generate a large number of domains to launch malware attacks.
+        -- DNS_TUNNELING: DNS tunneling detection. DNS tunneling is used by attackers to exfiltrate data from the client by using the DNS tunnel without making a network connection to the client.
+        -- DICT_DGA: Dictionary-based domain generation algorithms detection. Dictionary DGAs use wordlists to generate domains that appear more legitimate, making them harder to detect than traditional DGAs.
+        DnsThreatProtection: string
+        -- The confidence threshold for DNS Firewall Advanced. You must provide this value when you create or update a DNS Firewall Advanced rule. The confidence level values mean:
+        -- LOW: Provides the highest detection rate for threats, but also increases false positives.
+        -- MEDIUM: Provides a balance between detecting threats and false positives.
+        -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
+        ConfidenceThreshold: string
+        -- The rule type configuration for the firewall rule. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields.
+        FirewallRuleType: FirewallRuleType
+    end
+
+    record BatchCreateFirewallRuleInput
+        -- The list of firewall rules to create.
+        CreateFirewallRuleEntries: {CreateFirewallRuleEntry}
+    end
+
+    -- A single firewall rule in a rule group.
+    record FirewallRule
+        -- The unique identifier of the Firewall rule group of the rule.
+        FirewallRuleGroupId: string
+        -- The ID of the domain list that's used in the rule.
+        FirewallDomainListId: string
+        -- ID of the DNS Firewall Advanced rule.
+        FirewallThreatProtectionId: string
+        -- The name of the rule.
+        Name: string
+        -- The priority of the rule in the rule group. This value must be unique within the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.
+        Priority: number
+        -- The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list, or a threat in a DNS Firewall Advanced rule:
+        -- ALLOW - Permit the request to go through. Not available for DNS Firewall Advanced rules.
+        -- ALERT - Permit the request to go through but send an alert to the logs.
+        -- BLOCK - Disallow the request. If this is specified, additional handling details are provided in the rule's BlockResponse setting.
+        Action: string
+        -- The way that you want DNS Firewall to block the request. Used for the rule action setting BLOCK.
+        -- NODATA - Respond indicating that the query was successful, but no response is available for it.
+        -- NXDOMAIN - Respond indicating that the domain name that's in the query doesn't exist.
+        -- OVERRIDE - Provide a custom override in the response. This option requires custom handling details in the rule's BlockOverride* settings.
+        BlockResponse: string
+        -- The custom DNS record to send back in response to the query. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        BlockOverrideDomain: string
+        -- The DNS record's type. This determines the format of the record value that you provided in BlockOverrideDomain. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        BlockOverrideDnsType: string
+        -- The recommended amount of time, in seconds, for the DNS resolver or web browser to cache the provided override record. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        BlockOverrideTtl: number
+        -- A unique string defined by you to identify the request. This allows you to retry failed requests
+        -- without the risk of executing the operation twice. This can be any unique string, for example, a timestamp.
+        CreatorRequestId: string
+        -- The date and time that the rule was created, in Unix time format and Coordinated Universal Time (UTC).
+        CreationTime: string
+        -- The date and time that the rule was last modified, in Unix time format and Coordinated Universal Time (UTC).
+        ModificationTime: string
+        -- How you want the the rule to evaluate DNS redirection in the DNS redirection chain, such as CNAME or DNAME.
+        -- INSPECT_REDIRECTION_DOMAIN: (Default) inspects all domains in the redirection chain. The individual domains in the redirection chain must be
+        -- added to the domain list.
+        -- TRUST_REDIRECTION_DOMAIN: Inspects only the first domain in the redirection chain. You don't need to add the subsequent domains in the domain in the redirection list to
+        -- the domain list.
+        FirewallDomainRedirectionAction: string
+        -- The DNS query type you want the rule to evaluate. Allowed values are;
+        -- A: Returns an IPv4 address.
+        -- AAAA: Returns an Ipv6 address.
+        -- CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+        -- CNAME: Returns another domain name.
+        -- DS: Record that identifies the DNSSEC signing key of a delegated zone.
+        -- MX: Specifies mail servers.
+        -- NAPTR: Regular-expression-based rewriting of domain names.
+        -- NS: Authoritative name servers.
+        -- PTR: Maps an IP address to a domain name.
+        -- SOA: Start of authority record for the zone.
+        -- SPF: Lists the servers authorized to send emails from a domain.
+        -- SRV: Application specific values that identify servers.
+        -- TXT: Verifies email senders and application-specific values.
+        -- A query type you define by using the DNS type ID, for example 28 for AAAA. The values must be
+        -- defined as TYPENUMBER, where the
+        -- NUMBER can be 1-65534, for
+        -- example, TYPE28. For more information, see
+        -- List of DNS record types.
+        Qtype: string
+        -- The type of the DNS Firewall Advanced rule. Valid values are:
+        -- DGA: Domain generation algorithms detection. DGAs are used by attackers to generate a large number of domains
+        -- to to launch malware attacks.
+        -- DNS_TUNNELING: DNS tunneling detection. DNS tunneling is used by attackers to exfiltrate data from the client by using the DNS tunnel without
+        -- making a network connection to the client.
+        DnsThreatProtection: string
+        -- The confidence threshold for DNS Firewall Advanced. You must provide this value when you create a DNS Firewall Advanced rule. The confidence
+        -- level values mean:
+        -- LOW: Provides the highest detection rate for threats, but also increases false positives.
+        -- MEDIUM: Provides a balance between detecting threats and false positives.
+        -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
+        ConfidenceThreshold: string
+        -- The rule type configuration for the firewall rule. Exactly one member of this union should be set.
+        FirewallRuleType: FirewallRuleType
+    end
+
+    -- An error that occurred while creating a firewall rule in a batch operation.
+    record BatchCreateFirewallRuleError
+        -- The firewall rule entry that caused the error.
+        FirewallRule: CreateFirewallRuleEntry
+        -- The error code for the failure.
+        Code: string
+        -- A message that provides details about the error.
+        Message: string
+    end
+
+    record BatchCreateFirewallRuleOutput
+        -- The firewall rules that were successfully created by the request.
+        CreatedFirewallRules: {FirewallRule}
+        -- A list of errors that occurred while creating the firewall rules.
+        CreateErrors: {BatchCreateFirewallRuleError}
+    end
+
+    -- The details for deleting a single firewall rule in a batch operation.
+    record DeleteFirewallRuleEntry
+        -- The unique identifier of the firewall rule group for the rule.
+        FirewallRuleGroupId: string
+        -- The ID of the domain list that's used in the rule.
+        FirewallDomainListId: string
+        -- The ID of the DNS Firewall Advanced rule.
+        FirewallThreatProtectionId: string
+        -- The DNS query type that the rule evaluates.
+        Qtype: string
+    end
+
+    record BatchDeleteFirewallRuleInput
+        -- The list of firewall rules to delete.
+        DeleteFirewallRuleEntries: {DeleteFirewallRuleEntry}
+    end
+
+    -- An error that occurred while deleting a firewall rule in a batch operation.
+    record BatchDeleteFirewallRuleError
+        -- The firewall rule entry that caused the error.
+        FirewallRule: DeleteFirewallRuleEntry
+        -- The error code for the failure.
+        Code: string
+        -- A message that provides details about the error.
+        Message: string
+    end
+
+    record BatchDeleteFirewallRuleOutput
+        -- The firewall rules that were successfully deleted by the request.
+        DeletedFirewallRules: {FirewallRule}
+        -- A list of errors that occurred while deleting the firewall rules.
+        DeleteErrors: {BatchDeleteFirewallRuleError}
+    end
+
+    -- The details for updating a single firewall rule in a batch operation.
+    record UpdateFirewallRuleEntry
+        -- The unique identifier of the firewall rule group for the rule.
+        FirewallRuleGroupId: string
+        -- The ID of the domain list to use in the rule. This setting is mutually exclusive with DnsThreatProtection and FirewallRuleType.
+        FirewallDomainListId: string
+        -- The ID of the DNS Firewall Advanced rule.
+        FirewallThreatProtectionId: string
+        -- The setting that determines the processing order of the rule in the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.
+        Priority: number
+        -- The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list, or a threat in a DNS Firewall Advanced rule:
+        -- ALLOW - Permit the request to go through. Not available for DNS Firewall Advanced rules.
+        -- ALERT - Permit the request and send metrics and logs to CloudWatch.
+        -- BLOCK - Disallow the request. This option requires additional details in the rule's BlockResponse.
+        Action: string
+        -- The way that you want DNS Firewall to block the request, used with the rule action setting BLOCK.
+        -- NODATA - Respond indicating that the query was successful, but no response is available for it.
+        -- NXDOMAIN - Respond indicating that the domain name that's in the query doesn't exist.
+        -- OVERRIDE - Provide a custom override in the response. This option requires custom handling details in the rule's BlockOverride* settings.
+        BlockResponse: string
+        -- The custom DNS record to send back in response to the query. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        BlockOverrideDomain: string
+        -- The DNS record's type. This determines the format of the record value that you provided in BlockOverrideDomain. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        BlockOverrideDnsType: string
+        -- The recommended amount of time, in seconds, for the DNS resolver or web browser to cache the provided override record. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
+        -- This setting is required if the BlockResponse setting is OVERRIDE.
+        BlockOverrideTtl: number
+        -- The name of the rule.
+        Name: string
+        -- How you want the rule to evaluate DNS redirection in the DNS redirection chain, such as CNAME or DNAME.
+        -- INSPECT_REDIRECTION_DOMAIN: (Default) inspects all domains in the redirection chain. The individual domains in the redirection chain must be added to the domain list.
+        -- TRUST_REDIRECTION_DOMAIN: Inspects only the first domain in the redirection chain. You don't need to add the subsequent domains in the redirection list to the domain list.
+        FirewallDomainRedirectionAction: string
+        -- The DNS query type you want the rule to evaluate. Allowed values are:
+        -- A: Returns an IPv4 address.
+        -- AAAA: Returns an IPv6 address.
+        -- CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
+        -- CNAME: Returns another domain name.
+        -- DS: Record that identifies the DNSSEC signing key of a delegated zone.
+        -- MX: Specifies mail servers.
+        -- NAPTR: Regular-expression-based rewriting of domain names.
+        -- NS: Authoritative name servers.
+        -- PTR: Maps an IP address to a domain name.
+        -- SOA: Start of authority record for the zone.
+        -- SPF: Lists the servers authorized to send emails from a domain.
+        -- SRV: Application specific values that identify servers.
+        -- TXT: Verifies email senders and application-specific values.
+        -- A query type you define by using the DNS type ID, for example 28 for AAAA. The values must be defined as TYPENUMBER, where the NUMBER can be 1-65534, for example, TYPE28. For more information, see List of DNS record types.
+        Qtype: string
+        -- The type of the DNS Firewall Advanced rule. This setting is mutually exclusive with FirewallDomainListId and FirewallRuleType. Valid values are:
+        -- DGA: Domain generation algorithms detection. DGAs are used by attackers to generate a large number of domains to launch malware attacks.
+        -- DNS_TUNNELING: DNS tunneling detection. DNS tunneling is used by attackers to exfiltrate data from the client by using the DNS tunnel without making a network connection to the client.
+        -- DICT_DGA: Dictionary-based domain generation algorithms detection. Dictionary DGAs use wordlists to generate domains that appear more legitimate, making them harder to detect than traditional DGAs.
+        DnsThreatProtection: string
+        -- The confidence threshold for DNS Firewall Advanced. You must provide this value when you create or update a DNS Firewall Advanced rule. The confidence level values mean:
+        -- LOW: Provides the highest detection rate for threats, but also increases false positives.
+        -- MEDIUM: Provides a balance between detecting threats and false positives.
+        -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
+        ConfidenceThreshold: string
+        -- The rule type configuration for the firewall rule. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields.
+        FirewallRuleType: FirewallRuleType
+    end
+
+    record BatchUpdateFirewallRuleInput
+        -- The list of firewall rules to update.
+        UpdateFirewallRuleEntries: {UpdateFirewallRuleEntry}
+    end
+
+    -- An error that occurred while updating a firewall rule in a batch operation.
+    record BatchUpdateFirewallRuleError
+        -- The firewall rule entry that caused the error.
+        FirewallRule: UpdateFirewallRuleEntry
+        -- The error code for the failure.
+        Code: string
+        -- A message that provides details about the error.
+        Message: string
+    end
+
+    record BatchUpdateFirewallRuleOutput
+        -- The firewall rules that were successfully updated by the request.
+        UpdatedFirewallRules: {FirewallRule}
+        -- A list of errors that occurred while updating the firewall rules.
+        UpdateErrors: {BatchUpdateFirewallRuleError}
+    end
+
     record CreateFirewallDomainListInput
         -- A unique string that identifies the request and that allows you to retry failed requests
         -- without the risk of running the operation twice. CreatorRequestId can be
@@ -459,6 +787,11 @@ local record M
         Name: string
         -- A list of the tag keys and values that you want to associate with the domain list.
         Tags: {Tag}
+    end
+
+    enum DomainListType
+        "THREAT"
+        "CONTENT"
     end
 
     enum FirewallDomainListStatus
@@ -494,22 +827,15 @@ local record M
         CreationTime: string
         -- The date and time that the domain list was last modified, in Unix time format and Coordinated Universal Time (UTC).
         ModificationTime: string
+        -- The category of the domain list.
+        Category: string
+        -- The type of the managed domain list, for example THREAT.
+        ManagedListType: string
     end
 
     record CreateFirewallDomainListOutput
         -- The domain list that you just created.
         FirewallDomainList: FirewallDomainList
-    end
-
-    enum DnsThreatProtection
-        "DGA"
-        "DNS_TUNNELING"
-        "DICTIONARY_DGA"
-    end
-
-    enum FirewallDomainRedirectionAction
-        "INSPECT_REDIRECTION_DOMAIN"
-        "TRUST_REDIRECTION_DOMAIN"
     end
 
     record CreateFirewallRuleInput
@@ -572,7 +898,7 @@ local record M
         -- TXT: Verifies email senders and application-specific values.
         -- A query type you define by using the DNS type ID, for example 28 for AAAA. The values must be
         -- defined as TYPENUMBER, where the
-        -- NUMBER can be 1-65334, for
+        -- NUMBER can be 1-65534, for
         -- example, TYPE28. For more information, see
         -- List of DNS record types.
         Qtype: string
@@ -584,81 +910,8 @@ local record M
         -- MEDIUM: Provides a balance between detecting threats and false positives.
         -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
         ConfidenceThreshold: string
-    end
-
-    -- A single firewall rule in a rule group.
-    record FirewallRule
-        -- The unique identifier of the Firewall rule group of the rule.
-        FirewallRuleGroupId: string
-        -- The ID of the domain list that's used in the rule.
-        FirewallDomainListId: string
-        -- ID of the DNS Firewall Advanced rule.
-        FirewallThreatProtectionId: string
-        -- The name of the rule.
-        Name: string
-        -- The priority of the rule in the rule group. This value must be unique within the rule group. DNS Firewall processes the rules in a rule group by order of priority, starting from the lowest setting.
-        Priority: number
-        -- The action that DNS Firewall should take on a DNS query when it matches one of the domains in the rule's domain list, or a threat in a DNS Firewall Advanced rule:
-        -- ALLOW - Permit the request to go through. Not available for DNS Firewall Advanced rules.
-        -- ALERT - Permit the request to go through but send an alert to the logs.
-        -- BLOCK - Disallow the request. If this is specified, additional handling details are provided in the rule's BlockResponse setting.
-        Action: string
-        -- The way that you want DNS Firewall to block the request. Used for the rule action setting BLOCK.
-        -- NODATA - Respond indicating that the query was successful, but no response is available for it.
-        -- NXDOMAIN - Respond indicating that the domain name that's in the query doesn't exist.
-        -- OVERRIDE - Provide a custom override in the response. This option requires custom handling details in the rule's BlockOverride* settings.
-        BlockResponse: string
-        -- The custom DNS record to send back in response to the query. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
-        BlockOverrideDomain: string
-        -- The DNS record's type. This determines the format of the record value that you provided in BlockOverrideDomain. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
-        BlockOverrideDnsType: string
-        -- The recommended amount of time, in seconds, for the DNS resolver or web browser to cache the provided override record. Used for the rule action BLOCK with a BlockResponse setting of OVERRIDE.
-        BlockOverrideTtl: number
-        -- A unique string defined by you to identify the request. This allows you to retry failed requests
-        -- without the risk of executing the operation twice. This can be any unique string, for example, a timestamp.
-        CreatorRequestId: string
-        -- The date and time that the rule was created, in Unix time format and Coordinated Universal Time (UTC).
-        CreationTime: string
-        -- The date and time that the rule was last modified, in Unix time format and Coordinated Universal Time (UTC).
-        ModificationTime: string
-        -- How you want the the rule to evaluate DNS redirection in the DNS redirection chain, such as CNAME or DNAME.
-        -- INSPECT_REDIRECTION_DOMAIN: (Default) inspects all domains in the redirection chain. The individual domains in the redirection chain must be
-        -- added to the domain list.
-        -- TRUST_REDIRECTION_DOMAIN: Inspects only the first domain in the redirection chain. You don't need to add the subsequent domains in the domain in the redirection list to
-        -- the domain list.
-        FirewallDomainRedirectionAction: string
-        -- The DNS query type you want the rule to evaluate. Allowed values are;
-        -- A: Returns an IPv4 address.
-        -- AAAA: Returns an Ipv6 address.
-        -- CAA: Restricts CAs that can create SSL/TLS certifications for the domain.
-        -- CNAME: Returns another domain name.
-        -- DS: Record that identifies the DNSSEC signing key of a delegated zone.
-        -- MX: Specifies mail servers.
-        -- NAPTR: Regular-expression-based rewriting of domain names.
-        -- NS: Authoritative name servers.
-        -- PTR: Maps an IP address to a domain name.
-        -- SOA: Start of authority record for the zone.
-        -- SPF: Lists the servers authorized to send emails from a domain.
-        -- SRV: Application specific values that identify servers.
-        -- TXT: Verifies email senders and application-specific values.
-        -- A query type you define by using the DNS type ID, for example 28 for AAAA. The values must be
-        -- defined as TYPENUMBER, where the
-        -- NUMBER can be 1-65334, for
-        -- example, TYPE28. For more information, see
-        -- List of DNS record types.
-        Qtype: string
-        -- The type of the DNS Firewall Advanced rule. Valid values are:
-        -- DGA: Domain generation algorithms detection. DGAs are used by attackers to generate a large number of domains
-        -- to to launch malware attacks.
-        -- DNS_TUNNELING: DNS tunneling detection. DNS tunneling is used by attackers to exfiltrate data from the client by using the DNS tunnel without
-        -- making a network connection to the client.
-        DnsThreatProtection: string
-        -- The confidence threshold for DNS Firewall Advanced. You must provide this value when you create a DNS Firewall Advanced rule. The confidence
-        -- level values mean:
-        -- LOW: Provides the highest detection rate for threats, but also increases false positives.
-        -- MEDIUM: Provides a balance between detecting threats and false positives.
-        -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
-        ConfidenceThreshold: string
+        -- The rule type configuration for the firewall rule. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields.
+        FirewallRuleType: FirewallRuleType
     end
 
     record CreateFirewallRuleOutput
@@ -1127,7 +1380,7 @@ local record M
         -- TXT: Verifies email senders and application-specific values.
         -- A query type you define by using the DNS type ID, for example 28 for AAAA. The values must be
         -- defined as TYPENUMBER, where the
-        -- NUMBER can be 1-65334, for
+        -- NUMBER can be 1-65534, for
         -- example, TYPE28. For more information, see
         -- List of DNS record types.
         Qtype: string
@@ -1394,6 +1647,10 @@ local record M
         CreatorRequestId: string
         -- The owner of the list, used only for lists that are not managed by you. For example, the managed domain list AWSManagedDomainsMalwareDomainList has the managed owner name Route 53 Resolver DNS Firewall.
         ManagedOwnerName: string
+        -- The type of the managed domain list, for example THREAT.
+        ManagedListType: string
+        -- The category of the domain list.
+        Category: string
     end
 
     enum FirewallDomainUpdateOperation
@@ -1421,6 +1678,18 @@ local record M
         -- Whether the rule group is shared with other Amazon Web Services accounts, or was shared with the current account by another
         -- Amazon Web Services account. Sharing is configured through Resource Access Manager (RAM).
         ShareStatus: string
+    end
+
+    -- The definition of an available rule type that can be used in DNS Firewall rules. This is returned by ListFirewallRuleTypes.
+    record FirewallRuleTypeDefinition
+        -- The category or class of the rule type, such as FirewallAdvancedContentCategory or FirewallAdvancedThreatCategory.
+        RuleType: string
+        -- The specific identifier within the rule type category, such as VIOLENCE_AND_HATE_SPEECH or PHISHING.
+        Value: string
+        -- The display name of the rule type.
+        DisplayName: string
+        -- A description of the rule type.
+        Description: string
     end
 
     record GetFirewallConfigInput
@@ -1880,6 +2149,22 @@ local record M
         -- This might be a partial list of the firewall rules that you've defined. For information,
         -- see MaxResults.
         FirewallRules: {FirewallRule}
+    end
+
+    record ListFirewallRuleTypesInput
+        -- The rule type to filter by. If specified, only rule types matching this value are returned.
+        RuleType: string
+        -- The maximum number of objects that you want Resolver to return for this request. If more objects are available, in the response, Resolver provides a NextToken value that you can use in a subsequent call to get the next batch of objects.
+        MaxResults: number
+        -- For the first call to this list request, omit this value. When you request a list of objects, Resolver returns at most the number of objects specified in MaxResults. If more objects are available for retrieval, Resolver provides a NextToken value in the response. To retrieve the next batch of objects, use the token that was returned for the prior request in your next request.
+        NextToken: string
+    end
+
+    record ListFirewallRuleTypesOutput
+        -- A list of the available rule type definitions.
+        FirewallRuleTypes: {FirewallRuleTypeDefinition}
+        -- If objects are still available for retrieval, Resolver returns this token in the response. To retrieve the next batch of objects, provide this token in your next request.
+        NextToken: string
     end
 
     record ListOutpostResolversInput
@@ -2405,7 +2690,7 @@ local record M
         -- TXT: Verifies email senders and application-specific values.
         -- A query type you define by using the DNS type ID, for example 28 for AAAA. The values must be
         -- defined as TYPENUMBER, where the
-        -- NUMBER can be 1-65334, for
+        -- NUMBER can be 1-65534, for
         -- example, TYPE28. For more information, see
         -- List of DNS record types.
         -- If you set up a firewall BLOCK rule with action NXDOMAIN on query type equals AAAA,
@@ -2423,6 +2708,8 @@ local record M
         -- MEDIUM: Provides a balance between detecting threats and false positives.
         -- HIGH: Detects only the most well corroborated threats with a low rate of false positives.
         ConfidenceThreshold: string
+        -- The rule type configuration for the firewall rule. This setting is mutually exclusive with the top-level FirewallDomainListId and DnsThreatProtection fields.
+        FirewallRuleType: FirewallRuleType
     end
 
     record UpdateFirewallRuleOutput

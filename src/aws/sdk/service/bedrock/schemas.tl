@@ -195,6 +195,8 @@ M.AutomatedReasoningPolicyTypeValueAnnotationList = schema.new({ type = "list", 
 
 M.AutomatedReasoningPolicyGenerateFidelityReportDocumentList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildWorkflowDocument })
 
+M.AutomatedReasoningPolicyIterativeRefinementDocumentList = schema.new({ type = "list", list_member = M.AutomatedReasoningPolicyBuildWorkflowDocument })
+
 M.RequestMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.RequestMetadataFiltersList = schema.new({ type = "list", list_member = M.RequestMetadataBaseFilters })
@@ -4988,6 +4990,29 @@ M.AutomatedReasoningPolicyGenerateFidelityReportContent = schema.new({
     },
 })
 
+M.AutomatedReasoningPolicyIterativeRefinementContent = schema.new({
+    id = id.from(_N, "AutomatedReasoningPolicyIterativeRefinementContent"),
+    type = "structure",
+    members = {
+        documents = schema.new({
+            id = id.from(_N, "AutomatedReasoningPolicyIterativeRefinementContent", "documents"),
+            type = "list",
+            name = "documents",
+            target_id = prelude.Document.id,
+            list_member = M.AutomatedReasoningPolicyBuildWorkflowDocument,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        feedback = schema.new({
+            id = id.from(_N, "AutomatedReasoningPolicyIterativeRefinementContent", "feedback"),
+            type = "string",
+            name = "feedback",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AutomatedReasoningPolicyBuildWorkflowRepairContent = schema.new({
     id = id.from(_N, "AutomatedReasoningPolicyBuildWorkflowRepairContent"),
     type = "structure",
@@ -5029,6 +5054,13 @@ M.AutomatedReasoningPolicyWorkflowTypeContent = schema.new({
             name = "generateFidelityReportContent",
             target_id = id.from(_N, "AutomatedReasoningPolicyGenerateFidelityReportContent"),
             target = M.AutomatedReasoningPolicyGenerateFidelityReportContent,
+        }),
+        iterativeRefinementContent = schema.new({
+            id = id.from(_N, "AutomatedReasoningPolicyWorkflowTypeContent", "iterativeRefinementContent"),
+            type = "structure",
+            name = "iterativeRefinementContent",
+            target_id = id.from(_N, "AutomatedReasoningPolicyIterativeRefinementContent"),
+            target = M.AutomatedReasoningPolicyIterativeRefinementContent,
         }),
     },
 })

@@ -114,6 +114,7 @@ local record Client
     putEmailIdentityFeedbackAttributes: function(Client, types.PutEmailIdentityFeedbackAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailIdentityFeedbackAttributesOutput>
     putEmailIdentityMailFromAttributes: function(Client, types.PutEmailIdentityMailFromAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutEmailIdentityMailFromAttributesOutput>
     putSuppressedDestination: function(Client, types.PutSuppressedDestinationInput, ? base_client.InvokeOptions): async.Operation<types.PutSuppressedDestinationOutput>
+    putTenantSuppressionAttributes: function(Client, types.PutTenantSuppressionAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutTenantSuppressionAttributesOutput>
     sendBulkEmail: function(Client, types.SendBulkEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendBulkEmailOutput>
     sendCustomVerificationEmail: function(Client, types.SendCustomVerificationEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendCustomVerificationEmailOutput>
     sendEmail: function(Client, types.SendEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendEmailOutput>
@@ -554,6 +555,10 @@ end
 
 function C:putSuppressedDestination(input: types.PutSuppressedDestinationInput, options?: base_client.InvokeOptions): async.Operation<types.PutSuppressedDestinationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSuppressedDestination as schema.OperationSchema, input, options) as async.Operation<types.PutSuppressedDestinationOutput>
+end
+
+function C:putTenantSuppressionAttributes(input: types.PutTenantSuppressionAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutTenantSuppressionAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTenantSuppressionAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutTenantSuppressionAttributesOutput>
 end
 
 function C:sendBulkEmail(input: types.SendBulkEmailInput, options?: base_client.InvokeOptions): async.Operation<types.SendBulkEmailOutput>
