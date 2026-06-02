@@ -341,6 +341,116 @@ local record M
         AvailabilityStatus: string
     end
 
+    enum AgentLifecycle
+        "PREVIEW"
+        "PUBLISHED"
+    end
+
+    enum AgentStatus
+        "ACTIVE"
+        "UPDATING"
+        "FAILED"
+        "CREATING"
+    end
+
+    -- The custom prompt interface configuration that defines how an agent's prompt is configured.
+    record CustomPromptInterface
+        -- The identifier of the model profile.
+        ModelProfileId: string
+        -- The subscription identifier.
+        SubscriptionId: string
+        -- The Amazon Web Services account ID for the Q Business service.
+        QbsAwsAccountId: string
+        -- Instructions for the desired response length.
+        ResponseLength: string
+        -- Instructions for the desired output style.
+        OutputStyle: string
+        -- Instructions that define the agent's identity and persona.
+        Identity: string
+        -- Instructions for the desired tone of responses.
+        Tone: string
+        -- Custom instructions for the agent's behavior.
+        CustomInstructions: string
+        -- A summary of the custom prompt configuration.
+        promptSummary: string
+    end
+
+    -- An agent resource in Amazon QuickSight that provides AI-powered conversational experiences.
+    record Agent
+        -- The Amazon Resource Names (ARNs) of the spaces attached to the agent.
+        Spaces: {string}
+        -- The Amazon Resource Names (ARNs) of the action connectors attached to the agent.
+        ActionConnectors: {string}
+        -- A description of the agent.
+        Description: string
+        -- The icon identifier for the agent.
+        IconId: string
+        -- The name of the agent.
+        Name: string
+        -- A list of starter prompts that are displayed to users when they begin interacting with the agent.
+        StarterPrompts: {string}
+        -- The welcome message that is displayed when a user starts a conversation with the agent.
+        WelcomeMessage: string
+        -- The Amazon Resource Name (ARN) of the agent.
+        Arn: string
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The lifecycle state of the agent. Valid values are PREVIEW and PUBLISHED.
+        AgentLifecycle: string
+        -- The status of the agent.
+        AgentStatus: string
+        -- The date and time that the agent was created.
+        CreatedAt: number
+        -- The identity of the user who created the agent.
+        Creator: string
+        -- The custom prompt interface configuration for the agent.
+        CustomPromptInterface: CustomPromptInterface
+        -- An error message associated with the agent, if applicable.
+        ErrorMessage: string
+        -- The date and time that the agent was last updated.
+        UpdatedAt: number
+    end
+
+    enum AgentOwnershipFilterAttribute
+        "DIRECT_QUICKSIGHT_OWNER"
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+        "DIRECT_QUICKSIGHT_SOLE_OWNER"
+        "AGENT_NAME"
+    end
+
+    enum ComparisonOperator
+        "StringEquals"
+        "StringLike"
+    end
+
+    -- A filter to apply when searching agents.
+    record AgentSearchFilter
+        -- The name of the field to filter on.
+        Name: string
+        -- The comparison operator to use for the filter.
+        Operator: string
+        -- The value to filter on.
+        Value: string
+    end
+
+    -- A summary of an agent, including its identifier, name, and metadata.
+    record AgentSummary
+        -- The Amazon Resource Name (ARN) of the agent.
+        Arn: string
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The name of the agent.
+        Name: string
+        -- A description of the agent.
+        Description: string
+        -- The date and time that the agent was created.
+        CreatedAt: number
+        -- The date and time that the agent was last updated.
+        UpdatedAt: number
+        -- The icon identifier for the agent.
+        IconId: string
+    end
+
     enum AggType
         "SUM"
         "MIN"
@@ -11201,6 +11311,85 @@ local record M
         Status: number
     end
 
+    -- A reference to an existing custom prompt profile.
+    record CustomPromptProfile
+        -- The identifier of the model profile.
+        ModelProfileId: string
+        -- The subscription identifier.
+        SubscriptionId: string
+        -- The Amazon Web Services account ID for the Q Business service.
+        QbsAwsAccountId: string
+    end
+
+    -- The parameters for configuring a custom prompt for an agent.
+    record CustomPromptInputParameters
+        -- Instructions for the desired response length.
+        ResponseLength: string
+        -- Instructions for the desired output style.
+        OutputStyle: string
+        -- Instructions that define the agent's identity and persona.
+        Identity: string
+        -- Instructions for the desired tone of responses.
+        Tone: string
+        -- Custom instructions for the agent's behavior.
+        CustomInstructions: string
+    end
+
+    -- The custom prompt input for an agent. This is a union type that can be either an existing prompt profile or new prompt parameters.
+    record CustomPromptInput
+        -- An existing custom prompt profile to use for the agent.
+        ExistingPrompt: CustomPromptProfile
+        -- New custom prompt parameters to configure for the agent.
+        NewPrompt: CustomPromptInputParameters
+    end
+
+    record CreateAgentInput
+        -- The Amazon Resource Names (ARNs) of the spaces to attach to the agent.
+        Spaces: {string}
+        -- The Amazon Resource Names (ARNs) of the action connectors to attach to the agent.
+        ActionConnectors: {string}
+        -- The ID of the Amazon Web Services account that contains the agent.
+        AwsAccountId: string
+        -- A unique identifier for the agent.
+        AgentId: string
+        -- The name of the agent.
+        Name: string
+        -- A description of the agent.
+        Description: string
+        -- The icon identifier for the agent.
+        IconId: string
+        -- A list of starter prompts that are displayed to users when they begin interacting with the agent.
+        StarterPrompts: {string}
+        -- The welcome message that is displayed when a user starts a conversation with the agent.
+        WelcomeMessage: string
+        -- The lifecycle state of the agent. Valid values are PREVIEW and PUBLISHED.
+        AgentLifecycle: string
+        -- The custom prompt configuration for the agent.
+        CustomPromptInput: CustomPromptInput
+    end
+
+    record CreateAgentOutput
+        -- The Amazon Resource Name (ARN) of the agent.
+        Arn: string
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The status of the agent.
+        AgentStatus: string
+        -- The name of the agent.
+        AgentName: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    -- A limit is exceeded.
+    record LimitExceededException
+        Message: string
+        -- Limit exceeded.
+        ResourceType: string
+        -- The Amazon Web Services request ID for this request.
+        RequestId: string
+    end
+
     -- A date-time parameter.
     record DateTimeParameter
         -- A display name for the date-time parameter.
@@ -11306,15 +11495,6 @@ local record M
         -- The HTTP status of the request.
         Status: number
         -- The Amazon Web Services request ID for this operation.
-        RequestId: string
-    end
-
-    -- A limit is exceeded.
-    record LimitExceededException
-        Message: string
-        -- Limit exceeded.
-        ResourceType: string
-        -- The Amazon Web Services request ID for this request.
         RequestId: string
     end
 
@@ -12798,6 +12978,65 @@ local record M
         RequestId: string
     end
 
+    -- A structure that contains the permission information for one principal against one flow.
+    record Permission
+        -- A list of actions that the principal can perform against the flow.
+        -- The following are the list of values to set a principal as a flow owner:
+        -- quicksight:PublishFlow
+        -- quicksight:GetFlow
+        -- quicksight:UpdateFlowPermissions
+        -- quicksight:GetFlowSession
+        -- quicksight:StartFlowSession
+        -- quicksight:StopFlowSession
+        -- quicksight:UpdateFlowSession
+        -- quicksight:UnpublishFlow
+        -- quicksight:GetFlowStages
+        -- quicksight:DeleteFlow
+        -- quicksight:DescribeFlowPermissions
+        -- quicksight:UpdateFlow
+        -- quicksight:CreatePresignedUrl
+        -- The following are the list of values to set a principal as a flow viewer:
+        -- quicksight:GetFlow
+        -- quicksight:UpdateFlowSession
+        -- quicksight:StartFlowSession
+        -- quicksight:StopFlowSession
+        -- quicksight:GetFlowSession
+        -- quicksight:CreatePresignedUrl
+        -- quicksight:GetFlowStages
+        Actions: {string}
+        -- The Amazon Resource Name (ARN) of the principal.
+        -- This can be an Amazon Quick user, group or namespace associated with the flow.
+        -- Namespace principal can only be set as a viewer and will grant everyone in the same namespace viewer permissions.
+        Principal: string
+    end
+
+    record CreateFlowInput
+        -- The ID of the Amazon Web Services account where you want to create the flow.
+        AwsAccountId: string
+        -- The display name for the flow.
+        Name: string
+        -- The description for the flow.
+        Description: string
+        -- The definition of the flow, specifying the steps and configurations. This is the flow definition in Quick Flow's internal format. The format is subject to change.
+        -- Always derive or depend on the flow definition from the DescribeFlow operation to ensure you are working with the latest format.
+        FlowDefinition: any
+        -- Initial permissions for the flow. If omitted, the flow is created without any permissions.
+        Permissions: {Permission}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record CreateFlowOutput
+        -- The Amazon Resource Name (ARN) of the flow.
+        Arn: string
+        -- The unique identifier of the flow.
+        FlowId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     enum FolderType
         "SHARED"
         "RESTRICTED"
@@ -13231,6 +13470,26 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record CreateSpaceInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        SpaceId: string
+        -- A display name for the space.
+        Name: string
+        -- A description of the space.
+        Description: string
+    end
+
+    record CreateSpaceOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     -- Dataset schema.
@@ -14701,6 +14960,18 @@ local record M
         Status: number
     end
 
+    record DeleteAgentInput
+        -- The unique identifier for the agent to delete.
+        AgentId: string
+        -- The ID of the Amazon Web Services account that contains the agent.
+        AwsAccountId: string
+    end
+
+    record DeleteAgentOutput
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     record DeleteAnalysisInput
         -- The ID of the Amazon Web Services account where you want to delete an analysis.
         AwsAccountId: string
@@ -14849,6 +15120,20 @@ local record M
     end
 
     record DeleteDefaultQBusinessApplicationOutput
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record DeleteFlowInput
+        -- The ID of the Amazon Web Services account that contains the flow that you are deleting.
+        AwsAccountId: string
+        -- The unique identifier of the flow to delete.
+        FlowId: string
+    end
+
+    record DeleteFlowOutput
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
         -- The HTTP status of the request.
@@ -15045,6 +15330,22 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record DeleteSpaceInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space that you want to delete.
+        SpaceId: string
+    end
+
+    record DeleteSpaceOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     record DeleteTemplateInput
@@ -15372,6 +15673,38 @@ local record M
         RequestId: string
         -- The HTTP status code of the request.
         Status: number
+    end
+
+    record DescribeAgentInput
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The ID of the Amazon Web Services account that contains the agent.
+        AwsAccountId: string
+    end
+
+    record DescribeAgentOutput
+        -- The full details of the agent, including its configuration, status, and associations.
+        Agent: Agent
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record DescribeAgentPermissionsInput
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The ID of the Amazon Web Services account that contains the agent.
+        AwsAccountId: string
+    end
+
+    record DescribeAgentPermissionsOutput
+        -- The Amazon Resource Name (ARN) of the agent.
+        Arn: string
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The resource permissions for the agent.
+        Permissions: {ResourcePermission}
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     record DescribeAnalysisInput
@@ -16051,6 +16384,66 @@ local record M
         ApplicationId: string
     end
 
+    enum FlowPublishState
+        "PUBLISHED"
+        "DRAFT"
+        "PENDING_APPROVAL"
+    end
+
+    record DescribeFlowInput
+        -- The ID of the Amazon Web Services account that contains the flow that you are describing.
+        AwsAccountId: string
+        -- The unique identifier of the flow.
+        FlowId: string
+        -- The publish state of the flow version to describe. Valid values are DRAFT, PUBLISHED,
+        -- or PENDING_APPROVAL.
+        PublishState: string
+    end
+
+    -- A mapping between a step identifier and its alias in a flow.
+    record StepAliasMapping
+        -- The unique identifier of the step.
+        StepId: string
+        -- The alias for the step.
+        StepAlias: string
+    end
+
+    -- The full details of a flow, including its definition specifying the steps.
+    record FlowDetail
+        -- The Amazon Resource Name (ARN) of the flow.
+        Arn: string
+        -- The unique identifier of the flow.
+        FlowId: string
+        -- The display name of the flow.
+        Name: string
+        -- The description of the flow.
+        Description: string
+        -- The publish state of the flow. Valid values are DRAFT, PUBLISHED,
+        -- or PENDING_APPROVAL.
+        PublishState: string
+        -- The time this flow was created.
+        CreatedTime: number
+        -- The identifier of the principal who created the flow.
+        CreatedBy: string
+        -- The last time this flow was modified.
+        LastUpdatedTime: number
+        -- The identifier of the last principal who updated the flow.
+        LastUpdatedBy: string
+        -- The definition of the flow, specifying the steps and configurations. This is the flow definition in Quick Flow's internal format. The format is subject to change.
+        FlowDefinition: any
+        -- A list of step alias mappings for the flow.
+        StepAliases: {StepAliasMapping}
+    end
+
+    record DescribeFlowOutput
+        -- The full details of the flow.
+        Flow: FlowDetail
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     record DescribeFolderInput
         -- The ID for the Amazon Web Services account that contains the folder.
         AwsAccountId: string
@@ -16620,6 +17013,102 @@ local record M
     record InvalidParameterException
         Message: string
         -- The Amazon Web Services request ID for this request.
+        RequestId: string
+    end
+
+    record DescribeSpaceInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space that you want to describe.
+        SpaceId: string
+        -- The maximum number of contributors to include in the response.
+        MaxContributors: number
+    end
+
+    -- A contributor to an Amazon QuickSight space.
+    record SpaceContributor
+        -- The user name of the contributor.
+        userName: string
+        -- The raw file size in bytes contributed by the user.
+        rawFileSizeBytes: number
+        -- The percentage of total contributions made by the user.
+        percentage: number
+    end
+
+    -- The details of a QuickSight resource in a space.
+    record SpaceQuickSightResourceDetails
+        -- The ARN of the QuickSight resource.
+        resourceArn: string
+    end
+
+    enum SpaceQuickSightResourceType
+        "TOPIC"
+        "DASHBOARD"
+        "KNOWLEDGE_BASE"
+        "SPACE"
+        "ACTION_CONNECTOR"
+        "DATA_SET"
+        "ARTIFACT"
+    end
+
+    -- A QuickSight resource that is associated with a space.
+    record SpaceQuickSightResource
+        -- The type of the QuickSight resource.
+        resourceType: string
+        -- The details of the QuickSight resource.
+        resourceDetails: SpaceQuickSightResourceDetails
+    end
+
+    -- The details of an Amazon QuickSight space.
+    record SpaceDetails
+        -- The display name of the space.
+        name: string
+        -- The description of the space.
+        description: string
+        -- The resources in the space.
+        resources: {SpaceQuickSightResource}
+        -- The date and time that the space was created.
+        createdAt: number
+        -- The date and time that the space was last updated.
+        updatedAt: number
+        -- The total consumed source size in bytes.
+        consumedSourceSize: number
+        -- The number of consumed source documents.
+        consumedSourceDocCount: number
+        -- The user who created the space.
+        createdBy: string
+        -- The ARN of the user who created the space.
+        createdByArn: string
+    end
+
+    record DescribeSpaceOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- The details of the space.
+        Space: SpaceDetails
+        -- A list of contributors to the space.
+        Contributors: {SpaceContributor}
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record DescribeSpacePermissionsInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space that you want to describe permissions for.
+        SpaceId: string
+    end
+
+    record DescribeSpacePermissionsOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- A list of resource permissions for the space.
+        Permissions: {ResourcePermission}
+        -- The Amazon Web Services request ID for this operation.
         RequestId: string
     end
 
@@ -17213,18 +17702,32 @@ local record M
         SenderFault: boolean
     end
 
+    -- A resource operation that failed.
+    record FailedSpaceResourceOperation
+        -- The type of the resource.
+        ResourceType: string
+        -- The details of the resource.
+        ResourceDetails: SpaceQuickSightResourceDetails
+        -- The error message that describes why the operation failed.
+        ErrorMessage: string
+    end
+
+    -- Information about a per-ARN failure when updating agent associations.
+    record FailedToUpdateAssociation
+        -- The ARN that could not be added or removed.
+        Arn: string
+        -- A description of the failure.
+        ErrorMessage: string
+        -- The error code for the failure.
+        ErrorCode: string
+    end
+
     enum FieldName
         "assetName"
         "assetDescription"
         "DIRECT_QUICKSIGHT_OWNER"
         "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
         "DIRECT_QUICKSIGHT_SOLE_OWNER"
-    end
-
-    enum FlowPublishState
-        "PUBLISHED"
-        "DRAFT"
-        "PENDING_APPROVAL"
     end
 
     -- The basic information of the flow exluding its definition specifying the steps.
@@ -17776,38 +18279,6 @@ local record M
         FlowId: string
     end
 
-    -- A structure that contains the permission information for one principal against one flow.
-    record Permission
-        -- A list of actions that the principal can perform against the flow.
-        -- The following are the list of values to set a principal as a flow owner:
-        -- quicksight:PublishFlow
-        -- quicksight:GetFlow
-        -- quicksight:UpdateFlowPermissions
-        -- quicksight:GetFlowSession
-        -- quicksight:StartFlowSession
-        -- quicksight:StopFlowSession
-        -- quicksight:UpdateFlowSession
-        -- quicksight:UnpublishFlow
-        -- quicksight:GetFlowStages
-        -- quicksight:DeleteFlow
-        -- quicksight:DescribeFlowPermissions
-        -- quicksight:UpdateFlow
-        -- quicksight:CreatePresignedUrl
-        -- The following are the list of values to set a principal as a flow viewer:
-        -- quicksight:GetFlow
-        -- quicksight:UpdateFlowSession
-        -- quicksight:StartFlowSession
-        -- quicksight:StopFlowSession
-        -- quicksight:GetFlowSession
-        -- quicksight:CreatePresignedUrl
-        -- quicksight:GetFlowStages
-        Actions: {string}
-        -- The Amazon Resource Name (ARN) of the principal.
-        -- This can be an Amazon Quick user, group or namespace associated with the flow.
-        -- Namespace principal can only be set as a viewer and will grant everyone in the same namespace viewer permissions.
-        Principal: string
-    end
-
     record GetFlowPermissionsOutput
         -- The Amazon Resource Name (ARN) of the flow you are getting permissions against.
         Arn: string
@@ -17963,6 +18434,24 @@ local record M
         RequestId: string
         -- The HTTP status code of the request.
         Status: number
+    end
+
+    record ListAgentsInput
+        -- The ID of the Amazon Web Services account that contains the agents.
+        AwsAccountId: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+    end
+
+    record ListAgentsOutput
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- A list of agent summaries.
+        AgentSummaries: {AgentSummary}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
     end
 
     record ListAnalysesInput
@@ -18522,6 +19011,84 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record ListSpaceResourcesInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space that you want to list resources for.
+        SpaceId: string
+    end
+
+    -- A summary of a resource in a space.
+    record SpaceResourceSummary
+        -- The type of the resource.
+        ResourceType: string
+        -- The details of the resource.
+        ResourceDetails: SpaceQuickSightResourceDetails
+        -- The name of the resource.
+        ResourceName: string
+        -- The date and time that the resource was last updated.
+        UpdatedAt: number
+    end
+
+    record ListSpaceResourcesOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- A list of resource summaries in the space.
+        SpaceResources: {SpaceResourceSummary}
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record ListSpacesInput
+        -- The ID of the Amazon Web Services account that contains the spaces.
+        AwsAccountId: string
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+    end
+
+    -- A summary of an Amazon QuickSight space.
+    record SpaceSummary
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- The display name of the space.
+        name: string
+        -- The description of the space.
+        description: string
+        -- The date and time that the space was last updated.
+        updatedAt: number
+        -- The total consumed source size in bytes.
+        consumedSourceSize: number
+        -- The number of consumed source documents.
+        consumedSourceDocCount: number
+        -- The date and time that the space was created.
+        createdAt: number
+        -- The user who created the space.
+        createdBy: string
+        -- The ARN of the user who created the space.
+        createdByArn: string
+        -- The number of resources in the space.
+        resourcesCount: number
+    end
+
+    record ListSpacesOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- A list of space summaries.
+        SpaceSummaries: {SpaceSummary}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     record ListTagsForResourceInput
@@ -19097,6 +19664,26 @@ local record M
         ActionConnectorSummaries: {ActionConnectorSummary}
     end
 
+    record SearchAgentsInput
+        -- The ID of the Amazon Web Services account that contains the agents.
+        AwsAccountId: string
+        -- The filters to apply when searching agents.
+        Filters: {AgentSearchFilter}
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+    end
+
+    record SearchAgentsOutput
+        -- A list of agent summaries.
+        AgentSummaries: {AgentSummary}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     record SearchAnalysesInput
         -- The ID of the Amazon Web Services account that contains the analyses that you're searching
         -- for.
@@ -19283,6 +19870,57 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    enum SpaceQuickSightSearchFilterName
+        "SPACE_ID"
+        "SPACE_NAME"
+        "DIRECT_QUICKSIGHT_OWNER"
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+        "DIRECT_QUICKSIGHT_SOLE_OWNER"
+        "CONTRIBUTED_BY"
+        "CONSUMED_SOURCE_SIZE"
+        "CREATED_BY"
+    end
+
+    enum SpaceSearchOperator
+        "STRING_EQUALS"
+        "STRING_LIKE"
+        "NUMBER_RANGE"
+    end
+
+    -- A filter to use when searching for spaces.
+    record SpaceQuicksightSearchFilter
+        -- The name of the filter field to use.
+        name: string
+        -- The comparison operator to use for the filter.
+        operator: string
+        -- The value to use for the filter.
+        value: string
+    end
+
+    record SearchSpacesInput
+        -- The ID of the Amazon Web Services account that contains the spaces.
+        AwsAccountId: string
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The filters to apply to the search.
+        Filters: {SpaceQuicksightSearchFilter}
+    end
+
+    record SearchSpacesOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- A list of space summaries that match the search criteria.
+        SpaceSummaries: {SpaceSummary}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     enum TopicFilterAttribute
@@ -19658,6 +20296,74 @@ local record M
         -- The HTTP status code of the request.
         Status: number
         -- The updated permissions configuration for the action connector.
+        Permissions: {ResourcePermission}
+    end
+
+    record UpdateAgentInput
+        -- The unique identifier for the agent to update.
+        AgentId: string
+        -- The ID of the Amazon Web Services account that contains the agent.
+        AwsAccountId: string
+        -- The name of the agent.
+        Name: string
+        -- A description of the agent.
+        Description: string
+        -- The icon identifier for the agent.
+        IconId: string
+        -- A list of starter prompts that are displayed to users when they begin interacting with the agent.
+        StarterPrompts: {string}
+        -- The welcome message that is displayed when a user starts a conversation with the agent.
+        WelcomeMessage: string
+        -- The custom prompt configuration for the agent.
+        CustomPromptInput: CustomPromptInput
+        -- The Amazon Resource Names (ARNs) of the spaces to attach to the agent.
+        SpacesToAdd: {string}
+        -- The Amazon Resource Names (ARNs) of the spaces to detach from the agent.
+        SpacesToRemove: {string}
+        -- The Amazon Resource Names (ARNs) of the action connectors to attach to the agent.
+        ActionConnectorsToAdd: {string}
+        -- The Amazon Resource Names (ARNs) of the action connectors to detach from the agent.
+        ActionConnectorsToRemove: {string}
+    end
+
+    record UpdateAgentOutput
+        -- The Amazon Resource Name (ARN) of the agent.
+        Arn: string
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The status of the agent.
+        AgentStatus: string
+        -- A list of per-ARN failures from the spaces that were requested to be added.
+        FailedToAddSpaces: {FailedToUpdateAssociation}
+        -- A list of per-ARN failures from the spaces that were requested to be removed.
+        FailedToRemoveSpaces: {FailedToUpdateAssociation}
+        -- A list of per-ARN failures from the action connectors that were requested to be added.
+        FailedToAddActionConnectors: {FailedToUpdateAssociation}
+        -- A list of per-ARN failures from the action connectors that were requested to be removed.
+        FailedToRemoveActionConnectors: {FailedToUpdateAssociation}
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record UpdateAgentPermissionsInput
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The ID of the Amazon Web Services account that contains the agent.
+        AwsAccountId: string
+        -- The resource permissions that you want to grant on the agent.
+        GrantPermissions: {ResourcePermission}
+        -- The resource permissions that you want to revoke from the agent.
+        RevokePermissions: {ResourcePermission}
+    end
+
+    record UpdateAgentPermissionsOutput
+        -- The Amazon Resource Name (ARN) of the agent.
+        Arn: string
+        -- The unique identifier for the agent.
+        AgentId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The resource permissions for the agent.
         Permissions: {ResourcePermission}
     end
 
@@ -20146,6 +20852,33 @@ local record M
         Status: number
     end
 
+    record UpdateFlowInput
+        -- The ID of the Amazon Web Services account that contains the flow that you are updating.
+        AwsAccountId: string
+        -- The unique identifier of the flow to update.
+        FlowId: string
+        -- Updated display name for the flow. Omit to preserve the existing name.
+        Name: string
+        -- Updated description for the flow. Omit to preserve the existing description.
+        Description: string
+        -- The definition of the flow, specifying the steps and configurations. This is the flow definition in Quick Flow's internal format. The format is subject to change. When provided, all existing steps are replaced. Omit to preserve the existing definition.
+        -- Always derive or depend on the flow definition from the DescribeFlow operation to ensure you are working with the latest format.
+        FlowDefinition: any
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record UpdateFlowOutput
+        -- The Amazon Resource Name (ARN) of the flow.
+        Arn: string
+        -- The unique identifier of the flow.
+        FlowId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     record UpdateFlowPermissionsInput
         -- The ID of the Amazon Web Services account that contains the flow you are updating permissions against.
         AwsAccountId: string
@@ -20509,6 +21242,78 @@ local record M
         RequestId: string
         -- The HTTP status of the request.
         Status: number
+    end
+
+    record UpdateSpaceInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space that you want to update.
+        SpaceId: string
+        -- A new display name for the space.
+        Name: string
+        -- A new description for the space.
+        Description: string
+    end
+
+    record UpdateSpaceOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record UpdateSpacePermissionsInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space that you want to update permissions for.
+        SpaceId: string
+        -- The permissions that you want to grant on the space.
+        GrantPermissions: {ResourcePermission}
+        -- The permissions that you want to revoke from the space.
+        RevokePermissions: {ResourcePermission}
+    end
+
+    record UpdateSpacePermissionsOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- The updated permissions for the space.
+        permissions: {ResourcePermission}
+        -- The Amazon Web Services request ID for this operation.
+        requestId: string
+    end
+
+    -- An operation to perform on a resource in a space.
+    record SpaceResourceOperation
+        -- The type of the resource.
+        ResourceType: string
+        -- The details of the resource.
+        ResourceDetails: SpaceQuickSightResourceDetails
+    end
+
+    record UpdateSpaceResourcesInput
+        -- The ID of the Amazon Web Services account that contains the space.
+        AwsAccountId: string
+        -- The ID of the space that you want to update resources for.
+        SpaceId: string
+        -- A list of resources to add to the space.
+        AddResources: {SpaceResourceOperation}
+        -- A list of resources to remove from the space.
+        RemoveResources: {SpaceResourceOperation}
+    end
+
+    record UpdateSpaceResourcesOutput
+        -- The ID of the space.
+        spaceId: string
+        -- The ARN of the space.
+        spaceArn: string
+        -- A list of resource operations that failed.
+        FailedResourceOperations: {FailedSpaceResourceOperation}
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
     end
 
     record UpdateSPICECapacityConfigurationInput

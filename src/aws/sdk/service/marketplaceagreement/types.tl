@@ -656,6 +656,12 @@ local record M
         "TERMINATED"
     end
 
+    -- Represents an entitlement associated with an agreement.
+    record Entitlement
+        -- The Amazon Resource Name (ARN) of the AWS License Manager license associated with the entitlement.
+        licenseArn: string
+    end
+
     -- A summary of the proposal received from the proposer.
     record ProposalSummary
         -- The list of resources involved in the agreement.
@@ -692,6 +698,8 @@ local record M
         proposalSummary: ProposalSummary
         -- The current status of the agreement.
         status: string
+        -- A list of entitlements associated with the agreement.
+        entitlements: {Entitlement}
     end
 
     enum BillingAdjustmentReasonCode

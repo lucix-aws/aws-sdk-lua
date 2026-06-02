@@ -273,6 +273,11 @@ local record M
         message: string
     end
 
+    -- This exception is thrown when an operation is not available in the current region or for the current user pool configuration. This can occur when attempting to perform operations that are not supported in secondary replica regions.
+    record OperationNotEnabledException
+        message: string
+    end
+
     -- This exception is thrown when the Amazon Cognito service can't find the requested
     -- resource.
     record ResourceNotFoundException
@@ -3396,6 +3401,46 @@ local record M
         ConfigurationSet: string
     end
 
+    enum IssuerType
+        "ORIGINAL"
+        "UPDATED"
+    end
+
+    -- Specifies the issuer configuration for a user pool. Contains settings that determine how tokens are issued and validated.
+    record IssuerConfigurationType
+        -- The type of issuer configuration. Determines the token issuing behavior for the user pool.
+        -- ORIGINAL
+        -- The original issuer configuration for user pools. The issuer URL is hosted in the user
+        -- pool’s region and provides OIDC endpoints specific to that region.
+        -- Original issuers have the format of
+        -- https://cognito-idp.[region].amazonaws.com/[userPoolId]
+        -- UPDATED
+        -- Recommended for all user pools, including for multi-Region replication. Updated issuers host
+        -- the same JWKS content in multiple regions, resulting in improved resilience and efficiency.
+        -- Updated issuers have the format of
+        -- https://issuer-cognito-idp.[region].amazonaws.com/[userPoolId], where region is the
+        -- primary Amazon Web Services Region of your user pool.
+        Type: string
+    end
+
+    enum EncryptionKeyType
+        "AWS_OWNED_KEY"
+        "CUSTOMER_MANAGED_KEY"
+    end
+
+    -- Specifies the key configuration for a user pool. Contains settings for encryption keys used to secure user pool data.
+    record KeyConfigurationType
+        -- The type of encryption key used for the user pool.
+        -- AWS_OWNED_KEY
+        -- A key owned by Amazon Web Services in Key Management Service.
+        -- CUSTOMER_MANAGED_KEY
+        -- A key managed by the customer in Key Management Service. You must use a multi-region key to enable multi-region
+        -- replication for a user pool.
+        KeyType: string
+        -- The Amazon Resource Name (ARN) of the KMS key used for encryption. If not specified, Amazon Web Services managed keys are used.
+        KmsKeyArn: string
+    end
+
     enum CustomEmailSenderLambdaVersionType
         "V1_0"
     end
@@ -3832,6 +3877,12 @@ local record M
         -- eligibility of the user pool for features like managed login, access-token
         -- customization, and threat protection. Defaults to ESSENTIALS.
         UserPoolTier: string
+        -- The key configuration for the user pool. Specifies the key type and KMS key ARN for
+        -- encryption.
+        KeyConfiguration: KeyConfigurationType
+        -- The issuer configuration for the user pool. Specifies the issuer type for token
+        -- generation.
+        IssuerConfiguration: IssuerConfigurationType
     end
 
     enum StatusType
@@ -3985,6 +4036,10 @@ local record M
         -- eligibility of the user pool for features like managed login, access-token
         -- customization, and threat protection. Defaults to ESSENTIALS.
         UserPoolTier: string
+        -- The key configuration for the user pool, including encryption settings.
+        KeyConfiguration: KeyConfigurationType
+        -- The issuer configuration for the user pool, including token issuing settings.
+        IssuerConfiguration: IssuerConfigurationType
     end
 
     -- Represents the response from the server for the request to create a user pool.
@@ -4278,8 +4333,8 @@ local record M
         -- The user pool analytics configuration for collecting metrics and sending them to your
         -- Amazon Pinpoint campaign.
         -- In Amazon Web Services Regions where Amazon Pinpoint isn't available, user pools might not have access to
-        -- analytics or might be configurable with campaigns in the US East (N. Virginia) Region.
-        -- For more information, see Using Amazon Pinpoint analytics.
+        -- analytics or might be configurable with campaigns in the US East (N. Virginia) Region. For
+        -- more information, see Using Amazon Pinpoint analytics.
         AnalyticsConfiguration: AnalyticsConfigurationType
         -- When ENABLED, suppresses messages that might indicate a valid user exists
         -- when someone attempts sign-in. This parameters sets your preference for the errors and
@@ -4580,6 +4635,22 @@ local record M
         CertificateArn: string
     end
 
+    -- Specifies failover configuration for multi-region user pool domains. Contains settings for the secondary region and health check configuration.
+    record FailoverType
+        -- The secondary Amazon Web Services Region to use for failover when the primary region becomes unavailable.
+        SecondaryRegion: string
+        -- The ID of the Amazon Web Services Route53 healthcheck that controls routing. If the healthcheck is healthy,
+        -- traffic will be routed to the primary replica, and if the healthcheck is unhealthy,
+        -- traffic will be routed to the secondary region.
+        PrimaryRoute53HealthCheckId: string
+    end
+
+    -- Specifies routing configuration for user pool domains. Contains failover settings for multi-region deployments.
+    record RoutingType
+        -- The failover configuration that specifies the secondary region and health check settings.
+        Failover: FailoverType
+    end
+
     record CreateUserPoolDomainInput
         -- The domain string. For custom domains, this is the fully-qualified domain name, such
         -- as auth.example.com. For prefix domains, this is the prefix alone, such as
@@ -4603,6 +4674,9 @@ local record M
         -- domain to stop working due to a mismatch in RP ID. To keep the prefix domain passkey
         -- integration working, you can explicitly set RP ID to the prefix domain.
         CustomDomainConfig: CustomDomainConfigType
+        -- The configuration of routing for requests to the domain for replicas of a replicated user pool.
+        -- The routing configuration is currently only supported for custom domains.
+        Routing: RoutingType
     end
 
     record CreateUserPoolDomainOutput
@@ -4616,6 +4690,63 @@ local record M
         -- value if you set a custom domain with CustomDomainConfig. If you set an
         -- Amazon Cognito prefix domain, this parameter returns null.
         CloudFrontDomain: string
+        -- The routing configuration that was applied to the user pool domain.
+        Routing: RoutingType
+    end
+
+    record CreateUserPoolReplicaInput
+        -- The ID of the user pool to replicate.
+        UserPoolId: string
+        -- The Amazon Web Services Region where you want to create the replica user pool.
+        RegionName: string
+        -- A map of tags to assign to the replica user pool. Each tag consists of a key and an
+        -- optional value, both of which you define. You can maintain tags independently on replica
+        -- user pools.
+        UserPoolTags: {string : string}
+    end
+
+    enum ReplicaRoleType
+        "PRIMARY"
+        "SECONDARY"
+    end
+
+    enum ReplicaStatusType
+        "CREATING"
+        "ACTIVE"
+        "INACTIVE"
+        "DELETING"
+    end
+
+    -- Contains information about a replica user pool, including Region, status, role, and ARN.
+    record UserPoolReplicaType
+        -- The Amazon Web Services Region where the replica is located.
+        RegionName: string
+        -- The current status of the replica.
+        -- CREATING
+        -- The replica is being created.
+        -- INACTIVE
+        -- The replica has been created, but is not accepting requests for end-users.
+        -- Administrator configuration operations are supported.
+        -- ACTIVE
+        -- The replica is available for both end-user and administrator operations.
+        -- DELETING
+        -- The replica is being deleted.
+        Status: string
+        -- The role of the user pool replica that determines which API operations are enabled.
+        -- PRIMARY
+        -- The primary replica supports all end user and administrator operations.
+        -- SECONDARY
+        -- The secondary replica supports a limited set of end user and administrator operations.
+        -- Generally, only administrator operations that set configurations specific to the replica, and
+        -- only end-user operations that do not create or change attributes of a user are supported.
+        Role: string
+        -- The Amazon Resource Name (ARN) of the replica user pool.
+        UserPoolArn: string
+    end
+
+    record CreateUserPoolReplicaOutput
+        -- Information about the created user pool replica, including its status and role.
+        UserPoolReplica: UserPoolReplicaType
     end
 
     record DeleteGroupInput
@@ -4744,6 +4875,18 @@ local record M
     end
 
     record DeleteUserPoolDomainOutput
+    end
+
+    record DeleteUserPoolReplicaInput
+        -- The ID of the user pool that contains the replica to delete.
+        UserPoolId: string
+        -- The Amazon Web Services Region of the replica to delete.
+        RegionName: string
+    end
+
+    record DeleteUserPoolReplicaOutput
+        -- Information about the deleted user pool replica.
+        UserPoolReplica: UserPoolReplicaType
     end
 
     record DeleteWebAuthnCredentialInput
@@ -5004,6 +5147,9 @@ local record M
         -- indicates managed login branding.
         -- Managed login requires that your user pool be configured for any feature plan other than Lite.
         ManagedLoginVersion: number
+        -- The routing configuration for the domain, including failover settings for multi-region deployments.
+        -- Currently only Failover configurations are allowed.
+        Routing: RoutingType
     end
 
     record DescribeUserPoolDomainOutput
@@ -6010,6 +6156,23 @@ local record M
         NextToken: string
     end
 
+    record ListUserPoolReplicasInput
+        -- The ID of the user pool for which to list replicas.
+        UserPoolId: string
+        -- A pagination token for retrieving the next page of results. If this parameter is
+        -- omitted, the operation returns the first page of results.
+        NextToken: string
+    end
+
+    record ListUserPoolReplicasOutput
+        -- A list of user pool replicas, including information about their status, role, and
+        -- Region.
+        UserPoolReplicas: {UserPoolReplicaType}
+        -- A pagination token for retrieving the next page of results. If this value is null,
+        -- there are no more results to retrieve.
+        NextToken: string
+    end
+
     -- Represents the request to list user pools.
     record ListUserPoolsInput
         -- This API operation returns a limited number of results. The pagination token is
@@ -6040,6 +6203,8 @@ local record M
         -- The date and time when the item was created. Amazon Cognito returns this timestamp in UNIX epoch time format. Your SDK might render the output in a
         -- human-readable format like ISO 8601 or a Java Date object.
         CreationDate: number
+        -- A list of Amazon Web Services Regions where replicas of this user pool exist.
+        ReplicaRegions: {string}
     end
 
     -- Represents the response to list user pools.
@@ -7319,6 +7484,12 @@ local record M
         -- eligibility of the user pool for features like managed login, access-token
         -- customization, and threat protection. Defaults to ESSENTIALS.
         UserPoolTier: string
+        -- The key configuration for the user pool. In secondary regions, this parameter must
+        -- match the existing configuration and cannot be modified.
+        KeyConfiguration: KeyConfigurationType
+        -- The issuer configuration for the user pool. In secondary regions, this parameter must
+        -- match the existing configuration and cannot be modified.
+        IssuerConfiguration: IssuerConfigurationType
     end
 
     -- Represents the response from the server when you make a request to update the user
@@ -7515,8 +7686,8 @@ local record M
         -- The user pool analytics configuration for collecting metrics and sending them to your
         -- Amazon Pinpoint campaign.
         -- In Amazon Web Services Regions where Amazon Pinpoint isn't available, user pools might not have access to
-        -- analytics or might be configurable with campaigns in the US East (N. Virginia) Region.
-        -- For more information, see Using Amazon Pinpoint analytics.
+        -- analytics or might be configurable with campaigns in the US East (N. Virginia) Region. For
+        -- more information, see Using Amazon Pinpoint analytics.
         AnalyticsConfiguration: AnalyticsConfigurationType
         -- When ENABLED, suppresses messages that might indicate a valid user exists
         -- when someone attempts sign-in. This parameters sets your preference for the errors and
@@ -7579,6 +7750,9 @@ local record M
         -- domain to stop working due to a mismatch in RP ID. To keep the prefix domain passkey
         -- integration working, you can explicitly set RP ID to the prefix domain.
         CustomDomainConfig: CustomDomainConfigType
+        -- The routing configuration for the user pool domain. Specifies failover settings for
+        -- multi-region deployments.
+        Routing: RoutingType
     end
 
     -- The UpdateUserPoolDomain response output.
@@ -7593,6 +7767,27 @@ local record M
         -- value if you set a custom domain with CustomDomainConfig. If you set an
         -- Amazon Cognito prefix domain, this operation returns a blank response.
         CloudFrontDomain: string
+        -- The updated routing configuration for the user pool domain.
+        Routing: RoutingType
+    end
+
+    enum UpdateReplicaStatusType
+        "ACTIVE"
+        "INACTIVE"
+    end
+
+    record UpdateUserPoolReplicaInput
+        -- The ID of the user pool that contains the replica to update.
+        UserPoolId: string
+        -- The Amazon Web Services Region of the replica to update.
+        RegionName: string
+        -- The status to set for the replica. Valid values are ACTIVE and INACTIVE.
+        Status: string
+    end
+
+    record UpdateUserPoolReplicaOutput
+        -- Information about the updated user pool replica.
+        UserPoolReplica: UserPoolReplicaType
     end
 
     -- This exception is thrown when there is a code mismatch and the service fails to

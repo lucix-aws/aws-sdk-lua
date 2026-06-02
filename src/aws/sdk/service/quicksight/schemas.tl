@@ -23,6 +23,12 @@ M.GroupsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourcePermissionList = schema.new({ type = "list", list_member = M.ResourcePermission })
 
+M.CreateAgentRequestSpacesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CreateAgentRequestActionConnectorsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StarterPromptList = schema.new({ type = "list", list_member = prelude.String })
+
 M.FolderArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LinkEntityArnList = schema.new({ type = "list", list_member = prelude.String })
@@ -38,6 +44,8 @@ M.FieldFolderMap = schema.new({ type = "map", map_key = prelude.String, map_valu
 M.ColumnLevelPermissionRuleList = schema.new({ type = "list", list_member = M.ColumnLevelPermissionRule })
 
 M.DatasetParameterList = schema.new({ type = "list", list_member = M.DatasetParameter })
+
+M.PermissionsList = schema.new({ type = "list", list_member = M.Permission })
 
 M.IdentityMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IdentityNameList })
 
@@ -71,6 +79,8 @@ M.VpcEndpointIdRestrictionRuleMap = schema.new({ type = "map", map_key = prelude
 
 M.KeyRegistration = schema.new({ type = "list", list_member = M.RegisteredCustomerManagedKey })
 
+M.SpaceContributorList = schema.new({ type = "list", list_member = M.SpaceContributor })
+
 M.TemplateErrorList = schema.new({ type = "list", list_member = M.TemplateError })
 
 M.SessionTagList = schema.new({ type = "list", list_member = M.SessionTag })
@@ -81,9 +91,9 @@ M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AdditionalDashboardIdList = schema.new({ type = "list", list_member = prelude.String })
 
-M.PermissionsList = schema.new({ type = "list", list_member = M.Permission })
-
 M.ActionConnectorSummaryList = schema.new({ type = "list", list_member = M.ActionConnectorSummary })
+
+M.AgentSummaries = schema.new({ type = "list", list_member = M.AgentSummary })
 
 M.AnalysisSummaryList = schema.new({ type = "list", list_member = M.AnalysisSummary })
 
@@ -131,6 +141,10 @@ M.RefreshSchedules = schema.new({ type = "list", list_member = M.RefreshSchedule
 
 M.SelfUpgradeRequestDetailList = schema.new({ type = "list", list_member = M.SelfUpgradeRequestDetail })
 
+M.SpaceResourceSummaries = schema.new({ type = "list", list_member = M.SpaceResourceSummary })
+
+M.SpaceSummaries = schema.new({ type = "list", list_member = M.SpaceSummary })
+
 M.TemplateAliasList = schema.new({ type = "list", list_member = M.TemplateAlias })
 
 M.TemplateSummaryList = schema.new({ type = "list", list_member = M.TemplateSummary })
@@ -157,6 +171,10 @@ M.QAResults = schema.new({ type = "list", list_member = M.QAResult })
 
 M.ActionConnectorSearchFilterList = schema.new({ type = "list", list_member = M.ActionConnectorSearchFilter })
 
+M.AgentSearchFilterList = schema.new({ type = "list", list_member = M.AgentSearchFilter })
+
+M.AgentSummaryList = schema.new({ type = "list", list_member = M.AgentSummary })
+
 M.AnalysisSearchFilterList = schema.new({ type = "list", list_member = M.AnalysisSearchFilter })
 
 M.DashboardSearchFilterList = schema.new({ type = "list", list_member = M.DashboardSearchFilter })
@@ -173,9 +191,25 @@ M.FolderSearchFilterList = schema.new({ type = "list", list_member = M.FolderSea
 
 M.GroupSearchFilterList = schema.new({ type = "list", list_member = M.GroupSearchFilter })
 
+M.SpaceQuicksightSearchFilters = schema.new({ type = "list", list_member = M.SpaceQuicksightSearchFilter })
+
 M.TopicSearchFilterList = schema.new({ type = "list", list_member = M.TopicSearchFilter })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateAgentRequestSpacesToAddList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateAgentRequestSpacesToRemoveList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateAgentRequestActionConnectorsToAddList = schema.new({ type = "list", list_member = prelude.String })
+
+M.UpdateAgentRequestActionConnectorsToRemoveList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FailedToUpdateAssociationList = schema.new({ type = "list", list_member = M.FailedToUpdateAssociation })
+
+M.UpdateAgentPermissionsRequestGrantPermissionsList = schema.new({ type = "list", list_member = M.ResourcePermission })
+
+M.UpdateAgentPermissionsRequestRevokePermissionsList = schema.new({ type = "list", list_member = M.ResourcePermission })
 
 M.UpdateLinkPermissionList = schema.new({ type = "list", list_member = M.ResourcePermission })
 
@@ -188,6 +222,10 @@ M.AuthorizedTargetsList = schema.new({ type = "list", list_member = prelude.Stri
 M.FailedKeyRegistrationEntries = schema.new({ type = "list", list_member = M.FailedKeyRegistrationEntry })
 
 M.SuccessfulKeyRegistrationEntries = schema.new({ type = "list", list_member = M.SuccessfulKeyRegistrationEntry })
+
+M.SpaceResourceOperations = schema.new({ type = "list", list_member = M.SpaceResourceOperation })
+
+M.FailedSpaceResourceOperations = schema.new({ type = "list", list_member = M.FailedSpaceResourceOperation })
 
 M.StringParameterList = schema.new({ type = "list", list_member = M.StringParameter })
 
@@ -238,6 +276,10 @@ M.DataSetConfigurationList = schema.new({ type = "list", list_member = M.DataSet
 M.Datasets = schema.new({ type = "list", list_member = M.DatasetMetadata })
 
 M.ActionIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentSpacesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgentActionConnectorsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataSetArnsList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -313,7 +355,11 @@ M.OutputColumnList = schema.new({ type = "list", list_member = M.OutputColumn })
 
 M.DataSourceParametersList = schema.new({ type = "list", list_member = M.DataSourceParameters })
 
+M.StepAliasList = schema.new({ type = "list", list_member = M.StepAliasMapping })
+
 M.Path = schema.new({ type = "list", list_member = prelude.String })
+
+M.SpaceQuickSightResources = schema.new({ type = "list", list_member = M.SpaceQuickSightResource })
 
 M.NetworkInterfaceList = schema.new({ type = "list", list_member = M.NetworkInterface })
 
@@ -333,6 +379,8 @@ M.PrincipalList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ColumnLevelPermissionRuleColumnNameList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ColorList = schema.new({ type = "list", list_member = prelude.String })
 
 M.FontList = schema.new({ type = "list", list_member = M.Font })
@@ -346,8 +394,6 @@ M.ThemeErrorList = schema.new({ type = "list", list_member = M.ThemeError })
 M.AnonymousUserDashboardEmbeddingConfigurationEnabledFeatures = schema.new({ type = "list", list_member = prelude.String })
 
 M.AnonymousUserDashboardEmbeddingConfigurationDisabledFeatures = schema.new({ type = "list", list_member = prelude.String })
-
-M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RowLevelPermissionDataSetMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.RowLevelPermissionDataSet })
 
@@ -1452,6 +1498,296 @@ M.AdHocFilteringOption = schema.new({
             id = id.from(_N, "AdHocFilteringOption", "AvailabilityStatus"),
             type = "string",
             name = "AvailabilityStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomPromptInterface = schema.new({
+    id = id.from(_N, "CustomPromptInterface"),
+    type = "structure",
+    members = {
+        ModelProfileId = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "ModelProfileId"),
+            type = "string",
+            name = "ModelProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubscriptionId = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "SubscriptionId"),
+            type = "string",
+            name = "SubscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QbsAwsAccountId = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "QbsAwsAccountId"),
+            type = "string",
+            name = "QbsAwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResponseLength = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "ResponseLength"),
+            type = "string",
+            name = "ResponseLength",
+            target_id = prelude.String.id,
+        }),
+        OutputStyle = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "OutputStyle"),
+            type = "string",
+            name = "OutputStyle",
+            target_id = prelude.String.id,
+        }),
+        Identity = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "Identity"),
+            type = "string",
+            name = "Identity",
+            target_id = prelude.String.id,
+        }),
+        Tone = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "Tone"),
+            type = "string",
+            name = "Tone",
+            target_id = prelude.String.id,
+        }),
+        CustomInstructions = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "CustomInstructions"),
+            type = "string",
+            name = "CustomInstructions",
+            target_id = prelude.String.id,
+        }),
+        promptSummary = schema.new({
+            id = id.from(_N, "CustomPromptInterface", "promptSummary"),
+            type = "string",
+            name = "promptSummary",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Agent = schema.new({
+    id = id.from(_N, "Agent"),
+    type = "structure",
+    members = {
+        Spaces = schema.new({
+            id = id.from(_N, "Agent", "Spaces"),
+            type = "list",
+            name = "Spaces",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ActionConnectors = schema.new({
+            id = id.from(_N, "Agent", "ActionConnectors"),
+            type = "list",
+            name = "ActionConnectors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "Agent", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        IconId = schema.new({
+            id = id.from(_N, "Agent", "IconId"),
+            type = "string",
+            name = "IconId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Agent", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StarterPrompts = schema.new({
+            id = id.from(_N, "Agent", "StarterPrompts"),
+            type = "list",
+            name = "StarterPrompts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        WelcomeMessage = schema.new({
+            id = id.from(_N, "Agent", "WelcomeMessage"),
+            type = "string",
+            name = "WelcomeMessage",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "Agent", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentId = schema.new({
+            id = id.from(_N, "Agent", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentLifecycle = schema.new({
+            id = id.from(_N, "Agent", "AgentLifecycle"),
+            type = "string",
+            name = "AgentLifecycle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentStatus = schema.new({
+            id = id.from(_N, "Agent", "AgentStatus"),
+            type = "string",
+            name = "AgentStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "Agent", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Creator = schema.new({
+            id = id.from(_N, "Agent", "Creator"),
+            type = "string",
+            name = "Creator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CustomPromptInterface = schema.new({
+            id = id.from(_N, "Agent", "CustomPromptInterface"),
+            type = "structure",
+            name = "CustomPromptInterface",
+            target_id = id.from(_N, "CustomPromptInterface"),
+            target = M.CustomPromptInterface,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "Agent", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "Agent", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentSearchFilter = schema.new({
+    id = id.from(_N, "AgentSearchFilter"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "AgentSearchFilter", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "AgentSearchFilter", "Operator"),
+            type = "string",
+            name = "Operator",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "AgentSearchFilter", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgentSummary = schema.new({
+    id = id.from(_N, "AgentSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "AgentSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentId = schema.new({
+            id = id.from(_N, "AgentSummary", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AgentSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "AgentSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AgentSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AgentSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IconId = schema.new({
+            id = id.from(_N, "AgentSummary", "IconId"),
+            type = "string",
+            name = "IconId",
             target_id = prelude.String.id,
         }),
     },
@@ -27907,6 +28243,262 @@ M.CreateActionConnectorOutput = schema.new({
     },
 })
 
+M.CustomPromptProfile = schema.new({
+    id = id.from(_N, "CustomPromptProfile"),
+    type = "structure",
+    members = {
+        ModelProfileId = schema.new({
+            id = id.from(_N, "CustomPromptProfile", "ModelProfileId"),
+            type = "string",
+            name = "ModelProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubscriptionId = schema.new({
+            id = id.from(_N, "CustomPromptProfile", "SubscriptionId"),
+            type = "string",
+            name = "SubscriptionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QbsAwsAccountId = schema.new({
+            id = id.from(_N, "CustomPromptProfile", "QbsAwsAccountId"),
+            type = "string",
+            name = "QbsAwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CustomPromptInputParameters = schema.new({
+    id = id.from(_N, "CustomPromptInputParameters"),
+    type = "structure",
+    members = {
+        ResponseLength = schema.new({
+            id = id.from(_N, "CustomPromptInputParameters", "ResponseLength"),
+            type = "string",
+            name = "ResponseLength",
+            target_id = prelude.String.id,
+        }),
+        OutputStyle = schema.new({
+            id = id.from(_N, "CustomPromptInputParameters", "OutputStyle"),
+            type = "string",
+            name = "OutputStyle",
+            target_id = prelude.String.id,
+        }),
+        Identity = schema.new({
+            id = id.from(_N, "CustomPromptInputParameters", "Identity"),
+            type = "string",
+            name = "Identity",
+            target_id = prelude.String.id,
+        }),
+        Tone = schema.new({
+            id = id.from(_N, "CustomPromptInputParameters", "Tone"),
+            type = "string",
+            name = "Tone",
+            target_id = prelude.String.id,
+        }),
+        CustomInstructions = schema.new({
+            id = id.from(_N, "CustomPromptInputParameters", "CustomInstructions"),
+            type = "string",
+            name = "CustomInstructions",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomPromptInput = schema.new({
+    id = id.from(_N, "CustomPromptInput"),
+    type = "union",
+    members = {
+        ExistingPrompt = schema.new({
+            id = id.from(_N, "CustomPromptInput", "ExistingPrompt"),
+            type = "structure",
+            name = "ExistingPrompt",
+            target_id = id.from(_N, "CustomPromptProfile"),
+            target = M.CustomPromptProfile,
+        }),
+        NewPrompt = schema.new({
+            id = id.from(_N, "CustomPromptInput", "NewPrompt"),
+            type = "structure",
+            name = "NewPrompt",
+            target_id = id.from(_N, "CustomPromptInputParameters"),
+            target = M.CustomPromptInputParameters,
+        }),
+    },
+})
+
+M.CreateAgentInput = schema.new({
+    id = id.from(_N, "CreateAgentRequest"),
+    type = "structure",
+    members = {
+        Spaces = schema.new({
+            id = id.from(_N, "CreateAgentInput", "Spaces"),
+            type = "list",
+            name = "Spaces",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ActionConnectors = schema.new({
+            id = id.from(_N, "CreateAgentInput", "ActionConnectors"),
+            type = "list",
+            name = "ActionConnectors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateAgentInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AgentId = schema.new({
+            id = id.from(_N, "CreateAgentInput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateAgentInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateAgentInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        IconId = schema.new({
+            id = id.from(_N, "CreateAgentInput", "IconId"),
+            type = "string",
+            name = "IconId",
+            target_id = prelude.String.id,
+        }),
+        StarterPrompts = schema.new({
+            id = id.from(_N, "CreateAgentInput", "StarterPrompts"),
+            type = "list",
+            name = "StarterPrompts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        WelcomeMessage = schema.new({
+            id = id.from(_N, "CreateAgentInput", "WelcomeMessage"),
+            type = "string",
+            name = "WelcomeMessage",
+            target_id = prelude.String.id,
+        }),
+        AgentLifecycle = schema.new({
+            id = id.from(_N, "CreateAgentInput", "AgentLifecycle"),
+            type = "string",
+            name = "AgentLifecycle",
+            target_id = prelude.String.id,
+        }),
+        CustomPromptInput = schema.new({
+            id = id.from(_N, "CreateAgentInput", "CustomPromptInput"),
+            type = "union",
+            name = "CustomPromptInput",
+            target_id = id.from(_N, "CustomPromptInput"),
+            target = M.CustomPromptInput,
+        }),
+    },
+})
+
+M.CreateAgentOutput = schema.new({
+    id = id.from(_N, "CreateAgentResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateAgentOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentId = schema.new({
+            id = id.from(_N, "CreateAgentOutput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentStatus = schema.new({
+            id = id.from(_N, "CreateAgentOutput", "AgentStatus"),
+            type = "string",
+            name = "AgentStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentName = schema.new({
+            id = id.from(_N, "CreateAgentOutput", "AgentName"),
+            type = "string",
+            name = "AgentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "CreateAgentOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "LimitExceededException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "LimitExceededException", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DateTimeParameter = schema.new({
     id = id.from(_N, "DateTimeParameter"),
     type = "structure",
@@ -28187,34 +28779,6 @@ M.CreateAnalysisOutput = schema.new({
         }),
         RequestId = schema.new({
             id = id.from(_N, "CreateAnalysisOutput", "RequestId"),
-            type = "string",
-            name = "RequestId",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.LimitExceededException = schema.new({
-    id = id.from(_N, "LimitExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "LimitExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-        ResourceType = schema.new({
-            id = id.from(_N, "LimitExceededException", "ResourceType"),
-            type = "string",
-            name = "ResourceType",
-            target_id = prelude.String.id,
-        }),
-        RequestId = schema.new({
-            id = id.from(_N, "LimitExceededException", "RequestId"),
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
@@ -31882,6 +32446,130 @@ M.CustomerManagedKeyUnavailableException = schema.new({
     },
 })
 
+M.Permission = schema.new({
+    id = id.from(_N, "Permission"),
+    type = "structure",
+    members = {
+        Actions = schema.new({
+            id = id.from(_N, "Permission", "Actions"),
+            type = "list",
+            name = "Actions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Principal = schema.new({
+            id = id.from(_N, "Permission", "Principal"),
+            type = "string",
+            name = "Principal",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateFlowInput = schema.new({
+    id = id.from(_N, "CreateFlowRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateFlowInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateFlowInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateFlowInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        FlowDefinition = schema.new({
+            id = id.from(_N, "CreateFlowInput", "FlowDefinition"),
+            type = "document",
+            name = "FlowDefinition",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "CreateFlowInput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.Permission,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateFlowInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateFlowOutput = schema.new({
+    id = id.from(_N, "CreateFlowResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateFlowOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FlowId = schema.new({
+            id = id.from(_N, "CreateFlowOutput", "FlowId"),
+            type = "string",
+            name = "FlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "CreateFlowOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateFlowOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.CreateFolderInput = schema.new({
     id = id.from(_N, "CreateFolderRequest"),
     type = "structure",
@@ -32952,6 +33640,75 @@ M.CreateRoleMembershipOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.CreateSpaceInput = schema.new({
+    id = id.from(_N, "CreateSpaceRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateSpaceInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "CreateSpaceInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateSpaceInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateSpaceInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateSpaceOutput = schema.new({
+    id = id.from(_N, "CreateSpaceResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "CreateSpaceOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "CreateSpaceOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "CreateSpaceOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -36385,6 +37142,46 @@ M.DeleteActionConnectorOutput = schema.new({
     },
 })
 
+M.DeleteAgentInput = schema.new({
+    id = id.from(_N, "DeleteAgentRequest"),
+    type = "structure",
+    members = {
+        AgentId = schema.new({
+            id = id.from(_N, "DeleteAgentInput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DeleteAgentInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAgentOutput = schema.new({
+    id = id.from(_N, "DeleteAgentResponse"),
+    type = "structure",
+    members = {
+        RequestId = schema.new({
+            id = id.from(_N, "DeleteAgentOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteAnalysisInput = schema.new({
     id = id.from(_N, "DeleteAnalysisRequest"),
     type = "structure",
@@ -36880,6 +37677,56 @@ M.DeleteDefaultQBusinessApplicationOutput = schema.new({
         }),
         Status = schema.new({
             id = id.from(_N, "DeleteDefaultQBusinessApplicationOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFlowInput = schema.new({
+    id = id.from(_N, "DeleteFlowRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DeleteFlowInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FlowId = schema.new({
+            id = id.from(_N, "DeleteFlowInput", "FlowId"),
+            type = "string",
+            name = "FlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFlowOutput = schema.new({
+    id = id.from(_N, "DeleteFlowResponse"),
+    type = "structure",
+    members = {
+        RequestId = schema.new({
+            id = id.from(_N, "DeleteFlowOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DeleteFlowOutput", "Status"),
             type = "integer",
             name = "Status",
             target_id = prelude.Integer.id,
@@ -37577,6 +38424,61 @@ M.DeleteRoleMembershipOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.DeleteSpaceInput = schema.new({
+    id = id.from(_N, "DeleteSpaceRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DeleteSpaceInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "DeleteSpaceInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSpaceOutput = schema.new({
+    id = id.from(_N, "DeleteSpaceResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "DeleteSpaceOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "DeleteSpaceOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DeleteSpaceOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -38617,6 +39519,127 @@ M.DescribeActionConnectorPermissionsOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAgentInput = schema.new({
+    id = id.from(_N, "DescribeAgentRequest"),
+    type = "structure",
+    members = {
+        AgentId = schema.new({
+            id = id.from(_N, "DescribeAgentInput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeAgentInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAgentOutput = schema.new({
+    id = id.from(_N, "DescribeAgentResponse"),
+    type = "structure",
+    members = {
+        Agent = schema.new({
+            id = id.from(_N, "DescribeAgentOutput", "Agent"),
+            type = "structure",
+            name = "Agent",
+            target_id = id.from(_N, "Agent"),
+            target = M.Agent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeAgentOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeAgentPermissionsInput = schema.new({
+    id = id.from(_N, "DescribeAgentPermissionsRequest"),
+    type = "structure",
+    members = {
+        AgentId = schema.new({
+            id = id.from(_N, "DescribeAgentPermissionsInput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeAgentPermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAgentPermissionsOutput = schema.new({
+    id = id.from(_N, "DescribeAgentPermissionsResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DescribeAgentPermissionsOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentId = schema.new({
+            id = id.from(_N, "DescribeAgentPermissionsOutput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "DescribeAgentPermissionsOutput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeAgentPermissionsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -40512,6 +41535,193 @@ M.DescribeDefaultQBusinessApplicationOutput = schema.new({
     },
 })
 
+M.DescribeFlowInput = schema.new({
+    id = id.from(_N, "DescribeFlowRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeFlowInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FlowId = schema.new({
+            id = id.from(_N, "DescribeFlowInput", "FlowId"),
+            type = "string",
+            name = "FlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        PublishState = schema.new({
+            id = id.from(_N, "DescribeFlowInput", "PublishState"),
+            type = "string",
+            name = "PublishState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "publish-state" },
+            },
+        }),
+    },
+})
+
+M.StepAliasMapping = schema.new({
+    id = id.from(_N, "StepAliasMapping"),
+    type = "structure",
+    members = {
+        StepId = schema.new({
+            id = id.from(_N, "StepAliasMapping", "StepId"),
+            type = "string",
+            name = "StepId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StepAlias = schema.new({
+            id = id.from(_N, "StepAliasMapping", "StepAlias"),
+            type = "string",
+            name = "StepAlias",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FlowDetail = schema.new({
+    id = id.from(_N, "FlowDetail"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "FlowDetail", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FlowId = schema.new({
+            id = id.from(_N, "FlowDetail", "FlowId"),
+            type = "string",
+            name = "FlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "FlowDetail", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "FlowDetail", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        PublishState = schema.new({
+            id = id.from(_N, "FlowDetail", "PublishState"),
+            type = "string",
+            name = "PublishState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "FlowDetail", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedBy = schema.new({
+            id = id.from(_N, "FlowDetail", "CreatedBy"),
+            type = "string",
+            name = "CreatedBy",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "FlowDetail", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUpdatedBy = schema.new({
+            id = id.from(_N, "FlowDetail", "LastUpdatedBy"),
+            type = "string",
+            name = "LastUpdatedBy",
+            target_id = prelude.String.id,
+        }),
+        FlowDefinition = schema.new({
+            id = id.from(_N, "FlowDetail", "FlowDefinition"),
+            type = "document",
+            name = "FlowDefinition",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StepAliases = schema.new({
+            id = id.from(_N, "FlowDetail", "StepAliases"),
+            type = "list",
+            name = "StepAliases",
+            target_id = prelude.Document.id,
+            list_member = M.StepAliasMapping,
+        }),
+    },
+})
+
+M.DescribeFlowOutput = schema.new({
+    id = id.from(_N, "DescribeFlowResponse"),
+    type = "structure",
+    members = {
+        Flow = schema.new({
+            id = id.from(_N, "DescribeFlowOutput", "Flow"),
+            type = "structure",
+            name = "Flow",
+            target_id = id.from(_N, "FlowDetail"),
+            target = M.FlowDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeFlowOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeFlowOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.DescribeFolderInput = schema.new({
     id = id.from(_N, "DescribeFolderRequest"),
     type = "structure",
@@ -42114,6 +43324,288 @@ M.InvalidParameterException = schema.new({
     },
 })
 
+M.DescribeSpaceInput = schema.new({
+    id = id.from(_N, "DescribeSpaceRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeSpaceInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "DescribeSpaceInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxContributors = schema.new({
+            id = id.from(_N, "DescribeSpaceInput", "MaxContributors"),
+            type = "integer",
+            name = "MaxContributors",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxContributors" },
+            },
+        }),
+    },
+})
+
+M.SpaceContributor = schema.new({
+    id = id.from(_N, "SpaceContributor"),
+    type = "structure",
+    members = {
+        userName = schema.new({
+            id = id.from(_N, "SpaceContributor", "userName"),
+            type = "string",
+            name = "userName",
+            target_id = prelude.String.id,
+        }),
+        rawFileSizeBytes = schema.new({
+            id = id.from(_N, "SpaceContributor", "rawFileSizeBytes"),
+            type = "long",
+            name = "rawFileSizeBytes",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        percentage = schema.new({
+            id = id.from(_N, "SpaceContributor", "percentage"),
+            type = "double",
+            name = "percentage",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.SpaceQuickSightResourceDetails = schema.new({
+    id = id.from(_N, "SpaceQuickSightResourceDetails"),
+    type = "union",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "SpaceQuickSightResourceDetails", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SpaceQuickSightResource = schema.new({
+    id = id.from(_N, "SpaceQuickSightResource"),
+    type = "structure",
+    members = {
+        resourceType = schema.new({
+            id = id.from(_N, "SpaceQuickSightResource", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceDetails = schema.new({
+            id = id.from(_N, "SpaceQuickSightResource", "resourceDetails"),
+            type = "union",
+            name = "resourceDetails",
+            target_id = id.from(_N, "SpaceQuickSightResourceDetails"),
+            target = M.SpaceQuickSightResourceDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SpaceDetails = schema.new({
+    id = id.from(_N, "SpaceDetails"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SpaceDetails", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "SpaceDetails", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        resources = schema.new({
+            id = id.from(_N, "SpaceDetails", "resources"),
+            type = "list",
+            name = "resources",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceQuickSightResource,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SpaceDetails", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "SpaceDetails", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        consumedSourceSize = schema.new({
+            id = id.from(_N, "SpaceDetails", "consumedSourceSize"),
+            type = "long",
+            name = "consumedSourceSize",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        consumedSourceDocCount = schema.new({
+            id = id.from(_N, "SpaceDetails", "consumedSourceDocCount"),
+            type = "integer",
+            name = "consumedSourceDocCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "SpaceDetails", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        createdByArn = schema.new({
+            id = id.from(_N, "SpaceDetails", "createdByArn"),
+            type = "string",
+            name = "createdByArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeSpaceOutput = schema.new({
+    id = id.from(_N, "DescribeSpaceResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "DescribeSpaceOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "DescribeSpaceOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        Space = schema.new({
+            id = id.from(_N, "DescribeSpaceOutput", "Space"),
+            type = "structure",
+            name = "Space",
+            target_id = id.from(_N, "SpaceDetails"),
+            target = M.SpaceDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Contributors = schema.new({
+            id = id.from(_N, "DescribeSpaceOutput", "Contributors"),
+            type = "list",
+            name = "Contributors",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceContributor,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeSpaceOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeSpacePermissionsInput = schema.new({
+    id = id.from(_N, "DescribeSpacePermissionsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeSpacePermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "DescribeSpacePermissionsInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeSpacePermissionsOutput = schema.new({
+    id = id.from(_N, "DescribeSpacePermissionsResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "DescribeSpacePermissionsOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "DescribeSpacePermissionsOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "DescribeSpacePermissionsOutput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeSpacePermissionsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribeTemplateInput = schema.new({
     id = id.from(_N, "DescribeTemplateRequest"),
     type = "structure",
@@ -43606,6 +45098,63 @@ M.FailedKeyRegistrationEntry = schema.new({
     },
 })
 
+M.FailedSpaceResourceOperation = schema.new({
+    id = id.from(_N, "FailedSpaceResourceOperation"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "FailedSpaceResourceOperation", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceDetails = schema.new({
+            id = id.from(_N, "FailedSpaceResourceOperation", "ResourceDetails"),
+            type = "union",
+            name = "ResourceDetails",
+            target_id = id.from(_N, "SpaceQuickSightResourceDetails"),
+            target = M.SpaceQuickSightResourceDetails,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "FailedSpaceResourceOperation", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailedToUpdateAssociation = schema.new({
+    id = id.from(_N, "FailedToUpdateAssociation"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "FailedToUpdateAssociation", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "FailedToUpdateAssociation", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "FailedToUpdateAssociation", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FlowSummary = schema.new({
     id = id.from(_N, "FlowSummary"),
     type = "structure",
@@ -44851,32 +46400,6 @@ M.GetFlowPermissionsInput = schema.new({
     },
 })
 
-M.Permission = schema.new({
-    id = id.from(_N, "Permission"),
-    type = "structure",
-    members = {
-        Actions = schema.new({
-            id = id.from(_N, "Permission", "Actions"),
-            type = "list",
-            name = "Actions",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Principal = schema.new({
-            id = id.from(_N, "Permission", "Principal"),
-            type = "string",
-            name = "Principal",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.GetFlowPermissionsOutput = schema.new({
     id = id.from(_N, "GetFlowPermissionsOutput"),
     type = "structure",
@@ -45226,6 +46749,70 @@ M.ListActionConnectorsOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.ListAgentsInput = schema.new({
+    id = id.from(_N, "ListAgentsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "ListAgentsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAgentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAgentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.ListAgentsOutput = schema.new({
+    id = id.from(_N, "ListAgentsResponse"),
+    type = "structure",
+    members = {
+        RequestId = schema.new({
+            id = id.from(_N, "ListAgentsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        AgentSummaries = schema.new({
+            id = id.from(_N, "ListAgentsOutput", "AgentSummaries"),
+            type = "list",
+            name = "AgentSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.AgentSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAgentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -47167,6 +48754,273 @@ M.ListSelfUpgradesOutput = schema.new({
     },
 })
 
+M.ListSpaceResourcesInput = schema.new({
+    id = id.from(_N, "ListSpaceResourcesRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "ListSpaceResourcesInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "ListSpaceResourcesInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.SpaceResourceSummary = schema.new({
+    id = id.from(_N, "SpaceResourceSummary"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "SpaceResourceSummary", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceDetails = schema.new({
+            id = id.from(_N, "SpaceResourceSummary", "ResourceDetails"),
+            type = "union",
+            name = "ResourceDetails",
+            target_id = id.from(_N, "SpaceQuickSightResourceDetails"),
+            target = M.SpaceQuickSightResourceDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceName = schema.new({
+            id = id.from(_N, "SpaceResourceSummary", "ResourceName"),
+            type = "string",
+            name = "ResourceName",
+            target_id = prelude.String.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "SpaceResourceSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListSpaceResourcesOutput = schema.new({
+    id = id.from(_N, "ListSpaceResourcesResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "ListSpaceResourcesOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "ListSpaceResourcesOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        SpaceResources = schema.new({
+            id = id.from(_N, "ListSpaceResourcesOutput", "SpaceResources"),
+            type = "list",
+            name = "SpaceResources",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceResourceSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "ListSpaceResourcesOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSpacesInput = schema.new({
+    id = id.from(_N, "ListSpacesRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "ListSpacesInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSpacesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSpacesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+    },
+})
+
+M.SpaceSummary = schema.new({
+    id = id.from(_N, "SpaceSummary"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "SpaceSummary", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "SpaceSummary", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "SpaceSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "SpaceSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "SpaceSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        consumedSourceSize = schema.new({
+            id = id.from(_N, "SpaceSummary", "consumedSourceSize"),
+            type = "long",
+            name = "consumedSourceSize",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        consumedSourceDocCount = schema.new({
+            id = id.from(_N, "SpaceSummary", "consumedSourceDocCount"),
+            type = "integer",
+            name = "consumedSourceDocCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SpaceSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "SpaceSummary", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+        createdByArn = schema.new({
+            id = id.from(_N, "SpaceSummary", "createdByArn"),
+            type = "string",
+            name = "createdByArn",
+            target_id = prelude.String.id,
+        }),
+        resourcesCount = schema.new({
+            id = id.from(_N, "SpaceSummary", "resourcesCount"),
+            type = "integer",
+            name = "resourcesCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.ListSpacesOutput = schema.new({
+    id = id.from(_N, "ListSpacesResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "ListSpacesOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "ListSpacesOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        SpaceSummaries = schema.new({
+            id = id.from(_N, "ListSpacesOutput", "SpaceSummaries"),
+            type = "list",
+            name = "SpaceSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSpacesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "ListSpacesOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -48872,6 +50726,77 @@ M.SearchActionConnectorsOutput = schema.new({
     },
 })
 
+M.SearchAgentsInput = schema.new({
+    id = id.from(_N, "SearchAgentsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "SearchAgentsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "SearchAgentsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.AgentSearchFilter,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchAgentsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchAgentsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+    },
+})
+
+M.SearchAgentsOutput = schema.new({
+    id = id.from(_N, "SearchAgentsResponse"),
+    type = "structure",
+    members = {
+        AgentSummaries = schema.new({
+            id = id.from(_N, "SearchAgentsOutput", "AgentSummaries"),
+            type = "list",
+            name = "AgentSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.AgentSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchAgentsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "SearchAgentsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SearchAnalysesInput = schema.new({
     id = id.from(_N, "SearchAnalysesRequest"),
     type = "structure",
@@ -49446,6 +51371,126 @@ M.SearchGroupsOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.SpaceQuicksightSearchFilter = schema.new({
+    id = id.from(_N, "SpaceQuicksightSearchFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SpaceQuicksightSearchFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        operator = schema.new({
+            id = id.from(_N, "SpaceQuicksightSearchFilter", "operator"),
+            type = "string",
+            name = "operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "SpaceQuicksightSearchFilter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchSpacesInput = schema.new({
+    id = id.from(_N, "SearchSpacesRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "SearchSpacesInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchSpacesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchSpacesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "SearchSpacesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceQuicksightSearchFilter,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchSpacesOutput = schema.new({
+    id = id.from(_N, "SearchSpacesResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "SearchSpacesOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "SearchSpacesOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        SpaceSummaries = schema.new({
+            id = id.from(_N, "SearchSpacesOutput", "SpaceSummaries"),
+            type = "list",
+            name = "SpaceSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchSpacesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "SearchSpacesOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -50531,6 +52576,249 @@ M.UpdateActionConnectorPermissionsOutput = schema.new({
         }),
         Permissions = schema.new({
             id = id.from(_N, "UpdateActionConnectorPermissionsOutput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+    },
+})
+
+M.UpdateAgentInput = schema.new({
+    id = id.from(_N, "UpdateAgentRequest"),
+    type = "structure",
+    members = {
+        AgentId = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        IconId = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "IconId"),
+            type = "string",
+            name = "IconId",
+            target_id = prelude.String.id,
+        }),
+        StarterPrompts = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "StarterPrompts"),
+            type = "list",
+            name = "StarterPrompts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        WelcomeMessage = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "WelcomeMessage"),
+            type = "string",
+            name = "WelcomeMessage",
+            target_id = prelude.String.id,
+        }),
+        CustomPromptInput = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "CustomPromptInput"),
+            type = "union",
+            name = "CustomPromptInput",
+            target_id = id.from(_N, "CustomPromptInput"),
+            target = M.CustomPromptInput,
+        }),
+        SpacesToAdd = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "SpacesToAdd"),
+            type = "list",
+            name = "SpacesToAdd",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SpacesToRemove = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "SpacesToRemove"),
+            type = "list",
+            name = "SpacesToRemove",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ActionConnectorsToAdd = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "ActionConnectorsToAdd"),
+            type = "list",
+            name = "ActionConnectorsToAdd",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ActionConnectorsToRemove = schema.new({
+            id = id.from(_N, "UpdateAgentInput", "ActionConnectorsToRemove"),
+            type = "list",
+            name = "ActionConnectorsToRemove",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateAgentOutput = schema.new({
+    id = id.from(_N, "UpdateAgentResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentId = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentStatus = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "AgentStatus"),
+            type = "string",
+            name = "AgentStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailedToAddSpaces = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "FailedToAddSpaces"),
+            type = "list",
+            name = "FailedToAddSpaces",
+            target_id = prelude.Document.id,
+            list_member = M.FailedToUpdateAssociation,
+        }),
+        FailedToRemoveSpaces = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "FailedToRemoveSpaces"),
+            type = "list",
+            name = "FailedToRemoveSpaces",
+            target_id = prelude.Document.id,
+            list_member = M.FailedToUpdateAssociation,
+        }),
+        FailedToAddActionConnectors = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "FailedToAddActionConnectors"),
+            type = "list",
+            name = "FailedToAddActionConnectors",
+            target_id = prelude.Document.id,
+            list_member = M.FailedToUpdateAssociation,
+        }),
+        FailedToRemoveActionConnectors = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "FailedToRemoveActionConnectors"),
+            type = "list",
+            name = "FailedToRemoveActionConnectors",
+            target_id = prelude.Document.id,
+            list_member = M.FailedToUpdateAssociation,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateAgentOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAgentPermissionsInput = schema.new({
+    id = id.from(_N, "UpdateAgentPermissionsRequest"),
+    type = "structure",
+    members = {
+        AgentId = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsInput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        GrantPermissions = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsInput", "GrantPermissions"),
+            type = "list",
+            name = "GrantPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        RevokePermissions = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsInput", "RevokePermissions"),
+            type = "list",
+            name = "RevokePermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+    },
+})
+
+M.UpdateAgentPermissionsOutput = schema.new({
+    id = id.from(_N, "UpdateAgentPermissionsResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AgentId = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsOutput", "AgentId"),
+            type = "string",
+            name = "AgentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "UpdateAgentPermissionsOutput", "Permissions"),
             type = "list",
             name = "Permissions",
             target_id = prelude.Document.id,
@@ -51936,6 +54224,101 @@ M.UpdateDefaultQBusinessApplicationOutput = schema.new({
     },
 })
 
+M.UpdateFlowInput = schema.new({
+    id = id.from(_N, "UpdateFlowRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateFlowInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FlowId = schema.new({
+            id = id.from(_N, "UpdateFlowInput", "FlowId"),
+            type = "string",
+            name = "FlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateFlowInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateFlowInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        FlowDefinition = schema.new({
+            id = id.from(_N, "UpdateFlowInput", "FlowDefinition"),
+            type = "document",
+            name = "FlowDefinition",
+            target_id = prelude.Document.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateFlowInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateFlowOutput = schema.new({
+    id = id.from(_N, "UpdateFlowResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateFlowOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FlowId = schema.new({
+            id = id.from(_N, "UpdateFlowOutput", "FlowId"),
+            type = "string",
+            name = "FlowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateFlowOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateFlowOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateFlowPermissionsInput = schema.new({
     id = id.from(_N, "UpdateFlowPermissionsInput"),
     type = "structure",
@@ -53131,6 +55514,251 @@ M.UpdateSelfUpgradeConfigurationOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
                 [traits.HTTP_RESPONSE_CODE] = {},
             },
+        }),
+    },
+})
+
+M.UpdateSpaceInput = schema.new({
+    id = id.from(_N, "UpdateSpaceRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateSpaceInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "UpdateSpaceInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateSpaceInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateSpaceInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateSpaceOutput = schema.new({
+    id = id.from(_N, "UpdateSpaceResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "UpdateSpaceOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "UpdateSpaceOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateSpaceOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateSpacePermissionsInput = schema.new({
+    id = id.from(_N, "UpdateSpacePermissionsRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        GrantPermissions = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsInput", "GrantPermissions"),
+            type = "list",
+            name = "GrantPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        RevokePermissions = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsInput", "RevokePermissions"),
+            type = "list",
+            name = "RevokePermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+    },
+})
+
+M.UpdateSpacePermissionsOutput = schema.new({
+    id = id.from(_N, "UpdateSpacePermissionsResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        permissions = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsOutput", "permissions"),
+            type = "list",
+            name = "permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        requestId = schema.new({
+            id = id.from(_N, "UpdateSpacePermissionsOutput", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SpaceResourceOperation = schema.new({
+    id = id.from(_N, "SpaceResourceOperation"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "SpaceResourceOperation", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceDetails = schema.new({
+            id = id.from(_N, "SpaceResourceOperation", "ResourceDetails"),
+            type = "union",
+            name = "ResourceDetails",
+            target_id = id.from(_N, "SpaceQuickSightResourceDetails"),
+            target = M.SpaceQuickSightResourceDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateSpaceResourcesInput = schema.new({
+    id = id.from(_N, "UpdateSpaceResourcesRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SpaceId = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesInput", "SpaceId"),
+            type = "string",
+            name = "SpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AddResources = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesInput", "AddResources"),
+            type = "list",
+            name = "AddResources",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceResourceOperation,
+        }),
+        RemoveResources = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesInput", "RemoveResources"),
+            type = "list",
+            name = "RemoveResources",
+            target_id = prelude.Document.id,
+            list_member = M.SpaceResourceOperation,
+        }),
+    },
+})
+
+M.UpdateSpaceResourcesOutput = schema.new({
+    id = id.from(_N, "UpdateSpaceResourcesResponse"),
+    type = "structure",
+    members = {
+        spaceId = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesOutput", "spaceId"),
+            type = "string",
+            name = "spaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        spaceArn = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesOutput", "spaceArn"),
+            type = "string",
+            name = "spaceArn",
+            target_id = prelude.String.id,
+        }),
+        FailedResourceOperations = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesOutput", "FailedResourceOperations"),
+            type = "list",
+            name = "FailedResourceOperations",
+            target_id = prelude.Document.id,
+            list_member = M.FailedSpaceResourceOperation,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateSpaceResourcesOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -54598,6 +57226,18 @@ M.CreateActionConnector = schema.operation({
     },
 })
 
+M.CreateAgent = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateAgent"),
+    input = M.CreateAgentInput,
+    output = M.CreateAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/agents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateAnalysis = schema.operation({
     id = id.from("com.amazonaws.quicksight", "CreateAnalysis"),
     input = M.CreateAnalysisInput,
@@ -54664,6 +57304,18 @@ M.CreateDataSource = schema.operation({
     output = M.CreateDataSourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/data-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateFlow = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateFlow"),
+    input = M.CreateFlowInput,
+    output = M.CreateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/flows" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -54784,6 +57436,18 @@ M.CreateRoleMembership = schema.operation({
     output = M.CreateRoleMembershipOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members/{MemberName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateSpace = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateSpace"),
+    input = M.CreateSpaceInput,
+    output = M.CreateSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/accounts/{AwsAccountId}/spaces" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -54922,6 +57586,18 @@ M.DeleteActionConnector = schema.operation({
     },
 })
 
+M.DeleteAgent = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteAgent"),
+    input = M.DeleteAgentInput,
+    output = M.DeleteAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/agents/{AgentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteAnalysis = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DeleteAnalysis"),
     input = M.DeleteAnalysisInput,
@@ -55024,6 +57700,18 @@ M.DeleteDefaultQBusinessApplication = schema.operation({
     output = M.DeleteDefaultQBusinessApplicationOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/default-qbusiness-application" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFlow = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteFlow"),
+    input = M.DeleteFlowInput,
+    output = M.DeleteFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/flows/{FlowId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -55156,6 +57844,18 @@ M.DeleteRoleMembership = schema.operation({
     output = M.DeleteRoleMembershipOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/roles/{Role}/members/{MemberName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSpace = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteSpace"),
+    input = M.DeleteSpaceInput,
+    output = M.DeleteSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/accounts/{AwsAccountId}/spaces/{SpaceId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -55348,6 +58048,30 @@ M.DescribeActionConnectorPermissions = schema.operation({
     output = M.DescribeActionConnectorPermissionsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/action-connectors/{ActionConnectorId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAgent = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAgent"),
+    input = M.DescribeAgentInput,
+    output = M.DescribeAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/agents/{AgentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeAgentPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeAgentPermissions"),
+    input = M.DescribeAgentPermissionsInput,
+    output = M.DescribeAgentPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/agents/{AgentId}/permissions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -55618,6 +58342,18 @@ M.DescribeDefaultQBusinessApplication = schema.operation({
     },
 })
 
+M.DescribeFlow = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeFlow"),
+    input = M.DescribeFlowInput,
+    output = M.DescribeFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/flows/{FlowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeFolder = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DescribeFolder"),
     input = M.DescribeFolderInput,
@@ -55804,6 +58540,30 @@ M.DescribeSelfUpgradeConfiguration = schema.operation({
     output = M.DescribeSelfUpgradeConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSpace = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeSpace"),
+    input = M.DescribeSpaceInput,
+    output = M.DescribeSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/accounts/{AwsAccountId}/spaces/{SpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSpacePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeSpacePermissions"),
+    input = M.DescribeSpacePermissionsInput,
+    output = M.DescribeSpacePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/accounts/{AwsAccountId}/spaces/{SpaceId}/permissions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -56068,6 +58828,18 @@ M.ListActionConnectors = schema.operation({
     output = M.ListActionConnectorsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/action-connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAgents = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListAgents"),
+    input = M.ListAgentsInput,
+    output = M.ListAgentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/agents" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -56362,6 +59134,30 @@ M.ListSelfUpgrades = schema.operation({
     },
 })
 
+M.ListSpaceResources = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListSpaceResources"),
+    input = M.ListSpaceResourcesInput,
+    output = M.ListSpaceResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/accounts/{AwsAccountId}/spaces/{SpaceId}/resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSpaces = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListSpaces"),
+    input = M.ListSpacesInput,
+    output = M.ListSpacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/accounts/{AwsAccountId}/spaces" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTagsForResource = schema.operation({
     id = id.from("com.amazonaws.quicksight", "ListTagsForResource"),
     input = M.ListTagsForResourceInput,
@@ -56578,6 +59374,18 @@ M.SearchActionConnectors = schema.operation({
     },
 })
 
+M.SearchAgents = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchAgents"),
+    input = M.SearchAgentsInput,
+    output = M.SearchAgentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/agents" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.SearchAnalyses = schema.operation({
     id = id.from("com.amazonaws.quicksight", "SearchAnalyses"),
     input = M.SearchAnalysesInput,
@@ -56656,6 +59464,18 @@ M.SearchGroups = schema.operation({
     output = M.SearchGroupsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/groups-search" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchSpaces = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchSpaces"),
+    input = M.SearchSpacesInput,
+    output = M.SearchSpacesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/accounts/{AwsAccountId}/search/spaces" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -56812,6 +59632,30 @@ M.UpdateActionConnectorPermissions = schema.operation({
     output = M.UpdateActionConnectorPermissionsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/action-connectors/{ActionConnectorId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgent = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAgent"),
+    input = M.UpdateAgentInput,
+    output = M.UpdateAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/agents/{AgentId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAgentPermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateAgentPermissions"),
+    input = M.UpdateAgentPermissionsInput,
+    output = M.UpdateAgentPermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/agents/{AgentId}/permissions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -57022,6 +59866,18 @@ M.UpdateDefaultQBusinessApplication = schema.operation({
     },
 })
 
+M.UpdateFlow = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateFlow"),
+    input = M.UpdateFlowInput,
+    output = M.UpdateFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/flows/{FlowId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateFlowPermissions = schema.operation({
     id = id.from("com.amazonaws.quicksight", "UpdateFlowPermissions"),
     input = M.UpdateFlowPermissionsInput,
@@ -57208,6 +60064,42 @@ M.UpdateSelfUpgradeConfiguration = schema.operation({
     output = M.UpdateSelfUpgradeConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/namespaces/{Namespace}/self-upgrade-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSpace = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateSpace"),
+    input = M.UpdateSpaceInput,
+    output = M.UpdateSpaceOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/accounts/{AwsAccountId}/spaces/{SpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSpacePermissions = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateSpacePermissions"),
+    input = M.UpdateSpacePermissionsInput,
+    output = M.UpdateSpacePermissionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/accounts/{AwsAccountId}/spaces/{SpaceId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateSpaceResources = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateSpaceResources"),
+    input = M.UpdateSpaceResourcesInput,
+    output = M.UpdateSpaceResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/accounts/{AwsAccountId}/spaces/{SpaceId}/resources" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

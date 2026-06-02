@@ -89,6 +89,8 @@ M.UserPoolClientListType = schema.new({ type = "list", list_member = M.UserPoolC
 
 M.ClientSecretDescriptorListType = schema.new({ type = "list", list_member = M.ClientSecretDescriptorType })
 
+M.UserPoolReplicaListType = schema.new({ type = "list", list_member = M.UserPoolReplicaType })
+
 M.UserPoolListType = schema.new({ type = "list", list_member = M.UserPoolDescriptionType })
 
 M.SearchedAttributeNamesListType = schema.new({ type = "list", list_member = prelude.String })
@@ -118,6 +120,8 @@ M.SkippedIPRangeListType = schema.new({ type = "list", list_member = prelude.Str
 M.ChallengeResponseListType = schema.new({ type = "list", list_member = M.ChallengeResponseType })
 
 M.AllowedFirstAuthFactorsListType = schema.new({ type = "list", list_member = prelude.String })
+
+M.ReplicaRegionsType = schema.new({ type = "list", list_member = prelude.String })
 
 M.WebAuthnAuthenticatorTransportsList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -507,6 +511,22 @@ M.NotAuthorizedException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "NotAuthorizedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OperationNotEnabledException = schema.new({
+    id = id.from(_N, "OperationNotEnabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "OperationNotEnabledException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -4503,6 +4523,38 @@ M.EmailConfigurationType = schema.new({
     },
 })
 
+M.IssuerConfigurationType = schema.new({
+    id = id.from(_N, "IssuerConfigurationType"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "IssuerConfigurationType", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KeyConfigurationType = schema.new({
+    id = id.from(_N, "KeyConfigurationType"),
+    type = "structure",
+    members = {
+        KeyType = schema.new({
+            id = id.from(_N, "KeyConfigurationType", "KeyType"),
+            type = "string",
+            name = "KeyType",
+            target_id = prelude.String.id,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "KeyConfigurationType", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CustomEmailLambdaVersionConfigType = schema.new({
     id = id.from(_N, "CustomEmailLambdaVersionConfigType"),
     type = "structure",
@@ -5095,6 +5147,20 @@ M.CreateUserPoolInput = schema.new({
             name = "UserPoolTier",
             target_id = prelude.String.id,
         }),
+        KeyConfiguration = schema.new({
+            id = id.from(_N, "CreateUserPoolInput", "KeyConfiguration"),
+            type = "structure",
+            name = "KeyConfiguration",
+            target_id = id.from(_N, "KeyConfigurationType"),
+            target = M.KeyConfigurationType,
+        }),
+        IssuerConfiguration = schema.new({
+            id = id.from(_N, "CreateUserPoolInput", "IssuerConfiguration"),
+            type = "structure",
+            name = "IssuerConfiguration",
+            target_id = id.from(_N, "IssuerConfigurationType"),
+            target = M.IssuerConfigurationType,
+        }),
     },
 })
 
@@ -5325,6 +5391,20 @@ M.UserPoolType = schema.new({
             type = "string",
             name = "UserPoolTier",
             target_id = prelude.String.id,
+        }),
+        KeyConfiguration = schema.new({
+            id = id.from(_N, "UserPoolType", "KeyConfiguration"),
+            type = "structure",
+            name = "KeyConfiguration",
+            target_id = id.from(_N, "KeyConfigurationType"),
+            target = M.KeyConfigurationType,
+        }),
+        IssuerConfiguration = schema.new({
+            id = id.from(_N, "UserPoolType", "IssuerConfiguration"),
+            type = "structure",
+            name = "IssuerConfiguration",
+            target_id = id.from(_N, "IssuerConfigurationType"),
+            target = M.IssuerConfigurationType,
         }),
     },
 })
@@ -5857,6 +5937,45 @@ M.CustomDomainConfigType = schema.new({
     },
 })
 
+M.FailoverType = schema.new({
+    id = id.from(_N, "FailoverType"),
+    type = "structure",
+    members = {
+        SecondaryRegion = schema.new({
+            id = id.from(_N, "FailoverType", "SecondaryRegion"),
+            type = "string",
+            name = "SecondaryRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PrimaryRoute53HealthCheckId = schema.new({
+            id = id.from(_N, "FailoverType", "PrimaryRoute53HealthCheckId"),
+            type = "string",
+            name = "PrimaryRoute53HealthCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RoutingType = schema.new({
+    id = id.from(_N, "RoutingType"),
+    type = "structure",
+    members = {
+        Failover = schema.new({
+            id = id.from(_N, "RoutingType", "Failover"),
+            type = "structure",
+            name = "Failover",
+            target_id = id.from(_N, "FailoverType"),
+            target = M.FailoverType,
+        }),
+    },
+})
+
 M.CreateUserPoolDomainInput = schema.new({
     id = id.from(_N, "CreateUserPoolDomainRequest"),
     type = "structure",
@@ -5892,6 +6011,13 @@ M.CreateUserPoolDomainInput = schema.new({
             target_id = id.from(_N, "CustomDomainConfigType"),
             target = M.CustomDomainConfigType,
         }),
+        Routing = schema.new({
+            id = id.from(_N, "CreateUserPoolDomainInput", "Routing"),
+            type = "structure",
+            name = "Routing",
+            target_id = id.from(_N, "RoutingType"),
+            target = M.RoutingType,
+        }),
     },
 })
 
@@ -5910,6 +6036,91 @@ M.CreateUserPoolDomainOutput = schema.new({
             type = "string",
             name = "CloudFrontDomain",
             target_id = prelude.String.id,
+        }),
+        Routing = schema.new({
+            id = id.from(_N, "CreateUserPoolDomainOutput", "Routing"),
+            type = "structure",
+            name = "Routing",
+            target_id = id.from(_N, "RoutingType"),
+            target = M.RoutingType,
+        }),
+    },
+})
+
+M.CreateUserPoolReplicaInput = schema.new({
+    id = id.from(_N, "CreateUserPoolReplicaRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "CreateUserPoolReplicaInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "CreateUserPoolReplicaInput", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UserPoolTags = schema.new({
+            id = id.from(_N, "CreateUserPoolReplicaInput", "UserPoolTags"),
+            type = "map",
+            name = "UserPoolTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.UserPoolReplicaType = schema.new({
+    id = id.from(_N, "UserPoolReplicaType"),
+    type = "structure",
+    members = {
+        RegionName = schema.new({
+            id = id.from(_N, "UserPoolReplicaType", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UserPoolReplicaType", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "UserPoolReplicaType", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+        UserPoolArn = schema.new({
+            id = id.from(_N, "UserPoolReplicaType", "UserPoolArn"),
+            type = "string",
+            name = "UserPoolArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateUserPoolReplicaOutput = schema.new({
+    id = id.from(_N, "CreateUserPoolReplicaResponse"),
+    type = "structure",
+    members = {
+        UserPoolReplica = schema.new({
+            id = id.from(_N, "CreateUserPoolReplicaOutput", "UserPoolReplica"),
+            type = "structure",
+            name = "UserPoolReplica",
+            target_id = id.from(_N, "UserPoolReplicaType"),
+            target = M.UserPoolReplicaType,
         }),
     },
 })
@@ -6226,6 +6437,45 @@ M.DeleteUserPoolDomainInput = schema.new({
 M.DeleteUserPoolDomainOutput = schema.new({
     id = id.from(_N, "DeleteUserPoolDomainResponse"),
     type = "structure",
+})
+
+M.DeleteUserPoolReplicaInput = schema.new({
+    id = id.from(_N, "DeleteUserPoolReplicaRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "DeleteUserPoolReplicaInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "DeleteUserPoolReplicaInput", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteUserPoolReplicaOutput = schema.new({
+    id = id.from(_N, "DeleteUserPoolReplicaResponse"),
+    type = "structure",
+    members = {
+        UserPoolReplica = schema.new({
+            id = id.from(_N, "DeleteUserPoolReplicaOutput", "UserPoolReplica"),
+            type = "structure",
+            name = "UserPoolReplica",
+            target_id = id.from(_N, "UserPoolReplicaType"),
+            target = M.UserPoolReplicaType,
+        }),
+    },
 })
 
 M.DeleteWebAuthnCredentialInput = schema.new({
@@ -6805,6 +7055,13 @@ M.DomainDescriptionType = schema.new({
             type = "integer",
             name = "ManagedLoginVersion",
             target_id = prelude.Integer.id,
+        }),
+        Routing = schema.new({
+            id = id.from(_N, "DomainDescriptionType", "Routing"),
+            type = "structure",
+            name = "Routing",
+            target_id = id.from(_N, "RoutingType"),
+            target = M.RoutingType,
         }),
     },
 })
@@ -8387,6 +8644,48 @@ M.ListUserPoolClientSecretsOutput = schema.new({
     },
 })
 
+M.ListUserPoolReplicasInput = schema.new({
+    id = id.from(_N, "ListUserPoolReplicasRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "ListUserPoolReplicasInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUserPoolReplicasInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListUserPoolReplicasOutput = schema.new({
+    id = id.from(_N, "ListUserPoolReplicasResponse"),
+    type = "structure",
+    members = {
+        UserPoolReplicas = schema.new({
+            id = id.from(_N, "ListUserPoolReplicasOutput", "UserPoolReplicas"),
+            type = "list",
+            name = "UserPoolReplicas",
+            target_id = prelude.Document.id,
+            list_member = M.UserPoolReplicaType,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListUserPoolReplicasOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListUserPoolsInput = schema.new({
     id = id.from(_N, "ListUserPoolsRequest"),
     type = "structure",
@@ -8449,6 +8748,13 @@ M.UserPoolDescriptionType = schema.new({
             type = "timestamp",
             name = "CreationDate",
             target_id = prelude.Timestamp.id,
+        }),
+        ReplicaRegions = schema.new({
+            id = id.from(_N, "UserPoolDescriptionType", "ReplicaRegions"),
+            type = "list",
+            name = "ReplicaRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -10141,6 +10447,20 @@ M.UpdateUserPoolInput = schema.new({
             name = "UserPoolTier",
             target_id = prelude.String.id,
         }),
+        KeyConfiguration = schema.new({
+            id = id.from(_N, "UpdateUserPoolInput", "KeyConfiguration"),
+            type = "structure",
+            name = "KeyConfiguration",
+            target_id = id.from(_N, "KeyConfigurationType"),
+            target = M.KeyConfigurationType,
+        }),
+        IssuerConfiguration = schema.new({
+            id = id.from(_N, "UpdateUserPoolInput", "IssuerConfiguration"),
+            type = "structure",
+            name = "IssuerConfiguration",
+            target_id = id.from(_N, "IssuerConfigurationType"),
+            target = M.IssuerConfigurationType,
+        }),
     },
 })
 
@@ -10366,6 +10686,13 @@ M.UpdateUserPoolDomainInput = schema.new({
             target_id = id.from(_N, "CustomDomainConfigType"),
             target = M.CustomDomainConfigType,
         }),
+        Routing = schema.new({
+            id = id.from(_N, "UpdateUserPoolDomainInput", "Routing"),
+            type = "structure",
+            name = "Routing",
+            target_id = id.from(_N, "RoutingType"),
+            target = M.RoutingType,
+        }),
     },
 })
 
@@ -10384,6 +10711,61 @@ M.UpdateUserPoolDomainOutput = schema.new({
             type = "string",
             name = "CloudFrontDomain",
             target_id = prelude.String.id,
+        }),
+        Routing = schema.new({
+            id = id.from(_N, "UpdateUserPoolDomainOutput", "Routing"),
+            type = "structure",
+            name = "Routing",
+            target_id = id.from(_N, "RoutingType"),
+            target = M.RoutingType,
+        }),
+    },
+})
+
+M.UpdateUserPoolReplicaInput = schema.new({
+    id = id.from(_N, "UpdateUserPoolReplicaRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "UpdateUserPoolReplicaInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RegionName = schema.new({
+            id = id.from(_N, "UpdateUserPoolReplicaInput", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateUserPoolReplicaInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateUserPoolReplicaOutput = schema.new({
+    id = id.from(_N, "UpdateUserPoolReplicaResponse"),
+    type = "structure",
+    members = {
+        UserPoolReplica = schema.new({
+            id = id.from(_N, "UpdateUserPoolReplicaOutput", "UserPoolReplica"),
+            type = "structure",
+            name = "UserPoolReplica",
+            target_id = id.from(_N, "UserPoolReplicaType"),
+            target = M.UserPoolReplicaType,
         }),
     },
 })
@@ -10994,6 +11376,17 @@ M.CreateUserPoolDomain = schema.operation({
     },
 })
 
+M.CreateUserPoolReplica = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "CreateUserPoolReplica"),
+    input = M.CreateUserPoolReplicaInput,
+    output = M.CreateUserPoolReplicaOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteGroup = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteGroup"),
     input = M.DeleteGroupInput,
@@ -11108,6 +11501,17 @@ M.DeleteUserPoolDomain = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUserPoolDomain"),
     input = M.DeleteUserPoolDomainInput,
     output = M.DeleteUserPoolDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteUserPoolReplica = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "DeleteUserPoolReplica"),
+    input = M.DeleteUserPoolReplicaInput,
+    output = M.DeleteUserPoolReplicaOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -11511,6 +11915,17 @@ M.ListUserPoolClientSecrets = schema.operation({
     },
 })
 
+M.ListUserPoolReplicas = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "ListUserPoolReplicas"),
+    input = M.ListUserPoolReplicasInput,
+    output = M.ListUserPoolReplicasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListUserPools = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "ListUserPools"),
     input = M.ListUserPoolsInput,
@@ -11834,6 +12249,17 @@ M.UpdateUserPoolDomain = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateUserPoolDomain"),
     input = M.UpdateUserPoolDomainInput,
     output = M.UpdateUserPoolDomainOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateUserPoolReplica = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateUserPoolReplica"),
+    input = M.UpdateUserPoolReplicaInput,
+    output = M.UpdateUserPoolReplicaOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

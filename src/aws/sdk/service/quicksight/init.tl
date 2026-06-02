@@ -24,12 +24,14 @@ local record Client
     createAccountCustomization: function(Client, types.CreateAccountCustomizationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccountCustomizationOutput>
     createAccountSubscription: function(Client, types.CreateAccountSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccountSubscriptionOutput>
     createActionConnector: function(Client, types.CreateActionConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateActionConnectorOutput>
+    createAgent: function(Client, types.CreateAgentInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentOutput>
     createAnalysis: function(Client, types.CreateAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.CreateAnalysisOutput>
     createBrand: function(Client, types.CreateBrandInput, ? base_client.InvokeOptions): async.Operation<types.CreateBrandOutput>
     createCustomPermissions: function(Client, types.CreateCustomPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.CreateCustomPermissionsOutput>
     createDashboard: function(Client, types.CreateDashboardInput, ? base_client.InvokeOptions): async.Operation<types.CreateDashboardOutput>
     createDataSet: function(Client, types.CreateDataSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSetOutput>
     createDataSource: function(Client, types.CreateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
+    createFlow: function(Client, types.CreateFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
     createFolder: function(Client, types.CreateFolderInput, ? base_client.InvokeOptions): async.Operation<types.CreateFolderOutput>
     createFolderMembership: function(Client, types.CreateFolderMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateFolderMembershipOutput>
     createGroup: function(Client, types.CreateGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupOutput>
@@ -40,6 +42,7 @@ local record Client
     createOAuthClientApplication: function(Client, types.CreateOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuthClientApplicationOutput>
     createRefreshSchedule: function(Client, types.CreateRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRefreshScheduleOutput>
     createRoleMembership: function(Client, types.CreateRoleMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateRoleMembershipOutput>
+    createSpace: function(Client, types.CreateSpaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateSpaceOutput>
     createTemplate: function(Client, types.CreateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
     createTemplateAlias: function(Client, types.CreateTemplateAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateTemplateAliasOutput>
     createTheme: function(Client, types.CreateThemeInput, ? base_client.InvokeOptions): async.Operation<types.CreateThemeOutput>
@@ -51,6 +54,7 @@ local record Client
     deleteAccountCustomPermission: function(Client, types.DeleteAccountCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountCustomPermissionOutput>
     deleteAccountSubscription: function(Client, types.DeleteAccountSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountSubscriptionOutput>
     deleteActionConnector: function(Client, types.DeleteActionConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteActionConnectorOutput>
+    deleteAgent: function(Client, types.DeleteAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
     deleteAnalysis: function(Client, types.DeleteAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalysisOutput>
     deleteBrand: function(Client, types.DeleteBrandInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrandOutput>
     deleteBrandAssignment: function(Client, types.DeleteBrandAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrandAssignmentOutput>
@@ -60,6 +64,7 @@ local record Client
     deleteDataSetRefreshProperties: function(Client, types.DeleteDataSetRefreshPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSetRefreshPropertiesOutput>
     deleteDataSource: function(Client, types.DeleteDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataSourceOutput>
     deleteDefaultQBusinessApplication: function(Client, types.DeleteDefaultQBusinessApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDefaultQBusinessApplicationOutput>
+    deleteFlow: function(Client, types.DeleteFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
     deleteFolder: function(Client, types.DeleteFolderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFolderOutput>
     deleteFolderMembership: function(Client, types.DeleteFolderMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFolderMembershipOutput>
     deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
@@ -71,6 +76,7 @@ local record Client
     deleteRefreshSchedule: function(Client, types.DeleteRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRefreshScheduleOutput>
     deleteRoleCustomPermission: function(Client, types.DeleteRoleCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRoleCustomPermissionOutput>
     deleteRoleMembership: function(Client, types.DeleteRoleMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRoleMembershipOutput>
+    deleteSpace: function(Client, types.DeleteSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSpaceOutput>
     deleteTemplate: function(Client, types.DeleteTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
     deleteTemplateAlias: function(Client, types.DeleteTemplateAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTemplateAliasOutput>
     deleteTheme: function(Client, types.DeleteThemeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteThemeOutput>
@@ -87,6 +93,8 @@ local record Client
     describeAccountSubscription: function(Client, types.DescribeAccountSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountSubscriptionOutput>
     describeActionConnector: function(Client, types.DescribeActionConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActionConnectorOutput>
     describeActionConnectorPermissions: function(Client, types.DescribeActionConnectorPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActionConnectorPermissionsOutput>
+    describeAgent: function(Client, types.DescribeAgentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAgentOutput>
+    describeAgentPermissions: function(Client, types.DescribeAgentPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAgentPermissionsOutput>
     describeAnalysis: function(Client, types.DescribeAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisOutput>
     describeAnalysisDefinition: function(Client, types.DescribeAnalysisDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisDefinitionOutput>
     describeAnalysisPermissions: function(Client, types.DescribeAnalysisPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAnalysisPermissionsOutput>
@@ -109,6 +117,7 @@ local record Client
     describeDataSource: function(Client, types.DescribeDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataSourceOutput>
     describeDataSourcePermissions: function(Client, types.DescribeDataSourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataSourcePermissionsOutput>
     describeDefaultQBusinessApplication: function(Client, types.DescribeDefaultQBusinessApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDefaultQBusinessApplicationOutput>
+    describeFlow: function(Client, types.DescribeFlowInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
     describeFolder: function(Client, types.DescribeFolderInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFolderOutput>
     describeFolderPermissions: function(Client, types.DescribeFolderPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFolderPermissionsOutput>
     describeFolderResolvedPermissions: function(Client, types.DescribeFolderResolvedPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFolderResolvedPermissionsOutput>
@@ -125,6 +134,8 @@ local record Client
     describeRefreshSchedule: function(Client, types.DescribeRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRefreshScheduleOutput>
     describeRoleCustomPermission: function(Client, types.DescribeRoleCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRoleCustomPermissionOutput>
     describeSelfUpgradeConfiguration: function(Client, types.DescribeSelfUpgradeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSelfUpgradeConfigurationOutput>
+    describeSpace: function(Client, types.DescribeSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpaceOutput>
+    describeSpacePermissions: function(Client, types.DescribeSpacePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSpacePermissionsOutput>
     describeTemplate: function(Client, types.DescribeTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTemplateOutput>
     describeTemplateAlias: function(Client, types.DescribeTemplateAliasInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTemplateAliasOutput>
     describeTemplateDefinition: function(Client, types.DescribeTemplateDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTemplateDefinitionOutput>
@@ -147,6 +158,7 @@ local record Client
     getIdentityContext: function(Client, types.GetIdentityContextInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityContextOutput>
     getSessionEmbedUrl: function(Client, types.GetSessionEmbedUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionEmbedUrlOutput>
     listActionConnectors: function(Client, types.ListActionConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListActionConnectorsOutput>
+    listAgents: function(Client, types.ListAgentsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentsOutput>
     listAnalyses: function(Client, types.ListAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysesOutput>
     listAssetBundleExportJobs: function(Client, types.ListAssetBundleExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetBundleExportJobsOutput>
     listAssetBundleImportJobs: function(Client, types.ListAssetBundleImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetBundleImportJobsOutput>
@@ -171,6 +183,8 @@ local record Client
     listRefreshSchedules: function(Client, types.ListRefreshSchedulesInput, ? base_client.InvokeOptions): async.Operation<types.ListRefreshSchedulesOutput>
     listRoleMemberships: function(Client, types.ListRoleMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListRoleMembershipsOutput>
     listSelfUpgrades: function(Client, types.ListSelfUpgradesInput, ? base_client.InvokeOptions): async.Operation<types.ListSelfUpgradesOutput>
+    listSpaceResources: function(Client, types.ListSpaceResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListSpaceResourcesOutput>
+    listSpaces: function(Client, types.ListSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListSpacesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listTemplateAliases: function(Client, types.ListTemplateAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplateAliasesOutput>
     listTemplates: function(Client, types.ListTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListTemplatesOutput>
@@ -189,6 +203,7 @@ local record Client
     registerUser: function(Client, types.RegisterUserInput, ? base_client.InvokeOptions): async.Operation<types.RegisterUserOutput>
     restoreAnalysis: function(Client, types.RestoreAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.RestoreAnalysisOutput>
     searchActionConnectors: function(Client, types.SearchActionConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.SearchActionConnectorsOutput>
+    searchAgents: function(Client, types.SearchAgentsInput, ? base_client.InvokeOptions): async.Operation<types.SearchAgentsOutput>
     searchAnalyses: function(Client, types.SearchAnalysesInput, ? base_client.InvokeOptions): async.Operation<types.SearchAnalysesOutput>
     searchDashboards: function(Client, types.SearchDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.SearchDashboardsOutput>
     searchDataSets: function(Client, types.SearchDataSetsInput, ? base_client.InvokeOptions): async.Operation<types.SearchDataSetsOutput>
@@ -196,6 +211,7 @@ local record Client
     searchFlows: function(Client, types.SearchFlowsInput, ? base_client.InvokeOptions): async.Operation<types.SearchFlowsOutput>
     searchFolders: function(Client, types.SearchFoldersInput, ? base_client.InvokeOptions): async.Operation<types.SearchFoldersOutput>
     searchGroups: function(Client, types.SearchGroupsInput, ? base_client.InvokeOptions): async.Operation<types.SearchGroupsOutput>
+    searchSpaces: function(Client, types.SearchSpacesInput, ? base_client.InvokeOptions): async.Operation<types.SearchSpacesOutput>
     searchTopics: function(Client, types.SearchTopicsInput, ? base_client.InvokeOptions): async.Operation<types.SearchTopicsOutput>
     startAssetBundleExportJob: function(Client, types.StartAssetBundleExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAssetBundleExportJobOutput>
     startAssetBundleImportJob: function(Client, types.StartAssetBundleImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAssetBundleImportJobOutput>
@@ -209,6 +225,8 @@ local record Client
     updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
     updateActionConnector: function(Client, types.UpdateActionConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateActionConnectorOutput>
     updateActionConnectorPermissions: function(Client, types.UpdateActionConnectorPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateActionConnectorPermissionsOutput>
+    updateAgent: function(Client, types.UpdateAgentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentOutput>
+    updateAgentPermissions: function(Client, types.UpdateAgentPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentPermissionsOutput>
     updateAnalysis: function(Client, types.UpdateAnalysisInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalysisOutput>
     updateAnalysisPermissions: function(Client, types.UpdateAnalysisPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAnalysisPermissionsOutput>
     updateApplicationWithTokenExchangeGrant: function(Client, types.UpdateApplicationWithTokenExchangeGrantInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationWithTokenExchangeGrantOutput>
@@ -226,6 +244,7 @@ local record Client
     updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
     updateDataSourcePermissions: function(Client, types.UpdateDataSourcePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourcePermissionsOutput>
     updateDefaultQBusinessApplication: function(Client, types.UpdateDefaultQBusinessApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDefaultQBusinessApplicationOutput>
+    updateFlow: function(Client, types.UpdateFlowInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
     updateFlowPermissions: function(Client, types.UpdateFlowPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFlowPermissionsOutput>
     updateFolder: function(Client, types.UpdateFolderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFolderOutput>
     updateFolderPermissions: function(Client, types.UpdateFolderPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFolderPermissionsOutput>
@@ -242,6 +261,9 @@ local record Client
     updateRoleCustomPermission: function(Client, types.UpdateRoleCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRoleCustomPermissionOutput>
     updateSelfUpgrade: function(Client, types.UpdateSelfUpgradeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSelfUpgradeOutput>
     updateSelfUpgradeConfiguration: function(Client, types.UpdateSelfUpgradeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSelfUpgradeConfigurationOutput>
+    updateSpace: function(Client, types.UpdateSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSpaceOutput>
+    updateSpacePermissions: function(Client, types.UpdateSpacePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSpacePermissionsOutput>
+    updateSpaceResources: function(Client, types.UpdateSpaceResourcesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSpaceResourcesOutput>
     updateSPICECapacityConfiguration: function(Client, types.UpdateSPICECapacityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSPICECapacityConfigurationOutput>
     updateTemplate: function(Client, types.UpdateTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTemplateOutput>
     updateTemplateAlias: function(Client, types.UpdateTemplateAliasInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTemplateAliasOutput>
@@ -323,6 +345,10 @@ function C:createActionConnector(input: types.CreateActionConnectorInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateActionConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateActionConnectorOutput>
 end
 
+function C:createAgent(input: types.CreateAgentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgent as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentOutput>
+end
+
 function C:createAnalysis(input: types.CreateAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAnalysisOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAnalysis as schema.OperationSchema, input, options) as async.Operation<types.CreateAnalysisOutput>
 end
@@ -345,6 +371,10 @@ end
 
 function C:createDataSource(input: types.CreateDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataSourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataSource as schema.OperationSchema, input, options) as async.Operation<types.CreateDataSourceOutput>
+end
+
+function C:createFlow(input: types.CreateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFlow as schema.OperationSchema, input, options) as async.Operation<types.CreateFlowOutput>
 end
 
 function C:createFolder(input: types.CreateFolderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFolderOutput>
@@ -385,6 +415,10 @@ end
 
 function C:createRoleMembership(input: types.CreateRoleMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRoleMembershipOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRoleMembership as schema.OperationSchema, input, options) as async.Operation<types.CreateRoleMembershipOutput>
+end
+
+function C:createSpace(input: types.CreateSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSpace as schema.OperationSchema, input, options) as async.Operation<types.CreateSpaceOutput>
 end
 
 function C:createTemplate(input: types.CreateTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTemplateOutput>
@@ -431,6 +465,10 @@ function C:deleteActionConnector(input: types.DeleteActionConnectorInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteActionConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteActionConnectorOutput>
 end
 
+function C:deleteAgent(input: types.DeleteAgentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgent as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentOutput>
+end
+
 function C:deleteAnalysis(input: types.DeleteAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAnalysisOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAnalysis as schema.OperationSchema, input, options) as async.Operation<types.DeleteAnalysisOutput>
 end
@@ -465,6 +503,10 @@ end
 
 function C:deleteDefaultQBusinessApplication(input: types.DeleteDefaultQBusinessApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDefaultQBusinessApplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDefaultQBusinessApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteDefaultQBusinessApplicationOutput>
+end
+
+function C:deleteFlow(input: types.DeleteFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFlow as schema.OperationSchema, input, options) as async.Operation<types.DeleteFlowOutput>
 end
 
 function C:deleteFolder(input: types.DeleteFolderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFolderOutput>
@@ -509,6 +551,10 @@ end
 
 function C:deleteRoleMembership(input: types.DeleteRoleMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRoleMembershipOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRoleMembership as schema.OperationSchema, input, options) as async.Operation<types.DeleteRoleMembershipOutput>
+end
+
+function C:deleteSpace(input: types.DeleteSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSpace as schema.OperationSchema, input, options) as async.Operation<types.DeleteSpaceOutput>
 end
 
 function C:deleteTemplate(input: types.DeleteTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTemplateOutput>
@@ -573,6 +619,14 @@ end
 
 function C:describeActionConnectorPermissions(input: types.DescribeActionConnectorPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeActionConnectorPermissionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeActionConnectorPermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeActionConnectorPermissionsOutput>
+end
+
+function C:describeAgent(input: types.DescribeAgentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAgent as schema.OperationSchema, input, options) as async.Operation<types.DescribeAgentOutput>
+end
+
+function C:describeAgentPermissions(input: types.DescribeAgentPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAgentPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAgentPermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeAgentPermissionsOutput>
 end
 
 function C:describeAnalysis(input: types.DescribeAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAnalysisOutput>
@@ -663,6 +717,10 @@ function C:describeDefaultQBusinessApplication(input: types.DescribeDefaultQBusi
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDefaultQBusinessApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeDefaultQBusinessApplicationOutput>
 end
 
+function C:describeFlow(input: types.DescribeFlowInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFlow as schema.OperationSchema, input, options) as async.Operation<types.DescribeFlowOutput>
+end
+
 function C:describeFolder(input: types.DescribeFolderInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFolderOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFolder as schema.OperationSchema, input, options) as async.Operation<types.DescribeFolderOutput>
 end
@@ -725,6 +783,14 @@ end
 
 function C:describeSelfUpgradeConfiguration(input: types.DescribeSelfUpgradeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSelfUpgradeConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSelfUpgradeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeSelfUpgradeConfigurationOutput>
+end
+
+function C:describeSpace(input: types.DescribeSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpace as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpaceOutput>
+end
+
+function C:describeSpacePermissions(input: types.DescribeSpacePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSpacePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSpacePermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeSpacePermissionsOutput>
 end
 
 function C:describeTemplate(input: types.DescribeTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTemplateOutput>
@@ -813,6 +879,10 @@ end
 
 function C:listActionConnectors(input: types.ListActionConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActionConnectorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActionConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListActionConnectorsOutput>
+end
+
+function C:listAgents(input: types.ListAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgents as schema.OperationSchema, input, options) as async.Operation<types.ListAgentsOutput>
 end
 
 function C:listAnalyses(input: types.ListAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnalysesOutput>
@@ -911,6 +981,14 @@ function C:listSelfUpgrades(input: types.ListSelfUpgradesInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSelfUpgrades as schema.OperationSchema, input, options) as async.Operation<types.ListSelfUpgradesOutput>
 end
 
+function C:listSpaceResources(input: types.ListSpaceResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSpaceResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSpaceResources as schema.OperationSchema, input, options) as async.Operation<types.ListSpaceResourcesOutput>
+end
+
+function C:listSpaces(input: types.ListSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSpacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSpaces as schema.OperationSchema, input, options) as async.Operation<types.ListSpacesOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
@@ -983,6 +1061,10 @@ function C:searchActionConnectors(input: types.SearchActionConnectorsInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchActionConnectors as schema.OperationSchema, input, options) as async.Operation<types.SearchActionConnectorsOutput>
 end
 
+function C:searchAgents(input: types.SearchAgentsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchAgentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchAgents as schema.OperationSchema, input, options) as async.Operation<types.SearchAgentsOutput>
+end
+
 function C:searchAnalyses(input: types.SearchAnalysesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchAnalysesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchAnalyses as schema.OperationSchema, input, options) as async.Operation<types.SearchAnalysesOutput>
 end
@@ -1009,6 +1091,10 @@ end
 
 function C:searchGroups(input: types.SearchGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchGroupsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchGroups as schema.OperationSchema, input, options) as async.Operation<types.SearchGroupsOutput>
+end
+
+function C:searchSpaces(input: types.SearchSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchSpacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchSpaces as schema.OperationSchema, input, options) as async.Operation<types.SearchSpacesOutput>
 end
 
 function C:searchTopics(input: types.SearchTopicsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTopicsOutput>
@@ -1061,6 +1147,14 @@ end
 
 function C:updateActionConnectorPermissions(input: types.UpdateActionConnectorPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateActionConnectorPermissionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateActionConnectorPermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateActionConnectorPermissionsOutput>
+end
+
+function C:updateAgent(input: types.UpdateAgentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgent as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentOutput>
+end
+
+function C:updateAgentPermissions(input: types.UpdateAgentPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentPermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentPermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentPermissionsOutput>
 end
 
 function C:updateAnalysis(input: types.UpdateAnalysisInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAnalysisOutput>
@@ -1131,6 +1225,10 @@ function C:updateDefaultQBusinessApplication(input: types.UpdateDefaultQBusiness
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDefaultQBusinessApplication as schema.OperationSchema, input, options) as async.Operation<types.UpdateDefaultQBusinessApplicationOutput>
 end
 
+function C:updateFlow(input: types.UpdateFlowInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlow as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowOutput>
+end
+
 function C:updateFlowPermissions(input: types.UpdateFlowPermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFlowPermissionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFlowPermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateFlowPermissionsOutput>
 end
@@ -1193,6 +1291,18 @@ end
 
 function C:updateSelfUpgradeConfiguration(input: types.UpdateSelfUpgradeConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSelfUpgradeConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSelfUpgradeConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateSelfUpgradeConfigurationOutput>
+end
+
+function C:updateSpace(input: types.UpdateSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSpaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSpace as schema.OperationSchema, input, options) as async.Operation<types.UpdateSpaceOutput>
+end
+
+function C:updateSpacePermissions(input: types.UpdateSpacePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSpacePermissionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSpacePermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateSpacePermissionsOutput>
+end
+
+function C:updateSpaceResources(input: types.UpdateSpaceResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSpaceResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSpaceResources as schema.OperationSchema, input, options) as async.Operation<types.UpdateSpaceResourcesOutput>
 end
 
 function C:updateSPICECapacityConfiguration(input: types.UpdateSPICECapacityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSPICECapacityConfigurationOutput>

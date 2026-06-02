@@ -61,6 +61,7 @@ local record Client
     createUserPool: function(Client, types.CreateUserPoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserPoolOutput>
     createUserPoolClient: function(Client, types.CreateUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserPoolClientOutput>
     createUserPoolDomain: function(Client, types.CreateUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserPoolDomainOutput>
+    createUserPoolReplica: function(Client, types.CreateUserPoolReplicaInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserPoolReplicaOutput>
     deleteGroup: function(Client, types.DeleteGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
     deleteIdentityProvider: function(Client, types.DeleteIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdentityProviderOutput>
     deleteManagedLoginBranding: function(Client, types.DeleteManagedLoginBrandingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteManagedLoginBrandingOutput>
@@ -72,6 +73,7 @@ local record Client
     deleteUserPoolClient: function(Client, types.DeleteUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolClientOutput>
     deleteUserPoolClientSecret: function(Client, types.DeleteUserPoolClientSecretInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolClientSecretOutput>
     deleteUserPoolDomain: function(Client, types.DeleteUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolDomainOutput>
+    deleteUserPoolReplica: function(Client, types.DeleteUserPoolReplicaInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserPoolReplicaOutput>
     deleteWebAuthnCredential: function(Client, types.DeleteWebAuthnCredentialInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWebAuthnCredentialOutput>
     describeIdentityProvider: function(Client, types.DescribeIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIdentityProviderOutput>
     describeManagedLoginBranding: function(Client, types.DescribeManagedLoginBrandingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeManagedLoginBrandingOutput>
@@ -108,6 +110,7 @@ local record Client
     listUserImportJobs: function(Client, types.ListUserImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserImportJobsOutput>
     listUserPoolClients: function(Client, types.ListUserPoolClientsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolClientsOutput>
     listUserPoolClientSecrets: function(Client, types.ListUserPoolClientSecretsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolClientSecretsOutput>
+    listUserPoolReplicas: function(Client, types.ListUserPoolReplicasInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolReplicasOutput>
     listUserPools: function(Client, types.ListUserPoolsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserPoolsOutput>
     listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
     listUsersInGroup: function(Client, types.ListUsersInGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersInGroupOutput>
@@ -138,6 +141,7 @@ local record Client
     updateUserPool: function(Client, types.UpdateUserPoolInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserPoolOutput>
     updateUserPoolClient: function(Client, types.UpdateUserPoolClientInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserPoolClientOutput>
     updateUserPoolDomain: function(Client, types.UpdateUserPoolDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserPoolDomainOutput>
+    updateUserPoolReplica: function(Client, types.UpdateUserPoolReplicaInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserPoolReplicaOutput>
     verifySoftwareToken: function(Client, types.VerifySoftwareTokenInput, ? base_client.InvokeOptions): async.Operation<types.VerifySoftwareTokenOutput>
     verifyUserAttribute: function(Client, types.VerifyUserAttributeInput, ? base_client.InvokeOptions): async.Operation<types.VerifyUserAttributeOutput>
 end
@@ -356,6 +360,10 @@ function C:createUserPoolDomain(input: types.CreateUserPoolDomainInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserPoolDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateUserPoolDomainOutput>
 end
 
+function C:createUserPoolReplica(input: types.CreateUserPoolReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserPoolReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserPoolReplica as schema.OperationSchema, input, options) as async.Operation<types.CreateUserPoolReplicaOutput>
+end
+
 function C:deleteGroup(input: types.DeleteGroupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroup as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupOutput>
 end
@@ -398,6 +406,10 @@ end
 
 function C:deleteUserPoolDomain(input: types.DeleteUserPoolDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserPoolDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserPoolDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserPoolDomainOutput>
+end
+
+function C:deleteUserPoolReplica(input: types.DeleteUserPoolReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserPoolReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserPoolReplica as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserPoolReplicaOutput>
 end
 
 function C:deleteWebAuthnCredential(input: types.DeleteWebAuthnCredentialInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWebAuthnCredentialOutput>
@@ -544,6 +556,10 @@ function C:listUserPoolClientSecrets(input: types.ListUserPoolClientSecretsInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserPoolClientSecrets as schema.OperationSchema, input, options) as async.Operation<types.ListUserPoolClientSecretsOutput>
 end
 
+function C:listUserPoolReplicas(input: types.ListUserPoolReplicasInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserPoolReplicasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserPoolReplicas as schema.OperationSchema, input, options) as async.Operation<types.ListUserPoolReplicasOutput>
+end
+
 function C:listUserPools(input: types.ListUserPoolsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserPoolsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserPools as schema.OperationSchema, input, options) as async.Operation<types.ListUserPoolsOutput>
 end
@@ -662,6 +678,10 @@ end
 
 function C:updateUserPoolDomain(input: types.UpdateUserPoolDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserPoolDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserPoolDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserPoolDomainOutput>
+end
+
+function C:updateUserPoolReplica(input: types.UpdateUserPoolReplicaInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserPoolReplicaOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateUserPoolReplica as schema.OperationSchema, input, options) as async.Operation<types.UpdateUserPoolReplicaOutput>
 end
 
 function C:verifySoftwareToken(input: types.VerifySoftwareTokenInput, options?: base_client.InvokeOptions): async.Operation<types.VerifySoftwareTokenOutput>

@@ -49,6 +49,8 @@ M.TaxBreakdown = schema.new({ type = "list", list_member = M.TaxBreakdownItem })
 
 M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.EntitlementList = schema.new({ type = "list", list_member = M.Entitlement })
+
 M.DocumentList = schema.new({ type = "list", list_member = M.DocumentItem })
 
 M.UsageBasedRateCardList = schema.new({ type = "list", list_member = M.UsageBasedRateCardItem })
@@ -1484,6 +1486,19 @@ M.AgreementInvoiceLineItemGroupSummary = schema.new({
     },
 })
 
+M.Entitlement = schema.new({
+    id = id.from(_N, "Entitlement"),
+    type = "structure",
+    members = {
+        licenseArn = schema.new({
+            id = id.from(_N, "Entitlement", "licenseArn"),
+            type = "string",
+            name = "licenseArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ProposalSummary = schema.new({
     id = id.from(_N, "ProposalSummary"),
     type = "structure",
@@ -1583,6 +1598,13 @@ M.AgreementViewSummary = schema.new({
             type = "string",
             name = "status",
             target_id = prelude.String.id,
+        }),
+        entitlements = schema.new({
+            id = id.from(_N, "AgreementViewSummary", "entitlements"),
+            type = "list",
+            name = "entitlements",
+            target_id = prelude.Document.id,
+            list_member = M.Entitlement,
         }),
     },
 })
