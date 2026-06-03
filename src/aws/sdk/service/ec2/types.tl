@@ -192,6 +192,7 @@ local record M
         "capacity-manager-data-export"
         "vpn-concentrator"
         "ipam-pool-allocation"
+        "capacity-reservation-cancellation-quote"
     end
 
     -- Describes a tag.
@@ -1713,6 +1714,7 @@ local record M
     enum AllocationType
         "used"
         "future"
+        "cancelling"
     end
 
     enum AllowedImagesSettingsDisabledState
@@ -3368,11 +3370,24 @@ local record M
         BundleTask: BundleTask
     end
 
+    enum ApplyCancellationCharges
+        "commitment-wind-down"
+    end
+
     record CancelCapacityReservationInput
         -- The ID of the Capacity Reservation to be cancelled.
         CapacityReservationId: string
         -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
         DryRun: boolean
+        -- Specifies the cancellation charge type to apply when cancelling a future-dated Capacity
+        -- Reservation during its commitment duration. Possible values include
+        -- commitment-wind-down, which continues billing for the remaining commitment
+        -- duration without delivering capacity.
+        ApplyCancellationCharges: string
+        -- The ID of the cancellation quote to use for the cancellation. You can generate a
+        -- cancellation quote by using the CreateCapacityReservationCancellationQuote
+        -- action. The cancellation quote must be in an active state.
+        QuoteId: string
     end
 
     record CancelCapacityReservationOutput
@@ -4357,6 +4372,7 @@ local record M
         "assessing"
         "delayed"
         "unsupported"
+        "cancelling"
         "unavailable"
     end
 
@@ -4425,6 +4441,10 @@ local record M
         -- unsupported - (Future-dated Capacity Reservations) Amazon EC2
         -- can't support the future-dated Capacity Reservation request due to capacity constraints. You can view
         -- unsupported requests for 30 days. The Capacity Reservation will not be delivered.
+        -- cancelling - (Future-dated Capacity Reservations) The
+        -- Capacity Reservation is being cancelled. Capacity has been released but charges continue for
+        -- the commitment wind-down period. The reservation transitions to cancelled when
+        -- the wind-down completes.
         State: string
         -- The date and time the Capacity Reservation was started.
         StartDate: number
@@ -4516,6 +4536,77 @@ local record M
         -- The number of instances in the new Capacity Reservation. The number of instances in
         -- the source Capacity Reservation was reduced by this amount.
         InstanceCount: number
+    end
+
+    record CreateCapacityReservationCancellationQuoteInput
+        -- The ID of the Capacity Reservation.
+        CapacityReservationId: string
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensure Idempotency.
+        ClientToken: string
+        -- The tags to apply to the cancellation quote.
+        TagSpecifications: {TagSpecification}
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes the cancellation terms for cancelling a future-dated Capacity Reservation
+    -- during its commitment duration.
+    record CancellationTerms
+        -- The type of cancellation charge. Possible values include
+        -- commitment-wind-down.
+        CancellationType: string
+        -- The state that the Capacity Reservation will transition to after
+        -- cancellation.
+        ReservationState: string
+        -- The number of instances under commitment after cancellation.
+        CommittedInstanceCount: number
+        -- The number of hours for which cancellation charges will apply.
+        ChargeCommitmentDurationHours: number
+        -- The date and time at which cancellation charges will stop.
+        ChargeEndDate: number
+    end
+
+    -- Describes the configuration of a Capacity Reservation.
+    record CapacityReservationConfiguration
+        -- The number of instances in the Capacity Reservation.
+        InstanceCount: number
+        -- The current state of the Capacity Reservation.
+        ReservationState: string
+    end
+
+    enum CapacityReservationCancellationQuoteState
+        "pending"
+        "active"
+        "expired"
+    end
+
+    -- Describes a Capacity Reservation cancellation quote, which provides the cancellation
+    -- terms for cancelling a future-dated Capacity Reservation during its commitment
+    -- duration.
+    record CapacityReservationCancellationQuote
+        -- The ID of the cancellation quote.
+        CapacityReservationCancellationQuoteId: string
+        -- The ID of the Capacity Reservation associated with the cancellation quote.
+        CapacityReservationId: string
+        -- The date and time at which the cancellation quote was created.
+        CreateTime: number
+        -- The date and time at which the cancellation quote expires.
+        ExpirationTime: number
+        -- The state of the cancellation quote. Possible values include
+        -- pending, active, and expired.
+        QuoteState: string
+        -- The current configuration of the Capacity Reservation.
+        CurrentConfiguration: CapacityReservationConfiguration
+        -- The cancellation terms associated with the quote, including the fee type and
+        -- charge details.
+        CancellationTerms: {CancellationTerms}
+        -- The tags assigned to the cancellation quote.
+        Tags: {Tag}
+    end
+
+    record CreateCapacityReservationCancellationQuoteOutput
+        -- Information about the Capacity Reservation cancellation quote.
+        CapacityReservationCancellationQuote: CapacityReservationCancellationQuote
     end
 
     enum FleetInstanceMatchCriteria
@@ -10351,7 +10442,9 @@ local record M
     record ConnectionTrackingSpecificationRequest
         -- Timeout (in seconds) for idle TCP
         -- connections in an established state. Min: 60 seconds. Max: 432000 seconds (5
-        -- days). Default: 432000 seconds. Recommended: Less than 432000 seconds.
+        -- days). Default: 350 seconds for Nitro v6 instance types (excluding
+        -- P6e-GB200); 432000 seconds for all other instance types (including
+        -- P6e-GB200). Recommended: Less than 432000 seconds.
         TcpEstablishedTimeout: number
         -- Timeout (in seconds) for idle UDP
         -- flows classified as streams which have seen more than one request-response
@@ -11133,7 +11226,9 @@ local record M
     record ConnectionTrackingSpecification
         -- Timeout (in seconds) for idle TCP
         -- connections in an established state. Min: 60 seconds. Max: 432000 seconds (5
-        -- days). Default: 432000 seconds. Recommended: Less than 432000 seconds.
+        -- days). Default: 350 seconds for Nitro v6 instance types (excluding
+        -- P6e-GB200); 432000 seconds for all other instance types (including
+        -- P6e-GB200). Recommended: Less than 432000 seconds.
         TcpEstablishedTimeout: number
         -- Timeout (in seconds) for idle UDP flows that
         -- have seen traffic only in a single direction or a single request-response
@@ -12621,7 +12716,9 @@ local record M
     record ConnectionTrackingConfiguration
         -- Timeout (in seconds) for idle TCP
         -- connections in an established state. Min: 60 seconds. Max: 432000 seconds (5
-        -- days). Default: 432000 seconds. Recommended: Less than 432000 seconds.
+        -- days). Default: 350 seconds for Nitro v6 instance types (excluding
+        -- P6e-GB200); 432000 seconds for all other instance types (including
+        -- P6e-GB200). Recommended: Less than 432000 seconds.
         TcpEstablishedTimeout: number
         -- Timeout (in seconds) for idle UDP
         -- flows classified as streams which have seen more than one request-response
@@ -19621,6 +19718,27 @@ local record M
         CapacityReservationBillingRequests: {CapacityReservationBillingRequest}
     end
 
+    record DescribeCapacityReservationCancellationQuotesInput
+        -- The IDs of the cancellation quotes to describe.
+        CapacityReservationCancellationQuoteIds: {string}
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output. For more information,
+        -- see Pagination.
+        MaxResults: number
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+        -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- One or more filters. Filter names and values are case-sensitive.
+        Filters: {Filter}
+    end
+
+    record DescribeCapacityReservationCancellationQuotesOutput
+        -- Information about the Capacity Reservation cancellation quotes.
+        CapacityReservationCancellationQuotes: {CapacityReservationCancellationQuote}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
+    end
+
     record DescribeCapacityReservationFleetsInput
         -- The IDs of the Capacity Reservation Fleets to describe.
         CapacityReservationFleetIds: {string}
@@ -23824,7 +23942,9 @@ local record M
     record ConnectionTrackingSpecificationResponse
         -- Timeout (in seconds) for idle TCP
         -- connections in an established state. Min: 60 seconds. Max: 432000 seconds (5
-        -- days). Default: 432000 seconds. Recommended: Less than 432000 seconds.
+        -- days). Default: 350 seconds for Nitro v6 instance types (excluding
+        -- P6e-GB200); 432000 seconds for all other instance types (including
+        -- P6e-GB200). Recommended: Less than 432000 seconds.
         TcpEstablishedTimeout: number
         -- Timeout (in seconds) for idle UDP
         -- flows classified as streams which have seen more than one request-response
@@ -33592,6 +33712,10 @@ local record M
         -- unsupported - (Future-dated Capacity Reservations) Amazon EC2
         -- can't support the future-dated Capacity Reservation request due to capacity constraints. You can view
         -- unsupported requests for 30 days. The Capacity Reservation will not be delivered.
+        -- cancelling - (Future-dated Capacity Reservations) The
+        -- Capacity Reservation is being cancelled. Capacity has been released but charges continue for
+        -- the commitment wind-down period. The reservation transitions to cancelled when
+        -- the wind-down completes.
         State: string
         -- Information about the Capacity Reservation usage.
         InstanceUsages: {InstanceUsage}

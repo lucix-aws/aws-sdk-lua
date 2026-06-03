@@ -89,6 +89,10 @@ M.RouteMatrixHazardousCargoTypeList = schema.new({ type = "list", list_member = 
 
 M.RouteHazardousCargoTypeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RouteAccessibilityAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTransitModeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.RouteLegList = schema.new({ type = "list", list_member = M.RouteLeg })
 
 M.RouteMajorRoadLabelList = schema.new({ type = "list", list_member = M.RouteMajorRoadLabel })
@@ -109,6 +113,14 @@ M.LinearRing = schema.new({ type = "list", list_member = M.Position })
 
 M.RouteAvoidanceAreaGeometryList = schema.new({ type = "list", list_member = M.RouteAvoidanceAreaGeometry })
 
+M.RouteRentalModeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteIntermodalEnabledLegsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteTaxiModeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.RouteVehicleModeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.PolylineRingList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RouteFerryAfterTravelStepList = schema.new({ type = "list", list_member = M.RouteFerryAfterTravelStep })
@@ -123,11 +135,15 @@ M.RouteFerrySpanList = schema.new({ type = "list", list_member = M.RouteFerrySpa
 
 M.RouteFerryTravelStepList = schema.new({ type = "list", list_member = M.RouteFerryTravelStep })
 
+M.RoutePedestrianAfterTravelStepList = schema.new({ type = "list", list_member = M.RoutePedestrianAfterTravelStep })
+
 M.RoutePedestrianNoticeList = schema.new({ type = "list", list_member = M.RoutePedestrianNotice })
 
 M.RoutePedestrianSpanList = schema.new({ type = "list", list_member = M.RoutePedestrianSpan })
 
 M.RoutePedestrianTravelStepList = schema.new({ type = "list", list_member = M.RoutePedestrianTravelStep })
+
+M.RouteVehicleAfterTravelStepList = schema.new({ type = "list", list_member = M.RouteVehicleAfterTravelStep })
 
 M.RouteVehicleIncidentList = schema.new({ type = "list", list_member = M.RouteVehicleIncident })
 
@@ -142,6 +158,40 @@ M.RouteTollSystemList = schema.new({ type = "list", list_member = M.RouteTollSys
 M.RouteVehicleTravelStepList = schema.new({ type = "list", list_member = M.RouteVehicleTravelStep })
 
 M.RouteZoneList = schema.new({ type = "list", list_member = M.RouteZone })
+
+M.RouteRentalAfterTravelStepList = schema.new({ type = "list", list_member = M.RouteRentalAfterTravelStep })
+
+M.RouteAttributionList = schema.new({ type = "list", list_member = M.RouteAttribution })
+
+M.RouteRentalBeforeTravelStepList = schema.new({ type = "list", list_member = M.RouteRentalBeforeTravelStep })
+
+M.RouteWebLinkList = schema.new({ type = "list", list_member = M.RouteWebLink })
+
+M.RouteRentalTravelStepList = schema.new({ type = "list", list_member = M.RouteRentalTravelStep })
+
+M.RouteTaxiAfterTravelStepList = schema.new({ type = "list", list_member = M.RouteTaxiAfterTravelStep })
+
+M.RouteTaxiBeforeTravelStepList = schema.new({ type = "list", list_member = M.RouteTaxiBeforeTravelStep })
+
+M.RouteTaxiNoticeList = schema.new({ type = "list", list_member = M.RouteTaxiNotice })
+
+M.RouteTaxiTravelStepList = schema.new({ type = "list", list_member = M.RouteTaxiTravelStep })
+
+M.RouteTransitAfterTravelStepList = schema.new({ type = "list", list_member = M.RouteTransitAfterTravelStep })
+
+M.RouteTransitBeforeTravelStepList = schema.new({ type = "list", list_member = M.RouteTransitBeforeTravelStep })
+
+M.RouteTransitIncidentList = schema.new({ type = "list", list_member = M.RouteTransitIncident })
+
+M.RouteTransitIntermediateStopList = schema.new({ type = "list", list_member = M.RouteTransitIntermediateStop })
+
+M.RouteTransitNextDepartureList = schema.new({ type = "list", list_member = M.RouteTransitNextDeparture })
+
+M.RouteTransitNoticeList = schema.new({ type = "list", list_member = M.RouteTransitNotice })
+
+M.RouteTransitSpanList = schema.new({ type = "list", list_member = M.RouteTransitSpan })
+
+M.RouteTransitTravelStepList = schema.new({ type = "list", list_member = M.RouteTransitTravelStep })
 
 M.Position23 = schema.new({ type = "list", list_member = prelude.Double })
 
@@ -166,6 +216,8 @@ M.RouteSpanTruckAccessAttributeList = schema.new({ type = "list", list_member = 
 M.RouteTollPaymentSiteList = schema.new({ type = "list", list_member = M.RouteTollPaymentSite })
 
 M.RouteTollRateList = schema.new({ type = "list", list_member = M.RouteTollRate })
+
+M.RouteTransitIntermediateStopAttributeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RouteSignpostLabelList = schema.new({ type = "list", list_member = M.RouteSignpostLabel })
 
@@ -532,9 +584,6 @@ M.IsolineGranularityOptions = schema.new({
             type = "integer",
             name = "MaxPoints",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         MaxResolution = schema.new({
             id = id.from(_N, "IsolineGranularityOptions", "MaxResolution"),
@@ -674,9 +723,6 @@ M.IsolineCarOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
     },
 })
@@ -712,9 +758,6 @@ M.IsolineScooterOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
     },
 })
@@ -728,18 +771,12 @@ M.IsolineTrailerOptions = schema.new({
             type = "integer",
             name = "AxleCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         TrailerCount = schema.new({
             id = id.from(_N, "IsolineTrailerOptions", "TrailerCount"),
             type = "integer",
             name = "TrailerCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
     },
 })
@@ -805,9 +842,6 @@ M.IsolineTruckOptions = schema.new({
             type = "integer",
             name = "AxleCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         EngineType = schema.new({
             id = id.from(_N, "IsolineTruckOptions", "EngineType"),
@@ -888,9 +922,6 @@ M.IsolineTruckOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         PayloadCapacity = schema.new({
             id = id.from(_N, "IsolineTruckOptions", "PayloadCapacity"),
@@ -906,9 +937,6 @@ M.IsolineTruckOptions = schema.new({
             type = "integer",
             name = "TireCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         Trailer = schema.new({
             id = id.from(_N, "IsolineTruckOptions", "Trailer"),
@@ -1929,9 +1957,6 @@ M.RouteMatrixCarOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
     },
 })
@@ -1961,9 +1986,6 @@ M.RouteMatrixScooterOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
     },
 })
@@ -1990,9 +2012,6 @@ M.RouteMatrixTruckOptions = schema.new({
             type = "integer",
             name = "AxleCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         GrossWeight = schema.new({
             id = id.from(_N, "RouteMatrixTruckOptions", "GrossWeight"),
@@ -2058,9 +2077,6 @@ M.RouteMatrixTruckOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         PayloadCapacity = schema.new({
             id = id.from(_N, "RouteMatrixTruckOptions", "PayloadCapacity"),
@@ -2853,9 +2869,198 @@ M.RouteCarOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RouteIntermodalPedestrianOptions = schema.new({
+    id = id.from(_N, "RouteIntermodalPedestrianOptions"),
+    type = "structure",
+    members = {
+        MaxDistance = schema.new({
+            id = id.from(_N, "RouteIntermodalPedestrianOptions", "MaxDistance"),
+            type = "long",
+            name = "MaxDistance",
+            target_id = prelude.Long.id,
             traits = {
                 [traits.DEFAULT] = { value = nil },
             },
+        }),
+        Speed = schema.new({
+            id = id.from(_N, "RouteIntermodalPedestrianOptions", "Speed"),
+            type = "double",
+            name = "Speed",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteIntermodalRentalOptions = schema.new({
+    id = id.from(_N, "RouteIntermodalRentalOptions"),
+    type = "structure",
+    members = {
+        AllowedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalRentalOptions", "AllowedModes"),
+            type = "list",
+            name = "AllowedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EnabledFor = schema.new({
+            id = id.from(_N, "RouteIntermodalRentalOptions", "EnabledFor"),
+            type = "list",
+            name = "EnabledFor",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalRentalOptions", "ExcludedModes"),
+            type = "list",
+            name = "ExcludedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RouteIntermodalTaxiOptions = schema.new({
+    id = id.from(_N, "RouteIntermodalTaxiOptions"),
+    type = "structure",
+    members = {
+        AllowedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalTaxiOptions", "AllowedModes"),
+            type = "list",
+            name = "AllowedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EnabledFor = schema.new({
+            id = id.from(_N, "RouteIntermodalTaxiOptions", "EnabledFor"),
+            type = "list",
+            name = "EnabledFor",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalTaxiOptions", "ExcludedModes"),
+            type = "list",
+            name = "ExcludedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RouteIntermodalTransitOptions = schema.new({
+    id = id.from(_N, "RouteIntermodalTransitOptions"),
+    type = "structure",
+    members = {
+        AllowedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalTransitOptions", "AllowedModes"),
+            type = "list",
+            name = "AllowedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EnabledFor = schema.new({
+            id = id.from(_N, "RouteIntermodalTransitOptions", "EnabledFor"),
+            type = "list",
+            name = "EnabledFor",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalTransitOptions", "ExcludedModes"),
+            type = "list",
+            name = "ExcludedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RouteIntermodalVehicleOptions = schema.new({
+    id = id.from(_N, "RouteIntermodalVehicleOptions"),
+    type = "structure",
+    members = {
+        AllowedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalVehicleOptions", "AllowedModes"),
+            type = "list",
+            name = "AllowedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EnabledFor = schema.new({
+            id = id.from(_N, "RouteIntermodalVehicleOptions", "EnabledFor"),
+            type = "list",
+            name = "EnabledFor",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludedModes = schema.new({
+            id = id.from(_N, "RouteIntermodalVehicleOptions", "ExcludedModes"),
+            type = "list",
+            name = "ExcludedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RouteIntermodalOptions = schema.new({
+    id = id.from(_N, "RouteIntermodalOptions"),
+    type = "structure",
+    members = {
+        AccessibilityAttributes = schema.new({
+            id = id.from(_N, "RouteIntermodalOptions", "AccessibilityAttributes"),
+            type = "list",
+            name = "AccessibilityAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaxTransfers = schema.new({
+            id = id.from(_N, "RouteIntermodalOptions", "MaxTransfers"),
+            type = "integer",
+            name = "MaxTransfers",
+            target_id = prelude.Integer.id,
+        }),
+        Pedestrian = schema.new({
+            id = id.from(_N, "RouteIntermodalOptions", "Pedestrian"),
+            type = "structure",
+            name = "Pedestrian",
+            target_id = id.from(_N, "RouteIntermodalPedestrianOptions"),
+            target = M.RouteIntermodalPedestrianOptions,
+        }),
+        Rental = schema.new({
+            id = id.from(_N, "RouteIntermodalOptions", "Rental"),
+            type = "structure",
+            name = "Rental",
+            target_id = id.from(_N, "RouteIntermodalRentalOptions"),
+            target = M.RouteIntermodalRentalOptions,
+        }),
+        Taxi = schema.new({
+            id = id.from(_N, "RouteIntermodalOptions", "Taxi"),
+            type = "structure",
+            name = "Taxi",
+            target_id = id.from(_N, "RouteIntermodalTaxiOptions"),
+            target = M.RouteIntermodalTaxiOptions,
+        }),
+        Transit = schema.new({
+            id = id.from(_N, "RouteIntermodalOptions", "Transit"),
+            type = "structure",
+            name = "Transit",
+            target_id = id.from(_N, "RouteIntermodalTransitOptions"),
+            target = M.RouteIntermodalTransitOptions,
+        }),
+        Vehicle = schema.new({
+            id = id.from(_N, "RouteIntermodalOptions", "Vehicle"),
+            type = "structure",
+            name = "Vehicle",
+            target_id = id.from(_N, "RouteIntermodalVehicleOptions"),
+            target = M.RouteIntermodalVehicleOptions,
         }),
     },
 })
@@ -2907,9 +3112,72 @@ M.RouteScooterOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RouteTransitPedestrianOptions = schema.new({
+    id = id.from(_N, "RouteTransitPedestrianOptions"),
+    type = "structure",
+    members = {
+        MaxDistance = schema.new({
+            id = id.from(_N, "RouteTransitPedestrianOptions", "MaxDistance"),
+            type = "long",
+            name = "MaxDistance",
+            target_id = prelude.Long.id,
             traits = {
                 [traits.DEFAULT] = { value = nil },
             },
+        }),
+        Speed = schema.new({
+            id = id.from(_N, "RouteTransitPedestrianOptions", "Speed"),
+            type = "double",
+            name = "Speed",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteTransitOptions = schema.new({
+    id = id.from(_N, "RouteTransitOptions"),
+    type = "structure",
+    members = {
+        AccessibilityAttributes = schema.new({
+            id = id.from(_N, "RouteTransitOptions", "AccessibilityAttributes"),
+            type = "list",
+            name = "AccessibilityAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AllowedModes = schema.new({
+            id = id.from(_N, "RouteTransitOptions", "AllowedModes"),
+            type = "list",
+            name = "AllowedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ExcludedModes = schema.new({
+            id = id.from(_N, "RouteTransitOptions", "ExcludedModes"),
+            type = "list",
+            name = "ExcludedModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaxTransfers = schema.new({
+            id = id.from(_N, "RouteTransitOptions", "MaxTransfers"),
+            type = "integer",
+            name = "MaxTransfers",
+            target_id = prelude.Integer.id,
+        }),
+        Pedestrian = schema.new({
+            id = id.from(_N, "RouteTransitOptions", "Pedestrian"),
+            type = "structure",
+            name = "Pedestrian",
+            target_id = id.from(_N, "RouteTransitPedestrianOptions"),
+            target = M.RouteTransitPedestrianOptions,
         }),
     },
 })
@@ -2923,18 +3191,12 @@ M.RouteTrailerOptions = schema.new({
             type = "integer",
             name = "AxleCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         TrailerCount = schema.new({
             id = id.from(_N, "RouteTrailerOptions", "TrailerCount"),
             type = "integer",
             name = "TrailerCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
     },
 })
@@ -2948,9 +3210,6 @@ M.RouteTruckOptions = schema.new({
             type = "integer",
             name = "AxleCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         EngineType = schema.new({
             id = id.from(_N, "RouteTruckOptions", "EngineType"),
@@ -3031,9 +3290,6 @@ M.RouteTruckOptions = schema.new({
             type = "integer",
             name = "Occupancy",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         PayloadCapacity = schema.new({
             id = id.from(_N, "RouteTruckOptions", "PayloadCapacity"),
@@ -3049,9 +3305,6 @@ M.RouteTruckOptions = schema.new({
             type = "integer",
             name = "TireCount",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         Trailer = schema.new({
             id = id.from(_N, "RouteTruckOptions", "Trailer"),
@@ -3131,6 +3384,20 @@ M.RouteTravelModeOptions = schema.new({
             name = "Truck",
             target_id = id.from(_N, "RouteTruckOptions"),
             target = M.RouteTruckOptions,
+        }),
+        Intermodal = schema.new({
+            id = id.from(_N, "RouteTravelModeOptions", "Intermodal"),
+            type = "structure",
+            name = "Intermodal",
+            target_id = id.from(_N, "RouteIntermodalOptions"),
+            target = M.RouteIntermodalOptions,
+        }),
+        Transit = schema.new({
+            id = id.from(_N, "RouteTravelModeOptions", "Transit"),
+            type = "structure",
+            name = "Transit",
+            target_id = id.from(_N, "RouteTransitOptions"),
+            target = M.RouteTransitOptions,
         }),
     },
 })
@@ -3933,10 +4200,102 @@ M.RouteLegGeometry = schema.new({
     },
 })
 
+M.RoutePedestrianAfterTravelStep = schema.new({
+    id = id.from(_N, "RoutePedestrianAfterTravelStep"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RoutePedestrianAfterTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RoutePedestrianAfterTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RoutePedestrianAfterTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteAccessibilityAvailabilityDetails = schema.new({
+    id = id.from(_N, "RouteAccessibilityAvailabilityDetails"),
+    type = "structure",
+    members = {
+        Wheelchair = schema.new({
+            id = id.from(_N, "RouteAccessibilityAvailabilityDetails", "Wheelchair"),
+            type = "string",
+            name = "Wheelchair",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteAccessPointDetails = schema.new({
+    id = id.from(_N, "RouteAccessPointDetails"),
+    type = "structure",
+    members = {
+        Accessibility = schema.new({
+            id = id.from(_N, "RouteAccessPointDetails", "Accessibility"),
+            type = "structure",
+            name = "Accessibility",
+            target_id = id.from(_N, "RouteAccessibilityAvailabilityDetails"),
+            target = M.RouteAccessibilityAvailabilityDetails,
+        }),
+    },
+})
+
+M.RouteStationDetails = schema.new({
+    id = id.from(_N, "RouteStationDetails"),
+    type = "structure",
+    members = {
+        Accessibility = schema.new({
+            id = id.from(_N, "RouteStationDetails", "Accessibility"),
+            type = "structure",
+            name = "Accessibility",
+            target_id = id.from(_N, "RouteAccessibilityAvailabilityDetails"),
+            target = M.RouteAccessibilityAvailabilityDetails,
+        }),
+        PlatformName = schema.new({
+            id = id.from(_N, "RouteStationDetails", "PlatformName"),
+            type = "string",
+            name = "PlatformName",
+            target_id = prelude.String.id,
+        }),
+        ShortName = schema.new({
+            id = id.from(_N, "RouteStationDetails", "ShortName"),
+            type = "string",
+            name = "ShortName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RoutePedestrianPlace = schema.new({
     id = id.from(_N, "RoutePedestrianPlace"),
     type = "structure",
     members = {
+        AccessPointDetails = schema.new({
+            id = id.from(_N, "RoutePedestrianPlace", "AccessPointDetails"),
+            type = "structure",
+            name = "AccessPointDetails",
+            target_id = id.from(_N, "RouteAccessPointDetails"),
+            target = M.RouteAccessPointDetails,
+        }),
         Name = schema.new({
             id = id.from(_N, "RoutePedestrianPlace", "Name"),
             type = "string",
@@ -3964,6 +4323,19 @@ M.RoutePedestrianPlace = schema.new({
             id = id.from(_N, "RoutePedestrianPlace", "SideOfStreet"),
             type = "string",
             name = "SideOfStreet",
+            target_id = prelude.String.id,
+        }),
+        StationDetails = schema.new({
+            id = id.from(_N, "RoutePedestrianPlace", "StationDetails"),
+            type = "structure",
+            name = "StationDetails",
+            target_id = id.from(_N, "RouteStationDetails"),
+            target = M.RouteStationDetails,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RoutePedestrianPlace", "Type"),
+            type = "string",
+            name = "Type",
             target_id = prelude.String.id,
         }),
         WaypointIndex = schema.new({
@@ -4463,9 +4835,6 @@ M.RouteRoundaboutExitStepDetails = schema.new({
             type = "integer",
             name = "RelativeExit",
             target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
         }),
         RoundaboutAngle = schema.new({
             id = id.from(_N, "RouteRoundaboutExitStepDetails", "RoundaboutAngle"),
@@ -4720,6 +5089,17 @@ M.RoutePedestrianLegDetails = schema.new({
     id = id.from(_N, "RoutePedestrianLegDetails"),
     type = "structure",
     members = {
+        AfterTravelSteps = schema.new({
+            id = id.from(_N, "RoutePedestrianLegDetails", "AfterTravelSteps"),
+            type = "list",
+            name = "AfterTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RoutePedestrianAfterTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = {} },
+            },
+        }),
         Arrival = schema.new({
             id = id.from(_N, "RoutePedestrianLegDetails", "Arrival"),
             type = "structure",
@@ -4790,6 +5170,2096 @@ M.RoutePedestrianLegDetails = schema.new({
     },
 })
 
+M.RouteRentalAfterTravelStep = schema.new({
+    id = id.from(_N, "RouteRentalAfterTravelStep"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteRentalAfterTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteRentalAfterTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteRentalAfterTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteRentalAgency = schema.new({
+    id = id.from(_N, "RouteRentalAgency"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RouteRentalAgency", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "RouteRentalAgency", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteRentalPlace = schema.new({
+    id = id.from(_N, "RouteRentalPlace"),
+    type = "structure",
+    members = {
+        AccessPointDetails = schema.new({
+            id = id.from(_N, "RouteRentalPlace", "AccessPointDetails"),
+            type = "structure",
+            name = "AccessPointDetails",
+            target_id = id.from(_N, "RouteAccessPointDetails"),
+            target = M.RouteAccessPointDetails,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RouteRentalPlace", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        OriginalPosition = schema.new({
+            id = id.from(_N, "RouteRentalPlace", "OriginalPosition"),
+            type = "list",
+            name = "OriginalPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "RouteRentalPlace", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StationDetails = schema.new({
+            id = id.from(_N, "RouteRentalPlace", "StationDetails"),
+            type = "structure",
+            name = "StationDetails",
+            target_id = id.from(_N, "RouteStationDetails"),
+            target = M.RouteStationDetails,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteRentalPlace", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        WaypointIndex = schema.new({
+            id = id.from(_N, "RouteRentalPlace", "WaypointIndex"),
+            type = "integer",
+            name = "WaypointIndex",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RouteRentalArrival = schema.new({
+    id = id.from(_N, "RouteRentalArrival"),
+    type = "structure",
+    members = {
+        Place = schema.new({
+            id = id.from(_N, "RouteRentalArrival", "Place"),
+            type = "structure",
+            name = "Place",
+            target_id = id.from(_N, "RouteRentalPlace"),
+            target = M.RouteRentalPlace,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Time = schema.new({
+            id = id.from(_N, "RouteRentalArrival", "Time"),
+            type = "string",
+            name = "Time",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteWebLink = schema.new({
+    id = id.from(_N, "RouteWebLink"),
+    type = "structure",
+    members = {
+        AnchorText = schema.new({
+            id = id.from(_N, "RouteWebLink", "AnchorText"),
+            type = "string",
+            name = "AnchorText",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RouteWebLink", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeviceType = schema.new({
+            id = id.from(_N, "RouteWebLink", "DeviceType"),
+            type = "string",
+            name = "DeviceType",
+            target_id = prelude.String.id,
+        }),
+        Url = schema.new({
+            id = id.from(_N, "RouteWebLink", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteAttribution = schema.new({
+    id = id.from(_N, "RouteAttribution"),
+    type = "structure",
+    members = {
+        AttributionType = schema.new({
+            id = id.from(_N, "RouteAttribution", "AttributionType"),
+            type = "string",
+            name = "AttributionType",
+            target_id = prelude.String.id,
+        }),
+        WebLink = schema.new({
+            id = id.from(_N, "RouteAttribution", "WebLink"),
+            type = "structure",
+            name = "WebLink",
+            target_id = id.from(_N, "RouteWebLink"),
+            target = M.RouteWebLink,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteRentalBeforeTravelStep = schema.new({
+    id = id.from(_N, "RouteRentalBeforeTravelStep"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteRentalBeforeTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteRentalBeforeTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteRentalBeforeTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteRentalDeparture = schema.new({
+    id = id.from(_N, "RouteRentalDeparture"),
+    type = "structure",
+    members = {
+        Place = schema.new({
+            id = id.from(_N, "RouteRentalDeparture", "Place"),
+            type = "structure",
+            name = "Place",
+            target_id = id.from(_N, "RouteRentalPlace"),
+            target = M.RouteRentalPlace,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Time = schema.new({
+            id = id.from(_N, "RouteRentalDeparture", "Time"),
+            type = "string",
+            name = "Time",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteRentalOverviewSummary = schema.new({
+    id = id.from(_N, "RouteRentalOverviewSummary"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteRentalOverviewSummary", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "RouteRentalOverviewSummary", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteRentalTravelOnlySummary = schema.new({
+    id = id.from(_N, "RouteRentalTravelOnlySummary"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteRentalTravelOnlySummary", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteRentalSummary = schema.new({
+    id = id.from(_N, "RouteRentalSummary"),
+    type = "structure",
+    members = {
+        Overview = schema.new({
+            id = id.from(_N, "RouteRentalSummary", "Overview"),
+            type = "structure",
+            name = "Overview",
+            target_id = id.from(_N, "RouteRentalOverviewSummary"),
+            target = M.RouteRentalOverviewSummary,
+        }),
+        TravelOnly = schema.new({
+            id = id.from(_N, "RouteRentalSummary", "TravelOnly"),
+            type = "structure",
+            name = "TravelOnly",
+            target_id = id.from(_N, "RouteRentalTravelOnlySummary"),
+            target = M.RouteRentalTravelOnlySummary,
+        }),
+    },
+})
+
+M.RouteRentalTransportModeDetails = schema.new({
+    id = id.from(_N, "RouteRentalTransportModeDetails"),
+    type = "structure",
+    members = {
+        AvailableSeats = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "AvailableSeats"),
+            type = "integer",
+            name = "AvailableSeats",
+            target_id = prelude.Integer.id,
+        }),
+        Category = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "Category"),
+            type = "string",
+            name = "Category",
+            target_id = prelude.String.id,
+        }),
+        Color = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "Color"),
+            type = "string",
+            name = "Color",
+            target_id = prelude.String.id,
+        }),
+        Engine = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "Engine"),
+            type = "string",
+            name = "Engine",
+            target_id = prelude.String.id,
+        }),
+        LicensePlate = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "LicensePlate"),
+            type = "string",
+            name = "LicensePlate",
+            target_id = prelude.String.id,
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Model = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "Model"),
+            type = "string",
+            name = "Model",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        TextColor = schema.new({
+            id = id.from(_N, "RouteRentalTransportModeDetails", "TextColor"),
+            type = "string",
+            name = "TextColor",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteExitStepDetails = schema.new({
+    id = id.from(_N, "RouteExitStepDetails"),
+    type = "structure",
+    members = {
+        Intersection = schema.new({
+            id = id.from(_N, "RouteExitStepDetails", "Intersection"),
+            type = "list",
+            name = "Intersection",
+            target_id = prelude.Document.id,
+            list_member = M.LocalizedString,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RelativeExit = schema.new({
+            id = id.from(_N, "RouteExitStepDetails", "RelativeExit"),
+            type = "integer",
+            name = "RelativeExit",
+            target_id = prelude.Integer.id,
+        }),
+        SteeringDirection = schema.new({
+            id = id.from(_N, "RouteExitStepDetails", "SteeringDirection"),
+            type = "string",
+            name = "SteeringDirection",
+            target_id = prelude.String.id,
+        }),
+        TurnAngle = schema.new({
+            id = id.from(_N, "RouteExitStepDetails", "TurnAngle"),
+            type = "double",
+            name = "TurnAngle",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        TurnIntensity = schema.new({
+            id = id.from(_N, "RouteExitStepDetails", "TurnIntensity"),
+            type = "string",
+            name = "TurnIntensity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteRampStepDetails = schema.new({
+    id = id.from(_N, "RouteRampStepDetails"),
+    type = "structure",
+    members = {
+        Intersection = schema.new({
+            id = id.from(_N, "RouteRampStepDetails", "Intersection"),
+            type = "list",
+            name = "Intersection",
+            target_id = prelude.Document.id,
+            list_member = M.LocalizedString,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SteeringDirection = schema.new({
+            id = id.from(_N, "RouteRampStepDetails", "SteeringDirection"),
+            type = "string",
+            name = "SteeringDirection",
+            target_id = prelude.String.id,
+        }),
+        TurnAngle = schema.new({
+            id = id.from(_N, "RouteRampStepDetails", "TurnAngle"),
+            type = "double",
+            name = "TurnAngle",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        TurnIntensity = schema.new({
+            id = id.from(_N, "RouteRampStepDetails", "TurnIntensity"),
+            type = "string",
+            name = "TurnIntensity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteUTurnStepDetails = schema.new({
+    id = id.from(_N, "RouteUTurnStepDetails"),
+    type = "structure",
+    members = {
+        Intersection = schema.new({
+            id = id.from(_N, "RouteUTurnStepDetails", "Intersection"),
+            type = "list",
+            name = "Intersection",
+            target_id = prelude.Document.id,
+            list_member = M.LocalizedString,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SteeringDirection = schema.new({
+            id = id.from(_N, "RouteUTurnStepDetails", "SteeringDirection"),
+            type = "string",
+            name = "SteeringDirection",
+            target_id = prelude.String.id,
+        }),
+        TurnAngle = schema.new({
+            id = id.from(_N, "RouteUTurnStepDetails", "TurnAngle"),
+            type = "double",
+            name = "TurnAngle",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        TurnIntensity = schema.new({
+            id = id.from(_N, "RouteUTurnStepDetails", "TurnIntensity"),
+            type = "string",
+            name = "TurnIntensity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteRentalTravelStep = schema.new({
+    id = id.from(_N, "RouteRentalTravelStep"),
+    type = "structure",
+    members = {
+        ContinueStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "ContinueStepDetails"),
+            type = "structure",
+            name = "ContinueStepDetails",
+            target_id = id.from(_N, "RouteContinueStepDetails"),
+            target = M.RouteContinueStepDetails,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        ExitStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "ExitStepDetails"),
+            type = "structure",
+            name = "ExitStepDetails",
+            target_id = id.from(_N, "RouteExitStepDetails"),
+            target = M.RouteExitStepDetails,
+        }),
+        GeometryOffset = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "GeometryOffset"),
+            type = "integer",
+            name = "GeometryOffset",
+            target_id = prelude.Integer.id,
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        KeepStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "KeepStepDetails"),
+            type = "structure",
+            name = "KeepStepDetails",
+            target_id = id.from(_N, "RouteKeepStepDetails"),
+            target = M.RouteKeepStepDetails,
+        }),
+        RampStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "RampStepDetails"),
+            type = "structure",
+            name = "RampStepDetails",
+            target_id = id.from(_N, "RouteRampStepDetails"),
+            target = M.RouteRampStepDetails,
+        }),
+        RoundaboutEnterStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "RoundaboutEnterStepDetails"),
+            type = "structure",
+            name = "RoundaboutEnterStepDetails",
+            target_id = id.from(_N, "RouteRoundaboutEnterStepDetails"),
+            target = M.RouteRoundaboutEnterStepDetails,
+        }),
+        RoundaboutExitStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "RoundaboutExitStepDetails"),
+            type = "structure",
+            name = "RoundaboutExitStepDetails",
+            target_id = id.from(_N, "RouteRoundaboutExitStepDetails"),
+            target = M.RouteRoundaboutExitStepDetails,
+        }),
+        RoundaboutPassStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "RoundaboutPassStepDetails"),
+            type = "structure",
+            name = "RoundaboutPassStepDetails",
+            target_id = id.from(_N, "RouteRoundaboutPassStepDetails"),
+            target = M.RouteRoundaboutPassStepDetails,
+        }),
+        TurnStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "TurnStepDetails"),
+            type = "structure",
+            name = "TurnStepDetails",
+            target_id = id.from(_N, "RouteTurnStepDetails"),
+            target = M.RouteTurnStepDetails,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UTurnStepDetails = schema.new({
+            id = id.from(_N, "RouteRentalTravelStep", "UTurnStepDetails"),
+            type = "structure",
+            name = "UTurnStepDetails",
+            target_id = id.from(_N, "RouteUTurnStepDetails"),
+            target = M.RouteUTurnStepDetails,
+        }),
+    },
+})
+
+M.RouteRentalLegDetails = schema.new({
+    id = id.from(_N, "RouteRentalLegDetails"),
+    type = "structure",
+    members = {
+        AfterTravelSteps = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "AfterTravelSteps"),
+            type = "list",
+            name = "AfterTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteRentalAfterTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Agency = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "Agency"),
+            type = "structure",
+            name = "Agency",
+            target_id = id.from(_N, "RouteRentalAgency"),
+            target = M.RouteRentalAgency,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arrival = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "Arrival"),
+            type = "structure",
+            name = "Arrival",
+            target_id = id.from(_N, "RouteRentalArrival"),
+            target = M.RouteRentalArrival,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributions = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "Attributions"),
+            type = "list",
+            name = "Attributions",
+            target_id = prelude.Document.id,
+            list_member = M.RouteAttribution,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BeforeTravelSteps = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "BeforeTravelSteps"),
+            type = "list",
+            name = "BeforeTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteRentalBeforeTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BookingWebLinks = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "BookingWebLinks"),
+            type = "list",
+            name = "BookingWebLinks",
+            target_id = prelude.Document.id,
+            list_member = M.RouteWebLink,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Departure = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "Departure"),
+            type = "structure",
+            name = "Departure",
+            target_id = id.from(_N, "RouteRentalDeparture"),
+            target = M.RouteRentalDeparture,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Summary = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "Summary"),
+            type = "structure",
+            name = "Summary",
+            target_id = id.from(_N, "RouteRentalSummary"),
+            target = M.RouteRentalSummary,
+        }),
+        Transport = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "Transport"),
+            type = "structure",
+            name = "Transport",
+            target_id = id.from(_N, "RouteRentalTransportModeDetails"),
+            target = M.RouteRentalTransportModeDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TravelSteps = schema.new({
+            id = id.from(_N, "RouteRentalLegDetails", "TravelSteps"),
+            type = "list",
+            name = "TravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteRentalTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteTaxiAfterTravelStep = schema.new({
+    id = id.from(_N, "RouteTaxiAfterTravelStep"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteTaxiAfterTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteTaxiAfterTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTaxiAfterTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteTaxiAgency = schema.new({
+    id = id.from(_N, "RouteTaxiAgency"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RouteTaxiAgency", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "RouteTaxiAgency", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTaxiPlace = schema.new({
+    id = id.from(_N, "RouteTaxiPlace"),
+    type = "structure",
+    members = {
+        AccessPointDetails = schema.new({
+            id = id.from(_N, "RouteTaxiPlace", "AccessPointDetails"),
+            type = "structure",
+            name = "AccessPointDetails",
+            target_id = id.from(_N, "RouteAccessPointDetails"),
+            target = M.RouteAccessPointDetails,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RouteTaxiPlace", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        OriginalPosition = schema.new({
+            id = id.from(_N, "RouteTaxiPlace", "OriginalPosition"),
+            type = "list",
+            name = "OriginalPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "RouteTaxiPlace", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StationDetails = schema.new({
+            id = id.from(_N, "RouteTaxiPlace", "StationDetails"),
+            type = "structure",
+            name = "StationDetails",
+            target_id = id.from(_N, "RouteStationDetails"),
+            target = M.RouteStationDetails,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTaxiPlace", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        WaypointIndex = schema.new({
+            id = id.from(_N, "RouteTaxiPlace", "WaypointIndex"),
+            type = "integer",
+            name = "WaypointIndex",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RouteTaxiArrival = schema.new({
+    id = id.from(_N, "RouteTaxiArrival"),
+    type = "structure",
+    members = {
+        Place = schema.new({
+            id = id.from(_N, "RouteTaxiArrival", "Place"),
+            type = "structure",
+            name = "Place",
+            target_id = id.from(_N, "RouteTaxiPlace"),
+            target = M.RouteTaxiPlace,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Time = schema.new({
+            id = id.from(_N, "RouteTaxiArrival", "Time"),
+            type = "string",
+            name = "Time",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTaxiBeforeTravelStep = schema.new({
+    id = id.from(_N, "RouteTaxiBeforeTravelStep"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteTaxiBeforeTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteTaxiBeforeTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTaxiBeforeTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteTaxiDeparture = schema.new({
+    id = id.from(_N, "RouteTaxiDeparture"),
+    type = "structure",
+    members = {
+        Place = schema.new({
+            id = id.from(_N, "RouteTaxiDeparture", "Place"),
+            type = "structure",
+            name = "Place",
+            target_id = id.from(_N, "RouteTaxiPlace"),
+            target = M.RouteTaxiPlace,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Time = schema.new({
+            id = id.from(_N, "RouteTaxiDeparture", "Time"),
+            type = "string",
+            name = "Time",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTaxiNotice = schema.new({
+    id = id.from(_N, "RouteTaxiNotice"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "RouteTaxiNotice", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Impact = schema.new({
+            id = id.from(_N, "RouteTaxiNotice", "Impact"),
+            type = "string",
+            name = "Impact",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTaxiOverviewSummary = schema.new({
+    id = id.from(_N, "RouteTaxiOverviewSummary"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteTaxiOverviewSummary", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "RouteTaxiOverviewSummary", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteTaxiTravelOnlySummary = schema.new({
+    id = id.from(_N, "RouteTaxiTravelOnlySummary"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteTaxiTravelOnlySummary", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteTaxiSummary = schema.new({
+    id = id.from(_N, "RouteTaxiSummary"),
+    type = "structure",
+    members = {
+        Overview = schema.new({
+            id = id.from(_N, "RouteTaxiSummary", "Overview"),
+            type = "structure",
+            name = "Overview",
+            target_id = id.from(_N, "RouteTaxiOverviewSummary"),
+            target = M.RouteTaxiOverviewSummary,
+        }),
+        TravelOnly = schema.new({
+            id = id.from(_N, "RouteTaxiSummary", "TravelOnly"),
+            type = "structure",
+            name = "TravelOnly",
+            target_id = id.from(_N, "RouteTaxiTravelOnlySummary"),
+            target = M.RouteTaxiTravelOnlySummary,
+        }),
+    },
+})
+
+M.RouteTaxiTransportModeDetails = schema.new({
+    id = id.from(_N, "RouteTaxiTransportModeDetails"),
+    type = "structure",
+    members = {
+        AvailableSeats = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "AvailableSeats"),
+            type = "integer",
+            name = "AvailableSeats",
+            target_id = prelude.Integer.id,
+        }),
+        Category = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "Category"),
+            type = "string",
+            name = "Category",
+            target_id = prelude.String.id,
+        }),
+        Color = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "Color"),
+            type = "string",
+            name = "Color",
+            target_id = prelude.String.id,
+        }),
+        Engine = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "Engine"),
+            type = "string",
+            name = "Engine",
+            target_id = prelude.String.id,
+        }),
+        LicensePlate = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "LicensePlate"),
+            type = "string",
+            name = "LicensePlate",
+            target_id = prelude.String.id,
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Model = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "Model"),
+            type = "string",
+            name = "Model",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        TextColor = schema.new({
+            id = id.from(_N, "RouteTaxiTransportModeDetails", "TextColor"),
+            type = "string",
+            name = "TextColor",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTaxiTravelStep = schema.new({
+    id = id.from(_N, "RouteTaxiTravelStep"),
+    type = "structure",
+    members = {
+        ContinueStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "ContinueStepDetails"),
+            type = "structure",
+            name = "ContinueStepDetails",
+            target_id = id.from(_N, "RouteContinueStepDetails"),
+            target = M.RouteContinueStepDetails,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        ExitStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "ExitStepDetails"),
+            type = "structure",
+            name = "ExitStepDetails",
+            target_id = id.from(_N, "RouteExitStepDetails"),
+            target = M.RouteExitStepDetails,
+        }),
+        GeometryOffset = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "GeometryOffset"),
+            type = "integer",
+            name = "GeometryOffset",
+            target_id = prelude.Integer.id,
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        KeepStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "KeepStepDetails"),
+            type = "structure",
+            name = "KeepStepDetails",
+            target_id = id.from(_N, "RouteKeepStepDetails"),
+            target = M.RouteKeepStepDetails,
+        }),
+        RampStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "RampStepDetails"),
+            type = "structure",
+            name = "RampStepDetails",
+            target_id = id.from(_N, "RouteRampStepDetails"),
+            target = M.RouteRampStepDetails,
+        }),
+        RoundaboutEnterStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "RoundaboutEnterStepDetails"),
+            type = "structure",
+            name = "RoundaboutEnterStepDetails",
+            target_id = id.from(_N, "RouteRoundaboutEnterStepDetails"),
+            target = M.RouteRoundaboutEnterStepDetails,
+        }),
+        RoundaboutExitStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "RoundaboutExitStepDetails"),
+            type = "structure",
+            name = "RoundaboutExitStepDetails",
+            target_id = id.from(_N, "RouteRoundaboutExitStepDetails"),
+            target = M.RouteRoundaboutExitStepDetails,
+        }),
+        RoundaboutPassStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "RoundaboutPassStepDetails"),
+            type = "structure",
+            name = "RoundaboutPassStepDetails",
+            target_id = id.from(_N, "RouteRoundaboutPassStepDetails"),
+            target = M.RouteRoundaboutPassStepDetails,
+        }),
+        TurnStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "TurnStepDetails"),
+            type = "structure",
+            name = "TurnStepDetails",
+            target_id = id.from(_N, "RouteTurnStepDetails"),
+            target = M.RouteTurnStepDetails,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UTurnStepDetails = schema.new({
+            id = id.from(_N, "RouteTaxiTravelStep", "UTurnStepDetails"),
+            type = "structure",
+            name = "UTurnStepDetails",
+            target_id = id.from(_N, "RouteUTurnStepDetails"),
+            target = M.RouteUTurnStepDetails,
+        }),
+    },
+})
+
+M.RouteTaxiLegDetails = schema.new({
+    id = id.from(_N, "RouteTaxiLegDetails"),
+    type = "structure",
+    members = {
+        AfterTravelSteps = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "AfterTravelSteps"),
+            type = "list",
+            name = "AfterTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTaxiAfterTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Agency = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "Agency"),
+            type = "structure",
+            name = "Agency",
+            target_id = id.from(_N, "RouteTaxiAgency"),
+            target = M.RouteTaxiAgency,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arrival = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "Arrival"),
+            type = "structure",
+            name = "Arrival",
+            target_id = id.from(_N, "RouteTaxiArrival"),
+            target = M.RouteTaxiArrival,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributions = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "Attributions"),
+            type = "list",
+            name = "Attributions",
+            target_id = prelude.Document.id,
+            list_member = M.RouteAttribution,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BeforeTravelSteps = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "BeforeTravelSteps"),
+            type = "list",
+            name = "BeforeTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTaxiBeforeTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BookingWebLinks = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "BookingWebLinks"),
+            type = "list",
+            name = "BookingWebLinks",
+            target_id = prelude.Document.id,
+            list_member = M.RouteWebLink,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Departure = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "Departure"),
+            type = "structure",
+            name = "Departure",
+            target_id = id.from(_N, "RouteTaxiDeparture"),
+            target = M.RouteTaxiDeparture,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Notices = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "Notices"),
+            type = "list",
+            name = "Notices",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTaxiNotice,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Summary = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "Summary"),
+            type = "structure",
+            name = "Summary",
+            target_id = id.from(_N, "RouteTaxiSummary"),
+            target = M.RouteTaxiSummary,
+        }),
+        Transport = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "Transport"),
+            type = "structure",
+            name = "Transport",
+            target_id = id.from(_N, "RouteTaxiTransportModeDetails"),
+            target = M.RouteTaxiTransportModeDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TravelSteps = schema.new({
+            id = id.from(_N, "RouteTaxiLegDetails", "TravelSteps"),
+            type = "list",
+            name = "TravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTaxiTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteTransitAfterTravelStep = schema.new({
+    id = id.from(_N, "RouteTransitAfterTravelStep"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteTransitAfterTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteTransitAfterTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTransitAfterTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteTransitAgency = schema.new({
+    id = id.from(_N, "RouteTransitAgency"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RouteTransitAgency", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "RouteTransitAgency", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTransitPlace = schema.new({
+    id = id.from(_N, "RouteTransitPlace"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RouteTransitPlace", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        OriginalPosition = schema.new({
+            id = id.from(_N, "RouteTransitPlace", "OriginalPosition"),
+            type = "list",
+            name = "OriginalPosition",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+        }),
+        Position = schema.new({
+            id = id.from(_N, "RouteTransitPlace", "Position"),
+            type = "list",
+            name = "Position",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StationDetails = schema.new({
+            id = id.from(_N, "RouteTransitPlace", "StationDetails"),
+            type = "structure",
+            name = "StationDetails",
+            target_id = id.from(_N, "RouteStationDetails"),
+            target = M.RouteStationDetails,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTransitPlace", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        WaypointIndex = schema.new({
+            id = id.from(_N, "RouteTransitPlace", "WaypointIndex"),
+            type = "integer",
+            name = "WaypointIndex",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RouteTransitArrival = schema.new({
+    id = id.from(_N, "RouteTransitArrival"),
+    type = "structure",
+    members = {
+        Delay = schema.new({
+            id = id.from(_N, "RouteTransitArrival", "Delay"),
+            type = "long",
+            name = "Delay",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Place = schema.new({
+            id = id.from(_N, "RouteTransitArrival", "Place"),
+            type = "structure",
+            name = "Place",
+            target_id = id.from(_N, "RouteTransitPlace"),
+            target = M.RouteTransitPlace,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RouteTransitArrival", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Time = schema.new({
+            id = id.from(_N, "RouteTransitArrival", "Time"),
+            type = "string",
+            name = "Time",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTransitBeforeTravelStep = schema.new({
+    id = id.from(_N, "RouteTransitBeforeTravelStep"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteTransitBeforeTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteTransitBeforeTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTransitBeforeTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteTransitDeparture = schema.new({
+    id = id.from(_N, "RouteTransitDeparture"),
+    type = "structure",
+    members = {
+        Delay = schema.new({
+            id = id.from(_N, "RouteTransitDeparture", "Delay"),
+            type = "long",
+            name = "Delay",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Place = schema.new({
+            id = id.from(_N, "RouteTransitDeparture", "Place"),
+            type = "structure",
+            name = "Place",
+            target_id = id.from(_N, "RouteTransitPlace"),
+            target = M.RouteTransitPlace,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RouteTransitDeparture", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Time = schema.new({
+            id = id.from(_N, "RouteTransitDeparture", "Time"),
+            type = "string",
+            name = "Time",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTransitIncident = schema.new({
+    id = id.from(_N, "RouteTransitIncident"),
+    type = "structure",
+    members = {
+        Description = schema.new({
+            id = id.from(_N, "RouteTransitIncident", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Effect = schema.new({
+            id = id.from(_N, "RouteTransitIncident", "Effect"),
+            type = "string",
+            name = "Effect",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "RouteTransitIncident", "EndTime"),
+            type = "string",
+            name = "EndTime",
+            target_id = prelude.String.id,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "RouteTransitIncident", "StartTime"),
+            type = "string",
+            name = "StartTime",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTransitIncident", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "RouteTransitIncident", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTransitTransportModeDetails = schema.new({
+    id = id.from(_N, "RouteTransitTransportModeDetails"),
+    type = "structure",
+    members = {
+        Accessibility = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "Accessibility"),
+            type = "structure",
+            name = "Accessibility",
+            target_id = id.from(_N, "RouteAccessibilityAvailabilityDetails"),
+            target = M.RouteAccessibilityAvailabilityDetails,
+        }),
+        Color = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "Color"),
+            type = "string",
+            name = "Color",
+            target_id = prelude.String.id,
+        }),
+        Headsign = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "Headsign"),
+            type = "string",
+            name = "Headsign",
+            target_id = prelude.String.id,
+        }),
+        LongRouteName = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "LongRouteName"),
+            type = "string",
+            name = "LongRouteName",
+            target_id = prelude.String.id,
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RouteName = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "RouteName"),
+            type = "string",
+            name = "RouteName",
+            target_id = prelude.String.id,
+        }),
+        ShortRouteName = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "ShortRouteName"),
+            type = "string",
+            name = "ShortRouteName",
+            target_id = prelude.String.id,
+        }),
+        TextColor = schema.new({
+            id = id.from(_N, "RouteTransitTransportModeDetails", "TextColor"),
+            type = "string",
+            name = "TextColor",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTransitIntermediateStop = schema.new({
+    id = id.from(_N, "RouteTransitIntermediateStop"),
+    type = "structure",
+    members = {
+        Attributes = schema.new({
+            id = id.from(_N, "RouteTransitIntermediateStop", "Attributes"),
+            type = "list",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Departure = schema.new({
+            id = id.from(_N, "RouteTransitIntermediateStop", "Departure"),
+            type = "structure",
+            name = "Departure",
+            target_id = id.from(_N, "RouteTransitDeparture"),
+            target = M.RouteTransitDeparture,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "RouteTransitIntermediateStop", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        GeometryOffset = schema.new({
+            id = id.from(_N, "RouteTransitIntermediateStop", "GeometryOffset"),
+            type = "integer",
+            name = "GeometryOffset",
+            target_id = prelude.Integer.id,
+        }),
+        Transport = schema.new({
+            id = id.from(_N, "RouteTransitIntermediateStop", "Transport"),
+            type = "structure",
+            name = "Transport",
+            target_id = id.from(_N, "RouteTransitTransportModeDetails"),
+            target = M.RouteTransitTransportModeDetails,
+        }),
+    },
+})
+
+M.RouteTransitNextDeparture = schema.new({
+    id = id.from(_N, "RouteTransitNextDeparture"),
+    type = "structure",
+    members = {
+        Delay = schema.new({
+            id = id.from(_N, "RouteTransitNextDeparture", "Delay"),
+            type = "long",
+            name = "Delay",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        PlatformName = schema.new({
+            id = id.from(_N, "RouteTransitNextDeparture", "PlatformName"),
+            type = "string",
+            name = "PlatformName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RouteTransitNextDeparture", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Time = schema.new({
+            id = id.from(_N, "RouteTransitNextDeparture", "Time"),
+            type = "string",
+            name = "Time",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Transport = schema.new({
+            id = id.from(_N, "RouteTransitNextDeparture", "Transport"),
+            type = "structure",
+            name = "Transport",
+            target_id = id.from(_N, "RouteTransitTransportModeDetails"),
+            target = M.RouteTransitTransportModeDetails,
+        }),
+    },
+})
+
+M.RouteTransitNotice = schema.new({
+    id = id.from(_N, "RouteTransitNotice"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "RouteTransitNotice", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Impact = schema.new({
+            id = id.from(_N, "RouteTransitNotice", "Impact"),
+            type = "string",
+            name = "Impact",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTransitSpan = schema.new({
+    id = id.from(_N, "RouteTransitSpan"),
+    type = "structure",
+    members = {
+        Country = schema.new({
+            id = id.from(_N, "RouteTransitSpan", "Country"),
+            type = "string",
+            name = "Country",
+            target_id = prelude.String.id,
+        }),
+        Distance = schema.new({
+            id = id.from(_N, "RouteTransitSpan", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "RouteTransitSpan", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        GeometryOffset = schema.new({
+            id = id.from(_N, "RouteTransitSpan", "GeometryOffset"),
+            type = "integer",
+            name = "GeometryOffset",
+            target_id = prelude.Integer.id,
+        }),
+        Names = schema.new({
+            id = id.from(_N, "RouteTransitSpan", "Names"),
+            type = "list",
+            name = "Names",
+            target_id = prelude.Document.id,
+            list_member = M.LocalizedString,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "RouteTransitSpan", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RouteTransitOverviewSummary = schema.new({
+    id = id.from(_N, "RouteTransitOverviewSummary"),
+    type = "structure",
+    members = {
+        Distance = schema.new({
+            id = id.from(_N, "RouteTransitOverviewSummary", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "RouteTransitOverviewSummary", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteTransitTravelOnlySummary = schema.new({
+    id = id.from(_N, "RouteTransitTravelOnlySummary"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "RouteTransitTravelOnlySummary", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
+
+M.RouteTransitSummary = schema.new({
+    id = id.from(_N, "RouteTransitSummary"),
+    type = "structure",
+    members = {
+        Overview = schema.new({
+            id = id.from(_N, "RouteTransitSummary", "Overview"),
+            type = "structure",
+            name = "Overview",
+            target_id = id.from(_N, "RouteTransitOverviewSummary"),
+            target = M.RouteTransitOverviewSummary,
+        }),
+        TravelOnly = schema.new({
+            id = id.from(_N, "RouteTransitSummary", "TravelOnly"),
+            type = "structure",
+            name = "TravelOnly",
+            target_id = id.from(_N, "RouteTransitTravelOnlySummary"),
+            target = M.RouteTransitTravelOnlySummary,
+        }),
+    },
+})
+
+M.RouteTransitTravelStep = schema.new({
+    id = id.from(_N, "RouteTransitTravelStep"),
+    type = "structure",
+    members = {
+        Distance = schema.new({
+            id = id.from(_N, "RouteTransitTravelStep", "Distance"),
+            type = "long",
+            name = "Distance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "RouteTransitTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        GeometryOffset = schema.new({
+            id = id.from(_N, "RouteTransitTravelStep", "GeometryOffset"),
+            type = "integer",
+            name = "GeometryOffset",
+            target_id = prelude.Integer.id,
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteTransitTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteTransitTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteTransitLegDetails = schema.new({
+    id = id.from(_N, "RouteTransitLegDetails"),
+    type = "structure",
+    members = {
+        AfterTravelSteps = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "AfterTravelSteps"),
+            type = "list",
+            name = "AfterTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitAfterTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Agency = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Agency"),
+            type = "structure",
+            name = "Agency",
+            target_id = id.from(_N, "RouteTransitAgency"),
+            target = M.RouteTransitAgency,
+        }),
+        Arrival = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Arrival"),
+            type = "structure",
+            name = "Arrival",
+            target_id = id.from(_N, "RouteTransitArrival"),
+            target = M.RouteTransitArrival,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributions = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Attributions"),
+            type = "list",
+            name = "Attributions",
+            target_id = prelude.Document.id,
+            list_member = M.RouteAttribution,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BeforeTravelSteps = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "BeforeTravelSteps"),
+            type = "list",
+            name = "BeforeTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitBeforeTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BookingWebLinks = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "BookingWebLinks"),
+            type = "list",
+            name = "BookingWebLinks",
+            target_id = prelude.Document.id,
+            list_member = M.RouteWebLink,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Departure = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Departure"),
+            type = "structure",
+            name = "Departure",
+            target_id = id.from(_N, "RouteTransitDeparture"),
+            target = M.RouteTransitDeparture,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Incidents = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Incidents"),
+            type = "list",
+            name = "Incidents",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitIncident,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IntermediateStops = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "IntermediateStops"),
+            type = "list",
+            name = "IntermediateStops",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitIntermediateStop,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextDepartures = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "NextDepartures"),
+            type = "list",
+            name = "NextDepartures",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitNextDeparture,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Notices = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Notices"),
+            type = "list",
+            name = "Notices",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitNotice,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PassThroughWaypoints = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "PassThroughWaypoints"),
+            type = "list",
+            name = "PassThroughWaypoints",
+            target_id = prelude.Document.id,
+            list_member = M.RoutePassThroughWaypoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Spans = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Spans"),
+            type = "list",
+            name = "Spans",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitSpan,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Summary = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Summary"),
+            type = "structure",
+            name = "Summary",
+            target_id = id.from(_N, "RouteTransitSummary"),
+            target = M.RouteTransitSummary,
+        }),
+        Transport = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "Transport"),
+            type = "structure",
+            name = "Transport",
+            target_id = id.from(_N, "RouteTransitTransportModeDetails"),
+            target = M.RouteTransitTransportModeDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TravelSteps = schema.new({
+            id = id.from(_N, "RouteTransitLegDetails", "TravelSteps"),
+            type = "list",
+            name = "TravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteTransitTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RouteChargeStepDetails = schema.new({
+    id = id.from(_N, "RouteChargeStepDetails"),
+    type = "structure",
+    members = {
+        ArrivalCharge = schema.new({
+            id = id.from(_N, "RouteChargeStepDetails", "ArrivalCharge"),
+            type = "double",
+            name = "ArrivalCharge",
+            target_id = prelude.Double.id,
+        }),
+        ConsumablePower = schema.new({
+            id = id.from(_N, "RouteChargeStepDetails", "ConsumablePower"),
+            type = "double",
+            name = "ConsumablePower",
+            target_id = prelude.Double.id,
+        }),
+        DesiredCharge = schema.new({
+            id = id.from(_N, "RouteChargeStepDetails", "DesiredCharge"),
+            type = "double",
+            name = "DesiredCharge",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.RouteVehicleAfterTravelStep = schema.new({
+    id = id.from(_N, "RouteVehicleAfterTravelStep"),
+    type = "structure",
+    members = {
+        ChargeStepDetails = schema.new({
+            id = id.from(_N, "RouteVehicleAfterTravelStep", "ChargeStepDetails"),
+            type = "structure",
+            name = "ChargeStepDetails",
+            target_id = id.from(_N, "RouteChargeStepDetails"),
+            target = M.RouteChargeStepDetails,
+        }),
+        Duration = schema.new({
+            id = id.from(_N, "RouteVehicleAfterTravelStep", "Duration"),
+            type = "long",
+            name = "Duration",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        Instruction = schema.new({
+            id = id.from(_N, "RouteVehicleAfterTravelStep", "Instruction"),
+            type = "string",
+            name = "Instruction",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteVehicleAfterTravelStep", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RouteVehiclePlace = schema.new({
     id = id.from(_N, "RouteVehiclePlace"),
     type = "structure",
@@ -4828,6 +7298,26 @@ M.RouteVehiclePlace = schema.new({
             type = "integer",
             name = "WaypointIndex",
             target_id = prelude.Integer.id,
+        }),
+        AccessPointDetails = schema.new({
+            id = id.from(_N, "RouteVehiclePlace", "AccessPointDetails"),
+            type = "structure",
+            name = "AccessPointDetails",
+            target_id = id.from(_N, "RouteAccessPointDetails"),
+            target = M.RouteAccessPointDetails,
+        }),
+        StationDetails = schema.new({
+            id = id.from(_N, "RouteVehiclePlace", "StationDetails"),
+            type = "structure",
+            name = "StationDetails",
+            target_id = id.from(_N, "RouteStationDetails"),
+            target = M.RouteStationDetails,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "RouteVehiclePlace", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5818,129 +8308,6 @@ M.RouteEnterHighwayStepDetails = schema.new({
     },
 })
 
-M.RouteExitStepDetails = schema.new({
-    id = id.from(_N, "RouteExitStepDetails"),
-    type = "structure",
-    members = {
-        Intersection = schema.new({
-            id = id.from(_N, "RouteExitStepDetails", "Intersection"),
-            type = "list",
-            name = "Intersection",
-            target_id = prelude.Document.id,
-            list_member = M.LocalizedString,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RelativeExit = schema.new({
-            id = id.from(_N, "RouteExitStepDetails", "RelativeExit"),
-            type = "integer",
-            name = "RelativeExit",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
-        }),
-        SteeringDirection = schema.new({
-            id = id.from(_N, "RouteExitStepDetails", "SteeringDirection"),
-            type = "string",
-            name = "SteeringDirection",
-            target_id = prelude.String.id,
-        }),
-        TurnAngle = schema.new({
-            id = id.from(_N, "RouteExitStepDetails", "TurnAngle"),
-            type = "double",
-            name = "TurnAngle",
-            target_id = prelude.Double.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-            },
-        }),
-        TurnIntensity = schema.new({
-            id = id.from(_N, "RouteExitStepDetails", "TurnIntensity"),
-            type = "string",
-            name = "TurnIntensity",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.RouteRampStepDetails = schema.new({
-    id = id.from(_N, "RouteRampStepDetails"),
-    type = "structure",
-    members = {
-        Intersection = schema.new({
-            id = id.from(_N, "RouteRampStepDetails", "Intersection"),
-            type = "list",
-            name = "Intersection",
-            target_id = prelude.Document.id,
-            list_member = M.LocalizedString,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        SteeringDirection = schema.new({
-            id = id.from(_N, "RouteRampStepDetails", "SteeringDirection"),
-            type = "string",
-            name = "SteeringDirection",
-            target_id = prelude.String.id,
-        }),
-        TurnAngle = schema.new({
-            id = id.from(_N, "RouteRampStepDetails", "TurnAngle"),
-            type = "double",
-            name = "TurnAngle",
-            target_id = prelude.Double.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-            },
-        }),
-        TurnIntensity = schema.new({
-            id = id.from(_N, "RouteRampStepDetails", "TurnIntensity"),
-            type = "string",
-            name = "TurnIntensity",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.RouteUTurnStepDetails = schema.new({
-    id = id.from(_N, "RouteUTurnStepDetails"),
-    type = "structure",
-    members = {
-        Intersection = schema.new({
-            id = id.from(_N, "RouteUTurnStepDetails", "Intersection"),
-            type = "list",
-            name = "Intersection",
-            target_id = prelude.Document.id,
-            list_member = M.LocalizedString,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        SteeringDirection = schema.new({
-            id = id.from(_N, "RouteUTurnStepDetails", "SteeringDirection"),
-            type = "string",
-            name = "SteeringDirection",
-            target_id = prelude.String.id,
-        }),
-        TurnAngle = schema.new({
-            id = id.from(_N, "RouteUTurnStepDetails", "TurnAngle"),
-            type = "double",
-            name = "TurnAngle",
-            target_id = prelude.Double.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-            },
-        }),
-        TurnIntensity = schema.new({
-            id = id.from(_N, "RouteUTurnStepDetails", "TurnIntensity"),
-            type = "string",
-            name = "TurnIntensity",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.RouteVehicleTravelStep = schema.new({
     id = id.from(_N, "RouteVehicleTravelStep"),
     type = "structure",
@@ -6116,6 +8483,17 @@ M.RouteVehicleLegDetails = schema.new({
     id = id.from(_N, "RouteVehicleLegDetails"),
     type = "structure",
     members = {
+        AfterTravelSteps = schema.new({
+            id = id.from(_N, "RouteVehicleLegDetails", "AfterTravelSteps"),
+            type = "list",
+            name = "AfterTravelSteps",
+            target_id = prelude.Document.id,
+            list_member = M.RouteVehicleAfterTravelStep,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = {} },
+            },
+        }),
         Arrival = schema.new({
             id = id.from(_N, "RouteVehicleLegDetails", "Arrival"),
             type = "structure",
@@ -6294,6 +8672,27 @@ M.RouteLeg = schema.new({
             name = "VehicleLegDetails",
             target_id = id.from(_N, "RouteVehicleLegDetails"),
             target = M.RouteVehicleLegDetails,
+        }),
+        RentalLegDetails = schema.new({
+            id = id.from(_N, "RouteLeg", "RentalLegDetails"),
+            type = "structure",
+            name = "RentalLegDetails",
+            target_id = id.from(_N, "RouteRentalLegDetails"),
+            target = M.RouteRentalLegDetails,
+        }),
+        TaxiLegDetails = schema.new({
+            id = id.from(_N, "RouteLeg", "TaxiLegDetails"),
+            type = "structure",
+            name = "TaxiLegDetails",
+            target_id = id.from(_N, "RouteTaxiLegDetails"),
+            target = M.RouteTaxiLegDetails,
+        }),
+        TransitLegDetails = schema.new({
+            id = id.from(_N, "RouteLeg", "TransitLegDetails"),
+            type = "structure",
+            name = "TransitLegDetails",
+            target_id = id.from(_N, "RouteTransitLegDetails"),
+            target = M.RouteTransitLegDetails,
         }),
     },
 })
@@ -7848,7 +10247,7 @@ M.CalculateIsolines = schema.operation({
     input = M.CalculateIsolinesInput,
     output = M.CalculateIsolinesOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/isolines" },
+        [traits.HTTP] = { method = "POST", path = "/v2/isolines" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7860,7 +10259,7 @@ M.CalculateRouteMatrix = schema.operation({
     input = M.CalculateRouteMatrixInput,
     output = M.CalculateRouteMatrixOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/route-matrix" },
+        [traits.HTTP] = { method = "POST", path = "/v2/route-matrix" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7872,7 +10271,7 @@ M.CalculateRoutes = schema.operation({
     input = M.CalculateRoutesInput,
     output = M.CalculateRoutesOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/routes" },
+        [traits.HTTP] = { method = "POST", path = "/v2/routes" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7884,7 +10283,7 @@ M.OptimizeWaypoints = schema.operation({
     input = M.OptimizeWaypointsInput,
     output = M.OptimizeWaypointsOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/optimize-waypoints" },
+        [traits.HTTP] = { method = "POST", path = "/v2/optimize-waypoints" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7896,7 +10295,7 @@ M.SnapToRoads = schema.operation({
     input = M.SnapToRoadsInput,
     output = M.SnapToRoadsOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/snap-to-roads" },
+        [traits.HTTP] = { method = "POST", path = "/v2/snap-to-roads" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -29,6 +29,17 @@ local record M
         "TTL"
     end
 
+    enum IteratorPosition
+        "AT_TIP"
+        "BEHIND_TIP"
+    end
+
+    -- Provides information about the current iterator.
+    record IteratorDescription
+        -- Indicates the current iterator's position within the shard. The possible values are: AT_TIP - No more records are currently available. BEHIND_TIP - Additional records may be available. Stream progresses in absence of customer records. BEHIND_TIP with an empty changeRecords list indicates the stream is progressing but no customer records are available at this position. Continue polling normally.
+        iteratorPosition: string
+    end
+
     -- The Amazon Keyspaces service encountered an unexpected error while processing the request. This internal server error is not related to your request parameters. Retry your request after a brief delay. If the issue persists, contact Amazon Web Services Support with details of your request to help identify and resolve the problem.
     record InternalServerException
         -- The service encountered an internal error. Try your request again.
@@ -298,6 +309,8 @@ local record M
         changeRecords: {Record}
         -- The next position in the shard from which to start sequentially reading data records. If null, the shard has been closed and the requested iterator will not return any more data.
         nextShardIterator: string
+        -- Provides information about the current iterator at the time GetRecords request was processed by Keyspaces.
+        iteratorDescription: IteratorDescription
     end
 
 end

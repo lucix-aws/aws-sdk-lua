@@ -159,7 +159,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo.{Region}.{PartitionResult#dnsSuffix}/v2",
+                                        url = "https://routes.geo.{Region}.{PartitionResult#dnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },
@@ -202,7 +202,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}/v2",
+                                        url = "https://routes.geo-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },
@@ -245,7 +245,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo-fips.{Region}.{PartitionResult#dnsSuffix}/v2",
+                                        url = "https://routes.geo-fips.{Region}.{PartitionResult#dnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },
@@ -288,7 +288,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo.{Region}.{PartitionResult#dualStackDnsSuffix}/v2",
+                                        url = "https://routes.geo.{Region}.{PartitionResult#dualStackDnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },
@@ -331,7 +331,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo.{Region}.us-gov.{PartitionResult#dnsSuffix}/v2",
+                                        url = "https://routes.geo.{Region}.us-gov.{PartitionResult#dnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },
@@ -374,7 +374,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo-fips.{Region}.us-gov.{PartitionResult#dualStackDnsSuffix}/v2",
+                                        url = "https://routes.geo-fips.{Region}.us-gov.{PartitionResult#dualStackDnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },
@@ -417,7 +417,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo-fips.{Region}.us-gov.{PartitionResult#dnsSuffix}/v2",
+                                        url = "https://routes.geo-fips.{Region}.us-gov.{PartitionResult#dnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },
@@ -460,7 +460,7 @@ return
                                         },
                                     },
                                     endpoint = {
-                                        url = "https://routes.geo.{Region}.us-gov.{PartitionResult#dualStackDnsSuffix}/v2",
+                                        url = "https://routes.geo.{Region}.us-gov.{PartitionResult#dualStackDnsSuffix}",
                                         properties = {},
                                         headers = {},
                                     },

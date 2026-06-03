@@ -231,6 +231,10 @@ M.CapacityManagerDataExportResponseSet = schema.new({ type = "list", list_member
 
 M.CapacityReservationBillingRequestSet = schema.new({ type = "list", list_member = M.CapacityReservationBillingRequest })
 
+M.CapacityReservationCancellationQuoteIdSet = schema.new({ type = "list", list_member = prelude.String })
+
+M.CapacityReservationCancellationQuoteResponseSet = schema.new({ type = "list", list_member = M.CapacityReservationCancellationQuote })
+
 M.CapacityReservationFleetSet = schema.new({ type = "list", list_member = M.CapacityReservationFleet })
 
 M.CapacityReservationSet = schema.new({ type = "list", list_member = M.CapacityReservation })
@@ -1010,6 +1014,8 @@ M.InstanceEventWindowTimeRangeList = schema.new({ type = "list", list_member = M
 M.VerifiedAccessTrustProviderCondensedList = schema.new({ type = "list", list_member = M.VerifiedAccessTrustProviderCondensed })
 
 M.CapacityAllocations = schema.new({ type = "list", list_member = M.CapacityAllocation })
+
+M.CancellationTermsSet = schema.new({ type = "list", list_member = M.CancellationTerms })
 
 M.ClientVpnAvailabilityZoneSet = schema.new({ type = "list", list_member = prelude.String })
 
@@ -11126,6 +11132,18 @@ M.CancelCapacityReservationInput = schema.new({
             name = "DryRun",
             target_id = prelude.Boolean.id,
         }),
+        ApplyCancellationCharges = schema.new({
+            id = id.from(_N, "CancelCapacityReservationInput", "ApplyCancellationCharges"),
+            type = "string",
+            name = "ApplyCancellationCharges",
+            target_id = prelude.String.id,
+        }),
+        QuoteId = schema.new({
+            id = id.from(_N, "CancelCapacityReservationInput", "QuoteId"),
+            type = "string",
+            name = "QuoteId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -13602,6 +13620,239 @@ M.CreateCapacityReservationBySplittingOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "instanceCount" },
                 [traits.EC2_QUERY_NAME] = { name = "InstanceCount" },
+            },
+        }),
+    },
+})
+
+M.CreateCapacityReservationCancellationQuoteInput = schema.new({
+    id = id.from(_N, "CreateCapacityReservationCancellationQuoteRequest"),
+    type = "structure",
+    members = {
+        CapacityReservationId = schema.new({
+            id = id.from(_N, "CreateCapacityReservationCancellationQuoteInput", "CapacityReservationId"),
+            type = "string",
+            name = "CapacityReservationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateCapacityReservationCancellationQuoteInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CreateCapacityReservationCancellationQuoteInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagSpecification" },
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateCapacityReservationCancellationQuoteInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CancellationTerms = schema.new({
+    id = id.from(_N, "CancellationTerms"),
+    type = "structure",
+    members = {
+        CancellationType = schema.new({
+            id = id.from(_N, "CancellationTerms", "CancellationType"),
+            type = "string",
+            name = "CancellationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "cancellationType" },
+                [traits.EC2_QUERY_NAME] = { name = "CancellationType" },
+            },
+        }),
+        ReservationState = schema.new({
+            id = id.from(_N, "CancellationTerms", "ReservationState"),
+            type = "string",
+            name = "ReservationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "reservationState" },
+                [traits.EC2_QUERY_NAME] = { name = "ReservationState" },
+            },
+        }),
+        CommittedInstanceCount = schema.new({
+            id = id.from(_N, "CancellationTerms", "CommittedInstanceCount"),
+            type = "integer",
+            name = "CommittedInstanceCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "committedInstanceCount" },
+                [traits.EC2_QUERY_NAME] = { name = "CommittedInstanceCount" },
+            },
+        }),
+        ChargeCommitmentDurationHours = schema.new({
+            id = id.from(_N, "CancellationTerms", "ChargeCommitmentDurationHours"),
+            type = "long",
+            name = "ChargeCommitmentDurationHours",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.XML_NAME] = { name = "chargeCommitmentDurationHours" },
+                [traits.EC2_QUERY_NAME] = { name = "ChargeCommitmentDurationHours" },
+            },
+        }),
+        ChargeEndDate = schema.new({
+            id = id.from(_N, "CancellationTerms", "ChargeEndDate"),
+            type = "timestamp",
+            name = "ChargeEndDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "chargeEndDate" },
+                [traits.EC2_QUERY_NAME] = { name = "ChargeEndDate" },
+            },
+        }),
+    },
+})
+
+M.CapacityReservationConfiguration = schema.new({
+    id = id.from(_N, "CapacityReservationConfiguration"),
+    type = "structure",
+    members = {
+        InstanceCount = schema.new({
+            id = id.from(_N, "CapacityReservationConfiguration", "InstanceCount"),
+            type = "integer",
+            name = "InstanceCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceCount" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceCount" },
+            },
+        }),
+        ReservationState = schema.new({
+            id = id.from(_N, "CapacityReservationConfiguration", "ReservationState"),
+            type = "string",
+            name = "ReservationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "reservationState" },
+                [traits.EC2_QUERY_NAME] = { name = "ReservationState" },
+            },
+        }),
+    },
+})
+
+M.CapacityReservationCancellationQuote = schema.new({
+    id = id.from(_N, "CapacityReservationCancellationQuote"),
+    type = "structure",
+    members = {
+        CapacityReservationCancellationQuoteId = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "CapacityReservationCancellationQuoteId"),
+            type = "string",
+            name = "CapacityReservationCancellationQuoteId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationCancellationQuoteId" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationCancellationQuoteId" },
+            },
+        }),
+        CapacityReservationId = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "CapacityReservationId"),
+            type = "string",
+            name = "CapacityReservationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationId" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationId" },
+            },
+        }),
+        CreateTime = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "CreateTime"),
+            type = "timestamp",
+            name = "CreateTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "createTime" },
+                [traits.EC2_QUERY_NAME] = { name = "CreateTime" },
+            },
+        }),
+        ExpirationTime = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "ExpirationTime"),
+            type = "timestamp",
+            name = "ExpirationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "expirationTime" },
+                [traits.EC2_QUERY_NAME] = { name = "ExpirationTime" },
+            },
+        }),
+        QuoteState = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "QuoteState"),
+            type = "string",
+            name = "QuoteState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "quoteState" },
+                [traits.EC2_QUERY_NAME] = { name = "QuoteState" },
+            },
+        }),
+        CurrentConfiguration = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "CurrentConfiguration"),
+            type = "structure",
+            name = "CurrentConfiguration",
+            target_id = id.from(_N, "CapacityReservationConfiguration"),
+            target = M.CapacityReservationConfiguration,
+            traits = {
+                [traits.XML_NAME] = { name = "currentConfiguration" },
+                [traits.EC2_QUERY_NAME] = { name = "CurrentConfiguration" },
+            },
+        }),
+        CancellationTerms = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "CancellationTerms"),
+            type = "list",
+            name = "CancellationTerms",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.CancellationTerms, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "cancellationTermSet" },
+                [traits.EC2_QUERY_NAME] = { name = "CancellationTermSet" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CapacityReservationCancellationQuote", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+    },
+})
+
+M.CreateCapacityReservationCancellationQuoteOutput = schema.new({
+    id = id.from(_N, "CreateCapacityReservationCancellationQuoteResult"),
+    type = "structure",
+    members = {
+        CapacityReservationCancellationQuote = schema.new({
+            id = id.from(_N, "CreateCapacityReservationCancellationQuoteOutput", "CapacityReservationCancellationQuote"),
+            type = "structure",
+            name = "CapacityReservationCancellationQuote",
+            target_id = id.from(_N, "CapacityReservationCancellationQuote"),
+            target = M.CapacityReservationCancellationQuote,
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationCancellationQuote" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationCancellationQuote" },
             },
         }),
     },
@@ -48041,6 +48292,79 @@ M.DescribeCapacityReservationBillingRequestsOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "capacityReservationBillingRequestSet" },
                 [traits.EC2_QUERY_NAME] = { name = "CapacityReservationBillingRequestSet" },
+            },
+        }),
+    },
+})
+
+M.DescribeCapacityReservationCancellationQuotesInput = schema.new({
+    id = id.from(_N, "DescribeCapacityReservationCancellationQuotesRequest"),
+    type = "structure",
+    members = {
+        CapacityReservationCancellationQuoteIds = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationCancellationQuotesInput", "CapacityReservationCancellationQuoteIds"),
+            type = "list",
+            name = "CapacityReservationCancellationQuoteIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "CapacityReservationCancellationQuoteId" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationCancellationQuotesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationCancellationQuotesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationCancellationQuotesInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationCancellationQuotesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+    },
+})
+
+M.DescribeCapacityReservationCancellationQuotesOutput = schema.new({
+    id = id.from(_N, "DescribeCapacityReservationCancellationQuotesResult"),
+    type = "structure",
+    members = {
+        CapacityReservationCancellationQuotes = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationCancellationQuotesOutput", "CapacityReservationCancellationQuotes"),
+            type = "list",
+            name = "CapacityReservationCancellationQuotes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.CapacityReservationCancellationQuote, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "capacityReservationCancellationQuoteSet" },
+                [traits.EC2_QUERY_NAME] = { name = "CapacityReservationCancellationQuoteSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeCapacityReservationCancellationQuotesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
             },
         }),
     },
@@ -105861,6 +106185,17 @@ M.CreateCapacityReservationBySplitting = schema.operation({
     },
 })
 
+M.CreateCapacityReservationCancellationQuote = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateCapacityReservationCancellationQuote"),
+    input = M.CreateCapacityReservationCancellationQuoteInput,
+    output = M.CreateCapacityReservationCancellationQuoteOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateCapacityReservationFleet = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateCapacityReservationFleet"),
     input = M.CreateCapacityReservationFleetInput,
@@ -108252,6 +108587,17 @@ M.DescribeCapacityReservationBillingRequests = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeCapacityReservationBillingRequests"),
     input = M.DescribeCapacityReservationBillingRequestsInput,
     output = M.DescribeCapacityReservationBillingRequestsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeCapacityReservationCancellationQuotes = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeCapacityReservationCancellationQuotes"),
+    input = M.DescribeCapacityReservationCancellationQuotesInput,
+    output = M.DescribeCapacityReservationCancellationQuotesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -303,6 +303,19 @@ local record M
         "disabled"
     end
 
+    enum Durability
+        "default"
+        "async"
+        "sync"
+        "disabled"
+    end
+
+    enum EffectiveDurability
+        "async"
+        "sync"
+        "disabled"
+    end
+
     -- The name of the Global datastore and role of this replication group in the Global
     -- datastore.
     record GlobalReplicationGroupInfo
@@ -515,6 +528,12 @@ local record M
         ClusterMode: string
     end
 
+    enum StorageEncryptionType
+        "none"
+        "sse-elasticache"
+        "sse-kms"
+    end
+
     -- Contains all of the attributes of a specific Valkey or Redis OSS replication group.
     record ReplicationGroup
         -- The identifier for the replication group.
@@ -582,20 +601,21 @@ local record M
         -- later.
         -- Default: false
         TransitEncryptionEnabled: boolean
-        -- A flag that enables encryption at-rest when set to true.
-        -- You cannot modify the value of AtRestEncryptionEnabled after the cluster
-        -- is created. To enable encryption at-rest on a cluster you must set
-        -- AtRestEncryptionEnabled to true when you create a
-        -- cluster.
-        -- Required: Only available when creating a replication
-        -- group in an Amazon VPC using Redis OSS version 3.2.6, 4.x or
-        -- later.
-        -- Default: false
+        -- A flag that enables encryption at-rest on the cluster when set to true.
+        -- In some cases, encryption at-rest may be enabled even when this value is false.
+        -- Use StorageEncryptionType to view the effective encryption state of a cluster.
+        -- You cannot modify the value of AtRestEncryptionEnabled after the cluster is created.
+        -- Default: true when using Valkey, false when using Redis OSS
         AtRestEncryptionEnabled: boolean
         -- The outpost ARNs of the replication group's member clusters.
         MemberClustersOutpostArns: {string}
         -- The ID of the KMS key used to encrypt the disk in the cluster.
         KmsKeyId: string
+        -- Indicates the type of encryption for data stored at rest in the replication group.
+        -- The value is none if at-rest encryption is not enabled,
+        -- sse-elasticache if an ElastiCache service-managed key is used, or
+        -- sse-kms if a customer-managed KMS key is used.
+        StorageEncryptionType: string
         -- The ARN (Amazon Resource Name) of the replication group.
         ARN: string
         -- The ID of the user group associated to the replication group.
@@ -631,6 +651,13 @@ local record M
         ClusterMode: string
         -- The engine used in a replication group. The options are valkey, memcached or redis.
         Engine: string
+        -- The durability setting of the replication group. For more information, see Durability.
+        Durability: string
+        -- The effective durability of the replication group. When Durability is set to
+        -- default, the service resolves the actual durability based on the engine version,
+        -- cluster mode, and other parameters. This field reflects the resolved value. For more
+        -- information, see Configuring Durability.
+        EffectiveDurability: string
     end
 
     record CompleteMigrationOutput
@@ -985,6 +1012,10 @@ local record M
         -- r6gd node type. This parameter must be set to true when using r6gd nodes. For more
         -- information, see Data tiering.
         DataTiering: string
+        -- The durability setting of the cluster when the snapshot was taken. When restoring from this snapshot,
+        -- the cluster uses this durability setting unless overridden in the restore request. For more information,
+        -- see Durability.
+        Durability: string
     end
 
     record CopySnapshotOutput
@@ -2395,14 +2426,10 @@ local record M
         -- true, an AuthToken, and a
         -- CacheSubnetGroup.
         TransitEncryptionEnabled: boolean
-        -- A flag that enables encryption at rest when set to true.
-        -- You cannot modify the value of AtRestEncryptionEnabled after the
-        -- replication group is created. To enable encryption at rest on a replication group you
-        -- must set AtRestEncryptionEnabled to true when you create the
-        -- replication group.
-        -- Required: Only available when creating a replication
-        -- group in an Amazon VPC using Valkey 7.2 and later, Redis OSS version 3.2.6, or Redis OSS 4.x and
-        -- later.
+        -- A flag that enables encryption at-rest on the replication group when set to true.
+        -- In some cases, encryption at-rest may be enabled even when this value is false.
+        -- Use StorageEncryptionType to view the effective encryption state of a cluster.
+        -- You cannot modify the value of AtRestEncryptionEnabled after the replication group is created.
         -- Default: true when using Valkey, false when using Redis OSS
         AtRestEncryptionEnabled: boolean
         -- The ID of the KMS key used to encrypt the disk in the cluster.
@@ -2445,6 +2472,12 @@ local record M
         ClusterMode: string
         -- The name of the snapshot used to create a replication group. Available for Valkey, Redis OSS only.
         ServerlessCacheSnapshotName: string
+        -- Specifies the durability setting for the replication group.
+        -- When set to default, the service determines the effective durability based on
+        -- the engine version, cluster mode, and other parameters. The resolved setting is reflected
+        -- in the EffectiveDurability property of the replication group. For more
+        -- information, see Durability.
+        Durability: string
     end
 
     record CreateReplicationGroupOutput
@@ -2548,7 +2581,7 @@ local record M
         DailySnapshotTime: string
         -- The IP protocol version used by the serverless cache.
         -- Must be either ipv4 | ipv6 | dual_stack.
-        -- ipv6 is only supported with ipv6-only subnets.
+        -- ipv6 is only supported with IPv6-only subnets.
         -- If not specified, defaults to ipv4, unless all provided subnets are IPv6-only, in which case it defaults to ipv6.
         NetworkType: string
     end
@@ -2573,6 +2606,11 @@ local record M
         CacheUsageLimits: CacheUsageLimits
         -- The ID of the Amazon Web Services Key Management Service (KMS) key that is used to encrypt data at rest in the serverless cache.
         KmsKeyId: string
+        -- Indicates the type of encryption for data stored at rest in the serverless cache.
+        -- Serverless caches are always encrypted at rest. The value is
+        -- sse-elasticache if an ElastiCache service-managed key is used, or
+        -- sse-kms if a customer-managed KMS key is used.
+        StorageEncryptionType: string
         -- The IDs of the EC2 security groups associated with the serverless
         -- cache.
         SecurityGroupIds: {string}
@@ -5144,6 +5182,11 @@ local record M
         -- clients to use cluster mode enabled, you can then complete cluster mode configuration
         -- and set the cluster mode to Enabled.
         ClusterMode: string
+        -- Specifies the durability setting for the replication group.
+        -- Use this parameter to change the durability mode of an existing replication group,
+        -- for example from sync to async or vice versa. For more
+        -- information, see Durability.
+        Durability: string
     end
 
     record ModifyReplicationGroupOutput

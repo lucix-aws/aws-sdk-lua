@@ -7730,6 +7730,31 @@ local record M
         JobArn: string
     end
 
+    enum JobCategory
+        "AgentRFT"
+        "AgentRFTEvaluation"
+    end
+
+    record CreateJobInput
+        -- The name of the job. The name must be unique within your account and Amazon Web Services Region.
+        JobName: string
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon SageMaker assumes to perform the job. The role must have the necessary permissions to access the resources required by the job configuration.
+        RoleArn: string
+        -- The category of the job. The category determines the type of workload that the job runs.
+        JobCategory: string
+        -- The version of the configuration schema to use for the job configuration document. Use ListJobSchemaVersions to get available schema versions for a job category.
+        JobConfigSchemaVersion: string
+        -- The JSON configuration document for the job. The document must conform to the schema specified by JobConfigSchemaVersion. Use DescribeJobSchemaVersion to retrieve the schema for validation.
+        JobConfigDocument: string
+        -- An array of key-value pairs to apply to the job as tags. For more information, see Tagging Amazon Web Services Resources.
+        Tags: {Tag}
+    end
+
+    record CreateJobOutput
+        -- The Amazon Resource Name (ARN) of the job.
+        JobArn: string
+    end
+
     -- Provided configuration information for the worker UI for a labeling job. Provide either HumanTaskUiArn or UiTemplateS3Uri. For named entity recognition, 3D point cloud and video frame labeling jobs, use HumanTaskUiArn. For all other Ground Truth built-in task types and custom task types, use UiTemplateS3Uri to specify the location of a worker task template in Amazon S3.
     record UiConfig
         -- The Amazon S3 bucket location of the UI template, or worker task template. This is the template used to render the worker UI and tools for labeling job tasks. For more information about the contents of a UI template, see Creating Your Custom Labeling Task Template.
@@ -10458,6 +10483,16 @@ local record M
         InferenceExperimentArn: string
     end
 
+    record DeleteJobInput
+        -- The name of the job to delete.
+        JobName: string
+        -- The category of the job to delete.
+        JobCategory: string
+    end
+
+    record DeleteJobOutput
+    end
+
     record DeleteMlflowAppInput
         -- The ARN of the MLflow App to delete.
         Arn: string
@@ -12775,6 +12810,100 @@ local record M
         InferenceRecommendations: {InferenceRecommendation}
         -- The performance results from running an Inference Recommender job on an existing endpoint.
         EndpointPerformances: {EndpointPerformance}
+    end
+
+    record DescribeJobInput
+        -- The name of the job to describe.
+        JobName: string
+        -- The category of the job.
+        JobCategory: string
+    end
+
+    enum JobStatus
+        "InProgress"
+        "Completed"
+        "Failed"
+        "Stopping"
+        "Stopped"
+        "Deleting"
+        "DeleteFailed"
+    end
+
+    enum JobSecondaryStatus
+        "Starting"
+        "Downloading"
+        "Training"
+        "Uploading"
+        "Stopping"
+        "Stopped"
+        "MaxRuntimeExceeded"
+        "Interrupted"
+        "Failed"
+        "Completed"
+        "Restarting"
+        "Pending"
+        "Evaluating"
+        "Deleting"
+        "DeleteFailed"
+    end
+
+    -- Represents a secondary status transition for a job. Jobs progress through multiple secondary statuses during execution. Each transition records the status, start time, optional end time, and an optional message with additional details.
+    record JobSecondaryStatusTransition
+        -- The secondary status of the job at this transition point.
+        Status: string
+        -- The date and time that the status transition started.
+        StartTime: number
+        -- The date and time that the status transition ended.
+        EndTime: number
+        -- A detailed message about the status transition.
+        StatusMessage: string
+    end
+
+    record DescribeJobOutput
+        -- The name of the job.
+        JobName: string
+        -- The Amazon Resource Name (ARN) of the job.
+        JobArn: string
+        -- The ARN of the IAM role associated with the job.
+        RoleArn: string
+        -- The category of the job.
+        JobCategory: string
+        -- The schema version used for the job configuration document.
+        JobConfigSchemaVersion: string
+        -- The JSON configuration document for the job.
+        JobConfigDocument: string
+        -- The date and time that the job was created.
+        CreationTime: number
+        -- The date and time that the job was last modified.
+        LastModifiedTime: number
+        -- The date and time that the job ended.
+        EndTime: number
+        -- The current status of the job.
+        JobStatus: string
+        -- The detailed secondary status of the job, providing more granular information about the job's progress. Secondary statuses may change between releases.
+        SecondaryStatus: string
+        -- A list of secondary status transitions for the job, with timestamps and optional status messages.
+        SecondaryStatusTransitions: {JobSecondaryStatusTransition}
+        -- If the job failed, the reason it failed.
+        FailureReason: string
+        -- The tags associated with the job.
+        Tags: {Tag}
+    end
+
+    record DescribeJobSchemaVersionInput
+        -- The category of the job schema to describe.
+        JobCategory: string
+        -- The version of the schema to retrieve. If not specified, the latest version is returned.
+        JobConfigSchemaVersion: string
+    end
+
+    record DescribeJobSchemaVersionOutput
+        -- The category of the job schema.
+        JobCategory: string
+        -- The version of the schema.
+        JobConfigSchemaVersion: string
+        -- The JSON schema document that defines the structure of the job configuration.
+        JobConfigSchema: string
     end
 
     record DescribeLabelingJobInput
@@ -15776,6 +15905,38 @@ local record M
         InferenceBenchmark: RecommendationJobInferenceBenchmark
     end
 
+    -- Provides summary information about a job configuration schema version.
+    record JobConfigSchemaVersionSummary
+        -- The version of the job configuration schema.
+        JobConfigSchemaVersion: string
+    end
+
+    -- Metadata for a SageMaker job step.
+    record JobStepMetadata
+        -- The Amazon Resource Name (ARN) of the SageMaker job that was run by this step execution.
+        Arn: string
+    end
+
+    -- Provides summary information about a job, returned by the ListJobs operation. Use DescribeJob to get full details for a specific job.
+    record JobSummary
+        -- The Amazon Resource Name (ARN) of the job.
+        JobArn: string
+        -- The name of the job.
+        JobName: string
+        -- The category of the job.
+        JobCategory: string
+        -- The current status of the job.
+        JobStatus: string
+        -- The secondary status of the job, providing more granular information about the job's progress. Secondary statuses may change between releases.
+        JobSecondaryStatus: string
+        -- The date and time that the job was created.
+        CreationTime: number
+        -- The date and time that the job was last modified.
+        LastModifiedTime: number
+        -- The date and time that the job ended.
+        EndTime: number
+    end
+
     -- Provides counts for human-labeled tasks in the labeling job.
     record LabelCountersForWorkteam
         -- The total number of data objects labeled by a human worker.
@@ -17124,6 +17285,54 @@ local record M
         "Status"
     end
 
+    record ListJobsInput
+        -- The category of jobs to list.
+        JobCategory: string
+        -- If the previous response was truncated, this token retrieves the next set of results.
+        NextToken: string
+        -- The maximum number of jobs to return in the response. The default value is 50.
+        MaxResults: number
+        -- A filter that returns only jobs created after the specified time.
+        CreationTimeAfter: number
+        -- A filter that returns only jobs created before the specified time.
+        CreationTimeBefore: number
+        -- A filter that returns only jobs modified after the specified time.
+        LastModifiedTimeAfter: number
+        -- A filter that returns only jobs modified before the specified time.
+        LastModifiedTimeBefore: number
+        -- A string in the job name to filter results. Only jobs whose name contains the specified string are returned.
+        NameContains: string
+        -- The field to sort results by.
+        SortBy: string
+        -- The sort order for results. Valid values are Ascending and Descending.
+        SortOrder: string
+        -- A filter that returns only jobs with the specified status.
+        StatusEquals: string
+    end
+
+    record ListJobsOutput
+        -- If the response is truncated, this token retrieves the next set of results.
+        NextToken: string
+        -- An array of JobSummary objects that provide summary information about the jobs.
+        JobSummaries: {JobSummary}
+    end
+
+    record ListJobSchemaVersionsInput
+        -- The category of job schemas to list.
+        JobCategory: string
+        -- If the previous response was truncated, this token retrieves the next set of results.
+        NextToken: string
+        -- The maximum number of schema versions to return in the response. The default value is 5.
+        MaxResults: number
+    end
+
+    record ListJobSchemaVersionsOutput
+        -- If the response is truncated, this token retrieves the next set of results.
+        NextToken: string
+        -- An array of JobConfigSchemaVersionSummary objects listing the available schema versions.
+        JobConfigSchemas: {JobConfigSchemaVersionSummary}
+    end
+
     record ListLabelingJobsInput
         -- A filter that returns only labeling jobs created after the specified time (timestamp).
         CreationTimeAfter: number
@@ -18325,6 +18534,8 @@ local record M
         InferenceComponent: InferenceComponentMetadata
         -- The metadata of the lineage used in pipeline execution step.
         Lineage: LineageMetadata
+        -- The metadata for a SageMaker job used in a pipeline execution step.
+        Job: JobStepMetadata
     end
 
     -- The ARN from an execution of the current pipeline.
@@ -20393,6 +20604,16 @@ local record M
     end
 
     record StopInferenceRecommendationsJobOutput
+    end
+
+    record StopJobInput
+        -- The name of the job to stop.
+        JobName: string
+        -- The category of the job to stop.
+        JobCategory: string
+    end
+
+    record StopJobOutput
     end
 
     record StopLabelingJobInput

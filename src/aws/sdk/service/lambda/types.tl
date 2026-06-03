@@ -287,6 +287,19 @@ local record M
         CapacityProviderOperatorRoleArn: string
     end
 
+    enum PropagateTagsMode
+        "None"
+        "Explicit"
+    end
+
+    -- Configuration for tag propagation to managed resources launched by the capacity provider.
+    record PropagateTags
+        -- The tag propagation mode. Set to Explicit to propagate the tags specified in ExplicitTags to managed resources. Set to None to disable tag propagation.
+        Mode: string
+        -- A list of tags to apply to managed resources when Mode is set to Explicit. You can specify up to 40 tags.
+        ExplicitTags: {string : string}
+    end
+
     -- VPC configuration that specifies the network settings for compute instances managed by the capacity provider.
     record CapacityProviderVpcConfig
         -- A list of subnet IDs where the capacity provider launches compute instances.
@@ -310,6 +323,8 @@ local record M
         KmsKeyArn: string
         -- A list of tags to associate with the capacity provider.
         Tags: {string : string}
+        -- The tag propagation configuration for the capacity provider. Specifies tags to apply to managed resources at launch.
+        PropagateTags: PropagateTags
     end
 
     enum CapacityProviderState
@@ -337,6 +352,7 @@ local record M
         KmsKeyArn: string
         -- The date and time when the capacity provider was last modified.
         LastModified: string
+        PropagateTags: PropagateTags
     end
 
     record CreateCapacityProviderOutput
@@ -422,6 +438,7 @@ local record M
         CapacityProviderName: string
         -- The updated scaling configuration for the capacity provider.
         CapacityProviderScalingConfig: CapacityProviderScalingConfig
+        PropagateTags: PropagateTags
     end
 
     record UpdateCapacityProviderOutput

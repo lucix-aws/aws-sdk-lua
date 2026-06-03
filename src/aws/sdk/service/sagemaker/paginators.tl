@@ -742,6 +742,42 @@ function M.items_list_inference_recommendations_jobs(client, input)
     })
 end
 
+--- Returns a page iterator for listJobSchemaVersions.
+function M.pages_list_job_schema_versions(client, input)
+    return paginator.pages(client, "listJobSchemaVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobConfigSchemas",
+    })
+end
+
+--- Returns an item iterator for listJobSchemaVersions.
+function M.items_list_job_schema_versions(client, input)
+    return paginator.items(client, "listJobSchemaVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobConfigSchemas",
+    })
+end
+
+--- Returns a page iterator for listJobs.
+function M.pages_list_jobs(client, input)
+    return paginator.pages(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobSummaries",
+    })
+end
+
+--- Returns an item iterator for listJobs.
+function M.items_list_jobs(client, input)
+    return paginator.items(client, "listJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "JobSummaries",
+    })
+end
+
 --- Returns a page iterator for listLabelingJobs.
 function M.pages_list_labeling_jobs(client, input)
     return paginator.pages(client, "listLabelingJobs", input, {

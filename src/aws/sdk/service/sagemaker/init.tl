@@ -64,6 +64,7 @@ local record Client
     createInferenceComponent: function(Client, types.CreateInferenceComponentInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceComponentOutput>
     createInferenceExperiment: function(Client, types.CreateInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceExperimentOutput>
     createInferenceRecommendationsJob: function(Client, types.CreateInferenceRecommendationsJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateInferenceRecommendationsJobOutput>
+    createJob: function(Client, types.CreateJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
     createLabelingJob: function(Client, types.CreateLabelingJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateLabelingJobOutput>
     createMlflowApp: function(Client, types.CreateMlflowAppInput, ? base_client.InvokeOptions): async.Operation<types.CreateMlflowAppOutput>
     createMlflowTrackingServer: function(Client, types.CreateMlflowTrackingServerInput, ? base_client.InvokeOptions): async.Operation<types.CreateMlflowTrackingServerOutput>
@@ -132,6 +133,7 @@ local record Client
     deleteImageVersion: function(Client, types.DeleteImageVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteImageVersionOutput>
     deleteInferenceComponent: function(Client, types.DeleteInferenceComponentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInferenceComponentOutput>
     deleteInferenceExperiment: function(Client, types.DeleteInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInferenceExperimentOutput>
+    deleteJob: function(Client, types.DeleteJobInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
     deleteMlflowApp: function(Client, types.DeleteMlflowAppInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMlflowAppOutput>
     deleteMlflowTrackingServer: function(Client, types.DeleteMlflowTrackingServerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMlflowTrackingServerOutput>
     deleteModel: function(Client, types.DeleteModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteModelOutput>
@@ -199,6 +201,8 @@ local record Client
     describeInferenceComponent: function(Client, types.DescribeInferenceComponentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceComponentOutput>
     describeInferenceExperiment: function(Client, types.DescribeInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceExperimentOutput>
     describeInferenceRecommendationsJob: function(Client, types.DescribeInferenceRecommendationsJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInferenceRecommendationsJobOutput>
+    describeJob: function(Client, types.DescribeJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    describeJobSchemaVersion: function(Client, types.DescribeJobSchemaVersionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobSchemaVersionOutput>
     describeLabelingJob: function(Client, types.DescribeLabelingJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLabelingJobOutput>
     describeLineageGroup: function(Client, types.DescribeLineageGroupInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLineageGroupOutput>
     describeMlflowApp: function(Client, types.DescribeMlflowAppInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMlflowAppOutput>
@@ -288,6 +292,8 @@ local record Client
     listInferenceExperiments: function(Client, types.ListInferenceExperimentsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceExperimentsOutput>
     listInferenceRecommendationsJobs: function(Client, types.ListInferenceRecommendationsJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceRecommendationsJobsOutput>
     listInferenceRecommendationsJobSteps: function(Client, types.ListInferenceRecommendationsJobStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListInferenceRecommendationsJobStepsOutput>
+    listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    listJobSchemaVersions: function(Client, types.ListJobSchemaVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobSchemaVersionsOutput>
     listLabelingJobs: function(Client, types.ListLabelingJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListLabelingJobsOutput>
     listLabelingJobsForWorkteam: function(Client, types.ListLabelingJobsForWorkteamInput, ? base_client.InvokeOptions): async.Operation<types.ListLabelingJobsForWorkteamOutput>
     listLineageGroups: function(Client, types.ListLineageGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListLineageGroupsOutput>
@@ -360,6 +366,7 @@ local record Client
     stopHyperParameterTuningJob: function(Client, types.StopHyperParameterTuningJobInput, ? base_client.InvokeOptions): async.Operation<types.StopHyperParameterTuningJobOutput>
     stopInferenceExperiment: function(Client, types.StopInferenceExperimentInput, ? base_client.InvokeOptions): async.Operation<types.StopInferenceExperimentOutput>
     stopInferenceRecommendationsJob: function(Client, types.StopInferenceRecommendationsJobInput, ? base_client.InvokeOptions): async.Operation<types.StopInferenceRecommendationsJobOutput>
+    stopJob: function(Client, types.StopJobInput, ? base_client.InvokeOptions): async.Operation<types.StopJobOutput>
     stopLabelingJob: function(Client, types.StopLabelingJobInput, ? base_client.InvokeOptions): async.Operation<types.StopLabelingJobOutput>
     stopMlflowTrackingServer: function(Client, types.StopMlflowTrackingServerInput, ? base_client.InvokeOptions): async.Operation<types.StopMlflowTrackingServerOutput>
     stopMonitoringSchedule: function(Client, types.StopMonitoringScheduleInput, ? base_client.InvokeOptions): async.Operation<types.StopMonitoringScheduleOutput>
@@ -642,6 +649,10 @@ function C:createInferenceRecommendationsJob(input: types.CreateInferenceRecomme
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInferenceRecommendationsJob as schema.OperationSchema, input, options) as async.Operation<types.CreateInferenceRecommendationsJobOutput>
 end
 
+function C:createJob(input: types.CreateJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateJob as schema.OperationSchema, input, options) as async.Operation<types.CreateJobOutput>
+end
+
 function C:createLabelingJob(input: types.CreateLabelingJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateLabelingJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateLabelingJob as schema.OperationSchema, input, options) as async.Operation<types.CreateLabelingJobOutput>
 end
@@ -914,6 +925,10 @@ function C:deleteInferenceExperiment(input: types.DeleteInferenceExperimentInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInferenceExperiment as schema.OperationSchema, input, options) as async.Operation<types.DeleteInferenceExperimentOutput>
 end
 
+function C:deleteJob(input: types.DeleteJobInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteJob as schema.OperationSchema, input, options) as async.Operation<types.DeleteJobOutput>
+end
+
 function C:deleteMlflowApp(input: types.DeleteMlflowAppInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMlflowAppOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMlflowApp as schema.OperationSchema, input, options) as async.Operation<types.DeleteMlflowAppOutput>
 end
@@ -1180,6 +1195,14 @@ end
 
 function C:describeInferenceRecommendationsJob(input: types.DescribeInferenceRecommendationsJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInferenceRecommendationsJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInferenceRecommendationsJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeInferenceRecommendationsJobOutput>
+end
+
+function C:describeJob(input: types.DescribeJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobOutput>
+end
+
+function C:describeJobSchemaVersion(input: types.DescribeJobSchemaVersionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeJobSchemaVersionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeJobSchemaVersion as schema.OperationSchema, input, options) as async.Operation<types.DescribeJobSchemaVersionOutput>
 end
 
 function C:describeLabelingJob(input: types.DescribeLabelingJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeLabelingJobOutput>
@@ -1538,6 +1561,14 @@ function C:listInferenceRecommendationsJobSteps(input: types.ListInferenceRecomm
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInferenceRecommendationsJobSteps as schema.OperationSchema, input, options) as async.Operation<types.ListInferenceRecommendationsJobStepsOutput>
 end
 
+function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobs as schema.OperationSchema, input, options) as async.Operation<types.ListJobsOutput>
+end
+
+function C:listJobSchemaVersions(input: types.ListJobSchemaVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobSchemaVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListJobSchemaVersions as schema.OperationSchema, input, options) as async.Operation<types.ListJobSchemaVersionsOutput>
+end
+
 function C:listLabelingJobs(input: types.ListLabelingJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListLabelingJobsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLabelingJobs as schema.OperationSchema, input, options) as async.Operation<types.ListLabelingJobsOutput>
 end
@@ -1824,6 +1855,10 @@ end
 
 function C:stopInferenceRecommendationsJob(input: types.StopInferenceRecommendationsJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopInferenceRecommendationsJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopInferenceRecommendationsJob as schema.OperationSchema, input, options) as async.Operation<types.StopInferenceRecommendationsJobOutput>
+end
+
+function C:stopJob(input: types.StopJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopJob as schema.OperationSchema, input, options) as async.Operation<types.StopJobOutput>
 end
 
 function C:stopLabelingJob(input: types.StopLabelingJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopLabelingJobOutput>

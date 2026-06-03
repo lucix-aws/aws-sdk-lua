@@ -6162,9 +6162,9 @@ local record M
         thingName: string
         -- A Boolean that indicates the connectivity status.
         connected: boolean
-        -- The timestamp of when the event occurred. When you enable or update the indexing configuration, this value might be the Unix epoch time (0) for devices that have never connected or have been disconnected for more than an hour.
+        -- The timestamp of when the device connected or disconnected.
         timestamp: number
-        -- The reason why the client is disconnecting. When you enable or update the indexing configuration, this value might be UNKNOWN for devices that have never connected or have been disconnected for more than an hour.
+        -- The reason that the client is disconnected.
         disconnectReason: string
         -- The IP address of the client that initiated the connection.
         sourceIp: string
@@ -8418,10 +8418,9 @@ local record M
         -- True if the thing is connected to the Amazon Web Services IoT Core service; false if it is not
         -- connected.
         connected: boolean
-        -- The epoch time (in milliseconds) when the thing last connected or disconnected. If the
-        -- thing has been disconnected for approximately an hour, the time value might be missing. When you enable or update the indexing configuration, this value might be 0 (the Unix epoch time) for devices that have never connected or have been disconnected for more than an hour.
+        -- The epoch time (in milliseconds) when the thing last connected or disconnected.
         timestamp: number
-        -- The reason why the client is disconnected. When you enable or update the indexing configuration, this value might be missing for devices that have never connected or have been disconnected for more than an hour.
+        -- The reason that the client is disconnected.
         disconnectReason: string
         -- The keep-alive interval in seconds that the client specified when establishing the connection.
         keepAliveDuration: number

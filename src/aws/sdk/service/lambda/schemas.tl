@@ -825,6 +825,27 @@ M.CapacityProviderPermissionsConfig = schema.new({
     },
 })
 
+M.PropagateTags = schema.new({
+    id = id.from(_N, "PropagateTags"),
+    type = "structure",
+    members = {
+        Mode = schema.new({
+            id = id.from(_N, "PropagateTags", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+        }),
+        ExplicitTags = schema.new({
+            id = id.from(_N, "PropagateTags", "ExplicitTags"),
+            type = "map",
+            name = "ExplicitTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.CapacityProviderVpcConfig = schema.new({
     id = id.from(_N, "CapacityProviderVpcConfig"),
     type = "structure",
@@ -913,6 +934,13 @@ M.CreateCapacityProviderInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        PropagateTags = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "PropagateTags"),
+            type = "structure",
+            name = "PropagateTags",
+            target_id = id.from(_N, "PropagateTags"),
+            target = M.PropagateTags,
+        }),
     },
 })
 
@@ -983,6 +1011,13 @@ M.CapacityProvider = schema.new({
             type = "string",
             name = "LastModified",
             target_id = prelude.String.id,
+        }),
+        PropagateTags = schema.new({
+            id = id.from(_N, "CapacityProvider", "PropagateTags"),
+            type = "structure",
+            name = "PropagateTags",
+            target_id = id.from(_N, "PropagateTags"),
+            target = M.PropagateTags,
         }),
     },
 })
@@ -1241,6 +1276,13 @@ M.UpdateCapacityProviderInput = schema.new({
             name = "CapacityProviderScalingConfig",
             target_id = id.from(_N, "CapacityProviderScalingConfig"),
             target = M.CapacityProviderScalingConfig,
+        }),
+        PropagateTags = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderInput", "PropagateTags"),
+            type = "structure",
+            name = "PropagateTags",
+            target_id = id.from(_N, "PropagateTags"),
+            target = M.PropagateTags,
         }),
     },
 })

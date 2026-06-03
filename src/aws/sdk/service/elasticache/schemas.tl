@@ -1362,6 +1362,12 @@ M.ReplicationGroup = schema.new({
             name = "KmsKeyId",
             target_id = prelude.String.id,
         }),
+        StorageEncryptionType = schema.new({
+            id = id.from(_N, "ReplicationGroup", "StorageEncryptionType"),
+            type = "string",
+            name = "StorageEncryptionType",
+            target_id = prelude.String.id,
+        }),
         ARN = schema.new({
             id = id.from(_N, "ReplicationGroup", "ARN"),
             type = "string",
@@ -1428,6 +1434,18 @@ M.ReplicationGroup = schema.new({
             id = id.from(_N, "ReplicationGroup", "Engine"),
             type = "string",
             name = "Engine",
+            target_id = prelude.String.id,
+        }),
+        Durability = schema.new({
+            id = id.from(_N, "ReplicationGroup", "Durability"),
+            type = "string",
+            name = "Durability",
+            target_id = prelude.String.id,
+        }),
+        EffectiveDurability = schema.new({
+            id = id.from(_N, "ReplicationGroup", "EffectiveDurability"),
+            type = "string",
+            name = "EffectiveDurability",
             target_id = prelude.String.id,
         }),
     },
@@ -1966,6 +1984,12 @@ M.Snapshot = schema.new({
             id = id.from(_N, "Snapshot", "DataTiering"),
             type = "string",
             name = "DataTiering",
+            target_id = prelude.String.id,
+        }),
+        Durability = schema.new({
+            id = id.from(_N, "Snapshot", "Durability"),
+            type = "string",
+            name = "Durability",
             target_id = prelude.String.id,
         }),
     },
@@ -3728,6 +3752,12 @@ M.CreateReplicationGroupInput = schema.new({
             name = "ServerlessCacheSnapshotName",
             target_id = prelude.String.id,
         }),
+        Durability = schema.new({
+            id = id.from(_N, "CreateReplicationGroupInput", "Durability"),
+            type = "string",
+            name = "Durability",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4068,6 +4098,12 @@ M.ServerlessCache = schema.new({
             id = id.from(_N, "ServerlessCache", "KmsKeyId"),
             type = "string",
             name = "KmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        StorageEncryptionType = schema.new({
+            id = id.from(_N, "ServerlessCache", "StorageEncryptionType"),
+            type = "string",
+            name = "StorageEncryptionType",
             target_id = prelude.String.id,
         }),
         SecurityGroupIds = schema.new({
@@ -8297,6 +8333,12 @@ M.ModifyReplicationGroupInput = schema.new({
             id = id.from(_N, "ModifyReplicationGroupInput", "ClusterMode"),
             type = "string",
             name = "ClusterMode",
+            target_id = prelude.String.id,
+        }),
+        Durability = schema.new({
+            id = id.from(_N, "ModifyReplicationGroupInput", "Durability"),
+            type = "string",
+            name = "Durability",
             target_id = prelude.String.id,
         }),
     },

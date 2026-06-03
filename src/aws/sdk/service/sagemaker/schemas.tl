@@ -151,6 +151,8 @@ M.InferenceRecommendations = schema.new({ type = "list", list_member = M.Inferen
 
 M.EndpointPerformances = schema.new({ type = "list", list_member = M.EndpointPerformance })
 
+M.JobSecondaryStatusTransitions = schema.new({ type = "list", list_member = M.JobSecondaryStatusTransition })
+
 M.TemplateProviderDetailList = schema.new({ type = "list", list_member = M.TemplateProviderDetail })
 
 M.SecondaryStatusTransitions = schema.new({ type = "list", list_member = M.SecondaryStatusTransition })
@@ -256,6 +258,10 @@ M.InferenceExperimentList = schema.new({ type = "list", list_member = M.Inferenc
 M.InferenceRecommendationsJobs = schema.new({ type = "list", list_member = M.InferenceRecommendationsJob })
 
 M.InferenceRecommendationsJobSteps = schema.new({ type = "list", list_member = M.InferenceRecommendationsJobStep })
+
+M.JobSummaries = schema.new({ type = "list", list_member = M.JobSummary })
+
+M.JobConfigSchemas = schema.new({ type = "list", list_member = M.JobConfigSchemaVersionSummary })
 
 M.LabelingJobSummaryList = schema.new({ type = "list", list_member = M.LabelingJobSummary })
 
@@ -17529,6 +17535,81 @@ M.CreateInferenceRecommendationsJobOutput = schema.new({
     },
 })
 
+M.CreateJobInput = schema.new({
+    id = id.from(_N, "CreateJobRequest"),
+    type = "structure",
+    members = {
+        JobName = schema.new({
+            id = id.from(_N, "CreateJobInput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateJobInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobCategory = schema.new({
+            id = id.from(_N, "CreateJobInput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobConfigSchemaVersion = schema.new({
+            id = id.from(_N, "CreateJobInput", "JobConfigSchemaVersion"),
+            type = "string",
+            name = "JobConfigSchemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobConfigDocument = schema.new({
+            id = id.from(_N, "CreateJobInput", "JobConfigDocument"),
+            type = "string",
+            name = "JobConfigDocument",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateJobInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateJobOutput = schema.new({
+    id = id.from(_N, "CreateJobResponse"),
+    type = "structure",
+    members = {
+        JobArn = schema.new({
+            id = id.from(_N, "CreateJobOutput", "JobArn"),
+            type = "string",
+            name = "JobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UiConfig = schema.new({
     id = id.from(_N, "UiConfig"),
     type = "structure",
@@ -24640,6 +24721,36 @@ M.DeleteInferenceExperimentOutput = schema.new({
     },
 })
 
+M.DeleteJobInput = schema.new({
+    id = id.from(_N, "DeleteJobRequest"),
+    type = "structure",
+    members = {
+        JobName = schema.new({
+            id = id.from(_N, "DeleteJobInput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobCategory = schema.new({
+            id = id.from(_N, "DeleteJobInput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteJobOutput = schema.new({
+    id = id.from(_N, "DeleteJobResponse"),
+    type = "structure",
+})
+
 M.DeleteMlflowAppInput = schema.new({
     id = id.from(_N, "DeleteMlflowAppRequest"),
     type = "structure",
@@ -31596,6 +31707,247 @@ M.DescribeInferenceRecommendationsJobOutput = schema.new({
             name = "EndpointPerformances",
             target_id = prelude.Document.id,
             list_member = M.EndpointPerformance,
+        }),
+    },
+})
+
+M.DescribeJobInput = schema.new({
+    id = id.from(_N, "DescribeJobRequest"),
+    type = "structure",
+    members = {
+        JobName = schema.new({
+            id = id.from(_N, "DescribeJobInput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobCategory = schema.new({
+            id = id.from(_N, "DescribeJobInput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.JobSecondaryStatusTransition = schema.new({
+    id = id.from(_N, "JobSecondaryStatusTransition"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "JobSecondaryStatusTransition", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "JobSecondaryStatusTransition", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "JobSecondaryStatusTransition", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "JobSecondaryStatusTransition", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeJobOutput = schema.new({
+    id = id.from(_N, "DescribeJobResponse"),
+    type = "structure",
+    members = {
+        JobName = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobArn = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "JobArn"),
+            type = "string",
+            name = "JobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobCategory = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobConfigSchemaVersion = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "JobConfigSchemaVersion"),
+            type = "string",
+            name = "JobConfigSchemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobConfigDocument = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "JobConfigDocument"),
+            type = "string",
+            name = "JobConfigDocument",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        JobStatus = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "JobStatus"),
+            type = "string",
+            name = "JobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SecondaryStatus = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "SecondaryStatus"),
+            type = "string",
+            name = "SecondaryStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SecondaryStatusTransitions = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "SecondaryStatusTransitions"),
+            type = "list",
+            name = "SecondaryStatusTransitions",
+            target_id = prelude.Document.id,
+            list_member = M.JobSecondaryStatusTransition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "DescribeJobOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.DescribeJobSchemaVersionInput = schema.new({
+    id = id.from(_N, "DescribeJobSchemaVersionRequest"),
+    type = "structure",
+    members = {
+        JobCategory = schema.new({
+            id = id.from(_N, "DescribeJobSchemaVersionInput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobConfigSchemaVersion = schema.new({
+            id = id.from(_N, "DescribeJobSchemaVersionInput", "JobConfigSchemaVersion"),
+            type = "string",
+            name = "JobConfigSchemaVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeJobSchemaVersionOutput = schema.new({
+    id = id.from(_N, "DescribeJobSchemaVersionResponse"),
+    type = "structure",
+    members = {
+        JobCategory = schema.new({
+            id = id.from(_N, "DescribeJobSchemaVersionOutput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobConfigSchemaVersion = schema.new({
+            id = id.from(_N, "DescribeJobSchemaVersionOutput", "JobConfigSchemaVersion"),
+            type = "string",
+            name = "JobConfigSchemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobConfigSchema = schema.new({
+            id = id.from(_N, "DescribeJobSchemaVersionOutput", "JobConfigSchema"),
+            type = "string",
+            name = "JobConfigSchema",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -40139,6 +40491,111 @@ M.InferenceRecommendationsJobStep = schema.new({
     },
 })
 
+M.JobConfigSchemaVersionSummary = schema.new({
+    id = id.from(_N, "JobConfigSchemaVersionSummary"),
+    type = "structure",
+    members = {
+        JobConfigSchemaVersion = schema.new({
+            id = id.from(_N, "JobConfigSchemaVersionSummary", "JobConfigSchemaVersion"),
+            type = "string",
+            name = "JobConfigSchemaVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.JobStepMetadata = schema.new({
+    id = id.from(_N, "JobStepMetadata"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "JobStepMetadata", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.JobSummary = schema.new({
+    id = id.from(_N, "JobSummary"),
+    type = "structure",
+    members = {
+        JobArn = schema.new({
+            id = id.from(_N, "JobSummary", "JobArn"),
+            type = "string",
+            name = "JobArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobName = schema.new({
+            id = id.from(_N, "JobSummary", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobCategory = schema.new({
+            id = id.from(_N, "JobSummary", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobStatus = schema.new({
+            id = id.from(_N, "JobSummary", "JobStatus"),
+            type = "string",
+            name = "JobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobSecondaryStatus = schema.new({
+            id = id.from(_N, "JobSummary", "JobSecondaryStatus"),
+            type = "string",
+            name = "JobSecondaryStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "JobSummary", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "JobSummary", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "JobSummary", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.LabelCountersForWorkteam = schema.new({
     id = id.from(_N, "LabelCountersForWorkteam"),
     type = "structure",
@@ -43815,6 +44272,156 @@ M.ListInferenceRecommendationsJobStepsOutput = schema.new({
     },
 })
 
+M.ListJobsInput = schema.new({
+    id = id.from(_N, "ListJobsRequest"),
+    type = "structure",
+    members = {
+        JobCategory = schema.new({
+            id = id.from(_N, "ListJobsInput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListJobsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListJobsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        CreationTimeAfter = schema.new({
+            id = id.from(_N, "ListJobsInput", "CreationTimeAfter"),
+            type = "timestamp",
+            name = "CreationTimeAfter",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreationTimeBefore = schema.new({
+            id = id.from(_N, "ListJobsInput", "CreationTimeBefore"),
+            type = "timestamp",
+            name = "CreationTimeBefore",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedTimeAfter = schema.new({
+            id = id.from(_N, "ListJobsInput", "LastModifiedTimeAfter"),
+            type = "timestamp",
+            name = "LastModifiedTimeAfter",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedTimeBefore = schema.new({
+            id = id.from(_N, "ListJobsInput", "LastModifiedTimeBefore"),
+            type = "timestamp",
+            name = "LastModifiedTimeBefore",
+            target_id = prelude.Timestamp.id,
+        }),
+        NameContains = schema.new({
+            id = id.from(_N, "ListJobsInput", "NameContains"),
+            type = "string",
+            name = "NameContains",
+            target_id = prelude.String.id,
+        }),
+        SortBy = schema.new({
+            id = id.from(_N, "ListJobsInput", "SortBy"),
+            type = "string",
+            name = "SortBy",
+            target_id = prelude.String.id,
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "ListJobsInput", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+        StatusEquals = schema.new({
+            id = id.from(_N, "ListJobsInput", "StatusEquals"),
+            type = "string",
+            name = "StatusEquals",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListJobsOutput = schema.new({
+    id = id.from(_N, "ListJobsResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListJobsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        JobSummaries = schema.new({
+            id = id.from(_N, "ListJobsOutput", "JobSummaries"),
+            type = "list",
+            name = "JobSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.JobSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListJobSchemaVersionsInput = schema.new({
+    id = id.from(_N, "ListJobSchemaVersionsRequest"),
+    type = "structure",
+    members = {
+        JobCategory = schema.new({
+            id = id.from(_N, "ListJobSchemaVersionsInput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListJobSchemaVersionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListJobSchemaVersionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListJobSchemaVersionsOutput = schema.new({
+    id = id.from(_N, "ListJobSchemaVersionsResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListJobSchemaVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        JobConfigSchemas = schema.new({
+            id = id.from(_N, "ListJobSchemaVersionsOutput", "JobConfigSchemas"),
+            type = "list",
+            name = "JobConfigSchemas",
+            target_id = prelude.Document.id,
+            list_member = M.JobConfigSchemaVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListLabelingJobsInput = schema.new({
     id = id.from(_N, "ListLabelingJobsRequest"),
     type = "structure",
@@ -47081,6 +47688,13 @@ M.PipelineExecutionStepMetadata = schema.new({
             name = "Lineage",
             target_id = id.from(_N, "LineageMetadata"),
             target = M.LineageMetadata,
+        }),
+        Job = schema.new({
+            id = id.from(_N, "PipelineExecutionStepMetadata", "Job"),
+            type = "structure",
+            name = "Job",
+            target_id = id.from(_N, "JobStepMetadata"),
+            target = M.JobStepMetadata,
         }),
     },
 })
@@ -53157,6 +53771,36 @@ M.StopInferenceRecommendationsJobInput = schema.new({
 
 M.StopInferenceRecommendationsJobOutput = prelude.Unit
 
+M.StopJobInput = schema.new({
+    id = id.from(_N, "StopJobRequest"),
+    type = "structure",
+    members = {
+        JobName = schema.new({
+            id = id.from(_N, "StopJobInput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobCategory = schema.new({
+            id = id.from(_N, "StopJobInput", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopJobOutput = schema.new({
+    id = id.from(_N, "StopJobResponse"),
+    type = "structure",
+})
+
 M.StopLabelingJobInput = schema.new({
     id = id.from(_N, "StopLabelingJobRequest"),
     type = "structure",
@@ -56812,6 +57456,17 @@ M.CreateInferenceRecommendationsJob = schema.operation({
     },
 })
 
+M.CreateJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "CreateJob"),
+    input = M.CreateJobInput,
+    output = M.CreateJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateLabelingJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "CreateLabelingJob"),
     input = M.CreateLabelingJobInput,
@@ -57560,6 +58215,17 @@ M.DeleteInferenceExperiment = schema.operation({
     },
 })
 
+M.DeleteJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DeleteJob"),
+    input = M.DeleteJobInput,
+    output = M.DeleteJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteMlflowApp = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DeleteMlflowApp"),
     input = M.DeleteMlflowAppInput,
@@ -58290,6 +58956,28 @@ M.DescribeInferenceRecommendationsJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "DescribeInferenceRecommendationsJob"),
     input = M.DescribeInferenceRecommendationsJobInput,
     output = M.DescribeInferenceRecommendationsJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeJob"),
+    input = M.DescribeJobInput,
+    output = M.DescribeJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeJobSchemaVersion = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "DescribeJobSchemaVersion"),
+    input = M.DescribeJobSchemaVersionInput,
+    output = M.DescribeJobSchemaVersionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -59276,6 +59964,28 @@ M.ListInferenceRecommendationsJobSteps = schema.operation({
     },
 })
 
+M.ListJobs = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListJobs"),
+    input = M.ListJobsInput,
+    output = M.ListJobsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListJobSchemaVersions = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "ListJobSchemaVersions"),
+    input = M.ListJobSchemaVersionsInput,
+    output = M.ListJobSchemaVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListLabelingJobs = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "ListLabelingJobs"),
     input = M.ListLabelingJobsInput,
@@ -60061,6 +60771,17 @@ M.StopInferenceRecommendationsJob = schema.operation({
     id = id.from("com.amazonaws.sagemaker", "StopInferenceRecommendationsJob"),
     input = M.StopInferenceRecommendationsJobInput,
     output = M.StopInferenceRecommendationsJobOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopJob = schema.operation({
+    id = id.from("com.amazonaws.sagemaker", "StopJob"),
+    input = M.StopJobInput,
+    output = M.StopJobOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

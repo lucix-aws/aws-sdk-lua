@@ -84,6 +84,19 @@ M.KeyspacesMetadata = schema.new({
     },
 })
 
+M.IteratorDescription = schema.new({
+    id = id.from(_N, "IteratorDescription"),
+    type = "structure",
+    members = {
+        iteratorPosition = schema.new({
+            id = id.from(_N, "IteratorDescription", "iteratorPosition"),
+            type = "string",
+            name = "iteratorPosition",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InternalServerException = schema.new({
     id = id.from(_N, "InternalServerException"),
     type = "structure",
@@ -809,6 +822,13 @@ M.GetRecordsOutput = schema.new({
             type = "string",
             name = "nextShardIterator",
             target_id = prelude.String.id,
+        }),
+        iteratorDescription = schema.new({
+            id = id.from(_N, "GetRecordsOutput", "iteratorDescription"),
+            type = "structure",
+            name = "iteratorDescription",
+            target_id = id.from(_N, "IteratorDescription"),
+            target = M.IteratorDescription,
         }),
     },
 })

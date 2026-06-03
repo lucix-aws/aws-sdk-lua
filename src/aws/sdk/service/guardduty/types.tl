@@ -3087,6 +3087,12 @@ local record M
         CommandLineExample: string
         -- The suspicious file path for which the threat intelligence details were found.
         ThreatFilePath: string
+        -- Represents the type of file operation that triggered the finding, such as Write, Delete, Rename, Link, or Symlink.
+        FileOperation: string
+        -- The path of the sensitive file that was modified. Modification includes write, delete, rename, link, or symlink operations. This field is indexed for filtering.
+        FilePath: string
+        -- All file paths modified by the same process that triggered the finding, up to a maximum of 25 paths.
+        RelatedFilePaths: {string}
     end
 
     -- Information about the process and any required context values for a specific finding.

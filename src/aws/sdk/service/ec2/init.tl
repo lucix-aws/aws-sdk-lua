@@ -83,6 +83,7 @@ local record Client
     createCapacityManagerDataExport: function(Client, types.CreateCapacityManagerDataExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityManagerDataExportOutput>
     createCapacityReservation: function(Client, types.CreateCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationOutput>
     createCapacityReservationBySplitting: function(Client, types.CreateCapacityReservationBySplittingInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationBySplittingOutput>
+    createCapacityReservationCancellationQuote: function(Client, types.CreateCapacityReservationCancellationQuoteInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationCancellationQuoteOutput>
     createCapacityReservationFleet: function(Client, types.CreateCapacityReservationFleetInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationFleetOutput>
     createCarrierGateway: function(Client, types.CreateCarrierGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateCarrierGatewayOutput>
     createClientVpnEndpoint: function(Client, types.CreateClientVpnEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateClientVpnEndpointOutput>
@@ -301,6 +302,7 @@ local record Client
     describeCapacityBlockStatus: function(Client, types.DescribeCapacityBlockStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityBlockStatusOutput>
     describeCapacityManagerDataExports: function(Client, types.DescribeCapacityManagerDataExportsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityManagerDataExportsOutput>
     describeCapacityReservationBillingRequests: function(Client, types.DescribeCapacityReservationBillingRequestsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
+    describeCapacityReservationCancellationQuotes: function(Client, types.DescribeCapacityReservationCancellationQuotesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationCancellationQuotesOutput>
     describeCapacityReservationFleets: function(Client, types.DescribeCapacityReservationFleetsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationFleetsOutput>
     describeCapacityReservations: function(Client, types.DescribeCapacityReservationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationsOutput>
     describeCapacityReservationTopology: function(Client, types.DescribeCapacityReservationTopologyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationTopologyOutput>
@@ -1085,6 +1087,10 @@ end
 
 function C:createCapacityReservationBySplitting(input: types.CreateCapacityReservationBySplittingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationBySplittingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityReservationBySplitting as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityReservationBySplittingOutput>
+end
+
+function C:createCapacityReservationCancellationQuote(input: types.CreateCapacityReservationCancellationQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationCancellationQuoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityReservationCancellationQuote as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityReservationCancellationQuoteOutput>
 end
 
 function C:createCapacityReservationFleet(input: types.CreateCapacityReservationFleetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationFleetOutput>
@@ -1957,6 +1963,10 @@ end
 
 function C:describeCapacityReservationBillingRequests(input: types.DescribeCapacityReservationBillingRequestsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityReservationBillingRequests as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityReservationBillingRequestsOutput>
+end
+
+function C:describeCapacityReservationCancellationQuotes(input: types.DescribeCapacityReservationCancellationQuotesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationCancellationQuotesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeCapacityReservationCancellationQuotes as schema.OperationSchema, input, options) as async.Operation<types.DescribeCapacityReservationCancellationQuotesOutput>
 end
 
 function C:describeCapacityReservationFleets(input: types.DescribeCapacityReservationFleetsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCapacityReservationFleetsOutput>

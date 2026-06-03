@@ -205,6 +205,8 @@ M.FlagsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MemoryRegionsList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RelatedFilePathsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AnomalyProfiles = schema.new({ type = "map", map_key = prelude.String, map_value = M.AnomalyProfileFeatures })
 
 M.Actors = schema.new({ type = "list", list_member = M.Actor })
@@ -10179,6 +10181,34 @@ M.RuntimeContext = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "threatFilePath" },
+            },
+        }),
+        FileOperation = schema.new({
+            id = id.from(_N, "RuntimeContext", "FileOperation"),
+            type = "string",
+            name = "FileOperation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fileOperation" },
+            },
+        }),
+        FilePath = schema.new({
+            id = id.from(_N, "RuntimeContext", "FilePath"),
+            type = "string",
+            name = "FilePath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "filePath" },
+            },
+        }),
+        RelatedFilePaths = schema.new({
+            id = id.from(_N, "RuntimeContext", "RelatedFilePaths"),
+            type = "list",
+            name = "RelatedFilePaths",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "relatedFilePaths" },
             },
         }),
     },

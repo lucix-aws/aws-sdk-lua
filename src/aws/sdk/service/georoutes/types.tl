@@ -587,31 +587,31 @@ local record M
         Position: {number}
     end
 
-    -- Provides the circle that was used while calculating the route.
+    -- AutoCircle requests the route matrix service to define a Circle boundary that best attempts to include most waypoints (Origins and Destinations) using the AutoCircle settings. Any waypoints outside of the auto-defined Circle boundary will be considered out of the routing boundary, which results in a route matrix entry error. AutoCircle is only used in the request to configure a Circle for the route calculation. The derived Circle will also be provided in the response.
     record RouteMatrixAutoCircle
-        -- The margin provided for the calculation.
+        -- The minimal distance, in meters, between any waypoint and the perimeter of the circle auto-defined for the boundary. Some margin is usually recommended so that the routing has enough leeway to travel from one waypoint to another optimally without conflicting with the routing boundary. The total of MaxRadius and Margin must be less than or equal to 200,000 meters.
         Margin: number
-        -- The maximum size of the radius provided for the calculation.
+        -- The maximum radius, in meters, that the auto-defined Circle boundary should have, before the Margin distance is added to the circle. The total of MaxRadius and Margin must be less than or equal to 200,000 meters.
         MaxRadius: number
     end
 
-    -- Geometry defined as a circle. When request routing boundary was set as AutoCircle, the response routing boundary will return Circle derived from the AutoCircle settings.
+    -- Geometry defined as a circle. The circle defines the routing boundary area. Any waypoints outside the circle will result in a route matrix entry error. You can specify a Circle directly in the request, or it will be auto-derived when AutoCircle is used. When AutoCircle is set in the request, the response routing boundary will return Circle derived from the AutoCircle settings.
     record Circle
         -- Center of the Circle in World Geodetic System (WGS 84) format: [longitude, latitude]. Example: [-123.1174, 49.2847] represents the position with longitude -123.1174 and latitude 49.2847.
         Center: {number}
-        -- Radius of the Circle. Unit: meters
+        -- Radius of the Circle. Unit: meters Valid Range: Minimum value of 0. Maximum value of 200000.
         Radius: number
     end
 
     -- Geometry of the routing boundary.
     record RouteMatrixBoundaryGeometry
-        -- Provides the circle that was used while calculating the route.
+        -- AutoCircle requests the route matrix service to define a Circle boundary that best attempts to include most waypoints (Origins and Destinations) using the AutoCircle settings. Any waypoints outside of the auto-defined Circle boundary will be considered out of the routing boundary, which results in a route matrix entry error. AutoCircle is only used in the request to configure a Circle for the route calculation. The derived Circle will also be provided in the response.
         AutoCircle: RouteMatrixAutoCircle
-        -- Geometry defined as a circle. When request routing boundary was set as AutoCircle, the response routing boundary will return Circle derived from the AutoCircle settings.
+        -- Geometry defined as a circle. The circle defines the routing boundary area. Any waypoints outside the circle will result in a route matrix entry error. You can specify a Circle directly in the request, or it will be auto-derived when AutoCircle is used. When AutoCircle is set in the request, the response routing boundary will return Circle derived from the AutoCircle settings.
         Circle: Circle
-        -- Geometry defined as a bounding box. The first pair represents the X and Y coordinates (longitude and latitude,) of the southwest corner of the bounding box; the second pair represents the X and Y coordinates (longitude and latitude) of the northeast corner.
+        -- Geometry defined as a bounding box. The first pair represents the X and Y coordinates (longitude and latitude,) of the southwest corner of the bounding box; the second pair represents the X and Y coordinates (longitude and latitude) of the northeast corner. Diagonal distance of the bounding box must be less than or equal to 400,000 meters.
         BoundingBox: {number}
-        -- Geometry defined as a polygon with only one linear ring.
+        -- Geometry defined as a polygon with only one linear ring. A linear ring is a closed sequence of four or more coordinates. The first and last coordinates are the same, forming a closed boundary. Each coordinate is a position in [longitude, latitude] format. The structure is an array of linear rings (only 1 allowed). Each linear ring is an array of coordinates (minimum 4), and each coordinate is an array of two doubles [longitude, latitude]. Maximum distance between any two vertices must be less than or equal to 400,000 meters.
         Polygon: {{{number}}}
     end
 
@@ -745,7 +745,7 @@ local record M
         DepartNow: boolean
         -- Time of departure from the origin. Time format:YYYY-MM-DDThh:mm:ss.sssZ | YYYY-MM-DDThh:mm:ss.sss+hh:mm Examples: 2020-04-22T17:57:24Z 2020-04-22T17:57:24+02:00
         DepartureTime: string
-        -- List of destinations for the route. Route calculations are billed for each origin and destination pair. If you use a large matrix of origins and destinations, your costs will increase accordingly. For more information, see Routes pricing in the Amazon Location Service Developer Guide.
+        -- List of destinations for the route in World Geodetic System (WGS 84) format: [longitude, latitude]. Route calculations are billed for each origin and destination pair. If you use a large matrix of origins and destinations, your costs will increase accordingly. For more information, see Routes pricing in the Amazon Location Service Developer Guide. The maximum number of destinations depends on the routing boundary configuration: With RoutingBoundary.Geometry set: maximum 500 destinations With RoutingBoundary.Unbounded set to true: maximum 100 destinations For GrabMaps customers in ap-southeast-1 and ap-southeast-5: maximum 350 destinations The total matrix size (origins × destinations) must not exceed: With RoutingBoundary.Geometry: 160,000 With RoutingBoundary.Unbounded: 100 For GrabMaps customers in ap-southeast-1 and ap-southeast-5: 122,500
         Destinations: {RouteMatrixDestination}
         -- Features to be strictly excluded while calculating the route. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
         Exclude: RouteMatrixExclusionOptions
@@ -753,9 +753,9 @@ local record M
         Key: string
         -- Controls the trade-off between finding the shortest travel time (FastestRoute) and the shortest distance (ShortestRoute) when calculating reachable areas. Default value: FastestRoute
         OptimizeRoutingFor: string
-        -- The position for the origin in World Geodetic System (WGS 84) format: [longitude, latitude]. Route calculations are billed for each origin and destination pair. Using a large amount of Origins in a request can lead you to incur unexpected charges. For more information, see Routes pricing in the Amazon Location Service Developer Guide.
+        -- List of origins for the route in World Geodetic System (WGS 84) format: [longitude, latitude]. Route calculations are billed for each origin and destination pair. Using a large amount of Origins in a request can lead you to incur unexpected charges. For more information, see Routes pricing in the Amazon Location Service Developer Guide. The maximum number of origins depends on the routing boundary configuration: With RoutingBoundary.Geometry set: maximum 500 origins With RoutingBoundary.Unbounded set to true: maximum 15 origins For GrabMaps customers in ap-southeast-1 and ap-southeast-5: maximum 350 origins The total matrix size (origins × destinations) must not exceed: With RoutingBoundary.Geometry: 160,000 With RoutingBoundary.Unbounded: 100 For GrabMaps customers in ap-southeast-1 and ap-southeast-5: 122,500
         Origins: {RouteMatrixOrigin}
-        -- Boundary within which the matrix is to be calculated. All data, origins and destinations outside the boundary are considered invalid. For GrabMaps customers, ap-southeast-1 and ap-southeast-5 regions support only Unbounded set to true. Default value: Unbounded set to true When request routing boundary was set as AutoCircle, the response routing boundary will return Circle derived from the AutoCircle settings.
+        -- Boundary within which the matrix is to be calculated. All data, origins and destinations outside the boundary are considered invalid. For GrabMaps customers, ap-southeast-1 and ap-southeast-5 regions support only Unbounded set to true. Default value: Unbounded set to true When AutoCircle is set in the request, the response routing boundary will return Circle derived from the AutoCircle settings.
         RoutingBoundary: RouteMatrixBoundary
         -- Traffic related options. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
         Traffic: RouteMatrixTrafficOptions
@@ -794,7 +794,7 @@ local record M
         PricingBucket: string
         -- The calculated route matrix containing the results for all pairs of Origins to Destination positions. Each row corresponds to one entry in Origins. Each entry in the row corresponds to the route from that entry in Origins to an entry in Destination positions.
         RouteMatrix: {{RouteMatrixEntry}}
-        -- Boundary within which the matrix is to be calculated. All data, origins and destinations outside the boundary are considered invalid. When request routing boundary was set as AutoCircle, the response routing boundary will return Circle derived from the AutoCircle settings.
+        -- Boundary within which the matrix is to be calculated. All data, origins and destinations outside the boundary are considered invalid. When AutoCircle is set in the request, the response routing boundary will return Circle derived from the AutoCircle settings.
         RoutingBoundary: RouteMatrixBoundary
     end
 
@@ -938,6 +938,9 @@ local record M
         "TruckRoadTypes"
         "TypicalDuration"
         "Zones"
+        "Bookings"
+        "IntermediateStops"
+        "NextDepartures"
     end
 
     -- Origin related options.
@@ -1020,6 +1023,8 @@ local record M
         "Pedestrian"
         "Scooter"
         "Truck"
+        "Intermodal"
+        "Transit"
     end
 
     enum RouteEngineType
@@ -1046,6 +1051,117 @@ local record M
         Occupancy: number
     end
 
+    enum RouteAccessibilityAttribute
+        "Wheelchair"
+    end
+
+    -- Options for the pedestrian leg of the intermodal route.
+    record RouteIntermodalPedestrianOptions
+        -- Maximum walking distance allowed. Unit: meters
+        MaxDistance: number
+        -- Walking speed. Unit: kilometers per hour
+        Speed: number
+    end
+
+    enum RouteRentalMode
+        "All"
+        "Car"
+    end
+
+    enum RouteIntermodalEnabledLegs
+        "FirstLeg"
+        "LastLeg"
+        "EntireRoute"
+        "None"
+    end
+
+    -- Options for the rental leg of the intermodal route.
+    record RouteIntermodalRentalOptions
+        -- Allowed rental transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with ExcludedModes.
+        AllowedModes: {string}
+        -- Specifies the portion of the route for which this leg type is enabled. By default, the leg type is enabled for all legs. Valid values: FirstLeg - Enable this leg type for the first non-pedestrian leg of the route. LastLeg - Enable this leg type for the last non-pedestrian leg of the route. EntireRoute - Enable this leg type for the entire route. None - Disable this leg type entirely.
+        EnabledFor: {string}
+        -- Excluded rental transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with AllowedModes.
+        ExcludedModes: {string}
+    end
+
+    enum RouteTaxiMode
+        "All"
+        "Car"
+    end
+
+    -- Options for the taxi leg of the intermodal route.
+    record RouteIntermodalTaxiOptions
+        -- Allowed taxi transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with ExcludedModes.
+        AllowedModes: {string}
+        -- Specifies the portion of the route for which this leg type is enabled. By default, the leg type is enabled for all legs. Valid values: FirstLeg - Enable this leg type for the first non-pedestrian leg of the route. LastLeg - Enable this leg type for the last non-pedestrian leg of the route. EntireRoute - Enable this leg type for the entire route. None - Disable this leg type entirely.
+        EnabledFor: {string}
+        -- Excluded taxi transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with AllowedModes.
+        ExcludedModes: {string}
+    end
+
+    enum RouteTransitMode
+        "AerialTramway"
+        "Airplane"
+        "All"
+        "Bus"
+        "BusRapidTransit"
+        "CityTrain"
+        "Ferry"
+        "FunicularRailway"
+        "HighSpeedTrain"
+        "IntercityTrain"
+        "InterregionalTrain"
+        "LightRail"
+        "Monorail"
+        "PrivateBus"
+        "RegionalTrain"
+        "Subway"
+    end
+
+    -- Options for the transit leg of the intermodal route.
+    record RouteIntermodalTransitOptions
+        -- Allowed transit transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with ExcludedModes.
+        AllowedModes: {string}
+        -- Specifies the portion of the route for which this leg type is enabled. By default, the leg type is enabled for all legs. Valid values: FirstLeg - Enable this leg type for the first non-pedestrian leg of the route. LastLeg - Enable this leg type for the last non-pedestrian leg of the route. EntireRoute - Enable this leg type for the entire route. None - Disable this leg type entirely.
+        EnabledFor: {string}
+        -- Excluded transit transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with AllowedModes.
+        ExcludedModes: {string}
+    end
+
+    enum RouteVehicleMode
+        "All"
+        "Car"
+    end
+
+    -- Options for the vehicle leg of the intermodal route.
+    record RouteIntermodalVehicleOptions
+        -- Allowed vehicle transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with ExcludedModes.
+        AllowedModes: {string}
+        -- Specifies the portion of the route for which this leg type is enabled. By default, the leg type is enabled for all legs. Valid values: FirstLeg - Enable this leg type for the first non-pedestrian leg of the route. LastLeg - Enable this leg type for the last non-pedestrian leg of the route. EntireRoute - Enable this leg type for the entire route. None - Disable this leg type entirely.
+        EnabledFor: {string}
+        -- Excluded vehicle transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with AllowedModes.
+        ExcludedModes: {string}
+    end
+
+    -- Options related to intermodal routing. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
+    record RouteIntermodalOptions
+        -- Accessibility attributes to consider when calculating the route.
+        AccessibilityAttributes: {string}
+        -- Maximum number of transfers allowed when calculating the route.
+        MaxTransfers: number
+        -- Options for the pedestrian leg of the intermodal route.
+        Pedestrian: RouteIntermodalPedestrianOptions
+        -- Options for the rental leg of the intermodal route.
+        Rental: RouteIntermodalRentalOptions
+        -- Options for the taxi leg of the intermodal route.
+        Taxi: RouteIntermodalTaxiOptions
+        -- Options for the transit leg of the intermodal route.
+        Transit: RouteIntermodalTransitOptions
+        -- Options for the vehicle leg of the intermodal route.
+        Vehicle: RouteIntermodalVehicleOptions
+    end
+
     -- Options related to the pedestrian. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
     record RoutePedestrianOptions
         -- Walking speed in Kilometers per hour.
@@ -1062,6 +1178,28 @@ local record M
         MaxSpeed: number
         -- The number of occupants in the vehicle. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers. Default value: 1
         Occupancy: number
+    end
+
+    -- Options for the pedestrian leg of the transit route.
+    record RouteTransitPedestrianOptions
+        -- Maximum walking distance allowed. Unit: meters
+        MaxDistance: number
+        -- Walking speed. Unit: kilometers per hour
+        Speed: number
+    end
+
+    -- Options related to transit routing. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
+    record RouteTransitOptions
+        -- Accessibility attributes to consider when calculating the route.
+        AccessibilityAttributes: {string}
+        -- Allowed transit transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with ExcludedModes.
+        AllowedModes: {string}
+        -- Excluded transit transport modes when calculating the route. By default, all transport modes are allowed. Cannot be used together with AllowedModes.
+        ExcludedModes: {string}
+        -- Maximum number of transfers allowed when calculating the route.
+        MaxTransfers: number
+        -- Options for the pedestrian leg of the transit route.
+        Pedestrian: RouteTransitPedestrianOptions
     end
 
     enum RouteHazardousCargoType
@@ -1144,6 +1282,10 @@ local record M
         Scooter: RouteScooterOptions
         -- Travel mode options when the provided travel mode is Truck.
         Truck: RouteTruckOptions
+        -- Travel mode options when the provided travel mode is Intermodal. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
+        Intermodal: RouteIntermodalOptions
+        -- Travel mode options when the provided travel mode is Transit. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
+        Transit: RouteTransitOptions
     end
 
     enum RouteTravelStepType
@@ -1228,6 +1370,9 @@ local record M
         "MainLanguageNotFound"
         "Other"
         "TravelTimeExceedsDriverWorkHours"
+        "TransitDataUnavailable"
+        "TransitRouteUnavailable"
+        "NoTransitStationsFound"
     end
 
     enum RouteNoticeImpact
@@ -1271,9 +1416,9 @@ local record M
 
     -- Details corresponding to the arrival for the leg.
     record RouteFerryArrival
-        -- The place details.
+        -- Place details corresponding to the arrival.
         Place: RouteFerryPlace
-        -- The time.
+        -- The arrival time.
         Time: string
     end
 
@@ -1293,9 +1438,9 @@ local record M
 
     -- Details corresponding to the departure for the leg.
     record RouteFerryDeparture
-        -- The place details.
+        -- Place details corresponding to the departure.
         Place: RouteFerryPlace
-        -- The time.
+        -- The departure time.
         Time: string
     end
 
@@ -1333,7 +1478,7 @@ local record M
     record RoutePassThroughWaypoint
         -- Offset in the leg geometry corresponding to the start of this step.
         GeometryOffset: number
-        -- The place details.
+        -- Place details corresponding to the pass-through waypoint.
         Place: RoutePassThroughPlace
     end
 
@@ -1355,17 +1500,17 @@ local record M
         Duration: number
         -- Offset in the leg geometry corresponding to the start of this span.
         GeometryOffset: number
-        -- Provides an array of names of the ferry span in available languages.
+        -- Names of the ferry span in available languages.
         Names: {LocalizedString}
         -- 2-3 letter Region code corresponding to the Span. This is either a province or a state.
         Region: string
     end
 
-    -- Summarized details of the leg.
+    -- Summary including duration and distance for the entire leg.
     record RouteFerryOverviewSummary
-        -- Distance of the step.
+        -- Distance of the entire leg. Unit: meters
         Distance: number
-        -- Duration of the step. Unit: seconds
+        -- Duration of the entire leg. Unit: seconds
         Duration: number
     end
 
@@ -1435,13 +1580,65 @@ local record M
         Polyline: string
     end
 
+    enum RoutePedestrianAfterTravelStepType
+        "Wait"
+    end
+
+    -- Steps of a leg that must be performed after the travel portion of the leg.
+    record RoutePedestrianAfterTravelStep
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language. Only available when the TravelStepType is Default.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    enum RouteAccessibilityAvailability
+        "Available"
+        "Limited"
+        "Unavailable"
+        "Unknown"
+    end
+
+    -- Details about the availability of accessibility features.
+    record RouteAccessibilityAvailabilityDetails
+        -- Wheelchair accessibility status.
+        Wheelchair: string
+    end
+
+    -- Details of the access point.
+    record RouteAccessPointDetails
+        -- Wheelchair accessibility information for the access point.
+        Accessibility: RouteAccessibilityAvailabilityDetails
+    end
+
     enum RouteSideOfStreet
         "Left"
         "Right"
     end
 
+    -- Details about the station.
+    record RouteStationDetails
+        -- Wheelchair accessibility information for the station.
+        Accessibility: RouteAccessibilityAvailabilityDetails
+        -- Platform name or number.
+        PlatformName: string
+        -- Short text or a number that identifies the station.
+        ShortName: string
+    end
+
+    enum RoutePedestrianPlaceType
+        "AccessPoint"
+        "DockingStation"
+        "ParkingLot"
+        "Station"
+    end
+
     -- Place details corresponding to the arrival or departure.
     record RoutePedestrianPlace
+        -- Details of the access point.
+        AccessPointDetails: RouteAccessPointDetails
         -- The name of the place.
         Name: string
         -- Position provided in the request.
@@ -1450,23 +1647,27 @@ local record M
         Position: {number}
         -- Options to configure matching the provided position to a side of the street.
         SideOfStreet: string
+        -- Details about the station.
+        StationDetails: RouteStationDetails
+        -- The type of the place.
+        Type: string
         -- Index of the waypoint in the request.
         WaypointIndex: number
     end
 
     -- Details corresponding to the arrival for a leg. Time format:YYYY-MM-DDThh:mm:ss.sssZ | YYYY-MM-DDThh:mm:ss.sss+hh:mm Examples: 2020-04-22T17:57:24Z 2020-04-22T17:57:24+02:00
     record RoutePedestrianArrival
-        -- The place details.
+        -- Place details corresponding to the arrival.
         Place: RoutePedestrianPlace
-        -- The time.
+        -- The arrival time.
         Time: string
     end
 
     -- Details corresponding to the departure for a leg. Time format:YYYY-MM-DDThh:mm:ss.sssZ | YYYY-MM-DDThh:mm:ss.sss+hh:mm Examples: 2020-04-22T17:57:24Z 2020-04-22T17:57:24+02:00
     record RoutePedestrianDeparture
-        -- The place details.
+        -- Place details corresponding to the departure.
         Place: RoutePedestrianPlace
-        -- The time.
+        -- The departure time.
         Time: string
     end
 
@@ -1580,11 +1781,11 @@ local record M
         TypicalDuration: number
     end
 
-    -- Provides a summary of a pedestrian route step.
+    -- Summary including duration and distance for the entire leg.
     record RoutePedestrianOverviewSummary
-        -- Distance of the step.
+        -- Distance of the entire leg. Unit: meters
         Distance: number
-        -- Duration of the step.
+        -- Duration of the entire leg. Unit: seconds
         Duration: number
     end
 
@@ -1759,6 +1960,8 @@ local record M
 
     -- Details that are specific to a pedestrian leg.
     record RoutePedestrianLegDetails
+        -- Steps of a leg that must be performed after the travel portion of the leg.
+        AfterTravelSteps: {RoutePedestrianAfterTravelStep}
         -- Details corresponding to the arrival for the leg.
         Arrival: RoutePedestrianArrival
         -- Details corresponding to the departure for the leg.
@@ -1775,6 +1978,748 @@ local record M
         TravelSteps: {RoutePedestrianTravelStep}
     end
 
+    enum RouteRentalAfterTravelStepType
+        "Park"
+    end
+
+    -- A step that must be performed after the travel portion of the leg.
+    record RouteRentalAfterTravelStep
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    -- Details about the rental agency.
+    record RouteRentalAgency
+        -- Name of the agency.
+        Name: string
+        -- URL to the agency's website.
+        Url: string
+    end
+
+    enum RouteRentalPlaceType
+        "AccessPoint"
+        "DockingStation"
+        "ParkingLot"
+        "Station"
+    end
+
+    -- Place details corresponding to the arrival or departure.
+    record RouteRentalPlace
+        -- Details of the access point.
+        AccessPointDetails: RouteAccessPointDetails
+        -- The name of the place.
+        Name: string
+        -- Position provided in the request.
+        OriginalPosition: {number}
+        -- Position in World Geodetic System (WGS 84) format: [longitude, latitude].
+        Position: {number}
+        -- Details about the station.
+        StationDetails: RouteStationDetails
+        -- The type of the place.
+        Type: string
+        -- Index of the waypoint in the request.
+        WaypointIndex: number
+    end
+
+    -- Details corresponding to the arrival for the leg.
+    record RouteRentalArrival
+        -- Place details corresponding to the arrival.
+        Place: RouteRentalPlace
+        -- The arrival time.
+        Time: string
+    end
+
+    enum RouteAttributionType
+        "Disclaimer"
+        "Tariff"
+    end
+
+    enum RouteWebLinkDeviceType
+        "Android"
+        "Ios"
+        "Web"
+    end
+
+    -- The URL to an external resource.
+    record RouteWebLink
+        -- The interactive or clickable portion of the text.
+        AnchorText: string
+        -- Text describing the URL.
+        Description: string
+        -- Device type for which the link is intended.
+        DeviceType: string
+        -- The URL of the link.
+        Url: string
+    end
+
+    -- Required attribution to display.
+    record RouteAttribution
+        -- The type of the attribution link.
+        AttributionType: string
+        -- The URL to an external resource.
+        WebLink: RouteWebLink
+    end
+
+    enum RouteRentalBeforeTravelStepType
+        "Setup"
+    end
+
+    -- A step that must be performed before the travel portion of the leg.
+    record RouteRentalBeforeTravelStep
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    -- Details corresponding to the departure for the leg.
+    record RouteRentalDeparture
+        -- Place details corresponding to the departure.
+        Place: RouteRentalPlace
+        -- The departure time.
+        Time: string
+    end
+
+    -- Summary including duration and distance for the entire leg.
+    record RouteRentalOverviewSummary
+        -- Duration of the entire leg. Unit: seconds
+        Duration: number
+        -- Distance of the entire leg. Unit: meters
+        Distance: number
+    end
+
+    -- Summary including duration and distance for the travel portion of the leg only.
+    record RouteRentalTravelOnlySummary
+        -- Duration of the travel portion of the rental leg. Unit: seconds
+        Duration: number
+    end
+
+    -- Summary of the rental leg.
+    record RouteRentalSummary
+        -- Summary including duration and distance for the entire leg.
+        Overview: RouteRentalOverviewSummary
+        -- Summary including duration and distance for the travel portion of the leg only.
+        TravelOnly: RouteRentalTravelOnlySummary
+    end
+
+    -- Transport mode details for the rental leg.
+    record RouteRentalTransportModeDetails
+        -- Number of available seats in the vehicle.
+        AvailableSeats: number
+        -- Human readable transport category.
+        Category: string
+        -- Color of the transport polyline and background for the transport name.
+        Color: string
+        -- Vehicle engine type.
+        Engine: string
+        -- Vehicle license plate number.
+        LicensePlate: string
+        -- Mode of the rental transport.
+        Mode: string
+        -- Vehicle model.
+        Model: string
+        -- Vehicle name or mobility provider name.
+        Name: string
+        -- Color of the transport name text.
+        TextColor: string
+    end
+
+    -- Details related to the exit step.
+    record RouteExitStepDetails
+        -- Name of the intersection, if applicable to the step.
+        Intersection: {LocalizedString}
+        -- Exit to be taken.
+        RelativeExit: number
+        -- Steering direction for the step.
+        SteeringDirection: string
+        -- Angle of the turn.
+        TurnAngle: number
+        -- Intensity of the turn.
+        TurnIntensity: string
+    end
+
+    -- Details that are specific to a ramp step.
+    record RouteRampStepDetails
+        -- Name of the intersection, if applicable to the step.
+        Intersection: {LocalizedString}
+        -- Steering direction for the step.
+        SteeringDirection: string
+        -- Angle of the turn.
+        TurnAngle: number
+        -- Intensity of the turn.
+        TurnIntensity: string
+    end
+
+    enum RouteRentalTravelStepType
+        "Arrive"
+        "Continue"
+        "Depart"
+        "Exit"
+        "Keep"
+        "Ramp"
+        "RoundaboutEnter"
+        "RoundaboutExit"
+        "RoundaboutPass"
+        "Turn"
+        "UTurn"
+    end
+
+    -- Details related to the U-turn step.
+    record RouteUTurnStepDetails
+        -- Name of the intersection, if applicable to the step.
+        Intersection: {LocalizedString}
+        -- Steering direction for the step.
+        SteeringDirection: string
+        -- Angle of the turn.
+        TurnAngle: number
+        -- Intensity of the turn.
+        TurnIntensity: string
+    end
+
+    -- A step that must be performed during the travel portion of the leg.
+    record RouteRentalTravelStep
+        ContinueStepDetails: RouteContinueStepDetails
+        -- Distance of the step. Unit: meters
+        Distance: number
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        ExitStepDetails: RouteExitStepDetails
+        -- Offset in the leg geometry corresponding to the start of this step.
+        GeometryOffset: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        KeepStepDetails: RouteKeepStepDetails
+        RampStepDetails: RouteRampStepDetails
+        RoundaboutEnterStepDetails: RouteRoundaboutEnterStepDetails
+        RoundaboutExitStepDetails: RouteRoundaboutExitStepDetails
+        RoundaboutPassStepDetails: RouteRoundaboutPassStepDetails
+        TurnStepDetails: RouteTurnStepDetails
+        -- Type of the step.
+        Type: string
+        UTurnStepDetails: RouteUTurnStepDetails
+    end
+
+    -- Populated when the Leg type is Rental, and provides additional information that is specific to rental vehicle travel.
+    record RouteRentalLegDetails
+        -- Steps of a leg that must be performed after the travel portion of the leg.
+        AfterTravelSteps: {RouteRentalAfterTravelStep}
+        -- Details about the rental agency.
+        Agency: RouteRentalAgency
+        -- Details corresponding to the arrival for the leg.
+        Arrival: RouteRentalArrival
+        -- List of required attributions to display.
+        Attributions: {RouteAttribution}
+        -- Steps of a leg that must be performed before the travel portion of the leg.
+        BeforeTravelSteps: {RouteRentalBeforeTravelStep}
+        -- Web links to external ticket booking services for the rental.
+        BookingWebLinks: {RouteWebLink}
+        -- Details corresponding to the departure for the leg.
+        Departure: RouteRentalDeparture
+        -- Summary of the rental leg.
+        Summary: RouteRentalSummary
+        -- Transport mode details for the rental leg.
+        Transport: RouteRentalTransportModeDetails
+        -- Steps of a leg that must be performed during the travel portion of the leg.
+        TravelSteps: {RouteRentalTravelStep}
+    end
+
+    enum RouteTaxiAfterTravelStepType
+        "Park"
+    end
+
+    -- A step that must be performed after the travel portion of the leg.
+    record RouteTaxiAfterTravelStep
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    -- Details about the taxi agency.
+    record RouteTaxiAgency
+        -- Name of the agency.
+        Name: string
+        -- URL to the agency's website.
+        Url: string
+    end
+
+    enum RouteTaxiPlaceType
+        "AccessPoint"
+        "Station"
+    end
+
+    -- Place details corresponding to the arrival or departure.
+    record RouteTaxiPlace
+        -- Details of the access point.
+        AccessPointDetails: RouteAccessPointDetails
+        -- The name of the place.
+        Name: string
+        -- Position provided in the request.
+        OriginalPosition: {number}
+        -- Position in World Geodetic System (WGS 84) format: [longitude, latitude].
+        Position: {number}
+        -- Details about the station.
+        StationDetails: RouteStationDetails
+        -- The type of the place.
+        Type: string
+        -- Index of the waypoint in the request.
+        WaypointIndex: number
+    end
+
+    -- Details corresponding to the arrival for the leg.
+    record RouteTaxiArrival
+        -- Place details corresponding to the arrival.
+        Place: RouteTaxiPlace
+        -- The arrival time.
+        Time: string
+    end
+
+    enum RouteTaxiBeforeTravelStepType
+        "Wait"
+    end
+
+    -- A step that must be performed before the travel portion of the leg.
+    record RouteTaxiBeforeTravelStep
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    -- Details corresponding to the departure for the leg.
+    record RouteTaxiDeparture
+        -- Place details corresponding to the departure.
+        Place: RouteTaxiPlace
+        -- The departure time.
+        Time: string
+    end
+
+    enum RouteTaxiNoticeCode
+        "AccuratePolylineUnavailable"
+        "Other"
+    end
+
+    -- A notice that indicates an issue that occurred during route calculation.
+    record RouteTaxiNotice
+        -- Code corresponding to the issue.
+        Code: string
+        -- Impact corresponding to the issue. While Low impact notices can be safely ignored, High impact notices must be evaluated further to determine the impact.
+        Impact: string
+    end
+
+    -- Summary including duration and distance for the entire leg.
+    record RouteTaxiOverviewSummary
+        -- Duration of the entire leg. Unit: seconds
+        Duration: number
+        -- Distance of the entire leg. Unit: meters
+        Distance: number
+    end
+
+    -- Summary including duration and distance for the travel portion of the leg only.
+    record RouteTaxiTravelOnlySummary
+        -- Duration of the travel portion of the taxi leg. Unit: seconds
+        Duration: number
+    end
+
+    -- Summary of the taxi leg.
+    record RouteTaxiSummary
+        -- Summary including duration and distance for the entire leg.
+        Overview: RouteTaxiOverviewSummary
+        -- Summary including duration and distance for the travel portion of the leg only.
+        TravelOnly: RouteTaxiTravelOnlySummary
+    end
+
+    -- Transport mode details for the taxi leg.
+    record RouteTaxiTransportModeDetails
+        -- Number of available seats in the vehicle.
+        AvailableSeats: number
+        -- Human readable transport category.
+        Category: string
+        -- Color of the transport polyline and background for the transport name.
+        Color: string
+        -- Vehicle engine type.
+        Engine: string
+        -- Vehicle license plate number.
+        LicensePlate: string
+        -- Mode of the taxi transport.
+        Mode: string
+        -- Vehicle model.
+        Model: string
+        -- Vehicle name or mobility provider name.
+        Name: string
+        -- Color of the transport name text.
+        TextColor: string
+    end
+
+    enum RouteTaxiTravelStepType
+        "Arrive"
+        "Continue"
+        "Depart"
+        "Exit"
+        "Keep"
+        "Ramp"
+        "RoundaboutEnter"
+        "RoundaboutExit"
+        "RoundaboutPass"
+        "Turn"
+        "UTurn"
+    end
+
+    -- A step that must be performed during the travel portion of the leg.
+    record RouteTaxiTravelStep
+        ContinueStepDetails: RouteContinueStepDetails
+        -- Distance of the step. Unit: meters
+        Distance: number
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        ExitStepDetails: RouteExitStepDetails
+        -- Offset in the leg geometry corresponding to the start of this step.
+        GeometryOffset: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        KeepStepDetails: RouteKeepStepDetails
+        RampStepDetails: RouteRampStepDetails
+        RoundaboutEnterStepDetails: RouteRoundaboutEnterStepDetails
+        RoundaboutExitStepDetails: RouteRoundaboutExitStepDetails
+        RoundaboutPassStepDetails: RouteRoundaboutPassStepDetails
+        TurnStepDetails: RouteTurnStepDetails
+        -- Type of the step.
+        Type: string
+        UTurnStepDetails: RouteUTurnStepDetails
+    end
+
+    -- Populated when the Leg type is Taxi, and provides additional information that is specific to taxi travel.
+    record RouteTaxiLegDetails
+        -- Steps of a leg that must be performed after the travel portion of the leg.
+        AfterTravelSteps: {RouteTaxiAfterTravelStep}
+        -- Details about the taxi agency.
+        Agency: RouteTaxiAgency
+        -- Details corresponding to the arrival for the leg.
+        Arrival: RouteTaxiArrival
+        -- List of required attributions to display.
+        Attributions: {RouteAttribution}
+        -- Steps of a leg that must be performed before the travel portion of the leg.
+        BeforeTravelSteps: {RouteTaxiBeforeTravelStep}
+        -- Web links to external ticket booking services for the taxi.
+        BookingWebLinks: {RouteWebLink}
+        -- Details corresponding to the departure for the leg.
+        Departure: RouteTaxiDeparture
+        -- List of notices that indicate issues that occurred during route calculation.
+        Notices: {RouteTaxiNotice}
+        -- Summary of the taxi leg.
+        Summary: RouteTaxiSummary
+        -- Transport mode details for the taxi leg.
+        Transport: RouteTaxiTransportModeDetails
+        -- Steps of a leg that must be performed during the travel portion of the leg.
+        TravelSteps: {RouteTaxiTravelStep}
+    end
+
+    enum RouteTransitAfterTravelStepType
+        "Deboard"
+    end
+
+    -- A step that must be performed after the travel portion of the leg.
+    record RouteTransitAfterTravelStep
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    -- Details about the transit agency.
+    record RouteTransitAgency
+        -- Name of the agency.
+        Name: string
+        -- URL to the agency's website.
+        Url: string
+    end
+
+    enum RouteTransitPlaceType
+        "Station"
+    end
+
+    -- Place details corresponding to the arrival or departure.
+    record RouteTransitPlace
+        -- The name of the place.
+        Name: string
+        -- Position provided in the request.
+        OriginalPosition: {number}
+        -- Position in World Geodetic System (WGS 84) format: [longitude, latitude].
+        Position: {number}
+        -- Details about the station.
+        StationDetails: RouteStationDetails
+        -- The type of the place.
+        Type: string
+        -- Index of the waypoint in the request.
+        WaypointIndex: number
+    end
+
+    enum RouteTransitTripStatus
+        "Added"
+        "Cancelled"
+        "Replaced"
+        "Scheduled"
+    end
+
+    -- Details corresponding to the arrival for the leg.
+    record RouteTransitArrival
+        -- The delay from the scheduled arrival time. Unit: seconds
+        Delay: number
+        -- Place details corresponding to the arrival.
+        Place: RouteTransitPlace
+        -- The status of the arrival.
+        Status: string
+        -- The arrival time.
+        Time: string
+    end
+
+    enum RouteTransitBeforeTravelStepType
+        "Board"
+    end
+
+    -- A step that must be performed before the travel portion of the leg.
+    record RouteTransitBeforeTravelStep
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    -- Details corresponding to the departure for the leg.
+    record RouteTransitDeparture
+        -- The delay from the scheduled departure time. Unit: seconds
+        Delay: number
+        -- Place details corresponding to the departure.
+        Place: RouteTransitPlace
+        -- The status of the departure.
+        Status: string
+        -- The departure time.
+        Time: string
+    end
+
+    enum RouteTransitIncidentEffect
+        "Delayed"
+        "Detoured"
+        "Other"
+        "ServiceAdded"
+        "ServiceCancelled"
+        "ServiceModified"
+        "ServiceReduced"
+        "StopMoved"
+    end
+
+    enum RouteTransitIncidentType
+        "Accident"
+        "Construction"
+        "Demonstration"
+        "Holiday"
+        "Maintenance"
+        "MedicalEmergency"
+        "Other"
+        "PoliceActivity"
+        "Strike"
+        "TechnicalProblem"
+        "Weather"
+    end
+
+    -- An incident describes disruptions on the transit route.
+    record RouteTransitIncident
+        -- A human readable description of the incident.
+        Description: string
+        -- The effect of the incident on the transit service.
+        Effect: string
+        -- The end time of the incident.
+        EndTime: string
+        -- The start time of the incident.
+        StartTime: string
+        -- Type of the incident.
+        Type: string
+        -- URL to the original incident published at the agency website.
+        Url: string
+    end
+
+    enum RouteTransitIntermediateStopAttribute
+        "NoEntry"
+        "NoExit"
+    end
+
+    -- Transport mode details for the transit leg.
+    record RouteTransitTransportModeDetails
+        -- Wheelchair accessibility information for the transit vehicle.
+        Accessibility: RouteAccessibilityAvailabilityDetails
+        -- Color of the transport polyline and background for the transport name.
+        Color: string
+        -- Transit route headsign.
+        Headsign: string
+        -- Long name of the transit route.
+        LongRouteName: string
+        -- Mode of the transit transport.
+        Mode: string
+        -- Transit route name.
+        RouteName: string
+        -- Short name of the transit route.
+        ShortRouteName: string
+        -- Color of the transport name text.
+        TextColor: string
+    end
+
+    -- An intermediate stop between departure and destination of the transit route.
+    record RouteTransitIntermediateStop
+        -- Attributes of the intermediate stop.
+        Attributes: {string}
+        -- Departure details for the intermediate stop.
+        Departure: RouteTransitDeparture
+        -- Duration of the stop. Unit: seconds
+        Duration: number
+        -- Offset in the leg geometry corresponding to the start of this stop.
+        GeometryOffset: number
+        -- Transport mode details at the intermediate stop.
+        Transport: RouteTransitTransportModeDetails
+    end
+
+    -- Details about the next available departure for the transit service.
+    record RouteTransitNextDeparture
+        -- The delay from the scheduled departure time. Unit: seconds
+        Delay: number
+        -- Platform name or number for the departure.
+        PlatformName: string
+        -- The status of the departure.
+        Status: string
+        -- The departure time.
+        Time: string
+        -- Transport mode details for this departure.
+        Transport: RouteTransitTransportModeDetails
+    end
+
+    enum RouteTransitNoticeCode
+        "AccuratePolylineUnavailable"
+        "IntermediateStopsUnavailable"
+        "NoSchedule"
+        "Other"
+        "PotentialViolatedVehicleRestrictionUsage"
+        "ScheduledTimes"
+        "SeasonalClosure"
+        "ViolatedAvoidFerry"
+        "ViolatedAvoidRailFerry"
+        "ViolatedExcludedTransitMode"
+        "ViolatedVehicleRestriction"
+        "ViolatedAvoidAreas"
+    end
+
+    -- A notice that indicates an issue that occurred during route calculation.
+    record RouteTransitNotice
+        -- Code corresponding to the issue.
+        Code: string
+        -- Impact corresponding to the issue. While Low impact notices can be safely ignored, High impact notices must be evaluated further to determine the impact.
+        Impact: string
+    end
+
+    -- Span computed for the requested SpanAdditionalFeatures.
+    record RouteTransitSpan
+        -- 3 letter Country code corresponding to the Span.
+        Country: string
+        -- Distance of the computed span. This feature doesn't split a span, but is always computed on a span split by other properties. Unit: meters
+        Distance: number
+        -- Duration of the computed span. This feature doesn't split a span, but is always computed on a span split by other properties. Unit: seconds
+        Duration: number
+        -- Offset in the leg geometry corresponding to the start of this span.
+        GeometryOffset: number
+        -- Names of the transit span in available languages.
+        Names: {LocalizedString}
+        -- 2-3 letter Region code corresponding to the Span. This is either a province or a state.
+        Region: string
+    end
+
+    -- Summary including duration and distance for the entire leg.
+    record RouteTransitOverviewSummary
+        -- Distance of the entire leg. Unit: meters
+        Distance: number
+        -- Duration of the entire leg. Unit: seconds
+        Duration: number
+    end
+
+    -- Summary including duration and distance for the travel portion of the leg only.
+    record RouteTransitTravelOnlySummary
+        -- Duration of the travel portion of the transit leg. Unit: seconds
+        Duration: number
+    end
+
+    -- Summary of the transit leg.
+    record RouteTransitSummary
+        -- Summary including duration and distance for the entire leg.
+        Overview: RouteTransitOverviewSummary
+        -- Summary including duration and distance for the travel portion of the leg only.
+        TravelOnly: RouteTransitTravelOnlySummary
+    end
+
+    enum RouteTransitTravelStepType
+        "Depart"
+    end
+
+    -- A step that must be performed during the travel portion of the leg.
+    record RouteTransitTravelStep
+        -- Distance of the step. Unit: meters
+        Distance: number
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Offset in the leg geometry corresponding to the start of this step.
+        GeometryOffset: number
+        -- Brief description of the step in the requested language.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    -- Populated when the Leg type is Transit, and provides additional information that is specific to public transit travel.
+    record RouteTransitLegDetails
+        -- Steps of a leg that must be performed after the travel portion of the leg.
+        AfterTravelSteps: {RouteTransitAfterTravelStep}
+        -- Details about the transit agency.
+        Agency: RouteTransitAgency
+        -- Details corresponding to the arrival for the leg.
+        Arrival: RouteTransitArrival
+        -- List of required attributions to display.
+        Attributions: {RouteAttribution}
+        -- Steps of a leg that must be performed before the travel portion of the leg.
+        BeforeTravelSteps: {RouteTransitBeforeTravelStep}
+        -- Web links to external ticket booking services for the transit.
+        BookingWebLinks: {RouteWebLink}
+        -- Details corresponding to the departure for the leg.
+        Departure: RouteTransitDeparture
+        -- Incidents affecting this leg of the transit route.
+        Incidents: {RouteTransitIncident}
+        -- Intermediate stops between departure and destination of the transit route.
+        IntermediateStops: {RouteTransitIntermediateStop}
+        -- List of next departures that cover the same section of the route.
+        NextDepartures: {RouteTransitNextDeparture}
+        -- List of notices that indicate issues that occurred during route calculation.
+        Notices: {RouteTransitNotice}
+        -- Waypoints that were passed through during the leg. This includes the waypoints that were configured with the PassThrough option. Not populated when the TravelMode is Transit or Intermodal.
+        PassThroughWaypoints: {RoutePassThroughWaypoint}
+        -- Spans that were computed for the requested SpanAdditionalFeatures. Not populated when the TravelMode is Transit or Intermodal.
+        Spans: {RouteTransitSpan}
+        -- Summary of the transit leg.
+        Summary: RouteTransitSummary
+        -- Transport mode details for the transit leg.
+        Transport: RouteTransitTransportModeDetails
+        -- Steps of a leg that must be performed during the travel portion of the leg.
+        TravelSteps: {RouteTransitTravelStep}
+    end
+
     enum RouteLegTravelMode
         "Car"
         "Ferry"
@@ -1782,12 +2727,62 @@ local record M
         "Scooter"
         "Truck"
         "CarShuttleTrain"
+        "AerialTramway"
+        "Airplane"
+        "Bus"
+        "BusRapidTransit"
+        "CityTrain"
+        "FunicularRailway"
+        "HighSpeedTrain"
+        "IntercityTrain"
+        "InterregionalTrain"
+        "LightRail"
+        "Monorail"
+        "PrivateBus"
+        "RegionalTrain"
+        "Subway"
     end
 
     enum RouteLegType
         "Ferry"
         "Pedestrian"
         "Vehicle"
+        "Rental"
+        "Taxi"
+        "Transit"
+    end
+
+    -- Details about the EV charge at the current step.
+    record RouteChargeStepDetails
+        -- Estimated vehicle battery charge before this step (in kWh).
+        ArrivalCharge: number
+        -- Maximum charging power available to the vehicle. Unit: KwH
+        ConsumablePower: number
+        -- Details that are specific to a Charge step. Unit: KwH
+        DesiredCharge: number
+    end
+
+    enum RouteVehicleAfterTravelStepType
+        "Park"
+    end
+
+    -- Steps of a leg that must be performed after the travel portion of the leg.
+    record RouteVehicleAfterTravelStep
+        -- Details that are specific to a Charge step. Unit: KwH
+        ChargeStepDetails: RouteChargeStepDetails
+        -- Duration of the step. Unit: seconds
+        Duration: number
+        -- Brief description of the step in the requested language. Only available when the TravelStepType is Default.
+        Instruction: string
+        -- Type of the step.
+        Type: string
+    end
+
+    enum RouteVehiclePlaceType
+        "AccessPoint"
+        "DockingStation"
+        "ParkingLot"
+        "Station"
     end
 
     -- Place details corresponding to the arrival or departure.
@@ -1802,19 +2797,25 @@ local record M
         SideOfStreet: string
         -- Index of the waypoint in the request.
         WaypointIndex: number
+        -- Details of the access point.
+        AccessPointDetails: RouteAccessPointDetails
+        -- Details about the station.
+        StationDetails: RouteStationDetails
+        -- The type of the place.
+        Type: string
     end
 
     -- Details corresponding to the arrival for a leg.
     record RouteVehicleArrival
-        -- The place details.
+        -- Place details corresponding to the arrival.
         Place: RouteVehiclePlace
-        -- The time.
+        -- The arrival time.
         Time: string
     end
 
     -- Details corresponding to the departure for the leg.
     record RouteVehicleDeparture
-        -- The place details.
+        -- Place details corresponding to the departure.
         Place: RouteVehiclePlace
         -- The departure time.
         Time: string
@@ -2047,15 +3048,15 @@ local record M
         Zones: {number}
     end
 
-    -- Summarized details of the leg.
+    -- Summary including duration and distance for the entire leg.
     record RouteVehicleOverviewSummary
         -- Total duration in free flowing traffic, which is the best case or shortest duration possible to cover the leg. Unit: seconds
         BestCaseDuration: number
-        -- Distance of the step.
+        -- Distance of the entire leg. Unit: meters
         Distance: number
-        -- Duration of the step. Unit: seconds
+        -- Duration of the entire leg. Unit: seconds
         Duration: number
-        -- Duration of the computed span under typical traffic congestion. Unit: seconds
+        -- Duration of the leg under typical traffic congestion. Unit: seconds
         TypicalDuration: number
     end
 
@@ -2065,7 +3066,7 @@ local record M
         BestCaseDuration: number
         -- Duration of the step. Unit: seconds
         Duration: number
-        -- Duration of the computed span under typical traffic congestion. Unit: seconds
+        -- Duration of the leg under typical traffic congestion. Unit: seconds
         TypicalDuration: number
     end
 
@@ -2218,32 +3219,6 @@ local record M
         TurnIntensity: string
     end
 
-    -- Details related to the exit step.
-    record RouteExitStepDetails
-        -- Name of the intersection, if applicable to the step.
-        Intersection: {LocalizedString}
-        -- Exit to be taken.
-        RelativeExit: number
-        -- Steering direction for the step.
-        SteeringDirection: string
-        -- Angle of the turn.
-        TurnAngle: number
-        -- Intensity of the turn.
-        TurnIntensity: string
-    end
-
-    -- Details that are specific to a ramp step.
-    record RouteRampStepDetails
-        -- Name of the intersection, if applicable to the step.
-        Intersection: {LocalizedString}
-        -- Steering direction for the step.
-        SteeringDirection: string
-        -- Angle of the turn.
-        TurnAngle: number
-        -- Intensity of the turn.
-        TurnIntensity: string
-    end
-
     enum RouteVehicleTravelStepType
         "Arrive"
         "Continue"
@@ -2258,18 +3233,6 @@ local record M
         "RoundaboutPass"
         "Turn"
         "UTurn"
-    end
-
-    -- Details related to the U-turn step.
-    record RouteUTurnStepDetails
-        -- Name of the intersection, if applicable to the step.
-        Intersection: {LocalizedString}
-        -- Steering direction for the step.
-        SteeringDirection: string
-        -- Angle of the turn.
-        TurnAngle: number
-        -- Intensity of the turn.
-        TurnIntensity: string
     end
 
     -- Steps of a leg that correspond to the travel portion of the leg.
@@ -2326,6 +3289,8 @@ local record M
 
     -- Steps of a leg that correspond to the travel portion of the leg.
     record RouteVehicleLegDetails
+        -- Steps of a leg that must be performed after the travel portion of the leg.
+        AfterTravelSteps: {RouteVehicleAfterTravelStep}
         -- Details corresponding to the arrival for the leg.
         Arrival: RouteVehicleArrival
         -- Details corresponding to the departure for the leg.
@@ -2368,6 +3333,12 @@ local record M
         Type: string
         -- Details related to the vehicle leg.
         VehicleLegDetails: RouteVehicleLegDetails
+        -- Details related to the rental leg. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
+        RentalLegDetails: RouteRentalLegDetails
+        -- Details related to the taxi leg. Not supported in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
+        TaxiLegDetails: RouteTaxiLegDetails
+        -- Details related to the transit leg.
+        TransitLegDetails: RouteTransitLegDetails
     end
 
     -- Important labels including names and route numbers that differentiate the current route from the alternatives presented.
@@ -2707,7 +3678,7 @@ local record M
         TravelMode: string
         -- Travel mode related options for the provided travel mode.
         TravelModeOptions: WaypointOptimizationTravelModeOptions
-        -- List of waypoints between the Origin and Destination.
+        -- List of waypoints between the Origin and Destination, in World Geodetic System (WGS 84) format: [longitude, latitude]. The maximum number of waypoints allowed per request: Maximum 50 waypoints per request Maximum 20 waypoints when using constraints (AccessHours, AppointmentTime, ServiceDuration, Heading, SideOfStreet, Before)
         Waypoints: {WaypointOptimizationWaypoint}
     end
 
