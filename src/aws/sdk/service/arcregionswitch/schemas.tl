@@ -65,6 +65,12 @@ M.RdsDbInstanceArnMap = schema.new({ type = "map", map_key = prelude.String, map
 
 M.RegionEventSourceMappingMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.EventSourceMapping })
 
+M.RegionAuroraClusterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RegionAuroraInstanceArnMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RegionNeptuneClusterArnMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.ArcRoutingControlStates = schema.new({ type = "list", list_member = M.ArcRoutingControlState })
 
 M.KubernetesScalingApplication = schema.new({ type = "map", map_key = prelude.String, map_value = M.RegionalScalingResource })
@@ -898,6 +904,122 @@ M.ArcRoutingControlConfiguration = schema.new({
     },
 })
 
+M.AuroraProvisionedScalingConfiguration = schema.new({
+    id = id.from(_N, "AuroraProvisionedScalingConfiguration"),
+    type = "structure",
+    members = {
+        timeoutMinutes = schema.new({
+            id = id.from(_N, "AuroraProvisionedScalingConfiguration", "timeoutMinutes"),
+            type = "integer",
+            name = "timeoutMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        crossAccountRole = schema.new({
+            id = id.from(_N, "AuroraProvisionedScalingConfiguration", "crossAccountRole"),
+            type = "string",
+            name = "crossAccountRole",
+            target_id = prelude.String.id,
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "AuroraProvisionedScalingConfiguration", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+        }),
+        globalClusterIdentifier = schema.new({
+            id = id.from(_N, "AuroraProvisionedScalingConfiguration", "globalClusterIdentifier"),
+            type = "string",
+            name = "globalClusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regionDatabaseClusterArns = schema.new({
+            id = id.from(_N, "AuroraProvisionedScalingConfiguration", "regionDatabaseClusterArns"),
+            type = "map",
+            name = "regionDatabaseClusterArns",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceArns = schema.new({
+            id = id.from(_N, "AuroraProvisionedScalingConfiguration", "instanceArns"),
+            type = "map",
+            name = "instanceArns",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AuroraServerlessScalingConfiguration = schema.new({
+    id = id.from(_N, "AuroraServerlessScalingConfiguration"),
+    type = "structure",
+    members = {
+        timeoutMinutes = schema.new({
+            id = id.from(_N, "AuroraServerlessScalingConfiguration", "timeoutMinutes"),
+            type = "integer",
+            name = "timeoutMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        crossAccountRole = schema.new({
+            id = id.from(_N, "AuroraServerlessScalingConfiguration", "crossAccountRole"),
+            type = "string",
+            name = "crossAccountRole",
+            target_id = prelude.String.id,
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "AuroraServerlessScalingConfiguration", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+        }),
+        globalClusterIdentifier = schema.new({
+            id = id.from(_N, "AuroraServerlessScalingConfiguration", "globalClusterIdentifier"),
+            type = "string",
+            name = "globalClusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regionDatabaseClusterArns = schema.new({
+            id = id.from(_N, "AuroraServerlessScalingConfiguration", "regionDatabaseClusterArns"),
+            type = "map",
+            name = "regionDatabaseClusterArns",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetPercent = schema.new({
+            id = id.from(_N, "AuroraServerlessScalingConfiguration", "targetPercent"),
+            type = "integer",
+            name = "targetPercent",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+            },
+        }),
+    },
+})
+
 M.Lambdas = schema.new({
     id = id.from(_N, "Lambdas"),
     type = "structure",
@@ -1611,6 +1733,84 @@ M.LambdaEventSourceMappingConfiguration = schema.new({
     },
 })
 
+M.NeptuneUngraceful = schema.new({
+    id = id.from(_N, "NeptuneUngraceful"),
+    type = "structure",
+    members = {
+        ungraceful = schema.new({
+            id = id.from(_N, "NeptuneUngraceful", "ungraceful"),
+            type = "string",
+            name = "ungraceful",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NeptuneGlobalDatabaseConfiguration = schema.new({
+    id = id.from(_N, "NeptuneGlobalDatabaseConfiguration"),
+    type = "structure",
+    members = {
+        timeoutMinutes = schema.new({
+            id = id.from(_N, "NeptuneGlobalDatabaseConfiguration", "timeoutMinutes"),
+            type = "integer",
+            name = "timeoutMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        crossAccountRole = schema.new({
+            id = id.from(_N, "NeptuneGlobalDatabaseConfiguration", "crossAccountRole"),
+            type = "string",
+            name = "crossAccountRole",
+            target_id = prelude.String.id,
+        }),
+        externalId = schema.new({
+            id = id.from(_N, "NeptuneGlobalDatabaseConfiguration", "externalId"),
+            type = "string",
+            name = "externalId",
+            target_id = prelude.String.id,
+        }),
+        behavior = schema.new({
+            id = id.from(_N, "NeptuneGlobalDatabaseConfiguration", "behavior"),
+            type = "string",
+            name = "behavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "switchoverOnly" },
+            },
+        }),
+        ungraceful = schema.new({
+            id = id.from(_N, "NeptuneGlobalDatabaseConfiguration", "ungraceful"),
+            type = "structure",
+            name = "ungraceful",
+            target_id = id.from(_N, "NeptuneUngraceful"),
+            target = M.NeptuneUngraceful,
+        }),
+        globalClusterIdentifier = schema.new({
+            id = id.from(_N, "NeptuneGlobalDatabaseConfiguration", "globalClusterIdentifier"),
+            type = "string",
+            name = "globalClusterIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        regionDatabaseClusterArns = schema.new({
+            id = id.from(_N, "NeptuneGlobalDatabaseConfiguration", "regionDatabaseClusterArns"),
+            type = "map",
+            name = "regionDatabaseClusterArns",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RdsCreateCrossRegionReplicaConfiguration = schema.new({
     id = id.from(_N, "RdsCreateCrossRegionReplicaConfiguration"),
     type = "structure",
@@ -2069,6 +2269,25 @@ M.ListPlansInRegionOutput = schema.new({
     },
 })
 
+M.IllegalArgumentException = schema.new({
+    id = id.from(_N, "IllegalArgumentException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "IllegalArgumentException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.InternalServerException = schema.new({
     id = id.from(_N, "InternalServerException"),
     type = "structure",
@@ -2190,25 +2409,6 @@ M.ListRoute53HealthChecksOutput = schema.new({
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.IllegalArgumentException = schema.new({
-    id = id.from(_N, "IllegalArgumentException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "IllegalArgumentException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -2763,6 +2963,27 @@ M.ExecutionBlockConfiguration = schema.new({
             name = "lambdaEventSourceMappingConfig",
             target_id = id.from(_N, "LambdaEventSourceMappingConfiguration"),
             target = M.LambdaEventSourceMappingConfiguration,
+        }),
+        auroraServerlessScalingConfig = schema.new({
+            id = id.from(_N, "ExecutionBlockConfiguration", "auroraServerlessScalingConfig"),
+            type = "structure",
+            name = "auroraServerlessScalingConfig",
+            target_id = id.from(_N, "AuroraServerlessScalingConfiguration"),
+            target = M.AuroraServerlessScalingConfiguration,
+        }),
+        auroraProvisionedScalingConfig = schema.new({
+            id = id.from(_N, "ExecutionBlockConfiguration", "auroraProvisionedScalingConfig"),
+            type = "structure",
+            name = "auroraProvisionedScalingConfig",
+            target_id = id.from(_N, "AuroraProvisionedScalingConfiguration"),
+            target = M.AuroraProvisionedScalingConfiguration,
+        }),
+        neptuneGlobalDatabaseConfig = schema.new({
+            id = id.from(_N, "ExecutionBlockConfiguration", "neptuneGlobalDatabaseConfig"),
+            type = "structure",
+            name = "neptuneGlobalDatabaseConfig",
+            target_id = id.from(_N, "NeptuneGlobalDatabaseConfiguration"),
+            target = M.NeptuneGlobalDatabaseConfiguration,
         }),
     },
 })

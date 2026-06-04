@@ -478,6 +478,12 @@ M.SavingsPlansPurchaseAnalysisConfiguration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        SavingsPlansTargetCoverage = schema.new({
+            id = id.from(_N, "SavingsPlansPurchaseAnalysisConfiguration", "SavingsPlansTargetCoverage"),
+            type = "integer",
+            name = "SavingsPlansTargetCoverage",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 

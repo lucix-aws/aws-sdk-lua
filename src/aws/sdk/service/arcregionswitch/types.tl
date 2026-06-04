@@ -339,6 +339,38 @@ local record M
         regionAndRoutingControls: {string : {ArcRoutingControlState}}
     end
 
+    -- Configuration for Amazon Aurora provisioned cluster scaling used in a Region switch plan.
+    record AuroraProvisionedScalingConfiguration
+        -- The timeout value specified for the configuration.
+        timeoutMinutes: number
+        -- The cross account role for the configuration.
+        crossAccountRole: string
+        -- The external ID (secret key) for the configuration.
+        externalId: string
+        -- The global cluster identifier for a global database.
+        globalClusterIdentifier: string
+        -- Per-Region configuration that maps each Region to the Aurora database cluster ARN for scaling.
+        regionDatabaseClusterArns: {string : string}
+        -- Per-Region configuration that maps each Region to the Aurora database instance ARN for scaling.
+        instanceArns: {string : string}
+    end
+
+    -- Configuration for Amazon Aurora Serverless scaling used in a Region switch plan.
+    record AuroraServerlessScalingConfiguration
+        -- The timeout value specified for the configuration.
+        timeoutMinutes: number
+        -- The cross account role for the configuration.
+        crossAccountRole: string
+        -- The external ID (secret key) for the configuration.
+        externalId: string
+        -- The global cluster identifier for a global database.
+        globalClusterIdentifier: string
+        -- Per-Region configuration that maps each Region to the Aurora database cluster ARN for scaling.
+        regionDatabaseClusterArns: {string : string}
+        -- The target capacity percentage for Aurora Serverless scaling.
+        targetPercent: number
+    end
+
     -- Configuration for Amazon Web Services Lambda functions used in a Region switch plan.
     record Lambdas
         -- The cross account role for the configuration.
@@ -619,6 +651,39 @@ local record M
         ungraceful: LambdaEventSourceMappingUngraceful
     end
 
+    enum NeptuneDefaultBehavior
+        "switchoverOnly"
+        "failover"
+    end
+
+    enum NeptuneUngracefulBehavior
+        "failover"
+    end
+
+    -- Configuration for handling failures when performing operations on Neptune global databases.
+    record NeptuneUngraceful
+        -- The settings for ungraceful execution.
+        ungraceful: string
+    end
+
+    -- Configuration for Amazon Neptune global databases used in a Region switch plan.
+    record NeptuneGlobalDatabaseConfiguration
+        -- The timeout value specified for the configuration.
+        timeoutMinutes: number
+        -- The cross account role for the configuration.
+        crossAccountRole: string
+        -- The external ID (secret key) for the configuration.
+        externalId: string
+        -- The behavior for a global database, that is, only allow switchover or also allow failover.
+        behavior: string
+        -- The settings for ungraceful execution.
+        ungraceful: NeptuneUngraceful
+        -- The global cluster identifier for a Neptune global database.
+        globalClusterIdentifier: string
+        -- The database cluster Amazon Resource Names (ARNs) for a Neptune global database.
+        regionDatabaseClusterArns: {string : string}
+    end
+
     -- Configuration for creating an Amazon RDS cross-Region read replica during post-recovery in a Region switch.
     record RdsCreateCrossRegionReplicaConfiguration
         -- The timeout value specified for the configuration.
@@ -692,6 +757,9 @@ local record M
         "RdsPromoteReadReplica"
         "RdsCreateCrossRegionReplica"
         "LambdaEventSourceMapping"
+        "AuroraServerlessScaling"
+        "AuroraProvisionedScaling"
+        "NeptuneGlobalDatabase"
     end
 
     enum StepStatus
@@ -824,6 +892,11 @@ local record M
         nextToken: string
     end
 
+    -- The request processing has an invalid argument.
+    record IllegalArgumentException
+        message: string
+    end
+
     -- The request processing has failed because of an unknown error, exception, or failure. HTTP Status Code: 500
     record InternalServerException
         message: string
@@ -836,7 +909,7 @@ local record M
         hostedZoneId: string
         -- The record name for the health checks.
         recordName: string
-        -- The number of objects that you want to return with this call.
+        -- The maximum number of results to return in the response.
         maxResults: number
         -- Specifies that you want to receive the next page of results. Valid only if you received a nextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's nextToken response to request the next page of results.
         nextToken: string
@@ -865,13 +938,8 @@ local record M
     record ListRoute53HealthChecksOutput
         -- List of the health checks requested.
         healthChecks: {Route53HealthCheck}
-        -- Specifies that you want to receive the next page of results. Valid only if you received a nextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's nextToken response to request the next page of results.
+        -- A pagination token. A response may contain no results while still including a nextToken. Continue paginating until nextToken is null to retrieve all results.
         nextToken: string
-    end
-
-    -- The request processing has an invalid argument.
-    record IllegalArgumentException
-        message: string
     end
 
     record ListRoute53HealthChecksInRegionInput
@@ -881,7 +949,7 @@ local record M
         hostedZoneId: string
         -- The record name for the health checks.
         recordName: string
-        -- The number of objects that you want to return with this call.
+        -- The maximum number of results to return in the response.
         maxResults: number
         -- Specifies that you want to receive the next page of results. Valid only if you received a nextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's nextToken response to request the next page of results.
         nextToken: string
@@ -890,7 +958,7 @@ local record M
     record ListRoute53HealthChecksInRegionOutput
         -- List of the health checks requested.
         healthChecks: {Route53HealthCheck}
-        -- Specifies that you want to receive the next page of results. Valid only if you received a nextToken response in the previous request. If you did, it indicates that more output is available. Set this parameter to the value provided by the previous call's nextToken response to request the next page of results.
+        -- A pagination token. A response may contain no results while still including a nextToken. Continue paginating until nextToken is null to retrieve all results.
         nextToken: string
     end
 
@@ -1057,6 +1125,12 @@ local record M
         rdsCreateCrossRegionReadReplicaConfig: RdsCreateCrossRegionReplicaConfiguration
         -- A Lambda event source mapping execution block.
         lambdaEventSourceMappingConfig: LambdaEventSourceMappingConfiguration
+        -- An Aurora Serverless scaling execution block.
+        auroraServerlessScalingConfig: AuroraServerlessScalingConfiguration
+        -- An Aurora provisioned cluster scaling execution block.
+        auroraProvisionedScalingConfig: AuroraProvisionedScalingConfiguration
+        -- A Neptune global database execution block.
+        neptuneGlobalDatabaseConfig: NeptuneGlobalDatabaseConfiguration
     end
 
     -- Configuration for steps that should be executed in parallel during a Region switch.

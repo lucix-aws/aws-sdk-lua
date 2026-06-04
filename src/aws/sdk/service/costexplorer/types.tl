@@ -96,6 +96,7 @@ local record M
     enum AnalysisType
         "MAX_SAVINGS"
         "CUSTOM_COMMITMENT"
+        "TARGET_AVERAGE_COVERAGE"
     end
 
     -- The time period of the request.
@@ -165,6 +166,12 @@ local record M
         SavingsPlansToExclude: {string}
         -- The time period associated with the analysis.
         LookBackTimePeriod: DateInterval
+        -- Specifies the target Savings Plans coverage as a percentage from 10 to
+        -- 100. This field is required when AnalysisType is
+        -- TARGET_AVERAGE_COVERAGE. It defines the target average hourly coverage
+        -- that the recommended Savings Plans commitment should achieve over the lookback
+        -- period.
+        SavingsPlansTargetCoverage: number
     end
 
     -- The configuration for the commitment purchase analysis.

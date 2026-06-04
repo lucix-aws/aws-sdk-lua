@@ -581,7 +581,11 @@ M.SearchableContactAttributesCriteriaList = schema.new({ type = "list", list_mem
 
 M.SearchableSegmentAttributesCriteriaList = schema.new({ type = "list", list_member = M.SearchableSegmentAttributesCriteria })
 
+M.AiAgentSearchCriteriaList = schema.new({ type = "list", list_member = M.AiAgentSearchCriteria })
+
 M.ContactSearchSummarySegmentAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContactSearchSummarySegmentAttributeValue })
+
+M.ContactSearchSummaryAiAgentInfoList = schema.new({ type = "list", list_member = M.ContactSearchSummaryAiAgentInfo })
 
 M.AttributeOrConditionList = schema.new({ type = "list", list_member = M.AttributeAndCondition })
 
@@ -1693,6 +1697,57 @@ M.AiAgentInfo = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+    },
+})
+
+M.AiAgentSearchCriteria = schema.new({
+    id = id.from(_N, "AiAgentSearchCriteria"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "AiAgentSearchCriteria", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        VersionNumber = schema.new({
+            id = id.from(_N, "AiAgentSearchCriteria", "VersionNumber"),
+            type = "integer",
+            name = "VersionNumber",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        AiAgentEscalated = schema.new({
+            id = id.from(_N, "AiAgentSearchCriteria", "AiAgentEscalated"),
+            type = "boolean",
+            name = "AiAgentEscalated",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        AiUseCase = schema.new({
+            id = id.from(_N, "AiAgentSearchCriteria", "AiUseCase"),
+            type = "string",
+            name = "AiUseCase",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AiAgentsCriteria = schema.new({
+    id = id.from(_N, "AiAgentsCriteria"),
+    type = "structure",
+    members = {
+        Criteria = schema.new({
+            id = id.from(_N, "AiAgentsCriteria", "Criteria"),
+            type = "list",
+            name = "Criteria",
+            target_id = prelude.Document.id,
+            list_member = M.AiAgentSearchCriteria,
         }),
     },
 })
@@ -29173,6 +29228,13 @@ M.SearchCriteria = schema.new({
             target_id = id.from(_N, "ControlPlaneTagFilter"),
             target = M.ControlPlaneTagFilter,
         }),
+        AiAgents = schema.new({
+            id = id.from(_N, "SearchCriteria", "AiAgents"),
+            type = "structure",
+            name = "AiAgents",
+            target_id = id.from(_N, "AiAgentsCriteria"),
+            target = M.AiAgentsCriteria,
+        }),
     },
 })
 
@@ -29268,6 +29330,34 @@ M.ContactSearchSummaryAgentInfo = schema.new({
             type = "timestamp",
             name = "ConnectedToAgentTimestamp",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ContactSearchSummaryAiAgentInfo = schema.new({
+    id = id.from(_N, "ContactSearchSummaryAiAgentInfo"),
+    type = "structure",
+    members = {
+        AiAgentVersionId = schema.new({
+            id = id.from(_N, "ContactSearchSummaryAiAgentInfo", "AiAgentVersionId"),
+            type = "string",
+            name = "AiAgentVersionId",
+            target_id = prelude.String.id,
+        }),
+        AiAgentEscalated = schema.new({
+            id = id.from(_N, "ContactSearchSummaryAiAgentInfo", "AiAgentEscalated"),
+            type = "boolean",
+            name = "AiAgentEscalated",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        AiUseCase = schema.new({
+            id = id.from(_N, "ContactSearchSummaryAiAgentInfo", "AiUseCase"),
+            type = "string",
+            name = "AiUseCase",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -40431,6 +40521,13 @@ M.ContactSearchSummary = schema.new({
             name = "GlobalResiliencyMetadata",
             target_id = id.from(_N, "GlobalResiliencyMetadata"),
             target = M.GlobalResiliencyMetadata,
+        }),
+        AiAgentInfo = schema.new({
+            id = id.from(_N, "ContactSearchSummary", "AiAgentInfo"),
+            type = "list",
+            name = "AiAgentInfo",
+            target_id = prelude.Document.id,
+            list_member = M.ContactSearchSummaryAiAgentInfo,
         }),
     },
 })

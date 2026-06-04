@@ -7068,6 +7068,12 @@ M.Ec2Configuration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        activateVMScanner = schema.new({
+            id = id.from(_N, "Ec2Configuration", "activateVMScanner"),
+            type = "boolean",
+            name = "activateVMScanner",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -7090,6 +7096,31 @@ M.Ec2ScanModeState = schema.new({
     },
 })
 
+M.VMScannerState = schema.new({
+    id = id.from(_N, "VMScannerState"),
+    type = "structure",
+    members = {
+        activated = schema.new({
+            id = id.from(_N, "VMScannerState", "activated"),
+            type = "boolean",
+            name = "activated",
+            target_id = prelude.Boolean.id,
+        }),
+        activatedAt = schema.new({
+            id = id.from(_N, "VMScannerState", "activatedAt"),
+            type = "timestamp",
+            name = "activatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "VMScannerState", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Ec2ConfigurationState = schema.new({
     id = id.from(_N, "Ec2ConfigurationState"),
     type = "structure",
@@ -7100,6 +7131,13 @@ M.Ec2ConfigurationState = schema.new({
             name = "scanModeState",
             target_id = id.from(_N, "Ec2ScanModeState"),
             target = M.Ec2ScanModeState,
+        }),
+        vmScannerState = schema.new({
+            id = id.from(_N, "Ec2ConfigurationState", "vmScannerState"),
+            type = "structure",
+            name = "vmScannerState",
+            target_id = id.from(_N, "VMScannerState"),
+            target = M.VMScannerState,
         }),
     },
 })

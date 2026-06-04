@@ -502,6 +502,26 @@ local record M
         AiAgentEscalated: boolean
     end
 
+    -- The search criteria based on AI Agents metadata.
+    record AiAgentSearchCriteria
+        -- ID of the AI Agent that was involved in the contact.
+        Id: string
+        -- Version of the AI agent that was involved in the contact. ID is required if VersionNumber
+        -- is passed.
+        VersionNumber: number
+        -- A boolean flag indicating whether the contact initially handled by this AI agent was
+        -- escalated to a human agent.
+        AiAgentEscalated: boolean
+        -- The use case or scenario for which the AI agent is involved in the contact.
+        AiUseCase: string
+    end
+
+    -- AI Agent search criteria definitions.
+    record AiAgentsCriteria
+        -- The list of criteria based on AI Agent metadata.
+        Criteria: {AiAgentSearchCriteria}
+    end
+
     -- Configuration information of an email alias.
     record AliasConfiguration
         -- The email address ID.
@@ -8347,7 +8367,11 @@ local record M
         -- before aggregation, filters ensure that only relevant records are included in the computation.
         -- Filter keys
         -- The following are valid filter keys for a GetMetricDataV2 request:
-        -- AGENT | AGENT_HIERARCHY_LEVEL_ONE | AGENT_HIERARCHY_LEVEL_TWO |
+        -- AGENT | AI_AGENT | AI_AGENT_ID | AI_AGENT_NAME |
+        -- AI_AGENT_TYPE | AI_PROMPT | AI_PROMPT_ID |
+        -- AI_PROMPT_NAME | AI_PROMPT_TYPE | AI_TOOL_ID |
+        -- AI_TOOL_NAME | AI_TOOL_TYPE | AI_USE_CASE |
+        -- AGENT_HIERARCHY_LEVEL_ONE | AGENT_HIERARCHY_LEVEL_TWO |
         -- AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR |
         -- AGENT_HIERARCHY_LEVEL_FIVE | ANSWERING_MACHINE_DETECTION_STATUS |
         -- BOT_ALIAS | BOT_ID | BOT_INTENT_NAME | BOT_LOCALE |
@@ -8362,11 +8386,11 @@ local record M
         -- FLOWS_OUTCOME_TYPE | FLOWS_RESOURCE_ID | FORM_VERSION |
         -- INITIATING_FLOW | INITIATION_METHOD |
         -- INVOKING_RESOURCE_PUBLISHED_TIMESTAMP | INVOKING_RESOURCE_TYPE |
-        -- PARENT_FLOWS_RESOURCE_ID | Q_CONNECT_ENABLED | QUEUE |
-        -- RESOURCE_PUBLISHED_TIMESTAMP | ROUTING_PROFILE |
-        -- ROUTING_STEP_EXPRESSION | TEST_CASE |
-        -- TEST_CASE_EXECUTION_FAILURE_REASON | TEST_CASE_EXECUTION_RESULT |
-        -- TEST_CASE_EXECUTION_STATE
+        -- KNOWLEDGE_BASE_NAME | PARENT_FLOWS_RESOURCE_ID |
+        -- Q_CONNECT_ENABLED | QUEUE | RESOURCE_PUBLISHED_TIMESTAMP |
+        -- ROUTING_PROFILE | ROUTING_STEP_EXPRESSION | SESSION_ID |
+        -- TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON |
+        -- TEST_CASE_EXECUTION_RESULT | TEST_CASE_EXECUTION_STATE
         -- The following filter keys correspond to Connect Customer resources and are used for authorizing requests.
         -- A GetMetricDataV2 request requires at least one of these filters:
         -- QUEUE, ROUTING_PROFILE, AGENT,
@@ -8402,7 +8426,12 @@ local record M
         -- metrics returned are grouped by queue. The values that are returned apply to the metrics for each queue. They are not
         -- aggregated for all queues.
         -- If no grouping is specified, a summary of all metrics is returned.
-        -- Valid grouping keys: AGENT | AGENT_HIERARCHY_LEVEL_ONE |
+        -- Valid grouping keys: AGENT | AI_AGENT | AI_AGENT_ID |
+        -- AI_AGENT_NAME | AI_AGENT_NAME_VERSION | AI_AGENT_TYPE |
+        -- AI_PROMPT | AI_PROMPT_ID | AI_PROMPT_NAME |
+        -- AI_PROMPT_NAME_VERSION | AI_PROMPT_TYPE | AI_TOOL_ID |
+        -- AI_TOOL_NAME | AI_TOOL_TYPE | AI_USE_CASE |
+        -- AGENT_HIERARCHY_LEVEL_ONE |
         -- AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE |
         -- AGENT_HIERARCHY_LEVEL_FOUR | AGENT_HIERARCHY_LEVEL_FIVE |
         -- ANSWERING_MACHINE_DETECTION_STATUS | BOT_ID | BOT_ALIAS |
@@ -8415,9 +8444,12 @@ local record M
         -- FLOWS_MODULE_RESOURCE_ID | FLOW_ACTION_ID | FLOW_TYPE |
         -- FLOWS_OUTCOME_TYPE | FORM_VERSION | INITIATION_METHOD |
         -- INVOKING_RESOURCE_PUBLISHED_TIMESTAMP | INVOKING_RESOURCE_TYPE |
+        -- KNOWLEDGE_ARTICLE_NAME | KNOWLEDGE_BASE_NAME |
         -- PARENT_FLOWS_RESOURCE_ID | Q_CONNECT_ENABLED | QUEUE |
         -- RESOURCE_PUBLISHED_TIMESTAMP | ROUTING_PROFILE | ROUTING_STEP_EXPRESSION |
-        -- TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON | TEST_CASE_INVOCATION_METHOD
+        -- SESSION_ID | TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON |
+        -- TEST_CASE_INVOCATION_METHOD
+        -- AI_AGENT_NAME_VERSION, AI_PROMPT_NAME_VERSION, and KNOWLEDGE_ARTICLE_NAME are valid groupings but not valid filters.
         -- API, SCHEDULE, and EVENT are the only valid filterValues for TEST_CASE_INVOCATION_METHOD.
         -- OBSERVE_EVENT, SEND_INSTRUCTION, ASSERT_DATA, and OVERRIDE_SYSTEM_BEHAVIOR are the only valid filterValues for
         -- TEST_CASE_EXECUTION_FAILURE_REASON
@@ -8594,7 +8626,7 @@ local record M
         -- time
         -- AVG_HANDLE_TIME
         -- Unit: Seconds
-        -- Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, Feature,
+        -- Valid groupings and filters: Queue, Channel, Routing Profile, Agent, Agent Hierarchy, AI Use Case, Feature,
         -- contact/segmentAttributes/connect:Subtype, RoutingStepExpression
         -- UI name: Average handle time
         -- Feature is a valid filter but not a valid grouping.
@@ -8605,12 +8637,12 @@ local record M
         -- UI name: Active AI Agents
         -- AI_HANDOFF_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: AI Handoff Rate
         -- AI_HANDOFFS
         -- Unit: Count
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
-        -- UI name: AI Handoffs
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
+        -- UI name: AI Handoff Count
         -- AI_AGENT_INVOCATION_SUCCESS
         -- Unit: Count
         -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case,
@@ -8627,15 +8659,27 @@ local record M
         -- Unit: Count
         -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Agent Name Version, AI Use Case,
         -- Channel, Queue, Routing Profile
-        -- UI name: AI Agent Invocations
+        -- UI name: AI Agent Invocation Count
+        -- AI Agent Name Version is not a valid filter but a valid grouping.
+        -- AI_AGENT_RESPONSE_HELPFUL
+        -- Unit: Count
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel,
+        -- Queue, Routing Profile
+        -- UI name: AI Agent Response Helpful
+        -- AI Agent Name Version is not a valid filter but a valid grouping.
+        -- AI_AGENT_RESPONSE_NOT_HELPFUL
+        -- Unit: Count
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type, AI Use Case, Channel,
+        -- Queue, Routing Profile
+        -- UI name: AI Agent Response Not Helpful
         -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AI_RESPONSE_COMPLETION_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: AI Response Completion Rate
         -- AI_INVOLVED_CONTACTS
         -- Unit: Count
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: AI Involved Contacts
         -- AI_PROMPT_INVOCATION_SUCCESS
         -- Unit: Count
@@ -8681,7 +8725,7 @@ local record M
         -- AI Agent Name Version is not a valid filter but a valid grouping.
         -- AVG_AI_CONVERSATION_TURNS
         -- Unit: Count
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: Average AI Conversation Turns
         -- AVG_AI_PROMPT_INVOCATION_LATENCY
         -- Unit: Milliseconds
@@ -8695,6 +8739,39 @@ local record M
         -- Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: Average AI Tool Invocation Latency
         -- AI Agent Name Version is not a valid filter but a valid grouping.
+        -- AI_TOOL_PARAMETER_ACCURACY
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type,
+        -- AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- UI name: AI Tool Parameter Accuracy
+        -- AI Agent Name Version is not a valid filter but a valid grouping.
+        -- AI_TOOL_SELECTION_ACCURACY
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type,
+        -- AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile
+        -- UI name: AI Tool Selection Accuracy
+        -- AI Agent Name Version is not a valid filter but a valid grouping.
+        -- AI_TOOL_UTILIZATION_ACCURACY
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent, AI Agent ID, AI Agent Name, AI Agent Name Version, AI Agent Type,
+        -- AI Tool ID, AI Tool Name, AI Tool Type, AI Use Case, Channel, Queue, Routing Profile, Session ID
+        -- UI name: AI Tool Utilization Accuracy
+        -- AI Agent Name Version is not a valid filter but a valid grouping.
+        -- COMPLETENESS_SCORE
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue,
+        -- Routing Profile, Session ID
+        -- UI name: Completeness Score
+        -- FAITHFULNESS_SCORE
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue,
+        -- Routing Profile, Session ID
+        -- UI name: Faithfulness Score
+        -- GOAL_SUCCESS_RATE
+        -- Unit: Double
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue,
+        -- Routing Profile, Session ID
+        -- UI name: Goal Success Rate
         -- KNOWLEDGE_CONTENT_REFERENCES
         -- Unit: Count
         -- Valid groupings and filters: AI Agent, AI Agent Name, AI Agent Type, AI Use Case, Channel, Knowledge Base
@@ -8702,23 +8779,23 @@ local record M
         -- UI name: Knowledge Content References
         -- PROACTIVE_INTENT_ENGAGEMENT_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: Proactive Intent Engagement Rate
         -- PROACTIVE_INTENT_RESPONSE_RATE
         -- Unit: Percent
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: Proactive Intent Response Rate
         -- PROACTIVE_INTENTS_ANSWERED
         -- Unit: Count
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: Proactive Intents Answered
         -- PROACTIVE_INTENTS_DETECTED
         -- Unit: Count
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: Proactive Intents Detected
         -- PROACTIVE_INTENTS_ENGAGED
         -- Unit: Count
-        -- Valid groupings and filters: AI Use Case, Channel, Queue, Routing Profile
+        -- Valid groupings and filters: AI Agent ID, AI Agent Name, AI Agent Type, AI Use Case, Channel, Queue, Routing Profile
         -- UI name: Proactive Intents Engaged
         -- AVG_HOLD_TIME
         -- Unit: Seconds
@@ -12594,6 +12671,8 @@ local record M
         -- The list of active regions for contacts in ACGR instances.
         ActiveRegions: {string}
         ContactTags: ControlPlaneTagFilter
+        -- AI Agent search criteria definitions.
+        AiAgents: AiAgentsCriteria
     end
 
     enum SortableFieldName
@@ -12637,6 +12716,19 @@ local record M
         Id: string
         -- The timestamp when the contact was connected to the agent.
         ConnectedToAgentTimestamp: number
+    end
+
+    -- Information of the AI agent involved in the contact.
+    record ContactSearchSummaryAiAgentInfo
+        -- The unique identifier that specifies both the AI agent ID and its version number that was
+        -- involved in the contact.
+        AiAgentVersionId: string
+        -- A boolean flag indicating whether the contact initially handled by this AI agent was
+        -- escalated to a human agent.
+        AiAgentEscalated: boolean
+        -- The use case or scenario for which the AI agent is involved in the contact. Valid values
+        -- are AgentAssistance and SelfService.
+        AiUseCase: string
     end
 
     -- If this contact was queued, this contains information about the queue.
@@ -13522,12 +13614,11 @@ local record M
         -- application/json, and
         -- application/vnd.amazonaws.connect.message.interactive.response.
         ContentType: string
-        -- The content of the chat message.
-        -- For text/plain and text/markdown, the Length Constraints are Minimum of 1, Maximum
-        -- of 1024.
-        -- For application/json, the Length Constraints are Minimum of 1, Maximum of 12000.
-        -- For application/vnd.amazonaws.connect.message.interactive.response, the Length Constraints are
-        -- Minimum of 1, Maximum of 12288.
+        -- The content of the chat message. Maximum of 16,384 bytes for all content types
+        -- (text/plain, text/markdown, application/json, and
+        -- application/vnd.amazonaws.connect.message.interactive.response).
+        -- Some messaging channels enforce lower limits. For channel-specific message size limits, see Chat message size limits
+        -- by channel in the Amazon Connect Customer Administrator Guide.
         Content: string
     end
 
@@ -16790,6 +16881,8 @@ local record M
         Tags: {string : string}
         -- Additional routing information for contacts created in ACGR instances.
         GlobalResiliencyMetadata: GlobalResiliencyMetadata
+        -- Information about the AI agents involved in the contact.
+        AiAgentInfo: {ContactSearchSummaryAiAgentInfo}
     end
 
     record DescribeContactOutput

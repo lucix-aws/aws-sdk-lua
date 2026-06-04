@@ -22,6 +22,42 @@ function M.items_list_linked_whats_app_business_accounts(client, input)
     })
 end
 
+--- Returns a page iterator for listWhatsAppFlowAssets.
+function M.pages_list_whats_app_flow_assets(client, input)
+    return paginator.pages(client, "listWhatsAppFlowAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowAssets",
+    })
+end
+
+--- Returns an item iterator for listWhatsAppFlowAssets.
+function M.items_list_whats_app_flow_assets(client, input)
+    return paginator.items(client, "listWhatsAppFlowAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flowAssets",
+    })
+end
+
+--- Returns a page iterator for listWhatsAppFlows.
+function M.pages_list_whats_app_flows(client, input)
+    return paginator.pages(client, "listWhatsAppFlows", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flows",
+    })
+end
+
+--- Returns an item iterator for listWhatsAppFlows.
+function M.items_list_whats_app_flows(client, input)
+    return paginator.items(client, "listWhatsAppFlows", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "flows",
+    })
+end
+
 --- Returns a page iterator for listWhatsAppMessageTemplates.
 function M.pages_list_whats_app_message_templates(client, input)
     return paginator.pages(client, "listWhatsAppMessageTemplates", input, {

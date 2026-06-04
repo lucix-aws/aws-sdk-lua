@@ -15,6 +15,14 @@ M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LinkedWhatsAppBusinessAccountSummaryList = schema.new({ type = "list", list_member = M.LinkedWhatsAppBusinessAccountSummary })
 
+M.MetaFlowCategoryList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationErrorList = schema.new({ type = "list", list_member = prelude.String })
+
+M.MetaFlowAssetList = schema.new({ type = "list", list_member = M.MetaFlowAsset })
+
+M.MetaFlowSummaryList = schema.new({ type = "list", list_member = M.MetaFlowSummary })
+
 M.TemplateSummaryList = schema.new({ type = "list", list_member = M.TemplateSummary })
 
 M.Filter = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -30,6 +38,8 @@ M.LinkedAccountWithIncompleteSetup = schema.new({ type = "map", map_key = prelud
 M.WhatsAppPhoneNumberSummaryList = schema.new({ type = "list", list_member = M.WhatsAppPhoneNumberSummary })
 
 M.MetaLibraryTemplateButtonInputs = schema.new({ type = "list", list_member = M.LibraryTemplateButtonInput })
+
+M.MetaFlowHealthEntityList = schema.new({ type = "list", list_member = M.MetaFlowHealthEntity })
 
 M.Headers = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -505,6 +515,111 @@ M.ValidationException = schema.new({
     },
 })
 
+M.CreateWhatsAppFlowInput = schema.new({
+    id = id.from(_N, "CreateWhatsAppFlowInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowName = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowInput", "flowName"),
+            type = "string",
+            name = "flowName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        categories = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowInput", "categories"),
+            type = "list",
+            name = "categories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowJson = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowInput", "flowJson"),
+            type = "blob",
+            name = "flowJson",
+            target_id = prelude.Blob.id,
+        }),
+        publish = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowInput", "publish"),
+            type = "boolean",
+            name = "publish",
+            target_id = prelude.Boolean.id,
+        }),
+        cloneFlowId = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowInput", "cloneFlowId"),
+            type = "string",
+            name = "cloneFlowId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateWhatsAppFlowOutput = schema.new({
+    id = id.from(_N, "CreateWhatsAppFlowOutput"),
+    type = "structure",
+    members = {
+        flowId = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowOutput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+        }),
+        validationErrors = schema.new({
+            id = id.from(_N, "CreateWhatsAppFlowOutput", "validationErrors"),
+            type = "list",
+            name = "validationErrors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.InternalServiceException = schema.new({
+    id = id.from(_N, "InternalServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServiceException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateWhatsAppMessageTemplateInput = schema.new({
     id = id.from(_N, "CreateWhatsAppMessageTemplateInput"),
     type = "structure",
@@ -550,38 +665,6 @@ M.CreateWhatsAppMessageTemplateOutput = schema.new({
             id = id.from(_N, "CreateWhatsAppMessageTemplateOutput", "category"),
             type = "string",
             name = "category",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InternalServiceException = schema.new({
-    id = id.from(_N, "InternalServiceException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InternalServiceException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -839,6 +922,38 @@ M.CreateWhatsAppMessageTemplateMediaOutput = schema.new({
     },
 })
 
+M.DeleteWhatsAppFlowInput = schema.new({
+    id = id.from(_N, "DeleteWhatsAppFlowInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteWhatsAppFlowInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "id" },
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "DeleteWhatsAppFlowInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "flowId" },
+            },
+        }),
+    },
+})
+
+M.DeleteWhatsAppFlowOutput = schema.new({
+    id = id.from(_N, "DeleteWhatsAppFlowOutput"),
+    type = "structure",
+})
+
 M.DeleteWhatsAppMessageMediaInput = schema.new({
     id = id.from(_N, "DeleteWhatsAppMessageMediaInput"),
     type = "structure",
@@ -926,6 +1041,36 @@ M.DeleteWhatsAppMessageTemplateInput = schema.new({
 
 M.DeleteWhatsAppMessageTemplateOutput = schema.new({
     id = id.from(_N, "DeleteWhatsAppMessageTemplateOutput"),
+    type = "structure",
+})
+
+M.DeprecateWhatsAppFlowInput = schema.new({
+    id = id.from(_N, "DeprecateWhatsAppFlowInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeprecateWhatsAppFlowInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "DeprecateWhatsAppFlowInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeprecateWhatsAppFlowOutput = schema.new({
+    id = id.from(_N, "DeprecateWhatsAppFlowOutput"),
     type = "structure",
 })
 
@@ -1178,6 +1323,345 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput = schema.new({
             type = "string",
             name = "linkedWhatsAppBusinessAccountId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetWhatsAppFlowInput = schema.new({
+    id = id.from(_N, "GetWhatsAppFlowInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "id" },
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "flowId" },
+            },
+        }),
+    },
+})
+
+M.MetaFlowApplicationInfo = schema.new({
+    id = id.from(_N, "MetaFlowApplicationInfo"),
+    type = "structure",
+    members = {
+        link = schema.new({
+            id = id.from(_N, "MetaFlowApplicationInfo", "link"),
+            type = "string",
+            name = "link",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "MetaFlowApplicationInfo", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "MetaFlowApplicationInfo", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetaFlowHealthEntity = schema.new({
+    id = id.from(_N, "MetaFlowHealthEntity"),
+    type = "structure",
+    members = {
+        entityType = schema.new({
+            id = id.from(_N, "MetaFlowHealthEntity", "entityType"),
+            type = "string",
+            name = "entityType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "MetaFlowHealthEntity", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        canSendMessage = schema.new({
+            id = id.from(_N, "MetaFlowHealthEntity", "canSendMessage"),
+            type = "string",
+            name = "canSendMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetaFlowHealthStatus = schema.new({
+    id = id.from(_N, "MetaFlowHealthStatus"),
+    type = "structure",
+    members = {
+        canSendMessage = schema.new({
+            id = id.from(_N, "MetaFlowHealthStatus", "canSendMessage"),
+            type = "string",
+            name = "canSendMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entities = schema.new({
+            id = id.from(_N, "MetaFlowHealthStatus", "entities"),
+            type = "list",
+            name = "entities",
+            target_id = prelude.Document.id,
+            list_member = M.MetaFlowHealthEntity,
+        }),
+    },
+})
+
+M.MetaFlowPreviewInfo = schema.new({
+    id = id.from(_N, "MetaFlowPreviewInfo"),
+    type = "structure",
+    members = {
+        previewUrl = schema.new({
+            id = id.from(_N, "MetaFlowPreviewInfo", "previewUrl"),
+            type = "string",
+            name = "previewUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expiresAt = schema.new({
+            id = id.from(_N, "MetaFlowPreviewInfo", "expiresAt"),
+            type = "string",
+            name = "expiresAt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetaFlowWhatsAppBusinessAccountInfo = schema.new({
+    id = id.from(_N, "MetaFlowWhatsAppBusinessAccountInfo"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "MetaFlowWhatsAppBusinessAccountInfo", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "MetaFlowWhatsAppBusinessAccountInfo", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        currency = schema.new({
+            id = id.from(_N, "MetaFlowWhatsAppBusinessAccountInfo", "currency"),
+            type = "string",
+            name = "currency",
+            target_id = prelude.String.id,
+        }),
+        timezoneId = schema.new({
+            id = id.from(_N, "MetaFlowWhatsAppBusinessAccountInfo", "timezoneId"),
+            type = "string",
+            name = "timezoneId",
+            target_id = prelude.String.id,
+        }),
+        messageTemplateNamespace = schema.new({
+            id = id.from(_N, "MetaFlowWhatsAppBusinessAccountInfo", "messageTemplateNamespace"),
+            type = "string",
+            name = "messageTemplateNamespace",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetWhatsAppFlowOutput = schema.new({
+    id = id.from(_N, "GetWhatsAppFlowOutput"),
+    type = "structure",
+    members = {
+        flowId = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowName = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "flowName"),
+            type = "string",
+            name = "flowName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowStatus = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "flowStatus"),
+            type = "string",
+            name = "flowStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        categories = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "categories"),
+            type = "list",
+            name = "categories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        validationErrors = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "validationErrors"),
+            type = "list",
+            name = "validationErrors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        jsonVersion = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "jsonVersion"),
+            type = "string",
+            name = "jsonVersion",
+            target_id = prelude.String.id,
+        }),
+        dataApiVersion = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "dataApiVersion"),
+            type = "string",
+            name = "dataApiVersion",
+            target_id = prelude.String.id,
+        }),
+        endpointUri = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "endpointUri"),
+            type = "string",
+            name = "endpointUri",
+            target_id = prelude.String.id,
+        }),
+        preview = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "preview"),
+            type = "structure",
+            name = "preview",
+            target_id = id.from(_N, "MetaFlowPreviewInfo"),
+            target = M.MetaFlowPreviewInfo,
+        }),
+        whatsAppBusinessAccount = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "whatsAppBusinessAccount"),
+            type = "structure",
+            name = "whatsAppBusinessAccount",
+            target_id = id.from(_N, "MetaFlowWhatsAppBusinessAccountInfo"),
+            target = M.MetaFlowWhatsAppBusinessAccountInfo,
+        }),
+        application = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "application"),
+            type = "structure",
+            name = "application",
+            target_id = id.from(_N, "MetaFlowApplicationInfo"),
+            target = M.MetaFlowApplicationInfo,
+        }),
+        healthStatus = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowOutput", "healthStatus"),
+            type = "structure",
+            name = "healthStatus",
+            target_id = id.from(_N, "MetaFlowHealthStatus"),
+            target = M.MetaFlowHealthStatus,
+        }),
+    },
+})
+
+M.GetWhatsAppFlowPreviewInput = schema.new({
+    id = id.from(_N, "GetWhatsAppFlowPreviewInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowPreviewInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "id" },
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowPreviewInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "flowId" },
+            },
+        }),
+        invalidate = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowPreviewInput", "invalidate"),
+            type = "boolean",
+            name = "invalidate",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "invalidate" },
+            },
+        }),
+    },
+})
+
+M.GetWhatsAppFlowPreviewOutput = schema.new({
+    id = id.from(_N, "GetWhatsAppFlowPreviewOutput"),
+    type = "structure",
+    members = {
+        flowId = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowPreviewOutput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        preview = schema.new({
+            id = id.from(_N, "GetWhatsAppFlowPreviewOutput", "preview"),
+            type = "structure",
+            name = "preview",
+            target_id = id.from(_N, "MetaFlowPreviewInfo"),
+            target = M.MetaFlowPreviewInfo,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1502,6 +1986,220 @@ M.ListLinkedWhatsAppBusinessAccountsOutput = schema.new({
     },
 })
 
+M.ListWhatsAppFlowAssetsInput = schema.new({
+    id = id.from(_N, "ListWhatsAppFlowAssetsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowAssetsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "id" },
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowAssetsInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "flowId" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowAssetsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowAssetsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.MetaFlowAsset = schema.new({
+    id = id.from(_N, "MetaFlowAsset"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "MetaFlowAsset", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        assetType = schema.new({
+            id = id.from(_N, "MetaFlowAsset", "assetType"),
+            type = "string",
+            name = "assetType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        downloadUrl = schema.new({
+            id = id.from(_N, "MetaFlowAsset", "downloadUrl"),
+            type = "string",
+            name = "downloadUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListWhatsAppFlowAssetsOutput = schema.new({
+    id = id.from(_N, "ListWhatsAppFlowAssetsOutput"),
+    type = "structure",
+    members = {
+        flowAssets = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowAssetsOutput", "flowAssets"),
+            type = "list",
+            name = "flowAssets",
+            target_id = prelude.Document.id,
+            list_member = M.MetaFlowAsset,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowAssetsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListWhatsAppFlowsInput = schema.new({
+    id = id.from(_N, "ListWhatsAppFlowsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "id" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.MetaFlowSummary = schema.new({
+    id = id.from(_N, "MetaFlowSummary"),
+    type = "structure",
+    members = {
+        flowId = schema.new({
+            id = id.from(_N, "MetaFlowSummary", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowName = schema.new({
+            id = id.from(_N, "MetaFlowSummary", "flowName"),
+            type = "string",
+            name = "flowName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowStatus = schema.new({
+            id = id.from(_N, "MetaFlowSummary", "flowStatus"),
+            type = "string",
+            name = "flowStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowCategories = schema.new({
+            id = id.from(_N, "MetaFlowSummary", "flowCategories"),
+            type = "list",
+            name = "flowCategories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        validationErrors = schema.new({
+            id = id.from(_N, "MetaFlowSummary", "validationErrors"),
+            type = "list",
+            name = "validationErrors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListWhatsAppFlowsOutput = schema.new({
+    id = id.from(_N, "ListWhatsAppFlowsOutput"),
+    type = "structure",
+    members = {
+        flows = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowsOutput", "flows"),
+            type = "list",
+            name = "flows",
+            target_id = prelude.Document.id,
+            list_member = M.MetaFlowSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListWhatsAppFlowsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListWhatsAppMessageTemplatesInput = schema.new({
     id = id.from(_N, "ListWhatsAppMessageTemplatesInput"),
     type = "structure",
@@ -1733,6 +2431,36 @@ M.ListWhatsAppTemplateLibraryOutput = schema.new({
     },
 })
 
+M.PublishWhatsAppFlowInput = schema.new({
+    id = id.from(_N, "PublishWhatsAppFlowInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "PublishWhatsAppFlowInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "PublishWhatsAppFlowInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PublishWhatsAppFlowOutput = schema.new({
+    id = id.from(_N, "PublishWhatsAppFlowOutput"),
+    type = "structure",
+})
+
 M.PutWhatsAppBusinessAccountEventDestinationsInput = schema.new({
     id = id.from(_N, "PutWhatsAppBusinessAccountEventDestinationsInput"),
     type = "structure",
@@ -1762,6 +2490,97 @@ M.PutWhatsAppBusinessAccountEventDestinationsInput = schema.new({
 M.PutWhatsAppBusinessAccountEventDestinationsOutput = schema.new({
     id = id.from(_N, "PutWhatsAppBusinessAccountEventDestinationsOutput"),
     type = "structure",
+})
+
+M.UpdateWhatsAppFlowInput = schema.new({
+    id = id.from(_N, "UpdateWhatsAppFlowInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowName = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowInput", "flowName"),
+            type = "string",
+            name = "flowName",
+            target_id = prelude.String.id,
+        }),
+        categories = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowInput", "categories"),
+            type = "list",
+            name = "categories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateWhatsAppFlowOutput = schema.new({
+    id = id.from(_N, "UpdateWhatsAppFlowOutput"),
+    type = "structure",
+})
+
+M.UpdateWhatsAppFlowAssetsInput = schema.new({
+    id = id.from(_N, "UpdateWhatsAppFlowAssetsInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowAssetsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowId = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowAssetsInput", "flowId"),
+            type = "string",
+            name = "flowId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        flowJson = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowAssetsInput", "flowJson"),
+            type = "blob",
+            name = "flowJson",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateWhatsAppFlowAssetsOutput = schema.new({
+    id = id.from(_N, "UpdateWhatsAppFlowAssetsOutput"),
+    type = "structure",
+    members = {
+        validationErrors = schema.new({
+            id = id.from(_N, "UpdateWhatsAppFlowAssetsOutput", "validationErrors"),
+            type = "list",
+            name = "validationErrors",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
 })
 
 M.UpdateWhatsAppMessageTemplateInput = schema.new({
@@ -2069,6 +2888,18 @@ M.AssociateWhatsAppBusinessAccount = schema.operation({
     },
 })
 
+M.CreateWhatsAppFlow = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "CreateWhatsAppFlow"),
+    input = M.CreateWhatsAppFlowInput,
+    output = M.CreateWhatsAppFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/flow/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateWhatsAppMessageTemplate = schema.operation({
     id = id.from("com.amazonaws.socialmessaging", "CreateWhatsAppMessageTemplate"),
     input = M.CreateWhatsAppMessageTemplateInput,
@@ -2105,6 +2936,18 @@ M.CreateWhatsAppMessageTemplateMedia = schema.operation({
     },
 })
 
+M.DeleteWhatsAppFlow = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "DeleteWhatsAppFlow"),
+    input = M.DeleteWhatsAppFlowInput,
+    output = M.DeleteWhatsAppFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/whatsapp/flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteWhatsAppMessageMedia = schema.operation({
     id = id.from("com.amazonaws.socialmessaging", "DeleteWhatsAppMessageMedia"),
     input = M.DeleteWhatsAppMessageMediaInput,
@@ -2123,6 +2966,18 @@ M.DeleteWhatsAppMessageTemplate = schema.operation({
     output = M.DeleteWhatsAppMessageTemplateOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/whatsapp/template" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeprecateWhatsAppFlow = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "DeprecateWhatsAppFlow"),
+    input = M.DeprecateWhatsAppFlowInput,
+    output = M.DeprecateWhatsAppFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/flow/deprecate" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2159,6 +3014,30 @@ M.GetLinkedWhatsAppBusinessAccountPhoneNumber = schema.operation({
     output = M.GetLinkedWhatsAppBusinessAccountPhoneNumberOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/waba/phone/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWhatsAppFlow = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppFlow"),
+    input = M.GetWhatsAppFlowInput,
+    output = M.GetWhatsAppFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/flow" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetWhatsAppFlowPreview = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "GetWhatsAppFlowPreview"),
+    input = M.GetWhatsAppFlowPreviewInput,
+    output = M.GetWhatsAppFlowPreviewOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/flow/preview" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2213,6 +3092,30 @@ M.ListTagsForResource = schema.operation({
     },
 })
 
+M.ListWhatsAppFlowAssets = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "ListWhatsAppFlowAssets"),
+    input = M.ListWhatsAppFlowAssetsInput,
+    output = M.ListWhatsAppFlowAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/flow/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListWhatsAppFlows = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "ListWhatsAppFlows"),
+    input = M.ListWhatsAppFlowsInput,
+    output = M.ListWhatsAppFlowsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/whatsapp/flow/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListWhatsAppMessageTemplates = schema.operation({
     id = id.from("com.amazonaws.socialmessaging", "ListWhatsAppMessageTemplates"),
     input = M.ListWhatsAppMessageTemplatesInput,
@@ -2243,6 +3146,18 @@ M.PostWhatsAppMessageMedia = schema.operation({
     output = M.PostWhatsAppMessageMediaOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/media" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PublishWhatsAppFlow = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "PublishWhatsAppFlow"),
+    input = M.PublishWhatsAppFlowInput,
+    output = M.PublishWhatsAppFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/flow/publish" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2291,6 +3206,30 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/tags/untag-resource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWhatsAppFlow = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "UpdateWhatsAppFlow"),
+    input = M.UpdateWhatsAppFlowInput,
+    output = M.UpdateWhatsAppFlowOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/flow/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateWhatsAppFlowAssets = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "UpdateWhatsAppFlowAssets"),
+    input = M.UpdateWhatsAppFlowAssetsInput,
+    output = M.UpdateWhatsAppFlowAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/flow/assets/update" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

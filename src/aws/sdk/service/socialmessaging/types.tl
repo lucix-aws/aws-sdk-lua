@@ -183,6 +183,51 @@ local record M
         message: string
     end
 
+    enum MetaFlowCategory
+        "SIGN_UP"
+        "SIGN_IN"
+        "APPOINTMENT_BOOKING"
+        "LEAD_GENERATION"
+        "SHOPPING"
+        "CONTACT_US"
+        "CUSTOMER_SUPPORT"
+        "SURVEY"
+        "OTHER"
+    end
+
+    record CreateWhatsAppFlowInput
+        -- The ID of the WhatsApp Business Account to associate with this Flow.
+        id: string
+        -- The name of the Flow. Must be unique within the WhatsApp Business Account.
+        flowName: string
+        -- The categories that classify the business purpose of the Flow. At least one category is required.
+        categories: {string}
+        -- The Flow JSON definition that describes the screens, components, and logic of the Flow. Maximum size is 10 MB.
+        flowJson: string
+        -- Set to true to publish the Flow immediately after creation. Requires a valid flowJson that passes Meta's validation.
+        publish: boolean
+        -- The ID of an existing Flow within the same WhatsApp Business Account to clone.
+        cloneFlowId: string
+    end
+
+    record CreateWhatsAppFlowOutput
+        -- The unique identifier assigned to the Flow by Meta.
+        flowId: string
+        -- A list of validation errors returned by Meta, if any. Validation errors must be resolved before the Flow can be published.
+        validationErrors: {string}
+    end
+
+    -- The request processing has failed because of an unknown error, exception, or
+    -- failure.
+    record InternalServiceException
+        message: string
+    end
+
+    -- The resource was not found.
+    record ResourceNotFoundException
+        message: string
+    end
+
     record CreateWhatsAppMessageTemplateInput
         -- The complete template definition as a JSON blob.
         templateDefinition: string
@@ -197,17 +242,6 @@ local record M
         templateStatus: string
         -- The category of the template, such as UTILITY or MARKETING.
         category: string
-    end
-
-    -- The request processing has failed because of an unknown error, exception, or
-    -- failure.
-    record InternalServiceException
-        message: string
-    end
-
-    -- The resource was not found.
-    record ResourceNotFoundException
-        message: string
     end
 
     -- Configuration options for customizing the body content of a template from Meta's library.
@@ -293,6 +327,16 @@ local record M
         metaHeaderHandle: string
     end
 
+    record DeleteWhatsAppFlowInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow to delete.
+        flowId: string
+    end
+
+    record DeleteWhatsAppFlowOutput
+    end
+
     record DeleteWhatsAppMessageMediaInput
         -- The unique identifier of the media file to delete. Use the mediaId returned from PostWhatsAppMessageMedia.
         mediaId: string
@@ -321,6 +365,16 @@ local record M
     end
 
     record DeleteWhatsAppMessageTemplateOutput
+    end
+
+    record DeprecateWhatsAppFlowInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow to deprecate.
+        flowId: string
+    end
+
+    record DeprecateWhatsAppFlowOutput
     end
 
     record DisassociateWhatsAppBusinessAccountInput
@@ -402,6 +456,106 @@ local record M
         -- The WABA identifier linked to the phone number, formatted as
         -- waba-01234567890123456789012345678901.
         linkedWhatsAppBusinessAccountId: string
+    end
+
+    record GetWhatsAppFlowInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow to retrieve.
+        flowId: string
+    end
+
+    -- Contains the Meta application metadata associated with a WhatsApp Flow.
+    record MetaFlowApplicationInfo
+        -- The URL link for the Meta application.
+        link: string
+        -- The name of the Meta application.
+        name: string
+        -- The unique identifier of the Meta application.
+        id: string
+    end
+
+    -- Represents a single entity in the health status check for a WhatsApp Flow.
+    record MetaFlowHealthEntity
+        -- The type of entity (for example, FLOW, WABA, BUSINESS, or APP).
+        entityType: string
+        -- The unique identifier of the entity.
+        id: string
+        -- The messaging availability status for this entity (for example, AVAILABLE, LIMITED, or BLOCKED).
+        canSendMessage: string
+    end
+
+    -- Contains the overall health status and per-entity breakdown for a WhatsApp Flow.
+    record MetaFlowHealthStatus
+        -- The overall messaging availability status (for example, AVAILABLE, LIMITED, or BLOCKED).
+        canSendMessage: string
+        -- A list of health status entities with per-entity availability information.
+        entities: {MetaFlowHealthEntity}
+    end
+
+    -- Contains the preview URL for testing a WhatsApp Flow and its expiration timestamp.
+    record MetaFlowPreviewInfo
+        -- The web URL for previewing the Flow. Can be shared with stakeholders for review.
+        previewUrl: string
+        -- The timestamp when the preview URL expires.
+        expiresAt: string
+    end
+
+    -- Contains WhatsApp Business Account metadata associated with a Flow, as returned by Meta.
+    record MetaFlowWhatsAppBusinessAccountInfo
+        -- The WhatsApp Business Account ID from Meta.
+        id: string
+        -- The name of the WhatsApp Business Account.
+        name: string
+        -- The currency code for the WhatsApp Business Account (for example, USD).
+        currency: string
+        -- The timezone ID for the WhatsApp Business Account.
+        timezoneId: string
+        -- The message template namespace for the WhatsApp Business Account.
+        messageTemplateNamespace: string
+    end
+
+    record GetWhatsAppFlowOutput
+        -- The unique identifier of the Flow.
+        flowId: string
+        -- The name of the Flow.
+        flowName: string
+        -- The lifecycle status of the Flow. Valid values are DRAFT, PUBLISHED, DEPRECATED, BLOCKED, and THROTTLED.
+        flowStatus: string
+        -- The categories that classify the business purpose of the Flow.
+        categories: {string}
+        -- A list of validation errors from Meta, if any.
+        validationErrors: {string}
+        -- The version of the Flow JSON schema used by this Flow (for example, 7.3).
+        jsonVersion: string
+        -- The data API version for data exchange endpoint Flows.
+        dataApiVersion: string
+        -- The endpoint URI for data exchange Flows, if configured.
+        endpointUri: string
+        -- The preview URL and its expiration timestamp for testing the Flow.
+        preview: MetaFlowPreviewInfo
+        -- The WhatsApp Business Account information from Meta associated with this Flow.
+        whatsAppBusinessAccount: MetaFlowWhatsAppBusinessAccountInfo
+        -- The Meta application information associated with this Flow.
+        application: MetaFlowApplicationInfo
+        -- The health status information for this Flow from Meta.
+        healthStatus: MetaFlowHealthStatus
+    end
+
+    record GetWhatsAppFlowPreviewInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow to preview.
+        flowId: string
+        -- Set to true to force generation of a new preview URL. Use this if the previous URL has been compromised or you want a fresh expiration period.
+        invalidate: boolean
+    end
+
+    record GetWhatsAppFlowPreviewOutput
+        -- The unique identifier of the Flow.
+        flowId: string
+        -- The preview URL and its expiration timestamp.
+        preview: MetaFlowPreviewInfo
     end
 
     -- You can use presigned URLs to grant time-limited access to objects in Amazon S3 without updating your bucket policy. For more information, see Working with presigned URLs in the Amazon S3
@@ -504,6 +658,64 @@ local record M
         nextToken: string
     end
 
+    record ListWhatsAppFlowAssetsInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow whose assets to list.
+        flowId: string
+        -- The token for the next page of results.
+        nextToken: string
+        -- The maximum number of results to return per page.
+        maxResults: number
+    end
+
+    -- Represents a single asset file associated with a WhatsApp Flow, including a presigned download URL.
+    record MetaFlowAsset
+        -- The filename of the asset (for example, flow.json).
+        name: string
+        -- The type of asset. Currently the only supported value is FLOW_JSON.
+        assetType: string
+        -- A presigned URL from Meta for downloading the asset. The URL expires after a short period.
+        downloadUrl: string
+    end
+
+    record ListWhatsAppFlowAssetsOutput
+        -- A list of Flow assets with download URLs.
+        flowAssets: {MetaFlowAsset}
+        -- The token to retrieve the next page of results, if any.
+        nextToken: string
+    end
+
+    record ListWhatsAppFlowsInput
+        -- The ID of the WhatsApp Business Account to list Flows for.
+        id: string
+        -- The token for the next page of results.
+        nextToken: string
+        -- The maximum number of results to return per page.
+        maxResults: number
+    end
+
+    -- Contains summary information about a WhatsApp Flow, including its ID, name, status, and categories.
+    record MetaFlowSummary
+        -- The unique identifier of the Flow assigned by Meta.
+        flowId: string
+        -- The name of the Flow.
+        flowName: string
+        -- The lifecycle status of the Flow (DRAFT, PUBLISHED, DEPRECATED, BLOCKED, or THROTTLED).
+        flowStatus: string
+        -- The categories that classify the business purpose of the Flow.
+        flowCategories: {string}
+        -- A list of validation errors from Meta, if any.
+        validationErrors: {string}
+    end
+
+    record ListWhatsAppFlowsOutput
+        -- A list of Flow summaries.
+        flows: {MetaFlowSummary}
+        -- The token to retrieve the next page of results, if any.
+        nextToken: string
+    end
+
     record ListWhatsAppMessageTemplatesInput
         -- The ID of the WhatsApp Business Account to list templates for.
         id: string
@@ -580,6 +792,16 @@ local record M
         nextToken: string
     end
 
+    record PublishWhatsAppFlowInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow to publish.
+        flowId: string
+    end
+
+    record PublishWhatsAppFlowOutput
+    end
+
     record PutWhatsAppBusinessAccountEventDestinationsInput
         -- The unique identifier of your WhatsApp Business Account. WABA identifiers are formatted as
         -- waba-01234567890123456789012345678901. Use
@@ -590,6 +812,34 @@ local record M
     end
 
     record PutWhatsAppBusinessAccountEventDestinationsOutput
+    end
+
+    record UpdateWhatsAppFlowInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow to update.
+        flowId: string
+        -- The updated name for the Flow.
+        flowName: string
+        -- The updated categories for the Flow.
+        categories: {string}
+    end
+
+    record UpdateWhatsAppFlowOutput
+    end
+
+    record UpdateWhatsAppFlowAssetsInput
+        -- The ID of the WhatsApp Business Account associated with this Flow.
+        id: string
+        -- The unique identifier of the Flow whose assets to update.
+        flowId: string
+        -- The updated Flow JSON definition. Maximum size is 10 MB.
+        flowJson: string
+    end
+
+    record UpdateWhatsAppFlowAssetsOutput
+        -- A list of validation errors returned by Meta, if any. Validation errors must be resolved before the Flow can be published.
+        validationErrors: {string}
     end
 
     record UpdateWhatsAppMessageTemplateInput

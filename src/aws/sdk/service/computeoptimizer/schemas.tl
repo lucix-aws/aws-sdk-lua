@@ -2134,6 +2134,12 @@ M.EBSEffectiveRecommendationPreferences = schema.new({
             target_id = id.from(_N, "EBSSavingsEstimationMode"),
             target = M.EBSSavingsEstimationMode,
         }),
+        lookBackPeriod = schema.new({
+            id = id.from(_N, "EBSEffectiveRecommendationPreferences", "lookBackPeriod"),
+            type = "string",
+            name = "lookBackPeriod",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3154,6 +3160,12 @@ M.ECSEffectiveRecommendationPreferences = schema.new({
             name = "savingsEstimationMode",
             target_id = id.from(_N, "ECSSavingsEstimationMode"),
             target = M.ECSSavingsEstimationMode,
+        }),
+        lookBackPeriod = schema.new({
+            id = id.from(_N, "ECSEffectiveRecommendationPreferences", "lookBackPeriod"),
+            type = "string",
+            name = "lookBackPeriod",
+            target_id = prelude.String.id,
         }),
     },
 })

@@ -1113,6 +1113,7 @@ local record M
         "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
         "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
         "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
+        "EffectiveRecommendationPreferencesLookBackPeriod"
     end
 
     enum EBSFilterName
@@ -1351,6 +1352,7 @@ local record M
         "RecommendationOptionsSavingsOpportunityAfterDiscountsPercentage"
         "RecommendationOptionsEstimatedMonthlySavingsCurrencyAfterDiscounts"
         "RecommendationOptionsEstimatedMonthlySavingsValueAfterDiscounts"
+        "EffectiveRecommendationPreferencesLookBackPeriod"
     end
 
     enum ECSServiceRecommendationFilterName
@@ -2026,6 +2028,8 @@ local record M
     record EBSEffectiveRecommendationPreferences
         -- Describes the savings estimation mode preference applied for calculating savings opportunity for Amazon EBS volumes.
         savingsEstimationMode: EBSSavingsEstimationMode
+        -- The number of days for which utilization metrics were analyzed for the volume.
+        lookBackPeriod: string
     end
 
     enum EBSFinding
@@ -2884,6 +2888,8 @@ local record M
     record ECSEffectiveRecommendationPreferences
         -- Describes the savings estimation mode preference applied for calculating savings opportunity for Amazon ECS services.
         savingsEstimationMode: ECSSavingsEstimationMode
+        -- The number of days the Amazon ECS service utilization metrics were analyzed.
+        lookBackPeriod: string
     end
 
     enum ECSServiceRecommendationFinding
@@ -3130,7 +3136,8 @@ local record M
         -- The number of days the utilization metrics of the Amazon Web Services resource are analyzed.
         -- To validate that the preference is applied to your last generated set of recommendations, review
         -- the effectiveRecommendationPreferences value in the response of the
-        -- GetAutoScalingGroupRecommendations or GetEC2InstanceRecommendations actions.
+        -- GetAutoScalingGroupRecommendations, GetEC2InstanceRecommendations, GetEBSVolumeRecommendations,
+        -- GetECSServiceRecommendations, or GetRDSDatabaseRecommendations actions.
         lookBackPeriod: string
         -- The resource’s CPU and memory utilization preferences, such as threshold and headroom,
         -- that were used to generate rightsizing recommendations. It considers all applicable preferences
@@ -4424,9 +4431,14 @@ local record M
         externalMetricsPreference: ExternalMetricsPreference
         -- The preference to control the number of days the utilization metrics of the Amazon Web Services resource are analyzed.
         -- When this preference isn't specified, we use the default value DAYS_14.
-        -- You can only set this preference for the Amazon EC2 instance and Auto Scaling group resource types.
-        -- Amazon EC2 instance lookback preferences can be set at the organization, account, and resource levels.
+        -- You can only set this preference for the Amazon EC2 instance, Auto Scaling group, Amazon EBS volume, Amazon ECS service on Fargate, Amazon RDS DB instance, and Aurora DB cluster storage resource types.
+        -- Lookback period preferences for Amazon EC2 instances, Amazon EBS volumes, Amazon ECS services, Amazon RDS DB instances, and Aurora DB cluster storage resource types can be set at the organization, account, and resource levels.
         -- Auto Scaling group lookback preferences can only be set at the resource level.
+        -- Amazon EBS volume lookback preferences can be set at the organization, account, and resource levels.
+        -- Amazon ECS service on Fargate lookback preferences can be set at the organization, account, and resource levels.
+        -- Amazon RDS DB instance lookback preferences can be set at the organization, account, and resource levels.
+        -- Aurora DB cluster storage lookback preferences can be set at the organization, account, and resource levels.
+        -- Changing the lookback period for Amazon EBS volumes to 14 days does not affect the 32-day lookback period used to determine whether an Amazon EBS volume is unattached.
         lookBackPeriod: string
         -- The preference to control the resource’s CPU utilization threshold, CPU utilization headroom, and memory utilization headroom. When this
         -- preference isn't specified, we use the following default values.
@@ -4442,7 +4454,7 @@ local record M
         -- You can specify this preference as a combination of include and exclude lists. You must specify either an
         -- includeList or excludeList. If the preference is an empty set of resource type values,
         -- an error occurs.
-        -- You can only set this preference for the Amazon EC2 instance and Auto Scaling group resource types.
+        -- You can only set this preference for the Amazon EC2 instance, Auto Scaling group, Amazon EBS volume, Amazon ECS service, Amazon RDS DB instance, and Aurora DB cluster storage resource types.
         preferredResources: {PreferredResource}
         -- The status of the savings estimation mode preference to create or update.
         -- Specify the AfterDiscounts status to activate the preference, or specify BeforeDiscounts to deactivate the preference.

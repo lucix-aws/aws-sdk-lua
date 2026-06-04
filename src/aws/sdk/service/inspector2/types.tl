@@ -2323,7 +2323,7 @@ local record M
         -- within the specified time range.
         lastScannedAt: {CoverageDateFilter}
         -- The filter to search for Amazon EC2 instance coverage by scan mode. Valid values are
-        -- EC2_SSM_AGENT_BASED and EC2_AGENTLESS.
+        -- EC2_SSM_AGENT_BASED, EC2_AGENTLESS, and EC2_INSPECTOR_AGENT_BASED.
         scanMode: {CoverageStringFilter}
         -- The date an image was last pulled at.
         imagePulledAt: {CoverageDateFilter}
@@ -2426,6 +2426,7 @@ local record M
     enum ScanMode
         "EC2_SSM_AGENT_BASED"
         "EC2_AGENTLESS"
+        "EC2_INSPECTOR_AGENT_BASED"
     end
 
     enum ScanType
@@ -3007,6 +3008,8 @@ local record M
     record Ec2Configuration
         -- The scan method that is applied to the instance.
         scanMode: string
+        -- Whether to activate Amazon Inspector VM scanner for Amazon EC2 scanning.
+        activateVMScanner: boolean
     end
 
     enum Ec2ScanModeStatus
@@ -3022,10 +3025,28 @@ local record M
         scanModeStatus: string
     end
 
+    enum VMScannerStatus
+        "SUCCESS"
+        "PENDING"
+        "FAILED"
+    end
+
+    -- The state of the Amazon Inspector VM scanner.
+    record VMScannerState
+        -- Whether the VM scanner is activated.
+        activated: boolean
+        -- The date and time the VM scanner was activated.
+        activatedAt: number
+        -- The status of the VM scanner.
+        status: string
+    end
+
     -- Details about the state of the EC2 scan configuration for your environment.
     record Ec2ConfigurationState
         -- An object that contains details about the state of the Amazon EC2 scan mode.
         scanModeState: Ec2ScanModeState
+        -- An object that contains details about the state of the Amazon Inspector VM scanner.
+        vmScannerState: VMScannerState
     end
 
     enum EcrPullDateRescanDuration
