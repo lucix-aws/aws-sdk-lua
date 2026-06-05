@@ -13185,11 +13185,18 @@ local record M
         StoppingCondition: MonitoringStoppingCondition
     end
 
+    enum IncludedData
+        "AllData"
+        "MetadataOnly"
+    end
+
     record DescribeModelCardInput
         -- The name or Amazon Resource Name (ARN) of the model card to describe.
         ModelCardName: string
         -- The version of the model card to describe. If a version is not provided, then the latest version of the model card is described.
         ModelCardVersion: number
+        -- Specifies the level of model card data to include in the response. Use this parameter to call DescribeModelCard without requiring kms:Decrypt permission on the customer-managed Amazon Web Services KMS key. AllData: Returns the full model card Content. This option requires kms:Decrypt permission on the customer-managed key, if one is associated with the model card. This is the default. MetadataOnly: Returns the model card with sanitized Content that includes only a small set of unencrypted metadata fields. This option does not require kms:Decrypt permission. For the list of fields preserved in the response, see Content. If you don't specify a value, SageMaker returns AllData.
+        IncludedData: string
     end
 
     enum ModelCardProcessingStatus
@@ -13208,7 +13215,7 @@ local record M
         ModelCardName: string
         -- The version of the model card.
         ModelCardVersion: number
-        -- The content of the model card.
+        -- The content of the model card. Content is provided as a string in the model card JSON schema. When you set IncludedData to MetadataOnly in the request, SageMaker returns a sanitized version of Content that includes only the following JSON paths, when present in the model card: model_overview.model_id model_overview.model_name intended_uses.risk_rating model_package_details.model_package_group_name model_package_details.model_package_arn All other fields are removed from Content when IncludedData is MetadataOnly, including model description, training details, evaluation details, business details, and additional information. To retrieve the complete Content, set IncludedData to AllData or omit the parameter.
         Content: string
         -- The approval status of the model card within your organization. Different organizations might have different criteria for model card review and approval. Draft: The model card is a work in progress. PendingReview: The model card is pending review. Approved: The model card is approved. Archived: The model card is archived. No more updates should be made to the model card, but it can still be exported.
         ModelCardStatus: string
@@ -13294,6 +13301,8 @@ local record M
     record DescribeModelPackageInput
         -- The name or Amazon Resource Name (ARN) of the model package to describe. When you specify a name, the name must have 1 to 63 characters. Valid characters are a-z, A-Z, 0-9, and - (hyphen).
         ModelPackageName: string
+        -- Specifies the level of model package data to include in the response. Use this parameter to call DescribeModelPackage on a model package that has an associated model card without requiring kms:Decrypt permission on the customer-managed KMS key associated with the embedded model card. AllData: Returns the full model package response, including the unredacted ModelCard.ModelCardContent. This option requires kms:Decrypt permission on the customer-managed key, if one is associated with the embedded model card. This is the default. MetadataOnly: Returns the full model package response, but with the embedded ModelCard.ModelCardContent sanitized to include only a small set of unencrypted metadata fields. This option does not require kms:Decrypt permission. All other top-level response fields, including InferenceSpecification, ModelMetrics, DriftCheckBaselines, and SecurityConfig, are returned unchanged. For the list of fields preserved within ModelCardContent, see ModelCard. If you don't specify a value, SageMaker returns AllData.
+        IncludedData: string
     end
 
     enum DetailedModelPackageStatus
@@ -13377,7 +13386,7 @@ local record M
         SourceUri: string
         -- The KMS Key ID (KMSKeyId) used for encryption of model package information.
         SecurityConfig: ModelPackageSecurityConfig
-        -- The model card associated with the model package. Since ModelPackageModelCard is tied to a model package, it is a specific usage of a model card and its schema is simplified compared to the schema of ModelCard. The ModelPackageModelCard schema does not include model_package_details, and model_overview is composed of the model_creator and model_artifact properties. For more information about the model package model card schema, see Model package model card schema. For more information about the model card associated with the model package, see View the Details of a Model Version.
+        -- The model card associated with the model package. Since ModelPackageModelCard is tied to a model package, it is a specific usage of a model card and its schema is simplified compared to the schema of ModelCard. The ModelPackageModelCard schema does not include model_package_details, and model_overview is composed of the model_creator and model_artifact properties. For more information about the model package model card schema, see Model package model card schema. For more information about the model card associated with the model package, see View the Details of a Model Version. When you set IncludedData to MetadataOnly in the request, ModelCardStatus is preserved and ModelCardContent is sanitized to include only the following JSON paths, when present in the model card: model_overview.model_id model_overview.model_name intended_uses.risk_rating model_package_details.model_package_group_name model_package_details.model_package_arn Because the ModelPackageModelCard schema does not include model_package_details and limits model_overview to model_creator and model_artifact, the sanitized ModelCardContent for a model package typically contains only intended_uses.risk_rating if it was provided when the model card was created. To retrieve the complete ModelCardContent, set IncludedData to AllData or omit the parameter.
         ModelCard: ModelPackageModelCard
         -- A structure describing the current state of the model in its life cycle.
         ModelLifeCycle: ModelLifeCycle
@@ -15516,6 +15525,7 @@ local record M
         "HyperParameterTuningJob"
         "ModelCard"
         "PipelineVersion"
+        "Job"
     end
 
     -- Part of the SuggestionQuery type. Specifies a hint for retrieving property names that begin with the specified text.
@@ -15903,6 +15913,39 @@ local record M
         Status: string
         -- The details for a specific benchmark.
         InferenceBenchmark: RecommendationJobInferenceBenchmark
+    end
+
+    -- Search shape for Job. Mirrors DescribeJobResponse fields.
+    -- If you update DescribeJobResponse, update this structure as well.
+    record Job
+        -- The name of the job.
+        JobName: string
+        -- The Amazon Resource Name (ARN) of the job.
+        JobArn: string
+        -- The ARN of the IAM role associated with the job.
+        RoleArn: string
+        -- The category of the job.
+        JobCategory: string
+        -- The schema version used for the job configuration document.
+        JobConfigSchemaVersion: string
+        -- The JSON configuration document for the job.
+        JobConfigDocument: string
+        -- The date and time that the job was created.
+        CreationTime: number
+        -- The date and time that the job was last modified.
+        LastModifiedTime: number
+        -- The date and time that the job ended.
+        EndTime: number
+        -- The current status of the job.
+        JobStatus: string
+        -- The detailed secondary status of the job, providing more granular information about the job's progress.
+        SecondaryStatus: string
+        -- A list of secondary status transitions for the job, with timestamps and optional status messages.
+        SecondaryStatusTransitions: {JobSecondaryStatusTransition}
+        -- If the job failed, the reason it failed.
+        FailureReason: string
+        -- The tags associated with the job.
+        Tags: {Tag}
     end
 
     -- Provides summary information about a job configuration schema version.
@@ -20305,6 +20348,7 @@ local record M
         -- An Amazon SageMaker Model Card that documents details about a machine learning model.
         ModelCard: ModelCard
         Model: ModelDashboardModel
+        Job: Job
     end
 
     -- Represents the total number of matching results and indicates how accurate that count is. The Value field provides the count, which may be exact or estimated. The Relation field indicates whether it's an exact figure or a lower bound. This helps understand the full scope of search results, especially when dealing with large result sets.

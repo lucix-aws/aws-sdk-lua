@@ -27,7 +27,7 @@ local record M
         arn: string
         -- Ad configuration name. Defaults to “”.
         name: string
-        -- List of integration configurations with media tailor resources.
+        -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
         mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
         -- Tags attached to the resource. Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
         tags: {string : string}
@@ -39,7 +39,7 @@ local record M
         arn: string
         -- Ad configuration name. Defaults to “”.
         name: string
-        -- List of integration configurations with media tailor resources.
+        -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
         mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
         -- Tags attached to the resource. Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
         tags: {string : string}
@@ -174,6 +174,7 @@ local record M
         xContentTypeOptions: string
         xFrameOptions: string
         xAmznErrorType: string
+        -- The service is temporarily unavailable.
         exceptionMessage: string
     end
 
@@ -314,7 +315,7 @@ local record M
     record CreateAdConfigurationInput
         -- Ad configuration name. Defaults to “”.
         name: string
-        -- List of integration configurations with media tailor resources.
+        -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
         mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
         -- Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
         tags: {string : string}
@@ -824,7 +825,7 @@ local record M
     record InsertAdBreakInput
         -- ARN of the channel into which the ad break is inserted.
         channelArn: string
-        -- Maximum duration of the ad break, in seconds.
+        -- Duration of the ad break, in seconds.
         durationSeconds: number
     end
 
@@ -1138,6 +1139,20 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateAdConfigurationInput
+        -- ARN of the ad configuration to be updated.
+        arn: string
+        -- Ad configuration name. The value does not need to be unique.
+        name: string
+        -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
+        mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
+    end
+
+    record UpdateAdConfigurationOutput
+        -- Object specifying the updated ad configuration.
+        adConfiguration: AdConfiguration
     end
 
     record UpdateChannelInput

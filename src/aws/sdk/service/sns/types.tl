@@ -82,7 +82,7 @@ local record M
     end
 
     -- Indicates that the number of filter polices in your Amazon Web Services account exceeds the limit. To
-    -- add more filter polices, submit an Amazon SNS Limit Increase case in the Amazon Web ServicesSupport
+    -- add more filter polices, submit an Amazon SNS Limit Increase case in the Amazon Web Services Support
     -- Center.
     record FilterPolicyLimitExceededException
         message: string

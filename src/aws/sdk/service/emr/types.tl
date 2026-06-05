@@ -578,6 +578,8 @@ local record M
         -- consist of a required key string with a maximum of 128 characters, and an optional value
         -- string with a maximum of 256 characters.
         Tags: {Tag}
+        -- The ID of the cluster that scopes the tag operation. Required when the resource being tagged is a session-scoped resource.
+        ClusterId: string
     end
 
     -- This output indicates the result of adding tags to a resource.
@@ -753,6 +755,14 @@ local record M
         CancelStepsInfoList: {CancelStepsInfo}
     end
 
+    -- Describes the certificate authority used to establish an mTLS connection to the Spark Connect server when connecting directly over VPC peering.
+    record CertificateAuthority
+        -- The Amazon Resource Name (ARN) of the certificate authority in Amazon Web Services Private CA that issued the Spark Connect server certificate.
+        CertificateArn: string
+        -- The PEM-encoded root CA certificate data. Provide this certificate to your client's trust store when connecting directly to the Spark Connect server over VPC peering.
+        CertificateData: string
+    end
+
     -- Holds CloudWatch log configuration settings and metadata that specify settings like log files to monitor and where to send them.
     record CloudWatchLogConfiguration
         -- Specifies if CloudWatch logging is enabled.
@@ -861,13 +871,18 @@ local record M
     record S3LoggingConfiguration
         -- A map that specifies the upload policy for each log type. The key is the log type, and the value is the upload policy.
         -- Valid log types:
-        -- system-logs: System-level logs including daemon logs, bootstrap logs, and other infrastructure logs.
-        -- application-logs: Application-level logs from frameworks like Hadoop, Spark, Hive, etc.
-        -- persistent-ui-logs: Logs for persistent application UIs like Spark History Server.
+        -- system-logs: EMR Daemon logs.
+        -- application-logs: Framework logs from Hadoop, Spark, Hive and other applications running on the cluster.
+        -- persistent-ui-logs: Logs required for persistent application UIs such as Spark History Server and Tez UI.
         -- Valid upload policies:
-        -- emr-managed: Logs are uploaded to both the EMR-managed S3 bucket and the customer-specified S3 bucket (if LogUri is provided).
-        -- on-customer-s3only: Logs are uploaded only to the customer-specified S3 bucket. Requires LogUri to be specified in the cluster configuration.
-        -- disabled: Log upload is disabled for this log type.
+        -- emr-managed: Standard behavior. Logs are uploaded to S3 bucket as configured in your
+        -- LogUri, with certain logs retained by the service for operational
+        -- support and troubleshooting purposes.
+        -- on-customer-s3only: Logs are uploaded only to the customer-specified S3 bucket. This requires you to specify a LogUri
+        -- when creating the cluster. Persistent-ui-logs cannot have
+        -- on-customer-s3only policy. Allowed policies for persistent-ui-logs
+        -- are emr-managed and disabled.
+        -- disabled: No S3 upload for this log type.
         LogTypeUploadPolicy: {string : string}
     end
 
@@ -2056,6 +2071,89 @@ local record M
         PresignedURL: string
     end
 
+    -- Input to the GetSession operation.
+    record GetSessionInput
+        -- The ID of the cluster that the session belongs to.
+        ClusterId: string
+        -- The ID of the session.
+        SessionId: string
+    end
+
+    -- The CloudWatch Logs configuration for a session.
+    record SessionCloudWatchLoggingConfiguration
+        -- Whether CloudWatch Logs is enabled for the session.
+        Enabled: boolean
+        -- The name of the log group where session logs are published.
+        LogGroup: string
+        -- The prefix applied to the log stream name where session logs are published.
+        LogStreamNamePrefix: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the logs published to CloudWatch Logs.
+        EncryptionKeyArn: string
+        -- A map of log component names (for example, SPARK_DRIVER, SPARK_EXECUTOR) to the list of log types to publish for that component (for example, stdout, stderr).
+        LogTypes: {string : {string}}
+    end
+
+    -- The Amazon EMR-managed logging configuration for a session.
+    record SessionManagedLoggingConfiguration
+        -- Whether Amazon EMR-managed logging is enabled for the session.
+        Enabled: boolean
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the managed logs.
+        EncryptionKeyArn: string
+    end
+
+    -- The Amazon S3 logging configuration for a session.
+    record SessionS3LoggingConfiguration
+        -- Whether Amazon S3 logging is enabled for the session.
+        Enabled: boolean
+        -- The Amazon S3 destination URI where session logs are published.
+        LogUri: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt logs published to Amazon S3.
+        EncryptionKeyArn: string
+        -- A map of log component names (for example, SPARK_DRIVER, SPARK_EXECUTOR) to the list of log types to publish for that component (for example, stdout, stderr).
+        LogTypes: {string : {string}}
+    end
+
+    -- The monitoring configuration for a session. Controls where session logs are published.
+    record SessionMonitoringConfiguration
+        -- The CloudWatch Logs configuration for the session.
+        CloudWatchLoggingConfiguration: SessionCloudWatchLoggingConfiguration
+        -- The Amazon EMR-managed logging configuration for the session.
+        ManagedLoggingConfiguration: SessionManagedLoggingConfiguration
+        -- The Amazon S3 logging configuration for the session.
+        S3LoggingConfiguration: SessionS3LoggingConfiguration
+    end
+
+    enum SessionState
+        "SUBMITTED"
+        "STARTING"
+        "STARTED"
+        "IDLE"
+        "BUSY"
+        "TERMINATING"
+        "TERMINATED"
+        "FAILED"
+    end
+
+    -- Input to the GetSessionEndpoint operation.
+    record GetSessionEndpointInput
+        -- The ID of the cluster that the session belongs to.
+        ClusterId: string
+        -- The ID of the session.
+        SessionId: string
+    end
+
+    -- Output of the GetSessionEndpoint operation.
+    record GetSessionEndpointOutput
+        -- The Spark Connect endpoint URL to use in the PySpark client.
+        Endpoint: string
+        -- A time-limited authentication token used to connect to the Spark Connect endpoint.
+        AuthToken: string
+        -- The time at which the authentication token expires. After this time, call GetSessionEndpoint again to obtain a new token.
+        AuthTokenExpirationTime: number
+        -- Username and password used to authenticate with the Spark Connect server when connecting directly over VPC peering.
+        Credentials: Credentials
+    end
+
     record GetStudioSessionMappingInput
         -- The ID of the Amazon EMR Studio.
         StudioId: string
@@ -2527,6 +2625,18 @@ local record M
         Marker: string
     end
 
+    -- Input to the ListSessions operation.
+    record ListSessionsInput
+        -- The ID of the cluster to list sessions for.
+        ClusterId: string
+        -- An optional filter that limits the results to sessions in the specified states.
+        SessionStates: {string}
+        -- The pagination token returned by a previous ListSessions call. Use it to retrieve the next page of results.
+        NextToken: string
+        -- The maximum number of sessions to return in each page of results.
+        MaxResults: number
+    end
+
     -- This input determines which steps to list.
     record ListStepsInput
         -- The identifier of the cluster for which to list the steps.
@@ -2818,6 +2928,8 @@ local record M
         ResourceId: string
         -- A list of tag keys to remove from the resource.
         TagKeys: {string}
+        -- The ID of the cluster that scopes the tag operation. Required when the resource being untagged is a session-scoped resource.
+        ClusterId: string
     end
 
     -- This output indicates the result of removing tags from the resource.
@@ -2957,6 +3069,20 @@ local record M
         NotebookExecutionId: string
     end
 
+    -- Output of the StartSession operation.
+    record StartSessionOutput
+        -- The output contains the ID of the session.
+        Id: string
+        -- The ID of the cluster that the session was started on.
+        ClusterId: string
+        -- The output contains the ARN of the session.
+        Arn: string
+        -- The Amazon Web Services account ID that owns the session.
+        AccountId: string
+        -- The state of the session at the time the request returned. When a session is first created, it enters the SUBMITTED state.
+        State: string
+    end
+
     record StopNotebookExecutionInput
         -- The unique identifier of the notebook execution.
         NotebookExecutionId: string
@@ -2972,6 +3098,24 @@ local record M
     end
 
     record TerminateJobFlowsOutput
+    end
+
+    -- Input to the TerminateSession operation.
+    record TerminateSessionInput
+        -- The ID of the cluster that the session belongs to.
+        ClusterId: string
+        -- The ID of the session to terminate.
+        SessionId: string
+    end
+
+    -- Output of the TerminateSession operation.
+    record TerminateSessionOutput
+        -- The ID of the cluster that the session belonged to.
+        ClusterId: string
+        -- The ID of the terminated session.
+        SessionId: string
+        -- The state of the session after the terminate request has been accepted.
+        State: string
     end
 
     record UpdateStudioInput
@@ -3186,6 +3330,8 @@ local record M
         ExtendedSupport: boolean
         -- Contains Cloudwatch log configuration metadata and settings.
         MonitoringConfiguration: MonitoringConfiguration
+        -- Indicates whether Spark Connect sessions are enabled on the cluster.
+        SessionEnabled: boolean
     end
 
     -- Configuration defining a new instance group.
@@ -3316,6 +3462,70 @@ local record M
         Priority: number
     end
 
+    -- Detailed information about a Spark Connect session.
+    record Session
+        -- The ID of the session.
+        Id: string
+        -- The ID of the cluster that the session belongs to.
+        ClusterId: string
+        -- The name of the session, if one was provided at creation time.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the session.
+        Arn: string
+        -- The current state of the session. Valid values are SUBMITTED, STARTING, STARTED, IDLE, BUSY, TERMINATING, TERMINATED, and FAILED.
+        State: string
+        -- A human-readable message describing the most recent state change.
+        StateChangeReason: string
+        -- The Amazon EMR release label of the cluster that the session is running on.
+        ReleaseLabel: string
+        -- The execution role ARN for the session. Amazon EMR uses this role to access Amazon Web Services resources on your behalf during session execution.
+        ExecutionRoleArn: string
+        -- The Amazon Web Services account ID that owns the session.
+        AccountId: string
+        -- The date and time that the session was created.
+        CreatedAt: number
+        -- The date and time that the session was last updated.
+        UpdatedAt: number
+        -- The date and time that the session entered the STARTED state.
+        StartedAt: number
+        -- The date and time that the session was terminated or failed.
+        EndedAt: number
+        -- The date and time that the session last entered the IDLE state.
+        IdleSince: number
+        -- The configuration overrides for the session. Only runtime configuration overrides are supported.
+        EngineConfigurations: {Configuration}
+        -- The monitoring configuration for the session.
+        MonitoringConfiguration: SessionMonitoringConfiguration
+        -- The idle timeout, in minutes. If the session is idle for this duration, Amazon EMR automatically terminates it.
+        SessionIdleTimeoutInMinutes: number
+        -- The certificate authority used to establish an mTLS connection to the Spark Connect server when connecting directly over VPC peering.
+        CertificateAuthority: CertificateAuthority
+        -- The Spark Connect server URL for the session. Use this URL with the Credentials returned by GetSessionEndpoint to connect directly to the session over VPC peering.
+        ServerUrl: string
+        -- The tags associated with the session.
+        Tags: {Tag}
+    end
+
+    -- Input to the StartSession operation.
+    record StartSessionInput
+        -- An optional name for the session.
+        Name: string
+        -- The ID of the cluster on which to start the session.
+        ClusterId: string
+        -- The execution role ARN for the session. Amazon EMR uses this role to access Amazon Web Services resources on your behalf during session execution.
+        ExecutionRoleArn: string
+        -- The configuration overrides for the session. Only runtime configuration overrides are supported.
+        EngineConfigurations: {Configuration}
+        -- The monitoring configuration that controls where session logs are published, such as Amazon S3, CloudWatch, or managed logging.
+        MonitoringConfiguration: SessionMonitoringConfiguration
+        -- The idle timeout, in minutes. If the session is idle for this duration, Amazon EMR EC2 automatically terminates it.
+        SessionIdleTimeoutInMinutes: number
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. If you retry a request that completed successfully using the same client request token, the service returns the original response without performing the operation again.
+        ClientRequestToken: string
+        -- The tags to assign to the session.
+        Tags: {Tag}
+    end
+
     -- This output contains the description of the cluster.
     record DescribeClusterOutput
         -- This output contains the details for the requested cluster.
@@ -3344,6 +3554,12 @@ local record M
         -- the configuration was created. Each time a configuration for block public access is
         -- updated, Amazon EMR updates this metadata.
         BlockPublicAccessConfigurationMetadata: BlockPublicAccessConfigurationMetadata
+    end
+
+    -- Output of the GetSession operation.
+    record GetSessionOutput
+        -- The output displays information about the session.
+        Session: Session
     end
 
     record PutBlockPublicAccessConfigurationInput
@@ -3511,6 +3727,14 @@ local record M
         InstanceTypeConfigs: {InstanceTypeConfig}
         -- Reserved.
         Context: string
+    end
+
+    -- Output of the ListSessions operation.
+    record ListSessionsOutput
+        -- The sessions that match the request.
+        Sessions: {Session}
+        -- The pagination token to use in a subsequent ListSessions call to retrieve the next page of results. This field is absent when there are no more results.
+        NextToken: string
     end
 
     -- Change the size of some instance groups.
@@ -3838,6 +4062,8 @@ local record M
         ExtendedSupport: boolean
         -- Contains CloudWatch log configuration metadata and settings.
         MonitoringConfiguration: MonitoringConfiguration
+        -- Indicates whether Spark Connect sessions are enabled on the cluster. When set to true, you can start Spark Connect sessions using the StartSession operation.
+        SessionEnabled: boolean
     end
 
 end

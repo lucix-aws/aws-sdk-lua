@@ -2475,52 +2475,52 @@ local record M
         AuthenticationConfiguration: AuthenticationConfiguration
     end
 
-    -- Provides the configuration information to connect to Amazon WorkDocs
+    -- Provides the configuration information to connect to WorkDocs
     -- as your data source.
-    -- Amazon WorkDocs connector is available in Oregon, North Virginia, Sydney, Singapore and Ireland
+    -- WorkDocs connector is available in Oregon, North Virginia, Sydney, Singapore and Ireland
     -- regions.
     record WorkDocsConfiguration
         -- The identifier of the directory corresponding to your
-        -- Amazon WorkDocs site repository.
+        -- WorkDocs site repository.
         -- You can find the organization ID in the
         -- Directory Service by going to
         -- Active Directory, then
-        -- Directories. Your Amazon WorkDocs site directory has an
-        -- ID, which is the organization ID. You can also set up a new Amazon WorkDocs
-        -- directory in the Directory Service console and enable a Amazon WorkDocs site
-        -- for the directory in the Amazon WorkDocs console.
+        -- Directories. Your WorkDocs site directory has an
+        -- ID, which is the organization ID. You can also set up a new WorkDocs
+        -- directory in the Directory Service console and enable a WorkDocs site
+        -- for the directory in the WorkDocs console.
         OrganizationId: string
         -- TRUE to include comments on documents
         -- in your index. Including comments in your index means each comment
         -- is a document that can be searched on.
         -- The default is set to FALSE.
         CrawlComments: boolean
-        -- TRUE to use the Amazon WorkDocs change log to determine
+        -- TRUE to use the WorkDocs change log to determine
         -- which documents require updating in the index. Depending on the change log's
         -- size, it may take longer for Amazon Kendra to use the change log than to
-        -- scan all of your documents in Amazon WorkDocs.
+        -- scan all of your documents in WorkDocs.
         UseChangeLog: boolean
         -- A list of regular expression patterns to include certain files
-        -- in your Amazon WorkDocs site repository. Files that match the patterns
+        -- in your WorkDocs site repository. Files that match the patterns
         -- are included in the index. Files that don't match the patterns are
         -- excluded from the index. If a file matches both an inclusion and exclusion
         -- pattern, the exclusion pattern takes precedence and the file isn't included
         -- in the index.
         InclusionPatterns: {string}
         -- A list of regular expression patterns to exclude certain files
-        -- in your Amazon WorkDocs site repository. Files that match the patterns
+        -- in your WorkDocs site repository. Files that match the patterns
         -- are excluded from the index. Files that don’t match the patterns
         -- are included in the index. If a file matches both an inclusion and exclusion
         -- pattern, the exclusion pattern takes precedence and the file isn't included
         -- in the index.
         ExclusionPatterns: {string}
         -- A list of DataSourceToIndexFieldMapping objects that
-        -- map Amazon WorkDocs data source attributes or field names to Amazon Kendra
+        -- map WorkDocs data source attributes or field names to Amazon Kendra
         -- index field names. To create custom fields, use the
-        -- UpdateIndex API before you map to Amazon WorkDocs fields.
+        -- UpdateIndex API before you map to WorkDocs fields.
         -- For more information, see Mapping
-        -- data source fields. The Amazon WorkDocs data source field names
-        -- must exist in your Amazon WorkDocs custom metadata.
+        -- data source fields. The WorkDocs data source field names
+        -- must exist in your WorkDocs custom metadata.
         FieldMappings: {DataSourceToIndexFieldMapping}
     end
 
@@ -2559,7 +2559,7 @@ local record M
         -- source.
         GoogleDriveConfiguration: GoogleDriveConfiguration
         WebCrawlerConfiguration: WebCrawlerConfiguration
-        -- Provides the configuration information to connect to Amazon WorkDocs as your data
+        -- Provides the configuration information to connect to WorkDocs as your data
         -- source.
         WorkDocsConfiguration: WorkDocsConfiguration
         -- Provides the configuration information to connect to Amazon FSx as your data

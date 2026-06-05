@@ -44,6 +44,8 @@ local record Client
     getManagedScalingPolicy: function(Client, types.GetManagedScalingPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedScalingPolicyOutput>
     getOnClusterAppUIPresignedURL: function(Client, types.GetOnClusterAppUIPresignedURLInput, ? base_client.InvokeOptions): async.Operation<types.GetOnClusterAppUIPresignedURLOutput>
     getPersistentAppUIPresignedURL: function(Client, types.GetPersistentAppUIPresignedURLInput, ? base_client.InvokeOptions): async.Operation<types.GetPersistentAppUIPresignedURLOutput>
+    getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    getSessionEndpoint: function(Client, types.GetSessionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
     getStudioSessionMapping: function(Client, types.GetStudioSessionMappingInput, ? base_client.InvokeOptions): async.Operation<types.GetStudioSessionMappingOutput>
     listBootstrapActions: function(Client, types.ListBootstrapActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListBootstrapActionsOutput>
     listClusters: function(Client, types.ListClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListClustersOutput>
@@ -53,6 +55,7 @@ local record Client
     listNotebookExecutions: function(Client, types.ListNotebookExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotebookExecutionsOutput>
     listReleaseLabels: function(Client, types.ListReleaseLabelsInput, ? base_client.InvokeOptions): async.Operation<types.ListReleaseLabelsOutput>
     listSecurityConfigurations: function(Client, types.ListSecurityConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityConfigurationsOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
     listSteps: function(Client, types.ListStepsInput, ? base_client.InvokeOptions): async.Operation<types.ListStepsOutput>
     listStudios: function(Client, types.ListStudiosInput, ? base_client.InvokeOptions): async.Operation<types.ListStudiosOutput>
     listStudioSessionMappings: function(Client, types.ListStudioSessionMappingsInput, ? base_client.InvokeOptions): async.Operation<types.ListStudioSessionMappingsOutput>
@@ -74,8 +77,10 @@ local record Client
     setUnhealthyNodeReplacement: function(Client, types.SetUnhealthyNodeReplacementInput, ? base_client.InvokeOptions): async.Operation<types.SetUnhealthyNodeReplacementOutput>
     setVisibleToAllUsers: function(Client, types.SetVisibleToAllUsersInput, ? base_client.InvokeOptions): async.Operation<types.SetVisibleToAllUsersOutput>
     startNotebookExecution: function(Client, types.StartNotebookExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookExecutionOutput>
+    startSession: function(Client, types.StartSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
     stopNotebookExecution: function(Client, types.StopNotebookExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StopNotebookExecutionOutput>
     terminateJobFlows: function(Client, types.TerminateJobFlowsInput, ? base_client.InvokeOptions): async.Operation<types.TerminateJobFlowsOutput>
+    terminateSession: function(Client, types.TerminateSessionInput, ? base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
     updateStudio: function(Client, types.UpdateStudioInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStudioOutput>
     updateStudioSessionMapping: function(Client, types.UpdateStudioSessionMappingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateStudioSessionMappingOutput>
 end
@@ -226,6 +231,14 @@ function C:getPersistentAppUIPresignedURL(input: types.GetPersistentAppUIPresign
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPersistentAppUIPresignedURL as schema.OperationSchema, input, options) as async.Operation<types.GetPersistentAppUIPresignedURLOutput>
 end
 
+function C:getSession(input: types.GetSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSession as schema.OperationSchema, input, options) as async.Operation<types.GetSessionOutput>
+end
+
+function C:getSessionEndpoint(input: types.GetSessionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetSessionEndpointOutput>
+end
+
 function C:getStudioSessionMapping(input: types.GetStudioSessionMappingInput, options?: base_client.InvokeOptions): async.Operation<types.GetStudioSessionMappingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStudioSessionMapping as schema.OperationSchema, input, options) as async.Operation<types.GetStudioSessionMappingOutput>
 end
@@ -260,6 +273,10 @@ end
 
 function C:listSecurityConfigurations(input: types.ListSecurityConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityConfigurationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityConfigurationsOutput>
+end
+
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
 function C:listSteps(input: types.ListStepsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStepsOutput>
@@ -346,12 +363,20 @@ function C:startNotebookExecution(input: types.StartNotebookExecutionInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNotebookExecution as schema.OperationSchema, input, options) as async.Operation<types.StartNotebookExecutionOutput>
 end
 
+function C:startSession(input: types.StartSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSession as schema.OperationSchema, input, options) as async.Operation<types.StartSessionOutput>
+end
+
 function C:stopNotebookExecution(input: types.StopNotebookExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StopNotebookExecutionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopNotebookExecution as schema.OperationSchema, input, options) as async.Operation<types.StopNotebookExecutionOutput>
 end
 
 function C:terminateJobFlows(input: types.TerminateJobFlowsInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateJobFlowsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateJobFlows as schema.OperationSchema, input, options) as async.Operation<types.TerminateJobFlowsOutput>
+end
+
+function C:terminateSession(input: types.TerminateSessionInput, options?: base_client.InvokeOptions): async.Operation<types.TerminateSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TerminateSession as schema.OperationSchema, input, options) as async.Operation<types.TerminateSessionOutput>
 end
 
 function C:updateStudio(input: types.UpdateStudioInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateStudioOutput>

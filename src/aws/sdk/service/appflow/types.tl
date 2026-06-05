@@ -216,7 +216,7 @@ local record M
         message: string
     end
 
-    -- The connector metadata specific to Amazon Connect Customer Profiles.
+    -- The connector metadata specific to Connect Customer Customer Profiles.
     record CustomerProfilesMetadata
     end
 
@@ -376,7 +376,7 @@ local record M
         EventBridge: EventBridgeMetadata
         -- The connector metadata specific to Upsolver.
         Upsolver: UpsolverMetadata
-        -- The connector metadata specific to Amazon Connect Customer Profiles.
+        -- The connector metadata specific to Connect Customer Customer Profiles.
         CustomerProfiles: CustomerProfilesMetadata
         -- The connector metadata specific to Amazon Honeycode.
         Honeycode: HoneycodeMetadata
@@ -1771,12 +1771,12 @@ local record M
         customProperties: {string : string}
     end
 
-    -- The properties that are applied when Amazon Connect Customer Profiles is used as a
+    -- The properties that are applied when Connect Customer Customer Profiles is used as a
     -- destination.
     record CustomerProfilesDestinationProperties
-        -- The unique name of the Amazon Connect Customer Profiles domain.
+        -- The unique name of the Connect Customer Customer Profiles domain.
         domainName: string
-        -- The object specified in the Amazon Connect Customer Profiles flow destination.
+        -- The object specified in the Connect Customer Customer Profiles flow destination.
         objectTypeName: string
     end
 
@@ -2036,7 +2036,7 @@ local record M
         Upsolver: UpsolverDestinationProperties
         -- The properties required to query Amazon Honeycode.
         Honeycode: HoneycodeDestinationProperties
-        -- The properties required to query Amazon Connect Customer Profiles.
+        -- The properties required to query Connect Customer Customer Profiles.
         CustomerProfiles: CustomerProfilesDestinationProperties
         -- The properties required to query Zendesk.
         Zendesk: ZendeskDestinationProperties
@@ -2936,12 +2936,12 @@ local record M
     record ResetConnectorMetadataCacheInput
         -- The name of the connector profile that you want to reset cached metadata for.
         -- You can omit this parameter if you're resetting the cache for any of the following
-        -- connectors: Amazon Connect, Amazon EventBridge, Amazon Lookout for Metrics, Amazon S3, or Upsolver. If you're resetting the cache for any other connector, you must include this
+        -- connectors: Connect Customer, Amazon EventBridge, Amazon Lookout for Metrics, Amazon S3, or Upsolver. If you're resetting the cache for any other connector, you must include this
         -- parameter in your request.
         connectorProfileName: string
         -- The type of connector to reset cached metadata for.
         -- You must include this parameter in your request if you're resetting the cache for any of
-        -- the following connectors: Amazon Connect, Amazon EventBridge, Amazon Lookout for Metrics,
+        -- the following connectors: Connect Customer, Amazon EventBridge, Amazon Lookout for Metrics,
         -- Amazon S3, or Upsolver. If you're resetting the cache for any other connector, you
         -- can omit this parameter from your request.
         connectorType: string

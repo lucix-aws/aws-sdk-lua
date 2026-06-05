@@ -56,6 +56,7 @@ local record Client
     stopStream: function(Client, types.StopStreamInput, ? base_client.InvokeOptions): async.Operation<types.StopStreamOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAdConfiguration: function(Client, types.UpdateAdConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAdConfigurationOutput>
     updateChannel: function(Client, types.UpdateChannelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
     updatePlaybackRestrictionPolicy: function(Client, types.UpdatePlaybackRestrictionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePlaybackRestrictionPolicyOutput>
 end
@@ -252,6 +253,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateAdConfiguration(input: types.UpdateAdConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAdConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAdConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateAdConfigurationOutput>
 end
 
 function C:updateChannel(input: types.UpdateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>

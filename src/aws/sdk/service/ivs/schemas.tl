@@ -3954,6 +3954,52 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateAdConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateAdConfigurationRequest"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "UpdateAdConfigurationInput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateAdConfigurationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        mediaTailorPlaybackConfigurations = schema.new({
+            id = id.from(_N, "UpdateAdConfigurationInput", "mediaTailorPlaybackConfigurations"),
+            type = "list",
+            name = "mediaTailorPlaybackConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.MediaTailorPlaybackConfiguration,
+        }),
+    },
+})
+
+M.UpdateAdConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateAdConfigurationResponse"),
+    type = "structure",
+    members = {
+        adConfiguration = schema.new({
+            id = id.from(_N, "UpdateAdConfigurationOutput", "adConfiguration"),
+            type = "structure",
+            name = "adConfiguration",
+            target_id = id.from(_N, "AdConfiguration"),
+            target = M.AdConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateChannelInput = schema.new({
     id = id.from(_N, "UpdateChannelRequest"),
     type = "structure",
@@ -4588,6 +4634,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAdConfiguration = schema.operation({
+    id = id.from("com.amazonaws.ivs", "UpdateAdConfiguration"),
+    input = M.UpdateAdConfigurationInput,
+    output = M.UpdateAdConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/UpdateAdConfiguration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

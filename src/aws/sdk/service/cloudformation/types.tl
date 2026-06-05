@@ -6050,7 +6050,7 @@ local record M
         -- The logical ID of the resource that you want to signal. The logical ID is the name of the
         -- resource that given in the template.
         LogicalResourceId: string
-        -- A unique ID of the signal. When you signal Amazon EC2 instances or Amazon EC2 Auto Scaling groups, specify the
+        -- A unique ID of the signal. When you signal Amazon EC2 instances or Auto Scaling groups, specify the
         -- instance ID that you are signaling as the unique ID. If you send multiple signals to a single
         -- resource (such as signaling a wait condition), each signal requires a different unique
         -- ID.

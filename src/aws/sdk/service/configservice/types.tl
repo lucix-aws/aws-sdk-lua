@@ -1411,6 +1411,11 @@ local record M
         "TwentyFour_Hours"
     end
 
+    enum RuleEvaluationVisibility
+        "EXTERNAL"
+        "INTERNAL"
+    end
+
     -- Defines which resources trigger an evaluation for an Config
     -- rule. The scope can include one or more resource types, a
     -- combination of a tag key and value, or a combination of one resource
@@ -1437,6 +1442,9 @@ local record M
         -- specify one resource type for
         -- ComplianceResourceTypes.
         ComplianceResourceId: string
+        -- The service principals of the Amazon Web Services services for the rule.
+        -- The field is populated only if the service-linked rule is created by a service. The field is empty if you create your own rule.
+        ServicePrincipals: {string}
     end
 
     -- Provides the runtime system, policy definition, and whether debug logging enabled. You can
@@ -1625,6 +1633,8 @@ local record M
         CreatedBy: string
         -- The modes the Config rule can be evaluated in. The valid values are distinct objects. By default, the value is Detective evaluation mode only.
         EvaluationModes: {EvaluationModeConfiguration}
+        -- Indicates whether you can get Evaluations for the Config rule. You can get Evaluations for the Amazon Web Services Config rule if this value is EXTERNAL. You cannot get Evaluations for the Amazon Web Services Config rule if this value is INTERNAL.
+        RuleEvaluationVisibility: string
     end
 
     -- Filters the compliance results based on account ID, region,
@@ -2648,6 +2658,8 @@ local record M
     record DescribeConfigRulesFilters
         -- The mode of an evaluation. The valid values are Detective or Proactive.
         EvaluationMode: string
+        -- Filters the results by RuleEvaluationVisibility.
+        RuleEvaluationVisibility: string
     end
 
     record DescribeConfigRulesInput

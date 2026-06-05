@@ -1106,6 +1106,40 @@ M.CallingSettings = schema.new({
     },
 })
 
+M.ConsentPopupConfig = schema.new({
+    id = id.from(_N, "ConsentPopupConfig"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "ConsentPopupConfig", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        header = schema.new({
+            id = id.from(_N, "ConsentPopupConfig", "header"),
+            type = "string",
+            name = "header",
+            target_id = prelude.String.id,
+        }),
+        content = schema.new({
+            id = id.from(_N, "ConsentPopupConfig", "content"),
+            type = "string",
+            name = "content",
+            target_id = prelude.String.id,
+        }),
+        closeButtonLabel = schema.new({
+            id = id.from(_N, "ConsentPopupConfig", "closeButtonLabel"),
+            type = "string",
+            name = "closeButtonLabel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateBotInput = schema.new({
     id = id.from(_N, "CreateBotRequest"),
     type = "structure",
@@ -1724,6 +1758,12 @@ M.SecurityGroupSettings = schema.new({
             id = id.from(_N, "SecurityGroupSettings", "ssoMaxIdleMinutes"),
             type = "integer",
             name = "ssoMaxIdleMinutes",
+            target_id = prelude.Integer.id,
+        }),
+        maxNonSsoSessionMinutes = schema.new({
+            id = id.from(_N, "SecurityGroupSettings", "maxNonSsoSessionMinutes"),
+            type = "integer",
+            name = "maxNonSsoSessionMinutes",
             target_id = prelude.Integer.id,
         }),
         federationMode = schema.new({
@@ -3873,6 +3913,13 @@ M.NetworkSettings = schema.new({
             type = "boolean",
             name = "enableTrustedDataFormat",
             target_id = prelude.Boolean.id,
+        }),
+        consentPopup = schema.new({
+            id = id.from(_N, "NetworkSettings", "consentPopup"),
+            type = "structure",
+            name = "consentPopup",
+            target_id = id.from(_N, "ConsentPopupConfig"),
+            target = M.ConsentPopupConfig,
         }),
     },
 })

@@ -316,9 +316,9 @@ local record M
         -- manually.
         evidenceByTypeManualCount: number
         -- The number of evidence that falls under the compliance check category. This evidence is
-        -- collected from Config or Security Hub.
+        -- collected from Config or Security Hub CSPM.
         evidenceByTypeComplianceCheckCount: number
-        -- The total number of issues that were reported directly from Security Hub,
+        -- The total number of issues that were reported directly from Security Hub CSPM,
         -- Config, or both.
         evidenceByTypeComplianceCheckIssuesCount: number
         -- The number of evidence that falls under the user activity category. This evidence is
@@ -760,12 +760,12 @@ local record M
     -- For manual evidence, this keyword indicates if the manual evidence is a file or
     -- text.
     -- For automated evidence, this keyword identifies a specific CloudTrail event,
-    -- Config rule, Security Hub control, or Amazon Web Services API name.
+    -- Config rule, Security Hub CSPM control, or Amazon Web Services API name.
     -- To learn more about the supported keywords that you can use when mapping a control data
     -- source, see the following pages in the Audit Manager User
     -- Guide:
     -- Config rules supported by Audit Manager
-    -- Security Hub controls supported by Audit Manager
+    -- Security Hub CSPM controls supported by Audit Manager
     -- API calls
     -- supported by Audit Manager
     -- CloudTrail event names supported by Audit Manager
@@ -775,7 +775,7 @@ local record M
         -- evidence.
         -- When keywordInputType is SELECT_FROM_LIST, a
         -- keyword must be selected to collect automated evidence. For example, this
-        -- keyword can be a CloudTrail event name, a rule name for Config, a Security Hub control, or the name of an Amazon Web Services API call.
+        -- keyword can be a CloudTrail event name, a rule name for Config, a Security Hub CSPM control, or the name of an Amazon Web Services API call.
         -- UPLOAD_FILE and INPUT_TEXT are only used when mapping a
         -- data source for manual evidence.
         -- When keywordInputType is UPLOAD_FILE, a file must
@@ -785,7 +785,7 @@ local record M
         keywordInputType: string
         -- The value of the keyword that's used when mapping a control data source. For example,
         -- this can be a CloudTrail event name, a rule name for Config, a
-        -- Security Hub control, or the name of an Amazon Web Services API call.
+        -- Security Hub CSPM control, or the name of an Amazon Web Services API call.
         -- If you’re mapping a data source to a rule in Config, the
         -- keywordValue that you specify depends on the type of rule:
         -- For managed rules, you can use the rule identifier as the
@@ -828,9 +828,9 @@ local record M
         -- prefix followed by the custom rule name. The format of the custom rule name
         -- itself may vary. For accuracy, we recommend that you visit the Config console to
         -- verify your custom rule name.
-        -- For Security Hub: The format varies for Security Hub control names.
+        -- For Security Hub CSPM: The format varies for Security Hub CSPM control names.
         -- For accuracy, we recommend that you reference the list of supported
-        -- Security Hub controls.
+        -- Security Hub CSPM controls.
         -- For Amazon Web Services API calls: Make sure that the keywordValue
         -- is written as serviceprefix_ActionName. For example,
         -- iam_ListGroups. For accuracy, we recommend that you reference the
@@ -1290,14 +1290,14 @@ local record M
         value: string
         -- The evaluation status for a resource that was assessed when collecting compliance check
         -- evidence.
-        -- Audit Manager classes the resource as non-compliant if Security Hub reports a
+        -- Audit Manager classes the resource as non-compliant if Security Hub CSPM reports a
         -- Fail result, or if Config reports a
         -- Non-compliant result.
-        -- Audit Manager classes the resource as compliant if Security Hub reports a
+        -- Audit Manager classes the resource as compliant if Security Hub CSPM reports a
         -- Pass result, or if Config reports a
         -- Compliant result.
         -- If a compliance check isn't available or applicable, then no compliance evaluation can be made
-        -- for that resource. This is the case if a resource assessment uses Config or Security Hub as the underlying data source type, but those services
+        -- for that resource. This is the case if a resource assessment uses Config or Security Hub CSPM as the underlying data source type, but those services
         -- aren't enabled. This is also the case if the resource assessment uses an underlying
         -- data source type that doesn't support compliance checks (such as manual evidence,
         -- Amazon Web Services API calls, or CloudTrail).
@@ -1331,15 +1331,15 @@ local record M
         iamId: string
         -- The evaluation status for automated evidence that falls under the compliance check
         -- category.
-        -- Audit Manager classes evidence as non-compliant if Security Hub reports a
+        -- Audit Manager classes evidence as non-compliant if Security Hub CSPM reports a
         -- Fail result, or if Config reports a
         -- Non-compliant result.
-        -- Audit Manager classes evidence as compliant if Security Hub reports a
+        -- Audit Manager classes evidence as compliant if Security Hub CSPM reports a
         -- Pass result, or if Config reports a
         -- Compliant result.
         -- If a compliance check isn't available or applicable, then no compliance evaluation can be made
         -- for that evidence. This is the case if the evidence uses Config or
-        -- Security Hub as the underlying data source type, but those services aren't
+        -- Security Hub CSPM as the underlying data source type, but those services aren't
         -- enabled. This is also the case if the evidence uses an underlying data source type
         -- that doesn't support compliance checks (such as manual evidence, Amazon Web Services
         -- API calls, or CloudTrail).
@@ -1474,16 +1474,16 @@ local record M
         activeAssessmentsCount: number
         -- The number of compliance check evidence that Audit Manager classified as
         -- non-compliant on the lastUpdated date. This includes evidence that was
-        -- collected from Security Hub with a Fail ruling, or collected
+        -- collected from Security Hub CSPM with a Fail ruling, or collected
         -- from Config with a Non-compliant ruling.
         noncompliantEvidenceCount: number
         -- The number of compliance check evidence that Audit Manager classified as compliant
         -- on the lastUpdated date. This includes evidence that was collected from
-        -- Security Hub with a Pass ruling, or collected from
+        -- Security Hub CSPM with a Pass ruling, or collected from
         -- Config with a Compliant ruling.
         compliantEvidenceCount: number
         -- The number of evidence without a compliance check ruling. Evidence is inconclusive when
-        -- the associated control uses Security Hub or Config as a data
+        -- the associated control uses Security Hub CSPM or Config as a data
         -- source but you didn't enable those services. This is also the case when a control uses a
         -- data source that doesn’t support compliance checks (for example: manual evidence, API
         -- calls, or CloudTrail).
@@ -1530,17 +1530,17 @@ local record M
     -- included in the InsightsByAssessment counts for that day.
     record InsightsByAssessment
         -- The number of compliance check evidence that Audit Manager classified as
-        -- non-compliant. This includes evidence that was collected from Security Hub with a
+        -- non-compliant. This includes evidence that was collected from Security Hub CSPM with a
         -- Fail ruling, or collected from Config with a
         -- Non-compliant ruling.
         noncompliantEvidenceCount: number
         -- The number of compliance check evidence that Audit Manager classified as compliant.
-        -- This includes evidence that was collected from Security Hub with a
+        -- This includes evidence that was collected from Security Hub CSPM with a
         -- Pass ruling, or collected from Config with a
         -- Compliant ruling.
         compliantEvidenceCount: number
         -- The amount of evidence without a compliance check ruling. Evidence is inconclusive if
-        -- the associated control uses Security Hub or Config as a data
+        -- the associated control uses Security Hub CSPM or Config as a data
         -- source and you didn't enable those services. This is also the case if a control uses a data
         -- source that doesn’t support compliance checks (for example, manual evidence, API calls, or
         -- CloudTrail).
@@ -1746,17 +1746,17 @@ local record M
     -- A breakdown of the latest compliance check status for the evidence in your Audit Manager assessments.
     record EvidenceInsights
         -- The number of compliance check evidence that Audit Manager classified as
-        -- non-compliant. This includes evidence that was collected from Security Hub with a
+        -- non-compliant. This includes evidence that was collected from Security Hub CSPM with a
         -- Fail ruling, or collected from Config with a
         -- Non-compliant ruling.
         noncompliantEvidenceCount: number
         -- The number of compliance check evidence that Audit Manager classified as compliant.
-        -- This includes evidence that was collected from Security Hub with a
+        -- This includes evidence that was collected from Security Hub CSPM with a
         -- Pass ruling, or collected from Config with a
         -- Compliant ruling.
         compliantEvidenceCount: number
         -- The number of evidence that a compliance check ruling isn't available for. Evidence is
-        -- inconclusive when the associated control uses Security Hub or Config as a data source but you didn't enable those services. This is also the case when a
+        -- inconclusive when the associated control uses Security Hub CSPM or Config as a data source but you didn't enable those services. This is also the case when a
         -- control uses a data source that doesn’t support compliance checks (for example, manual
         -- evidence, API calls, or CloudTrail).
         -- If evidence has a compliance check status of not applicable in

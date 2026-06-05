@@ -199,6 +199,8 @@ M.ConfigurationRecorderFilterValues = schema.new({ type = "list", list_member = 
 
 M.ComplianceResourceTypes = schema.new({ type = "list", list_member = prelude.String })
 
+M.ServicePrincipals = schema.new({ type = "list", list_member = prelude.String })
+
 M.SourceDetails = schema.new({ type = "list", list_member = M.SourceDetail })
 
 M.AccountAggregationSourceAccountList = schema.new({ type = "list", list_member = prelude.String })
@@ -1500,6 +1502,13 @@ M.Scope = schema.new({
             name = "ComplianceResourceId",
             target_id = prelude.String.id,
         }),
+        ServicePrincipals = schema.new({
+            id = id.from(_N, "Scope", "ServicePrincipals"),
+            type = "list",
+            name = "ServicePrincipals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -1673,6 +1682,12 @@ M.ConfigRule = schema.new({
             name = "EvaluationModes",
             target_id = prelude.Document.id,
             list_member = M.EvaluationModeConfiguration,
+        }),
+        RuleEvaluationVisibility = schema.new({
+            id = id.from(_N, "ConfigRule", "RuleEvaluationVisibility"),
+            type = "string",
+            name = "RuleEvaluationVisibility",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3807,6 +3822,12 @@ M.DescribeConfigRulesFilters = schema.new({
             id = id.from(_N, "DescribeConfigRulesFilters", "EvaluationMode"),
             type = "string",
             name = "EvaluationMode",
+            target_id = prelude.String.id,
+        }),
+        RuleEvaluationVisibility = schema.new({
+            id = id.from(_N, "DescribeConfigRulesFilters", "RuleEvaluationVisibility"),
+            type = "string",
+            name = "RuleEvaluationVisibility",
             target_id = prelude.String.id,
         }),
     },

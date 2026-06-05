@@ -127,6 +127,7 @@ local record Client
     getCrawlerMetrics: function(Client, types.GetCrawlerMetricsInput, ? base_client.InvokeOptions): async.Operation<types.GetCrawlerMetricsOutput>
     getCrawlers: function(Client, types.GetCrawlersInput, ? base_client.InvokeOptions): async.Operation<types.GetCrawlersOutput>
     getCustomEntityType: function(Client, types.GetCustomEntityTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomEntityTypeOutput>
+    getDashboardUrl: function(Client, types.GetDashboardUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetDashboardUrlOutput>
     getDatabase: function(Client, types.GetDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetDatabaseOutput>
     getDatabases: function(Client, types.GetDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.GetDatabasesOutput>
     getDataCatalogEncryptionSettings: function(Client, types.GetDataCatalogEncryptionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCatalogEncryptionSettingsOutput>
@@ -168,6 +169,7 @@ local record Client
     getSecurityConfiguration: function(Client, types.GetSecurityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityConfigurationOutput>
     getSecurityConfigurations: function(Client, types.GetSecurityConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityConfigurationsOutput>
     getSession: function(Client, types.GetSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
+    getSessionEndpoint: function(Client, types.GetSessionEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
     getStatement: function(Client, types.GetStatementInput, ? base_client.InvokeOptions): async.Operation<types.GetStatementOutput>
     getTable: function(Client, types.GetTableInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOutput>
     getTableOptimizer: function(Client, types.GetTableOptimizerInput, ? base_client.InvokeOptions): async.Operation<types.GetTableOptimizerOutput>
@@ -763,6 +765,10 @@ function C:getCustomEntityType(input: types.GetCustomEntityTypeInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomEntityType as schema.OperationSchema, input, options) as async.Operation<types.GetCustomEntityTypeOutput>
 end
 
+function C:getDashboardUrl(input: types.GetDashboardUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetDashboardUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDashboardUrl as schema.OperationSchema, input, options) as async.Operation<types.GetDashboardUrlOutput>
+end
+
 function C:getDatabase(input: types.GetDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatabaseOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDatabase as schema.OperationSchema, input, options) as async.Operation<types.GetDatabaseOutput>
 end
@@ -925,6 +931,10 @@ end
 
 function C:getSession(input: types.GetSessionInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSession as schema.OperationSchema, input, options) as async.Operation<types.GetSessionOutput>
+end
+
+function C:getSessionEndpoint(input: types.GetSessionEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetSessionEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSessionEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetSessionEndpointOutput>
 end
 
 function C:getStatement(input: types.GetStatementInput, options?: base_client.InvokeOptions): async.Operation<types.GetStatementOutput>

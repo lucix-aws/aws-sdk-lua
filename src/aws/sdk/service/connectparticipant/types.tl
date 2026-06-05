@@ -224,7 +224,7 @@ local record M
         Message: string
         -- The identifier of the resource.
         ResourceId: string
-        -- The type of Amazon Connect resource.
+        -- The type of Connect Customer resource.
         ResourceType: string
     end
 

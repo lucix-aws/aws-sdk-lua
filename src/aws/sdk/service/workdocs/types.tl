@@ -1473,7 +1473,7 @@ local record M
     end
 
     record SearchResourcesInput
-        -- Amazon WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.
+        -- WorkDocs authentication token. Not required when using Amazon Web Services administrator credentials to access the API.
         AuthenticationToken: string
         -- The String to search for. Searches across different text fields based on request parameters. Use double quotes around the query string for exact phrase matches.
         QueryText: string

@@ -14674,6 +14674,12 @@ M.CreateSessionInput = schema.new({
             name = "RequestOrigin",
             target_id = prelude.String.id,
         }),
+        SessionType = schema.new({
+            id = id.from(_N, "CreateSessionInput", "SessionType"),
+            type = "string",
+            name = "SessionType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -14808,6 +14814,12 @@ M.Session = schema.new({
             name = "ProfileName",
             target_id = prelude.String.id,
         }),
+        SessionType = schema.new({
+            id = id.from(_N, "Session", "SessionType"),
+            type = "string",
+            name = "SessionType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -14821,6 +14833,22 @@ M.CreateSessionOutput = schema.new({
             name = "Session",
             target_id = id.from(_N, "Session"),
             target = M.Session,
+        }),
+    },
+})
+
+M.OperationNotSupportedException = schema.new({
+    id = id.from(_N, "OperationNotSupportedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "OperationNotSupportedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -15715,22 +15743,6 @@ M.CreateUsageProfileOutput = schema.new({
             id = id.from(_N, "CreateUsageProfileOutput", "Name"),
             type = "string",
             name = "Name",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.OperationNotSupportedException = schema.new({
-    id = id.from(_N, "OperationNotSupportedException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "OperationNotSupportedException", "Message"),
-            type = "string",
-            name = "Message",
             target_id = prelude.String.id,
         }),
     },
@@ -20595,6 +20607,53 @@ M.GetCustomEntityTypeOutput = schema.new({
     },
 })
 
+M.GetDashboardUrlInput = schema.new({
+    id = id.from(_N, "GetDashboardUrlRequest"),
+    type = "structure",
+    members = {
+        ResourceId = schema.new({
+            id = id.from(_N, "GetDashboardUrlInput", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "GetDashboardUrlInput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestOrigin = schema.new({
+            id = id.from(_N, "GetDashboardUrlInput", "RequestOrigin"),
+            type = "string",
+            name = "RequestOrigin",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDashboardUrlOutput = schema.new({
+    id = id.from(_N, "GetDashboardUrlResponse"),
+    type = "structure",
+    members = {
+        Url = schema.new({
+            id = id.from(_N, "GetDashboardUrlOutput", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetDatabaseInput = schema.new({
     id = id.from(_N, "GetDatabaseRequest"),
     type = "structure",
@@ -24289,6 +24348,74 @@ M.GetSessionOutput = schema.new({
             name = "Session",
             target_id = id.from(_N, "Session"),
             target = M.Session,
+        }),
+    },
+})
+
+M.GetSessionEndpointInput = schema.new({
+    id = id.from(_N, "GetSessionEndpointRequest"),
+    type = "structure",
+    members = {
+        SessionId = schema.new({
+            id = id.from(_N, "GetSessionEndpointInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionEndpoint = schema.new({
+    id = id.from(_N, "SessionEndpoint"),
+    type = "structure",
+    members = {
+        Url = schema.new({
+            id = id.from(_N, "SessionEndpoint", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AuthToken = schema.new({
+            id = id.from(_N, "SessionEndpoint", "AuthToken"),
+            type = "string",
+            name = "AuthToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AuthTokenExpirationTime = schema.new({
+            id = id.from(_N, "SessionEndpoint", "AuthTokenExpirationTime"),
+            type = "timestamp",
+            name = "AuthTokenExpirationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSessionEndpointOutput = schema.new({
+    id = id.from(_N, "GetSessionEndpointResponse"),
+    type = "structure",
+    members = {
+        SparkConnect = schema.new({
+            id = id.from(_N, "GetSessionEndpointOutput", "SparkConnect"),
+            type = "structure",
+            name = "SparkConnect",
+            target_id = id.from(_N, "SessionEndpoint"),
+            target = M.SessionEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "SPARK_CONNECT" },
+            },
         }),
     },
 })
@@ -29338,6 +29465,22 @@ M.RunStatementOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
             },
+        }),
+    },
+})
+
+M.SessionBusyException = schema.new({
+    id = id.from(_N, "SessionBusyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "SessionBusyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -35557,6 +35700,17 @@ M.GetCustomEntityType = schema.operation({
     },
 })
 
+M.GetDashboardUrl = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDashboardUrl"),
+    input = M.GetDashboardUrlInput,
+    output = M.GetDashboardUrlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetDatabase = schema.operation({
     id = id.from("com.amazonaws.glue", "GetDatabase"),
     input = M.GetDatabaseInput,
@@ -36001,6 +36155,17 @@ M.GetSession = schema.operation({
     id = id.from("com.amazonaws.glue", "GetSession"),
     input = M.GetSessionInput,
     output = M.GetSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetSessionEndpoint"),
+    input = M.GetSessionEndpointInput,
+    output = M.GetSessionEndpointOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

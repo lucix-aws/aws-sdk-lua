@@ -32741,6 +32741,12 @@ M.DescribeModelCardInput = schema.new({
             name = "ModelCardVersion",
             target_id = prelude.Integer.id,
         }),
+        IncludedData = schema.new({
+            id = id.from(_N, "DescribeModelCardInput", "IncludedData"),
+            type = "string",
+            name = "IncludedData",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -33098,6 +33104,12 @@ M.DescribeModelPackageInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        IncludedData = schema.new({
+            id = id.from(_N, "DescribeModelPackageInput", "IncludedData"),
+            type = "string",
+            name = "IncludedData",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -40487,6 +40499,99 @@ M.InferenceRecommendationsJobStep = schema.new({
             name = "InferenceBenchmark",
             target_id = id.from(_N, "RecommendationJobInferenceBenchmark"),
             target = M.RecommendationJobInferenceBenchmark,
+        }),
+    },
+})
+
+M.Job = schema.new({
+    id = id.from(_N, "Job"),
+    type = "structure",
+    members = {
+        JobName = schema.new({
+            id = id.from(_N, "Job", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+        }),
+        JobArn = schema.new({
+            id = id.from(_N, "Job", "JobArn"),
+            type = "string",
+            name = "JobArn",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "Job", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        JobCategory = schema.new({
+            id = id.from(_N, "Job", "JobCategory"),
+            type = "string",
+            name = "JobCategory",
+            target_id = prelude.String.id,
+        }),
+        JobConfigSchemaVersion = schema.new({
+            id = id.from(_N, "Job", "JobConfigSchemaVersion"),
+            type = "string",
+            name = "JobConfigSchemaVersion",
+            target_id = prelude.String.id,
+        }),
+        JobConfigDocument = schema.new({
+            id = id.from(_N, "Job", "JobConfigDocument"),
+            type = "string",
+            name = "JobConfigDocument",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "Job", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "Job", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "Job", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        JobStatus = schema.new({
+            id = id.from(_N, "Job", "JobStatus"),
+            type = "string",
+            name = "JobStatus",
+            target_id = prelude.String.id,
+        }),
+        SecondaryStatus = schema.new({
+            id = id.from(_N, "Job", "SecondaryStatus"),
+            type = "string",
+            name = "SecondaryStatus",
+            target_id = prelude.String.id,
+        }),
+        SecondaryStatusTransitions = schema.new({
+            id = id.from(_N, "Job", "SecondaryStatusTransitions"),
+            type = "list",
+            name = "SecondaryStatusTransitions",
+            target_id = prelude.Document.id,
+            list_member = M.JobSecondaryStatusTransition,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "Job", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "Job", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
         }),
     },
 })
@@ -52891,6 +52996,13 @@ M.SearchRecord = schema.new({
             name = "Model",
             target_id = id.from(_N, "ModelDashboardModel"),
             target = M.ModelDashboardModel,
+        }),
+        Job = schema.new({
+            id = id.from(_N, "SearchRecord", "Job"),
+            type = "structure",
+            name = "Job",
+            target_id = id.from(_N, "Job"),
+            target = M.Job,
         }),
     },
 })

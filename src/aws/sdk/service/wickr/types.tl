@@ -341,6 +341,18 @@ local record M
         forceTcpCall: boolean
     end
 
+    -- Consent popup configuration displayed to users on login.
+    record ConsentPopupConfig
+        -- Whether the consent popup is enabled. When set to true, the popup is displayed to users on login.
+        enabled: boolean
+        -- Header text displayed at the top of the consent popup. Maximum 100 characters.
+        header: string
+        -- Body content of the consent popup in Markdown format. Maximum 5000 characters.
+        content: string
+        -- Label for the close button on the consent popup. Maximum 20 characters. Defaults to "Acknowledge" if not provided.
+        closeButtonLabel: string
+    end
+
     record CreateBotInput
         -- The ID of the Wickr network where the bot will be created.
         networkId: string
@@ -470,11 +482,11 @@ local record M
         uppercase: number
     end
 
-    -- Configuration for the message shredder feature, which securely deletes messages and files from devices to prevent data recovery.
+    -- Configuration for the Wickr shredder feature, which writes random data over free memory and disk space on client devices. You can configure your Wickr shredder intensity using the parameters below. Secure Shredder will not write over files that are permanently stored on the device or saved outside of the Wickr client. Wickr Network Administrators are able to disable file downloads within Security Group Settings.
     record ShredderSettings
         -- Specifies whether users can manually trigger the shredder to delete content.
         canProcessManually: boolean
-        -- Prevents Wickr data from being recovered by overwriting deleted Wickr data. Valid Values: Must be one of [0, 20, 60, 100]
+        -- Controls the rate (MB/minute) at which the shredder function runs on clients. Valid Values: Must be one of [0, 20, 60, 100]. A higher intensity setting could lead to higher battery usage on mobile devices.
         intensity: number
     end
 
@@ -540,6 +552,8 @@ local record M
         shredder: ShredderSettings
         -- The duration for which users SSO session remains inactive before automatically logging them out for security. Available in SSO enabled network.
         ssoMaxIdleMinutes: number
+        -- Maximum session duration in minutes for non-SSO users. Set to 0 to disable. Valid range is 60 to 525600 (1 hour to 365 days).
+        maxNonSsoSessionMinutes: number
         -- The local federation mode controlling how users can communicate with other networks. Values: 0 (none), 1 (federated), 2 (restricted).
         federationMode: number
         -- The number of failed password attempts before a user account is locked out.
@@ -1166,6 +1180,8 @@ local record M
         dataRetention: boolean
         -- Configuration for OpenTDF integration at the network level, enforcing ABAC decision making when operating in TDF enabled rooms.
         enableTrustedDataFormat: boolean
+        -- Consent popup configuration for the network, displayed to users on login.
+        consentPopup: ConsentPopupConfig
     end
 
     record RegisterOidcConfigInput

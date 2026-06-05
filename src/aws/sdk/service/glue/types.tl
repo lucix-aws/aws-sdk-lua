@@ -5789,6 +5789,11 @@ local record M
         PythonVersion: string
     end
 
+    enum SessionType
+        "LIVY"
+        "SPARK_CONNECT"
+    end
+
     -- Request to create a new session.
     record CreateSessionInput
         -- The ID of the session request.
@@ -5833,6 +5838,8 @@ local record M
         Tags: {string : string}
         -- The origin of the request.
         RequestOrigin: string
+        -- The type of session to create.
+        SessionType: string
     end
 
     enum SessionStatus
@@ -5888,11 +5895,19 @@ local record M
         IdleTimeout: number
         -- The name of an Glue usage profile associated with the session.
         ProfileName: string
+        -- The type of the session.
+        SessionType: string
     end
 
     record CreateSessionOutput
         -- Returns the session object in the response.
         Session: Session
+    end
+
+    -- The operation is not available in the region.
+    record OperationNotSupportedException
+        -- A message describing the problem.
+        Message: string
     end
 
     -- Defines a single partition field within an Iceberg partition specification, including the source field, transformation function, partition name,
@@ -6236,12 +6251,6 @@ local record M
     record CreateUsageProfileOutput
         -- The name of the usage profile that was created.
         Name: string
-    end
-
-    -- The operation is not available in the region.
-    record OperationNotSupportedException
-        -- A message describing the problem.
-        Message: string
     end
 
     enum FunctionType
@@ -8062,6 +8071,25 @@ local record M
         ContextWords: {string}
     end
 
+    enum GlueResourceType
+        "JOB"
+        "SESSION"
+    end
+
+    record GetDashboardUrlInput
+        -- The unique identifier of the resource for which to retrieve the dashboard URL.
+        ResourceId: string
+        -- The type of the resource. Valid values are SESSION and JOB.
+        ResourceType: string
+        -- The origin of the request.
+        RequestOrigin: string
+    end
+
+    record GetDashboardUrlOutput
+        -- The URL for the Spark monitoring dashboard.
+        Url: string
+    end
+
     record GetDatabaseInput
         -- The ID of the Data Catalog in which the database resides. If none is provided, the Amazon Web Services
         -- account ID is used by default.
@@ -9563,6 +9591,26 @@ local record M
     record GetSessionOutput
         -- The session object is returned in the response.
         Session: Session
+    end
+
+    record GetSessionEndpointInput
+        -- The unique identifier of the interactive session.
+        SessionId: string
+    end
+
+    -- Contains the Spark Connect endpoint details for an interactive session, including the URL and authentication credentials.
+    record SessionEndpoint
+        -- The Spark Connect endpoint URL for the session.
+        Url: string
+        -- The authentication token to include in requests to the Spark Connect endpoint.
+        AuthToken: string
+        -- The time at which the authentication token expires.
+        AuthTokenExpirationTime: number
+    end
+
+    record GetSessionEndpointOutput
+        -- The Spark Connect endpoint details for the session.
+        SparkConnect: SessionEndpoint
     end
 
     record GetStatementInput
@@ -11455,6 +11503,12 @@ local record M
     record RunStatementOutput
         -- Returns the Id of the statement that was run.
         Id: number
+    end
+
+    -- The session is currently busy processing another request and cannot accept new operations.
+    record SessionBusyException
+        -- A message describing the problem.
+        Message: string
     end
 
     enum Comparator

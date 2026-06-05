@@ -55,6 +55,10 @@ M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityConfigurationList = schema.new({ type = "list", list_member = M.SecurityConfigurationSummary })
 
+M.SessionStateList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SessionList = schema.new({ type = "list", list_member = M.Session })
+
 M.StepStateList = schema.new({ type = "list", list_member = prelude.String })
 
 M.StepSummaryList = schema.new({ type = "list", list_member = M.StepSummary })
@@ -946,6 +950,12 @@ M.AddTagsInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        ClusterId = schema.new({
+            id = id.from(_N, "AddTagsInput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1245,6 +1255,25 @@ M.CancelStepsOutput = schema.new({
             name = "CancelStepsInfoList",
             target_id = prelude.Document.id,
             list_member = M.CancelStepsInfo,
+        }),
+    },
+})
+
+M.CertificateAuthority = schema.new({
+    id = id.from(_N, "CertificateAuthority"),
+    type = "structure",
+    members = {
+        CertificateArn = schema.new({
+            id = id.from(_N, "CertificateAuthority", "CertificateArn"),
+            type = "string",
+            name = "CertificateArn",
+            target_id = prelude.String.id,
+        }),
+        CertificateData = schema.new({
+            id = id.from(_N, "CertificateAuthority", "CertificateData"),
+            type = "string",
+            name = "CertificateData",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3785,6 +3814,210 @@ M.GetPersistentAppUIPresignedURLOutput = schema.new({
     },
 })
 
+M.GetSessionInput = schema.new({
+    id = id.from(_N, "GetSessionInput"),
+    type = "structure",
+    members = {
+        ClusterId = schema.new({
+            id = id.from(_N, "GetSessionInput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "GetSessionInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SessionCloudWatchLoggingConfiguration = schema.new({
+    id = id.from(_N, "SessionCloudWatchLoggingConfiguration"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "SessionCloudWatchLoggingConfiguration", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        LogGroup = schema.new({
+            id = id.from(_N, "SessionCloudWatchLoggingConfiguration", "LogGroup"),
+            type = "string",
+            name = "LogGroup",
+            target_id = prelude.String.id,
+        }),
+        LogStreamNamePrefix = schema.new({
+            id = id.from(_N, "SessionCloudWatchLoggingConfiguration", "LogStreamNamePrefix"),
+            type = "string",
+            name = "LogStreamNamePrefix",
+            target_id = prelude.String.id,
+        }),
+        EncryptionKeyArn = schema.new({
+            id = id.from(_N, "SessionCloudWatchLoggingConfiguration", "EncryptionKeyArn"),
+            type = "string",
+            name = "EncryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        LogTypes = schema.new({
+            id = id.from(_N, "SessionCloudWatchLoggingConfiguration", "LogTypes"),
+            type = "map",
+            name = "LogTypes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+    },
+})
+
+M.SessionManagedLoggingConfiguration = schema.new({
+    id = id.from(_N, "SessionManagedLoggingConfiguration"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "SessionManagedLoggingConfiguration", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        EncryptionKeyArn = schema.new({
+            id = id.from(_N, "SessionManagedLoggingConfiguration", "EncryptionKeyArn"),
+            type = "string",
+            name = "EncryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SessionS3LoggingConfiguration = schema.new({
+    id = id.from(_N, "SessionS3LoggingConfiguration"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "SessionS3LoggingConfiguration", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        LogUri = schema.new({
+            id = id.from(_N, "SessionS3LoggingConfiguration", "LogUri"),
+            type = "string",
+            name = "LogUri",
+            target_id = prelude.String.id,
+        }),
+        EncryptionKeyArn = schema.new({
+            id = id.from(_N, "SessionS3LoggingConfiguration", "EncryptionKeyArn"),
+            type = "string",
+            name = "EncryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+        LogTypes = schema.new({
+            id = id.from(_N, "SessionS3LoggingConfiguration", "LogTypes"),
+            type = "map",
+            name = "LogTypes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+    },
+})
+
+M.SessionMonitoringConfiguration = schema.new({
+    id = id.from(_N, "SessionMonitoringConfiguration"),
+    type = "structure",
+    members = {
+        CloudWatchLoggingConfiguration = schema.new({
+            id = id.from(_N, "SessionMonitoringConfiguration", "CloudWatchLoggingConfiguration"),
+            type = "structure",
+            name = "CloudWatchLoggingConfiguration",
+            target_id = id.from(_N, "SessionCloudWatchLoggingConfiguration"),
+            target = M.SessionCloudWatchLoggingConfiguration,
+        }),
+        ManagedLoggingConfiguration = schema.new({
+            id = id.from(_N, "SessionMonitoringConfiguration", "ManagedLoggingConfiguration"),
+            type = "structure",
+            name = "ManagedLoggingConfiguration",
+            target_id = id.from(_N, "SessionManagedLoggingConfiguration"),
+            target = M.SessionManagedLoggingConfiguration,
+        }),
+        S3LoggingConfiguration = schema.new({
+            id = id.from(_N, "SessionMonitoringConfiguration", "S3LoggingConfiguration"),
+            type = "structure",
+            name = "S3LoggingConfiguration",
+            target_id = id.from(_N, "SessionS3LoggingConfiguration"),
+            target = M.SessionS3LoggingConfiguration,
+        }),
+    },
+})
+
+M.GetSessionEndpointInput = schema.new({
+    id = id.from(_N, "GetSessionEndpointInput"),
+    type = "structure",
+    members = {
+        ClusterId = schema.new({
+            id = id.from(_N, "GetSessionEndpointInput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "GetSessionEndpointInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSessionEndpointOutput = schema.new({
+    id = id.from(_N, "GetSessionEndpointOutput"),
+    type = "structure",
+    members = {
+        Endpoint = schema.new({
+            id = id.from(_N, "GetSessionEndpointOutput", "Endpoint"),
+            type = "string",
+            name = "Endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AuthToken = schema.new({
+            id = id.from(_N, "GetSessionEndpointOutput", "AuthToken"),
+            type = "string",
+            name = "AuthToken",
+            target_id = prelude.String.id,
+        }),
+        AuthTokenExpirationTime = schema.new({
+            id = id.from(_N, "GetSessionEndpointOutput", "AuthTokenExpirationTime"),
+            type = "timestamp",
+            name = "AuthTokenExpirationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Credentials = schema.new({
+            id = id.from(_N, "GetSessionEndpointOutput", "Credentials"),
+            type = "union",
+            name = "Credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+    },
+})
+
 M.GetStudioSessionMappingInput = schema.new({
     id = id.from(_N, "GetStudioSessionMappingInput"),
     type = "structure",
@@ -4674,6 +4907,41 @@ M.ListSecurityConfigurationsOutput = schema.new({
     },
 })
 
+M.ListSessionsInput = schema.new({
+    id = id.from(_N, "ListSessionsInput"),
+    type = "structure",
+    members = {
+        ClusterId = schema.new({
+            id = id.from(_N, "ListSessionsInput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionStates = schema.new({
+            id = id.from(_N, "ListSessionsInput", "SessionStates"),
+            type = "list",
+            name = "SessionStates",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSessionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ListStepsInput = schema.new({
     id = id.from(_N, "ListStepsInput"),
     type = "structure",
@@ -5343,6 +5611,12 @@ M.RemoveTagsInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        ClusterId = schema.new({
+            id = id.from(_N, "RemoveTagsInput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5644,6 +5918,46 @@ M.StartNotebookExecutionOutput = schema.new({
     },
 })
 
+M.StartSessionOutput = schema.new({
+    id = id.from(_N, "StartSessionOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "StartSessionOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClusterId = schema.new({
+            id = id.from(_N, "StartSessionOutput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "StartSessionOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "StartSessionOutput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+        State = schema.new({
+            id = id.from(_N, "StartSessionOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.StopNotebookExecutionInput = schema.new({
     id = id.from(_N, "StopNotebookExecutionInput"),
     type = "structure",
@@ -5680,6 +5994,65 @@ M.TerminateJobFlowsInput = schema.new({
 })
 
 M.TerminateJobFlowsOutput = prelude.Unit
+
+M.TerminateSessionInput = schema.new({
+    id = id.from(_N, "TerminateSessionInput"),
+    type = "structure",
+    members = {
+        ClusterId = schema.new({
+            id = id.from(_N, "TerminateSessionInput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "TerminateSessionInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TerminateSessionOutput = schema.new({
+    id = id.from(_N, "TerminateSessionOutput"),
+    type = "structure",
+    members = {
+        ClusterId = schema.new({
+            id = id.from(_N, "TerminateSessionOutput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "TerminateSessionOutput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "TerminateSessionOutput", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
 
 M.UpdateStudioInput = schema.new({
     id = id.from(_N, "UpdateStudioInput"),
@@ -6078,6 +6451,12 @@ M.Cluster = schema.new({
             target_id = id.from(_N, "MonitoringConfiguration"),
             target = M.MonitoringConfiguration,
         }),
+        SessionEnabled = schema.new({
+            id = id.from(_N, "Cluster", "SessionEnabled"),
+            type = "boolean",
+            name = "SessionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -6332,6 +6711,210 @@ M.InstanceTypeSpecification = schema.new({
     },
 })
 
+M.Session = schema.new({
+    id = id.from(_N, "Session"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "Session", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClusterId = schema.new({
+            id = id.from(_N, "Session", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Session", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "Session", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "Session", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StateChangeReason = schema.new({
+            id = id.from(_N, "Session", "StateChangeReason"),
+            type = "string",
+            name = "StateChangeReason",
+            target_id = prelude.String.id,
+        }),
+        ReleaseLabel = schema.new({
+            id = id.from(_N, "Session", "ReleaseLabel"),
+            type = "string",
+            name = "ReleaseLabel",
+            target_id = prelude.String.id,
+        }),
+        ExecutionRoleArn = schema.new({
+            id = id.from(_N, "Session", "ExecutionRoleArn"),
+            type = "string",
+            name = "ExecutionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "Session", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "Session", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "Session", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "Session", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndedAt = schema.new({
+            id = id.from(_N, "Session", "EndedAt"),
+            type = "timestamp",
+            name = "EndedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        IdleSince = schema.new({
+            id = id.from(_N, "Session", "IdleSince"),
+            type = "timestamp",
+            name = "IdleSince",
+            target_id = prelude.Timestamp.id,
+        }),
+        EngineConfigurations = schema.new({
+            id = id.from(_N, "Session", "EngineConfigurations"),
+            type = "list",
+            name = "EngineConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.Configuration,
+        }),
+        MonitoringConfiguration = schema.new({
+            id = id.from(_N, "Session", "MonitoringConfiguration"),
+            type = "structure",
+            name = "MonitoringConfiguration",
+            target_id = id.from(_N, "SessionMonitoringConfiguration"),
+            target = M.SessionMonitoringConfiguration,
+        }),
+        SessionIdleTimeoutInMinutes = schema.new({
+            id = id.from(_N, "Session", "SessionIdleTimeoutInMinutes"),
+            type = "long",
+            name = "SessionIdleTimeoutInMinutes",
+            target_id = prelude.Long.id,
+        }),
+        CertificateAuthority = schema.new({
+            id = id.from(_N, "Session", "CertificateAuthority"),
+            type = "structure",
+            name = "CertificateAuthority",
+            target_id = id.from(_N, "CertificateAuthority"),
+            target = M.CertificateAuthority,
+        }),
+        ServerUrl = schema.new({
+            id = id.from(_N, "Session", "ServerUrl"),
+            type = "string",
+            name = "ServerUrl",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "Session", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.StartSessionInput = schema.new({
+    id = id.from(_N, "StartSessionInput"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "StartSessionInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ClusterId = schema.new({
+            id = id.from(_N, "StartSessionInput", "ClusterId"),
+            type = "string",
+            name = "ClusterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExecutionRoleArn = schema.new({
+            id = id.from(_N, "StartSessionInput", "ExecutionRoleArn"),
+            type = "string",
+            name = "ExecutionRoleArn",
+            target_id = prelude.String.id,
+        }),
+        EngineConfigurations = schema.new({
+            id = id.from(_N, "StartSessionInput", "EngineConfigurations"),
+            type = "list",
+            name = "EngineConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.Configuration,
+        }),
+        MonitoringConfiguration = schema.new({
+            id = id.from(_N, "StartSessionInput", "MonitoringConfiguration"),
+            type = "structure",
+            name = "MonitoringConfiguration",
+            target_id = id.from(_N, "SessionMonitoringConfiguration"),
+            target = M.SessionMonitoringConfiguration,
+        }),
+        SessionIdleTimeoutInMinutes = schema.new({
+            id = id.from(_N, "StartSessionInput", "SessionIdleTimeoutInMinutes"),
+            type = "long",
+            name = "SessionIdleTimeoutInMinutes",
+            target_id = prelude.Long.id,
+        }),
+        ClientRequestToken = schema.new({
+            id = id.from(_N, "StartSessionInput", "ClientRequestToken"),
+            type = "string",
+            name = "ClientRequestToken",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "StartSessionInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
 M.DescribeClusterOutput = schema.new({
     id = id.from(_N, "DescribeClusterOutput"),
     type = "structure",
@@ -6366,6 +6949,23 @@ M.GetBlockPublicAccessConfigurationOutput = schema.new({
             name = "BlockPublicAccessConfigurationMetadata",
             target_id = id.from(_N, "BlockPublicAccessConfigurationMetadata"),
             target = M.BlockPublicAccessConfigurationMetadata,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetSessionOutput = schema.new({
+    id = id.from(_N, "GetSessionOutput"),
+    type = "structure",
+    members = {
+        Session = schema.new({
+            id = id.from(_N, "GetSessionOutput", "Session"),
+            type = "structure",
+            name = "Session",
+            target_id = id.from(_N, "Session"),
+            target = M.Session,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -6603,6 +7203,26 @@ M.InstanceFleetModifyConfig = schema.new({
             id = id.from(_N, "InstanceFleetModifyConfig", "Context"),
             type = "string",
             name = "Context",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSessionsOutput = schema.new({
+    id = id.from(_N, "ListSessionsOutput"),
+    type = "structure",
+    members = {
+        Sessions = schema.new({
+            id = id.from(_N, "ListSessionsOutput", "Sessions"),
+            type = "list",
+            name = "Sessions",
+            target_id = prelude.Document.id,
+            list_member = M.Session,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSessionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
             target_id = prelude.String.id,
         }),
     },
@@ -7189,6 +7809,12 @@ M.RunJobFlowInput = schema.new({
             target_id = id.from(_N, "MonitoringConfiguration"),
             target = M.MonitoringConfiguration,
         }),
+        SessionEnabled = schema.new({
+            id = id.from(_N, "RunJobFlowInput", "SessionEnabled"),
+            type = "boolean",
+            name = "SessionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -7503,6 +8129,28 @@ M.GetPersistentAppUIPresignedURL = schema.operation({
     },
 })
 
+M.GetSession = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetSession"),
+    input = M.GetSessionInput,
+    output = M.GetSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetSessionEndpoint = schema.operation({
+    id = id.from("com.amazonaws.emr", "GetSessionEndpoint"),
+    input = M.GetSessionEndpointInput,
+    output = M.GetSessionEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetStudioSessionMapping = schema.operation({
     id = id.from("com.amazonaws.emr", "GetStudioSessionMapping"),
     input = M.GetStudioSessionMappingInput,
@@ -7595,6 +8243,17 @@ M.ListSecurityConfigurations = schema.operation({
     id = id.from("com.amazonaws.emr", "ListSecurityConfigurations"),
     input = M.ListSecurityConfigurationsInput,
     output = M.ListSecurityConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.emr", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -7833,6 +8492,17 @@ M.StartNotebookExecution = schema.operation({
     },
 })
 
+M.StartSession = schema.operation({
+    id = id.from("com.amazonaws.emr", "StartSession"),
+    input = M.StartSessionInput,
+    output = M.StartSessionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StopNotebookExecution = schema.operation({
     id = id.from("com.amazonaws.emr", "StopNotebookExecution"),
     input = M.StopNotebookExecutionInput,
@@ -7848,6 +8518,17 @@ M.TerminateJobFlows = schema.operation({
     id = id.from("com.amazonaws.emr", "TerminateJobFlows"),
     input = M.TerminateJobFlowsInput,
     output = M.TerminateJobFlowsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TerminateSession = schema.operation({
+    id = id.from("com.amazonaws.emr", "TerminateSession"),
+    input = M.TerminateSessionInput,
+    output = M.TerminateSessionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

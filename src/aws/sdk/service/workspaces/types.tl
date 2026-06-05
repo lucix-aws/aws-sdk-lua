@@ -566,7 +566,7 @@ local record M
         ClientProperties: ClientProperties
     end
 
-    -- Describes an Amazon Connect client add-in.
+    -- Describes an Connect Customer client add-in.
     record ConnectClientAddIn
         -- The client add-in identifier.
         AddInId: string
@@ -687,7 +687,7 @@ local record M
         ResourceId: string
         -- The name of the client add-in.
         Name: string
-        -- The endpoint URL of the Amazon Connect client add-in.
+        -- The endpoint URL of the Connect Customer client add-in.
         URL: string
     end
 
@@ -3271,7 +3271,7 @@ local record M
         ResourceId: string
         -- The name of the client add-in.
         Name: string
-        -- The endpoint URL of the Amazon Connect client add-in.
+        -- The endpoint URL of the Connect Customer client add-in.
         URL: string
     end
 
