@@ -1659,6 +1659,34 @@ M.AIBenchmarkNetworkConfig = schema.new({
     },
 })
 
+M.AIMlflowConfig = schema.new({
+    id = id.from(_N, "AIMlflowConfig"),
+    type = "structure",
+    members = {
+        MlflowResourceArn = schema.new({
+            id = id.from(_N, "AIMlflowConfig", "MlflowResourceArn"),
+            type = "string",
+            name = "MlflowResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MlflowExperimentName = schema.new({
+            id = id.from(_N, "AIMlflowConfig", "MlflowExperimentName"),
+            type = "string",
+            name = "MlflowExperimentName",
+            target_id = prelude.String.id,
+        }),
+        MlflowRunName = schema.new({
+            id = id.from(_N, "AIMlflowConfig", "MlflowRunName"),
+            type = "string",
+            name = "MlflowRunName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AIBenchmarkOutputConfig = schema.new({
     id = id.from(_N, "AIBenchmarkOutputConfig"),
     type = "structure",
@@ -1671,6 +1699,13 @@ M.AIBenchmarkOutputConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        MlflowConfig = schema.new({
+            id = id.from(_N, "AIBenchmarkOutputConfig", "MlflowConfig"),
+            type = "structure",
+            name = "MlflowConfig",
+            target_id = id.from(_N, "AIMlflowConfig"),
+            target = M.AIMlflowConfig,
         }),
     },
 })
@@ -1713,6 +1748,13 @@ M.AIBenchmarkOutputResult = schema.new({
             name = "CloudWatchLogs",
             target_id = prelude.Document.id,
             list_member = M.AICloudWatchLogs,
+        }),
+        MlflowConfig = schema.new({
+            id = id.from(_N, "AIBenchmarkOutputResult", "MlflowConfig"),
+            type = "structure",
+            name = "MlflowConfig",
+            target_id = id.from(_N, "AIMlflowConfig"),
+            target = M.AIMlflowConfig,
         }),
     },
 })
@@ -2187,6 +2229,13 @@ M.AIRecommendationOutputConfig = schema.new({
             name = "ModelPackageGroupIdentifier",
             target_id = prelude.String.id,
         }),
+        MlflowConfig = schema.new({
+            id = id.from(_N, "AIRecommendationOutputConfig", "MlflowConfig"),
+            type = "structure",
+            name = "MlflowConfig",
+            target_id = id.from(_N, "AIMlflowConfig"),
+            target = M.AIMlflowConfig,
+        }),
     },
 })
 
@@ -2208,6 +2257,13 @@ M.AIRecommendationOutputResult = schema.new({
             type = "string",
             name = "ModelPackageGroupIdentifier",
             target_id = prelude.String.id,
+        }),
+        MlflowConfig = schema.new({
+            id = id.from(_N, "AIRecommendationOutputResult", "MlflowConfig"),
+            type = "structure",
+            name = "MlflowConfig",
+            target_id = id.from(_N, "AIMlflowConfig"),
+            target = M.AIMlflowConfig,
         }),
     },
 })

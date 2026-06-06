@@ -151,6 +151,12 @@ M.ImageConfiguration = schema.new({
             name = "resolvedImageDigest",
             target_id = prelude.String.id,
         }),
+        applicationLevelDigestResolution = schema.new({
+            id = id.from(_N, "ImageConfiguration", "applicationLevelDigestResolution"),
+            type = "boolean",
+            name = "applicationLevelDigestResolution",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -601,6 +607,12 @@ M.ImageConfigurationInput = schema.new({
             type = "string",
             name = "imageUri",
             target_id = prelude.String.id,
+        }),
+        applicationLevelDigestResolution = schema.new({
+            id = id.from(_N, "ImageConfigurationInput", "applicationLevelDigestResolution"),
+            type = "boolean",
+            name = "applicationLevelDigestResolution",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -2982,6 +2994,21 @@ M.JobRun = schema.new({
             type = "long",
             name = "queuedDurationMilliseconds",
             target_id = prelude.Long.id,
+        }),
+        imageConfiguration = schema.new({
+            id = id.from(_N, "JobRun", "imageConfiguration"),
+            type = "structure",
+            name = "imageConfiguration",
+            target_id = id.from(_N, "ImageConfiguration"),
+            target = M.ImageConfiguration,
+        }),
+        workerTypeSpecifications = schema.new({
+            id = id.from(_N, "JobRun", "workerTypeSpecifications"),
+            type = "map",
+            name = "workerTypeSpecifications",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.WorkerTypeSpecification,
         }),
     },
 })

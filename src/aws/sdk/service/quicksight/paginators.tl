@@ -382,6 +382,24 @@ function M.items_list_ingestions(client, input)
     })
 end
 
+--- Returns a page iterator for listKnowledgeBases.
+function M.pages_list_knowledge_bases(client, input)
+    return paginator.pages(client, "listKnowledgeBases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "KnowledgeBaseSummaries",
+    })
+end
+
+--- Returns an item iterator for listKnowledgeBases.
+function M.items_list_knowledge_bases(client, input)
+    return paginator.items(client, "listKnowledgeBases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "KnowledgeBaseSummaries",
+    })
+end
+
 --- Returns a page iterator for listNamespaces.
 function M.pages_list_namespaces(client, input)
     return paginator.pages(client, "listNamespaces", input, {
@@ -719,6 +737,24 @@ function M.items_search_groups(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "GroupList",
+    })
+end
+
+--- Returns a page iterator for searchKnowledgeBases.
+function M.pages_search_knowledge_bases(client, input)
+    return paginator.pages(client, "searchKnowledgeBases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "KnowledgeBaseSummaries",
+    })
+end
+
+--- Returns an item iterator for searchKnowledgeBases.
+function M.items_search_knowledge_bases(client, input)
+    return paginator.items(client, "searchKnowledgeBases", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "KnowledgeBaseSummaries",
     })
 end
 

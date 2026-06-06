@@ -105,13 +105,19 @@ M.__listOfAutomatedAbrRule = schema.new({ type = "list", list_member = M.Automat
 
 M.__listOfCmafAdditionalManifest = schema.new({ type = "list", list_member = M.CmafAdditionalManifest })
 
+M.__listOfCmafImageBasedTrickPlayVariant = schema.new({ type = "list", list_member = M.CmafImageBasedTrickPlayVariant })
+
 M.__listOfDashAdditionalManifest = schema.new({ type = "list", list_member = M.DashAdditionalManifest })
+
+M.__listOfDashIsoImageBasedTrickPlayVariant = schema.new({ type = "list", list_member = M.DashIsoImageBasedTrickPlayVariant })
 
 M.__listOfHlsAdMarkers = schema.new({ type = "list", list_member = prelude.String })
 
 M.__listOfHlsAdditionalManifest = schema.new({ type = "list", list_member = M.HlsAdditionalManifest })
 
 M.__listOfHlsCaptionLanguageMapping = schema.new({ type = "list", list_member = M.HlsCaptionLanguageMapping })
+
+M.__listOfHlsImageBasedTrickPlayVariant = schema.new({ type = "list", list_member = M.HlsImageBasedTrickPlayVariant })
 
 M.__listOfMsSmoothAdditionalManifest = schema.new({ type = "list", list_member = M.MsSmoothAdditionalManifest })
 
@@ -2636,6 +2642,67 @@ M.CmafAdditionalManifest = schema.new({
     },
 })
 
+M.CmafImageBasedTrickPlayVariant = schema.new({
+    id = id.from(_N, "CmafImageBasedTrickPlayVariant"),
+    type = "structure",
+    members = {
+        IntervalCadence = schema.new({
+            id = id.from(_N, "CmafImageBasedTrickPlayVariant", "IntervalCadence"),
+            type = "string",
+            name = "IntervalCadence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "intervalCadence" },
+            },
+        }),
+        ThumbnailHeight = schema.new({
+            id = id.from(_N, "CmafImageBasedTrickPlayVariant", "ThumbnailHeight"),
+            type = "integer",
+            name = "ThumbnailHeight",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailHeight" },
+            },
+        }),
+        ThumbnailInterval = schema.new({
+            id = id.from(_N, "CmafImageBasedTrickPlayVariant", "ThumbnailInterval"),
+            type = "double",
+            name = "ThumbnailInterval",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailInterval" },
+            },
+        }),
+        ThumbnailWidth = schema.new({
+            id = id.from(_N, "CmafImageBasedTrickPlayVariant", "ThumbnailWidth"),
+            type = "integer",
+            name = "ThumbnailWidth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailWidth" },
+            },
+        }),
+        TileHeight = schema.new({
+            id = id.from(_N, "CmafImageBasedTrickPlayVariant", "TileHeight"),
+            type = "integer",
+            name = "TileHeight",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tileHeight" },
+            },
+        }),
+        TileWidth = schema.new({
+            id = id.from(_N, "CmafImageBasedTrickPlayVariant", "TileWidth"),
+            type = "integer",
+            name = "TileWidth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tileWidth" },
+            },
+        }),
+    },
+})
+
 M.ColorConversion3DLUTSetting = schema.new({
     id = id.from(_N, "ColorConversion3DLUTSetting"),
     type = "structure",
@@ -2709,6 +2776,67 @@ M.DashAdditionalManifest = schema.new({
             list_member = prelude.String,
             traits = {
                 [traits.JSON_NAME] = { name = "selectedOutputs" },
+            },
+        }),
+    },
+})
+
+M.DashIsoImageBasedTrickPlayVariant = schema.new({
+    id = id.from(_N, "DashIsoImageBasedTrickPlayVariant"),
+    type = "structure",
+    members = {
+        IntervalCadence = schema.new({
+            id = id.from(_N, "DashIsoImageBasedTrickPlayVariant", "IntervalCadence"),
+            type = "string",
+            name = "IntervalCadence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "intervalCadence" },
+            },
+        }),
+        ThumbnailHeight = schema.new({
+            id = id.from(_N, "DashIsoImageBasedTrickPlayVariant", "ThumbnailHeight"),
+            type = "integer",
+            name = "ThumbnailHeight",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailHeight" },
+            },
+        }),
+        ThumbnailInterval = schema.new({
+            id = id.from(_N, "DashIsoImageBasedTrickPlayVariant", "ThumbnailInterval"),
+            type = "double",
+            name = "ThumbnailInterval",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailInterval" },
+            },
+        }),
+        ThumbnailWidth = schema.new({
+            id = id.from(_N, "DashIsoImageBasedTrickPlayVariant", "ThumbnailWidth"),
+            type = "integer",
+            name = "ThumbnailWidth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailWidth" },
+            },
+        }),
+        TileHeight = schema.new({
+            id = id.from(_N, "DashIsoImageBasedTrickPlayVariant", "TileHeight"),
+            type = "integer",
+            name = "TileHeight",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tileHeight" },
+            },
+        }),
+        TileWidth = schema.new({
+            id = id.from(_N, "DashIsoImageBasedTrickPlayVariant", "TileWidth"),
+            type = "integer",
+            name = "TileWidth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tileWidth" },
             },
         }),
     },
@@ -2819,6 +2947,67 @@ M.HlsCaptionLanguageMapping = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "languageDescription" },
+            },
+        }),
+    },
+})
+
+M.HlsImageBasedTrickPlayVariant = schema.new({
+    id = id.from(_N, "HlsImageBasedTrickPlayVariant"),
+    type = "structure",
+    members = {
+        IntervalCadence = schema.new({
+            id = id.from(_N, "HlsImageBasedTrickPlayVariant", "IntervalCadence"),
+            type = "string",
+            name = "IntervalCadence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "intervalCadence" },
+            },
+        }),
+        ThumbnailHeight = schema.new({
+            id = id.from(_N, "HlsImageBasedTrickPlayVariant", "ThumbnailHeight"),
+            type = "integer",
+            name = "ThumbnailHeight",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailHeight" },
+            },
+        }),
+        ThumbnailInterval = schema.new({
+            id = id.from(_N, "HlsImageBasedTrickPlayVariant", "ThumbnailInterval"),
+            type = "double",
+            name = "ThumbnailInterval",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailInterval" },
+            },
+        }),
+        ThumbnailWidth = schema.new({
+            id = id.from(_N, "HlsImageBasedTrickPlayVariant", "ThumbnailWidth"),
+            type = "integer",
+            name = "ThumbnailWidth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "thumbnailWidth" },
+            },
+        }),
+        TileHeight = schema.new({
+            id = id.from(_N, "HlsImageBasedTrickPlayVariant", "TileHeight"),
+            type = "integer",
+            name = "TileHeight",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tileHeight" },
+            },
+        }),
+        TileWidth = schema.new({
+            id = id.from(_N, "HlsImageBasedTrickPlayVariant", "TileWidth"),
+            type = "integer",
+            name = "TileWidth",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "tileWidth" },
             },
         }),
     },
@@ -5947,13 +6136,13 @@ M.CmafEncryptionSettings = schema.new({
     id = id.from(_N, "CmafEncryptionSettings"),
     type = "structure",
     members = {
-        ClearLead = schema.new({
-            id = id.from(_N, "CmafEncryptionSettings", "ClearLead"),
-            type = "string",
-            name = "ClearLead",
-            target_id = prelude.String.id,
+        ClearLeadSegments = schema.new({
+            id = id.from(_N, "CmafEncryptionSettings", "ClearLeadSegments"),
+            type = "integer",
+            name = "ClearLeadSegments",
+            target_id = prelude.Integer.id,
             traits = {
-                [traits.JSON_NAME] = { name = "clearLead" },
+                [traits.JSON_NAME] = { name = "clearLeadSegments" },
             },
         }),
         ConstantInitializationVector = schema.new({
@@ -6190,6 +6379,16 @@ M.CmafGroupSettings = schema.new({
             target = M.CmafImageBasedTrickPlaySettings,
             traits = {
                 [traits.JSON_NAME] = { name = "imageBasedTrickPlaySettings" },
+            },
+        }),
+        ImageBasedTrickPlayVariants = schema.new({
+            id = id.from(_N, "CmafGroupSettings", "ImageBasedTrickPlayVariants"),
+            type = "list",
+            name = "ImageBasedTrickPlayVariants",
+            target_id = prelude.Document.id,
+            list_member = M.CmafImageBasedTrickPlayVariant,
+            traits = {
+                [traits.JSON_NAME] = { name = "imageBasedTrickPlayVariants" },
             },
         }),
         ManifestCompression = schema.new({
@@ -6596,6 +6795,16 @@ M.DashIsoGroupSettings = schema.new({
                 [traits.JSON_NAME] = { name = "imageBasedTrickPlaySettings" },
             },
         }),
+        ImageBasedTrickPlayVariants = schema.new({
+            id = id.from(_N, "DashIsoGroupSettings", "ImageBasedTrickPlayVariants"),
+            type = "list",
+            name = "ImageBasedTrickPlayVariants",
+            target_id = prelude.Document.id,
+            list_member = M.DashIsoImageBasedTrickPlayVariant,
+            traits = {
+                [traits.JSON_NAME] = { name = "imageBasedTrickPlayVariants" },
+            },
+        }),
         MinBufferTime = schema.new({
             id = id.from(_N, "DashIsoGroupSettings", "MinBufferTime"),
             type = "integer",
@@ -6991,6 +7200,16 @@ M.HlsGroupSettings = schema.new({
             target = M.HlsImageBasedTrickPlaySettings,
             traits = {
                 [traits.JSON_NAME] = { name = "imageBasedTrickPlaySettings" },
+            },
+        }),
+        ImageBasedTrickPlayVariants = schema.new({
+            id = id.from(_N, "HlsGroupSettings", "ImageBasedTrickPlayVariants"),
+            type = "list",
+            name = "ImageBasedTrickPlayVariants",
+            target_id = prelude.Document.id,
+            list_member = M.HlsImageBasedTrickPlayVariant,
+            traits = {
+                [traits.JSON_NAME] = { name = "imageBasedTrickPlayVariants" },
             },
         }),
         ManifestCompression = schema.new({
@@ -13640,6 +13859,15 @@ M.AudioProperties = schema.new({
                 [traits.JSON_NAME] = { name = "languageCode" },
             },
         }),
+        ObjectCount = schema.new({
+            id = id.from(_N, "AudioProperties", "ObjectCount"),
+            type = "integer",
+            name = "ObjectCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "objectCount" },
+            },
+        }),
         SampleRate = schema.new({
             id = id.from(_N, "AudioProperties", "SampleRate"),
             type = "integer",
@@ -13663,6 +13891,31 @@ M.DataProperties = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "languageCode" },
+            },
+        }),
+    },
+})
+
+M.ContentLightLevel = schema.new({
+    id = id.from(_N, "ContentLightLevel"),
+    type = "structure",
+    members = {
+        MaxContentLightLevel = schema.new({
+            id = id.from(_N, "ContentLightLevel", "MaxContentLightLevel"),
+            type = "integer",
+            name = "MaxContentLightLevel",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxContentLightLevel" },
+            },
+        }),
+        MaxFrameAverageLightLevel = schema.new({
+            id = id.from(_N, "ContentLightLevel", "MaxFrameAverageLightLevel"),
+            type = "integer",
+            name = "MaxFrameAverageLightLevel",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxFrameAverageLightLevel" },
             },
         }),
     },
@@ -13709,6 +13962,16 @@ M.CodecMetadata = schema.new({
                 [traits.JSON_NAME] = { name = "colorPrimaries" },
             },
         }),
+        ContentLightLevel = schema.new({
+            id = id.from(_N, "CodecMetadata", "ContentLightLevel"),
+            type = "structure",
+            name = "ContentLightLevel",
+            target_id = id.from(_N, "ContentLightLevel"),
+            target = M.ContentLightLevel,
+            traits = {
+                [traits.JSON_NAME] = { name = "contentLightLevel" },
+            },
+        }),
         Height = schema.new({
             id = id.from(_N, "CodecMetadata", "Height"),
             type = "integer",
@@ -13745,6 +14008,15 @@ M.CodecMetadata = schema.new({
                 [traits.JSON_NAME] = { name = "profile" },
             },
         }),
+        Rotation = schema.new({
+            id = id.from(_N, "CodecMetadata", "Rotation"),
+            type = "integer",
+            name = "Rotation",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "rotation" },
+            },
+        }),
         ScanType = schema.new({
             id = id.from(_N, "CodecMetadata", "ScanType"),
             type = "string",
@@ -13770,6 +14042,130 @@ M.CodecMetadata = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "width" },
+            },
+        }),
+    },
+})
+
+M.MasteringDisplayColorVolume = schema.new({
+    id = id.from(_N, "MasteringDisplayColorVolume"),
+    type = "structure",
+    members = {
+        BluePrimaryX = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "BluePrimaryX"),
+            type = "integer",
+            name = "BluePrimaryX",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bluePrimaryX" },
+            },
+        }),
+        BluePrimaryY = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "BluePrimaryY"),
+            type = "integer",
+            name = "BluePrimaryY",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bluePrimaryY" },
+            },
+        }),
+        GreenPrimaryX = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "GreenPrimaryX"),
+            type = "integer",
+            name = "GreenPrimaryX",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "greenPrimaryX" },
+            },
+        }),
+        GreenPrimaryY = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "GreenPrimaryY"),
+            type = "integer",
+            name = "GreenPrimaryY",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "greenPrimaryY" },
+            },
+        }),
+        MaxLuminance = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "MaxLuminance"),
+            type = "long",
+            name = "MaxLuminance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxLuminance" },
+            },
+        }),
+        MinLuminance = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "MinLuminance"),
+            type = "long",
+            name = "MinLuminance",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "minLuminance" },
+            },
+        }),
+        RedPrimaryX = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "RedPrimaryX"),
+            type = "integer",
+            name = "RedPrimaryX",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "redPrimaryX" },
+            },
+        }),
+        RedPrimaryY = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "RedPrimaryY"),
+            type = "integer",
+            name = "RedPrimaryY",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "redPrimaryY" },
+            },
+        }),
+        WhitePointX = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "WhitePointX"),
+            type = "integer",
+            name = "WhitePointX",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "whitePointX" },
+            },
+        }),
+        WhitePointY = schema.new({
+            id = id.from(_N, "MasteringDisplayColorVolume", "WhitePointY"),
+            type = "integer",
+            name = "WhitePointY",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "whitePointY" },
+            },
+        }),
+    },
+})
+
+M.HdrMetadata = schema.new({
+    id = id.from(_N, "HdrMetadata"),
+    type = "structure",
+    members = {
+        ContentLightLevel = schema.new({
+            id = id.from(_N, "HdrMetadata", "ContentLightLevel"),
+            type = "structure",
+            name = "ContentLightLevel",
+            target_id = id.from(_N, "ContentLightLevel"),
+            target = M.ContentLightLevel,
+            traits = {
+                [traits.JSON_NAME] = { name = "contentLightLevel" },
+            },
+        }),
+        MasteringDisplayColorVolume = schema.new({
+            id = id.from(_N, "HdrMetadata", "MasteringDisplayColorVolume"),
+            type = "structure",
+            name = "MasteringDisplayColorVolume",
+            target_id = id.from(_N, "MasteringDisplayColorVolume"),
+            target = M.MasteringDisplayColorVolume,
+            traits = {
+                [traits.JSON_NAME] = { name = "masteringDisplayColorVolume" },
             },
         }),
     },
@@ -13826,6 +14222,16 @@ M.VideoProperties = schema.new({
                 [traits.JSON_NAME] = { name = "frameRate" },
             },
         }),
+        HdrMetadata = schema.new({
+            id = id.from(_N, "VideoProperties", "HdrMetadata"),
+            type = "structure",
+            name = "HdrMetadata",
+            target_id = id.from(_N, "HdrMetadata"),
+            target = M.HdrMetadata,
+            traits = {
+                [traits.JSON_NAME] = { name = "hdrMetadata" },
+            },
+        }),
         Height = schema.new({
             id = id.from(_N, "VideoProperties", "Height"),
             type = "integer",
@@ -13842,6 +14248,15 @@ M.VideoProperties = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "matrixCoefficients" },
+            },
+        }),
+        Rotation = schema.new({
+            id = id.from(_N, "VideoProperties", "Rotation"),
+            type = "integer",
+            name = "Rotation",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "rotation" },
             },
         }),
         TransferCharacteristics = schema.new({

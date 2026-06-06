@@ -1450,6 +1450,28 @@ local record M
         SelectedOutputs: {string}
     end
 
+    enum CmafIntervalCadence
+        "FOLLOW_IFRAME"
+        "FOLLOW_CUSTOM"
+        "FOLLOW_SEGMENTATION"
+    end
+
+    -- Settings for one image-based trick play variant. Each variant produces its own set of JPEG tile images and corresponding manifest entries.
+    record CmafImageBasedTrickPlayVariant
+        -- The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval. If set to FOLLOW_SEGMENTATION, MediaConvert generates thumbnail playlist entries that align exactly with video segment boundaries. FOLLOW_SEGMENTATION requires 1x1 tiling.
+        IntervalCadence: string
+        -- Height of each thumbnail within each tile image, in pixels. Leave blank to maintain aspect ratio with thumbnail width. If following the aspect ratio would lead to a total tile height greater than 4096, then the job will be rejected. Must be divisible by 2.
+        ThumbnailHeight: number
+        -- Enter the interval, in seconds, that MediaConvert uses to generate thumbnails. If the interval you enter doesn't align with the output frame rate, MediaConvert automatically rounds the interval to align with the output frame rate. For example, if the output frame rate is 29.97 frames per second and you enter 5, MediaConvert uses a 150 frame interval to generate thumbnails.
+        ThumbnailInterval: number
+        -- Width of each thumbnail within each tile image, in pixels. Default is 312. Must be divisible by 8.
+        ThumbnailWidth: number
+        -- Number of thumbnails in each column of a tile image. Set a value between 1 and 2048.
+        TileHeight: number
+        -- Number of thumbnails in each row of a tile image. Set a value between 1 and 512.
+        TileWidth: number
+    end
+
     enum ColorSpace
         "FOLLOW"
         "REC_601"
@@ -1481,6 +1503,28 @@ local record M
         ManifestNameModifier: string
         -- Specify the outputs that you want this additional top-level manifest to reference.
         SelectedOutputs: {string}
+    end
+
+    enum DashIsoIntervalCadence
+        "FOLLOW_IFRAME"
+        "FOLLOW_CUSTOM"
+        "FOLLOW_SEGMENTATION"
+    end
+
+    -- Settings for one image-based trick play variant. Each variant produces its own set of JPEG tile images and corresponding manifest entries.
+    record DashIsoImageBasedTrickPlayVariant
+        -- The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval. If set to FOLLOW_SEGMENTATION, MediaConvert generates thumbnail playlist entries that align exactly with video segment boundaries. FOLLOW_SEGMENTATION requires 1x1 tiling.
+        IntervalCadence: string
+        -- Height of each thumbnail within each tile image, in pixels. Leave blank to maintain aspect ratio with thumbnail width. If following the aspect ratio would lead to a total tile height greater than 4096, then the job will be rejected. Must be divisible by 2.
+        ThumbnailHeight: number
+        -- Enter the interval, in seconds, that MediaConvert uses to generate thumbnails. If the interval you enter doesn't align with the output frame rate, MediaConvert automatically rounds the interval to align with the output frame rate. For example, if the output frame rate is 29.97 frames per second and you enter 5, MediaConvert uses a 150 frame interval to generate thumbnails.
+        ThumbnailInterval: number
+        -- Width of each thumbnail within each tile image, in pixels. Default is 312. Must be divisible by 8.
+        ThumbnailWidth: number
+        -- Number of thumbnails in each column of a tile image. Set a value between 1 and 2048.
+        TileHeight: number
+        -- Number of thumbnails in each row of a tile image. Set a value between 1 and 512.
+        TileWidth: number
     end
 
     enum ElementalInferenceFeature
@@ -1541,6 +1585,28 @@ local record M
         LanguageCode: string
         -- Caption language description.
         LanguageDescription: string
+    end
+
+    enum HlsIntervalCadence
+        "FOLLOW_IFRAME"
+        "FOLLOW_CUSTOM"
+        "FOLLOW_SEGMENTATION"
+    end
+
+    -- Settings for one image-based trick play variant. Each variant produces its own set of JPEG tile images and corresponding manifest entries.
+    record HlsImageBasedTrickPlayVariant
+        -- The cadence MediaConvert follows for generating thumbnails. If set to FOLLOW_IFRAME, MediaConvert generates thumbnails for each IDR frame in the output (matching the GOP cadence). If set to FOLLOW_CUSTOM, MediaConvert generates thumbnails according to the interval you specify in thumbnailInterval. If set to FOLLOW_SEGMENTATION, MediaConvert generates thumbnail playlist entries that align exactly with video segment boundaries. FOLLOW_SEGMENTATION requires 1x1 tiling.
+        IntervalCadence: string
+        -- Height of each thumbnail within each tile image, in pixels. Leave blank to maintain aspect ratio with thumbnail width. If following the aspect ratio would lead to a total tile height greater than 4096, then the job will be rejected. Must be divisible by 2.
+        ThumbnailHeight: number
+        -- Enter the interval, in seconds, that MediaConvert uses to generate thumbnails. If the interval you enter doesn't align with the output frame rate, MediaConvert automatically rounds the interval to align with the output frame rate. For example, if the output frame rate is 29.97 frames per second and you enter 5, MediaConvert uses a 150 frame interval to generate thumbnails.
+        ThumbnailInterval: number
+        -- Width of each thumbnail within each tile image, in pixels. Default is 312. Must be divisible by 8.
+        ThumbnailWidth: number
+        -- Number of thumbnails in each column of a tile image. Set a value between 1 and 2048.
+        TileHeight: number
+        -- Number of thumbnails in each row of a tile image. Set a value between 1 and 512.
+        TileWidth: number
     end
 
     -- Optional. Configuration for a destination queue to which the job can hop once a customer-defined minimum wait time has passed.
@@ -2651,11 +2717,6 @@ local record M
         S3Settings: S3DestinationSettings
     end
 
-    enum HlsClearLead
-        "ENABLED"
-        "DISABLED"
-    end
-
     enum CmafEncryptionType
         "SAMPLE_AES"
         "AES_CTR"
@@ -2730,8 +2791,8 @@ local record M
 
     -- Settings for CMAF encryption
     record CmafEncryptionSettings
-        -- Enable Clear Lead DRM to reduce video startup latency by leaving the first segment unencrypted while DRM license retrieval occurs in parallel. This optimization allows immediate playback startup while maintaining content protection for the remainder of the stream. When enabled, the first output segment remains fully unencrypted, and encryption begins at the start of the second segment. The HLS manifest will omit #EXT-X-KEY tags during the clear segment and insert the first #EXT-X-KEY immediately before the first encrypted fragment. This feature is supported exclusively for CMAF HLS (fMP4) outputs and is compatible with all existing key provider integrations (SPEKE v1, SPEKE v2, and Static Key encryption). Supported codecs: H.264, H.265, and AV1 video codecs, and AAC audio codec. Choose Enabled to activate Clear Lead DRM optimization. Choose Disabled to use standard encryption where all segments are encrypted from the beginning.
-        ClearLead: string
+        -- Reduce video startup latency by leaving initial segments unencrypted while DRM license retrieval occurs in parallel. This optimization allows immediate playback startup while maintaining content protection for the remainder of the stream. Specify the number of initial segments to leave unencrypted. Omit this field to disable Clear Lead. The HLS manifest will omit #EXT-X-KEY tags during clear segments and insert the first #EXT-X-KEY immediately before the first encrypted segment. Because encryption is applied at the fragment level, the actual duration of unencrypted content may be slightly longer than expected if the segment length is not evenly divisible by the fragment length. In such cases, encryption begins at the next fragment boundary after the specified clear lead segments, rather than at the exact segment boundary. This feature is supported exclusively for CMAF HLS (fMP4) outputs and is compatible with all existing key provider integrations (SPEKE v1, SPEKE v2, and Static Key encryption). Supported codecs: H.264, H.265, and AV1 video codecs, and AAC audio codec.
+        ClearLeadSegments: number
         -- This is a 128-bit, 16-byte hex value represented by a 32-character text string. If this parameter is not set then the Initialization Vector will follow the segment number by default.
         ConstantInitializationVector: string
         -- Specify the encryption scheme that you want the service to use when encrypting your CMAF segments. Choose AES-CBC subsample or AES_CTR.
@@ -2751,12 +2812,7 @@ local record M
         "THUMBNAIL"
         "THUMBNAIL_AND_FULLFRAME"
         "ADVANCED"
-    end
-
-    enum CmafIntervalCadence
-        "FOLLOW_IFRAME"
-        "FOLLOW_CUSTOM"
-        "FOLLOW_SEGMENTATION"
+        "VARIANTS"
     end
 
     -- Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
@@ -2769,7 +2825,7 @@ local record M
         ThumbnailInterval: number
         -- Width of each thumbnail within each tile image, in pixels. Default is 312. Must be divisible by 8.
         ThumbnailWidth: number
-        -- Number of thumbnails in each column of a tile image. Set a value between 2 and 2048. Must be divisible by 2.
+        -- Number of thumbnails in each column of a tile image. Set a value between 1 and 2048.
         TileHeight: number
         -- Number of thumbnails in each row of a tile image. Set a value between 1 and 512.
         TileWidth: number
@@ -2863,10 +2919,12 @@ local record M
         Encryption: CmafEncryptionSettings
         -- Specify the length, in whole seconds, of the mp4 fragments. When you don't specify a value, MediaConvert defaults to 2. Related setting: Use Fragment length control to specify whether the encoder enforces this value strictly.
         FragmentLength: number
-        -- Specify whether MediaConvert generates images for trick play. Keep the default value, None, to not generate any images. Choose Thumbnail to generate tiled thumbnails. Choose Thumbnail and full frame to generate tiled thumbnails and full-resolution images of single frames. When you enable Write HLS manifest, MediaConvert creates a child manifest for each set of images that you generate and adds corresponding entries to the parent manifest. When you enable Write DASH manifest, MediaConvert adds an entry in the .mpd manifest for each set of images that you generate. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+        -- Specify whether MediaConvert generates images for trick play. Keep the default value, None, to not generate any images. Choose Thumbnail to generate tiled thumbnails. Choose Thumbnail and full frame to generate tiled thumbnails and full-resolution images of single frames. Choose Advanced to customize thumbnail and tile settings for a single trick play variant. Choose Variants to specify multiple trick play variants, each with its own thumbnail and tile settings. When you enable Write HLS manifest, MediaConvert creates a child manifest for each set of images that you generate and adds corresponding entries to the parent manifest. When you enable Write DASH manifest, MediaConvert adds an entry in the .mpd manifest for each set of images that you generate. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
         ImageBasedTrickPlay: string
         -- Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
         ImageBasedTrickPlaySettings: CmafImageBasedTrickPlaySettings
+        -- Specify multiple image-based trick play variants. Each entry creates a separate set of JPEG tile images with its own resolution, tile layout, and cadence settings. Set imageBasedTrickPlay to VARIANTS when using this setting.
+        ImageBasedTrickPlayVariants: {CmafImageBasedTrickPlayVariant}
         -- When set to GZIP, compresses HLS playlist.
         ManifestCompression: string
         -- Indicates whether the output manifest should use floating point values for segment duration.
@@ -2943,12 +3001,7 @@ local record M
         "THUMBNAIL"
         "THUMBNAIL_AND_FULLFRAME"
         "ADVANCED"
-    end
-
-    enum DashIsoIntervalCadence
-        "FOLLOW_IFRAME"
-        "FOLLOW_CUSTOM"
-        "FOLLOW_SEGMENTATION"
+        "VARIANTS"
     end
 
     -- Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
@@ -2961,7 +3014,7 @@ local record M
         ThumbnailInterval: number
         -- Width of each thumbnail within each tile image, in pixels. Default is 312. Must be divisible by 8.
         ThumbnailWidth: number
-        -- Number of thumbnails in each column of a tile image. Set a value between 2 and 2048. Must be divisible by 2.
+        -- Number of thumbnails in each column of a tile image. Set a value between 1 and 2048.
         TileHeight: number
         -- Number of thumbnails in each row of a tile image. Set a value between 1 and 512.
         TileWidth: number
@@ -3025,10 +3078,12 @@ local record M
         FragmentLength: number
         -- Supports HbbTV specification as indicated
         HbbtvCompliance: string
-        -- Specify whether MediaConvert generates images for trick play. Keep the default value, None, to not generate any images. Choose Thumbnail to generate tiled thumbnails. Choose Thumbnail and full frame to generate tiled thumbnails and full-resolution images of single frames. MediaConvert adds an entry in the .mpd manifest for each set of images that you generate. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+        -- Specify whether MediaConvert generates images for trick play. Keep the default value, None, to not generate any images. Choose Thumbnail to generate tiled thumbnails. Choose Thumbnail and full frame to generate tiled thumbnails and full-resolution images of single frames. Choose Advanced to customize thumbnail and tile settings for a single trick play variant. Choose Variants to specify multiple trick play variants, each with its own thumbnail and tile settings. MediaConvert adds an entry in the .mpd manifest for each set of images that you generate. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
         ImageBasedTrickPlay: string
         -- Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
         ImageBasedTrickPlaySettings: DashIsoImageBasedTrickPlaySettings
+        -- Specify multiple image-based trick play variants. Each entry creates a separate set of JPEG tile images with its own resolution, tile layout, and cadence settings. Set imageBasedTrickPlay to VARIANTS when using this setting.
+        ImageBasedTrickPlayVariants: {DashIsoImageBasedTrickPlayVariant}
         -- Minimum time of initially buffered media that is needed to ensure smooth playout.
         MinBufferTime: number
         -- Keep this setting at the default value of 0, unless you are troubleshooting a problem with how devices play back the end of your video asset. If you know that player devices are hanging on the final segment of your video because the length of your final segment is too short, use this setting to specify a minimum final segment length, in seconds. Choose a value that is greater than or equal to 1 and less than your segment length. When you specify a value for this setting, the encoder will combine any final segment that is shorter than the length that you specify with the previous segment. For example, your segment length is 3 seconds and your final segment is .5 seconds without a minimum final segment length; when you set the minimum final segment length to 1, your final segment is 3.5 seconds.
@@ -3133,12 +3188,7 @@ local record M
         "THUMBNAIL"
         "THUMBNAIL_AND_FULLFRAME"
         "ADVANCED"
-    end
-
-    enum HlsIntervalCadence
-        "FOLLOW_IFRAME"
-        "FOLLOW_CUSTOM"
-        "FOLLOW_SEGMENTATION"
+        "VARIANTS"
     end
 
     -- Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
@@ -3151,7 +3201,7 @@ local record M
         ThumbnailInterval: number
         -- Width of each thumbnail within each tile image, in pixels. Default is 312. Must be divisible by 8.
         ThumbnailWidth: number
-        -- Number of thumbnails in each column of a tile image. Set a value between 2 and 2048. Must be divisible by 2.
+        -- Number of thumbnails in each column of a tile image. Set a value between 1 and 2048.
         TileHeight: number
         -- Number of thumbnails in each row of a tile image. Set a value between 1 and 512.
         TileWidth: number
@@ -3237,10 +3287,12 @@ local record M
         DirectoryStructure: string
         -- DRM settings.
         Encryption: HlsEncryptionSettings
-        -- Specify whether MediaConvert generates images for trick play. Keep the default value, None, to not generate any images. Choose Thumbnail to generate tiled thumbnails. Choose Thumbnail and full frame to generate tiled thumbnails and full-resolution images of single frames. MediaConvert creates a child manifest for each set of images that you generate and adds corresponding entries to the parent manifest. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
+        -- Specify whether MediaConvert generates images for trick play. Keep the default value, None, to not generate any images. Choose Thumbnail to generate tiled thumbnails. Choose Thumbnail and full frame to generate tiled thumbnails and full-resolution images of single frames. Choose Advanced to customize thumbnail and tile settings for a single trick play variant. Choose Variants to specify multiple trick play variants, each with its own thumbnail and tile settings. MediaConvert creates a child manifest for each set of images that you generate and adds corresponding entries to the parent manifest. A common application for these images is Roku trick mode. The thumbnails and full-frame images that MediaConvert creates with this feature are compatible with this Roku specification: https://developer.roku.com/docs/developer-program/media-playback/trick-mode/hls-and-dash.md
         ImageBasedTrickPlay: string
         -- Tile and thumbnail settings applicable when imageBasedTrickPlay is ADVANCED
         ImageBasedTrickPlaySettings: HlsImageBasedTrickPlaySettings
+        -- Specify multiple image-based trick play variants. Each entry creates a separate set of JPEG tile images with its own resolution, tile layout, and cadence settings. Set imageBasedTrickPlay to VARIANTS when using this setting.
+        ImageBasedTrickPlayVariants: {HlsImageBasedTrickPlayVariant}
         -- When set to GZIP, compresses HLS playlist.
         ManifestCompression: string
         -- Indicates whether the output manifest should use floating point values for segment duration.
@@ -6365,6 +6417,7 @@ local record M
         "wave"
         "avi"
         "mpegts"
+        "mpegps"
     end
 
     -- The frame rate of the video or audio track, expressed as a fraction with numerator and denominator values.
@@ -6387,6 +6440,8 @@ local record M
         FrameRate: FrameRate
         -- The language code of the audio track, in three character ISO 639-3 format.
         LanguageCode: string
+        -- The number of audio objects in an object-based or immersive audio track. This field is present for codecs that support object-based audio, such as E-AC-3 with Joint Object Coding (JOC) or IAMF. This field is null when the audio track does not contain object-based audio metadata.
+        ObjectCount: number
         -- The sample rate of the audio track.
         SampleRate: number
     end
@@ -6397,6 +6452,7 @@ local record M
         "AC3"
         "EAC3"
         "FLAC"
+        "MP2"
         "MP3"
         "OPUS"
         "PCM"
@@ -6452,6 +6508,14 @@ local record M
         "LAST"
     end
 
+    -- Content light level information (CTA-861.3). Describes the light level characteristics of the content.
+    record ContentLightLevel
+        -- Maximum content light level (MaxCLL), in cd/m².
+        MaxContentLightLevel: number
+        -- Maximum frame-average light level (MaxFALL), in cd/m².
+        MaxFrameAverageLightLevel: number
+    end
+
     enum MatrixCoefficients
         "RGB"
         "ITU_709"
@@ -6505,6 +6569,8 @@ local record M
         CodedFrameRate: FrameRate
         -- The color space primaries of the video track, defining the red, green, and blue color coordinates used for the video. This information helps ensure accurate color reproduction during playback and transcoding.
         ColorPrimaries: string
+        -- Content light level information (CTA-861.3). Describes the light level characteristics of the content.
+        ContentLightLevel: ContentLightLevel
         -- The height in pixels as coded by the codec. This represents the actual encoded video height as specified in the video stream headers.
         Height: number
         -- The codec level or tier that specifies the maximum processing requirements and capabilities. Levels define constraints such as maximum bit rate, frame rate, and resolution.
@@ -6513,12 +6579,46 @@ local record M
         MatrixCoefficients: string
         -- The codec profile used to encode the video. Profiles define specific feature sets and capabilities within a codec standard. For example, H.264 profiles include Baseline, Main, and High, each supporting different encoding features and complexity levels.
         Profile: string
+        -- The clockwise rotation angle of the video, in degrees, as specified in the codec bitstream via a Display Orientation SEI message (payload type 47 for both H.264 and H.265). This field is null when the video essence does not contain a Display Orientation SEI message or when the rotation is 0 degrees.
+        Rotation: number
         -- The scanning method specified in the video essence, indicating whether the video uses progressive or interlaced scanning.
         ScanType: string
         -- The color space transfer characteristics of the video track, defining the relationship between linear light values and the encoded signal values. This affects brightness and contrast reproduction.
         TransferCharacteristics: string
         -- The width in pixels as coded by the codec. This represents the actual encoded video width as specified in the video stream headers.
         Width: number
+    end
+
+    -- Mastering display color volume metadata (SMPTE ST 2086). Describes the color volume of the display used to master the content. Chromaticity coordinates are in units of 0.00002. Luminance values are in units of 0.0001 cd/m².
+    record MasteringDisplayColorVolume
+        -- Blue primary chromaticity x coordinate, in units of 0.00002.
+        BluePrimaryX: number
+        -- Blue primary chromaticity y coordinate, in units of 0.00002.
+        BluePrimaryY: number
+        -- Green primary chromaticity x coordinate, in units of 0.00002.
+        GreenPrimaryX: number
+        -- Green primary chromaticity y coordinate, in units of 0.00002.
+        GreenPrimaryY: number
+        -- Maximum display mastering luminance, in units of 0.0001 cd/m².
+        MaxLuminance: number
+        -- Minimum display mastering luminance, in units of 0.0001 cd/m².
+        MinLuminance: number
+        -- Red primary chromaticity x coordinate, in units of 0.00002.
+        RedPrimaryX: number
+        -- Red primary chromaticity y coordinate, in units of 0.00002.
+        RedPrimaryY: number
+        -- White point chromaticity x coordinate, in units of 0.00002.
+        WhitePointX: number
+        -- White point chromaticity y coordinate, in units of 0.00002.
+        WhitePointY: number
+    end
+
+    -- HDR (High Dynamic Range) metadata extracted from the container, including mastering display color volume and content light level information. This metadata is present in HDR10 and similar HDR content.
+    record HdrMetadata
+        -- Content light level information (CTA-861.3). Describes the light level characteristics of the content.
+        ContentLightLevel: ContentLightLevel
+        -- Mastering display color volume metadata (SMPTE ST 2086). Describes the color volume of the display used to master the content. Chromaticity coordinates are in units of 0.00002. Luminance values are in units of 0.0001 cd/m².
+        MasteringDisplayColorVolume: MasteringDisplayColorVolume
     end
 
     -- Details about the media file's video track.
@@ -6533,10 +6633,14 @@ local record M
         ColorPrimaries: string
         -- The frame rate of the video or audio track, expressed as a fraction with numerator and denominator values.
         FrameRate: FrameRate
+        -- HDR (High Dynamic Range) metadata extracted from the container, including mastering display color volume and content light level information. This metadata is present in HDR10 and similar HDR content.
+        HdrMetadata: HdrMetadata
         -- The height of the video track, in pixels.
         Height: number
         -- The color space matrix coefficients of the video track, defining how RGB color values are converted to and from YUV color space. This affects color accuracy during encoding and decoding processes.
         MatrixCoefficients: string
+        -- The clockwise rotation angle of the video track, in degrees, as derived from container-level metadata (e.g. the MP4 tkhd transformation matrix or the Matroska ProjectionPoseRoll element). Common values are 90, 180, and 270. This field is null when no rotation metadata is present or when the rotation is 0 degrees. For MP4, non-standard transformation matrices also yield null.
+        Rotation: number
         -- The color space transfer characteristics of the video track, defining the relationship between linear light values and the encoded signal values. This affects brightness and contrast reproduction.
         TransferCharacteristics: string
         -- The width of the video track, in pixels.
@@ -6565,7 +6669,7 @@ local record M
     record Container
         -- The total duration of your media file, in seconds.
         Duration: number
-        -- The format of your media file. For example: MP4, QuickTime (MOV), Matroska (MKV), WebM, MXF, Wave, AVI, or MPEG-TS. Note that this will be blank if your media file has a format that the MediaConvert Probe operation does not recognize.
+        -- The format of your media file. For example: MP4, QuickTime (MOV), Matroska (MKV), WebM, MXF, Wave, AVI, MPEG-TS, or MPEG-PS. Note that this will be blank if your media file has a format that the MediaConvert Probe operation does not recognize.
         Format: string
         -- The start timecode of the media file, in HH:MM:SS:FF format (or HH:MM:SS;FF for drop frame timecode). Note that this field is null when the container does not include an embedded start timecode.
         StartTimecode: string

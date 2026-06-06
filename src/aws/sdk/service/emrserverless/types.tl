@@ -45,6 +45,8 @@ local record M
         imageUri: string
         -- The SHA256 digest of the image URI. This indicates which specific image the application is configured for. The image digest doesn't exist until an application has started.
         resolvedImageDigest: string
+        -- Boolean value indicating if the digest resolution is application level or workload level. If true, a custom image URI is resolved at application start time and all workloads submitted will use that image digest. If false, the custom image URI is resolved at the workload submission time.
+        applicationLevelDigestResolution: boolean
     end
 
     -- The cumulative configuration requirements for every worker instance of the worker type.
@@ -212,6 +214,8 @@ local record M
     record ImageConfigurationInput
         -- The URI of an image in the Amazon ECR registry. This field is required when you create a new application. If you leave this field blank in an update, Amazon EMR will remove the image configuration.
         imageUri: string
+        -- Boolean value indicating if the digest resolution is application level or workload level. If true, a custom image URI is resolved at application start time and all workloads submitted will use that image digest. If false, the custom image URI is resolved at the workload submission time.
+        applicationLevelDigestResolution: boolean
     end
 
     -- The specifications for a worker type.
@@ -593,7 +597,7 @@ local record M
         sessionId: string
         -- The endpoint URL for connecting to the session.
         endpoint: string
-        -- Authentication token for accessing the session endpoint.
+        -- The authentication token for connecting to the session endpoint. Call GetSessionEndpoint again to obtain a new token before it expires.
         authToken: string
         -- The expiration time of the authentication token.
         authTokenExpiresAt: number
@@ -907,6 +911,9 @@ local record M
         endedAt: number
         -- The total time for a job in the QUEUED state in milliseconds.
         queuedDurationMilliseconds: number
+        imageConfiguration: ImageConfiguration
+        -- The specification applied to each worker type. Includes the JobRun-level ImageConfiguration when the applicationLevelDigestResolution is false for the application.
+        workerTypeSpecifications: {string : WorkerTypeSpecification}
     end
 
     -- Information about a session, including the session state, configuration, and timestamps.

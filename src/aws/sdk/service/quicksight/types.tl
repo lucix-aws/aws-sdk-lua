@@ -9650,6 +9650,17 @@ local record M
         "DISABLED"
     end
 
+    enum AudioExtractionStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- The configuration for audio extraction from knowledge base documents.
+    record AudioExtractionConfiguration
+        -- The status of audio extraction. Valid values are ENABLED and DISABLED.
+        audioExtractionStatus: string
+    end
+
     -- Configuration details for OAuth 2.0 authorization code grant flow.
     record AuthorizationCodeGrantDetails
         -- The client ID for the OAuth application.
@@ -10208,6 +10219,65 @@ local record M
 
     -- Access is throttled.
     record ThrottlingException
+        Message: string
+        -- The Amazon Web Services request ID for this request.
+        RequestId: string
+    end
+
+    record BatchDeleteKnowledgeBaseInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- A list of knowledge base identifiers to delete.
+        KnowledgeBaseIds: {string}
+    end
+
+    -- Information about a knowledge base that was successfully deleted in a batch operation.
+    record BatchDeleteKnowledgeBaseSuccess
+        -- The unique identifier of the successfully deleted knowledge base.
+        KnowledgeBaseId: string
+        -- The ARN of the successfully deleted knowledge base.
+        KnowledgeBaseArn: string
+    end
+
+    -- Information about a knowledge base that failed to be deleted in a batch operation.
+    record BatchDeleteKnowledgeBaseFailure
+        -- The unique identifier of the knowledge base that failed to be deleted.
+        KnowledgeBaseId: string
+        -- The error code for the deletion failure.
+        ErrorCode: string
+        -- The error message for the deletion failure.
+        ErrorMessage: string
+    end
+
+    record BatchDeleteKnowledgeBaseOutput
+        -- A list of knowledge bases that were successfully deleted.
+        Deleted: {BatchDeleteKnowledgeBaseSuccess}
+        -- A list of knowledge bases that failed to be deleted.
+        Errors: {BatchDeleteKnowledgeBaseFailure}
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    -- You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.
+    record InvalidRequestException
+        Message: string
+        -- The Amazon Web Services request ID for this request.
+        RequestId: string
+    end
+
+    -- A limit is exceeded.
+    record LimitExceededException
+        Message: string
+        -- Limit exceeded.
+        ResourceType: string
+        -- The Amazon Web Services request ID for this request.
+        RequestId: string
+    end
+
+    -- One or more preconditions aren't met.
+    record PreconditionNotMetException
         Message: string
         -- The Amazon Web Services request ID for this request.
         RequestId: string
@@ -10904,6 +10974,14 @@ local record M
         Scenario: string
     end
 
+    -- A filter that matches users by total capacity range in bytes.
+    record CapacityBytesRangeFilter
+        -- The minimum capacity in bytes (inclusive). At least one of minBytes or maxBytes is required.
+        minBytes: number
+        -- The maximum capacity in bytes (inclusive). At least one of minBytes or maxBytes is required.
+        maxBytes: number
+    end
+
     enum ColumnDataType
         "STRING"
         "INTEGER"
@@ -11255,13 +11333,6 @@ local record M
         RequestId: string
     end
 
-    -- One or more preconditions aren't met.
-    record PreconditionNotMetException
-        Message: string
-        -- The Amazon Web Services request ID for this request.
-        RequestId: string
-    end
-
     -- Permission for the resource.
     record ResourcePermission
         -- The Amazon Resource Name (ARN) of the principal. This can be one of the
@@ -11378,15 +11449,6 @@ local record M
         -- The name of the agent.
         AgentName: string
         -- The Amazon Web Services request ID for this operation.
-        RequestId: string
-    end
-
-    -- A limit is exceeded.
-    record LimitExceededException
-        Message: string
-        -- Limit exceeded.
-        ResourceType: string
-        -- The Amazon Web Services request ID for this request.
         RequestId: string
     end
 
@@ -11531,13 +11593,6 @@ local record M
     -- An internal service exception.
     record InternalServerException
         Message: string
-    end
-
-    -- You don't have this feature activated for your account. To fix this issue, contact Amazon Web Services support.
-    record InvalidRequestException
-        Message: string
-        -- The Amazon Web Services request ID for this request.
-        RequestId: string
     end
 
     -- A transform operation that creates calculated columns. Columns created in one such
@@ -14772,6 +14827,14 @@ local record M
         Value: string
     end
 
+    enum DataSetStatus
+        "CREATING"
+        "UPDATING"
+        "ACTIVE"
+        "FAILED"
+        "DELETING"
+    end
+
     -- Dataset summary.
     record DataSetSummary
         -- The Amazon Resource Name (ARN) of the dataset.
@@ -15239,6 +15302,24 @@ local record M
     end
 
     record DeleteIdentityPropagationConfigOutput
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record DeleteKnowledgeBaseInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+    end
+
+    record DeleteKnowledgeBaseOutput
+        -- The ARN of the deleted knowledge base.
+        KnowledgeBaseArn: string
+        -- The ID of the deleted knowledge base.
+        KnowledgeBaseId: string
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
         -- The HTTP status of the request.
@@ -16805,6 +16886,160 @@ local record M
         KeyRegistration: {RegisteredCustomerManagedKey}
         -- A list of QDataKey objects in a Quick Sight account.
         QDataKey: QDataKey
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record DescribeKnowledgeBaseInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+    end
+
+    enum KbIngestionStatus
+        "QUEUED"
+        "RUNNING"
+        "FAILED"
+        "COMPLETED"
+        "INCOMPLETE"
+        "CANCELLED"
+        "CANCELLING"
+        "TIMEOUT"
+    end
+
+    -- A summary of an ingestion job for a knowledge base.
+    record KnowledgeBaseIngestionSummary
+        -- The unique identifier for the ingestion job.
+        IngestionId: string
+        -- The status of the ingestion job.
+        IngestionStatus: string
+        -- The start time of the ingestion job.
+        StartTime: number
+        -- The end time of the ingestion job.
+        EndTime: number
+    end
+
+    -- The template configuration for a knowledge base.
+    record KbTemplateConfiguration
+        -- The template document that defines the knowledge base behavior.
+        template: any
+    end
+
+    -- The configuration settings for a knowledge base.
+    record KnowledgeBaseConfiguration
+        -- The template configuration for the knowledge base.
+        templateConfiguration: KbTemplateConfiguration
+        -- Indicates whether event notifications are enabled for the knowledge base.
+        eventEnabled: boolean
+    end
+
+    enum ImageExtractionStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- The configuration for image extraction from knowledge base documents.
+    record ImageExtractionConfiguration
+        -- The status of image extraction. Valid values are ENABLED and DISABLED.
+        imageExtractionStatus: string
+    end
+
+    enum VideoExtractionStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    enum VideoExtractionType
+        "AUDIO_TRANSCRIPTION_ONLY"
+        "VISUAL_CONTENT_AND_AUDIO_TRANSCRIPTION"
+    end
+
+    -- The configuration for video extraction from knowledge base documents.
+    record VideoExtractionConfiguration
+        -- The status of video extraction. Valid values are ENABLED and DISABLED.
+        videoExtractionStatus: string
+        -- The type of video extraction to perform.
+        videoExtractionType: string
+    end
+
+    -- The configuration for media extraction from knowledge base documents.
+    record MediaExtractionConfiguration
+        -- The configuration for image extraction.
+        imageExtractionConfiguration: ImageExtractionConfiguration
+        -- The configuration for audio extraction.
+        audioExtractionConfiguration: AudioExtractionConfiguration
+        -- The configuration for video extraction.
+        videoExtractionConfiguration: VideoExtractionConfiguration
+    end
+
+    -- A knowledge base resource that provides data from connected sources for AI-powered experiences in Amazon QuickSight.
+    record KnowledgeBase
+        -- The Amazon Resource Name (ARN) of the knowledge base.
+        KnowledgeBaseArn: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The name of the knowledge base.
+        Name: string
+        -- The status of the knowledge base.
+        Status: string
+        -- The ARN of the data source associated with the knowledge base.
+        DataSourceArn: string
+        -- The configuration settings for the knowledge base.
+        KnowledgeBaseConfiguration: KnowledgeBaseConfiguration
+        -- The media extraction configuration for the knowledge base.
+        MediaExtractionConfiguration: MediaExtractionConfiguration
+        -- The type of the knowledge base.
+        Type: string
+        -- The date and time that the knowledge base was created.
+        CreatedAt: number
+        -- The date and time that the knowledge base was last updated.
+        UpdatedAt: number
+        -- The description of the knowledge base.
+        Description: string
+        -- Indicates whether email notifications are enabled for ingestion failures.
+        IsEmailNotificationOptedForIngestionFailures: boolean
+        -- A summary of the first completed ingestion for the knowledge base.
+        FirstCompletedIngestionSummary: KnowledgeBaseIngestionSummary
+        -- A summary of the first incomplete ingestion for the knowledge base.
+        FirstIncompleteIngestionSummary: KnowledgeBaseIngestionSummary
+        -- A summary of the most recent ingestion for the knowledge base.
+        LatestIngestionSummary: KnowledgeBaseIngestionSummary
+        -- The size of the knowledge base in bytes.
+        KnowledgeBaseSizeBytes: number
+        -- The number of documents in the knowledge base.
+        DocumentCount: number
+        -- The ARN of the primary owner of the knowledge base.
+        PrimaryOwnerArn: string
+        -- The username of the primary owner of the knowledge base.
+        PrimaryOwnerUsername: string
+    end
+
+    record DescribeKnowledgeBaseOutput
+        -- The knowledge base.
+        KnowledgeBase: KnowledgeBase
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record DescribeKnowledgeBasePermissionsInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+    end
+
+    record DescribeKnowledgeBasePermissionsOutput
+        -- The Amazon Resource Name (ARN) of the knowledge base.
+        KnowledgeBaseArn: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The resource permissions for the knowledge base.
+        Permissions: {ResourcePermission}
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
         -- The HTTP status of the request.
@@ -18416,6 +18651,79 @@ local record M
         "EXCLUDE"
     end
 
+    enum KnowledgeBaseSearchFilterName
+        "KNOWLEDGE_BASE_ID"
+        "KNOWLEDGE_BASE_NAME"
+        "DIRECT_QUICKSIGHT_OWNER"
+        "DIRECT_QUICKSIGHT_VIEWER_OR_OWNER"
+        "DIRECT_QUICKSIGHT_SOLE_OWNER"
+        "KNOWLEDGE_BASE_SIZE_BYTES"
+        "PRIMARY_OWNER"
+    end
+
+    enum KnowledgeBaseSearchOperator
+        "STRING_EQUALS"
+        "STRING_LIKE"
+        "GREATER_THAN_OR_EQUALS"
+        "LESS_THAN_OR_EQUALS"
+    end
+
+    -- A filter to apply when searching knowledge bases.
+    record KnowledgeBaseSearchFilter
+        -- The name of the field to filter on.
+        name: string
+        -- The comparison operator to use for the filter.
+        operator: string
+        -- The value to filter on.
+        value: string
+    end
+
+    enum KnowledgeBaseSortByField
+        "KNOWLEDGE_BASE_SIZE_BYTES"
+        "CREATED_AT"
+    end
+
+    enum SortOrder
+        "ASC"
+        "DESC"
+    end
+
+    -- The sort configuration for searching knowledge bases.
+    record KnowledgeBaseSortBy
+        -- The field to sort by.
+        sortByField: string
+        -- The sort order (ascending or descending).
+        sortOrder: string
+    end
+
+    -- A summary of a knowledge base, including its identifier, name, status, and metadata.
+    record KnowledgeBaseSummary
+        -- The Amazon Resource Name (ARN) of the knowledge base.
+        KnowledgeBaseArn: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The name of the knowledge base.
+        Name: string
+        -- The status of the knowledge base.
+        Status: string
+        -- The ARN of the data source associated with the knowledge base.
+        DataSourceArn: string
+        -- The type of the knowledge base.
+        Type: string
+        -- The date and time that the knowledge base was created.
+        CreatedAt: number
+        -- The date and time that the knowledge base was last updated.
+        UpdatedAt: number
+        -- The size of the knowledge base in bytes.
+        KnowledgeBaseSizeBytes: number
+        -- The number of documents in the knowledge base.
+        DocumentCount: number
+        -- The ARN of the primary owner of the knowledge base.
+        PrimaryOwnerArn: string
+        -- The username of the primary owner of the knowledge base.
+        PrimaryOwnerUsername: string
+    end
+
     record ListActionConnectorsInput
         -- The Amazon Web Services account ID for which to list action connectors.
         AwsAccountId: string
@@ -18852,6 +19160,26 @@ local record M
     record ListIngestionsOutput
         -- A list of the ingestions.
         Ingestions: {Ingestion}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record ListKnowledgeBasesInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+    end
+
+    record ListKnowledgeBasesOutput
+        -- A list of knowledge base summaries.
+        KnowledgeBaseSummaries: {KnowledgeBaseSummary}
         -- The token for the next set of results, or null if there are no more results.
         NextToken: string
         -- The Amazon Web Services request ID for this operation.
@@ -19421,6 +19749,77 @@ local record M
         Status: number
     end
 
+    -- A filter that matches users by username or email prefix.
+    record UserNameOrEmailFilter
+        -- The prefix to match against username or email (starts-with match).
+        prefix: string
+    end
+
+    -- A filter for user index capacity queries. Only one filter type can be specified per request.
+    record UserIndexCapacityFilter
+        -- Filter users by username or email prefix.
+        userNameOrEmail: UserNameOrEmailFilter
+        -- Filter users by total capacity range in bytes.
+        totalCapacityBytes: CapacityBytesRangeFilter
+    end
+
+    enum UserIndexCapacitySortBy
+        "TOTAL_CAPACITY_BYTES"
+    end
+
+    enum UserIndexCapacitySortOrder
+        "ASC"
+        "DESC"
+    end
+
+    record ListUsersIndexCapacityInput
+        -- The ID of the Amazon Web Services account that contains the index capacity data.
+        awsAccountId: string
+        -- The namespace to scope the user search to. Required when the userNameOrEmail filter is present.
+        namespace: string
+        -- Filters to apply. Only one filter is supported per request. The userNameOrEmail and totalCapacityBytes filters are mutually exclusive.
+        filters: {UserIndexCapacityFilter}
+        -- The field to sort results by.
+        sortBy: string
+        -- The sort order for results. Defaults to DESC if not specified.
+        sortOrder: string
+        -- The maximum number of results to return per page.
+        maxResults: number
+        -- The token for the next set of results, received from a previous call.
+        nextToken: string
+    end
+
+    -- A summary of a user's index capacity consumption.
+    record UserIndexCapacity
+        -- The ARN of the user.
+        userArn: string
+        -- The username of the user.
+        userName: string
+        -- The email address of the user.
+        email: string
+        -- The role of the user.
+        role: string
+        -- The total index capacity consumed by the user in bytes.
+        totalCapacityBytes: number
+        -- The total index capacity consumed by the user's knowledge bases in bytes.
+        totalKBCapacityBytes: number
+        -- The total index capacity consumed by the user's spaces in bytes.
+        totalSpaceCapacityBytes: number
+        -- The number of knowledge bases owned by the user.
+        kbCount: number
+        -- The number of spaces owned by the user.
+        spaceCount: number
+    end
+
+    record ListUsersIndexCapacityOutput
+        -- The list of users with their index capacity metrics.
+        users: {UserIndexCapacity}
+        -- The token for the next set of results, or null if there are no more results.
+        nextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        requestId: string
+    end
+
     record ListVPCConnectionsInput
         -- The Amazon Web Services account ID of the account that contains the VPC connections
         -- that you want to list.
@@ -19865,6 +20264,30 @@ local record M
         -- A list of groups in a specified namespace that match the filters you set in your SearchGroups request.
         GroupList: {Group}
         -- A pagination token that can be used in a subsequent request.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
+    record SearchKnowledgeBasesInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The filters to apply when searching knowledge bases.
+        Filters: {KnowledgeBaseSearchFilter}
+        -- The sort configuration for the search results.
+        SortBy: KnowledgeBaseSortBy
+    end
+
+    record SearchKnowledgeBasesOutput
+        -- A list of knowledge base summaries.
+        KnowledgeBaseSummaries: {KnowledgeBaseSummary}
+        -- The token for the next set of results, or null if there are no more results.
         NextToken: string
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
@@ -21080,6 +21503,30 @@ local record M
         SuccessfulKeyRegistration: {SuccessfulKeyRegistrationEntry}
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
+    end
+
+    record UpdateKnowledgeBasePermissionsInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The resource permissions that you want to grant on the knowledge base.
+        GrantPermissions: {ResourcePermission}
+        -- The resource permissions that you want to revoke from the knowledge base.
+        RevokePermissions: {ResourcePermission}
+    end
+
+    record UpdateKnowledgeBasePermissionsOutput
+        -- The Amazon Resource Name (ARN) of the knowledge base.
+        KnowledgeBaseArn: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The resource permissions for the knowledge base.
+        Permissions: {ResourcePermission}
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
     end
 
     record UpdateOAuthClientApplicationInput

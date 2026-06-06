@@ -908,10 +908,22 @@ local record M
         VpcConfig: VpcConfig
     end
 
+    -- The MLflow tracking configuration for logging metrics and parameters to a SageMaker managed MLflow tracking server.
+    record AIMlflowConfig
+        -- The Amazon Resource Name (ARN) of the SageMaker managed MLflow resource.
+        MlflowResourceArn: string
+        -- The MLflow experiment name used for tracking.
+        MlflowExperimentName: string
+        -- The MLflow run name used for tracking.
+        MlflowRunName: string
+    end
+
     -- The output configuration for an AI benchmark job.
     record AIBenchmarkOutputConfig
         -- The Amazon S3 URI where benchmark results are stored.
         S3OutputLocation: string
+        -- The MLflow tracking configuration for the job. If you don't specify this parameter, MLflow tracking is disabled.
+        MlflowConfig: AIMlflowConfig
     end
 
     -- CloudWatch log information for an AI benchmark or recommendation job.
@@ -928,6 +940,8 @@ local record M
         S3OutputLocation: string
         -- The CloudWatch log information for the benchmark job.
         CloudWatchLogs: {AICloudWatchLogs}
+        -- The MLflow tracking configuration for the job.
+        MlflowConfig: AIMlflowConfig
     end
 
     -- The target for an AI benchmark job. This is a union type — specify one of the members.
@@ -1173,6 +1187,8 @@ local record M
         S3OutputLocation: string
         -- The name or Amazon Resource Name (ARN) of the model package group where the optimized model is registered as a new model package version.
         ModelPackageGroupIdentifier: string
+        -- The MLflow tracking configuration for the job. If you don't specify this parameter, MLflow tracking is disabled.
+        MlflowConfig: AIMlflowConfig
     end
 
     -- The output configuration for an AI recommendation job, including the S3 location for results and the model package group for deployment.
@@ -1181,6 +1197,8 @@ local record M
         S3OutputLocation: string
         -- The name or Amazon Resource Name (ARN) of the model package group where deployment-ready model packages are registered.
         ModelPackageGroupIdentifier: string
+        -- The MLflow tracking configuration for the job.
+        MlflowConfig: AIMlflowConfig
     end
 
     -- The performance targets for an AI recommendation job.
