@@ -282,6 +282,36 @@ M.DestinationLogsConfiguration = schema.new({
     },
 })
 
+M.MetricsBackupConfiguration = schema.new({
+    id = id.from(_N, "MetricsBackupConfiguration"),
+    type = "structure",
+    members = {
+        Region = schema.new({
+            id = id.from(_N, "MetricsBackupConfiguration", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DestinationMetricsConfiguration = schema.new({
+    id = id.from(_N, "DestinationMetricsConfiguration"),
+    type = "structure",
+    members = {
+        BackupConfiguration = schema.new({
+            id = id.from(_N, "DestinationMetricsConfiguration", "BackupConfiguration"),
+            type = "structure",
+            name = "BackupConfiguration",
+            target_id = id.from(_N, "MetricsBackupConfiguration"),
+            target = M.MetricsBackupConfiguration,
+        }),
+    },
+})
+
 M.CentralizationRuleDestination = schema.new({
     id = id.from(_N, "CentralizationRuleDestination"),
     type = "structure",
@@ -307,6 +337,13 @@ M.CentralizationRuleDestination = schema.new({
             name = "DestinationLogsConfiguration",
             target_id = id.from(_N, "DestinationLogsConfiguration"),
             target = M.DestinationLogsConfiguration,
+        }),
+        DestinationMetricsConfiguration = schema.new({
+            id = id.from(_N, "CentralizationRuleDestination", "DestinationMetricsConfiguration"),
+            type = "structure",
+            name = "DestinationMetricsConfiguration",
+            target_id = id.from(_N, "DestinationMetricsConfiguration"),
+            target = M.DestinationMetricsConfiguration,
         }),
     },
 })
@@ -342,6 +379,19 @@ M.SourceLogsConfiguration = schema.new({
     },
 })
 
+M.SourceMetricsConfiguration = schema.new({
+    id = id.from(_N, "SourceMetricsConfiguration"),
+    type = "structure",
+    members = {
+        MetricsSelectionCriteria = schema.new({
+            id = id.from(_N, "SourceMetricsConfiguration", "MetricsSelectionCriteria"),
+            type = "string",
+            name = "MetricsSelectionCriteria",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CentralizationRuleSource = schema.new({
     id = id.from(_N, "CentralizationRuleSource"),
     type = "structure",
@@ -368,6 +418,13 @@ M.CentralizationRuleSource = schema.new({
             name = "SourceLogsConfiguration",
             target_id = id.from(_N, "SourceLogsConfiguration"),
             target = M.SourceLogsConfiguration,
+        }),
+        SourceMetricsConfiguration = schema.new({
+            id = id.from(_N, "CentralizationRuleSource", "SourceMetricsConfiguration"),
+            type = "structure",
+            name = "SourceMetricsConfiguration",
+            target_id = id.from(_N, "SourceMetricsConfiguration"),
+            target = M.SourceMetricsConfiguration,
         }),
     },
 })

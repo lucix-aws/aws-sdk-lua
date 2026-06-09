@@ -686,6 +686,12 @@ M.AssociateMemberToFarmInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        identityCenterRegion = schema.new({
+            id = id.from(_N, "AssociateMemberToFarmInput", "identityCenterRegion"),
+            type = "string",
+            name = "identityCenterRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1013,6 +1019,12 @@ M.AssociateMemberToFleetInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        identityCenterRegion = schema.new({
+            id = id.from(_N, "AssociateMemberToFleetInput", "identityCenterRegion"),
+            type = "string",
+            name = "identityCenterRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1092,6 +1104,12 @@ M.AssociateMemberToJobInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        identityCenterRegion = schema.new({
+            id = id.from(_N, "AssociateMemberToJobInput", "identityCenterRegion"),
+            type = "string",
+            name = "identityCenterRegion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1160,6 +1178,12 @@ M.AssociateMemberToQueueInput = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
+        }),
+        identityCenterRegion = schema.new({
+            id = id.from(_N, "AssociateMemberToQueueInput", "identityCenterRegion"),
+            type = "string",
+            name = "identityCenterRegion",
+            target_id = prelude.String.id,
         }),
     },
 })

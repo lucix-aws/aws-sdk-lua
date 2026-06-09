@@ -1355,6 +1355,12 @@ M.CreateDashManifestConfiguration = schema.new({
             name = "Compactness",
             target_id = prelude.String.id,
         }),
+        AudioTimelinePattern = schema.new({
+            id = id.from(_N, "CreateDashManifestConfiguration", "AudioTimelinePattern"),
+            type = "string",
+            name = "AudioTimelinePattern",
+            target_id = prelude.String.id,
+        }),
         SubtitleConfiguration = schema.new({
             id = id.from(_N, "CreateDashManifestConfiguration", "SubtitleConfiguration"),
             type = "structure",
@@ -2076,6 +2082,12 @@ M.GetDashManifestConfiguration = schema.new({
             id = id.from(_N, "GetDashManifestConfiguration", "Compactness"),
             type = "string",
             name = "Compactness",
+            target_id = prelude.String.id,
+        }),
+        AudioTimelinePattern = schema.new({
+            id = id.from(_N, "GetDashManifestConfiguration", "AudioTimelinePattern"),
+            type = "string",
+            name = "AudioTimelinePattern",
             target_id = prelude.String.id,
         }),
         SubtitleConfiguration = schema.new({

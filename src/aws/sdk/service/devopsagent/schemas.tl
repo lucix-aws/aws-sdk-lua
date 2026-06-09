@@ -11,6 +11,14 @@ local M: {string:any} = {}
 
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
+M.AssetFileSummaryList = schema.new({ type = "list", list_member = M.AssetFileSummary })
+
+M.AssetList = schema.new({ type = "list", list_member = M.Asset })
+
+M.AssetTypeList = schema.new({ type = "list", list_member = M.AssetTypeSummary })
+
+M.AssetVersionMetadataList = schema.new({ type = "list", list_member = M.AssetVersionMetadata })
+
 M.TaskList = schema.new({ type = "list", list_member = M.Task })
 
 M.ChatExecutionList = schema.new({ type = "list", list_member = M.ChatExecution })
@@ -26,6 +34,8 @@ M.PendingMessages = schema.new({ type = "list", list_member = M.PendingMessage }
 M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
 
 M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AssetIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -379,7 +389,14 @@ M.RegisteredMCPServerSigV4Details = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        mcpRoleArn = schema.new({
+            id = id.from(_N, "RegisteredMCPServerSigV4Details", "mcpRoleArn"),
+            type = "string",
+            name = "mcpRoleArn",
+            target_id = prelude.String.id,
         }),
         customHeaders = schema.new({
             id = id.from(_N, "RegisteredMCPServerSigV4Details", "customHeaders"),
@@ -2250,6 +2267,12 @@ M.EnableOperatorAppOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        operatorAppUrl = schema.new({
+            id = id.from(_N, "EnableOperatorAppOutput", "operatorAppUrl"),
+            type = "string",
+            name = "operatorAppUrl",
+            target_id = prelude.String.id,
+        }),
         iam = schema.new({
             id = id.from(_N, "EnableOperatorAppOutput", "iam"),
             type = "structure",
@@ -2337,6 +2360,12 @@ M.GetOperatorAppOutput = schema.new({
     id = id.from(_N, "GetOperatorAppOutput"),
     type = "structure",
     members = {
+        operatorAppUrl = schema.new({
+            id = id.from(_N, "GetOperatorAppOutput", "operatorAppUrl"),
+            type = "string",
+            name = "operatorAppUrl",
+            target_id = prelude.String.id,
+        }),
         iam = schema.new({
             id = id.from(_N, "GetOperatorAppOutput", "iam"),
             type = "structure",
@@ -2511,6 +2540,322 @@ M.UpdateOperatorAppIdpConfigOutput = schema.new({
     },
 })
 
+M.Asset = schema.new({
+    id = id.from(_N, "Asset"),
+    type = "structure",
+    members = {
+        assetId = schema.new({
+            id = id.from(_N, "Asset", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        assetType = schema.new({
+            id = id.from(_N, "Asset", "assetType"),
+            type = "string",
+            name = "assetType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "Asset", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        version = schema.new({
+            id = id.from(_N, "Asset", "version"),
+            type = "integer",
+            name = "version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Asset", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "Asset", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetFileBody = schema.new({
+    id = id.from(_N, "AssetFileBody"),
+    type = "union",
+    members = {
+        bytes = schema.new({
+            id = id.from(_N, "AssetFileBody", "bytes"),
+            type = "blob",
+            name = "bytes",
+            target_id = prelude.Blob.id,
+        }),
+        text = schema.new({
+            id = id.from(_N, "AssetFileBody", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssetFileContent = schema.new({
+    id = id.from(_N, "AssetFileContent"),
+    type = "structure",
+    members = {
+        path = schema.new({
+            id = id.from(_N, "AssetFileContent", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        body = schema.new({
+            id = id.from(_N, "AssetFileContent", "body"),
+            type = "union",
+            name = "body",
+            target_id = id.from(_N, "AssetFileBody"),
+            target = M.AssetFileBody,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "AssetFileContent", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+        }),
+    },
+})
+
+M.AssetZipContent = schema.new({
+    id = id.from(_N, "AssetZipContent"),
+    type = "structure",
+    members = {
+        zipFile = schema.new({
+            id = id.from(_N, "AssetZipContent", "zipFile"),
+            type = "blob",
+            name = "zipFile",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetContent = schema.new({
+    id = id.from(_N, "AssetContent"),
+    type = "union",
+    members = {
+        file = schema.new({
+            id = id.from(_N, "AssetContent", "file"),
+            type = "structure",
+            name = "file",
+            target_id = id.from(_N, "AssetFileContent"),
+            target = M.AssetFileContent,
+        }),
+        zip = schema.new({
+            id = id.from(_N, "AssetContent", "zip"),
+            type = "structure",
+            name = "zip",
+            target_id = id.from(_N, "AssetZipContent"),
+            target = M.AssetZipContent,
+        }),
+    },
+})
+
+M.AssetFile = schema.new({
+    id = id.from(_N, "AssetFile"),
+    type = "structure",
+    members = {
+        path = schema.new({
+            id = id.from(_N, "AssetFile", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "AssetFile", "content"),
+            type = "union",
+            name = "content",
+            target_id = id.from(_N, "AssetFileBody"),
+            target = M.AssetFileBody,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "AssetFile", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+        }),
+        version = schema.new({
+            id = id.from(_N, "AssetFile", "version"),
+            type = "integer",
+            name = "version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AssetFile", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "AssetFile", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetFileSummary = schema.new({
+    id = id.from(_N, "AssetFileSummary"),
+    type = "structure",
+    members = {
+        path = schema.new({
+            id = id.from(_N, "AssetFileSummary", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "AssetFileSummary", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+        }),
+        version = schema.new({
+            id = id.from(_N, "AssetFileSummary", "version"),
+            type = "integer",
+            name = "version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AssetFileSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "AssetFileSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetTypeSummary = schema.new({
+    id = id.from(_N, "AssetTypeSummary"),
+    type = "structure",
+    members = {
+        assetType = schema.new({
+            id = id.from(_N, "AssetTypeSummary", "assetType"),
+            type = "string",
+            name = "assetType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "AssetTypeSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetVersionMetadata = schema.new({
+    id = id.from(_N, "AssetVersionMetadata"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "AssetVersionMetadata", "version"),
+            type = "integer",
+            name = "version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AssetVersionMetadata", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "AssetVersionMetadata", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AssistantMessageBlock = schema.new({
     id = id.from(_N, "AssistantMessageBlock"),
     type = "union",
@@ -2563,6 +2908,153 @@ M.ChatExecution = schema.new({
             type = "string",
             name = "summary",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAssetInput = schema.new({
+    id = id.from(_N, "CreateAssetRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CreateAssetInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetType = schema.new({
+            id = id.from(_N, "CreateAssetInput", "assetType"),
+            type = "string",
+            name = "assetType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "CreateAssetInput", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+        }),
+        content = schema.new({
+            id = id.from(_N, "CreateAssetInput", "content"),
+            type = "union",
+            name = "content",
+            target_id = id.from(_N, "AssetContent"),
+            target = M.AssetContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAssetInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAssetOutput = schema.new({
+    id = id.from(_N, "CreateAssetResponse"),
+    type = "structure",
+    members = {
+        asset = schema.new({
+            id = id.from(_N, "CreateAssetOutput", "asset"),
+            type = "structure",
+            name = "asset",
+            target_id = id.from(_N, "Asset"),
+            target = M.Asset,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAssetFileInput = schema.new({
+    id = id.from(_N, "CreateAssetFileRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CreateAssetFileInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "CreateAssetFileInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        path = schema.new({
+            id = id.from(_N, "CreateAssetFileInput", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "CreateAssetFileInput", "content"),
+            type = "union",
+            name = "content",
+            target_id = id.from(_N, "AssetFileBody"),
+            target = M.AssetFileBody,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "CreateAssetFileInput", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAssetFileInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAssetFileOutput = schema.new({
+    id = id.from(_N, "CreateAssetFileResponse"),
+    type = "structure",
+    members = {
+        file = schema.new({
+            id = id.from(_N, "CreateAssetFileOutput", "file"),
+            type = "structure",
+            name = "file",
+            target_id = id.from(_N, "AssetFile"),
+            target = M.AssetFile,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -3042,6 +3534,12 @@ M.ServiceManagedInput = schema.new({
             name = "certificate",
             target_id = prelude.String.id,
         }),
+        dnsResolution = schema.new({
+            id = id.from(_N, "ServiceManagedInput", "dnsResolution"),
+            type = "string",
+            name = "dnsResolution",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3164,6 +3662,18 @@ M.CreatePrivateConnectionOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        dnsResolution = schema.new({
+            id = id.from(_N, "CreatePrivateConnectionOutput", "dnsResolution"),
+            type = "string",
+            name = "dnsResolution",
+            target_id = prelude.String.id,
+        }),
+        failureMessage = schema.new({
+            id = id.from(_N, "CreatePrivateConnectionOutput", "failureMessage"),
+            type = "string",
+            name = "failureMessage",
+            target_id = prelude.String.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "CreatePrivateConnectionOutput", "tags"),
             type = "map",
@@ -3244,6 +3754,80 @@ M.DatadogServiceDetails = schema.new({
             },
         }),
     },
+})
+
+M.DeleteAssetInput = schema.new({
+    id = id.from(_N, "DeleteAssetRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "DeleteAssetInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "DeleteAssetInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAssetOutput = schema.new({
+    id = id.from(_N, "DeleteAssetResponse"),
+    type = "structure",
+})
+
+M.DeleteAssetFileInput = schema.new({
+    id = id.from(_N, "DeleteAssetFileRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "DeleteAssetFileInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "DeleteAssetFileInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        path = schema.new({
+            id = id.from(_N, "DeleteAssetFileInput", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAssetFileOutput = schema.new({
+    id = id.from(_N, "DeleteAssetFileResponse"),
+    type = "structure",
 })
 
 M.DeletePrivateConnectionInput = schema.new({
@@ -3391,6 +3975,18 @@ M.DescribePrivateConnectionOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        dnsResolution = schema.new({
+            id = id.from(_N, "DescribePrivateConnectionOutput", "dnsResolution"),
+            type = "string",
+            name = "dnsResolution",
+            target_id = prelude.String.id,
+        }),
+        failureMessage = schema.new({
+            id = id.from(_N, "DescribePrivateConnectionOutput", "failureMessage"),
+            type = "string",
+            name = "failureMessage",
+            target_id = prelude.String.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "DescribePrivateConnectionOutput", "tags"),
             type = "map",
@@ -3487,6 +4083,184 @@ M.GetAccountUsageOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
             direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAssetInput = schema.new({
+    id = id.from(_N, "GetAssetRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "GetAssetInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "GetAssetInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetVersion = schema.new({
+            id = id.from(_N, "GetAssetInput", "assetVersion"),
+            type = "integer",
+            name = "assetVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "assetVersion" },
+            },
+        }),
+    },
+})
+
+M.GetAssetOutput = schema.new({
+    id = id.from(_N, "GetAssetResponse"),
+    type = "structure",
+    members = {
+        asset = schema.new({
+            id = id.from(_N, "GetAssetOutput", "asset"),
+            type = "structure",
+            name = "asset",
+            target_id = id.from(_N, "Asset"),
+            target = M.Asset,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAssetContentInput = schema.new({
+    id = id.from(_N, "GetAssetContentRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "GetAssetContentInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "GetAssetContentInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetVersion = schema.new({
+            id = id.from(_N, "GetAssetContentInput", "assetVersion"),
+            type = "integer",
+            name = "assetVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "assetVersion" },
+            },
+        }),
+    },
+})
+
+M.GetAssetContentOutput = schema.new({
+    id = id.from(_N, "GetAssetContentResponse"),
+    type = "structure",
+    members = {
+        content = schema.new({
+            id = id.from(_N, "GetAssetContentOutput", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "AssetZipContent"),
+            target = M.AssetZipContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        version = schema.new({
+            id = id.from(_N, "GetAssetContentOutput", "version"),
+            type = "integer",
+            name = "version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAssetFileInput = schema.new({
+    id = id.from(_N, "GetAssetFileRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "GetAssetFileInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "GetAssetFileInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        path = schema.new({
+            id = id.from(_N, "GetAssetFileInput", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetVersion = schema.new({
+            id = id.from(_N, "GetAssetFileInput", "assetVersion"),
+            type = "integer",
+            name = "assetVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "assetVersion" },
+            },
+        }),
+    },
+})
+
+M.GetAssetFileOutput = schema.new({
+    id = id.from(_N, "GetAssetFileResponse"),
+    type = "structure",
+    members = {
+        file = schema.new({
+            id = id.from(_N, "GetAssetFileOutput", "file"),
+            type = "structure",
+            name = "file",
+            target_id = id.from(_N, "AssetFile"),
+            target = M.AssetFile,
+            traits = {
                 [traits.REQUIRED] = {},
             },
         }),
@@ -3747,6 +4521,284 @@ M.GetRecommendationOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.ListAssetFilesInput = schema.new({
+    id = id.from(_N, "ListAssetFilesRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListAssetFilesInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "ListAssetFilesInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetVersion = schema.new({
+            id = id.from(_N, "ListAssetFilesInput", "assetVersion"),
+            type = "integer",
+            name = "assetVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "assetVersion" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetFilesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAssetFilesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListAssetFilesOutput = schema.new({
+    id = id.from(_N, "ListAssetFilesResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAssetFilesOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AssetFileSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetFilesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAssetsInput = schema.new({
+    id = id.from(_N, "ListAssetsRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListAssetsInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetType = schema.new({
+            id = id.from(_N, "ListAssetsInput", "assetType"),
+            type = "string",
+            name = "assetType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "assetType" },
+            },
+        }),
+        updatedAfter = schema.new({
+            id = id.from(_N, "ListAssetsInput", "updatedAfter"),
+            type = "timestamp",
+            name = "updatedAfter",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "updatedAfter" },
+            },
+        }),
+        updatedBefore = schema.new({
+            id = id.from(_N, "ListAssetsInput", "updatedBefore"),
+            type = "timestamp",
+            name = "updatedBefore",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "updatedBefore" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAssetsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListAssetsOutput = schema.new({
+    id = id.from(_N, "ListAssetsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAssetsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.Asset,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAssetTypesInput = schema.new({
+    id = id.from(_N, "ListAssetTypesRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetTypesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAssetTypesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListAssetTypesOutput = schema.new({
+    id = id.from(_N, "ListAssetTypesResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAssetTypesOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AssetTypeSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetTypesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAssetVersionsInput = schema.new({
+    id = id.from(_N, "ListAssetVersionsRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListAssetVersionsInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "ListAssetVersionsInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAssetVersionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetVersionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAssetVersionsOutput = schema.new({
+    id = id.from(_N, "ListAssetVersionsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListAssetVersionsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.AssetVersionMetadata,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAssetVersionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4822,6 +5874,18 @@ M.PrivateConnectionSummary = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        dnsResolution = schema.new({
+            id = id.from(_N, "PrivateConnectionSummary", "dnsResolution"),
+            type = "string",
+            name = "dnsResolution",
+            target_id = prelude.String.id,
+        }),
+        failureMessage = schema.new({
+            id = id.from(_N, "PrivateConnectionSummary", "failureMessage"),
+            type = "string",
+            name = "failureMessage",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4932,6 +5996,18 @@ M.UpdatePrivateConnectionCertificateOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        dnsResolution = schema.new({
+            id = id.from(_N, "UpdatePrivateConnectionCertificateOutput", "dnsResolution"),
+            type = "string",
+            name = "dnsResolution",
+            target_id = prelude.String.id,
+        }),
+        failureMessage = schema.new({
+            id = id.from(_N, "UpdatePrivateConnectionCertificateOutput", "failureMessage"),
+            type = "string",
+            name = "failureMessage",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5004,6 +6080,13 @@ M.SendMessageInput = schema.new({
             type = "string",
             name = "userId",
             target_id = prelude.String.id,
+        }),
+        assetIds = schema.new({
+            id = id.from(_N, "SendMessageInput", "assetIds"),
+            type = "list",
+            name = "assetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -6118,8 +7201,14 @@ M.MCPServerSigV4AuthorizationConfig = schema.new({
             name = "roleArn",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        mcpRoleArn = schema.new({
+            id = id.from(_N, "MCPServerSigV4AuthorizationConfig", "mcpRoleArn"),
+            type = "string",
+            name = "mcpRoleArn",
+            target_id = prelude.String.id,
         }),
         customHeaders = schema.new({
             id = id.from(_N, "MCPServerSigV4AuthorizationConfig", "customHeaders"),
@@ -6456,6 +7545,18 @@ M.RegisterServiceInput = schema.new({
             name = "privateConnectionName",
             target_id = prelude.String.id,
         }),
+        targetUrlPrivateConnectionName = schema.new({
+            id = id.from(_N, "RegisterServiceInput", "targetUrlPrivateConnectionName"),
+            type = "string",
+            name = "targetUrlPrivateConnectionName",
+            target_id = prelude.String.id,
+        }),
+        exchangeUrlPrivateConnectionName = schema.new({
+            id = id.from(_N, "RegisterServiceInput", "exchangeUrlPrivateConnectionName"),
+            type = "string",
+            name = "exchangeUrlPrivateConnectionName",
+            target_id = prelude.String.id,
+        }),
         name = schema.new({
             id = id.from(_N, "RegisterServiceInput", "name"),
             type = "string",
@@ -6571,6 +7672,148 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
+})
+
+M.UpdateAssetInput = schema.new({
+    id = id.from(_N, "UpdateAssetRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+        }),
+        content = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "content"),
+            type = "union",
+            name = "content",
+            target_id = id.from(_N, "AssetContent"),
+            target = M.AssetContent,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAssetOutput = schema.new({
+    id = id.from(_N, "UpdateAssetResponse"),
+    type = "structure",
+    members = {
+        asset = schema.new({
+            id = id.from(_N, "UpdateAssetOutput", "asset"),
+            type = "structure",
+            name = "asset",
+            target_id = id.from(_N, "Asset"),
+            target = M.Asset,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAssetFileInput = schema.new({
+    id = id.from(_N, "UpdateAssetFileRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "UpdateAssetFileInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        assetId = schema.new({
+            id = id.from(_N, "UpdateAssetFileInput", "assetId"),
+            type = "string",
+            name = "assetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        path = schema.new({
+            id = id.from(_N, "UpdateAssetFileInput", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "UpdateAssetFileInput", "content"),
+            type = "union",
+            name = "content",
+            target_id = id.from(_N, "AssetFileBody"),
+            target = M.AssetFileBody,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "UpdateAssetFileInput", "metadata"),
+            type = "document",
+            name = "metadata",
+            target_id = prelude.Document.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateAssetFileInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAssetFileOutput = schema.new({
+    id = id.from(_N, "UpdateAssetFileResponse"),
+    type = "structure",
+    members = {
+        file = schema.new({
+            id = id.from(_N, "UpdateAssetFileOutput", "file"),
+            type = "structure",
+            name = "file",
+            target_id = id.from(_N, "AssetFile"),
+            target = M.AssetFile,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.UpdateBacklogTaskInput = schema.new({
@@ -6822,6 +8065,30 @@ M.CreateAgentSpace = schema.operation({
     },
 })
 
+M.CreateAsset = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "CreateAsset"),
+    input = M.CreateAssetInput,
+    output = M.CreateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/asset/agent-space/{agentSpaceId}/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAssetFile = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "CreateAssetFile"),
+    input = M.CreateAssetFileInput,
+    output = M.CreateAssetFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}/files/{path+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateBacklogTask = schema.operation({
     id = id.from("com.amazonaws.devopsagent", "CreateBacklogTask"),
     input = M.CreateBacklogTaskInput,
@@ -6864,6 +8131,30 @@ M.DeleteAgentSpace = schema.operation({
     output = M.DeleteAgentSpaceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/agentspaces/{agentSpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAsset = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DeleteAsset"),
+    input = M.DeleteAssetInput,
+    output = M.DeleteAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssetFile = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DeleteAssetFile"),
+    input = M.DeleteAssetFileInput,
+    output = M.DeleteAssetFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}/files/{path+}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -6966,6 +8257,42 @@ M.GetAgentSpace = schema.operation({
     },
 })
 
+M.GetAsset = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetAsset"),
+    input = M.GetAssetInput,
+    output = M.GetAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetContent = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetAssetContent"),
+    input = M.GetAssetContentInput,
+    output = M.GetAssetContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}/content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetFile = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetAssetFile"),
+    input = M.GetAssetFileInput,
+    output = M.GetAssetFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}/files/{path+}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetAssociation = schema.operation({
     id = id.from("com.amazonaws.devopsagent", "GetAssociation"),
     input = M.GetAssociationInput,
@@ -7032,6 +8359,54 @@ M.ListAgentSpaces = schema.operation({
     output = M.ListAgentSpacesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/agentspaces/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetFiles = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListAssetFiles"),
+    input = M.ListAssetFilesInput,
+    output = M.ListAssetFilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}/files" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssets = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListAssets"),
+    input = M.ListAssetsInput,
+    output = M.ListAssetsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset/agent-space/{agentSpaceId}/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetTypes = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListAssetTypes"),
+    input = M.ListAssetTypesInput,
+    output = M.ListAssetTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset/types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAssetVersions = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListAssetVersions"),
+    input = M.ListAssetVersionsInput,
+    output = M.ListAssetVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}/versions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7237,6 +8612,30 @@ M.UpdateAgentSpace = schema.operation({
     output = M.UpdateAgentSpaceOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/v1/agentspaces/{agentSpaceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAsset = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateAsset"),
+    input = M.UpdateAssetInput,
+    output = M.UpdateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAssetFile = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateAssetFile"),
+    input = M.UpdateAssetFileInput,
+    output = M.UpdateAssetFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/asset/agent-space/{agentSpaceId}/assets/{assetId}/files/{path+}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -2,7 +2,7 @@
 
 local record M
 
-    -- The access is denied for the Amazon Web ServicesSupport API.
+    -- The access is denied for the Amazon Web Services Support API.
     record AccessDeniedException
         message: string
     end
@@ -13,19 +13,13 @@ local record M
         addressLine1: string
         -- The second line of the address, if applicable.
         addressLine2: string
-        -- The third line of the address, if applicable. Currently, the Tax Settings API accepts the
-        -- addressLine3 parameter only for Saudi Arabia. When you specify a TRN in Saudi
-        -- Arabia, you must enter the addressLine3 and specify the building number for the
-        -- address. For example, you might enter 1234.
+        -- The third line of the address, if applicable. Currently, the Tax Settings API accepts the addressLine3 parameter only for Saudi Arabia. When you specify a TRN in Saudi Arabia, you must enter the addressLine3 and specify the building number for the address. For example, you might enter 1234.
         addressLine3: string
-        -- The district or county the address is located.
-        -- For addresses in Brazil, this parameter uses the name of the neighborhood. When you set
-        -- a TRN in Brazil, use districtOrCounty for the neighborhood name.
+        -- The district or county the address is located. For addresses in Brazil, this parameter uses the name of the neighborhood. When you set a TRN in Brazil, use districtOrCounty for the neighborhood name.
         districtOrCounty: string
         -- The city that the address is in.
         city: string
-        -- The state, region, or province that the address is located. This field is only required for Canada, India, United Arab Emirates, Romania, and Brazil (CPF). It is optional for all other countries.
-        -- If this is required for tax settings, use the same name as shown on the Tax Settings page.
+        -- The state, region, or province that the address is located. This field is only required for Canada, India, United Arab Emirates, Romania, and Brazil (CPF). It is optional for all other countries. If this is required for tax settings, use the same name as shown on the Tax Settings page.
         stateOrRegion: string
         -- The postal code associated with the address.
         postalCode: string
@@ -39,11 +33,9 @@ local record M
         "ContactAddress"
     end
 
-    -- The jurisdiction details of the TRN information of the customers. This doesn't contain
-    -- full legal address, and contains only country code and state/region/province.
+    -- The jurisdiction details of the TRN information of the customers. This doesn't contain full legal address, and contains only country code and state/region/province.
     record Jurisdiction
-        -- The state, region, or province associated with the country of the jurisdiction, if
-        -- applicable.
+        -- The state, region, or province associated with the country of the jurisdiction, if applicable.
         stateOrRegion: string
         -- The country code of the jurisdiction.
         countryCode: string
@@ -70,36 +62,45 @@ local record M
         inheritanceObtainedReason: string
     end
 
+    -- Additional tax information associated with your TRN in Belgium.
+    record BelgiumAdditionalInfo
+        -- The Peppol ID for electronic invoicing in Belgium.
+        peppolId: string
+        -- Indicates whether the Mercurius e-invoicing box is enabled for business-to-government (B2G) invoicing in Belgium.
+        isMercuriusBoxEnabled: boolean
+    end
+
     -- Additional tax information associated with your TRN in Brazil.
     record BrazilAdditionalInfo
         -- The Cadastro de Contribuintes Mobiliários (CCM) code for your TRN in Brazil. This only applies for a CNPJ tax type for the São Paulo municipality.
         ccmCode: string
-        -- Legal nature of business, based on your TRN in Brazil. This only applies for a CNPJ tax
-        -- type.
+        -- Legal nature of business, based on your TRN in Brazil. This only applies for a CNPJ tax type.
         legalNatureCode: string
     end
 
     -- Additional tax information associated with your TRN in Canada .
     record CanadaAdditionalInfo
-        -- The provincial sales tax ID for your TRN in Canada. This parameter can represent the
-        -- following:
-        -- Provincial sales tax ID number for British Columbia and Saskatchewan provinces
-        -- Manitoba retail sales tax ID number for Manitoba province
-        -- Quebec sales tax ID number for Quebec province
-        -- The Tax Setting API only accepts this parameter if the TRN is specified for the previous
-        -- provinces. For other provinces, the Tax Settings API doesn't accept this parameter.
+        -- The provincial sales tax ID for your TRN in Canada. This parameter can represent the following: Provincial sales tax ID number for British Columbia and Saskatchewan provinces Manitoba retail sales tax ID number for Manitoba province Quebec sales tax ID number for Quebec province The Tax Setting API only accepts this parameter if the TRN is specified for the previous provinces. For other provinces, the Tax Settings API doesn't accept this parameter.
         provincialSalesTaxId: string
         -- The Quebec Sales Tax ID number. Leave blank if you do not have a Quebec Sales Tax ID number.
         canadaQuebecSalesTaxNumber: string
         -- Manitoba Retail Sales Tax ID number. Customers purchasing Amazon Web Services services for resale in Manitoba must provide a valid Retail Sales Tax ID number for Manitoba. Leave this blank if you do not have a Retail Sales Tax ID number in Manitoba or are not purchasing Amazon Web Services services for resale.
         canadaRetailSalesTaxNumber: string
-        -- The value for this parameter must be true if the
-        -- provincialSalesTaxId value is provided for a TRN in British Columbia,
-        -- Saskatchewan, or Manitoba provinces.
-        -- To claim a provincial sales tax (PST) and retail sales tax (RST) reseller exemption, you
-        -- must confirm that purchases from this account were made for resale. Otherwise, remove the PST
-        -- or RST number from the provincialSalesTaxId parameter from your request.
+        -- The value for this parameter must be true if the provincialSalesTaxId value is provided for a TRN in British Columbia, Saskatchewan, or Manitoba provinces. To claim a provincial sales tax (PST) and retail sales tax (RST) reseller exemption, you must confirm that purchases from this account were made for resale. Otherwise, remove the PST or RST number from the provincialSalesTaxId parameter from your request.
         isResellerAccount: boolean
+    end
+
+    enum ChileDocumentType
+        "Invoice"
+        "Receipt"
+    end
+
+    -- Additional tax information associated with your TRN in Chile.
+    record ChileAdditionalInfo
+        -- The type of tax document. For Chile, this can be Invoice or Receipt.
+        documentType: string
+        -- The business activity of the taxpayer in Chile.
+        businessActivity: string
     end
 
     -- Additional tax information to specify for a TRN in Egypt.
@@ -112,9 +113,14 @@ local record M
 
     -- Additional tax information associated with your TRN in Estonia.
     record EstoniaAdditionalInfo
-        -- Registry commercial code (RCC) for your TRN in Estonia. This value is an eight-numeric
-        -- string, such as 12345678.
+        -- Registry commercial code (RCC) for your TRN in Estonia. This value is an eight-numeric string, such as 12345678.
         registryCommercialCode: string
+    end
+
+    -- Additional tax information associated with your TRN in France.
+    record FranceAdditionalInfo
+        -- The SIREN number for the company in France. Must be a 9-digit number.
+        sirenNumber: string
     end
 
     enum PersonType
@@ -170,14 +176,15 @@ local record M
 
     -- Additional tax information associated with your TRN in Israel.
     record IsraelAdditionalInfo
-        -- Dealer type for your TRN in Israel. If you're not a local authorized dealer with an
-        -- Israeli VAT ID, specify your tax identification number so that Amazon Web Services can send you
-        -- a compliant tax invoice.
+        -- Dealer type for your TRN in Israel. If you're not a local authorized dealer with an Israeli VAT ID, specify your tax identification number so that Amazon Web Services can send you a compliant tax invoice.
         dealerType: string
-        -- Customer type for your TRN in Israel. The value can be Business or
-        -- Individual. Use Businessfor entities such as not-for-profit and
-        -- financial institutions.
+        -- Customer type for your TRN in Israel. The value can be Business or Individual. Use Businessfor entities such as not-for-profit and financial institutions.
         customerType: string
+    end
+
+    enum CustomerType
+        "Business"
+        "Individual"
     end
 
     -- Additional tax information associated with your TRN in Italy.
@@ -190,6 +197,8 @@ local record M
         cupNumber: string
         -- List of service tax codes for your TRN in Italy. You can use your customer tax code as part of a VAT Group.
         taxCode: string
+        -- The customer type for tax registration in Italy. Valid values are Business or Individual.
+        customerType: string
     end
 
     -- Additional tax information associated with your TRN in Kenya.
@@ -209,14 +218,22 @@ local record M
     record MalaysiaAdditionalInfo
         -- List of service tax codes for your TRN in Malaysia.
         serviceTaxCodes: {string}
-        -- The tax information number in Malaysia.
-        -- For individual, you can specify the taxInformationNumber in MalaysiaAdditionalInfo with NRIC type, and a valid MyKad or NRIC number. For business resellers, you must specify a businessRegistrationNumber and taxInformationNumber in MalaysiaAdditionalInfo with a sales and service tax (SST) type and a valid SST number.
-        -- For business resellers with service codes, you must specify businessRegistrationNumber, taxInformationNumber, and distinct serviceTaxCodes in MalaysiaAdditionalInfo with a SST type and valid sales and service tax (SST) number. By using this API operation, Amazon Web Services registers your self-declaration that you’re an authorized business reseller registered with the Royal Malaysia Customs Department (RMCD), and have a valid SST number.
+        -- The tax information number in Malaysia. For individual, you can specify the taxInformationNumber in MalaysiaAdditionalInfo with NRIC type, and a valid MyKad or NRIC number. For business resellers, you must specify a businessRegistrationNumber and taxInformationNumber in MalaysiaAdditionalInfo with a sales and service tax (SST) type and a valid SST number. For business resellers with service codes, you must specify businessRegistrationNumber, taxInformationNumber, and distinct serviceTaxCodes in MalaysiaAdditionalInfo with a SST type and valid sales and service tax (SST) number. By using this API operation, Amazon Web Services registers your self-declaration that you’re an authorized business reseller registered with the Royal Malaysia Customs Department (RMCD), and have a valid SST number.
         taxInformationNumber: string
-        -- The tax registration number (TRN) in Malaysia.
-        -- For individual, you can specify the taxInformationNumber in MalaysiaAdditionalInfo with NRIC type, and a valid MyKad or NRIC number. For business, you must specify a businessRegistrationNumber in MalaysiaAdditionalInfo with a TIN type and tax identification number. For business resellers, you must specify a businessRegistrationNumber and taxInformationNumber in MalaysiaAdditionalInfo with a sales and service tax (SST) type and a valid SST number.
-        -- For business resellers with service codes, you must specify businessRegistrationNumber, taxInformationNumber, and distinct serviceTaxCodes in MalaysiaAdditionalInfo with a SST type and valid sales and service tax (SST) number. By using this API operation, Amazon Web Services registers your self-declaration that you’re an authorized business reseller registered with the Royal Malaysia Customs Department (RMCD), and have a valid SST number.
+        -- The tax registration number (TRN) in Malaysia. For individual, you can specify the taxInformationNumber in MalaysiaAdditionalInfo with NRIC type, and a valid MyKad or NRIC number. For business, you must specify a businessRegistrationNumber in MalaysiaAdditionalInfo with a TIN type and tax identification number. For business resellers, you must specify a businessRegistrationNumber and taxInformationNumber in MalaysiaAdditionalInfo with a sales and service tax (SST) type and a valid SST number. For business resellers with service codes, you must specify businessRegistrationNumber, taxInformationNumber, and distinct serviceTaxCodes in MalaysiaAdditionalInfo with a SST type and valid sales and service tax (SST) number. By using this API operation, Amazon Web Services registers your self-declaration that you’re an authorized business reseller registered with the Royal Malaysia Customs Department (RMCD), and have a valid SST number.
         businessRegistrationNumber: string
+    end
+
+    -- Additional tax information associated with your TRN in the Philippines.
+    record PhilippinesAdditionalInfo
+        -- Indicates whether the account is VAT-registered with the Philippines Bureau of Internal Revenue (BIR).
+        isVatRegistered: boolean
+    end
+
+    enum PolandTaxRegistrationNumberType
+        "EUTaxRegistrationNumber"
+        "LocalTaxRegistrationNumber"
+        "LocalRegistrationNumber"
     end
 
     -- Additional tax information associated with your TRN in Poland.
@@ -225,6 +242,8 @@ local record M
         individualRegistrationNumber: string
         -- True if your business is a member of a VAT group with a NIP active for VAT purposes. Otherwise, this is false.
         isGroupVatEnabled: boolean
+        -- The tax registration number type. Valid values are EUTaxRegistrationNumber, LocalTaxRegistrationNumber, or LocalRegistrationNumber.
+        taxRegistrationNumberType: string
     end
 
     enum TaxRegistrationNumberType
@@ -288,9 +307,7 @@ local record M
         kepEmailId: string
         -- Secondary tax ID (“harcama birimi VKN”si”). If one isn't provided, we will use your VKN as the secondary ID.
         secondaryTaxId: string
-        -- The industry information that tells the Tax Settings API if you're subject to additional
-        -- withholding taxes. This information required for business-to-business (B2B) customers. This
-        -- information is conditionally mandatory for B2B customers who are subject to KDV tax.
+        -- The industry information that tells the Tax Settings API if you're subject to additional withholding taxes. This information required for business-to-business (B2B) customers. This information is conditionally mandatory for B2B customers who are subject to KDV tax.
         industries: string
     end
 
@@ -330,9 +347,7 @@ local record M
         paymentVoucherNumberDate: string
     end
 
-    -- Additional tax information associated with your TRN. The Tax Settings API returns
-    -- country-specific information in the response when any additional information is present with
-    -- your TRN for the following countries.
+    -- Additional tax information associated with your TRN. The Tax Settings API returns country-specific information in the response when any additional information is present with your TRN for the following countries.
     record AdditionalInfoResponse
         -- Additional tax information associated with your TRN in Malaysia.
         malaysiaAdditionalInfo: MalaysiaAdditionalInfo
@@ -342,9 +357,7 @@ local record M
         estoniaAdditionalInfo: EstoniaAdditionalInfo
         -- Additional tax information associated with your TRN in Canada.
         canadaAdditionalInfo: CanadaAdditionalInfo
-        -- Additional tax information associated with your TRN in Brazil. The Tax Settings API
-        -- returns this information in your response when any additional information is present with your
-        -- TRN in Brazil.
+        -- Additional tax information associated with your TRN in Brazil. The Tax Settings API returns this information in your response when any additional information is present with your TRN in Brazil.
         brazilAdditionalInfo: BrazilAdditionalInfo
         -- Additional tax information associated with your TRN in Spain.
         spainAdditionalInfo: SpainAdditionalInfo
@@ -378,6 +391,14 @@ local record M
         greeceAdditionalInfo: GreeceAdditionalInfo
         -- Additional tax information associated with your TRN in Uzbekistan.
         uzbekistanAdditionalInfo: UzbekistanAdditionalInfo
+        -- Additional tax information associated with your TRN in the Philippines.
+        philippinesAdditionalInfo: PhilippinesAdditionalInfo
+        -- Additional tax information associated with your TRN in Belgium.
+        belgiumAdditionalInfo: BelgiumAdditionalInfo
+        -- Additional tax information associated with your TRN in Chile.
+        chileAdditionalInfo: ChileAdditionalInfo
+        -- Additional tax information associated with your TRN in France.
+        franceAdditionalInfo: FranceAdditionalInfo
     end
 
     enum TaxRegistrationType
@@ -388,6 +409,8 @@ local record M
         "SST"
         "TIN"
         "NRIC"
+        "PAN"
+        "NIP"
     end
 
     enum Sector
@@ -405,25 +428,21 @@ local record M
 
     -- The metadata for your tax document.
     record TaxDocumentMetadata
-        -- The tax document access token, which contains information that the Tax Settings API uses to locate the tax document.
-        -- If you update your tax registration, the existing taxDocumentAccessToken won't be valid. To get the latest token, call the GetTaxRegistration or ListTaxRegistrations API operation. This token is valid for 24 hours.
+        -- The tax document access token, which contains information that the Tax Settings API uses to locate the tax document. If you update your tax registration, the existing taxDocumentAccessToken won't be valid. To get the latest token, call the GetTaxRegistration or ListTaxRegistrations API operation. This token is valid for 24 hours.
         taxDocumentAccessToken: string
         -- The name of your tax document.
         taxDocumentName: string
     end
 
-    -- Your TRN information with jurisdiction details. This doesn't contain the full legal
-    -- address associated with the TRN information.
+    -- Your TRN information with jurisdiction details. This doesn't contain the full legal address associated with the TRN information.
     record TaxRegistrationWithJurisdiction
         -- Your tax registration unique identifier.
         registrationId: string
-        -- The type of your tax registration. This can be either VAT or
-        -- GST.
+        -- The type of your tax registration. This can be either VAT or GST.
         registrationType: string
         -- The legal name associated with your TRN information.
         legalName: string
-        -- The status of your TRN. This can be either Verified, Pending,
-        -- Deleted, or Rejected.
+        -- The status of your TRN. This can be either Verified, Pending, Deleted, or Rejected.
         status: string
         -- The industry that describes your business. For business-to-business (B2B) customers, specify Business. For business-to-consumer (B2C) customers, specify Individual. For business-to-government (B2G), specify Government.Note that certain values may not applicable for the request country. Please refer to country specific information in API document.
         sector: string
@@ -441,8 +460,7 @@ local record M
     record AccountDetails
         -- List of unique account identifiers.
         accountId: string
-        -- Your TRN information. Instead of having full legal address, here TRN information will have
-        -- jurisdiction details (for example, country code and state/region/province if applicable).
+        -- Your TRN information. Instead of having full legal address, here TRN information will have jurisdiction details (for example, country code and state/region/province if applicable).
         taxRegistration: TaxRegistrationWithJurisdiction
         -- Tax inheritance information associated with the account.
         taxInheritanceDetails: TaxInheritanceDetails
@@ -450,13 +468,7 @@ local record M
         accountMetaData: AccountMetaData
     end
 
-    -- Additional tax information associated with your tax registration number (TRN). Depending
-    -- on the TRN for a specific country, you might need to specify this information when you set
-    -- your TRN.
-    -- You can only specify one of the following parameters and the value can't be empty.
-    -- The parameter that you specify must match the country for the TRN, if available. For
-    -- example, if you set a TRN in Canada for specific provinces, you must also specify the
-    -- canadaAdditionalInfo parameter.
+    -- Additional tax information associated with your tax registration number (TRN). Depending on the TRN for a specific country, you might need to specify this information when you set your TRN. You can only specify one of the following parameters and the value can't be empty. The parameter that you specify must match the country for the TRN, if available. For example, if you set a TRN in Canada for specific provinces, you must also specify the canadaAdditionalInfo parameter.
     record AdditionalInfoRequest
         -- Additional tax information to specify for a TRN in Malaysia.
         malaysiaAdditionalInfo: MalaysiaAdditionalInfo
@@ -495,9 +507,17 @@ local record M
         greeceAdditionalInfo: GreeceAdditionalInfo
         -- Additional tax information to specify for a TRN in Uzbekistan.
         uzbekistanAdditionalInfo: UzbekistanAdditionalInfo
+        -- Additional tax information to specify for a TRN in the Philippines.
+        philippinesAdditionalInfo: PhilippinesAdditionalInfo
+        -- Additional tax information to specify for a TRN in Belgium.
+        belgiumAdditionalInfo: BelgiumAdditionalInfo
+        -- Additional tax information to specify for a TRN in Chile.
+        chileAdditionalInfo: ChileAdditionalInfo
+        -- Additional tax information to specify for a TRN in France.
+        franceAdditionalInfo: FranceAdditionalInfo
     end
 
-    -- Failed to upload the tax exemption document to Amazon Web ServicesSupport case.
+    -- Failed to upload the tax exemption document to Amazon Web Services Support case.
     record AttachmentUploadException
         message: string
     end
@@ -515,14 +535,11 @@ local record M
         accountIds: {string}
     end
 
-    -- The error object for representing failures in the BatchDeleteTaxRegistration
-    -- operation.
+    -- The error object for representing failures in the BatchDeleteTaxRegistration operation.
     record BatchDeleteTaxRegistrationError
-        -- The unique account identifier for the account whose tax registration couldn't be deleted
-        -- during the BatchDeleteTaxRegistration operation.
+        -- The unique account identifier for the account whose tax registration couldn't be deleted during the BatchDeleteTaxRegistration operation.
         accountId: string
-        -- The error message for an individual failure in the
-        -- BatchDeleteTaxRegistration operation.
+        -- The error message for an individual failure in the BatchDeleteTaxRegistration operation.
         message: string
         -- The error code for an individual failure in BatchDeleteTaxRegistration operation.
         code: string
@@ -553,6 +570,8 @@ local record M
         "InvalidToken"
         "FieldValidationFailed"
         "MissingInput"
+        "NonIndiaCustomerCanNotSetPAN"
+        "GSTExistenceBlockSetPAN"
     end
 
     -- The information about the specified parameter in the request that caused an error.
@@ -561,8 +580,7 @@ local record M
         name: string
     end
 
-    -- The exception when the input doesn't pass validation for at least one of the input
-    -- parameters.
+    -- The exception when the input doesn't pass validation for at least one of the input parameters.
     record ValidationException
         message: string
         -- 400
@@ -673,26 +691,15 @@ local record M
         registrationId: string
         -- Your tax registration type. This can be either VAT or GST.
         registrationType: string
-        -- The legal name associated with your TRN.
-        -- If you're setting a TRN in Brazil, you don't need to specify the legal name. For TRNs in
-        -- other countries, you must specify the legal name.
+        -- The legal name associated with your TRN. If you're setting a TRN in Brazil, you don't need to specify the legal name. For TRNs in other countries, you must specify the legal name.
         legalName: string
-        -- The legal address associated with your TRN.
-        -- If you're setting a TRN in Brazil for the CNPJ tax type, you don't need to specify the
-        -- legal address.
-        -- For TRNs in other countries and for CPF tax types Brazil, you must specify the legal
-        -- address.
+        -- The legal address associated with your TRN. If you're setting a TRN in Brazil for the CNPJ tax type, you don't need to specify the legal address. For TRNs in other countries and for CPF tax types Brazil, you must specify the legal address.
         legalAddress: Address
         -- The industry that describes your business. For business-to-business (B2B) customers, specify Business. For business-to-consumer (B2C) customers, specify Individual. For business-to-government (B2G), specify Government.Note that certain values may not applicable for the request country. Please refer to country specific information in API document.
         sector: string
-        -- Additional tax information associated with your TRN. You only need to specify this
-        -- parameter if Amazon Web Services collects any additional information for your country within
-        -- AdditionalInfoRequest.
+        -- Additional tax information associated with your TRN. You only need to specify this parameter if Amazon Web Services collects any additional information for your country within AdditionalInfoRequest.
         additionalTaxInformation: AdditionalInfoRequest
-        -- Additional details needed to verify your TRN information in Brazil. You only need to specify this
-        -- parameter when you set a TRN in Brazil that is the CPF tax type.
-        -- Don't specify this parameter to set a TRN in Brazil of the CNPJ tax type or to set a TRN
-        -- for another country.
+        -- Additional details needed to verify your TRN information in Brazil. You only need to specify this parameter when you set a TRN in Brazil that is the CPF tax type. Don't specify this parameter to set a TRN in Brazil of the CNPJ tax type or to set a TRN for another country.
         verificationDetails: VerificationDetails
         -- The email address to receive VAT invoices.
         certifiedEmailId: string
@@ -701,35 +708,28 @@ local record M
     record BatchPutTaxRegistrationInput
         -- List of unique account identifiers.
         accountIds: {string}
-        -- Your TRN information that will be stored to the accounts mentioned in
-        -- putEntries.
+        -- Your TRN information that will be stored to the accounts mentioned in putEntries.
         taxRegistrationEntry: TaxRegistrationEntry
     end
 
-    -- The error object for representing failures in the BatchPutTaxRegistration
-    -- operation.
+    -- The error object for representing failures in the BatchPutTaxRegistration operation.
     record BatchPutTaxRegistrationError
-        -- The unique account identifier for the account that the tax registration couldn't be
-        -- added, or updated during the BatchPutTaxRegistration operation.
+        -- The unique account identifier for the account that the tax registration couldn't be added, or updated during the BatchPutTaxRegistration operation.
         accountId: string
-        -- The error message for an individual failure in the BatchPutTaxRegistration
-        -- operation.
+        -- The error message for an individual failure in the BatchPutTaxRegistration operation.
         message: string
-        -- The error code for an individual failure in the BatchPutTaxRegistration
-        -- operation.
+        -- The error code for an individual failure in the BatchPutTaxRegistration operation.
         code: string
     end
 
     record BatchPutTaxRegistrationOutput
-        -- The status of your TRN stored in the system after processing. Based on the validation
-        -- occurring on the TRN, the status can be Verified, Pending or
-        -- Rejected.
+        -- The status of your TRN stored in the system after processing. Based on the validation occurring on the TRN, the status can be Verified, Pending or Rejected.
         status: string
         -- List of errors for the accounts the TRN information could not be added or updated to.
         errors: {BatchPutTaxRegistrationError}
     end
 
-    -- You've exceeded the Amazon Web ServicesSupport case creation limit for your account.
+    -- You've exceeded the Amazon Web Services Support case creation limit for your account.
     record CaseCreationLimitExceededException
         message: string
     end
@@ -743,9 +743,7 @@ local record M
     end
 
     record DeleteTaxRegistrationInput
-        -- Unique account identifier for the TRN information that needs to be deleted. If this isn't
-        -- passed, the account ID corresponding to the credentials of the API caller will be used for
-        -- this parameter.
+        -- Unique account identifier for the TRN information that needs to be deleted. If this isn't passed, the account ID corresponding to the credentials of the API caller will be used for this parameter.
         accountId: string
     end
 
@@ -802,8 +800,7 @@ local record M
         registrationType: string
         -- The legal name associated with your TRN registration.
         legalName: string
-        -- The status of your TRN. This can be either Verified, Pending,
-        -- Deleted, or Rejected.
+        -- The status of your TRN. This can be either Verified, Pending, Deleted, or Rejected.
         status: string
         -- The industry that describes your business. For business-to-business (B2B) customers, specify Business. For business-to-consumer (B2C) customers, specify Individual. For business-to-government (B2G), specify Government. Note that certain values may not applicable for the request country. Please refer to country specific information in API document.
         sector: string
@@ -891,8 +888,7 @@ local record M
     end
 
     record ListTaxRegistrationsOutput
-        -- The list of account details. This contains account Ids and TRN Information for each of the
-        -- linked accounts.
+        -- The list of account details. This contains account Ids and TRN Information for each of the linked accounts.
         accountDetails: {AccountDetails}
         -- The token to retrieve the next set of results.
         nextToken: string
@@ -946,15 +942,12 @@ local record M
     record PutTaxRegistrationInput
         -- Your unique account identifier.
         accountId: string
-        -- Your TRN information that will be stored to the account mentioned in
-        -- accountId.
+        -- Your TRN information that will be stored to the account mentioned in accountId.
         taxRegistrationEntry: TaxRegistrationEntry
     end
 
     record PutTaxRegistrationOutput
-        -- The status of your TRN stored in the system after processing. Based on the validation
-        -- occurring on the TRN, the status can be Verified, Pending or
-        -- Rejected.
+        -- The status of your TRN stored in the system after processing. Based on the validation occurring on the TRN, the status can be Verified, Pending or Rejected.
         status: string
     end
 

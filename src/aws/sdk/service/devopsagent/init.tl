@@ -20,10 +20,14 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     associateService: function(Client, types.AssociateServiceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateServiceOutput>
     createAgentSpace: function(Client, types.CreateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
+    createAsset: function(Client, types.CreateAssetInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
+    createAssetFile: function(Client, types.CreateAssetFileInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetFileOutput>
     createBacklogTask: function(Client, types.CreateBacklogTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateBacklogTaskOutput>
     createChat: function(Client, types.CreateChatInput, ? base_client.InvokeOptions): async.Operation<types.CreateChatOutput>
     createPrivateConnection: function(Client, types.CreatePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectionOutput>
     deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
+    deleteAsset: function(Client, types.DeleteAssetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    deleteAssetFile: function(Client, types.DeleteAssetFileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetFileOutput>
     deletePrivateConnection: function(Client, types.DeletePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
     deregisterService: function(Client, types.DeregisterServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterServiceOutput>
     describePrivateConnection: function(Client, types.DescribePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribePrivateConnectionOutput>
@@ -32,12 +36,19 @@ local record Client
     enableOperatorApp: function(Client, types.EnableOperatorAppInput, ? base_client.InvokeOptions): async.Operation<types.EnableOperatorAppOutput>
     getAccountUsage: function(Client, types.GetAccountUsageInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountUsageOutput>
     getAgentSpace: function(Client, types.GetAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentSpaceOutput>
+    getAsset: function(Client, types.GetAssetInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetOutput>
+    getAssetContent: function(Client, types.GetAssetContentInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetContentOutput>
+    getAssetFile: function(Client, types.GetAssetFileInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetFileOutput>
     getAssociation: function(Client, types.GetAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetAssociationOutput>
     getBacklogTask: function(Client, types.GetBacklogTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetBacklogTaskOutput>
     getOperatorApp: function(Client, types.GetOperatorAppInput, ? base_client.InvokeOptions): async.Operation<types.GetOperatorAppOutput>
     getRecommendation: function(Client, types.GetRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
     getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
     listAgentSpaces: function(Client, types.ListAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
+    listAssetFiles: function(Client, types.ListAssetFilesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetFilesOutput>
+    listAssets: function(Client, types.ListAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    listAssetTypes: function(Client, types.ListAssetTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetTypesOutput>
+    listAssetVersions: function(Client, types.ListAssetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetVersionsOutput>
     listAssociations: function(Client, types.ListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
     listBacklogTasks: function(Client, types.ListBacklogTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListBacklogTasksOutput>
     listChats: function(Client, types.ListChatsInput, ? base_client.InvokeOptions): async.Operation<types.ListChatsOutput>
@@ -55,6 +66,8 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
+    updateAsset: function(Client, types.UpdateAssetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>
+    updateAssetFile: function(Client, types.UpdateAssetFileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetFileOutput>
     updateAssociation: function(Client, types.UpdateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>
     updateBacklogTask: function(Client, types.UpdateBacklogTaskInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBacklogTaskOutput>
     updateGoal: function(Client, types.UpdateGoalInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGoalOutput>
@@ -114,6 +127,14 @@ function C:createAgentSpace(input: types.CreateAgentSpaceInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentSpaceOutput>
 end
 
+function C:createAsset(input: types.CreateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAsset as schema.OperationSchema, input, options) as async.Operation<types.CreateAssetOutput>
+end
+
+function C:createAssetFile(input: types.CreateAssetFileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssetFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssetFile as schema.OperationSchema, input, options) as async.Operation<types.CreateAssetFileOutput>
+end
+
 function C:createBacklogTask(input: types.CreateBacklogTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBacklogTaskOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBacklogTask as schema.OperationSchema, input, options) as async.Operation<types.CreateBacklogTaskOutput>
 end
@@ -128,6 +149,14 @@ end
 
 function C:deleteAgentSpace(input: types.DeleteAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentSpaceOutput>
+end
+
+function C:deleteAsset(input: types.DeleteAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAsset as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetOutput>
+end
+
+function C:deleteAssetFile(input: types.DeleteAssetFileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssetFile as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetFileOutput>
 end
 
 function C:deletePrivateConnection(input: types.DeletePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
@@ -162,6 +191,18 @@ function C:getAgentSpace(input: types.GetAgentSpaceInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.GetAgentSpaceOutput>
 end
 
+function C:getAsset(input: types.GetAssetInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAsset as schema.OperationSchema, input, options) as async.Operation<types.GetAssetOutput>
+end
+
+function C:getAssetContent(input: types.GetAssetContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetContent as schema.OperationSchema, input, options) as async.Operation<types.GetAssetContentOutput>
+end
+
+function C:getAssetFile(input: types.GetAssetFileInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetFile as schema.OperationSchema, input, options) as async.Operation<types.GetAssetFileOutput>
+end
+
 function C:getAssociation(input: types.GetAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetAssociationOutput>
 end
@@ -184,6 +225,22 @@ end
 
 function C:listAgentSpaces(input: types.ListAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentSpaces as schema.OperationSchema, input, options) as async.Operation<types.ListAgentSpacesOutput>
+end
+
+function C:listAssetFiles(input: types.ListAssetFilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetFilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetFiles as schema.OperationSchema, input, options) as async.Operation<types.ListAssetFilesOutput>
+end
+
+function C:listAssets(input: types.ListAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssets as schema.OperationSchema, input, options) as async.Operation<types.ListAssetsOutput>
+end
+
+function C:listAssetTypes(input: types.ListAssetTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetTypes as schema.OperationSchema, input, options) as async.Operation<types.ListAssetTypesOutput>
+end
+
+function C:listAssetVersions(input: types.ListAssetVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAssetVersionsOutput>
 end
 
 function C:listAssociations(input: types.ListAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
@@ -252,6 +309,14 @@ end
 
 function C:updateAgentSpace(input: types.UpdateAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.UpdateAgentSpaceOutput>
+end
+
+function C:updateAsset(input: types.UpdateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAsset as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssetOutput>
+end
+
+function C:updateAssetFile(input: types.UpdateAssetFileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssetFile as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssetFileOutput>
 end
 
 function C:updateAssociation(input: types.UpdateAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>

@@ -185,11 +185,15 @@ M.ECSServiceProjectedUtilizationMetrics = schema.new({ type = "list", list_membe
 
 M.ContainerRecommendations = schema.new({ type = "list", list_member = M.ContainerRecommendation })
 
+M.IdleDimensions = schema.new({ type = "list", list_member = M.IdleDimension })
+
 M.LambdaFunctionMemoryProjectedMetrics = schema.new({ type = "list", list_member = M.LambdaFunctionMemoryProjectedMetric })
 
 M.RDSDBProjectedUtilizationMetrics = schema.new({ type = "list", list_member = M.RDSDBUtilizationMetric })
 
 M.ReasonCodeSummaries = schema.new({ type = "list", list_member = M.ReasonCodeSummary })
+
+M.IdleDimensionValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -3806,6 +3810,26 @@ M.IdleSavingsOpportunityAfterDiscounts = schema.new({
     },
 })
 
+M.IdleDimension = schema.new({
+    id = id.from(_N, "IdleDimension"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "IdleDimension", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+        }),
+        values = schema.new({
+            id = id.from(_N, "IdleDimension", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.IdleUtilizationMetric = schema.new({
     id = id.from(_N, "IdleUtilizationMetric"),
     type = "structure",
@@ -3830,6 +3854,13 @@ M.IdleUtilizationMetric = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
             },
+        }),
+        dimensions = schema.new({
+            id = id.from(_N, "IdleUtilizationMetric", "dimensions"),
+            type = "list",
+            name = "dimensions",
+            target_id = prelude.Document.id,
+            list_member = M.IdleDimension,
         }),
     },
 })

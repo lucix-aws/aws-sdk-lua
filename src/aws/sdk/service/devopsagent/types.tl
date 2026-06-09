@@ -114,6 +114,7 @@ local record M
         service: string
         -- IAM role ARN to assume for SigV4 signing.
         roleArn: string
+        mcpRoleArn: string
         -- Custom headers for the SigV4 MCP server.
         customHeaders: {string : string}
     end
@@ -733,6 +734,8 @@ local record M
     record EnableOperatorAppOutput
         -- The unique identifier of the AgentSpace
         agentSpaceId: string
+        -- The URL for operators to access the Operator App
+        operatorAppUrl: string
         iam: IamAuthConfiguration
         idc: IdcAuthConfiguration
         idp: IdpAuthConfiguration
@@ -759,6 +762,8 @@ local record M
 
     -- Output containing the Operator App configuration including authentication details.
     record GetOperatorAppOutput
+        -- The URL for operators to access the Operator App
+        operatorAppUrl: string
         iam: IamAuthConfiguration
         idc: IdcAuthConfiguration
         idp: IdpAuthConfiguration
@@ -812,6 +817,100 @@ local record M
         idp: IdpAuthConfiguration
     end
 
+    -- Represents an asset in an agent space, including its identifier, type, metadata, version, and timestamps.
+    record Asset
+        -- The unique identifier for this asset
+        assetId: string
+        -- The type of this asset
+        assetType: string
+        -- The metadata for this asset
+        metadata: any
+        -- The version number of this asset
+        version: number
+        -- Timestamp when this asset was created
+        createdAt: number
+        -- Timestamp when this asset was last updated
+        updatedAt: number
+    end
+
+    -- Content of an individual asset file
+    record AssetFileBody
+        bytes: string
+        text: string
+    end
+
+    -- A single file with path and content
+    record AssetFileContent
+        -- The path of the file within the asset
+        path: string
+        -- The file content
+        body: AssetFileBody
+        -- Optional metadata for this file
+        metadata: any
+    end
+
+    -- A zip file containing asset files
+    record AssetZipContent
+        -- The zip file bytes
+        zipFile: string
+    end
+
+    -- Content for an asset, either a single file or a zip bundle
+    record AssetContent
+        -- A single file with path and content
+        file: AssetFileContent
+        -- A zip file containing multiple files
+        zip: AssetZipContent
+    end
+
+    -- Represents a single file within an asset, including its path, content, version, and timestamps.
+    record AssetFile
+        -- The path of this file within the asset
+        path: string
+        -- The content of this file
+        content: AssetFileBody
+        -- The metadata for this file
+        metadata: any
+        -- The asset version this file belongs to
+        version: number
+        -- Timestamp when this file was created
+        createdAt: number
+        -- Timestamp when this file was last updated
+        updatedAt: number
+    end
+
+    -- Summary of a file within an asset, including its path, version, and timestamps.
+    record AssetFileSummary
+        -- The path of this file within the asset
+        path: string
+        -- The metadata for this file
+        metadata: any
+        -- The asset version this file belongs to
+        version: number
+        -- Timestamp when this file was created
+        createdAt: number
+        -- Timestamp when this file was last updated
+        updatedAt: number
+    end
+
+    -- Summary of an asset type, including its identifier and description.
+    record AssetTypeSummary
+        -- The asset type identifier
+        assetType: string
+        -- A description of the asset type
+        description: string
+    end
+
+    -- Metadata for a single version of an asset, including the version number and timestamps.
+    record AssetVersionMetadata
+        -- The version number of this asset
+        version: number
+        -- Timestamp when this asset version was created
+        createdAt: number
+        -- Timestamp when this asset version was last updated
+        updatedAt: number
+    end
+
     -- A block of content in an assistant message.
     record AssistantMessageBlock
         -- Text content from the assistant.
@@ -830,6 +929,48 @@ local record M
         updatedAt: number
         -- Summary or title of the chat
         summary: string
+    end
+
+    -- Request structure for creating a new asset
+    record CreateAssetInput
+        -- The unique identifier for the agent space where the asset will be created
+        agentSpaceId: string
+        -- The type of asset to create
+        assetType: string
+        -- The metadata describing this asset
+        metadata: any
+        -- The content for the asset. Provide a single file or a zip bundle.
+        content: AssetContent
+        -- A unique, case-sensitive identifier used for idempotent asset creation
+        clientToken: string
+    end
+
+    -- Response structure for creating a new asset
+    record CreateAssetOutput
+        -- The asset object
+        asset: Asset
+    end
+
+    -- Request structure for creating an asset file
+    record CreateAssetFileInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset to create the file in
+        assetId: string
+        -- The path of the file within the asset
+        path: string
+        -- The content of the file to create
+        content: AssetFileBody
+        -- Optional metadata describing this file
+        metadata: any
+        -- A unique, case-sensitive identifier used for idempotent asset file creation
+        clientToken: string
+    end
+
+    -- Response structure for creating an asset file
+    record CreateAssetFileOutput
+        -- The asset file object
+        file: AssetFile
     end
 
     enum Priority
@@ -901,6 +1042,7 @@ local record M
         "FAILED"
         "TIMED_OUT"
         "CANCELED"
+        "SKIPPED"
     end
 
     -- Represents a backlog task with all its properties and metadata
@@ -978,6 +1120,11 @@ local record M
         certificate: string
     end
 
+    enum ResourceConfigDnsResolution
+        "PUBLIC"
+        "IN_VPC"
+    end
+
     enum IpAddressType
         "IPV4"
         "IPV6"
@@ -1002,6 +1149,8 @@ local record M
         portRanges: {string}
         -- Certificate for the Private Connection.
         certificate: string
+        -- DNS resolution mode for the resource gateway. Defaults to PUBLIC when not set.
+        dnsResolution: string
     end
 
     -- Private Connection mode — either service-managed or self-managed.
@@ -1051,6 +1200,10 @@ local record M
         status: string
         -- The expiry time of the certificate associated with the Private Connection. Only present when a certificate is associated.
         certificateExpiryTime: number
+        -- DNS resolution mode for the Private Connection's resource gateway.
+        dnsResolution: string
+        -- Message describing the reason for a failed Private Connection creation, if applicable.
+        failureMessage: string
         -- Tags associated with the created Private Connection.
         tags: {string : string}
     end
@@ -1077,6 +1230,32 @@ local record M
         description: string
         -- Datadog MCP server authorization configuration (only authorization discovery is supported).
         authorizationConfig: DatadogAuthorizationConfig
+    end
+
+    -- Request structure for deleting an asset
+    record DeleteAssetInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset to delete
+        assetId: string
+    end
+
+    -- Response structure for deleting an asset
+    record DeleteAssetOutput
+    end
+
+    -- Request structure for deleting an asset file
+    record DeleteAssetFileInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset containing the file
+        assetId: string
+        -- The path of the file within the asset to delete
+        path: string
+    end
+
+    -- Response structure for deleting an asset file
+    record DeleteAssetFileOutput
     end
 
     -- Input for deleting an existing Private Connection.
@@ -1125,6 +1304,10 @@ local record M
         status: string
         -- The expiry time of the certificate associated with the Private Connection. Only present when a certificate is associated.
         certificateExpiryTime: number
+        -- DNS resolution mode for the Private Connection's resource gateway.
+        dnsResolution: string
+        -- Message describing the reason for a failed Private Connection, if applicable.
+        failureMessage: string
         -- Tags associated with the Private Connection.
         tags: {string : string}
     end
@@ -1134,7 +1317,7 @@ local record M
 
     -- Represents a usage metric with its configured limit and current usage value.
     record UsageMetric
-        -- Configured limit for this metric.
+        -- Configured limit for this metric. A value of -1 indicates no limit is enforced.
         limit: number
         -- Current usage for this metric
         usage: number
@@ -1153,6 +1336,58 @@ local record M
         usagePeriodStartTime: number
         -- The end time of the usage tracking period
         usagePeriodEndTime: number
+    end
+
+    -- Request structure for getting an asset
+    record GetAssetInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset to retrieve
+        assetId: string
+        -- The specific version of the asset to retrieve. If omitted, the latest version is returned.
+        assetVersion: number
+    end
+
+    -- Response structure for getting an asset
+    record GetAssetOutput
+        -- The asset object
+        asset: Asset
+    end
+
+    -- Request structure for getting an asset's content as a zip bundle
+    record GetAssetContentInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset
+        assetId: string
+        -- The specific asset version to export. If omitted, the latest version is returned.
+        assetVersion: number
+    end
+
+    -- Response structure for getting an asset's content as a zip bundle
+    record GetAssetContentOutput
+        -- The asset content as a zip file
+        content: AssetZipContent
+        -- The asset version this content belongs to
+        version: number
+    end
+
+    -- Request structure for getting an asset file
+    record GetAssetFileInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset containing the file
+        assetId: string
+        -- The path of the file within the asset to retrieve
+        path: string
+        -- The specific asset version to retrieve the file from. If omitted, the latest version is returned.
+        assetVersion: number
+    end
+
+    -- Response structure for getting an asset file
+    record GetAssetFileOutput
+        -- The asset file object
+        file: AssetFile
     end
 
     -- Request structure for retrieving a specific backlog task
@@ -1240,6 +1475,88 @@ local record M
     record GetRecommendationOutput
         -- The requested recommendation
         recommendation: Recommendation
+    end
+
+    -- Request structure for listing asset files
+    record ListAssetFilesInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset whose files to list
+        assetId: string
+        -- The specific asset version to list files from. If omitted, files from the latest version are returned.
+        assetVersion: number
+        -- Pagination token from a previous response to retrieve the next page of results
+        nextToken: string
+        -- The maximum number of results to return in a single response
+        maxResults: number
+    end
+
+    -- Response structure for listing asset files
+    record ListAssetFilesOutput
+        -- The list of asset file summaries
+        items: {AssetFileSummary}
+        -- Pagination token to retrieve the next page of results. Absent when there are no more results.
+        nextToken: string
+    end
+
+    -- Request structure for listing assets
+    record ListAssetsInput
+        -- The unique identifier for the agent space to list assets from
+        agentSpaceId: string
+        -- Filter results to only assets of this type
+        assetType: string
+        -- Filter results to only assets updated after this timestamp
+        updatedAfter: number
+        -- Filter results to only assets updated before this timestamp
+        updatedBefore: number
+        -- Pagination token from a previous response to retrieve the next page of results
+        nextToken: string
+        -- The maximum number of results to return in a single response
+        maxResults: number
+    end
+
+    -- Response structure for listing assets
+    record ListAssetsOutput
+        -- The list of assets for the agent space
+        items: {Asset}
+        -- Pagination token to retrieve the next page of results. Absent when there are no more results.
+        nextToken: string
+    end
+
+    -- Request structure for listing asset types
+    record ListAssetTypesInput
+        -- Pagination token from a previous response to retrieve the next page of results
+        nextToken: string
+        -- The maximum number of results to return in a single response
+        maxResults: number
+    end
+
+    -- Response structure for listing asset types
+    record ListAssetTypesOutput
+        -- The list of supported asset types
+        items: {AssetTypeSummary}
+        -- Pagination token to retrieve the next page of results. Absent when there are no more results.
+        nextToken: string
+    end
+
+    -- Request structure for listing asset versions
+    record ListAssetVersionsInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset whose versions to list
+        assetId: string
+        -- The maximum number of results to return in a single response
+        maxResults: number
+        -- Pagination token from a previous response to retrieve the next page of results
+        nextToken: string
+    end
+
+    -- Response structure for listing asset versions
+    record ListAssetVersionsOutput
+        -- The list of version metadata for the asset
+        items: {AssetVersionMetadata}
+        -- Pagination token to retrieve the next page of results. Absent when there are no more results.
+        nextToken: string
     end
 
     -- Filter criteria for listing backlog tasks, supporting time range, priority, status, and type filters.
@@ -1598,6 +1915,10 @@ local record M
         status: string
         -- The expiry time of the certificate associated with the Private Connection. Only present when a certificate is associated.
         certificateExpiryTime: number
+        -- DNS resolution mode for the Private Connection's resource gateway.
+        dnsResolution: string
+        -- Message describing the reason for a failed Private Connection, if applicable.
+        failureMessage: string
     end
 
     -- Output containing the list of Private Connections.
@@ -1630,6 +1951,10 @@ local record M
         status: string
         -- The expiry time of the certificate associated with the Private Connection. Only present when a certificate is associated.
         certificateExpiryTime: number
+        -- DNS resolution mode for the Private Connection's resource gateway.
+        dnsResolution: string
+        -- Message describing the reason for a failed Private Connection update, if applicable.
+        failureMessage: string
     end
 
     -- Context object for additional message metadata
@@ -1654,6 +1979,8 @@ local record M
         context: SendMessageContext
         -- User identifier. This field is deprecated and will be ignored — the service resolves user identity from the authenticated session.
         userId: string
+        -- Optional list of asset identifiers to attach to the message
+        assetIds: {string}
     end
 
     -- JSON delta containing partial JSON
@@ -2056,8 +2383,10 @@ local record M
         region: string
         -- AWS service name for SigV4 signing.
         service: string
-        -- IAM role ARN to assume for SigV4 signing.
+        -- Deprecated — use mcpRoleArn instead. IAM role ARN to assume for SigV4 signing.
         roleArn: string
+        -- IAM role ARN to assume for SigV4 signing. Optional — when omitted, credentials are resolved at runtime via a monitor account association.
+        mcpRoleArn: string
         -- Custom headers for the SigV4 MCP server.
         customHeaders: {string : string}
     end
@@ -2163,6 +2492,10 @@ local record M
         kmsKeyArn: string
         -- The name of the private connection to use for VPC connectivity.
         privateConnectionName: string
+        -- The name of the private connection to use for API calls (target URL) only. Cannot be specified when privateConnectionName is provided.
+        targetUrlPrivateConnectionName: string
+        -- The name of the private connection to use for OAuth token exchange requests only. Cannot be specified when privateConnectionName is provided.
+        exchangeUrlPrivateConnectionName: string
         -- The display name for the service registration.
         name: string
         -- Tags to add to the Service at registration time.
@@ -2199,6 +2532,48 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    -- Request structure for updating an asset
+    record UpdateAssetInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset to update
+        assetId: string
+        -- Metadata fields to update. Only the fields present in this document are updated. Omitted fields retain their current values.
+        metadata: any
+        -- Optional content to set or replace. A single file adds or replaces one file; a zip replaces all files.
+        content: AssetContent
+        -- A unique, case-sensitive identifier used for idempotent asset update
+        clientToken: string
+    end
+
+    -- Response structure for updating an asset
+    record UpdateAssetOutput
+        -- The asset object
+        asset: Asset
+    end
+
+    -- Request structure for updating an asset file
+    record UpdateAssetFileInput
+        -- The unique identifier for the agent space containing the asset
+        agentSpaceId: string
+        -- The unique identifier of the asset containing the file
+        assetId: string
+        -- The path of the file within the asset to update
+        path: string
+        -- Updated file content. If omitted, the existing content is unchanged.
+        content: AssetFileBody
+        -- Metadata fields to update. Only the fields present in this document are updated. Omitted fields retain their current values.
+        metadata: any
+        -- A unique, case-sensitive identifier used for idempotent asset file update
+        clientToken: string
+    end
+
+    -- Response structure for updating an asset file
+    record UpdateAssetFileOutput
+        -- The asset file object
+        file: AssetFile
     end
 
     -- Request structure for updating a task

@@ -233,6 +233,11 @@ local record M
         recommendationId: string
     end
 
+    -- The Amazon DocumentDB cluster recommendation details.
+    record DocumentDbCluster
+        costCalculation: ResourceCostCalculation
+    end
+
     -- The DynamoDB reserved capacity configuration used for recommendations.
     record DynamoDbReservedCapacityConfiguration
         -- The account scope for which you want recommendations.
@@ -278,6 +283,11 @@ local record M
         -- The DynamoDB reserved capacity configuration used for recommendations.
         configuration: DynamoDbReservedCapacityConfiguration
         costCalculation: ReservedInstancesCostCalculation
+    end
+
+    -- The DynamoDB table recommendation details.
+    record DynamoDbTable
+        costCalculation: ResourceCostCalculation
     end
 
     -- The storage configuration used for recommendations.
@@ -431,6 +441,11 @@ local record M
         costCalculation: ResourceCostCalculation
     end
 
+    -- The ElastiCache cluster recommendation details.
+    record ElastiCacheCluster
+        costCalculation: ResourceCostCalculation
+    end
+
     -- The ElastiCache reserved instances configuration used for recommendations.
     record ElastiCacheReservedInstancesConfiguration
         -- The account scope for which you want recommendations.
@@ -480,6 +495,11 @@ local record M
         -- The Lambda function configuration used for recommendations.
         configuration: LambdaFunctionConfiguration
         -- Cost impact of the recommendation.
+        costCalculation: ResourceCostCalculation
+    end
+
+    -- The MemoryDB cluster recommendation details.
+    record MemoryDbCluster
         costCalculation: ResourceCostCalculation
     end
 
@@ -695,6 +715,11 @@ local record M
         costCalculation: ReservedInstancesCostCalculation
     end
 
+    -- The SageMaker endpoint recommendation details.
+    record SageMakerEndpoint
+        costCalculation: ResourceCostCalculation
+    end
+
     -- The SageMaker Savings Plans configuration used for recommendations.
     record SageMakerSavingsPlansConfiguration
         -- The account scope for which you want recommendations.
@@ -713,6 +738,11 @@ local record M
         configuration: SageMakerSavingsPlansConfiguration
         -- Cost impact of the Savings Plans purchase recommendation.
         costCalculation: SavingsPlansCostCalculation
+    end
+
+    -- The WorkSpaces recommendation details.
+    record WorkSpaces
+        costCalculation: ResourceCostCalculation
     end
 
     -- Contains detailed information about the specified resource.
@@ -755,6 +785,18 @@ local record M
         memoryDbReservedInstances: MemoryDbReservedInstances
         -- The NAT Gateway recommendation details.
         natGateway: NatGateway
+        -- The DynamoDB table recommendation details.
+        dynamoDbTable: DynamoDbTable
+        -- The ElastiCache cluster recommendation details.
+        elastiCacheCluster: ElastiCacheCluster
+        -- The MemoryDB cluster recommendation details.
+        memoryDbCluster: MemoryDbCluster
+        -- The Amazon DocumentDB cluster recommendation details.
+        documentDbCluster: DocumentDbCluster
+        -- The WorkSpaces recommendation details.
+        workSpaces: WorkSpaces
+        -- The SageMaker endpoint recommendation details.
+        sageMakerEndpoint: SageMakerEndpoint
     end
 
     enum ResourceType
@@ -777,6 +819,12 @@ local record M
         "DynamoDbReservedCapacity"
         "MemoryDbReservedInstances"
         "NatGateway"
+        "DynamoDBTable"
+        "ElastiCacheCluster"
+        "MemoryDBCluster"
+        "DocumentDBCluster"
+        "WorkSpaces"
+        "SageMakerEndpoint"
     end
 
     enum ImplementationEffort

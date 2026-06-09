@@ -1489,6 +1489,7 @@ local record M
         "CISCO_ACI"
         "LOGICAL_MODEL"
         "MODELIZE_IT"
+        "AWS_DISCOVERY_COLLECTOR"
     end
 
     -- S3 configuration for source network data.

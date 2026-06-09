@@ -66,7 +66,7 @@ M.Address = schema.new({
             name = "addressLine1",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "Unknown" },
             },
         }),
         addressLine2 = schema.new({
@@ -93,7 +93,7 @@ M.Address = schema.new({
             name = "city",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "Unknown" },
             },
         }),
         stateOrRegion = schema.new({
@@ -204,6 +204,25 @@ M.TaxInheritanceDetails = schema.new({
     },
 })
 
+M.BelgiumAdditionalInfo = schema.new({
+    id = id.from(_N, "BelgiumAdditionalInfo"),
+    type = "structure",
+    members = {
+        peppolId = schema.new({
+            id = id.from(_N, "BelgiumAdditionalInfo", "peppolId"),
+            type = "string",
+            name = "peppolId",
+            target_id = prelude.String.id,
+        }),
+        isMercuriusBoxEnabled = schema.new({
+            id = id.from(_N, "BelgiumAdditionalInfo", "isMercuriusBoxEnabled"),
+            type = "boolean",
+            name = "isMercuriusBoxEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.BrazilAdditionalInfo = schema.new({
     id = id.from(_N, "BrazilAdditionalInfo"),
     type = "structure",
@@ -254,6 +273,25 @@ M.CanadaAdditionalInfo = schema.new({
     },
 })
 
+M.ChileAdditionalInfo = schema.new({
+    id = id.from(_N, "ChileAdditionalInfo"),
+    type = "structure",
+    members = {
+        documentType = schema.new({
+            id = id.from(_N, "ChileAdditionalInfo", "documentType"),
+            type = "string",
+            name = "documentType",
+            target_id = prelude.String.id,
+        }),
+        businessActivity = schema.new({
+            id = id.from(_N, "ChileAdditionalInfo", "businessActivity"),
+            type = "string",
+            name = "businessActivity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EgyptAdditionalInfo = schema.new({
     id = id.from(_N, "EgyptAdditionalInfo"),
     type = "structure",
@@ -281,6 +319,22 @@ M.EstoniaAdditionalInfo = schema.new({
             id = id.from(_N, "EstoniaAdditionalInfo", "registryCommercialCode"),
             type = "string",
             name = "registryCommercialCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FranceAdditionalInfo = schema.new({
+    id = id.from(_N, "FranceAdditionalInfo"),
+    type = "structure",
+    members = {
+        sirenNumber = schema.new({
+            id = id.from(_N, "FranceAdditionalInfo", "sirenNumber"),
+            type = "string",
+            name = "sirenNumber",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -409,6 +463,12 @@ M.ItalyAdditionalInfo = schema.new({
             name = "taxCode",
             target_id = prelude.String.id,
         }),
+        customerType = schema.new({
+            id = id.from(_N, "ItalyAdditionalInfo", "customerType"),
+            type = "string",
+            name = "customerType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -457,6 +517,19 @@ M.MalaysiaAdditionalInfo = schema.new({
     },
 })
 
+M.PhilippinesAdditionalInfo = schema.new({
+    id = id.from(_N, "PhilippinesAdditionalInfo"),
+    type = "structure",
+    members = {
+        isVatRegistered = schema.new({
+            id = id.from(_N, "PhilippinesAdditionalInfo", "isVatRegistered"),
+            type = "boolean",
+            name = "isVatRegistered",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.PolandAdditionalInfo = schema.new({
     id = id.from(_N, "PolandAdditionalInfo"),
     type = "structure",
@@ -472,6 +545,12 @@ M.PolandAdditionalInfo = schema.new({
             type = "boolean",
             name = "isGroupVatEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        taxRegistrationNumberType = schema.new({
+            id = id.from(_N, "PolandAdditionalInfo", "taxRegistrationNumberType"),
+            type = "string",
+            name = "taxRegistrationNumberType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -803,6 +882,34 @@ M.AdditionalInfoResponse = schema.new({
             target_id = id.from(_N, "UzbekistanAdditionalInfo"),
             target = M.UzbekistanAdditionalInfo,
         }),
+        philippinesAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "philippinesAdditionalInfo"),
+            type = "structure",
+            name = "philippinesAdditionalInfo",
+            target_id = id.from(_N, "PhilippinesAdditionalInfo"),
+            target = M.PhilippinesAdditionalInfo,
+        }),
+        belgiumAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "belgiumAdditionalInfo"),
+            type = "structure",
+            name = "belgiumAdditionalInfo",
+            target_id = id.from(_N, "BelgiumAdditionalInfo"),
+            target = M.BelgiumAdditionalInfo,
+        }),
+        chileAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "chileAdditionalInfo"),
+            type = "structure",
+            name = "chileAdditionalInfo",
+            target_id = id.from(_N, "ChileAdditionalInfo"),
+            target = M.ChileAdditionalInfo,
+        }),
+        franceAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoResponse", "franceAdditionalInfo"),
+            type = "structure",
+            name = "franceAdditionalInfo",
+            target_id = id.from(_N, "FranceAdditionalInfo"),
+            target = M.FranceAdditionalInfo,
+        }),
     },
 })
 
@@ -1080,6 +1187,34 @@ M.AdditionalInfoRequest = schema.new({
             name = "uzbekistanAdditionalInfo",
             target_id = id.from(_N, "UzbekistanAdditionalInfo"),
             target = M.UzbekistanAdditionalInfo,
+        }),
+        philippinesAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "philippinesAdditionalInfo"),
+            type = "structure",
+            name = "philippinesAdditionalInfo",
+            target_id = id.from(_N, "PhilippinesAdditionalInfo"),
+            target = M.PhilippinesAdditionalInfo,
+        }),
+        belgiumAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "belgiumAdditionalInfo"),
+            type = "structure",
+            name = "belgiumAdditionalInfo",
+            target_id = id.from(_N, "BelgiumAdditionalInfo"),
+            target = M.BelgiumAdditionalInfo,
+        }),
+        chileAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "chileAdditionalInfo"),
+            type = "structure",
+            name = "chileAdditionalInfo",
+            target_id = id.from(_N, "ChileAdditionalInfo"),
+            target = M.ChileAdditionalInfo,
+        }),
+        franceAdditionalInfo = schema.new({
+            id = id.from(_N, "AdditionalInfoRequest", "franceAdditionalInfo"),
+            type = "structure",
+            name = "franceAdditionalInfo",
+            target_id = id.from(_N, "FranceAdditionalInfo"),
+            target = M.FranceAdditionalInfo,
         }),
     },
 })

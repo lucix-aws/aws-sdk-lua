@@ -1454,6 +1454,22 @@ local record M
         "UtilizationMetricsActiveConnectionCountMaximum"
         "UtilizationMetricsPacketsInFromSourceMaximum"
         "UtilizationMetricsPacketsInFromDestinationMaximum"
+        "UtilizationMetricsConsumedReadCapacityUnitsSum"
+        "UtilizationMetricsConsumedWriteCapacityUnitsSum"
+        "UtilizationMetricsNewConnectionsSum"
+        "UtilizationMetricsEngineCPUUtilizationMaximum"
+        "UtilizationMetricsCacheHitsSum"
+        "UtilizationMetricsCacheMissesSum"
+        "UtilizationMetricsKeyspaceHitsSum"
+        "UtilizationMetricsKeyspaceMissesSum"
+        "UtilizationMetricsIsIdleMinimum"
+        "UtilizationMetricsUserConnectedSum"
+        "UtilizationMetricsInvocationsSum"
+        "UtilizationMetricsGetTypeCmdsSum"
+        "UtilizationMetricsSetTypeCmdsSum"
+        "UtilizationMetricsElastiCacheProcessingUnitsSum"
+        "UtilizationMetricsCurrConnectionsSum"
+        "UtilizationMetricsDatabaseConnectionsSum"
         "Finding"
         "FindingDescription"
         "Tags"
@@ -2433,6 +2449,12 @@ local record M
         "RdsDBInstanceStorage"
         "AuroraDBClusterStorage"
         "NatGateway"
+        "DynamoDBTable"
+        "ElastiCacheCluster"
+        "MemoryDBCluster"
+        "DocumentDBCluster"
+        "WorkSpaces"
+        "SageMakerEndpoint"
     end
 
     -- Describes the source of a recommendation, such as an Amazon EC2 instance or
@@ -3264,6 +3286,12 @@ local record M
         "ECSService"
         "RDSDBInstance"
         "NatGateway"
+        "DynamoDBTable"
+        "ElastiCacheCluster"
+        "MemoryDBCluster"
+        "DocumentDBCluster"
+        "WorkSpaces"
+        "SageMakerEndpoint"
     end
 
     -- Returns of list of resources that doesn't have idle recommendations.
@@ -3309,6 +3337,14 @@ local record M
         estimatedMonthlySavings: IdleEstimatedMonthlySavings
     end
 
+    -- Describes the dimension of an idle resource utilization metric.
+    record IdleDimension
+        -- The name of the dimension key.
+        key: string
+        -- The value of the dimension.
+        values: {string}
+    end
+
     enum IdleMetricName
         "CPU"
         "Memory"
@@ -3322,6 +3358,22 @@ local record M
         "ActiveConnectionCount"
         "PacketsInFromSource"
         "PacketsInFromDestination"
+        "ConsumedReadCapacityUnits"
+        "ConsumedWriteCapacityUnits"
+        "ConsumedChangeDataCaptureUnits"
+        "NewConnections"
+        "EngineCPUUtilization"
+        "CacheHits"
+        "CacheMisses"
+        "KeyspaceHits"
+        "KeyspaceMisses"
+        "IsIdle"
+        "UserConnected"
+        "Invocations"
+        "GetTypeCmds"
+        "SetTypeCmds"
+        "ElastiCacheProcessingUnits"
+        "CurrConnections"
     end
 
     -- Describes the utilization metric of an idle resource.
@@ -3343,6 +3395,8 @@ local record M
         statistic: string
         -- The value of the utilization metric.
         value: number
+        -- The dimensions of the utilization metric.
+        dimensions: {IdleDimension}
     end
 
     -- Describes an Idle resource recommendation.

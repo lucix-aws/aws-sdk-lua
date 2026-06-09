@@ -810,6 +810,8 @@ local record M
         outputBucketOwnerId: string
         -- Per-run AWS tags. Merged with defaultRunSetting.runTags; values in this object take precedence when keys overlap.
         runTags: {string : string}
+        -- Per-run engine-specific settings. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles). Overrides defaultRunSetting.engineSettings for this run.
+        engineSettings: any
     end
 
     -- A union type representing per-run configurations for the batch. Specify exactly one of the following members.
@@ -1549,6 +1551,8 @@ local record M
         networkingMode: string
         -- Optional configuration name to use for the workflow run.
         configurationName: string
+        -- Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).
+        engineSettings: any
     end
 
     -- Contains detailed information about the source code repository that hosts the workflow definition files.

@@ -172,6 +172,8 @@ local record M
         membershipLevel: string
         -- The member's principal ID to associate with the farm.
         principalId: string
+        -- The Region of the IAM Identity Center instance. If not provided, the service defaults to the Region of the farm.
+        identityCenterRegion: string
     end
 
     record AssociateMemberToFarmOutput
@@ -272,6 +274,8 @@ local record M
         membershipLevel: string
         -- The member's principal ID to associate with a fleet.
         principalId: string
+        -- The Region of the IAM Identity Center instance. If not provided, the service defaults to the Region of the farm.
+        identityCenterRegion: string
     end
 
     record AssociateMemberToFleetOutput
@@ -294,6 +298,8 @@ local record M
         membershipLevel: string
         -- The member's principal ID to associate with the job.
         principalId: string
+        -- The Region of the IAM Identity Center instance. If not provided, the service defaults to the Region of the farm.
+        identityCenterRegion: string
     end
 
     record AssociateMemberToJobOutput
@@ -314,6 +320,8 @@ local record M
         membershipLevel: string
         -- The member's principal ID to associate with the queue.
         principalId: string
+        -- The Region of the IAM Identity Center instance. If not provided, the service defaults to the Region of the farm.
+        identityCenterRegion: string
     end
 
     record AssociateMemberToQueueOutput

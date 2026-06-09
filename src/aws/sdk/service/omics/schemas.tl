@@ -2708,6 +2708,12 @@ M.InlineSetting = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        engineSettings = schema.new({
+            id = id.from(_N, "InlineSetting", "engineSettings"),
+            type = "document",
+            name = "engineSettings",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 
@@ -4744,6 +4750,12 @@ M.DefaultRunSetting = schema.new({
             type = "string",
             name = "configurationName",
             target_id = prelude.String.id,
+        }),
+        engineSettings = schema.new({
+            id = id.from(_N, "DefaultRunSetting", "engineSettings"),
+            type = "document",
+            name = "engineSettings",
+            target_id = prelude.Document.id,
         }),
     },
 })

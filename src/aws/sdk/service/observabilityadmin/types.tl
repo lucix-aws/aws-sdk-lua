@@ -100,6 +100,18 @@ local record M
         LogGroupNameConfiguration: LogGroupNameConfiguration
     end
 
+    -- Configuration for backing up centralized metrics data to a secondary region.
+    record MetricsBackupConfiguration
+        -- Metrics specific backup destination region within the primary destination account to which metrics data should be centralized.
+        Region: string
+    end
+
+    -- Configuration for centralization destination metrics, including backup settings.
+    record DestinationMetricsConfiguration
+        -- Configuration defining the backup region for the metrics backup destination.
+        BackupConfiguration: MetricsBackupConfiguration
+    end
+
     -- Configuration specifying the primary destination for centralized telemetry data.
     record CentralizationRuleDestination
         -- The primary destination region to which telemetry data should be centralized.
@@ -108,6 +120,8 @@ local record M
         Account: string
         -- Log specific configuration for centralization destination log groups.
         DestinationLogsConfiguration: DestinationLogsConfiguration
+        -- Metric specific configuration for centralization destination metrics.
+        DestinationMetricsConfiguration: DestinationMetricsConfiguration
     end
 
     enum EncryptedLogGroupStrategy
@@ -125,6 +139,12 @@ local record M
         EncryptedLogGroupStrategy: string
     end
 
+    -- Configuration for selecting source metrics for centralization.
+    record SourceMetricsConfiguration
+        -- The filter expression that selects which source metrics to centralize. Currently, only * (all metrics) is supported. Other values return a validation error.
+        MetricsSelectionCriteria: string
+    end
+
     -- Configuration specifying the source of telemetry data to be centralized.
     record CentralizationRuleSource
         -- The list of source regions from which telemetry data should be centralized.
@@ -133,6 +153,8 @@ local record M
         Scope: string
         -- Log specific configuration for centralization source log groups.
         SourceLogsConfiguration: SourceLogsConfiguration
+        -- Metric specific configuration for centralization source metrics.
+        SourceMetricsConfiguration: SourceMetricsConfiguration
     end
 
     -- Defines how telemetry data should be centralized across an Amazon Web Services Organization, including source and destination configurations.

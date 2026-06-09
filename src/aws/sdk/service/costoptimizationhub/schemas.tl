@@ -549,6 +549,20 @@ M.GetRecommendationInput = schema.new({
     },
 })
 
+M.DocumentDbCluster = schema.new({
+    id = id.from(_N, "DocumentDbCluster"),
+    type = "structure",
+    members = {
+        costCalculation = schema.new({
+            id = id.from(_N, "DocumentDbCluster", "costCalculation"),
+            type = "structure",
+            name = "costCalculation",
+            target_id = id.from(_N, "ResourceCostCalculation"),
+            target = M.ResourceCostCalculation,
+        }),
+    },
+})
+
 M.DynamoDbReservedCapacityConfiguration = schema.new({
     id = id.from(_N, "DynamoDbReservedCapacityConfiguration"),
     type = "structure",
@@ -672,6 +686,20 @@ M.DynamoDbReservedCapacity = schema.new({
             name = "costCalculation",
             target_id = id.from(_N, "ReservedInstancesCostCalculation"),
             target = M.ReservedInstancesCostCalculation,
+        }),
+    },
+})
+
+M.DynamoDbTable = schema.new({
+    id = id.from(_N, "DynamoDbTable"),
+    type = "structure",
+    members = {
+        costCalculation = schema.new({
+            id = id.from(_N, "DynamoDbTable", "costCalculation"),
+            type = "structure",
+            name = "costCalculation",
+            target_id = id.from(_N, "ResourceCostCalculation"),
+            target = M.ResourceCostCalculation,
         }),
     },
 })
@@ -1081,6 +1109,20 @@ M.EcsService = schema.new({
     },
 })
 
+M.ElastiCacheCluster = schema.new({
+    id = id.from(_N, "ElastiCacheCluster"),
+    type = "structure",
+    members = {
+        costCalculation = schema.new({
+            id = id.from(_N, "ElastiCacheCluster", "costCalculation"),
+            type = "structure",
+            name = "costCalculation",
+            target_id = id.from(_N, "ResourceCostCalculation"),
+            target = M.ResourceCostCalculation,
+        }),
+    },
+})
+
 M.ElastiCacheReservedInstancesConfiguration = schema.new({
     id = id.from(_N, "ElastiCacheReservedInstancesConfiguration"),
     type = "structure",
@@ -1214,6 +1256,20 @@ M.LambdaFunction = schema.new({
         }),
         costCalculation = schema.new({
             id = id.from(_N, "LambdaFunction", "costCalculation"),
+            type = "structure",
+            name = "costCalculation",
+            target_id = id.from(_N, "ResourceCostCalculation"),
+            target = M.ResourceCostCalculation,
+        }),
+    },
+})
+
+M.MemoryDbCluster = schema.new({
+    id = id.from(_N, "MemoryDbCluster"),
+    type = "structure",
+    members = {
+        costCalculation = schema.new({
+            id = id.from(_N, "MemoryDbCluster", "costCalculation"),
             type = "structure",
             name = "costCalculation",
             target_id = id.from(_N, "ResourceCostCalculation"),
@@ -1810,6 +1866,20 @@ M.RedshiftReservedInstances = schema.new({
     },
 })
 
+M.SageMakerEndpoint = schema.new({
+    id = id.from(_N, "SageMakerEndpoint"),
+    type = "structure",
+    members = {
+        costCalculation = schema.new({
+            id = id.from(_N, "SageMakerEndpoint", "costCalculation"),
+            type = "structure",
+            name = "costCalculation",
+            target_id = id.from(_N, "ResourceCostCalculation"),
+            target = M.ResourceCostCalculation,
+        }),
+    },
+})
+
 M.SageMakerSavingsPlansConfiguration = schema.new({
     id = id.from(_N, "SageMakerSavingsPlansConfiguration"),
     type = "structure",
@@ -1858,6 +1928,20 @@ M.SageMakerSavingsPlans = schema.new({
             name = "costCalculation",
             target_id = id.from(_N, "SavingsPlansCostCalculation"),
             target = M.SavingsPlansCostCalculation,
+        }),
+    },
+})
+
+M.WorkSpaces = schema.new({
+    id = id.from(_N, "WorkSpaces"),
+    type = "structure",
+    members = {
+        costCalculation = schema.new({
+            id = id.from(_N, "WorkSpaces", "costCalculation"),
+            type = "structure",
+            name = "costCalculation",
+            target_id = id.from(_N, "ResourceCostCalculation"),
+            target = M.ResourceCostCalculation,
         }),
     },
 })
@@ -1998,6 +2082,48 @@ M.ResourceDetails = schema.new({
             name = "natGateway",
             target_id = id.from(_N, "NatGateway"),
             target = M.NatGateway,
+        }),
+        dynamoDbTable = schema.new({
+            id = id.from(_N, "ResourceDetails", "dynamoDbTable"),
+            type = "structure",
+            name = "dynamoDbTable",
+            target_id = id.from(_N, "DynamoDbTable"),
+            target = M.DynamoDbTable,
+        }),
+        elastiCacheCluster = schema.new({
+            id = id.from(_N, "ResourceDetails", "elastiCacheCluster"),
+            type = "structure",
+            name = "elastiCacheCluster",
+            target_id = id.from(_N, "ElastiCacheCluster"),
+            target = M.ElastiCacheCluster,
+        }),
+        memoryDbCluster = schema.new({
+            id = id.from(_N, "ResourceDetails", "memoryDbCluster"),
+            type = "structure",
+            name = "memoryDbCluster",
+            target_id = id.from(_N, "MemoryDbCluster"),
+            target = M.MemoryDbCluster,
+        }),
+        documentDbCluster = schema.new({
+            id = id.from(_N, "ResourceDetails", "documentDbCluster"),
+            type = "structure",
+            name = "documentDbCluster",
+            target_id = id.from(_N, "DocumentDbCluster"),
+            target = M.DocumentDbCluster,
+        }),
+        workSpaces = schema.new({
+            id = id.from(_N, "ResourceDetails", "workSpaces"),
+            type = "structure",
+            name = "workSpaces",
+            target_id = id.from(_N, "WorkSpaces"),
+            target = M.WorkSpaces,
+        }),
+        sageMakerEndpoint = schema.new({
+            id = id.from(_N, "ResourceDetails", "sageMakerEndpoint"),
+            type = "structure",
+            name = "sageMakerEndpoint",
+            target_id = id.from(_N, "SageMakerEndpoint"),
+            target = M.SageMakerEndpoint,
         }),
     },
 })

@@ -403,6 +403,11 @@ local record M
         "ISM"
     end
 
+    enum DashAudioTimelinePattern
+        "NONE"
+        "PATTERNED"
+    end
+
     -- The configuration for the DASH availabilityStartTime attribute of the Media Presentation Description (MPD). Use this configuration to set a custom availability start time for your DASH manifest.
     record DashAvailabilityStartTimeConfiguration
         -- The fixed availability start time for the DASH manifest, in ISO 8601 date-time format. The value must have hourly granularity, meaning that the minutes, seconds, and fractional seconds must be zero. The value must be on or after 2024-01-01T00:00:00Z and must be at least 14 days before the current time.
@@ -586,6 +591,8 @@ local record M
         DvbSettings: DashDvbSettings
         -- The layout of the DASH manifest that MediaPackage produces. STANDARD indicates a default manifest, which is compacted. NONE indicates a full manifest. For information about compactness, see DASH manifest compactness in the Elemental MediaPackage v2 User Guide.
         Compactness: string
+        -- How MediaPackage represents the audio timeline in the DASH manifest. This setting applies DASH Segment Duration Patternization, as defined in the MPEG-DASH specification, to audio adaptation sets. When set to PATTERNED, MediaPackage uses a pattern-based segment template for audio, which reduces manifest size by expressing repeating segment durations as a pattern instead of listing each segment individually. When set to NONE, the manifest contains an explicit timeline that lists each audio segment. Valid values: NONE | PATTERNED For information about audio timeline patterns, see DASH audio timeline pattern in the Elemental MediaPackage v2 User Guide.
+        AudioTimelinePattern: string
         -- The configuration for DASH subtitles.
         SubtitleConfiguration: DashSubtitleConfiguration
         -- The type of path to use in manifest URIs. LEAF uses leaf-relative paths (for example, index_1.mpd). ROOT uses root-relative paths that include the full path from root (for example, /out/v1/channel-group/channel/endpoint/index_1.mpd). If you don't specify a value, the default is LEAF.
@@ -794,6 +801,8 @@ local record M
         "DISTRIBUTOR_PROMO"
         "PROVIDER_AD_BLOCK"
         "DISTRIBUTOR_AD_BLOCK"
+        "CONTENT_IDENTIFICATION"
+        "CALL_AD_SERVER"
     end
 
     enum ScteInSegments
@@ -902,6 +911,8 @@ local record M
         DvbSettings: DashDvbSettings
         -- The layout of the DASH manifest that MediaPackage produces. STANDARD indicates a default manifest, which is compacted. NONE indicates a full manifest.
         Compactness: string
+        -- How MediaPackage represents the audio timeline in the DASH manifest, using DASH Segment Duration Patternization for audio adaptation sets. PATTERNED indicates that MediaPackage uses a pattern-based segment template for audio, reducing manifest size. NONE indicates that the manifest contains an explicit timeline for each audio segment.
+        AudioTimelinePattern: string
         -- The configuration for DASH subtitles.
         SubtitleConfiguration: DashSubtitleConfiguration
         -- The type of path used in manifest URIs. LEAF indicates leaf-relative paths. ROOT indicates root-relative paths that include the full path from root.

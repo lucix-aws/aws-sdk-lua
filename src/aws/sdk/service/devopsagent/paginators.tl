@@ -22,6 +22,78 @@ function M.items_list_agent_spaces(client, input)
     })
 end
 
+--- Returns a page iterator for listAssetFiles.
+function M.pages_list_asset_files(client, input)
+    return paginator.pages(client, "listAssetFiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAssetFiles.
+function M.items_list_asset_files(client, input)
+    return paginator.items(client, "listAssetFiles", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAssetTypes.
+function M.pages_list_asset_types(client, input)
+    return paginator.pages(client, "listAssetTypes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAssetTypes.
+function M.items_list_asset_types(client, input)
+    return paginator.items(client, "listAssetTypes", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAssetVersions.
+function M.pages_list_asset_versions(client, input)
+    return paginator.pages(client, "listAssetVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAssetVersions.
+function M.items_list_asset_versions(client, input)
+    return paginator.items(client, "listAssetVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns a page iterator for listAssets.
+function M.pages_list_assets(client, input)
+    return paginator.pages(client, "listAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listAssets.
+function M.items_list_assets(client, input)
+    return paginator.items(client, "listAssets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listAssociations.
 function M.pages_list_associations(client, input)
     return paginator.pages(client, "listAssociations", input, {
