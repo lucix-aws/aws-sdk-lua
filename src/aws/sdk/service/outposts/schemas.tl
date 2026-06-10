@@ -13,6 +13,14 @@ M.LineItemRequestListDefinition = schema.new({ type = "list", list_member = M.Li
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.QuoteCapacityList = schema.new({ type = "list", list_member = M.QuoteCapacity })
+
+M.QuoteConstraintList = schema.new({ type = "list", list_member = M.QuoteConstraint })
+
+M.PaymentOptionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.PaymentTermList = schema.new({ type = "list", list_member = prelude.String })
+
 M.RequestedInstancePools = schema.new({ type = "list", list_member = M.InstanceTypeCapacity })
 
 M.SubscriptionList = schema.new({ type = "list", list_member = M.Subscription })
@@ -53,6 +61,8 @@ M.EC2FamilyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.CatalogItemListDefinition = schema.new({ type = "list", list_member = M.CatalogItem })
 
+M.DetailedInstanceTypeListDefinition = schema.new({ type = "list", list_member = M.DetailedInstanceTypeItem })
+
 M.OrderSummaryListDefinition = schema.new({ type = "list", list_member = M.OrderSummary })
 
 M.LifeCycleStatusList = schema.new({ type = "list", list_member = prelude.String })
@@ -62,6 +72,8 @@ M.AvailabilityZoneList = schema.new({ type = "list", list_member = prelude.Strin
 M.AvailabilityZoneIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.outpostListDefinition = schema.new({ type = "list", list_member = M.Outpost })
+
+M.QuoteSummaryListDefinition = schema.new({ type = "list", list_member = M.QuoteSummary })
 
 M.CountryCodeList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -77,6 +89,10 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LineItemListDefinition = schema.new({ type = "list", list_member = M.LineItem })
 
+M.QuoteOptionList = schema.new({ type = "list", list_member = M.QuoteOption })
+
+M.OrderingRequirementList = schema.new({ type = "list", list_member = M.OrderingRequirement })
+
 M.InstanceIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EC2CapacityListDefinition = schema.new({ type = "list", list_member = M.EC2Capacity })
@@ -87,9 +103,13 @@ M.CIDRList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OrderIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.FormFactorConfigList = schema.new({ type = "list", list_member = M.FormFactorConfig })
+
 M.LineItemStatusCounts = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
 
 M.LineItemAssetInformationList = schema.new({ type = "list", list_member = M.LineItemAssetInformation })
+
+M.QuoteSpecificationList = schema.new({ type = "list", list_member = M.QuoteSpecification })
 
 M.InstanceFamilies = schema.new({ type = "list", list_member = prelude.String })
 
@@ -514,6 +534,59 @@ M.CancelOrderInput = schema.new({
 M.CancelOrderOutput = schema.new({
     id = id.from(_N, "CancelOrderOutput"),
     type = "structure",
+})
+
+M.QuoteCapacity = schema.new({
+    id = id.from(_N, "QuoteCapacity"),
+    type = "structure",
+    members = {
+        QuoteCapacityType = schema.new({
+            id = id.from(_N, "QuoteCapacity", "QuoteCapacityType"),
+            type = "string",
+            name = "QuoteCapacityType",
+            target_id = prelude.String.id,
+        }),
+        Unit = schema.new({
+            id = id.from(_N, "QuoteCapacity", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+        }),
+        Quantity = schema.new({
+            id = id.from(_N, "QuoteCapacity", "Quantity"),
+            type = "float",
+            name = "Quantity",
+            target_id = prelude.Float.id,
+        }),
+    },
+})
+
+M.CapacitySummary = schema.new({
+    id = id.from(_N, "CapacitySummary"),
+    type = "structure",
+    members = {
+        ExistingCapacities = schema.new({
+            id = id.from(_N, "CapacitySummary", "ExistingCapacities"),
+            type = "list",
+            name = "ExistingCapacities",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+        }),
+        FinalCapacities = schema.new({
+            id = id.from(_N, "CapacitySummary", "FinalCapacities"),
+            type = "list",
+            name = "FinalCapacities",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+        }),
+        CapacityChange = schema.new({
+            id = id.from(_N, "CapacitySummary", "CapacityChange"),
+            type = "list",
+            name = "CapacityChange",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+        }),
+    },
 })
 
 M.CapacityTaskFailure = schema.new({
@@ -1111,6 +1184,476 @@ M.CreateOutpostOutput = schema.new({
     },
 })
 
+M.QuoteConstraint = schema.new({
+    id = id.from(_N, "QuoteConstraint"),
+    type = "structure",
+    members = {
+        QuoteConstraintType = schema.new({
+            id = id.from(_N, "QuoteConstraint", "QuoteConstraintType"),
+            type = "string",
+            name = "QuoteConstraintType",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "QuoteConstraint", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateQuoteInput = schema.new({
+    id = id.from(_N, "CreateQuoteInput"),
+    type = "structure",
+    members = {
+        OutpostIdentifier = schema.new({
+            id = id.from(_N, "CreateQuoteInput", "OutpostIdentifier"),
+            type = "string",
+            name = "OutpostIdentifier",
+            target_id = prelude.String.id,
+        }),
+        CountryCode = schema.new({
+            id = id.from(_N, "CreateQuoteInput", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestedCapacities = schema.new({
+            id = id.from(_N, "CreateQuoteInput", "RequestedCapacities"),
+            type = "list",
+            name = "RequestedCapacities",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestedConstraints = schema.new({
+            id = id.from(_N, "CreateQuoteInput", "RequestedConstraints"),
+            type = "list",
+            name = "RequestedConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteConstraint,
+        }),
+        RequestedPaymentOptions = schema.new({
+            id = id.from(_N, "CreateQuoteInput", "RequestedPaymentOptions"),
+            type = "list",
+            name = "RequestedPaymentOptions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestedPaymentTerms = schema.new({
+            id = id.from(_N, "CreateQuoteInput", "RequestedPaymentTerms"),
+            type = "list",
+            name = "RequestedPaymentTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateQuoteInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OrderingRequirement = schema.new({
+    id = id.from(_N, "OrderingRequirement"),
+    type = "structure",
+    members = {
+        StatusMessage = schema.new({
+            id = id.from(_N, "OrderingRequirement", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        OrderingRequirementType = schema.new({
+            id = id.from(_N, "OrderingRequirement", "OrderingRequirementType"),
+            type = "string",
+            name = "OrderingRequirementType",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "OrderingRequirement", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SubscriptionPricingDetails = schema.new({
+    id = id.from(_N, "SubscriptionPricingDetails"),
+    type = "structure",
+    members = {
+        PaymentOption = schema.new({
+            id = id.from(_N, "SubscriptionPricingDetails", "PaymentOption"),
+            type = "string",
+            name = "PaymentOption",
+            target_id = prelude.String.id,
+        }),
+        PaymentTerm = schema.new({
+            id = id.from(_N, "SubscriptionPricingDetails", "PaymentTerm"),
+            type = "string",
+            name = "PaymentTerm",
+            target_id = prelude.String.id,
+        }),
+        UpfrontPrice = schema.new({
+            id = id.from(_N, "SubscriptionPricingDetails", "UpfrontPrice"),
+            type = "float",
+            name = "UpfrontPrice",
+            target_id = prelude.Float.id,
+        }),
+        MonthlyRecurringPrice = schema.new({
+            id = id.from(_N, "SubscriptionPricingDetails", "MonthlyRecurringPrice"),
+            type = "float",
+            name = "MonthlyRecurringPrice",
+            target_id = prelude.Float.id,
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "SubscriptionPricingDetails", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PricingOption = schema.new({
+    id = id.from(_N, "PricingOption"),
+    type = "structure",
+    members = {
+        PricingType = schema.new({
+            id = id.from(_N, "PricingOption", "PricingType"),
+            type = "string",
+            name = "PricingType",
+            target_id = prelude.String.id,
+        }),
+        SubscriptionPricingDetails = schema.new({
+            id = id.from(_N, "PricingOption", "SubscriptionPricingDetails"),
+            type = "structure",
+            name = "SubscriptionPricingDetails",
+            target_id = id.from(_N, "SubscriptionPricingDetails"),
+            target = M.SubscriptionPricingDetails,
+        }),
+    },
+})
+
+M.RackSpecificationDetails = schema.new({
+    id = id.from(_N, "RackSpecificationDetails"),
+    type = "structure",
+    members = {
+        RackId = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackId"),
+            type = "string",
+            name = "RackId",
+            target_id = prelude.String.id,
+        }),
+        RackUse = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackUse"),
+            type = "string",
+            name = "RackUse",
+            target_id = prelude.String.id,
+        }),
+        RackPowerDrawKva = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackPowerDrawKva"),
+            type = "float",
+            name = "RackPowerDrawKva",
+            target_id = prelude.Float.id,
+        }),
+        RackWeightLbs = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackWeightLbs"),
+            type = "float",
+            name = "RackWeightLbs",
+            target_id = prelude.Float.id,
+        }),
+        RackHeightInches = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackHeightInches"),
+            type = "float",
+            name = "RackHeightInches",
+            target_id = prelude.Float.id,
+        }),
+        RackWidthInches = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackWidthInches"),
+            type = "float",
+            name = "RackWidthInches",
+            target_id = prelude.Float.id,
+        }),
+        RackDepthInches = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackDepthInches"),
+            type = "float",
+            name = "RackDepthInches",
+            target_id = prelude.Float.id,
+        }),
+        RackUnitHeight = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "RackUnitHeight"),
+            type = "string",
+            name = "RackUnitHeight",
+            target_id = prelude.String.id,
+        }),
+        EC2Capacities = schema.new({
+            id = id.from(_N, "RackSpecificationDetails", "EC2Capacities"),
+            type = "list",
+            name = "EC2Capacities",
+            target_id = prelude.Document.id,
+            list_member = M.EC2Capacity,
+        }),
+    },
+})
+
+M.ServerSpecificationDetails = schema.new({
+    id = id.from(_N, "ServerSpecificationDetails"),
+    type = "structure",
+    members = {
+        ServerPowerDrawKva = schema.new({
+            id = id.from(_N, "ServerSpecificationDetails", "ServerPowerDrawKva"),
+            type = "float",
+            name = "ServerPowerDrawKva",
+            target_id = prelude.Float.id,
+        }),
+        ServerWeightLbs = schema.new({
+            id = id.from(_N, "ServerSpecificationDetails", "ServerWeightLbs"),
+            type = "float",
+            name = "ServerWeightLbs",
+            target_id = prelude.Float.id,
+        }),
+        ServerHeightInches = schema.new({
+            id = id.from(_N, "ServerSpecificationDetails", "ServerHeightInches"),
+            type = "float",
+            name = "ServerHeightInches",
+            target_id = prelude.Float.id,
+        }),
+        ServerWidthInches = schema.new({
+            id = id.from(_N, "ServerSpecificationDetails", "ServerWidthInches"),
+            type = "float",
+            name = "ServerWidthInches",
+            target_id = prelude.Float.id,
+        }),
+        ServerDepthInches = schema.new({
+            id = id.from(_N, "ServerSpecificationDetails", "ServerDepthInches"),
+            type = "float",
+            name = "ServerDepthInches",
+            target_id = prelude.Float.id,
+        }),
+        RackUnitHeight = schema.new({
+            id = id.from(_N, "ServerSpecificationDetails", "RackUnitHeight"),
+            type = "string",
+            name = "RackUnitHeight",
+            target_id = prelude.String.id,
+        }),
+        EC2Capacities = schema.new({
+            id = id.from(_N, "ServerSpecificationDetails", "EC2Capacities"),
+            type = "list",
+            name = "EC2Capacities",
+            target_id = prelude.Document.id,
+            list_member = M.EC2Capacity,
+        }),
+    },
+})
+
+M.QuoteSpecification = schema.new({
+    id = id.from(_N, "QuoteSpecification"),
+    type = "structure",
+    members = {
+        QuoteSpecificationType = schema.new({
+            id = id.from(_N, "QuoteSpecification", "QuoteSpecificationType"),
+            type = "string",
+            name = "QuoteSpecificationType",
+            target_id = prelude.String.id,
+        }),
+        ExistingRackSpecificationDetails = schema.new({
+            id = id.from(_N, "QuoteSpecification", "ExistingRackSpecificationDetails"),
+            type = "structure",
+            name = "ExistingRackSpecificationDetails",
+            target_id = id.from(_N, "RackSpecificationDetails"),
+            target = M.RackSpecificationDetails,
+        }),
+        FinalRackSpecificationDetails = schema.new({
+            id = id.from(_N, "QuoteSpecification", "FinalRackSpecificationDetails"),
+            type = "structure",
+            name = "FinalRackSpecificationDetails",
+            target_id = id.from(_N, "RackSpecificationDetails"),
+            target = M.RackSpecificationDetails,
+        }),
+        ServerSpecificationDetails = schema.new({
+            id = id.from(_N, "QuoteSpecification", "ServerSpecificationDetails"),
+            type = "structure",
+            name = "ServerSpecificationDetails",
+            target_id = id.from(_N, "ServerSpecificationDetails"),
+            target = M.ServerSpecificationDetails,
+        }),
+    },
+})
+
+M.QuoteOption = schema.new({
+    id = id.from(_N, "QuoteOption"),
+    type = "structure",
+    members = {
+        QuoteOptionIdentifier = schema.new({
+            id = id.from(_N, "QuoteOption", "QuoteOptionIdentifier"),
+            type = "string",
+            name = "QuoteOptionIdentifier",
+            target_id = prelude.String.id,
+        }),
+        Capacities = schema.new({
+            id = id.from(_N, "QuoteOption", "Capacities"),
+            type = "list",
+            name = "Capacities",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+        }),
+        CapacitySummary = schema.new({
+            id = id.from(_N, "QuoteOption", "CapacitySummary"),
+            type = "structure",
+            name = "CapacitySummary",
+            target_id = id.from(_N, "CapacitySummary"),
+            target = M.CapacitySummary,
+        }),
+        Specifications = schema.new({
+            id = id.from(_N, "QuoteOption", "Specifications"),
+            type = "list",
+            name = "Specifications",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteSpecification,
+        }),
+        PricingOptions = schema.new({
+            id = id.from(_N, "QuoteOption", "PricingOptions"),
+            type = "list",
+            name = "PricingOptions",
+            target_id = prelude.Document.id,
+            list_member = M.PricingOption,
+        }),
+    },
+})
+
+M.Quote = schema.new({
+    id = id.from(_N, "Quote"),
+    type = "structure",
+    members = {
+        QuoteId = schema.new({
+            id = id.from(_N, "Quote", "QuoteId"),
+            type = "string",
+            name = "QuoteId",
+            target_id = prelude.String.id,
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "Quote", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+        QuoteStatus = schema.new({
+            id = id.from(_N, "Quote", "QuoteStatus"),
+            type = "string",
+            name = "QuoteStatus",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "Quote", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        OutpostArn = schema.new({
+            id = id.from(_N, "Quote", "OutpostArn"),
+            type = "string",
+            name = "OutpostArn",
+            target_id = prelude.String.id,
+        }),
+        CountryCode = schema.new({
+            id = id.from(_N, "Quote", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+        }),
+        RequestedCapacities = schema.new({
+            id = id.from(_N, "Quote", "RequestedCapacities"),
+            type = "list",
+            name = "RequestedCapacities",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+        }),
+        RequestedConstraints = schema.new({
+            id = id.from(_N, "Quote", "RequestedConstraints"),
+            type = "list",
+            name = "RequestedConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteConstraint,
+        }),
+        RequestedPaymentOptions = schema.new({
+            id = id.from(_N, "Quote", "RequestedPaymentOptions"),
+            type = "list",
+            name = "RequestedPaymentOptions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestedPaymentTerms = schema.new({
+            id = id.from(_N, "Quote", "RequestedPaymentTerms"),
+            type = "list",
+            name = "RequestedPaymentTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        QuoteOptions = schema.new({
+            id = id.from(_N, "Quote", "QuoteOptions"),
+            type = "list",
+            name = "QuoteOptions",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteOption,
+        }),
+        OrderingRequirements = schema.new({
+            id = id.from(_N, "Quote", "OrderingRequirements"),
+            type = "list",
+            name = "OrderingRequirements",
+            target_id = prelude.Document.id,
+            list_member = M.OrderingRequirement,
+        }),
+        SubmittedOrderId = schema.new({
+            id = id.from(_N, "Quote", "SubmittedOrderId"),
+            type = "string",
+            name = "SubmittedOrderId",
+            target_id = prelude.String.id,
+        }),
+        CreatedDate = schema.new({
+            id = id.from(_N, "Quote", "CreatedDate"),
+            type = "timestamp",
+            name = "CreatedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        ExpirationDate = schema.new({
+            id = id.from(_N, "Quote", "ExpirationDate"),
+            type = "timestamp",
+            name = "ExpirationDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "Quote", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateQuoteOutput = schema.new({
+    id = id.from(_N, "CreateQuoteOutput"),
+    type = "structure",
+    members = {
+        Quote = schema.new({
+            id = id.from(_N, "CreateQuoteOutput", "Quote"),
+            type = "structure",
+            name = "Quote",
+            target_id = id.from(_N, "Quote"),
+            target = M.Quote,
+        }),
+    },
+})
+
 M.CreateRenewalInput = schema.new({
     id = id.from(_N, "CreateRenewalInput"),
     type = "structure",
@@ -1187,6 +1730,12 @@ M.CreateRenewalOutput = schema.new({
             type = "float",
             name = "MonthlyRecurringPrice",
             target_id = prelude.Float.id,
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "CreateRenewalOutput", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1421,6 +1970,28 @@ M.DeleteOutpostOutput = schema.new({
     type = "structure",
 })
 
+M.DeleteQuoteInput = schema.new({
+    id = id.from(_N, "DeleteQuoteInput"),
+    type = "structure",
+    members = {
+        QuoteIdentifier = schema.new({
+            id = id.from(_N, "DeleteQuoteInput", "QuoteIdentifier"),
+            type = "string",
+            name = "QuoteIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteQuoteOutput = schema.new({
+    id = id.from(_N, "DeleteQuoteOutput"),
+    type = "structure",
+})
+
 M.DeleteSiteInput = schema.new({
     id = id.from(_N, "DeleteSiteInput"),
     type = "structure",
@@ -1441,6 +2012,66 @@ M.DeleteSiteInput = schema.new({
 M.DeleteSiteOutput = schema.new({
     id = id.from(_N, "DeleteSiteOutput"),
     type = "structure",
+})
+
+M.FormFactorConfig = schema.new({
+    id = id.from(_N, "FormFactorConfig"),
+    type = "structure",
+    members = {
+        FormFactor = schema.new({
+            id = id.from(_N, "FormFactorConfig", "FormFactor"),
+            type = "string",
+            name = "FormFactor",
+            target_id = prelude.String.id,
+        }),
+        OutpostGeneration = schema.new({
+            id = id.from(_N, "FormFactorConfig", "OutpostGeneration"),
+            type = "string",
+            name = "OutpostGeneration",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DetailedInstanceTypeItem = schema.new({
+    id = id.from(_N, "DetailedInstanceTypeItem"),
+    type = "structure",
+    members = {
+        InstanceType = schema.new({
+            id = id.from(_N, "DetailedInstanceTypeItem", "InstanceType"),
+            type = "string",
+            name = "InstanceType",
+            target_id = prelude.String.id,
+        }),
+        VCPUs = schema.new({
+            id = id.from(_N, "DetailedInstanceTypeItem", "VCPUs"),
+            type = "integer",
+            name = "VCPUs",
+            target_id = prelude.Integer.id,
+        }),
+        MemoryInMib = schema.new({
+            id = id.from(_N, "DetailedInstanceTypeItem", "MemoryInMib"),
+            type = "integer",
+            name = "MemoryInMib",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        NetworkPerformance = schema.new({
+            id = id.from(_N, "DetailedInstanceTypeItem", "NetworkPerformance"),
+            type = "string",
+            name = "NetworkPerformance",
+            target_id = prelude.String.id,
+        }),
+        FormFactorConfigs = schema.new({
+            id = id.from(_N, "DetailedInstanceTypeItem", "FormFactorConfigs"),
+            type = "list",
+            name = "FormFactorConfigs",
+            target_id = prelude.Document.id,
+            list_member = M.FormFactorConfig,
+        }),
+    },
 })
 
 M.GetCapacityTaskInput = schema.new({
@@ -1821,6 +2452,12 @@ M.Subscription = schema.new({
             name = "EndDate",
             target_id = prelude.Timestamp.id,
         }),
+        Currency = schema.new({
+            id = id.from(_N, "Subscription", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+        }),
         MonthlyRecurringPrice = schema.new({
             id = id.from(_N, "Subscription", "MonthlyRecurringPrice"),
             type = "double",
@@ -2033,6 +2670,37 @@ M.GetOutpostSupportedInstanceTypesOutput = schema.new({
     },
 })
 
+M.GetQuoteInput = schema.new({
+    id = id.from(_N, "GetQuoteInput"),
+    type = "structure",
+    members = {
+        QuoteIdentifier = schema.new({
+            id = id.from(_N, "GetQuoteInput", "QuoteIdentifier"),
+            type = "string",
+            name = "QuoteIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetQuoteOutput = schema.new({
+    id = id.from(_N, "GetQuoteOutput"),
+    type = "structure",
+    members = {
+        Quote = schema.new({
+            id = id.from(_N, "GetQuoteOutput", "Quote"),
+            type = "structure",
+            name = "Quote",
+            target_id = id.from(_N, "Quote"),
+            target = M.Quote,
+        }),
+    },
+})
+
 M.GetRenewalPricingInput = schema.new({
     id = id.from(_N, "GetRenewalPricingInput"),
     type = "structure",
@@ -2046,57 +2714,6 @@ M.GetRenewalPricingInput = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
-        }),
-    },
-})
-
-M.SubscriptionPricingDetails = schema.new({
-    id = id.from(_N, "SubscriptionPricingDetails"),
-    type = "structure",
-    members = {
-        PaymentOption = schema.new({
-            id = id.from(_N, "SubscriptionPricingDetails", "PaymentOption"),
-            type = "string",
-            name = "PaymentOption",
-            target_id = prelude.String.id,
-        }),
-        PaymentTerm = schema.new({
-            id = id.from(_N, "SubscriptionPricingDetails", "PaymentTerm"),
-            type = "string",
-            name = "PaymentTerm",
-            target_id = prelude.String.id,
-        }),
-        UpfrontPrice = schema.new({
-            id = id.from(_N, "SubscriptionPricingDetails", "UpfrontPrice"),
-            type = "float",
-            name = "UpfrontPrice",
-            target_id = prelude.Float.id,
-        }),
-        MonthlyRecurringPrice = schema.new({
-            id = id.from(_N, "SubscriptionPricingDetails", "MonthlyRecurringPrice"),
-            type = "float",
-            name = "MonthlyRecurringPrice",
-            target_id = prelude.Float.id,
-        }),
-    },
-})
-
-M.PricingOption = schema.new({
-    id = id.from(_N, "PricingOption"),
-    type = "structure",
-    members = {
-        PricingType = schema.new({
-            id = id.from(_N, "PricingOption", "PricingType"),
-            type = "string",
-            name = "PricingType",
-            target_id = prelude.String.id,
-        }),
-        SubscriptionPricingDetails = schema.new({
-            id = id.from(_N, "PricingOption", "SubscriptionPricingDetails"),
-            type = "structure",
-            name = "SubscriptionPricingDetails",
-            target_id = id.from(_N, "SubscriptionPricingDetails"),
-            target = M.SubscriptionPricingDetails,
         }),
     },
 })
@@ -2589,6 +3206,60 @@ M.ListCatalogItemsOutput = schema.new({
     },
 })
 
+M.ListOrderableInstanceTypesInput = schema.new({
+    id = id.from(_N, "ListOrderableInstanceTypesInput"),
+    type = "structure",
+    members = {
+        OutpostGenerationFilter = schema.new({
+            id = id.from(_N, "ListOrderableInstanceTypesInput", "OutpostGenerationFilter"),
+            type = "string",
+            name = "OutpostGenerationFilter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "OutpostGenerationFilter" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListOrderableInstanceTypesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListOrderableInstanceTypesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.ListOrderableInstanceTypesOutput = schema.new({
+    id = id.from(_N, "ListOrderableInstanceTypesOutput"),
+    type = "structure",
+    members = {
+        InstanceTypes = schema.new({
+            id = id.from(_N, "ListOrderableInstanceTypesOutput", "InstanceTypes"),
+            type = "list",
+            name = "InstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = M.DetailedInstanceTypeItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListOrderableInstanceTypesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListOrdersInput = schema.new({
     id = id.from(_N, "ListOrdersInput"),
     type = "structure",
@@ -2762,6 +3433,153 @@ M.ListOutpostsOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListOutpostsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListQuotesInput = schema.new({
+    id = id.from(_N, "ListQuotesInput"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListQuotesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListQuotesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+    },
+})
+
+M.QuoteSummary = schema.new({
+    id = id.from(_N, "QuoteSummary"),
+    type = "structure",
+    members = {
+        QuoteId = schema.new({
+            id = id.from(_N, "QuoteSummary", "QuoteId"),
+            type = "string",
+            name = "QuoteId",
+            target_id = prelude.String.id,
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "QuoteSummary", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+        QuoteStatus = schema.new({
+            id = id.from(_N, "QuoteSummary", "QuoteStatus"),
+            type = "string",
+            name = "QuoteStatus",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "QuoteSummary", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        OutpostArn = schema.new({
+            id = id.from(_N, "QuoteSummary", "OutpostArn"),
+            type = "string",
+            name = "OutpostArn",
+            target_id = prelude.String.id,
+        }),
+        CountryCode = schema.new({
+            id = id.from(_N, "QuoteSummary", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+        }),
+        RequestedCapacities = schema.new({
+            id = id.from(_N, "QuoteSummary", "RequestedCapacities"),
+            type = "list",
+            name = "RequestedCapacities",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+        }),
+        RequestedConstraints = schema.new({
+            id = id.from(_N, "QuoteSummary", "RequestedConstraints"),
+            type = "list",
+            name = "RequestedConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteConstraint,
+        }),
+        RequestedPaymentOptions = schema.new({
+            id = id.from(_N, "QuoteSummary", "RequestedPaymentOptions"),
+            type = "list",
+            name = "RequestedPaymentOptions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestedPaymentTerms = schema.new({
+            id = id.from(_N, "QuoteSummary", "RequestedPaymentTerms"),
+            type = "list",
+            name = "RequestedPaymentTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        QuoteOptions = schema.new({
+            id = id.from(_N, "QuoteSummary", "QuoteOptions"),
+            type = "list",
+            name = "QuoteOptions",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteOption,
+        }),
+        SubmittedOrderId = schema.new({
+            id = id.from(_N, "QuoteSummary", "SubmittedOrderId"),
+            type = "string",
+            name = "SubmittedOrderId",
+            target_id = prelude.String.id,
+        }),
+        CreatedDate = schema.new({
+            id = id.from(_N, "QuoteSummary", "CreatedDate"),
+            type = "timestamp",
+            name = "CreatedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        ExpirationDate = schema.new({
+            id = id.from(_N, "QuoteSummary", "ExpirationDate"),
+            type = "timestamp",
+            name = "ExpirationDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "QuoteSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListQuotesOutput = schema.new({
+    id = id.from(_N, "ListQuotesOutput"),
+    type = "structure",
+    members = {
+        Quotes = schema.new({
+            id = id.from(_N, "ListQuotesOutput", "Quotes"),
+            type = "list",
+            name = "Quotes",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListQuotesOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -3249,6 +4067,83 @@ M.UpdateOutpostOutput = schema.new({
     },
 })
 
+M.UpdateQuoteInput = schema.new({
+    id = id.from(_N, "UpdateQuoteInput"),
+    type = "structure",
+    members = {
+        QuoteIdentifier = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "QuoteIdentifier"),
+            type = "string",
+            name = "QuoteIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        OutpostIdentifier = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "OutpostIdentifier"),
+            type = "string",
+            name = "OutpostIdentifier",
+            target_id = prelude.String.id,
+        }),
+        CountryCode = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+        }),
+        RequestedCapacities = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "RequestedCapacities"),
+            type = "list",
+            name = "RequestedCapacities",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteCapacity,
+        }),
+        RequestedConstraints = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "RequestedConstraints"),
+            type = "list",
+            name = "RequestedConstraints",
+            target_id = prelude.Document.id,
+            list_member = M.QuoteConstraint,
+        }),
+        RequestedPaymentOptions = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "RequestedPaymentOptions"),
+            type = "list",
+            name = "RequestedPaymentOptions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        RequestedPaymentTerms = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "RequestedPaymentTerms"),
+            type = "list",
+            name = "RequestedPaymentTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateQuoteInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateQuoteOutput = schema.new({
+    id = id.from(_N, "UpdateQuoteOutput"),
+    type = "structure",
+    members = {
+        Quote = schema.new({
+            id = id.from(_N, "UpdateQuoteOutput", "Quote"),
+            type = "structure",
+            name = "Quote",
+            target_id = id.from(_N, "Quote"),
+            target = M.Quote,
+        }),
+    },
+})
+
 M.UpdateSiteInput = schema.new({
     id = id.from(_N, "UpdateSiteInput"),
     type = "structure",
@@ -3512,6 +4407,18 @@ M.CreateOutpost = schema.operation({
     },
 })
 
+M.CreateQuote = schema.operation({
+    id = id.from("com.amazonaws.outposts", "CreateQuote"),
+    input = M.CreateQuoteInput,
+    output = M.CreateQuoteOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/quotes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateRenewal = schema.operation({
     id = id.from("com.amazonaws.outposts", "CreateRenewal"),
     input = M.CreateRenewalInput,
@@ -3542,6 +4449,18 @@ M.DeleteOutpost = schema.operation({
     output = M.DeleteOutpostOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/outposts/{OutpostId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQuote = schema.operation({
+    id = id.from("com.amazonaws.outposts", "DeleteQuote"),
+    input = M.DeleteQuoteInput,
+    output = M.DeleteQuoteOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/quotes/{QuoteIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3656,6 +4575,18 @@ M.GetOutpostSupportedInstanceTypes = schema.operation({
     },
 })
 
+M.GetQuote = schema.operation({
+    id = id.from("com.amazonaws.outposts", "GetQuote"),
+    input = M.GetQuoteInput,
+    output = M.GetQuoteOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/quotes/{QuoteIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetRenewalPricing = schema.operation({
     id = id.from("com.amazonaws.outposts", "GetRenewalPricing"),
     input = M.GetRenewalPricingInput,
@@ -3752,6 +4683,18 @@ M.ListCatalogItems = schema.operation({
     },
 })
 
+M.ListOrderableInstanceTypes = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListOrderableInstanceTypes"),
+    input = M.ListOrderableInstanceTypesInput,
+    output = M.ListOrderableInstanceTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/instanceTypes" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListOrders = schema.operation({
     id = id.from("com.amazonaws.outposts", "ListOrders"),
     input = M.ListOrdersInput,
@@ -3770,6 +4713,18 @@ M.ListOutposts = schema.operation({
     output = M.ListOutpostsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/outposts" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListQuotes = schema.operation({
+    id = id.from("com.amazonaws.outposts", "ListQuotes"),
+    input = M.ListQuotesInput,
+    output = M.ListQuotesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/quotes" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3866,6 +4821,18 @@ M.UpdateOutpost = schema.operation({
     output = M.UpdateOutpostOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/outposts/{OutpostId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateQuote = schema.operation({
+    id = id.from("com.amazonaws.outposts", "UpdateQuote"),
+    input = M.UpdateQuoteInput,
+    output = M.UpdateQuoteOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/quotes/{QuoteIdentifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -8504,6 +8504,20 @@ local record M
         "RegionalNatGateway"
     end
 
+    enum TaggableResourceType
+        "network-interface"
+        "instance"
+        "auto-scaling-group"
+    end
+
+    -- A single resource's tag configuration associated with the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+    record TagFieldSpecificationRequest
+        -- The resource type for the tag keys associated with the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+        ResourceType: string
+        -- The tag keys on your tagged resources to be displayed by the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+        TagKeys: {string}
+    end
+
     enum TrafficType
         "ACCEPT"
         "REJECT"
@@ -8573,6 +8587,8 @@ local record M
         MaxAggregationInterval: number
         -- The destination options.
         DestinationOptions: DestinationOptionsRequest
+        -- The tag configuration associated with the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+        TagFieldSpecifications: {TagFieldSpecificationRequest}
     end
 
     record CreateFlowLogsOutput
@@ -21625,6 +21641,14 @@ local record M
         PerHourPartition: boolean
     end
 
+    -- A single resource's tag configuration associated with the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+    record TagFieldSpecificationResponse
+        -- The resource type for the tag keys associated with the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+        ResourceType: string
+        -- The tag keys on your tagged resources to be displayed by the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+        TagKeys: {string}
+    end
+
     -- Describes a flow log.
     record FlowLog
         -- The date and time the flow log was created.
@@ -21668,6 +21692,8 @@ local record M
         MaxAggregationInterval: number
         -- The destination options.
         DestinationOptions: DestinationOptionsResponse
+        -- The tag configuration associated with the Flow Logs Amazon EC2 Tags feature fields in your custom log format.
+        TagFieldSpecifications: {TagFieldSpecificationResponse}
     end
 
     record DescribeFlowLogsOutput
@@ -30595,7 +30621,6 @@ local record M
         StartTime: number
         -- The modification completion or failure time.
         EndTime: number
-        Operator: OperatorResponse
     end
 
     record DescribeVolumesModificationsOutput

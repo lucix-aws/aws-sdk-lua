@@ -167,6 +167,11 @@ local record M
         message: string
     end
 
+    -- The exception that occurs when there is a retryable conflict performing an operation. This is a temporary condition that may resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.
+    record RetryableConflictException
+        message: string
+    end
+
     -- The exception that occurs when there is an error in the runtime client. This can happen due to network issues, invalid configuration, or other client-side problems. Check the error message for specific details about the error.
     record RuntimeClientError
         message: string
@@ -257,11 +262,6 @@ local record M
         response: function(): string, string
         -- The HTTP status code of the response. A status code of 200 indicates a successful operation. Other status codes indicate various error conditions.
         statusCode: number
-    end
-
-    -- The exception that occurs when there is a retryable conflict performing an operation. This is a temporary condition that may resolve itself with retries. We recommend implementing exponential backoff retry logic in your application.
-    record RetryableConflictException
-        message: string
     end
 
     -- The request body structure for the InvokeAgentRuntimeCommand operation, containing the command to execute and optional configuration parameters.

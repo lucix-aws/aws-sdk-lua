@@ -56,6 +56,7 @@ local record Client
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     deregisterMarketplaceModelEndpoint: function(Client, types.DeregisterMarketplaceModelEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterMarketplaceModelEndpointOutput>
     exportAutomatedReasoningPolicyVersion: function(Client, types.ExportAutomatedReasoningPolicyVersionInput, ? base_client.InvokeOptions): async.Operation<types.ExportAutomatedReasoningPolicyVersionOutput>
+    getAccountDataRetention: function(Client, types.GetAccountDataRetentionInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountDataRetentionOutput>
     getAdvancedPromptOptimizationJob: function(Client, types.GetAdvancedPromptOptimizationJobInput, ? base_client.InvokeOptions): async.Operation<types.GetAdvancedPromptOptimizationJobOutput>
     getAutomatedReasoningPolicy: function(Client, types.GetAutomatedReasoningPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomatedReasoningPolicyOutput>
     getAutomatedReasoningPolicyAnnotations: function(Client, types.GetAutomatedReasoningPolicyAnnotationsInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomatedReasoningPolicyAnnotationsOutput>
@@ -104,6 +105,7 @@ local record Client
     listPromptRouters: function(Client, types.ListPromptRoutersInput, ? base_client.InvokeOptions): async.Operation<types.ListPromptRoutersOutput>
     listProvisionedModelThroughputs: function(Client, types.ListProvisionedModelThroughputsInput, ? base_client.InvokeOptions): async.Operation<types.ListProvisionedModelThroughputsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    putAccountDataRetention: function(Client, types.PutAccountDataRetentionInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountDataRetentionOutput>
     putEnforcedGuardrailConfiguration: function(Client, types.PutEnforcedGuardrailConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutEnforcedGuardrailConfigurationOutput>
     putModelInvocationLoggingConfiguration: function(Client, types.PutModelInvocationLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutModelInvocationLoggingConfigurationOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
@@ -320,6 +322,10 @@ function C:exportAutomatedReasoningPolicyVersion(input: types.ExportAutomatedRea
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportAutomatedReasoningPolicyVersion as schema.OperationSchema, input, options) as async.Operation<types.ExportAutomatedReasoningPolicyVersionOutput>
 end
 
+function C:getAccountDataRetention(input: types.GetAccountDataRetentionInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountDataRetentionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountDataRetention as schema.OperationSchema, input, options) as async.Operation<types.GetAccountDataRetentionOutput>
+end
+
 function C:getAdvancedPromptOptimizationJob(input: types.GetAdvancedPromptOptimizationJobInput, options?: base_client.InvokeOptions): async.Operation<types.GetAdvancedPromptOptimizationJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAdvancedPromptOptimizationJob as schema.OperationSchema, input, options) as async.Operation<types.GetAdvancedPromptOptimizationJobOutput>
 end
@@ -510,6 +516,10 @@ end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
+end
+
+function C:putAccountDataRetention(input: types.PutAccountDataRetentionInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountDataRetentionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountDataRetention as schema.OperationSchema, input, options) as async.Operation<types.PutAccountDataRetentionOutput>
 end
 
 function C:putEnforcedGuardrailConfiguration(input: types.PutEnforcedGuardrailConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutEnforcedGuardrailConfigurationOutput>

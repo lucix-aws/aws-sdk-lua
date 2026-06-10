@@ -148,6 +148,24 @@ function M.items_list_catalog_items(client, input)
     })
 end
 
+--- Returns a page iterator for listOrderableInstanceTypes.
+function M.pages_list_orderable_instance_types(client, input)
+    return paginator.pages(client, "listOrderableInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
+--- Returns an item iterator for listOrderableInstanceTypes.
+function M.items_list_orderable_instance_types(client, input)
+    return paginator.items(client, "listOrderableInstanceTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "InstanceTypes",
+    })
+end
+
 --- Returns a page iterator for listOrders.
 function M.pages_list_orders(client, input)
     return paginator.pages(client, "listOrders", input, {
@@ -181,6 +199,24 @@ function M.items_list_outposts(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "Outposts",
+    })
+end
+
+--- Returns a page iterator for listQuotes.
+function M.pages_list_quotes(client, input)
+    return paginator.pages(client, "listQuotes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Quotes",
+    })
+end
+
+--- Returns an item iterator for listQuotes.
+function M.items_list_quotes(client, input)
+    return paginator.items(client, "listQuotes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Quotes",
     })
 end
 

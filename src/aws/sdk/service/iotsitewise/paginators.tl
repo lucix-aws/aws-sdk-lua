@@ -118,6 +118,24 @@ function M.items_list_access_policies(client, input)
     })
 end
 
+--- Returns a page iterator for listActions.
+function M.pages_list_actions(client, input)
+    return paginator.pages(client, "listActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "actionSummaries",
+    })
+end
+
+--- Returns an item iterator for listActions.
+function M.items_list_actions(client, input)
+    return paginator.items(client, "listActions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "actionSummaries",
+    })
+end
+
 --- Returns a page iterator for listAssetModelCompositeModels.
 function M.pages_list_asset_model_composite_models(client, input)
     return paginator.pages(client, "listAssetModelCompositeModels", input, {

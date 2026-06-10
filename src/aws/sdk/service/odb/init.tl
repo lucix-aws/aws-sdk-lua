@@ -20,17 +20,26 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     acceptMarketplaceRegistration: function(Client, types.AcceptMarketplaceRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.AcceptMarketplaceRegistrationOutput>
     associateIamRoleToResource: function(Client, types.AssociateIamRoleToResourceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIamRoleToResourceOutput>
+    createAutonomousDatabase: function(Client, types.CreateAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseOutput>
+    createAutonomousDatabaseBackup: function(Client, types.CreateAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseBackupOutput>
+    createAutonomousDatabaseWallet: function(Client, types.CreateAutonomousDatabaseWalletInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseWalletOutput>
     createCloudAutonomousVmCluster: function(Client, types.CreateCloudAutonomousVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudAutonomousVmClusterOutput>
     createCloudExadataInfrastructure: function(Client, types.CreateCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudExadataInfrastructureOutput>
     createCloudVmCluster: function(Client, types.CreateCloudVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudVmClusterOutput>
     createOdbNetwork: function(Client, types.CreateOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.CreateOdbNetworkOutput>
     createOdbPeeringConnection: function(Client, types.CreateOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateOdbPeeringConnectionOutput>
+    deleteAutonomousDatabase: function(Client, types.DeleteAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutonomousDatabaseOutput>
+    deleteAutonomousDatabaseBackup: function(Client, types.DeleteAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAutonomousDatabaseBackupOutput>
     deleteCloudAutonomousVmCluster: function(Client, types.DeleteCloudAutonomousVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudAutonomousVmClusterOutput>
     deleteCloudExadataInfrastructure: function(Client, types.DeleteCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudExadataInfrastructureOutput>
     deleteCloudVmCluster: function(Client, types.DeleteCloudVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudVmClusterOutput>
     deleteOdbNetwork: function(Client, types.DeleteOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOdbNetworkOutput>
     deleteOdbPeeringConnection: function(Client, types.DeleteOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOdbPeeringConnectionOutput>
     disassociateIamRoleFromResource: function(Client, types.DisassociateIamRoleFromResourceInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateIamRoleFromResourceOutput>
+    failoverAutonomousDatabase: function(Client, types.FailoverAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.FailoverAutonomousDatabaseOutput>
+    getAutonomousDatabase: function(Client, types.GetAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseOutput>
+    getAutonomousDatabaseBackup: function(Client, types.GetAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseBackupOutput>
+    getAutonomousDatabaseWalletDetails: function(Client, types.GetAutonomousDatabaseWalletDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseWalletDetailsOutput>
     getCloudAutonomousVmCluster: function(Client, types.GetCloudAutonomousVmClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudAutonomousVmClusterOutput>
     getCloudExadataInfrastructure: function(Client, types.GetCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudExadataInfrastructureOutput>
     getCloudExadataInfrastructureUnallocatedResources: function(Client, types.GetCloudExadataInfrastructureUnallocatedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudExadataInfrastructureUnallocatedResourcesOutput>
@@ -41,6 +50,12 @@ local record Client
     getOdbNetwork: function(Client, types.GetOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.GetOdbNetworkOutput>
     getOdbPeeringConnection: function(Client, types.GetOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.GetOdbPeeringConnectionOutput>
     initializeService: function(Client, types.InitializeServiceInput, ? base_client.InvokeOptions): async.Operation<types.InitializeServiceOutput>
+    listAutonomousDatabaseBackups: function(Client, types.ListAutonomousDatabaseBackupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseBackupsOutput>
+    listAutonomousDatabaseCharacterSets: function(Client, types.ListAutonomousDatabaseCharacterSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseCharacterSetsOutput>
+    listAutonomousDatabaseClones: function(Client, types.ListAutonomousDatabaseClonesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseClonesOutput>
+    listAutonomousDatabasePeers: function(Client, types.ListAutonomousDatabasePeersInput, ? base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabasePeersOutput>
+    listAutonomousDatabases: function(Client, types.ListAutonomousDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabasesOutput>
+    listAutonomousDatabaseVersions: function(Client, types.ListAutonomousDatabaseVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseVersionsOutput>
     listAutonomousVirtualMachines: function(Client, types.ListAutonomousVirtualMachinesInput, ? base_client.InvokeOptions): async.Operation<types.ListAutonomousVirtualMachinesOutput>
     listCloudAutonomousVmClusters: function(Client, types.ListCloudAutonomousVmClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListCloudAutonomousVmClustersOutput>
     listCloudExadataInfrastructures: function(Client, types.ListCloudExadataInfrastructuresInput, ? base_client.InvokeOptions): async.Operation<types.ListCloudExadataInfrastructuresOutput>
@@ -53,11 +68,19 @@ local record Client
     listOdbPeeringConnections: function(Client, types.ListOdbPeeringConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListOdbPeeringConnectionsOutput>
     listSystemVersions: function(Client, types.ListSystemVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSystemVersionsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    rebootAutonomousDatabase: function(Client, types.RebootAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.RebootAutonomousDatabaseOutput>
     rebootDbNode: function(Client, types.RebootDbNodeInput, ? base_client.InvokeOptions): async.Operation<types.RebootDbNodeOutput>
+    restoreAutonomousDatabase: function(Client, types.RestoreAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.RestoreAutonomousDatabaseOutput>
+    shrinkAutonomousDatabase: function(Client, types.ShrinkAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.ShrinkAutonomousDatabaseOutput>
+    startAutonomousDatabase: function(Client, types.StartAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.StartAutonomousDatabaseOutput>
     startDbNode: function(Client, types.StartDbNodeInput, ? base_client.InvokeOptions): async.Operation<types.StartDbNodeOutput>
+    stopAutonomousDatabase: function(Client, types.StopAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.StopAutonomousDatabaseOutput>
     stopDbNode: function(Client, types.StopDbNodeInput, ? base_client.InvokeOptions): async.Operation<types.StopDbNodeOutput>
+    switchoverAutonomousDatabase: function(Client, types.SwitchoverAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.SwitchoverAutonomousDatabaseOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAutonomousDatabase: function(Client, types.UpdateAutonomousDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutonomousDatabaseOutput>
+    updateAutonomousDatabaseBackup: function(Client, types.UpdateAutonomousDatabaseBackupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAutonomousDatabaseBackupOutput>
     updateCloudExadataInfrastructure: function(Client, types.UpdateCloudExadataInfrastructureInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudExadataInfrastructureOutput>
     updateOdbNetwork: function(Client, types.UpdateOdbNetworkInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOdbNetworkOutput>
     updateOdbPeeringConnection: function(Client, types.UpdateOdbPeeringConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOdbPeeringConnectionOutput>
@@ -113,6 +136,18 @@ function C:associateIamRoleToResource(input: types.AssociateIamRoleToResourceInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIamRoleToResource as schema.OperationSchema, input, options) as async.Operation<types.AssociateIamRoleToResourceOutput>
 end
 
+function C:createAutonomousDatabase(input: types.CreateAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.CreateAutonomousDatabaseOutput>
+end
+
+function C:createAutonomousDatabaseBackup(input: types.CreateAutonomousDatabaseBackupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutonomousDatabaseBackup as schema.OperationSchema, input, options) as async.Operation<types.CreateAutonomousDatabaseBackupOutput>
+end
+
+function C:createAutonomousDatabaseWallet(input: types.CreateAutonomousDatabaseWalletInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAutonomousDatabaseWalletOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAutonomousDatabaseWallet as schema.OperationSchema, input, options) as async.Operation<types.CreateAutonomousDatabaseWalletOutput>
+end
+
 function C:createCloudAutonomousVmCluster(input: types.CreateCloudAutonomousVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudAutonomousVmClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudAutonomousVmCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudAutonomousVmClusterOutput>
 end
@@ -131,6 +166,14 @@ end
 
 function C:createOdbPeeringConnection(input: types.CreateOdbPeeringConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOdbPeeringConnectionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOdbPeeringConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateOdbPeeringConnectionOutput>
+end
+
+function C:deleteAutonomousDatabase(input: types.DeleteAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.DeleteAutonomousDatabaseOutput>
+end
+
+function C:deleteAutonomousDatabaseBackup(input: types.DeleteAutonomousDatabaseBackupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAutonomousDatabaseBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAutonomousDatabaseBackup as schema.OperationSchema, input, options) as async.Operation<types.DeleteAutonomousDatabaseBackupOutput>
 end
 
 function C:deleteCloudAutonomousVmCluster(input: types.DeleteCloudAutonomousVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCloudAutonomousVmClusterOutput>
@@ -155,6 +198,22 @@ end
 
 function C:disassociateIamRoleFromResource(input: types.DisassociateIamRoleFromResourceInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateIamRoleFromResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateIamRoleFromResource as schema.OperationSchema, input, options) as async.Operation<types.DisassociateIamRoleFromResourceOutput>
+end
+
+function C:failoverAutonomousDatabase(input: types.FailoverAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.FailoverAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.FailoverAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.FailoverAutonomousDatabaseOutput>
+end
+
+function C:getAutonomousDatabase(input: types.GetAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.GetAutonomousDatabaseOutput>
+end
+
+function C:getAutonomousDatabaseBackup(input: types.GetAutonomousDatabaseBackupInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutonomousDatabaseBackup as schema.OperationSchema, input, options) as async.Operation<types.GetAutonomousDatabaseBackupOutput>
+end
+
+function C:getAutonomousDatabaseWalletDetails(input: types.GetAutonomousDatabaseWalletDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAutonomousDatabaseWalletDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAutonomousDatabaseWalletDetails as schema.OperationSchema, input, options) as async.Operation<types.GetAutonomousDatabaseWalletDetailsOutput>
 end
 
 function C:getCloudAutonomousVmCluster(input: types.GetCloudAutonomousVmClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudAutonomousVmClusterOutput>
@@ -195,6 +254,30 @@ end
 
 function C:initializeService(input: types.InitializeServiceInput, options?: base_client.InvokeOptions): async.Operation<types.InitializeServiceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InitializeService as schema.OperationSchema, input, options) as async.Operation<types.InitializeServiceOutput>
+end
+
+function C:listAutonomousDatabaseBackups(input: types.ListAutonomousDatabaseBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseBackupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutonomousDatabaseBackups as schema.OperationSchema, input, options) as async.Operation<types.ListAutonomousDatabaseBackupsOutput>
+end
+
+function C:listAutonomousDatabaseCharacterSets(input: types.ListAutonomousDatabaseCharacterSetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseCharacterSetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutonomousDatabaseCharacterSets as schema.OperationSchema, input, options) as async.Operation<types.ListAutonomousDatabaseCharacterSetsOutput>
+end
+
+function C:listAutonomousDatabaseClones(input: types.ListAutonomousDatabaseClonesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseClonesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutonomousDatabaseClones as schema.OperationSchema, input, options) as async.Operation<types.ListAutonomousDatabaseClonesOutput>
+end
+
+function C:listAutonomousDatabasePeers(input: types.ListAutonomousDatabasePeersInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabasePeersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutonomousDatabasePeers as schema.OperationSchema, input, options) as async.Operation<types.ListAutonomousDatabasePeersOutput>
+end
+
+function C:listAutonomousDatabases(input: types.ListAutonomousDatabasesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabasesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutonomousDatabases as schema.OperationSchema, input, options) as async.Operation<types.ListAutonomousDatabasesOutput>
+end
+
+function C:listAutonomousDatabaseVersions(input: types.ListAutonomousDatabaseVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutonomousDatabaseVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAutonomousDatabaseVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAutonomousDatabaseVersionsOutput>
 end
 
 function C:listAutonomousVirtualMachines(input: types.ListAutonomousVirtualMachinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAutonomousVirtualMachinesOutput>
@@ -245,16 +328,40 @@ function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:rebootAutonomousDatabase(input: types.RebootAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.RebootAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.RebootAutonomousDatabaseOutput>
+end
+
 function C:rebootDbNode(input: types.RebootDbNodeInput, options?: base_client.InvokeOptions): async.Operation<types.RebootDbNodeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootDbNode as schema.OperationSchema, input, options) as async.Operation<types.RebootDbNodeOutput>
+end
+
+function C:restoreAutonomousDatabase(input: types.RestoreAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.RestoreAutonomousDatabaseOutput>
+end
+
+function C:shrinkAutonomousDatabase(input: types.ShrinkAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.ShrinkAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ShrinkAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.ShrinkAutonomousDatabaseOutput>
+end
+
+function C:startAutonomousDatabase(input: types.StartAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.StartAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.StartAutonomousDatabaseOutput>
 end
 
 function C:startDbNode(input: types.StartDbNodeInput, options?: base_client.InvokeOptions): async.Operation<types.StartDbNodeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDbNode as schema.OperationSchema, input, options) as async.Operation<types.StartDbNodeOutput>
 end
 
+function C:stopAutonomousDatabase(input: types.StopAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.StopAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.StopAutonomousDatabaseOutput>
+end
+
 function C:stopDbNode(input: types.StopDbNodeInput, options?: base_client.InvokeOptions): async.Operation<types.StopDbNodeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDbNode as schema.OperationSchema, input, options) as async.Operation<types.StopDbNodeOutput>
+end
+
+function C:switchoverAutonomousDatabase(input: types.SwitchoverAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.SwitchoverAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SwitchoverAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.SwitchoverAutonomousDatabaseOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -263,6 +370,14 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateAutonomousDatabase(input: types.UpdateAutonomousDatabaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAutonomousDatabaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAutonomousDatabase as schema.OperationSchema, input, options) as async.Operation<types.UpdateAutonomousDatabaseOutput>
+end
+
+function C:updateAutonomousDatabaseBackup(input: types.UpdateAutonomousDatabaseBackupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAutonomousDatabaseBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAutonomousDatabaseBackup as schema.OperationSchema, input, options) as async.Operation<types.UpdateAutonomousDatabaseBackupOutput>
 end
 
 function C:updateCloudExadataInfrastructure(input: types.UpdateCloudExadataInfrastructureInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloudExadataInfrastructureOutput>

@@ -11,6 +11,14 @@ local M: {string:any} = {}
 
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
+M.OciIamRoleList = schema.new({ type = "list", list_member = M.OciIamRole })
+
+M.SubscriptionErrors = schema.new({ type = "list", list_member = M.SubscriptionError })
+
+M.AutonomousDatabaseCharacterSetList = schema.new({ type = "list", list_member = M.AutonomousDatabaseCharacterSetSummary })
+
+M.AutonomousDatabaseVersionList = schema.new({ type = "list", list_member = M.AutonomousDatabaseVersionSummary })
+
 M.DbSystemShapeList = schema.new({ type = "list", list_member = M.DbSystemShapeSummary })
 
 M.GiVersionList = schema.new({ type = "list", list_member = M.GiVersionSummary })
@@ -23,15 +31,25 @@ M.RequestTagMap = schema.new({ type = "map", map_key = prelude.String, map_value
 
 M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
 
-M.CloudAutonomousVmClusterList = schema.new({ type = "list", list_member = M.CloudAutonomousVmClusterSummary })
+M.AutonomousDatabaseBackupList = schema.new({ type = "list", list_member = M.AutonomousDatabaseBackupSummary })
+
+M.AutonomousDatabaseList = schema.new({ type = "list", list_member = M.AutonomousDatabaseSummary })
+
+M.CustomerContacts = schema.new({ type = "list", list_member = M.CustomerContact })
+
+M.ScheduledOperationDetailsList = schema.new({ type = "list", list_member = M.ScheduledOperationDetails })
 
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseToolList = schema.new({ type = "list", list_member = M.DatabaseTool })
+
+M.AutonomousDatabasePeerList = schema.new({ type = "list", list_member = M.AutonomousDatabasePeerSummary })
+
+M.CloudAutonomousVmClusterList = schema.new({ type = "list", list_member = M.CloudAutonomousVmClusterSummary })
 
 M.AutonomousVirtualMachineList = schema.new({ type = "list", list_member = M.AutonomousVirtualMachineSummary })
 
 M.CloudExadataInfrastructureList = schema.new({ type = "list", list_member = M.CloudExadataInfrastructureSummary })
-
-M.CustomerContacts = schema.new({ type = "list", list_member = M.CustomerContact })
 
 M.DbServerList = schema.new({ type = "list", list_member = M.DbServerSummary })
 
@@ -46,6 +64,8 @@ M.OdbPeeringConnectionList = schema.new({ type = "list", list_member = M.OdbPeer
 M.PeeredCidrList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PeerNetworkRouteTableIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IntegerList = schema.new({ type = "list", list_member = prelude.Integer })
 
 M.DaysOfWeek = schema.new({ type = "list", list_member = M.DayOfWeek })
 
@@ -64,6 +84,10 @@ M.SensitiveStringList = schema.new({ type = "list", list_member = prelude.String
 M.OciDnsForwardingConfigList = schema.new({ type = "list", list_member = M.OciDnsForwardingConfig })
 
 M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DatabaseConnectionStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.DatabaseConnectionStringProfileList = schema.new({ type = "list", list_member = M.DatabaseConnectionStringProfile })
 
 M.DbIormConfigList = schema.new({ type = "list", list_member = M.DbIormConfig })
 
@@ -338,6 +362,4212 @@ M.ResourceNotFoundException = schema.new({
     },
 })
 
+M.AutonomousDatabaseApex = schema.new({
+    id = id.from(_N, "AutonomousDatabaseApex"),
+    type = "structure",
+    members = {
+        apexVersion = schema.new({
+            id = id.from(_N, "AutonomousDatabaseApex", "apexVersion"),
+            type = "string",
+            name = "apexVersion",
+            target_id = prelude.String.id,
+        }),
+        ordsVersion = schema.new({
+            id = id.from(_N, "AutonomousDatabaseApex", "ordsVersion"),
+            type = "string",
+            name = "ordsVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DatabaseConnectionStringProfile = schema.new({
+    id = id.from(_N, "DatabaseConnectionStringProfile"),
+    type = "structure",
+    members = {
+        consumerGroup = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "consumerGroup"),
+            type = "string",
+            name = "consumerGroup",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        hostFormat = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "hostFormat"),
+            type = "string",
+            name = "hostFormat",
+            target_id = prelude.String.id,
+        }),
+        isRegional = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "isRegional"),
+            type = "boolean",
+            name = "isRegional",
+            target_id = prelude.Boolean.id,
+        }),
+        protocol = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "protocol"),
+            type = "string",
+            name = "protocol",
+            target_id = prelude.String.id,
+        }),
+        sessionMode = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "sessionMode"),
+            type = "string",
+            name = "sessionMode",
+            target_id = prelude.String.id,
+        }),
+        syntaxFormat = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "syntaxFormat"),
+            type = "string",
+            name = "syntaxFormat",
+            target_id = prelude.String.id,
+        }),
+        tlsAuthentication = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "tlsAuthentication"),
+            type = "string",
+            name = "tlsAuthentication",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "DatabaseConnectionStringProfile", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AutonomousDatabaseConnectionStrings = schema.new({
+    id = id.from(_N, "AutonomousDatabaseConnectionStrings"),
+    type = "structure",
+    members = {
+        allConnectionStrings = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionStrings", "allConnectionStrings"),
+            type = "map",
+            name = "allConnectionStrings",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        dedicated = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionStrings", "dedicated"),
+            type = "string",
+            name = "dedicated",
+            target_id = prelude.String.id,
+        }),
+        high = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionStrings", "high"),
+            type = "string",
+            name = "high",
+            target_id = prelude.String.id,
+        }),
+        medium = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionStrings", "medium"),
+            type = "string",
+            name = "medium",
+            target_id = prelude.String.id,
+        }),
+        low = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionStrings", "low"),
+            type = "string",
+            name = "low",
+            target_id = prelude.String.id,
+        }),
+        profiles = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionStrings", "profiles"),
+            type = "list",
+            name = "profiles",
+            target_id = prelude.Document.id,
+            list_member = M.DatabaseConnectionStringProfile,
+        }),
+    },
+})
+
+M.AutonomousDatabaseConnectionUrls = schema.new({
+    id = id.from(_N, "AutonomousDatabaseConnectionUrls"),
+    type = "structure",
+    members = {
+        apexUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "apexUrl"),
+            type = "string",
+            name = "apexUrl",
+            target_id = prelude.String.id,
+        }),
+        databaseTransformsUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "databaseTransformsUrl"),
+            type = "string",
+            name = "databaseTransformsUrl",
+            target_id = prelude.String.id,
+        }),
+        graphStudioUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "graphStudioUrl"),
+            type = "string",
+            name = "graphStudioUrl",
+            target_id = prelude.String.id,
+        }),
+        machineLearningNotebookUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "machineLearningNotebookUrl"),
+            type = "string",
+            name = "machineLearningNotebookUrl",
+            target_id = prelude.String.id,
+        }),
+        machineLearningUserManagementUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "machineLearningUserManagementUrl"),
+            type = "string",
+            name = "machineLearningUserManagementUrl",
+            target_id = prelude.String.id,
+        }),
+        mongoDbUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "mongoDbUrl"),
+            type = "string",
+            name = "mongoDbUrl",
+            target_id = prelude.String.id,
+        }),
+        ordsUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "ordsUrl"),
+            type = "string",
+            name = "ordsUrl",
+            target_id = prelude.String.id,
+        }),
+        spatialStudioUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "spatialStudioUrl"),
+            type = "string",
+            name = "spatialStudioUrl",
+            target_id = prelude.String.id,
+        }),
+        sqlDevWebUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseConnectionUrls", "sqlDevWebUrl"),
+            type = "string",
+            name = "sqlDevWebUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomerContact = schema.new({
+    id = id.from(_N, "CustomerContact"),
+    type = "structure",
+    members = {
+        email = schema.new({
+            id = id.from(_N, "CustomerContact", "email"),
+            type = "string",
+            name = "email",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DatabaseTool = schema.new({
+    id = id.from(_N, "DatabaseTool"),
+    type = "structure",
+    members = {
+        isEnabled = schema.new({
+            id = id.from(_N, "DatabaseTool", "isEnabled"),
+            type = "boolean",
+            name = "isEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "DatabaseTool", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        computeCount = schema.new({
+            id = id.from(_N, "DatabaseTool", "computeCount"),
+            type = "double",
+            name = "computeCount",
+            target_id = prelude.Double.id,
+        }),
+        maxIdleTimeInMinutes = schema.new({
+            id = id.from(_N, "DatabaseTool", "maxIdleTimeInMinutes"),
+            type = "integer",
+            name = "maxIdleTimeInMinutes",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.AwsEncryptionKeyConfiguration = schema.new({
+    id = id.from(_N, "AwsEncryptionKeyConfiguration"),
+    type = "structure",
+    members = {
+        iamRoleArn = schema.new({
+            id = id.from(_N, "AwsEncryptionKeyConfiguration", "iamRoleArn"),
+            type = "string",
+            name = "iamRoleArn",
+            target_id = prelude.String.id,
+        }),
+        externalIdType = schema.new({
+            id = id.from(_N, "AwsEncryptionKeyConfiguration", "externalIdType"),
+            type = "string",
+            name = "externalIdType",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "AwsEncryptionKeyConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OciEncryptionKeyConfiguration = schema.new({
+    id = id.from(_N, "OciEncryptionKeyConfiguration"),
+    type = "structure",
+    members = {
+        kmsKeyId = schema.new({
+            id = id.from(_N, "OciEncryptionKeyConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vaultId = schema.new({
+            id = id.from(_N, "OciEncryptionKeyConfiguration", "vaultId"),
+            type = "string",
+            name = "vaultId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.OkvEncryptionKeyConfiguration = schema.new({
+    id = id.from(_N, "OkvEncryptionKeyConfiguration"),
+    type = "structure",
+    members = {
+        certificateDirectoryName = schema.new({
+            id = id.from(_N, "OkvEncryptionKeyConfiguration", "certificateDirectoryName"),
+            type = "string",
+            name = "certificateDirectoryName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        certificateId = schema.new({
+            id = id.from(_N, "OkvEncryptionKeyConfiguration", "certificateId"),
+            type = "string",
+            name = "certificateId",
+            target_id = prelude.String.id,
+        }),
+        directoryName = schema.new({
+            id = id.from(_N, "OkvEncryptionKeyConfiguration", "directoryName"),
+            type = "string",
+            name = "directoryName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        okvKmsKey = schema.new({
+            id = id.from(_N, "OkvEncryptionKeyConfiguration", "okvKmsKey"),
+            type = "string",
+            name = "okvKmsKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        okvUri = schema.new({
+            id = id.from(_N, "OkvEncryptionKeyConfiguration", "okvUri"),
+            type = "string",
+            name = "okvUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EncryptionKeyConfiguration = schema.new({
+    id = id.from(_N, "EncryptionKeyConfiguration"),
+    type = "union",
+    members = {
+        awsEncryptionKey = schema.new({
+            id = id.from(_N, "EncryptionKeyConfiguration", "awsEncryptionKey"),
+            type = "structure",
+            name = "awsEncryptionKey",
+            target_id = id.from(_N, "AwsEncryptionKeyConfiguration"),
+            target = M.AwsEncryptionKeyConfiguration,
+        }),
+        ociEncryptionKey = schema.new({
+            id = id.from(_N, "EncryptionKeyConfiguration", "ociEncryptionKey"),
+            type = "structure",
+            name = "ociEncryptionKey",
+            target_id = id.from(_N, "OciEncryptionKeyConfiguration"),
+            target = M.OciEncryptionKeyConfiguration,
+        }),
+        okvEncryptionKey = schema.new({
+            id = id.from(_N, "EncryptionKeyConfiguration", "okvEncryptionKey"),
+            type = "structure",
+            name = "okvEncryptionKey",
+            target_id = id.from(_N, "OkvEncryptionKeyConfiguration"),
+            target = M.OkvEncryptionKeyConfiguration,
+        }),
+    },
+})
+
+M.EncryptionSummary = schema.new({
+    id = id.from(_N, "EncryptionSummary"),
+    type = "structure",
+    members = {
+        encryptionKeyProvider = schema.new({
+            id = id.from(_N, "EncryptionSummary", "encryptionKeyProvider"),
+            type = "string",
+            name = "encryptionKeyProvider",
+            target_id = prelude.String.id,
+        }),
+        encryptionKeyConfiguration = schema.new({
+            id = id.from(_N, "EncryptionSummary", "encryptionKeyConfiguration"),
+            type = "union",
+            name = "encryptionKeyConfiguration",
+            target_id = id.from(_N, "EncryptionKeyConfiguration"),
+            target = M.EncryptionKeyConfiguration,
+        }),
+    },
+})
+
+M.DatabaseStandbySummary = schema.new({
+    id = id.from(_N, "DatabaseStandbySummary"),
+    type = "structure",
+    members = {
+        availabilityDomain = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "availabilityDomain"),
+            type = "string",
+            name = "availabilityDomain",
+            target_id = prelude.String.id,
+        }),
+        lagTimeInSeconds = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "lagTimeInSeconds"),
+            type = "integer",
+            name = "lagTimeInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        maintenanceTargetComponent = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "maintenanceTargetComponent"),
+            type = "string",
+            name = "maintenanceTargetComponent",
+            target_id = prelude.String.id,
+        }),
+        timeDataGuardRoleChanged = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "timeDataGuardRoleChanged"),
+            type = "timestamp",
+            name = "timeDataGuardRoleChanged",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeDisasterRecoveryRoleChanged = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "timeDisasterRecoveryRoleChanged"),
+            type = "timestamp",
+            name = "timeDisasterRecoveryRoleChanged",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeMaintenanceBegin = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "timeMaintenanceBegin"),
+            type = "timestamp",
+            name = "timeMaintenanceBegin",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeMaintenanceEnd = schema.new({
+            id = id.from(_N, "DatabaseStandbySummary", "timeMaintenanceEnd"),
+            type = "timestamp",
+            name = "timeMaintenanceEnd",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.LongTermBackupSchedule = schema.new({
+    id = id.from(_N, "LongTermBackupSchedule"),
+    type = "structure",
+    members = {
+        isDisabled = schema.new({
+            id = id.from(_N, "LongTermBackupSchedule", "isDisabled"),
+            type = "boolean",
+            name = "isDisabled",
+            target_id = prelude.Boolean.id,
+        }),
+        repeatCadence = schema.new({
+            id = id.from(_N, "LongTermBackupSchedule", "repeatCadence"),
+            type = "string",
+            name = "repeatCadence",
+            target_id = prelude.String.id,
+        }),
+        retentionPeriodInDays = schema.new({
+            id = id.from(_N, "LongTermBackupSchedule", "retentionPeriodInDays"),
+            type = "integer",
+            name = "retentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        timeOfBackup = schema.new({
+            id = id.from(_N, "LongTermBackupSchedule", "timeOfBackup"),
+            type = "timestamp",
+            name = "timeOfBackup",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.DisasterRecoveryConfiguration = schema.new({
+    id = id.from(_N, "DisasterRecoveryConfiguration"),
+    type = "structure",
+    members = {
+        disasterRecoveryType = schema.new({
+            id = id.from(_N, "DisasterRecoveryConfiguration", "disasterRecoveryType"),
+            type = "string",
+            name = "disasterRecoveryType",
+            target_id = prelude.String.id,
+        }),
+        isReplicateAutomaticBackups = schema.new({
+            id = id.from(_N, "DisasterRecoveryConfiguration", "isReplicateAutomaticBackups"),
+            type = "boolean",
+            name = "isReplicateAutomaticBackups",
+            target_id = prelude.Boolean.id,
+        }),
+        isSnapshotStandby = schema.new({
+            id = id.from(_N, "DisasterRecoveryConfiguration", "isSnapshotStandby"),
+            type = "boolean",
+            name = "isSnapshotStandby",
+            target_id = prelude.Boolean.id,
+        }),
+        timeSnapshotStandbyEnabledTill = schema.new({
+            id = id.from(_N, "DisasterRecoveryConfiguration", "timeSnapshotStandbyEnabledTill"),
+            type = "timestamp",
+            name = "timeSnapshotStandbyEnabledTill",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.ResourcePoolSummary = schema.new({
+    id = id.from(_N, "ResourcePoolSummary"),
+    type = "structure",
+    members = {
+        isDisabled = schema.new({
+            id = id.from(_N, "ResourcePoolSummary", "isDisabled"),
+            type = "boolean",
+            name = "isDisabled",
+            target_id = prelude.Boolean.id,
+        }),
+        poolSize = schema.new({
+            id = id.from(_N, "ResourcePoolSummary", "poolSize"),
+            type = "integer",
+            name = "poolSize",
+            target_id = prelude.Integer.id,
+        }),
+        poolStorageSizeInTBs = schema.new({
+            id = id.from(_N, "ResourcePoolSummary", "poolStorageSizeInTBs"),
+            type = "integer",
+            name = "poolStorageSizeInTBs",
+            target_id = prelude.Integer.id,
+        }),
+        availableStorageCapacityInTBs = schema.new({
+            id = id.from(_N, "ResourcePoolSummary", "availableStorageCapacityInTBs"),
+            type = "double",
+            name = "availableStorageCapacityInTBs",
+            target_id = prelude.Double.id,
+        }),
+        totalComputeCapacity = schema.new({
+            id = id.from(_N, "ResourcePoolSummary", "totalComputeCapacity"),
+            type = "integer",
+            name = "totalComputeCapacity",
+            target_id = prelude.Integer.id,
+        }),
+        availableComputeCapacity = schema.new({
+            id = id.from(_N, "ResourcePoolSummary", "availableComputeCapacity"),
+            type = "integer",
+            name = "availableComputeCapacity",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DayOfWeek = schema.new({
+    id = id.from(_N, "DayOfWeek"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DayOfWeek", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ScheduledOperationDetails = schema.new({
+    id = id.from(_N, "ScheduledOperationDetails"),
+    type = "structure",
+    members = {
+        dayOfWeek = schema.new({
+            id = id.from(_N, "ScheduledOperationDetails", "dayOfWeek"),
+            type = "structure",
+            name = "dayOfWeek",
+            target_id = id.from(_N, "DayOfWeek"),
+            target = M.DayOfWeek,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scheduledStartTime = schema.new({
+            id = id.from(_N, "ScheduledOperationDetails", "scheduledStartTime"),
+            type = "string",
+            name = "scheduledStartTime",
+            target_id = prelude.String.id,
+        }),
+        scheduledStopTime = schema.new({
+            id = id.from(_N, "ScheduledOperationDetails", "scheduledStopTime"),
+            type = "string",
+            name = "scheduledStopTime",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AutonomousDatabase = schema.new({
+    id = id.from(_N, "AutonomousDatabase"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseArn = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "autonomousDatabaseArn"),
+            type = "string",
+            name = "autonomousDatabaseArn",
+            target_id = prelude.String.id,
+        }),
+        ociResourceAnchorName = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "ociResourceAnchorName"),
+            type = "string",
+            name = "ociResourceAnchorName",
+            target_id = prelude.String.id,
+        }),
+        percentProgress = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "percentProgress"),
+            type = "float",
+            name = "percentProgress",
+            target_id = prelude.Float.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        ociUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "ociUrl"),
+            type = "string",
+            name = "ociUrl",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        dbName = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "dbName"),
+            type = "string",
+            name = "dbName",
+            target_id = prelude.String.id,
+        }),
+        sourceId = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "sourceId"),
+            type = "string",
+            name = "sourceId",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        databaseType = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "databaseType"),
+            type = "string",
+            name = "databaseType",
+            target_id = prelude.String.id,
+        }),
+        dbVersion = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "dbVersion"),
+            type = "string",
+            name = "dbVersion",
+            target_id = prelude.String.id,
+        }),
+        dbWorkload = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "dbWorkload"),
+            type = "string",
+            name = "dbWorkload",
+            target_id = prelude.String.id,
+        }),
+        characterSet = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "characterSet"),
+            type = "string",
+            name = "characterSet",
+            target_id = prelude.String.id,
+        }),
+        ncharacterSet = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "ncharacterSet"),
+            type = "string",
+            name = "ncharacterSet",
+            target_id = prelude.String.id,
+        }),
+        databaseEdition = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "databaseEdition"),
+            type = "string",
+            name = "databaseEdition",
+            target_id = prelude.String.id,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        openMode = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "openMode"),
+            type = "string",
+            name = "openMode",
+            target_id = prelude.String.id,
+        }),
+        permissionLevel = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "permissionLevel"),
+            type = "string",
+            name = "permissionLevel",
+            target_id = prelude.String.id,
+        }),
+        isMtlsConnectionRequired = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isMtlsConnectionRequired"),
+            type = "boolean",
+            name = "isMtlsConnectionRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        autonomousMaintenanceScheduleType = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "autonomousMaintenanceScheduleType"),
+            type = "string",
+            name = "autonomousMaintenanceScheduleType",
+            target_id = prelude.String.id,
+        }),
+        netServicesArchitecture = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "netServicesArchitecture"),
+            type = "string",
+            name = "netServicesArchitecture",
+            target_id = prelude.String.id,
+        }),
+        availableUpgradeVersions = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "availableUpgradeVersions"),
+            type = "list",
+            name = "availableUpgradeVersions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        byolComputeCountLimit = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "byolComputeCountLimit"),
+            type = "integer",
+            name = "byolComputeCountLimit",
+            target_id = prelude.Integer.id,
+        }),
+        connectionStringDetails = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "connectionStringDetails"),
+            type = "structure",
+            name = "connectionStringDetails",
+            target_id = id.from(_N, "AutonomousDatabaseConnectionStrings"),
+            target = M.AutonomousDatabaseConnectionStrings,
+        }),
+        serviceConsoleUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "serviceConsoleUrl"),
+            type = "string",
+            name = "serviceConsoleUrl",
+            target_id = prelude.String.id,
+        }),
+        sqlWebDeveloperUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "sqlWebDeveloperUrl"),
+            type = "string",
+            name = "sqlWebDeveloperUrl",
+            target_id = prelude.String.id,
+        }),
+        customerContacts = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "customerContacts"),
+            type = "list",
+            name = "customerContacts",
+            target_id = prelude.Document.id,
+            list_member = M.CustomerContact,
+        }),
+        apexDetails = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "apexDetails"),
+            type = "structure",
+            name = "apexDetails",
+            target_id = id.from(_N, "AutonomousDatabaseApex"),
+            target = M.AutonomousDatabaseApex,
+        }),
+        standbyDb = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "standbyDb"),
+            type = "structure",
+            name = "standbyDb",
+            target_id = id.from(_N, "DatabaseStandbySummary"),
+            target = M.DatabaseStandbySummary,
+        }),
+        localStandbyDb = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "localStandbyDb"),
+            type = "structure",
+            name = "localStandbyDb",
+            target_id = id.from(_N, "DatabaseStandbySummary"),
+            target = M.DatabaseStandbySummary,
+        }),
+        dataSafeStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "dataSafeStatus"),
+            type = "string",
+            name = "dataSafeStatus",
+            target_id = prelude.String.id,
+        }),
+        databaseManagementStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "databaseManagementStatus"),
+            type = "string",
+            name = "databaseManagementStatus",
+            target_id = prelude.String.id,
+        }),
+        operationsInsightsStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "operationsInsightsStatus"),
+            type = "string",
+            name = "operationsInsightsStatus",
+            target_id = prelude.String.id,
+        }),
+        availabilityZone = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "availabilityZone"),
+            type = "string",
+            name = "availabilityZone",
+            target_id = prelude.String.id,
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+        }),
+        maintenanceTargetComponent = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "maintenanceTargetComponent"),
+            type = "string",
+            name = "maintenanceTargetComponent",
+            target_id = prelude.String.id,
+        }),
+        connectionUrls = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "connectionUrls"),
+            type = "structure",
+            name = "connectionUrls",
+            target_id = id.from(_N, "AutonomousDatabaseConnectionUrls"),
+            target = M.AutonomousDatabaseConnectionUrls,
+        }),
+        dbToolsDetails = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "dbToolsDetails"),
+            type = "list",
+            name = "dbToolsDetails",
+            target_id = prelude.Document.id,
+            list_member = M.DatabaseTool,
+        }),
+        scheduledOperations = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "scheduledOperations"),
+            type = "list",
+            name = "scheduledOperations",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduledOperationDetails,
+        }),
+        resourcePoolLeaderId = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "resourcePoolLeaderId"),
+            type = "string",
+            name = "resourcePoolLeaderId",
+            target_id = prelude.String.id,
+        }),
+        computeCount = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "computeCount"),
+            type = "float",
+            name = "computeCount",
+            target_id = prelude.Float.id,
+        }),
+        computeModel = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "computeModel"),
+            type = "string",
+            name = "computeModel",
+            target_id = prelude.String.id,
+        }),
+        cpuCoreCount = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "cpuCoreCount"),
+            type = "integer",
+            name = "cpuCoreCount",
+            target_id = prelude.Integer.id,
+        }),
+        memoryPerOracleComputeUnitInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "memoryPerOracleComputeUnitInGBs"),
+            type = "integer",
+            name = "memoryPerOracleComputeUnitInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        provisionableCpus = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "provisionableCpus"),
+            type = "list",
+            name = "provisionableCpus",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        isAutoScalingEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isAutoScalingEnabled"),
+            type = "boolean",
+            name = "isAutoScalingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        dataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "dataStorageSizeInTBs"),
+            type = "double",
+            name = "dataStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        dataStorageSizeInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "dataStorageSizeInGBs"),
+            type = "integer",
+            name = "dataStorageSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        usedDataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "usedDataStorageSizeInTBs"),
+            type = "double",
+            name = "usedDataStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        usedDataStorageSizeInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "usedDataStorageSizeInGBs"),
+            type = "integer",
+            name = "usedDataStorageSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        actualUsedDataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "actualUsedDataStorageSizeInTBs"),
+            type = "double",
+            name = "actualUsedDataStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        allocatedStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "allocatedStorageSizeInTBs"),
+            type = "double",
+            name = "allocatedStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        inMemoryAreaInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "inMemoryAreaInGBs"),
+            type = "integer",
+            name = "inMemoryAreaInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        isAutoScalingForStorageEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isAutoScalingForStorageEnabled"),
+            type = "boolean",
+            name = "isAutoScalingForStorageEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        odbNetworkId = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "odbNetworkId"),
+            type = "string",
+            name = "odbNetworkId",
+            target_id = prelude.String.id,
+        }),
+        odbNetworkArn = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "odbNetworkArn"),
+            type = "string",
+            name = "odbNetworkArn",
+            target_id = prelude.String.id,
+        }),
+        privateEndpoint = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "privateEndpoint"),
+            type = "string",
+            name = "privateEndpoint",
+            target_id = prelude.String.id,
+        }),
+        privateEndpointIp = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "privateEndpointIp"),
+            type = "string",
+            name = "privateEndpointIp",
+            target_id = prelude.String.id,
+        }),
+        privateEndpointLabel = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "privateEndpointLabel"),
+            type = "string",
+            name = "privateEndpointLabel",
+            target_id = prelude.String.id,
+        }),
+        allowlistedIps = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "allowlistedIps"),
+            type = "list",
+            name = "allowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        standbyAllowlistedIps = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "standbyAllowlistedIps"),
+            type = "list",
+            name = "standbyAllowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        standbyAllowlistedIpsSource = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "standbyAllowlistedIpsSource"),
+            type = "string",
+            name = "standbyAllowlistedIpsSource",
+            target_id = prelude.String.id,
+        }),
+        isLocalDataGuardEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isLocalDataGuardEnabled"),
+            type = "boolean",
+            name = "isLocalDataGuardEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        isRemoteDataGuardEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isRemoteDataGuardEnabled"),
+            type = "boolean",
+            name = "isRemoteDataGuardEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        localDisasterRecoveryType = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "localDisasterRecoveryType"),
+            type = "string",
+            name = "localDisasterRecoveryType",
+            target_id = prelude.String.id,
+        }),
+        role = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "role"),
+            type = "string",
+            name = "role",
+            target_id = prelude.String.id,
+        }),
+        peerDbIds = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "peerDbIds"),
+            type = "list",
+            name = "peerDbIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        failedDataRecoveryInSeconds = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "failedDataRecoveryInSeconds"),
+            type = "integer",
+            name = "failedDataRecoveryInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        localAdgAutoFailoverMaxDataLossLimit = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "localAdgAutoFailoverMaxDataLossLimit"),
+            type = "integer",
+            name = "localAdgAutoFailoverMaxDataLossLimit",
+            target_id = prelude.Integer.id,
+        }),
+        remoteDisasterRecoveryConfiguration = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "remoteDisasterRecoveryConfiguration"),
+            type = "structure",
+            name = "remoteDisasterRecoveryConfiguration",
+            target_id = id.from(_N, "DisasterRecoveryConfiguration"),
+            target = M.DisasterRecoveryConfiguration,
+        }),
+        isRefreshableClone = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isRefreshableClone"),
+            type = "boolean",
+            name = "isRefreshableClone",
+            target_id = prelude.Boolean.id,
+        }),
+        refreshableMode = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "refreshableMode"),
+            type = "string",
+            name = "refreshableMode",
+            target_id = prelude.String.id,
+        }),
+        refreshableStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "refreshableStatus"),
+            type = "string",
+            name = "refreshableStatus",
+            target_id = prelude.String.id,
+        }),
+        autoRefreshFrequencyInSeconds = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "autoRefreshFrequencyInSeconds"),
+            type = "integer",
+            name = "autoRefreshFrequencyInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        autoRefreshPointLagInSeconds = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "autoRefreshPointLagInSeconds"),
+            type = "integer",
+            name = "autoRefreshPointLagInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        isReconnectCloneEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isReconnectCloneEnabled"),
+            type = "boolean",
+            name = "isReconnectCloneEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        cloneTableSpaceList = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "cloneTableSpaceList"),
+            type = "list",
+            name = "cloneTableSpaceList",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        backupRetentionPeriodInDays = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "backupRetentionPeriodInDays"),
+            type = "integer",
+            name = "backupRetentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        longTermBackupSchedule = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "longTermBackupSchedule"),
+            type = "structure",
+            name = "longTermBackupSchedule",
+            target_id = id.from(_N, "LongTermBackupSchedule"),
+            target = M.LongTermBackupSchedule,
+        }),
+        isBackupRetentionLocked = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "isBackupRetentionLocked"),
+            type = "boolean",
+            name = "isBackupRetentionLocked",
+            target_id = prelude.Boolean.id,
+        }),
+        totalBackupStorageSizeInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "totalBackupStorageSizeInGBs"),
+            type = "double",
+            name = "totalBackupStorageSizeInGBs",
+            target_id = prelude.Double.id,
+        }),
+        resourcePoolSummary = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "resourcePoolSummary"),
+            type = "structure",
+            name = "resourcePoolSummary",
+            target_id = id.from(_N, "ResourcePoolSummary"),
+            target = M.ResourcePoolSummary,
+        }),
+        encryptionSummary = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "encryptionSummary"),
+            type = "structure",
+            name = "encryptionSummary",
+            target_id = id.from(_N, "EncryptionSummary"),
+            target = M.EncryptionSummary,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastBackup = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeOfLastBackup"),
+            type = "timestamp",
+            name = "timeOfLastBackup",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeMaintenanceBegin = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeMaintenanceBegin"),
+            type = "timestamp",
+            name = "timeMaintenanceBegin",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeMaintenanceEnd = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeMaintenanceEnd"),
+            type = "timestamp",
+            name = "timeMaintenanceEnd",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeLocalDataGuardEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeLocalDataGuardEnabled"),
+            type = "timestamp",
+            name = "timeLocalDataGuardEnabled",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeDataGuardRoleChanged = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeDataGuardRoleChanged"),
+            type = "timestamp",
+            name = "timeDataGuardRoleChanged",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastSwitchover = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeOfLastSwitchover"),
+            type = "timestamp",
+            name = "timeOfLastSwitchover",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastFailover = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeOfLastFailover"),
+            type = "timestamp",
+            name = "timeOfLastFailover",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastRefresh = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeOfLastRefresh"),
+            type = "timestamp",
+            name = "timeOfLastRefresh",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastRefreshPoint = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeOfLastRefreshPoint"),
+            type = "timestamp",
+            name = "timeOfLastRefreshPoint",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfNextRefresh = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeOfNextRefresh"),
+            type = "timestamp",
+            name = "timeOfNextRefresh",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfAutoRefreshStart = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeOfAutoRefreshStart"),
+            type = "timestamp",
+            name = "timeOfAutoRefreshStart",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeDeletionOfFreeAutonomousDatabase = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeDeletionOfFreeAutonomousDatabase"),
+            type = "timestamp",
+            name = "timeDeletionOfFreeAutonomousDatabase",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeReclamationOfFreeAutonomousDatabase = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeReclamationOfFreeAutonomousDatabase"),
+            type = "timestamp",
+            name = "timeReclamationOfFreeAutonomousDatabase",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeDisasterRecoveryRoleChanged = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeDisasterRecoveryRoleChanged"),
+            type = "timestamp",
+            name = "timeDisasterRecoveryRoleChanged",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeUntilReconnectCloneEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeUntilReconnectCloneEnabled"),
+            type = "timestamp",
+            name = "timeUntilReconnectCloneEnabled",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        nextLongTermBackupTimeStamp = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "nextLongTermBackupTimeStamp"),
+            type = "timestamp",
+            name = "nextLongTermBackupTimeStamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeUndeleted = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "timeUndeleted"),
+            type = "timestamp",
+            name = "timeUndeleted",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.AutonomousDatabaseBackup = schema.new({
+    id = id.from(_N, "AutonomousDatabaseBackup"),
+    type = "structure",
+    members = {
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseBackupArn = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "autonomousDatabaseBackupArn"),
+            type = "string",
+            name = "autonomousDatabaseBackupArn",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        dbVersion = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "dbVersion"),
+            type = "string",
+            name = "dbVersion",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        isAutomatic = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "isAutomatic"),
+            type = "boolean",
+            name = "isAutomatic",
+            target_id = prelude.Boolean.id,
+        }),
+        retentionPeriodInDays = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "retentionPeriodInDays"),
+            type = "integer",
+            name = "retentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        sizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "sizeInTBs"),
+            type = "double",
+            name = "sizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        timeAvailableTill = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "timeAvailableTill"),
+            type = "timestamp",
+            name = "timeAvailableTill",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeStarted = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "timeStarted"),
+            type = "timestamp",
+            name = "timeStarted",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeEnded = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "timeEnded"),
+            type = "timestamp",
+            name = "timeEnded",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackup", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AutonomousDatabaseBackupSummary = schema.new({
+    id = id.from(_N, "AutonomousDatabaseBackupSummary"),
+    type = "structure",
+    members = {
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseBackupArn = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "autonomousDatabaseBackupArn"),
+            type = "string",
+            name = "autonomousDatabaseBackupArn",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        dbVersion = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "dbVersion"),
+            type = "string",
+            name = "dbVersion",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        isAutomatic = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "isAutomatic"),
+            type = "boolean",
+            name = "isAutomatic",
+            target_id = prelude.Boolean.id,
+        }),
+        retentionPeriodInDays = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "retentionPeriodInDays"),
+            type = "integer",
+            name = "retentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        sizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "sizeInTBs"),
+            type = "double",
+            name = "sizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        timeAvailableTill = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "timeAvailableTill"),
+            type = "timestamp",
+            name = "timeAvailableTill",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeStarted = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "timeStarted"),
+            type = "timestamp",
+            name = "timeStarted",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeEnded = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "timeEnded"),
+            type = "timestamp",
+            name = "timeEnded",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "AutonomousDatabaseBackupSummary", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAutonomousDatabaseBackupInput = schema.new({
+    id = id.from(_N, "CreateAutonomousDatabaseBackupInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        retentionPeriodInDays = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupInput", "retentionPeriodInDays"),
+            type = "integer",
+            name = "retentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateAutonomousDatabaseBackupOutput = schema.new({
+    id = id.from(_N, "CreateAutonomousDatabaseBackupOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseBackupOutput", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        quotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
+            type = "string",
+            name = "quotaCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAutonomousDatabaseBackupInput = schema.new({
+    id = id.from(_N, "DeleteAutonomousDatabaseBackupInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "DeleteAutonomousDatabaseBackupInput", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAutonomousDatabaseBackupOutput = schema.new({
+    id = id.from(_N, "DeleteAutonomousDatabaseBackupOutput"),
+    type = "structure",
+})
+
+M.GetAutonomousDatabaseBackupInput = schema.new({
+    id = id.from(_N, "GetAutonomousDatabaseBackupInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "GetAutonomousDatabaseBackupInput", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAutonomousDatabaseBackupOutput = schema.new({
+    id = id.from(_N, "GetAutonomousDatabaseBackupOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseBackup = schema.new({
+            id = id.from(_N, "GetAutonomousDatabaseBackupOutput", "autonomousDatabaseBackup"),
+            type = "structure",
+            name = "autonomousDatabaseBackup",
+            target_id = id.from(_N, "AutonomousDatabaseBackup"),
+            target = M.AutonomousDatabaseBackup,
+        }),
+    },
+})
+
+M.ListAutonomousDatabaseBackupsInput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseBackupsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseBackupsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseBackupsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseBackupsInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseBackupsInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseBackupsInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutonomousDatabaseBackupsOutput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseBackupsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseBackupsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseBackups = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseBackupsOutput", "autonomousDatabaseBackups"),
+            type = "list",
+            name = "autonomousDatabaseBackups",
+            target_id = prelude.Document.id,
+            list_member = M.AutonomousDatabaseBackupSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAutonomousDatabaseBackupInput = schema.new({
+    id = id.from(_N, "UpdateAutonomousDatabaseBackupInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseBackupInput", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        retentionPeriodInDays = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseBackupInput", "retentionPeriodInDays"),
+            type = "integer",
+            name = "retentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.UpdateAutonomousDatabaseBackupOutput = schema.new({
+    id = id.from(_N, "UpdateAutonomousDatabaseBackupOutput"),
+    type = "structure",
+    members = {
+        displayName = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseBackupOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseBackupOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseBackupOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseBackupOutput", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AutonomousDatabaseCharacterSetSummary = schema.new({
+    id = id.from(_N, "AutonomousDatabaseCharacterSetSummary"),
+    type = "structure",
+    members = {
+        characterSet = schema.new({
+            id = id.from(_N, "AutonomousDatabaseCharacterSetSummary", "characterSet"),
+            type = "string",
+            name = "characterSet",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AutonomousDatabaseSummary = schema.new({
+    id = id.from(_N, "AutonomousDatabaseSummary"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseArn = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "autonomousDatabaseArn"),
+            type = "string",
+            name = "autonomousDatabaseArn",
+            target_id = prelude.String.id,
+        }),
+        ociResourceAnchorName = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "ociResourceAnchorName"),
+            type = "string",
+            name = "ociResourceAnchorName",
+            target_id = prelude.String.id,
+        }),
+        percentProgress = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "percentProgress"),
+            type = "float",
+            name = "percentProgress",
+            target_id = prelude.Float.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        ociUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "ociUrl"),
+            type = "string",
+            name = "ociUrl",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        dbName = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "dbName"),
+            type = "string",
+            name = "dbName",
+            target_id = prelude.String.id,
+        }),
+        sourceId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "sourceId"),
+            type = "string",
+            name = "sourceId",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        databaseType = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "databaseType"),
+            type = "string",
+            name = "databaseType",
+            target_id = prelude.String.id,
+        }),
+        dbVersion = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "dbVersion"),
+            type = "string",
+            name = "dbVersion",
+            target_id = prelude.String.id,
+        }),
+        dbWorkload = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "dbWorkload"),
+            type = "string",
+            name = "dbWorkload",
+            target_id = prelude.String.id,
+        }),
+        characterSet = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "characterSet"),
+            type = "string",
+            name = "characterSet",
+            target_id = prelude.String.id,
+        }),
+        ncharacterSet = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "ncharacterSet"),
+            type = "string",
+            name = "ncharacterSet",
+            target_id = prelude.String.id,
+        }),
+        databaseEdition = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "databaseEdition"),
+            type = "string",
+            name = "databaseEdition",
+            target_id = prelude.String.id,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        openMode = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "openMode"),
+            type = "string",
+            name = "openMode",
+            target_id = prelude.String.id,
+        }),
+        permissionLevel = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "permissionLevel"),
+            type = "string",
+            name = "permissionLevel",
+            target_id = prelude.String.id,
+        }),
+        isMtlsConnectionRequired = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isMtlsConnectionRequired"),
+            type = "boolean",
+            name = "isMtlsConnectionRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        autonomousMaintenanceScheduleType = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "autonomousMaintenanceScheduleType"),
+            type = "string",
+            name = "autonomousMaintenanceScheduleType",
+            target_id = prelude.String.id,
+        }),
+        netServicesArchitecture = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "netServicesArchitecture"),
+            type = "string",
+            name = "netServicesArchitecture",
+            target_id = prelude.String.id,
+        }),
+        availableUpgradeVersions = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "availableUpgradeVersions"),
+            type = "list",
+            name = "availableUpgradeVersions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        byolComputeCountLimit = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "byolComputeCountLimit"),
+            type = "integer",
+            name = "byolComputeCountLimit",
+            target_id = prelude.Integer.id,
+        }),
+        connectionStringDetails = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "connectionStringDetails"),
+            type = "structure",
+            name = "connectionStringDetails",
+            target_id = id.from(_N, "AutonomousDatabaseConnectionStrings"),
+            target = M.AutonomousDatabaseConnectionStrings,
+        }),
+        serviceConsoleUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "serviceConsoleUrl"),
+            type = "string",
+            name = "serviceConsoleUrl",
+            target_id = prelude.String.id,
+        }),
+        sqlWebDeveloperUrl = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "sqlWebDeveloperUrl"),
+            type = "string",
+            name = "sqlWebDeveloperUrl",
+            target_id = prelude.String.id,
+        }),
+        customerContacts = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "customerContacts"),
+            type = "list",
+            name = "customerContacts",
+            target_id = prelude.Document.id,
+            list_member = M.CustomerContact,
+        }),
+        apexDetails = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "apexDetails"),
+            type = "structure",
+            name = "apexDetails",
+            target_id = id.from(_N, "AutonomousDatabaseApex"),
+            target = M.AutonomousDatabaseApex,
+        }),
+        standbyDb = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "standbyDb"),
+            type = "structure",
+            name = "standbyDb",
+            target_id = id.from(_N, "DatabaseStandbySummary"),
+            target = M.DatabaseStandbySummary,
+        }),
+        localStandbyDb = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "localStandbyDb"),
+            type = "structure",
+            name = "localStandbyDb",
+            target_id = id.from(_N, "DatabaseStandbySummary"),
+            target = M.DatabaseStandbySummary,
+        }),
+        dataSafeStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "dataSafeStatus"),
+            type = "string",
+            name = "dataSafeStatus",
+            target_id = prelude.String.id,
+        }),
+        databaseManagementStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "databaseManagementStatus"),
+            type = "string",
+            name = "databaseManagementStatus",
+            target_id = prelude.String.id,
+        }),
+        operationsInsightsStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "operationsInsightsStatus"),
+            type = "string",
+            name = "operationsInsightsStatus",
+            target_id = prelude.String.id,
+        }),
+        availabilityZone = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "availabilityZone"),
+            type = "string",
+            name = "availabilityZone",
+            target_id = prelude.String.id,
+        }),
+        availabilityZoneId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "availabilityZoneId"),
+            type = "string",
+            name = "availabilityZoneId",
+            target_id = prelude.String.id,
+        }),
+        maintenanceTargetComponent = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "maintenanceTargetComponent"),
+            type = "string",
+            name = "maintenanceTargetComponent",
+            target_id = prelude.String.id,
+        }),
+        connectionUrls = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "connectionUrls"),
+            type = "structure",
+            name = "connectionUrls",
+            target_id = id.from(_N, "AutonomousDatabaseConnectionUrls"),
+            target = M.AutonomousDatabaseConnectionUrls,
+        }),
+        dbToolsDetails = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "dbToolsDetails"),
+            type = "list",
+            name = "dbToolsDetails",
+            target_id = prelude.Document.id,
+            list_member = M.DatabaseTool,
+        }),
+        scheduledOperations = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "scheduledOperations"),
+            type = "list",
+            name = "scheduledOperations",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduledOperationDetails,
+        }),
+        resourcePoolLeaderId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "resourcePoolLeaderId"),
+            type = "string",
+            name = "resourcePoolLeaderId",
+            target_id = prelude.String.id,
+        }),
+        computeCount = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "computeCount"),
+            type = "float",
+            name = "computeCount",
+            target_id = prelude.Float.id,
+        }),
+        computeModel = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "computeModel"),
+            type = "string",
+            name = "computeModel",
+            target_id = prelude.String.id,
+        }),
+        cpuCoreCount = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "cpuCoreCount"),
+            type = "integer",
+            name = "cpuCoreCount",
+            target_id = prelude.Integer.id,
+        }),
+        memoryPerOracleComputeUnitInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "memoryPerOracleComputeUnitInGBs"),
+            type = "integer",
+            name = "memoryPerOracleComputeUnitInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        provisionableCpus = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "provisionableCpus"),
+            type = "list",
+            name = "provisionableCpus",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        isAutoScalingEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isAutoScalingEnabled"),
+            type = "boolean",
+            name = "isAutoScalingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        dataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "dataStorageSizeInTBs"),
+            type = "double",
+            name = "dataStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        dataStorageSizeInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "dataStorageSizeInGBs"),
+            type = "integer",
+            name = "dataStorageSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        usedDataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "usedDataStorageSizeInTBs"),
+            type = "double",
+            name = "usedDataStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        usedDataStorageSizeInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "usedDataStorageSizeInGBs"),
+            type = "integer",
+            name = "usedDataStorageSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        actualUsedDataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "actualUsedDataStorageSizeInTBs"),
+            type = "double",
+            name = "actualUsedDataStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        allocatedStorageSizeInTBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "allocatedStorageSizeInTBs"),
+            type = "double",
+            name = "allocatedStorageSizeInTBs",
+            target_id = prelude.Double.id,
+        }),
+        inMemoryAreaInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "inMemoryAreaInGBs"),
+            type = "integer",
+            name = "inMemoryAreaInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        isAutoScalingForStorageEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isAutoScalingForStorageEnabled"),
+            type = "boolean",
+            name = "isAutoScalingForStorageEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        odbNetworkId = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "odbNetworkId"),
+            type = "string",
+            name = "odbNetworkId",
+            target_id = prelude.String.id,
+        }),
+        odbNetworkArn = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "odbNetworkArn"),
+            type = "string",
+            name = "odbNetworkArn",
+            target_id = prelude.String.id,
+        }),
+        privateEndpoint = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "privateEndpoint"),
+            type = "string",
+            name = "privateEndpoint",
+            target_id = prelude.String.id,
+        }),
+        privateEndpointIp = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "privateEndpointIp"),
+            type = "string",
+            name = "privateEndpointIp",
+            target_id = prelude.String.id,
+        }),
+        privateEndpointLabel = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "privateEndpointLabel"),
+            type = "string",
+            name = "privateEndpointLabel",
+            target_id = prelude.String.id,
+        }),
+        allowlistedIps = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "allowlistedIps"),
+            type = "list",
+            name = "allowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        standbyAllowlistedIps = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "standbyAllowlistedIps"),
+            type = "list",
+            name = "standbyAllowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        standbyAllowlistedIpsSource = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "standbyAllowlistedIpsSource"),
+            type = "string",
+            name = "standbyAllowlistedIpsSource",
+            target_id = prelude.String.id,
+        }),
+        isLocalDataGuardEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isLocalDataGuardEnabled"),
+            type = "boolean",
+            name = "isLocalDataGuardEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        isRemoteDataGuardEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isRemoteDataGuardEnabled"),
+            type = "boolean",
+            name = "isRemoteDataGuardEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        localDisasterRecoveryType = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "localDisasterRecoveryType"),
+            type = "string",
+            name = "localDisasterRecoveryType",
+            target_id = prelude.String.id,
+        }),
+        role = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "role"),
+            type = "string",
+            name = "role",
+            target_id = prelude.String.id,
+        }),
+        peerDbIds = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "peerDbIds"),
+            type = "list",
+            name = "peerDbIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        failedDataRecoveryInSeconds = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "failedDataRecoveryInSeconds"),
+            type = "integer",
+            name = "failedDataRecoveryInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        localAdgAutoFailoverMaxDataLossLimit = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "localAdgAutoFailoverMaxDataLossLimit"),
+            type = "integer",
+            name = "localAdgAutoFailoverMaxDataLossLimit",
+            target_id = prelude.Integer.id,
+        }),
+        remoteDisasterRecoveryConfiguration = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "remoteDisasterRecoveryConfiguration"),
+            type = "structure",
+            name = "remoteDisasterRecoveryConfiguration",
+            target_id = id.from(_N, "DisasterRecoveryConfiguration"),
+            target = M.DisasterRecoveryConfiguration,
+        }),
+        isRefreshableClone = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isRefreshableClone"),
+            type = "boolean",
+            name = "isRefreshableClone",
+            target_id = prelude.Boolean.id,
+        }),
+        refreshableMode = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "refreshableMode"),
+            type = "string",
+            name = "refreshableMode",
+            target_id = prelude.String.id,
+        }),
+        refreshableStatus = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "refreshableStatus"),
+            type = "string",
+            name = "refreshableStatus",
+            target_id = prelude.String.id,
+        }),
+        autoRefreshFrequencyInSeconds = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "autoRefreshFrequencyInSeconds"),
+            type = "integer",
+            name = "autoRefreshFrequencyInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        autoRefreshPointLagInSeconds = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "autoRefreshPointLagInSeconds"),
+            type = "integer",
+            name = "autoRefreshPointLagInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        isReconnectCloneEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isReconnectCloneEnabled"),
+            type = "boolean",
+            name = "isReconnectCloneEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        cloneTableSpaceList = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "cloneTableSpaceList"),
+            type = "list",
+            name = "cloneTableSpaceList",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        backupRetentionPeriodInDays = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "backupRetentionPeriodInDays"),
+            type = "integer",
+            name = "backupRetentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        longTermBackupSchedule = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "longTermBackupSchedule"),
+            type = "structure",
+            name = "longTermBackupSchedule",
+            target_id = id.from(_N, "LongTermBackupSchedule"),
+            target = M.LongTermBackupSchedule,
+        }),
+        isBackupRetentionLocked = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "isBackupRetentionLocked"),
+            type = "boolean",
+            name = "isBackupRetentionLocked",
+            target_id = prelude.Boolean.id,
+        }),
+        totalBackupStorageSizeInGBs = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "totalBackupStorageSizeInGBs"),
+            type = "double",
+            name = "totalBackupStorageSizeInGBs",
+            target_id = prelude.Double.id,
+        }),
+        resourcePoolSummary = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "resourcePoolSummary"),
+            type = "structure",
+            name = "resourcePoolSummary",
+            target_id = id.from(_N, "ResourcePoolSummary"),
+            target = M.ResourcePoolSummary,
+        }),
+        encryptionSummary = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "encryptionSummary"),
+            type = "structure",
+            name = "encryptionSummary",
+            target_id = id.from(_N, "EncryptionSummary"),
+            target = M.EncryptionSummary,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastBackup = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeOfLastBackup"),
+            type = "timestamp",
+            name = "timeOfLastBackup",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeMaintenanceBegin = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeMaintenanceBegin"),
+            type = "timestamp",
+            name = "timeMaintenanceBegin",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeMaintenanceEnd = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeMaintenanceEnd"),
+            type = "timestamp",
+            name = "timeMaintenanceEnd",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeLocalDataGuardEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeLocalDataGuardEnabled"),
+            type = "timestamp",
+            name = "timeLocalDataGuardEnabled",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeDataGuardRoleChanged = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeDataGuardRoleChanged"),
+            type = "timestamp",
+            name = "timeDataGuardRoleChanged",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastSwitchover = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeOfLastSwitchover"),
+            type = "timestamp",
+            name = "timeOfLastSwitchover",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastFailover = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeOfLastFailover"),
+            type = "timestamp",
+            name = "timeOfLastFailover",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastRefresh = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeOfLastRefresh"),
+            type = "timestamp",
+            name = "timeOfLastRefresh",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfLastRefreshPoint = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeOfLastRefreshPoint"),
+            type = "timestamp",
+            name = "timeOfLastRefreshPoint",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfNextRefresh = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeOfNextRefresh"),
+            type = "timestamp",
+            name = "timeOfNextRefresh",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeOfAutoRefreshStart = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeOfAutoRefreshStart"),
+            type = "timestamp",
+            name = "timeOfAutoRefreshStart",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeDeletionOfFreeAutonomousDatabase = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeDeletionOfFreeAutonomousDatabase"),
+            type = "timestamp",
+            name = "timeDeletionOfFreeAutonomousDatabase",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeReclamationOfFreeAutonomousDatabase = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeReclamationOfFreeAutonomousDatabase"),
+            type = "timestamp",
+            name = "timeReclamationOfFreeAutonomousDatabase",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeDisasterRecoveryRoleChanged = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeDisasterRecoveryRoleChanged"),
+            type = "timestamp",
+            name = "timeDisasterRecoveryRoleChanged",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeUntilReconnectCloneEnabled = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeUntilReconnectCloneEnabled"),
+            type = "timestamp",
+            name = "timeUntilReconnectCloneEnabled",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        nextLongTermBackupTimeStamp = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "nextLongTermBackupTimeStamp"),
+            type = "timestamp",
+            name = "nextLongTermBackupTimeStamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        timeUndeleted = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "timeUndeleted"),
+            type = "timestamp",
+            name = "timeUndeleted",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.AutonomousDatabasePeerSummary = schema.new({
+    id = id.from(_N, "AutonomousDatabasePeerSummary"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "AutonomousDatabasePeerSummary", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseArn = schema.new({
+            id = id.from(_N, "AutonomousDatabasePeerSummary", "autonomousDatabaseArn"),
+            type = "string",
+            name = "autonomousDatabaseArn",
+            target_id = prelude.String.id,
+        }),
+        ocid = schema.new({
+            id = id.from(_N, "AutonomousDatabasePeerSummary", "ocid"),
+            type = "string",
+            name = "ocid",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "AutonomousDatabasePeerSummary", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AwsEncryptionKeyConfigurationInput = schema.new({
+    id = id.from(_N, "AwsEncryptionKeyConfigurationInput"),
+    type = "structure",
+    members = {
+        iamRoleArn = schema.new({
+            id = id.from(_N, "AwsEncryptionKeyConfigurationInput", "iamRoleArn"),
+            type = "string",
+            name = "iamRoleArn",
+            target_id = prelude.String.id,
+        }),
+        externalIdType = schema.new({
+            id = id.from(_N, "AwsEncryptionKeyConfigurationInput", "externalIdType"),
+            type = "string",
+            name = "externalIdType",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "AwsEncryptionKeyConfigurationInput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EncryptionKeyConfigurationInput = schema.new({
+    id = id.from(_N, "EncryptionKeyConfigurationInput"),
+    type = "union",
+    members = {
+        awsEncryptionKey = schema.new({
+            id = id.from(_N, "EncryptionKeyConfigurationInput", "awsEncryptionKey"),
+            type = "structure",
+            name = "awsEncryptionKey",
+            target_id = id.from(_N, "AwsEncryptionKeyConfigurationInput"),
+            target = M.AwsEncryptionKeyConfigurationInput,
+        }),
+    },
+})
+
+M.CloneToRefreshableConfiguration = schema.new({
+    id = id.from(_N, "CloneToRefreshableConfiguration"),
+    type = "structure",
+    members = {
+        sourceAutonomousDatabaseId = schema.new({
+            id = id.from(_N, "CloneToRefreshableConfiguration", "sourceAutonomousDatabaseId"),
+            type = "string",
+            name = "sourceAutonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        refreshableMode = schema.new({
+            id = id.from(_N, "CloneToRefreshableConfiguration", "refreshableMode"),
+            type = "string",
+            name = "refreshableMode",
+            target_id = prelude.String.id,
+        }),
+        autoRefreshFrequencyInSeconds = schema.new({
+            id = id.from(_N, "CloneToRefreshableConfiguration", "autoRefreshFrequencyInSeconds"),
+            type = "integer",
+            name = "autoRefreshFrequencyInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        autoRefreshPointLagInSeconds = schema.new({
+            id = id.from(_N, "CloneToRefreshableConfiguration", "autoRefreshPointLagInSeconds"),
+            type = "integer",
+            name = "autoRefreshPointLagInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        timeOfAutoRefreshStart = schema.new({
+            id = id.from(_N, "CloneToRefreshableConfiguration", "timeOfAutoRefreshStart"),
+            type = "timestamp",
+            name = "timeOfAutoRefreshStart",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        openMode = schema.new({
+            id = id.from(_N, "CloneToRefreshableConfiguration", "openMode"),
+            type = "string",
+            name = "openMode",
+            target_id = prelude.String.id,
+        }),
+        cloneType = schema.new({
+            id = id.from(_N, "CloneToRefreshableConfiguration", "cloneType"),
+            type = "string",
+            name = "cloneType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CrossRegionDataGuardConfiguration = schema.new({
+    id = id.from(_N, "CrossRegionDataGuardConfiguration"),
+    type = "structure",
+    members = {
+        sourceAutonomousDatabaseArn = schema.new({
+            id = id.from(_N, "CrossRegionDataGuardConfiguration", "sourceAutonomousDatabaseArn"),
+            type = "string",
+            name = "sourceAutonomousDatabaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CrossRegionDisasterRecoveryConfiguration = schema.new({
+    id = id.from(_N, "CrossRegionDisasterRecoveryConfiguration"),
+    type = "structure",
+    members = {
+        sourceAutonomousDatabaseArn = schema.new({
+            id = id.from(_N, "CrossRegionDisasterRecoveryConfiguration", "sourceAutonomousDatabaseArn"),
+            type = "string",
+            name = "sourceAutonomousDatabaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        remoteDisasterRecoveryType = schema.new({
+            id = id.from(_N, "CrossRegionDisasterRecoveryConfiguration", "remoteDisasterRecoveryType"),
+            type = "string",
+            name = "remoteDisasterRecoveryType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        isReplicateAutomaticBackups = schema.new({
+            id = id.from(_N, "CrossRegionDisasterRecoveryConfiguration", "isReplicateAutomaticBackups"),
+            type = "boolean",
+            name = "isReplicateAutomaticBackups",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DatabaseCloneConfiguration = schema.new({
+    id = id.from(_N, "DatabaseCloneConfiguration"),
+    type = "structure",
+    members = {
+        sourceAutonomousDatabaseId = schema.new({
+            id = id.from(_N, "DatabaseCloneConfiguration", "sourceAutonomousDatabaseId"),
+            type = "string",
+            name = "sourceAutonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloneType = schema.new({
+            id = id.from(_N, "DatabaseCloneConfiguration", "cloneType"),
+            type = "string",
+            name = "cloneType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PointInTimeRestoreConfiguration = schema.new({
+    id = id.from(_N, "PointInTimeRestoreConfiguration"),
+    type = "structure",
+    members = {
+        sourceAutonomousDatabaseId = schema.new({
+            id = id.from(_N, "PointInTimeRestoreConfiguration", "sourceAutonomousDatabaseId"),
+            type = "string",
+            name = "sourceAutonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloneType = schema.new({
+            id = id.from(_N, "PointInTimeRestoreConfiguration", "cloneType"),
+            type = "string",
+            name = "cloneType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "PointInTimeRestoreConfiguration", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        useLatestAvailableBackupTimestamp = schema.new({
+            id = id.from(_N, "PointInTimeRestoreConfiguration", "useLatestAvailableBackupTimestamp"),
+            type = "boolean",
+            name = "useLatestAvailableBackupTimestamp",
+            target_id = prelude.Boolean.id,
+        }),
+        cloneTableSpaceList = schema.new({
+            id = id.from(_N, "PointInTimeRestoreConfiguration", "cloneTableSpaceList"),
+            type = "list",
+            name = "cloneTableSpaceList",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+    },
+})
+
+M.RestoreFromBackupConfiguration = schema.new({
+    id = id.from(_N, "RestoreFromBackupConfiguration"),
+    type = "structure",
+    members = {
+        autonomousDatabaseBackupId = schema.new({
+            id = id.from(_N, "RestoreFromBackupConfiguration", "autonomousDatabaseBackupId"),
+            type = "string",
+            name = "autonomousDatabaseBackupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloneType = schema.new({
+            id = id.from(_N, "RestoreFromBackupConfiguration", "cloneType"),
+            type = "string",
+            name = "cloneType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloneTableSpaceList = schema.new({
+            id = id.from(_N, "RestoreFromBackupConfiguration", "cloneTableSpaceList"),
+            type = "list",
+            name = "cloneTableSpaceList",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+    },
+})
+
+M.SourceConfiguration = schema.new({
+    id = id.from(_N, "SourceConfiguration"),
+    type = "union",
+    members = {
+        databaseClone = schema.new({
+            id = id.from(_N, "SourceConfiguration", "databaseClone"),
+            type = "structure",
+            name = "databaseClone",
+            target_id = id.from(_N, "DatabaseCloneConfiguration"),
+            target = M.DatabaseCloneConfiguration,
+        }),
+        restoreFromBackup = schema.new({
+            id = id.from(_N, "SourceConfiguration", "restoreFromBackup"),
+            type = "structure",
+            name = "restoreFromBackup",
+            target_id = id.from(_N, "RestoreFromBackupConfiguration"),
+            target = M.RestoreFromBackupConfiguration,
+        }),
+        pointInTimeRestore = schema.new({
+            id = id.from(_N, "SourceConfiguration", "pointInTimeRestore"),
+            type = "structure",
+            name = "pointInTimeRestore",
+            target_id = id.from(_N, "PointInTimeRestoreConfiguration"),
+            target = M.PointInTimeRestoreConfiguration,
+        }),
+        crossRegionDataGuard = schema.new({
+            id = id.from(_N, "SourceConfiguration", "crossRegionDataGuard"),
+            type = "structure",
+            name = "crossRegionDataGuard",
+            target_id = id.from(_N, "CrossRegionDataGuardConfiguration"),
+            target = M.CrossRegionDataGuardConfiguration,
+        }),
+        crossRegionDisasterRecovery = schema.new({
+            id = id.from(_N, "SourceConfiguration", "crossRegionDisasterRecovery"),
+            type = "structure",
+            name = "crossRegionDisasterRecovery",
+            target_id = id.from(_N, "CrossRegionDisasterRecoveryConfiguration"),
+            target = M.CrossRegionDisasterRecoveryConfiguration,
+        }),
+        cloneToRefreshable = schema.new({
+            id = id.from(_N, "SourceConfiguration", "cloneToRefreshable"),
+            type = "structure",
+            name = "cloneToRefreshable",
+            target_id = id.from(_N, "CloneToRefreshableConfiguration"),
+            target = M.CloneToRefreshableConfiguration,
+        }),
+    },
+})
+
+M.TransportableTablespace = schema.new({
+    id = id.from(_N, "TransportableTablespace"),
+    type = "structure",
+    members = {
+        ttsBundleUrl = schema.new({
+            id = id.from(_N, "TransportableTablespace", "ttsBundleUrl"),
+            type = "string",
+            name = "ttsBundleUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "CreateAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        odbNetworkId = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "odbNetworkId"),
+            type = "string",
+            name = "odbNetworkId",
+            target_id = prelude.String.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        dbName = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "dbName"),
+            type = "string",
+            name = "dbName",
+            target_id = prelude.String.id,
+        }),
+        adminPassword = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "adminPassword"),
+            type = "string",
+            name = "adminPassword",
+            target_id = prelude.String.id,
+        }),
+        computeCount = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "computeCount"),
+            type = "double",
+            name = "computeCount",
+            target_id = prelude.Double.id,
+        }),
+        dataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "dataStorageSizeInTBs"),
+            type = "integer",
+            name = "dataStorageSizeInTBs",
+            target_id = prelude.Integer.id,
+        }),
+        dataStorageSizeInGBs = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "dataStorageSizeInGBs"),
+            type = "integer",
+            name = "dataStorageSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        dbWorkload = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "dbWorkload"),
+            type = "string",
+            name = "dbWorkload",
+            target_id = prelude.String.id,
+        }),
+        isAutoScalingEnabled = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "isAutoScalingEnabled"),
+            type = "boolean",
+            name = "isAutoScalingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        isAutoScalingForStorageEnabled = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "isAutoScalingForStorageEnabled"),
+            type = "boolean",
+            name = "isAutoScalingForStorageEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        characterSet = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "characterSet"),
+            type = "string",
+            name = "characterSet",
+            target_id = prelude.String.id,
+        }),
+        ncharacterSet = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "ncharacterSet"),
+            type = "string",
+            name = "ncharacterSet",
+            target_id = prelude.String.id,
+        }),
+        dbVersion = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "dbVersion"),
+            type = "string",
+            name = "dbVersion",
+            target_id = prelude.String.id,
+        }),
+        databaseEdition = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "databaseEdition"),
+            type = "string",
+            name = "databaseEdition",
+            target_id = prelude.String.id,
+        }),
+        standbyAllowlistedIpsSource = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "standbyAllowlistedIpsSource"),
+            type = "string",
+            name = "standbyAllowlistedIpsSource",
+            target_id = prelude.String.id,
+        }),
+        autonomousMaintenanceScheduleType = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "autonomousMaintenanceScheduleType"),
+            type = "string",
+            name = "autonomousMaintenanceScheduleType",
+            target_id = prelude.String.id,
+        }),
+        backupRetentionPeriodInDays = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "backupRetentionPeriodInDays"),
+            type = "integer",
+            name = "backupRetentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        byolComputeCountLimit = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "byolComputeCountLimit"),
+            type = "double",
+            name = "byolComputeCountLimit",
+            target_id = prelude.Double.id,
+        }),
+        cpuCoreCount = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "cpuCoreCount"),
+            type = "integer",
+            name = "cpuCoreCount",
+            target_id = prelude.Integer.id,
+        }),
+        customerContactsToSendToOCI = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "customerContactsToSendToOCI"),
+            type = "list",
+            name = "customerContactsToSendToOCI",
+            target_id = prelude.Document.id,
+            list_member = M.CustomerContact,
+        }),
+        privateEndpointIp = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "privateEndpointIp"),
+            type = "string",
+            name = "privateEndpointIp",
+            target_id = prelude.String.id,
+        }),
+        privateEndpointLabel = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "privateEndpointLabel"),
+            type = "string",
+            name = "privateEndpointLabel",
+            target_id = prelude.String.id,
+        }),
+        resourcePoolLeaderId = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "resourcePoolLeaderId"),
+            type = "string",
+            name = "resourcePoolLeaderId",
+            target_id = prelude.String.id,
+        }),
+        resourcePoolSummary = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "resourcePoolSummary"),
+            type = "structure",
+            name = "resourcePoolSummary",
+            target_id = id.from(_N, "ResourcePoolSummary"),
+            target = M.ResourcePoolSummary,
+        }),
+        scheduledOperations = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "scheduledOperations"),
+            type = "list",
+            name = "scheduledOperations",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduledOperationDetails,
+        }),
+        standbyAllowlistedIps = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "standbyAllowlistedIps"),
+            type = "list",
+            name = "standbyAllowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allowlistedIps = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "allowlistedIps"),
+            type = "list",
+            name = "allowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        transportableTablespace = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "transportableTablespace"),
+            type = "structure",
+            name = "transportableTablespace",
+            target_id = id.from(_N, "TransportableTablespace"),
+            target = M.TransportableTablespace,
+        }),
+        isBackupRetentionLocked = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "isBackupRetentionLocked"),
+            type = "boolean",
+            name = "isBackupRetentionLocked",
+            target_id = prelude.Boolean.id,
+        }),
+        isLocalDataGuardEnabled = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "isLocalDataGuardEnabled"),
+            type = "boolean",
+            name = "isLocalDataGuardEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        isMtlsConnectionRequired = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "isMtlsConnectionRequired"),
+            type = "boolean",
+            name = "isMtlsConnectionRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        dbToolsDetails = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "dbToolsDetails"),
+            type = "list",
+            name = "dbToolsDetails",
+            target_id = prelude.Document.id,
+            list_member = M.DatabaseTool,
+        }),
+        source = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+        }),
+        sourceConfiguration = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "sourceConfiguration"),
+            type = "union",
+            name = "sourceConfiguration",
+            target_id = id.from(_N, "SourceConfiguration"),
+            target = M.SourceConfiguration,
+        }),
+        encryptionKeyProvider = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "encryptionKeyProvider"),
+            type = "string",
+            name = "encryptionKeyProvider",
+            target_id = prelude.String.id,
+        }),
+        encryptionKeyConfiguration = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "encryptionKeyConfiguration"),
+            type = "union",
+            name = "encryptionKeyConfiguration",
+            target_id = id.from(_N, "EncryptionKeyConfigurationInput"),
+            target = M.EncryptionKeyConfigurationInput,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "CreateAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAutonomousDatabaseWalletInput = schema.new({
+    id = id.from(_N, "CreateAutonomousDatabaseWalletInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseWalletInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        walletType = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseWalletInput", "walletType"),
+            type = "string",
+            name = "walletType",
+            target_id = prelude.String.id,
+        }),
+        password = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseWalletInput", "password"),
+            type = "string",
+            name = "password",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseWalletInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAutonomousDatabaseWalletOutput = schema.new({
+    id = id.from(_N, "CreateAutonomousDatabaseWalletOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseWalletFile = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseWalletOutput", "autonomousDatabaseWalletFile"),
+            type = "blob",
+            name = "autonomousDatabaseWalletFile",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.MEDIA_TYPE] = { value = "application/zip" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "DeleteAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "DeleteAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "DeleteAutonomousDatabaseOutput"),
+    type = "structure",
+})
+
+M.FailoverAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "FailoverAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "FailoverAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        peerDbArn = schema.new({
+            id = id.from(_N, "FailoverAutonomousDatabaseInput", "peerDbArn"),
+            type = "string",
+            name = "peerDbArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FailoverAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "FailoverAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "FailoverAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "FailoverAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "FailoverAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "FailoverAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "GetAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "GetAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "GetAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabase = schema.new({
+            id = id.from(_N, "GetAutonomousDatabaseOutput", "autonomousDatabase"),
+            type = "structure",
+            name = "autonomousDatabase",
+            target_id = id.from(_N, "AutonomousDatabase"),
+            target = M.AutonomousDatabase,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAutonomousDatabaseWalletDetailsInput = schema.new({
+    id = id.from(_N, "GetAutonomousDatabaseWalletDetailsInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "GetAutonomousDatabaseWalletDetailsInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AutonomousDatabaseWalletDetails = schema.new({
+    id = id.from(_N, "AutonomousDatabaseWalletDetails"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "AutonomousDatabaseWalletDetails", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        timeRotated = schema.new({
+            id = id.from(_N, "AutonomousDatabaseWalletDetails", "timeRotated"),
+            type = "timestamp",
+            name = "timeRotated",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetAutonomousDatabaseWalletDetailsOutput = schema.new({
+    id = id.from(_N, "GetAutonomousDatabaseWalletDetailsOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseWalletDetails = schema.new({
+            id = id.from(_N, "GetAutonomousDatabaseWalletDetailsOutput", "autonomousDatabaseWalletDetails"),
+            type = "structure",
+            name = "autonomousDatabaseWalletDetails",
+            target_id = id.from(_N, "AutonomousDatabaseWalletDetails"),
+            target = M.AutonomousDatabaseWalletDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutonomousDatabaseClonesInput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseClonesInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseClonesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseClonesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseClonesInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutonomousDatabaseClonesOutput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseClonesOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseClonesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseClones = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseClonesOutput", "autonomousDatabaseClones"),
+            type = "list",
+            name = "autonomousDatabaseClones",
+            target_id = prelude.Document.id,
+            list_member = M.AutonomousDatabaseSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutonomousDatabasePeersInput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabasePeersInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasePeersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasePeersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasePeersInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutonomousDatabasePeersOutput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabasePeersOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasePeersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabasePeers = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasePeersOutput", "autonomousDatabasePeers"),
+            type = "list",
+            name = "autonomousDatabasePeers",
+            target_id = prelude.Document.id,
+            list_member = M.AutonomousDatabasePeerSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutonomousDatabasesInput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabasesInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAutonomousDatabasesOutput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabasesOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabases = schema.new({
+            id = id.from(_N, "ListAutonomousDatabasesOutput", "autonomousDatabases"),
+            type = "list",
+            name = "autonomousDatabases",
+            target_id = prelude.Document.id,
+            list_member = M.AutonomousDatabaseSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RebootAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "RebootAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "RebootAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        isOnlineReboot = schema.new({
+            id = id.from(_N, "RebootAutonomousDatabaseInput", "isOnlineReboot"),
+            type = "boolean",
+            name = "isOnlineReboot",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.RebootAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "RebootAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "RebootAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "RebootAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "RebootAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "RebootAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RestoreAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "RestoreAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "RestoreAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "RestoreAutonomousDatabaseInput", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.RestoreAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "RestoreAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "RestoreAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "RestoreAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "RestoreAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "RestoreAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ShrinkAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "ShrinkAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "ShrinkAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ShrinkAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "ShrinkAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "ShrinkAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "ShrinkAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "ShrinkAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "ShrinkAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "StartAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "StartAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "StartAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "StartAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "StartAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "StartAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "StopAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "StopAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "StopAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "StopAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "StopAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StopAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "StopAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SwitchoverAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "SwitchoverAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "SwitchoverAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        peerDbArn = schema.new({
+            id = id.from(_N, "SwitchoverAutonomousDatabaseInput", "peerDbArn"),
+            type = "string",
+            name = "peerDbArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SwitchoverAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "SwitchoverAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "SwitchoverAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "SwitchoverAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "SwitchoverAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "SwitchoverAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateAutonomousDatabaseInput = schema.new({
+    id = id.from(_N, "UpdateAutonomousDatabaseInput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        adminPassword = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "adminPassword"),
+            type = "string",
+            name = "adminPassword",
+            target_id = prelude.String.id,
+        }),
+        computeCount = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "computeCount"),
+            type = "double",
+            name = "computeCount",
+            target_id = prelude.Double.id,
+        }),
+        cpuCoreCount = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "cpuCoreCount"),
+            type = "integer",
+            name = "cpuCoreCount",
+            target_id = prelude.Integer.id,
+        }),
+        dataStorageSizeInTBs = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "dataStorageSizeInTBs"),
+            type = "integer",
+            name = "dataStorageSizeInTBs",
+            target_id = prelude.Integer.id,
+        }),
+        dataStorageSizeInGBs = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "dataStorageSizeInGBs"),
+            type = "integer",
+            name = "dataStorageSizeInGBs",
+            target_id = prelude.Integer.id,
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        dbName = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "dbName"),
+            type = "string",
+            name = "dbName",
+            target_id = prelude.String.id,
+        }),
+        dbVersion = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "dbVersion"),
+            type = "string",
+            name = "dbVersion",
+            target_id = prelude.String.id,
+        }),
+        dbWorkload = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "dbWorkload"),
+            type = "string",
+            name = "dbWorkload",
+            target_id = prelude.String.id,
+        }),
+        dbToolsDetails = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "dbToolsDetails"),
+            type = "list",
+            name = "dbToolsDetails",
+            target_id = prelude.Document.id,
+            list_member = M.DatabaseTool,
+        }),
+        databaseEdition = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "databaseEdition"),
+            type = "string",
+            name = "databaseEdition",
+            target_id = prelude.String.id,
+        }),
+        licenseModel = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "licenseModel"),
+            type = "string",
+            name = "licenseModel",
+            target_id = prelude.String.id,
+        }),
+        isAutoScalingEnabled = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "isAutoScalingEnabled"),
+            type = "boolean",
+            name = "isAutoScalingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        isAutoScalingForStorageEnabled = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "isAutoScalingForStorageEnabled"),
+            type = "boolean",
+            name = "isAutoScalingForStorageEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        isBackupRetentionLocked = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "isBackupRetentionLocked"),
+            type = "boolean",
+            name = "isBackupRetentionLocked",
+            target_id = prelude.Boolean.id,
+        }),
+        isLocalDataGuardEnabled = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "isLocalDataGuardEnabled"),
+            type = "boolean",
+            name = "isLocalDataGuardEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        isMtlsConnectionRequired = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "isMtlsConnectionRequired"),
+            type = "boolean",
+            name = "isMtlsConnectionRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        isRefreshableClone = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "isRefreshableClone"),
+            type = "boolean",
+            name = "isRefreshableClone",
+            target_id = prelude.Boolean.id,
+        }),
+        isDisconnectPeer = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "isDisconnectPeer"),
+            type = "boolean",
+            name = "isDisconnectPeer",
+            target_id = prelude.Boolean.id,
+        }),
+        backupRetentionPeriodInDays = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "backupRetentionPeriodInDays"),
+            type = "integer",
+            name = "backupRetentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        byolComputeCountLimit = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "byolComputeCountLimit"),
+            type = "double",
+            name = "byolComputeCountLimit",
+            target_id = prelude.Double.id,
+        }),
+        localAdgAutoFailoverMaxDataLossLimit = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "localAdgAutoFailoverMaxDataLossLimit"),
+            type = "integer",
+            name = "localAdgAutoFailoverMaxDataLossLimit",
+            target_id = prelude.Integer.id,
+        }),
+        autonomousMaintenanceScheduleType = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "autonomousMaintenanceScheduleType"),
+            type = "string",
+            name = "autonomousMaintenanceScheduleType",
+            target_id = prelude.String.id,
+        }),
+        customerContactsToSendToOCI = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "customerContactsToSendToOCI"),
+            type = "list",
+            name = "customerContactsToSendToOCI",
+            target_id = prelude.Document.id,
+            list_member = M.CustomerContact,
+        }),
+        scheduledOperations = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "scheduledOperations"),
+            type = "list",
+            name = "scheduledOperations",
+            target_id = prelude.Document.id,
+            list_member = M.ScheduledOperationDetails,
+        }),
+        longTermBackupSchedule = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "longTermBackupSchedule"),
+            type = "structure",
+            name = "longTermBackupSchedule",
+            target_id = id.from(_N, "LongTermBackupSchedule"),
+            target = M.LongTermBackupSchedule,
+        }),
+        openMode = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "openMode"),
+            type = "string",
+            name = "openMode",
+            target_id = prelude.String.id,
+        }),
+        permissionLevel = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "permissionLevel"),
+            type = "string",
+            name = "permissionLevel",
+            target_id = prelude.String.id,
+        }),
+        refreshableMode = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "refreshableMode"),
+            type = "string",
+            name = "refreshableMode",
+            target_id = prelude.String.id,
+        }),
+        privateEndpointIp = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "privateEndpointIp"),
+            type = "string",
+            name = "privateEndpointIp",
+            target_id = prelude.String.id,
+        }),
+        privateEndpointLabel = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "privateEndpointLabel"),
+            type = "string",
+            name = "privateEndpointLabel",
+            target_id = prelude.String.id,
+        }),
+        peerDbId = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "peerDbId"),
+            type = "string",
+            name = "peerDbId",
+            target_id = prelude.String.id,
+        }),
+        resourcePoolLeaderId = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "resourcePoolLeaderId"),
+            type = "string",
+            name = "resourcePoolLeaderId",
+            target_id = prelude.String.id,
+        }),
+        resourcePoolSummary = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "resourcePoolSummary"),
+            type = "structure",
+            name = "resourcePoolSummary",
+            target_id = id.from(_N, "ResourcePoolSummary"),
+            target = M.ResourcePoolSummary,
+        }),
+        standbyAllowlistedIpsSource = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "standbyAllowlistedIpsSource"),
+            type = "string",
+            name = "standbyAllowlistedIpsSource",
+            target_id = prelude.String.id,
+        }),
+        standbyAllowlistedIps = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "standbyAllowlistedIps"),
+            type = "list",
+            name = "standbyAllowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allowlistedIps = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "allowlistedIps"),
+            type = "list",
+            name = "allowlistedIps",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        autoRefreshFrequencyInSeconds = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "autoRefreshFrequencyInSeconds"),
+            type = "integer",
+            name = "autoRefreshFrequencyInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        autoRefreshPointLagInSeconds = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "autoRefreshPointLagInSeconds"),
+            type = "integer",
+            name = "autoRefreshPointLagInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        timeOfAutoRefreshStart = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "timeOfAutoRefreshStart"),
+            type = "timestamp",
+            name = "timeOfAutoRefreshStart",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        encryptionKeyProvider = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "encryptionKeyProvider"),
+            type = "string",
+            name = "encryptionKeyProvider",
+            target_id = prelude.String.id,
+        }),
+        encryptionKeyConfiguration = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "encryptionKeyConfiguration"),
+            type = "union",
+            name = "encryptionKeyConfiguration",
+            target_id = id.from(_N, "EncryptionKeyConfigurationInput"),
+            target = M.EncryptionKeyConfigurationInput,
+        }),
+    },
+})
+
+M.UpdateAutonomousDatabaseOutput = schema.new({
+    id = id.from(_N, "UpdateAutonomousDatabaseOutput"),
+    type = "structure",
+    members = {
+        autonomousDatabaseId = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseOutput", "autonomousDatabaseId"),
+            type = "string",
+            name = "autonomousDatabaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        displayName = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseOutput", "displayName"),
+            type = "string",
+            name = "displayName",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AutonomousDatabaseVersionSummary = schema.new({
+    id = id.from(_N, "AutonomousDatabaseVersionSummary"),
+    type = "structure",
+    members = {
+        dbWorkload = schema.new({
+            id = id.from(_N, "AutonomousDatabaseVersionSummary", "dbWorkload"),
+            type = "string",
+            name = "dbWorkload",
+            target_id = prelude.String.id,
+        }),
+        details = schema.new({
+            id = id.from(_N, "AutonomousDatabaseVersionSummary", "details"),
+            type = "string",
+            name = "details",
+            target_id = prelude.String.id,
+        }),
+        version = schema.new({
+            id = id.from(_N, "AutonomousDatabaseVersionSummary", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AutonomousVirtualMachineSummary = schema.new({
     id = id.from(_N, "AutonomousVirtualMachineSummary"),
     type = "structure",
@@ -449,19 +4679,6 @@ M.IamRole = schema.new({
             id = id.from(_N, "IamRole", "awsIntegration"),
             type = "string",
             name = "awsIntegration",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DayOfWeek = schema.new({
-    id = id.from(_N, "DayOfWeek"),
-    type = "structure",
-    members = {
-        name = schema.new({
-            id = id.from(_N, "DayOfWeek", "name"),
-            type = "string",
-            name = "name",
             target_id = prelude.String.id,
         }),
     },
@@ -1396,52 +5613,6 @@ M.CreateCloudAutonomousVmClusterOutput = schema.new({
     },
 })
 
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceId = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "resourceId"),
-            type = "string",
-            name = "resourceId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        resourceType = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "resourceType"),
-            type = "string",
-            name = "resourceType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        quotaCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "quotaCode"),
-            type = "string",
-            name = "quotaCode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.DeleteCloudAutonomousVmClusterInput = schema.new({
     id = id.from(_N, "DeleteCloudAutonomousVmClusterInput"),
     type = "structure",
@@ -1622,19 +5793,6 @@ M.CloudAutonomousVmClusterResourceDetails = schema.new({
             type = "double",
             name = "unallocatedAdbStorageInTBs",
             target_id = prelude.Double.id,
-        }),
-    },
-})
-
-M.CustomerContact = schema.new({
-    id = id.from(_N, "CustomerContact"),
-    type = "structure",
-    members = {
-        email = schema.new({
-            id = id.from(_N, "CustomerContact", "email"),
-            type = "string",
-            name = "email",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -4976,6 +9134,25 @@ M.GetOciOnboardingStatusInput = schema.new({
     type = "structure",
 })
 
+M.OciIamRole = schema.new({
+    id = id.from(_N, "OciIamRole"),
+    type = "structure",
+    members = {
+        iamRoleArn = schema.new({
+            id = id.from(_N, "OciIamRole", "iamRoleArn"),
+            type = "string",
+            name = "iamRoleArn",
+            target_id = prelude.String.id,
+        }),
+        awsIntegration = schema.new({
+            id = id.from(_N, "OciIamRole", "awsIntegration"),
+            type = "string",
+            name = "awsIntegration",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.OciIdentityDomain = schema.new({
     id = id.from(_N, "OciIdentityDomain"),
     type = "structure",
@@ -5019,6 +9196,19 @@ M.OciIdentityDomain = schema.new({
     },
 })
 
+M.SubscriptionError = schema.new({
+    id = id.from(_N, "SubscriptionError"),
+    type = "structure",
+    members = {
+        errorMessage = schema.new({
+            id = id.from(_N, "SubscriptionError", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetOciOnboardingStatusOutput = schema.new({
     id = id.from(_N, "GetOciOnboardingStatusOutput"),
     type = "structure",
@@ -5047,6 +9237,32 @@ M.GetOciOnboardingStatusOutput = schema.new({
             name = "ociIdentityDomain",
             target_id = id.from(_N, "OciIdentityDomain"),
             target = M.OciIdentityDomain,
+        }),
+        autonomousDatabaseOciIntegrationIamRoles = schema.new({
+            id = id.from(_N, "GetOciOnboardingStatusOutput", "autonomousDatabaseOciIntegrationIamRoles"),
+            type = "list",
+            name = "autonomousDatabaseOciIntegrationIamRoles",
+            target_id = prelude.Document.id,
+            list_member = M.OciIamRole,
+        }),
+        linkedOciTenancyId = schema.new({
+            id = id.from(_N, "GetOciOnboardingStatusOutput", "linkedOciTenancyId"),
+            type = "string",
+            name = "linkedOciTenancyId",
+            target_id = prelude.String.id,
+        }),
+        linkedOciCompartmentId = schema.new({
+            id = id.from(_N, "GetOciOnboardingStatusOutput", "linkedOciCompartmentId"),
+            type = "string",
+            name = "linkedOciCompartmentId",
+            target_id = prelude.String.id,
+        }),
+        subscriptionErrors = schema.new({
+            id = id.from(_N, "GetOciOnboardingStatusOutput", "subscriptionErrors"),
+            type = "list",
+            name = "subscriptionErrors",
+            target_id = prelude.Document.id,
+            list_member = M.SubscriptionError,
         }),
     },
 })
@@ -5622,6 +9838,114 @@ M.InitializeServiceInput = schema.new({
 M.InitializeServiceOutput = schema.new({
     id = id.from(_N, "InitializeServiceOutput"),
     type = "structure",
+})
+
+M.ListAutonomousDatabaseCharacterSetsInput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseCharacterSetsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseCharacterSetsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseCharacterSetsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        characterSetType = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseCharacterSetsInput", "characterSetType"),
+            type = "string",
+            name = "characterSetType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutonomousDatabaseCharacterSetsOutput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseCharacterSetsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseCharacterSetsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseCharacterSets = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseCharacterSetsOutput", "autonomousDatabaseCharacterSets"),
+            type = "list",
+            name = "autonomousDatabaseCharacterSets",
+            target_id = prelude.Document.id,
+            list_member = M.AutonomousDatabaseCharacterSetSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAutonomousDatabaseVersionsInput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseVersionsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseVersionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseVersionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        dbWorkload = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseVersionsInput", "dbWorkload"),
+            type = "string",
+            name = "dbWorkload",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAutonomousDatabaseVersionsOutput = schema.new({
+    id = id.from(_N, "ListAutonomousDatabaseVersionsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseVersionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        autonomousDatabaseVersions = schema.new({
+            id = id.from(_N, "ListAutonomousDatabaseVersionsOutput", "autonomousDatabaseVersions"),
+            type = "list",
+            name = "autonomousDatabaseVersions",
+            target_id = prelude.Document.id,
+            list_member = M.AutonomousDatabaseVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
 })
 
 M.ListDbSystemShapesInput = schema.new({
@@ -6501,6 +10825,39 @@ M.AssociateIamRoleToResource = schema.operation({
     },
 })
 
+M.CreateAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateAutonomousDatabase"),
+    input = M.CreateAutonomousDatabaseInput,
+    output = M.CreateAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutonomousDatabaseBackup = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateAutonomousDatabaseBackup"),
+    input = M.CreateAutonomousDatabaseBackupInput,
+    output = M.CreateAutonomousDatabaseBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateAutonomousDatabaseWallet = schema.operation({
+    id = id.from("com.amazonaws.odb", "CreateAutonomousDatabaseWallet"),
+    input = M.CreateAutonomousDatabaseWalletInput,
+    output = M.CreateAutonomousDatabaseWalletOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateCloudAutonomousVmCluster = schema.operation({
     id = id.from("com.amazonaws.odb", "CreateCloudAutonomousVmCluster"),
     input = M.CreateCloudAutonomousVmClusterInput,
@@ -6549,6 +10906,28 @@ M.CreateOdbPeeringConnection = schema.operation({
     id = id.from("com.amazonaws.odb", "CreateOdbPeeringConnection"),
     input = M.CreateOdbPeeringConnectionInput,
     output = M.CreateOdbPeeringConnectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteAutonomousDatabase"),
+    input = M.DeleteAutonomousDatabaseInput,
+    output = M.DeleteAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAutonomousDatabaseBackup = schema.operation({
+    id = id.from("com.amazonaws.odb", "DeleteAutonomousDatabaseBackup"),
+    input = M.DeleteAutonomousDatabaseBackupInput,
+    output = M.DeleteAutonomousDatabaseBackupOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6615,6 +10994,50 @@ M.DisassociateIamRoleFromResource = schema.operation({
     id = id.from("com.amazonaws.odb", "DisassociateIamRoleFromResource"),
     input = M.DisassociateIamRoleFromResourceInput,
     output = M.DisassociateIamRoleFromResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.FailoverAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "FailoverAutonomousDatabase"),
+    input = M.FailoverAutonomousDatabaseInput,
+    output = M.FailoverAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetAutonomousDatabase"),
+    input = M.GetAutonomousDatabaseInput,
+    output = M.GetAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutonomousDatabaseBackup = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetAutonomousDatabaseBackup"),
+    input = M.GetAutonomousDatabaseBackupInput,
+    output = M.GetAutonomousDatabaseBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAutonomousDatabaseWalletDetails = schema.operation({
+    id = id.from("com.amazonaws.odb", "GetAutonomousDatabaseWalletDetails"),
+    input = M.GetAutonomousDatabaseWalletDetailsInput,
+    output = M.GetAutonomousDatabaseWalletDetailsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6725,6 +11148,72 @@ M.InitializeService = schema.operation({
     id = id.from("com.amazonaws.odb", "InitializeService"),
     input = M.InitializeServiceInput,
     output = M.InitializeServiceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutonomousDatabaseBackups = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListAutonomousDatabaseBackups"),
+    input = M.ListAutonomousDatabaseBackupsInput,
+    output = M.ListAutonomousDatabaseBackupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutonomousDatabaseCharacterSets = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListAutonomousDatabaseCharacterSets"),
+    input = M.ListAutonomousDatabaseCharacterSetsInput,
+    output = M.ListAutonomousDatabaseCharacterSetsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutonomousDatabaseClones = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListAutonomousDatabaseClones"),
+    input = M.ListAutonomousDatabaseClonesInput,
+    output = M.ListAutonomousDatabaseClonesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutonomousDatabasePeers = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListAutonomousDatabasePeers"),
+    input = M.ListAutonomousDatabasePeersInput,
+    output = M.ListAutonomousDatabasePeersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutonomousDatabases = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListAutonomousDatabases"),
+    input = M.ListAutonomousDatabasesInput,
+    output = M.ListAutonomousDatabasesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAutonomousDatabaseVersions = schema.operation({
+    id = id.from("com.amazonaws.odb", "ListAutonomousDatabaseVersions"),
+    input = M.ListAutonomousDatabaseVersionsInput,
+    output = M.ListAutonomousDatabaseVersionsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6864,10 +11353,54 @@ M.ListTagsForResource = schema.operation({
     },
 })
 
+M.RebootAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "RebootAutonomousDatabase"),
+    input = M.RebootAutonomousDatabaseInput,
+    output = M.RebootAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.RebootDbNode = schema.operation({
     id = id.from("com.amazonaws.odb", "RebootDbNode"),
     input = M.RebootDbNodeInput,
     output = M.RebootDbNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "RestoreAutonomousDatabase"),
+    input = M.RestoreAutonomousDatabaseInput,
+    output = M.RestoreAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ShrinkAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "ShrinkAutonomousDatabase"),
+    input = M.ShrinkAutonomousDatabaseInput,
+    output = M.ShrinkAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "StartAutonomousDatabase"),
+    input = M.StartAutonomousDatabaseInput,
+    output = M.StartAutonomousDatabaseOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6886,10 +11419,32 @@ M.StartDbNode = schema.operation({
     },
 })
 
+M.StopAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "StopAutonomousDatabase"),
+    input = M.StopAutonomousDatabaseInput,
+    output = M.StopAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StopDbNode = schema.operation({
     id = id.from("com.amazonaws.odb", "StopDbNode"),
     input = M.StopDbNodeInput,
     output = M.StopDbNodeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SwitchoverAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "SwitchoverAutonomousDatabase"),
+    input = M.SwitchoverAutonomousDatabaseInput,
+    output = M.SwitchoverAutonomousDatabaseOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -6912,6 +11467,28 @@ M.UntagResource = schema.operation({
     id = id.from("com.amazonaws.odb", "UntagResource"),
     input = M.UntagResourceInput,
     output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutonomousDatabase = schema.operation({
+    id = id.from("com.amazonaws.odb", "UpdateAutonomousDatabase"),
+    input = M.UpdateAutonomousDatabaseInput,
+    output = M.UpdateAutonomousDatabaseOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAutonomousDatabaseBackup = schema.operation({
+    id = id.from("com.amazonaws.odb", "UpdateAutonomousDatabaseBackup"),
+    input = M.UpdateAutonomousDatabaseBackupInput,
+    output = M.UpdateAutonomousDatabaseBackupOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

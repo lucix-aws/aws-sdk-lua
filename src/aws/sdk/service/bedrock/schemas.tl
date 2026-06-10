@@ -7376,6 +7376,77 @@ M.ListCustomModelsOutput = schema.new({
     },
 })
 
+M.GetAccountDataRetentionInput = schema.new({
+    id = id.from(_N, "GetAccountDataRetentionRequest"),
+    type = "structure",
+})
+
+M.GetAccountDataRetentionOutput = schema.new({
+    id = id.from(_N, "GetAccountDataRetentionResponse"),
+    type = "structure",
+    members = {
+        mode = schema.new({
+            id = id.from(_N, "GetAccountDataRetentionOutput", "mode"),
+            type = "string",
+            name = "mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetAccountDataRetentionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.PutAccountDataRetentionInput = schema.new({
+    id = id.from(_N, "PutAccountDataRetentionRequest"),
+    type = "structure",
+    members = {
+        mode = schema.new({
+            id = id.from(_N, "PutAccountDataRetentionInput", "mode"),
+            type = "string",
+            name = "mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAccountDataRetentionOutput = schema.new({
+    id = id.from(_N, "PutAccountDataRetentionResponse"),
+    type = "structure",
+    members = {
+        mode = schema.new({
+            id = id.from(_N, "PutAccountDataRetentionOutput", "mode"),
+            type = "string",
+            name = "mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "PutAccountDataRetentionOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.DeleteEnforcedGuardrailConfigurationInput = schema.new({
     id = id.from(_N, "DeleteEnforcedGuardrailConfigurationRequest"),
     type = "structure",
@@ -16563,6 +16634,19 @@ M.ExportAutomatedReasoningPolicyVersion = schema.operation({
     },
 })
 
+M.GetAccountDataRetention = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "GetAccountDataRetention"),
+    input = M.GetAccountDataRetentionInput,
+    output = M.GetAccountDataRetentionOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-retention" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
 M.GetAdvancedPromptOptimizationJob = schema.operation({
     id = id.from("com.amazonaws.bedrock", "GetAdvancedPromptOptimizationJob"),
     input = M.GetAdvancedPromptOptimizationJobInput,
@@ -17180,6 +17264,19 @@ M.ListTagsForResource = schema.operation({
     output = M.ListTagsForResourceOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/listTagsForResource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.PutAccountDataRetention = schema.operation({
+    id = id.from("com.amazonaws.bedrock", "PutAccountDataRetention"),
+    input = M.PutAccountDataRetentionInput,
+    output = M.PutAccountDataRetentionOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-retention" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
             { scheme_id = "smithy.api#httpBearerAuth" },

@@ -22,9 +22,11 @@ local record Client
     cancelOrder: function(Client, types.CancelOrderInput, ? base_client.InvokeOptions): async.Operation<types.CancelOrderOutput>
     createOrder: function(Client, types.CreateOrderInput, ? base_client.InvokeOptions): async.Operation<types.CreateOrderOutput>
     createOutpost: function(Client, types.CreateOutpostInput, ? base_client.InvokeOptions): async.Operation<types.CreateOutpostOutput>
+    createQuote: function(Client, types.CreateQuoteInput, ? base_client.InvokeOptions): async.Operation<types.CreateQuoteOutput>
     createRenewal: function(Client, types.CreateRenewalInput, ? base_client.InvokeOptions): async.Operation<types.CreateRenewalOutput>
     createSite: function(Client, types.CreateSiteInput, ? base_client.InvokeOptions): async.Operation<types.CreateSiteOutput>
     deleteOutpost: function(Client, types.DeleteOutpostInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOutpostOutput>
+    deleteQuote: function(Client, types.DeleteQuoteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQuoteOutput>
     deleteSite: function(Client, types.DeleteSiteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSiteOutput>
     getCapacityTask: function(Client, types.GetCapacityTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityTaskOutput>
     getCatalogItem: function(Client, types.GetCatalogItemInput, ? base_client.InvokeOptions): async.Operation<types.GetCatalogItemOutput>
@@ -34,6 +36,7 @@ local record Client
     getOutpostBillingInformation: function(Client, types.GetOutpostBillingInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostBillingInformationOutput>
     getOutpostInstanceTypes: function(Client, types.GetOutpostInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostInstanceTypesOutput>
     getOutpostSupportedInstanceTypes: function(Client, types.GetOutpostSupportedInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
+    getQuote: function(Client, types.GetQuoteInput, ? base_client.InvokeOptions): async.Operation<types.GetQuoteOutput>
     getRenewalPricing: function(Client, types.GetRenewalPricingInput, ? base_client.InvokeOptions): async.Operation<types.GetRenewalPricingOutput>
     getSite: function(Client, types.GetSiteInput, ? base_client.InvokeOptions): async.Operation<types.GetSiteOutput>
     getSiteAddress: function(Client, types.GetSiteAddressInput, ? base_client.InvokeOptions): async.Operation<types.GetSiteAddressOutput>
@@ -42,8 +45,10 @@ local record Client
     listBlockingInstancesForCapacityTask: function(Client, types.ListBlockingInstancesForCapacityTaskInput, ? base_client.InvokeOptions): async.Operation<types.ListBlockingInstancesForCapacityTaskOutput>
     listCapacityTasks: function(Client, types.ListCapacityTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListCapacityTasksOutput>
     listCatalogItems: function(Client, types.ListCatalogItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListCatalogItemsOutput>
+    listOrderableInstanceTypes: function(Client, types.ListOrderableInstanceTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListOrderableInstanceTypesOutput>
     listOrders: function(Client, types.ListOrdersInput, ? base_client.InvokeOptions): async.Operation<types.ListOrdersOutput>
     listOutposts: function(Client, types.ListOutpostsInput, ? base_client.InvokeOptions): async.Operation<types.ListOutpostsOutput>
+    listQuotes: function(Client, types.ListQuotesInput, ? base_client.InvokeOptions): async.Operation<types.ListQuotesOutput>
     listSites: function(Client, types.ListSitesInput, ? base_client.InvokeOptions): async.Operation<types.ListSitesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     startCapacityTask: function(Client, types.StartCapacityTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartCapacityTaskOutput>
@@ -52,6 +57,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateOutpost: function(Client, types.UpdateOutpostInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOutpostOutput>
+    updateQuote: function(Client, types.UpdateQuoteInput, ? base_client.InvokeOptions): async.Operation<types.UpdateQuoteOutput>
     updateSite: function(Client, types.UpdateSiteInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSiteOutput>
     updateSiteAddress: function(Client, types.UpdateSiteAddressInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSiteAddressOutput>
     updateSiteRackPhysicalProperties: function(Client, types.UpdateSiteRackPhysicalPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSiteRackPhysicalPropertiesOutput>
@@ -115,6 +121,10 @@ function C:createOutpost(input: types.CreateOutpostInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOutpost as schema.OperationSchema, input, options) as async.Operation<types.CreateOutpostOutput>
 end
 
+function C:createQuote(input: types.CreateQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQuoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQuote as schema.OperationSchema, input, options) as async.Operation<types.CreateQuoteOutput>
+end
+
 function C:createRenewal(input: types.CreateRenewalInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRenewalOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRenewal as schema.OperationSchema, input, options) as async.Operation<types.CreateRenewalOutput>
 end
@@ -125,6 +135,10 @@ end
 
 function C:deleteOutpost(input: types.DeleteOutpostInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteOutpostOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteOutpost as schema.OperationSchema, input, options) as async.Operation<types.DeleteOutpostOutput>
+end
+
+function C:deleteQuote(input: types.DeleteQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQuoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQuote as schema.OperationSchema, input, options) as async.Operation<types.DeleteQuoteOutput>
 end
 
 function C:deleteSite(input: types.DeleteSiteInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSiteOutput>
@@ -163,6 +177,10 @@ function C:getOutpostSupportedInstanceTypes(input: types.GetOutpostSupportedInst
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOutpostSupportedInstanceTypes as schema.OperationSchema, input, options) as async.Operation<types.GetOutpostSupportedInstanceTypesOutput>
 end
 
+function C:getQuote(input: types.GetQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.GetQuoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQuote as schema.OperationSchema, input, options) as async.Operation<types.GetQuoteOutput>
+end
+
 function C:getRenewalPricing(input: types.GetRenewalPricingInput, options?: base_client.InvokeOptions): async.Operation<types.GetRenewalPricingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRenewalPricing as schema.OperationSchema, input, options) as async.Operation<types.GetRenewalPricingOutput>
 end
@@ -195,12 +213,20 @@ function C:listCatalogItems(input: types.ListCatalogItemsInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCatalogItems as schema.OperationSchema, input, options) as async.Operation<types.ListCatalogItemsOutput>
 end
 
+function C:listOrderableInstanceTypes(input: types.ListOrderableInstanceTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrderableInstanceTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrderableInstanceTypes as schema.OperationSchema, input, options) as async.Operation<types.ListOrderableInstanceTypesOutput>
+end
+
 function C:listOrders(input: types.ListOrdersInput, options?: base_client.InvokeOptions): async.Operation<types.ListOrdersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOrders as schema.OperationSchema, input, options) as async.Operation<types.ListOrdersOutput>
 end
 
 function C:listOutposts(input: types.ListOutpostsInput, options?: base_client.InvokeOptions): async.Operation<types.ListOutpostsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOutposts as schema.OperationSchema, input, options) as async.Operation<types.ListOutpostsOutput>
+end
+
+function C:listQuotes(input: types.ListQuotesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQuotesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQuotes as schema.OperationSchema, input, options) as async.Operation<types.ListQuotesOutput>
 end
 
 function C:listSites(input: types.ListSitesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSitesOutput>
@@ -233,6 +259,10 @@ end
 
 function C:updateOutpost(input: types.UpdateOutpostInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOutpostOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateOutpost as schema.OperationSchema, input, options) as async.Operation<types.UpdateOutpostOutput>
+end
+
+function C:updateQuote(input: types.UpdateQuoteInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateQuoteOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateQuote as schema.OperationSchema, input, options) as async.Operation<types.UpdateQuoteOutput>
 end
 
 function C:updateSite(input: types.UpdateSiteInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSiteOutput>

@@ -92,6 +92,681 @@ local record M
         resourceType: string
     end
 
+    -- The Oracle Application Express (APEX) details for an Autonomous Database.
+    record AutonomousDatabaseApex
+        -- The Oracle Application Express (APEX) version of the Autonomous Database.
+        apexVersion: string
+        -- The Oracle REST Data Services (ORDS) version of the Autonomous Database.
+        ordsVersion: string
+    end
+
+    enum AutonomousMaintenanceScheduleType
+        "EARLY"
+        "REGULAR"
+    end
+
+    enum ComputeModel
+        "ECPU"
+        "OCPU"
+    end
+
+    -- A connection string profile for an Autonomous Database.
+    record DatabaseConnectionStringProfile
+        -- The consumer group associated with the connection string profile.
+        consumerGroup: string
+        -- The user-friendly name of the connection string profile.
+        displayName: string
+        -- The host name format used in the connection string.
+        hostFormat: string
+        -- Indicates whether the connection string profile is regional.
+        isRegional: boolean
+        -- The protocol used by the connection string profile.
+        protocol: string
+        -- The session mode of the connection string profile.
+        sessionMode: string
+        -- The syntax format of the connection string profile.
+        syntaxFormat: string
+        -- The TLS authentication method used by the connection string profile.
+        tlsAuthentication: string
+        -- The connection string value of the profile.
+        value: string
+    end
+
+    -- The connection strings used to connect to an Autonomous Database.
+    record AutonomousDatabaseConnectionStrings
+        -- The list of all connection strings that you can use to connect to the Autonomous Database.
+        allConnectionStrings: {string : string}
+        -- The connection string for connecting to the Autonomous Database with a dedicated service.
+        dedicated: string
+        -- The connection string for the high-priority database service.
+        high: string
+        -- The connection string for the medium-priority database service.
+        medium: string
+        -- The connection string for the low-priority database service.
+        low: string
+        -- The list of connection string profiles for the Autonomous Database.
+        profiles: {DatabaseConnectionStringProfile}
+    end
+
+    -- The connection URLs for accessing tools and services for an Autonomous Database.
+    record AutonomousDatabaseConnectionUrls
+        -- The URL for accessing Oracle Application Express (APEX) for the Autonomous Database.
+        apexUrl: string
+        -- The URL for accessing Oracle Database Transforms for the Autonomous Database.
+        databaseTransformsUrl: string
+        -- The URL for accessing Oracle Graph Studio for the Autonomous Database.
+        graphStudioUrl: string
+        -- The URL for accessing the Oracle Machine Learning notebook for the Autonomous Database.
+        machineLearningNotebookUrl: string
+        -- The URL for accessing Oracle Machine Learning user management for the Autonomous Database.
+        machineLearningUserManagementUrl: string
+        -- The URL for accessing the MongoDB API for the Autonomous Database.
+        mongoDbUrl: string
+        -- The URL for accessing Oracle REST Data Services (ORDS) for the Autonomous Database.
+        ordsUrl: string
+        -- The URL for accessing Oracle Spatial Studio for the Autonomous Database.
+        spatialStudioUrl: string
+        -- The URL for accessing Oracle SQL Developer Web for the Autonomous Database.
+        sqlDevWebUrl: string
+    end
+
+    -- A contact to receive notification from Oracle about maintenance updates for a specific Exadata infrastructure.
+    record CustomerContact
+        -- The email address of the contact.
+        email: string
+    end
+
+    enum DatabaseEdition
+        "STANDARD_EDITION"
+        "ENTERPRISE_EDITION"
+    end
+
+    enum DatabaseManagementStatus
+        "ENABLING"
+        "ENABLED"
+        "DISABLING"
+        "NOT_ENABLED"
+        "FAILED_ENABLING"
+        "FAILED_DISABLING"
+    end
+
+    enum DatabaseType
+        "REGULAR"
+        "CLONE"
+    end
+
+    enum DataSafeStatus
+        "REGISTERING"
+        "REGISTERED"
+        "DEREGISTERING"
+        "NOT_REGISTERED"
+        "FAILED"
+    end
+
+    -- Information about a database management tool for an Autonomous Database.
+    record DatabaseTool
+        -- Indicates whether the database management tool is enabled.
+        isEnabled: boolean
+        -- The name of the database management tool.
+        name: string
+        -- The compute capacity allocated to the database management tool.
+        computeCount: number
+        -- The maximum amount of time, in minutes, that the database management tool can be idle before it is shut down.
+        maxIdleTimeInMinutes: number
+    end
+
+    enum DbWorkload
+        "OLTP"
+        "AJD"
+        "APEX"
+        "LH"
+    end
+
+    enum ExternalIdType
+        "database_ocid"
+        "compartment_ocid"
+        "tenant_ocid"
+    end
+
+    -- The configuration of the Amazon Web Services Key Management Service (KMS) encryption key used for an Autonomous Database.
+    record AwsEncryptionKeyConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role that grants access to the KMS key.
+        iamRoleArn: string
+        -- The type of external identifier associated with the encryption key.
+        externalIdType: string
+        -- The identifier or ARN of the Amazon Web Services KMS key used for encryption.
+        kmsKeyId: string
+    end
+
+    -- The configuration of the Oracle Cloud Infrastructure (OCI) Vault encryption key used for an Autonomous Database.
+    record OciEncryptionKeyConfiguration
+        -- The Oracle Cloud Identifier (OCID) of the OCI Vault key to use for encryption.
+        kmsKeyId: string
+        -- The Oracle Cloud Identifier (OCID) of the OCI Vault that contains the encryption key.
+        vaultId: string
+    end
+
+    -- The configuration of the Oracle Key Vault (OKV) encryption key used for an Autonomous Database.
+    record OkvEncryptionKeyConfiguration
+        -- The name of the directory that contains the Oracle Key Vault (OKV) certificate.
+        certificateDirectoryName: string
+        -- The identifier of the Oracle Key Vault (OKV) certificate.
+        certificateId: string
+        -- The name of the directory where the Oracle Key Vault (OKV) configuration is stored.
+        directoryName: string
+        -- The identifier of the Oracle Key Vault (OKV) key to use for encryption.
+        okvKmsKey: string
+        -- The URI of the Oracle Key Vault (OKV) server.
+        okvUri: string
+    end
+
+    -- The configuration of the encryption key used for an Autonomous Database. This is a union, so only one of the following members can be specified.
+    record EncryptionKeyConfiguration
+        -- The configuration of the Amazon Web Services Key Management Service (KMS) encryption key.
+        awsEncryptionKey: AwsEncryptionKeyConfiguration
+        -- The configuration of the Oracle Cloud Infrastructure (OCI) Vault encryption key.
+        ociEncryptionKey: OciEncryptionKeyConfiguration
+        -- The configuration of the Oracle Key Vault (OKV) encryption key.
+        okvEncryptionKey: OkvEncryptionKeyConfiguration
+    end
+
+    enum EncryptionKeyProvider
+        "ORACLE_MANAGED"
+        "AWS_KMS"
+        "OKV"
+        "OCI"
+    end
+
+    -- The encryption configuration for an Autonomous Database.
+    record EncryptionSummary
+        -- The provider of the encryption key used for the Autonomous Database.
+        encryptionKeyProvider: string
+        -- The configuration of the encryption key used for the Autonomous Database.
+        encryptionKeyConfiguration: EncryptionKeyConfiguration
+    end
+
+    enum LicenseModel
+        "BRING_YOUR_OWN_LICENSE"
+        "LICENSE_INCLUDED"
+    end
+
+    enum DisasterRecoveryType
+        "ADG"
+        "BACKUP_BASED"
+    end
+
+    enum AutonomousDatabaseResourceStatus
+        "AVAILABLE"
+        "FAILED"
+        "PROVISIONING"
+        "TERMINATED"
+        "TERMINATING"
+        "UPDATING"
+        "MAINTENANCE_IN_PROGRESS"
+        "STOPPING"
+        "STOPPED"
+        "STARTING"
+        "UNAVAILABLE"
+        "RESTORE_IN_PROGRESS"
+        "RESTORE_FAILED"
+        "BACKUP_IN_PROGRESS"
+        "SCALE_IN_PROGRESS"
+        "AVAILABLE_NEEDS_ATTENTION"
+        "RESTARTING"
+        "RECREATING"
+        "ROLE_CHANGE_IN_PROGRESS"
+        "UPGRADING"
+        "INACCESSIBLE"
+        "STANDBY"
+    end
+
+    -- A summary of a standby Autonomous Database in an Oracle Data Guard configuration.
+    record DatabaseStandbySummary
+        -- The availability domain of the standby Autonomous Database.
+        availabilityDomain: string
+        -- The time lag, in seconds, between the standby database and the primary database.
+        lagTimeInSeconds: number
+        -- The current status of the standby Autonomous Database.
+        status: string
+        -- Additional information about the current status of the standby Autonomous Database, if applicable.
+        statusReason: string
+        -- The component on the standby Autonomous Database that the current maintenance is being applied to.
+        maintenanceTargetComponent: string
+        -- The date and time when the Oracle Data Guard role of the standby database last changed.
+        timeDataGuardRoleChanged: number
+        -- The date and time when the disaster recovery role of the standby database last changed.
+        timeDisasterRecoveryRoleChanged: number
+        -- The date and time when the next maintenance of the standby database begins.
+        timeMaintenanceBegin: number
+        -- The date and time when the next maintenance of the standby database ends.
+        timeMaintenanceEnd: number
+    end
+
+    enum RepeatCadence
+        "ONE_TIME"
+        "WEEKLY"
+        "MONTHLY"
+        "YEARLY"
+    end
+
+    -- The long-term backup schedule for an Autonomous Database.
+    record LongTermBackupSchedule
+        -- Indicates whether the long-term backup schedule is disabled.
+        isDisabled: boolean
+        -- The cadence at which long-term backups are taken.
+        repeatCadence: string
+        -- The retention period, in days, for long-term backups.
+        retentionPeriodInDays: number
+        -- The date and time at which the long-term backup is taken.
+        timeOfBackup: number
+    end
+
+    enum NetServicesArchitecture
+        "DEDICATED"
+        "SHARED"
+    end
+
+    enum OpenMode
+        "READ_ONLY"
+        "READ_WRITE"
+    end
+
+    enum OperationsInsightsStatus
+        "ENABLING"
+        "ENABLED"
+        "DISABLING"
+        "NOT_ENABLED"
+        "FAILED_ENABLING"
+        "FAILED_DISABLING"
+    end
+
+    enum PermissionLevel
+        "RESTRICTED"
+        "UNRESTRICTED"
+    end
+
+    enum RefreshableMode
+        "AUTOMATIC"
+        "MANUAL"
+    end
+
+    enum RefreshableStatus
+        "REFRESHING"
+        "NOT_REFRESHING"
+    end
+
+    -- The disaster recovery configuration for an Autonomous Database.
+    record DisasterRecoveryConfiguration
+        -- The type of disaster recovery configured for the Autonomous Database.
+        disasterRecoveryType: string
+        -- Indicates whether automatic backups are replicated to the disaster recovery database.
+        isReplicateAutomaticBackups: boolean
+        -- Indicates whether the standby database is a snapshot standby.
+        isSnapshotStandby: boolean
+        -- The date and time until which the snapshot standby database remains enabled.
+        timeSnapshotStandbyEnabledTill: number
+    end
+
+    -- The configuration of a resource pool for an Autonomous Database.
+    record ResourcePoolSummary
+        -- Indicates whether the resource pool is disabled.
+        isDisabled: boolean
+        -- The number of Autonomous Databases that the resource pool can contain.
+        poolSize: number
+        -- The total storage size of the resource pool, in terabytes (TB).
+        poolStorageSizeInTBs: number
+        -- The available storage capacity in the resource pool, in TB.
+        availableStorageCapacityInTBs: number
+        -- The total compute capacity of the resource pool.
+        totalComputeCapacity: number
+        -- The available compute capacity in the resource pool.
+        availableComputeCapacity: number
+    end
+
+    enum DataGuardRole
+        "PRIMARY"
+        "STANDBY"
+        "DISABLED_STANDBY"
+        "BACKUP_COPY"
+        "SNAPSHOT_STANDBY"
+    end
+
+    enum DayOfWeekName
+        "MONDAY"
+        "TUESDAY"
+        "WEDNESDAY"
+        "THURSDAY"
+        "FRIDAY"
+        "SATURDAY"
+        "SUNDAY"
+    end
+
+    -- An enumeration of days of the week used for scheduling maintenance windows.
+    record DayOfWeek
+        -- The name of the day of the week.
+        name: string
+    end
+
+    -- The scheduled start and stop times for an Autonomous Database on a specific day of the week.
+    record ScheduledOperationDetails
+        -- The day of the week on which the scheduled operation occurs.
+        dayOfWeek: DayOfWeek
+        -- The scheduled start time for the Autonomous Database, in UTC.
+        scheduledStartTime: string
+        -- The scheduled stop time for the Autonomous Database, in UTC.
+        scheduledStopTime: string
+    end
+
+    enum StandbyAllowlistedIpsSource
+        "PRIMARY"
+        "SEPARATE"
+        "NOT_APPLICABLE"
+    end
+
+    -- Information about an Autonomous Database.
+    record AutonomousDatabase
+        -- The unique identifier of the Autonomous Database.
+        autonomousDatabaseId: string
+        -- The Amazon Resource Name (ARN) of the Autonomous Database.
+        autonomousDatabaseArn: string
+        -- The name of the Oracle Cloud Infrastructure (OCI) resource anchor associated with the Autonomous Database.
+        ociResourceAnchorName: string
+        -- The progress of the current operation on the Autonomous Database, as a percentage.
+        percentProgress: number
+        -- The Oracle Cloud Identifier (OCID) of the Autonomous Database.
+        ocid: string
+        -- The URL for accessing the OCI console page for the Autonomous Database.
+        ociUrl: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The name of the Autonomous Database.
+        dbName: string
+        -- The unique identifier of the source from which the Autonomous Database was created.
+        sourceId: string
+        -- The current status of the Autonomous Database.
+        status: string
+        -- Additional information about the current status of the Autonomous Database, if applicable.
+        statusReason: string
+        -- The type of the Autonomous Database, either a regular database or a clone.
+        databaseType: string
+        -- The Oracle Database software version of the Autonomous Database.
+        dbVersion: string
+        -- The intended use of the Autonomous Database, such as transaction processing, data warehouse, JSON database, or APEX.
+        dbWorkload: string
+        -- The character set of the Autonomous Database.
+        characterSet: string
+        -- The national character set of the Autonomous Database.
+        ncharacterSet: string
+        -- The Oracle Database edition of the Autonomous Database.
+        databaseEdition: string
+        -- The Oracle license model that applies to the Autonomous Database.
+        licenseModel: string
+        -- The mode in which the Autonomous Database is open, either read-only or read/write.
+        openMode: string
+        -- The permission level of the Autonomous Database.
+        permissionLevel: string
+        -- Indicates whether mutual TLS (mTLS) authentication is required to connect to the Autonomous Database.
+        isMtlsConnectionRequired: boolean
+        -- The maintenance schedule type for the Autonomous Database.
+        autonomousMaintenanceScheduleType: string
+        -- The Oracle Net Services architecture of the Autonomous Database, either dedicated or shared.
+        netServicesArchitecture: string
+        -- The list of Oracle Database software versions to which the Autonomous Database can be upgraded.
+        availableUpgradeVersions: {string}
+        -- The maximum number of compute resources that you can allocate to the Autonomous Database under the bring-your-own-license (BYOL) model.
+        byolComputeCountLimit: number
+        -- The connection string details for the Autonomous Database.
+        connectionStringDetails: AutonomousDatabaseConnectionStrings
+        -- The URL for accessing the Oracle service console for the Autonomous Database.
+        serviceConsoleUrl: string
+        -- The URL for accessing Oracle SQL Developer Web for the Autonomous Database.
+        sqlWebDeveloperUrl: string
+        -- The list of customer contacts that receive operational notifications from Oracle for the Autonomous Database.
+        customerContacts: {CustomerContact}
+        -- The Oracle Application Express (APEX) details for the Autonomous Database.
+        apexDetails: AutonomousDatabaseApex
+        -- The details of the standby Autonomous Database in a cross-Region Oracle Data Guard configuration.
+        standbyDb: DatabaseStandbySummary
+        -- The details of the local standby Autonomous Database in an Oracle Data Guard configuration.
+        localStandbyDb: DatabaseStandbySummary
+        -- The status of the Oracle Data Safe registration for the Autonomous Database.
+        dataSafeStatus: string
+        -- The status of Oracle Database Management for the Autonomous Database.
+        databaseManagementStatus: string
+        -- The status of Oracle Operations Insights for the Autonomous Database.
+        operationsInsightsStatus: string
+        -- The Availability Zone where the Autonomous Database is located.
+        availabilityZone: string
+        -- The unique identifier of the Availability Zone where the Autonomous Database is located.
+        availabilityZoneId: string
+        -- The component on the Autonomous Database that the current maintenance is being applied to.
+        maintenanceTargetComponent: string
+        -- The connection URLs for accessing tools and services for the Autonomous Database.
+        connectionUrls: AutonomousDatabaseConnectionUrls
+        -- The list of database management tools enabled for the Autonomous Database.
+        dbToolsDetails: {DatabaseTool}
+        -- The list of scheduled start and stop times for the Autonomous Database.
+        scheduledOperations: {ScheduledOperationDetails}
+        -- The unique identifier of the resource pool leader Autonomous Database.
+        resourcePoolLeaderId: string
+        -- The compute capacity, in number of Elastic CPUs (ECPUs) or Oracle CPUs (OCPUs), assigned to the Autonomous Database.
+        computeCount: number
+        -- The compute model of the Autonomous Database, either ECPU or OCPU.
+        computeModel: string
+        -- The number of CPU cores allocated to the Autonomous Database.
+        cpuCoreCount: number
+        -- The amount of memory allocated per Oracle Compute Unit, in GB.
+        memoryPerOracleComputeUnitInGBs: number
+        -- The list of CPU core counts that you can provision for the Autonomous Database.
+        provisionableCpus: {number}
+        -- Indicates whether automatic scaling of the compute resources is enabled for the Autonomous Database.
+        isAutoScalingEnabled: boolean
+        -- The size, in terabytes (TB), of the data volume allocated for the Autonomous Database.
+        dataStorageSizeInTBs: number
+        -- The size, in gigabytes (GB), of the data volume allocated for the Autonomous Database.
+        dataStorageSizeInGBs: number
+        -- The amount of data storage currently in use by the Autonomous Database, in TB.
+        usedDataStorageSizeInTBs: number
+        -- The amount of data storage currently in use by the Autonomous Database, in GB.
+        usedDataStorageSizeInGBs: number
+        -- The actual amount of data storage currently in use by the Autonomous Database, in TB.
+        actualUsedDataStorageSizeInTBs: number
+        -- The amount of storage currently allocated to the Autonomous Database, in TB.
+        allocatedStorageSizeInTBs: number
+        -- The size of the in-memory area of the Autonomous Database, in GB.
+        inMemoryAreaInGBs: number
+        -- Indicates whether automatic scaling of the storage is enabled for the Autonomous Database.
+        isAutoScalingForStorageEnabled: boolean
+        -- The unique identifier of the ODB network associated with the Autonomous Database.
+        odbNetworkId: string
+        -- The Amazon Resource Name (ARN) of the ODB network associated with the Autonomous Database.
+        odbNetworkArn: string
+        -- The private endpoint for the Autonomous Database.
+        privateEndpoint: string
+        -- The private endpoint IP address for the Autonomous Database.
+        privateEndpointIp: string
+        -- The private endpoint label for the Autonomous Database.
+        privateEndpointLabel: string
+        -- The list of IP addresses that are allowed to access the Autonomous Database.
+        allowlistedIps: {string}
+        -- The list of IP addresses that are allowed to access the standby Autonomous Database.
+        standbyAllowlistedIps: {string}
+        -- The source of the allowlisted IP addresses for the standby Autonomous Database.
+        standbyAllowlistedIpsSource: string
+        -- Indicates whether local Oracle Data Guard is enabled for the Autonomous Database.
+        isLocalDataGuardEnabled: boolean
+        -- Indicates whether remote Oracle Data Guard is enabled for the Autonomous Database.
+        isRemoteDataGuardEnabled: boolean
+        -- The type of local disaster recovery configured for the Autonomous Database.
+        localDisasterRecoveryType: string
+        -- The Oracle Data Guard role of the Autonomous Database.
+        role: string
+        -- The list of unique identifiers of the peer Autonomous Databases.
+        peerDbIds: {string}
+        -- The amount of time, in seconds, that the data in the Autonomous Database is behind the data in the primary database.
+        failedDataRecoveryInSeconds: number
+        -- The maximum data loss limit, in seconds, for automatic failover to the local Oracle Data Guard standby database.
+        localAdgAutoFailoverMaxDataLossLimit: number
+        -- The configuration of the remote disaster recovery for the Autonomous Database.
+        remoteDisasterRecoveryConfiguration: DisasterRecoveryConfiguration
+        -- Indicates whether the Autonomous Database is a refreshable clone.
+        isRefreshableClone: boolean
+        -- The refresh mode of the refreshable clone Autonomous Database.
+        refreshableMode: string
+        -- The refresh status of the refreshable clone Autonomous Database.
+        refreshableStatus: string
+        -- The frequency, in seconds, at which the refreshable clone Autonomous Database is automatically refreshed.
+        autoRefreshFrequencyInSeconds: number
+        -- The time lag, in seconds, between the refreshable clone and its source Autonomous Database.
+        autoRefreshPointLagInSeconds: number
+        -- Indicates whether reconnecting the refreshable clone to its source Autonomous Database is enabled.
+        isReconnectCloneEnabled: boolean
+        -- The list of tablespace identifiers to clone for the Autonomous Database.
+        cloneTableSpaceList: {number}
+        -- The retention period, in days, for automatic backups of the Autonomous Database.
+        backupRetentionPeriodInDays: number
+        -- The long-term backup schedule for the Autonomous Database.
+        longTermBackupSchedule: LongTermBackupSchedule
+        -- Indicates whether the backup retention period of the Autonomous Database is locked.
+        isBackupRetentionLocked: boolean
+        -- The total amount of backup storage used by the Autonomous Database, in GB.
+        totalBackupStorageSizeInGBs: number
+        -- The configuration of the resource pool for the Autonomous Database.
+        resourcePoolSummary: ResourcePoolSummary
+        -- The encryption configuration for the Autonomous Database.
+        encryptionSummary: EncryptionSummary
+        -- The date and time when the Autonomous Database was created.
+        createdAt: number
+        -- The date and time of the last backup of the Autonomous Database.
+        timeOfLastBackup: number
+        -- The date and time when the next maintenance of the Autonomous Database begins.
+        timeMaintenanceBegin: number
+        -- The date and time when the next maintenance of the Autonomous Database ends.
+        timeMaintenanceEnd: number
+        -- The date and time when local Oracle Data Guard was enabled for the Autonomous Database.
+        timeLocalDataGuardEnabled: number
+        -- The date and time when the Oracle Data Guard role of the Autonomous Database last changed.
+        timeDataGuardRoleChanged: number
+        -- The date and time of the last switchover operation for the Autonomous Database.
+        timeOfLastSwitchover: number
+        -- The date and time of the last failover operation for the Autonomous Database.
+        timeOfLastFailover: number
+        -- The date and time of the last refresh of the refreshable clone Autonomous Database.
+        timeOfLastRefresh: number
+        -- The date and time as of which the data in the refreshable clone Autonomous Database is current.
+        timeOfLastRefreshPoint: number
+        -- The date and time of the next scheduled refresh of the refreshable clone Autonomous Database.
+        timeOfNextRefresh: number
+        -- The date and time at which the automatic refresh of the refreshable clone Autonomous Database starts.
+        timeOfAutoRefreshStart: number
+        -- The date and time when the inactive Always Free Autonomous Database is scheduled to be automatically deleted.
+        timeDeletionOfFreeAutonomousDatabase: number
+        -- The date and time when the Always Free Autonomous Database is scheduled to be stopped because of inactivity.
+        timeReclamationOfFreeAutonomousDatabase: number
+        -- The date and time when the disaster recovery role of the Autonomous Database last changed.
+        timeDisasterRecoveryRoleChanged: number
+        -- The date and time until which reconnecting the refreshable clone to its source Autonomous Database is allowed.
+        timeUntilReconnectCloneEnabled: number
+        -- The date and time of the next scheduled long-term backup of the Autonomous Database.
+        nextLongTermBackupTimeStamp: number
+        -- The date and time when the Autonomous Database was restored after deletion.
+        timeUndeleted: number
+    end
+
+    enum AutonomousDatabaseBackupStatus
+        "ACTIVE"
+        "CREATING"
+        "UPDATING"
+        "DELETING"
+        "FAILED"
+    end
+
+    enum AutonomousDatabaseBackupType
+        "INCREMENTAL"
+        "FULL"
+        "LONGTERM"
+        "VIRTUAL_FULL"
+        "CUMULATIVE_INCREMENTAL"
+        "ROLL_FORWARD_IMAGE_COPY"
+    end
+
+    -- Information about an Autonomous Database backup.
+    record AutonomousDatabaseBackup
+        -- The unique identifier of the Autonomous Database backup.
+        autonomousDatabaseBackupId: string
+        -- The Amazon Resource Name (ARN) of the Autonomous Database backup.
+        autonomousDatabaseBackupArn: string
+        -- The unique identifier of the Autonomous Database that the backup was created from.
+        autonomousDatabaseId: string
+        -- The Oracle Cloud Identifier (OCID) of the Autonomous Database backup.
+        ocid: string
+        -- The user-friendly name of the Autonomous Database backup.
+        displayName: string
+        -- The Oracle Database software version of the Autonomous Database backup.
+        dbVersion: string
+        -- The current status of the Autonomous Database backup.
+        status: string
+        -- Additional information about the current status of the Autonomous Database backup, if applicable.
+        statusReason: string
+        -- Indicates whether the backup was created automatically.
+        isAutomatic: boolean
+        -- The retention period, in days, for the Autonomous Database backup.
+        retentionPeriodInDays: number
+        -- The size of the Autonomous Database backup, in terabytes (TB).
+        sizeInTBs: number
+        -- The date and time until which the Autonomous Database backup is available for restore.
+        timeAvailableTill: number
+        -- The date and time when the Autonomous Database backup started.
+        timeStarted: number
+        -- The date and time when the Autonomous Database backup ended.
+        timeEnded: number
+    end
+
+    -- A summary of an Autonomous Database backup.
+    record AutonomousDatabaseBackupSummary
+        -- The unique identifier of the Autonomous Database backup.
+        autonomousDatabaseBackupId: string
+        -- The Amazon Resource Name (ARN) of the Autonomous Database backup.
+        autonomousDatabaseBackupArn: string
+        -- The unique identifier of the Autonomous Database that the backup was created from.
+        autonomousDatabaseId: string
+        -- The Oracle Cloud Identifier (OCID) of the Autonomous Database backup.
+        ocid: string
+        -- The user-friendly name of the Autonomous Database backup.
+        displayName: string
+        -- The Oracle Database software version of the Autonomous Database backup.
+        dbVersion: string
+        -- The current status of the Autonomous Database backup.
+        status: string
+        -- Additional information about the current status of the Autonomous Database backup, if applicable.
+        statusReason: string
+        -- Indicates whether the backup was created automatically.
+        isAutomatic: boolean
+        -- The retention period, in days, for the Autonomous Database backup.
+        retentionPeriodInDays: number
+        -- The size of the Autonomous Database backup, in terabytes (TB).
+        sizeInTBs: number
+        -- The date and time until which the Autonomous Database backup is available for restore.
+        timeAvailableTill: number
+        -- The date and time when the Autonomous Database backup started.
+        timeStarted: number
+        -- The date and time when the Autonomous Database backup ended.
+        timeEnded: number
+    end
+
+    record CreateAutonomousDatabaseBackupInput
+        -- The unique identifier of the Autonomous Database to back up.
+        autonomousDatabaseId: string
+        -- The user-friendly name for the Autonomous Database backup.
+        displayName: string
+        -- The retention period, in days, for the Autonomous Database backup.
+        retentionPeriodInDays: number
+        -- A client-provided token to ensure the idempotency of the request.
+        clientToken: string
+        -- The list of resource tags to apply to the Autonomous Database backup. Each tag is a key-value pair with no predefined name, type, or namespace.
+        tags: {string : string}
+    end
+
     enum ResourceStatus
         "AVAILABLE"
         "FAILED"
@@ -100,6 +775,865 @@ local record M
         "TERMINATING"
         "UPDATING"
         "MAINTENANCE_IN_PROGRESS"
+    end
+
+    record CreateAutonomousDatabaseBackupOutput
+        -- The user-friendly name of the Autonomous Database backup that was created.
+        displayName: string
+        -- The current status of the Autonomous Database backup.
+        status: string
+        -- Additional information about the current status of the Autonomous Database backup, if applicable.
+        statusReason: string
+        -- The unique identifier of the Autonomous Database backup that was created.
+        autonomousDatabaseBackupId: string
+    end
+
+    -- You have exceeded the service quota.
+    record ServiceQuotaExceededException
+        message: string
+        -- The identifier of the resource that exceeded the service quota.
+        resourceId: string
+        -- The type of resource that exceeded the service quota.
+        resourceType: string
+        -- The unqiue identifier of the service quota that was exceeded.
+        quotaCode: string
+    end
+
+    record DeleteAutonomousDatabaseBackupInput
+        -- The unique identifier of the Autonomous Database backup to delete.
+        autonomousDatabaseBackupId: string
+    end
+
+    record DeleteAutonomousDatabaseBackupOutput
+    end
+
+    record GetAutonomousDatabaseBackupInput
+        -- The unique identifier of the Autonomous Database backup to retrieve information about.
+        autonomousDatabaseBackupId: string
+    end
+
+    record GetAutonomousDatabaseBackupOutput
+        -- The details of the requested Autonomous Database backup.
+        autonomousDatabaseBackup: AutonomousDatabaseBackup
+    end
+
+    record ListAutonomousDatabaseBackupsInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+        -- The unique identifier of the Autonomous Database whose backups you want to list.
+        autonomousDatabaseId: string
+        -- The status of the Autonomous Database backups to return results for.
+        status: string
+    end
+
+    record ListAutonomousDatabaseBackupsOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of Autonomous Database backups along with their properties.
+        autonomousDatabaseBackups: {AutonomousDatabaseBackupSummary}
+    end
+
+    record UpdateAutonomousDatabaseBackupInput
+        -- The unique identifier of the Autonomous Database backup to update.
+        autonomousDatabaseBackupId: string
+        -- The retention period, in days, for the Autonomous Database backup.
+        retentionPeriodInDays: number
+    end
+
+    record UpdateAutonomousDatabaseBackupOutput
+        -- The user-friendly name of the Autonomous Database backup.
+        displayName: string
+        -- The current status of the Autonomous Database backup.
+        status: string
+        -- Additional information about the current status of the Autonomous Database backup, if applicable.
+        statusReason: string
+        -- The unique identifier of the Autonomous Database backup that was updated.
+        autonomousDatabaseBackupId: string
+    end
+
+    -- A summary of an available character set for Autonomous Databases.
+    record AutonomousDatabaseCharacterSetSummary
+        -- The name of the character set.
+        characterSet: string
+    end
+
+    -- A summary of an Autonomous Database.
+    record AutonomousDatabaseSummary
+        -- The unique identifier of the Autonomous Database.
+        autonomousDatabaseId: string
+        -- The Amazon Resource Name (ARN) of the Autonomous Database.
+        autonomousDatabaseArn: string
+        -- The name of the Oracle Cloud Infrastructure (OCI) resource anchor associated with the Autonomous Database.
+        ociResourceAnchorName: string
+        -- The progress of the current operation on the Autonomous Database, as a percentage.
+        percentProgress: number
+        -- The Oracle Cloud Identifier (OCID) of the Autonomous Database.
+        ocid: string
+        -- The URL for accessing the OCI console page for the Autonomous Database.
+        ociUrl: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The name of the Autonomous Database.
+        dbName: string
+        -- The unique identifier of the source from which the Autonomous Database was created.
+        sourceId: string
+        -- The current status of the Autonomous Database.
+        status: string
+        -- Additional information about the current status of the Autonomous Database, if applicable.
+        statusReason: string
+        -- The type of the Autonomous Database, either a regular database or a clone.
+        databaseType: string
+        -- The Oracle Database software version of the Autonomous Database.
+        dbVersion: string
+        -- The intended use of the Autonomous Database, such as transaction processing, data warehouse, JSON database, or APEX.
+        dbWorkload: string
+        -- The character set of the Autonomous Database.
+        characterSet: string
+        -- The national character set of the Autonomous Database.
+        ncharacterSet: string
+        -- The Oracle Database edition of the Autonomous Database.
+        databaseEdition: string
+        -- The Oracle license model that applies to the Autonomous Database.
+        licenseModel: string
+        -- The mode in which the Autonomous Database is open, either read-only or read/write.
+        openMode: string
+        -- The permission level of the Autonomous Database.
+        permissionLevel: string
+        -- Indicates whether mutual TLS (mTLS) authentication is required to connect to the Autonomous Database.
+        isMtlsConnectionRequired: boolean
+        -- The maintenance schedule type for the Autonomous Database.
+        autonomousMaintenanceScheduleType: string
+        -- The Oracle Net Services architecture of the Autonomous Database, either dedicated or shared.
+        netServicesArchitecture: string
+        -- The list of Oracle Database software versions to which the Autonomous Database can be upgraded.
+        availableUpgradeVersions: {string}
+        -- The maximum number of compute resources that you can allocate to the Autonomous Database under the bring-your-own-license (BYOL) model.
+        byolComputeCountLimit: number
+        -- The connection string details for the Autonomous Database.
+        connectionStringDetails: AutonomousDatabaseConnectionStrings
+        -- The URL for accessing the Oracle service console for the Autonomous Database.
+        serviceConsoleUrl: string
+        -- The URL for accessing Oracle SQL Developer Web for the Autonomous Database.
+        sqlWebDeveloperUrl: string
+        -- The list of customer contacts that receive operational notifications from Oracle for the Autonomous Database.
+        customerContacts: {CustomerContact}
+        -- The Oracle Application Express (APEX) details for the Autonomous Database.
+        apexDetails: AutonomousDatabaseApex
+        -- The details of the standby Autonomous Database in a cross-Region Oracle Data Guard configuration.
+        standbyDb: DatabaseStandbySummary
+        -- The details of the local standby Autonomous Database in an Oracle Data Guard configuration.
+        localStandbyDb: DatabaseStandbySummary
+        -- The status of the Oracle Data Safe registration for the Autonomous Database.
+        dataSafeStatus: string
+        -- The status of Oracle Database Management for the Autonomous Database.
+        databaseManagementStatus: string
+        -- The status of Oracle Operations Insights for the Autonomous Database.
+        operationsInsightsStatus: string
+        -- The Availability Zone where the Autonomous Database is located.
+        availabilityZone: string
+        -- The unique identifier of the Availability Zone where the Autonomous Database is located.
+        availabilityZoneId: string
+        -- The component on the Autonomous Database that the current maintenance is being applied to.
+        maintenanceTargetComponent: string
+        -- The connection URLs for accessing tools and services for the Autonomous Database.
+        connectionUrls: AutonomousDatabaseConnectionUrls
+        -- The list of database management tools enabled for the Autonomous Database.
+        dbToolsDetails: {DatabaseTool}
+        -- The list of scheduled start and stop times for the Autonomous Database.
+        scheduledOperations: {ScheduledOperationDetails}
+        -- The unique identifier of the resource pool leader Autonomous Database.
+        resourcePoolLeaderId: string
+        -- The compute capacity, in number of Elastic CPUs (ECPUs) or Oracle CPUs (OCPUs), assigned to the Autonomous Database.
+        computeCount: number
+        -- The compute model of the Autonomous Database, either ECPU or OCPU.
+        computeModel: string
+        -- The number of CPU cores allocated to the Autonomous Database.
+        cpuCoreCount: number
+        -- The amount of memory allocated per Oracle Compute Unit, in GB.
+        memoryPerOracleComputeUnitInGBs: number
+        -- The list of CPU core counts that you can provision for the Autonomous Database.
+        provisionableCpus: {number}
+        -- Indicates whether automatic scaling of the compute resources is enabled for the Autonomous Database.
+        isAutoScalingEnabled: boolean
+        -- The size, in terabytes (TB), of the data volume allocated for the Autonomous Database.
+        dataStorageSizeInTBs: number
+        -- The size, in gigabytes (GB), of the data volume allocated for the Autonomous Database.
+        dataStorageSizeInGBs: number
+        -- The amount of data storage currently in use by the Autonomous Database, in TB.
+        usedDataStorageSizeInTBs: number
+        -- The amount of data storage currently in use by the Autonomous Database, in GB.
+        usedDataStorageSizeInGBs: number
+        -- The actual amount of data storage currently in use by the Autonomous Database, in TB.
+        actualUsedDataStorageSizeInTBs: number
+        -- The amount of storage currently allocated to the Autonomous Database, in TB.
+        allocatedStorageSizeInTBs: number
+        -- The size of the in-memory area of the Autonomous Database, in GB.
+        inMemoryAreaInGBs: number
+        -- Indicates whether automatic scaling of the storage is enabled for the Autonomous Database.
+        isAutoScalingForStorageEnabled: boolean
+        -- The unique identifier of the ODB network associated with the Autonomous Database.
+        odbNetworkId: string
+        -- The Amazon Resource Name (ARN) of the ODB network associated with the Autonomous Database.
+        odbNetworkArn: string
+        -- The private endpoint for the Autonomous Database.
+        privateEndpoint: string
+        -- The private endpoint IP address for the Autonomous Database.
+        privateEndpointIp: string
+        -- The private endpoint label for the Autonomous Database.
+        privateEndpointLabel: string
+        -- The list of IP addresses that are allowed to access the Autonomous Database.
+        allowlistedIps: {string}
+        -- The list of IP addresses that are allowed to access the standby Autonomous Database.
+        standbyAllowlistedIps: {string}
+        -- The source of the allowlisted IP addresses for the standby Autonomous Database.
+        standbyAllowlistedIpsSource: string
+        -- Indicates whether local Oracle Data Guard is enabled for the Autonomous Database.
+        isLocalDataGuardEnabled: boolean
+        -- Indicates whether remote Oracle Data Guard is enabled for the Autonomous Database.
+        isRemoteDataGuardEnabled: boolean
+        -- The type of local disaster recovery configured for the Autonomous Database.
+        localDisasterRecoveryType: string
+        -- The Oracle Data Guard role of the Autonomous Database.
+        role: string
+        -- The list of unique identifiers of the peer Autonomous Databases.
+        peerDbIds: {string}
+        -- The amount of time, in seconds, that the data in the Autonomous Database is behind the data in the primary database.
+        failedDataRecoveryInSeconds: number
+        -- The maximum data loss limit, in seconds, for automatic failover to the local Oracle Data Guard standby database.
+        localAdgAutoFailoverMaxDataLossLimit: number
+        -- The configuration of the remote disaster recovery for the Autonomous Database.
+        remoteDisasterRecoveryConfiguration: DisasterRecoveryConfiguration
+        -- Indicates whether the Autonomous Database is a refreshable clone.
+        isRefreshableClone: boolean
+        -- The refresh mode of the refreshable clone Autonomous Database.
+        refreshableMode: string
+        -- The refresh status of the refreshable clone Autonomous Database.
+        refreshableStatus: string
+        -- The frequency, in seconds, at which the refreshable clone Autonomous Database is automatically refreshed.
+        autoRefreshFrequencyInSeconds: number
+        -- The time lag, in seconds, between the refreshable clone and its source Autonomous Database.
+        autoRefreshPointLagInSeconds: number
+        -- Indicates whether reconnecting the refreshable clone to its source Autonomous Database is enabled.
+        isReconnectCloneEnabled: boolean
+        -- The list of tablespace identifiers to clone for the Autonomous Database.
+        cloneTableSpaceList: {number}
+        -- The retention period, in days, for automatic backups of the Autonomous Database.
+        backupRetentionPeriodInDays: number
+        -- The long-term backup schedule for the Autonomous Database.
+        longTermBackupSchedule: LongTermBackupSchedule
+        -- Indicates whether the backup retention period of the Autonomous Database is locked.
+        isBackupRetentionLocked: boolean
+        -- The total amount of backup storage used by the Autonomous Database, in GB.
+        totalBackupStorageSizeInGBs: number
+        -- The configuration of the resource pool for the Autonomous Database.
+        resourcePoolSummary: ResourcePoolSummary
+        -- The encryption configuration for the Autonomous Database.
+        encryptionSummary: EncryptionSummary
+        -- The date and time when the Autonomous Database was created.
+        createdAt: number
+        -- The date and time of the last backup of the Autonomous Database.
+        timeOfLastBackup: number
+        -- The date and time when the next maintenance of the Autonomous Database begins.
+        timeMaintenanceBegin: number
+        -- The date and time when the next maintenance of the Autonomous Database ends.
+        timeMaintenanceEnd: number
+        -- The date and time when local Oracle Data Guard was enabled for the Autonomous Database.
+        timeLocalDataGuardEnabled: number
+        -- The date and time when the Oracle Data Guard role of the Autonomous Database last changed.
+        timeDataGuardRoleChanged: number
+        -- The date and time of the last switchover operation for the Autonomous Database.
+        timeOfLastSwitchover: number
+        -- The date and time of the last failover operation for the Autonomous Database.
+        timeOfLastFailover: number
+        -- The date and time of the last refresh of the refreshable clone Autonomous Database.
+        timeOfLastRefresh: number
+        -- The date and time as of which the data in the refreshable clone Autonomous Database is current.
+        timeOfLastRefreshPoint: number
+        -- The date and time of the next scheduled refresh of the refreshable clone Autonomous Database.
+        timeOfNextRefresh: number
+        -- The date and time at which the automatic refresh of the refreshable clone Autonomous Database starts.
+        timeOfAutoRefreshStart: number
+        -- The date and time when the inactive Always Free Autonomous Database is scheduled to be automatically deleted.
+        timeDeletionOfFreeAutonomousDatabase: number
+        -- The date and time when the Always Free Autonomous Database is scheduled to be stopped because of inactivity.
+        timeReclamationOfFreeAutonomousDatabase: number
+        -- The date and time when the disaster recovery role of the Autonomous Database last changed.
+        timeDisasterRecoveryRoleChanged: number
+        -- The date and time until which reconnecting the refreshable clone to its source Autonomous Database is allowed.
+        timeUntilReconnectCloneEnabled: number
+        -- The date and time of the next scheduled long-term backup of the Autonomous Database.
+        nextLongTermBackupTimeStamp: number
+        -- The date and time when the Autonomous Database was restored after deletion.
+        timeUndeleted: number
+    end
+
+    -- A summary of a peer database of an Autonomous Database.
+    record AutonomousDatabasePeerSummary
+        -- The unique identifier of the peer Autonomous Database.
+        autonomousDatabaseId: string
+        -- The Amazon Resource Name (ARN) of the peer Autonomous Database.
+        autonomousDatabaseArn: string
+        -- The Oracle Cloud Identifier (OCID) of the peer Autonomous Database.
+        ocid: string
+        -- The Amazon Web Services Region where the peer Autonomous Database is located.
+        region: string
+    end
+
+    -- The configuration of the Amazon Web Services Key Management Service (KMS) encryption key to use for an Autonomous Database.
+    record AwsEncryptionKeyConfigurationInput
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role that grants access to the KMS key.
+        iamRoleArn: string
+        -- The type of external identifier associated with the encryption key.
+        externalIdType: string
+        -- The identifier or ARN of the Amazon Web Services KMS key to use for encryption.
+        kmsKeyId: string
+    end
+
+    -- The configuration of the encryption key to use for an Autonomous Database. This is a union, so only one of the following members can be specified.
+    record EncryptionKeyConfigurationInput
+        -- The configuration of the Amazon Web Services Key Management Service (KMS) encryption key to use.
+        awsEncryptionKey: AwsEncryptionKeyConfigurationInput
+    end
+
+    enum EncryptionKeyProviderInput
+        "ORACLE_MANAGED"
+        "AWS_KMS"
+    end
+
+    enum SourceType
+        "NONE"
+        "DATABASE"
+        "BACKUP_FROM_ID"
+        "BACKUP_FROM_TIMESTAMP"
+        "CROSS_REGION_DATAGUARD"
+        "CROSS_REGION_DISASTER_RECOVERY"
+        "CLONE_TO_REFRESHABLE"
+    end
+
+    enum CloneType
+        "FULL"
+        "METADATA"
+        "PARTIAL"
+    end
+
+    -- The configuration for creating an Autonomous Database as a refreshable clone.
+    record CloneToRefreshableConfiguration
+        -- The unique identifier of the source Autonomous Database to create the refreshable clone from.
+        sourceAutonomousDatabaseId: string
+        -- The refresh mode of the refreshable clone, either automatic or manual.
+        refreshableMode: string
+        -- The frequency, in seconds, at which the refreshable clone is automatically refreshed.
+        autoRefreshFrequencyInSeconds: number
+        -- The time lag, in seconds, between the refreshable clone and its source database.
+        autoRefreshPointLagInSeconds: number
+        -- The date and time at which the automatic refresh of the refreshable clone starts.
+        timeOfAutoRefreshStart: number
+        -- The mode in which to open the refreshable clone, either read-only or read/write.
+        openMode: string
+        -- The type of clone to create.
+        cloneType: string
+    end
+
+    -- The configuration for creating an Autonomous Database as a cross-Region Oracle Data Guard peer.
+    record CrossRegionDataGuardConfiguration
+        -- The Amazon Resource Name (ARN) of the source Autonomous Database for the cross-Region Oracle Data Guard configuration.
+        sourceAutonomousDatabaseArn: string
+    end
+
+    -- The configuration for creating an Autonomous Database as a cross-Region disaster recovery peer.
+    record CrossRegionDisasterRecoveryConfiguration
+        -- The Amazon Resource Name (ARN) of the source Autonomous Database for the cross-Region disaster recovery configuration.
+        sourceAutonomousDatabaseArn: string
+        -- The type of remote disaster recovery to configure, either Autonomous Data Guard or backup-based.
+        remoteDisasterRecoveryType: string
+        -- Indicates whether automatic backups are replicated to the disaster recovery database.
+        isReplicateAutomaticBackups: boolean
+    end
+
+    -- The configuration for creating an Autonomous Database as a clone of an existing database.
+    record DatabaseCloneConfiguration
+        -- The unique identifier of the source Autonomous Database to clone.
+        sourceAutonomousDatabaseId: string
+        -- The type of clone to create, either a full clone, a metadata clone, or a partial clone.
+        cloneType: string
+    end
+
+    -- The configuration for creating an Autonomous Database by restoring to a point in time.
+    record PointInTimeRestoreConfiguration
+        -- The unique identifier of the source Autonomous Database to restore from.
+        sourceAutonomousDatabaseId: string
+        -- The type of clone to create from the point-in-time restore.
+        cloneType: string
+        -- The date and time to which to restore the Autonomous Database.
+        timestamp: number
+        -- Indicates whether to use the latest available backup timestamp for the restore.
+        useLatestAvailableBackupTimestamp: boolean
+        -- The list of tablespace identifiers to clone from the point-in-time restore.
+        cloneTableSpaceList: {number}
+    end
+
+    -- The configuration for creating an Autonomous Database by restoring from a backup.
+    record RestoreFromBackupConfiguration
+        -- The unique identifier of the Autonomous Database backup to restore from.
+        autonomousDatabaseBackupId: string
+        -- The type of clone to create from the backup.
+        cloneType: string
+        -- The list of tablespace identifiers to clone from the backup.
+        cloneTableSpaceList: {number}
+    end
+
+    -- The configuration details for the source used to create an Autonomous Database. This is a union, so only one of the following members can be specified.
+    record SourceConfiguration
+        -- The configuration for creating the Autonomous Database as a clone of an existing database.
+        databaseClone: DatabaseCloneConfiguration
+        -- The configuration for creating the Autonomous Database by restoring from a backup.
+        restoreFromBackup: RestoreFromBackupConfiguration
+        -- The configuration for creating the Autonomous Database by restoring to a point in time.
+        pointInTimeRestore: PointInTimeRestoreConfiguration
+        -- The configuration for creating the Autonomous Database as a cross-Region Oracle Data Guard peer.
+        crossRegionDataGuard: CrossRegionDataGuardConfiguration
+        -- The configuration for creating the Autonomous Database as a cross-Region disaster recovery peer.
+        crossRegionDisasterRecovery: CrossRegionDisasterRecoveryConfiguration
+        -- The configuration for creating the Autonomous Database as a refreshable clone.
+        cloneToRefreshable: CloneToRefreshableConfiguration
+    end
+
+    -- The transportable tablespace configuration used when creating an Autonomous Database.
+    record TransportableTablespace
+        -- The URL of the transportable tablespace bundle to use when creating the Autonomous Database.
+        ttsBundleUrl: string
+    end
+
+    record CreateAutonomousDatabaseInput
+        -- The unique identifier of the ODB network to be used for the Autonomous Database.
+        odbNetworkId: string
+        -- The user-friendly name for the Autonomous Database. The name does not have to be unique.
+        displayName: string
+        -- The name of the Autonomous Database. The name must begin with an alphabetic character and can contain a maximum of 30 alphanumeric characters. Special characters are not permitted. The name must be unique in the Amazon Web Services account.
+        dbName: string
+        -- The password for the ADMIN user of the Autonomous Database.
+        adminPassword: string
+        -- The compute capacity, in number of Elastic CPUs (ECPUs) or Oracle CPUs (OCPUs), to assign to the Autonomous Database.
+        computeCount: number
+        -- The size, in terabytes (TB), of the data volume to allocate for the Autonomous Database.
+        dataStorageSizeInTBs: number
+        -- The size, in gigabytes (GB), of the data volume to allocate for the Autonomous Database.
+        dataStorageSizeInGBs: number
+        -- The intended use of the Autonomous Database, such as transaction processing, data warehouse, JSON database, or APEX.
+        dbWorkload: string
+        -- Specifies whether to enable automatic scaling of the compute resources for the Autonomous Database.
+        isAutoScalingEnabled: boolean
+        -- Specifies whether to enable automatic scaling of the storage for the Autonomous Database.
+        isAutoScalingForStorageEnabled: boolean
+        -- The Oracle license model to apply to the Autonomous Database.
+        licenseModel: string
+        -- The character set to use for the Autonomous Database.
+        characterSet: string
+        -- The national character set to use for the Autonomous Database.
+        ncharacterSet: string
+        -- The Oracle Database software version to use for the Autonomous Database.
+        dbVersion: string
+        -- The Oracle Database edition to apply to the Autonomous Database.
+        databaseEdition: string
+        -- The source of the allowlisted IP addresses for the standby Autonomous Database.
+        standbyAllowlistedIpsSource: string
+        -- The maintenance schedule type for the Autonomous Database.
+        autonomousMaintenanceScheduleType: string
+        -- The retention period, in days, for automatic backups of the Autonomous Database.
+        backupRetentionPeriodInDays: number
+        -- The maximum number of compute resources that you can allocate to the Autonomous Database under the bring-your-own-license (BYOL) model.
+        byolComputeCountLimit: number
+        -- The number of CPU cores to allocate to the Autonomous Database.
+        cpuCoreCount: number
+        -- The list of customer contacts to receive operational notifications from Oracle Cloud Infrastructure (OCI) for the Autonomous Database.
+        customerContactsToSendToOCI: {CustomerContact}
+        -- The private endpoint IP address for the Autonomous Database.
+        privateEndpointIp: string
+        -- The private endpoint label for the Autonomous Database.
+        privateEndpointLabel: string
+        -- The unique identifier of the resource pool leader Autonomous Database.
+        resourcePoolLeaderId: string
+        -- The configuration of the resource pool for the Autonomous Database.
+        resourcePoolSummary: ResourcePoolSummary
+        -- The list of scheduled start and stop times for the Autonomous Database.
+        scheduledOperations: {ScheduledOperationDetails}
+        -- The list of IP addresses that are allowed to access the standby Autonomous Database.
+        standbyAllowlistedIps: {string}
+        -- The list of IP addresses that are allowed to access the Autonomous Database.
+        allowlistedIps: {string}
+        -- The transportable tablespace configuration to use when creating the Autonomous Database.
+        transportableTablespace: TransportableTablespace
+        -- Specifies whether to lock the backup retention period of the Autonomous Database to prevent it from being shortened.
+        isBackupRetentionLocked: boolean
+        -- Specifies whether to enable local Oracle Data Guard for the Autonomous Database.
+        isLocalDataGuardEnabled: boolean
+        -- Specifies whether mutual TLS (mTLS) authentication is required to connect to the Autonomous Database.
+        isMtlsConnectionRequired: boolean
+        -- The list of database management tools to enable for the Autonomous Database.
+        dbToolsDetails: {DatabaseTool}
+        -- The source from which to create the Autonomous Database, such as a clone, backup, or cross-Region copy.
+        source: string
+        -- The configuration details for the source used to create the Autonomous Database.
+        sourceConfiguration: SourceConfiguration
+        -- The provider of the encryption key to use for the Autonomous Database.
+        encryptionKeyProvider: string
+        -- The configuration of the encryption key to use for the Autonomous Database.
+        encryptionKeyConfiguration: EncryptionKeyConfigurationInput
+        -- A client-provided token to ensure the idempotency of the request.
+        clientToken: string
+        -- The list of resource tags to apply to the Autonomous Database. Each tag is a key-value pair with no predefined name, type, or namespace.
+        tags: {string : string}
+    end
+
+    record CreateAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was created.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database that was created.
+        displayName: string
+        -- The current status of the Autonomous Database.
+        status: string
+        -- Additional information about the current status of the Autonomous Database, if applicable.
+        statusReason: string
+    end
+
+    enum WalletType
+        "REGIONAL"
+        "INSTANCE"
+    end
+
+    record CreateAutonomousDatabaseWalletInput
+        -- The unique identifier of the Autonomous Database to create a wallet for.
+        autonomousDatabaseId: string
+        -- The type of wallet to create, either a regional wallet or an instance wallet.
+        walletType: string
+        -- The password to encrypt the keys inside the wallet.
+        password: string
+        -- A client-provided token to ensure the idempotency of the request.
+        clientToken: string
+    end
+
+    record CreateAutonomousDatabaseWalletOutput
+        -- The generated wallet file for the Autonomous Database, returned as a compressed archive.
+        autonomousDatabaseWalletFile: string
+    end
+
+    record DeleteAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to delete.
+        autonomousDatabaseId: string
+    end
+
+    record DeleteAutonomousDatabaseOutput
+    end
+
+    record FailoverAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to fail over.
+        autonomousDatabaseId: string
+        -- The Amazon Resource Name (ARN) of the peer Autonomous Database to fail over to.
+        peerDbArn: string
+    end
+
+    record FailoverAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was failed over.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The current status of the Autonomous Database after the failover operation.
+        status: string
+        -- Additional information about the status of the Autonomous Database after the failover operation.
+        statusReason: string
+    end
+
+    record GetAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to retrieve information about.
+        autonomousDatabaseId: string
+    end
+
+    record GetAutonomousDatabaseOutput
+        -- The details of the requested Autonomous Database.
+        autonomousDatabase: AutonomousDatabase
+    end
+
+    record GetAutonomousDatabaseWalletDetailsInput
+        -- The unique identifier of the Autonomous Database to retrieve wallet details for.
+        autonomousDatabaseId: string
+    end
+
+    enum AutonomousDatabaseWalletStatus
+        "ACTIVE"
+        "UPDATING"
+    end
+
+    -- The wallet details for an Autonomous Database.
+    record AutonomousDatabaseWalletDetails
+        -- The current status of the Autonomous Database wallet.
+        status: string
+        -- The date and time when the Autonomous Database wallet was last rotated.
+        timeRotated: number
+    end
+
+    record GetAutonomousDatabaseWalletDetailsOutput
+        -- The wallet details for the Autonomous Database.
+        autonomousDatabaseWalletDetails: AutonomousDatabaseWalletDetails
+    end
+
+    record ListAutonomousDatabaseClonesInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+        -- The unique identifier of the source Autonomous Database whose clones you want to list.
+        autonomousDatabaseId: string
+    end
+
+    record ListAutonomousDatabaseClonesOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of Autonomous Database clones along with their properties.
+        autonomousDatabaseClones: {AutonomousDatabaseSummary}
+    end
+
+    record ListAutonomousDatabasePeersInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+        -- The unique identifier of the Autonomous Database whose peer databases you want to list.
+        autonomousDatabaseId: string
+    end
+
+    record ListAutonomousDatabasePeersOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of peer databases for the Autonomous Database.
+        autonomousDatabasePeers: {AutonomousDatabasePeerSummary}
+    end
+
+    record ListAutonomousDatabasesInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+    end
+
+    record ListAutonomousDatabasesOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of Autonomous Databases along with their properties.
+        autonomousDatabases: {AutonomousDatabaseSummary}
+    end
+
+    record RebootAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to reboot.
+        autonomousDatabaseId: string
+        -- Specifies whether to perform an online reboot of the Autonomous Database without interrupting active connections.
+        isOnlineReboot: boolean
+    end
+
+    record RebootAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was rebooted.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The current status of the Autonomous Database after the reboot operation.
+        status: string
+        -- Additional information about the status of the Autonomous Database after the reboot operation.
+        statusReason: string
+    end
+
+    record RestoreAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to restore.
+        autonomousDatabaseId: string
+        -- The date and time to which to restore the Autonomous Database.
+        timestamp: number
+    end
+
+    record RestoreAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was restored.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The current status of the Autonomous Database after the restore operation.
+        status: string
+        -- Additional information about the status of the Autonomous Database after the restore operation.
+        statusReason: string
+    end
+
+    record ShrinkAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to shrink.
+        autonomousDatabaseId: string
+    end
+
+    record ShrinkAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was shrunk.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The current status of the Autonomous Database after the shrink operation.
+        status: string
+        -- Additional information about the status of the Autonomous Database after the shrink operation.
+        statusReason: string
+    end
+
+    record StartAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to start.
+        autonomousDatabaseId: string
+    end
+
+    record StartAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was started.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The current status of the Autonomous Database after the start operation.
+        status: string
+        -- Additional information about the status of the Autonomous Database after the start operation.
+        statusReason: string
+    end
+
+    record StopAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to stop.
+        autonomousDatabaseId: string
+    end
+
+    record StopAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was stopped.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The current status of the Autonomous Database after the stop operation.
+        status: string
+        -- Additional information about the status of the Autonomous Database after the stop operation.
+        statusReason: string
+    end
+
+    record SwitchoverAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to switch over.
+        autonomousDatabaseId: string
+        -- The Amazon Resource Name (ARN) of the peer Autonomous Database to switch over to.
+        peerDbArn: string
+    end
+
+    record SwitchoverAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was switched over.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database.
+        displayName: string
+        -- The current status of the Autonomous Database after the switchover operation.
+        status: string
+        -- Additional information about the status of the Autonomous Database after the switchover operation.
+        statusReason: string
+    end
+
+    record UpdateAutonomousDatabaseInput
+        -- The unique identifier of the Autonomous Database to update.
+        autonomousDatabaseId: string
+        -- The new password for the ADMIN user of the Autonomous Database.
+        adminPassword: string
+        -- The compute capacity, in number of ECPUs or OCPUs, to assign to the Autonomous Database.
+        computeCount: number
+        -- The number of CPU cores to allocate to the Autonomous Database.
+        cpuCoreCount: number
+        -- The size, in terabytes (TB), of the data volume to allocate for the Autonomous Database.
+        dataStorageSizeInTBs: number
+        -- The size, in gigabytes (GB), of the data volume to allocate for the Autonomous Database.
+        dataStorageSizeInGBs: number
+        -- The new user-friendly name for the Autonomous Database.
+        displayName: string
+        -- The new name of the Autonomous Database.
+        dbName: string
+        -- The Oracle Database software version to use for the Autonomous Database.
+        dbVersion: string
+        -- The intended use of the Autonomous Database, such as transaction processing, data warehouse, JSON database, or APEX.
+        dbWorkload: string
+        -- The list of database management tools to enable for the Autonomous Database.
+        dbToolsDetails: {DatabaseTool}
+        -- The Oracle Database edition to apply to the Autonomous Database.
+        databaseEdition: string
+        -- The Oracle license model to apply to the Autonomous Database.
+        licenseModel: string
+        -- Specifies whether to enable automatic scaling of the compute resources for the Autonomous Database.
+        isAutoScalingEnabled: boolean
+        -- Specifies whether to enable automatic scaling of the storage for the Autonomous Database.
+        isAutoScalingForStorageEnabled: boolean
+        -- Specifies whether to lock the backup retention period of the Autonomous Database to prevent it from being shortened.
+        isBackupRetentionLocked: boolean
+        -- Specifies whether to enable local Oracle Data Guard for the Autonomous Database.
+        isLocalDataGuardEnabled: boolean
+        -- Specifies whether mutual TLS (mTLS) authentication is required to connect to the Autonomous Database.
+        isMtlsConnectionRequired: boolean
+        -- Specifies whether the Autonomous Database is a refreshable clone.
+        isRefreshableClone: boolean
+        -- Specifies whether to disconnect the Autonomous Database from its peer database.
+        isDisconnectPeer: boolean
+        -- The retention period, in days, for automatic backups of the Autonomous Database.
+        backupRetentionPeriodInDays: number
+        -- The maximum number of compute resources that you can allocate to the Autonomous Database under the bring-your-own-license (BYOL) model.
+        byolComputeCountLimit: number
+        -- The maximum data loss limit, in seconds, for automatic failover to the local Oracle Data Guard standby database.
+        localAdgAutoFailoverMaxDataLossLimit: number
+        -- The maintenance schedule type for the Autonomous Database.
+        autonomousMaintenanceScheduleType: string
+        -- The list of customer contacts to receive operational notifications from OCI for the Autonomous Database.
+        customerContactsToSendToOCI: {CustomerContact}
+        -- The list of scheduled start and stop times for the Autonomous Database.
+        scheduledOperations: {ScheduledOperationDetails}
+        -- The long-term backup schedule for the Autonomous Database.
+        longTermBackupSchedule: LongTermBackupSchedule
+        -- The mode in which to open the Autonomous Database, either read-only or read/write.
+        openMode: string
+        -- The permission level of the Autonomous Database.
+        permissionLevel: string
+        -- The refresh mode of the refreshable clone Autonomous Database.
+        refreshableMode: string
+        -- The private endpoint IP address for the Autonomous Database.
+        privateEndpointIp: string
+        -- The private endpoint label for the Autonomous Database.
+        privateEndpointLabel: string
+        -- The unique identifier of the peer Autonomous Database.
+        peerDbId: string
+        -- The unique identifier of the resource pool leader Autonomous Database.
+        resourcePoolLeaderId: string
+        -- The configuration of the resource pool for the Autonomous Database.
+        resourcePoolSummary: ResourcePoolSummary
+        -- The source of the allowlisted IP addresses for the standby Autonomous Database.
+        standbyAllowlistedIpsSource: string
+        -- The list of IP addresses that are allowed to access the standby Autonomous Database.
+        standbyAllowlistedIps: {string}
+        -- The list of IP addresses that are allowed to access the Autonomous Database.
+        allowlistedIps: {string}
+        -- The frequency, in seconds, at which the refreshable clone Autonomous Database is automatically refreshed.
+        autoRefreshFrequencyInSeconds: number
+        -- The time lag, in seconds, between the refreshable clone and its source Autonomous Database.
+        autoRefreshPointLagInSeconds: number
+        -- The date and time at which the automatic refresh of the refreshable clone Autonomous Database starts.
+        timeOfAutoRefreshStart: number
+        -- The provider of the encryption key to use for the Autonomous Database.
+        encryptionKeyProvider: string
+        -- The configuration of the encryption key to use for the Autonomous Database.
+        encryptionKeyConfiguration: EncryptionKeyConfigurationInput
+    end
+
+    record UpdateAutonomousDatabaseOutput
+        -- The unique identifier of the Autonomous Database that was updated.
+        autonomousDatabaseId: string
+        -- The user-friendly name of the Autonomous Database that was updated.
+        displayName: string
+        -- The current status of the Autonomous Database.
+        status: string
+        -- Additional information about the current status of the Autonomous Database, if applicable.
+        statusReason: string
+    end
+
+    -- A summary of an available Oracle Database software version for Autonomous Databases.
+    record AutonomousDatabaseVersionSummary
+        -- The intended use of the Autonomous Database that the version supports, such as transaction processing, data warehouse, JSON database, or APEX.
+        dbWorkload: string
+        -- Additional details about the Autonomous Database software version.
+        details: string
+        -- The Oracle Database software version.
+        version: string
     end
 
     -- A summary of an Autonomous Virtual Machine (VM) within an Autonomous VM cluster.
@@ -132,9 +1666,9 @@ local record M
         ociResourceAnchorName: string
     end
 
-    enum ComputeModel
-        "ECPU"
-        "OCPU"
+    enum characterSetType
+        "DATABASE"
+        "NATIONAL"
     end
 
     enum IamRoleStatus
@@ -157,27 +1691,6 @@ local record M
         statusReason: string
         -- The Amazon Web Services integration configuration settings for the Amazon Web Services Identity and Access Management (IAM) service role.
         awsIntegration: string
-    end
-
-    enum LicenseModel
-        "BRING_YOUR_OWN_LICENSE"
-        "LICENSE_INCLUDED"
-    end
-
-    enum DayOfWeekName
-        "MONDAY"
-        "TUESDAY"
-        "WEDNESDAY"
-        "THURSDAY"
-        "FRIDAY"
-        "SATURDAY"
-        "SUNDAY"
-    end
-
-    -- An enumeration of days of the week used for scheduling maintenance windows.
-    record DayOfWeek
-        -- The name of the day of the week.
-        name: string
     end
 
     enum MonthName
@@ -499,17 +2012,6 @@ local record M
         cloudAutonomousVmClusterId: string
     end
 
-    -- You have exceeded the service quota.
-    record ServiceQuotaExceededException
-        message: string
-        -- The identifier of the resource that exceeded the service quota.
-        resourceId: string
-        -- The type of resource that exceeded the service quota.
-        resourceType: string
-        -- The unqiue identifier of the service quota that was exceeded.
-        quotaCode: string
-    end
-
     record DeleteCloudAutonomousVmClusterInput
         -- The unique identifier of the Autonomous VM cluster to delete.
         cloudAutonomousVmClusterId: string
@@ -566,12 +2068,6 @@ local record M
         cloudAutonomousVmClusterId: string
         -- The amount of unallocated Autonomous Database storage in the Autonomous VM cluster, in terabytes.
         unallocatedAdbStorageInTBs: number
-    end
-
-    -- A contact to receive notification from Oracle about maintenance updates for a specific Exadata infrastructure.
-    record CustomerContact
-        -- The email address of the contact.
-        email: string
     end
 
     -- Information about an Exadata infrastructure.
@@ -1698,6 +3194,18 @@ local record M
     record GetOciOnboardingStatusInput
     end
 
+    enum OciAwsIntegration
+        "KmsTde"
+    end
+
+    -- Information about an Amazon Web Services Identity and Access Management (IAM) service role used for Autonomous Database integration with Oracle Cloud Infrastructure (OCI).
+    record OciIamRole
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) service role.
+        iamRoleArn: string
+        -- The Amazon Web Services integration configuration settings for the Amazon Web Services Identity and Access Management (IAM) service role.
+        awsIntegration: string
+    end
+
     -- Information about an Oracle Cloud Infrastructure (OCI) identity domain configuration.
     record OciIdentityDomain
         -- The unique identifier of the OCI identity domain.
@@ -1729,6 +3237,12 @@ local record M
         "CANCELED"
     end
 
+    -- Information about an error that occurred during the subscription process.
+    record SubscriptionError
+        -- A human-readable message that describes the subscription error.
+        errorMessage: string
+    end
+
     record GetOciOnboardingStatusOutput
         status: string
         -- The existing OCI tenancy activation link for your Amazon Web Services account.
@@ -1737,6 +3251,14 @@ local record M
         newTenancyActivationLink: string
         -- The Oracle Cloud Infrastructure (OCI) identity domain information in the onboarding status response.
         ociIdentityDomain: OciIdentityDomain
+        -- The list of Amazon Web Services Identity and Access Management (IAM) service roles used for Autonomous Database integration with Oracle Cloud Infrastructure (OCI).
+        autonomousDatabaseOciIntegrationIamRoles: {OciIamRole}
+        -- The unique identifier of the Oracle Cloud Infrastructure (OCI) tenancy that is linked to your Amazon Web Services account.
+        linkedOciTenancyId: string
+        -- The unique identifier of the Oracle Cloud Infrastructure (OCI) compartment that is linked to your Amazon Web Services account.
+        linkedOciCompartmentId: string
+        -- The list of errors that occurred during the subscription process for your Amazon Web Services account, if any.
+        subscriptionErrors: {SubscriptionError}
     end
 
     record GetOdbNetworkInput
@@ -1940,6 +3462,38 @@ local record M
     end
 
     record InitializeServiceOutput
+    end
+
+    record ListAutonomousDatabaseCharacterSetsInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+        -- The type of character set to return results for, either the database character set or the national character set.
+        characterSetType: string
+    end
+
+    record ListAutonomousDatabaseCharacterSetsOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of available Autonomous Database character sets.
+        autonomousDatabaseCharacterSets: {AutonomousDatabaseCharacterSetSummary}
+    end
+
+    record ListAutonomousDatabaseVersionsInput
+        -- The maximum number of items to return for this request. To get the next page of items, make another request with the token returned in the output.
+        maxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        nextToken: string
+        -- The intended use of the Autonomous Database to return versions for, such as transaction processing, data warehouse, JSON database, or APEX.
+        dbWorkload: string
+    end
+
+    record ListAutonomousDatabaseVersionsOutput
+        -- The token to include in another request to get the next page of items. This value is null when there are no more items to return.
+        nextToken: string
+        -- The list of available Autonomous Database software versions.
+        autonomousDatabaseVersions: {AutonomousDatabaseVersionSummary}
     end
 
     record ListDbSystemShapesInput

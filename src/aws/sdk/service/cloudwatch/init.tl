@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateDatasetKmsKey: function(Client, types.AssociateDatasetKmsKeyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDatasetKmsKeyOutput>
     deleteAlarmMuteRule: function(Client, types.DeleteAlarmMuteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmMuteRuleOutput>
     deleteAlarms: function(Client, types.DeleteAlarmsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAlarmsOutput>
     deleteAnomalyDetector: function(Client, types.DeleteAnomalyDetectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnomalyDetectorOutput>
@@ -32,10 +33,12 @@ local record Client
     describeInsightRules: function(Client, types.DescribeInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInsightRulesOutput>
     disableAlarmActions: function(Client, types.DisableAlarmActionsInput, ? base_client.InvokeOptions): async.Operation<types.DisableAlarmActionsOutput>
     disableInsightRules: function(Client, types.DisableInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.DisableInsightRulesOutput>
+    disassociateDatasetKmsKey: function(Client, types.DisassociateDatasetKmsKeyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateDatasetKmsKeyOutput>
     enableAlarmActions: function(Client, types.EnableAlarmActionsInput, ? base_client.InvokeOptions): async.Operation<types.EnableAlarmActionsOutput>
     enableInsightRules: function(Client, types.EnableInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.EnableInsightRulesOutput>
     getAlarmMuteRule: function(Client, types.GetAlarmMuteRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetAlarmMuteRuleOutput>
     getDashboard: function(Client, types.GetDashboardInput, ? base_client.InvokeOptions): async.Operation<types.GetDashboardOutput>
+    getDataset: function(Client, types.GetDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
     getInsightRuleReport: function(Client, types.GetInsightRuleReportInput, ? base_client.InvokeOptions): async.Operation<types.GetInsightRuleReportOutput>
     getMetricData: function(Client, types.GetMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricDataOutput>
     getMetricStatistics: function(Client, types.GetMetricStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricStatisticsOutput>
@@ -108,6 +111,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:associateDatasetKmsKey(input: types.AssociateDatasetKmsKeyInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateDatasetKmsKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateDatasetKmsKey as schema.OperationSchema, input, options) as async.Operation<types.AssociateDatasetKmsKeyOutput>
+end
+
 function C:deleteAlarmMuteRule(input: types.DeleteAlarmMuteRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAlarmMuteRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAlarmMuteRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteAlarmMuteRuleOutput>
 end
@@ -164,6 +171,10 @@ function C:disableInsightRules(input: types.DisableInsightRulesInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableInsightRules as schema.OperationSchema, input, options) as async.Operation<types.DisableInsightRulesOutput>
 end
 
+function C:disassociateDatasetKmsKey(input: types.DisassociateDatasetKmsKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateDatasetKmsKeyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateDatasetKmsKey as schema.OperationSchema, input, options) as async.Operation<types.DisassociateDatasetKmsKeyOutput>
+end
+
 function C:enableAlarmActions(input: types.EnableAlarmActionsInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAlarmActionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAlarmActions as schema.OperationSchema, input, options) as async.Operation<types.EnableAlarmActionsOutput>
 end
@@ -178,6 +189,10 @@ end
 
 function C:getDashboard(input: types.GetDashboardInput, options?: base_client.InvokeOptions): async.Operation<types.GetDashboardOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDashboard as schema.OperationSchema, input, options) as async.Operation<types.GetDashboardOutput>
+end
+
+function C:getDataset(input: types.GetDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataset as schema.OperationSchema, input, options) as async.Operation<types.GetDatasetOutput>
 end
 
 function C:getInsightRuleReport(input: types.GetInsightRuleReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetInsightRuleReportOutput>

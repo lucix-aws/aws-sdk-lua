@@ -645,6 +645,25 @@ M.ResourceNotFoundException = schema.new({
     },
 })
 
+M.RetryableConflictException = schema.new({
+    id = id.from(_N, "RetryableConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RetryableConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RuntimeClientError = schema.new({
     id = id.from(_N, "RuntimeClientError"),
     type = "structure",
@@ -988,25 +1007,6 @@ M.InvokeAgentRuntimeOutput = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.HTTP_RESPONSE_CODE] = {},
-            },
-        }),
-    },
-})
-
-M.RetryableConflictException = schema.new({
-    id = id.from(_N, "RetryableConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "RetryableConflictException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
             },
         }),
     },

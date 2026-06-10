@@ -378,6 +378,68 @@ local record M
         "METRIC_MATH"
     end
 
+    record AssociateDatasetKmsKeyInput
+        -- Specifies the identifier of the dataset that you want to associate the KMS key
+        -- with. For the default dataset, you can specify either
+        -- default or the full dataset Amazon Resource Name (ARN) in the format
+        -- arn:aws:cloudwatch:Region:account-id:dataset/default.
+        DatasetIdentifier: string
+        -- Specifies the Amazon Resource Name (ARN) of the customer managed KMS key to
+        -- associate with the dataset. The key must be a symmetric encryption KMS key
+        -- (SYMMETRIC_DEFAULT) in the same Amazon Web Services Region as the
+        -- dataset.
+        -- The ARN must be in the format
+        -- arn:aws:kms:Region:account-id:key/key-id
+        -- .
+        -- Key IDs, aliases, and alias ARNs are not accepted.
+        -- For more information about KMS key ARNs, see Key ARN in
+        -- the Amazon Web Services Key Management Service Developer
+        -- Guide.
+        KmsKeyArn: string
+    end
+
+    record AssociateDatasetKmsKeyOutput
+    end
+
+    -- This operation attempted to create a resource that already exists.
+    record ConflictException
+        Message: string
+    end
+
+    -- The operation was denied because either the calling principal lacks the required
+    -- Amazon Web Services Key Management Service (Amazon Web Services KMS) permission on the
+    -- key, or the key policy does not grant Amazon CloudWatch the permissions it needs
+    -- to use the key. Verify that the caller has kms:Decrypt permission on the
+    -- key, and that the key policy grants the CloudWatch service principal the
+    -- kms:DescribeKey, kms:GenerateDataKey,
+    -- kms:Encrypt, kms:Decrypt, and kms:ReEncrypt*
+    -- permissions described in AssociateDatasetKmsKey.
+    record KmsAccessDeniedException
+        Message: string
+    end
+
+    -- The specified Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+    -- is disabled or pending deletion. Re-enable the key (or restore it, if it is pending
+    -- deletion) and retry the operation.
+    record KmsKeyDisabledException
+        Message: string
+    end
+
+    -- The specified Amazon Web Services Key Management Service (Amazon Web Services KMS) key
+    -- could not be found. Verify that the key Amazon Resource Name (ARN) is correct, that
+    -- the key exists, and that it is in the same Amazon Web Services Region as the
+    -- resource.
+    record KmsKeyNotFoundException
+        Message: string
+    end
+
+    -- The named resource does not exist.
+    record ResourceNotFoundException
+        ResourceType: string
+        ResourceId: string
+        Message: string
+    end
+
     -- This array is empty if the API operation was successful for all the rules specified in
     -- the request. If the operation could not process one of the rules, the following data is
     -- returned for each of those rules.
@@ -477,11 +539,6 @@ local record M
 
     -- More than one process tried to modify a resource at the same time.
     record ConcurrentModificationException
-        Message: string
-    end
-
-    -- This operation attempted to create a resource that already exists.
-    record ConflictException
         Message: string
     end
 
@@ -618,13 +675,6 @@ local record M
     -- An input parameter that is required is missing.
     record MissingRequiredParameterException
         message: string
-    end
-
-    -- The named resource does not exist.
-    record ResourceNotFoundException
-        ResourceType: string
-        ResourceId: string
-        Message: string
     end
 
     record DeleteDashboardsInput
@@ -1024,6 +1074,17 @@ local record M
         Failures: {PartialFailure}
     end
 
+    record DisassociateDatasetKmsKeyInput
+        -- Specifies the identifier of the dataset from which to remove the KMS key
+        -- association. For the default dataset, you can specify either
+        -- default or the full dataset Amazon Resource Name (ARN) in the format
+        -- arn:aws:cloudwatch:Region:account-id:dataset/default.
+        DatasetIdentifier: string
+    end
+
+    record DisassociateDatasetKmsKeyOutput
+    end
+
     record EnableAlarmActionsInput
         -- The names of the alarms.
         AlarmNames: {string}
@@ -1245,6 +1306,29 @@ local record M
         DashboardBody: string
         -- The name of the dashboard.
         DashboardName: string
+    end
+
+    record GetDatasetInput
+        -- Specifies the identifier of the dataset to retrieve. For the default
+        -- dataset, you can specify either default or the full dataset Amazon
+        -- Resource Name (ARN) in the format
+        -- arn:aws:cloudwatch:Region:account-id:dataset/default.
+        DatasetIdentifier: string
+    end
+
+    record GetDatasetOutput
+        -- Returns the identifier of the dataset.
+        DatasetId: string
+        -- Returns the Amazon Resource Name (ARN) of the dataset, in the format
+        -- arn:aws:cloudwatch:Region:account-id:dataset/dataset-id
+        -- .
+        Arn: string
+        -- Returns the Amazon Resource Name (ARN) of the customer managed Amazon Web Services
+        -- KMS key that is currently associated with the dataset, if any. If the dataset is not
+        -- associated with a customer managed KMS key, this field is not included in the
+        -- response and the dataset is encrypted at rest using an Amazon Web Services owned
+        -- key.
+        KmsKeyArn: string
     end
 
     record GetInsightRuleReportInput

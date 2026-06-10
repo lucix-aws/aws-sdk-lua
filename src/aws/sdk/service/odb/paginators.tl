@@ -4,6 +4,114 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listAutonomousDatabaseBackups.
+function M.pages_list_autonomous_database_backups(client, input)
+    return paginator.pages(client, "listAutonomousDatabaseBackups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseBackups",
+    })
+end
+
+--- Returns an item iterator for listAutonomousDatabaseBackups.
+function M.items_list_autonomous_database_backups(client, input)
+    return paginator.items(client, "listAutonomousDatabaseBackups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseBackups",
+    })
+end
+
+--- Returns a page iterator for listAutonomousDatabaseCharacterSets.
+function M.pages_list_autonomous_database_character_sets(client, input)
+    return paginator.pages(client, "listAutonomousDatabaseCharacterSets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseCharacterSets",
+    })
+end
+
+--- Returns an item iterator for listAutonomousDatabaseCharacterSets.
+function M.items_list_autonomous_database_character_sets(client, input)
+    return paginator.items(client, "listAutonomousDatabaseCharacterSets", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseCharacterSets",
+    })
+end
+
+--- Returns a page iterator for listAutonomousDatabaseClones.
+function M.pages_list_autonomous_database_clones(client, input)
+    return paginator.pages(client, "listAutonomousDatabaseClones", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseClones",
+    })
+end
+
+--- Returns an item iterator for listAutonomousDatabaseClones.
+function M.items_list_autonomous_database_clones(client, input)
+    return paginator.items(client, "listAutonomousDatabaseClones", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseClones",
+    })
+end
+
+--- Returns a page iterator for listAutonomousDatabasePeers.
+function M.pages_list_autonomous_database_peers(client, input)
+    return paginator.pages(client, "listAutonomousDatabasePeers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabasePeers",
+    })
+end
+
+--- Returns an item iterator for listAutonomousDatabasePeers.
+function M.items_list_autonomous_database_peers(client, input)
+    return paginator.items(client, "listAutonomousDatabasePeers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabasePeers",
+    })
+end
+
+--- Returns a page iterator for listAutonomousDatabaseVersions.
+function M.pages_list_autonomous_database_versions(client, input)
+    return paginator.pages(client, "listAutonomousDatabaseVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseVersions",
+    })
+end
+
+--- Returns an item iterator for listAutonomousDatabaseVersions.
+function M.items_list_autonomous_database_versions(client, input)
+    return paginator.items(client, "listAutonomousDatabaseVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabaseVersions",
+    })
+end
+
+--- Returns a page iterator for listAutonomousDatabases.
+function M.pages_list_autonomous_databases(client, input)
+    return paginator.pages(client, "listAutonomousDatabases", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabases",
+    })
+end
+
+--- Returns an item iterator for listAutonomousDatabases.
+function M.items_list_autonomous_databases(client, input)
+    return paginator.items(client, "listAutonomousDatabases", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "autonomousDatabases",
+    })
+end
+
 --- Returns a page iterator for listAutonomousVirtualMachines.
 function M.pages_list_autonomous_virtual_machines(client, input)
     return paginator.pages(client, "listAutonomousVirtualMachines", input, {

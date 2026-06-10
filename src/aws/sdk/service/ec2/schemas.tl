@@ -93,6 +93,8 @@ M.CreateFleetInstancesSet = schema.new({ type = "list", list_member = M.CreateFl
 
 M.FlowLogResourceIds = schema.new({ type = "list", list_member = prelude.String })
 
+M.TagFieldSpecificationListRequest = schema.new({ type = "list", list_member = M.TagFieldSpecificationRequest })
+
 M.BlockDeviceMappingRequestList = schema.new({ type = "list", list_member = M.BlockDeviceMapping })
 
 M.ImageUsageResourceTypeRequestList = schema.new({ type = "list", list_member = M.ImageUsageResourceTypeRequest })
@@ -1215,6 +1217,8 @@ M.FleetLaunchTemplateOverridesListRequest = schema.new({ type = "list", list_mem
 
 M.InstanceIdsSet = schema.new({ type = "list", list_member = prelude.String })
 
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ImageUsageResourceTypeOptionRequestList = schema.new({ type = "list", list_member = M.ImageUsageResourceTypeOptionRequest })
 
 M.IpamPrefixListResolverRuleConditionRequestSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRuleConditionRequest })
@@ -1250,6 +1254,8 @@ M.FleetLaunchTemplateConfigList = schema.new({ type = "list", list_member = M.Fl
 M.DescribeFleetsErrorSet = schema.new({ type = "list", list_member = M.DescribeFleetError })
 
 M.DescribeFleetsInstancesSet = schema.new({ type = "list", list_member = M.DescribeFleetsInstances })
+
+M.TagFieldSpecificationListResponse = schema.new({ type = "list", list_member = M.TagFieldSpecificationResponse })
 
 M.InstanceTypesList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -13933,7 +13939,6 @@ M.CreateCapacityReservationFleetInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ReservationFleetInstanceSpecification,
             traits = {
-                [traits.REQUIRED] = {},
                 [traits.XML_NAME] = { name = "InstanceTypeSpecification" },
             },
         }),
@@ -18561,6 +18566,29 @@ M.DestinationOptionsRequest = schema.new({
     },
 })
 
+M.TagFieldSpecificationRequest = schema.new({
+    id = id.from(_N, "TagFieldSpecificationRequest"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "TagFieldSpecificationRequest", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "TagFieldSpecificationRequest", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagKey" },
+            },
+        }),
+    },
+})
+
 M.CreateFlowLogsInput = schema.new({
     id = id.from(_N, "CreateFlowLogsRequest"),
     type = "structure",
@@ -18661,6 +18689,16 @@ M.CreateFlowLogsInput = schema.new({
             name = "DestinationOptions",
             target_id = id.from(_N, "DestinationOptionsRequest"),
             target = M.DestinationOptionsRequest,
+        }),
+        TagFieldSpecifications = schema.new({
+            id = id.from(_N, "CreateFlowLogsInput", "TagFieldSpecifications"),
+            type = "list",
+            name = "TagFieldSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagFieldSpecificationRequest, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagFieldSpecification" },
+            },
         }),
     },
 })
@@ -53178,6 +53216,34 @@ M.DestinationOptionsResponse = schema.new({
     },
 })
 
+M.TagFieldSpecificationResponse = schema.new({
+    id = id.from(_N, "TagFieldSpecificationResponse"),
+    type = "structure",
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "TagFieldSpecificationResponse", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceType" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceType" },
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "TagFieldSpecificationResponse", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagKeySet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagKeySet" },
+            },
+        }),
+    },
+})
+
 M.FlowLog = schema.new({
     id = id.from(_N, "FlowLog"),
     type = "structure",
@@ -53342,6 +53408,17 @@ M.FlowLog = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "destinationOptions" },
                 [traits.EC2_QUERY_NAME] = { name = "DestinationOptions" },
+            },
+        }),
+        TagFieldSpecifications = schema.new({
+            id = id.from(_N, "FlowLog", "TagFieldSpecifications"),
+            type = "list",
+            name = "TagFieldSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagFieldSpecificationResponse, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagFieldSpecificationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagFieldSpecificationSet" },
             },
         }),
     },
@@ -75166,17 +75243,6 @@ M.VolumeModification = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "endTime" },
                 [traits.EC2_QUERY_NAME] = { name = "EndTime" },
-            },
-        }),
-        Operator = schema.new({
-            id = id.from(_N, "VolumeModification", "Operator"),
-            type = "structure",
-            name = "Operator",
-            target_id = id.from(_N, "OperatorResponse"),
-            target = M.OperatorResponse,
-            traits = {
-                [traits.XML_NAME] = { name = "operator" },
-                [traits.EC2_QUERY_NAME] = { name = "Operator" },
             },
         }),
     },

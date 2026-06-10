@@ -204,6 +204,38 @@ local record M
     record CancelOrderOutput
     end
 
+    enum QuoteCapacityType
+        "EC2"
+        "EBS"
+        "S3"
+    end
+
+    -- A capacity requirement for a quote. Specifies the type of capacity, the unit, and the
+    -- quantity.
+    record QuoteCapacity
+        -- The type of capacity. Valid values are EC2, EBS, and
+        -- S3.
+        QuoteCapacityType: string
+        -- The unit of measurement for the capacity. For Amazon EC2, this is the instance type (for
+        -- example, c5.24xlarge). For Amazon EBS and Amazon S3, this is the storage unit (for
+        -- example, TiB for tebibytes).
+        Unit: string
+        -- The quantity of the specified capacity unit. For Amazon EC2, this is the number of
+        -- additional instances to add to the Outpost. For Amazon EBS and Amazon S3, this is the total
+        -- desired end-state capacity of the Outpost.
+        Quantity: number
+    end
+
+    -- A summary of the capacity changes for a quote option.
+    record CapacitySummary
+        -- The existing capacities on the Outpost before the quote is fulfilled.
+        ExistingCapacities: {QuoteCapacity}
+        -- The final capacities on the Outpost after the quote is fulfilled.
+        FinalCapacities: {QuoteCapacity}
+        -- The change in capacity between the existing and final state.
+        CapacityChange: {QuoteCapacity}
+    end
+
     enum CapacityTaskFailureType
         "UNSUPPORTED_CAPACITY_CONFIGURATION"
         "UNEXPECTED_ASSET_STATE"
@@ -499,6 +531,296 @@ local record M
         Outpost: Outpost
     end
 
+    enum QuoteConstraintType
+        "RACK_MAXIMUM"
+        "RACK_MAX_POWER_KVA"
+        "RACK_MAX_WEIGHT_LBS"
+    end
+
+    -- A physical constraint for a quote.
+    record QuoteConstraint
+        -- The type of constraint. Valid values are RACK_MAXIMUM,
+        -- RACK_MAX_POWER_KVA, and RACK_MAX_WEIGHT_LBS.
+        QuoteConstraintType: string
+        -- The value of the constraint.
+        Value: string
+    end
+
+    record CreateQuoteInput
+        -- The ID or ARN of the Outpost to associate with the quote. If not specified, the quote is
+        -- created without an Outpost association.
+        OutpostIdentifier: string
+        -- The country code for the Outpost site location.
+        CountryCode: string
+        -- The capacity requirements for the quote. Each entry specifies a capacity type (such as
+        -- Amazon EC2), the unit, and the quantity. For Amazon EC2, the quantity is the number of additional
+        -- instances to add to the Outpost. For Amazon EBS and Amazon S3, the quantity is the total desired
+        -- end-state capacity of the Outpost.
+        RequestedCapacities: {QuoteCapacity}
+        -- The physical constraints for the quote, such as maximum number of racks, maximum power
+        -- draw per rack, or maximum weight per rack.
+        RequestedConstraints: {QuoteConstraint}
+        -- The payment options to include in the quote pricing. If not specified, all available
+        -- payment options are returned.
+        RequestedPaymentOptions: {string}
+        -- The payment terms to include in the quote pricing. If not specified, all available
+        -- payment terms are returned.
+        RequestedPaymentTerms: {string}
+        -- A description for the quote.
+        Description: string
+    end
+
+    enum OrderingRequirementType
+        "OUTPOST_ACTIVE_CHECK_ERROR"
+        "MAXIMUM_ALLOWED_ORDERS_CHECK_ERROR"
+        "VALID_ZIP_CODE_CHECK_ERROR"
+        "RACK_PHYSICAL_PROPERTIES_CHECK_ERROR"
+        "OPERATING_ADDRESS_EXISTENCE_CHECK_ERROR"
+        "SHIPPING_ADDRESS_EXISTENCE_CHECK_ERROR"
+        "COUNTRY_CODE_MISMATCH_CHECK_ERROR"
+        "OUTPOST_GENERATION_MISMATCH_ERROR"
+        "UNSUPPORTED"
+        "OUTPOST_ID_MISSING_ON_QUOTE_ERROR"
+        "ENTERPRISE_SUPPORT_ERROR"
+        "SHIPPING_ADDRESS_MISSING_CONTACT_NAME_ERROR"
+        "SHIPPING_ADDRESS_MISSING_CONTACT_NUMBER_ERROR"
+        "SHIPPING_ADDRESS_MISSING_CONTACT_INFO_ERROR"
+        "OUTPOST_STATE_CHANGED_ERROR"
+        "OUTPOST_NOT_FOUND_ERROR"
+        "OUTPOST_RENEWAL_REQUIRED_ERROR"
+    end
+
+    enum OrderingRequirementStatus
+        "PASS"
+        "FAIL"
+        "EXEMPT"
+    end
+
+    -- A requirement that must be met before an order can be submitted for a quote.
+    record OrderingRequirement
+        -- A message about the ordering requirement.
+        StatusMessage: string
+        -- The type of ordering requirement. Indicates which check failed or passed.
+        -- OUTPOST_ACTIVE_CHECK_ERROR - The Outpost must be in
+        -- an active state.
+        -- MAXIMUM_ALLOWED_ORDERS_CHECK_ERROR - The maximum
+        -- number of allowed orders has been reached.
+        -- VALID_ZIP_CODE_CHECK_ERROR - The site address must
+        -- have a valid zip code.
+        -- RACK_PHYSICAL_PROPERTIES_CHECK_ERROR - The rack
+        -- physical properties do not meet requirements.
+        -- OPERATING_ADDRESS_EXISTENCE_CHECK_ERROR - The site
+        -- must have an operating address.
+        -- SHIPPING_ADDRESS_EXISTENCE_CHECK_ERROR - The site
+        -- must have a shipping address.
+        -- COUNTRY_CODE_MISMATCH_CHECK_ERROR - The country
+        -- code on the quote does not match the Outpost site country.
+        -- OUTPOST_GENERATION_MISMATCH_ERROR - The Outpost generation
+        -- does not match the requested configuration.
+        -- OUTPOST_ID_MISSING_ON_QUOTE_ERROR - The quote must
+        -- be associated with an Outpost before submitting an order.
+        -- ENTERPRISE_SUPPORT_ERROR - Enterprise Support is
+        -- required.
+        -- SHIPPING_ADDRESS_MISSING_CONTACT_NAME_ERROR - The
+        -- shipping address must have a contact name.
+        -- SHIPPING_ADDRESS_MISSING_CONTACT_NUMBER_ERROR - The
+        -- shipping address must have a contact phone number.
+        -- SHIPPING_ADDRESS_MISSING_CONTACT_INFO_ERROR - The
+        -- shipping address must have contact information.
+        -- OUTPOST_STATE_CHANGED_ERROR - The Outpost state has
+        -- changed since the quote was created.
+        -- OUTPOST_NOT_FOUND_ERROR - The Outpost associated
+        -- with the quote was not found.
+        -- OUTPOST_RENEWAL_REQUIRED_ERROR - The Outpost
+        -- requires a renewal before a new order can be submitted.
+        -- UNSUPPORTED - The requirement type is not
+        -- recognized.
+        OrderingRequirementType: string
+        -- The status of the ordering requirement. Valid values are PASS,
+        -- FAIL, and EXEMPT.
+        Status: string
+    end
+
+    enum QuotePricingType
+        "SUBSCRIPTION"
+    end
+
+    enum CurrencyCode
+        "USD"
+    end
+
+    -- The pricing details for a subscription.
+    record SubscriptionPricingDetails
+        -- The payment option.
+        PaymentOption: string
+        -- The payment term.
+        PaymentTerm: string
+        -- The upfront price.
+        UpfrontPrice: number
+        -- The monthly recurring price.
+        MonthlyRecurringPrice: number
+        -- The currency of the price. Currently only USD is supported.
+        Currency: string
+    end
+
+    -- A pricing option for the specified Outpost.
+    record PricingOption
+        -- The type of pricing model.
+        PricingType: string
+        -- The subscription pricing details for this pricing option.
+        SubscriptionPricingDetails: SubscriptionPricingDetails
+    end
+
+    enum RackUnitHeight
+        "HEIGHT_42U"
+        "HEIGHT_2U"
+        "HEIGHT_1U"
+    end
+
+    enum QuoteRackUseType
+        "NETWORKING"
+        "COMPUTE"
+    end
+
+    -- The physical specification details for a rack in a quote option.
+    record RackSpecificationDetails
+        -- The ID of the rack.
+        RackId: string
+        -- The use of the rack. Valid values are COMPUTE and
+        -- NETWORKING.
+        RackUse: string
+        -- The maximum power draw of the rack in kVA.
+        RackPowerDrawKva: number
+        -- The weight of the rack in pounds.
+        RackWeightLbs: number
+        -- The height of the rack in inches.
+        RackHeightInches: number
+        -- The width of the rack in inches.
+        RackWidthInches: number
+        -- The depth of the rack in inches.
+        RackDepthInches: number
+        -- The rack unit height.
+        -- HEIGHT_42U - 42 rack units.
+        -- HEIGHT_2U - 2 rack units.
+        -- HEIGHT_1U - 1 rack unit.
+        RackUnitHeight: string
+        -- The Amazon EC2 capacities for the rack.
+        EC2Capacities: {EC2Capacity}
+    end
+
+    enum QuoteSpecificationType
+        "UPDATED_RACK"
+        "NEW_RACK"
+        "EXISTING_RACK"
+        "SERVER"
+    end
+
+    -- The physical specification details for a server in a quote option.
+    record ServerSpecificationDetails
+        -- The maximum power draw of the server in kVA.
+        ServerPowerDrawKva: number
+        -- The weight of the server in pounds.
+        ServerWeightLbs: number
+        -- The height of the server in inches.
+        ServerHeightInches: number
+        -- The width of the server in inches.
+        ServerWidthInches: number
+        -- The depth of the server in inches.
+        ServerDepthInches: number
+        -- The rack unit height of the server.
+        -- HEIGHT_2U - 2 rack units.
+        -- HEIGHT_1U - 1 rack unit.
+        RackUnitHeight: string
+        -- The Amazon EC2 capacities for the server.
+        EC2Capacities: {EC2Capacity}
+    end
+
+    -- A physical specification for a quote option. Describes the rack or server configuration
+    -- that would be deployed.
+    record QuoteSpecification
+        -- The type of specification. Valid values are NEW_RACK,
+        -- UPDATED_RACK, EXISTING_RACK, and SERVER.
+        QuoteSpecificationType: string
+        -- The existing rack specification details, if the specification type is
+        -- UPDATED_RACK or EXISTING_RACK.
+        ExistingRackSpecificationDetails: RackSpecificationDetails
+        -- The final rack specification details after the quote is fulfilled.
+        FinalRackSpecificationDetails: RackSpecificationDetails
+        -- The server specification details, if the specification type is
+        -- SERVER.
+        ServerSpecificationDetails: ServerSpecificationDetails
+    end
+
+    -- A configuration and pricing option for a quote. Each option includes the capacity
+    -- breakdown, physical specifications for the racks or servers, and pricing details.
+    record QuoteOption
+        -- The ID of the quote option.
+        QuoteOptionIdentifier: string
+        -- The capacities included in this quote option.
+        Capacities: {QuoteCapacity}
+        -- A summary of the existing, final, and changed capacity for this quote option.
+        CapacitySummary: CapacitySummary
+        -- The physical specifications for the racks or servers in this quote option.
+        Specifications: {QuoteSpecification}
+        -- The pricing options for this quote option.
+        PricingOptions: {PricingOption}
+    end
+
+    enum QuoteStatus
+        "CREATED"
+        "ORDER_SUBMITTED"
+        "EXPIRED"
+    end
+
+    -- Information about a quote for an Outpost. A quote provides pricing and configuration
+    -- options based on the requested capacity.
+    record Quote
+        -- The ID of the quote.
+        QuoteId: string
+        -- The ID of the account that owns the quote.
+        AccountId: string
+        -- The status of the quote.
+        -- CREATED - The quote has been created and is
+        -- available for review.
+        -- ORDER_SUBMITTED - An order has been submitted for
+        -- the quote.
+        -- EXPIRED - The quote has expired and can no longer
+        -- be used to submit an order.
+        QuoteStatus: string
+        -- A message about the status of the quote.
+        StatusMessage: string
+        -- The ARN of the Outpost associated with the quote.
+        OutpostArn: string
+        -- The country code for the Outpost site location.
+        CountryCode: string
+        -- The capacity requirements specified in the quote request.
+        RequestedCapacities: {QuoteCapacity}
+        -- The physical constraints specified in the quote request.
+        RequestedConstraints: {QuoteConstraint}
+        -- The payment options specified in the quote request.
+        RequestedPaymentOptions: {string}
+        -- The payment terms specified in the quote request.
+        RequestedPaymentTerms: {string}
+        -- The configuration and pricing options for the quote. Each option includes capacity
+        -- details, physical specifications, and pricing information.
+        QuoteOptions: {QuoteOption}
+        -- The requirements that must be met before an order can be submitted for the quote.
+        OrderingRequirements: {OrderingRequirement}
+        -- The ID of the order submitted for the quote.
+        SubmittedOrderId: string
+        -- The date the quote was created.
+        CreatedDate: number
+        -- The date the quote expires.
+        ExpirationDate: number
+        -- The description of the quote.
+        Description: string
+    end
+
+    record CreateQuoteOutput
+        -- Information about the quote.
+        Quote: Quote
+    end
+
     record CreateRenewalInput
         -- The payment option.
         PaymentOption: string
@@ -522,6 +844,8 @@ local record M
         UpfrontPrice: number
         -- The monthly recurring price of the renewal.
         MonthlyRecurringPrice: number
+        -- The currency of the renewal price.
+        Currency: string
     end
 
     enum FiberOpticCableType
@@ -689,12 +1013,57 @@ local record M
     record DeleteOutpostOutput
     end
 
+    record DeleteQuoteInput
+        -- The ID or ARN of the quote.
+        QuoteIdentifier: string
+    end
+
+    record DeleteQuoteOutput
+    end
+
     record DeleteSiteInput
         -- The ID or the Amazon Resource Name (ARN) of the site.
         SiteId: string
     end
 
     record DeleteSiteOutput
+    end
+
+    enum FormFactor
+        "RACK"
+        "SERVER"
+    end
+
+    enum OutpostGeneration
+        "GENERATION_2"
+        "GENERATION_1"
+    end
+
+    -- A supported form factor and Outpost generation configuration for an instance type.
+    record FormFactorConfig
+        -- The form factor. Valid values are RACK for rack-based Outposts and
+        -- SERVER for server-based Outposts.
+        FormFactor: string
+        -- The Outpost generation. Valid values are GENERATION_1 for first-generation
+        -- rack deployments and GENERATION_2 for second-generation rack deployments. This
+        -- value is not set for server form factors.
+        OutpostGeneration: string
+    end
+
+    -- Information about an instance type that can be ordered for an Outpost, including
+    -- hardware specifications and supported form factors.
+    record DetailedInstanceTypeItem
+        -- The instance type.
+        InstanceType: string
+        -- The number of default VCPUs in the instance type.
+        VCPUs: number
+        -- The memory size of the instance type, in MiB.
+        MemoryInMib: number
+        -- The network performance of the instance type.
+        NetworkPerformance: string
+        -- The supported form factor and Outpost generation configurations for the instance
+        -- type.
+        FormFactorConfigs: {FormFactorConfig}
     end
 
     record GetCapacityTaskInput
@@ -864,6 +1233,9 @@ local record M
         BeginDate: number
         -- The date your subscription ends.
         EndDate: number
+        -- The currency of the subscription price. Currently only USD is
+        -- supported.
+        Currency: string
         -- The amount you are billed each month in the subscription period.
         MonthlyRecurringPrice: number
         -- The amount billed when the subscription is created. This is a one-time charge.
@@ -924,33 +1296,19 @@ local record M
         NextToken: string
     end
 
+    record GetQuoteInput
+        -- The ID or ARN of the quote.
+        QuoteIdentifier: string
+    end
+
+    record GetQuoteOutput
+        -- Information about the quote.
+        Quote: Quote
+    end
+
     record GetRenewalPricingInput
         -- The ID or ARN of the Outpost.
         OutpostIdentifier: string
-    end
-
-    enum QuotePricingType
-        "SUBSCRIPTION"
-    end
-
-    -- The pricing details for a subscription.
-    record SubscriptionPricingDetails
-        -- The payment option.
-        PaymentOption: string
-        -- The payment term.
-        PaymentTerm: string
-        -- The upfront price.
-        UpfrontPrice: number
-        -- The monthly recurring price.
-        MonthlyRecurringPrice: number
-    end
-
-    -- A pricing option for the specified Outpost.
-    record PricingOption
-        -- The type of pricing model.
-        PricingType: string
-        -- The subscription pricing details for this pricing option.
-        SubscriptionPricingDetails: SubscriptionPricingDetails
     end
 
     enum PricingResult
@@ -1084,6 +1442,24 @@ local record M
         NextToken: string
     end
 
+    record ListOrderableInstanceTypesInput
+        -- Filters the results by Outpost generation. Specify GENERATION_1 for
+        -- first-generation rack deployments or GENERATION_2 for second-generation rack
+        -- deployments.
+        OutpostGenerationFilter: string
+        -- The maximum page size.
+        MaxResults: number
+        -- The pagination token.
+        NextToken: string
+    end
+
+    record ListOrderableInstanceTypesOutput
+        -- Information about the instance types that can be ordered for the Outpost.
+        InstanceTypes: {DetailedInstanceTypeItem}
+        -- The pagination token.
+        NextToken: string
+    end
+
     record ListOrdersInput
         -- The ID or the Amazon Resource Name (ARN) of the Outpost.
         OutpostIdentifierFilter: string
@@ -1136,6 +1512,54 @@ local record M
 
     record ListOutpostsOutput
         Outposts: {Outpost}
+        NextToken: string
+    end
+
+    record ListQuotesInput
+        -- The pagination token.
+        NextToken: string
+        -- The maximum page size.
+        MaxResults: number
+    end
+
+    -- Summary information about a quote.
+    record QuoteSummary
+        -- The ID of the quote.
+        QuoteId: string
+        -- The ID of the account that owns the quote.
+        AccountId: string
+        -- The status of the quote.
+        QuoteStatus: string
+        -- A message about the status of the quote.
+        StatusMessage: string
+        -- The ARN of the Outpost associated with the quote.
+        OutpostArn: string
+        -- The country code for the Outpost site location.
+        CountryCode: string
+        -- The capacity requirements specified in the quote request.
+        RequestedCapacities: {QuoteCapacity}
+        -- The physical constraints specified in the quote request.
+        RequestedConstraints: {QuoteConstraint}
+        -- The payment options specified in the quote request.
+        RequestedPaymentOptions: {string}
+        -- The payment terms specified in the quote request.
+        RequestedPaymentTerms: {string}
+        -- The configuration and pricing options for the quote.
+        QuoteOptions: {QuoteOption}
+        -- The ID of the order submitted for the quote.
+        SubmittedOrderId: string
+        -- The date the quote was created.
+        CreatedDate: number
+        -- The date the quote expires.
+        ExpirationDate: number
+        -- The description of the quote.
+        Description: string
+    end
+
+    record ListQuotesOutput
+        -- Information about the quotes.
+        Quotes: {QuoteSummary}
+        -- The pagination token.
         NextToken: string
     end
 
@@ -1289,6 +1713,31 @@ local record M
 
     record UpdateOutpostOutput
         Outpost: Outpost
+    end
+
+    record UpdateQuoteInput
+        -- The ID or ARN of the quote.
+        QuoteIdentifier: string
+        -- The ID or ARN of the Outpost to associate with the quote. Specify an empty string to
+        -- remove the Outpost association.
+        OutpostIdentifier: string
+        -- The country code for the Outpost site location.
+        CountryCode: string
+        -- The updated capacity requirements for the quote.
+        RequestedCapacities: {QuoteCapacity}
+        -- The updated physical constraints for the quote.
+        RequestedConstraints: {QuoteConstraint}
+        -- The updated payment options to include in the quote pricing.
+        RequestedPaymentOptions: {string}
+        -- The updated payment terms to include in the quote pricing.
+        RequestedPaymentTerms: {string}
+        -- A description for the quote.
+        Description: string
+    end
+
+    record UpdateQuoteOutput
+        -- Information about the updated quote.
+        Quote: Quote
     end
 
     record UpdateSiteInput

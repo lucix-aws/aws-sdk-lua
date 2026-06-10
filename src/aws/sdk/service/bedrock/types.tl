@@ -2285,6 +2285,35 @@ local record M
         modelSummaries: {CustomModelSummary}
     end
 
+    record GetAccountDataRetentionInput
+    end
+
+    enum DataRetentionMode
+        "default"
+        "none"
+        "provider_data_share"
+        "inherit"
+    end
+
+    record GetAccountDataRetentionOutput
+        -- The data retention mode configured for the account.
+        mode: string
+        -- The time at which the data retention mode was last updated.
+        updatedAt: number
+    end
+
+    record PutAccountDataRetentionInput
+        -- The data retention mode to set for the account.
+        mode: string
+    end
+
+    record PutAccountDataRetentionOutput
+        -- The data retention mode set for the account.
+        mode: string
+        -- The time at which the data retention mode was last updated.
+        updatedAt: number
+    end
+
     record DeleteEnforcedGuardrailConfigurationInput
         -- Unique ID for the account enforced configuration.
         configId: string

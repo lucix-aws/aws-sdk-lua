@@ -606,6 +606,137 @@ M.AnomalyDetector = schema.new({
     },
 })
 
+M.AssociateDatasetKmsKeyInput = schema.new({
+    id = id.from(_N, "AssociateDatasetKmsKeyInput"),
+    type = "structure",
+    members = {
+        DatasetIdentifier = schema.new({
+            id = id.from(_N, "AssociateDatasetKmsKeyInput", "DatasetIdentifier"),
+            type = "string",
+            name = "DatasetIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "AssociateDatasetKmsKeyInput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateDatasetKmsKeyOutput = schema.new({
+    id = id.from(_N, "AssociateDatasetKmsKeyOutput"),
+    type = "structure",
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KmsAccessDeniedException = schema.new({
+    id = id.from(_N, "KmsAccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "KmsAccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.KmsKeyDisabledException = schema.new({
+    id = id.from(_N, "KmsKeyDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "KmsKeyDisabledException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.KmsKeyNotFoundException = schema.new({
+    id = id.from(_N, "KmsKeyNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "KmsKeyNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        ResourceType = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PartialFailure = schema.new({
     id = id.from(_N, "PartialFailure"),
     type = "structure",
@@ -770,22 +901,6 @@ M.ConcurrentModificationException = schema.new({
     members = {
         Message = schema.new({
             id = id.from(_N, "ConcurrentModificationException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ConflictException = schema.new({
-    id = id.from(_N, "ConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ConflictException", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
@@ -1102,34 +1217,6 @@ M.MissingRequiredParameterException = schema.new({
             id = id.from(_N, "MissingRequiredParameterException", "message"),
             type = "string",
             name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        ResourceType = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "ResourceType"),
-            type = "string",
-            name = "ResourceType",
-            target_id = prelude.String.id,
-        }),
-        ResourceId = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "ResourceId"),
-            type = "string",
-            name = "ResourceId",
-            target_id = prelude.String.id,
-        }),
-        Message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Message"),
-            type = "string",
-            name = "Message",
             target_id = prelude.String.id,
         }),
     },
@@ -1956,6 +2043,27 @@ M.DisableInsightRulesOutput = schema.new({
     },
 })
 
+M.DisassociateDatasetKmsKeyInput = schema.new({
+    id = id.from(_N, "DisassociateDatasetKmsKeyInput"),
+    type = "structure",
+    members = {
+        DatasetIdentifier = schema.new({
+            id = id.from(_N, "DisassociateDatasetKmsKeyInput", "DatasetIdentifier"),
+            type = "string",
+            name = "DatasetIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateDatasetKmsKeyOutput = schema.new({
+    id = id.from(_N, "DisassociateDatasetKmsKeyOutput"),
+    type = "structure",
+})
+
 M.EnableAlarmActionsInput = schema.new({
     id = id.from(_N, "EnableAlarmActionsInput"),
     type = "structure",
@@ -2363,6 +2471,53 @@ M.GetDashboardOutput = schema.new({
             id = id.from(_N, "GetDashboardOutput", "DashboardName"),
             type = "string",
             name = "DashboardName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDatasetInput = schema.new({
+    id = id.from(_N, "GetDatasetInput"),
+    type = "structure",
+    members = {
+        DatasetIdentifier = schema.new({
+            id = id.from(_N, "GetDatasetInput", "DatasetIdentifier"),
+            type = "string",
+            name = "DatasetIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDatasetOutput = schema.new({
+    id = id.from(_N, "GetDatasetOutput"),
+    type = "structure",
+    members = {
+        DatasetId = schema.new({
+            id = id.from(_N, "GetDatasetOutput", "DatasetId"),
+            type = "string",
+            name = "DatasetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetDatasetOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "GetDatasetOutput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
             target_id = prelude.String.id,
         }),
     },
@@ -4379,6 +4534,17 @@ M.Service = schema.service({
     },
 })
 
+M.AssociateDatasetKmsKey = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "AssociateDatasetKmsKey"),
+    input = M.AssociateDatasetKmsKeyInput,
+    output = M.AssociateDatasetKmsKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteAlarmMuteRule = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "DeleteAlarmMuteRule"),
     input = M.DeleteAlarmMuteRuleInput,
@@ -4533,6 +4699,17 @@ M.DisableInsightRules = schema.operation({
     },
 })
 
+M.DisassociateDatasetKmsKey = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "DisassociateDatasetKmsKey"),
+    input = M.DisassociateDatasetKmsKeyInput,
+    output = M.DisassociateDatasetKmsKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.EnableAlarmActions = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "EnableAlarmActions"),
     input = M.EnableAlarmActionsInput,
@@ -4570,6 +4747,17 @@ M.GetDashboard = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "GetDashboard"),
     input = M.GetDashboardInput,
     output = M.GetDashboardOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataset = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "GetDataset"),
+    input = M.GetDatasetInput,
+    output = M.GetDatasetOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
