@@ -9,6 +9,9 @@ local record M
         "AUTHCODE_EXPIRED"
         "server_error"
         "INVALID_REQUEST"
+        "RESOURCE_NOT_FOUND"
+        "CONFLICT"
+        "SERVICE_QUOTA_EXCEEDED"
     end
 
     -- Error thrown for access denied scenarios with flexible HTTP status mapping
@@ -37,6 +40,18 @@ local record M
         secretAccessKey: string
         -- AWS session token for temporary credentials
         sessionToken: string
+    end
+
+    -- Error thrown when request conflicts with current state
+    -- HTTP Status Code: 409 Conflict
+    -- Used when the request conflicts with the current state of the resource
+    record ConflictException
+        -- OAuth 2.0 error code indicating conflict
+        -- Will be CONFLICT
+        error: string
+        -- Detailed message explaining the conflict
+        -- Provides specific information about what caused the conflict
+        message: string
     end
 
     -- Request body payload for CreateOAuth2Token operation
@@ -145,6 +160,173 @@ local record M
         error: string
         -- Detailed message explaining the validation failure
         -- Provides specific information about which validation failed
+        message: string
+    end
+
+    -- Input for DeleteConsoleAuthorizationConfiguration operation
+    record DeleteConsoleAuthorizationConfigurationInput
+        -- Target account identifier
+        targetId: string
+    end
+
+    -- Output for DeleteConsoleAuthorizationConfiguration operation
+    record DeleteConsoleAuthorizationConfigurationOutput
+        -- Target account identifier
+        targetId: string
+        -- Authorization scope
+        scope: string
+        -- Whether console authorization is enabled
+        consoleAuthorizationEnabled: boolean
+    end
+
+    -- Error thrown when requested resource is not found
+    -- HTTP Status Code: 404 Not Found
+    -- Used when the specified resource does not exist
+    record ResourceNotFoundException
+        -- OAuth 2.0 error code indicating resource not found
+        -- Will be RESOURCE_NOT_FOUND
+        error: string
+        -- Detailed message explaining which resource was not found
+        -- Provides specific information about the missing resource
+        message: string
+    end
+
+    -- Input for DeleteResourcePermissionStatement operation
+    record DeleteResourcePermissionStatementInput
+        -- Unique identifier of the permission statement to delete
+        statementId: string
+        -- Idempotency token for the request
+        clientToken: string
+    end
+
+    -- Output for DeleteResourcePermissionStatement operation
+    record DeleteResourcePermissionStatementOutput
+    end
+
+    -- Input for GetConsoleAuthorizationConfiguration operation
+    record GetConsoleAuthorizationConfigurationInput
+        -- Target account identifier
+        targetId: string
+    end
+
+    -- Output for GetConsoleAuthorizationConfiguration operation
+    record GetConsoleAuthorizationConfigurationOutput
+        -- Target account identifier
+        targetId: string
+        -- Authorization scope
+        scope: string
+        -- Whether console authorization is enabled
+        consoleAuthorizationEnabled: boolean
+    end
+
+    -- Input for GetResourcePolicy operation
+    record GetResourcePolicyInput
+    end
+
+    -- Individual policy statement within a resource-based policy
+    record PolicyStatement
+        -- Effect of the policy statement (Allow/Deny)
+        effect: string
+        -- Principal the statement applies to
+        principal: {string : string}
+        -- Actions the statement controls
+        action: {string}
+        -- Resource the statement applies to
+        resource: string
+        -- Condition block for the statement
+        condition: {string : {string : {string}}}
+    end
+
+    -- SignIn resource-based policy document
+    record SigninResourceBasedPolicy
+        -- Policy version
+        version: string
+        -- Policy statements
+        statement: {PolicyStatement}
+    end
+
+    -- Output for GetResourcePolicy operation
+    record GetResourcePolicyOutput
+        -- The account's SignIn resource-based policy
+        signinResourceBasedPolicy: SigninResourceBasedPolicy
+    end
+
+    -- Input for ListResourcePermissionStatements operation
+    record ListResourcePermissionStatementsInput
+        -- Maximum number of results to return
+        maxResults: number
+        -- Token for pagination
+        nextToken: string
+    end
+
+    -- Summary of a permission statement
+    record PermissionStatementSummary
+        -- Unique identifier for the permission statement
+        sid: string
+        -- Condition block for the permission statement
+        condition: {string : {string : {string}}}
+    end
+
+    -- Output for ListResourcePermissionStatements operation
+    record ListResourcePermissionStatementsOutput
+        -- List of permission statement summaries
+        permissionStatements: {PermissionStatementSummary}
+        -- Token for next page of results
+        nextToken: string
+    end
+
+    -- Input for PutConsoleAuthorizationConfiguration operation
+    record PutConsoleAuthorizationConfigurationInput
+        -- Target account identifier
+        targetId: string
+    end
+
+    -- Output for PutConsoleAuthorizationConfiguration operation
+    record PutConsoleAuthorizationConfigurationOutput
+        -- Target account identifier
+        targetId: string
+        -- Authorization scope
+        scope: string
+        -- Whether console authorization is enabled
+        consoleAuthorizationEnabled: boolean
+    end
+
+    -- Input for PutResourcePermissionStatement operation
+    record PutResourcePermissionStatementInput
+        -- VPC identifier to restrict console access
+        sourceVpc: string
+        -- SignIn VPC endpoint identifier
+        signinSourceVpce: string
+        -- Console VPC endpoint identifier
+        consoleSourceVpce: string
+        -- Source IP address within VPC
+        vpcSourceIp: string
+        -- Source IP address
+        sourceIp: string
+        -- AWS region where the VPC and VPC endpoint reside
+        -- Required when sourceVpc or signinSourceVpce/consoleSourceVpce is provided
+        requestedRegion: string
+        -- Principal to exclude from the permission statement
+        excludedPrincipal: string
+        -- Idempotency token for the request
+        clientToken: string
+    end
+
+    -- Output for PutResourcePermissionStatement operation
+    record PutResourcePermissionStatementOutput
+        -- Unique identifier for the created permission statement
+        statementId: string
+    end
+
+    -- Error thrown when service quota is exceeded
+    -- HTTP Status Code: 402 Payment Required (used as quota exceeded indicator)
+    -- Used when the request would cause a service quota to be exceeded
+    record ServiceQuotaExceededException
+        -- OAuth 2.0 error code indicating service quota exceeded
+        -- Will be SERVICE_QUOTA_EXCEEDED
+        error: string
+        -- Detailed message explaining which quota was exceeded
+        -- Provides specific information about the limit and current usage
         message: string
     end
 

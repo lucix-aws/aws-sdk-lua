@@ -302,7 +302,9 @@ local record M
         "eu-west-3"
         "eu-central-1"
         "eu-north-1"
+        "eu-south-2"
         "ca-central-1"
+        "ap-east-1"
         "ap-south-1"
         "ap-southeast-1"
         "ap-southeast-2"
@@ -310,6 +312,7 @@ local record M
         "ap-northeast-2"
         "ap-southeast-3"
         "ap-southeast-5"
+        "sa-east-1"
     end
 
     -- Describes the resource location.

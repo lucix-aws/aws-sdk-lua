@@ -231,6 +231,8 @@ M.__listOfInputChannelLevel = schema.new({ type = "list", list_member = M.InputC
 
 M.__listOfMediaPackageAdditionalDestinations = schema.new({ type = "list", list_member = M.MediaPackageAdditionalDestinations })
 
+M.__listOfAudioPid = schema.new({ type = "list", list_member = M.AudioPid })
+
 M.__listOfAudioTrack = schema.new({ type = "list", list_member = M.AudioTrack })
 
 M.OutputLocationRef = schema.new({
@@ -351,6 +353,24 @@ M.AudioNormalizationSettings = schema.new({
             target_id = prelude.Double.id,
             traits = {
                 [traits.JSON_NAME] = { name = "targetLkfs" },
+            },
+        }),
+        PeakCalculation = schema.new({
+            id = id.from(_N, "AudioNormalizationSettings", "PeakCalculation"),
+            type = "string",
+            name = "PeakCalculation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "peakCalculation" },
+            },
+        }),
+        PeakLimiterThreshold = schema.new({
+            id = id.from(_N, "AudioNormalizationSettings", "PeakLimiterThreshold"),
+            type = "double",
+            name = "PeakLimiterThreshold",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "peakLimiterThreshold" },
             },
         }),
     },
@@ -1248,6 +1268,105 @@ M.AudioFeedInput = schema.new({
     },
 })
 
+M.AudioDolbyEDecode = schema.new({
+    id = id.from(_N, "AudioDolbyEDecode"),
+    type = "structure",
+    members = {
+        ProgramSelection = schema.new({
+            id = id.from(_N, "AudioDolbyEDecode", "ProgramSelection"),
+            type = "string",
+            name = "ProgramSelection",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "programSelection" },
+            },
+        }),
+    },
+})
+
+M.AudioPreMixerSettings = schema.new({
+    id = id.from(_N, "AudioPreMixerSettings"),
+    type = "structure",
+    members = {
+        AudioNormalizationSettings = schema.new({
+            id = id.from(_N, "AudioPreMixerSettings", "AudioNormalizationSettings"),
+            type = "structure",
+            name = "AudioNormalizationSettings",
+            target_id = id.from(_N, "AudioNormalizationSettings"),
+            target = M.AudioNormalizationSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "audioNormalizationSettings" },
+            },
+        }),
+        Channels = schema.new({
+            id = id.from(_N, "AudioPreMixerSettings", "Channels"),
+            type = "integer",
+            name = "Channels",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "channels" },
+            },
+        }),
+        GainDb = schema.new({
+            id = id.from(_N, "AudioPreMixerSettings", "GainDb"),
+            type = "double",
+            name = "GainDb",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "gainDb" },
+            },
+        }),
+        RemixSettings = schema.new({
+            id = id.from(_N, "AudioPreMixerSettings", "RemixSettings"),
+            type = "structure",
+            name = "RemixSettings",
+            target_id = id.from(_N, "RemixSettings"),
+            target = M.RemixSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "remixSettings" },
+            },
+        }),
+    },
+})
+
+M.AudioPid = schema.new({
+    id = id.from(_N, "AudioPid"),
+    type = "structure",
+    members = {
+        DolbyEDecode = schema.new({
+            id = id.from(_N, "AudioPid", "DolbyEDecode"),
+            type = "structure",
+            name = "DolbyEDecode",
+            target_id = id.from(_N, "AudioDolbyEDecode"),
+            target = M.AudioDolbyEDecode,
+            traits = {
+                [traits.JSON_NAME] = { name = "dolbyEDecode" },
+            },
+        }),
+        Pid = schema.new({
+            id = id.from(_N, "AudioPid", "Pid"),
+            type = "integer",
+            name = "Pid",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "pid" },
+            },
+        }),
+        PremixSettings = schema.new({
+            id = id.from(_N, "AudioPid", "PremixSettings"),
+            type = "structure",
+            name = "PremixSettings",
+            target_id = id.from(_N, "AudioPreMixerSettings"),
+            target = M.AudioPreMixerSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "premixSettings" },
+            },
+        }),
+    },
+})
+
 M.AudioHlsRenditionSelection = schema.new({
     id = id.from(_N, "AudioHlsRenditionSelection"),
     type = "structure",
@@ -1315,21 +1434,14 @@ M.AudioPidSelection = schema.new({
                 [traits.JSON_NAME] = { name = "pid" },
             },
         }),
-    },
-})
-
-M.AudioDolbyEDecode = schema.new({
-    id = id.from(_N, "AudioDolbyEDecode"),
-    type = "structure",
-    members = {
-        ProgramSelection = schema.new({
-            id = id.from(_N, "AudioDolbyEDecode", "ProgramSelection"),
-            type = "string",
-            name = "ProgramSelection",
-            target_id = prelude.String.id,
+        Pids = schema.new({
+            id = id.from(_N, "AudioPidSelection", "Pids"),
+            type = "list",
+            name = "Pids",
+            target_id = prelude.Document.id,
+            list_member = M.AudioPid,
             traits = {
-                [traits.REQUIRED] = {},
-                [traits.JSON_NAME] = { name = "programSelection" },
+                [traits.JSON_NAME] = { name = "pids" },
             },
         }),
     },
@@ -1347,6 +1459,16 @@ M.AudioTrack = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "track" },
+            },
+        }),
+        PremixSettings = schema.new({
+            id = id.from(_N, "AudioTrack", "PremixSettings"),
+            type = "structure",
+            name = "PremixSettings",
+            target_id = id.from(_N, "AudioPreMixerSettings"),
+            target = M.AudioPreMixerSettings,
+            traits = {
+                [traits.JSON_NAME] = { name = "premixSettings" },
             },
         }),
     },

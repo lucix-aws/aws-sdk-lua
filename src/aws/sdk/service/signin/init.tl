@@ -19,6 +19,13 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     createOAuth2Token: function(Client, types.CreateOAuth2TokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenOutput>
+    deleteConsoleAuthorizationConfiguration: function(Client, types.DeleteConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>
+    deleteResourcePermissionStatement: function(Client, types.DeleteResourcePermissionStatementInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePermissionStatementOutput>
+    getConsoleAuthorizationConfiguration: function(Client, types.GetConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetConsoleAuthorizationConfigurationOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    listResourcePermissionStatements: function(Client, types.ListResourcePermissionStatementsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcePermissionStatementsOutput>
+    putConsoleAuthorizationConfiguration: function(Client, types.PutConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutConsoleAuthorizationConfigurationOutput>
+    putResourcePermissionStatement: function(Client, types.PutResourcePermissionStatementInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePermissionStatementOutput>
 end
 
 local record M
@@ -65,6 +72,34 @@ end
 
 function C:createOAuth2Token(input: types.CreateOAuth2TokenInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOAuth2Token as schema.OperationSchema, input, options) as async.Operation<types.CreateOAuth2TokenOutput>
+end
+
+function C:deleteConsoleAuthorizationConfiguration(input: types.DeleteConsoleAuthorizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConsoleAuthorizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>
+end
+
+function C:deleteResourcePermissionStatement(input: types.DeleteResourcePermissionStatementInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePermissionStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePermissionStatement as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePermissionStatementOutput>
+end
+
+function C:getConsoleAuthorizationConfiguration(input: types.GetConsoleAuthorizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConsoleAuthorizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConsoleAuthorizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetConsoleAuthorizationConfigurationOutput>
+end
+
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
+end
+
+function C:listResourcePermissionStatements(input: types.ListResourcePermissionStatementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcePermissionStatementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcePermissionStatements as schema.OperationSchema, input, options) as async.Operation<types.ListResourcePermissionStatementsOutput>
+end
+
+function C:putConsoleAuthorizationConfiguration(input: types.PutConsoleAuthorizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutConsoleAuthorizationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConsoleAuthorizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutConsoleAuthorizationConfigurationOutput>
+end
+
+function C:putResourcePermissionStatement(input: types.PutResourcePermissionStatementInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePermissionStatementOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePermissionStatement as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePermissionStatementOutput>
 end
 
 return M

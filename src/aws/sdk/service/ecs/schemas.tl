@@ -5769,6 +5769,18 @@ M.DaemonTaskDefinition = schema.new({
             name = "registeredBy",
             target_id = prelude.String.id,
         }),
+        pidMode = schema.new({
+            id = id.from(_N, "DaemonTaskDefinition", "pidMode"),
+            type = "string",
+            name = "pidMode",
+            target_id = prelude.String.id,
+        }),
+        ipcMode = schema.new({
+            id = id.from(_N, "DaemonTaskDefinition", "ipcMode"),
+            type = "string",
+            name = "ipcMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5952,6 +5964,18 @@ M.RegisterDaemonTaskDefinitionInput = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        pidMode = schema.new({
+            id = id.from(_N, "RegisterDaemonTaskDefinitionInput", "pidMode"),
+            type = "string",
+            name = "pidMode",
+            target_id = prelude.String.id,
+        }),
+        ipcMode = schema.new({
+            id = id.from(_N, "RegisterDaemonTaskDefinitionInput", "ipcMode"),
+            type = "string",
+            name = "ipcMode",
+            target_id = prelude.String.id,
         }),
     },
 })

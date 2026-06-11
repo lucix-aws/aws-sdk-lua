@@ -9,6 +9,20 @@ local _N = "com.amazonaws.signin"
 
 local M: {string:any} = {}
 
+M.PermissionStatementSummaries = schema.new({ type = "list", list_member = M.PermissionStatementSummary })
+
+M.PolicyStatements = schema.new({ type = "list", list_member = M.PolicyStatement })
+
+M.ConditionBlock = schema.new({ type = "map", map_key = prelude.String, map_value = M.Condition })
+
+M.Principal = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.PolicyActions = schema.new({ type = "list", list_member = prelude.String })
+
+M.Condition = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConditionValues })
+
+M.ConditionValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -69,6 +83,34 @@ M.AccessToken = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "sessionToken" },
+            },
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "ConflictException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
             },
         }),
     },
@@ -311,6 +353,478 @@ M.ValidationException = schema.new({
     },
 })
 
+M.DeleteConsoleAuthorizationConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteConsoleAuthorizationConfigurationInput"),
+    type = "structure",
+    members = {
+        targetId = schema.new({
+            id = id.from(_N, "DeleteConsoleAuthorizationConfigurationInput", "targetId"),
+            type = "string",
+            name = "targetId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteConsoleAuthorizationConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteConsoleAuthorizationConfigurationOutput"),
+    type = "structure",
+    members = {
+        targetId = schema.new({
+            id = id.from(_N, "DeleteConsoleAuthorizationConfigurationOutput", "targetId"),
+            type = "string",
+            name = "targetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scope = schema.new({
+            id = id.from(_N, "DeleteConsoleAuthorizationConfigurationOutput", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consoleAuthorizationEnabled = schema.new({
+            id = id.from(_N, "DeleteConsoleAuthorizationConfigurationOutput", "consoleAuthorizationEnabled"),
+            type = "boolean",
+            name = "consoleAuthorizationEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePermissionStatementInput = schema.new({
+    id = id.from(_N, "DeleteResourcePermissionStatementInput"),
+    type = "structure",
+    members = {
+        statementId = schema.new({
+            id = id.from(_N, "DeleteResourcePermissionStatementInput", "statementId"),
+            type = "string",
+            name = "statementId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteResourcePermissionStatementInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePermissionStatementOutput = schema.new({
+    id = id.from(_N, "DeleteResourcePermissionStatementOutput"),
+    type = "structure",
+})
+
+M.GetConsoleAuthorizationConfigurationInput = schema.new({
+    id = id.from(_N, "GetConsoleAuthorizationConfigurationInput"),
+    type = "structure",
+    members = {
+        targetId = schema.new({
+            id = id.from(_N, "GetConsoleAuthorizationConfigurationInput", "targetId"),
+            type = "string",
+            name = "targetId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetConsoleAuthorizationConfigurationOutput = schema.new({
+    id = id.from(_N, "GetConsoleAuthorizationConfigurationOutput"),
+    type = "structure",
+    members = {
+        targetId = schema.new({
+            id = id.from(_N, "GetConsoleAuthorizationConfigurationOutput", "targetId"),
+            type = "string",
+            name = "targetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scope = schema.new({
+            id = id.from(_N, "GetConsoleAuthorizationConfigurationOutput", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consoleAuthorizationEnabled = schema.new({
+            id = id.from(_N, "GetConsoleAuthorizationConfigurationOutput", "consoleAuthorizationEnabled"),
+            type = "boolean",
+            name = "consoleAuthorizationEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyInput = schema.new({
+    id = id.from(_N, "GetResourcePolicyInput"),
+    type = "structure",
+})
+
+M.PolicyStatement = schema.new({
+    id = id.from(_N, "PolicyStatement"),
+    type = "structure",
+    members = {
+        effect = schema.new({
+            id = id.from(_N, "PolicyStatement", "effect"),
+            type = "string",
+            name = "effect",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Effect" },
+            },
+        }),
+        principal = schema.new({
+            id = id.from(_N, "PolicyStatement", "principal"),
+            type = "map",
+            name = "principal",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "Principal" },
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "PolicyStatement", "action"),
+            type = "list",
+            name = "action",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "Action" },
+            },
+        }),
+        resource = schema.new({
+            id = id.from(_N, "PolicyStatement", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Resource" },
+            },
+        }),
+        condition = schema.new({
+            id = id.from(_N, "PolicyStatement", "condition"),
+            type = "map",
+            name = "condition",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConditionValues }),
+            traits = {
+                [traits.JSON_NAME] = { name = "Condition" },
+            },
+        }),
+    },
+})
+
+M.SigninResourceBasedPolicy = schema.new({
+    id = id.from(_N, "SigninResourceBasedPolicy"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "SigninResourceBasedPolicy", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "Version" },
+            },
+        }),
+        statement = schema.new({
+            id = id.from(_N, "SigninResourceBasedPolicy", "statement"),
+            type = "list",
+            name = "statement",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyStatement,
+            traits = {
+                [traits.JSON_NAME] = { name = "Statement" },
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyOutput = schema.new({
+    id = id.from(_N, "GetResourcePolicyOutput"),
+    type = "structure",
+    members = {
+        signinResourceBasedPolicy = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "signinResourceBasedPolicy"),
+            type = "structure",
+            name = "signinResourceBasedPolicy",
+            target_id = id.from(_N, "SigninResourceBasedPolicy"),
+            target = M.SigninResourceBasedPolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListResourcePermissionStatementsInput = schema.new({
+    id = id.from(_N, "ListResourcePermissionStatementsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListResourcePermissionStatementsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResourcePermissionStatementsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PermissionStatementSummary = schema.new({
+    id = id.from(_N, "PermissionStatementSummary"),
+    type = "structure",
+    members = {
+        sid = schema.new({
+            id = id.from(_N, "PermissionStatementSummary", "sid"),
+            type = "string",
+            name = "sid",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        condition = schema.new({
+            id = id.from(_N, "PermissionStatementSummary", "condition"),
+            type = "map",
+            name = "condition",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "map", map_key = prelude.String, map_value = M.ConditionValues }),
+        }),
+    },
+})
+
+M.ListResourcePermissionStatementsOutput = schema.new({
+    id = id.from(_N, "ListResourcePermissionStatementsOutput"),
+    type = "structure",
+    members = {
+        permissionStatements = schema.new({
+            id = id.from(_N, "ListResourcePermissionStatementsOutput", "permissionStatements"),
+            type = "list",
+            name = "permissionStatements",
+            target_id = prelude.Document.id,
+            list_member = M.PermissionStatementSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResourcePermissionStatementsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutConsoleAuthorizationConfigurationInput = schema.new({
+    id = id.from(_N, "PutConsoleAuthorizationConfigurationInput"),
+    type = "structure",
+    members = {
+        targetId = schema.new({
+            id = id.from(_N, "PutConsoleAuthorizationConfigurationInput", "targetId"),
+            type = "string",
+            name = "targetId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutConsoleAuthorizationConfigurationOutput = schema.new({
+    id = id.from(_N, "PutConsoleAuthorizationConfigurationOutput"),
+    type = "structure",
+    members = {
+        targetId = schema.new({
+            id = id.from(_N, "PutConsoleAuthorizationConfigurationOutput", "targetId"),
+            type = "string",
+            name = "targetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scope = schema.new({
+            id = id.from(_N, "PutConsoleAuthorizationConfigurationOutput", "scope"),
+            type = "string",
+            name = "scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        consoleAuthorizationEnabled = schema.new({
+            id = id.from(_N, "PutConsoleAuthorizationConfigurationOutput", "consoleAuthorizationEnabled"),
+            type = "boolean",
+            name = "consoleAuthorizationEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutResourcePermissionStatementInput = schema.new({
+    id = id.from(_N, "PutResourcePermissionStatementInput"),
+    type = "structure",
+    members = {
+        sourceVpc = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "sourceVpc"),
+            type = "string",
+            name = "sourceVpc",
+            target_id = prelude.String.id,
+        }),
+        signinSourceVpce = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "signinSourceVpce"),
+            type = "string",
+            name = "signinSourceVpce",
+            target_id = prelude.String.id,
+        }),
+        consoleSourceVpce = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "consoleSourceVpce"),
+            type = "string",
+            name = "consoleSourceVpce",
+            target_id = prelude.String.id,
+        }),
+        vpcSourceIp = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "vpcSourceIp"),
+            type = "string",
+            name = "vpcSourceIp",
+            target_id = prelude.String.id,
+        }),
+        sourceIp = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "sourceIp"),
+            type = "string",
+            name = "sourceIp",
+            target_id = prelude.String.id,
+        }),
+        requestedRegion = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "requestedRegion"),
+            type = "string",
+            name = "requestedRegion",
+            target_id = prelude.String.id,
+        }),
+        excludedPrincipal = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "excludedPrincipal"),
+            type = "string",
+            name = "excludedPrincipal",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PutResourcePermissionStatementOutput = schema.new({
+    id = id.from(_N, "PutResourcePermissionStatementOutput"),
+    type = "structure",
+    members = {
+        statementId = schema.new({
+            id = id.from(_N, "PutResourcePermissionStatementOutput", "statementId"),
+            type = "string",
+            name = "statementId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        error = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -344,6 +858,114 @@ M.CreateOAuth2Token = schema.operation({
         [traits.HTTP] = { method = "POST", path = "/v1/token" },
         [traits.AUTH] = {
             { scheme_id = "smithy.api#noAuth" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = false },
+        },
+    },
+})
+
+M.DeleteConsoleAuthorizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.signin", "DeleteConsoleAuthorizationConfiguration"),
+    input = M.DeleteConsoleAuthorizationConfigurationInput,
+    output = M.DeleteConsoleAuthorizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-console-authorization-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = true },
+        },
+    },
+})
+
+M.DeleteResourcePermissionStatement = schema.operation({
+    id = id.from("com.amazonaws.signin", "DeleteResourcePermissionStatement"),
+    input = M.DeleteResourcePermissionStatementInput,
+    output = M.DeleteResourcePermissionStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-resource-permission-statement" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = true },
+        },
+    },
+})
+
+M.GetConsoleAuthorizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.signin", "GetConsoleAuthorizationConfiguration"),
+    input = M.GetConsoleAuthorizationConfigurationInput,
+    output = M.GetConsoleAuthorizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-console-authorization-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = true },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.signin", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-resource-policy" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = true },
+        },
+    },
+})
+
+M.ListResourcePermissionStatements = schema.operation({
+    id = id.from("com.amazonaws.signin", "ListResourcePermissionStatements"),
+    input = M.ListResourcePermissionStatementsInput,
+    output = M.ListResourcePermissionStatementsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-resource-permission-statements" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = true },
+        },
+    },
+})
+
+M.PutConsoleAuthorizationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.signin", "PutConsoleAuthorizationConfiguration"),
+    input = M.PutConsoleAuthorizationConfigurationInput,
+    output = M.PutConsoleAuthorizationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/put-console-authorization-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = true },
+        },
+    },
+})
+
+M.PutResourcePermissionStatement = schema.operation({
+    id = id.from("com.amazonaws.signin", "PutResourcePermissionStatement"),
+    input = M.PutResourcePermissionStatementInput,
+    output = M.PutResourcePermissionStatementOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/put-resource-permission-statement" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsControlPlane = { value = true },
         },
     },
 })

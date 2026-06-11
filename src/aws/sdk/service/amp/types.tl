@@ -1226,6 +1226,10 @@ local record M
         limitsPerLabelSet: {LimitsPerLabelSet}
         -- This field displays how many days that metrics are retained in the workspace.
         retentionPeriodInDays: number
+        -- This field displays the out of order time window in seconds for accepting out of order samples.
+        outOfOrderTimeWindowInSeconds: number
+        -- This field displays the duration in seconds that rule evaluation queries are offset into the past.
+        ruleQueryOffsetInSeconds: number
     end
 
     record DescribeWorkspaceConfigurationOutput
@@ -1242,6 +1246,10 @@ local record M
         limitsPerLabelSet: {LimitsPerLabelSet}
         -- Specifies how many days that metrics will be retained in the workspace.
         retentionPeriodInDays: number
+        -- Specifies the time window in seconds for accepting out of order samples. Out of order samples older than this window are rejected.
+        outOfOrderTimeWindowInSeconds: number
+        -- Specifies the duration in seconds to offset rule evaluation queries into the past. This allows ingested samples to be available before rule evaluation.
+        ruleQueryOffsetInSeconds: number
     end
 
     record UpdateWorkspaceConfigurationOutput

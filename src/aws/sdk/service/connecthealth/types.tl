@@ -557,6 +557,12 @@ local record M
         audioChunk: string
     end
 
+    -- An event containing raw binary audio data for the Medical Scribe stream. The audio is sent as a raw binary payload rather than as a base64-encoded value.
+    record MedicalScribeBinaryAudioEvent
+        -- The raw binary audio data chunk
+        audioChunk: string
+    end
+
     -- Context information about the clinical encounter
     record EncounterContext
         -- Unstructured context information in markdown format
@@ -591,6 +597,8 @@ local record M
     -- Input stream for Medical Scribe containing audio and configuration events
     record MedicalScribeInputStream
         audioEvent: MedicalScribeAudioEvent
+        -- An event containing raw binary audio data for the Medical Scribe stream. The audio is sent as a raw binary payload rather than as a base64-encoded value.
+        binaryAudioEvent: MedicalScribeBinaryAudioEvent
         sessionControlEvent: MedicalScribeSessionControlEvent
         configurationEvent: MedicalScribeConfigurationEvent
     end

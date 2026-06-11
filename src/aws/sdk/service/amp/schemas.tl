@@ -3837,6 +3837,18 @@ M.WorkspaceConfigurationDescription = schema.new({
             name = "retentionPeriodInDays",
             target_id = prelude.Integer.id,
         }),
+        outOfOrderTimeWindowInSeconds = schema.new({
+            id = id.from(_N, "WorkspaceConfigurationDescription", "outOfOrderTimeWindowInSeconds"),
+            type = "integer",
+            name = "outOfOrderTimeWindowInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ruleQueryOffsetInSeconds = schema.new({
+            id = id.from(_N, "WorkspaceConfigurationDescription", "ruleQueryOffsetInSeconds"),
+            type = "integer",
+            name = "ruleQueryOffsetInSeconds",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -3891,6 +3903,18 @@ M.UpdateWorkspaceConfigurationInput = schema.new({
             id = id.from(_N, "UpdateWorkspaceConfigurationInput", "retentionPeriodInDays"),
             type = "integer",
             name = "retentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        outOfOrderTimeWindowInSeconds = schema.new({
+            id = id.from(_N, "UpdateWorkspaceConfigurationInput", "outOfOrderTimeWindowInSeconds"),
+            type = "integer",
+            name = "outOfOrderTimeWindowInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ruleQueryOffsetInSeconds = schema.new({
+            id = id.from(_N, "UpdateWorkspaceConfigurationInput", "ruleQueryOffsetInSeconds"),
+            type = "integer",
+            name = "ruleQueryOffsetInSeconds",
             target_id = prelude.Integer.id,
         }),
     },

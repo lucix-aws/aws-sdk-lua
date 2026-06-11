@@ -2668,6 +2668,27 @@ local record M
         Return: boolean
     end
 
+    record AttachImageWatermarkInput
+        -- The ID of the AMI.
+        ImageId: string
+        -- The name for the watermark. Combined with the caller's account ID to form the
+        -- WatermarkKey (accountId:watermarkName).
+        -- Constraints: 3-128 alphanumeric characters, parentheses (()), square brackets ([]), spaces
+        -- ( ), periods (.), slashes (/), dashes (-), single quotes ('), at-signs (@), or
+        -- underscores(_)
+        WatermarkName: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record AttachImageWatermarkOutput
+        -- The watermark identifier, in accountId:watermarkName format (for example,
+        -- 123456789012:approvedAmi).
+        WatermarkKey: string
+    end
+
     record AttachInternetGatewayInput
         -- Checks whether you have the required permissions for the action, without actually making the request,
         -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
@@ -22533,6 +22554,25 @@ local record M
         "ramdisk"
     end
 
+    -- Describes a watermark attached to an AMI.
+    record ImageWatermark
+        -- The watermark identifier, in accountId:watermarkName format (for example,
+        -- 123456789012:approvedAmi). The accountId portion is the Amazon Web Services account
+        -- ID of the watermark creator. The watermarkName portion is customer-provided.
+        WatermarkKey: string
+        -- The Region where the watermark was originally attached.
+        SourceImageRegion: string
+        -- The ID of the AMI to which the watermark was originally attached.
+        SourceImageId: string
+        -- The creation date of the source AMI, in the
+        -- following format:
+        -- YYYY-MM-DDTHH:MM:SS.ssssss+HH:MM.
+        SourceImageCreationTime: number
+        -- The date and time the watermark was attached to the AMI, in the following format:
+        -- YYYY-MM-DDTHH:MM:SS.ssssss+HH:MM.
+        WatermarkCreationTime: number
+    end
+
     enum ImdsSupportValues
         "v2.0"
     end
@@ -22647,6 +22687,8 @@ local record M
         -- instances under the Free Tier limits.
         -- If false, the AMI is not eligible for Free Tier.
         FreeTierEligible: boolean
+        -- The watermarks attached to the AMI.
+        ImageWatermarks: {ImageWatermark}
         -- The ID of the AMI.
         ImageId: string
         -- The location of the AMI.
@@ -23321,6 +23363,8 @@ local record M
         -- means this AMI has public launch permissions, while false means it has only
         -- implicit (AMI owner) or explicit (shared with your account) launch permissions.
         IsPublic: boolean
+        -- The watermarks attached to the AMI.
+        ImageWatermarks: {ImageWatermark}
     end
 
     enum InstanceStateName
@@ -31580,6 +31624,23 @@ local record M
     end
 
     record DetachClassicLinkVpcOutput
+        -- Returns true if the request succeeds; otherwise, it returns an error.
+        Return: boolean
+    end
+
+    record DetachImageWatermarkInput
+        -- The ID of the AMI.
+        ImageId: string
+        -- The watermark key to remove, in accountId:watermarkName format (for example,
+        -- 123456789012:approvedAmi).
+        WatermarkKey: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DetachImageWatermarkOutput
         -- Returns true if the request succeeds; otherwise, it returns an error.
         Return: boolean
     end

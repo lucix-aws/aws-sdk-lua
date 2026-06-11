@@ -44,20 +44,42 @@ local record M
     enum AudioNormalizationAlgorithm
         "ITU_1770_1"
         "ITU_1770_2"
+        "ITU_1770_3"
+        "ITU_1770_4"
     end
 
     enum AudioNormalizationAlgorithmControl
         "CORRECT_AUDIO"
     end
 
+    enum AudioNormalizationPeakCalculation
+        "NONE"
+        "TRUE_PEAK"
+    end
+
     -- Audio Normalization Settings
     record AudioNormalizationSettings
-        -- Audio normalization algorithm to use. itu17701 conforms to the CALM Act specification, itu17702 conforms to the EBU R-128 specification.
+        -- Choose one of the following audio normalization algorithms:
+        -- ITU-R BS.1770-1: Ungated loudness. A measurement of ungated average loudness for an entire piece of content,
+        -- suitable for measurement of short-form content under ATSC recommendation A/85. Supports up to 5.1 audio channels.
+        -- ITU-R BS.1770-2: Gated loudness. A measurement of gated average loudness compliant with the requirements of
+        -- EBU-R128. Supports up to 5.1 audio channels.
+        -- ITU-R BS.1770-3: Modified peak. The same loudness measurement algorithm as 1770-2, with an updated true peak
+        -- measurement.
+        -- ITU-R BS.1770-4: Higher channel count. Allows for more audio channels than the other algorithms, including
+        -- configurations such as 7.1.
         Algorithm: string
         -- When set to correctAudio the output audio is corrected using the chosen algorithm. If set to measureOnly, the audio will be measured but not adjusted.
         AlgorithmControl: string
         -- Target LKFS(loudness) to adjust volume to. If no value is entered, a default value will be used according to the chosen algorithm. The CALM Act recommends a target of -24 LKFS. The EBU R-128 specification recommends a target of -23 LKFS.
         TargetLkfs: number
+        -- If set to TRUE_PEAK, calculate the TruePeak for each output's audio track loudness.
+        PeakCalculation: string
+        -- Peak limiter threshold in decibels relative to true peak (dBTP) if TRUE_PEAK is enabled.
+        -- If TRUE_PEAK is not enabled a full scale (dbFS) value is used.
+        -- The peak inter-audio sample loudness in your output will be limited to the value that you specify,
+        -- without affecting the overall target LKFS. Leave blank to use the default value 0.
+        PeakLimiterThreshold: number
     end
 
     enum AudioType
@@ -542,6 +564,58 @@ local record M
         FeedInput: string
     end
 
+    enum DolbyEProgramSelection
+        "ALL_CHANNELS"
+        "PROGRAM_1"
+        "PROGRAM_2"
+        "PROGRAM_3"
+        "PROGRAM_4"
+        "PROGRAM_5"
+        "PROGRAM_6"
+        "PROGRAM_7"
+        "PROGRAM_8"
+    end
+
+    -- Audio Dolby EDecode
+    record AudioDolbyEDecode
+        -- Applies only to Dolby E. Enter the program ID (according to the metadata in the audio) of the Dolby E program to extract from the specified track. One program extracted per audio selector. To select multiple programs, create multiple selectors with the same Track and different Program numbers. “All channels” means to ignore the program IDs and include all the channels in this selector; useful if metadata is known to be incorrect.
+        ProgramSelection: string
+    end
+
+    -- Audio pre-mixer settings for normalizing audio before interleaving.
+    -- These settings can be applied to individual PIDs or tracks before they are combined.
+    record AudioPreMixerSettings
+        -- Audio normalization settings for loudness control.
+        -- When specified, audio loudness will be normalized according to the chosen algorithm.
+        AudioNormalizationSettings: AudioNormalizationSettings
+        -- Number of audio channels.
+        -- If specified, the audio will be remixed to match this channel count.
+        -- Ignored if remixSettings is specified.
+        Channels: number
+        -- Gain adjustment in dB to apply.
+        -- Range: -60 to +60 dB
+        GainDb: number
+        -- Settings that control how input audio channels are remixed.
+        -- When specified, allows fine-grained control over channel mapping and gain levels.
+        -- Takes precedence over the 'channels' setting.
+        RemixSettings: RemixSettings
+    end
+
+    -- Represents a single PID value for audio selection with optional pre-mixer settings
+    record AudioPid
+        -- Configure decoding options for Dolby E streams - these should be Dolby E frames carried in PCM streams tagged with SMPTE-337.
+        -- When using the 'pids' array, if this field is not specified and Dolby E content is present,
+        -- the decoder will extract the specified program. To maintain legacy behavior (allPrograms),
+        -- explicitly set programSelection to "allChannels".
+        DolbyEDecode: AudioDolbyEDecode
+        -- PID value from within a source.
+        Pid: number
+        -- Optional audio pre-mixer settings for this PID.
+        -- When specified, allows per-PID audio processing including channel remixing,
+        -- gain adjustment, and loudness normalization before interleaving.
+        PremixSettings: AudioPreMixerSettings
+    end
+
     -- Audio Hls Rendition Selection
     record AudioHlsRenditionSelection
         -- Specifies the GROUP-ID in the #EXT-X-MEDIA tag of the target HLS audio rendition.
@@ -567,30 +641,19 @@ local record M
     record AudioPidSelection
         -- Selects a specific PID from within a source.
         Pid: number
+        -- Selects one or more unique PIDs from within a source.
+        -- When using 'pids', you can specify per-PID audio pre-mixer settings.
+        Pids: {AudioPid}
     end
 
-    enum DolbyEProgramSelection
-        "ALL_CHANNELS"
-        "PROGRAM_1"
-        "PROGRAM_2"
-        "PROGRAM_3"
-        "PROGRAM_4"
-        "PROGRAM_5"
-        "PROGRAM_6"
-        "PROGRAM_7"
-        "PROGRAM_8"
-    end
-
-    -- Audio Dolby EDecode
-    record AudioDolbyEDecode
-        -- Applies only to Dolby E. Enter the program ID (according to the metadata in the audio) of the Dolby E program to extract from the specified track. One program extracted per audio selector. To select multiple programs, create multiple selectors with the same Track and different Program numbers. “All channels” means to ignore the program IDs and include all the channels in this selector; useful if metadata is known to be incorrect.
-        ProgramSelection: string
-    end
-
-    -- Audio Track
+    -- Represents a single audio track for selection with optional pre-mixer settings
     record AudioTrack
         -- 1-based integer value that maps to a specific audio track
         Track: number
+        -- Optional audio pre-mixer settings for this track.
+        -- When specified, allows per-track audio processing including channel remixing,
+        -- gain adjustment, and loudness normalization before interleaving.
+        PremixSettings: AudioPreMixerSettings
     end
 
     -- Audio Track Selection

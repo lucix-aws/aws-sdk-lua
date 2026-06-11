@@ -1752,6 +1752,23 @@ M.MedicalScribeAudioEvent = schema.new({
     },
 })
 
+M.MedicalScribeBinaryAudioEvent = schema.new({
+    id = id.from(_N, "MedicalScribeBinaryAudioEvent"),
+    type = "structure",
+    members = {
+        audioChunk = schema.new({
+            id = id.from(_N, "MedicalScribeBinaryAudioEvent", "audioChunk"),
+            type = "blob",
+            name = "audioChunk",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.EVENT_PAYLOAD] = {},
+            },
+        }),
+    },
+})
+
 M.EncounterContext = schema.new({
     id = id.from(_N, "EncounterContext"),
     type = "structure",
@@ -1845,6 +1862,13 @@ M.MedicalScribeInputStream = schema.new({
             name = "audioEvent",
             target_id = id.from(_N, "MedicalScribeAudioEvent"),
             target = M.MedicalScribeAudioEvent,
+        }),
+        binaryAudioEvent = schema.new({
+            id = id.from(_N, "MedicalScribeInputStream", "binaryAudioEvent"),
+            type = "structure",
+            name = "binaryAudioEvent",
+            target_id = id.from(_N, "MedicalScribeBinaryAudioEvent"),
+            target = M.MedicalScribeBinaryAudioEvent,
         }),
         sessionControlEvent = schema.new({
             id = id.from(_N, "MedicalScribeInputStream", "sessionControlEvent"),

@@ -2121,6 +2121,16 @@ local record M
         restartPolicy: ContainerRestartPolicy
     end
 
+    enum DaemonIpcMode
+        "none"
+        "shared"
+    end
+
+    enum DaemonPidMode
+        "none"
+        "shared"
+    end
+
     enum DaemonTaskDefinitionStatus
         "ACTIVE"
         "DELETE_IN_PROGRESS"
@@ -2169,6 +2179,10 @@ local record M
         deleteRequestedAt: number
         -- The principal that registered the daemon task definition.
         registeredBy: string
+        -- The process namespace mode for the daemon. A value of shared means the daemon shares the PID namespace with co-located tasks, giving it visibility into application processes. A value of none means the daemon has its own isolated PID namespace.
+        pidMode: string
+        -- The IPC namespace mode for the daemon. A value of shared means the daemon shares the IPC namespace with co-located tasks, allowing communication through POSIX shared memory, semaphores, and message queues. A value of none means the daemon has its own isolated IPC namespace.
+        ipcMode: string
     end
 
     record DescribeDaemonTaskDefinitionOutput
@@ -2246,6 +2260,10 @@ local record M
         volumes: {DaemonVolume}
         -- The metadata that you apply to the daemon task definition to help you categorize and organize them. Each tag consists of a key and an optional value. You define both of them. The following basic restrictions apply to tags: Maximum number of tags per resource - 50 For each resource, each tag key must be unique, and each tag key can have only one value. Maximum key length - 128 Unicode characters in UTF-8 Maximum value length - 256 Unicode characters in UTF-8 If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for Amazon Web Services use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.
         tags: {Tag}
+        -- The process namespace mode for the daemon. When set to shared, the daemon shares the PID namespace with co-located tasks on the same container instance, giving the daemon visibility into application processes. When set to none, the daemon gets its own isolated PID namespace. The default is none.
+        pidMode: string
+        -- The IPC namespace mode for the daemon. When set to shared, the daemon shares the IPC namespace with co-located tasks on the same container instance, allowing communication through POSIX shared memory, semaphores, and message queues. When set to none, the daemon gets its own isolated IPC namespace. The default is none.
+        ipcMode: string
     end
 
     record RegisterDaemonTaskDefinitionOutput

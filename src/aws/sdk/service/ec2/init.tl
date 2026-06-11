@@ -55,6 +55,7 @@ local record Client
     associateTrunkInterface: function(Client, types.AssociateTrunkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTrunkInterfaceOutput>
     associateVpcCidrBlock: function(Client, types.AssociateVpcCidrBlockInput, ? base_client.InvokeOptions): async.Operation<types.AssociateVpcCidrBlockOutput>
     attachClassicLinkVpc: function(Client, types.AttachClassicLinkVpcInput, ? base_client.InvokeOptions): async.Operation<types.AttachClassicLinkVpcOutput>
+    attachImageWatermark: function(Client, types.AttachImageWatermarkInput, ? base_client.InvokeOptions): async.Operation<types.AttachImageWatermarkOutput>
     attachInternetGateway: function(Client, types.AttachInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.AttachInternetGatewayOutput>
     attachNetworkInterface: function(Client, types.AttachNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.AttachNetworkInterfaceOutput>
     attachVerifiedAccessTrustProvider: function(Client, types.AttachVerifiedAccessTrustProviderInput, ? base_client.InvokeOptions): async.Operation<types.AttachVerifiedAccessTrustProviderOutput>
@@ -474,6 +475,7 @@ local record Client
     describeVpnConnections: function(Client, types.DescribeVpnConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpnConnectionsOutput>
     describeVpnGateways: function(Client, types.DescribeVpnGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpnGatewaysOutput>
     detachClassicLinkVpc: function(Client, types.DetachClassicLinkVpcInput, ? base_client.InvokeOptions): async.Operation<types.DetachClassicLinkVpcOutput>
+    detachImageWatermark: function(Client, types.DetachImageWatermarkInput, ? base_client.InvokeOptions): async.Operation<types.DetachImageWatermarkOutput>
     detachInternetGateway: function(Client, types.DetachInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DetachInternetGatewayOutput>
     detachNetworkInterface: function(Client, types.DetachNetworkInterfaceInput, ? base_client.InvokeOptions): async.Operation<types.DetachNetworkInterfaceOutput>
     detachVerifiedAccessTrustProvider: function(Client, types.DetachVerifiedAccessTrustProviderInput, ? base_client.InvokeOptions): async.Operation<types.DetachVerifiedAccessTrustProviderOutput>
@@ -975,6 +977,10 @@ end
 
 function C:attachClassicLinkVpc(input: types.AttachClassicLinkVpcInput, options?: base_client.InvokeOptions): async.Operation<types.AttachClassicLinkVpcOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachClassicLinkVpc as schema.OperationSchema, input, options) as async.Operation<types.AttachClassicLinkVpcOutput>
+end
+
+function C:attachImageWatermark(input: types.AttachImageWatermarkInput, options?: base_client.InvokeOptions): async.Operation<types.AttachImageWatermarkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachImageWatermark as schema.OperationSchema, input, options) as async.Operation<types.AttachImageWatermarkOutput>
 end
 
 function C:attachInternetGateway(input: types.AttachInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.AttachInternetGatewayOutput>
@@ -2651,6 +2657,10 @@ end
 
 function C:detachClassicLinkVpc(input: types.DetachClassicLinkVpcInput, options?: base_client.InvokeOptions): async.Operation<types.DetachClassicLinkVpcOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachClassicLinkVpc as schema.OperationSchema, input, options) as async.Operation<types.DetachClassicLinkVpcOutput>
+end
+
+function C:detachImageWatermark(input: types.DetachImageWatermarkInput, options?: base_client.InvokeOptions): async.Operation<types.DetachImageWatermarkOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachImageWatermark as schema.OperationSchema, input, options) as async.Operation<types.DetachImageWatermarkOutput>
 end
 
 function C:detachInternetGateway(input: types.DetachInternetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DetachInternetGatewayOutput>

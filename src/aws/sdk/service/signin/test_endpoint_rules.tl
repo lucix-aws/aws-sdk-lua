@@ -8,73 +8,79 @@ local endpoint = require("smithy.endpoint")
 local ruleset = require("aws.sdk.service.signin.endpoint_rules")
 
 describe("endpoint rules", function()
-    it("For custom endpoint with region not set and fips disabled", function()
+    it("Control Plane operation in us-east-1 (aws partition)", function()
         local params = {
-            Endpoint = "https://example.com",
-            UseFIPS = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://example.com", result.url)
-    end)
-
-    it("For custom endpoint with fips enabled", function()
-        local params = {
-            Endpoint = "https://example.com",
-            UseFIPS = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
-    end)
-
-    it("For custom endpoint with fips disabled and dualstack enabled", function()
-        local params = {
-            Endpoint = "https://example.com",
-            UseFIPS = false,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
-    end)
-
-    it("For region us-east-1 with FIPS enabled and DualStack enabled", function()
-        local params = {
+            IsControlPlane = true,
             Region = "us-east-1",
-            UseFIPS = true,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.us-east-1.api.aws", result.url)
-    end)
-
-    it("For region us-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-east-1",
-            UseFIPS = true,
+            UseFIPS = false,
             UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.us-east-1.amazonaws.com", result.url)
+        assert.are.equal("https://signin.us-east-1.api.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingName = "signin",
+            signingRegion = "us-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For region us-east-1 with FIPS disabled and DualStack enabled", function()
+    it("Control Plane operation in cn-north-1 (aws-cn partition)", function()
         local params = {
-            Region = "us-east-1",
+            IsControlPlane = true,
+            Region = "cn-north-1",
             UseFIPS = false,
-            UseDualStack = true,
+            UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin.us-east-1.api.aws", result.url)
+        assert.are.equal("https://signin.cn-north-1.api.amazonwebservices.com.cn", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingName = "signin",
+            signingRegion = "cn-north-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
     end)
 
-    it("For region us-east-1 with FIPS disabled and DualStack disabled", function()
+    it("Data Plane operation in us-east-1", function()
+        local params = {
+            IsControlPlane = false,
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-east-1.signin.aws.amazon.com", result.url)
+    end)
+
+    it("Data Plane operation in us-east-1 (IsControlPlane not set)", function()
         local params = {
             Region = "us-east-1",
             UseFIPS = false,
@@ -85,172 +91,31 @@ describe("endpoint rules", function()
         assert.are.equal("https://us-east-1.signin.aws.amazon.com", result.url)
     end)
 
-    it("For region cn-northwest-1 with FIPS enabled and DualStack enabled", function()
+    it("Data Plane operation in cn-north-1", function()
         local params = {
-            Region = "cn-northwest-1",
-            UseFIPS = true,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
-    end)
-
-    it("For region cn-northwest-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "cn-northwest-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.cn-northwest-1.amazonaws.com.cn", result.url)
-    end)
-
-    it("For region cn-northwest-1 with FIPS disabled and DualStack enabled", function()
-        local params = {
-            Region = "cn-northwest-1",
-            UseFIPS = false,
-            UseDualStack = true,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin.cn-northwest-1.api.amazonwebservices.com.cn", result.url)
-    end)
-
-    it("For region cn-northwest-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "cn-northwest-1",
+            IsControlPlane = false,
+            Region = "cn-north-1",
             UseFIPS = false,
             UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://cn-northwest-1.signin.amazonaws.cn", result.url)
+        assert.are.equal("https://cn-north-1.signin.amazonaws.cn", result.url)
     end)
 
-    it("For region eusc-de-east-1 with FIPS enabled and DualStack disabled", function()
+    it("Data Plane operation in us-gov-west-1", function()
         local params = {
-            Region = "eusc-de-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.eusc-de-east-1.amazonaws.eu", result.url)
-    end)
-
-    it("For region eusc-de-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "eusc-de-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin.eusc-de-east-1.amazonaws.eu", result.url)
-    end)
-
-    it("For region us-iso-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-iso-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.us-iso-east-1.c2s.ic.gov", result.url)
-    end)
-
-    it("For region us-iso-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-iso-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin.us-iso-east-1.c2s.ic.gov", result.url)
-    end)
-
-    it("For region us-isob-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isob-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.us-isob-east-1.sc2s.sgov.gov", result.url)
-    end)
-
-    it("For region us-isob-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isob-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin.us-isob-east-1.sc2s.sgov.gov", result.url)
-    end)
-
-    it("For region eu-isoe-west-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "eu-isoe-west-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.eu-isoe-west-1.cloud.adc-e.uk", result.url)
-    end)
-
-    it("For region eu-isoe-west-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "eu-isoe-west-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin.eu-isoe-west-1.cloud.adc-e.uk", result.url)
-    end)
-
-    it("For region us-isof-south-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isof-south-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.us-isof-south-1.csp.hci.ic.gov", result.url)
-    end)
-
-    it("For region us-isof-south-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isof-south-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin.us-isof-south-1.csp.hci.ic.gov", result.url)
-    end)
-
-    it("For region us-gov-west-1 with FIPS enabled and DualStack enabled", function()
-        local params = {
+            IsControlPlane = false,
             Region = "us-gov-west-1",
-            UseFIPS = true,
-            UseDualStack = true,
+            UseFIPS = false,
+            UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.us-gov-west-1.api.aws", result.url)
+        assert.are.equal("https://us-gov-west-1.signin.amazonaws-us-gov.com", result.url)
     end)
 
-    it("For region us-gov-west-1 with FIPS enabled and DualStack disabled", function()
+    it("FIPS endpoint in us-gov-west-1 (global endpoint)", function()
         local params = {
             Region = "us-gov-west-1",
             UseFIPS = true,
@@ -258,10 +123,54 @@ describe("endpoint rules", function()
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://signin-fips.us-gov-west-1.amazonaws.com", result.url)
+        assert.are.equal("https://signin-fips.amazonaws-us-gov.com", result.url)
     end)
 
-    it("For region us-gov-west-1 with FIPS disabled and DualStack enabled", function()
+    it("FIPS endpoint in us-gov-east-1 (regional endpoint)", function()
+        local params = {
+            Region = "us-gov-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-gov-east-1.signin-fips.amazonaws-us-gov.com", result.url)
+    end)
+
+    it("FIPS endpoint in us-east-1", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://signin-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("DualStack falls through to default SDK endpoint in us-east-1 (aws partition)", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://signin.us-east-1.api.aws", result.url)
+    end)
+
+    it("DualStack falls through to default SDK endpoint in cn-north-1 (aws-cn partition)", function()
+        local params = {
+            Region = "cn-north-1",
+            UseFIPS = false,
+            UseDualStack = true,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://signin.cn-north-1.api.amazonwebservices.com.cn", result.url)
+    end)
+
+    it("DualStack falls through to default SDK endpoint in us-gov-west-1 (aws-us-gov partition)", function()
         local params = {
             Region = "us-gov-west-1",
             UseFIPS = false,
@@ -272,23 +181,38 @@ describe("endpoint rules", function()
         assert.are.equal("https://signin.us-gov-west-1.api.aws", result.url)
     end)
 
-    it("For region us-gov-west-1 with FIPS disabled and DualStack disabled", function()
+    it("Custom SDK endpoint override", function()
         local params = {
-            Region = "us-gov-west-1",
+            Region = "us-east-1",
+            Endpoint = "https://custom.signin.example.com",
             UseFIPS = false,
             UseDualStack = false,
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://us-gov-west-1.signin.amazonaws-us-gov.com", result.url)
+        assert.are.equal("https://custom.signin.example.com", result.url)
     end)
 
-    it("Missing region", function()
-        local params = {}
+    it("ISO partition (us-iso-east-1)", function()
+        local params = {
+            Region = "us-iso-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
         local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: Missing Region", err)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-iso-east-1.signin.c2shome.ic.gov", result.url)
+    end)
+
+    it("ISO-B partition (us-isob-east-1)", function()
+        local params = {
+            Region = "us-isob-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-isob-east-1.signin.sc2shome.sgov.gov", result.url)
     end)
 
 end)

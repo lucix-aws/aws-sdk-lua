@@ -1265,6 +1265,8 @@ M.HostInstanceList = schema.new({ type = "list", list_member = M.HostInstance })
 
 M.ResourceTypeOptionList = schema.new({ type = "list", list_member = M.ResourceTypeOption })
 
+M.ImageWatermarkList = schema.new({ type = "list", list_member = M.ImageWatermark })
+
 M.ImageUsageResourceTypeList = schema.new({ type = "list", list_member = M.ImageUsageResourceType })
 
 M.UserIdList = schema.new({ type = "list", list_member = prelude.String })
@@ -9044,6 +9046,54 @@ M.AttachClassicLinkVpcOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "return" },
                 [traits.EC2_QUERY_NAME] = { name = "Return" },
+            },
+        }),
+    },
+})
+
+M.AttachImageWatermarkInput = schema.new({
+    id = id.from(_N, "AttachImageWatermarkRequest"),
+    type = "structure",
+    members = {
+        ImageId = schema.new({
+            id = id.from(_N, "AttachImageWatermarkInput", "ImageId"),
+            type = "string",
+            name = "ImageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WatermarkName = schema.new({
+            id = id.from(_N, "AttachImageWatermarkInput", "WatermarkName"),
+            type = "string",
+            name = "WatermarkName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "AttachImageWatermarkInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AttachImageWatermarkOutput = schema.new({
+    id = id.from(_N, "AttachImageWatermarkResult"),
+    type = "structure",
+    members = {
+        WatermarkKey = schema.new({
+            id = id.from(_N, "AttachImageWatermarkOutput", "WatermarkKey"),
+            type = "string",
+            name = "WatermarkKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "watermarkKey" },
+                [traits.EC2_QUERY_NAME] = { name = "WatermarkKey" },
             },
         }),
     },
@@ -55363,6 +55413,63 @@ M.DescribeImagesInput = schema.new({
     },
 })
 
+M.ImageWatermark = schema.new({
+    id = id.from(_N, "ImageWatermark"),
+    type = "structure",
+    members = {
+        WatermarkKey = schema.new({
+            id = id.from(_N, "ImageWatermark", "WatermarkKey"),
+            type = "string",
+            name = "WatermarkKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "watermarkKey" },
+                [traits.EC2_QUERY_NAME] = { name = "WatermarkKey" },
+            },
+        }),
+        SourceImageRegion = schema.new({
+            id = id.from(_N, "ImageWatermark", "SourceImageRegion"),
+            type = "string",
+            name = "SourceImageRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "sourceImageRegion" },
+                [traits.EC2_QUERY_NAME] = { name = "SourceImageRegion" },
+            },
+        }),
+        SourceImageId = schema.new({
+            id = id.from(_N, "ImageWatermark", "SourceImageId"),
+            type = "string",
+            name = "SourceImageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "sourceImageId" },
+                [traits.EC2_QUERY_NAME] = { name = "SourceImageId" },
+            },
+        }),
+        SourceImageCreationTime = schema.new({
+            id = id.from(_N, "ImageWatermark", "SourceImageCreationTime"),
+            type = "timestamp",
+            name = "SourceImageCreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "sourceImageCreationTime" },
+                [traits.EC2_QUERY_NAME] = { name = "SourceImageCreationTime" },
+            },
+        }),
+        WatermarkCreationTime = schema.new({
+            id = id.from(_N, "ImageWatermark", "WatermarkCreationTime"),
+            type = "timestamp",
+            name = "WatermarkCreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "watermarkCreationTime" },
+                [traits.EC2_QUERY_NAME] = { name = "WatermarkCreationTime" },
+            },
+        }),
+    },
+})
+
 M.Image = schema.new({
     id = id.from(_N, "Image"),
     type = "structure",
@@ -55618,6 +55725,17 @@ M.Image = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "freeTierEligible" },
                 [traits.EC2_QUERY_NAME] = { name = "FreeTierEligible" },
+            },
+        }),
+        ImageWatermarks = schema.new({
+            id = id.from(_N, "Image", "ImageWatermarks"),
+            type = "list",
+            name = "ImageWatermarks",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ImageWatermark, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "imageWatermarkSet" },
+                [traits.EC2_QUERY_NAME] = { name = "ImageWatermarkSet" },
             },
         }),
         ImageId = schema.new({
@@ -57602,6 +57720,17 @@ M.ImageMetadata = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "isPublic" },
                 [traits.EC2_QUERY_NAME] = { name = "IsPublic" },
+            },
+        }),
+        ImageWatermarks = schema.new({
+            id = id.from(_N, "ImageMetadata", "ImageWatermarks"),
+            type = "list",
+            name = "ImageWatermarks",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ImageWatermark, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "imageWatermarkSet" },
+                [traits.EC2_QUERY_NAME] = { name = "ImageWatermarkSet" },
             },
         }),
     },
@@ -77610,6 +77739,54 @@ M.DetachClassicLinkVpcOutput = schema.new({
     members = {
         Return = schema.new({
             id = id.from(_N, "DetachClassicLinkVpcOutput", "Return"),
+            type = "boolean",
+            name = "Return",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "return" },
+                [traits.EC2_QUERY_NAME] = { name = "Return" },
+            },
+        }),
+    },
+})
+
+M.DetachImageWatermarkInput = schema.new({
+    id = id.from(_N, "DetachImageWatermarkRequest"),
+    type = "structure",
+    members = {
+        ImageId = schema.new({
+            id = id.from(_N, "DetachImageWatermarkInput", "ImageId"),
+            type = "string",
+            name = "ImageId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WatermarkKey = schema.new({
+            id = id.from(_N, "DetachImageWatermarkInput", "WatermarkKey"),
+            type = "string",
+            name = "WatermarkKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DetachImageWatermarkInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DetachImageWatermarkOutput = schema.new({
+    id = id.from(_N, "DetachImageWatermarkResult"),
+    type = "structure",
+    members = {
+        Return = schema.new({
+            id = id.from(_N, "DetachImageWatermarkOutput", "Return"),
             type = "boolean",
             name = "Return",
             target_id = prelude.Boolean.id,
@@ -105943,6 +106120,17 @@ M.AttachClassicLinkVpc = schema.operation({
     },
 })
 
+M.AttachImageWatermark = schema.operation({
+    id = id.from("com.amazonaws.ec2", "AttachImageWatermark"),
+    input = M.AttachImageWatermarkInput,
+    output = M.AttachImageWatermarkOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AttachInternetGateway = schema.operation({
     id = id.from("com.amazonaws.ec2", "AttachInternetGateway"),
     input = M.AttachInternetGatewayInput,
@@ -110545,6 +110733,17 @@ M.DetachClassicLinkVpc = schema.operation({
     id = id.from("com.amazonaws.ec2", "DetachClassicLinkVpc"),
     input = M.DetachClassicLinkVpcInput,
     output = M.DetachClassicLinkVpcOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DetachImageWatermark = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DetachImageWatermark"),
+    input = M.DetachImageWatermarkInput,
+    output = M.DetachImageWatermarkOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
