@@ -10220,6 +10220,12 @@ M.RunListItem = schema.new({
             name = "workflowVersionName",
             target_id = prelude.String.id,
         }),
+        workflowName = schema.new({
+            id = id.from(_N, "RunListItem", "workflowName"),
+            type = "string",
+            name = "workflowName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

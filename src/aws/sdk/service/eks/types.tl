@@ -1134,6 +1134,11 @@ local record M
         clusterLogging: {LogSetup}
     end
 
+    enum SpreadLevel
+        "host"
+        "rack"
+    end
+
     -- The placement configuration for all the control plane instances of your local Amazon EKS
     -- cluster on an Amazon Web Services Outpost. For more information, see Capacity
     -- considerations in the Amazon EKS User Guide.
@@ -1141,6 +1146,16 @@ local record M
         -- The name of the placement group for the Kubernetes control plane instances. This setting
         -- can't be changed after cluster creation.
         groupName: string
+        -- Optional parameter to specify the placement group spread level for control plane instances. If not provided, Amazon EKS will deploy control plane instances without a placement group.
+        spreadLevel: string
+    end
+
+    -- The placement configuration for the etcd instances of your local Amazon EKS
+    -- cluster on an Amazon Web Services Outpost. For more information, see Capacity
+    -- considerations in the Amazon EKS User Guide.
+    record EtcdPlacementRequest
+        -- Optional parameter to specify the placement group spread level for etcd instances. If not provided, Amazon EKS will deploy etcd instances without a placement group.
+        spreadLevel: string
     end
 
     -- The configuration of your local Amazon EKS cluster on an Amazon Web Services Outpost. Before creating a
@@ -1151,17 +1166,18 @@ local record M
         -- The ARN of the Outpost that you want to use for your local Amazon EKS cluster on
         -- Outposts. Only a single Outpost ARN is supported.
         outpostArns: {string}
-        -- The Amazon EC2 instance type that you want to use for your local Amazon EKS cluster on Outposts.
-        -- Choose an instance type based on the number of nodes that your cluster will have. For
-        -- more information, see Capacity
+        -- The Amazon EC2 instance type for the Kubernetes control plane instances of your local Amazon EKS cluster on Amazon Web Services Outposts. This instance type applies to all control plane instances and cannot be changed after cluster creation.
+        -- For more information, see Capacity
         -- considerations in the Amazon EKS User Guide.
-        -- The instance type that you specify is used for all Kubernetes control plane instances. The
-        -- instance type can't be changed after cluster creation. The control plane is not
-        -- automatically scaled by Amazon EKS.
         controlPlaneInstanceType: string
         -- An object representing the placement configuration for all the control plane instances
         -- of your local Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see Capacity considerations in the Amazon EKS User Guide.
         controlPlanePlacement: ControlPlanePlacementRequest
+        -- The Amazon EC2 instance type for etcd instances of your local Amazon EKS cluster on Amazon Web Services Outposts. This instance type applies to all etcd instances and cannot be changed after cluster creation.
+        etcdInstanceType: string
+        -- An object representing the placement configuration for the etcd instances of your local
+        -- Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see Capacity considerations in the Amazon EKS User Guide.
+        etcdPlacement: EtcdPlacementRequest
     end
 
     -- A network CIDR that can contain hybrid nodes.
@@ -1595,6 +1611,16 @@ local record M
     record ControlPlanePlacementResponse
         -- The name of the placement group for the Kubernetes control plane instances.
         groupName: string
+        -- The spread level used with the placement group for control plane instances on your local Amazon EKS cluster on Amazon Web Services Outposts.
+        spreadLevel: string
+    end
+
+    -- The placement configuration for the etcd instances of your local Amazon EKS
+    -- cluster on an Amazon Web Services Outpost. For more information, see Capacity
+    -- considerations in the Amazon EKS User Guide.
+    record EtcdPlacementResponse
+        -- The spread level used with the placement group for etcd instances on your local Amazon EKS cluster on Amazon Web Services Outposts.
+        spreadLevel: string
     end
 
     -- An object representing the configuration of your local Amazon EKS cluster on an Amazon Web Services
@@ -1603,13 +1629,20 @@ local record M
         -- The ARN of the Outpost that you specified for use with your local Amazon EKS cluster on
         -- Outposts.
         outpostArns: {string}
-        -- The Amazon EC2 instance type used for the control plane. The instance type is the same for
+        -- The Amazon EC2 instance type for the Kubernetes control plane instances of your local Amazon EKS cluster on Amazon Web Services Outposts. The instance type is the same for
         -- all control plane instances.
         controlPlaneInstanceType: string
         -- An object representing the placement configuration for all the control plane instances
         -- of your local Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see Capacity
         -- considerations in the Amazon EKS User Guide.
         controlPlanePlacement: ControlPlanePlacementResponse
+        -- The Amazon EC2 instance type for etcd instances of your local Amazon EKS cluster on Amazon Web Services Outposts. The instance type is the same for
+        -- all etcd instances.
+        etcdInstanceType: string
+        -- An object representing the placement configuration for the etcd instances of your local
+        -- Amazon EKS cluster on an Amazon Web Services Outpost. For more information, see Capacity
+        -- considerations in the Amazon EKS User Guide.
+        etcdPlacement: EtcdPlacementResponse
     end
 
     -- The configuration in the cluster for EKS Hybrid Nodes. You can add, change, or remove this

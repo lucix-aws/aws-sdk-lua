@@ -2115,6 +2115,25 @@ M.ControlPlanePlacementRequest = schema.new({
             name = "groupName",
             target_id = prelude.String.id,
         }),
+        spreadLevel = schema.new({
+            id = id.from(_N, "ControlPlanePlacementRequest", "spreadLevel"),
+            type = "string",
+            name = "spreadLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EtcdPlacementRequest = schema.new({
+    id = id.from(_N, "EtcdPlacementRequest"),
+    type = "structure",
+    members = {
+        spreadLevel = schema.new({
+            id = id.from(_N, "EtcdPlacementRequest", "spreadLevel"),
+            type = "string",
+            name = "spreadLevel",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2147,6 +2166,19 @@ M.OutpostConfigRequest = schema.new({
             name = "controlPlanePlacement",
             target_id = id.from(_N, "ControlPlanePlacementRequest"),
             target = M.ControlPlanePlacementRequest,
+        }),
+        etcdInstanceType = schema.new({
+            id = id.from(_N, "OutpostConfigRequest", "etcdInstanceType"),
+            type = "string",
+            name = "etcdInstanceType",
+            target_id = prelude.String.id,
+        }),
+        etcdPlacement = schema.new({
+            id = id.from(_N, "OutpostConfigRequest", "etcdPlacement"),
+            type = "structure",
+            name = "etcdPlacement",
+            target_id = id.from(_N, "EtcdPlacementRequest"),
+            target = M.EtcdPlacementRequest,
         }),
     },
 })
@@ -2625,6 +2657,25 @@ M.ControlPlanePlacementResponse = schema.new({
             name = "groupName",
             target_id = prelude.String.id,
         }),
+        spreadLevel = schema.new({
+            id = id.from(_N, "ControlPlanePlacementResponse", "spreadLevel"),
+            type = "string",
+            name = "spreadLevel",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EtcdPlacementResponse = schema.new({
+    id = id.from(_N, "EtcdPlacementResponse"),
+    type = "structure",
+    members = {
+        spreadLevel = schema.new({
+            id = id.from(_N, "EtcdPlacementResponse", "spreadLevel"),
+            type = "string",
+            name = "spreadLevel",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2657,6 +2708,19 @@ M.OutpostConfigResponse = schema.new({
             name = "controlPlanePlacement",
             target_id = id.from(_N, "ControlPlanePlacementResponse"),
             target = M.ControlPlanePlacementResponse,
+        }),
+        etcdInstanceType = schema.new({
+            id = id.from(_N, "OutpostConfigResponse", "etcdInstanceType"),
+            type = "string",
+            name = "etcdInstanceType",
+            target_id = prelude.String.id,
+        }),
+        etcdPlacement = schema.new({
+            id = id.from(_N, "OutpostConfigResponse", "etcdPlacement"),
+            type = "structure",
+            name = "etcdPlacement",
+            target_id = id.from(_N, "EtcdPlacementResponse"),
+            target = M.EtcdPlacementResponse,
         }),
     },
 })

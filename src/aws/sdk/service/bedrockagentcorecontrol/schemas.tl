@@ -11931,6 +11931,12 @@ M.MetadataSchemaEntry = schema.new({
             name = "type",
             target_id = prelude.String.id,
         }),
+        extractionType = schema.new({
+            id = id.from(_N, "MetadataSchemaEntry", "extractionType"),
+            type = "string",
+            name = "extractionType",
+            target_id = prelude.String.id,
+        }),
         extractionConfig = schema.new({
             id = id.from(_N, "MetadataSchemaEntry", "extractionConfig"),
             type = "union",

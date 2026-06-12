@@ -119,9 +119,9 @@ local record M
         examples: {any}
     end
 
-    -- S3 location of a JSONL file containing dataset examples.
+    -- Amazon S3 location of a JSONL file containing dataset examples.
     record S3Source
-        -- S3 URI of the JSONL file (e.g. s3://my-bucket/path/to/examples.jsonl).
+        -- Amazon S3 URI of the JSONL file (for example, s3://my-bucket/path/to/examples.jsonl).
         s3Uri: string
     end
 
@@ -129,8 +129,7 @@ local record M
     record DataSourceType
         -- Inline examples provided directly in the request body.
         inlineExamples: InlineExamplesSource
-        -- S3 URI pointing to a JSONL file in the customer's bucket.
-        -- The service reads this file using the caller's FAS credentials.
+        -- Amazon S3 URI pointing to a JSONL file in the customer's bucket.
         s3Source: S3Source
     end
 
@@ -139,8 +138,7 @@ local record M
         datasetId: string
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
         clientToken: string
-        -- Source of examples to add. Provide either inline examples or an S3 URI
-        -- pointing to a JSONL file.
+        -- Source of examples to add. Provide either inline examples or an S3 URI pointing to a JSONL file.
         source: DataSourceType
     end
 
@@ -1687,19 +1685,17 @@ local record M
     end
 
     record CreateDatasetInput
-        -- Optional idempotency token.
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
         clientToken: string
-        -- Human-readable name for the dataset. Unique within the account (case-insensitive).
-        -- Immutable after creation.
+        -- Human-readable name for the dataset. Must be unique within the account. Immutable after creation.
         datasetName: string
         -- A description of the dataset.
         description: string
-        -- Source of initial examples. Provide either inline examples or an S3 URI
-        -- pointing to a JSONL file.
+        -- Source of initial examples. Provide either inline examples or an S3 URI pointing to a JSONL file.
         source: DataSourceType
         -- Versioned schema type governing the structure of examples. Immutable after creation.
         schemaType: string
-        -- Optional AWS KMS key ARN for SSE-KMS on service S3 writes.
+        -- Optional KMS key ARN for server-side encryption on service Amazon S3 writes.
         kmsKeyArn: string
         -- A map of tag keys and values to assign to the dataset.
         tags: {string : string}
@@ -1710,8 +1706,7 @@ local record M
         datasetArn: string
         -- The unique identifier of the created dataset.
         datasetId: string
-        -- Always CREATING immediately after this call.
-        -- Poll GetDataset until status == ACTIVE (draftStatus=MODIFIED) or CREATE_FAILED.
+        -- Always CREATING immediately after this call. Poll GetDataset until status transitions to ACTIVE or CREATE_FAILED.
         status: string
         -- The timestamp when the dataset was created.
         createdAt: number
@@ -1729,10 +1724,9 @@ local record M
         datasetArn: string
         -- The unique identifier of the dataset.
         datasetId: string
-        -- Always UPDATING immediately after this call.
-        -- Poll GetDataset until status == ACTIVE (draftStatus=UNMODIFIED) or UPDATE_FAILED.
+        -- Always UPDATING immediately after this call. Poll GetDataset until status transitions to ACTIVE or UPDATE_FAILED.
         status: string
-        -- The version being created.
+        -- The version number being created.
         datasetVersion: string
         -- The timestamp when the version creation was initiated.
         createdAt: number
@@ -1741,8 +1735,7 @@ local record M
     record DeleteDatasetInput
         -- The unique identifier of the dataset to delete.
         datasetId: string
-        -- Optional version to delete. Use "DRAFT" or omit to delete the draft.
-        -- Returns ResourceNotFoundException if the specified version does not exist.
+        -- Optional version to delete. If absent, deletes the entire dataset. If provided, deletes only that specific version.
         datasetVersion: string
     end
 
@@ -1753,7 +1746,7 @@ local record M
         datasetId: string
         -- The current status of the dataset after the delete request.
         status: string
-        -- The version deleted.
+        -- The version that was deleted.
         datasetVersion: string
         -- The timestamp when the delete was initiated.
         updatedAt: number
@@ -1806,23 +1799,19 @@ local record M
         description: string
         -- The current status of the dataset.
         status: string
-        -- Publish synchronization state. Only authoritative when status == ACTIVE.
-        -- MODIFIED — DRAFT has unpublished changes (or no published versions yet).
-        -- UNMODIFIED — DRAFT matches the latest published version exactly.
+        -- Publish synchronization state. Only authoritative when status is ACTIVE. MODIFIED indicates DRAFT has unpublished changes. UNMODIFIED indicates DRAFT matches the latest published version.
         draftStatus: string
-        -- Populated when status is CREATE_FAILED, UPDATE_FAILED, or DELETE_FAILED.
+        -- Populated when status is CREATE_FAILED, UPDATE_FAILED, or DELETE_FAILED. Describes the reason for the failure.
         failureReason: string
         -- The schema type declared at create time. Immutable after creation.
         schemaType: string
-        -- AWS KMS key ARN used for SSE-KMS on service S3 writes, if configured.
+        -- KMS key ARN used for server-side encryption on service Amazon S3 writes, if configured.
         kmsKeyArn: string
-        -- Example count for DRAFT.
+        -- The number of examples in the DRAFT.
         exampleCount: number
-        -- Presigned S3 URL to download the consolidated dataset.jsonl file for the resolved
-        -- version (DRAFT or published). TTL: 5 minutes. Omitted if the file does not yet exist
-        -- (e.g. during CREATING) or on presign failure.
+        -- Presigned Amazon S3 URL to download the consolidated dataset file for the resolved version. Expires after 5 minutes. Omitted if the file does not yet exist.
         downloadUrl: string
-        -- Expiry timestamp for downloadUrl.
+        -- Expiry timestamp for the download URL.
         downloadUrlExpiresAt: number
         -- The timestamp when the dataset was created.
         createdAt: number
@@ -1835,13 +1824,9 @@ local record M
     record ListDatasetExamplesInput
         -- The unique identifier of the dataset.
         datasetId: string
-        -- Version to paginate: "DRAFT" or a version number. Defaults to DRAFT if absent.
-        -- Only used on the first request (when nextToken is absent). For subsequent pages,
-        -- the version is extracted from the nextToken and this parameter is ignored.
+        -- Version to paginate: "DRAFT" or a version number. Defaults to DRAFT if absent. Only used on the first request; for subsequent pages, the version is extracted from the pagination token.
         datasetVersion: string
-        -- Maximum number of examples to return per page. Default: 1000. Min: 1, max: 1000.
-        -- Response size is validated against 5 MB limit after reading.
-        -- For bulk access to all examples, use the `downloadUrl` field from GetDataset.
+        -- Maximum number of examples to return per page.
         maxResults: number
         -- The token for the next page of results.
         nextToken: string
@@ -1854,8 +1839,7 @@ local record M
         datasetId: string
         -- The version returned.
         datasetVersion: string
-        -- Paginated example content. Each element is a JSON object containing at least
-        -- an `exampleId` field plus the schema-specific content fields.
+        -- Paginated example content. Each element is a JSON object containing at least an exampleId field plus the schema-specific content fields.
         examples: {any}
         -- The token for the next page of results, or null if there are no more results.
         nextToken: string
@@ -1880,7 +1864,7 @@ local record M
         description: string
         -- The current status of the dataset.
         status: string
-        -- Publish synchronization state. Only authoritative when status == ACTIVE.
+        -- Publish synchronization state. Only authoritative when status is ACTIVE.
         draftStatus: string
         -- The schema type of the dataset.
         schemaType: string
@@ -1910,6 +1894,7 @@ local record M
 
     -- Summary information about a published dataset version.
     record DatasetVersionSummary
+        -- The version number of this published snapshot.
         datasetVersion: string
         -- The number of examples in this version.
         exampleCount: number
@@ -1947,11 +1932,7 @@ local record M
         datasetId: string
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
         clientToken: string
-        -- Examples to update. Each element is a JSON object containing a required `exampleId`
-        -- string field identifying the existing example, plus the replacement fields. The
-        -- `exampleId` is extracted and removed before persistence; the remaining document is
-        -- validated against the dataset's schemaType.
-        -- Max 1000 examples per call. Total request body must not exceed 5 MB.
+        -- Examples to update. Each element is a JSON object containing a required exampleId field identifying the existing example, plus the replacement fields. Maximum 1000 examples per call.
         examples: {any}
     end
 
@@ -3724,11 +3705,18 @@ local record M
         llmExtractionConfig: LlmExtractionConfig
     end
 
+    enum ExtractionType
+        "LLM_INFERRED"
+        "STRICTLY_CONSISTENT"
+    end
+
     -- A metadata field definition within a strategy's schema.
     record MetadataSchemaEntry
         -- The metadata field name. Must match an indexed key to be queryable via metadata filters.
         key: string
-        -- Configuration for extracting this metadata value from conversational content.
+        -- Specifies whether the metadata value is extracted by the LLM or passed through deterministically from the event.
+        extractionType: string
+        -- Configuration for extracting this metadata value from conversational content. Applicable only if extractionType is LLM inferred.
         extractionConfig: ExtractionConfig
     end
 
@@ -4044,6 +4032,7 @@ local record M
         "ACTIVE"
         "FAILED"
         "DELETING"
+        "UPDATING"
     end
 
     -- Contains configurations to override the default consolidation step for the episodic memory strategy.

@@ -31,6 +31,7 @@ local record Client
     startFHIRImportJob: function(Client, types.StartFHIRImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFHIRImportJobOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateFHIRDatastore: function(Client, types.UpdateFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFHIRDatastoreOutput>
 end
 
 local record M
@@ -125,6 +126,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateFHIRDatastore(input: types.UpdateFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFHIRDatastoreOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.UpdateFHIRDatastoreOutput>
 end
 
 return M

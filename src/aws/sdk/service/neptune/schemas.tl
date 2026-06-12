@@ -1256,6 +1256,12 @@ M.CreateDBClusterInput = schema.new({
             name = "StorageType",
             target_id = prelude.String.id,
         }),
+        NetworkType = schema.new({
+            id = id.from(_N, "CreateDBClusterInput", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1407,6 +1413,12 @@ M.ClusterPendingModifiedValues = schema.new({
             type = "integer",
             name = "Iops",
             target_id = prelude.Integer.id,
+        }),
+        NetworkType = schema.new({
+            id = id.from(_N, "ClusterPendingModifiedValues", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1732,6 +1744,12 @@ M.DBCluster = schema.new({
             name = "StorageType",
             target_id = prelude.String.id,
         }),
+        NetworkType = schema.new({
+            id = id.from(_N, "DBCluster", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1934,6 +1952,22 @@ M.InvalidVPCNetworkStateFault = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "InvalidVPCNetworkStateFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NetworkTypeNotSupportedFault = schema.new({
+    id = id.from(_N, "NetworkTypeNotSupportedFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "NetworkTypeNotSupportedFault", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -2629,6 +2663,13 @@ M.DBSubnetGroup = schema.new({
             name = "DBSubnetGroupArn",
             target_id = prelude.String.id,
         }),
+        SupportedNetworkTypes = schema.new({
+            id = id.from(_N, "DBSubnetGroup", "SupportedNetworkTypes"),
+            type = "list",
+            name = "SupportedNetworkTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -3163,6 +3204,12 @@ M.DBInstance = schema.new({
             type = "boolean",
             name = "DeletionProtection",
             target_id = prelude.Boolean.id,
+        }),
+        NetworkType = schema.new({
+            id = id.from(_N, "DBInstance", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5876,6 +5923,13 @@ M.OrderableDBInstanceOption = schema.new({
             name = "SupportsGlobalDatabases",
             target_id = prelude.Boolean.id,
         }),
+        SupportedNetworkTypes = schema.new({
+            id = id.from(_N, "OrderableDBInstanceOption", "SupportedNetworkTypes"),
+            type = "list",
+            name = "SupportedNetworkTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -6359,6 +6413,12 @@ M.ModifyDBClusterInput = schema.new({
             id = id.from(_N, "ModifyDBClusterInput", "StorageType"),
             type = "string",
             name = "StorageType",
+            target_id = prelude.String.id,
+        }),
+        NetworkType = schema.new({
+            id = id.from(_N, "ModifyDBClusterInput", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
             target_id = prelude.String.id,
         }),
     },
@@ -7567,6 +7627,12 @@ M.RestoreDBClusterFromSnapshotInput = schema.new({
             name = "StorageType",
             target_id = prelude.String.id,
         }),
+        NetworkType = schema.new({
+            id = id.from(_N, "RestoreDBClusterFromSnapshotInput", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7698,6 +7764,12 @@ M.RestoreDBClusterToPointInTimeInput = schema.new({
             id = id.from(_N, "RestoreDBClusterToPointInTimeInput", "StorageType"),
             type = "string",
             name = "StorageType",
+            target_id = prelude.String.id,
+        }),
+        NetworkType = schema.new({
+            id = id.from(_N, "RestoreDBClusterToPointInTimeInput", "NetworkType"),
+            type = "string",
+            name = "NetworkType",
             target_id = prelude.String.id,
         }),
     },

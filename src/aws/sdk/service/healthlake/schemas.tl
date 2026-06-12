@@ -19,6 +19,8 @@ M.ImportJobPropertiesList = schema.new({ type = "list", list_member = M.ImportJo
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.DefaultProfiles = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -30,6 +32,19 @@ M.AccessDeniedException = schema.new({
             id = id.from(_N, "AccessDeniedException", "Message"),
             type = "string",
             name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AnalyticsConfiguration = schema.new({
+    id = id.from(_N, "AnalyticsConfiguration"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "AnalyticsConfiguration", "Status"),
+            type = "string",
+            name = "Status",
             target_id = prelude.String.id,
         }),
     },
@@ -368,6 +383,33 @@ M.ErrorCause = schema.new({
     },
 })
 
+M.NlpConfiguration = schema.new({
+    id = id.from(_N, "NlpConfiguration"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "NlpConfiguration", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ProfileConfiguration = schema.new({
+    id = id.from(_N, "ProfileConfiguration"),
+    type = "structure",
+    members = {
+        DefaultProfiles = schema.new({
+            id = id.from(_N, "ProfileConfiguration", "DefaultProfiles"),
+            type = "list",
+            name = "DefaultProfiles",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.DatastoreProperties = schema.new({
     id = id.from(_N, "DatastoreProperties"),
     type = "structure",
@@ -456,6 +498,27 @@ M.DatastoreProperties = schema.new({
             name = "ErrorCause",
             target_id = id.from(_N, "ErrorCause"),
             target = M.ErrorCause,
+        }),
+        NlpConfiguration = schema.new({
+            id = id.from(_N, "DatastoreProperties", "NlpConfiguration"),
+            type = "structure",
+            name = "NlpConfiguration",
+            target_id = id.from(_N, "NlpConfiguration"),
+            target = M.NlpConfiguration,
+        }),
+        AnalyticsConfiguration = schema.new({
+            id = id.from(_N, "DatastoreProperties", "AnalyticsConfiguration"),
+            type = "structure",
+            name = "AnalyticsConfiguration",
+            target_id = id.from(_N, "AnalyticsConfiguration"),
+            target = M.AnalyticsConfiguration,
+        }),
+        ProfileConfiguration = schema.new({
+            id = id.from(_N, "DatastoreProperties", "ProfileConfiguration"),
+            type = "structure",
+            name = "ProfileConfiguration",
+            target_id = id.from(_N, "ProfileConfiguration"),
+            target = M.ProfileConfiguration,
         }),
     },
 })
@@ -1402,6 +1465,73 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateFHIRDatastoreInput = schema.new({
+    id = id.from(_N, "UpdateFHIRDatastoreRequest"),
+    type = "structure",
+    members = {
+        DatastoreId = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "DatastoreId"),
+            type = "string",
+            name = "DatastoreId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DatastoreName = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "DatastoreName"),
+            type = "string",
+            name = "DatastoreName",
+            target_id = prelude.String.id,
+        }),
+        AnalyticsConfiguration = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "AnalyticsConfiguration"),
+            type = "structure",
+            name = "AnalyticsConfiguration",
+            target_id = id.from(_N, "AnalyticsConfiguration"),
+            target = M.AnalyticsConfiguration,
+        }),
+        NlpConfiguration = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "NlpConfiguration"),
+            type = "structure",
+            name = "NlpConfiguration",
+            target_id = id.from(_N, "NlpConfiguration"),
+            target = M.NlpConfiguration,
+        }),
+        ProfileConfiguration = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "ProfileConfiguration"),
+            type = "structure",
+            name = "ProfileConfiguration",
+            target_id = id.from(_N, "ProfileConfiguration"),
+            target = M.ProfileConfiguration,
+        }),
+        IdentityProviderConfiguration = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "IdentityProviderConfiguration"),
+            type = "structure",
+            name = "IdentityProviderConfiguration",
+            target_id = id.from(_N, "IdentityProviderConfiguration"),
+            target = M.IdentityProviderConfiguration,
+        }),
+    },
+})
+
+M.UpdateFHIRDatastoreOutput = schema.new({
+    id = id.from(_N, "UpdateFHIRDatastoreResponse"),
+    type = "structure",
+    members = {
+        DatastoreProperties = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreOutput", "DatastoreProperties"),
+            type = "structure",
+            name = "DatastoreProperties",
+            target_id = id.from(_N, "DatastoreProperties"),
+            target = M.DatastoreProperties,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -1563,6 +1693,17 @@ M.UntagResource = schema.operation({
     id = id.from("com.amazonaws.healthlake", "UntagResource"),
     input = M.UntagResourceInput,
     output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateFHIRDatastore = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "UpdateFHIRDatastore"),
+    input = M.UpdateFHIRDatastoreInput,
+    output = M.UpdateFHIRDatastoreOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

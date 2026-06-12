@@ -7,6 +7,21 @@ local record M
         Message: string
     end
 
+    enum AnalyticsStatus
+        "ENABLED"
+        "ENABLING"
+        "DISABLED"
+        "DISABLING"
+        "PAUSING"
+        "PAUSED"
+    end
+
+    -- The analytics configuration for a data store.
+    record AnalyticsConfiguration
+        -- The status of the analytics configuration.
+        Status: string
+    end
+
     enum AuthorizationStrategy
         "SMART_ON_FHIR_V1"
         "SMART_ON_FHIR"
@@ -127,6 +142,8 @@ local record M
         "DELETING"
         "DELETED"
         "CREATE_FAILED"
+        "UPDATING"
+        "UPDATE_FAILED"
     end
 
     record CreateFHIRDatastoreOutput
@@ -183,6 +200,25 @@ local record M
         ErrorCategory: string
     end
 
+    enum NlpStatus
+        "ENABLED"
+        "DISABLED"
+        "ENABLING"
+        "DISABLING"
+    end
+
+    -- The natural language processing (NLP) configuration for a data store.
+    record NlpConfiguration
+        -- The status of the NLP configuration.
+        Status: string
+    end
+
+    -- The profile configuration for a data store.
+    record ProfileConfiguration
+        -- The list of default profiles for the data store.
+        DefaultProfiles: {string}
+    end
+
     -- The data store properties.
     record DatastoreProperties
         -- The data store identifier.
@@ -209,6 +245,12 @@ local record M
         IdentityProviderConfiguration: IdentityProviderConfiguration
         -- The error cause for the current data store operation.
         ErrorCause: ErrorCause
+        -- The natural language processing (NLP) configuration for the data store.
+        NlpConfiguration: NlpConfiguration
+        -- The analytics configuration for the data store.
+        AnalyticsConfiguration: AnalyticsConfiguration
+        -- The profile configuration for the data store.
+        ProfileConfiguration: ProfileConfiguration
     end
 
     record DeleteFHIRDatastoreInput
@@ -521,6 +563,26 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    record UpdateFHIRDatastoreInput
+        -- The data store identifier.
+        DatastoreId: string
+        -- The data store name.
+        DatastoreName: string
+        -- The analytics configuration for the data store.
+        AnalyticsConfiguration: AnalyticsConfiguration
+        -- The NLP configuration for the data store.
+        NlpConfiguration: NlpConfiguration
+        -- The profile configuration for the data store.
+        ProfileConfiguration: ProfileConfiguration
+        -- The identity provider configuration for the data store.
+        IdentityProviderConfiguration: IdentityProviderConfiguration
+    end
+
+    record UpdateFHIRDatastoreOutput
+        -- The data store properties.
+        DatastoreProperties: DatastoreProperties
     end
 
 end

@@ -210,12 +210,11 @@ local record M
         -- Amazon Resource Name (ARN).
         -- Constraints:
         -- Must specify a valid DB cluster parameter group.
-        -- If the source DB cluster parameter group is in the same Amazon Region as the copy,
-        -- specify a valid DB parameter group identifier, for example
+        -- Must specify a valid DB cluster parameter group identifier, for example
         -- my-db-cluster-param-group, or a valid ARN.
-        -- If the source DB parameter group is in a different Amazon Region than the copy, specify a
-        -- valid DB cluster parameter group ARN, for example
-        -- arn:aws:rds:us-east-1:123456789012:cluster-pg:custom-cluster-group1.
+        -- The source DB cluster parameter group must be in the same Amazon Region as the
+        -- copy. Neptune does not support cross-Region copying of parameter
+        -- groups.
         SourceDBClusterParameterGroupIdentifier: string
         -- The identifier for the copied DB cluster parameter group.
         -- Constraints:
@@ -416,6 +415,9 @@ local record M
         -- Must specify a valid DB parameter group.
         -- Must specify a valid DB parameter group identifier, for example
         -- my-db-param-group, or a valid ARN.
+        -- The source DB parameter group must be in the same Amazon Region as the
+        -- copy. Neptune does not support cross-Region copying of parameter
+        -- groups.
         SourceDBParameterGroupIdentifier: string
         -- The identifier for the copied DB parameter group.
         -- Constraints:
@@ -476,8 +478,7 @@ local record M
         -- If set to true, tags are copied to any snapshot of
         -- the DB cluster that is created.
         CopyTagsToSnapshot: boolean
-        -- The name for your database of up to 64 alpha-numeric characters. If you do not provide a
-        -- name, Amazon Neptune will not create a database in the DB cluster you are creating.
+        -- Not supported by Neptune.
         DatabaseName: string
         -- The DB cluster identifier. This parameter is stored as a lowercase string.
         -- Constraints:
@@ -594,6 +595,16 @@ local record M
         -- require predictable pricing with low I/O latency and consistent I/O throughput.
         -- Neptune I/O-Optimized storage is only available starting with engine release 1.3.0.0.
         StorageType: string
+        -- The network type of the DB cluster.
+        -- Valid Values:
+        -- IPV4
+        --   –  
+        -- ( the default ) The DB cluster uses only IPv4 addresses for communication.
+        -- DUAL
+        --   –  
+        -- The DB cluster uses both IPv4 and IPv6 addresses for communication. The DB subnet group
+        -- associated with the cluster must support IPv6.
+        NetworkType: string
     end
 
     -- Describes an Amazon Identity and Access Management (IAM) role that is associated with a DB
@@ -686,6 +697,9 @@ local record M
         AllocatedStorage: number
         -- The Provisioned IOPS (I/O operations per second) value. This setting is only for Multi-AZ DB clusters.
         Iops: number
+        -- The pending change in network type for the DB cluster.
+        -- Valid Values: IPV4, DUAL
+        NetworkType: string
     end
 
     -- Shows the scaling configuration for a Neptune Serverless DB cluster.
@@ -846,6 +860,15 @@ local record M
         -- require predictable pricing with low I/O latency and consistent I/O throughput.
         -- Neptune I/O-Optimized storage is only available starting with engine release 1.3.0.0.
         StorageType: string
+        -- The network type of the DB cluster.
+        -- Valid Values:
+        -- IPV4
+        --   –  
+        -- The DB cluster uses only IPv4 addresses for communication.
+        -- DUAL
+        --   –  
+        -- The DB cluster uses both IPv4 and IPv6 addresses for communication.
+        NetworkType: string
     end
 
     record CreateDBClusterOutput
@@ -927,6 +950,12 @@ local record M
     -- DB subnet group does not cover all Availability Zones after it is created
     -- because users' change.
     record InvalidVPCNetworkStateFault
+        -- A message describing the details of the problem.
+        message: string
+    end
+
+    -- The specified NetworkType is not supported for the DB cluster, DB subnet group, or orderable DB instance option.
+    record NetworkTypeNotSupportedFault
         -- A message describing the details of the problem.
         message: string
     end
@@ -1284,6 +1313,10 @@ local record M
         Subnets: {Subnet}
         -- The Amazon Resource Name (ARN) for the DB subnet group.
         DBSubnetGroupArn: string
+        -- The network types supported by the DB subnet group.
+        -- Valid network types include IPV4 and DUAL. A DB subnet group
+        -- supports DUAL if all subnets in the group have both IPv4 and IPv6 CIDRs.
+        SupportedNetworkTypes: {string}
     end
 
     -- An Active Directory Domain membership record associated with a DB instance.
@@ -1512,6 +1545,9 @@ local record M
         -- The instance can't be deleted when deletion protection is enabled. See Deleting
         -- a DB Instance.
         DeletionProtection: boolean
+        -- The network type of the DB instance. Inherited from the DB cluster.
+        -- Valid Values: IPV4, DUAL
+        NetworkType: string
     end
 
     record CreateDBInstanceOutput
@@ -2878,6 +2914,8 @@ local record M
         MaxIopsPerGib: number
         -- A value that indicates whether you can use Neptune global databases with a specific combination of other DB engine attributes.
         SupportsGlobalDatabases: boolean
+        -- The network types supported by the orderable DB instance option.
+        SupportedNetworkTypes: {string}
     end
 
     record DescribeOrderableDBInstanceOptionsOutput
@@ -3169,6 +3207,16 @@ local record M
         -- require predictable pricing with low I/O latency and consistent I/O throughput.
         -- Neptune I/O-Optimized storage is only available starting with engine release 1.3.0.0.
         StorageType: string
+        -- The network type of the DB cluster.
+        -- Valid Values:
+        -- IPV4
+        --   –  
+        -- The DB cluster uses only IPv4 addresses for communication.
+        -- DUAL
+        --   –  
+        -- The DB cluster uses both IPv4 and IPv6 addresses for communication. The DB subnet group
+        -- associated with the cluster must support IPv6.
+        NetworkType: string
     end
 
     record ModifyDBClusterOutput
@@ -3808,6 +3856,16 @@ local record M
         -- Valid values: standard, iopt1
         -- Default: standard
         StorageType: string
+        -- The network type of the DB cluster.
+        -- Valid Values:
+        -- IPV4
+        --   –  
+        -- ( the default ) The DB cluster uses only IPv4 addresses for communication.
+        -- DUAL
+        --   –  
+        -- The DB cluster uses both IPv4 and IPv6 addresses for communication. The DB subnet group
+        -- associated with the cluster must support IPv6.
+        NetworkType: string
     end
 
     record RestoreDBClusterFromSnapshotOutput
@@ -3904,6 +3962,16 @@ local record M
         -- Valid values: standard, iopt1
         -- Default: standard
         StorageType: string
+        -- The network type of the DB cluster.
+        -- Valid Values:
+        -- IPV4
+        --   –  
+        -- ( the default ) The DB cluster uses only IPv4 addresses for communication.
+        -- DUAL
+        --   –  
+        -- The DB cluster uses both IPv4 and IPv6 addresses for communication. The DB subnet group
+        -- associated with the cluster must support IPv6.
+        NetworkType: string
     end
 
     record RestoreDBClusterToPointInTimeOutput

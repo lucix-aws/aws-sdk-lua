@@ -3293,6 +3293,8 @@ local record M
         storageType: string
         -- The name of the workflow version.
         workflowVersionName: string
+        -- The name of the workflow.
+        workflowName: string
     end
 
     record ListRunsOutput
