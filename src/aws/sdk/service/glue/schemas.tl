@@ -407,6 +407,14 @@ M.BackfillErrors = schema.new({ type = "list", list_member = M.BackfillError })
 
 M.ViewRepresentationList = schema.new({ type = "list", list_member = M.ViewRepresentation })
 
+M.StringToStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.IcebergSchemaList = schema.new({ type = "list", list_member = M.IcebergSchema })
+
+M.IcebergPartitionSpecList = schema.new({ type = "list", list_member = M.IcebergPartitionSpec })
+
+M.IcebergSortOrderList = schema.new({ type = "list", list_member = M.IcebergSortOrder })
+
 M.NodeList = schema.new({ type = "list", list_member = M.Node })
 
 M.EdgeList = schema.new({ type = "list", list_member = M.Edge })
@@ -472,8 +480,6 @@ M.ConnectorOptions = schema.new({ type = "map", map_key = prelude.String, map_va
 M.ColumnValueStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LocationMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
-
-M.StringToStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AllowedValuesStringList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -24642,6 +24648,13 @@ M.GetTableInput = schema.new({
             name = "IncludeStatusDetails",
             target_id = prelude.Boolean.id,
         }),
+        AttributesToGet = schema.new({
+            id = id.from(_N, "GetTableInput", "AttributesToGet"),
+            type = "list",
+            name = "AttributesToGet",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -24672,6 +24685,105 @@ M.FederatedTable = schema.new({
             type = "string",
             name = "ConnectionType",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IcebergTableMetadata = schema.new({
+    id = id.from(_N, "IcebergTableMetadata"),
+    type = "structure",
+    members = {
+        FormatVersion = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "FormatVersion"),
+            type = "string",
+            name = "FormatVersion",
+            target_id = prelude.String.id,
+        }),
+        TableUuid = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "TableUuid"),
+            type = "string",
+            name = "TableUuid",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        Properties = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "Properties"),
+            type = "map",
+            name = "Properties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        Schemas = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "Schemas"),
+            type = "list",
+            name = "Schemas",
+            target_id = prelude.Document.id,
+            list_member = M.IcebergSchema,
+        }),
+        CurrentSchemaId = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "CurrentSchemaId"),
+            type = "integer",
+            name = "CurrentSchemaId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        LastColumnId = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "LastColumnId"),
+            type = "integer",
+            name = "LastColumnId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        PartitionSpecs = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "PartitionSpecs"),
+            type = "list",
+            name = "PartitionSpecs",
+            target_id = prelude.Document.id,
+            list_member = M.IcebergPartitionSpec,
+        }),
+        DefaultSpecId = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "DefaultSpecId"),
+            type = "integer",
+            name = "DefaultSpecId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        LastPartitionId = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "LastPartitionId"),
+            type = "integer",
+            name = "LastPartitionId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SortOrders = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "SortOrders"),
+            type = "list",
+            name = "SortOrders",
+            target_id = prelude.Document.id,
+            list_member = M.IcebergSortOrder,
+        }),
+        DefaultSortOrderId = schema.new({
+            id = id.from(_N, "IcebergTableMetadata", "DefaultSortOrderId"),
+            type = "integer",
+            name = "DefaultSortOrderId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
         }),
     },
 })
@@ -33037,6 +33149,13 @@ M.Table = schema.new({
             type = "boolean",
             name = "IsMaterializedView",
             target_id = prelude.Boolean.id,
+        }),
+        IcebergTableMetadata = schema.new({
+            id = id.from(_N, "Table", "IcebergTableMetadata"),
+            type = "structure",
+            name = "IcebergTableMetadata",
+            target_id = id.from(_N, "IcebergTableMetadata"),
+            target = M.IcebergTableMetadata,
         }),
         Status = schema.new({
             id = id.from(_N, "Table", "Status"),

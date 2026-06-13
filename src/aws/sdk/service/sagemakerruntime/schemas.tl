@@ -358,7 +358,6 @@ M.InvokeEndpointAsyncInput = schema.new({
             name = "InputLocation",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
                 [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-InputLocation" },
             },
         }),
@@ -396,6 +395,15 @@ M.InvokeEndpointAsyncInput = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-InvocationTimeoutSeconds" },
+            },
+        }),
+        Body = schema.new({
+            id = id.from(_N, "InvokeEndpointAsyncInput", "Body"),
+            type = "blob",
+            name = "Body",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
             },
         }),
     },

@@ -598,6 +598,10 @@ local record M
         "RemoteNetworkConfig"
         "DeletionProtection"
         "NodeRepairConfig"
+        "RoleArn"
+        "RoleMappingsToAddOrUpdate"
+        "RoleMappingsToRemove"
+        "NetworkAccess"
         "VendedLogs"
         "UpdatedTier"
         "PreviousTier"
@@ -637,6 +641,7 @@ local record M
         "AutoModeUpdate"
         "RemoteNetworkConfigUpdate"
         "DeletionProtectionUpdate"
+        "CapabilityUpdate"
         "ControlPlaneScalingConfigUpdate"
         "VendedLogsUpdate"
     end

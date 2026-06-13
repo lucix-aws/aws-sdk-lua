@@ -139,6 +139,75 @@ local record M
         actorId: string
     end
 
+    enum InsightsFailureCategory
+        "execution-error-category-authentication"
+        "execution-error-category-resource-not-found"
+        "execution-error-category-service-errors"
+        "execution-error-category-rate-limiting"
+        "execution-error-category-formatting"
+        "execution-error-category-timeout"
+        "execution-error-category-resource-exhaustion"
+        "execution-error-category-environment"
+        "execution-error-category-tool-schema"
+        "task-instruction-category-non-compliance"
+        "task-instruction-category-problem-id"
+        "incorrect-actions-category-tool-selection"
+        "incorrect-actions-category-poor-information-retrieval"
+        "incorrect-actions-category-clarification"
+        "incorrect-actions-category-inappropriate-info-request"
+        "context-handling-error-category-context-handling-failures"
+        "hallucination-category-hall-capabilities"
+        "hallucination-category-hall-misunderstand"
+        "hallucination-category-hall-usage"
+        "hallucination-category-hall-history"
+        "hallucination-category-hall-params"
+        "hallucination-category-fabricate-tool-outputs"
+        "repetitive-behavior-category-repetition-tool"
+        "repetitive-behavior-category-repetition-info"
+        "repetitive-behavior-category-step-repetition"
+        "orchestration-related-errors-category-reasoning-mismatch"
+        "orchestration-related-errors-category-goal-deviation"
+        "orchestration-related-errors-category-premature-termination"
+        "orchestration-related-errors-category-unaware-termination"
+        "llm-output-category-nonsensical"
+        "configuration-mismatch-category-tool-definition"
+        "coding-use-case-specific-failure-types-category-edge-case-oversights"
+        "coding-use-case-specific-failure-types-category-dependency-issues"
+    end
+
+    -- A signal indicating a detected failure within a span.
+    record InsightsFailureSignal
+        category: string
+        -- The evidence supporting the failure detection.
+        evidence: string
+        -- The confidence score of the failure detection.
+        confidence: number
+    end
+
+    -- Details about a specific span where a failure was detected.
+    record FailureSpanDetail
+        -- The unique identifier of the span where the failure occurred.
+        spanId: string
+        -- The trace identifier associated with the failure span.
+        traceId: string
+        -- The failure signals detected in this span.
+        signals: {InsightsFailureSignal}
+    end
+
+    -- A session affected by a detected failure pattern, including root cause details.
+    record AffectedSession
+        -- The unique identifier of the affected session.
+        sessionId: string
+        -- An explanation of how the failure manifested in this session.
+        explanation: string
+        -- The type of fix recommended for this failure.
+        fixType: string
+        -- The specific fix recommendation for this session.
+        recommendation: string
+        -- The list of spans where failures were detected in this session.
+        failureSpans: {FailureSpanDetail}
+    end
+
     record GetAgentCardInput
         -- The session ID that the AgentCore Runtime agent is using.
         runtimeSessionId: string
@@ -417,6 +486,12 @@ local record M
         skillDefinition: SkillDefinition
     end
 
+    -- Configuration for using a batch evaluation as the source of agent traces for recommendations.
+    record BatchEvaluationTraceConfig
+        -- The ARN of the completed batch evaluation to use as the trace source.
+        batchEvaluationArn: string
+    end
+
     enum CloudWatchLogsFilterOperator
         "Equals"
         "NotEquals"
@@ -474,6 +549,8 @@ local record M
         sessionSpans: {any}
         -- Agent traces read from CloudWatch Logs.
         cloudwatchLogs: CloudWatchLogsTraceConfig
+        -- Use a completed batch evaluation as the source of agent traces.
+        batchEvaluation: BatchEvaluationTraceConfig
     end
 
     record SaveBrowserSessionProfileInput
@@ -1206,6 +1283,8 @@ local record M
         enableOnCreate: boolean
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
         clientToken: string
+        -- A map of tag keys and values to associate with the A/B test.
+        tags: {string : string}
     end
 
     record CreateABTestOutput
@@ -1470,10 +1549,20 @@ local record M
         filterConfig: CloudWatchFilterConfig
     end
 
+    -- A reference to an existing online evaluation configuration to use as the data source for batch evaluation.
+    record OnlineEvaluationConfigSource
+        -- The Amazon Resource Name (ARN) of the online evaluation configuration to use as the session source.
+        onlineEvaluationConfigArn: string
+        -- Optional session filter configuration to narrow down which sessions from the online evaluation configuration to include.
+        sessionFilterConfig: SessionFilterConfig
+    end
+
     -- Configuration for the data source used in evaluation.
     record DataSourceConfig
         -- Configuration for pulling agent session traces from CloudWatch Logs.
         cloudWatchLogs: CloudWatchLogsSource
+        -- Reference an existing OnlineEvaluationConfig as session source
+        onlineEvaluationConfigSource: OnlineEvaluationConfigSource
     end
 
     -- Aggregated statistics for an evaluator.
@@ -1510,10 +1599,95 @@ local record M
         evaluatorSummaries: {EvaluatorSummary}
     end
 
-    -- An evaluator to run against sessions.
+    -- An evaluator to run against sessions
     record Evaluator
         -- The unique identifier of the evaluator. Can reference built-in evaluators (e.g., Builtin.Helpfulness) or custom evaluators.
         evaluatorId: string
+    end
+
+    -- A session associated with an execution summary cluster.
+    record ExecutionSummaryAffectedSession
+        -- The unique identifier of the session.
+        sessionId: string
+        -- The approach taken by the agent during this session.
+        approachTaken: string
+        -- The final outcome of the session.
+        finalOutcome: string
+    end
+
+    -- A cluster of similar execution patterns identified across sessions.
+    record ExecutionSummaryCluster
+        -- The unique identifier of the execution summary cluster.
+        clusterId: number
+        -- The name of the execution pattern cluster.
+        name: string
+        -- A description of the execution pattern.
+        description: string
+        -- The number of sessions with this execution pattern.
+        affectedSessionCount: number
+        -- The list of sessions with this execution pattern.
+        affectedSessions: {ExecutionSummaryAffectedSession}
+    end
+
+    -- Customer-facing execution summary clustering result written to S3.
+    record ExecutionSummaryClusteringResultContent
+        -- The list of execution summary clusters identified across analyzed sessions.
+        executionSummaries: {ExecutionSummaryCluster}
+    end
+
+    -- A cluster of similar root causes identified within a failure subcategory.
+    record RootCauseCluster
+        -- The unique identifier of the root cause cluster.
+        clusterId: number
+        -- The name of the root cause cluster.
+        name: string
+        -- The root cause explanation for this cluster of failures.
+        rootCause: string
+        -- The recommended fix for this root cause.
+        recommendation: string
+        -- The number of sessions affected by this root cause.
+        affectedSessionCount: number
+        -- The list of sessions affected by this root cause.
+        affectedSessions: {AffectedSession}
+    end
+
+    -- A subcategory of failures within a top-level failure category.
+    record FailureSubCategoryCluster
+        -- The unique identifier of the failure subcategory cluster.
+        clusterId: number
+        -- The name of the failure subcategory.
+        name: string
+        -- A description of the failure subcategory pattern.
+        description: string
+        -- The number of sessions affected by this failure subcategory.
+        affectedSessionCount: number
+        -- The list of root cause clusters identified within this subcategory.
+        rootCauses: {RootCauseCluster}
+    end
+
+    -- A top-level failure category identified by clustering similar failure patterns across sessions.
+    record FailureCategoryCluster
+        -- The unique identifier of the failure category cluster.
+        clusterId: number
+        -- The name of the failure category.
+        name: string
+        -- A description of the failure category pattern.
+        description: string
+        -- The number of sessions affected by this failure category.
+        affectedSessionCount: number
+        -- The list of failure subcategories within this category.
+        subCategories: {FailureSubCategoryCluster}
+    end
+
+    -- Unified customer-facing clustering result written to S3.
+    record FailureAnalysisResultContent
+        -- The list of failure category clusters identified across analyzed sessions.
+        failures: {FailureCategoryCluster}
+    end
+
+    -- A reference to an insight analysis to run against sessions.
+    record Insight
+        insightId: string
     end
 
     -- CloudWatch Logs destination for batch evaluation results.
@@ -1530,6 +1704,34 @@ local record M
         cloudWatchConfig: CloudWatchOutputConfig
     end
 
+    -- A session associated with a user intent cluster.
+    record UserIntentAffectedSession
+        -- The unique identifier of the session.
+        sessionId: string
+        -- The user messages from this session that contributed to the intent cluster.
+        userMessages: {string}
+    end
+
+    -- A cluster of similar user intents identified across sessions.
+    record UserIntentCluster
+        -- The unique identifier of the user intent cluster.
+        clusterId: number
+        -- The name of the user intent cluster.
+        name: string
+        -- A description of the user intent pattern.
+        description: string
+        -- The number of sessions with this user intent.
+        affectedSessionCount: number
+        -- The list of sessions with this user intent.
+        affectedSessions: {UserIntentAffectedSession}
+    end
+
+    -- Customer-facing user intent clustering result written to S3.
+    record UserIntentClusteringResultContent
+        -- The list of user intent clusters identified across analyzed sessions.
+        userIntents: {UserIntentCluster}
+    end
+
     record GetBatchEvaluationOutput
         -- The unique identifier of the batch evaluation.
         batchEvaluationId: string
@@ -1543,18 +1745,25 @@ local record M
         createdAt: number
         -- The list of evaluators applied during the batch evaluation.
         evaluators: {Evaluator}
+        -- The list of insight analyses applied during the batch evaluation.
+        insights: {Insight}
         -- The data source configuration specifying where agent traces are pulled from.
         dataSourceConfig: DataSourceConfig
         -- The output configuration specifying where evaluation results are written.
         outputConfig: OutputConfig
         -- The aggregated evaluation results, including session completion counts and evaluator score summaries.
         evaluationResults: EvaluationJobResults
+        failureAnalysisResult: FailureAnalysisResultContent
+        userIntentResult: UserIntentClusteringResultContent
+        executionSummaryResult: ExecutionSummaryClusteringResultContent
         -- The error details if the batch evaluation encountered failures.
         errorDetails: {string}
         -- The description of the batch evaluation.
         description: string
         -- The timestamp when the batch evaluation was last updated.
         updatedAt: number
+        -- The ARN of the KMS key used to encrypt evaluation data.
+        kmsKeyArn: string
     end
 
     record GetRecommendationInput
@@ -1678,6 +1887,8 @@ local record M
         recommendedSystemPrompt: string
         -- The configuration bundle containing the recommended system prompt, if the input was sourced from a configuration bundle.
         configurationBundle: RecommendationResultConfigurationBundle
+        -- An explanation of why the recommendation was generated and what patterns were identified in the agent traces.
+        explanation: string
         -- The error code if the recommendation failed.
         errorCode: string
         -- The error message if the recommendation failed.
@@ -1690,6 +1901,8 @@ local record M
         toolName: string
         -- The optimized tool description text generated by the recommendation.
         recommendedToolDescription: string
+        -- An explanation of why the recommendation was generated for this tool and what patterns were identified in the agent traces.
+        explanation: string
     end
 
     -- The result of a tool description recommendation, containing optimized descriptions.
@@ -1736,6 +1949,8 @@ local record M
         updatedAt: number
         -- The result of the recommendation, containing the optimized system prompt or tool descriptions. Only present when the recommendation status is COMPLETED.
         recommendationResult: RecommendationResult
+        -- The ARN of the KMS key used to encrypt recommendation data.
+        kmsKeyArn: string
     end
 
     record ListABTestsInput
@@ -1775,10 +1990,14 @@ local record M
         description: string
         -- The list of evaluators applied during the batch evaluation.
         evaluators: {Evaluator}
+        -- The list of insight analyses applied during the batch evaluation.
+        insights: {Insight}
         -- The aggregated evaluation results.
         evaluationResults: EvaluationJobResults
         -- The error details if the batch evaluation encountered failures.
         errorDetails: {string}
+        -- The ARN of the KMS key used to encrypt evaluation data.
+        kmsKeyArn: string
         -- The timestamp when the batch evaluation was last updated.
         updatedAt: number
     end
@@ -1877,12 +2096,18 @@ local record M
         batchEvaluationName: string
         -- The list of evaluators to apply during the batch evaluation. Can include both built-in evaluators and custom evaluators. Maximum of 10 evaluators.
         evaluators: {Evaluator}
+        -- The list of insight analyses to run against sessions during the batch evaluation. Maximum of 10 insights.
+        insights: {Insight}
         -- The data source configuration that specifies where to pull agent session traces from for evaluation.
         dataSourceConfig: DataSourceConfig
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
         clientToken: string
         -- Optional metadata for the evaluation, including session-specific ground truth data and test scenario identifiers.
         evaluationMetadata: EvaluationMetadata
+        -- A map of tag keys and values to associate with the batch evaluation.
+        tags: {string : string}
+        -- The ARN of the KMS key used to encrypt evaluation data. If provided, customer data is encrypted at rest with the specified key.
+        kmsKeyArn: string
         -- The description of the batch evaluation.
         description: string
     end
@@ -1896,12 +2121,18 @@ local record M
         batchEvaluationName: string
         -- The list of evaluators applied during the batch evaluation.
         evaluators: {Evaluator}
+        -- The list of insight analyses applied during the batch evaluation.
+        insights: {Insight}
         -- The status of the batch evaluation.
         status: string
         -- The timestamp when the batch evaluation was created.
         createdAt: number
         -- The output configuration specifying where evaluation results are written.
         outputConfig: OutputConfig
+        -- The tags associated with the batch evaluation.
+        tags: {string : string}
+        -- The ARN of the KMS key used to encrypt evaluation data.
+        kmsKeyArn: string
         -- The description of the batch evaluation.
         description: string
     end
@@ -1913,8 +2144,12 @@ local record M
         description: string
         -- The configuration for the recommendation, including the input to optimize, agent traces to analyze, and evaluation settings.
         recommendationConfig: RecommendationConfig
+        -- The ARN of the KMS key used to encrypt recommendation data. If provided, customer data is encrypted at rest with the specified key.
+        kmsKeyArn: string
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
         clientToken: string
+        -- A map of tag keys and values to associate with the recommendation.
+        tags: {string : string}
     end
 
     record StartRecommendationOutput

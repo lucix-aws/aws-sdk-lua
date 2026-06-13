@@ -99,6 +99,8 @@ M.OnlineEvaluationConfigSummaryList = schema.new({ type = "list", list_member = 
 
 M.EvaluatorList = schema.new({ type = "list", list_member = M.EvaluatorReference })
 
+M.InsightList = schema.new({ type = "list", list_member = M.Insight })
+
 M.PaymentCredentialProviders = schema.new({ type = "list", list_member = M.PaymentCredentialProviderItem })
 
 M.PaymentManagerSummaries = schema.new({ type = "list", list_member = M.PaymentManagerSummary })
@@ -148,6 +150,8 @@ M.ModifyMemoryStrategiesList = schema.new({ type = "list", list_member = M.Modif
 M.DeleteMemoryStrategiesList = schema.new({ type = "list", list_member = M.DeleteMemoryStrategyInput })
 
 M.FilterList = schema.new({ type = "list", list_member = M.Filter })
+
+M.ClusteringFrequencyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EntryPoints = schema.new({ type = "list", list_member = prelude.String })
 
@@ -4992,6 +4996,12 @@ M.CreateConfigurationBundleInput = schema.new({
             target_id = id.from(_N, "VersionCreatedBySource"),
             target = M.VersionCreatedBySource,
         }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreateConfigurationBundleInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "CreateConfigurationBundleInput", "tags"),
             type = "map",
@@ -5229,6 +5239,12 @@ M.GetConfigurationBundleOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "GetConfigurationBundleOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5340,6 +5356,12 @@ M.GetConfigurationBundleVersionOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "GetConfigurationBundleVersionOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5646,6 +5668,12 @@ M.UpdateConfigurationBundleInput = schema.new({
             name = "createdBy",
             target_id = id.from(_N, "VersionCreatedBySource"),
             target = M.VersionCreatedBySource,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "UpdateConfigurationBundleInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -15579,6 +15607,23 @@ M.UpdateOauth2CredentialProviderOutput = schema.new({
     },
 })
 
+M.ClusteringConfig = schema.new({
+    id = id.from(_N, "ClusteringConfig"),
+    type = "structure",
+    members = {
+        frequencies = schema.new({
+            id = id.from(_N, "ClusteringConfig", "frequencies"),
+            type = "list",
+            name = "frequencies",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CloudWatchLogsInputConfig = schema.new({
     id = id.from(_N, "CloudWatchLogsInputConfig"),
     type = "structure",
@@ -15629,6 +15674,22 @@ M.EvaluatorReference = schema.new({
             type = "string",
             name = "evaluatorId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Insight = schema.new({
+    id = id.from(_N, "Insight"),
+    type = "structure",
+    members = {
+        insightId = schema.new({
+            id = id.from(_N, "Insight", "insightId"),
+            type = "string",
+            name = "insightId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -15810,9 +15871,20 @@ M.CreateOnlineEvaluationConfigInput = schema.new({
             name = "evaluators",
             target_id = prelude.Document.id,
             list_member = M.EvaluatorReference,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        insights = schema.new({
+            id = id.from(_N, "CreateOnlineEvaluationConfigInput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
+        clusteringConfig = schema.new({
+            id = id.from(_N, "CreateOnlineEvaluationConfigInput", "clusteringConfig"),
+            type = "structure",
+            name = "clusteringConfig",
+            target_id = id.from(_N, "ClusteringConfig"),
+            target = M.ClusteringConfig,
         }),
         evaluationExecutionRoleArn = schema.new({
             id = id.from(_N, "CreateOnlineEvaluationConfigInput", "evaluationExecutionRoleArn"),
@@ -16073,8 +16145,22 @@ M.GetOnlineEvaluationConfigOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.EvaluatorReference,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = {} },
             },
+        }),
+        insights = schema.new({
+            id = id.from(_N, "GetOnlineEvaluationConfigOutput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
+        clusteringConfig = schema.new({
+            id = id.from(_N, "GetOnlineEvaluationConfigOutput", "clusteringConfig"),
+            type = "structure",
+            name = "clusteringConfig",
+            target_id = id.from(_N, "ClusteringConfig"),
+            target = M.ClusteringConfig,
         }),
         outputConfig = schema.new({
             id = id.from(_N, "GetOnlineEvaluationConfigOutput", "outputConfig"),
@@ -16238,6 +16324,20 @@ M.OnlineEvaluationConfigSummary = schema.new({
             name = "failureReason",
             target_id = prelude.String.id,
         }),
+        insights = schema.new({
+            id = id.from(_N, "OnlineEvaluationConfigSummary", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
+        clusteringConfig = schema.new({
+            id = id.from(_N, "OnlineEvaluationConfigSummary", "clusteringConfig"),
+            type = "structure",
+            name = "clusteringConfig",
+            target_id = id.from(_N, "ClusteringConfig"),
+            target = M.ClusteringConfig,
+        }),
     },
 })
 
@@ -16313,6 +16413,20 @@ M.UpdateOnlineEvaluationConfigInput = schema.new({
             name = "evaluators",
             target_id = prelude.Document.id,
             list_member = M.EvaluatorReference,
+        }),
+        insights = schema.new({
+            id = id.from(_N, "UpdateOnlineEvaluationConfigInput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
+        clusteringConfig = schema.new({
+            id = id.from(_N, "UpdateOnlineEvaluationConfigInput", "clusteringConfig"),
+            type = "structure",
+            name = "clusteringConfig",
+            target_id = id.from(_N, "ClusteringConfig"),
+            target = M.ClusteringConfig,
         }),
         evaluationExecutionRoleArn = schema.new({
             id = id.from(_N, "UpdateOnlineEvaluationConfigInput", "evaluationExecutionRoleArn"),

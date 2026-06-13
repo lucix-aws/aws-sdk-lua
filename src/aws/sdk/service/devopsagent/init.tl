@@ -25,10 +25,12 @@ local record Client
     createBacklogTask: function(Client, types.CreateBacklogTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateBacklogTaskOutput>
     createChat: function(Client, types.CreateChatInput, ? base_client.InvokeOptions): async.Operation<types.CreateChatOutput>
     createPrivateConnection: function(Client, types.CreatePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectionOutput>
+    createTrigger: function(Client, types.CreateTriggerInput, ? base_client.InvokeOptions): async.Operation<types.CreateTriggerOutput>
     deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
     deleteAsset: function(Client, types.DeleteAssetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
     deleteAssetFile: function(Client, types.DeleteAssetFileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetFileOutput>
     deletePrivateConnection: function(Client, types.DeletePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
+    deleteTrigger: function(Client, types.DeleteTriggerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTriggerOutput>
     deregisterService: function(Client, types.DeregisterServiceInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterServiceOutput>
     describePrivateConnection: function(Client, types.DescribePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribePrivateConnectionOutput>
     disableOperatorApp: function(Client, types.DisableOperatorAppInput, ? base_client.InvokeOptions): async.Operation<types.DisableOperatorAppOutput>
@@ -44,6 +46,7 @@ local record Client
     getOperatorApp: function(Client, types.GetOperatorAppInput, ? base_client.InvokeOptions): async.Operation<types.GetOperatorAppOutput>
     getRecommendation: function(Client, types.GetRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.GetRecommendationOutput>
     getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
+    getTrigger: function(Client, types.GetTriggerInput, ? base_client.InvokeOptions): async.Operation<types.GetTriggerOutput>
     listAgentSpaces: function(Client, types.ListAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
     listAssetFiles: function(Client, types.ListAssetFilesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetFilesOutput>
     listAssets: function(Client, types.ListAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetsOutput>
@@ -60,6 +63,7 @@ local record Client
     listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
     listServices: function(Client, types.ListServicesInput, ? base_client.InvokeOptions): async.Operation<types.ListServicesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTriggers: function(Client, types.ListTriggersInput, ? base_client.InvokeOptions): async.Operation<types.ListTriggersOutput>
     listWebhooks: function(Client, types.ListWebhooksInput, ? base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
     registerService: function(Client, types.RegisterServiceInput, ? base_client.InvokeOptions): async.Operation<types.RegisterServiceOutput>
     sendMessage: function(Client, types.SendMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendMessageOutput>
@@ -74,6 +78,7 @@ local record Client
     updateOperatorAppIdpConfig: function(Client, types.UpdateOperatorAppIdpConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOperatorAppIdpConfigOutput>
     updatePrivateConnectionCertificate: function(Client, types.UpdatePrivateConnectionCertificateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
     updateRecommendation: function(Client, types.UpdateRecommendationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecommendationOutput>
+    updateTrigger: function(Client, types.UpdateTriggerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTriggerOutput>
     validateAwsAssociations: function(Client, types.ValidateAwsAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ValidateAwsAssociationsOutput>
 end
 
@@ -147,6 +152,10 @@ function C:createPrivateConnection(input: types.CreatePrivateConnectionInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivateConnectionOutput>
 end
 
+function C:createTrigger(input: types.CreateTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTrigger as schema.OperationSchema, input, options) as async.Operation<types.CreateTriggerOutput>
+end
+
 function C:deleteAgentSpace(input: types.DeleteAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAgentSpace as schema.OperationSchema, input, options) as async.Operation<types.DeleteAgentSpaceOutput>
 end
@@ -161,6 +170,10 @@ end
 
 function C:deletePrivateConnection(input: types.DeletePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.DeletePrivateConnectionOutput>
+end
+
+function C:deleteTrigger(input: types.DeleteTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTrigger as schema.OperationSchema, input, options) as async.Operation<types.DeleteTriggerOutput>
 end
 
 function C:deregisterService(input: types.DeregisterServiceInput, options?: base_client.InvokeOptions): async.Operation<types.DeregisterServiceOutput>
@@ -221,6 +234,10 @@ end
 
 function C:getService(input: types.GetServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetService as schema.OperationSchema, input, options) as async.Operation<types.GetServiceOutput>
+end
+
+function C:getTrigger(input: types.GetTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.GetTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTrigger as schema.OperationSchema, input, options) as async.Operation<types.GetTriggerOutput>
 end
 
 function C:listAgentSpaces(input: types.ListAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
@@ -287,6 +304,10 @@ function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:listTriggers(input: types.ListTriggersInput, options?: base_client.InvokeOptions): async.Operation<types.ListTriggersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTriggers as schema.OperationSchema, input, options) as async.Operation<types.ListTriggersOutput>
+end
+
 function C:listWebhooks(input: types.ListWebhooksInput, options?: base_client.InvokeOptions): async.Operation<types.ListWebhooksOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWebhooks as schema.OperationSchema, input, options) as async.Operation<types.ListWebhooksOutput>
 end
@@ -341,6 +362,10 @@ end
 
 function C:updateRecommendation(input: types.UpdateRecommendationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRecommendationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateRecommendation as schema.OperationSchema, input, options) as async.Operation<types.UpdateRecommendationOutput>
+end
+
+function C:updateTrigger(input: types.UpdateTriggerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTriggerOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTrigger as schema.OperationSchema, input, options) as async.Operation<types.UpdateTriggerOutput>
 end
 
 function C:validateAwsAssociations(input: types.ValidateAwsAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateAwsAssociationsOutput>

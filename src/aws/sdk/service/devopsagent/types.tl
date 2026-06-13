@@ -1208,6 +1208,51 @@ local record M
         tags: {string : string}
     end
 
+    -- Schedule-based condition that fires the Trigger
+    record ScheduleCondition
+        -- The schedule expression
+        expression: string
+    end
+
+    -- Defines the firing condition for a Trigger
+    record TriggerCondition
+        -- Time-based firing condition
+        schedule: ScheduleCondition
+    end
+
+    record CreateTriggerInput
+        agentSpaceId: string
+        -- The condition that fires the new Trigger
+        condition: TriggerCondition
+        -- The action the new Trigger performs when it fires
+        action: any
+        -- The initial status of the Trigger
+        status: string
+        -- A unique, case-sensitive identifier used for idempotent Trigger creation
+        clientToken: string
+    end
+
+    -- A Trigger fires on a schedule and invokes an agent
+    record Trigger
+        triggerId: string
+        agentSpaceId: string
+        -- The condition that fires this Trigger
+        condition: TriggerCondition
+        -- The action this Trigger performs when it fires
+        action: any
+        -- The status of this Trigger
+        status: string
+        -- Timestamp when this Trigger was created
+        createdAt: number
+        -- Timestamp when this Trigger was last updated
+        updatedAt: number
+    end
+
+    record CreateTriggerOutput
+        -- The Trigger object
+        trigger: Trigger
+    end
+
     -- Authorization discovery configuration for MCP server.
     record MCPServerAuthorizationDiscoveryConfig
         -- The endpoint to return to after OAuth flow completes (must be AWS console domain)
@@ -1270,6 +1315,14 @@ local record M
         name: string
         -- The status of the Private Connection.
         status: string
+    end
+
+    record DeleteTriggerInput
+        agentSpaceId: string
+        triggerId: string
+    end
+
+    record DeleteTriggerOutput
     end
 
     -- Input for deregistering a service.
@@ -1475,6 +1528,16 @@ local record M
     record GetRecommendationOutput
         -- The requested recommendation
         recommendation: Recommendation
+    end
+
+    record GetTriggerInput
+        agentSpaceId: string
+        triggerId: string
+    end
+
+    record GetTriggerOutput
+        -- The Trigger object
+        trigger: Trigger
     end
 
     -- Request structure for listing asset files
@@ -1893,6 +1956,22 @@ local record M
     record ListTagsForResourceOutput
         -- Tags associated with the resource.
         tags: {string : string}
+    end
+
+    record ListTriggersInput
+        agentSpaceId: string
+        -- Filter results to Triggers in this status
+        status: string
+        -- Pagination token from a previous response to retrieve the next page of results
+        nextToken: string
+        -- The maximum number of results to return in a single response
+        maxResults: number
+    end
+
+    record ListTriggersOutput
+        -- The list of Triggers
+        items: {Trigger}
+        nextToken: string
     end
 
     -- Input for listing Private Connections in the caller's account.
@@ -2636,6 +2715,20 @@ local record M
     record UpdateRecommendationOutput
         -- The updated recommendation
         recommendation: Recommendation
+    end
+
+    record UpdateTriggerInput
+        agentSpaceId: string
+        triggerId: string
+        -- The new status for the Trigger
+        status: string
+        -- A unique, case-sensitive identifier used for idempotent Trigger update
+        clientToken: string
+    end
+
+    record UpdateTriggerOutput
+        -- The Trigger object
+        trigger: Trigger
     end
 
 end

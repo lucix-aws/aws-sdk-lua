@@ -35,6 +35,8 @@ M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendatio
 
 M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.TriggerList = schema.new({ type = "list", list_member = M.Trigger })
+
 M.AssetIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
@@ -3685,6 +3687,193 @@ M.CreatePrivateConnectionOutput = schema.new({
     },
 })
 
+M.ScheduleCondition = schema.new({
+    id = id.from(_N, "ScheduleCondition"),
+    type = "structure",
+    members = {
+        expression = schema.new({
+            id = id.from(_N, "ScheduleCondition", "expression"),
+            type = "string",
+            name = "expression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TriggerCondition = schema.new({
+    id = id.from(_N, "TriggerCondition"),
+    type = "union",
+    members = {
+        schedule = schema.new({
+            id = id.from(_N, "TriggerCondition", "schedule"),
+            type = "structure",
+            name = "schedule",
+            target_id = id.from(_N, "ScheduleCondition"),
+            target = M.ScheduleCondition,
+        }),
+    },
+})
+
+M.CreateTriggerInput = schema.new({
+    id = id.from(_N, "CreateTriggerRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "CreateTriggerInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "CreateTriggerInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        condition = schema.new({
+            id = id.from(_N, "CreateTriggerInput", "condition"),
+            type = "union",
+            name = "condition",
+            target_id = id.from(_N, "TriggerCondition"),
+            target = M.TriggerCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "CreateTriggerInput", "action"),
+            type = "document",
+            name = "action",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateTriggerInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateTriggerInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.Trigger = schema.new({
+    id = id.from(_N, "Trigger"),
+    type = "structure",
+    members = {
+        triggerId = schema.new({
+            id = id.from(_N, "Trigger", "triggerId"),
+            type = "string",
+            name = "triggerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentSpaceId = schema.new({
+            id = id.from(_N, "Trigger", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "Trigger", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        condition = schema.new({
+            id = id.from(_N, "Trigger", "condition"),
+            type = "union",
+            name = "condition",
+            target_id = id.from(_N, "TriggerCondition"),
+            target = M.TriggerCondition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "Trigger", "action"),
+            type = "document",
+            name = "action",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "Trigger", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Trigger", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "Trigger", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateTriggerOutput = schema.new({
+    id = id.from(_N, "CreateTriggerResponse"),
+    type = "structure",
+    members = {
+        trigger = schema.new({
+            id = id.from(_N, "CreateTriggerOutput", "trigger"),
+            type = "structure",
+            name = "trigger",
+            target_id = id.from(_N, "Trigger"),
+            target = M.Trigger,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.MCPServerAuthorizationDiscoveryConfig = schema.new({
     id = id.from(_N, "MCPServerAuthorizationDiscoveryConfig"),
     type = "structure",
@@ -3870,6 +4059,38 @@ M.DeletePrivateConnectionOutput = schema.new({
             },
         }),
     },
+})
+
+M.DeleteTriggerInput = schema.new({
+    id = id.from(_N, "DeleteTriggerRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "DeleteTriggerInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        triggerId = schema.new({
+            id = id.from(_N, "DeleteTriggerInput", "triggerId"),
+            type = "string",
+            name = "triggerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTriggerOutput = schema.new({
+    id = id.from(_N, "DeleteTriggerResponse"),
+    type = "structure",
 })
 
 M.DeregisterServiceInput = schema.new({
@@ -4518,6 +4739,50 @@ M.GetRecommendationOutput = schema.new({
             name = "recommendation",
             target_id = id.from(_N, "Recommendation"),
             target = M.Recommendation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTriggerInput = schema.new({
+    id = id.from(_N, "GetTriggerRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "GetTriggerInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        triggerId = schema.new({
+            id = id.from(_N, "GetTriggerInput", "triggerId"),
+            type = "string",
+            name = "triggerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetTriggerOutput = schema.new({
+    id = id.from(_N, "GetTriggerResponse"),
+    type = "structure",
+    members = {
+        trigger = schema.new({
+            id = id.from(_N, "GetTriggerOutput", "trigger"),
+            type = "structure",
+            name = "trigger",
+            target_id = id.from(_N, "Trigger"),
+            target = M.Trigger,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -5801,6 +6066,73 @@ M.ListTagsForResourceOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.ListTriggersInput = schema.new({
+    id = id.from(_N, "ListTriggersRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "ListTriggersInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListTriggersInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTriggersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTriggersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListTriggersOutput = schema.new({
+    id = id.from(_N, "ListTriggersResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListTriggersOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.Trigger,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTriggersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8016,6 +8348,65 @@ M.UpdateRecommendationOutput = schema.new({
     },
 })
 
+M.UpdateTriggerInput = schema.new({
+    id = id.from(_N, "UpdateTriggerRequest"),
+    type = "structure",
+    members = {
+        agentSpaceId = schema.new({
+            id = id.from(_N, "UpdateTriggerInput", "agentSpaceId"),
+            type = "string",
+            name = "agentSpaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        triggerId = schema.new({
+            id = id.from(_N, "UpdateTriggerInput", "triggerId"),
+            type = "string",
+            name = "triggerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateTriggerInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateTriggerInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateTriggerOutput = schema.new({
+    id = id.from(_N, "UpdateTriggerResponse"),
+    type = "structure",
+    members = {
+        trigger = schema.new({
+            id = id.from(_N, "UpdateTriggerOutput", "trigger"),
+            type = "structure",
+            name = "trigger",
+            target_id = id.from(_N, "Trigger"),
+            target = M.Trigger,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -8125,6 +8516,18 @@ M.CreatePrivateConnection = schema.operation({
     },
 })
 
+M.CreateTrigger = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "CreateTrigger"),
+    input = M.CreateTriggerInput,
+    output = M.CreateTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/trigger/agent-space/{agentSpaceId}/triggers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteAgentSpace = schema.operation({
     id = id.from("com.amazonaws.devopsagent", "DeleteAgentSpace"),
     input = M.DeleteAgentSpaceInput,
@@ -8167,6 +8570,18 @@ M.DeletePrivateConnection = schema.operation({
     output = M.DeletePrivateConnectionOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/private-connections/{name}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTrigger = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "DeleteTrigger"),
+    input = M.DeleteTriggerInput,
+    output = M.DeleteTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/trigger/agent-space/{agentSpaceId}/triggers/{triggerId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -8347,6 +8762,18 @@ M.GetService = schema.operation({
     output = M.GetServiceOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/services/{serviceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTrigger = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "GetTrigger"),
+    input = M.GetTriggerInput,
+    output = M.GetTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trigger/agent-space/{agentSpaceId}/triggers/{triggerId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -8545,6 +8972,18 @@ M.ListTagsForResource = schema.operation({
     },
 })
 
+M.ListTriggers = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "ListTriggers"),
+    input = M.ListTriggersInput,
+    output = M.ListTriggersOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/trigger/agent-space/{agentSpaceId}/triggers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListWebhooks = schema.operation({
     id = id.from("com.amazonaws.devopsagent", "ListWebhooks"),
     input = M.ListWebhooksInput,
@@ -8708,6 +9147,18 @@ M.UpdateRecommendation = schema.operation({
     output = M.UpdateRecommendationOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/backlog/agent-space/{agentSpaceId}/recommendations/{recommendationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTrigger = schema.operation({
+    id = id.from("com.amazonaws.devopsagent", "UpdateTrigger"),
+    input = M.UpdateTriggerInput,
+    output = M.UpdateTriggerOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/trigger/agent-space/{agentSpaceId}/triggers/{triggerId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

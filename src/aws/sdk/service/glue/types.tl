@@ -9676,6 +9676,13 @@ local record M
         Statement: Statement
     end
 
+    enum TableAttributes
+        "NAME"
+        "TABLE_TYPE"
+        "DEFAULT"
+        "LATEST_ICEBERG_METADATA"
+    end
+
     record GetTableInput
         -- The ID of the Data Catalog where the table resides. If none is provided, the Amazon Web Services account
         -- ID is used by default.
@@ -9694,6 +9701,12 @@ local record M
         AuditContext: AuditContext
         -- Specifies whether to include status details related to a request to create or update an Glue Data Catalog view.
         IncludeStatusDetails: boolean
+        -- Specifies the table fields returned by the GetTable call. This parameter doesn't accept an empty list.
+        -- The following are the valid combinations of values:
+        -- DEFAULT - Returns the Hive-style table definition only.
+        -- LATEST_ICEBERG_METADATA - Returns only the latest Apache Iceberg table metadata.
+        -- DEFAULT, LATEST_ICEBERG_METADATA - Returns both the Hive-style table definition and the latest Apache Iceberg table metadata.
+        AttributesToGet: {string}
     end
 
     -- A table that points to an entity outside the Glue Data Catalog.
@@ -9706,6 +9719,34 @@ local record M
         ConnectionName: string
         -- The type of connection used to access the federated table, specifying the protocol or method for connecting to the external data source.
         ConnectionType: string
+    end
+
+    -- The Apache Iceberg table metadata, including format version, table identifier, schemas, partition specifications, sort orders, and table properties. This structure captures the current state of an Iceberg table's metadata as managed by the Glue Data Catalog.
+    record IcebergTableMetadata
+        -- The Apache Iceberg table format version, such as 1 or 2. Determines the set of features and on-disk layout supported by the table.
+        FormatVersion: string
+        -- The unique identifier (UUID) for the Iceberg table, assigned when the table is created and used to track the table across metadata updates.
+        TableUuid: string
+        -- The base S3 location where the Iceberg table's data and metadata files are stored.
+        Location: string
+        -- A map of key-value pairs that define table-level properties and configuration settings for the Iceberg table.
+        Properties: {string : string}
+        -- The list of schemas that have been associated with the Iceberg table over its history, supporting schema evolution.
+        Schemas: {IcebergSchema}
+        -- The identifier of the schema that is currently active for the Iceberg table. Matches an entry in Schemas.
+        CurrentSchemaId: number
+        -- The highest column identifier that has been assigned in the Iceberg table's schema, used to ensure unique IDs as new columns are added.
+        LastColumnId: number
+        -- The list of partition specifications that have been associated with the Iceberg table over its history, supporting partition evolution.
+        PartitionSpecs: {IcebergPartitionSpec}
+        -- The identifier of the partition specification that is currently used by default when writing new data to the Iceberg table.
+        DefaultSpecId: number
+        -- The highest partition field identifier that has been assigned across the table's partition specifications.
+        LastPartitionId: number
+        -- The list of sort order specifications that have been associated with the Iceberg table over its history.
+        SortOrders: {IcebergSortOrder}
+        -- The identifier of the sort order that is currently used by default when writing new data to the Iceberg table.
+        DefaultSortOrderId: number
     end
 
     enum ResourceAction
@@ -9797,11 +9838,6 @@ local record M
         TableName: string
         -- The optimizer associated with the specified table.
         TableOptimizer: TableOptimizer
-    end
-
-    enum TableAttributes
-        "NAME"
-        "TABLE_TYPE"
     end
 
     record GetTablesInput
@@ -12901,6 +12937,8 @@ local record M
         IsMultiDialectView: boolean
         -- Indicates a table is a MaterializedView.
         IsMaterializedView: boolean
+        -- The latest Apache Iceberg table metadata for the table, including format version, schemas, partition specifications, and sort orders. This field is populated for Iceberg tables and reflects the current state of the table's Iceberg metadata.
+        IcebergTableMetadata: IcebergTableMetadata
         -- Indicates the the state of an asynchronous change to a table.
         Status: TableStatus
     end

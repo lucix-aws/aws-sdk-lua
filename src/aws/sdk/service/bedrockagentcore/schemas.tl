@@ -41,6 +41,8 @@ M.CodeInterpreterSessionSummaries = schema.new({ type = "list", list_member = M.
 
 M.VariantList = schema.new({ type = "list", list_member = M.Variant })
 
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.EvaluationReferenceInputs = schema.new({ type = "list", list_member = M.EvaluationReferenceInput })
 
 M.EvaluationResults = schema.new({ type = "list", list_member = M.EvaluationResultContent })
@@ -48,6 +50,8 @@ M.EvaluationResults = schema.new({ type = "list", list_member = M.EvaluationResu
 M.ErrorDetailsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EvaluatorList = schema.new({ type = "list", list_member = M.Evaluator })
+
+M.InsightList = schema.new({ type = "list", list_member = M.Insight })
 
 M.ABTestSummaryList = schema.new({ type = "list", list_member = M.ABTestSummary })
 
@@ -107,6 +111,12 @@ M.EvaluatorMetricList = schema.new({ type = "list", list_member = M.EvaluatorMet
 
 M.EvaluatorSummaryList = schema.new({ type = "list", list_member = M.EvaluatorSummary })
 
+M.FailureCategoryClusterList = schema.new({ type = "list", list_member = M.FailureCategoryCluster })
+
+M.UserIntentClusterList = schema.new({ type = "list", list_member = M.UserIntentCluster })
+
+M.ExecutionSummaryClusterList = schema.new({ type = "list", list_member = M.ExecutionSummaryCluster })
+
 M.SessionMetadataList = schema.new({ type = "list", list_member = M.SessionMetadataShape })
 
 M.NamespacesList = schema.new({ type = "list", list_member = prelude.String })
@@ -139,6 +149,12 @@ M.EvaluationToolNames = schema.new({ type = "list", list_member = prelude.String
 
 M.VariantResultList = schema.new({ type = "list", list_member = M.VariantResult })
 
+M.FailureSubCategoryClusterList = schema.new({ type = "list", list_member = M.FailureSubCategoryCluster })
+
+M.UserIntentAffectedSessionList = schema.new({ type = "list", list_member = M.UserIntentAffectedSession })
+
+M.ExecutionSummaryAffectedSessionList = schema.new({ type = "list", list_member = M.ExecutionSummaryAffectedSession })
+
 M.RecommendationEvaluatorList = schema.new({ type = "list", list_member = M.RecommendationEvaluatorReference })
 
 M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -159,6 +175,10 @@ M.ConfigurationBundleToolEntryList = schema.new({ type = "list", list_member = M
 
 M.HarnessToolResultContentBlocks = schema.new({ type = "list", list_member = M.HarnessToolResultContentBlock })
 
+M.RootCauseClusterList = schema.new({ type = "list", list_member = M.RootCauseCluster })
+
+M.UserIntentList = schema.new({ type = "list", list_member = prelude.String })
+
 M.CloudWatchLogsFilterList = schema.new({ type = "list", list_member = M.CloudWatchLogsFilter })
 
 M.GroundTruthTurnList = schema.new({ type = "list", list_member = M.GroundTruthTurn })
@@ -166,6 +186,12 @@ M.GroundTruthTurnList = schema.new({ type = "list", list_member = M.GroundTruthT
 M.OAuthScopes = schema.new({ type = "list", list_member = prelude.String })
 
 M.OAuthCustomParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AffectedSessionList = schema.new({ type = "list", list_member = M.AffectedSession })
+
+M.FailureSpanDetailList = schema.new({ type = "list", list_member = M.FailureSpanDetail })
+
+M.InsightsFailureSignalList = schema.new({ type = "list", list_member = M.InsightsFailureSignal })
 
 M.AgentCardDefinition = schema.new({
     id = id.from(_N, "AgentCardDefinition"),
@@ -535,6 +561,128 @@ M.ActorSummary = schema.new({
             type = "string",
             name = "actorId",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InsightsFailureSignal = schema.new({
+    id = id.from(_N, "InsightsFailureSignal"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "InsightsFailureSignal", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        evidence = schema.new({
+            id = id.from(_N, "InsightsFailureSignal", "evidence"),
+            type = "string",
+            name = "evidence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        confidence = schema.new({
+            id = id.from(_N, "InsightsFailureSignal", "confidence"),
+            type = "double",
+            name = "confidence",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailureSpanDetail = schema.new({
+    id = id.from(_N, "FailureSpanDetail"),
+    type = "structure",
+    members = {
+        spanId = schema.new({
+            id = id.from(_N, "FailureSpanDetail", "spanId"),
+            type = "string",
+            name = "spanId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        traceId = schema.new({
+            id = id.from(_N, "FailureSpanDetail", "traceId"),
+            type = "string",
+            name = "traceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        signals = schema.new({
+            id = id.from(_N, "FailureSpanDetail", "signals"),
+            type = "list",
+            name = "signals",
+            target_id = prelude.Document.id,
+            list_member = M.InsightsFailureSignal,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AffectedSession = schema.new({
+    id = id.from(_N, "AffectedSession"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "AffectedSession", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        explanation = schema.new({
+            id = id.from(_N, "AffectedSession", "explanation"),
+            type = "string",
+            name = "explanation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fixType = schema.new({
+            id = id.from(_N, "AffectedSession", "fixType"),
+            type = "string",
+            name = "fixType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recommendation = schema.new({
+            id = id.from(_N, "AffectedSession", "recommendation"),
+            type = "string",
+            name = "recommendation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureSpans = schema.new({
+            id = id.from(_N, "AffectedSession", "failureSpans"),
+            type = "list",
+            name = "failureSpans",
+            target_id = prelude.Document.id,
+            list_member = M.FailureSpanDetail,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1529,6 +1677,22 @@ M.AgentSkillsDescriptor = schema.new({
     },
 })
 
+M.BatchEvaluationTraceConfig = schema.new({
+    id = id.from(_N, "BatchEvaluationTraceConfig"),
+    type = "structure",
+    members = {
+        batchEvaluationArn = schema.new({
+            id = id.from(_N, "BatchEvaluationTraceConfig", "batchEvaluationArn"),
+            type = "string",
+            name = "batchEvaluationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.FilterValue = schema.new({
     id = id.from(_N, "FilterValue"),
     type = "union",
@@ -1674,6 +1838,13 @@ M.AgentTracesConfig = schema.new({
             name = "cloudwatchLogs",
             target_id = id.from(_N, "CloudWatchLogsTraceConfig"),
             target = M.CloudWatchLogsTraceConfig,
+        }),
+        batchEvaluation = schema.new({
+            id = id.from(_N, "AgentTracesConfig", "batchEvaluation"),
+            type = "structure",
+            name = "batchEvaluation",
+            target_id = id.from(_N, "BatchEvaluationTraceConfig"),
+            target = M.BatchEvaluationTraceConfig,
         }),
     },
 })
@@ -4003,6 +4174,14 @@ M.CreateABTestInput = schema.new({
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
         }),
+        tags = schema.new({
+            id = id.from(_N, "CreateABTestInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
     },
 })
 
@@ -4807,6 +4986,29 @@ M.CloudWatchLogsSource = schema.new({
     },
 })
 
+M.OnlineEvaluationConfigSource = schema.new({
+    id = id.from(_N, "OnlineEvaluationConfigSource"),
+    type = "structure",
+    members = {
+        onlineEvaluationConfigArn = schema.new({
+            id = id.from(_N, "OnlineEvaluationConfigSource", "onlineEvaluationConfigArn"),
+            type = "string",
+            name = "onlineEvaluationConfigArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sessionFilterConfig = schema.new({
+            id = id.from(_N, "OnlineEvaluationConfigSource", "sessionFilterConfig"),
+            type = "structure",
+            name = "sessionFilterConfig",
+            target_id = id.from(_N, "SessionFilterConfig"),
+            target = M.SessionFilterConfig,
+        }),
+    },
+})
+
 M.DataSourceConfig = schema.new({
     id = id.from(_N, "DataSourceConfig"),
     type = "union",
@@ -4817,6 +5019,13 @@ M.DataSourceConfig = schema.new({
             name = "cloudWatchLogs",
             target_id = id.from(_N, "CloudWatchLogsSource"),
             target = M.CloudWatchLogsSource,
+        }),
+        onlineEvaluationConfigSource = schema.new({
+            id = id.from(_N, "DataSourceConfig", "onlineEvaluationConfigSource"),
+            type = "structure",
+            name = "onlineEvaluationConfigSource",
+            target_id = id.from(_N, "OnlineEvaluationConfigSource"),
+            target = M.OnlineEvaluationConfigSource,
         }),
     },
 })
@@ -4926,6 +5135,311 @@ M.Evaluator = schema.new({
     },
 })
 
+M.ExecutionSummaryAffectedSession = schema.new({
+    id = id.from(_N, "ExecutionSummaryAffectedSession"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "ExecutionSummaryAffectedSession", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        approachTaken = schema.new({
+            id = id.from(_N, "ExecutionSummaryAffectedSession", "approachTaken"),
+            type = "string",
+            name = "approachTaken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        finalOutcome = schema.new({
+            id = id.from(_N, "ExecutionSummaryAffectedSession", "finalOutcome"),
+            type = "string",
+            name = "finalOutcome",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecutionSummaryCluster = schema.new({
+    id = id.from(_N, "ExecutionSummaryCluster"),
+    type = "structure",
+    members = {
+        clusterId = schema.new({
+            id = id.from(_N, "ExecutionSummaryCluster", "clusterId"),
+            type = "integer",
+            name = "clusterId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "ExecutionSummaryCluster", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ExecutionSummaryCluster", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessionCount = schema.new({
+            id = id.from(_N, "ExecutionSummaryCluster", "affectedSessionCount"),
+            type = "integer",
+            name = "affectedSessionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessions = schema.new({
+            id = id.from(_N, "ExecutionSummaryCluster", "affectedSessions"),
+            type = "list",
+            name = "affectedSessions",
+            target_id = prelude.Document.id,
+            list_member = M.ExecutionSummaryAffectedSession,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecutionSummaryClusteringResultContent = schema.new({
+    id = id.from(_N, "ExecutionSummaryClusteringResultContent"),
+    type = "structure",
+    members = {
+        executionSummaries = schema.new({
+            id = id.from(_N, "ExecutionSummaryClusteringResultContent", "executionSummaries"),
+            type = "list",
+            name = "executionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ExecutionSummaryCluster,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RootCauseCluster = schema.new({
+    id = id.from(_N, "RootCauseCluster"),
+    type = "structure",
+    members = {
+        clusterId = schema.new({
+            id = id.from(_N, "RootCauseCluster", "clusterId"),
+            type = "integer",
+            name = "clusterId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "RootCauseCluster", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        rootCause = schema.new({
+            id = id.from(_N, "RootCauseCluster", "rootCause"),
+            type = "string",
+            name = "rootCause",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        recommendation = schema.new({
+            id = id.from(_N, "RootCauseCluster", "recommendation"),
+            type = "string",
+            name = "recommendation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessionCount = schema.new({
+            id = id.from(_N, "RootCauseCluster", "affectedSessionCount"),
+            type = "integer",
+            name = "affectedSessionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessions = schema.new({
+            id = id.from(_N, "RootCauseCluster", "affectedSessions"),
+            type = "list",
+            name = "affectedSessions",
+            target_id = prelude.Document.id,
+            list_member = M.AffectedSession,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailureSubCategoryCluster = schema.new({
+    id = id.from(_N, "FailureSubCategoryCluster"),
+    type = "structure",
+    members = {
+        clusterId = schema.new({
+            id = id.from(_N, "FailureSubCategoryCluster", "clusterId"),
+            type = "integer",
+            name = "clusterId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "FailureSubCategoryCluster", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "FailureSubCategoryCluster", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessionCount = schema.new({
+            id = id.from(_N, "FailureSubCategoryCluster", "affectedSessionCount"),
+            type = "integer",
+            name = "affectedSessionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        rootCauses = schema.new({
+            id = id.from(_N, "FailureSubCategoryCluster", "rootCauses"),
+            type = "list",
+            name = "rootCauses",
+            target_id = prelude.Document.id,
+            list_member = M.RootCauseCluster,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailureCategoryCluster = schema.new({
+    id = id.from(_N, "FailureCategoryCluster"),
+    type = "structure",
+    members = {
+        clusterId = schema.new({
+            id = id.from(_N, "FailureCategoryCluster", "clusterId"),
+            type = "integer",
+            name = "clusterId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "FailureCategoryCluster", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "FailureCategoryCluster", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessionCount = schema.new({
+            id = id.from(_N, "FailureCategoryCluster", "affectedSessionCount"),
+            type = "integer",
+            name = "affectedSessionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        subCategories = schema.new({
+            id = id.from(_N, "FailureCategoryCluster", "subCategories"),
+            type = "list",
+            name = "subCategories",
+            target_id = prelude.Document.id,
+            list_member = M.FailureSubCategoryCluster,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FailureAnalysisResultContent = schema.new({
+    id = id.from(_N, "FailureAnalysisResultContent"),
+    type = "structure",
+    members = {
+        failures = schema.new({
+            id = id.from(_N, "FailureAnalysisResultContent", "failures"),
+            type = "list",
+            name = "failures",
+            target_id = prelude.Document.id,
+            list_member = M.FailureCategoryCluster,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Insight = schema.new({
+    id = id.from(_N, "Insight"),
+    type = "structure",
+    members = {
+        insightId = schema.new({
+            id = id.from(_N, "Insight", "insightId"),
+            type = "string",
+            name = "insightId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CloudWatchOutputConfig = schema.new({
     id = id.from(_N, "CloudWatchOutputConfig"),
     type = "structure",
@@ -4961,6 +5475,102 @@ M.OutputConfig = schema.new({
             name = "cloudWatchConfig",
             target_id = id.from(_N, "CloudWatchOutputConfig"),
             target = M.CloudWatchOutputConfig,
+        }),
+    },
+})
+
+M.UserIntentAffectedSession = schema.new({
+    id = id.from(_N, "UserIntentAffectedSession"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "UserIntentAffectedSession", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        userMessages = schema.new({
+            id = id.from(_N, "UserIntentAffectedSession", "userMessages"),
+            type = "list",
+            name = "userMessages",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UserIntentCluster = schema.new({
+    id = id.from(_N, "UserIntentCluster"),
+    type = "structure",
+    members = {
+        clusterId = schema.new({
+            id = id.from(_N, "UserIntentCluster", "clusterId"),
+            type = "integer",
+            name = "clusterId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UserIntentCluster", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UserIntentCluster", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessionCount = schema.new({
+            id = id.from(_N, "UserIntentCluster", "affectedSessionCount"),
+            type = "integer",
+            name = "affectedSessionCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        affectedSessions = schema.new({
+            id = id.from(_N, "UserIntentCluster", "affectedSessions"),
+            type = "list",
+            name = "affectedSessions",
+            target_id = prelude.Document.id,
+            list_member = M.UserIntentAffectedSession,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UserIntentClusteringResultContent = schema.new({
+    id = id.from(_N, "UserIntentClusteringResultContent"),
+    type = "structure",
+    members = {
+        userIntents = schema.new({
+            id = id.from(_N, "UserIntentClusteringResultContent", "userIntents"),
+            type = "list",
+            name = "userIntents",
+            target_id = prelude.Document.id,
+            list_member = M.UserIntentCluster,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -5022,6 +5632,13 @@ M.GetBatchEvaluationOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Evaluator,
         }),
+        insights = schema.new({
+            id = id.from(_N, "GetBatchEvaluationOutput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
         dataSourceConfig = schema.new({
             id = id.from(_N, "GetBatchEvaluationOutput", "dataSourceConfig"),
             type = "union",
@@ -5042,6 +5659,27 @@ M.GetBatchEvaluationOutput = schema.new({
             name = "evaluationResults",
             target_id = id.from(_N, "EvaluationJobResults"),
             target = M.EvaluationJobResults,
+        }),
+        failureAnalysisResult = schema.new({
+            id = id.from(_N, "GetBatchEvaluationOutput", "failureAnalysisResult"),
+            type = "structure",
+            name = "failureAnalysisResult",
+            target_id = id.from(_N, "FailureAnalysisResultContent"),
+            target = M.FailureAnalysisResultContent,
+        }),
+        userIntentResult = schema.new({
+            id = id.from(_N, "GetBatchEvaluationOutput", "userIntentResult"),
+            type = "structure",
+            name = "userIntentResult",
+            target_id = id.from(_N, "UserIntentClusteringResultContent"),
+            target = M.UserIntentClusteringResultContent,
+        }),
+        executionSummaryResult = schema.new({
+            id = id.from(_N, "GetBatchEvaluationOutput", "executionSummaryResult"),
+            type = "structure",
+            name = "executionSummaryResult",
+            target_id = id.from(_N, "ExecutionSummaryClusteringResultContent"),
+            target = M.ExecutionSummaryClusteringResultContent,
         }),
         errorDetails = schema.new({
             id = id.from(_N, "GetBatchEvaluationOutput", "errorDetails"),
@@ -5064,6 +5702,12 @@ M.GetBatchEvaluationOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "GetBatchEvaluationOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5202,9 +5846,6 @@ M.SystemPromptRecommendationConfig = schema.new({
             name = "evaluationConfig",
             target_id = id.from(_N, "RecommendationEvaluationConfig"),
             target = M.RecommendationEvaluationConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -5436,6 +6077,12 @@ M.SystemPromptRecommendationResult = schema.new({
             target_id = id.from(_N, "RecommendationResultConfigurationBundle"),
             target = M.RecommendationResultConfigurationBundle,
         }),
+        explanation = schema.new({
+            id = id.from(_N, "SystemPromptRecommendationResult", "explanation"),
+            type = "string",
+            name = "explanation",
+            target_id = prelude.String.id,
+        }),
         errorCode = schema.new({
             id = id.from(_N, "SystemPromptRecommendationResult", "errorCode"),
             type = "string",
@@ -5468,6 +6115,12 @@ M.ToolDescriptionOutput = schema.new({
             id = id.from(_N, "ToolDescriptionOutput", "recommendedToolDescription"),
             type = "string",
             name = "recommendedToolDescription",
+            target_id = prelude.String.id,
+        }),
+        explanation = schema.new({
+            id = id.from(_N, "ToolDescriptionOutput", "explanation"),
+            type = "string",
+            name = "explanation",
             target_id = prelude.String.id,
         }),
     },
@@ -5619,6 +6272,12 @@ M.GetRecommendationOutput = schema.new({
             target_id = id.from(_N, "RecommendationResult"),
             target = M.RecommendationResult,
         }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "GetRecommendationOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5758,6 +6417,13 @@ M.BatchEvaluationSummary = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Evaluator,
         }),
+        insights = schema.new({
+            id = id.from(_N, "BatchEvaluationSummary", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
         evaluationResults = schema.new({
             id = id.from(_N, "BatchEvaluationSummary", "evaluationResults"),
             type = "structure",
@@ -5771,6 +6437,12 @@ M.BatchEvaluationSummary = schema.new({
             name = "errorDetails",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "BatchEvaluationSummary", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
         updatedAt = schema.new({
             id = id.from(_N, "BatchEvaluationSummary", "updatedAt"),
@@ -6089,6 +6761,13 @@ M.StartBatchEvaluationInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Evaluator,
         }),
+        insights = schema.new({
+            id = id.from(_N, "StartBatchEvaluationInput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
         dataSourceConfig = schema.new({
             id = id.from(_N, "StartBatchEvaluationInput", "dataSourceConfig"),
             type = "union",
@@ -6114,6 +6793,20 @@ M.StartBatchEvaluationInput = schema.new({
             name = "evaluationMetadata",
             target_id = id.from(_N, "EvaluationMetadata"),
             target = M.EvaluationMetadata,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "StartBatchEvaluationInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "StartBatchEvaluationInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
         description = schema.new({
             id = id.from(_N, "StartBatchEvaluationInput", "description"),
@@ -6162,6 +6855,13 @@ M.StartBatchEvaluationOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Evaluator,
         }),
+        insights = schema.new({
+            id = id.from(_N, "StartBatchEvaluationOutput", "insights"),
+            type = "list",
+            name = "insights",
+            target_id = prelude.Document.id,
+            list_member = M.Insight,
+        }),
         status = schema.new({
             id = id.from(_N, "StartBatchEvaluationOutput", "status"),
             type = "string",
@@ -6187,6 +6887,20 @@ M.StartBatchEvaluationOutput = schema.new({
             name = "outputConfig",
             target_id = id.from(_N, "OutputConfig"),
             target = M.OutputConfig,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "StartBatchEvaluationOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "StartBatchEvaluationOutput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
         }),
         description = schema.new({
             id = id.from(_N, "StartBatchEvaluationOutput", "description"),
@@ -6235,6 +6949,12 @@ M.StartRecommendationInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "StartRecommendationInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "StartRecommendationInput", "clientToken"),
             type = "string",
@@ -6243,6 +6963,14 @@ M.StartRecommendationInput = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "StartRecommendationInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })

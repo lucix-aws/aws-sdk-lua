@@ -1472,6 +1472,8 @@ local record M
         commitMessage: string
         -- The source that created this version, including the source name and optional ARN.
         createdBy: VersionCreatedBySource
+        -- Optional KMS key ARN for encrypting component configurations.
+        kmsKeyArn: string
         -- A map of tag keys and values to assign to the configuration bundle. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
         tags: {string : string}
     end
@@ -1547,6 +1549,8 @@ local record M
         createdAt: number
         -- The timestamp when the configuration bundle was last updated.
         updatedAt: number
+        -- KMS key ARN used to encrypt component configurations, if CMK was provided.
+        kmsKeyArn: string
     end
 
     record GetConfigurationBundleVersionInput
@@ -1575,6 +1579,8 @@ local record M
         createdAt: number
         -- The timestamp when this specific version was created.
         versionCreatedAt: number
+        -- KMS key ARN used to encrypt component configurations, if CMK was provided.
+        kmsKeyArn: string
     end
 
     record ListConfigurationBundlesInput
@@ -1666,6 +1672,8 @@ local record M
         commitMessage: string
         -- The source that created this version, including the source name and optional ARN.
         createdBy: VersionCreatedBySource
+        -- Optional KMS key ARN for encrypting component configurations. If provided, components will be encrypted with this key. If the bundle already has a KMS key, this rotates to the new key.
+        kmsKeyArn: string
     end
 
     record UpdateConfigurationBundleOutput
@@ -4973,6 +4981,18 @@ local record M
         status: string
     end
 
+    enum ClusteringFrequency
+        "DAILY"
+        "WEEKLY"
+        "MONTHLY"
+    end
+
+    -- Configuration for periodic batch evaluation clustering, specifying how often clustering jobs run.
+    record ClusteringConfig
+        -- The list of frequencies at which clustering batch evaluations are triggered.
+        frequencies: {string}
+    end
+
     -- The configuration for reading agent traces from CloudWatch logs as input for online evaluation.
     record CloudWatchLogsInputConfig
         -- The list of CloudWatch log group names to monitor for agent traces.
@@ -4991,6 +5011,11 @@ local record M
     record EvaluatorReference
         -- The unique identifier of the evaluator. Can reference builtin evaluators (e.g., Builtin.Helpfulness) or custom evaluators.
         evaluatorId: string
+    end
+
+    -- A reference to an insight analysis to run against sessions.
+    record Insight
+        insightId: string
     end
 
     enum FilterOperator
@@ -5059,6 +5084,10 @@ local record M
         dataSourceConfig: DataSourceConfig
         -- The list of evaluators to apply during online evaluation. Can include both built-in evaluators and custom evaluators created with CreateEvaluator.
         evaluators: {EvaluatorReference}
+        -- The list of insight types to run against agent sessions.
+        insights: {Insight}
+        -- Configuration for periodic batch evaluation clustering of insight results.
+        clusteringConfig: ClusteringConfig
         -- The Amazon Resource Name (ARN) of the IAM role that grants permissions to read from CloudWatch logs, write evaluation results, and invoke Amazon Bedrock models for evaluation. If the configuration references evaluators encrypted with a customer managed KMS key, this role must also have kms:Decrypt permission on the KMS key. The service validates this permission at configuration creation time. For more information, see Encryption at rest for AgentCore Evaluations.
         evaluationExecutionRoleArn: string
         -- Whether to enable the online evaluation configuration immediately upon creation. If true, evaluation begins automatically.
@@ -5144,6 +5173,10 @@ local record M
         dataSourceConfig: DataSourceConfig
         -- The list of evaluators applied during online evaluation.
         evaluators: {EvaluatorReference}
+        -- The list of insight types configured for this evaluation.
+        insights: {Insight}
+        -- The clustering configuration for periodic batch evaluation.
+        clusteringConfig: ClusteringConfig
         -- The output configuration specifying where evaluation results are written.
         outputConfig: OutputConfig
         -- The Amazon Resource Name (ARN) of the IAM role used for evaluation execution.
@@ -5187,6 +5220,10 @@ local record M
         updatedAt: number
         -- The reason for failure if the online evaluation configuration execution failed.
         failureReason: string
+        -- The list of insight types configured for this evaluation.
+        insights: {Insight}
+        -- The clustering configuration for periodic batch evaluation.
+        clusteringConfig: ClusteringConfig
     end
 
     record ListOnlineEvaluationConfigsOutput
@@ -5209,6 +5246,10 @@ local record M
         dataSourceConfig: DataSourceConfig
         -- The updated list of evaluators to apply during online evaluation.
         evaluators: {EvaluatorReference}
+        -- The updated list of insight types to run against agent sessions.
+        insights: {Insight}
+        -- The updated clustering configuration for periodic batch evaluation.
+        clusteringConfig: ClusteringConfig
         -- The updated Amazon Resource Name (ARN) of the IAM role used for evaluation execution.
         evaluationExecutionRoleArn: string
         -- The updated execution status to enable or disable the online evaluation.

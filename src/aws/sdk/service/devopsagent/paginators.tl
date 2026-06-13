@@ -202,4 +202,22 @@ function M.items_list_services(client, input)
     })
 end
 
+--- Returns a page iterator for listTriggers.
+function M.pages_list_triggers(client, input)
+    return paginator.pages(client, "listTriggers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listTriggers.
+function M.items_list_triggers(client, input)
+    return paginator.items(client, "listTriggers", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 return M
