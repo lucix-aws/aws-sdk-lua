@@ -23,6 +23,7 @@ local record Client
     converseStream: function(Client, types.ConverseStreamInput, ? base_client.InvokeOptions): async.Operation<types.ConverseStreamOperationOutput>
     countTokens: function(Client, types.CountTokensOperationInput, ? base_client.InvokeOptions): async.Operation<types.CountTokensOutput>
     getAsyncInvoke: function(Client, types.GetAsyncInvokeInput, ? base_client.InvokeOptions): async.Operation<types.GetAsyncInvokeOutput>
+    invokeGuardrailChecks: function(Client, types.InvokeGuardrailChecksInput, ? base_client.InvokeOptions): async.Operation<types.InvokeGuardrailChecksOutput>
     invokeModel: function(Client, types.InvokeModelInput, ? base_client.InvokeOptions): async.Operation<types.InvokeModelOutput>
     invokeModelWithBidirectionalStream: function(Client, types.InvokeModelWithBidirectionalStreamOperationInput, ? base_client.InvokeOptions): async.Operation<types.InvokeModelWithBidirectionalStreamOperationOutput>
     invokeModelWithResponseStream: function(Client, types.InvokeModelWithResponseStreamInput, ? base_client.InvokeOptions): async.Operation<types.InvokeModelWithResponseStreamOutput>
@@ -90,6 +91,10 @@ end
 
 function C:getAsyncInvoke(input: types.GetAsyncInvokeInput, options?: base_client.InvokeOptions): async.Operation<types.GetAsyncInvokeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAsyncInvoke as schema.OperationSchema, input, options) as async.Operation<types.GetAsyncInvokeOutput>
+end
+
+function C:invokeGuardrailChecks(input: types.InvokeGuardrailChecksInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeGuardrailChecksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InvokeGuardrailChecks as schema.OperationSchema, input, options) as async.Operation<types.InvokeGuardrailChecksOutput>
 end
 
 function C:invokeModel(input: types.InvokeModelInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeModelOutput>

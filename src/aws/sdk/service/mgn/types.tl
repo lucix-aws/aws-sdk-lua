@@ -2619,6 +2619,27 @@ local record M
         "IPV6"
     end
 
+    -- FSx for ONTAP storage configuration.
+    record FsxOntapConfiguration
+        -- FSx ONTAP configuration storage virtual machine ID.
+        storageVirtualMachineId: string
+        -- FSx ONTAP configuration credentials secret ARN.
+        credentialsSecretArn: string
+    end
+
+    enum StorageType
+        "EBS"
+        "FSX_ONTAP"
+    end
+
+    -- Storage configuration for replication.
+    record StorageConfiguration
+        -- Storage configuration storage type.
+        storageType: string
+        -- Storage configuration FSx ONTAP configuration.
+        fsxOntapConfiguration: FsxOntapConfiguration
+    end
+
     record CreateReplicationConfigurationTemplateInput
         -- Request to configure the Staging Area subnet ID during Replication Settings template creation.
         stagingAreaSubnetId: string
@@ -2652,6 +2673,8 @@ local record M
         internetProtocol: string
         -- Request to store snapshot on local zone during Replication Settings template creation.
         storeSnapshotOnLocalZone: boolean
+        -- Request to configure storage during Replication Settings template creation.
+        storageConfiguration: StorageConfiguration
     end
 
     record CreateReplicationConfigurationTemplateOutput
@@ -2691,6 +2714,8 @@ local record M
         internetProtocol: string
         -- Replication Configuration template store snapshot on local zone.
         storeSnapshotOnLocalZone: boolean
+        -- Replication Configuration template storage configuration.
+        storageConfiguration: StorageConfiguration
     end
 
     record DeleteReplicationConfigurationTemplateInput
@@ -2747,6 +2772,8 @@ local record M
         internetProtocol: string
         -- Replication Configuration template store snapshot on local zone.
         storeSnapshotOnLocalZone: boolean
+        -- Replication Configuration template storage configuration.
+        storageConfiguration: StorageConfiguration
     end
 
     record DescribeReplicationConfigurationTemplatesOutput
@@ -2791,6 +2818,8 @@ local record M
         internetProtocol: string
         -- Update replication configuration template store snapshot on local zone request.
         storeSnapshotOnLocalZone: boolean
+        -- Update replication configuration template storage configuration request.
+        storageConfiguration: StorageConfiguration
     end
 
     record UpdateReplicationConfigurationTemplateOutput
@@ -2830,6 +2859,8 @@ local record M
         internetProtocol: string
         -- Replication Configuration template store snapshot on local zone.
         storeSnapshotOnLocalZone: boolean
+        -- Replication Configuration template storage configuration.
+        storageConfiguration: StorageConfiguration
     end
 
     enum ChangeServerLifeCycleStateSourceServerLifecycleState
@@ -2878,6 +2909,8 @@ local record M
         "FAILED_TO_START_DATA_TRANSFER"
         "UNSUPPORTED_VM_CONFIGURATION"
         "LAST_SNAPSHOT_JOB_FAILED"
+        "FAILED_TO_SETUP_FSX_PROXY"
+        "FAILED_TO_CREATE_FSX_SNAPSHOT"
     end
 
     -- Error in data replication.
@@ -2900,6 +2933,7 @@ local record M
         "PAIR_REPLICATION_SERVER_WITH_AGENT"
         "CONNECT_AGENT_TO_REPLICATION_SERVER"
         "START_DATA_TRANSFER"
+        "SETUP_FSX_PROXY"
     end
 
     enum DataReplicationInitiationStepStatus
@@ -2984,6 +3018,29 @@ local record M
         "STOPPED"
     end
 
+    enum LastKnownCheckStatus
+        "PASSED"
+        "FAILED"
+        "PENDING"
+    end
+
+    enum LastKnownCheckType
+        "EC2"
+        "FSx"
+    end
+
+    -- Last known check performed on a launched instance.
+    record LastKnownCheck
+        -- Last known check name.
+        name: string
+        -- Last known check status.
+        status: string
+        -- Last known check error.
+        error: string
+        -- Last known check timestamp.
+        checkedAt: number
+    end
+
     -- Launched instance.
     record LaunchedInstance
         -- Launched instance EC2 ID.
@@ -2992,6 +3049,10 @@ local record M
         jobID: string
         -- Launched instance first boot.
         firstBoot: string
+        -- Launched instance last known checks.
+        lastKnownChecks: {LastKnownCheck}
+        -- Launched instance last known FSx checks status.
+        lastKnownFsxChecksStatus: string
     end
 
     -- Lifecycle Cutover finalized
@@ -3384,6 +3445,7 @@ local record M
         "STANDARD"
         "GP3"
         "IO2"
+        "FSX_ONTAP"
     end
 
     -- Replication Configuration replicated disk.
@@ -3437,6 +3499,8 @@ local record M
         internetProtocol: string
         -- Replication Configuration store snapshot on local zone.
         storeSnapshotOnLocalZone: boolean
+        -- Replication Configuration storage configuration.
+        storageConfiguration: StorageConfiguration
     end
 
     -- Source server post migration custom action filters.
@@ -3923,6 +3987,8 @@ local record M
         internetProtocol: string
         -- Update replication configuration store snapshot on local zone.
         storeSnapshotOnLocalZone: boolean
+        -- Update replication configuration storage configuration.
+        storageConfiguration: StorageConfiguration
     end
 
     record UpdateReplicationConfigurationOutput
@@ -3962,6 +4028,8 @@ local record M
         internetProtocol: string
         -- Replication Configuration store snapshot on local zone.
         storeSnapshotOnLocalZone: boolean
+        -- Replication Configuration storage configuration.
+        storageConfiguration: StorageConfiguration
     end
 
     record UpdateSourceServerInput
@@ -3971,6 +4039,12 @@ local record M
         sourceServerID: string
         -- Update Source Server request connector action.
         connectorAction: SourceServerConnectorAction
+        -- Update Source Server request user provided ID.
+        userProvidedID: string
+        -- Update Source Server request FQDN for action framework.
+        fqdnForActionFramework: string
+        -- Update Source Server request platform operating system.
+        platform: string
     end
 
     record UpdateSourceServerOutput

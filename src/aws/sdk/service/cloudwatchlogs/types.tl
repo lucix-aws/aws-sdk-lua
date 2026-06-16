@@ -812,8 +812,7 @@ local record M
 
     record CreateScheduledQueryInput
         -- The name of the scheduled query. The name must be unique within your account and region.
-        -- Valid characters are alphanumeric characters, hyphens, underscores, and periods. Length must
-        -- be between 1 and 255 characters.
+        -- Length must be between 1 and 300 characters.
         name: string
         -- An optional description for the scheduled query to help identify its purpose and
         -- functionality.
@@ -836,6 +835,10 @@ local record M
         -- The time offset in seconds that defines the lookback period for the query. This determines
         -- how far back in time the query searches from the execution time.
         startTimeOffset: number
+        -- The time offset in seconds that defines the end of the lookback period for the query.
+        -- Together with startTimeOffset, this determines the time window relative to the
+        -- execution time over which the query runs.
+        endTimeOffset: number
         -- Configuration for where to deliver query results. Currently supports Amazon S3 destinations for
         -- storing query output.
         destinationConfiguration: DestinationConfiguration
@@ -2908,13 +2911,18 @@ local record M
         -- If there are more log events remaining in the results, the response includes a
         -- nextToken. You can use this token in a subsequent GetQueryResults
         -- request to get the next set of results. You can retrieve up to 100,000 log event results
-        -- from a query by paginating with this token.
+        -- from a query by paginating with this token. This is only supported for Logs Insights QL and is currently not supported for PPL and SQL query languages.
         nextToken: string
     end
 
     record GetScheduledQueryInput
         -- The ARN or name of the scheduled query to retrieve.
         identifier: string
+    end
+
+    enum ScheduleType
+        "CUSTOMER_MANAGED"
+        "AWS_MANAGED"
     end
 
     record GetScheduledQueryOutput
@@ -2936,10 +2944,16 @@ local record M
         timezone: string
         -- The time offset in seconds that defines the lookback period for the query.
         startTimeOffset: number
+        -- The time offset in seconds that defines the end of the lookback period for the
+        -- query.
+        endTimeOffset: number
         -- Configuration for where query results are delivered.
         destinationConfiguration: DestinationConfiguration
         -- The current state of the scheduled query.
         state: string
+        -- The schedule type of the scheduled query. Valid values are
+        -- CUSTOMER_MANAGED and AWS_MANAGED.
+        scheduleType: string
         -- The timestamp when the scheduled query was last executed.
         lastTriggeredTime: number
         -- The status of the most recent execution of the scheduled query.
@@ -3613,6 +3627,10 @@ local record M
         -- Filter scheduled queries by state. Valid values are ENABLED and
         -- DISABLED. If not specified, all scheduled queries are returned.
         state: string
+        -- Filter scheduled queries by schedule type. Valid values are
+        -- CUSTOMER_MANAGED and AWS_MANAGED. If not specified, scheduled
+        -- queries of all schedule types are returned.
+        scheduleType: string
     end
 
     -- Summary information about a scheduled query, including basic configuration and execution
@@ -3624,6 +3642,9 @@ local record M
         name: string
         -- The current state of the scheduled query.
         state: string
+        -- The schedule type of the scheduled query. Valid values are
+        -- CUSTOMER_MANAGED and AWS_MANAGED.
+        scheduleType: string
         -- The timestamp when the scheduled query was last executed.
         lastTriggeredTime: number
         -- The status of the most recent execution.
@@ -4584,10 +4605,7 @@ local record M
         -- The query string to use. For more information, see CloudWatch Logs Insights Query
         -- Syntax.
         queryString: string
-        -- The maximum number of log events to return in the query. If the query string uses the
-        -- fields command, only the specified fields and their values are returned. The
-        -- default is 10,000.
-        -- The maximum value is 100,000.
+        -- The maximum number of log events to return from the query. The maximum limit is 100,000. The maximum events returned in a single GetQueryResults API call is 10,000 log events per request. You can retrieve up to 100,000 log event results from a query by paginating with the nextToken. 100,000 limit is only supported for Logs Insights QL and is currently not supported for PPL and SQL query languages.
         limit: number
     end
 
@@ -4840,6 +4858,9 @@ local record M
         timezone: string
         -- The updated time offset in seconds that defines the lookback period for the query.
         startTimeOffset: number
+        -- The updated time offset in seconds that defines the end of the lookback period for
+        -- the query.
+        endTimeOffset: number
         -- The updated configuration for where to deliver query results.
         destinationConfiguration: DestinationConfiguration
         -- The updated start time for the scheduled query in Unix epoch format.
@@ -4872,10 +4893,14 @@ local record M
         timezone: string
         -- The time offset of the updated scheduled query.
         startTimeOffset: number
+        -- The end time offset in seconds of the updated scheduled query.
+        endTimeOffset: number
         -- The destination configuration of the updated scheduled query.
         destinationConfiguration: DestinationConfiguration
         -- The state of the updated scheduled query.
         state: string
+        -- The schedule type of the updated scheduled query.
+        scheduleType: string
         -- The timestamp when the updated scheduled query was last executed.
         lastTriggeredTime: number
         -- The status of the most recent execution of the updated scheduled query.

@@ -5242,6 +5242,22 @@ local record M
     record DeleteEnvironmentProfileOutput
     end
 
+    record DeleteLineageEventInput
+        -- The ID of the domain.
+        domainIdentifier: string
+        -- The ID of the lineage event.
+        identifier: string
+    end
+
+    record DeleteLineageEventOutput
+        -- The ID of the lineage event.
+        id: string
+        -- The ID of the domain.
+        domainId: string
+        -- The progressing status of the lineage event.
+        processingStatus: string
+    end
+
     record DeleteProjectInput
         -- The ID of the Amazon DataZone domain in which the project is deleted.
         domainIdentifier: string

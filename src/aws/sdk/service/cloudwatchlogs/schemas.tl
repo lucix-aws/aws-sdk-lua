@@ -1918,6 +1918,12 @@ M.CreateScheduledQueryInput = schema.new({
             name = "startTimeOffset",
             target_id = prelude.Long.id,
         }),
+        endTimeOffset = schema.new({
+            id = id.from(_N, "CreateScheduledQueryInput", "endTimeOffset"),
+            type = "long",
+            name = "endTimeOffset",
+            target_id = prelude.Long.id,
+        }),
         destinationConfiguration = schema.new({
             id = id.from(_N, "CreateScheduledQueryInput", "destinationConfiguration"),
             type = "structure",
@@ -6044,6 +6050,12 @@ M.GetScheduledQueryOutput = schema.new({
             name = "startTimeOffset",
             target_id = prelude.Long.id,
         }),
+        endTimeOffset = schema.new({
+            id = id.from(_N, "GetScheduledQueryOutput", "endTimeOffset"),
+            type = "long",
+            name = "endTimeOffset",
+            target_id = prelude.Long.id,
+        }),
         destinationConfiguration = schema.new({
             id = id.from(_N, "GetScheduledQueryOutput", "destinationConfiguration"),
             type = "structure",
@@ -6055,6 +6067,12 @@ M.GetScheduledQueryOutput = schema.new({
             id = id.from(_N, "GetScheduledQueryOutput", "state"),
             type = "string",
             name = "state",
+            target_id = prelude.String.id,
+        }),
+        scheduleType = schema.new({
+            id = id.from(_N, "GetScheduledQueryOutput", "scheduleType"),
+            type = "string",
+            name = "scheduleType",
             target_id = prelude.String.id,
         }),
         lastTriggeredTime = schema.new({
@@ -7503,6 +7521,12 @@ M.ListScheduledQueriesInput = schema.new({
             name = "state",
             target_id = prelude.String.id,
         }),
+        scheduleType = schema.new({
+            id = id.from(_N, "ListScheduledQueriesInput", "scheduleType"),
+            type = "string",
+            name = "scheduleType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7526,6 +7550,12 @@ M.ScheduledQuerySummary = schema.new({
             id = id.from(_N, "ScheduledQuerySummary", "state"),
             type = "string",
             name = "state",
+            target_id = prelude.String.id,
+        }),
+        scheduleType = schema.new({
+            id = id.from(_N, "ScheduledQuerySummary", "scheduleType"),
+            type = "string",
+            name = "scheduleType",
             target_id = prelude.String.id,
         }),
         lastTriggeredTime = schema.new({
@@ -9740,6 +9770,12 @@ M.UpdateScheduledQueryInput = schema.new({
             name = "startTimeOffset",
             target_id = prelude.Long.id,
         }),
+        endTimeOffset = schema.new({
+            id = id.from(_N, "UpdateScheduledQueryInput", "endTimeOffset"),
+            type = "long",
+            name = "endTimeOffset",
+            target_id = prelude.Long.id,
+        }),
         destinationConfiguration = schema.new({
             id = id.from(_N, "UpdateScheduledQueryInput", "destinationConfiguration"),
             type = "structure",
@@ -9836,6 +9872,12 @@ M.UpdateScheduledQueryOutput = schema.new({
             name = "startTimeOffset",
             target_id = prelude.Long.id,
         }),
+        endTimeOffset = schema.new({
+            id = id.from(_N, "UpdateScheduledQueryOutput", "endTimeOffset"),
+            type = "long",
+            name = "endTimeOffset",
+            target_id = prelude.Long.id,
+        }),
         destinationConfiguration = schema.new({
             id = id.from(_N, "UpdateScheduledQueryOutput", "destinationConfiguration"),
             type = "structure",
@@ -9847,6 +9889,12 @@ M.UpdateScheduledQueryOutput = schema.new({
             id = id.from(_N, "UpdateScheduledQueryOutput", "state"),
             type = "string",
             name = "state",
+            target_id = prelude.String.id,
+        }),
+        scheduleType = schema.new({
+            id = id.from(_N, "UpdateScheduledQueryOutput", "scheduleType"),
+            type = "string",
+            name = "scheduleType",
             target_id = prelude.String.id,
         }),
         lastTriggeredTime = schema.new({

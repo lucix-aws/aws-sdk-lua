@@ -8,6 +8,7 @@ local record M
         "COUNT"
         "CAPTCHA"
         "CHALLENGE"
+        "MONETIZE"
         "EXCLUDED_AS_COUNT"
     end
 
@@ -1629,6 +1630,12 @@ local record M
         CustomRequestHandling: CustomRequestHandling
     end
 
+    -- Specifies the monetize action settings for a rule. When WAF applies this action, it returns an HTTP 402 Payment Required response containing pricing information that the requesting client uses to complete payment and gain access to the resource. This is a terminating action-if the client does not complete the 402 payment flow, the request is blocked. This action is available only for web ACLs associated with Amazon CloudFront distributions. You must configure a MonetizationConfig on the web ACL or rule group before adding rules that use this action. You cannot use the Monetize action for rate-based rules.
+    record MonetizeAction
+        -- An integer multiplier applied to the base price defined in the web ACL's MonetizationConfig. The effective price for the request is the base price multiplied by this value. Specify as a string. Valid values: 1 to 100.
+        PriceMultiplier: string
+    end
+
     -- The action that WAF should take on a web request when it matches a rule's
     -- statement. Settings at the web ACL level can override the rule action setting.
     record RuleAction
@@ -1642,6 +1649,8 @@ local record M
         Captcha: CaptchaAction
         -- Instructs WAF to run a Challenge check against the web request.
         Challenge: ChallengeAction
+        -- Instructs WAF to return an HTTP 402 Payment Required response with a price manifest. The requesting client can complete payment and resubmit the request to gain access. This is a terminating action-requests that do not complete payment are blocked. This action is available only for web ACLs associated with Amazon CloudFront distributions and requires a MonetizationConfig on the web ACL.
+        Monetize: MonetizeAction
     end
 
     -- Action setting to use in the place of a rule action that is configured inside the rule group. You specify one override for each rule whose action you want to change.
@@ -2056,6 +2065,10 @@ local record M
         "ACP_RULE_SET_RESPONSE_INSPECTION"
         "DATA_PROTECTION_CONFIG"
         "LOW_REPUTATION_MODE"
+        "MONETIZATION_CONFIG"
+        "WALLET_ADDRESS"
+        "PRICE_AMOUNT"
+        "PAYMENT_NETWORK"
     end
 
     -- The operation failed because WAF didn't recognize a parameter in the request. For
@@ -2417,6 +2430,55 @@ local record M
         -- For information about the limits on count and size for custom request and response settings, see WAF quotas
         -- in the WAF Developer Guide.
         Content: string
+    end
+
+    enum BlockchainChain
+        "BASE"
+        "SOLANA"
+        "BASE_SEPOLIA"
+        "SOLANA_DEVNET"
+    end
+
+    enum CryptoCurrency
+        "USDC"
+    end
+
+    -- The price per request for a payment network, specifying the amount and cryptocurrency.
+    record Price
+        -- The price per request as a decimal string in the specified currency. Minimum: 0.001. Maximum: 999999999.999. Supports up to 3 decimal places.
+        Amount: string
+        -- The cryptocurrency for payment. Currently only USDC is supported.
+        Currency: string
+    end
+
+    -- A blockchain payment network configuration for receiving AI bot monetization payments. Specifies the blockchain chain, your wallet address on that chain, and the price per request.
+    record PaymentNetwork
+        -- The blockchain network for receiving payments. Production networks: BASE (Base mainnet), SOLANA (Solana mainnet). Test networks: BASE_SEPOLIA (Base Sepolia testnet), SOLANA_DEVNET (Solana Devnet).
+        Chain: string
+        -- Your wallet address on the specified blockchain where payments are sent. For EVM chains (Base, Base Sepolia), provide a valid Ethereum address (42 characters including 0x prefix). For Solana chains, provide a valid Base58-encoded public key (32-44 characters).
+        -- For EVM addresses, WAF performs EIP-55 checksum validation for typo detection when the address uses a mix of lower and upper case letters. You can bypass this validation by providing the address in all lowercase or all uppercase.
+        WalletAddress: string
+        -- The price configuration for this payment network. Currently supports a single price entry in USDC.
+        Prices: {Price}
+    end
+
+    -- The cryptocurrency payment configuration for AI bot monetization. Contains the list of blockchain payment networks where you receive payments.
+    record CryptoConfig
+        -- The blockchain payment networks configured to receive payments. You can specify 1 to 2 networks. All networks must be in the same environment-either all production networks (Base, Solana) or all test networks (Base Sepolia, Solana Devnet).
+        PaymentNetworks: {PaymentNetwork}
+    end
+
+    enum CurrencyMode
+        "REAL"
+        "TEST"
+    end
+
+    -- The monetization configuration for a web ACL or rule group. Specifies the cryptocurrency payment networks and currency mode for AI bot monetization. You must provide this configuration when any rule in the web ACL or rule group uses the Monetize action.
+    record MonetizationConfig
+        -- The cryptocurrency payment configuration, including the blockchain networks and wallet addresses where you receive payments.
+        CryptoConfig: CryptoConfig
+        -- Specifies whether the configuration uses real or test currency. Set to REAL to settle payments in USDC on production blockchain networks (Base, Solana). Set to TEST to settle on testnet networks (Base Sepolia, Solana Devnet) with tokens that have no monetary value. If not specified, defaults to REAL.
+        CurrencyMode: string
     end
 
     -- High-level information about a RuleGroup, returned by operations like create and list. This provides information like the ID, that you can use to retrieve and manage a RuleGroup, and the ARN, that you provide to the RuleGroupReferenceStatement to use the rule group in a Rule.
@@ -3241,18 +3303,64 @@ local record M
         LockToken: string
     end
 
-    record GetRuleGroupInput
-        -- The name of the rule group. You cannot change the name of a rule group after you create it.
+    enum Currency
+        "USDC"
+    end
+
+    -- A filter for narrowing monetization statistics and settlement record results. Specify a filter name and one or more values to match.
+    -- Filter behavior:
+    -- Multiple values within one filter: OR (match any)
+    -- Multiple filters: AND (all must match)
+    -- No duplicate filter names allowed (rejected with error)
+    -- Duplicate values within a filter are silently deduplicated
+    -- If no CurrencyMode filter is specified, defaults to REAL
+    record MonetizationFilter
+        -- The filter name. Format: Key is a string, Value is a list of strings.
+        -- Enum-restricted (invalid values rejected):
+        -- CurrencyMode: REAL, TEST
+        -- ChainName: BASE, SOLANA, BASE_SEPOLIA, SOLANA_DEVNET
+        -- SettlementStatus: SETTLED, PENDING, FAILED, SERVICE_ERROR, SKIPPED_ORIGIN_ERROR, DUPLICATE
+        -- HttpSourceName: CF, ALB, APIGW, APPRUNNER, COGNITO, VERIFIED_ACCESS
+        -- ARN-validated:
+        -- WebACLArn: valid WAFv2 web ACL ARN
+        -- Free-text (any string up to 256 chars):
+        -- SourceName: The name of the bot. Populated from Bot Control verified bot labels.
+        -- SourceCategory: The category classification of the bot. From Bot Control categorization.
+        -- Intent: The declared intent of the bot request.
+        -- Organization: The organization operating the bot.
+        -- UriPathPrefix: The URI path of the request that was monetized.
+        -- RequestId: The WAF request ID associated with the transaction. Matches the requestId in WAF logs. Pattern: ^[a-zA-Z0-9:._\-=+/]+$
+        -- TransactionId: The blockchain transaction identifier. Pattern: ^[a-zA-Z0-9:._\-=+/]+$
+        -- TerminatingRuleName: The name of the WAF rule that triggered the Monetize action.
+        -- PayerAddress: The blockchain wallet address of the paying client. Pattern: ^[a-zA-Z0-9:._\-=+/]+$
+        -- HttpSourceId: The identifier of the Amazon Web Services resource associated with the web ACL (for example, CloudFront distribution ID).
         Name: string
-        -- Specifies whether this is for a global resource type, such as a Amazon CloudFront distribution. For an Amplify application, use CLOUDFRONT.
-        -- To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:
-        -- CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT --region=us-east-1.
-        -- API and SDKs - For all calls, use the Region endpoint us-east-1.
-        Scope: string
-        -- A unique identifier for the rule group. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.
-        Id: string
-        -- The Amazon Resource Name (ARN) of the entity.
-        ARN: string
+        -- The values to filter on. Specify as a list of strings. Results match any of the specified values (OR logic). Duplicate values are silently deduplicated. Maximum: 20 values per filter.
+        Values: {string}
+    end
+
+    enum GroupByType
+        "NAME"
+        "CATEGORY"
+        "INTENT"
+        "ORGANIZATION"
+        "WEBACL"
+    end
+
+    enum RankingSortBy
+        "REVENUE"
+        "PERCENTAGE"
+        "NAME"
+    end
+
+    enum SortOrder
+        "ASC"
+        "DESC"
+    end
+
+    enum RankingStatisticType
+        "TOP_SOURCES_BY_REVENUE"
+        "TOP_PATHS_BY_REVENUE"
     end
 
     -- In a GetSampledRequests request, the StartTime and
@@ -3282,6 +3390,176 @@ local record M
         -- Z. For example, "2016-09-27T14:50Z". You can specify any time
         -- range in the previous three hours.
         EndTime: number
+    end
+
+    record GetRevenueStatisticsInput
+        -- TOP_SOURCES_BY_REVENUE ranks revenue from AI bot traffic, grouped by the dimension you specify in the GroupBy parameter (NAME, CATEGORY, INTENT, ORGANIZATION, or WEBACL); GroupBy is required for this statistic type. TOP_PATHS_BY_REVENUE ranks revenue by path.
+        StatisticType: string
+        -- The time range for the query. Specify start and end timestamps.
+        TimeWindow: TimeWindow
+        -- Specifies whether this is for a Amazon CloudFront distribution (CLOUDFRONT) or for a regional application (REGIONAL).
+        Scope: string
+        -- The currency for the revenue amounts in the response.
+        Currency: string
+        -- The dimension to group results by: NAME, CATEGORY, INTENT, ORGANIZATION, or WEBACL. Required when StatisticType is TOP_SOURCES_BY_REVENUE. Not required for TOP_PATHS_BY_REVENUE, where results are grouped by content path. If StatisticType is TOP_SOURCES_BY_REVENUE and GroupBy is omitted, the request is rejected with a WAFInvalidParameterException.
+        GroupBy: string
+        -- Optional filters to narrow the results.
+        Filters: {MonetizationFilter}
+        -- When you get a paginated response, this marker indicates that additional results are available. Use it in a subsequent request to retrieve the next page of results.
+        NextMarker: string
+        -- The maximum number of results to return.
+        Limit: number
+        -- The field to sort results by: REVENUE, PERCENTAGE, or NAME.
+        SortBy: string
+        -- The sort order: ASC for ascending or DESC for descending.
+        SortOrder: string
+    end
+
+    -- Revenue statistics for a single content path, including the path, revenue amount, and request count.
+    record RevenuePathStatistics
+        -- The URI path.
+        Path: string
+        -- The percentage of total revenue from this path.
+        Percentage: number
+        -- The total revenue amount from this path in the specified currency.
+        Amount: string
+        -- The number of monetized requests to this path.
+        RequestCount: number
+    end
+
+    -- Revenue statistics for a single AI bot source, including the bot name, revenue amount, request count, and verification status.
+    record SourceStatistics
+        -- The name of the AI bot.
+        SourceName: string
+        -- The percentage of total revenue from this source.
+        Percentage: number
+        -- The total revenue amount from this source in the specified currency.
+        Amount: string
+        -- The number of monetized requests from this source.
+        RequestCount: number
+        -- The category of this AI bot source.
+        SourceCategory: string
+        -- The declared intent of the AI bot (for example, summarize, index, or train).
+        Intent: string
+        -- The organization associated with the AI bot.
+        Organization: string
+        -- Whether the AI bot's identity was verified.
+        Verified: boolean
+        -- The value for the group-by dimension, when grouping is applied.
+        GroupByValue: string
+    end
+
+    record GetRevenueStatisticsOutput
+        -- Statistics for top revenue sources (AI bots). Populated when StatisticType is TOP_SOURCES_BY_REVENUE.
+        SourceStatistics: {SourceStatistics}
+        -- Statistics for top revenue paths. Populated when StatisticType is TOP_PATHS_BY_REVENUE.
+        RevenuePathStatistics: {RevenuePathStatistics}
+        -- When you get a paginated response, this marker indicates that additional results are available.
+        NextMarker: string
+    end
+
+    record GetRevenueStatisticsSummaryInput
+        -- The time range for the revenue summary query. Specify start and end timestamps.
+        TimeWindow: TimeWindow
+        -- Specifies whether this is for a Amazon CloudFront distribution (CLOUDFRONT) or for a regional application (REGIONAL). AI bot monetization is only available for CLOUDFRONT scope.
+        Scope: string
+        -- The currency for the revenue amounts in the response. Currently only USDC is supported.
+        Currency: string
+        -- Optional filters to narrow the results. You can filter by source name, category, organization, intent, verified status, content path, web ACL ARN, or currency mode.
+        Filters: {MonetizationFilter}
+    end
+
+    -- A summary of AI bot monetization revenue, including total revenue, revenue by verification tier, and request counts.
+    record RevenueBreakdown
+        -- The total revenue amount in the specified currency.
+        TotalAmount: string
+        -- The revenue amount from verified AI bots.
+        VerifiedAmount: string
+        -- The revenue amount from unverified AI bots.
+        UnverifiedAmount: string
+        -- The currency of the revenue amounts.
+        Currency: string
+        -- The total number of successfully settled payment transactions.
+        TotalSettled: number
+        -- The total number of HTTP 402 Payment Required responses served to AI agents.
+        TotalMonetizeServed: number
+    end
+
+    record GetRevenueStatisticsSummaryOutput
+        -- The revenue breakdown summary for the specified time window and filters.
+        RevenueBreakdown: RevenueBreakdown
+    end
+
+    enum IntervalType
+        "MINUTELY"
+        "FIVE_MINUTELY"
+        "HOURLY"
+        "DAILY"
+    end
+
+    enum TimeSeriesStatisticType
+        "DATE_HISTOGRAM"
+        "PAYMENT_TRAFFIC"
+    end
+
+    record GetRevenueStatisticsTimeSeriesInput
+        -- The type of time series data to retrieve: DATE_HISTOGRAM for revenue over time, or PAYMENT_TRAFFIC for payment traffic patterns.
+        StatisticType: string
+        -- The time range for the query. Specify start and end timestamps.
+        TimeWindow: TimeWindow
+        -- Specifies whether this is for a Amazon CloudFront distribution (CLOUDFRONT) or for a regional application (REGIONAL).
+        Scope: string
+        -- The time interval for aggregating data points: MINUTELY, FIVE_MINUTELY, HOURLY, or DAILY.
+        Interval: string
+        -- The currency for the amounts in the response.
+        Currency: string
+        -- The dimension to group results by.
+        GroupBy: string
+        -- Optional filters to narrow the results.
+        Filters: {MonetizationFilter}
+        -- The maximum number of data points to return. Minimum: 1. Maximum: 10000.
+        Limit: number
+        -- When you get a paginated response, this marker indicates that additional results are available.
+        NextMarker: string
+    end
+
+    -- A single data point in a revenue time series, representing aggregated monetization metrics for a specific time interval.
+    record DataPointEntry
+        -- The timestamp for this data point.
+        Date: number
+        -- The number of HTTP 402 Payment Required responses served during this interval.
+        MonetizeServedCount: number
+        -- The number of successfully settled payments during this interval.
+        SettledCount: number
+        -- The total revenue amount during this interval in the specified currency.
+        TotalAmount: string
+        -- The bot category for this data point, when grouped by category.
+        Category: string
+        -- The intent classification for this data point, when grouped by intent.
+        Intent: string
+        -- The group-by dimension value for this data point.
+        GroupByValue: string
+    end
+
+    record GetRevenueStatisticsTimeSeriesOutput
+        -- The list of time series data points.
+        DataPoints: {DataPointEntry}
+        -- When you get a paginated response, this marker indicates that additional results are available.
+        NextMarker: string
+    end
+
+    record GetRuleGroupInput
+        -- The name of the rule group. You cannot change the name of a rule group after you create it.
+        Name: string
+        -- Specifies whether this is for a global resource type, such as a Amazon CloudFront distribution. For an Amplify application, use CLOUDFRONT.
+        -- To work with CloudFront, you must also specify the Region US East (N. Virginia) as follows:
+        -- CLI - Specify the Region when you use the CloudFront scope: --scope=CLOUDFRONT --region=us-east-1.
+        -- API and SDKs - For all calls, use the Region endpoint us-east-1.
+        Scope: string
+        -- A unique identifier for the rule group. This ID is returned in the responses to create and list commands. You provide it to operations like update and delete.
+        Id: string
+        -- The Amazon Resource Name (ARN) of the entity.
+        ARN: string
     end
 
     record GetSampledRequestsInput
@@ -3864,6 +4142,92 @@ local record M
         NextMarker: string
         -- Array of rule groups. If you specified a Limit in your request, this might not be the full list.
         RuleGroups: {RuleGroupSummary}
+    end
+
+    enum SettlementSortBy
+        "TIMESTAMP"
+        "AMOUNT"
+        "NAME"
+        "STATUS"
+    end
+
+    record ListSettlementRecordsInput
+        -- The time range for the query. Specify start and end timestamps.
+        TimeWindow: TimeWindow
+        -- Specifies whether this is for a Amazon CloudFront distribution (CLOUDFRONT) or for a regional application (REGIONAL).
+        Scope: string
+        -- The currency for the amounts in the response.
+        Currency: string
+        -- Optional filters to narrow the results. You can filter by payer address, status, source name, network, or other settlement fields.
+        Filters: {MonetizationFilter}
+        -- The field to sort settlement records by: TIMESTAMP, AMOUNT, NAME, or STATUS.
+        SortBy: string
+        -- The sort order: ASC for ascending or DESC for descending.
+        SortOrder: string
+        -- The maximum number of settlement records to return. Minimum: 1. Maximum: 100.
+        Limit: number
+        -- When you get a paginated response, this marker indicates that additional results are available.
+        NextMarker: string
+    end
+
+    enum SettlementStatus
+        "SETTLED"
+        "PENDING"
+        "FAILED"
+        "SERVICE_ERROR"
+        "SKIPPED_ORIGIN_ERROR"
+        "DUPLICATE"
+    end
+
+    -- A single settlement transaction record for AI bot monetization. Contains details about the payment including timestamp, amount, status, and the parties involved.
+    record SettlementRecord
+        -- The timestamp when the settlement was recorded.
+        Timestamp: number
+        -- The blockchain wallet address of the paying AI agent.
+        PayerAddress: string
+        -- Your receiving wallet address.
+        WalletAddress: string
+        -- The status of the settlement. Possible values:
+        -- SETTLED - The payment was successfully settled on the blockchain and the transfer from the payer's wallet to the publisher's wallet is confirmed. The TransactionId field contains the on-chain transaction hash. Content is served to the client.
+        -- PENDING - The blockchain transaction has been submitted but not yet confirmed on-chain. This is a transient state that automatically resolves to either SETTLED or FAILED. No action is required. While pending, content is not served and the API returns a 402 response. Clients can retry the request.
+        -- FAILED - The payment settlement was attempted but failed. Possible causes include insufficient funds, an expired payment authorization, or a reverted blockchain transaction. The failureReason field contains a machine-readable error code. Content is not served.
+        -- SERVICE_ERROR - Settlement could not be completed due to an internal service issue or an issue with the payment network. Content is not served. The client's payment authorization remains valid and the request can be retried.
+        -- SKIPPED_ORIGIN_ERROR - The origin returned a non-2xx response, so settlement was intentionally skipped. The client is not charged.
+        -- DUPLICATE - A prior request with the same payment payload has already been settled. This status typically appears when a previous attempt timed out but the payment was ultimately processed. The client is not charged again.
+        Status: string
+        -- The payment amount in the specified currency.
+        Amount: string
+        -- The currency of the payment amount.
+        Currency: string
+        -- The blockchain network on which the settlement occurred.
+        Network: string
+        -- The blockchain transaction identifier. You can use this to verify the transaction on a blockchain explorer.
+        TransactionId: string
+        -- The WAF request ID associated with this settlement.
+        RequestId: string
+        -- The name of the AI bot that made the payment.
+        SourceName: string
+        -- The organization associated with the AI bot.
+        Organization: string
+        -- The category of the AI bot source.
+        SourceCategory: string
+        -- The declared intent of the AI bot request.
+        Intent: string
+        -- Whether the AI bot's identity was verified.
+        Verified: boolean
+        -- The content path that was accessed.
+        ContentPath: string
+        -- The ARN of the web ACL that processed the request.
+        WebAclArn: string
+        -- The timestamp of the original web request.
+        RequestTimestamp: number
+    end
+
+    record ListSettlementRecordsOutput
+        -- The list of settlement records.
+        Settlements: {SettlementRecord}
+        -- When you get a paginated response, this marker indicates that additional results are available.
+        NextMarker: string
     end
 
     record ListTagsForResourceInput
@@ -4498,6 +4862,8 @@ local record M
         -- For information about the limits on count and size for custom request and response settings, see WAF quotas
         -- in the WAF Developer Guide.
         CustomResponseBodies: {string : CustomResponseBody}
+        -- The monetization configuration for the rule group. Provide this when any rule in the rule group uses the Monetize action.
+        MonetizationConfig: MonetizationConfig
     end
 
     record CreateWebACLInput
@@ -4551,6 +4917,8 @@ local record M
         OnSourceDDoSProtectionConfig: OnSourceDDoSProtectionConfig
         -- Configures the ability for the WAF console to store and retrieve application attributes during the web ACL creation process. Application attributes help WAF give recommendations for protection packs.
         ApplicationConfig: ApplicationConfig
+        -- The monetization configuration for the web ACL. Provide this when any rule in the web ACL uses the Monetize action.
+        MonetizationConfig: MonetizationConfig
     end
 
     -- A rule group defines a collection of rules to inspect and control web requests that you can use in a WebACL. When you create a rule group, you define an immutable capacity limit. If you update a rule group, you must stay within the capacity. This allows others to reuse the rule group with confidence in its capacity requirements.
@@ -4599,6 +4967,8 @@ local record M
         AvailableLabels: {LabelSummary}
         -- The labels that one or more rules in this rule group match against in label match statements. These labels are defined in a LabelMatchStatement specification, in the Statement definition of a rule.
         ConsumedLabels: {LabelSummary}
+        -- The monetization configuration for the rule group. Required when any rule in the rule group uses the Monetize action. When a rule group with a MonetizationConfig is used in a web ACL, the rule group's configuration applies to rules within that group unless overridden at the web ACL level.
+        MonetizationConfig: MonetizationConfig
     end
 
     record UpdateRuleGroupInput
@@ -4628,6 +4998,8 @@ local record M
         -- For information about the limits on count and size for custom request and response settings, see WAF quotas
         -- in the WAF Developer Guide.
         CustomResponseBodies: {string : CustomResponseBody}
+        -- The monetization configuration for the rule group. Provide this when any rule in the rule group uses the Monetize action.
+        MonetizationConfig: MonetizationConfig
     end
 
     record UpdateWebACLInput
@@ -4687,6 +5059,8 @@ local record M
         -- If you omit ApplicationConfig from the request, all existing entries in the web ACL are retained.
         -- If you include ApplicationConfig, entries must match the existing values exactly. Any attempt to modify existing entries will result in an error.
         ApplicationConfig: ApplicationConfig
+        -- The monetization configuration for the web ACL. Provide this when any rule in the web ACL uses the Monetize action.
+        MonetizationConfig: MonetizationConfig
     end
 
     record GetRuleGroupOutput
@@ -4784,6 +5158,8 @@ local record M
         OnSourceDDoSProtectionConfig: OnSourceDDoSProtectionConfig
         -- Returns a list of ApplicationAttributes.
         ApplicationConfig: ApplicationConfig
+        -- The monetization configuration for the web ACL. Required when any rule in the web ACL uses the Monetize action. Specifies the cryptocurrency payment networks and currency mode for AI bot monetization.
+        MonetizationConfig: MonetizationConfig
     end
 
     record GetWebACLForResourceOutput

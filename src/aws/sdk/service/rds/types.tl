@@ -984,15 +984,15 @@ local record M
     end
 
     record CreateCustomDBEngineVersionInput
-        -- The database engine. RDS Custom for Oracle supports the following values: custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb RDS Custom for SQL Server supports the following values: custom-sqlserver-ee custom-sqlserver-se ccustom-sqlserver-web custom-sqlserver-dev RDS for SQL Server supports only sqlserver-dev-ee.
+        -- The database engine. RDS Custom for Oracle supports the following values: custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb RDS Custom for SQL Server supports the following values: custom-sqlserver-ee custom-sqlserver-se custom-sqlserver-web custom-sqlserver-dev RDS for SQL Server supports the following values: sqlserver-ee (Bring Your Own Media) sqlserver-se (Bring Your Own Media) sqlserver-dev-ee
         Engine: string
-        -- The name of your custom engine version (CEV). For RDS Custom for Oracle, the name format is 19.*customized_string*. For example, a valid CEV name is 19.my_cev1. For RDS for SQL Server and RDS Custom for SQL Server, the name format is major engine_version*.*minor_engine_version*.*customized_string*. For example, a valid CEV name is 16.00.4215.2.my_cev1. The CEV name is unique per customer per Amazon Web Services Regions.
+        -- The name of your custom engine version (CEV). For RDS Custom for Oracle, the name format is 19.*customized_string*. For example, a valid CEV name is 19.my_cev1. For RDS Custom for SQL Server and RDS for SQL Server sqlserver-dev-ee, the name format is *major_engine_version*.*minor_engine_version*.*customized_string*. For example, a valid CEV name is 16.00.4215.2.my_cev1. For RDS for SQL Server Bring Your Own Media (sqlserver-ee, sqlserver-se), specify the RDS engine version that you want to use. For example, 16.00.4175.1.v1. The CEV name is unique per customer per Amazon Web Services Regions.
         EngineVersion: string
         -- The name of an Amazon S3 bucket that contains database installation files for your CEV. For example, a valid bucket name is my-custom-installation-files.
         DatabaseInstallationFilesS3BucketName: string
         -- The Amazon S3 directory that contains the database installation files for your CEV. For example, a valid bucket name is 123456789012/cev1. If this setting isn't specified, no prefix is assumed.
         DatabaseInstallationFilesS3Prefix: string
-        -- The database installation files (ISO and EXE) uploaded to Amazon S3 for your database engine version to import to Amazon RDS.
+        -- The database installation files (ISO and EXE) uploaded to Amazon S3 for your database engine version to import to Amazon RDS. For RDS for SQL Server Bring Your Own Media (sqlserver-ee, sqlserver-se), provide the SQL Server RTM ISO file once per major version and edition combination. Minor versions reuse the same file.
         DatabaseInstallationFiles: {string}
         -- The ID of the Amazon Machine Image (AMI). For RDS Custom for SQL Server, an AMI ID is required to create a CEV. For RDS Custom for Oracle, the default is the most recent AMI available, but you can specify an AMI ID that was used in a different Oracle CEV. Find the AMIs used by your CEVs by calling the DescribeDBEngineVersions operation.
         ImageId: string
@@ -1079,7 +1079,7 @@ local record M
         DatabaseInstallationFilesS3BucketName: string
         -- The Amazon S3 directory that contains the database installation files. If not specified, then no prefix is assumed.
         DatabaseInstallationFilesS3Prefix: string
-        -- The database installation files (ISO and EXE) uploaded to Amazon S3 for your database engine version to import to Amazon RDS. Required for sqlserver-dev-ee.
+        -- The database installation files (ISO and EXE) that were uploaded to Amazon S3 and used to import the database engine version to Amazon RDS. Returned for RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee) created from customer-supplied installation media.
         DatabaseInstallationFiles: {string}
         -- JSON string that lists the installation files and parameters that RDS Custom uses to create a custom engine version (CEV). RDS Custom applies the patches in the order in which they're listed in the manifest. You can set the Oracle home, Oracle base, and UNIX/Linux user and group using the installation parameters. For more information, see JSON fields in the CEV manifest in the Amazon RDS User Guide.
         CustomDBEngineVersionManifest: string
@@ -1093,11 +1093,11 @@ local record M
         DBEngineVersionDescription: string
         -- The default character set for new instances of this engine version, if the CharacterSetName parameter of the CreateDBInstance API isn't specified.
         DefaultCharacterSet: CharacterSet
-        -- The reason that the custom engine version creation for sqlserver-dev-ee failed with an incompatible-installation-media status.
+        -- The reason that the custom engine version creation failed with an incompatible-installation-media status. Applicable to RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee).
         FailureReason: string
         -- The EC2 image
         Image: CustomDBEngineVersionAMI
-        -- A value that indicates the source media provider of the AMI based on the usage operation. Applicable for RDS Custom for SQL Server.
+        -- The source of the installation media for this engine version. A value of Customer Provided indicates that the engine version was created from customer-supplied installation media using CreateCustomDBEngineVersion. Applicable to RDS Custom for SQL Server and to RDS for SQL Server engine versions (sqlserver-ee and sqlserver-se with the bring-your-own-media license model, and sqlserver-dev-ee).
         DBEngineMediaType: string
         -- The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter is required for RDS Custom, but optional for Amazon RDS.
         KMSKeyId: string
@@ -1884,7 +1884,7 @@ local record M
         AllocatedStorage: number
         -- The compute and memory capacity of the DB instance, for example db.m5.large. Not all DB instance classes are available in all Amazon Web Services Regions, or for all database engines. For the full list of DB instance classes, and availability for your engine, see DB instance classes in the Amazon RDS User Guide or Aurora DB instance classes in the Amazon Aurora User Guide.
         DBInstanceClass: string
-        -- The database engine to use for this DB instance. Not every database engine is available in every Amazon Web Services Region. Valid Values: aurora-mysql (for Aurora MySQL DB instances) aurora-postgresql (for Aurora PostgreSQL DB instances) custom-oracle-ee (for RDS Custom for Oracle DB instances) custom-oracle-ee-cdb (for RDS Custom for Oracle DB instances) custom-oracle-se2 (for RDS Custom for Oracle DB instances) custom-oracle-se2-cdb (for RDS Custom for Oracle DB instances) custom-sqlserver-ee (for RDS Custom for SQL Server DB instances) custom-sqlserver-se (for RDS Custom for SQL Server DB instances) custom-sqlserver-web (for RDS Custom for SQL Server DB instances) custom-sqlserver-dev (for RDS Custom for SQL Server DB instances) db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-dev-ee sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The database engine to use for this DB instance. Not every database engine is available in every Amazon Web Services Region. Valid Values: aurora-mysql (for Aurora MySQL DB instances) aurora-postgresql (for Aurora PostgreSQL DB instances) custom-oracle-ee (for RDS Custom for Oracle DB instances) custom-oracle-ee-cdb (for RDS Custom for Oracle DB instances) custom-oracle-se2 (for RDS Custom for Oracle DB instances) custom-oracle-se2-cdb (for RDS Custom for Oracle DB instances) custom-sqlserver-ee (for RDS Custom for SQL Server DB instances) custom-sqlserver-se (for RDS Custom for SQL Server DB instances) custom-sqlserver-web (for RDS Custom for SQL Server DB instances) custom-sqlserver-dev (for RDS Custom for SQL Server DB instances) db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-dev-ee sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         Engine: string
         -- The name for the master user. This setting doesn't apply to Amazon Aurora DB instances. The name for the master user is managed by the DB cluster. This setting is required for RDS DB instances. Constraints: Must be 1 to 16 letters, numbers, or underscores. First character must be a letter. Can't be a reserved word for the chosen database engine.
         MasterUsername: string
@@ -1914,7 +1914,7 @@ local record M
         EngineVersion: string
         -- Specifies whether minor engine upgrades are applied automatically to the DB instance during the maintenance window. By default, minor engine upgrades are applied automatically. If you create an RDS Custom DB instance, you must set AutoMinorVersionUpgrade to false. For more information about automatic minor version upgrades, see Automatically upgrading the minor engine version.
         AutoMinorVersionUpgrade: boolean
-        -- The license model information for this DB instance. License models for RDS for Db2 require additional configuration. The bring your own license (BYOL) model requires a custom parameter group and an Amazon Web Services License Manager self-managed license. The Db2 license through Amazon Web Services Marketplace model requires an Amazon Web Services Marketplace subscription. For more information, see Amazon RDS for Db2 licensing options in the Amazon RDS User Guide. The default for RDS for Db2 is bring-your-own-license. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license | marketplace-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license
+        -- The license model information for this DB instance. License models for RDS for Db2 require additional configuration. The bring your own license (BYOL) model requires a custom parameter group and an Amazon Web Services License Manager self-managed license. The Db2 license through Amazon Web Services Marketplace model requires an Amazon Web Services Marketplace subscription. For more information, see Amazon RDS for Db2 licensing options in the Amazon RDS User Guide. The default for RDS for Db2 is bring-your-own-license. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license | marketplace-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included | bring-your-own-media RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license
         LicenseModel: string
         -- The amount of Provisioned IOPS (input/output operations per second) to initially allocate for the DB instance. For information about valid IOPS values, see Amazon RDS DB instance storage in the Amazon RDS User Guide. This setting doesn't apply to Amazon Aurora DB instances. Storage is managed by the DB cluster. Constraints: For RDS for Db2, MariaDB, MySQL, Oracle, and PostgreSQL - Must be a multiple between .5 and 50 of the storage amount for the DB instance. For RDS for SQL Server - Must be a multiple between 1 and 50 of the storage amount for the DB instance.
         Iops: number
@@ -2116,7 +2116,7 @@ local record M
         MultiAZ: boolean
         -- The database engine version.
         EngineVersion: string
-        -- The license model for the DB instance. Valid values: license-included | bring-your-own-license | general-public-license
+        -- The license model for the DB instance. Valid values: license-included | bring-your-own-license | general-public-license | bring-your-own-media
         LicenseModel: string
         -- The Provisioned IOPS value for the DB instance.
         Iops: number
@@ -2437,7 +2437,7 @@ local record M
         DomainAuthSecretArn: string
         -- The IPv4 DNS IP addresses of your primary and secondary Active Directory domain controllers. Constraints: Two IP addresses must be provided. If there isn't a secondary domain controller, use the IP address of the primary domain controller for both entries in the list. Example: 123.124.125.126,234.235.236.237
         DomainDnsIps: {string}
-        -- The open mode of the replica database. This parameter is only supported for Db2 DB instances and Oracle DB instances. Db2 Standby DB replicas are included in Db2 Advanced Edition (AE) and Db2 Standard Edition (SE). The main use case for standby replicas is cross-Region disaster recovery. Because it doesn't accept user connections, a standby replica can't serve a read-only workload. You can create a combination of standby and read-only DB replicas for the same primary DB instance. For more information, see Working with replicas for Amazon RDS for Db2 in the Amazon RDS User Guide. To create standby DB replicas for RDS for Db2, set this parameter to mounted. Oracle Mounted DB replicas are included in Oracle Database Enterprise Edition. The main use case for mounted replicas is cross-Region disaster recovery. The primary database doesn't use Active Data Guard to transmit information to the mounted replica. Because it doesn't accept user connections, a mounted replica can't serve a read-only workload. You can create a combination of mounted and read-only DB replicas for the same primary DB instance. For more information, see Working with read replicas for Amazon RDS for Oracle in the Amazon RDS User Guide. For RDS Custom, you must specify this parameter and set it to mounted. The value won't be set by default. After replica creation, you can manage the open mode manually.
+        -- The open mode of the replica database. This parameter is only supported for Db2 DB instances and Oracle DB instances. Db2 Standby DB replicas are included in Db2 Advanced Edition (AE), Db2 Community Edition (CE), and Db2 Standard Edition (SE). The main use case for standby replicas is cross-Region disaster recovery. Because it doesn't accept user connections, a standby replica can't serve a read-only workload. You can create a combination of standby and read-only DB replicas for the same primary DB instance. For more information, see Working with replicas for Amazon RDS for Db2 in the Amazon RDS User Guide. To create standby DB replicas for RDS for Db2, set this parameter to mounted. Oracle Mounted DB replicas are included in Oracle Database Enterprise Edition. The main use case for mounted replicas is cross-Region disaster recovery. The primary database doesn't use Active Data Guard to transmit information to the mounted replica. Because it doesn't accept user connections, a mounted replica can't serve a read-only workload. You can create a combination of mounted and read-only DB replicas for the same primary DB instance. For more information, see Working with read replicas for Amazon RDS for Oracle in the Amazon RDS User Guide. For RDS Custom, you must specify this parameter and set it to mounted. The value won't be set by default. After replica creation, you can manage the open mode manually.
         ReplicaMode: string
         -- Specifies whether to enable a customer-owned IP address (CoIP) for an RDS on Outposts read replica. A CoIP provides local or external connectivity to resources in your Outpost subnets through your on-premises network. For some use cases, a CoIP can provide lower latency for connections to the read replica from outside of its virtual private cloud (VPC) on your local network. For more information about RDS on Outposts, see Working with Amazon RDS on Amazon Web Services Outposts in the Amazon RDS User Guide. For more information about CoIPs, see Customer-owned IP addresses in the Amazon Web Services Outposts User Guide.
         EnableCustomerOwnedIp: boolean
@@ -2477,7 +2477,7 @@ local record M
     record CreateDBParameterGroupInput
         -- The name of the DB parameter group. Constraints: Must be 1 to 255 letters, numbers, or hyphens. First character must be a letter Can't end with a hyphen or contain two consecutive hyphens This value is stored as a lowercase string.
         DBParameterGroupName: string
-        -- The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family. To list all of the available parameter group families for a DB engine, use the following command: aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine <engine> For example, to list all of the available parameter group families for the MySQL DB engine, use the following command: aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine mysql The output contains duplicates. The following are the valid DB engine values: aurora-mysql aurora-postgresql db2-ae db2-se mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The DB parameter group family name. A DB parameter group can be associated with one and only one DB parameter group family, and can be applied only to a DB instance running a database engine and engine version compatible with that DB parameter group family. To list all of the available parameter group families for a DB engine, use the following command: aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine <engine> For example, to list all of the available parameter group families for the MySQL DB engine, use the following command: aws rds describe-db-engine-versions --query "DBEngineVersions[].DBParameterGroupFamily" --engine mysql The output contains duplicates. The following are the valid DB engine values: aurora-mysql aurora-postgresql db2-ae db2-ce db2-se mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         DBParameterGroupFamily: string
         -- The description for the DB parameter group.
         Description: string
@@ -3102,7 +3102,7 @@ local record M
     record CreateOptionGroupInput
         -- Specifies the name of the option group to be created. Constraints: Must be 1 to 255 letters, numbers, or hyphens First character must be a letter Can't end with a hyphen or contain two consecutive hyphens Example: myoptiongroup
         OptionGroupName: string
-        -- The name of the engine to associate this option group with. Valid Values: db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The name of the engine to associate this option group with. Valid Values: db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         EngineName: string
         -- Specifies the major version of the engine that this option group should be associated with.
         MajorEngineVersion: string
@@ -3200,7 +3200,7 @@ local record M
     end
 
     record DeleteCustomDBEngineVersionInput
-        -- The database engine. RDS Custom for Oracle supports the following values: custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb RDS Custom for SQL Server supports the following values: custom-sqlserver-ee custom-sqlserver-se ccustom-sqlserver-web custom-sqlserver-dev RDS for SQL Server supports only sqlserver-dev-ee.
+        -- The database engine. RDS Custom for Oracle supports the following values: custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb RDS Custom for SQL Server supports the following values: custom-sqlserver-ee custom-sqlserver-se custom-sqlserver-web custom-sqlserver-dev RDS for SQL Server supports the following values: sqlserver-ee (Bring Your Own Media) sqlserver-se (Bring Your Own Media) sqlserver-dev-ee
         Engine: string
         -- The custom engine version (CEV) for your DB instance. This option is required for RDS Custom, but optional for Amazon RDS. The combination of Engine and EngineVersion is unique per customer per Amazon Web Services Region.
         EngineVersion: string
@@ -3218,7 +3218,7 @@ local record M
         DatabaseInstallationFilesS3BucketName: string
         -- The Amazon S3 directory that contains the database installation files. If not specified, then no prefix is assumed.
         DatabaseInstallationFilesS3Prefix: string
-        -- The database installation files (ISO and EXE) uploaded to Amazon S3 for your database engine version to import to Amazon RDS. Required for sqlserver-dev-ee.
+        -- The database installation files (ISO and EXE) that were uploaded to Amazon S3 and used to import the database engine version to Amazon RDS. Returned for RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee) created from customer-supplied installation media.
         DatabaseInstallationFiles: {string}
         -- JSON string that lists the installation files and parameters that RDS Custom uses to create a custom engine version (CEV). RDS Custom applies the patches in the order in which they're listed in the manifest. You can set the Oracle home, Oracle base, and UNIX/Linux user and group using the installation parameters. For more information, see JSON fields in the CEV manifest in the Amazon RDS User Guide.
         CustomDBEngineVersionManifest: string
@@ -3232,11 +3232,11 @@ local record M
         DBEngineVersionDescription: string
         -- The default character set for new instances of this engine version, if the CharacterSetName parameter of the CreateDBInstance API isn't specified.
         DefaultCharacterSet: CharacterSet
-        -- The reason that the custom engine version creation for sqlserver-dev-ee failed with an incompatible-installation-media status.
+        -- The reason that the custom engine version creation failed with an incompatible-installation-media status. Applicable to RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee).
         FailureReason: string
         -- The EC2 image
         Image: CustomDBEngineVersionAMI
-        -- A value that indicates the source media provider of the AMI based on the usage operation. Applicable for RDS Custom for SQL Server.
+        -- The source of the installation media for this engine version. A value of Customer Provided indicates that the engine version was created from customer-supplied installation media using CreateCustomDBEngineVersion. Applicable to RDS Custom for SQL Server and to RDS for SQL Server engine versions (sqlserver-ee and sqlserver-se with the bring-your-own-media license model, and sqlserver-dev-ee).
         DBEngineMediaType: string
         -- The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter is required for RDS Custom, but optional for Amazon RDS.
         KMSKeyId: string
@@ -4087,7 +4087,7 @@ local record M
     end
 
     record DescribeDBEngineVersionsInput
-        -- The database engine to return version details for. Valid Values: aurora-mysql aurora-postgresql custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The database engine to return version details for. Valid Values: aurora-mysql aurora-postgresql custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web sqlserver-dev-ee
         Engine: string
         -- A specific database engine version to return details for. Example: 5.1.49
         EngineVersion: string
@@ -4121,7 +4121,7 @@ local record M
         DatabaseInstallationFilesS3BucketName: string
         -- The Amazon S3 directory that contains the database installation files. If not specified, then no prefix is assumed.
         DatabaseInstallationFilesS3Prefix: string
-        -- The database installation files (ISO and EXE) uploaded to Amazon S3 for your database engine version to import to Amazon RDS. Required for sqlserver-dev-ee.
+        -- The database installation files (ISO and EXE) that were uploaded to Amazon S3 and used to import the database engine version to Amazon RDS. Returned for RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee) created from customer-supplied installation media.
         DatabaseInstallationFiles: {string}
         -- JSON string that lists the installation files and parameters that RDS Custom uses to create a custom engine version (CEV). RDS Custom applies the patches in the order in which they're listed in the manifest. You can set the Oracle home, Oracle base, and UNIX/Linux user and group using the installation parameters. For more information, see JSON fields in the CEV manifest in the Amazon RDS User Guide.
         CustomDBEngineVersionManifest: string
@@ -4135,11 +4135,11 @@ local record M
         DBEngineVersionDescription: string
         -- The default character set for new instances of this engine version, if the CharacterSetName parameter of the CreateDBInstance API isn't specified.
         DefaultCharacterSet: CharacterSet
-        -- The reason that the custom engine version creation for sqlserver-dev-ee failed with an incompatible-installation-media status.
+        -- The reason that the custom engine version creation failed with an incompatible-installation-media status. Applicable to RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee).
         FailureReason: string
         -- The EC2 image
         Image: CustomDBEngineVersionAMI
-        -- A value that indicates the source media provider of the AMI based on the usage operation. Applicable for RDS Custom for SQL Server.
+        -- The source of the installation media for this engine version. A value of Customer Provided indicates that the engine version was created from customer-supplied installation media using CreateCustomDBEngineVersion. Applicable to RDS Custom for SQL Server and to RDS for SQL Server engine versions (sqlserver-ee and sqlserver-se with the bring-your-own-media license model, and sqlserver-dev-ee).
         DBEngineMediaType: string
         -- The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter is required for RDS Custom, but optional for Amazon RDS.
         KMSKeyId: string
@@ -4278,7 +4278,7 @@ local record M
     end
 
     record DescribeDBMajorEngineVersionsInput
-        -- The database engine to return major version details for. Valid Values: aurora-mysql aurora-postgresql custom-sqlserver-ee custom-sqlserver-se custom-sqlserver-web db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The database engine to return major version details for. Valid Values: aurora-mysql aurora-postgresql custom-sqlserver-ee custom-sqlserver-se custom-sqlserver-web db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         Engine: string
         -- A specific database major engine version to return details for. Example: 8.4
         MajorEngineVersion: string
@@ -4930,7 +4930,7 @@ local record M
     end
 
     record DescribeEngineDefaultParametersInput
-        -- The name of the DB parameter group family. Valid Values: aurora-mysql5.7 aurora-mysql8.0 aurora-postgresql10 aurora-postgresql11 aurora-postgresql12 aurora-postgresql13 aurora-postgresql14 custom-oracle-ee-19 custom-oracle-ee-cdb-19 db2-ae db2-se mariadb10.2 mariadb10.3 mariadb10.4 mariadb10.5 mariadb10.6 mysql5.7 mysql8.0 oracle-ee-19 oracle-ee-cdb-19 oracle-ee-cdb-21 oracle-se2-19 oracle-se2-cdb-19 oracle-se2-cdb-21 postgres10 postgres11 postgres12 postgres13 postgres14 sqlserver-ee-11.0 sqlserver-ee-12.0 sqlserver-ee-13.0 sqlserver-ee-14.0 sqlserver-ee-15.0 sqlserver-ex-11.0 sqlserver-ex-12.0 sqlserver-ex-13.0 sqlserver-ex-14.0 sqlserver-ex-15.0 sqlserver-se-11.0 sqlserver-se-12.0 sqlserver-se-13.0 sqlserver-se-14.0 sqlserver-se-15.0 sqlserver-web-11.0 sqlserver-web-12.0 sqlserver-web-13.0 sqlserver-web-14.0 sqlserver-web-15.0
+        -- The name of the DB parameter group family. Valid Values: aurora-mysql5.7 aurora-mysql8.0 aurora-postgresql10 aurora-postgresql11 aurora-postgresql12 aurora-postgresql13 aurora-postgresql14 custom-oracle-ee-19 custom-oracle-ee-cdb-19 db2-ae db2-ce db2-se mariadb10.2 mariadb10.3 mariadb10.4 mariadb10.5 mariadb10.6 mysql5.7 mysql8.0 oracle-ee-19 oracle-ee-cdb-19 oracle-ee-cdb-21 oracle-se2-19 oracle-se2-cdb-19 oracle-se2-cdb-21 postgres10 postgres11 postgres12 postgres13 postgres14 sqlserver-ee-11.0 sqlserver-ee-12.0 sqlserver-ee-13.0 sqlserver-ee-14.0 sqlserver-ee-15.0 sqlserver-ex-11.0 sqlserver-ex-12.0 sqlserver-ex-13.0 sqlserver-ex-14.0 sqlserver-ex-15.0 sqlserver-se-11.0 sqlserver-se-12.0 sqlserver-se-13.0 sqlserver-se-14.0 sqlserver-se-15.0 sqlserver-web-11.0 sqlserver-web-12.0 sqlserver-web-13.0 sqlserver-web-14.0 sqlserver-web-15.0
         DBParameterGroupFamily: string
         -- A filter that specifies one or more parameters to describe. The only supported filter is parameter-name. The results list only includes information about the parameters with these names.
         Filters: {Filter}
@@ -5165,7 +5165,7 @@ local record M
     end
 
     record DescribeOptionGroupOptionsInput
-        -- The name of the engine to describe options for. Valid Values: db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The name of the engine to describe options for. Valid Values: db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         EngineName: string
         -- If specified, filters the results to include only options for the specified major engine version.
         MajorEngineVersion: string
@@ -5266,7 +5266,7 @@ local record M
         Marker: string
         -- The maximum number of records to include in the response. If more records exist than the specified MaxRecords value, a pagination token called a marker is included in the response so that you can retrieve the remaining results. Default: 100 Constraints: Minimum 20, maximum 100.
         MaxRecords: number
-        -- A filter to only include option groups associated with this database engine. Valid Values: db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- A filter to only include option groups associated with this database engine. Valid Values: db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         EngineName: string
         -- Filters the list of option groups to only include groups associated with a specific database engine version. If specified, then EngineName must also be specified.
         MajorEngineVersion: string
@@ -5281,7 +5281,7 @@ local record M
     end
 
     record DescribeOrderableDBInstanceOptionsInput
-        -- The name of the database engine to describe DB instance options for. Valid Values: aurora-mysql aurora-postgresql custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The name of the database engine to describe DB instance options for. Valid Values: aurora-mysql aurora-postgresql custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         Engine: string
         -- A filter to include only the available options for the specified engine version.
         EngineVersion: string
@@ -5920,7 +5920,7 @@ local record M
     end
 
     record ModifyCustomDBEngineVersionInput
-        -- The database engine. RDS Custom for Oracle supports the following values: custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb RDS Custom for SQL Server supports the following values: custom-sqlserver-ee custom-sqlserver-se ccustom-sqlserver-web custom-sqlserver-dev RDS for SQL Server supports only sqlserver-dev-ee.
+        -- The database engine. RDS Custom for Oracle supports the following values: custom-oracle-ee custom-oracle-ee-cdb custom-oracle-se2 custom-oracle-se2-cdb RDS Custom for SQL Server supports the following values: custom-sqlserver-ee custom-sqlserver-se custom-sqlserver-web custom-sqlserver-dev RDS for SQL Server supports the following values: sqlserver-ee (Bring Your Own Media) sqlserver-se (Bring Your Own Media) sqlserver-dev-ee
         Engine: string
         -- The custom engine version (CEV) that you want to modify. This option is required for RDS Custom for Oracle, but optional for Amazon RDS. The combination of Engine and EngineVersion is unique per customer per Amazon Web Services Region.
         EngineVersion: string
@@ -5942,7 +5942,7 @@ local record M
         DatabaseInstallationFilesS3BucketName: string
         -- The Amazon S3 directory that contains the database installation files. If not specified, then no prefix is assumed.
         DatabaseInstallationFilesS3Prefix: string
-        -- The database installation files (ISO and EXE) uploaded to Amazon S3 for your database engine version to import to Amazon RDS. Required for sqlserver-dev-ee.
+        -- The database installation files (ISO and EXE) that were uploaded to Amazon S3 and used to import the database engine version to Amazon RDS. Returned for RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee) created from customer-supplied installation media.
         DatabaseInstallationFiles: {string}
         -- JSON string that lists the installation files and parameters that RDS Custom uses to create a custom engine version (CEV). RDS Custom applies the patches in the order in which they're listed in the manifest. You can set the Oracle home, Oracle base, and UNIX/Linux user and group using the installation parameters. For more information, see JSON fields in the CEV manifest in the Amazon RDS User Guide.
         CustomDBEngineVersionManifest: string
@@ -5956,11 +5956,11 @@ local record M
         DBEngineVersionDescription: string
         -- The default character set for new instances of this engine version, if the CharacterSetName parameter of the CreateDBInstance API isn't specified.
         DefaultCharacterSet: CharacterSet
-        -- The reason that the custom engine version creation for sqlserver-dev-ee failed with an incompatible-installation-media status.
+        -- The reason that the custom engine version creation failed with an incompatible-installation-media status. Applicable to RDS for SQL Server engine versions (sqlserver-ee, sqlserver-se, and sqlserver-dev-ee).
         FailureReason: string
         -- The EC2 image
         Image: CustomDBEngineVersionAMI
-        -- A value that indicates the source media provider of the AMI based on the usage operation. Applicable for RDS Custom for SQL Server.
+        -- The source of the installation media for this engine version. A value of Customer Provided indicates that the engine version was created from customer-supplied installation media using CreateCustomDBEngineVersion. Applicable to RDS Custom for SQL Server and to RDS for SQL Server engine versions (sqlserver-ee and sqlserver-se with the bring-your-own-media license model, and sqlserver-dev-ee).
         DBEngineMediaType: string
         -- The Amazon Web Services KMS key identifier for an encrypted CEV. This parameter is required for RDS Custom, but optional for Amazon RDS.
         KMSKeyId: string
@@ -6243,7 +6243,7 @@ local record M
         AllowMajorVersionUpgrade: boolean
         -- Specifies whether minor version upgrades are applied automatically to the DB instance during the maintenance window. An outage occurs when all the following conditions are met: The automatic upgrade is enabled for the maintenance window. A newer minor version is available. RDS has enabled automatic patching for the engine version. If any of the preceding conditions isn't met, Amazon RDS applies the change as soon as possible and doesn't cause an outage. For an RDS Custom DB instance, don't enable this setting. Otherwise, the operation returns an error. For more information about automatic minor version upgrades, see Automatically upgrading the minor engine version.
         AutoMinorVersionUpgrade: boolean
-        -- The license model for the DB instance. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license
+        -- The license model for the DB instance. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included | bring-your-own-media RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license
         LicenseModel: string
         -- The new Provisioned IOPS (I/O operations per second) value for the RDS instance. Changing this setting doesn't result in an outage and the change is applied during the next maintenance window unless the ApplyImmediately parameter is enabled for this request. If you are migrating from Provisioned IOPS to standard storage, set this value to 0. The DB instance will require a reboot for the change in storage type to take effect. If you choose to migrate your DB instance from using standard storage to Provisioned IOPS (io1), or from Provisioned IOPS to standard storage, the process can take time. The duration of the migration depends on several factors such as database load, storage size, storage type (standard or Provisioned IOPS), amount of IOPS provisioned (if any), and the number of prior scale storage operations. Typical migration times are under 24 hours, but the process can take up to several days in some cases. During the migration, the DB instance is available for use, but might experience performance degradation. While the migration takes place, nightly backups for the instance are suspended. No other Amazon RDS operations can take place for the instance, including modifying the instance, rebooting the instance, deleting the instance, creating a read replica for the instance, and creating a DB snapshot of the instance. Constraints: For RDS for MariaDB, RDS for MySQL, RDS for Oracle, and RDS for PostgreSQL - The value supplied must be at least 10% greater than the current value. Values that are not at least 10% greater than the existing value are rounded up so that they are 10% greater than the current value. When you increase the Provisioned IOPS, you must also specify the AllocatedStorage parameter. You can use the current value for AllocatedStorage. Default: Uses existing setting
         Iops: number
@@ -6309,7 +6309,7 @@ local record M
         MaxAllocatedStorage: number
         -- Specifies whether the DB instance is restarted when you rotate your SSL/TLS certificate. By default, the DB instance is restarted when you rotate your SSL/TLS certificate. The certificate is not updated until the DB instance is restarted. Set this parameter only if you are not using SSL/TLS to connect to the DB instance. If you are using SSL/TLS to connect to the DB instance, follow the appropriate instructions for your DB engine to rotate your SSL/TLS certificate: For more information about rotating your SSL/TLS certificate for RDS DB engines, see Rotating Your SSL/TLS Certificate. in the Amazon RDS User Guide. For more information about rotating your SSL/TLS certificate for Aurora DB engines, see Rotating Your SSL/TLS Certificate in the Amazon Aurora User Guide. This setting doesn't apply to RDS Custom DB instances.
         CertificateRotationRestart: boolean
-        -- The open mode of a replica database. This parameter is only supported for Db2 DB instances and Oracle DB instances. Db2 Standby DB replicas are included in Db2 Advanced Edition (AE) and Db2 Standard Edition (SE). The main use case for standby replicas is cross-Region disaster recovery. Because it doesn't accept user connections, a standby replica can't serve a read-only workload. You can create a combination of standby and read-only DB replicas for the same primary DB instance. For more information, see Working with replicas for Amazon RDS for Db2 in the Amazon RDS User Guide. To create standby DB replicas for RDS for Db2, set this parameter to mounted. Oracle Mounted DB replicas are included in Oracle Database Enterprise Edition. The main use case for mounted replicas is cross-Region disaster recovery. The primary database doesn't use Active Data Guard to transmit information to the mounted replica. Because it doesn't accept user connections, a mounted replica can't serve a read-only workload. You can create a combination of mounted and read-only DB replicas for the same primary DB instance. For more information, see Working with read replicas for Amazon RDS for Oracle in the Amazon RDS User Guide. For RDS Custom, you must specify this parameter and set it to mounted. The value won't be set by default. After replica creation, you can manage the open mode manually.
+        -- The open mode of a replica database. This parameter is only supported for Db2 DB instances and Oracle DB instances. Db2 Standby DB replicas are included in Db2 Advanced Edition (AE), Db2 Community Edition (CE), and Db2 Standard Edition (SE). The main use case for standby replicas is cross-Region disaster recovery. Because it doesn't accept user connections, a standby replica can't serve a read-only workload. You can create a combination of standby and read-only DB replicas for the same primary DB instance. For more information, see Working with replicas for Amazon RDS for Db2 in the Amazon RDS User Guide. To create standby DB replicas for RDS for Db2, set this parameter to mounted. Oracle Mounted DB replicas are included in Oracle Database Enterprise Edition. The main use case for mounted replicas is cross-Region disaster recovery. The primary database doesn't use Active Data Guard to transmit information to the mounted replica. Because it doesn't accept user connections, a mounted replica can't serve a read-only workload. You can create a combination of mounted and read-only DB replicas for the same primary DB instance. For more information, see Working with read replicas for Amazon RDS for Oracle in the Amazon RDS User Guide. For RDS Custom, you must specify this parameter and set it to mounted. The value won't be set by default. After replica creation, you can manage the open mode manually.
         ReplicaMode: string
         -- The automation mode of the RDS Custom DB instance. If full, the DB instance automates monitoring and instance recovery. If all paused, the instance pauses automation for the duration set by ResumeFullAutomationModeMinutes.
         AutomationMode: string
@@ -7162,11 +7162,11 @@ local record M
         PubliclyAccessible: boolean
         -- Specifies whether to automatically apply minor version upgrades to the DB instance during the maintenance window. If you restore an RDS Custom DB instance, you must disable this parameter. For more information about automatic minor version upgrades, see Automatically upgrading the minor engine version.
         AutoMinorVersionUpgrade: boolean
-        -- License model information for the restored DB instance. License models for RDS for Db2 require additional configuration. The bring your own license (BYOL) model requires a custom parameter group and an Amazon Web Services License Manager self-managed license. The Db2 license through Amazon Web Services Marketplace model requires an Amazon Web Services Marketplace subscription. For more information, see Amazon RDS for Db2 licensing options in the Amazon RDS User Guide. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license | marketplace-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license Default: Same as the source.
+        -- License model information for the restored DB instance. License models for RDS for Db2 require additional configuration. The bring your own license (BYOL) model requires a custom parameter group and an Amazon Web Services License Manager self-managed license. The Db2 license through Amazon Web Services Marketplace model requires an Amazon Web Services Marketplace subscription. For more information, see Amazon RDS for Db2 licensing options in the Amazon RDS User Guide. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license | marketplace-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included | bring-your-own-media RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license Default: Same as the source.
         LicenseModel: string
         -- The name of the database for the restored DB instance. This parameter only applies to RDS for Oracle and RDS for SQL Server DB instances. It doesn't apply to the other engines or to RDS Custom DB instances.
         DBName: string
-        -- The database engine to use for the new instance. This setting doesn't apply to RDS Custom. Default: The same as source Constraint: Must be compatible with the engine of the source. For example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot. Valid Values: db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
+        -- The database engine to use for the new instance. This setting doesn't apply to RDS Custom. Default: The same as source Constraint: Must be compatible with the engine of the source. For example, you can restore a MariaDB 10.1 DB instance from a MySQL 5.6 snapshot. Valid Values: db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web
         Engine: string
         -- Specifies the amount of provisioned IOPS for the DB instance, expressed in I/O operations per second. If this parameter isn't specified, the IOPS value is taken from the backup. If this parameter is set to 0, the new instance is converted to a non-PIOPS instance. The conversion takes additional time, though your DB instance is available for connections before the conversion starts. The provisioned IOPS value must follow the requirements for your database engine. For more information, see Amazon RDS Provisioned IOPS storage in the Amazon RDS User Guide. Constraints: Must be an integer greater than 1000.
         Iops: number
@@ -7388,11 +7388,11 @@ local record M
         PubliclyAccessible: boolean
         -- Specifies whether minor version upgrades are applied automatically to the DB instance during the maintenance window. This setting doesn't apply to RDS Custom. For more information about automatic minor version upgrades, see Automatically upgrading the minor engine version.
         AutoMinorVersionUpgrade: boolean
-        -- The license model information for the restored DB instance. License models for RDS for Db2 require additional configuration. The bring your own license (BYOL) model requires a custom parameter group and an Amazon Web Services License Manager self-managed license. The Db2 license through Amazon Web Services Marketplace model requires an Amazon Web Services Marketplace subscription. For more information, see Amazon RDS for Db2 licensing options in the Amazon RDS User Guide. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license | marketplace-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license Default: Same as the source.
+        -- The license model information for the restored DB instance. License models for RDS for Db2 require additional configuration. The bring your own license (BYOL) model requires a custom parameter group and an Amazon Web Services License Manager self-managed license. The Db2 license through Amazon Web Services Marketplace model requires an Amazon Web Services Marketplace subscription. For more information, see Amazon RDS for Db2 licensing options in the Amazon RDS User Guide. This setting doesn't apply to Amazon Aurora or RDS Custom DB instances. Valid Values: RDS for Db2 - bring-your-own-license | marketplace-license RDS for MariaDB - general-public-license RDS for Microsoft SQL Server - license-included | bring-your-own-media RDS for MySQL - general-public-license RDS for Oracle - bring-your-own-license | license-included RDS for PostgreSQL - postgresql-license Default: Same as the source.
         LicenseModel: string
         -- The database name for the restored DB instance. This parameter doesn't apply to the following DB instances: RDS Custom RDS for Db2 RDS for MariaDB RDS for MySQL
         DBName: string
-        -- The database engine to use for the new instance. This setting doesn't apply to RDS Custom. Valid Values: db2-ae db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web Default: The same as source Constraints: Must be compatible with the engine of the source.
+        -- The database engine to use for the new instance. This setting doesn't apply to RDS Custom. Valid Values: db2-ae db2-ce db2-se mariadb mysql oracle-ee oracle-ee-cdb oracle-se2 oracle-se2-cdb postgres sqlserver-ee sqlserver-se sqlserver-ex sqlserver-web Default: The same as source Constraints: Must be compatible with the engine of the source.
         Engine: string
         -- The amount of Provisioned IOPS (input/output operations per second) to initially allocate for the DB instance. This setting doesn't apply to SQL Server. Constraints: Must be an integer greater than 1000.
         Iops: number

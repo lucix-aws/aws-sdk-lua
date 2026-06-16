@@ -31,6 +31,14 @@ M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
 
 M.LabelSummaries = schema.new({ type = "list", list_member = M.LabelSummary })
 
+M.MonetizationFilterList = schema.new({ type = "list", list_member = M.MonetizationFilter })
+
+M.SourceStatisticsList = schema.new({ type = "list", list_member = M.SourceStatistics })
+
+M.RevenuePathStatisticsList = schema.new({ type = "list", list_member = M.RevenuePathStatistics })
+
+M.DataPointsList = schema.new({ type = "list", list_member = M.DataPointEntry })
+
 M.SampledHTTPRequests = schema.new({ type = "list", list_member = M.SampledHTTPRequest })
 
 M.PathStatisticsList = schema.new({ type = "list", list_member = M.PathStatistics })
@@ -55,6 +63,8 @@ M.ResourceArns = schema.new({ type = "list", list_member = prelude.String })
 
 M.RuleGroupSummaries = schema.new({ type = "list", list_member = M.RuleGroupSummary })
 
+M.SettlementRecordList = schema.new({ type = "list", list_member = M.SettlementRecord })
+
 M.WebACLSummaries = schema.new({ type = "list", list_member = M.WebACLSummary })
 
 M.VersionsToPublish = schema.new({ type = "map", map_key = prelude.String, map_value = M.VersionToPublish })
@@ -77,7 +87,11 @@ M.FirewallManagerRuleGroups = schema.new({ type = "list", list_member = M.Firewa
 
 M.Labels = schema.new({ type = "list", list_member = M.Label })
 
+M.PaymentNetworks = schema.new({ type = "list", list_member = M.PaymentNetwork })
+
 M.Filters = schema.new({ type = "list", list_member = M.Filter })
+
+M.MonetizationFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.HTTPHeaders = schema.new({ type = "list", list_member = M.HTTPHeader })
 
@@ -102,6 +116,8 @@ M.Statements = schema.new({ type = "list", list_member = M.Statement })
 M.ManagedRuleGroupConfigs = schema.new({ type = "list", list_member = M.ManagedRuleGroupConfig })
 
 M.AsnList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.Prices = schema.new({ type = "list", list_member = M.Price })
 
 M.FieldToProtectKeys = schema.new({ type = "list", list_member = prelude.String })
 
@@ -1536,6 +1552,19 @@ M.CountAction = schema.new({
     },
 })
 
+M.MonetizeAction = schema.new({
+    id = id.from(_N, "MonetizeAction"),
+    type = "structure",
+    members = {
+        PriceMultiplier = schema.new({
+            id = id.from(_N, "MonetizeAction", "PriceMultiplier"),
+            type = "string",
+            name = "PriceMultiplier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RuleAction = schema.new({
     id = id.from(_N, "RuleAction"),
     type = "structure",
@@ -1574,6 +1603,13 @@ M.RuleAction = schema.new({
             name = "Challenge",
             target_id = id.from(_N, "ChallengeAction"),
             target = M.ChallengeAction,
+        }),
+        Monetize = schema.new({
+            id = id.from(_N, "RuleAction", "Monetize"),
+            type = "structure",
+            name = "Monetize",
+            target_id = id.from(_N, "MonetizeAction"),
+            target = M.MonetizeAction,
         }),
     },
 })
@@ -2917,6 +2953,103 @@ M.CustomResponseBody = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.Price = schema.new({
+    id = id.from(_N, "Price"),
+    type = "structure",
+    members = {
+        Amount = schema.new({
+            id = id.from(_N, "Price", "Amount"),
+            type = "string",
+            name = "Amount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "Price", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PaymentNetwork = schema.new({
+    id = id.from(_N, "PaymentNetwork"),
+    type = "structure",
+    members = {
+        Chain = schema.new({
+            id = id.from(_N, "PaymentNetwork", "Chain"),
+            type = "string",
+            name = "Chain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        WalletAddress = schema.new({
+            id = id.from(_N, "PaymentNetwork", "WalletAddress"),
+            type = "string",
+            name = "WalletAddress",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Prices = schema.new({
+            id = id.from(_N, "PaymentNetwork", "Prices"),
+            type = "list",
+            name = "Prices",
+            target_id = prelude.Document.id,
+            list_member = M.Price,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CryptoConfig = schema.new({
+    id = id.from(_N, "CryptoConfig"),
+    type = "structure",
+    members = {
+        PaymentNetworks = schema.new({
+            id = id.from(_N, "CryptoConfig", "PaymentNetworks"),
+            type = "list",
+            name = "PaymentNetworks",
+            target_id = prelude.Document.id,
+            list_member = M.PaymentNetwork,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MonetizationConfig = schema.new({
+    id = id.from(_N, "MonetizationConfig"),
+    type = "structure",
+    members = {
+        CryptoConfig = schema.new({
+            id = id.from(_N, "MonetizationConfig", "CryptoConfig"),
+            type = "structure",
+            name = "CryptoConfig",
+            target_id = id.from(_N, "CryptoConfig"),
+            target = M.CryptoConfig,
+        }),
+        CurrencyMode = schema.new({
+            id = id.from(_N, "MonetizationConfig", "CurrencyMode"),
+            type = "string",
+            name = "CurrencyMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4624,6 +4757,546 @@ M.GetRegexPatternSetOutput = schema.new({
     },
 })
 
+M.MonetizationFilter = schema.new({
+    id = id.from(_N, "MonetizationFilter"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "MonetizationFilter", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "MonetizationFilter", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TimeWindow = schema.new({
+    id = id.from(_N, "TimeWindow"),
+    type = "structure",
+    members = {
+        StartTime = schema.new({
+            id = id.from(_N, "TimeWindow", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "TimeWindow", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetRevenueStatisticsInput = schema.new({
+    id = id.from(_N, "GetRevenueStatisticsRequest"),
+    type = "structure",
+    members = {
+        StatisticType = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "StatisticType"),
+            type = "string",
+            name = "StatisticType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TimeWindow = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "TimeWindow"),
+            type = "structure",
+            name = "TimeWindow",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GroupBy = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "GroupBy"),
+            type = "string",
+            name = "GroupBy",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.MonetizationFilter,
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        SortBy = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "SortBy"),
+            type = "string",
+            name = "SortBy",
+            target_id = prelude.String.id,
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsInput", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RevenuePathStatistics = schema.new({
+    id = id.from(_N, "RevenuePathStatistics"),
+    type = "structure",
+    members = {
+        Path = schema.new({
+            id = id.from(_N, "RevenuePathStatistics", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Percentage = schema.new({
+            id = id.from(_N, "RevenuePathStatistics", "Percentage"),
+            type = "double",
+            name = "Percentage",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Amount = schema.new({
+            id = id.from(_N, "RevenuePathStatistics", "Amount"),
+            type = "string",
+            name = "Amount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestCount = schema.new({
+            id = id.from(_N, "RevenuePathStatistics", "RequestCount"),
+            type = "long",
+            name = "RequestCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.SourceStatistics = schema.new({
+    id = id.from(_N, "SourceStatistics"),
+    type = "structure",
+    members = {
+        SourceName = schema.new({
+            id = id.from(_N, "SourceStatistics", "SourceName"),
+            type = "string",
+            name = "SourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Percentage = schema.new({
+            id = id.from(_N, "SourceStatistics", "Percentage"),
+            type = "double",
+            name = "Percentage",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Amount = schema.new({
+            id = id.from(_N, "SourceStatistics", "Amount"),
+            type = "string",
+            name = "Amount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestCount = schema.new({
+            id = id.from(_N, "SourceStatistics", "RequestCount"),
+            type = "long",
+            name = "RequestCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SourceCategory = schema.new({
+            id = id.from(_N, "SourceStatistics", "SourceCategory"),
+            type = "string",
+            name = "SourceCategory",
+            target_id = prelude.String.id,
+        }),
+        Intent = schema.new({
+            id = id.from(_N, "SourceStatistics", "Intent"),
+            type = "string",
+            name = "Intent",
+            target_id = prelude.String.id,
+        }),
+        Organization = schema.new({
+            id = id.from(_N, "SourceStatistics", "Organization"),
+            type = "string",
+            name = "Organization",
+            target_id = prelude.String.id,
+        }),
+        Verified = schema.new({
+            id = id.from(_N, "SourceStatistics", "Verified"),
+            type = "boolean",
+            name = "Verified",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        GroupByValue = schema.new({
+            id = id.from(_N, "SourceStatistics", "GroupByValue"),
+            type = "string",
+            name = "GroupByValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRevenueStatisticsOutput = schema.new({
+    id = id.from(_N, "GetRevenueStatisticsResponse"),
+    type = "structure",
+    members = {
+        SourceStatistics = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsOutput", "SourceStatistics"),
+            type = "list",
+            name = "SourceStatistics",
+            target_id = prelude.Document.id,
+            list_member = M.SourceStatistics,
+        }),
+        RevenuePathStatistics = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsOutput", "RevenuePathStatistics"),
+            type = "list",
+            name = "RevenuePathStatistics",
+            target_id = prelude.Document.id,
+            list_member = M.RevenuePathStatistics,
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRevenueStatisticsSummaryInput = schema.new({
+    id = id.from(_N, "GetRevenueStatisticsSummaryRequest"),
+    type = "structure",
+    members = {
+        TimeWindow = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsSummaryInput", "TimeWindow"),
+            type = "structure",
+            name = "TimeWindow",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsSummaryInput", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsSummaryInput", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsSummaryInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.MonetizationFilter,
+        }),
+    },
+})
+
+M.RevenueBreakdown = schema.new({
+    id = id.from(_N, "RevenueBreakdown"),
+    type = "structure",
+    members = {
+        TotalAmount = schema.new({
+            id = id.from(_N, "RevenueBreakdown", "TotalAmount"),
+            type = "string",
+            name = "TotalAmount",
+            target_id = prelude.String.id,
+        }),
+        VerifiedAmount = schema.new({
+            id = id.from(_N, "RevenueBreakdown", "VerifiedAmount"),
+            type = "string",
+            name = "VerifiedAmount",
+            target_id = prelude.String.id,
+        }),
+        UnverifiedAmount = schema.new({
+            id = id.from(_N, "RevenueBreakdown", "UnverifiedAmount"),
+            type = "string",
+            name = "UnverifiedAmount",
+            target_id = prelude.String.id,
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "RevenueBreakdown", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+        }),
+        TotalSettled = schema.new({
+            id = id.from(_N, "RevenueBreakdown", "TotalSettled"),
+            type = "long",
+            name = "TotalSettled",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        TotalMonetizeServed = schema.new({
+            id = id.from(_N, "RevenueBreakdown", "TotalMonetizeServed"),
+            type = "long",
+            name = "TotalMonetizeServed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.GetRevenueStatisticsSummaryOutput = schema.new({
+    id = id.from(_N, "GetRevenueStatisticsSummaryResponse"),
+    type = "structure",
+    members = {
+        RevenueBreakdown = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsSummaryOutput", "RevenueBreakdown"),
+            type = "structure",
+            name = "RevenueBreakdown",
+            target_id = id.from(_N, "RevenueBreakdown"),
+            target = M.RevenueBreakdown,
+        }),
+    },
+})
+
+M.GetRevenueStatisticsTimeSeriesInput = schema.new({
+    id = id.from(_N, "GetRevenueStatisticsTimeSeriesRequest"),
+    type = "structure",
+    members = {
+        StatisticType = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "StatisticType"),
+            type = "string",
+            name = "StatisticType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TimeWindow = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "TimeWindow"),
+            type = "structure",
+            name = "TimeWindow",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "Interval"),
+            type = "string",
+            name = "Interval",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GroupBy = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "GroupBy"),
+            type = "string",
+            name = "GroupBy",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.MonetizationFilter,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesInput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataPointEntry = schema.new({
+    id = id.from(_N, "DataPointEntry"),
+    type = "structure",
+    members = {
+        Date = schema.new({
+            id = id.from(_N, "DataPointEntry", "Date"),
+            type = "timestamp",
+            name = "Date",
+            target_id = prelude.Timestamp.id,
+        }),
+        MonetizeServedCount = schema.new({
+            id = id.from(_N, "DataPointEntry", "MonetizeServedCount"),
+            type = "long",
+            name = "MonetizeServedCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SettledCount = schema.new({
+            id = id.from(_N, "DataPointEntry", "SettledCount"),
+            type = "long",
+            name = "SettledCount",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        TotalAmount = schema.new({
+            id = id.from(_N, "DataPointEntry", "TotalAmount"),
+            type = "string",
+            name = "TotalAmount",
+            target_id = prelude.String.id,
+        }),
+        Category = schema.new({
+            id = id.from(_N, "DataPointEntry", "Category"),
+            type = "string",
+            name = "Category",
+            target_id = prelude.String.id,
+        }),
+        Intent = schema.new({
+            id = id.from(_N, "DataPointEntry", "Intent"),
+            type = "string",
+            name = "Intent",
+            target_id = prelude.String.id,
+        }),
+        GroupByValue = schema.new({
+            id = id.from(_N, "DataPointEntry", "GroupByValue"),
+            type = "string",
+            name = "GroupByValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetRevenueStatisticsTimeSeriesOutput = schema.new({
+    id = id.from(_N, "GetRevenueStatisticsTimeSeriesResponse"),
+    type = "structure",
+    members = {
+        DataPoints = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesOutput", "DataPoints"),
+            type = "list",
+            name = "DataPoints",
+            target_id = prelude.Document.id,
+            list_member = M.DataPointEntry,
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "GetRevenueStatisticsTimeSeriesOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetRuleGroupInput = schema.new({
     id = id.from(_N, "GetRuleGroupRequest"),
     type = "structure",
@@ -4651,31 +5324,6 @@ M.GetRuleGroupInput = schema.new({
             type = "string",
             name = "ARN",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.TimeWindow = schema.new({
-    id = id.from(_N, "TimeWindow"),
-    type = "structure",
-    members = {
-        StartTime = schema.new({
-            id = id.from(_N, "TimeWindow", "StartTime"),
-            type = "timestamp",
-            name = "StartTime",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        EndTime = schema.new({
-            id = id.from(_N, "TimeWindow", "EndTime"),
-            type = "timestamp",
-            name = "EndTime",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -5861,6 +6509,213 @@ M.ListRuleGroupsOutput = schema.new({
     },
 })
 
+M.ListSettlementRecordsInput = schema.new({
+    id = id.from(_N, "ListSettlementRecordsRequest"),
+    type = "structure",
+    members = {
+        TimeWindow = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "TimeWindow"),
+            type = "structure",
+            name = "TimeWindow",
+            target_id = id.from(_N, "TimeWindow"),
+            target = M.TimeWindow,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.MonetizationFilter,
+        }),
+        SortBy = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "SortBy"),
+            type = "string",
+            name = "SortBy",
+            target_id = prelude.String.id,
+        }),
+        SortOrder = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+        }),
+        Limit = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "Limit"),
+            type = "integer",
+            name = "Limit",
+            target_id = prelude.Integer.id,
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "ListSettlementRecordsInput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SettlementRecord = schema.new({
+    id = id.from(_N, "SettlementRecord"),
+    type = "structure",
+    members = {
+        Timestamp = schema.new({
+            id = id.from(_N, "SettlementRecord", "Timestamp"),
+            type = "timestamp",
+            name = "Timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PayerAddress = schema.new({
+            id = id.from(_N, "SettlementRecord", "PayerAddress"),
+            type = "string",
+            name = "PayerAddress",
+            target_id = prelude.String.id,
+        }),
+        WalletAddress = schema.new({
+            id = id.from(_N, "SettlementRecord", "WalletAddress"),
+            type = "string",
+            name = "WalletAddress",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SettlementRecord", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Amount = schema.new({
+            id = id.from(_N, "SettlementRecord", "Amount"),
+            type = "string",
+            name = "Amount",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Currency = schema.new({
+            id = id.from(_N, "SettlementRecord", "Currency"),
+            type = "string",
+            name = "Currency",
+            target_id = prelude.String.id,
+        }),
+        Network = schema.new({
+            id = id.from(_N, "SettlementRecord", "Network"),
+            type = "string",
+            name = "Network",
+            target_id = prelude.String.id,
+        }),
+        TransactionId = schema.new({
+            id = id.from(_N, "SettlementRecord", "TransactionId"),
+            type = "string",
+            name = "TransactionId",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "SettlementRecord", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        SourceName = schema.new({
+            id = id.from(_N, "SettlementRecord", "SourceName"),
+            type = "string",
+            name = "SourceName",
+            target_id = prelude.String.id,
+        }),
+        Organization = schema.new({
+            id = id.from(_N, "SettlementRecord", "Organization"),
+            type = "string",
+            name = "Organization",
+            target_id = prelude.String.id,
+        }),
+        SourceCategory = schema.new({
+            id = id.from(_N, "SettlementRecord", "SourceCategory"),
+            type = "string",
+            name = "SourceCategory",
+            target_id = prelude.String.id,
+        }),
+        Intent = schema.new({
+            id = id.from(_N, "SettlementRecord", "Intent"),
+            type = "string",
+            name = "Intent",
+            target_id = prelude.String.id,
+        }),
+        Verified = schema.new({
+            id = id.from(_N, "SettlementRecord", "Verified"),
+            type = "boolean",
+            name = "Verified",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        ContentPath = schema.new({
+            id = id.from(_N, "SettlementRecord", "ContentPath"),
+            type = "string",
+            name = "ContentPath",
+            target_id = prelude.String.id,
+        }),
+        WebAclArn = schema.new({
+            id = id.from(_N, "SettlementRecord", "WebAclArn"),
+            type = "string",
+            name = "WebAclArn",
+            target_id = prelude.String.id,
+        }),
+        RequestTimestamp = schema.new({
+            id = id.from(_N, "SettlementRecord", "RequestTimestamp"),
+            type = "timestamp",
+            name = "RequestTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListSettlementRecordsOutput = schema.new({
+    id = id.from(_N, "ListSettlementRecordsResponse"),
+    type = "structure",
+    members = {
+        Settlements = schema.new({
+            id = id.from(_N, "ListSettlementRecordsOutput", "Settlements"),
+            type = "list",
+            name = "Settlements",
+            target_id = prelude.Document.id,
+            list_member = M.SettlementRecord,
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "ListSettlementRecordsOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -7030,6 +7885,13 @@ M.CreateRuleGroupInput = schema.new({
             map_key = prelude.String,
             map_value = M.CustomResponseBody,
         }),
+        MonetizationConfig = schema.new({
+            id = id.from(_N, "CreateRuleGroupInput", "MonetizationConfig"),
+            type = "structure",
+            name = "MonetizationConfig",
+            target_id = id.from(_N, "MonetizationConfig"),
+            target = M.MonetizationConfig,
+        }),
     },
 })
 
@@ -7152,6 +8014,13 @@ M.CreateWebACLInput = schema.new({
             target_id = id.from(_N, "ApplicationConfig"),
             target = M.ApplicationConfig,
         }),
+        MonetizationConfig = schema.new({
+            id = id.from(_N, "CreateWebACLInput", "MonetizationConfig"),
+            type = "structure",
+            name = "MonetizationConfig",
+            target_id = id.from(_N, "MonetizationConfig"),
+            target = M.MonetizationConfig,
+        }),
     },
 })
 
@@ -7246,6 +8115,13 @@ M.RuleGroup = schema.new({
             target_id = prelude.Document.id,
             list_member = M.LabelSummary,
         }),
+        MonetizationConfig = schema.new({
+            id = id.from(_N, "RuleGroup", "MonetizationConfig"),
+            type = "structure",
+            name = "MonetizationConfig",
+            target_id = id.from(_N, "MonetizationConfig"),
+            target = M.MonetizationConfig,
+        }),
     },
 })
 
@@ -7319,6 +8195,13 @@ M.UpdateRuleGroupInput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.CustomResponseBody,
+        }),
+        MonetizationConfig = schema.new({
+            id = id.from(_N, "UpdateRuleGroupInput", "MonetizationConfig"),
+            type = "structure",
+            name = "MonetizationConfig",
+            target_id = id.from(_N, "MonetizationConfig"),
+            target = M.MonetizationConfig,
         }),
     },
 })
@@ -7452,6 +8335,13 @@ M.UpdateWebACLInput = schema.new({
             name = "ApplicationConfig",
             target_id = id.from(_N, "ApplicationConfig"),
             target = M.ApplicationConfig,
+        }),
+        MonetizationConfig = schema.new({
+            id = id.from(_N, "UpdateWebACLInput", "MonetizationConfig"),
+            type = "structure",
+            name = "MonetizationConfig",
+            target_id = id.from(_N, "MonetizationConfig"),
+            target = M.MonetizationConfig,
         }),
     },
 })
@@ -7643,6 +8533,13 @@ M.WebACL = schema.new({
             name = "ApplicationConfig",
             target_id = id.from(_N, "ApplicationConfig"),
             target = M.ApplicationConfig,
+        }),
+        MonetizationConfig = schema.new({
+            id = id.from(_N, "WebACL", "MonetizationConfig"),
+            type = "structure",
+            name = "MonetizationConfig",
+            target_id = id.from(_N, "MonetizationConfig"),
+            target = M.MonetizationConfig,
         }),
     },
 })
@@ -8020,6 +8917,39 @@ M.GetRegexPatternSet = schema.operation({
     },
 })
 
+M.GetRevenueStatistics = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetRevenueStatistics"),
+    input = M.GetRevenueStatisticsInput,
+    output = M.GetRevenueStatisticsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRevenueStatisticsSummary = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetRevenueStatisticsSummary"),
+    input = M.GetRevenueStatisticsSummaryInput,
+    output = M.GetRevenueStatisticsSummaryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetRevenueStatisticsTimeSeries = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "GetRevenueStatisticsTimeSeries"),
+    input = M.GetRevenueStatisticsTimeSeriesInput,
+    output = M.GetRevenueStatisticsTimeSeriesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetRuleGroup = schema.operation({
     id = id.from("com.amazonaws.wafv2", "GetRuleGroup"),
     input = M.GetRuleGroupInput,
@@ -8178,6 +9108,17 @@ M.ListRuleGroups = schema.operation({
     id = id.from("com.amazonaws.wafv2", "ListRuleGroups"),
     input = M.ListRuleGroupsInput,
     output = M.ListRuleGroupsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSettlementRecords = schema.operation({
+    id = id.from("com.amazonaws.wafv2", "ListSettlementRecords"),
+    input = M.ListSettlementRecordsInput,
+    output = M.ListSettlementRecordsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

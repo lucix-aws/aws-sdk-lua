@@ -46,6 +46,9 @@ local record Client
     getPermissionPolicy: function(Client, types.GetPermissionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPermissionPolicyOutput>
     getRateBasedStatementManagedKeys: function(Client, types.GetRateBasedStatementManagedKeysInput, ? base_client.InvokeOptions): async.Operation<types.GetRateBasedStatementManagedKeysOutput>
     getRegexPatternSet: function(Client, types.GetRegexPatternSetInput, ? base_client.InvokeOptions): async.Operation<types.GetRegexPatternSetOutput>
+    getRevenueStatistics: function(Client, types.GetRevenueStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetRevenueStatisticsOutput>
+    getRevenueStatisticsSummary: function(Client, types.GetRevenueStatisticsSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetRevenueStatisticsSummaryOutput>
+    getRevenueStatisticsTimeSeries: function(Client, types.GetRevenueStatisticsTimeSeriesInput, ? base_client.InvokeOptions): async.Operation<types.GetRevenueStatisticsTimeSeriesOutput>
     getRuleGroup: function(Client, types.GetRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetRuleGroupOutput>
     getSampledRequests: function(Client, types.GetSampledRequestsInput, ? base_client.InvokeOptions): async.Operation<types.GetSampledRequestsOutput>
     getTopPathStatisticsByTraffic: function(Client, types.GetTopPathStatisticsByTrafficInput, ? base_client.InvokeOptions): async.Operation<types.GetTopPathStatisticsByTrafficOutput>
@@ -61,6 +64,7 @@ local record Client
     listRegexPatternSets: function(Client, types.ListRegexPatternSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegexPatternSetsOutput>
     listResourcesForWebACL: function(Client, types.ListResourcesForWebACLInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesForWebACLOutput>
     listRuleGroups: function(Client, types.ListRuleGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
+    listSettlementRecords: function(Client, types.ListSettlementRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListSettlementRecordsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listWebACLs: function(Client, types.ListWebACLsInput, ? base_client.InvokeOptions): async.Operation<types.ListWebACLsOutput>
     putLoggingConfiguration: function(Client, types.PutLoggingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutLoggingConfigurationOutput>
@@ -229,6 +233,18 @@ function C:getRegexPatternSet(input: types.GetRegexPatternSetInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRegexPatternSet as schema.OperationSchema, input, options) as async.Operation<types.GetRegexPatternSetOutput>
 end
 
+function C:getRevenueStatistics(input: types.GetRevenueStatisticsInput, options?: base_client.InvokeOptions): async.Operation<types.GetRevenueStatisticsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRevenueStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetRevenueStatisticsOutput>
+end
+
+function C:getRevenueStatisticsSummary(input: types.GetRevenueStatisticsSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetRevenueStatisticsSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRevenueStatisticsSummary as schema.OperationSchema, input, options) as async.Operation<types.GetRevenueStatisticsSummaryOutput>
+end
+
+function C:getRevenueStatisticsTimeSeries(input: types.GetRevenueStatisticsTimeSeriesInput, options?: base_client.InvokeOptions): async.Operation<types.GetRevenueStatisticsTimeSeriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRevenueStatisticsTimeSeries as schema.OperationSchema, input, options) as async.Operation<types.GetRevenueStatisticsTimeSeriesOutput>
+end
+
 function C:getRuleGroup(input: types.GetRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetRuleGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRuleGroup as schema.OperationSchema, input, options) as async.Operation<types.GetRuleGroupOutput>
 end
@@ -287,6 +303,10 @@ end
 
 function C:listRuleGroups(input: types.ListRuleGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRuleGroupsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRuleGroups as schema.OperationSchema, input, options) as async.Operation<types.ListRuleGroupsOutput>
+end
+
+function C:listSettlementRecords(input: types.ListSettlementRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSettlementRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSettlementRecords as schema.OperationSchema, input, options) as async.Operation<types.ListSettlementRecordsOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>

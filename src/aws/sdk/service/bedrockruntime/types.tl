@@ -714,6 +714,220 @@ local record M
         guardrailCoverage: GuardrailCoverage
     end
 
+    enum GuardrailChecksContentFilterCategory
+        "VIOLENCE"
+        "HATE"
+        "SEXUAL"
+        "MISCONDUCT"
+        "INSULTS"
+    end
+
+    -- The configuration for a single content filter category to evaluate.
+    record GuardrailChecksContentFilterCategoryConfig
+        -- The content filter category to evaluate.
+        category: string
+    end
+
+    -- The configuration for the content filter check, specifying which categories to evaluate.
+    record GuardrailChecksContentFilterConfig
+        -- The content filter categories to evaluate.
+        categories: {GuardrailChecksContentFilterCategoryConfig}
+    end
+
+    enum GuardrailChecksPromptAttackCategory
+        "JAILBREAK"
+        "PROMPT_INJECTION"
+        "PROMPT_LEAKAGE"
+    end
+
+    -- The configuration for a single prompt attack category to evaluate.
+    record GuardrailChecksPromptAttackCategoryConfig
+        -- The prompt attack category to evaluate.
+        category: string
+    end
+
+    -- The configuration for the prompt attack check, specifying which categories to evaluate.
+    record GuardrailChecksPromptAttackConfig
+        -- The prompt attack categories to evaluate.
+        categories: {GuardrailChecksPromptAttackCategoryConfig}
+    end
+
+    enum GuardrailChecksSensitiveInformationEntityType
+        "ADDRESS"
+        "AGE"
+        "AWS_ACCESS_KEY"
+        "AWS_SECRET_KEY"
+        "CA_HEALTH_NUMBER"
+        "CA_SOCIAL_INSURANCE_NUMBER"
+        "CREDIT_DEBIT_CARD_CVV"
+        "CREDIT_DEBIT_CARD_EXPIRY"
+        "CREDIT_DEBIT_CARD_NUMBER"
+        "DRIVER_ID"
+        "EMAIL"
+        "INTERNATIONAL_BANK_ACCOUNT_NUMBER"
+        "IP_ADDRESS"
+        "LICENSE_PLATE"
+        "MAC_ADDRESS"
+        "NAME"
+        "PASSWORD"
+        "PHONE"
+        "PIN"
+        "SWIFT_CODE"
+        "UK_NATIONAL_HEALTH_SERVICE_NUMBER"
+        "UK_NATIONAL_INSURANCE_NUMBER"
+        "UK_UNIQUE_TAXPAYER_REFERENCE_NUMBER"
+        "URL"
+        "USERNAME"
+        "US_BANK_ACCOUNT_NUMBER"
+        "US_BANK_ROUTING_NUMBER"
+        "US_INDIVIDUAL_TAX_IDENTIFICATION_NUMBER"
+        "US_PASSPORT_NUMBER"
+        "US_SOCIAL_SECURITY_NUMBER"
+        "VEHICLE_IDENTIFICATION_NUMBER"
+    end
+
+    -- The configuration for a single sensitive information entity type to detect.
+    record GuardrailChecksSensitiveInformationEntityConfig
+    end
+
+    -- The configuration for the sensitive information check, specifying which entity types to detect.
+    record GuardrailChecksSensitiveInformationConfig
+        -- The sensitive information entity types to detect.
+        entities: {GuardrailChecksSensitiveInformationEntityConfig}
+    end
+
+    -- The configuration for inline guardrail checks. Specify one or more check types to run against the messages.
+    record GuardrailChecksConfig
+        -- The content filter check configuration.
+        contentFilter: GuardrailChecksContentFilterConfig
+        -- The prompt attack check configuration.
+        promptAttack: GuardrailChecksPromptAttackConfig
+        -- The sensitive information check configuration.
+        sensitiveInformation: GuardrailChecksSensitiveInformationConfig
+    end
+
+    -- A content block within a message to evaluate.
+    record GuardrailChecksContentBlock
+        -- The text content to evaluate.
+        text: string
+    end
+
+    enum GuardrailChecksRole
+        "user"
+        "assistant"
+        "system"
+    end
+
+    -- A message to evaluate against guardrail checks, containing a role and content blocks.
+    record GuardrailChecksMessage
+        -- The role of the message sender.
+        role: string
+        -- The content blocks for the message.
+        content: {GuardrailChecksContentBlock}
+    end
+
+    record InvokeGuardrailChecksInput
+        -- The messages to evaluate against the specified guardrail checks. Each message includes a role and one or more content blocks.
+        messages: {GuardrailChecksMessage}
+        -- The inline check configurations that specify which guardrail checks to run against the messages.
+        checks: GuardrailChecksConfig
+    end
+
+    -- The evaluation result for a single content filter category.
+    record GuardrailChecksContentFilterResultEntry
+        -- The content filter category that was evaluated.
+        category: string
+        -- The severity score for the category, ranging from 0.0 to 1.0. Higher values indicate greater severity.
+        severityScore: number
+    end
+
+    -- The content filter check results.
+    record GuardrailChecksContentFilterResult
+        -- The per-category content filter results.
+        results: {GuardrailChecksContentFilterResultEntry}
+    end
+
+    -- The evaluation result for a single prompt attack category.
+    record GuardrailChecksPromptAttackResultEntry
+        -- The prompt attack category that was evaluated.
+        category: string
+        -- The severity score for the category, ranging from 0.0 to 1.0. Higher values indicate greater severity.
+        severityScore: number
+    end
+
+    -- The prompt attack check results.
+    record GuardrailChecksPromptAttackResult
+        -- The per-category prompt attack results.
+        results: {GuardrailChecksPromptAttackResultEntry}
+    end
+
+    -- The detection result for a single sensitive information entity found in the evaluated messages.
+    record GuardrailChecksSensitiveInformationResultEntry
+        -- The confidence score for the detection, ranging from 0.0 to 1.0. Higher values indicate greater confidence.
+        confidenceScore: number
+        -- The start character offset of the detected entity within the content block.
+        beginOffset: number
+        -- The end character offset of the detected entity within the content block.
+        endOffset: number
+        -- The zero-based index of the message in the input messages array where the entity was detected.
+        messageIndex: number
+        -- The zero-based index of the content block within the message where the entity was detected.
+        contentIndex: number
+    end
+
+    -- The sensitive information check results.
+    record GuardrailChecksSensitiveInformationResult
+        -- The detected sensitive information entities.
+        results: {GuardrailChecksSensitiveInformationResultEntry}
+        -- Specifies whether the results were truncated because the number of detected entities exceeded the maximum limit.
+        truncated: boolean
+    end
+
+    -- The results from the guardrail checks evaluation, organized by check type.
+    record GuardrailChecksResults
+        -- The content filter check results.
+        contentFilter: GuardrailChecksContentFilterResult
+        -- The prompt attack check results.
+        promptAttack: GuardrailChecksPromptAttackResult
+        -- The sensitive information check results.
+        sensitiveInformation: GuardrailChecksSensitiveInformationResult
+    end
+
+    -- The text unit usage for the content filter check.
+    record GuardrailChecksContentFilterUsage
+        -- The number of text units consumed by the content filter check.
+        textUnits: number
+    end
+
+    -- The text unit usage for the prompt attack check.
+    record GuardrailChecksPromptAttackUsage
+        -- The number of text units consumed by the prompt attack check.
+        textUnits: number
+    end
+
+    -- The text unit usage for the sensitive information check.
+    record GuardrailChecksSensitiveInformationUsage
+        -- The number of text units consumed by the sensitive information check.
+        textUnits: number
+    end
+
+    -- The text unit usage for the guardrail checks evaluation, organized by check type.
+    record GuardrailChecksUsageResults
+        -- The text unit usage for the content filter check.
+        contentFilter: GuardrailChecksContentFilterUsage
+        -- The text unit usage for the prompt attack check.
+        promptAttack: GuardrailChecksPromptAttackUsage
+        -- The text unit usage for the sensitive information check.
+        sensitiveInformation: GuardrailChecksSensitiveInformationUsage
+    end
+
+    record InvokeGuardrailChecksOutput
+        -- The per-check results containing findings from the guardrail evaluation.
+        results: GuardrailChecksResults
+        -- The per-check text unit consumption for the guardrail evaluation.
+        usage: GuardrailChecksUsageResults
+    end
+
     enum GuardrailTrace
         "enabled"
         "disabled"

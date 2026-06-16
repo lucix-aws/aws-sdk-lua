@@ -167,6 +167,8 @@ M.LifeCycleStates = schema.new({ type = "list", list_member = prelude.String })
 
 M.DescribeSourceServersRequestApplicationIDs = schema.new({ type = "list", list_member = prelude.String })
 
+M.LastKnownChecksList = schema.new({ type = "list", list_member = M.LastKnownCheck })
+
 M.DataReplicationInfoReplicatedDisks = schema.new({ type = "list", list_member = M.DataReplicationInfoReplicatedDisk })
 
 M.NetworkInterfaces = schema.new({ type = "list", list_member = M.NetworkInterface })
@@ -7124,6 +7126,54 @@ M.UpdateNetworkMigrationMapperSegmentOutput = schema.new({
     },
 })
 
+M.FsxOntapConfiguration = schema.new({
+    id = id.from(_N, "FsxOntapConfiguration"),
+    type = "structure",
+    members = {
+        storageVirtualMachineId = schema.new({
+            id = id.from(_N, "FsxOntapConfiguration", "storageVirtualMachineId"),
+            type = "string",
+            name = "storageVirtualMachineId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        credentialsSecretArn = schema.new({
+            id = id.from(_N, "FsxOntapConfiguration", "credentialsSecretArn"),
+            type = "string",
+            name = "credentialsSecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StorageConfiguration = schema.new({
+    id = id.from(_N, "StorageConfiguration"),
+    type = "structure",
+    members = {
+        storageType = schema.new({
+            id = id.from(_N, "StorageConfiguration", "storageType"),
+            type = "string",
+            name = "storageType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fsxOntapConfiguration = schema.new({
+            id = id.from(_N, "StorageConfiguration", "fsxOntapConfiguration"),
+            type = "structure",
+            name = "fsxOntapConfiguration",
+            target_id = id.from(_N, "FsxOntapConfiguration"),
+            target = M.FsxOntapConfiguration,
+        }),
+    },
+})
+
 M.CreateReplicationConfigurationTemplateInput = schema.new({
     id = id.from(_N, "CreateReplicationConfigurationTemplateRequest"),
     type = "structure",
@@ -7263,6 +7313,13 @@ M.CreateReplicationConfigurationTemplateInput = schema.new({
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
         }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "CreateReplicationConfigurationTemplateInput", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
+        }),
     },
 })
 
@@ -7388,6 +7445,13 @@ M.CreateReplicationConfigurationTemplateOutput = schema.new({
             type = "boolean",
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
+        }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "CreateReplicationConfigurationTemplateOutput", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
         }),
     },
 })
@@ -7562,6 +7626,13 @@ M.ReplicationConfigurationTemplate = schema.new({
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
         }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "ReplicationConfigurationTemplate", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
+        }),
     },
 })
 
@@ -7700,6 +7771,13 @@ M.UpdateReplicationConfigurationTemplateInput = schema.new({
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
         }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "UpdateReplicationConfigurationTemplateInput", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
+        }),
     },
 })
 
@@ -7825,6 +7903,13 @@ M.UpdateReplicationConfigurationTemplateOutput = schema.new({
             type = "boolean",
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
+        }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "UpdateReplicationConfigurationTemplateOutput", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
         }),
     },
 })
@@ -8067,6 +8152,43 @@ M.DataReplicationInfo = schema.new({
     },
 })
 
+M.LastKnownCheck = schema.new({
+    id = id.from(_N, "LastKnownCheck"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "LastKnownCheck", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "LastKnownCheck", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "LastKnownCheck", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        error = schema.new({
+            id = id.from(_N, "LastKnownCheck", "error"),
+            type = "string",
+            name = "error",
+            target_id = prelude.String.id,
+        }),
+        checkedAt = schema.new({
+            id = id.from(_N, "LastKnownCheck", "checkedAt"),
+            type = "timestamp",
+            name = "checkedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.LaunchedInstance = schema.new({
     id = id.from(_N, "LaunchedInstance"),
     type = "structure",
@@ -8087,6 +8209,19 @@ M.LaunchedInstance = schema.new({
             id = id.from(_N, "LaunchedInstance", "firstBoot"),
             type = "string",
             name = "firstBoot",
+            target_id = prelude.String.id,
+        }),
+        lastKnownChecks = schema.new({
+            id = id.from(_N, "LaunchedInstance", "lastKnownChecks"),
+            type = "list",
+            name = "lastKnownChecks",
+            target_id = prelude.Document.id,
+            list_member = M.LastKnownCheck,
+        }),
+        lastKnownFsxChecksStatus = schema.new({
+            id = id.from(_N, "LaunchedInstance", "lastKnownFsxChecksStatus"),
+            type = "string",
+            name = "lastKnownFsxChecksStatus",
             target_id = prelude.String.id,
         }),
     },
@@ -9314,6 +9449,13 @@ M.GetReplicationConfigurationOutput = schema.new({
             type = "boolean",
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
+        }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "GetReplicationConfigurationOutput", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
         }),
     },
 })
@@ -10853,6 +10995,13 @@ M.UpdateReplicationConfigurationInput = schema.new({
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
         }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "UpdateReplicationConfigurationInput", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
+        }),
     },
 })
 
@@ -10975,6 +11124,13 @@ M.UpdateReplicationConfigurationOutput = schema.new({
             name = "storeSnapshotOnLocalZone",
             target_id = prelude.Boolean.id,
         }),
+        storageConfiguration = schema.new({
+            id = id.from(_N, "UpdateReplicationConfigurationOutput", "storageConfiguration"),
+            type = "structure",
+            name = "storageConfiguration",
+            target_id = id.from(_N, "StorageConfiguration"),
+            target = M.StorageConfiguration,
+        }),
     },
 })
 
@@ -11003,6 +11159,24 @@ M.UpdateSourceServerInput = schema.new({
             name = "connectorAction",
             target_id = id.from(_N, "SourceServerConnectorAction"),
             target = M.SourceServerConnectorAction,
+        }),
+        userProvidedID = schema.new({
+            id = id.from(_N, "UpdateSourceServerInput", "userProvidedID"),
+            type = "string",
+            name = "userProvidedID",
+            target_id = prelude.String.id,
+        }),
+        fqdnForActionFramework = schema.new({
+            id = id.from(_N, "UpdateSourceServerInput", "fqdnForActionFramework"),
+            type = "string",
+            name = "fqdnForActionFramework",
+            target_id = prelude.String.id,
+        }),
+        platform = schema.new({
+            id = id.from(_N, "UpdateSourceServerInput", "platform"),
+            type = "string",
+            name = "platform",
+            target_id = prelude.String.id,
         }),
     },
 })

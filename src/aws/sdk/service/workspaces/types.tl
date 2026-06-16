@@ -986,7 +986,7 @@ local record M
         -- Only available for WorkSpaces created with PCoIP bundles.
         -- The Protocols property is case sensitive. Ensure you use PCOIP or DCV (formerly WSP).
         -- Unavailable for Windows 7 WorkSpaces and WorkSpaces using GPU-based bundles
-        -- (Graphics, GraphicsPro, Graphics.g4dn, and GraphicsPro.g4dn).
+        -- (Graphics, GraphicsPro, Graphics.g4dn, GraphicsPro.g4dn, and Graphics.g6).
         Protocols: {string}
         -- The name of the operating system.
         OperatingSystemName: string

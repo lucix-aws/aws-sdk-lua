@@ -75,6 +75,7 @@ local record Client
     deleteFormType: function(Client, types.DeleteFormTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFormTypeOutput>
     deleteGlossary: function(Client, types.DeleteGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlossaryOutput>
     deleteGlossaryTerm: function(Client, types.DeleteGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlossaryTermOutput>
+    deleteLineageEvent: function(Client, types.DeleteLineageEventInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLineageEventOutput>
     deleteListing: function(Client, types.DeleteListingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteListingOutput>
     deleteNotebook: function(Client, types.DeleteNotebookInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotebookOutput>
     deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
@@ -476,6 +477,10 @@ end
 
 function C:deleteGlossaryTerm(input: types.DeleteGlossaryTermInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGlossaryTermOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGlossaryTerm as schema.OperationSchema, input, options) as async.Operation<types.DeleteGlossaryTermOutput>
+end
+
+function C:deleteLineageEvent(input: types.DeleteLineageEventInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteLineageEventOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteLineageEvent as schema.OperationSchema, input, options) as async.Operation<types.DeleteLineageEventOutput>
 end
 
 function C:deleteListing(input: types.DeleteListingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteListingOutput>

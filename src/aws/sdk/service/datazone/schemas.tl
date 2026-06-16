@@ -15556,6 +15556,58 @@ M.DeleteEnvironmentProfileInput = schema.new({
 
 M.DeleteEnvironmentProfileOutput = prelude.Unit
 
+M.DeleteLineageEventInput = schema.new({
+    id = id.from(_N, "DeleteLineageEventInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "DeleteLineageEventInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        identifier = schema.new({
+            id = id.from(_N, "DeleteLineageEventInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteLineageEventOutput = schema.new({
+    id = id.from(_N, "DeleteLineageEventOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteLineageEventOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "DeleteLineageEventOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+        }),
+        processingStatus = schema.new({
+            id = id.from(_N, "DeleteLineageEventOutput", "processingStatus"),
+            type = "string",
+            name = "processingStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteProjectInput = schema.new({
     id = id.from(_N, "DeleteProjectInput"),
     type = "structure",
@@ -33423,6 +33475,18 @@ M.DeleteGlossaryTerm = schema.operation({
     output = M.DeleteGlossaryTermOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/glossary-terms/{identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteLineageEvent = schema.operation({
+    id = id.from("com.amazonaws.datazone", "DeleteLineageEvent"),
+    input = M.DeleteLineageEventInput,
+    output = M.DeleteLineageEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v2/domains/{domainIdentifier}/lineage/events/{identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

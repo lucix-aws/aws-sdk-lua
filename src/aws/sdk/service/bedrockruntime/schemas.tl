@@ -19,6 +19,8 @@ M.GuardrailOutputContentList = schema.new({ type = "list", list_member = M.Guard
 
 M.GuardrailAssessmentList = schema.new({ type = "list", list_member = M.GuardrailAssessment })
 
+M.GuardrailChecksMessageList = schema.new({ type = "list", list_member = M.GuardrailChecksMessage })
+
 M.Messages = schema.new({ type = "list", list_member = M.Message })
 
 M.SystemContentBlocks = schema.new({ type = "list", list_member = M.SystemContentBlock })
@@ -34,6 +36,20 @@ M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String 
 M.Tools = schema.new({ type = "list", list_member = M.Tool })
 
 M.CacheDetailsList = schema.new({ type = "list", list_member = M.CacheDetail })
+
+M.GuardrailChecksContentBlockList = schema.new({ type = "list", list_member = M.GuardrailChecksContentBlock })
+
+M.GuardrailChecksContentFilterCategoryConfigList = schema.new({ type = "list", list_member = M.GuardrailChecksContentFilterCategoryConfig })
+
+M.GuardrailChecksPromptAttackCategoryConfigList = schema.new({ type = "list", list_member = M.GuardrailChecksPromptAttackCategoryConfig })
+
+M.GuardrailChecksSensitiveInformationEntityConfigList = schema.new({ type = "list", list_member = M.GuardrailChecksSensitiveInformationEntityConfig })
+
+M.GuardrailChecksContentFilterResultList = schema.new({ type = "list", list_member = M.GuardrailChecksContentFilterResultEntry })
+
+M.GuardrailChecksPromptAttackResultList = schema.new({ type = "list", list_member = M.GuardrailChecksPromptAttackResultEntry })
+
+M.GuardrailChecksSensitiveInformationResultList = schema.new({ type = "list", list_member = M.GuardrailChecksSensitiveInformationResultEntry })
 
 M.ContentBlocks = schema.new({ type = "list", list_member = M.ContentBlock })
 
@@ -1874,6 +1890,498 @@ M.ApplyGuardrailOutput = schema.new({
             name = "guardrailCoverage",
             target_id = id.from(_N, "GuardrailCoverage"),
             target = M.GuardrailCoverage,
+        }),
+    },
+})
+
+M.GuardrailChecksContentFilterCategoryConfig = schema.new({
+    id = id.from(_N, "GuardrailChecksContentFilterCategoryConfig"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "GuardrailChecksContentFilterCategoryConfig", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksContentFilterConfig = schema.new({
+    id = id.from(_N, "GuardrailChecksContentFilterConfig"),
+    type = "structure",
+    members = {
+        categories = schema.new({
+            id = id.from(_N, "GuardrailChecksContentFilterConfig", "categories"),
+            type = "list",
+            name = "categories",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksContentFilterCategoryConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksPromptAttackCategoryConfig = schema.new({
+    id = id.from(_N, "GuardrailChecksPromptAttackCategoryConfig"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "GuardrailChecksPromptAttackCategoryConfig", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksPromptAttackConfig = schema.new({
+    id = id.from(_N, "GuardrailChecksPromptAttackConfig"),
+    type = "structure",
+    members = {
+        categories = schema.new({
+            id = id.from(_N, "GuardrailChecksPromptAttackConfig", "categories"),
+            type = "list",
+            name = "categories",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksPromptAttackCategoryConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksSensitiveInformationEntityConfig = schema.new({
+    id = id.from(_N, "GuardrailChecksSensitiveInformationEntityConfig"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationEntityConfig", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksSensitiveInformationConfig = schema.new({
+    id = id.from(_N, "GuardrailChecksSensitiveInformationConfig"),
+    type = "structure",
+    members = {
+        entities = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationConfig", "entities"),
+            type = "list",
+            name = "entities",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksSensitiveInformationEntityConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksConfig = schema.new({
+    id = id.from(_N, "GuardrailChecksConfig"),
+    type = "structure",
+    members = {
+        contentFilter = schema.new({
+            id = id.from(_N, "GuardrailChecksConfig", "contentFilter"),
+            type = "structure",
+            name = "contentFilter",
+            target_id = id.from(_N, "GuardrailChecksContentFilterConfig"),
+            target = M.GuardrailChecksContentFilterConfig,
+        }),
+        promptAttack = schema.new({
+            id = id.from(_N, "GuardrailChecksConfig", "promptAttack"),
+            type = "structure",
+            name = "promptAttack",
+            target_id = id.from(_N, "GuardrailChecksPromptAttackConfig"),
+            target = M.GuardrailChecksPromptAttackConfig,
+        }),
+        sensitiveInformation = schema.new({
+            id = id.from(_N, "GuardrailChecksConfig", "sensitiveInformation"),
+            type = "structure",
+            name = "sensitiveInformation",
+            target_id = id.from(_N, "GuardrailChecksSensitiveInformationConfig"),
+            target = M.GuardrailChecksSensitiveInformationConfig,
+        }),
+    },
+})
+
+M.GuardrailChecksContentBlock = schema.new({
+    id = id.from(_N, "GuardrailChecksContentBlock"),
+    type = "union",
+    members = {
+        text = schema.new({
+            id = id.from(_N, "GuardrailChecksContentBlock", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GuardrailChecksMessage = schema.new({
+    id = id.from(_N, "GuardrailChecksMessage"),
+    type = "structure",
+    members = {
+        role = schema.new({
+            id = id.from(_N, "GuardrailChecksMessage", "role"),
+            type = "string",
+            name = "role",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        content = schema.new({
+            id = id.from(_N, "GuardrailChecksMessage", "content"),
+            type = "list",
+            name = "content",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksContentBlock,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InvokeGuardrailChecksInput = schema.new({
+    id = id.from(_N, "InvokeGuardrailChecksRequest"),
+    type = "structure",
+    members = {
+        messages = schema.new({
+            id = id.from(_N, "InvokeGuardrailChecksInput", "messages"),
+            type = "list",
+            name = "messages",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        checks = schema.new({
+            id = id.from(_N, "InvokeGuardrailChecksInput", "checks"),
+            type = "structure",
+            name = "checks",
+            target_id = id.from(_N, "GuardrailChecksConfig"),
+            target = M.GuardrailChecksConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksContentFilterResultEntry = schema.new({
+    id = id.from(_N, "GuardrailChecksContentFilterResultEntry"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "GuardrailChecksContentFilterResultEntry", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        severityScore = schema.new({
+            id = id.from(_N, "GuardrailChecksContentFilterResultEntry", "severityScore"),
+            type = "double",
+            name = "severityScore",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksContentFilterResult = schema.new({
+    id = id.from(_N, "GuardrailChecksContentFilterResult"),
+    type = "structure",
+    members = {
+        results = schema.new({
+            id = id.from(_N, "GuardrailChecksContentFilterResult", "results"),
+            type = "list",
+            name = "results",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksContentFilterResultEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksPromptAttackResultEntry = schema.new({
+    id = id.from(_N, "GuardrailChecksPromptAttackResultEntry"),
+    type = "structure",
+    members = {
+        category = schema.new({
+            id = id.from(_N, "GuardrailChecksPromptAttackResultEntry", "category"),
+            type = "string",
+            name = "category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        severityScore = schema.new({
+            id = id.from(_N, "GuardrailChecksPromptAttackResultEntry", "severityScore"),
+            type = "double",
+            name = "severityScore",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksPromptAttackResult = schema.new({
+    id = id.from(_N, "GuardrailChecksPromptAttackResult"),
+    type = "structure",
+    members = {
+        results = schema.new({
+            id = id.from(_N, "GuardrailChecksPromptAttackResult", "results"),
+            type = "list",
+            name = "results",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksPromptAttackResultEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksSensitiveInformationResultEntry = schema.new({
+    id = id.from(_N, "GuardrailChecksSensitiveInformationResultEntry"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResultEntry", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        confidenceScore = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResultEntry", "confidenceScore"),
+            type = "double",
+            name = "confidenceScore",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        beginOffset = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResultEntry", "beginOffset"),
+            type = "integer",
+            name = "beginOffset",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endOffset = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResultEntry", "endOffset"),
+            type = "integer",
+            name = "endOffset",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        messageIndex = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResultEntry", "messageIndex"),
+            type = "integer",
+            name = "messageIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        contentIndex = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResultEntry", "contentIndex"),
+            type = "integer",
+            name = "contentIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksSensitiveInformationResult = schema.new({
+    id = id.from(_N, "GuardrailChecksSensitiveInformationResult"),
+    type = "structure",
+    members = {
+        results = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResult", "results"),
+            type = "list",
+            name = "results",
+            target_id = prelude.Document.id,
+            list_member = M.GuardrailChecksSensitiveInformationResultEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        truncated = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationResult", "truncated"),
+            type = "boolean",
+            name = "truncated",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.GuardrailChecksResults = schema.new({
+    id = id.from(_N, "GuardrailChecksResults"),
+    type = "structure",
+    members = {
+        contentFilter = schema.new({
+            id = id.from(_N, "GuardrailChecksResults", "contentFilter"),
+            type = "structure",
+            name = "contentFilter",
+            target_id = id.from(_N, "GuardrailChecksContentFilterResult"),
+            target = M.GuardrailChecksContentFilterResult,
+        }),
+        promptAttack = schema.new({
+            id = id.from(_N, "GuardrailChecksResults", "promptAttack"),
+            type = "structure",
+            name = "promptAttack",
+            target_id = id.from(_N, "GuardrailChecksPromptAttackResult"),
+            target = M.GuardrailChecksPromptAttackResult,
+        }),
+        sensitiveInformation = schema.new({
+            id = id.from(_N, "GuardrailChecksResults", "sensitiveInformation"),
+            type = "structure",
+            name = "sensitiveInformation",
+            target_id = id.from(_N, "GuardrailChecksSensitiveInformationResult"),
+            target = M.GuardrailChecksSensitiveInformationResult,
+        }),
+    },
+})
+
+M.GuardrailChecksContentFilterUsage = schema.new({
+    id = id.from(_N, "GuardrailChecksContentFilterUsage"),
+    type = "structure",
+    members = {
+        textUnits = schema.new({
+            id = id.from(_N, "GuardrailChecksContentFilterUsage", "textUnits"),
+            type = "integer",
+            name = "textUnits",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksPromptAttackUsage = schema.new({
+    id = id.from(_N, "GuardrailChecksPromptAttackUsage"),
+    type = "structure",
+    members = {
+        textUnits = schema.new({
+            id = id.from(_N, "GuardrailChecksPromptAttackUsage", "textUnits"),
+            type = "integer",
+            name = "textUnits",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksSensitiveInformationUsage = schema.new({
+    id = id.from(_N, "GuardrailChecksSensitiveInformationUsage"),
+    type = "structure",
+    members = {
+        textUnits = schema.new({
+            id = id.from(_N, "GuardrailChecksSensitiveInformationUsage", "textUnits"),
+            type = "integer",
+            name = "textUnits",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GuardrailChecksUsageResults = schema.new({
+    id = id.from(_N, "GuardrailChecksUsageResults"),
+    type = "structure",
+    members = {
+        contentFilter = schema.new({
+            id = id.from(_N, "GuardrailChecksUsageResults", "contentFilter"),
+            type = "structure",
+            name = "contentFilter",
+            target_id = id.from(_N, "GuardrailChecksContentFilterUsage"),
+            target = M.GuardrailChecksContentFilterUsage,
+        }),
+        promptAttack = schema.new({
+            id = id.from(_N, "GuardrailChecksUsageResults", "promptAttack"),
+            type = "structure",
+            name = "promptAttack",
+            target_id = id.from(_N, "GuardrailChecksPromptAttackUsage"),
+            target = M.GuardrailChecksPromptAttackUsage,
+        }),
+        sensitiveInformation = schema.new({
+            id = id.from(_N, "GuardrailChecksUsageResults", "sensitiveInformation"),
+            type = "structure",
+            name = "sensitiveInformation",
+            target_id = id.from(_N, "GuardrailChecksSensitiveInformationUsage"),
+            target = M.GuardrailChecksSensitiveInformationUsage,
+        }),
+    },
+})
+
+M.InvokeGuardrailChecksOutput = schema.new({
+    id = id.from(_N, "InvokeGuardrailChecksResponse"),
+    type = "structure",
+    members = {
+        results = schema.new({
+            id = id.from(_N, "InvokeGuardrailChecksOutput", "results"),
+            type = "structure",
+            name = "results",
+            target_id = id.from(_N, "GuardrailChecksResults"),
+            target = M.GuardrailChecksResults,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        usage = schema.new({
+            id = id.from(_N, "InvokeGuardrailChecksOutput", "usage"),
+            type = "structure",
+            name = "usage",
+            target_id = id.from(_N, "GuardrailChecksUsageResults"),
+            target = M.GuardrailChecksUsageResults,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -5129,6 +5637,19 @@ M.GetAsyncInvoke = schema.operation({
     output = M.GetAsyncInvokeOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/async-invoke/{invocationArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+            { scheme_id = "smithy.api#httpBearerAuth" },
+        },
+    },
+})
+
+M.InvokeGuardrailChecks = schema.operation({
+    id = id.from("com.amazonaws.bedrockruntime", "InvokeGuardrailChecks"),
+    input = M.InvokeGuardrailChecksInput,
+    output = M.InvokeGuardrailChecksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/guardrail-checks/invoke" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
             { scheme_id = "smithy.api#httpBearerAuth" },
