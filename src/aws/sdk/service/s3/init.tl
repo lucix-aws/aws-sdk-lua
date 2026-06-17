@@ -44,6 +44,7 @@ local record Client
     deleteBucketTagging: function(Client, types.DeleteBucketTaggingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketTaggingOutput>
     deleteBucketWebsite: function(Client, types.DeleteBucketWebsiteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBucketWebsiteOutput>
     deleteObject: function(Client, types.DeleteObjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObjectOutput>
+    deleteObjectAnnotation: function(Client, types.DeleteObjectAnnotationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObjectAnnotationOutput>
     deleteObjects: function(Client, types.DeleteObjectsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObjectsOutput>
     deleteObjectTagging: function(Client, types.DeleteObjectTaggingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteObjectTaggingOutput>
     deletePublicAccessBlock: function(Client, types.DeletePublicAccessBlockInput, ? base_client.InvokeOptions): async.Operation<types.DeletePublicAccessBlockOutput>
@@ -72,6 +73,7 @@ local record Client
     getBucketWebsite: function(Client, types.GetBucketWebsiteInput, ? base_client.InvokeOptions): async.Operation<types.GetBucketWebsiteOutput>
     getObject: function(Client, types.GetObjectInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectOutput>
     getObjectAcl: function(Client, types.GetObjectAclInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectAclOutput>
+    getObjectAnnotation: function(Client, types.GetObjectAnnotationInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectAnnotationOutput>
     getObjectAttributes: function(Client, types.GetObjectAttributesInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectAttributesOutput>
     getObjectLegalHold: function(Client, types.GetObjectLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectLegalHoldOutput>
     getObjectLockConfiguration: function(Client, types.GetObjectLockConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetObjectLockConfigurationOutput>
@@ -88,6 +90,7 @@ local record Client
     listBuckets: function(Client, types.ListBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListBucketsOutput>
     listDirectoryBuckets: function(Client, types.ListDirectoryBucketsInput, ? base_client.InvokeOptions): async.Operation<types.ListDirectoryBucketsOutput>
     listMultipartUploads: function(Client, types.ListMultipartUploadsInput, ? base_client.InvokeOptions): async.Operation<types.ListMultipartUploadsOutput>
+    listObjectAnnotations: function(Client, types.ListObjectAnnotationsInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectAnnotationsOutput>
     listObjects: function(Client, types.ListObjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectsOutput>
     listObjectsV2: function(Client, types.ListObjectsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListObjectsV2Output>
     listObjectVersions: function(Client, types.ListObjectVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListObjectVersionsOutput>
@@ -113,6 +116,7 @@ local record Client
     putBucketWebsite: function(Client, types.PutBucketWebsiteInput, ? base_client.InvokeOptions): async.Operation<types.PutBucketWebsiteOutput>
     putObject: function(Client, types.PutObjectInput, ? base_client.InvokeOptions): async.Operation<types.PutObjectOutput>
     putObjectAcl: function(Client, types.PutObjectAclInput, ? base_client.InvokeOptions): async.Operation<types.PutObjectAclOutput>
+    putObjectAnnotation: function(Client, types.PutObjectAnnotationInput, ? base_client.InvokeOptions): async.Operation<types.PutObjectAnnotationOutput>
     putObjectLegalHold: function(Client, types.PutObjectLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.PutObjectLegalHoldOutput>
     putObjectLockConfiguration: function(Client, types.PutObjectLockConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutObjectLockConfigurationOutput>
     putObjectRetention: function(Client, types.PutObjectRetentionInput, ? base_client.InvokeOptions): async.Operation<types.PutObjectRetentionOutput>
@@ -121,6 +125,7 @@ local record Client
     renameObject: function(Client, types.RenameObjectInput, ? base_client.InvokeOptions): async.Operation<types.RenameObjectOutput>
     restoreObject: function(Client, types.RestoreObjectInput, ? base_client.InvokeOptions): async.Operation<types.RestoreObjectOutput>
     selectObjectContent: function(Client, types.SelectObjectContentInput, ? base_client.InvokeOptions): async.Operation<types.SelectObjectContentOutput>
+    updateBucketMetadataAnnotationTableConfiguration: function(Client, types.UpdateBucketMetadataAnnotationTableConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBucketMetadataAnnotationTableConfigurationOutput>
     updateBucketMetadataInventoryTableConfiguration: function(Client, types.UpdateBucketMetadataInventoryTableConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBucketMetadataInventoryTableConfigurationOutput>
     updateBucketMetadataJournalTableConfiguration: function(Client, types.UpdateBucketMetadataJournalTableConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBucketMetadataJournalTableConfigurationOutput>
     updateObjectEncryption: function(Client, types.UpdateObjectEncryptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateObjectEncryptionOutput>
@@ -270,6 +275,10 @@ function C:deleteObject(input: types.DeleteObjectInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteObject as schema.OperationSchema, input, options) as async.Operation<types.DeleteObjectOutput>
 end
 
+function C:deleteObjectAnnotation(input: types.DeleteObjectAnnotationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteObjectAnnotationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteObjectAnnotation as schema.OperationSchema, input, options) as async.Operation<types.DeleteObjectAnnotationOutput>
+end
+
 function C:deleteObjects(input: types.DeleteObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteObjectsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteObjects as schema.OperationSchema, input, options) as async.Operation<types.DeleteObjectsOutput>
 end
@@ -382,6 +391,10 @@ function C:getObjectAcl(input: types.GetObjectAclInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetObjectAcl as schema.OperationSchema, input, options) as async.Operation<types.GetObjectAclOutput>
 end
 
+function C:getObjectAnnotation(input: types.GetObjectAnnotationInput, options?: base_client.InvokeOptions): async.Operation<types.GetObjectAnnotationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetObjectAnnotation as schema.OperationSchema, input, options) as async.Operation<types.GetObjectAnnotationOutput>
+end
+
 function C:getObjectAttributes(input: types.GetObjectAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.GetObjectAttributesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetObjectAttributes as schema.OperationSchema, input, options) as async.Operation<types.GetObjectAttributesOutput>
 end
@@ -444,6 +457,10 @@ end
 
 function C:listMultipartUploads(input: types.ListMultipartUploadsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMultipartUploadsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMultipartUploads as schema.OperationSchema, input, options) as async.Operation<types.ListMultipartUploadsOutput>
+end
+
+function C:listObjectAnnotations(input: types.ListObjectAnnotationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectAnnotationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListObjectAnnotations as schema.OperationSchema, input, options) as async.Operation<types.ListObjectAnnotationsOutput>
 end
 
 function C:listObjects(input: types.ListObjectsInput, options?: base_client.InvokeOptions): async.Operation<types.ListObjectsOutput>
@@ -546,6 +563,10 @@ function C:putObjectAcl(input: types.PutObjectAclInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutObjectAcl as schema.OperationSchema, input, options) as async.Operation<types.PutObjectAclOutput>
 end
 
+function C:putObjectAnnotation(input: types.PutObjectAnnotationInput, options?: base_client.InvokeOptions): async.Operation<types.PutObjectAnnotationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutObjectAnnotation as schema.OperationSchema, input, options) as async.Operation<types.PutObjectAnnotationOutput>
+end
+
 function C:putObjectLegalHold(input: types.PutObjectLegalHoldInput, options?: base_client.InvokeOptions): async.Operation<types.PutObjectLegalHoldOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutObjectLegalHold as schema.OperationSchema, input, options) as async.Operation<types.PutObjectLegalHoldOutput>
 end
@@ -576,6 +597,10 @@ end
 
 function C:selectObjectContent(input: types.SelectObjectContentInput, options?: base_client.InvokeOptions): async.Operation<types.SelectObjectContentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SelectObjectContent as schema.OperationSchema, input, options) as async.Operation<types.SelectObjectContentOutput>
+end
+
+function C:updateBucketMetadataAnnotationTableConfiguration(input: types.UpdateBucketMetadataAnnotationTableConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBucketMetadataAnnotationTableConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBucketMetadataAnnotationTableConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateBucketMetadataAnnotationTableConfigurationOutput>
 end
 
 function C:updateBucketMetadataInventoryTableConfiguration(input: types.UpdateBucketMetadataInventoryTableConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBucketMetadataInventoryTableConfigurationOutput>

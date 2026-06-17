@@ -33,6 +33,7 @@ local record Client
     getEngagement: function(Client, types.GetEngagementInput, ? base_client.InvokeOptions): async.Operation<types.GetEngagementOutput>
     getEngagementInvitation: function(Client, types.GetEngagementInvitationInput, ? base_client.InvokeOptions): async.Operation<types.GetEngagementInvitationOutput>
     getOpportunity: function(Client, types.GetOpportunityInput, ? base_client.InvokeOptions): async.Operation<types.GetOpportunityOutput>
+    getProspectingFromEngagementTask: function(Client, types.GetProspectingFromEngagementTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetProspectingFromEngagementTaskOutput>
     getResourceSnapshot: function(Client, types.GetResourceSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceSnapshotOutput>
     getResourceSnapshotJob: function(Client, types.GetResourceSnapshotJobInput, ? base_client.InvokeOptions): async.Operation<types.GetResourceSnapshotJobOutput>
     getSellingSystemSettings: function(Client, types.GetSellingSystemSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetSellingSystemSettingsOutput>
@@ -44,6 +45,7 @@ local record Client
     listEngagements: function(Client, types.ListEngagementsInput, ? base_client.InvokeOptions): async.Operation<types.ListEngagementsOutput>
     listOpportunities: function(Client, types.ListOpportunitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListOpportunitiesOutput>
     listOpportunityFromEngagementTasks: function(Client, types.ListOpportunityFromEngagementTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListOpportunityFromEngagementTasksOutput>
+    listProspectingFromEngagementTasks: function(Client, types.ListProspectingFromEngagementTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListProspectingFromEngagementTasksOutput>
     listResourceSnapshotJobs: function(Client, types.ListResourceSnapshotJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceSnapshotJobsOutput>
     listResourceSnapshots: function(Client, types.ListResourceSnapshotsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceSnapshotsOutput>
     listSolutions: function(Client, types.ListSolutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSolutionsOutput>
@@ -53,6 +55,7 @@ local record Client
     startEngagementByAcceptingInvitationTask: function(Client, types.StartEngagementByAcceptingInvitationTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartEngagementByAcceptingInvitationTaskOutput>
     startEngagementFromOpportunityTask: function(Client, types.StartEngagementFromOpportunityTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartEngagementFromOpportunityTaskOutput>
     startOpportunityFromEngagementTask: function(Client, types.StartOpportunityFromEngagementTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartOpportunityFromEngagementTaskOutput>
+    startProspectingFromEngagementTask: function(Client, types.StartProspectingFromEngagementTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartProspectingFromEngagementTaskOutput>
     startResourceSnapshotJob: function(Client, types.StartResourceSnapshotJobInput, ? base_client.InvokeOptions): async.Operation<types.StartResourceSnapshotJobOutput>
     stopResourceSnapshotJob: function(Client, types.StopResourceSnapshotJobInput, ? base_client.InvokeOptions): async.Operation<types.StopResourceSnapshotJobOutput>
     submitOpportunity: function(Client, types.SubmitOpportunityInput, ? base_client.InvokeOptions): async.Operation<types.SubmitOpportunityOutput>
@@ -164,6 +167,10 @@ function C:getOpportunity(input: types.GetOpportunityInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetOpportunity as schema.OperationSchema, input, options) as async.Operation<types.GetOpportunityOutput>
 end
 
+function C:getProspectingFromEngagementTask(input: types.GetProspectingFromEngagementTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetProspectingFromEngagementTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProspectingFromEngagementTask as schema.OperationSchema, input, options) as async.Operation<types.GetProspectingFromEngagementTaskOutput>
+end
+
 function C:getResourceSnapshot(input: types.GetResourceSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourceSnapshotOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourceSnapshot as schema.OperationSchema, input, options) as async.Operation<types.GetResourceSnapshotOutput>
 end
@@ -208,6 +215,10 @@ function C:listOpportunityFromEngagementTasks(input: types.ListOpportunityFromEn
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListOpportunityFromEngagementTasks as schema.OperationSchema, input, options) as async.Operation<types.ListOpportunityFromEngagementTasksOutput>
 end
 
+function C:listProspectingFromEngagementTasks(input: types.ListProspectingFromEngagementTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListProspectingFromEngagementTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProspectingFromEngagementTasks as schema.OperationSchema, input, options) as async.Operation<types.ListProspectingFromEngagementTasksOutput>
+end
+
 function C:listResourceSnapshotJobs(input: types.ListResourceSnapshotJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourceSnapshotJobsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourceSnapshotJobs as schema.OperationSchema, input, options) as async.Operation<types.ListResourceSnapshotJobsOutput>
 end
@@ -242,6 +253,10 @@ end
 
 function C:startOpportunityFromEngagementTask(input: types.StartOpportunityFromEngagementTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartOpportunityFromEngagementTaskOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartOpportunityFromEngagementTask as schema.OperationSchema, input, options) as async.Operation<types.StartOpportunityFromEngagementTaskOutput>
+end
+
+function C:startProspectingFromEngagementTask(input: types.StartProspectingFromEngagementTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartProspectingFromEngagementTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProspectingFromEngagementTask as schema.OperationSchema, input, options) as async.Operation<types.StartProspectingFromEngagementTaskOutput>
 end
 
 function C:startResourceSnapshotJob(input: types.StartResourceSnapshotJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartResourceSnapshotJobOutput>

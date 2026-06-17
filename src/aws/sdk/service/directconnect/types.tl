@@ -165,6 +165,18 @@ local record M
         startOn: string
     end
 
+    -- Contains information about the rate limiter status for a connection, including the maximum number of rate limiters allowed, the number currently in use, and the remaining capacity.
+    record RateLimiterStatus
+        -- The maximum number of rate limiters allowed on the connection.
+        maxAllowed: number
+        -- The number of rate limiters currently in use on the connection.
+        inUse: number
+        -- The number of rate limiters remaining (available) on the connection.
+        remaining: number
+        -- The total bandwidth allocated across all rate limiters on the connection.
+        totalBandwidth: string
+    end
+
     -- Information about a tag.
     record Tag
         -- The key.
@@ -231,6 +243,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -311,6 +325,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -333,17 +349,21 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- The valid values are 1-2147483646.
         asn: number
         -- The ASN when allocating a new private virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -360,6 +380,8 @@ local record M
         customerAddress: string
         -- The tags associated with the private virtual interface.
         tags: {Tag}
+        -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
+        rateLimit: string
     end
 
     record AllocatePrivateVirtualInterfaceInput
@@ -391,16 +413,20 @@ local record M
         bgpPeerId: string
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the BGP peer. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -464,16 +490,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -525,6 +555,13 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The rate limit (bandwidth allocation) applied to the virtual interface. The possible values are 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, or 10 Gbps.
+        rateLimit: string
+    end
+
+    -- The rate limiter limit has been exceeded for the connection. You cannot add more rate limiters to virtual interfaces on this connection.
+    record LimitExceededException
+        message: string
     end
 
     -- Information about a public virtual interface to be provisioned on a connection.
@@ -535,17 +572,21 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- The valid values are 1-2147483646.
         asn: number
         -- The ASN when allocating a new public virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -562,6 +603,8 @@ local record M
         routeFilterPrefixes: {RouteFilterPrefix}
         -- The tags associated with the public virtual interface.
         tags: {Tag}
+        -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
+        rateLimit: string
     end
 
     record AllocatePublicVirtualInterfaceInput
@@ -591,16 +634,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -652,6 +699,8 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The rate limit (bandwidth allocation) applied to the virtual interface. The possible values are 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, or 10 Gbps.
+        rateLimit: string
     end
 
     -- Information about a transit virtual interface to be provisioned on a connection.
@@ -662,17 +711,21 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- The valid values are 1-2147483646.
         asn: number
         -- The ASN when allocating a new transit virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -689,6 +742,8 @@ local record M
         addressFamily: string
         -- The tags associated with the transitive virtual interface.
         tags: {Tag}
+        -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
+        rateLimit: string
     end
 
     record AllocateTransitVirtualInterfaceInput
@@ -718,16 +773,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -779,6 +838,8 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The rate limit (bandwidth allocation) applied to the virtual interface. The possible values are 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, or 10 Gbps.
+        rateLimit: string
     end
 
     record AllocateTransitVirtualInterfaceOutput
@@ -851,6 +912,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -920,6 +983,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -976,16 +1041,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -1037,6 +1106,8 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The rate limit (bandwidth allocation) applied to the virtual interface. The possible values are 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, or 10 Gbps.
+        rateLimit: string
     end
 
     record ConfirmConnectionInput
@@ -1192,6 +1263,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -1300,6 +1373,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -1584,6 +1659,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
     end
 
     -- Information about a private virtual interface.
@@ -1594,17 +1671,21 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- The valid values are 1-2147483646.
         asn: number
         -- The long ASN for a new private virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -1627,6 +1708,8 @@ local record M
         tags: {Tag}
         -- Indicates whether to enable or disable SiteLink.
         enableSiteLink: boolean
+        -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
+        rateLimit: string
     end
 
     record CreatePrivateVirtualInterfaceInput
@@ -1654,16 +1737,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -1715,6 +1802,8 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The rate limit (bandwidth allocation) applied to the virtual interface. The possible values are 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, or 10 Gbps.
+        rateLimit: string
     end
 
     -- Information about a public virtual interface.
@@ -1725,16 +1814,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for a new public virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -1751,6 +1844,8 @@ local record M
         routeFilterPrefixes: {RouteFilterPrefix}
         -- The tags associated with the public virtual interface.
         tags: {Tag}
+        -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
+        rateLimit: string
     end
 
     record CreatePublicVirtualInterfaceInput
@@ -1778,16 +1873,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -1839,6 +1938,8 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The rate limit (bandwidth allocation) applied to the virtual interface. The possible values are 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, or 10 Gbps.
+        rateLimit: string
     end
 
     -- Information about a transit virtual interface.
@@ -1849,16 +1950,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for a new transit virtual interface.The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -1879,6 +1984,8 @@ local record M
         tags: {Tag}
         -- Indicates whether to enable or disable SiteLink.
         enableSiteLink: boolean
+        -- The rate limit (bandwidth allocation) to apply to the virtual interface. The rate limit restricts the maximum bandwidth that the virtual interface can use on the parent connection.
+        rateLimit: string
     end
 
     record CreateTransitVirtualInterfaceInput
@@ -1898,16 +2005,20 @@ local record M
         virtualInterfaceId: string
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the BGP peer to be deleted from a Direct Connect virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -1986,6 +2097,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -2104,6 +2217,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
     end
 
     record DeleteVirtualInterfaceInput
@@ -2499,6 +2614,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
     end
 
     record DescribeLagsOutput
@@ -2709,6 +2826,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -2889,6 +3008,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the connection.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the connection, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
         -- Indicates whether the interconnect hosting this connection supports MAC Security (MACsec).
         partnerInterconnectMacSecCapable: boolean
     end
@@ -2988,6 +3109,8 @@ local record M
         encryptionMode: string
         -- The MAC Security (MACsec) security keys associated with the LAG.
         macSecKeys: {MacSecKey}
+        -- The rate limiter status for the LAG, including how many rate limiters are in use and the maximum allowed.
+        rateLimiterStatus: RateLimiterStatus
     end
 
     record UpdateVirtualInterfaceAttributesInput
@@ -2999,6 +3122,8 @@ local record M
         enableSiteLink: boolean
         -- The name of the virtual private interface.
         virtualInterfaceName: string
+        -- The rate limit (bandwidth allocation) to apply to the virtual interface. Use this to update the bandwidth allocation on an existing virtual interface.
+        rateLimit: string
     end
 
     -- Information about a virtual interface.
@@ -3019,16 +3144,20 @@ local record M
         vlan: number
         -- The autonomous system number (ASN). The valid range is from 1 to 2147483646 for Border Gateway Protocol (BGP) configuration. If you provide a number greater than the maximum, an error is returned. Use asnLong instead.
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
+        -- If you enter a 4-byte ASN for the asn parameter, the API returns an error.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         asn: number
         -- The long ASN for the virtual interface. The valid range is from 1 to 4294967294 for BGP configuration.
+        -- Note the following limitations when using asnLong:
         -- You can use asnLong or asn, but not both. We recommend using asnLong as it supports a greater pool of numbers.
-        -- The asnLong attribute accepts both ASN and long ASN
-        -- ranges.
+        -- asnLong accepts any valid ASN value, regardless if it's 2-byte or 4-byte.
+        -- When using a 4-byte asnLong, the API response returns 0 for the legacy asn attribute since 4-byte ASN values exceed the maximum supported value of 2,147,483,647.
+        -- If you are using a 2-byte ASN, the API response will include the
+        -- 2-byte value for both the asn and asnLong fields.
         -- If you provide a value in the same API call for both asn
         -- and asnLong, the API will only accept the value for
         -- asnLong.
@@ -3080,6 +3209,8 @@ local record M
         tags: {Tag}
         -- Indicates whether SiteLink is enabled.
         siteLinkEnabled: boolean
+        -- The rate limit (bandwidth allocation) applied to the virtual interface. The possible values are 50 Mbps, 100 Mbps, 200 Mbps, 300 Mbps, 400 Mbps, 500 Mbps, 1 Gbps, 2 Gbps, 5 Gbps, or 10 Gbps.
+        rateLimit: string
     end
 
 end

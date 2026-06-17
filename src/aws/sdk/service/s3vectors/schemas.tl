@@ -1330,6 +1330,12 @@ M.QueryVectorsInput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        nextToken = schema.new({
+            id = id.from(_N, "QueryVectorsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1383,6 +1389,12 @@ M.QueryVectorsOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "QueryVectorsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
         }),
     },
 })

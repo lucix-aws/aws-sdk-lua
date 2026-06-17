@@ -47,6 +47,8 @@ M.MultipartUploadList = schema.new({ type = "list", list_member = M.MultipartUpl
 
 M.CommonPrefixList = schema.new({ type = "list", list_member = M.CommonPrefix })
 
+M.AnnotationList = schema.new({ type = "list", list_member = M.AnnotationEntry })
+
 M.OptionalObjectAttributesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ObjectList = schema.new({ type = "list", list_member = M.Object })
@@ -1055,6 +1057,15 @@ M.CopyObjectInput = schema.new({
                 [traits.HTTP_HEADER] = { name = "x-amz-tagging-directive" },
             },
         }),
+        AnnotationDirective = schema.new({
+            id = id.from(_N, "CopyObjectInput", "AnnotationDirective"),
+            type = "string",
+            name = "AnnotationDirective",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-annotation-directive" },
+            },
+        }),
         ServerSideEncryption = schema.new({
             id = id.from(_N, "CopyObjectInput", "ServerSideEncryption"),
             type = "string",
@@ -1702,6 +1713,35 @@ M.MetadataTableEncryptionConfiguration = schema.new({
     },
 })
 
+M.AnnotationTableConfiguration = schema.new({
+    id = id.from(_N, "AnnotationTableConfiguration"),
+    type = "structure",
+    members = {
+        ConfigurationState = schema.new({
+            id = id.from(_N, "AnnotationTableConfiguration", "ConfigurationState"),
+            type = "string",
+            name = "ConfigurationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "AnnotationTableConfiguration", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "MetadataTableEncryptionConfiguration"),
+            target = M.MetadataTableEncryptionConfiguration,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "AnnotationTableConfiguration", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InventoryTableConfiguration = schema.new({
     id = id.from(_N, "InventoryTableConfiguration"),
     type = "structure",
@@ -1791,6 +1831,13 @@ M.MetadataConfiguration = schema.new({
             name = "InventoryTableConfiguration",
             target_id = id.from(_N, "InventoryTableConfiguration"),
             target = M.InventoryTableConfiguration,
+        }),
+        AnnotationTableConfiguration = schema.new({
+            id = id.from(_N, "MetadataConfiguration", "AnnotationTableConfiguration"),
+            type = "structure",
+            name = "AnnotationTableConfiguration",
+            target_id = id.from(_N, "AnnotationTableConfiguration"),
+            target = M.AnnotationTableConfiguration,
         }),
     },
 })
@@ -3145,6 +3192,112 @@ M.DeleteObjectOutput = schema.new({
                 [traits.HTTP_HEADER] = { name = "x-amz-request-charged" },
             },
         }),
+    },
+})
+
+M.DeleteObjectAnnotationInput = schema.new({
+    id = id.from(_N, "DeleteObjectAnnotationRequest"),
+    type = "structure",
+    members = {
+        Bucket = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationInput", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AnnotationName = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationInput", "AnnotationName"),
+            type = "string",
+            name = "AnnotationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "annotationName" },
+            },
+        }),
+        VersionId = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationInput", "VersionId"),
+            type = "string",
+            name = "VersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "versionId" },
+            },
+        }),
+        RequestPayer = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationInput", "RequestPayer"),
+            type = "string",
+            name = "RequestPayer",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-payer" },
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationInput", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-expected-bucket-owner" },
+            },
+        }),
+        ObjectIfMatch = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationInput", "ObjectIfMatch"),
+            type = "string",
+            name = "ObjectIfMatch",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-if-match" },
+            },
+        }),
+    },
+})
+
+M.DeleteObjectAnnotationOutput = schema.new({
+    id = id.from(_N, "DeleteObjectAnnotationOutput"),
+    type = "structure",
+    members = {
+        ObjectVersionId = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationOutput", "ObjectVersionId"),
+            type = "string",
+            name = "ObjectVersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-version-id" },
+            },
+        }),
+        RequestCharged = schema.new({
+            id = id.from(_N, "DeleteObjectAnnotationOutput", "RequestCharged"),
+            type = "string",
+            name = "RequestCharged",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-charged" },
+            },
+        }),
+    },
+})
+
+M.NoSuchKey = schema.new({
+    id = id.from(_N, "NoSuchKey"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
     },
 })
 
@@ -5082,6 +5235,72 @@ M.GetBucketMetadataConfigurationInput = schema.new({
     },
 })
 
+M.ErrorDetails = schema.new({
+    id = id.from(_N, "ErrorDetails"),
+    type = "structure",
+    members = {
+        ErrorCode = schema.new({
+            id = id.from(_N, "ErrorDetails", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "ErrorDetails", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AnnotationTableConfigurationResult = schema.new({
+    id = id.from(_N, "AnnotationTableConfigurationResult"),
+    type = "structure",
+    members = {
+        ConfigurationState = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationResult", "ConfigurationState"),
+            type = "string",
+            name = "ConfigurationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TableStatus = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationResult", "TableStatus"),
+            type = "string",
+            name = "TableStatus",
+            target_id = prelude.String.id,
+        }),
+        Error = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationResult", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "ErrorDetails"),
+            target = M.ErrorDetails,
+        }),
+        TableName = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationResult", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        TableArn = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationResult", "TableArn"),
+            type = "string",
+            name = "TableArn",
+            target_id = prelude.String.id,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationResult", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DestinationResult = schema.new({
     id = id.from(_N, "DestinationResult"),
     type = "structure",
@@ -5102,25 +5321,6 @@ M.DestinationResult = schema.new({
             id = id.from(_N, "DestinationResult", "TableNamespace"),
             type = "string",
             name = "TableNamespace",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ErrorDetails = schema.new({
-    id = id.from(_N, "ErrorDetails"),
-    type = "structure",
-    members = {
-        ErrorCode = schema.new({
-            id = id.from(_N, "ErrorDetails", "ErrorCode"),
-            type = "string",
-            name = "ErrorCode",
-            target_id = prelude.String.id,
-        }),
-        ErrorMessage = schema.new({
-            id = id.from(_N, "ErrorDetails", "ErrorMessage"),
-            type = "string",
-            name = "ErrorMessage",
             target_id = prelude.String.id,
         }),
     },
@@ -5242,6 +5442,13 @@ M.MetadataConfigurationResult = schema.new({
             name = "InventoryTableConfigurationResult",
             target_id = id.from(_N, "InventoryTableConfigurationResult"),
             target = M.InventoryTableConfigurationResult,
+        }),
+        AnnotationTableConfigurationResult = schema.new({
+            id = id.from(_N, "MetadataConfigurationResult", "AnnotationTableConfigurationResult"),
+            type = "structure",
+            name = "AnnotationTableConfigurationResult",
+            target_id = id.from(_N, "AnnotationTableConfigurationResult"),
+            target = M.AnnotationTableConfigurationResult,
         }),
     },
 })
@@ -7366,14 +7573,6 @@ M.InvalidObjectState = schema.new({
     },
 })
 
-M.NoSuchKey = schema.new({
-    id = id.from(_N, "NoSuchKey"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-})
-
 M.GetObjectAclInput = schema.new({
     id = id.from(_N, "GetObjectAclRequest"),
     type = "structure",
@@ -7461,6 +7660,271 @@ M.GetObjectAclOutput = schema.new({
                 [traits.HTTP_HEADER] = { name = "x-amz-request-charged" },
             },
         }),
+    },
+})
+
+M.GetObjectAnnotationInput = schema.new({
+    id = id.from(_N, "GetObjectAnnotationRequest"),
+    type = "structure",
+    members = {
+        Bucket = schema.new({
+            id = id.from(_N, "GetObjectAnnotationInput", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "GetObjectAnnotationInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AnnotationName = schema.new({
+            id = id.from(_N, "GetObjectAnnotationInput", "AnnotationName"),
+            type = "string",
+            name = "AnnotationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "annotationName" },
+            },
+        }),
+        VersionId = schema.new({
+            id = id.from(_N, "GetObjectAnnotationInput", "VersionId"),
+            type = "string",
+            name = "VersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "versionId" },
+            },
+        }),
+        RequestPayer = schema.new({
+            id = id.from(_N, "GetObjectAnnotationInput", "RequestPayer"),
+            type = "string",
+            name = "RequestPayer",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-payer" },
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "GetObjectAnnotationInput", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-expected-bucket-owner" },
+            },
+        }),
+        ChecksumMode = schema.new({
+            id = id.from(_N, "GetObjectAnnotationInput", "ChecksumMode"),
+            type = "string",
+            name = "ChecksumMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-mode" },
+            },
+        }),
+    },
+})
+
+M.GetObjectAnnotationOutput = schema.new({
+    id = id.from(_N, "GetObjectAnnotationOutput"),
+    type = "structure",
+    members = {
+        AnnotationPayload = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "AnnotationPayload"),
+            type = "blob",
+            name = "AnnotationPayload",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.DEFAULT] = { value = "" },
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        ObjectVersionId = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ObjectVersionId"),
+            type = "string",
+            name = "ObjectVersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-version-id" },
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "LastModified"),
+            type = "timestamp",
+            name = "LastModified",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Last-Modified" },
+            },
+        }),
+        ContentLength = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ContentLength"),
+            type = "long",
+            name = "ContentLength",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-Length" },
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "ETag" },
+            },
+        }),
+        ChecksumCRC32 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumCRC32"),
+            type = "string",
+            name = "ChecksumCRC32",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc32" },
+            },
+        }),
+        ChecksumCRC32C = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumCRC32C"),
+            type = "string",
+            name = "ChecksumCRC32C",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc32c" },
+            },
+        }),
+        ChecksumCRC64NVME = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumCRC64NVME"),
+            type = "string",
+            name = "ChecksumCRC64NVME",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc64nvme" },
+            },
+        }),
+        ChecksumSHA1 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumSHA1"),
+            type = "string",
+            name = "ChecksumSHA1",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha1" },
+            },
+        }),
+        ChecksumSHA256 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumSHA256"),
+            type = "string",
+            name = "ChecksumSHA256",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha256" },
+            },
+        }),
+        ChecksumSHA512 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumSHA512"),
+            type = "string",
+            name = "ChecksumSHA512",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha512" },
+            },
+        }),
+        ChecksumMD5 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumMD5"),
+            type = "string",
+            name = "ChecksumMD5",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-md5" },
+            },
+        }),
+        ChecksumXXHASH64 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumXXHASH64"),
+            type = "string",
+            name = "ChecksumXXHASH64",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash64" },
+            },
+        }),
+        ChecksumXXHASH3 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumXXHASH3"),
+            type = "string",
+            name = "ChecksumXXHASH3",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash3" },
+            },
+        }),
+        ChecksumXXHASH128 = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumXXHASH128"),
+            type = "string",
+            name = "ChecksumXXHASH128",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash128" },
+            },
+        }),
+        ChecksumType = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ChecksumType"),
+            type = "string",
+            name = "ChecksumType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-type" },
+            },
+        }),
+        ServerSideEncryption = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ServerSideEncryption"),
+            type = "string",
+            name = "ServerSideEncryption",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-server-side-encryption" },
+            },
+        }),
+        RequestCharged = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "RequestCharged"),
+            type = "string",
+            name = "RequestCharged",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-charged" },
+            },
+        }),
+        ReplicationStatus = schema.new({
+            id = id.from(_N, "GetObjectAnnotationOutput", "ReplicationStatus"),
+            type = "string",
+            name = "ReplicationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-replication-status" },
+            },
+        }),
+    },
+})
+
+M.NoSuchAnnotation = schema.new({
+    id = id.from(_N, "NoSuchAnnotation"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
     },
 })
 
@@ -9788,6 +10252,225 @@ M.ListMultipartUploadsOutput = schema.new({
         }),
         RequestCharged = schema.new({
             id = id.from(_N, "ListMultipartUploadsOutput", "RequestCharged"),
+            type = "string",
+            name = "RequestCharged",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-charged" },
+            },
+        }),
+    },
+})
+
+M.InvalidPrefix = schema.new({
+    id = id.from(_N, "InvalidPrefix"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+})
+
+M.ListObjectAnnotationsInput = schema.new({
+    id = id.from(_N, "ListObjectAnnotationsRequest"),
+    type = "structure",
+    members = {
+        Bucket = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        VersionId = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "VersionId"),
+            type = "string",
+            name = "VersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "versionId" },
+            },
+        }),
+        MaxAnnotationResults = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "MaxAnnotationResults"),
+            type = "integer",
+            name = "MaxAnnotationResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-annotation-results" },
+            },
+        }),
+        AnnotationPrefix = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "AnnotationPrefix"),
+            type = "string",
+            name = "AnnotationPrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "annotation-prefix" },
+            },
+        }),
+        ContinuationToken = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "ContinuationToken"),
+            type = "string",
+            name = "ContinuationToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "continuation-token" },
+            },
+        }),
+        RequestPayer = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "RequestPayer"),
+            type = "string",
+            name = "RequestPayer",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-payer" },
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsInput", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-expected-bucket-owner" },
+            },
+        }),
+    },
+})
+
+M.AnnotationEntry = schema.new({
+    id = id.from(_N, "AnnotationEntry"),
+    type = "structure",
+    members = {
+        AnnotationName = schema.new({
+            id = id.from(_N, "AnnotationEntry", "AnnotationName"),
+            type = "string",
+            name = "AnnotationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "AnnotationEntry", "LastModified"),
+            type = "timestamp",
+            name = "LastModified",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "AnnotationEntry", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+        }),
+        ChecksumAlgorithm = schema.new({
+            id = id.from(_N, "AnnotationEntry", "ChecksumAlgorithm"),
+            type = "list",
+            name = "ChecksumAlgorithm",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.XML_FLATTENED] = {},
+            },
+        }),
+        Size = schema.new({
+            id = id.from(_N, "AnnotationEntry", "Size"),
+            type = "long",
+            name = "Size",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReplicationStatus = schema.new({
+            id = id.from(_N, "AnnotationEntry", "ReplicationStatus"),
+            type = "string",
+            name = "ReplicationStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListObjectAnnotationsOutput = schema.new({
+    id = id.from(_N, "ListObjectAnnotationsOutput"),
+    type = "structure",
+    members = {
+        Annotations = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "Annotations"),
+            type = "list",
+            name = "Annotations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.AnnotationEntry, traits = { [traits.XML_NAME] = { name = "AnnotationEntry" } } }),
+        }),
+        Bucket = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+        }),
+        Key = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        ObjectVersionId = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "ObjectVersionId"),
+            type = "string",
+            name = "ObjectVersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-version-id" },
+            },
+        }),
+        AnnotationPrefix = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "AnnotationPrefix"),
+            type = "string",
+            name = "AnnotationPrefix",
+            target_id = prelude.String.id,
+        }),
+        MaxAnnotationResults = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "MaxAnnotationResults"),
+            type = "integer",
+            name = "MaxAnnotationResults",
+            target_id = prelude.Integer.id,
+        }),
+        AnnotationCount = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "AnnotationCount"),
+            type = "integer",
+            name = "AnnotationCount",
+            target_id = prelude.Integer.id,
+        }),
+        ContinuationToken = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "ContinuationToken"),
+            type = "string",
+            name = "ContinuationToken",
+            target_id = prelude.String.id,
+        }),
+        NextContinuationToken = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "NextContinuationToken"),
+            type = "string",
+            name = "NextContinuationToken",
+            target_id = prelude.String.id,
+        }),
+        RequestCharged = schema.new({
+            id = id.from(_N, "ListObjectAnnotationsOutput", "RequestCharged"),
             type = "string",
             name = "RequestCharged",
             target_id = prelude.String.id,
@@ -13065,6 +13748,388 @@ M.PutObjectAclOutput = schema.new({
     },
 })
 
+M.AnnotationLimitExceeded = schema.new({
+    id = id.from(_N, "AnnotationLimitExceeded"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+})
+
+M.AnnotationNameTooLong = schema.new({
+    id = id.from(_N, "AnnotationNameTooLong"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+})
+
+M.InvalidAnnotationName = schema.new({
+    id = id.from(_N, "InvalidAnnotationName"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+})
+
+M.PutObjectAnnotationInput = schema.new({
+    id = id.from(_N, "PutObjectAnnotationRequest"),
+    type = "structure",
+    members = {
+        Bucket = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        VersionId = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "VersionId"),
+            type = "string",
+            name = "VersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "versionId" },
+            },
+        }),
+        AnnotationName = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "AnnotationName"),
+            type = "string",
+            name = "AnnotationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "annotationName" },
+            },
+        }),
+        AnnotationPayload = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "AnnotationPayload"),
+            type = "blob",
+            name = "AnnotationPayload",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+        ObjectIfMatch = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ObjectIfMatch"),
+            type = "string",
+            name = "ObjectIfMatch",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-if-match" },
+            },
+        }),
+        ChecksumAlgorithm = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumAlgorithm"),
+            type = "string",
+            name = "ChecksumAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-sdk-checksum-algorithm" },
+            },
+        }),
+        ChecksumCRC32 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumCRC32"),
+            type = "string",
+            name = "ChecksumCRC32",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc32" },
+            },
+        }),
+        ChecksumCRC32C = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumCRC32C"),
+            type = "string",
+            name = "ChecksumCRC32C",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc32c" },
+            },
+        }),
+        ChecksumCRC64NVME = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumCRC64NVME"),
+            type = "string",
+            name = "ChecksumCRC64NVME",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc64nvme" },
+            },
+        }),
+        ChecksumSHA1 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumSHA1"),
+            type = "string",
+            name = "ChecksumSHA1",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha1" },
+            },
+        }),
+        ChecksumSHA256 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumSHA256"),
+            type = "string",
+            name = "ChecksumSHA256",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha256" },
+            },
+        }),
+        ChecksumSHA512 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumSHA512"),
+            type = "string",
+            name = "ChecksumSHA512",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha512" },
+            },
+        }),
+        ChecksumMD5 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumMD5"),
+            type = "string",
+            name = "ChecksumMD5",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-md5" },
+            },
+        }),
+        ChecksumXXHASH64 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumXXHASH64"),
+            type = "string",
+            name = "ChecksumXXHASH64",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash64" },
+            },
+        }),
+        ChecksumXXHASH3 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumXXHASH3"),
+            type = "string",
+            name = "ChecksumXXHASH3",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash3" },
+            },
+        }),
+        ChecksumXXHASH128 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ChecksumXXHASH128"),
+            type = "string",
+            name = "ChecksumXXHASH128",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash128" },
+            },
+        }),
+        ContentMD5 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ContentMD5"),
+            type = "string",
+            name = "ContentMD5",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-MD5" },
+            },
+        }),
+        RequestPayer = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "RequestPayer"),
+            type = "string",
+            name = "RequestPayer",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-payer" },
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "PutObjectAnnotationInput", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-expected-bucket-owner" },
+            },
+        }),
+    },
+})
+
+M.PutObjectAnnotationOutput = schema.new({
+    id = id.from(_N, "PutObjectAnnotationOutput"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        AnnotationName = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "AnnotationName"),
+            type = "string",
+            name = "AnnotationName",
+            target_id = prelude.String.id,
+        }),
+        ObjectVersionId = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ObjectVersionId"),
+            type = "string",
+            name = "ObjectVersionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-object-version-id" },
+            },
+        }),
+        ETag = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ETag"),
+            type = "string",
+            name = "ETag",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "ETag" },
+            },
+        }),
+        ChecksumCRC32 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumCRC32"),
+            type = "string",
+            name = "ChecksumCRC32",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc32" },
+            },
+        }),
+        ChecksumCRC32C = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumCRC32C"),
+            type = "string",
+            name = "ChecksumCRC32C",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc32c" },
+            },
+        }),
+        ChecksumCRC64NVME = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumCRC64NVME"),
+            type = "string",
+            name = "ChecksumCRC64NVME",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-crc64nvme" },
+            },
+        }),
+        ChecksumSHA1 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumSHA1"),
+            type = "string",
+            name = "ChecksumSHA1",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha1" },
+            },
+        }),
+        ChecksumSHA256 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumSHA256"),
+            type = "string",
+            name = "ChecksumSHA256",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha256" },
+            },
+        }),
+        ChecksumSHA512 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumSHA512"),
+            type = "string",
+            name = "ChecksumSHA512",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-sha512" },
+            },
+        }),
+        ChecksumMD5 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumMD5"),
+            type = "string",
+            name = "ChecksumMD5",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-md5" },
+            },
+        }),
+        ChecksumXXHASH64 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumXXHASH64"),
+            type = "string",
+            name = "ChecksumXXHASH64",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash64" },
+            },
+        }),
+        ChecksumXXHASH3 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumXXHASH3"),
+            type = "string",
+            name = "ChecksumXXHASH3",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash3" },
+            },
+        }),
+        ChecksumXXHASH128 = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumXXHASH128"),
+            type = "string",
+            name = "ChecksumXXHASH128",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-xxhash128" },
+            },
+        }),
+        ChecksumType = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ChecksumType"),
+            type = "string",
+            name = "ChecksumType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-checksum-type" },
+            },
+        }),
+        ServerSideEncryption = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "ServerSideEncryption"),
+            type = "string",
+            name = "ServerSideEncryption",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-server-side-encryption" },
+            },
+        }),
+        RequestCharged = schema.new({
+            id = id.from(_N, "PutObjectAnnotationOutput", "RequestCharged"),
+            type = "string",
+            name = "RequestCharged",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-request-charged" },
+            },
+        }),
+    },
+})
+
+M.UnsupportedMediaType = schema.new({
+    id = id.from(_N, "UnsupportedMediaType"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+})
+
 M.PutObjectLegalHoldInput = schema.new({
     id = id.from(_N, "PutObjectLegalHoldRequest"),
     type = "structure",
@@ -14496,6 +15561,93 @@ M.SelectObjectContentOutput = schema.new({
         }),
     },
 })
+
+M.AnnotationTableConfigurationUpdates = schema.new({
+    id = id.from(_N, "AnnotationTableConfigurationUpdates"),
+    type = "structure",
+    members = {
+        ConfigurationState = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationUpdates", "ConfigurationState"),
+            type = "string",
+            name = "ConfigurationState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationUpdates", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "MetadataTableEncryptionConfiguration"),
+            target = M.MetadataTableEncryptionConfiguration,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "AnnotationTableConfigurationUpdates", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateBucketMetadataAnnotationTableConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateBucketMetadataAnnotationTableConfigurationRequest"),
+    type = "structure",
+    members = {
+        Bucket = schema.new({
+            id = id.from(_N, "UpdateBucketMetadataAnnotationTableConfigurationInput", "Bucket"),
+            type = "string",
+            name = "Bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContentMD5 = schema.new({
+            id = id.from(_N, "UpdateBucketMetadataAnnotationTableConfigurationInput", "ContentMD5"),
+            type = "string",
+            name = "ContentMD5",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Content-MD5" },
+            },
+        }),
+        ChecksumAlgorithm = schema.new({
+            id = id.from(_N, "UpdateBucketMetadataAnnotationTableConfigurationInput", "ChecksumAlgorithm"),
+            type = "string",
+            name = "ChecksumAlgorithm",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-sdk-checksum-algorithm" },
+            },
+        }),
+        AnnotationTableConfiguration = schema.new({
+            id = id.from(_N, "UpdateBucketMetadataAnnotationTableConfigurationInput", "AnnotationTableConfiguration"),
+            type = "structure",
+            name = "AnnotationTableConfiguration",
+            target_id = id.from(_N, "AnnotationTableConfigurationUpdates"),
+            target = M.AnnotationTableConfigurationUpdates,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.XML_NAME] = { name = "AnnotationTableConfiguration" },
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "UpdateBucketMetadataAnnotationTableConfigurationInput", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amz-expected-bucket-owner" },
+            },
+        }),
+    },
+})
+
+M.UpdateBucketMetadataAnnotationTableConfigurationOutput = prelude.Unit
 
 M.InventoryTableConfigurationUpdates = schema.new({
     id = id.from(_N, "InventoryTableConfigurationUpdates"),
@@ -16409,6 +17561,21 @@ M.DeleteObject = schema.operation({
     },
 })
 
+M.DeleteObjectAnnotation = schema.operation({
+    id = id.from("com.amazonaws.s3", "DeleteObjectAnnotation"),
+    input = M.DeleteObjectAnnotationInput,
+    output = M.DeleteObjectAnnotationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/{Key+}?annotation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+    },
+})
+
 M.DeleteObjects = schema.operation({
     id = id.from("com.amazonaws.s3", "DeleteObjects"),
     input = M.DeleteObjectsInput,
@@ -16900,6 +18067,22 @@ M.GetObjectAcl = schema.operation({
     },
 })
 
+M.GetObjectAnnotation = schema.operation({
+    id = id.from("com.amazonaws.s3", "GetObjectAnnotation"),
+    input = M.GetObjectAnnotationInput,
+    output = M.GetObjectAnnotationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?annotation&x-id=GetObjectAnnotation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
 M.GetObjectAttributes = schema.operation({
     id = id.from("com.amazonaws.s3", "GetObjectAttributes"),
     input = M.GetObjectAttributesInput,
@@ -17150,6 +18333,21 @@ M.ListMultipartUploads = schema.operation({
         [traits.CONTEXT_PARAMS] = {
             Bucket = "Bucket",
             Prefix = "Prefix",
+        },
+    },
+})
+
+M.ListObjectAnnotations = schema.operation({
+    id = id.from("com.amazonaws.s3", "ListObjectAnnotations"),
+    input = M.ListObjectAnnotationsInput,
+    output = M.ListObjectAnnotationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/{Key+}?annotation&x-id=ListObjectAnnotations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
         },
     },
 })
@@ -17589,6 +18787,22 @@ M.PutObjectAcl = schema.operation({
     },
 })
 
+M.PutObjectAnnotation = schema.operation({
+    id = id.from("com.amazonaws.s3", "PutObjectAnnotation"),
+    input = M.PutObjectAnnotationInput,
+    output = M.PutObjectAnnotationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/{Key+}?annotation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+            Key = "Key",
+        },
+    },
+})
+
 M.PutObjectLegalHold = schema.operation({
     id = id.from("com.amazonaws.s3", "PutObjectLegalHold"),
     input = M.PutObjectLegalHoldInput,
@@ -17711,6 +18925,24 @@ M.SelectObjectContent = schema.operation({
             Bucket = "Bucket",
         },
         [traits.EVENT_STREAM] = M.SelectObjectContentEventStream,
+    },
+})
+
+M.UpdateBucketMetadataAnnotationTableConfiguration = schema.operation({
+    id = id.from("com.amazonaws.s3", "UpdateBucketMetadataAnnotationTableConfiguration"),
+    input = M.UpdateBucketMetadataAnnotationTableConfigurationInput,
+    output = M.UpdateBucketMetadataAnnotationTableConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/?metadataAnnotationTable" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            Bucket = "Bucket",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            UseS3ExpressControlEndpoint = { value = true },
+        },
     },
 })
 

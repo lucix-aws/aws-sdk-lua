@@ -40,6 +40,24 @@ function M.items_list_directory_buckets(client, input)
     })
 end
 
+--- Returns a page iterator for listObjectAnnotations.
+function M.pages_list_object_annotations(client, input)
+    return paginator.pages(client, "listObjectAnnotations", input, {
+        input_token = "ContinuationToken",
+        output_token = "NextContinuationToken",
+        items = "Annotations",
+    })
+end
+
+--- Returns an item iterator for listObjectAnnotations.
+function M.items_list_object_annotations(client, input)
+    return paginator.items(client, "listObjectAnnotations", input, {
+        input_token = "ContinuationToken",
+        output_token = "NextContinuationToken",
+        items = "Annotations",
+    })
+end
+
 --- Returns a page iterator for listObjectsV2.
 function M.pages_list_objects_v2(client, input)
     return paginator.pages(client, "listObjectsV2", input, {

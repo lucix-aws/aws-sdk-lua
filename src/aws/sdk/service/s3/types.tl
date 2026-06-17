@@ -455,6 +455,11 @@ local record M
         "bucket-owner-full-control"
     end
 
+    enum AnnotationDirective
+        "COPY"
+        "EXCLUDE"
+    end
+
     enum ChecksumAlgorithm
         "CRC32"
         "CRC32C"
@@ -689,6 +694,26 @@ local record M
         -- When you attempt to REPLACE the tag-set of a general purpose bucket source object that has non-empty tags and set the x-amz-tagging value of the directory bucket destination object to empty.
         -- When you attempt to REPLACE the tag-set of a directory bucket source object and don't set the x-amz-tagging value of the directory bucket destination object. This is because the default value of x-amz-tagging is the empty value.
         TaggingDirective: string
+        -- Specifies whether you want to copy annotations from the source object or exclude them. If this
+        -- header isn't specified, COPY is the default behavior.
+        -- Valid Values: COPY | EXCLUDE
+        -- You can specify this directive as either an HTTP header
+        -- (x-amz-object-annotation-directive) or as a query string parameter. Use the query
+        -- string form when generating presigned URLs that need to control annotation copy behavior.
+        -- When set to COPY, you must have s3:GetObjectAnnotation permission on
+        -- the source object and s3:PutObjectAnnotation permission on the destination. Each
+        -- annotation copied is billed as a separate PUT request. If annotations on the source are modified
+        -- during the copy, Amazon S3 returns a retryable error.
+        -- For directory buckets, annotations are not supported. Use EXCLUDE to copy
+        -- objects to directory buckets without errors. If you specify COPY for a directory
+        -- bucket, the request returns HTTP 501 (Not Implemented).
+        -- When you copy objects using multipart upload (for example, when the Amazon Web Services CLI or Amazon Web Services SDKs
+        -- use Transfer Manager for objects larger than approximately 8 MB), annotations are not copied by
+        -- default. To include annotations, specify --copy-props default in the Amazon Web Services CLI or the
+        -- equivalent SDK configuration. With this opt-in, the SDK reads source annotations, completes the
+        -- multipart upload, and then writes each annotation to the destination. Between the upload completion
+        -- and the last annotation write, the destination object exists without all its annotations.
+        AnnotationDirective: string
         -- The server-side encryption algorithm used when storing this object in Amazon S3. Unrecognized or
         -- unsupported values won’t write a destination object and will receive a 400 Bad Request
         -- response.
@@ -1183,7 +1208,7 @@ local record M
         BucketArn: string
     end
 
-    enum InventoryConfigurationState
+    enum AnnotationConfigurationState
         "ENABLED"
         "DISABLED"
     end
@@ -1204,6 +1229,22 @@ local record M
         -- that's located in the same Region as the general purpose bucket that corresponds to the metadata
         -- table configuration.
         KmsKeyArn: string
+    end
+
+    -- Specifies the configuration for the annotation table associated with a bucket's Amazon S3 Metadata
+    -- configuration. The annotation table is an Iceberg table that records annotation events for objects
+    -- in the bucket.
+    record AnnotationTableConfiguration
+        -- The state of the annotation table. Valid values are ENABLED and DISABLED.
+        ConfigurationState: string
+        EncryptionConfiguration: MetadataTableEncryptionConfiguration
+        -- The ARN of the IAM role used to manage the annotation table.
+        Role: string
+    end
+
+    enum InventoryConfigurationState
+        "ENABLED"
+        "DISABLED"
     end
 
     -- The inventory table configuration for an S3 Metadata configuration.
@@ -1245,6 +1286,8 @@ local record M
         JournalTableConfiguration: JournalTableConfiguration
         -- The inventory table configuration for a metadata configuration.
         InventoryTableConfiguration: InventoryTableConfiguration
+        -- Optional annotation table configuration to include with the metadata configuration.
+        AnnotationTableConfiguration: AnnotationTableConfiguration
     end
 
     record CreateBucketMetadataConfigurationInput
@@ -1970,6 +2013,34 @@ local record M
         -- This functionality is not supported for directory buckets.
         VersionId: string
         RequestCharged: string
+    end
+
+    record DeleteObjectAnnotationInput
+        -- The name of the bucket that contains the object.
+        Bucket: string
+        -- The object key.
+        Key: string
+        -- The name of the annotation to delete. Annotation names are UTF-8 encoded and cannot start with
+        -- aws or s3 (case-insensitive).
+        -- Length Constraints: Minimum length of 1. Maximum length of 512 bytes.
+        AnnotationName: string
+        -- The version ID of the object.
+        VersionId: string
+        RequestPayer: string
+        -- The account ID of the expected bucket owner.
+        ExpectedBucketOwner: string
+        -- If specified, the operation only succeeds if the object's ETag matches the provided value.
+        ObjectIfMatch: string
+    end
+
+    record DeleteObjectAnnotationOutput
+        -- The version ID of the object that the annotation was deleted from.
+        ObjectVersionId: string
+        RequestCharged: string
+    end
+
+    -- The specified key does not exist.
+    record NoSuchKey
     end
 
     -- Object Identifier is unique value to identify objects.
@@ -3395,25 +3466,6 @@ local record M
         ExpectedBucketOwner: string
     end
 
-    enum S3TablesBucketType
-        "aws"
-        "customer"
-    end
-
-    -- The destination information for the S3 Metadata configuration.
-    record DestinationResult
-        -- The type of the table bucket where the metadata configuration is stored. The aws
-        -- value indicates an Amazon Web Services managed table bucket, and the customer value indicates a
-        -- customer-managed table bucket. V2 metadata configurations are stored in Amazon Web Services managed table
-        -- buckets, and V1 metadata configurations are stored in customer-managed table buckets.
-        TableBucketType: string
-        -- The Amazon Resource Name (ARN) of the table bucket where the metadata configuration is stored.
-        TableBucketArn: string
-        -- The namespace in the table bucket where the metadata tables for a metadata configuration are
-        -- stored.
-        TableNamespace: string
-    end
-
     -- If an S3 Metadata V1 CreateBucketMetadataTableConfiguration or V2
     -- CreateBucketMetadataConfiguration request succeeds, but S3 Metadata was
     -- unable to create the table, this structure contains the error code and error message.
@@ -3547,6 +3599,41 @@ local record M
         ErrorMessage: string
     end
 
+    -- Contains the current state of the annotation table associated with a bucket's Amazon S3 Metadata
+    -- configuration, including its provisioning status and identifiers.
+    record AnnotationTableConfigurationResult
+        -- The current configuration state of the annotation table.
+        ConfigurationState: string
+        -- The provisioning status of the annotation table. Possible values: CREATING, BACKFILLING, ACTIVE, FAILED.
+        TableStatus: string
+        Error: ErrorDetails
+        -- The name of the annotation table.
+        TableName: string
+        -- The ARN of the annotation table.
+        TableArn: string
+        -- The ARN of the IAM role associated with the annotation table.
+        Role: string
+    end
+
+    enum S3TablesBucketType
+        "aws"
+        "customer"
+    end
+
+    -- The destination information for the S3 Metadata configuration.
+    record DestinationResult
+        -- The type of the table bucket where the metadata configuration is stored. The aws
+        -- value indicates an Amazon Web Services managed table bucket, and the customer value indicates a
+        -- customer-managed table bucket. V2 metadata configurations are stored in Amazon Web Services managed table
+        -- buckets, and V1 metadata configurations are stored in customer-managed table buckets.
+        TableBucketType: string
+        -- The Amazon Resource Name (ARN) of the table bucket where the metadata configuration is stored.
+        TableBucketArn: string
+        -- The namespace in the table bucket where the metadata tables for a metadata configuration are
+        -- stored.
+        TableNamespace: string
+    end
+
     -- The inventory table configuration for an S3 Metadata configuration.
     record InventoryTableConfigurationResult
         -- The configuration state of the inventory table, indicating whether the inventory table is enabled
@@ -3602,6 +3689,8 @@ local record M
         JournalTableConfigurationResult: JournalTableConfigurationResult
         -- The inventory table configuration for a metadata configuration.
         InventoryTableConfigurationResult: InventoryTableConfigurationResult
+        -- The annotation table configuration result, if an annotation table is configured.
+        AnnotationTableConfigurationResult: AnnotationTableConfigurationResult
     end
 
     -- The S3 Metadata configuration for a general purpose bucket.
@@ -3795,6 +3884,9 @@ local record M
         "s3:ObjectTagging:*"
         "s3:ObjectTagging:Put"
         "s3:ObjectTagging:Delete"
+        "s3:ObjectAnnotation:*"
+        "s3:ObjectAnnotation:Put"
+        "s3:ObjectAnnotation:Delete"
     end
 
     enum FilterRuleName
@@ -4703,10 +4795,6 @@ local record M
         AccessTier: string
     end
 
-    -- The specified key does not exist.
-    record NoSuchKey
-    end
-
     record GetObjectAclInput
         -- The bucket name that contains the object for which to get the ACL information.
         -- Access points - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using access points in the Amazon S3 User Guide.
@@ -4727,6 +4815,67 @@ local record M
         -- A list of grants.
         Grants: {Grant}
         RequestCharged: string
+    end
+
+    record GetObjectAnnotationInput
+        -- The name of the bucket that contains the object.
+        Bucket: string
+        -- The object key.
+        Key: string
+        -- The name of the annotation to retrieve.
+        -- Length Constraints: Minimum length of 1. Maximum length of 512 bytes.
+        AnnotationName: string
+        -- The version ID of the object.
+        VersionId: string
+        RequestPayer: string
+        -- The account ID of the expected bucket owner. If the bucket is owned by a different account, the request fails with an HTTP 403 (Access Denied) error.
+        ExpectedBucketOwner: string
+        -- Set to ENABLED to validate the checksum of the annotation payload on retrieval.
+        ChecksumMode: string
+    end
+
+    record GetObjectAnnotationOutput
+        -- The annotation payload.
+        AnnotationPayload: function(): string, string
+        -- The version ID of the object that the annotation is attached to.
+        ObjectVersionId: string
+        -- The date and time the annotation was last modified.
+        LastModified: number
+        -- The size of the annotation payload, in bytes.
+        ContentLength: number
+        -- The entity tag of the annotation.
+        ETag: string
+        -- The CRC32 checksum of the annotation payload.
+        ChecksumCRC32: string
+        -- The CRC32C checksum of the annotation payload.
+        ChecksumCRC32C: string
+        -- The CRC64NVME checksum of the annotation payload.
+        ChecksumCRC64NVME: string
+        -- The SHA1 checksum of the annotation payload.
+        ChecksumSHA1: string
+        -- The SHA256 checksum of the annotation payload.
+        ChecksumSHA256: string
+        -- The SHA512 checksum of the annotation payload.
+        ChecksumSHA512: string
+        -- The MD5 checksum of the annotation payload.
+        ChecksumMD5: string
+        -- The XXHASH64 checksum of the annotation payload.
+        ChecksumXXHASH64: string
+        -- The XXHASH3 checksum of the annotation payload.
+        ChecksumXXHASH3: string
+        -- The XXHASH128 checksum of the annotation payload.
+        ChecksumXXHASH128: string
+        -- The type of checksum used.
+        ChecksumType: string
+        -- The server-side encryption algorithm used.
+        ServerSideEncryption: string
+        RequestCharged: string
+        -- The replication status of the annotation. Possible values include PENDING, COMPLETED, FAILED, and REPLICA.
+        ReplicationStatus: string
+    end
+
+    -- The specified annotation does not exist on this object.
+    record NoSuchAnnotation
     end
 
     enum ObjectAttributes
@@ -5857,6 +6006,68 @@ local record M
         -- Delimiter, KeyMarker, Prefix, NextKeyMarker,
         -- Key.
         EncodingType: string
+        RequestCharged: string
+    end
+
+    -- The annotation prefix you provided is invalid.
+    record InvalidPrefix
+    end
+
+    record ListObjectAnnotationsInput
+        -- The name of the bucket that contains the object.
+        Bucket: string
+        -- The object key.
+        Key: string
+        -- The version ID of the object.
+        VersionId: string
+        -- The maximum number of annotations to return in the response. Maximum is 1,000.
+        MaxAnnotationResults: number
+        -- Filter results to annotations whose name begins with the specified prefix.
+        AnnotationPrefix: string
+        -- Continuation token returned by a previous request to retrieve the next page.
+        ContinuationToken: string
+        RequestPayer: string
+        -- The account ID of the expected bucket owner.
+        ExpectedBucketOwner: string
+    end
+
+    -- Describes a single annotation attached to an object, including its name, last modified time,
+    -- size, ETag, checksum algorithm, and replication status. Returned in the response from
+    -- ListObjectAnnotations.
+    record AnnotationEntry
+        -- The name of the annotation.
+        AnnotationName: string
+        -- The date and time the annotation was last modified.
+        LastModified: number
+        -- The entity tag of the annotation.
+        ETag: string
+        -- The checksum algorithm used for the annotation.
+        ChecksumAlgorithm: {string}
+        -- The size of the annotation payload, in bytes.
+        Size: number
+        -- The replication status of the annotation.
+        ReplicationStatus: string
+    end
+
+    record ListObjectAnnotationsOutput
+        -- The list of annotations attached to the object.
+        Annotations: {AnnotationEntry}
+        -- The bucket name.
+        Bucket: string
+        -- The object key.
+        Key: string
+        -- The version ID of the object.
+        ObjectVersionId: string
+        -- The prefix used to filter the response.
+        AnnotationPrefix: string
+        -- The maximum number of annotations returned in the response.
+        MaxAnnotationResults: number
+        -- The number of annotations returned.
+        AnnotationCount: number
+        -- The continuation token used in this request.
+        ContinuationToken: string
+        -- The continuation token to use to retrieve the next page of results.
+        NextContinuationToken: string
         RequestCharged: string
     end
 
@@ -7528,6 +7739,104 @@ local record M
         RequestCharged: string
     end
 
+    -- The request would exceed the maximum number of annotations allowed per object.
+    record AnnotationLimitExceeded
+    end
+
+    -- The annotation name exceeds 512 bytes.
+    record AnnotationNameTooLong
+    end
+
+    -- The annotation name you provided is invalid.
+    record InvalidAnnotationName
+    end
+
+    record PutObjectAnnotationInput
+        -- The name of the bucket that contains the object.
+        Bucket: string
+        -- The object key.
+        Key: string
+        -- The version ID of the object to attach the annotation to.
+        VersionId: string
+        -- The name of the annotation.
+        -- Length Constraints: Minimum length of 1. Maximum length of 512 bytes.
+        AnnotationName: string
+        -- The annotation payload. Must be between 1 byte and 1 MiB in size, and must be valid UTF-8
+        -- encoded text. If the payload contains invalid UTF-8 bytes, the request fails with HTTP 415
+        -- (Unsupported Media Type). To store binary data, encode the payload using Base64 before
+        -- uploading.
+        AnnotationPayload: function(): string, string
+        -- If specified, the operation only succeeds if the object's ETag matches the provided value.
+        ObjectIfMatch: string
+        -- The checksum algorithm to use. Supported values: CRC32, CRC32C, CRC64NVME, SHA1, SHA256, SHA512, MD5, XXHASH64, XXHASH3, XXHASH128.
+        ChecksumAlgorithm: string
+        -- Base64-encoded CRC32 checksum of the annotation payload.
+        ChecksumCRC32: string
+        -- Base64-encoded CRC32C checksum of the annotation payload.
+        ChecksumCRC32C: string
+        -- Base64-encoded CRC64NVME checksum of the annotation payload.
+        ChecksumCRC64NVME: string
+        -- Base64-encoded SHA1 checksum of the annotation payload.
+        ChecksumSHA1: string
+        -- Base64-encoded SHA256 checksum of the annotation payload.
+        ChecksumSHA256: string
+        -- Base64-encoded SHA512 checksum of the annotation payload.
+        ChecksumSHA512: string
+        -- Base64-encoded MD5 checksum of the annotation payload.
+        ChecksumMD5: string
+        -- Base64-encoded XXHASH64 checksum of the annotation payload.
+        ChecksumXXHASH64: string
+        -- Base64-encoded XXHASH3 checksum of the annotation payload.
+        ChecksumXXHASH3: string
+        -- Base64-encoded XXHASH128 checksum of the annotation payload.
+        ChecksumXXHASH128: string
+        -- Base64-encoded MD5 digest of the message.
+        ContentMD5: string
+        RequestPayer: string
+        -- The account ID of the expected bucket owner. If the bucket is owned by a different account, the request fails with an HTTP 403 (Access Denied) error.
+        ExpectedBucketOwner: string
+    end
+
+    record PutObjectAnnotationOutput
+        -- The object key.
+        Key: string
+        -- The name of the annotation.
+        AnnotationName: string
+        -- The version ID of the object that the annotation was attached to.
+        ObjectVersionId: string
+        -- The entity tag of the annotation.
+        ETag: string
+        -- The CRC32 checksum of the stored annotation.
+        ChecksumCRC32: string
+        -- The CRC32C checksum of the stored annotation.
+        ChecksumCRC32C: string
+        -- The CRC64NVME checksum of the stored annotation.
+        ChecksumCRC64NVME: string
+        -- The SHA1 checksum of the stored annotation.
+        ChecksumSHA1: string
+        -- The SHA256 checksum of the stored annotation.
+        ChecksumSHA256: string
+        -- The SHA512 checksum of the stored annotation.
+        ChecksumSHA512: string
+        -- The MD5 checksum of the stored annotation.
+        ChecksumMD5: string
+        -- The XXHASH64 checksum of the stored annotation.
+        ChecksumXXHASH64: string
+        -- The XXHASH3 checksum of the stored annotation.
+        ChecksumXXHASH3: string
+        -- The XXHASH128 checksum of the stored annotation.
+        ChecksumXXHASH128: string
+        -- The type of checksum used.
+        ChecksumType: string
+        -- The server-side encryption algorithm used to encrypt the annotation.
+        ServerSideEncryption: string
+        RequestCharged: string
+    end
+
+    -- The annotation payload is not valid UTF-8 encoded text.
+    record UnsupportedMediaType
+    end
+
     record PutObjectLegalHoldInput
         -- The bucket name containing the object that you want to place a legal hold on.
         -- Access points - When you use this action with an access point for general purpose buckets, you must provide the alias of the access point in place of the bucket name or specify the access point ARN. When you use this action with an access point for directory buckets, you must provide the access point name in place of the bucket name. When using the access point ARN, you must direct requests to the access point hostname. The access point hostname takes the form AccessPointName-AccountId.s3-accesspoint.Region.amazonaws.com. When using this action with an access point through the Amazon Web Services SDKs, you provide the access point ARN in place of the bucket name. For more information about access point ARNs, see Using access points in the Amazon S3 User Guide.
@@ -8153,6 +8462,32 @@ local record M
     record SelectObjectContentOutput
         -- The array of results.
         Payload: function(): string, string
+    end
+
+    -- Specifies updates to apply to the annotation table configuration. Used as the request body for
+    -- UpdateBucketMetadataAnnotationTableConfiguration.
+    record AnnotationTableConfigurationUpdates
+        -- The new configuration state to apply.
+        ConfigurationState: string
+        EncryptionConfiguration: MetadataTableEncryptionConfiguration
+        -- The new IAM role ARN to apply.
+        Role: string
+    end
+
+    record UpdateBucketMetadataAnnotationTableConfigurationInput
+        -- The name of the bucket whose annotation table configuration to update.
+        Bucket: string
+        -- Base64-encoded MD5 digest of the message body.
+        ContentMD5: string
+        -- Checksum algorithm for the request payload.
+        ChecksumAlgorithm: string
+        -- The annotation table configuration updates to apply.
+        AnnotationTableConfiguration: AnnotationTableConfigurationUpdates
+        -- The account ID of the expected bucket owner.
+        ExpectedBucketOwner: string
+    end
+
+    record UpdateBucketMetadataAnnotationTableConfigurationOutput
     end
 
     -- The specified updates to the S3 Metadata inventory table configuration.

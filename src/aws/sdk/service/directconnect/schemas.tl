@@ -390,6 +390,46 @@ M.MacSecKey = schema.new({
     },
 })
 
+M.RateLimiterStatus = schema.new({
+    id = id.from(_N, "RateLimiterStatus"),
+    type = "structure",
+    members = {
+        maxAllowed = schema.new({
+            id = id.from(_N, "RateLimiterStatus", "maxAllowed"),
+            type = "integer",
+            name = "maxAllowed",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        inUse = schema.new({
+            id = id.from(_N, "RateLimiterStatus", "inUse"),
+            type = "integer",
+            name = "inUse",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        remaining = schema.new({
+            id = id.from(_N, "RateLimiterStatus", "remaining"),
+            type = "integer",
+            name = "remaining",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        totalBandwidth = schema.new({
+            id = id.from(_N, "RateLimiterStatus", "totalBandwidth"),
+            type = "string",
+            name = "totalBandwidth",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -552,6 +592,13 @@ M.AllocateConnectionOnInterconnectOutput = schema.new({
             name = "macSecKeys",
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
+        }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "AllocateConnectionOnInterconnectOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
         }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "AllocateConnectionOnInterconnectOutput", "partnerInterconnectMacSecCapable"),
@@ -763,6 +810,13 @@ M.AllocateHostedConnectionOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "AllocateHostedConnectionOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "AllocateHostedConnectionOutput", "partnerInterconnectMacSecCapable"),
             type = "boolean",
@@ -878,6 +932,12 @@ M.NewPrivateVirtualInterfaceAllocation = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "NewPrivateVirtualInterfaceAllocation", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1168,6 +1228,28 @@ M.AllocatePrivateVirtualInterfaceOutput = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        rateLimit = schema.new({
+            id = id.from(_N, "AllocatePrivateVirtualInterfaceOutput", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "LimitExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1246,6 +1328,12 @@ M.NewPublicVirtualInterfaceAllocation = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "NewPublicVirtualInterfaceAllocation", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1460,6 +1548,12 @@ M.AllocatePublicVirtualInterfaceOutput = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        rateLimit = schema.new({
+            id = id.from(_N, "AllocatePublicVirtualInterfaceOutput", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1533,6 +1627,12 @@ M.NewTransitVirtualInterfaceAllocation = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "NewTransitVirtualInterfaceAllocation", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1747,6 +1847,12 @@ M.VirtualInterface = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        rateLimit = schema.new({
+            id = id.from(_N, "VirtualInterface", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1930,6 +2036,13 @@ M.AssociateConnectionWithLagOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "AssociateConnectionWithLagOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "AssociateConnectionWithLagOutput", "partnerInterconnectMacSecCapable"),
             type = "boolean",
@@ -2104,6 +2217,13 @@ M.AssociateHostedConnectionOutput = schema.new({
             name = "macSecKeys",
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
+        }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "AssociateHostedConnectionOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
         }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "AssociateHostedConnectionOutput", "partnerInterconnectMacSecCapable"),
@@ -2367,6 +2487,12 @@ M.AssociateVirtualInterfaceOutput = schema.new({
             type = "boolean",
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "AssociateVirtualInterfaceOutput", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2675,6 +2801,13 @@ M.Connection = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "Connection", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "Connection", "partnerInterconnectMacSecCapable"),
             type = "boolean",
@@ -2963,6 +3096,13 @@ M.CreateConnectionOutput = schema.new({
             name = "macSecKeys",
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
+        }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "CreateConnectionOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
         }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "CreateConnectionOutput", "partnerInterconnectMacSecCapable"),
@@ -3629,6 +3769,13 @@ M.CreateLagOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "CreateLagOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
     },
 })
 
@@ -3724,6 +3871,12 @@ M.NewPrivateVirtualInterface = schema.new({
             type = "boolean",
             name = "enableSiteLink",
             target_id = prelude.Boolean.id,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "NewPrivateVirtualInterface", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3929,6 +4082,12 @@ M.CreatePrivateVirtualInterfaceOutput = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        rateLimit = schema.new({
+            id = id.from(_N, "CreatePrivateVirtualInterfaceOutput", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4007,6 +4166,12 @@ M.NewPublicVirtualInterface = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "NewPublicVirtualInterface", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4212,6 +4377,12 @@ M.CreatePublicVirtualInterfaceOutput = schema.new({
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
         }),
+        rateLimit = schema.new({
+            id = id.from(_N, "CreatePublicVirtualInterfaceOutput", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4297,6 +4468,12 @@ M.NewTransitVirtualInterface = schema.new({
             type = "boolean",
             name = "enableSiteLink",
             target_id = prelude.Boolean.id,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "NewTransitVirtualInterface", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4551,6 +4728,13 @@ M.DeleteConnectionOutput = schema.new({
             name = "macSecKeys",
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
+        }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "DeleteConnectionOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
         }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "DeleteConnectionOutput", "partnerInterconnectMacSecCapable"),
@@ -4846,6 +5030,13 @@ M.DeleteLagOutput = schema.new({
             name = "macSecKeys",
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
+        }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "DeleteLagOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
         }),
     },
 })
@@ -5733,6 +5924,13 @@ M.Lag = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "Lag", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
     },
 })
 
@@ -6265,6 +6463,13 @@ M.DisassociateConnectionFromLagOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "DisassociateConnectionFromLagOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "DisassociateConnectionFromLagOutput", "partnerInterconnectMacSecCapable"),
             type = "boolean",
@@ -6743,6 +6948,13 @@ M.UpdateConnectionOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "UpdateConnectionOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
         partnerInterconnectMacSecCapable = schema.new({
             id = id.from(_N, "UpdateConnectionOutput", "partnerInterconnectMacSecCapable"),
             type = "boolean",
@@ -7011,6 +7223,13 @@ M.UpdateLagOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.MacSecKey,
         }),
+        rateLimiterStatus = schema.new({
+            id = id.from(_N, "UpdateLagOutput", "rateLimiterStatus"),
+            type = "structure",
+            name = "rateLimiterStatus",
+            target_id = id.from(_N, "RateLimiterStatus"),
+            target = M.RateLimiterStatus,
+        }),
     },
 })
 
@@ -7043,6 +7262,12 @@ M.UpdateVirtualInterfaceAttributesInput = schema.new({
             id = id.from(_N, "UpdateVirtualInterfaceAttributesInput", "virtualInterfaceName"),
             type = "string",
             name = "virtualInterfaceName",
+            target_id = prelude.String.id,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "UpdateVirtualInterfaceAttributesInput", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
             target_id = prelude.String.id,
         }),
     },
@@ -7222,6 +7447,12 @@ M.UpdateVirtualInterfaceAttributesOutput = schema.new({
             type = "boolean",
             name = "siteLinkEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        rateLimit = schema.new({
+            id = id.from(_N, "UpdateVirtualInterfaceAttributesOutput", "rateLimit"),
+            type = "string",
+            name = "rateLimit",
+            target_id = prelude.String.id,
         }),
     },
 })

@@ -365,6 +365,10 @@ local record M
     record CreateOrderInput
         -- The ID or the Amazon Resource Name (ARN) of the Outpost.
         OutpostIdentifier: string
+        -- The ID of the quote to use for the order.
+        QuoteIdentifier: string
+        -- The ID of the quote option to use for the order.
+        QuoteOptionIdentifier: string
         -- The line items that make up the order.
         LineItems: {LineItemRequest}
         -- The payment option.
@@ -453,6 +457,10 @@ local record M
     record Order
         -- The ID of the Outpost in the order.
         OutpostId: string
+        -- The ID of the quote associated with the order.
+        QuoteIdentifier: string
+        -- The ID of the quote option associated with the order.
+        QuoteOptionIdentifier: string
         -- The ID of the order.
         OrderId: string
         -- The status of the order.
@@ -1014,7 +1022,7 @@ local record M
     end
 
     record DeleteQuoteInput
-        -- The ID or ARN of the quote.
+        -- The ID of the quote.
         QuoteIdentifier: string
     end
 
@@ -1297,7 +1305,7 @@ local record M
     end
 
     record GetQuoteInput
-        -- The ID or ARN of the quote.
+        -- The ID of the quote.
         QuoteIdentifier: string
     end
 
@@ -1716,7 +1724,7 @@ local record M
     end
 
     record UpdateQuoteInput
-        -- The ID or ARN of the quote.
+        -- The ID of the quote.
         QuoteIdentifier: string
         -- The ID or ARN of the Outpost to associate with the quote. Specify an empty string to
         -- remove the Outpost association.

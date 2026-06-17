@@ -69,6 +69,16 @@ M.ContextIdentifiers = schema.new({ type = "list", list_member = prelude.String 
 
 M.ListOpportunityFromEngagementTaskSummaries = schema.new({ type = "list", list_member = M.ListOpportunityFromEngagementTaskSummary })
 
+M.TaskIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TaskNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProspectingTaskSummaryList = schema.new({ type = "list", list_member = M.ProspectingTaskSummary })
+
+M.EngagementIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EngagementProspectingResultList = schema.new({ type = "list", list_member = M.EngagementProspectingResult })
+
 M.EngagementResourceAssociationSummaryList = schema.new({ type = "list", list_member = M.EngagementResourceAssociationSummary })
 
 M.ResourceSnapshotSummaryList = schema.new({ type = "list", list_member = M.ResourceSnapshotSummary })
@@ -105,6 +115,8 @@ M.AwsProductIdentifiers = schema.new({ type = "list", list_member = prelude.Stri
 
 M.ProfileNextStepsHistories = schema.new({ type = "list", list_member = M.ProfileNextStepsHistory })
 
+M.RecommendationList = schema.new({ type = "list", list_member = M.Recommendation })
+
 M.LeadInteractionList = schema.new({ type = "list", list_member = M.LeadInteraction })
 
 M.SenderContactList = schema.new({ type = "list", list_member = M.SenderContact })
@@ -114,6 +126,10 @@ M.ReceiverResponsibilityList = schema.new({ type = "list", list_member = prelude
 M.AmountMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AwsProductsList = schema.new({ type = "list", list_member = M.AwsProductDetails })
+
+M.RecommendationAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.EligibleProgramsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AwsProductOptimizationsList = schema.new({ type = "list", list_member = M.AwsProductOptimization })
 
@@ -832,6 +848,58 @@ M.AwsProductsSpendInsightsBySource = schema.new({
     },
 })
 
+M.OpportunityQuality = schema.new({
+    id = id.from(_N, "OpportunityQuality"),
+    type = "structure",
+    members = {
+        Score = schema.new({
+            id = id.from(_N, "OpportunityQuality", "Score"),
+            type = "integer",
+            name = "Score",
+            target_id = prelude.Integer.id,
+        }),
+        Trend = schema.new({
+            id = id.from(_N, "OpportunityQuality", "Trend"),
+            type = "string",
+            name = "Trend",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Recommendation = schema.new({
+    id = id.from(_N, "Recommendation"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "Recommendation", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Details = schema.new({
+            id = id.from(_N, "Recommendation", "Details"),
+            type = "string",
+            name = "Details",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "Recommendation", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.AwsOpportunityInsights = schema.new({
     id = id.from(_N, "AwsOpportunityInsights"),
     type = "structure",
@@ -854,6 +922,20 @@ M.AwsOpportunityInsights = schema.new({
             name = "AwsProductsSpendInsightsBySource",
             target_id = id.from(_N, "AwsProductsSpendInsightsBySource"),
             target = M.AwsProductsSpendInsightsBySource,
+        }),
+        OpportunityQuality = schema.new({
+            id = id.from(_N, "AwsOpportunityInsights", "OpportunityQuality"),
+            type = "structure",
+            name = "OpportunityQuality",
+            target_id = id.from(_N, "OpportunityQuality"),
+            target = M.OpportunityQuality,
+        }),
+        Recommendations = schema.new({
+            id = id.from(_N, "AwsOpportunityInsights", "Recommendations"),
+            type = "list",
+            name = "Recommendations",
+            target_id = prelude.Document.id,
+            list_member = M.Recommendation,
         }),
     },
 })
@@ -1122,6 +1204,12 @@ M.AwsOpportunitySummaryFullView = schema.new({
             target_id = id.from(_N, "AwsOpportunityProject"),
             target = M.AwsOpportunityProject,
         }),
+        CosellMotion = schema.new({
+            id = id.from(_N, "AwsOpportunitySummaryFullView", "CosellMotion"),
+            type = "string",
+            name = "CosellMotion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1273,6 +1361,19 @@ M.LeadCustomer = schema.new({
     },
 })
 
+M.LeadInsights = schema.new({
+    id = id.from(_N, "LeadInsights"),
+    type = "structure",
+    members = {
+        LeadReadinessScore = schema.new({
+            id = id.from(_N, "LeadInsights", "LeadReadinessScore"),
+            type = "string",
+            name = "LeadReadinessScore",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.LeadContact = schema.new({
     id = id.from(_N, "LeadContact"),
     type = "structure",
@@ -1400,6 +1501,13 @@ M.LeadContext = schema.new({
     id = id.from(_N, "LeadContext"),
     type = "structure",
     members = {
+        Insights = schema.new({
+            id = id.from(_N, "LeadContext", "Insights"),
+            type = "structure",
+            name = "Insights",
+            target_id = id.from(_N, "LeadInsights"),
+            target = M.LeadInsights,
+        }),
         QualificationStatus = schema.new({
             id = id.from(_N, "LeadContext", "QualificationStatus"),
             type = "string",
@@ -1432,6 +1540,182 @@ M.LeadContext = schema.new({
     },
 })
 
+M.ProspectingResultCustomer = schema.new({
+    id = id.from(_N, "ProspectingResultCustomer"),
+    type = "structure",
+    members = {
+        AccountName = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "AccountName"),
+            type = "string",
+            name = "AccountName",
+            target_id = prelude.String.id,
+        }),
+        Geo = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "Geo"),
+            type = "string",
+            name = "Geo",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "SubRegion"),
+            type = "string",
+            name = "SubRegion",
+            target_id = prelude.String.id,
+        }),
+        Country = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "Country"),
+            type = "string",
+            name = "Country",
+            target_id = prelude.String.id,
+        }),
+        Industry = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "Industry"),
+            type = "string",
+            name = "Industry",
+            target_id = prelude.String.id,
+        }),
+        SubIndustry = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "SubIndustry"),
+            type = "string",
+            name = "SubIndustry",
+            target_id = prelude.String.id,
+        }),
+        Segment = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "Segment"),
+            type = "string",
+            name = "Segment",
+            target_id = prelude.String.id,
+        }),
+        CompanySize = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "CompanySize"),
+            type = "string",
+            name = "CompanySize",
+            target_id = prelude.String.id,
+        }),
+        EligiblePrograms = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "EligiblePrograms"),
+            type = "list",
+            name = "EligiblePrograms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        PublicProfileSummary = schema.new({
+            id = id.from(_N, "ProspectingResultCustomer", "PublicProfileSummary"),
+            type = "string",
+            name = "PublicProfileSummary",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ProspectingInsights = schema.new({
+    id = id.from(_N, "ProspectingInsights"),
+    type = "structure",
+    members = {
+        MarketplaceEngagementScore = schema.new({
+            id = id.from(_N, "ProspectingInsights", "MarketplaceEngagementScore"),
+            type = "string",
+            name = "MarketplaceEngagementScore",
+            target_id = prelude.String.id,
+        }),
+        SolutionScore = schema.new({
+            id = id.from(_N, "ProspectingInsights", "SolutionScore"),
+            type = "string",
+            name = "SolutionScore",
+            target_id = prelude.String.id,
+        }),
+        SolutionCategory = schema.new({
+            id = id.from(_N, "ProspectingInsights", "SolutionCategory"),
+            type = "string",
+            name = "SolutionCategory",
+            target_id = prelude.String.id,
+        }),
+        SolutionSubCategory = schema.new({
+            id = id.from(_N, "ProspectingInsights", "SolutionSubCategory"),
+            type = "string",
+            name = "SolutionSubCategory",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ProspectingResultAws = schema.new({
+    id = id.from(_N, "ProspectingResultAws"),
+    type = "structure",
+    members = {
+        StartTime = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        TaskId = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+        }),
+        TaskArn = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "TaskArn"),
+            type = "string",
+            name = "TaskArn",
+            target_id = prelude.String.id,
+        }),
+        TaskName = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "TaskName"),
+            type = "string",
+            name = "TaskName",
+            target_id = prelude.String.id,
+        }),
+        Customer = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "Customer"),
+            type = "structure",
+            name = "Customer",
+            target_id = id.from(_N, "ProspectingResultCustomer"),
+            target = M.ProspectingResultCustomer,
+        }),
+        Insights = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "Insights"),
+            type = "structure",
+            name = "Insights",
+            target_id = id.from(_N, "ProspectingInsights"),
+            target = M.ProspectingInsights,
+        }),
+    },
+})
+
+M.ProspectingResult = schema.new({
+    id = id.from(_N, "ProspectingResult"),
+    type = "structure",
+    members = {
+        Aws = schema.new({
+            id = id.from(_N, "ProspectingResult", "Aws"),
+            type = "structure",
+            name = "Aws",
+            target_id = id.from(_N, "ProspectingResultAws"),
+            target = M.ProspectingResultAws,
+        }),
+    },
+})
+
 M.EngagementContextPayload = schema.new({
     id = id.from(_N, "EngagementContextPayload"),
     type = "union",
@@ -1449,6 +1733,13 @@ M.EngagementContextPayload = schema.new({
             name = "Lead",
             target_id = id.from(_N, "LeadContext"),
             target = M.LeadContext,
+        }),
+        ProspectingResult = schema.new({
+            id = id.from(_N, "EngagementContextPayload", "ProspectingResult"),
+            type = "structure",
+            name = "ProspectingResult",
+            target_id = id.from(_N, "ProspectingResult"),
+            target = M.ProspectingResult,
         }),
     },
 })
@@ -4128,6 +4419,12 @@ M.GetAwsOpportunitySummaryOutput = schema.new({
             target_id = id.from(_N, "AwsOpportunityProject"),
             target = M.AwsOpportunityProject,
         }),
+        CosellMotion = schema.new({
+            id = id.from(_N, "GetAwsOpportunitySummaryOutput", "CosellMotion"),
+            type = "string",
+            name = "CosellMotion",
+            target_id = prelude.String.id,
+        }),
         Catalog = schema.new({
             id = id.from(_N, "GetAwsOpportunitySummaryOutput", "Catalog"),
             type = "string",
@@ -5151,6 +5448,456 @@ M.StartOpportunityFromEngagementTaskOutput = schema.new({
             type = "string",
             name = "ContextId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetProspectingFromEngagementTaskInput = schema.new({
+    id = id.from(_N, "GetProspectingFromEngagementTaskRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskIdentifier = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskInput", "TaskIdentifier"),
+            type = "string",
+            name = "TaskIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EngagementProspectingResult = schema.new({
+    id = id.from(_N, "EngagementProspectingResult"),
+    type = "structure",
+    members = {
+        EngagementIdentifier = schema.new({
+            id = id.from(_N, "EngagementProspectingResult", "EngagementIdentifier"),
+            type = "string",
+            name = "EngagementIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EngagementContextId = schema.new({
+            id = id.from(_N, "EngagementProspectingResult", "EngagementContextId"),
+            type = "string",
+            name = "EngagementContextId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "EngagementProspectingResult", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReasonCode = schema.new({
+            id = id.from(_N, "EngagementProspectingResult", "ReasonCode"),
+            type = "string",
+            name = "ReasonCode",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "EngagementProspectingResult", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetProspectingFromEngagementTaskOutput = schema.new({
+    id = id.from(_N, "GetProspectingFromEngagementTaskResponse"),
+    type = "structure",
+    members = {
+        TaskId = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskOutput", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskArn = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskOutput", "TaskArn"),
+            type = "string",
+            name = "TaskArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskName = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskOutput", "TaskName"),
+            type = "string",
+            name = "TaskName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskOutput", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskOutput", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        Engagements = schema.new({
+            id = id.from(_N, "GetProspectingFromEngagementTaskOutput", "Engagements"),
+            type = "list",
+            name = "Engagements",
+            target_id = prelude.Document.id,
+            list_member = M.EngagementProspectingResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProspectingFromEngagementTaskSort = schema.new({
+    id = id.from(_N, "ProspectingFromEngagementTaskSort"),
+    type = "structure",
+    members = {
+        SortOrder = schema.new({
+            id = id.from(_N, "ProspectingFromEngagementTaskSort", "SortOrder"),
+            type = "string",
+            name = "SortOrder",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SortBy = schema.new({
+            id = id.from(_N, "ProspectingFromEngagementTaskSort", "SortBy"),
+            type = "string",
+            name = "SortBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListProspectingFromEngagementTasksInput = schema.new({
+    id = id.from(_N, "ListProspectingFromEngagementTasksRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        TaskIdentifier = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "TaskIdentifier"),
+            type = "list",
+            name = "TaskIdentifier",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TaskName = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "TaskName"),
+            type = "list",
+            name = "TaskName",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        StartAfter = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "StartAfter"),
+            type = "timestamp",
+            name = "StartAfter",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        StartBefore = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "StartBefore"),
+            type = "timestamp",
+            name = "StartBefore",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        Sort = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksInput", "Sort"),
+            type = "structure",
+            name = "Sort",
+            target_id = id.from(_N, "ProspectingFromEngagementTaskSort"),
+            target = M.ProspectingFromEngagementTaskSort,
+        }),
+    },
+})
+
+M.ProspectingTaskSummary = schema.new({
+    id = id.from(_N, "ProspectingTaskSummary"),
+    type = "structure",
+    members = {
+        TaskId = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskArn = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "TaskArn"),
+            type = "string",
+            name = "TaskArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskName = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "TaskName"),
+            type = "string",
+            name = "TaskName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        TotalEngagementCount = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "TotalEngagementCount"),
+            type = "integer",
+            name = "TotalEngagementCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        CompletedEngagementCount = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "CompletedEngagementCount"),
+            type = "integer",
+            name = "CompletedEngagementCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailedEngagementCount = schema.new({
+            id = id.from(_N, "ProspectingTaskSummary", "FailedEngagementCount"),
+            type = "integer",
+            name = "FailedEngagementCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListProspectingFromEngagementTasksOutput = schema.new({
+    id = id.from(_N, "ListProspectingFromEngagementTasksResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        TaskSummaries = schema.new({
+            id = id.from(_N, "ListProspectingFromEngagementTasksOutput", "TaskSummaries"),
+            type = "list",
+            name = "TaskSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ProspectingTaskSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartProspectingFromEngagementTaskInput = schema.new({
+    id = id.from(_N, "StartProspectingFromEngagementTaskRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifiers = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskInput", "Identifiers"),
+            type = "list",
+            name = "Identifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskName = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskInput", "TaskName"),
+            type = "string",
+            name = "TaskName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartProspectingFromEngagementTaskOutput = schema.new({
+    id = id.from(_N, "StartProspectingFromEngagementTaskResponse"),
+    type = "structure",
+    members = {
+        Identifiers = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "Identifiers"),
+            type = "list",
+            name = "Identifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskName = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "TaskName"),
+            type = "string",
+            name = "TaskName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ReasonCode = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "ReasonCode"),
+            type = "string",
+            name = "ReasonCode",
+            target_id = prelude.String.id,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskId = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+        }),
+        TaskArn = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "TaskArn"),
+            type = "string",
+            name = "TaskArn",
+            target_id = prelude.String.id,
+        }),
+        TaskStatus = schema.new({
+            id = id.from(_N, "StartProspectingFromEngagementTaskOutput", "TaskStatus"),
+            type = "string",
+            name = "TaskStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -6493,6 +7240,13 @@ M.UpdateLeadContext = schema.new({
             target_id = id.from(_N, "LeadInteraction"),
             target = M.LeadInteraction,
         }),
+        Insights = schema.new({
+            id = id.from(_N, "UpdateLeadContext", "Insights"),
+            type = "structure",
+            name = "Insights",
+            target_id = id.from(_N, "LeadInsights"),
+            target = M.LeadInsights,
+        }),
     },
 })
 
@@ -6513,6 +7267,13 @@ M.UpdateEngagementContextPayload = schema.new({
             name = "CustomerProject",
             target_id = id.from(_N, "CustomerProjectsContext"),
             target = M.CustomerProjectsContext,
+        }),
+        ProspectingResult = schema.new({
+            id = id.from(_N, "UpdateEngagementContextPayload", "ProspectingResult"),
+            type = "structure",
+            name = "ProspectingResult",
+            target_id = id.from(_N, "ProspectingResult"),
+            target = M.ProspectingResult,
         }),
     },
 })
@@ -6835,6 +7596,18 @@ M.GetOpportunity = schema.operation({
     },
 })
 
+M.GetProspectingFromEngagementTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "GetProspectingFromEngagementTask"),
+    input = M.GetProspectingFromEngagementTaskInput,
+    output = M.GetProspectingFromEngagementTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/GetProspectingFromEngagementTask" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetResourceSnapshot = schema.operation({
     id = id.from("com.amazonaws.partnercentralselling", "GetResourceSnapshot"),
     input = M.GetResourceSnapshotInput,
@@ -6967,6 +7740,18 @@ M.ListOpportunityFromEngagementTasks = schema.operation({
     },
 })
 
+M.ListProspectingFromEngagementTasks = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "ListProspectingFromEngagementTasks"),
+    input = M.ListProspectingFromEngagementTasksInput,
+    output = M.ListProspectingFromEngagementTasksOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/ListProspectingFromEngagementTasks" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListResourceSnapshotJobs = schema.operation({
     id = id.from("com.amazonaws.partnercentralselling", "ListResourceSnapshotJobs"),
     input = M.ListResourceSnapshotJobsInput,
@@ -7069,6 +7854,18 @@ M.StartOpportunityFromEngagementTask = schema.operation({
     output = M.StartOpportunityFromEngagementTaskOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/StartOpportunityFromEngagementTask" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartProspectingFromEngagementTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralselling", "StartProspectingFromEngagementTask"),
+    input = M.StartProspectingFromEngagementTaskInput,
+    output = M.StartProspectingFromEngagementTaskOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/StartProspectingFromEngagementTask" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

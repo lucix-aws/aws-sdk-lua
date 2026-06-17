@@ -903,10 +903,33 @@ M.FirewallAdvancedThreatCategoryConfig = schema.new({
     },
 })
 
+M.PartnerThreatProtectionConfig = schema.new({
+    id = id.from(_N, "PartnerThreatProtectionConfig"),
+    type = "structure",
+    members = {
+        Partner = schema.new({
+            id = id.from(_N, "PartnerThreatProtectionConfig", "Partner"),
+            type = "string",
+            name = "Partner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.FirewallRuleType = schema.new({
     id = id.from(_N, "FirewallRuleType"),
     type = "structure",
     members = {
+        PartnerThreatProtection = schema.new({
+            id = id.from(_N, "FirewallRuleType", "PartnerThreatProtection"),
+            type = "structure",
+            name = "PartnerThreatProtection",
+            target_id = id.from(_N, "PartnerThreatProtectionConfig"),
+            target = M.PartnerThreatProtectionConfig,
+        }),
         FirewallAdvancedContentCategory = schema.new({
             id = id.from(_N, "FirewallRuleType", "FirewallAdvancedContentCategory"),
             type = "structure",
@@ -1173,6 +1196,18 @@ M.FirewallRule = schema.new({
             name = "FirewallRuleType",
             target_id = id.from(_N, "FirewallRuleType"),
             target = M.FirewallRuleType,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "FirewallRule", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "FirewallRule", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3048,6 +3083,25 @@ M.FirewallRuleGroupMetadata = schema.new({
     },
 })
 
+M.SubscriptionInfo = schema.new({
+    id = id.from(_N, "SubscriptionInfo"),
+    type = "structure",
+    members = {
+        VendorName = schema.new({
+            id = id.from(_N, "SubscriptionInfo", "VendorName"),
+            type = "string",
+            name = "VendorName",
+            target_id = prelude.String.id,
+        }),
+        ProductId = schema.new({
+            id = id.from(_N, "SubscriptionInfo", "ProductId"),
+            type = "string",
+            name = "ProductId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FirewallRuleTypeDefinition = schema.new({
     id = id.from(_N, "FirewallRuleTypeDefinition"),
     type = "structure",
@@ -3075,6 +3129,13 @@ M.FirewallRuleTypeDefinition = schema.new({
             type = "string",
             name = "Description",
             target_id = prelude.String.id,
+        }),
+        SubscriptionInfo = schema.new({
+            id = id.from(_N, "FirewallRuleTypeDefinition", "SubscriptionInfo"),
+            type = "structure",
+            name = "SubscriptionInfo",
+            target_id = id.from(_N, "SubscriptionInfo"),
+            target = M.SubscriptionInfo,
         }),
     },
 })

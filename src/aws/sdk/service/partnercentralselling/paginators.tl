@@ -148,6 +148,24 @@ function M.items_list_opportunity_from_engagement_tasks(client, input)
     })
 end
 
+--- Returns a page iterator for listProspectingFromEngagementTasks.
+function M.pages_list_prospecting_from_engagement_tasks(client, input)
+    return paginator.pages(client, "listProspectingFromEngagementTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TaskSummaries",
+    })
+end
+
+--- Returns an item iterator for listProspectingFromEngagementTasks.
+function M.items_list_prospecting_from_engagement_tasks(client, input)
+    return paginator.items(client, "listProspectingFromEngagementTasks", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TaskSummaries",
+    })
+end
+
 --- Returns a page iterator for listResourceSnapshotJobs.
 function M.pages_list_resource_snapshot_jobs(client, input)
     return paginator.pages(client, "listResourceSnapshotJobs", input, {

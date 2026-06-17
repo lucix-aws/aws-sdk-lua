@@ -410,6 +410,8 @@ local record M
         returnMetadata: boolean
         -- Indicates whether to include the computed distance in the response. The default value is false.
         returnDistance: boolean
+        -- Pagination token from a previous request. The value of this field is empty for an initial request.
+        nextToken: string
     end
 
     -- The attributes of a vector in the approximate nearest neighbor search.
@@ -427,6 +429,8 @@ local record M
         vectors: {QueryOutputVector}
         -- The distance metric that was used for the similarity search calculation. This is the same distance metric that was configured for the vector index when it was created.
         distanceMetric: string
+        -- Pagination token to be used in the subsequent page request. The field is empty if no further pagination is required.
+        nextToken: string
     end
 
     record ListTagsForResourceInput

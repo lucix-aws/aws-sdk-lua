@@ -819,6 +819,18 @@ M.CreateOrderInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        QuoteIdentifier = schema.new({
+            id = id.from(_N, "CreateOrderInput", "QuoteIdentifier"),
+            type = "string",
+            name = "QuoteIdentifier",
+            target_id = prelude.String.id,
+        }),
+        QuoteOptionIdentifier = schema.new({
+            id = id.from(_N, "CreateOrderInput", "QuoteOptionIdentifier"),
+            type = "string",
+            name = "QuoteOptionIdentifier",
+            target_id = prelude.String.id,
+        }),
         LineItems = schema.new({
             id = id.from(_N, "CreateOrderInput", "LineItems"),
             type = "list",
@@ -948,6 +960,18 @@ M.Order = schema.new({
             id = id.from(_N, "Order", "OutpostId"),
             type = "string",
             name = "OutpostId",
+            target_id = prelude.String.id,
+        }),
+        QuoteIdentifier = schema.new({
+            id = id.from(_N, "Order", "QuoteIdentifier"),
+            type = "string",
+            name = "QuoteIdentifier",
+            target_id = prelude.String.id,
+        }),
+        QuoteOptionIdentifier = schema.new({
+            id = id.from(_N, "Order", "QuoteOptionIdentifier"),
+            type = "string",
+            name = "QuoteOptionIdentifier",
             target_id = prelude.String.id,
         }),
         OrderId = schema.new({

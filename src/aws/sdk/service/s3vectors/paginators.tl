@@ -58,4 +58,22 @@ function M.items_list_vectors(client, input)
     })
 end
 
+--- Returns a page iterator for queryVectors.
+function M.pages_query_vectors(client, input)
+    return paginator.pages(client, "queryVectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "vectors",
+    })
+end
+
+--- Returns an item iterator for queryVectors.
+function M.items_query_vectors(client, input)
+    return paginator.items(client, "queryVectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "vectors",
+    })
+end
+
 return M

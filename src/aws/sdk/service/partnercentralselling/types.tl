@@ -794,6 +794,24 @@ local record M
         "Low"
     end
 
+    -- Opportunity quality score and trend.
+    record OpportunityQuality
+        -- Deal quality score based on opportunity content completeness and sales methodology criteria. Values range from 0 to 100.
+        Score: number
+        -- Direction of score change since last scoring iteration. Known values: Improving, Declining, No Change.
+        Trend: string
+    end
+
+    -- A recommendation from an agent-driven source.
+    record Recommendation
+        -- The recommendation source type. Known values: OpportunityQuality, SolutionRecommendation, SpecialistRecommendation.
+        Type: string
+        -- Human-readable recommendation text from this source.
+        Details: string
+        -- Source-specific metadata as key-value pairs.
+        Attributes: {string : string}
+    end
+
     -- Contains insights provided by AWS for the opportunity, offering recommendations and analysis that can help the partner optimize their engagement and strategy.
     record AwsOpportunityInsights
         -- Provides recommendations from AWS on the next best actions to take in order to move the opportunity forward and increase the likelihood of success.
@@ -802,6 +820,10 @@ local record M
         EngagementScore: string
         -- Source-separated spend insights that provide independent analysis for AWS recommendations and partner estimates.
         AwsProductsSpendInsightsBySource: AwsProductsSpendInsightsBySource
+        -- Opportunity quality assessment. Null if not yet scored.
+        OpportunityQuality: OpportunityQuality
+        -- List of recommendations from various agent-driven sources.
+        Recommendations: {Recommendation}
     end
 
     -- Tracks the history of next steps associated with the opportunity. This field captures the actions planned for the future and their timeline.
@@ -863,9 +885,9 @@ local record M
         Amount: string
         -- Indicates the currency in which the revenue estimate is provided. This helps in understanding the financial impact across different markets. Accepted values are USD (US Dollars) and EUR (Euros). If the AWS Partition is aws-eusc (AWS European Sovereign Cloud), the currency code must be EUR.
         CurrencyCode: string
-        -- Indicates how frequently the customer is expected to spend the projected amount. Only the value Monthly is allowed for the Frequency field, representing recurring monthly spend.
+        -- Indicates how frequently the customer is expected to spend the projected amount. Use Monthly for recurring monthly spend (required for TargetCompany: "AWS" entries). Use None for one-time deal value entries (required for TargetCompany: "Self" entries when providing Total Contract Value).
         Frequency: string
-        -- Specifies the name of the partner company that is expected to generate revenue from the opportunity. This field helps track the partner’s involvement in the opportunity. This field only accepts the value AWS. If any other value is provided, the system will automatically set it to AWS.
+        -- Specifies the entity associated with this spend entry. Use AWS for the system’s AWS Monthly Recurring Revenue (MRR) estimate. Use Self for the partner’s own deal value entry when providing Total Contract Value (TCV) for automatic MRR conversion. When ExpectedContractDuration is present on the Project, only AWS and Self are accepted. When ExpectedContractDuration is not present, only AWS is accepted and any other value will be automatically set to AWS.
         TargetCompany: string
         -- A URL providing additional information or context about the spend estimation.
         EstimationUrl: string
@@ -941,6 +963,8 @@ local record M
         RelatedEntityIds: AwsOpportunityRelatedEntities
         Customer: AwsOpportunityCustomer
         Project: AwsOpportunityProject
+        -- Engagement classification for this opportunity. Read-only. Null before scoring. Known values: AWS Field-engaged, Agent-engaged, Partner-led.
+        CosellMotion: string
     end
 
     -- Contains details about the customer associated with the Engagement Invitation, including company information and industry.
@@ -995,6 +1019,12 @@ local record M
         MarketSegment: string
     end
 
+    -- Contains insights that AI generates for a lead. These insights provide automated analysis to help partners evaluate the lead quality and prioritize engagement efforts.
+    record LeadInsights
+        -- A score that indicates the lead's readiness for engagement. Valid values are Low, Medium, and High. Use this score to prioritize leads based on their likelihood of conversion.
+        LeadReadinessScore: string
+    end
+
     -- An object that contains a lead contact's details associated with the engagement. This provides contact information for individuals involved in lead-related activities.
     record LeadContact
         -- The lead contact's business title or job role associated with the engagement.
@@ -1031,6 +1061,8 @@ local record M
 
     -- Provides comprehensive details about a lead associated with an engagement. This structure contains information about lead qualification status, customer details, and interaction history to facilitate lead management and tracking within the engagement.
     record LeadContext
+        -- Insights that AI generates and associates with the lead. These insights provide automated analysis such as lead readiness scoring to help partners assess the lead quality.
+        Insights: LeadInsights
         -- Indicates the current qualification status of the lead, such as whether it has been qualified, disqualified, or is still under evaluation. This helps track the lead's progression through the qualification process.
         QualificationStatus: string
         -- Contains detailed information about the customer associated with the lead, including company information, contact details, and other relevant customer data.
@@ -1039,17 +1071,82 @@ local record M
         Interactions: {LeadInteraction}
     end
 
+    -- Contains detailed information about the prospected customer account, including company identifiers, geographic classification, industry segmentation, and program eligibility.
+    record ProspectingResultCustomer
+        -- The name of the prospected customer account.
+        AccountName: string
+        -- The geographic region classification of the prospected customer account.
+        Geo: string
+        -- The specific region of the prospected customer account.
+        Region: string
+        -- The subregion classification of the prospected customer account.
+        SubRegion: string
+        -- The country code of the prospected customer account.
+        Country: string
+        -- The industry classification of the prospected customer account.
+        Industry: string
+        -- The sub-industry classification of the prospected customer account. This provides more granular categorization within the primary industry.
+        SubIndustry: string
+        -- The market segment classification of the prospected customer account.
+        Segment: string
+        -- The company size classification of the prospected customer account.
+        CompanySize: string
+        -- A list of AWS Greenfield programs that the prospected customer is eligible for. Use this list to identify relevant go-to-market opportunities.
+        EligiblePrograms: {string}
+        -- A summary of publicly available information about the prospected customer. The system uses this summary to generate customer insights and inform engagement strategies.
+        PublicProfileSummary: string
+    end
+
+    -- Contains insights that AI generates from the prospecting analysis. These insights include marketplace engagement scoring, solution fit assessments, and solution categorization for the prospected customer.
+    record ProspectingInsights
+        -- A score that indicates the prospected customer's level of engagement with AWS Marketplace. Valid values are High, Medium, and Low.
+        MarketplaceEngagementScore: string
+        -- A score that indicates how well the partner's solution fits the prospected customer's needs.
+        SolutionScore: string
+        -- The primary solution category classification for the prospected customer. This indicates the type of solution that best addresses their needs.
+        SolutionCategory: string
+        -- The solution sub-category classification for the prospected customer. This provides more granular categorization of the recommended solution type.
+        SolutionSubCategory: string
+    end
+
+    -- Contains the prospecting data that AWS sources. This includes task execution details, customer account information, and insights that AI generates from the prospecting analysis.
+    record ProspectingResultAws
+        -- The timestamp when the prospecting result context was created. The format is ISO 8601 (UTC).
+        StartTime: number
+        -- The timestamp when the prospecting task completed processing. The format is ISO 8601 (UTC).
+        EndTime: number
+        -- The unique identifier of the prospecting task that generates this result.
+        TaskId: string
+        -- The Amazon Resource Name (ARN) of the prospecting task. Use this ARN to track and manage the task within AWS.
+        TaskArn: string
+        -- The name that the user provides for the prospecting task that generates this result.
+        TaskName: string
+        -- Contains details about the prospected customer account, including geographic, industry, and segment classifications.
+        Customer: ProspectingResultCustomer
+        -- Insights that AI generates from the prospecting analysis. These insights include engagement scores and solution fit assessments for the prospected customer.
+        Insights: ProspectingInsights
+    end
+
+    -- Contains the results of an autonomous prospecting job. This includes data and insights that AWS provides about a prospected customer account.
+    record ProspectingResult
+        -- Prospecting data and insights that AWS provides during the prospecting job. This includes customer details, task information, and scoring that AI generates.
+        Aws: ProspectingResultAws
+    end
+
     -- Represents the payload of an Engagement context. The structure of this payload varies based on the context type specified in the EngagementContextDetails.
     record EngagementContextPayload
         -- Contains detailed information about a customer project when the context type is "CustomerProject". This field is present only when the Type in EngagementContextDetails is set to "CustomerProject".
         CustomerProject: CustomerProjectsContext
         -- Contains detailed information about a lead when the context type is "Lead". This field is present only when the Type in EngagementContextDetails is set to "Lead".
         Lead: LeadContext
+        -- Contains prospecting result data with enriched insights. The system generates these insights when a partner runs an autonomous prospecting job on leads. This field appears only when the context type is "ProspectingResult".
+        ProspectingResult: ProspectingResult
     end
 
     enum EngagementContextType
         "CustomerProject"
         "Lead"
+        "ProspectingResult"
     end
 
     record CreateEngagementContextInput
@@ -2083,6 +2180,8 @@ local record M
         Customer: AwsOpportunityCustomer
         -- Provides details about the project associated with the AWS Opportunity, including the customer’s business problem, expected outcomes, and project scope. This information is crucial for understanding the broader context of the opportunity.
         Project: AwsOpportunityProject
+        -- Engagement classification for this opportunity. Read-only. Null before scoring. Known values: AWS Field-engaged, Agent-engaged, Partner-led.
+        CosellMotion: string
         -- Specifies the catalog in which the AWS Opportunity exists. This is the environment (e.g., AWS or Sandbox) where the opportunity is being managed.
         Catalog: string
     end
@@ -2404,6 +2503,145 @@ local record M
         EngagementId: string
         -- The unique identifier of the engagement context used to create the opportunity.
         ContextId: string
+    end
+
+    -- Represents the request structure for retrieving the status and results of a prospecting task.
+    record GetProspectingFromEngagementTaskInput
+        -- Specifies the catalog associated with the task. Specify AWS for production environments and Sandbox for testing and development purposes. The value must match the catalog used when the task was created.
+        Catalog: string
+        -- The unique identifier of the prospecting task to retrieve. This value is returned in the TaskId field of the StartProspectingFromEngagementTask response.
+        TaskIdentifier: string
+    end
+
+    enum ProspectingTaskStatus
+        "PENDING"
+        "IN_PROGRESS"
+        "COMPLETED"
+        "FAILED"
+    end
+
+    -- Contains the result of processing a single engagement within a prospecting task. Each engagement is processed independently, so individual engagements can succeed or fail regardless of other engagements in the same task.
+    record EngagementProspectingResult
+        -- The unique identifier of the engagement that was processed.
+        EngagementIdentifier: string
+        -- The identifier of the prospecting context created for this engagement. This field is only populated when the engagement was processed successfully (status is COMPLETED). Use this identifier to reference the prospecting context in subsequent operations.
+        EngagementContextId: string
+        -- The processing status of this specific engagement. Possible values are PENDING, IN_PROGRESS, COMPLETED, and FAILED.
+        Status: string
+        -- An enumerated code indicating the reason this engagement failed to process. This field is only populated when Status is FAILED.
+        ReasonCode: string
+        -- A human-readable description of the failure for this engagement, including suggested recovery steps. This field is only populated when Status is FAILED.
+        Message: string
+    end
+
+    -- Represents the response structure containing the full details of a prospecting task, including per-engagement processing results. Includes the Status field of each EngagementProspectingResult entry to determine individual outcomes.
+    record GetProspectingFromEngagementTaskOutput
+        -- The unique identifier of the task.
+        TaskId: string
+        -- The Amazon Resource Name (ARN) of the task.
+        TaskArn: string
+        -- The descriptive name of the task that you provided when you created it.
+        TaskName: string
+        -- The timestamp indicating when the task was initiated. The format follows ISO 8601 date-time notation.
+        StartTime: number
+        -- The timestamp indicating when the task finished processing. This field is absent if the task is still in progress. The format follows ISO 8601 date-time notation.
+        EndTime: number
+        -- An array of EngagementProspectingResult entries for each engagement in the task. Each entry contains the processing status. For successfully completed engagements, includes the prospecting context identifier. For failed engagements, includes an error code and message.
+        Engagements: {EngagementProspectingResult}
+    end
+
+    enum ProspectingFromEngagementTaskSortName
+        "StartTime"
+        "TaskName"
+        "FailedEngagementCount"
+    end
+
+    -- Specifies the sort configuration for ListProspectingFromEngagementTasks. Contains the field to sort by and the sort direction.
+    record ProspectingFromEngagementTaskSort
+        -- The direction in which to sort the results. Use ASCENDING to return the smallest or earliest values first, or DESCENDING to return the largest or most recent values first.
+        SortOrder: string
+        -- The field by which to sort the returned tasks. Valid values: StartTime (task creation timestamp), TaskName (alphabetically by task name), and FailedEngagementCount (number of failed engagements).
+        SortBy: string
+    end
+
+    -- Represents the request structure for listing prospecting tasks. All filter parameters are optional. Results are paginated — uses NextToken from the response to retrieve subsequent pages.
+    record ListProspectingFromEngagementTasksInput
+        -- Specifies the catalog to list tasks from. Specify AWS for production environments and Sandbox for testing and development purposes.
+        Catalog: string
+        -- The maximum number of results to return in a single page. If additional results exist, the response includes a NextToken value for retrieving the next page. If omitted, the API uses a service-defined default page size.
+        MaxResults: number
+        -- The pagination token from a previous call to this API. Include this value to retrieve the next page of results. If omitted, the first page is returned.
+        NextToken: string
+        -- Filters the results to include only the tasks with the specified identifiers. Provide up to 10 task IDs to narrow the list to specific tasks. If omitted, tasks are not filtered by identifier.
+        TaskIdentifier: {string}
+        -- Filters the results to include only tasks with the specified names. Provide up to 10 task names to narrow the list. If omitted, tasks are not filtered by name.
+        TaskName: {string}
+        -- Filters tasks to include only those that started after the specified timestamp. Use this with StartBefore to define a start-time range for your query. The format follows ISO 8601 date-time notation.
+        StartAfter: number
+        -- Filters tasks to include only those that started before the specified timestamp. Use this with StartAfter to define a start-time range for your query. The format follows ISO 8601 date-time notation.
+        StartBefore: number
+        -- Specifies the field and order used to sort the returned tasks. If omitted, tasks are returned in the default sort order.
+        Sort: ProspectingFromEngagementTaskSort
+    end
+
+    -- A summary of a single prospecting task, returned by ListProspectingFromEngagementTasks. Contains key metrics and status information without the full per-engagement detail available from GetProspectingFromEngagementTask.
+    record ProspectingTaskSummary
+        -- The unique identifier of the task. Use this value with GetProspectingFromEngagementTask to retrieve full task details.
+        TaskId: string
+        -- The Amazon Resource Name (ARN) of the task.
+        TaskArn: string
+        -- The descriptive name of the task provided when it was created.
+        TaskName: string
+        -- The timestamp indicating when the task was initiated. The format follows ISO 8601 date-time notation.
+        StartTime: number
+        -- The timestamp indicating when the task finished processing. This field is absent if the task is still in progress. The format follows ISO 8601 date-time notation.
+        EndTime: number
+        -- The total number of engagements included in the task.
+        TotalEngagementCount: number
+        -- The number of engagements that have been successfully converted into prospecting leads.
+        CompletedEngagementCount: number
+        -- The number of engagements that failed to be converted. Retrieve the full task details using GetProspectingFromEngagementTask for per-engagement error information.
+        FailedEngagementCount: number
+    end
+
+    -- Represents the response structure containing a paginated list of prospecting task summaries matching the request filters. Indicates through NextToken when additional results are available.
+    record ListProspectingFromEngagementTasksOutput
+        -- A pagination token used to retrieve the next page of results. If this field is present, pass its value as NextToken in the next call. If absent or empty, there are no further pages.
+        NextToken: string
+        -- Prospecting task summaries matching the specified filters. Each summary includes the task identifier, name, status counters, and timing information. If no tasks match the filter criteria, the list is empty.
+        TaskSummaries: {ProspectingTaskSummary}
+    end
+
+    -- Represents the request structure for starting a prospecting task. Includes up to 100 engagement identifiers and a task name. Uses ClientToken to ensure idempotency.
+    record StartProspectingFromEngagementTaskInput
+        -- Specifies the catalog in which the task is initiated. Specify AWS for production environments and Sandbox for testing and development purposes.
+        Catalog: string
+        -- The list of engagement identifiers to include in this prospecting task. Each identifier must correspond to an existing engagement in the specified catalog. Maximum of 100 identifiers per task.
+        Identifiers: {string}
+        -- A descriptive name for the task. This name helps identify the task in list and get operations. The name must contain 1 to 128 characters.
+        TaskName: string
+        -- A unique, case-sensitive identifier provided by the client to ensure idempotency. Making the same request with the same ClientToken returns the same response without creating a duplicate task.
+        ClientToken: string
+    end
+
+    -- Represents the response structure returned when a prospecting task is successfully submitted. Contains the task identifier, ARN, and initial status. Uses TaskId with GetProspectingFromEngagementTask to poll for completion.
+    record StartProspectingFromEngagementTaskOutput
+        -- The list of engagement identifiers that were accepted into the task queue for processing. This list matches the identifiers provided in the request.
+        Identifiers: {string}
+        -- The task name from the request.
+        TaskName: string
+        -- A message providing additional context about the task's current state. When the task fails, this field contains a detailed description of the failure and suggested recovery steps. This field is only populated for tasks in a failed state.
+        Message: string
+        -- An enumerated code identifying the reason for task failure. This field is only populated when the task has failed. Use the corresponding Message field for a human-readable description of the failure.
+        ReasonCode: string
+        -- The timestamp indicating when the task was initiated. The format follows ISO 8601 date-time notation.
+        StartTime: number
+        -- The unique identifier assigned to this task. Use this identifier with GetProspectingFromEngagementTask to retrieve task details and check status.
+        TaskId: string
+        -- The Amazon Resource Name (ARN) of the task. The ARN uniquely identifies the task across AWS and can be used for resource-level IAM policies.
+        TaskArn: string
+        -- The current status of the task. Possible values: PENDING (waiting to run), IN_PROGRESS (actively processing), COMPLETED (successfully processed), and FAILED (unrecoverable error).
+        TaskStatus: string
     end
 
     record PutSellingSystemSettingsInput
@@ -2848,6 +3086,8 @@ local record M
         Customer: LeadCustomer
         -- Updated interaction details for the lead context.
         Interaction: LeadInteraction
+        -- Insights that AI generates and associates with the lead. These insights provide automated analysis to help partners assess the lead quality and readiness.
+        Insights: LeadInsights
     end
 
     -- Represents the updated payload of an engagement context. The structure of this payload varies based on the context type being updated.
@@ -2855,6 +3095,8 @@ local record M
         -- Contains updated information about a lead when the context type is "Lead". This field is present only when updating a lead context within the engagement.
         Lead: UpdateLeadContext
         CustomerProject: CustomerProjectsContext
+        -- Contains updated prospecting result data when the context type is "ProspectingResult". This field includes enriched data and insights that the system generates when a partner runs an autonomous prospecting job on leads.
+        ProspectingResult: ProspectingResult
     end
 
     record UpdateEngagementContextInput

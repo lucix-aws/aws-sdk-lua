@@ -635,6 +635,8 @@ M.RecommendationJobVpcSubnets = schema.new({ type = "list", list_member = prelud
 
 M.ContentClassifiers = schema.new({ type = "list", list_member = prelude.String })
 
+M.MetricsEndpointList = schema.new({ type = "list", list_member = M.MetricsEndpoint })
+
 M.MonitoringInputs = schema.new({ type = "list", list_member = M.MonitoringInput })
 
 M.PlacementSpecifications = schema.new({ type = "list", list_member = M.PlacementSpecification })
@@ -10308,6 +10310,42 @@ M.ConflictException = schema.new({
     },
 })
 
+M.MetricsEndpoint = schema.new({
+    id = id.from(_N, "MetricsEndpoint"),
+    type = "structure",
+    members = {
+        MetricsEndpointPath = schema.new({
+            id = id.from(_N, "MetricsEndpoint", "MetricsEndpointPath"),
+            type = "string",
+            name = "MetricsEndpointPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricPublishFrequencyInSeconds = schema.new({
+            id = id.from(_N, "MetricsEndpoint", "MetricPublishFrequencyInSeconds"),
+            type = "number",
+            name = "MetricPublishFrequencyInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ContainerMetricsConfig = schema.new({
+    id = id.from(_N, "ContainerMetricsConfig"),
+    type = "structure",
+    members = {
+        MetricsEndpoints = schema.new({
+            id = id.from(_N, "ContainerMetricsConfig", "MetricsEndpoints"),
+            type = "list",
+            name = "MetricsEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.MetricsEndpoint,
+        }),
+    },
+})
+
 M.RepositoryAuthConfig = schema.new({
     id = id.from(_N, "RepositoryAuthConfig"),
     type = "structure",
@@ -10435,6 +10473,13 @@ M.ContainerDefinition = schema.new({
             name = "MultiModelConfig",
             target_id = id.from(_N, "MultiModelConfig"),
             target = M.MultiModelConfig,
+        }),
+        ContainerMetricsConfig = schema.new({
+            id = id.from(_N, "ContainerDefinition", "ContainerMetricsConfig"),
+            type = "structure",
+            name = "ContainerMetricsConfig",
+            target_id = id.from(_N, "ContainerMetricsConfig"),
+            target = M.ContainerMetricsConfig,
         }),
     },
 })
@@ -14336,6 +14381,12 @@ M.MetricsConfig = schema.new({
             name = "EnableEnhancedMetrics",
             target_id = prelude.Boolean.id,
         }),
+        EnableDetailedObservability = schema.new({
+            id = id.from(_N, "MetricsConfig", "EnableDetailedObservability"),
+            type = "boolean",
+            name = "EnableDetailedObservability",
+            target_id = prelude.Boolean.id,
+        }),
         MetricPublishFrequencyInSeconds = schema.new({
             id = id.from(_N, "MetricsConfig", "MetricPublishFrequencyInSeconds"),
             type = "number",
@@ -16564,6 +16615,13 @@ M.InferenceComponentContainerSpecification = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        ContainerMetricsConfig = schema.new({
+            id = id.from(_N, "InferenceComponentContainerSpecification", "ContainerMetricsConfig"),
+            type = "structure",
+            name = "ContainerMetricsConfig",
+            target_id = id.from(_N, "ContainerMetricsConfig"),
+            target = M.ContainerMetricsConfig,
         }),
     },
 })
@@ -30968,6 +31026,13 @@ M.InferenceComponentContainerSpecificationSummary = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        ContainerMetricsConfig = schema.new({
+            id = id.from(_N, "InferenceComponentContainerSpecificationSummary", "ContainerMetricsConfig"),
+            type = "structure",
+            name = "ContainerMetricsConfig",
+            target_id = id.from(_N, "ContainerMetricsConfig"),
+            target = M.ContainerMetricsConfig,
         }),
     },
 })
