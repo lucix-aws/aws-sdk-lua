@@ -41,6 +41,7 @@ local record Client
     deleteKnowledgeBase: function(Client, types.DeleteKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseOutput>
     deleteKnowledgeBaseDocuments: function(Client, types.DeleteKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKnowledgeBaseDocumentsOutput>
     deletePrompt: function(Client, types.DeletePromptInput, ? base_client.InvokeOptions): async.Operation<types.DeletePromptOutput>
+    deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     disassociateAgentCollaborator: function(Client, types.DisassociateAgentCollaboratorInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentCollaboratorOutput>
     disassociateAgentKnowledgeBase: function(Client, types.DisassociateAgentKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAgentKnowledgeBaseOutput>
     getAgent: function(Client, types.GetAgentInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentOutput>
@@ -57,6 +58,7 @@ local record Client
     getKnowledgeBase: function(Client, types.GetKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseOutput>
     getKnowledgeBaseDocuments: function(Client, types.GetKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.GetKnowledgeBaseDocumentsOutput>
     getPrompt: function(Client, types.GetPromptInput, ? base_client.InvokeOptions): async.Operation<types.GetPromptOutput>
+    getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     ingestKnowledgeBaseDocuments: function(Client, types.IngestKnowledgeBaseDocumentsInput, ? base_client.InvokeOptions): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
     listAgentActionGroups: function(Client, types.ListAgentActionGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentActionGroupsOutput>
     listAgentAliases: function(Client, types.ListAgentAliasesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentAliasesOutput>
@@ -75,6 +77,7 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     prepareAgent: function(Client, types.PrepareAgentInput, ? base_client.InvokeOptions): async.Operation<types.PrepareAgentOutput>
     prepareFlow: function(Client, types.PrepareFlowInput, ? base_client.InvokeOptions): async.Operation<types.PrepareFlowOutput>
+    putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     startIngestionJob: function(Client, types.StartIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.StartIngestionJobOutput>
     stopIngestionJob: function(Client, types.StopIngestionJobInput, ? base_client.InvokeOptions): async.Operation<types.StopIngestionJobOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -226,6 +229,10 @@ function C:deletePrompt(input: types.DeletePromptInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrompt as schema.OperationSchema, input, options) as async.Operation<types.DeletePromptOutput>
 end
 
+function C:deleteResourcePolicy(input: types.DeleteResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteResourcePolicyOutput>
+end
+
 function C:disassociateAgentCollaborator(input: types.DisassociateAgentCollaboratorInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAgentCollaboratorOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAgentCollaborator as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAgentCollaboratorOutput>
 end
@@ -288,6 +295,10 @@ end
 
 function C:getPrompt(input: types.GetPromptInput, options?: base_client.InvokeOptions): async.Operation<types.GetPromptOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrompt as schema.OperationSchema, input, options) as async.Operation<types.GetPromptOutput>
+end
+
+function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
 function C:ingestKnowledgeBaseDocuments(input: types.IngestKnowledgeBaseDocumentsInput, options?: base_client.InvokeOptions): async.Operation<types.IngestKnowledgeBaseDocumentsOutput>
@@ -360,6 +371,10 @@ end
 
 function C:prepareFlow(input: types.PrepareFlowInput, options?: base_client.InvokeOptions): async.Operation<types.PrepareFlowOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PrepareFlow as schema.OperationSchema, input, options) as async.Operation<types.PrepareFlowOutput>
+end
+
+function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePolicyOutput>
 end
 
 function C:startIngestionJob(input: types.StartIngestionJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartIngestionJobOutput>

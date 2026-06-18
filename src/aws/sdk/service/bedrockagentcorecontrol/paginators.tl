@@ -292,6 +292,42 @@ function M.items_list_gateways(client, input)
     })
 end
 
+--- Returns a page iterator for listHarnessEndpoints.
+function M.pages_list_harness_endpoints(client, input)
+    return paginator.pages(client, "listHarnessEndpoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "endpoints",
+    })
+end
+
+--- Returns an item iterator for listHarnessEndpoints.
+function M.items_list_harness_endpoints(client, input)
+    return paginator.items(client, "listHarnessEndpoints", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "endpoints",
+    })
+end
+
+--- Returns a page iterator for listHarnessVersions.
+function M.pages_list_harness_versions(client, input)
+    return paginator.pages(client, "listHarnessVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "harnessVersions",
+    })
+end
+
+--- Returns an item iterator for listHarnessVersions.
+function M.items_list_harness_versions(client, input)
+    return paginator.items(client, "listHarnessVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "harnessVersions",
+    })
+end
+
 --- Returns a page iterator for listHarnesses.
 function M.pages_list_harnesses(client, input)
     return paginator.pages(client, "listHarnesses", input, {

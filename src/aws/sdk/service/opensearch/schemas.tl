@@ -9189,6 +9189,13 @@ M.UpdateApplicationInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.AppConfig,
         }),
+        iamIdentityCenterOptions = schema.new({
+            id = id.from(_N, "UpdateApplicationInput", "iamIdentityCenterOptions"),
+            type = "structure",
+            name = "iamIdentityCenterOptions",
+            target_id = id.from(_N, "IamIdentityCenterOptionsInput"),
+            target = M.IamIdentityCenterOptionsInput,
+        }),
     },
 })
 

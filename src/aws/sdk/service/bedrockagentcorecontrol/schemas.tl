@@ -77,6 +77,8 @@ M.TargetIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.GatewayTargetList = schema.new({ type = "list", list_member = M.GatewayTarget })
 
+M.HarnessEndpoints = schema.new({ type = "list", list_member = M.HarnessEndpoint })
+
 M.HarnessSystemPrompt = schema.new({ type = "list", list_member = M.HarnessSystemContentBlock })
 
 M.HarnessTools = schema.new({ type = "list", list_member = M.HarnessTool })
@@ -86,6 +88,8 @@ M.HarnessSkills = schema.new({ type = "list", list_member = M.HarnessSkill })
 M.HarnessAllowedTools = schema.new({ type = "list", list_member = prelude.String })
 
 M.HarnessSummaries = schema.new({ type = "list", list_member = M.HarnessSummary })
+
+M.HarnessVersionSummaries = schema.new({ type = "list", list_member = M.HarnessVersionSummary })
 
 M.MemorySummaryList = schema.new({ type = "list", list_member = M.MemorySummary })
 
@@ -177,6 +181,8 @@ M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.HarnessAgentCoreMemoryRetrievalConfigs = schema.new({ type = "map", map_key = prelude.String, map_value = M.HarnessAgentCoreMemoryRetrievalConfig })
 
+M.HarnessManagedMemoryStrategyList = schema.new({ type = "list", list_member = prelude.String })
+
 M.LogGroupNamesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ServiceNamesList = schema.new({ type = "list", list_member = prelude.String })
@@ -191,6 +197,10 @@ M.TokenEndpointAuthMethodsType = schema.new({ type = "list", list_member = prelu
 
 M.ScopesListType = schema.new({ type = "list", list_member = prelude.String })
 
+M.HostingEnvironmentListType = schema.new({ type = "list", list_member = M.HostingEnvironment })
+
+M.WorkloadIdentityNameListType = schema.new({ type = "list", list_member = prelude.String })
+
 M.NumericalScaleDefinitions = schema.new({ type = "list", list_member = M.NumericalScaleDefinition })
 
 M.CategoricalScaleDefinitions = schema.new({ type = "list", list_member = M.CategoricalScaleDefinition })
@@ -199,7 +209,17 @@ M.MatchPrincipalEntries = schema.new({ type = "list", list_member = M.MatchPrinc
 
 M.MatchPathPatterns = schema.new({ type = "list", list_member = prelude.String })
 
+M.EnabledConnectors = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorConfigurations = schema.new({ type = "list", list_member = M.ConnectorConfiguration })
+
+M.InferenceOperationConfigurations = schema.new({ type = "list", list_member = M.InferenceOperationConfiguration })
+
+M.HarnessAwsSkillPaths = schema.new({ type = "list", list_member = prelude.String })
+
 M.NamespacesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InterceptorPayloadExclusionSelectorList = schema.new({ type = "list", list_member = M.InterceptorPayloadExclusionSelector })
 
 M.TrafficSplitEntries = schema.new({ type = "list", list_member = M.TrafficSplitEntry })
 
@@ -222,6 +242,10 @@ M.MetadataSchemaList = schema.new({ type = "list", list_member = M.MetadataSchem
 M.ContentConfigurationList = schema.new({ type = "list", list_member = M.ContentConfiguration })
 
 M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorParameterOverrides = schema.new({ type = "list", list_member = M.ConnectorParameterOverride })
+
+M.ModelEntries = schema.new({ type = "list", list_member = M.ModelEntry })
 
 M.TriggerConditionInputList = schema.new({ type = "list", list_member = M.TriggerConditionInput })
 
@@ -1555,6 +1579,43 @@ M.AgentRuntimeArtifact = schema.new({
     },
 })
 
+M.HostingEnvironment = schema.new({
+    id = id.from(_N, "HostingEnvironment"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "HostingEnvironment", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AllowedWorkloadConfiguration = schema.new({
+    id = id.from(_N, "AllowedWorkloadConfiguration"),
+    type = "structure",
+    members = {
+        hostingEnvironments = schema.new({
+            id = id.from(_N, "AllowedWorkloadConfiguration", "hostingEnvironments"),
+            type = "list",
+            name = "hostingEnvironments",
+            target_id = prelude.Document.id,
+            list_member = M.HostingEnvironment,
+        }),
+        workloadIdentities = schema.new({
+            id = id.from(_N, "AllowedWorkloadConfiguration", "workloadIdentities"),
+            type = "list",
+            name = "workloadIdentities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.ClaimMatchValueType = schema.new({
     id = id.from(_N, "ClaimMatchValueType"),
     type = "union",
@@ -1806,6 +1867,13 @@ M.CustomJWTAuthorizerConfiguration = schema.new({
             name = "privateEndpointOverrides",
             target_id = prelude.Document.id,
             list_member = M.PrivateEndpointOverride,
+        }),
+        allowedWorkloadConfiguration = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "allowedWorkloadConfiguration"),
+            type = "structure",
+            name = "allowedWorkloadConfiguration",
+            target_id = id.from(_N, "AllowedWorkloadConfiguration"),
+            target = M.AllowedWorkloadConfiguration,
         }),
     },
 })
@@ -7497,6 +7565,36 @@ M.UpdateEvaluatorOutput = schema.new({
     },
 })
 
+M.InterceptorPayloadExclusionSelector = schema.new({
+    id = id.from(_N, "InterceptorPayloadExclusionSelector"),
+    type = "union",
+    members = {
+        field = schema.new({
+            id = id.from(_N, "InterceptorPayloadExclusionSelector", "field"),
+            type = "string",
+            name = "field",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InterceptorPayloadFilter = schema.new({
+    id = id.from(_N, "InterceptorPayloadFilter"),
+    type = "structure",
+    members = {
+        exclude = schema.new({
+            id = id.from(_N, "InterceptorPayloadFilter", "exclude"),
+            type = "list",
+            name = "exclude",
+            target_id = prelude.Document.id,
+            list_member = M.InterceptorPayloadExclusionSelector,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.InterceptorInputConfiguration = schema.new({
     id = id.from(_N, "InterceptorInputConfiguration"),
     type = "structure",
@@ -7509,6 +7607,13 @@ M.InterceptorInputConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        payloadFilter = schema.new({
+            id = id.from(_N, "InterceptorInputConfiguration", "payloadFilter"),
+            type = "structure",
+            name = "payloadFilter",
+            target_id = id.from(_N, "InterceptorPayloadFilter"),
+            target = M.InterceptorPayloadFilter,
         }),
     },
 })
@@ -7788,6 +7893,46 @@ M.CreateGatewayInput = schema.new({
     },
 })
 
+M.LambdaTransformConfiguration = schema.new({
+    id = id.from(_N, "LambdaTransformConfiguration"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "LambdaTransformConfiguration", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CustomTransformConfiguration = schema.new({
+    id = id.from(_N, "CustomTransformConfiguration"),
+    type = "structure",
+    members = {
+        lambda = schema.new({
+            id = id.from(_N, "CustomTransformConfiguration", "lambda"),
+            type = "structure",
+            name = "lambda",
+            target_id = id.from(_N, "LambdaTransformConfiguration"),
+            target = M.LambdaTransformConfiguration,
+        }),
+    },
+})
+
+M.WafConfiguration = schema.new({
+    id = id.from(_N, "WafConfiguration"),
+    type = "structure",
+    members = {
+        failureMode = schema.new({
+            id = id.from(_N, "WafConfiguration", "failureMode"),
+            type = "string",
+            name = "failureMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateGatewayOutput = schema.new({
     id = id.from(_N, "CreateGatewayResponse"),
     type = "structure",
@@ -7917,6 +8062,13 @@ M.CreateGatewayOutput = schema.new({
             name = "kmsKeyArn",
             target_id = prelude.String.id,
         }),
+        customTransformConfiguration = schema.new({
+            id = id.from(_N, "CreateGatewayOutput", "customTransformConfiguration"),
+            type = "structure",
+            name = "customTransformConfiguration",
+            target_id = id.from(_N, "CustomTransformConfiguration"),
+            target = M.CustomTransformConfiguration,
+        }),
         interceptorConfigurations = schema.new({
             id = id.from(_N, "CreateGatewayOutput", "interceptorConfigurations"),
             type = "list",
@@ -7943,6 +8095,19 @@ M.CreateGatewayOutput = schema.new({
             type = "string",
             name = "exceptionLevel",
             target_id = prelude.String.id,
+        }),
+        webAclArn = schema.new({
+            id = id.from(_N, "CreateGatewayOutput", "webAclArn"),
+            type = "string",
+            name = "webAclArn",
+            target_id = prelude.String.id,
+        }),
+        wafConfiguration = schema.new({
+            id = id.from(_N, "CreateGatewayOutput", "wafConfiguration"),
+            type = "structure",
+            name = "wafConfiguration",
+            target_id = id.from(_N, "WafConfiguration"),
+            target = M.WafConfiguration,
         }),
     },
 })
@@ -8142,6 +8307,13 @@ M.GetGatewayOutput = schema.new({
             name = "kmsKeyArn",
             target_id = prelude.String.id,
         }),
+        customTransformConfiguration = schema.new({
+            id = id.from(_N, "GetGatewayOutput", "customTransformConfiguration"),
+            type = "structure",
+            name = "customTransformConfiguration",
+            target_id = id.from(_N, "CustomTransformConfiguration"),
+            target = M.CustomTransformConfiguration,
+        }),
         interceptorConfigurations = schema.new({
             id = id.from(_N, "GetGatewayOutput", "interceptorConfigurations"),
             type = "list",
@@ -8168,6 +8340,19 @@ M.GetGatewayOutput = schema.new({
             type = "string",
             name = "exceptionLevel",
             target_id = prelude.String.id,
+        }),
+        webAclArn = schema.new({
+            id = id.from(_N, "GetGatewayOutput", "webAclArn"),
+            type = "string",
+            name = "webAclArn",
+            target_id = prelude.String.id,
+        }),
+        wafConfiguration = schema.new({
+            id = id.from(_N, "GetGatewayOutput", "wafConfiguration"),
+            type = "structure",
+            name = "wafConfiguration",
+            target_id = id.from(_N, "WafConfiguration"),
+            target = M.WafConfiguration,
         }),
     },
 })
@@ -8380,6 +8565,13 @@ M.UpdateGatewayInput = schema.new({
             name = "kmsKeyArn",
             target_id = prelude.String.id,
         }),
+        customTransformConfiguration = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "customTransformConfiguration"),
+            type = "structure",
+            name = "customTransformConfiguration",
+            target_id = id.from(_N, "CustomTransformConfiguration"),
+            target = M.CustomTransformConfiguration,
+        }),
         interceptorConfigurations = schema.new({
             id = id.from(_N, "UpdateGatewayInput", "interceptorConfigurations"),
             type = "list",
@@ -8399,6 +8591,13 @@ M.UpdateGatewayInput = schema.new({
             type = "string",
             name = "exceptionLevel",
             target_id = prelude.String.id,
+        }),
+        wafConfiguration = schema.new({
+            id = id.from(_N, "UpdateGatewayInput", "wafConfiguration"),
+            type = "structure",
+            name = "wafConfiguration",
+            target_id = id.from(_N, "WafConfiguration"),
+            target = M.WafConfiguration,
         }),
     },
 })
@@ -8532,6 +8731,13 @@ M.UpdateGatewayOutput = schema.new({
             name = "kmsKeyArn",
             target_id = prelude.String.id,
         }),
+        customTransformConfiguration = schema.new({
+            id = id.from(_N, "UpdateGatewayOutput", "customTransformConfiguration"),
+            type = "structure",
+            name = "customTransformConfiguration",
+            target_id = id.from(_N, "CustomTransformConfiguration"),
+            target = M.CustomTransformConfiguration,
+        }),
         interceptorConfigurations = schema.new({
             id = id.from(_N, "UpdateGatewayOutput", "interceptorConfigurations"),
             type = "list",
@@ -8558,6 +8764,19 @@ M.UpdateGatewayOutput = schema.new({
             type = "string",
             name = "exceptionLevel",
             target_id = prelude.String.id,
+        }),
+        webAclArn = schema.new({
+            id = id.from(_N, "UpdateGatewayOutput", "webAclArn"),
+            type = "string",
+            name = "webAclArn",
+            target_id = prelude.String.id,
+        }),
+        wafConfiguration = schema.new({
+            id = id.from(_N, "UpdateGatewayOutput", "wafConfiguration"),
+            type = "structure",
+            name = "wafConfiguration",
+            target_id = id.from(_N, "WafConfiguration"),
+            target = M.WafConfiguration,
         }),
     },
 })
@@ -9472,6 +9691,62 @@ M.MetadataConfiguration = schema.new({
     },
 })
 
+M.S3Configuration = schema.new({
+    id = id.from(_N, "S3Configuration"),
+    type = "structure",
+    members = {
+        uri = schema.new({
+            id = id.from(_N, "S3Configuration", "uri"),
+            type = "string",
+            name = "uri",
+            target_id = prelude.String.id,
+        }),
+        bucketOwnerAccountId = schema.new({
+            id = id.from(_N, "S3Configuration", "bucketOwnerAccountId"),
+            type = "string",
+            name = "bucketOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ApiSchemaConfiguration = schema.new({
+    id = id.from(_N, "ApiSchemaConfiguration"),
+    type = "union",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "ApiSchemaConfiguration", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "S3Configuration"),
+            target = M.S3Configuration,
+        }),
+        inlinePayload = schema.new({
+            id = id.from(_N, "ApiSchemaConfiguration", "inlinePayload"),
+            type = "string",
+            name = "inlinePayload",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HttpApiSchemaConfiguration = schema.new({
+    id = id.from(_N, "HttpApiSchemaConfiguration"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "HttpApiSchemaConfiguration", "source"),
+            type = "union",
+            name = "source",
+            target_id = id.from(_N, "ApiSchemaConfiguration"),
+            target = M.ApiSchemaConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RuntimeTargetConfiguration = schema.new({
     id = id.from(_N, "RuntimeTargetConfiguration"),
     type = "structure",
@@ -9491,6 +9766,74 @@ M.RuntimeTargetConfiguration = schema.new({
             name = "qualifier",
             target_id = prelude.String.id,
         }),
+        schema = schema.new({
+            id = id.from(_N, "RuntimeTargetConfiguration", "schema"),
+            type = "structure",
+            name = "schema",
+            target_id = id.from(_N, "HttpApiSchemaConfiguration"),
+            target = M.HttpApiSchemaConfiguration,
+        }),
+    },
+})
+
+M.StickinessConfiguration = schema.new({
+    id = id.from(_N, "StickinessConfiguration"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "StickinessConfiguration", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timeout = schema.new({
+            id = id.from(_N, "StickinessConfiguration", "timeout"),
+            type = "integer",
+            name = "timeout",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PassthroughTargetConfiguration = schema.new({
+    id = id.from(_N, "PassthroughTargetConfiguration"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "PassthroughTargetConfiguration", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        protocolType = schema.new({
+            id = id.from(_N, "PassthroughTargetConfiguration", "protocolType"),
+            type = "string",
+            name = "protocolType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        schema = schema.new({
+            id = id.from(_N, "PassthroughTargetConfiguration", "schema"),
+            type = "structure",
+            name = "schema",
+            target_id = id.from(_N, "HttpApiSchemaConfiguration"),
+            target = M.HttpApiSchemaConfiguration,
+        }),
+        stickinessConfiguration = schema.new({
+            id = id.from(_N, "PassthroughTargetConfiguration", "stickinessConfiguration"),
+            type = "structure",
+            name = "stickinessConfiguration",
+            target_id = id.from(_N, "StickinessConfiguration"),
+            target = M.StickinessConfiguration,
+        }),
     },
 })
 
@@ -9504,6 +9847,181 @@ M.HttpTargetConfiguration = schema.new({
             name = "agentcoreRuntime",
             target_id = id.from(_N, "RuntimeTargetConfiguration"),
             target = M.RuntimeTargetConfiguration,
+        }),
+        passthrough = schema.new({
+            id = id.from(_N, "HttpTargetConfiguration", "passthrough"),
+            type = "structure",
+            name = "passthrough",
+            target_id = id.from(_N, "PassthroughTargetConfiguration"),
+            target = M.PassthroughTargetConfiguration,
+        }),
+    },
+})
+
+M.InferenceConnectorSource = schema.new({
+    id = id.from(_N, "InferenceConnectorSource"),
+    type = "structure",
+    members = {
+        connectorId = schema.new({
+            id = id.from(_N, "InferenceConnectorSource", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InferenceConnectorTargetConfiguration = schema.new({
+    id = id.from(_N, "InferenceConnectorTargetConfiguration"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "InferenceConnectorTargetConfiguration", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "InferenceConnectorSource"),
+            target = M.InferenceConnectorSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProviderPrefix = schema.new({
+    id = id.from(_N, "ProviderPrefix"),
+    type = "structure",
+    members = {
+        strip = schema.new({
+            id = id.from(_N, "ProviderPrefix", "strip"),
+            type = "boolean",
+            name = "strip",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        separator = schema.new({
+            id = id.from(_N, "ProviderPrefix", "separator"),
+            type = "string",
+            name = "separator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "." },
+            },
+        }),
+    },
+})
+
+M.ModelMapping = schema.new({
+    id = id.from(_N, "ModelMapping"),
+    type = "structure",
+    members = {
+        providerPrefix = schema.new({
+            id = id.from(_N, "ModelMapping", "providerPrefix"),
+            type = "structure",
+            name = "providerPrefix",
+            target_id = id.from(_N, "ProviderPrefix"),
+            target = M.ProviderPrefix,
+        }),
+    },
+})
+
+M.ModelEntry = schema.new({
+    id = id.from(_N, "ModelEntry"),
+    type = "structure",
+    members = {
+        model = schema.new({
+            id = id.from(_N, "ModelEntry", "model"),
+            type = "string",
+            name = "model",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InferenceOperationConfiguration = schema.new({
+    id = id.from(_N, "InferenceOperationConfiguration"),
+    type = "structure",
+    members = {
+        path = schema.new({
+            id = id.from(_N, "InferenceOperationConfiguration", "path"),
+            type = "string",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        providerPath = schema.new({
+            id = id.from(_N, "InferenceOperationConfiguration", "providerPath"),
+            type = "string",
+            name = "providerPath",
+            target_id = prelude.String.id,
+        }),
+        models = schema.new({
+            id = id.from(_N, "InferenceOperationConfiguration", "models"),
+            type = "list",
+            name = "models",
+            target_id = prelude.Document.id,
+            list_member = M.ModelEntry,
+        }),
+    },
+})
+
+M.InferenceProviderTargetConfiguration = schema.new({
+    id = id.from(_N, "InferenceProviderTargetConfiguration"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "InferenceProviderTargetConfiguration", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        modelMapping = schema.new({
+            id = id.from(_N, "InferenceProviderTargetConfiguration", "modelMapping"),
+            type = "structure",
+            name = "modelMapping",
+            target_id = id.from(_N, "ModelMapping"),
+            target = M.ModelMapping,
+        }),
+        operations = schema.new({
+            id = id.from(_N, "InferenceProviderTargetConfiguration", "operations"),
+            type = "list",
+            name = "operations",
+            target_id = prelude.Document.id,
+            list_member = M.InferenceOperationConfiguration,
+        }),
+    },
+})
+
+M.InferenceTargetConfiguration = schema.new({
+    id = id.from(_N, "InferenceTargetConfiguration"),
+    type = "union",
+    members = {
+        connector = schema.new({
+            id = id.from(_N, "InferenceTargetConfiguration", "connector"),
+            type = "structure",
+            name = "connector",
+            target_id = id.from(_N, "InferenceConnectorTargetConfiguration"),
+            target = M.InferenceConnectorTargetConfiguration,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "InferenceTargetConfiguration", "provider"),
+            type = "structure",
+            name = "provider",
+            target_id = id.from(_N, "InferenceProviderTargetConfiguration"),
+            target = M.InferenceProviderTargetConfiguration,
         }),
     },
 })
@@ -9633,21 +10151,112 @@ M.ApiGatewayTargetConfiguration = schema.new({
     },
 })
 
-M.S3Configuration = schema.new({
-    id = id.from(_N, "S3Configuration"),
+M.ConnectorParameterOverride = schema.new({
+    id = id.from(_N, "ConnectorParameterOverride"),
     type = "structure",
     members = {
-        uri = schema.new({
-            id = id.from(_N, "S3Configuration", "uri"),
+        path = schema.new({
+            id = id.from(_N, "ConnectorParameterOverride", "path"),
             type = "string",
-            name = "uri",
+            name = "path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ConnectorParameterOverride", "description"),
+            type = "string",
+            name = "description",
             target_id = prelude.String.id,
         }),
-        bucketOwnerAccountId = schema.new({
-            id = id.from(_N, "S3Configuration", "bucketOwnerAccountId"),
+        visible = schema.new({
+            id = id.from(_N, "ConnectorParameterOverride", "visible"),
+            type = "boolean",
+            name = "visible",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ConnectorConfiguration = schema.new({
+    id = id.from(_N, "ConnectorConfiguration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ConnectorConfiguration", "name"),
             type = "string",
-            name = "bucketOwnerAccountId",
+            name = "name",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "ConnectorConfiguration", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        parameterValues = schema.new({
+            id = id.from(_N, "ConnectorConfiguration", "parameterValues"),
+            type = "document",
+            name = "parameterValues",
+            target_id = prelude.Document.id,
+        }),
+        parameterOverrides = schema.new({
+            id = id.from(_N, "ConnectorConfiguration", "parameterOverrides"),
+            type = "list",
+            name = "parameterOverrides",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorParameterOverride,
+        }),
+    },
+})
+
+M.ConnectorSource = schema.new({
+    id = id.from(_N, "ConnectorSource"),
+    type = "structure",
+    members = {
+        connectorId = schema.new({
+            id = id.from(_N, "ConnectorSource", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectorTargetConfiguration = schema.new({
+    id = id.from(_N, "ConnectorTargetConfiguration"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "ConnectorTargetConfiguration", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "ConnectorSource"),
+            target = M.ConnectorSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "ConnectorTargetConfiguration", "enabled"),
+            type = "list",
+            name = "enabled",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        configurations = schema.new({
+            id = id.from(_N, "ConnectorTargetConfiguration", "configurations"),
+            type = "list",
+            name = "configurations",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorConfiguration,
         }),
     },
 })
@@ -9703,26 +10312,6 @@ M.McpServerTargetConfiguration = schema.new({
             type = "integer",
             name = "resourcePriority",
             target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.ApiSchemaConfiguration = schema.new({
-    id = id.from(_N, "ApiSchemaConfiguration"),
-    type = "union",
-    members = {
-        s3 = schema.new({
-            id = id.from(_N, "ApiSchemaConfiguration", "s3"),
-            type = "structure",
-            name = "s3",
-            target_id = id.from(_N, "S3Configuration"),
-            target = M.S3Configuration,
-        }),
-        inlinePayload = schema.new({
-            id = id.from(_N, "ApiSchemaConfiguration", "inlinePayload"),
-            type = "string",
-            name = "inlinePayload",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -9987,6 +10576,34 @@ M.TargetSummary = schema.new({
             name = "resourcePriority",
             target_id = prelude.Integer.id,
         }),
+        lastSynchronizedAt = schema.new({
+            id = id.from(_N, "TargetSummary", "lastSynchronizedAt"),
+            type = "timestamp",
+            name = "lastSynchronizedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        authorizationData = schema.new({
+            id = id.from(_N, "TargetSummary", "authorizationData"),
+            type = "union",
+            name = "authorizationData",
+            target_id = id.from(_N, "AuthorizationData"),
+            target = M.AuthorizationData,
+        }),
+        targetType = schema.new({
+            id = id.from(_N, "TargetSummary", "targetType"),
+            type = "string",
+            name = "targetType",
+            target_id = prelude.String.id,
+        }),
+        listingMode = schema.new({
+            id = id.from(_N, "TargetSummary", "listingMode"),
+            type = "string",
+            name = "listingMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -10140,6 +10757,401 @@ M.GetTokenVaultOutput = schema.new({
     },
 })
 
+M.CreateHarnessEndpointInput = schema.new({
+    id = id.from(_N, "CreateHarnessEndpointRequest"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "CreateHarnessEndpointInput", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "CreateHarnessEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetVersion = schema.new({
+            id = id.from(_N, "CreateHarnessEndpointInput", "targetVersion"),
+            type = "string",
+            name = "targetVersion",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateHarnessEndpointInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateHarnessEndpointInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateHarnessEndpointInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.HarnessEndpoint = schema.new({
+    id = id.from(_N, "HarnessEndpoint"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        harnessName = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "harnessName"),
+            type = "string",
+            name = "harnessName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        liveVersion = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "liveVersion"),
+            type = "string",
+            name = "liveVersion",
+            target_id = prelude.String.id,
+        }),
+        targetVersion = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "targetVersion"),
+            type = "string",
+            name = "targetVersion",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        failureReason = schema.new({
+            id = id.from(_N, "HarnessEndpoint", "failureReason"),
+            type = "string",
+            name = "failureReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateHarnessEndpointOutput = schema.new({
+    id = id.from(_N, "CreateHarnessEndpointResponse"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "CreateHarnessEndpointOutput", "endpoint"),
+            type = "structure",
+            name = "endpoint",
+            target_id = id.from(_N, "HarnessEndpoint"),
+            target = M.HarnessEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteHarnessEndpointInput = schema.new({
+    id = id.from(_N, "DeleteHarnessEndpointRequest"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "DeleteHarnessEndpointInput", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "DeleteHarnessEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteHarnessEndpointInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteHarnessEndpointOutput = schema.new({
+    id = id.from(_N, "DeleteHarnessEndpointResponse"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "DeleteHarnessEndpointOutput", "endpoint"),
+            type = "structure",
+            name = "endpoint",
+            target_id = id.from(_N, "HarnessEndpoint"),
+            target = M.HarnessEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetHarnessEndpointInput = schema.new({
+    id = id.from(_N, "GetHarnessEndpointRequest"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "GetHarnessEndpointInput", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "GetHarnessEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetHarnessEndpointOutput = schema.new({
+    id = id.from(_N, "GetHarnessEndpointResponse"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "GetHarnessEndpointOutput", "endpoint"),
+            type = "structure",
+            name = "endpoint",
+            target_id = id.from(_N, "HarnessEndpoint"),
+            target = M.HarnessEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListHarnessEndpointsInput = schema.new({
+    id = id.from(_N, "ListHarnessEndpointsRequest"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "ListHarnessEndpointsInput", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListHarnessEndpointsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListHarnessEndpointsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListHarnessEndpointsOutput = schema.new({
+    id = id.from(_N, "ListHarnessEndpointsResponse"),
+    type = "structure",
+    members = {
+        endpoints = schema.new({
+            id = id.from(_N, "ListHarnessEndpointsOutput", "endpoints"),
+            type = "list",
+            name = "endpoints",
+            target_id = prelude.Document.id,
+            list_member = M.HarnessEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListHarnessEndpointsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateHarnessEndpointInput = schema.new({
+    id = id.from(_N, "UpdateHarnessEndpointRequest"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "UpdateHarnessEndpointInput", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        endpointName = schema.new({
+            id = id.from(_N, "UpdateHarnessEndpointInput", "endpointName"),
+            type = "string",
+            name = "endpointName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        targetVersion = schema.new({
+            id = id.from(_N, "UpdateHarnessEndpointInput", "targetVersion"),
+            type = "string",
+            name = "targetVersion",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateHarnessEndpointInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateHarnessEndpointInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateHarnessEndpointOutput = schema.new({
+    id = id.from(_N, "UpdateHarnessEndpointResponse"),
+    type = "structure",
+    members = {
+        endpoint = schema.new({
+            id = id.from(_N, "UpdateHarnessEndpointOutput", "endpoint"),
+            type = "structure",
+            name = "endpoint",
+            target_id = id.from(_N, "HarnessEndpoint"),
+            target = M.HarnessEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.HarnessAgentCoreRuntimeEnvironmentRequest = schema.new({
     id = id.from(_N, "HarnessAgentCoreRuntimeEnvironmentRequest"),
     type = "structure",
@@ -10257,6 +11269,43 @@ M.HarnessAgentCoreMemoryConfiguration = schema.new({
     },
 })
 
+M.HarnessDisabledMemoryConfiguration = schema.new({
+    id = id.from(_N, "HarnessDisabledMemoryConfiguration"),
+    type = "structure",
+})
+
+M.HarnessManagedMemoryConfiguration = schema.new({
+    id = id.from(_N, "HarnessManagedMemoryConfiguration"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "HarnessManagedMemoryConfiguration", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        strategies = schema.new({
+            id = id.from(_N, "HarnessManagedMemoryConfiguration", "strategies"),
+            type = "list",
+            name = "strategies",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        eventExpiryDuration = schema.new({
+            id = id.from(_N, "HarnessManagedMemoryConfiguration", "eventExpiryDuration"),
+            type = "integer",
+            name = "eventExpiryDuration",
+            target_id = prelude.Integer.id,
+        }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "HarnessManagedMemoryConfiguration", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.HarnessMemoryConfiguration = schema.new({
     id = id.from(_N, "HarnessMemoryConfiguration"),
     type = "union",
@@ -10267,6 +11316,20 @@ M.HarnessMemoryConfiguration = schema.new({
             name = "agentCoreMemoryConfiguration",
             target_id = id.from(_N, "HarnessAgentCoreMemoryConfiguration"),
             target = M.HarnessAgentCoreMemoryConfiguration,
+        }),
+        managedMemoryConfiguration = schema.new({
+            id = id.from(_N, "HarnessMemoryConfiguration", "managedMemoryConfiguration"),
+            type = "structure",
+            name = "managedMemoryConfiguration",
+            target_id = id.from(_N, "HarnessManagedMemoryConfiguration"),
+            target = M.HarnessManagedMemoryConfiguration,
+        }),
+        disabled = schema.new({
+            id = id.from(_N, "HarnessMemoryConfiguration", "disabled"),
+            type = "structure",
+            name = "disabled",
+            target_id = id.from(_N, "HarnessDisabledMemoryConfiguration"),
+            target = M.HarnessDisabledMemoryConfiguration,
         }),
     },
 })
@@ -10508,6 +11571,20 @@ M.HarnessModelConfiguration = schema.new({
     },
 })
 
+M.HarnessSkillAwsSkillsSource = schema.new({
+    id = id.from(_N, "HarnessSkillAwsSkillsSource"),
+    type = "structure",
+    members = {
+        paths = schema.new({
+            id = id.from(_N, "HarnessSkillAwsSkillsSource", "paths"),
+            type = "list",
+            name = "paths",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.HarnessSkillGitAuth = schema.new({
     id = id.from(_N, "HarnessSkillGitAuth"),
     type = "structure",
@@ -10598,6 +11675,13 @@ M.HarnessSkill = schema.new({
             name = "git",
             target_id = id.from(_N, "HarnessSkillGitSource"),
             target = M.HarnessSkillGitSource,
+        }),
+        awsSkills = schema.new({
+            id = id.from(_N, "HarnessSkill", "awsSkills"),
+            type = "structure",
+            name = "awsSkills",
+            target_id = id.from(_N, "HarnessSkillAwsSkillsSource"),
+            target = M.HarnessSkillAwsSkillsSource,
         }),
     },
 })
@@ -11149,6 +12233,12 @@ M.Harness = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        harnessVersion = schema.new({
+            id = id.from(_N, "Harness", "harnessVersion"),
+            type = "string",
+            name = "harnessVersion",
+            target_id = prelude.String.id,
+        }),
         executionRoleArn = schema.new({
             id = id.from(_N, "Harness", "executionRoleArn"),
             type = "string",
@@ -11351,6 +12441,15 @@ M.DeleteHarnessInput = schema.new({
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
         }),
+        deleteManagedMemory = schema.new({
+            id = id.from(_N, "DeleteHarnessInput", "deleteManagedMemory"),
+            type = "boolean",
+            name = "deleteManagedMemory",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "deleteManagedMemory" },
+            },
+        }),
     },
 })
 
@@ -11380,6 +12479,15 @@ M.GetHarnessInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
+            },
+        }),
+        harnessVersion = schema.new({
+            id = id.from(_N, "GetHarnessInput", "harnessVersion"),
+            type = "string",
+            name = "harnessVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "harnessVersion" },
             },
         }),
     },
@@ -11493,6 +12601,12 @@ M.HarnessSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        harnessVersion = schema.new({
+            id = id.from(_N, "HarnessSummary", "harnessVersion"),
+            type = "string",
+            name = "harnessVersion",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -11512,6 +12626,148 @@ M.ListHarnessesOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListHarnessesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListHarnessVersionsInput = schema.new({
+    id = id.from(_N, "ListHarnessVersionsRequest"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "ListHarnessVersionsInput", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListHarnessVersionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListHarnessVersionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.HarnessVersionSummary = schema.new({
+    id = id.from(_N, "HarnessVersionSummary"),
+    type = "structure",
+    members = {
+        harnessId = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "harnessId"),
+            type = "string",
+            name = "harnessId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        harnessName = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "harnessName"),
+            type = "string",
+            name = "harnessName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        harnessVersion = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "harnessVersion"),
+            type = "string",
+            name = "harnessVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failureReason = schema.new({
+            id = id.from(_N, "HarnessVersionSummary", "failureReason"),
+            type = "string",
+            name = "failureReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListHarnessVersionsOutput = schema.new({
+    id = id.from(_N, "ListHarnessVersionsResponse"),
+    type = "structure",
+    members = {
+        harnessVersions = schema.new({
+            id = id.from(_N, "ListHarnessVersionsOutput", "harnessVersions"),
+            type = "list",
+            name = "harnessVersions",
+            target_id = prelude.Document.id,
+            list_member = M.HarnessVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListHarnessVersionsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -13630,6 +14886,12 @@ M.Memory = schema.new({
             target_id = id.from(_N, "StreamDeliveryResources"),
             target = M.StreamDeliveryResources,
         }),
+        managedByResourceArn = schema.new({
+            id = id.from(_N, "Memory", "managedByResourceArn"),
+            type = "string",
+            name = "managedByResourceArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -13833,6 +15095,12 @@ M.MemorySummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        managedByResourceArn = schema.new({
+            id = id.from(_N, "MemorySummary", "managedByResourceArn"),
+            type = "string",
+            name = "managedByResourceArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -19546,6 +20814,22 @@ M.CedarPolicy = schema.new({
     },
 })
 
+M.PolicyStatement = schema.new({
+    id = id.from(_N, "PolicyStatement"),
+    type = "structure",
+    members = {
+        statement = schema.new({
+            id = id.from(_N, "PolicyStatement", "statement"),
+            type = "string",
+            name = "statement",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PolicyGenerationDetails = schema.new({
     id = id.from(_N, "PolicyGenerationDetails"),
     type = "structure",
@@ -19588,6 +20872,13 @@ M.PolicyDefinition = schema.new({
             name = "policyGeneration",
             target_id = id.from(_N, "PolicyGenerationDetails"),
             target = M.PolicyGenerationDetails,
+        }),
+        policy = schema.new({
+            id = id.from(_N, "PolicyDefinition", "policy"),
+            type = "structure",
+            name = "policy",
+            target_id = id.from(_N, "PolicyStatement"),
+            target = M.PolicyStatement,
         }),
     },
 })
@@ -20197,6 +21488,15 @@ M.CreatePolicyInput = schema.new({
                 [traits.DEFAULT] = { value = "FAIL_ON_ANY_FINDINGS" },
             },
         }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "CreatePolicyInput", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
+            },
+        }),
         policyEngineId = schema.new({
             id = id.from(_N, "CreatePolicyInput", "policyEngineId"),
             type = "string",
@@ -20292,6 +21592,15 @@ M.CreatePolicyOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
+            },
+        }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "CreatePolicyOutput", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
             },
         }),
         definition = schema.new({
@@ -20425,6 +21734,15 @@ M.DeletePolicyOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "DeletePolicyOutput", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
+            },
+        }),
         definition = schema.new({
             id = id.from(_N, "DeletePolicyOutput", "definition"),
             type = "union",
@@ -20554,6 +21872,15 @@ M.GetPolicyOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
+            },
+        }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "GetPolicyOutput", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
             },
         }),
         definition = schema.new({
@@ -20687,6 +22014,15 @@ M.GetPolicySummaryOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "GetPolicySummaryOutput", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
+            },
+        }),
     },
 })
 
@@ -20807,6 +22143,15 @@ M.Policy = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
+            },
+        }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "Policy", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
             },
         }),
         definition = schema.new({
@@ -20980,6 +22325,15 @@ M.PolicySummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "PolicySummary", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
+            },
+        }),
     },
 })
 
@@ -21051,6 +22405,15 @@ M.UpdatePolicyInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.DEFAULT] = { value = "FAIL_ON_ANY_FINDINGS" },
+            },
+        }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "UpdatePolicyInput", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
             },
         }),
     },
@@ -21129,6 +22492,15 @@ M.UpdatePolicyOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
+            },
+        }),
+        enforcementMode = schema.new({
+            id = id.from(_N, "UpdatePolicyOutput", "enforcementMode"),
+            type = "string",
+            name = "enforcementMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "ACTIVE" },
             },
         }),
         definition = schema.new({
@@ -23714,6 +25086,13 @@ M.McpTargetConfiguration = schema.new({
             target_id = id.from(_N, "ApiGatewayTargetConfiguration"),
             target = M.ApiGatewayTargetConfiguration,
         }),
+        connector = schema.new({
+            id = id.from(_N, "McpTargetConfiguration", "connector"),
+            type = "structure",
+            name = "connector",
+            target_id = id.from(_N, "ConnectorTargetConfiguration"),
+            target = M.ConnectorTargetConfiguration,
+        }),
     },
 })
 
@@ -23734,6 +25113,13 @@ M.TargetConfiguration = schema.new({
             name = "http",
             target_id = id.from(_N, "HttpTargetConfiguration"),
             target = M.HttpTargetConfiguration,
+        }),
+        inference = schema.new({
+            id = id.from(_N, "TargetConfiguration", "inference"),
+            type = "union",
+            name = "inference",
+            target_id = id.from(_N, "InferenceTargetConfiguration"),
+            target = M.InferenceTargetConfiguration,
         }),
     },
 })
@@ -23757,9 +25143,6 @@ M.CreateGatewayTargetInput = schema.new({
             type = "string",
             name = "name",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         description = schema.new({
             id = id.from(_N, "CreateGatewayTargetInput", "description"),
@@ -24274,9 +25657,6 @@ M.UpdateGatewayTargetInput = schema.new({
             type = "string",
             name = "name",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         description = schema.new({
             id = id.from(_N, "UpdateGatewayTargetInput", "description"),
@@ -24682,6 +26062,18 @@ M.CreateHarness = schema.operation({
     },
 })
 
+M.CreateHarnessEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateHarnessEndpoint"),
+    input = M.CreateHarnessEndpointInput,
+    output = M.CreateHarnessEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/harnesses/{harnessId}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateMemory = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateMemory"),
     input = M.CreateMemoryInput,
@@ -24976,6 +26368,18 @@ M.DeleteHarness = schema.operation({
     output = M.DeleteHarnessOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/harnesses/{harnessId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteHarnessEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteHarnessEndpoint"),
+    input = M.DeleteHarnessEndpointInput,
+    output = M.DeleteHarnessEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/harnesses/{harnessId}/endpoints/{endpointName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -25288,6 +26692,18 @@ M.GetHarness = schema.operation({
     output = M.GetHarnessOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/harnesses/{harnessId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetHarnessEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetHarnessEndpoint"),
+    input = M.GetHarnessEndpointInput,
+    output = M.GetHarnessEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/harnesses/{harnessId}/endpoints/{endpointName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -25690,12 +27106,36 @@ M.ListGatewayTargets = schema.operation({
     },
 })
 
+M.ListHarnessEndpoints = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListHarnessEndpoints"),
+    input = M.ListHarnessEndpointsInput,
+    output = M.ListHarnessEndpointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/harnesses/{harnessId}/endpoints" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListHarnesses = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListHarnesses"),
     input = M.ListHarnessesInput,
     output = M.ListHarnessesOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/harnesses" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListHarnessVersions = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListHarnessVersions"),
+    input = M.ListHarnessVersionsInput,
+    output = M.ListHarnessVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/harnesses/{harnessId}/versions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -26116,6 +27556,18 @@ M.UpdateHarness = schema.operation({
     output = M.UpdateHarnessOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/harnesses/{harnessId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateHarnessEndpoint = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateHarnessEndpoint"),
+    input = M.UpdateHarnessEndpointInput,
+    output = M.UpdateHarnessEndpointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/harnesses/{harnessId}/endpoints/{endpointName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

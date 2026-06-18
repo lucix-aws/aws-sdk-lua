@@ -150,6 +150,16 @@ local record M
         Revision: number
     end
 
+    -- Returns info about the resource share error after updating the broker.
+    record ResourceShareError
+        -- The error code of the resource share.
+        ErrorCode: string
+        -- The ARN of the resource share.
+        ResourceShareArn: string
+        -- The status of the resource share.
+        Status: string
+    end
+
     enum SanitizationWarningReason
         "DISALLOWED_ELEMENT_REMOVED"
         "DISALLOWED_ATTRIBUTE_REMOVED"
@@ -164,6 +174,54 @@ local record M
         ElementName: string
         -- The reason for which the configuration elements or attributes were sanitized.
         Reason: string
+    end
+
+    enum SharedResourceErrorCode
+        "QUOTA_EXCEEDED"
+        "SHARE_NOT_FOUND"
+        "INVITE_FAILED"
+        "SETUP_INCOMPLETE"
+        "INTERNAL_ERROR"
+        "AZ_MISMATCH"
+        "RESOURCE_CONFIGURATION_NOT_FOUND"
+    end
+
+    -- Information on the error encountered by the resource.
+    record SharedResourceError
+        -- The error code associated with the error.
+        Code: string
+        -- The error message.
+        Message: string
+    end
+
+    enum SharedResourceStatus
+        "AVAILABLE"
+        "SETUP_IN_PROGRESS"
+        "DELETION_IN_PROGRESS"
+        "PENDING_CREATE"
+        "PENDING_DELETE"
+        "ERROR"
+    end
+
+    enum SharedResourceType
+        "RESOURCE_SHARE"
+        "RESOURCE"
+    end
+
+    -- Represents a resource that is shared with the broker, including its type, ARN, and current status.
+    record SharedResource
+        -- The DNS names accessible by the broker.
+        DnsNames: {string}
+        -- Information on the error encountered by the resource.
+        Error: SharedResourceError
+        -- The ARN of the shared resource.
+        ResourceArn: string
+        -- The resource share ARNs to which the resource belongs.
+        ResourceShareArns: {string}
+        -- The status of the shared resource.
+        Status: string
+        -- The type of shared resource.
+        Type: string
     end
 
     -- A user associated with the broker. For Amazon MQ for RabbitMQ brokers, one and only one administrative user is accepted and created when a broker is first provisioned. All subsequent broker users are created by making RabbitMQ API calls directly to brokers or via the RabbitMQ web console.
@@ -200,6 +258,8 @@ local record M
         ErrorAttribute: string
         -- The explanation of the error.
         Message: string
+        -- The list of resource share errors.
+        ResourceShareErrors: {ResourceShareError}
     end
 
     -- Broker configuration information
@@ -218,6 +278,8 @@ local record M
         ErrorAttribute: string
         -- The explanation of the error.
         Message: string
+        -- The list of resource share errors.
+        ResourceShareErrors: {ResourceShareError}
     end
 
     enum DataReplicationMode
@@ -351,6 +413,8 @@ local record M
         ErrorAttribute: string
         -- The explanation of the error.
         Message: string
+        -- The list of resource share errors.
+        ResourceShareErrors: {ResourceShareError}
     end
 
     -- Returns information about an error.
@@ -359,6 +423,8 @@ local record M
         ErrorAttribute: string
         -- The explanation of the error.
         Message: string
+        -- The list of resource share errors.
+        ResourceShareErrors: {ResourceShareError}
     end
 
     -- Returns information about an error.
@@ -367,6 +433,8 @@ local record M
         ErrorAttribute: string
         -- The explanation of the error.
         Message: string
+        -- The list of resource share errors.
+        ResourceShareErrors: {ResourceShareError}
     end
 
     -- Creates a new configuration for the specified configuration name. Amazon MQ uses the default configuration (the engine type and version).
@@ -415,6 +483,8 @@ local record M
         ErrorAttribute: string
         -- The explanation of the error.
         Message: string
+        -- The list of resource share errors.
+        ResourceShareErrors: {ResourceShareError}
     end
 
     -- Creates a new ActiveMQ user.
@@ -702,6 +772,22 @@ local record M
         Description: string
     end
 
+    record DescribeSharedResourcesInput
+        -- The unique ID that Amazon MQ generates for the broker.
+        BrokerId: string
+        -- The maximum number of resources that Amazon MQ can return per page (20 by default). This value must be an integer from 5 to 100.
+        MaxResults: number
+        -- The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.
+        NextToken: string
+    end
+
+    record DescribeSharedResourcesOutput
+        -- The token that specifies the next page of results Amazon MQ should return. To request the first page, leave nextToken empty.
+        NextToken: string
+        -- A list of resources shared to the broker.
+        SharedResources: {SharedResource}
+    end
+
     record DescribeUserInput
         -- The unique ID that Amazon MQ generates for the broker.
         BrokerId: string
@@ -860,6 +946,8 @@ local record M
         Logs: Logs
         -- The parameters that determine the WeeklyStartTime.
         MaintenanceWindowStartTime: WeeklyStartTime
+        -- The list of resource shares to update on the broker
+        ResourceShareArns: {string}
         -- The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.
         SecurityGroups: {string}
         -- Defines whether this broker is a part of a data replication pair.
@@ -885,6 +973,8 @@ local record M
         Logs: Logs
         -- The parameters that determine the WeeklyStartTime.
         MaintenanceWindowStartTime: WeeklyStartTime
+        -- The pending broker's target list of resource shares
+        ResourceShareArns: {string}
         -- The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.
         SecurityGroups: {string}
         -- The replication details of the data replication-enabled broker. Only returned if dataReplicationMode is set to CRDR.

@@ -19,8 +19,11 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addArtifact: function(Client, types.AddArtifactInput, ? base_client.InvokeOptions): async.Operation<types.AddArtifactOutput>
+    batchCreateSecurityRequirements: function(Client, types.BatchCreateSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreateSecurityRequirementsOutput>
     batchDeleteCodeReviews: function(Client, types.BatchDeleteCodeReviewsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteCodeReviewsOutput>
     batchDeletePentests: function(Client, types.BatchDeletePentestsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeletePentestsOutput>
+    batchDeleteSecurityRequirements: function(Client, types.BatchDeleteSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteSecurityRequirementsOutput>
+    batchDeleteThreatModels: function(Client, types.BatchDeleteThreatModelsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteThreatModelsOutput>
     batchGetAgentSpaces: function(Client, types.BatchGetAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAgentSpacesOutput>
     batchGetArtifactMetadata: function(Client, types.BatchGetArtifactMetadataInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetArtifactMetadataOutput>
     batchGetCodeReviewJobs: function(Client, types.BatchGetCodeReviewJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCodeReviewJobsOutput>
@@ -30,23 +33,38 @@ local record Client
     batchGetPentestJobs: function(Client, types.BatchGetPentestJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobsOutput>
     batchGetPentestJobTasks: function(Client, types.BatchGetPentestJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestJobTasksOutput>
     batchGetPentests: function(Client, types.BatchGetPentestsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPentestsOutput>
+    batchGetSecurityRequirements: function(Client, types.BatchGetSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetSecurityRequirementsOutput>
     batchGetTargetDomains: function(Client, types.BatchGetTargetDomainsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetTargetDomainsOutput>
+    batchGetThreatModelJobs: function(Client, types.BatchGetThreatModelJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetThreatModelJobsOutput>
+    batchGetThreatModelJobTasks: function(Client, types.BatchGetThreatModelJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetThreatModelJobTasksOutput>
+    batchGetThreatModels: function(Client, types.BatchGetThreatModelsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetThreatModelsOutput>
+    batchGetThreats: function(Client, types.BatchGetThreatsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetThreatsOutput>
+    batchUpdateSecurityRequirements: function(Client, types.BatchUpdateSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateSecurityRequirementsOutput>
     createAgentSpace: function(Client, types.CreateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
     createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
     createCodeReview: function(Client, types.CreateCodeReviewInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeReviewOutput>
     createIntegration: function(Client, types.CreateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationOutput>
     createMembership: function(Client, types.CreateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
     createPentest: function(Client, types.CreatePentestInput, ? base_client.InvokeOptions): async.Operation<types.CreatePentestOutput>
+    createPrivateConnection: function(Client, types.CreatePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectionOutput>
+    createSecurityRequirementPack: function(Client, types.CreateSecurityRequirementPackInput, ? base_client.InvokeOptions): async.Operation<types.CreateSecurityRequirementPackOutput>
     createTargetDomain: function(Client, types.CreateTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateTargetDomainOutput>
+    createThreat: function(Client, types.CreateThreatInput, ? base_client.InvokeOptions): async.Operation<types.CreateThreatOutput>
+    createThreatModel: function(Client, types.CreateThreatModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateThreatModelOutput>
     deleteAgentSpace: function(Client, types.DeleteAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
     deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
     deleteArtifact: function(Client, types.DeleteArtifactInput, ? base_client.InvokeOptions): async.Operation<types.DeleteArtifactOutput>
     deleteIntegration: function(Client, types.DeleteIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntegrationOutput>
     deleteMembership: function(Client, types.DeleteMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMembershipOutput>
+    deletePrivateConnection: function(Client, types.DeletePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
+    deleteSecurityRequirementPack: function(Client, types.DeleteSecurityRequirementPackInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityRequirementPackOutput>
     deleteTargetDomain: function(Client, types.DeleteTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTargetDomainOutput>
+    describePrivateConnection: function(Client, types.DescribePrivateConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribePrivateConnectionOutput>
     getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
     getArtifact: function(Client, types.GetArtifactInput, ? base_client.InvokeOptions): async.Operation<types.GetArtifactOutput>
     getIntegration: function(Client, types.GetIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.GetIntegrationOutput>
+    getSecurityRequirementPack: function(Client, types.GetSecurityRequirementPackInput, ? base_client.InvokeOptions): async.Operation<types.GetSecurityRequirementPackOutput>
+    importSecurityRequirements: function(Client, types.ImportSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.ImportSecurityRequirementsOutput>
     initiateProviderRegistration: function(Client, types.InitiateProviderRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.InitiateProviderRegistrationOutput>
     listAgentSpaces: function(Client, types.ListAgentSpacesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentSpacesOutput>
     listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
@@ -62,13 +80,22 @@ local record Client
     listPentestJobsForPentest: function(Client, types.ListPentestJobsForPentestInput, ? base_client.InvokeOptions): async.Operation<types.ListPentestJobsForPentestOutput>
     listPentestJobTasks: function(Client, types.ListPentestJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListPentestJobTasksOutput>
     listPentests: function(Client, types.ListPentestsInput, ? base_client.InvokeOptions): async.Operation<types.ListPentestsOutput>
+    listPrivateConnections: function(Client, types.ListPrivateConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPrivateConnectionsOutput>
+    listSecurityRequirementPacks: function(Client, types.ListSecurityRequirementPacksInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityRequirementPacksOutput>
+    listSecurityRequirements: function(Client, types.ListSecurityRequirementsInput, ? base_client.InvokeOptions): async.Operation<types.ListSecurityRequirementsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listTargetDomains: function(Client, types.ListTargetDomainsInput, ? base_client.InvokeOptions): async.Operation<types.ListTargetDomainsOutput>
+    listThreatModelJobs: function(Client, types.ListThreatModelJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListThreatModelJobsOutput>
+    listThreatModelJobTasks: function(Client, types.ListThreatModelJobTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListThreatModelJobTasksOutput>
+    listThreatModels: function(Client, types.ListThreatModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListThreatModelsOutput>
+    listThreats: function(Client, types.ListThreatsInput, ? base_client.InvokeOptions): async.Operation<types.ListThreatsOutput>
     startCodeRemediation: function(Client, types.StartCodeRemediationInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeRemediationOutput>
     startCodeReviewJob: function(Client, types.StartCodeReviewJobInput, ? base_client.InvokeOptions): async.Operation<types.StartCodeReviewJobOutput>
     startPentestJob: function(Client, types.StartPentestJobInput, ? base_client.InvokeOptions): async.Operation<types.StartPentestJobOutput>
+    startThreatModelJob: function(Client, types.StartThreatModelJobInput, ? base_client.InvokeOptions): async.Operation<types.StartThreatModelJobOutput>
     stopCodeReviewJob: function(Client, types.StopCodeReviewJobInput, ? base_client.InvokeOptions): async.Operation<types.StopCodeReviewJobOutput>
     stopPentestJob: function(Client, types.StopPentestJobInput, ? base_client.InvokeOptions): async.Operation<types.StopPentestJobOutput>
+    stopThreatModelJob: function(Client, types.StopThreatModelJobInput, ? base_client.InvokeOptions): async.Operation<types.StopThreatModelJobOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAgentSpace: function(Client, types.UpdateAgentSpaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentSpaceOutput>
@@ -77,7 +104,11 @@ local record Client
     updateFinding: function(Client, types.UpdateFindingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingOutput>
     updateIntegratedResources: function(Client, types.UpdateIntegratedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegratedResourcesOutput>
     updatePentest: function(Client, types.UpdatePentestInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePentestOutput>
+    updatePrivateConnectionCertificate: function(Client, types.UpdatePrivateConnectionCertificateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
+    updateSecurityRequirementPack: function(Client, types.UpdateSecurityRequirementPackInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSecurityRequirementPackOutput>
     updateTargetDomain: function(Client, types.UpdateTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTargetDomainOutput>
+    updateThreat: function(Client, types.UpdateThreatInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThreatOutput>
+    updateThreatModel: function(Client, types.UpdateThreatModelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThreatModelOutput>
     verifyTargetDomain: function(Client, types.VerifyTargetDomainInput, ? base_client.InvokeOptions): async.Operation<types.VerifyTargetDomainOutput>
 end
 
@@ -127,12 +158,24 @@ function C:addArtifact(input: types.AddArtifactInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddArtifact as schema.OperationSchema, input, options) as async.Operation<types.AddArtifactOutput>
 end
 
+function C:batchCreateSecurityRequirements(input: types.BatchCreateSecurityRequirementsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreateSecurityRequirementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreateSecurityRequirements as schema.OperationSchema, input, options) as async.Operation<types.BatchCreateSecurityRequirementsOutput>
+end
+
 function C:batchDeleteCodeReviews(input: types.BatchDeleteCodeReviewsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteCodeReviewsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteCodeReviews as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteCodeReviewsOutput>
 end
 
 function C:batchDeletePentests(input: types.BatchDeletePentestsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeletePentestsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeletePentests as schema.OperationSchema, input, options) as async.Operation<types.BatchDeletePentestsOutput>
+end
+
+function C:batchDeleteSecurityRequirements(input: types.BatchDeleteSecurityRequirementsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteSecurityRequirementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteSecurityRequirements as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteSecurityRequirementsOutput>
+end
+
+function C:batchDeleteThreatModels(input: types.BatchDeleteThreatModelsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteThreatModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteThreatModels as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteThreatModelsOutput>
 end
 
 function C:batchGetAgentSpaces(input: types.BatchGetAgentSpacesInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetAgentSpacesOutput>
@@ -171,8 +214,32 @@ function C:batchGetPentests(input: types.BatchGetPentestsInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetPentests as schema.OperationSchema, input, options) as async.Operation<types.BatchGetPentestsOutput>
 end
 
+function C:batchGetSecurityRequirements(input: types.BatchGetSecurityRequirementsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetSecurityRequirementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetSecurityRequirements as schema.OperationSchema, input, options) as async.Operation<types.BatchGetSecurityRequirementsOutput>
+end
+
 function C:batchGetTargetDomains(input: types.BatchGetTargetDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetTargetDomainsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetTargetDomains as schema.OperationSchema, input, options) as async.Operation<types.BatchGetTargetDomainsOutput>
+end
+
+function C:batchGetThreatModelJobs(input: types.BatchGetThreatModelJobsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetThreatModelJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetThreatModelJobs as schema.OperationSchema, input, options) as async.Operation<types.BatchGetThreatModelJobsOutput>
+end
+
+function C:batchGetThreatModelJobTasks(input: types.BatchGetThreatModelJobTasksInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetThreatModelJobTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetThreatModelJobTasks as schema.OperationSchema, input, options) as async.Operation<types.BatchGetThreatModelJobTasksOutput>
+end
+
+function C:batchGetThreatModels(input: types.BatchGetThreatModelsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetThreatModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetThreatModels as schema.OperationSchema, input, options) as async.Operation<types.BatchGetThreatModelsOutput>
+end
+
+function C:batchGetThreats(input: types.BatchGetThreatsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetThreatsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetThreats as schema.OperationSchema, input, options) as async.Operation<types.BatchGetThreatsOutput>
+end
+
+function C:batchUpdateSecurityRequirements(input: types.BatchUpdateSecurityRequirementsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateSecurityRequirementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateSecurityRequirements as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateSecurityRequirementsOutput>
 end
 
 function C:createAgentSpace(input: types.CreateAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentSpaceOutput>
@@ -199,8 +266,24 @@ function C:createPentest(input: types.CreatePentestInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePentest as schema.OperationSchema, input, options) as async.Operation<types.CreatePentestOutput>
 end
 
+function C:createPrivateConnection(input: types.CreatePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePrivateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.CreatePrivateConnectionOutput>
+end
+
+function C:createSecurityRequirementPack(input: types.CreateSecurityRequirementPackInput, options?: base_client.InvokeOptions): async.Operation<types.CreateSecurityRequirementPackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSecurityRequirementPack as schema.OperationSchema, input, options) as async.Operation<types.CreateSecurityRequirementPackOutput>
+end
+
 function C:createTargetDomain(input: types.CreateTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTargetDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTargetDomain as schema.OperationSchema, input, options) as async.Operation<types.CreateTargetDomainOutput>
+end
+
+function C:createThreat(input: types.CreateThreatInput, options?: base_client.InvokeOptions): async.Operation<types.CreateThreatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateThreat as schema.OperationSchema, input, options) as async.Operation<types.CreateThreatOutput>
+end
+
+function C:createThreatModel(input: types.CreateThreatModelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateThreatModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateThreatModel as schema.OperationSchema, input, options) as async.Operation<types.CreateThreatModelOutput>
 end
 
 function C:deleteAgentSpace(input: types.DeleteAgentSpaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAgentSpaceOutput>
@@ -223,8 +306,20 @@ function C:deleteMembership(input: types.DeleteMembershipInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMembership as schema.OperationSchema, input, options) as async.Operation<types.DeleteMembershipOutput>
 end
 
+function C:deletePrivateConnection(input: types.DeletePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrivateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.DeletePrivateConnectionOutput>
+end
+
+function C:deleteSecurityRequirementPack(input: types.DeleteSecurityRequirementPackInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityRequirementPackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityRequirementPack as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityRequirementPackOutput>
+end
+
 function C:deleteTargetDomain(input: types.DeleteTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTargetDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTargetDomain as schema.OperationSchema, input, options) as async.Operation<types.DeleteTargetDomainOutput>
+end
+
+function C:describePrivateConnection(input: types.DescribePrivateConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePrivateConnectionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePrivateConnection as schema.OperationSchema, input, options) as async.Operation<types.DescribePrivateConnectionOutput>
 end
 
 function C:getApplication(input: types.GetApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
@@ -237,6 +332,14 @@ end
 
 function C:getIntegration(input: types.GetIntegrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntegrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntegration as schema.OperationSchema, input, options) as async.Operation<types.GetIntegrationOutput>
+end
+
+function C:getSecurityRequirementPack(input: types.GetSecurityRequirementPackInput, options?: base_client.InvokeOptions): async.Operation<types.GetSecurityRequirementPackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSecurityRequirementPack as schema.OperationSchema, input, options) as async.Operation<types.GetSecurityRequirementPackOutput>
+end
+
+function C:importSecurityRequirements(input: types.ImportSecurityRequirementsInput, options?: base_client.InvokeOptions): async.Operation<types.ImportSecurityRequirementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportSecurityRequirements as schema.OperationSchema, input, options) as async.Operation<types.ImportSecurityRequirementsOutput>
 end
 
 function C:initiateProviderRegistration(input: types.InitiateProviderRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.InitiateProviderRegistrationOutput>
@@ -299,12 +402,40 @@ function C:listPentests(input: types.ListPentestsInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPentests as schema.OperationSchema, input, options) as async.Operation<types.ListPentestsOutput>
 end
 
+function C:listPrivateConnections(input: types.ListPrivateConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPrivateConnectionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPrivateConnections as schema.OperationSchema, input, options) as async.Operation<types.ListPrivateConnectionsOutput>
+end
+
+function C:listSecurityRequirementPacks(input: types.ListSecurityRequirementPacksInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityRequirementPacksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityRequirementPacks as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityRequirementPacksOutput>
+end
+
+function C:listSecurityRequirements(input: types.ListSecurityRequirementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSecurityRequirementsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSecurityRequirements as schema.OperationSchema, input, options) as async.Operation<types.ListSecurityRequirementsOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
 function C:listTargetDomains(input: types.ListTargetDomainsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTargetDomainsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTargetDomains as schema.OperationSchema, input, options) as async.Operation<types.ListTargetDomainsOutput>
+end
+
+function C:listThreatModelJobs(input: types.ListThreatModelJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListThreatModelJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThreatModelJobs as schema.OperationSchema, input, options) as async.Operation<types.ListThreatModelJobsOutput>
+end
+
+function C:listThreatModelJobTasks(input: types.ListThreatModelJobTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListThreatModelJobTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThreatModelJobTasks as schema.OperationSchema, input, options) as async.Operation<types.ListThreatModelJobTasksOutput>
+end
+
+function C:listThreatModels(input: types.ListThreatModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListThreatModelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThreatModels as schema.OperationSchema, input, options) as async.Operation<types.ListThreatModelsOutput>
+end
+
+function C:listThreats(input: types.ListThreatsInput, options?: base_client.InvokeOptions): async.Operation<types.ListThreatsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListThreats as schema.OperationSchema, input, options) as async.Operation<types.ListThreatsOutput>
 end
 
 function C:startCodeRemediation(input: types.StartCodeRemediationInput, options?: base_client.InvokeOptions): async.Operation<types.StartCodeRemediationOutput>
@@ -319,12 +450,20 @@ function C:startPentestJob(input: types.StartPentestJobInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPentestJob as schema.OperationSchema, input, options) as async.Operation<types.StartPentestJobOutput>
 end
 
+function C:startThreatModelJob(input: types.StartThreatModelJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartThreatModelJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartThreatModelJob as schema.OperationSchema, input, options) as async.Operation<types.StartThreatModelJobOutput>
+end
+
 function C:stopCodeReviewJob(input: types.StopCodeReviewJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopCodeReviewJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopCodeReviewJob as schema.OperationSchema, input, options) as async.Operation<types.StopCodeReviewJobOutput>
 end
 
 function C:stopPentestJob(input: types.StopPentestJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopPentestJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopPentestJob as schema.OperationSchema, input, options) as async.Operation<types.StopPentestJobOutput>
+end
+
+function C:stopThreatModelJob(input: types.StopThreatModelJobInput, options?: base_client.InvokeOptions): async.Operation<types.StopThreatModelJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopThreatModelJob as schema.OperationSchema, input, options) as async.Operation<types.StopThreatModelJobOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -359,8 +498,24 @@ function C:updatePentest(input: types.UpdatePentestInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePentest as schema.OperationSchema, input, options) as async.Operation<types.UpdatePentestOutput>
 end
 
+function C:updatePrivateConnectionCertificate(input: types.UpdatePrivateConnectionCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePrivateConnectionCertificateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePrivateConnectionCertificate as schema.OperationSchema, input, options) as async.Operation<types.UpdatePrivateConnectionCertificateOutput>
+end
+
+function C:updateSecurityRequirementPack(input: types.UpdateSecurityRequirementPackInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSecurityRequirementPackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSecurityRequirementPack as schema.OperationSchema, input, options) as async.Operation<types.UpdateSecurityRequirementPackOutput>
+end
+
 function C:updateTargetDomain(input: types.UpdateTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTargetDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTargetDomain as schema.OperationSchema, input, options) as async.Operation<types.UpdateTargetDomainOutput>
+end
+
+function C:updateThreat(input: types.UpdateThreatInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThreatOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThreat as schema.OperationSchema, input, options) as async.Operation<types.UpdateThreatOutput>
+end
+
+function C:updateThreatModel(input: types.UpdateThreatModelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateThreatModelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateThreatModel as schema.OperationSchema, input, options) as async.Operation<types.UpdateThreatModelOutput>
 end
 
 function C:verifyTargetDomain(input: types.VerifyTargetDomainInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyTargetDomainOutput>

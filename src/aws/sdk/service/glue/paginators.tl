@@ -268,6 +268,24 @@ function M.items_get_workflow_runs(client, input)
     })
 end
 
+--- Returns a page iterator for listAssetTypes.
+function M.pages_list_asset_types(client, input)
+    return paginator.pages(client, "listAssetTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listAssetTypes.
+function M.items_list_asset_types(client, input)
+    return paginator.items(client, "listAssetTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for listBlueprints.
 function M.pages_list_blueprints(client, input)
     return paginator.pages(client, "listBlueprints", input, {
@@ -383,6 +401,78 @@ function M.items_list_entities(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "Entities",
+    })
+end
+
+--- Returns a page iterator for listFormTypes.
+function M.pages_list_form_types(client, input)
+    return paginator.pages(client, "listFormTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listFormTypes.
+function M.items_list_form_types(client, input)
+    return paginator.items(client, "listFormTypes", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listGlossaries.
+function M.pages_list_glossaries(client, input)
+    return paginator.pages(client, "listGlossaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listGlossaries.
+function M.items_list_glossaries(client, input)
+    return paginator.items(client, "listGlossaries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listGlossaryTerms.
+function M.pages_list_glossary_terms(client, input)
+    return paginator.pages(client, "listGlossaryTerms", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listGlossaryTerms.
+function M.items_list_glossary_terms(client, input)
+    return paginator.items(client, "listGlossaryTerms", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listIterableForms.
+function M.pages_list_iterable_forms(client, input)
+    return paginator.pages(client, "listIterableForms", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listIterableForms.
+function M.items_list_iterable_forms(client, input)
+    return paginator.items(client, "listIterableForms", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
     })
 end
 
@@ -561,6 +651,24 @@ function M.items_list_workflows(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "Workflows",
+    })
+end
+
+--- Returns a page iterator for search.
+function M.pages_search(client, input)
+    return paginator.pages(client, "search", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for search.
+function M.items_search(client, input)
+    return paginator.items(client, "search", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
     })
 end
 

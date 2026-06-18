@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    agenticRetrieveStream: function(Client, types.AgenticRetrieveStreamInput, ? base_client.InvokeOptions): async.Operation<types.AgenticRetrieveStreamOutput>
     createInvocation: function(Client, types.CreateInvocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvocationOutput>
     createSession: function(Client, types.CreateSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreateSessionOutput>
     deleteAgentMemory: function(Client, types.DeleteAgentMemoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAgentMemoryOutput>
@@ -25,6 +26,7 @@ local record Client
     endSession: function(Client, types.EndSessionInput, ? base_client.InvokeOptions): async.Operation<types.EndSessionOutput>
     generateQuery: function(Client, types.GenerateQueryInput, ? base_client.InvokeOptions): async.Operation<types.GenerateQueryOutput>
     getAgentMemory: function(Client, types.GetAgentMemoryInput, ? base_client.InvokeOptions): async.Operation<types.GetAgentMemoryOutput>
+    getDocumentContent: function(Client, types.GetDocumentContentInput, ? base_client.InvokeOptions): async.Operation<types.GetDocumentContentOutput>
     getExecutionFlowSnapshot: function(Client, types.GetExecutionFlowSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.GetExecutionFlowSnapshotOutput>
     getFlowExecution: function(Client, types.GetFlowExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowExecutionOutput>
     getInvocationStep: function(Client, types.GetInvocationStepInput, ? base_client.InvokeOptions): async.Operation<types.GetInvocationStepOutput>
@@ -93,6 +95,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:agenticRetrieveStream(input: types.AgenticRetrieveStreamInput, options?: base_client.InvokeOptions): async.Operation<types.AgenticRetrieveStreamOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AgenticRetrieveStream as schema.OperationSchema, input, options) as async.Operation<types.AgenticRetrieveStreamOutput>
+end
+
 function C:createInvocation(input: types.CreateInvocationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvocationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvocation as schema.OperationSchema, input, options) as async.Operation<types.CreateInvocationOutput>
 end
@@ -119,6 +125,10 @@ end
 
 function C:getAgentMemory(input: types.GetAgentMemoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetAgentMemoryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAgentMemory as schema.OperationSchema, input, options) as async.Operation<types.GetAgentMemoryOutput>
+end
+
+function C:getDocumentContent(input: types.GetDocumentContentInput, options?: base_client.InvokeOptions): async.Operation<types.GetDocumentContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDocumentContent as schema.OperationSchema, input, options) as async.Operation<types.GetDocumentContentOutput>
 end
 
 function C:getExecutionFlowSnapshot(input: types.GetExecutionFlowSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.GetExecutionFlowSnapshotOutput>

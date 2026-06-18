@@ -4335,6 +4335,9 @@ local record M
         dataSources: {DataSource}
         -- The configuration settings to modify for the OpenSearch application.
         appConfigs: {AppConfig}
+        -- Configuration settings for integrating IAM Identity Center with the OpenSearch
+        -- application.
+        iamIdentityCenterOptions: IamIdentityCenterOptionsInput
     end
 
     record UpdateApplicationOutput

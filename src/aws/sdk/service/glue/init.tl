@@ -18,6 +18,7 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    associateGlossaryTerms: function(Client, types.AssociateGlossaryTermsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateGlossaryTermsOutput>
     batchCreatePartition: function(Client, types.BatchCreatePartitionInput, ? base_client.InvokeOptions): async.Operation<types.BatchCreatePartitionOutput>
     batchDeleteConnection: function(Client, types.BatchDeleteConnectionInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteConnectionOutput>
     batchDeletePartition: function(Client, types.BatchDeletePartitionInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeletePartitionOutput>
@@ -28,6 +29,7 @@ local record Client
     batchGetCustomEntityTypes: function(Client, types.BatchGetCustomEntityTypesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCustomEntityTypesOutput>
     batchGetDataQualityResult: function(Client, types.BatchGetDataQualityResultInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityResultOutput>
     batchGetDevEndpoints: function(Client, types.BatchGetDevEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDevEndpointsOutput>
+    batchGetIterableForms: function(Client, types.BatchGetIterableFormsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetIterableFormsOutput>
     batchGetJobs: function(Client, types.BatchGetJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetJobsOutput>
     batchGetPartition: function(Client, types.BatchGetPartitionInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetPartitionOutput>
     batchGetTableOptimizer: function(Client, types.BatchGetTableOptimizerInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetTableOptimizerOutput>
@@ -51,6 +53,8 @@ local record Client
     createDatabase: function(Client, types.CreateDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatabaseOutput>
     createDataQualityRuleset: function(Client, types.CreateDataQualityRulesetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataQualityRulesetOutput>
     createDevEndpoint: function(Client, types.CreateDevEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateDevEndpointOutput>
+    createGlossary: function(Client, types.CreateGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlossaryOutput>
+    createGlossaryTerm: function(Client, types.CreateGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlossaryTermOutput>
     createGlueIdentityCenterConfiguration: function(Client, types.CreateGlueIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateGlueIdentityCenterConfigurationOutput>
     createIntegration: function(Client, types.CreateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationOutput>
     createIntegrationResourceProperty: function(Client, types.CreateIntegrationResourcePropertyInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationResourcePropertyOutput>
@@ -70,6 +74,9 @@ local record Client
     createUsageProfile: function(Client, types.CreateUsageProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateUsageProfileOutput>
     createUserDefinedFunction: function(Client, types.CreateUserDefinedFunctionInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserDefinedFunctionOutput>
     createWorkflow: function(Client, types.CreateWorkflowInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkflowOutput>
+    deleteAsset: function(Client, types.DeleteAssetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    deleteAssetType: function(Client, types.DeleteAssetTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetTypeOutput>
+    deleteAttachment: function(Client, types.DeleteAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttachmentOutput>
     deleteBlueprint: function(Client, types.DeleteBlueprintInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBlueprintOutput>
     deleteCatalog: function(Client, types.DeleteCatalogInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCatalogOutput>
     deleteClassifier: function(Client, types.DeleteClassifierInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClassifierOutput>
@@ -83,6 +90,9 @@ local record Client
     deleteDatabase: function(Client, types.DeleteDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatabaseOutput>
     deleteDataQualityRuleset: function(Client, types.DeleteDataQualityRulesetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataQualityRulesetOutput>
     deleteDevEndpoint: function(Client, types.DeleteDevEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDevEndpointOutput>
+    deleteFormType: function(Client, types.DeleteFormTypeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFormTypeOutput>
+    deleteGlossary: function(Client, types.DeleteGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlossaryOutput>
+    deleteGlossaryTerm: function(Client, types.DeleteGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlossaryTermOutput>
     deleteGlueIdentityCenterConfiguration: function(Client, types.DeleteGlueIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGlueIdentityCenterConfigurationOutput>
     deleteIntegration: function(Client, types.DeleteIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntegrationOutput>
     deleteIntegrationResourceProperty: function(Client, types.DeleteIntegrationResourcePropertyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntegrationResourcePropertyOutput>
@@ -108,6 +118,9 @@ local record Client
     describeEntity: function(Client, types.DescribeEntityInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEntityOutput>
     describeInboundIntegrations: function(Client, types.DescribeInboundIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInboundIntegrationsOutput>
     describeIntegrations: function(Client, types.DescribeIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIntegrationsOutput>
+    disassociateGlossaryTerms: function(Client, types.DisassociateGlossaryTermsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateGlossaryTermsOutput>
+    getAsset: function(Client, types.GetAssetInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetOutput>
+    getAssetType: function(Client, types.GetAssetTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetTypeOutput>
     getBlueprint: function(Client, types.GetBlueprintInput, ? base_client.InvokeOptions): async.Operation<types.GetBlueprintOutput>
     getBlueprintRun: function(Client, types.GetBlueprintRunInput, ? base_client.InvokeOptions): async.Operation<types.GetBlueprintRunOutput>
     getBlueprintRuns: function(Client, types.GetBlueprintRunsInput, ? base_client.InvokeOptions): async.Operation<types.GetBlueprintRunsOutput>
@@ -141,6 +154,9 @@ local record Client
     getDevEndpoint: function(Client, types.GetDevEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetDevEndpointOutput>
     getDevEndpoints: function(Client, types.GetDevEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.GetDevEndpointsOutput>
     getEntityRecords: function(Client, types.GetEntityRecordsInput, ? base_client.InvokeOptions): async.Operation<types.GetEntityRecordsOutput>
+    getFormType: function(Client, types.GetFormTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetFormTypeOutput>
+    getGlossary: function(Client, types.GetGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.GetGlossaryOutput>
+    getGlossaryTerm: function(Client, types.GetGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.GetGlossaryTermOutput>
     getGlueIdentityCenterConfiguration: function(Client, types.GetGlueIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetGlueIdentityCenterConfigurationOutput>
     getIntegrationResourceProperty: function(Client, types.GetIntegrationResourcePropertyInput, ? base_client.InvokeOptions): async.Operation<types.GetIntegrationResourcePropertyOutput>
     getIntegrationTableProperties: function(Client, types.GetIntegrationTablePropertiesInput, ? base_client.InvokeOptions): async.Operation<types.GetIntegrationTablePropertiesOutput>
@@ -190,6 +206,7 @@ local record Client
     getWorkflowRunProperties: function(Client, types.GetWorkflowRunPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowRunPropertiesOutput>
     getWorkflowRuns: function(Client, types.GetWorkflowRunsInput, ? base_client.InvokeOptions): async.Operation<types.GetWorkflowRunsOutput>
     importCatalogToGlue: function(Client, types.ImportCatalogToGlueInput, ? base_client.InvokeOptions): async.Operation<types.ImportCatalogToGlueOutput>
+    listAssetTypes: function(Client, types.ListAssetTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetTypesOutput>
     listBlueprints: function(Client, types.ListBlueprintsInput, ? base_client.InvokeOptions): async.Operation<types.ListBlueprintsOutput>
     listColumnStatisticsTaskRuns: function(Client, types.ListColumnStatisticsTaskRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListColumnStatisticsTaskRunsOutput>
     listConnectionTypes: function(Client, types.ListConnectionTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionTypesOutput>
@@ -204,7 +221,11 @@ local record Client
     listDataQualityStatistics: function(Client, types.ListDataQualityStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataQualityStatisticsOutput>
     listDevEndpoints: function(Client, types.ListDevEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListDevEndpointsOutput>
     listEntities: function(Client, types.ListEntitiesInput, ? base_client.InvokeOptions): async.Operation<types.ListEntitiesOutput>
+    listFormTypes: function(Client, types.ListFormTypesInput, ? base_client.InvokeOptions): async.Operation<types.ListFormTypesOutput>
+    listGlossaries: function(Client, types.ListGlossariesInput, ? base_client.InvokeOptions): async.Operation<types.ListGlossariesOutput>
+    listGlossaryTerms: function(Client, types.ListGlossaryTermsInput, ? base_client.InvokeOptions): async.Operation<types.ListGlossaryTermsOutput>
     listIntegrationResourceProperties: function(Client, types.ListIntegrationResourcePropertiesInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegrationResourcePropertiesOutput>
+    listIterableForms: function(Client, types.ListIterableFormsInput, ? base_client.InvokeOptions): async.Operation<types.ListIterableFormsOutput>
     listJobs: function(Client, types.ListJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
     listMaterializedViewRefreshTaskRuns: function(Client, types.ListMaterializedViewRefreshTaskRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListMaterializedViewRefreshTaskRunsOutput>
     listMLTransforms: function(Client, types.ListMLTransformsInput, ? base_client.InvokeOptions): async.Operation<types.ListMLTransformsOutput>
@@ -218,8 +239,12 @@ local record Client
     listUsageProfiles: function(Client, types.ListUsageProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListUsageProfilesOutput>
     listWorkflows: function(Client, types.ListWorkflowsInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkflowsOutput>
     modifyIntegration: function(Client, types.ModifyIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIntegrationOutput>
+    putAsset: function(Client, types.PutAssetInput, ? base_client.InvokeOptions): async.Operation<types.PutAssetOutput>
+    putAssetType: function(Client, types.PutAssetTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutAssetTypeOutput>
+    putAttachment: function(Client, types.PutAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.PutAttachmentOutput>
     putDataCatalogEncryptionSettings: function(Client, types.PutDataCatalogEncryptionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutDataCatalogEncryptionSettingsOutput>
     putDataQualityProfileAnnotation: function(Client, types.PutDataQualityProfileAnnotationInput, ? base_client.InvokeOptions): async.Operation<types.PutDataQualityProfileAnnotationOutput>
+    putFormType: function(Client, types.PutFormTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutFormTypeOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     putSchemaVersionMetadata: function(Client, types.PutSchemaVersionMetadataInput, ? base_client.InvokeOptions): async.Operation<types.PutSchemaVersionMetadataOutput>
     putWorkflowRunProperties: function(Client, types.PutWorkflowRunPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.PutWorkflowRunPropertiesOutput>
@@ -230,6 +255,7 @@ local record Client
     resetJobBookmark: function(Client, types.ResetJobBookmarkInput, ? base_client.InvokeOptions): async.Operation<types.ResetJobBookmarkOutput>
     resumeWorkflowRun: function(Client, types.ResumeWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.ResumeWorkflowRunOutput>
     runStatement: function(Client, types.RunStatementInput, ? base_client.InvokeOptions): async.Operation<types.RunStatementOutput>
+    search: function(Client, types.SearchInput, ? base_client.InvokeOptions): async.Operation<types.SearchOutput>
     searchTables: function(Client, types.SearchTablesInput, ? base_client.InvokeOptions): async.Operation<types.SearchTablesOutput>
     startBlueprintRun: function(Client, types.StartBlueprintRunInput, ? base_client.InvokeOptions): async.Operation<types.StartBlueprintRunOutput>
     startColumnStatisticsTaskRun: function(Client, types.StartColumnStatisticsTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StartColumnStatisticsTaskRunOutput>
@@ -269,6 +295,8 @@ local record Client
     updateDatabase: function(Client, types.UpdateDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatabaseOutput>
     updateDataQualityRuleset: function(Client, types.UpdateDataQualityRulesetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataQualityRulesetOutput>
     updateDevEndpoint: function(Client, types.UpdateDevEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDevEndpointOutput>
+    updateGlossary: function(Client, types.UpdateGlossaryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlossaryOutput>
+    updateGlossaryTerm: function(Client, types.UpdateGlossaryTermInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlossaryTermOutput>
     updateGlueIdentityCenterConfiguration: function(Client, types.UpdateGlueIdentityCenterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGlueIdentityCenterConfigurationOutput>
     updateIntegrationResourceProperty: function(Client, types.UpdateIntegrationResourcePropertyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegrationResourcePropertyOutput>
     updateIntegrationTableProperties: function(Client, types.UpdateIntegrationTablePropertiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntegrationTablePropertiesOutput>
@@ -329,6 +357,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:associateGlossaryTerms(input: types.AssociateGlossaryTermsInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateGlossaryTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateGlossaryTerms as schema.OperationSchema, input, options) as async.Operation<types.AssociateGlossaryTermsOutput>
+end
+
 function C:batchCreatePartition(input: types.BatchCreatePartitionInput, options?: base_client.InvokeOptions): async.Operation<types.BatchCreatePartitionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchCreatePartition as schema.OperationSchema, input, options) as async.Operation<types.BatchCreatePartitionOutput>
 end
@@ -367,6 +399,10 @@ end
 
 function C:batchGetDevEndpoints(input: types.BatchGetDevEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetDevEndpointsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetDevEndpoints as schema.OperationSchema, input, options) as async.Operation<types.BatchGetDevEndpointsOutput>
+end
+
+function C:batchGetIterableForms(input: types.BatchGetIterableFormsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetIterableFormsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetIterableForms as schema.OperationSchema, input, options) as async.Operation<types.BatchGetIterableFormsOutput>
 end
 
 function C:batchGetJobs(input: types.BatchGetJobsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetJobsOutput>
@@ -461,6 +497,14 @@ function C:createDevEndpoint(input: types.CreateDevEndpointInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDevEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateDevEndpointOutput>
 end
 
+function C:createGlossary(input: types.CreateGlossaryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGlossaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGlossary as schema.OperationSchema, input, options) as async.Operation<types.CreateGlossaryOutput>
+end
+
+function C:createGlossaryTerm(input: types.CreateGlossaryTermInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGlossaryTermOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGlossaryTerm as schema.OperationSchema, input, options) as async.Operation<types.CreateGlossaryTermOutput>
+end
+
 function C:createGlueIdentityCenterConfiguration(input: types.CreateGlueIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGlueIdentityCenterConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGlueIdentityCenterConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateGlueIdentityCenterConfigurationOutput>
 end
@@ -537,6 +581,18 @@ function C:createWorkflow(input: types.CreateWorkflowInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkflow as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkflowOutput>
 end
 
+function C:deleteAsset(input: types.DeleteAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAsset as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetOutput>
+end
+
+function C:deleteAssetType(input: types.DeleteAssetTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssetType as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssetTypeOutput>
+end
+
+function C:deleteAttachment(input: types.DeleteAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAttachment as schema.OperationSchema, input, options) as async.Operation<types.DeleteAttachmentOutput>
+end
+
 function C:deleteBlueprint(input: types.DeleteBlueprintInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBlueprintOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBlueprint as schema.OperationSchema, input, options) as async.Operation<types.DeleteBlueprintOutput>
 end
@@ -587,6 +643,18 @@ end
 
 function C:deleteDevEndpoint(input: types.DeleteDevEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDevEndpointOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDevEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteDevEndpointOutput>
+end
+
+function C:deleteFormType(input: types.DeleteFormTypeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFormTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFormType as schema.OperationSchema, input, options) as async.Operation<types.DeleteFormTypeOutput>
+end
+
+function C:deleteGlossary(input: types.DeleteGlossaryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGlossaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGlossary as schema.OperationSchema, input, options) as async.Operation<types.DeleteGlossaryOutput>
+end
+
+function C:deleteGlossaryTerm(input: types.DeleteGlossaryTermInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGlossaryTermOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGlossaryTerm as schema.OperationSchema, input, options) as async.Operation<types.DeleteGlossaryTermOutput>
 end
 
 function C:deleteGlueIdentityCenterConfiguration(input: types.DeleteGlueIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGlueIdentityCenterConfigurationOutput>
@@ -687,6 +755,18 @@ end
 
 function C:describeIntegrations(input: types.DescribeIntegrationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIntegrationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIntegrations as schema.OperationSchema, input, options) as async.Operation<types.DescribeIntegrationsOutput>
+end
+
+function C:disassociateGlossaryTerms(input: types.DisassociateGlossaryTermsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateGlossaryTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateGlossaryTerms as schema.OperationSchema, input, options) as async.Operation<types.DisassociateGlossaryTermsOutput>
+end
+
+function C:getAsset(input: types.GetAssetInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAsset as schema.OperationSchema, input, options) as async.Operation<types.GetAssetOutput>
+end
+
+function C:getAssetType(input: types.GetAssetTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetAssetTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetType as schema.OperationSchema, input, options) as async.Operation<types.GetAssetTypeOutput>
 end
 
 function C:getBlueprint(input: types.GetBlueprintInput, options?: base_client.InvokeOptions): async.Operation<types.GetBlueprintOutput>
@@ -819,6 +899,18 @@ end
 
 function C:getEntityRecords(input: types.GetEntityRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.GetEntityRecordsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEntityRecords as schema.OperationSchema, input, options) as async.Operation<types.GetEntityRecordsOutput>
+end
+
+function C:getFormType(input: types.GetFormTypeInput, options?: base_client.InvokeOptions): async.Operation<types.GetFormTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFormType as schema.OperationSchema, input, options) as async.Operation<types.GetFormTypeOutput>
+end
+
+function C:getGlossary(input: types.GetGlossaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetGlossaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGlossary as schema.OperationSchema, input, options) as async.Operation<types.GetGlossaryOutput>
+end
+
+function C:getGlossaryTerm(input: types.GetGlossaryTermInput, options?: base_client.InvokeOptions): async.Operation<types.GetGlossaryTermOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGlossaryTerm as schema.OperationSchema, input, options) as async.Operation<types.GetGlossaryTermOutput>
 end
 
 function C:getGlueIdentityCenterConfiguration(input: types.GetGlueIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetGlueIdentityCenterConfigurationOutput>
@@ -1017,6 +1109,10 @@ function C:importCatalogToGlue(input: types.ImportCatalogToGlueInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportCatalogToGlue as schema.OperationSchema, input, options) as async.Operation<types.ImportCatalogToGlueOutput>
 end
 
+function C:listAssetTypes(input: types.ListAssetTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssetTypes as schema.OperationSchema, input, options) as async.Operation<types.ListAssetTypesOutput>
+end
+
 function C:listBlueprints(input: types.ListBlueprintsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBlueprintsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBlueprints as schema.OperationSchema, input, options) as async.Operation<types.ListBlueprintsOutput>
 end
@@ -1073,8 +1169,24 @@ function C:listEntities(input: types.ListEntitiesInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEntities as schema.OperationSchema, input, options) as async.Operation<types.ListEntitiesOutput>
 end
 
+function C:listFormTypes(input: types.ListFormTypesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFormTypesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFormTypes as schema.OperationSchema, input, options) as async.Operation<types.ListFormTypesOutput>
+end
+
+function C:listGlossaries(input: types.ListGlossariesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGlossariesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGlossaries as schema.OperationSchema, input, options) as async.Operation<types.ListGlossariesOutput>
+end
+
+function C:listGlossaryTerms(input: types.ListGlossaryTermsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGlossaryTermsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGlossaryTerms as schema.OperationSchema, input, options) as async.Operation<types.ListGlossaryTermsOutput>
+end
+
 function C:listIntegrationResourceProperties(input: types.ListIntegrationResourcePropertiesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntegrationResourcePropertiesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntegrationResourceProperties as schema.OperationSchema, input, options) as async.Operation<types.ListIntegrationResourcePropertiesOutput>
+end
+
+function C:listIterableForms(input: types.ListIterableFormsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIterableFormsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIterableForms as schema.OperationSchema, input, options) as async.Operation<types.ListIterableFormsOutput>
 end
 
 function C:listJobs(input: types.ListJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListJobsOutput>
@@ -1129,12 +1241,28 @@ function C:modifyIntegration(input: types.ModifyIntegrationInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIntegration as schema.OperationSchema, input, options) as async.Operation<types.ModifyIntegrationOutput>
 end
 
+function C:putAsset(input: types.PutAssetInput, options?: base_client.InvokeOptions): async.Operation<types.PutAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAsset as schema.OperationSchema, input, options) as async.Operation<types.PutAssetOutput>
+end
+
+function C:putAssetType(input: types.PutAssetTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutAssetTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAssetType as schema.OperationSchema, input, options) as async.Operation<types.PutAssetTypeOutput>
+end
+
+function C:putAttachment(input: types.PutAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.PutAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAttachment as schema.OperationSchema, input, options) as async.Operation<types.PutAttachmentOutput>
+end
+
 function C:putDataCatalogEncryptionSettings(input: types.PutDataCatalogEncryptionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutDataCatalogEncryptionSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDataCatalogEncryptionSettings as schema.OperationSchema, input, options) as async.Operation<types.PutDataCatalogEncryptionSettingsOutput>
 end
 
 function C:putDataQualityProfileAnnotation(input: types.PutDataQualityProfileAnnotationInput, options?: base_client.InvokeOptions): async.Operation<types.PutDataQualityProfileAnnotationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDataQualityProfileAnnotation as schema.OperationSchema, input, options) as async.Operation<types.PutDataQualityProfileAnnotationOutput>
+end
+
+function C:putFormType(input: types.PutFormTypeInput, options?: base_client.InvokeOptions): async.Operation<types.PutFormTypeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutFormType as schema.OperationSchema, input, options) as async.Operation<types.PutFormTypeOutput>
 end
 
 function C:putResourcePolicy(input: types.PutResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
@@ -1175,6 +1303,10 @@ end
 
 function C:runStatement(input: types.RunStatementInput, options?: base_client.InvokeOptions): async.Operation<types.RunStatementOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RunStatement as schema.OperationSchema, input, options) as async.Operation<types.RunStatementOutput>
+end
+
+function C:search(input: types.SearchInput, options?: base_client.InvokeOptions): async.Operation<types.SearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Search as schema.OperationSchema, input, options) as async.Operation<types.SearchOutput>
 end
 
 function C:searchTables(input: types.SearchTablesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTablesOutput>
@@ -1331,6 +1463,14 @@ end
 
 function C:updateDevEndpoint(input: types.UpdateDevEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDevEndpointOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDevEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateDevEndpointOutput>
+end
+
+function C:updateGlossary(input: types.UpdateGlossaryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlossaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlossary as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlossaryOutput>
+end
+
+function C:updateGlossaryTerm(input: types.UpdateGlossaryTermInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlossaryTermOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGlossaryTerm as schema.OperationSchema, input, options) as async.Operation<types.UpdateGlossaryTermOutput>
 end
 
 function C:updateGlueIdentityCenterConfiguration(input: types.UpdateGlueIdentityCenterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGlueIdentityCenterConfigurationOutput>

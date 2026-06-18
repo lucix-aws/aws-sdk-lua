@@ -391,6 +391,394 @@ local record M
         metadata: Metadata
     end
 
+    -- A source retriever that produced retrieval results.
+    record AgenticRetrieveSourceRetriever
+        -- The unique identifier of the source retriever.
+        identifier: string
+    end
+
+    -- Details of a full document expansion action.
+    record AgenticRetrieveFullDocExpansionDetails
+        -- The identifier of the document to expand.
+        documentId: string
+        -- The source retriever associated with the document.
+        sourceRetriever: AgenticRetrieveSourceRetriever
+    end
+
+    -- The content of an agentic retrieval message.
+    record AgenticRetrieveMessageContent
+        -- The text content of the message.
+        text: string
+    end
+
+    -- Details of a retrieve action including the query and target retrievers.
+    record AgenticRetrieveActionDetails
+        -- The input query used for retrieval.
+        inputQuery: AgenticRetrieveMessageContent
+        -- The list of source retrievers targeted by this action.
+        sourceRetrievers: {AgenticRetrieveSourceRetriever}
+    end
+
+    -- An action taken during agentic retrieval.
+    record AgenticRetrieveAction
+        -- Details of the retrieve action.
+        retrieve: AgenticRetrieveActionDetails
+        -- Details of a full document expansion action.
+        fullDocumentExpansion: AgenticRetrieveFullDocExpansionDetails
+    end
+
+    -- Configuration for a Bedrock guardrail applied during agentic retrieval.
+    record AgenticRetrieveBedrockGuardrailConfiguration
+        -- The unique identifier of the guardrail.
+        guardrailId: string
+        -- The version of the guardrail to use.
+        guardrailVersion: string
+    end
+
+    -- Model configuration for a Bedrock reranking model.
+    record AgenticRetrieveBedrockRerankingModelConfiguration
+        -- The ARN of the Bedrock reranking model.
+        modelArn: string
+    end
+
+    -- Configuration for a Bedrock reranking model.
+    record AgenticRetrieveBedrockRerankingConfiguration
+        -- The model configuration containing the model ARN.
+        modelConfiguration: AgenticRetrieveBedrockRerankingModelConfiguration
+    end
+
+    -- A reference to a specific result item.
+    record AgenticRetrieveCitationReference
+        -- Index into the results array on the same event.
+        resultIndex: number
+    end
+
+    -- A citation mapping a span of the generated answer to supporting results.
+    record AgenticRetrieveCitation
+        -- Character offset start in the answer text.
+        startIndex: number
+        -- Character offset end (exclusive) in the answer text.
+        endIndex: number
+        -- References to results that support this span.
+        references: {AgenticRetrieveCitationReference}
+    end
+
+    -- Model configuration for a Bedrock foundation model.
+    record BedrockFoundationModelModelConfiguration
+        -- The ARN of the Bedrock foundation model.
+        modelArn: string
+    end
+
+    -- Configuration for a Bedrock foundation model.
+    record BedrockFoundationModelConfiguration
+        -- The model configuration containing the model ARN.
+        modelConfiguration: BedrockFoundationModelModelConfiguration
+    end
+
+    enum FoundationModelConfigurationType
+        "BEDROCK_FOUNDATION_MODEL"
+    end
+
+    -- Configuration for the foundation model.
+    record FoundationModelConfiguration
+        -- The Bedrock foundation model configuration.
+        bedrockFoundationModelConfiguration: BedrockFoundationModelConfiguration
+    end
+
+    enum FoundationModelType
+        "CUSTOM"
+        "MANAGED"
+    end
+
+    enum AgenticRetrieveRerankingConfigurationType
+        "BEDROCK_RERANKING_MODEL"
+    end
+
+    -- Configuration for the reranking model.
+    record AgenticRetrieveRerankingConfiguration
+        -- The Bedrock reranking model configuration.
+        bedrockRerankingConfiguration: AgenticRetrieveBedrockRerankingConfiguration
+    end
+
+    enum AgenticRetrieveRerankingModelType
+        "CUSTOM"
+        "MANAGED"
+        "NONE"
+    end
+
+    -- Configuration settings for the agentic retrieval operation.
+    record AgenticRetrieveConfiguration
+        -- The type of foundation model to use. CUSTOM uses a specified model, MANAGED uses the service default.
+        foundationModelType: string
+        -- The foundation model configuration. Required when foundationModelType is CUSTOM.
+        foundationModelConfiguration: FoundationModelConfiguration
+        -- The type of reranking model to use. CUSTOM uses a specified model, MANAGED uses the service default. If not specified, defaults to MANAGED for managed embedding knowledge bases and NONE for custom embedding knowledge bases.
+        rerankingModelType: string
+        -- The reranking model configuration. Required when rerankingModelType is CUSTOM.
+        rerankingConfiguration: AgenticRetrieveRerankingConfiguration
+        -- The maximum number of agent iterations for retrieval.
+        maxAgentIteration: number
+    end
+
+    -- A failure that occurred during agentic retrieval.
+    record AgenticRetrieveFailure
+        -- A message describing the failure.
+        message: string
+    end
+
+    -- The generated response synthesized from retrieved results.
+    record AgenticRetrieveGeneratedResponse
+        -- The generated answer text.
+        answer: string
+        -- Citations mapping spans of the answer to supporting results.
+        citations: {AgenticRetrieveCitation}
+    end
+
+    enum GuardrailAction
+        "INTERVENED"
+        "NONE"
+    end
+
+    -- A warning generated by a guardrail during agentic retrieval.
+    record AgenticRetrieveGuardrailWarning
+        -- The unique identifier of the guardrail.
+        id: string
+        -- The version of the guardrail.
+        version: string
+        -- The action taken by the guardrail.
+        action: string
+        -- A message describing the guardrail evaluation result.
+        message: string
+    end
+
+    enum ConversationRole
+        "user"
+        "assistant"
+    end
+
+    -- A message in the agentic retrieval conversation.
+    record AgenticRetrieveMessage
+        -- The content of the message.
+        content: AgenticRetrieveMessageContent
+        -- The role of the message sender (e.g., user or assistant).
+        role: string
+    end
+
+    -- Policy configuration for agentic retrieval.
+    record AgenticRetrievePolicyConfiguration
+        -- Configuration for Bedrock guardrails to apply during retrieval.
+        bedrockGuardrailConfiguration: AgenticRetrieveBedrockGuardrailConfiguration
+    end
+
+    -- Specifies the name that the metadata attribute must match and the value to which to compare the value of the metadata attribute. For more information, see Query configurations. This data type is used in the following API operations: RetrieveAndGenerate request
+    record FilterAttribute
+        -- The name that the metadata attribute must match.
+        key: string
+        -- The value to which to compare the value of the metadata attribute.
+        value: any
+    end
+
+    -- A chunk of the generated answer text.
+    record AgenticRetrieveResponseEvent
+        -- The generated text chunk.
+        text: string
+    end
+
+    -- The content retrieved from a knowledge source.
+    record RetrievalContent
+        -- The binary content of the retrieved item.
+        byteContent: string
+        -- The text content of the retrieved item.
+        text: string
+        -- The MIME type of the retrieved content.
+        mimeType: string
+    end
+
+    -- A single item from the agentic retrieval results.
+    record AgenticRetrieveResultItem
+        -- The retrieved content.
+        content: RetrievalContent
+        -- Metadata associated with the retrieved item.
+        metadata: {string : any}
+        -- The source retriever that produced this result.
+        sourceRetriever: AgenticRetrieveSourceRetriever
+    end
+
+    -- An event containing agentic retrieval results.
+    record AgenticRetrieveResultEvent
+        -- The list of retrieved result items.
+        results: {AgenticRetrieveResultItem}
+        -- The generated response. Present only when generateResponse is true.
+        generatedResponse: AgenticRetrieveGeneratedResponse
+        -- Opaque continuation token for paginated results.
+        nextToken: string
+    end
+
+    enum AgenticRetrieveType
+        "BedrockKnowledgeBase"
+    end
+
+    -- Metadata about a retrieval source.
+    record AgenticRetrieveSourceMetadata
+        -- The identifier of the retrieval source.
+        identifier: string
+        -- The type of retrieval source.
+        retrievalType: string
+    end
+
+    enum AgenticRetrieveStatus
+        "IN_PROGRESS"
+        "SUCCEEDED"
+        "FAILED"
+    end
+
+    enum AgenticRetrieveStep
+        "Planning"
+        "Retrieval"
+        "SpeculativeRetrieval"
+        "FullDocumentExpansion"
+    end
+
+    -- Contains information about the user making the request. Use this to pass user identity information for access control filtering, so that retrieval results only include documents the user is authorized to access.
+    record UserContext
+        -- The identifier of the user making the retrieval request.
+        userId: string
+    end
+
+    -- There was an issue with a dependency due to a server issue. Retry your request.
+    record BadGatewayException
+        message: string
+        -- The name of the dependency that caused the issue, such as Amazon Bedrock, Lambda, or STS.
+        resourceName: string
+    end
+
+    -- There was a conflict performing an operation. Resolve the conflict and retry your request.
+    record ConflictException
+        message: string
+    end
+
+    -- There was an issue with a dependency. Check the resource configurations and retry the request.
+    record DependencyFailedException
+        message: string
+        -- The name of the dependency that caused the issue, such as Amazon Bedrock, Lambda, or STS.
+        resourceName: string
+    end
+
+    -- An internal server error occurred. Retry your request.
+    record InternalServerException
+        message: string
+        -- The reason for the exception. If the reason is BEDROCK_MODEL_INVOCATION_SERVICE_UNAVAILABLE, the model invocation service is unavailable. Retry your request.
+        reason: string
+    end
+
+    -- The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.
+    record ResourceNotFoundException
+        message: string
+    end
+
+    -- The number of requests exceeds the service quota. Resubmit your request later.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
+    -- The number of requests exceeds the limit. Resubmit your request later.
+    record ThrottlingException
+        message: string
+    end
+
+    -- A result item from an agentic retrieval trace.
+    record AgenticRetrieveTraceResultItem
+        -- The retrieved content.
+        content: RetrievalContent
+        -- Metadata associated with the retrieved item.
+        metadata: {string : any}
+        -- The source retriever that produced this result.
+        sourceRetriever: AgenticRetrieveSourceRetriever
+    end
+
+    -- A general warning message from agentic retrieval.
+    record AgenticRetrieveWarningMessage
+        -- The warning message text.
+        message: string
+    end
+
+    -- A warning generated during agentic retrieval.
+    record AgenticRetrieveWarning
+        -- A general warning message.
+        message: AgenticRetrieveWarningMessage
+        -- A warning from a guardrail evaluation.
+        guardrail: AgenticRetrieveGuardrailWarning
+    end
+
+    -- Attributes describing the details of an agentic retrieval trace event.
+    record AgenticRetrieveTraceEventAttributes
+        -- The current step in the retrieval process.
+        step: string
+        -- The status of the current step.
+        status: string
+        -- A human-readable message describing the trace event.
+        message: string
+        -- The list of actions taken during this step.
+        actions: {AgenticRetrieveAction}
+        -- Warnings generated during this step.
+        warnings: {AgenticRetrieveWarning}
+        -- Failures that occurred during this step.
+        failures: {AgenticRetrieveFailure}
+        -- Metadata about the retrieval sources used.
+        retrievalMetadata: {AgenticRetrieveSourceMetadata}
+        -- The retrieval results from this step.
+        retrievalResponse: {AgenticRetrieveTraceResultItem}
+    end
+
+    -- A trace event providing visibility into the agentic retrieval process.
+    record AgenticRetrieveTraceEvent
+        -- The unique identifier of the trace event.
+        id: string
+        -- The timestamp when the trace event occurred.
+        timestamp: number
+        -- The attributes describing the trace event details.
+        attributes: AgenticRetrieveTraceEventAttributes
+    end
+
+    -- Input validation failed. Check your request parameters and retry the request.
+    record ValidationException
+        message: string
+    end
+
+    -- The streaming output for agentic retrieval, containing results, traces, and errors.
+    record AgenticRetrieveStreamResponseOutput
+        -- A retrieval result event containing the retrieved items.
+        result: AgenticRetrieveResultEvent
+        -- A trace event providing visibility into the retrieval process.
+        traceEvent: AgenticRetrieveTraceEvent
+        -- A chunk of the generated answer. Emitted only when generateResponse is true.
+        responseEvent: AgenticRetrieveResponseEvent
+        -- An internal server error occurred.
+        internalServerException: InternalServerException
+        -- The request validation failed.
+        validationException: ValidationException
+        -- The specified resource was not found.
+        resourceNotFoundException: ResourceNotFoundException
+        -- The service quota has been exceeded.
+        serviceQuotaExceededException: ServiceQuotaExceededException
+        -- The request was throttled.
+        throttlingException: ThrottlingException
+        -- Access to the resource was denied.
+        accessDeniedException: AccessDeniedException
+        -- A conflict occurred with the current state of the resource.
+        conflictException: ConflictException
+        -- A dependency failed during the operation.
+        dependencyFailedException: DependencyFailedException
+        -- A bad gateway error occurred.
+        badGatewayException: BadGatewayException
+    end
+
+    -- Response structure for the agentic retrieve stream operation.
+    record AgenticRetrieveStreamOutput
+        -- The output stream containing retrieval results and trace events.
+        stream: function(): string, string
+    end
+
     -- Details about a caller.
     record Caller
         -- The caller's agent alias ARN.
@@ -421,11 +809,6 @@ local record M
         failureCode: number
         -- Information about the failure that occurred.
         metadata: Metadata
-    end
-
-    enum GuardrailAction
-        "INTERVENED"
-        "NONE"
     end
 
     enum GuardrailContentPolicyAction
@@ -817,10 +1200,22 @@ local record M
         id: string
     end
 
+    -- The Google Drive location of a retrieval result.
+    record RetrievalResultGoogleDriveLocation
+        -- The Google Drive URL for the data source location.
+        url: string
+    end
+
     -- The location of a result in Amazon Kendra.
     record RetrievalResultKendraDocumentLocation
         -- The document's uri.
         uri: string
+    end
+
+    -- The Microsoft OneDrive location of a retrieval result.
+    record RetrievalResultOneDriveLocation
+        -- The OneDrive URL for the data source location.
+        url: string
     end
 
     -- The S3 data source location. This data type is used in the following API operations: Retrieve response – in the s3Location field RetrieveAndGenerate response – in the s3Location field InvokeAgent response – in the s3Location field
@@ -856,6 +1251,8 @@ local record M
         "CUSTOM"
         "KENDRA"
         "SQL"
+        "ONEDRIVE"
+        "GOOGLEDRIVE"
     end
 
     -- The web URL/URLs data source location.
@@ -882,6 +1279,10 @@ local record M
         kendraDocumentLocation: RetrievalResultKendraDocumentLocation
         -- Specifies information about the SQL query used to retrieve the result.
         sqlLocation: RetrievalResultSqlLocation
+        -- The Microsoft OneDrive data source location.
+        oneDriveLocation: RetrievalResultOneDriveLocation
+        -- The Google Drive data source location.
+        googleDriveLocation: RetrievalResultGoogleDriveLocation
     end
 
     -- Contains metadata about a source cited for the generated response. This data type is used in the following API operations: RetrieveAndGenerate response – in the retrievedReferences field InvokeAgent response – in the retrievedReferences field
@@ -1105,28 +1506,6 @@ local record M
         definition: string
         -- The Amazon Resource Name (ARN) of the customer managed KMS key that's used to encrypt the flow snapshot.
         customerEncryptionKeyArn: string
-    end
-
-    -- An internal server error occurred. Retry your request.
-    record InternalServerException
-        message: string
-        -- The reason for the exception. If the reason is BEDROCK_MODEL_INVOCATION_SERVICE_UNAVAILABLE, the model invocation service is unavailable. Retry your request.
-        reason: string
-    end
-
-    -- The specified resource Amazon Resource Name (ARN) was not found. Check the Amazon Resource Name (ARN) and try your request again.
-    record ResourceNotFoundException
-        message: string
-    end
-
-    -- The number of requests exceeds the limit. Resubmit your request later.
-    record ThrottlingException
-        message: string
-    end
-
-    -- Input validation failed. Check your request parameters and retry the request.
-    record ValidationException
-        message: string
     end
 
     record GetFlowExecutionInput
@@ -1484,30 +1863,6 @@ local record M
         flowExecutionSummaries: {FlowExecutionSummary}
         -- A token to retrieve the next set of results. This value is returned if more results are available.
         nextToken: string
-    end
-
-    -- There was an issue with a dependency due to a server issue. Retry your request.
-    record BadGatewayException
-        message: string
-        -- The name of the dependency that caused the issue, such as Amazon Bedrock, Lambda, or STS.
-        resourceName: string
-    end
-
-    -- There was a conflict performing an operation. Resolve the conflict and retry your request.
-    record ConflictException
-        message: string
-    end
-
-    -- There was an issue with a dependency. Check the resource configurations and retry the request.
-    record DependencyFailedException
-        message: string
-        -- The name of the dependency that caused the issue, such as Amazon Bedrock, Lambda, or STS.
-        resourceName: string
-    end
-
-    -- The number of requests exceeds the service quota. Resubmit your request later.
-    record ServiceQuotaExceededException
-        message: string
     end
 
     -- Contains information about an input into the flow.
@@ -1896,6 +2251,32 @@ local record M
         queries: {GeneratedQuery}
     end
 
+    enum DocumentOutputFormat
+        "RAW"
+        "EXTRACTED"
+    end
+
+    record GetDocumentContentInput
+        -- The unique identifier of the knowledge base that contains the document.
+        knowledgeBaseId: string
+        -- The unique identifier of the data source that contains the document.
+        dataSourceId: string
+        -- The unique identifier of the document to retrieve content for.
+        documentId: string
+        -- The output format for the document content. RAW returns the original file. EXTRACTED returns parsed text as JSON. Defaults to RAW.
+        outputFormat: string
+        userContext: UserContext
+    end
+
+    record GetDocumentContentOutput
+        -- The MIME type of the document content. For RAW format, this is the original file type (for example, application/pdf). For EXTRACTED format, this is always application/json.
+        mimeType: string
+        -- A pre-signed URL for downloading the document content. The URL expires after 5 minutes.
+        presignedUrl: string
+        -- The size of the document content in bytes available at the pre-signed URL.
+        documentContentLength: number
+    end
+
     -- Settings for a model called with InvokeAgent.
     record BedrockModelConfigurations
         -- The performance configuration for the model.
@@ -1914,11 +2295,6 @@ local record M
     record ContentBlock
         -- The block's text.
         text: string
-    end
-
-    enum ConversationRole
-        "user"
-        "assistant"
     end
 
     -- Details about a message.
@@ -1979,12 +2355,65 @@ local record M
         useCase: string
     end
 
-    -- Specifies the name that the metadata attribute must match and the value to which to compare the value of the metadata attribute. For more information, see Query configurations. This data type is used in the following API operations: RetrieveAndGenerate request
-    record FilterAttribute
-        -- The name that the metadata attribute must match.
-        key: string
-        -- The value to whcih to compare the value of the metadata attribute.
-        value: any
+    enum RerankingMetadataSelectionMode
+        "SELECTIVE"
+        "ALL"
+    end
+
+    -- Contains information for a metadata field to include in or exclude from consideration when reranking.
+    record FieldForReranking
+        -- The name of a metadata field to include in or exclude from consideration when reranking.
+        fieldName: string
+    end
+
+    -- Contains configurations for the metadata fields to include or exclude when considering reranking. If you include the fieldsToExclude field, the reranker ignores all the metadata fields that you specify. If you include the fieldsToInclude field, the reranker uses only the metadata fields that you specify and ignores all others. You can include only one of these fields.
+    record RerankingMetadataSelectiveModeConfiguration
+        -- An array of objects, each of which specifies a metadata field to include in consideration when reranking. The remaining metadata fields are ignored.
+        fieldsToInclude: {FieldForReranking}
+        -- An array of objects, each of which specifies a metadata field to exclude from consideration when reranking.
+        fieldsToExclude: {FieldForReranking}
+    end
+
+    -- Contains configurations for the metadata to use in reranking.
+    record MetadataConfigurationForReranking
+        -- Specifies whether to consider all metadata when reranking, or only the metadata that you select. If you specify SELECTIVE, include the selectiveModeConfiguration field.
+        selectionMode: string
+        -- Contains configurations for the metadata fields to include or exclude when considering reranking.
+        selectiveModeConfiguration: RerankingMetadataSelectiveModeConfiguration
+    end
+
+    -- Model configuration for a Bedrock reranking model used in managed search.
+    record ManagedSearchBedrockRerankingModelConfiguration
+        -- The ARN of the Bedrock reranking model.
+        modelArn: string
+        -- Additional request fields to pass to the reranking model.
+        additionalModelRequestFields: {string : any}
+    end
+
+    -- Configuration for a Bedrock reranking model used in managed search.
+    record ManagedSearchBedrockRerankingConfiguration
+        -- The model configuration containing the model ARN for reranking.
+        modelConfiguration: ManagedSearchBedrockRerankingModelConfiguration
+        -- The number of results to return after reranking.
+        numberOfRerankedResults: number
+        -- The metadata configuration for reranking.
+        metadataConfiguration: MetadataConfigurationForReranking
+    end
+
+    enum ManagedSearchRerankingConfigurationType
+        "BEDROCK_RERANKING_MODEL"
+    end
+
+    -- Configuration for the reranking model used in managed search.
+    record ManagedSearchRerankingConfiguration
+        -- The Bedrock reranking model configuration for managed search.
+        bedrockRerankingConfiguration: ManagedSearchBedrockRerankingConfiguration
+    end
+
+    enum RerankingModelType
+        "CUSTOM"
+        "MANAGED"
+        "NONE"
     end
 
     enum AttributeType
@@ -2013,33 +2442,6 @@ local record M
     enum SearchType
         "HYBRID"
         "SEMANTIC"
-    end
-
-    enum RerankingMetadataSelectionMode
-        "SELECTIVE"
-        "ALL"
-    end
-
-    -- Contains information for a metadata field to include in or exclude from consideration when reranking.
-    record FieldForReranking
-        -- The name of a metadata field to include in or exclude from consideration when reranking.
-        fieldName: string
-    end
-
-    -- Contains configurations for the metadata fields to include or exclude when considering reranking. If you include the fieldsToExclude field, the reranker ignores all the metadata fields that you specify. If you include the fieldsToInclude field, the reranker uses only the metadata fields that you specify and ignores all others. You can include only one of these fields.
-    record RerankingMetadataSelectiveModeConfiguration
-        -- An array of objects, each of which specifies a metadata field to include in consideration when reranking. The remaining metadata fields are ignored.
-        fieldsToInclude: {FieldForReranking}
-        -- An array of objects, each of which specifies a metadata field to exclude from consideration when reranking.
-        fieldsToExclude: {FieldForReranking}
-    end
-
-    -- Contains configurations for the metadata to use in reranking.
-    record MetadataConfigurationForReranking
-        -- Specifies whether to consider all metadata when reranking, or only the metadata that you select. If you specify SELECTIVE, include the selectiveModeConfiguration field.
-        selectionMode: string
-        -- Contains configurations for the metadata fields to include or exclude when considering reranking.
-        selectiveModeConfiguration: RerankingMetadataSelectiveModeConfiguration
     end
 
     -- Contains configurations for an Amazon Bedrock reranker model.
@@ -2826,6 +3228,8 @@ local record M
         score: number
         -- Contains metadata attributes and their values for the file in the data source. For more information, see Metadata and filtering.
         metadata: {string : any}
+        -- The unique identifier of the document. Use with GetDocumentContent to retrieve the full document.
+        documentId: string
     end
 
     record RetrieveOutput
@@ -3190,10 +3594,71 @@ local record M
         implicitFilterConfiguration: ImplicitFilterConfiguration
     end
 
+    -- Configuration for managed search in a knowledge base. Managed search automatically determines the best search strategy based on your data store configuration.
+    record ManagedSearchConfiguration
+        -- The number of results to retrieve.
+        numberOfResults: number
+        filter: RetrievalFilter
+        -- The type of reranking model to use when reranking results retrieved from the managed search. Use CUSTOM to specify a model, MANAGED to use the service default, or NONE to disable reranking.
+        rerankingModelType: string
+        -- Contains configurations for reranking the results retrieved from the managed search.
+        rerankingConfiguration: ManagedSearchRerankingConfiguration
+    end
+
+    -- Overrides for retrieval behavior.
+    record RetrievalOverrides
+        -- A filter to apply to the retrieval results.
+        filter: RetrievalFilter
+        -- The maximum number of results to return.
+        maxNumberOfResults: number
+    end
+
+    -- Configuration for retrieving from a Bedrock knowledge base.
+    record KnowledgeBaseRetrieverConfiguration
+        -- The unique identifier of the knowledge base.
+        knowledgeBaseId: string
+        -- Overrides for retrieval behavior such as filters and result limits.
+        retrievalOverrides: RetrievalOverrides
+    end
+
+    -- Configuration for a retriever, specified as a union of retriever types.
+    record RetrieverConfiguration
+        -- Configuration for a knowledge base retriever.
+        knowledgeBase: KnowledgeBaseRetrieverConfiguration
+    end
+
+    -- A retriever used in agentic retrieval.
+    record AgenticRetriever
+        -- A description of the retriever's purpose.
+        description: string
+        -- The configuration for this retriever.
+        configuration: RetrieverConfiguration
+    end
+
+    -- Request structure for the agentic retrieve stream operation.
+    record AgenticRetrieveStreamInput
+        -- The list of messages for the agentic retrieval conversation.
+        messages: {AgenticRetrieveMessage}
+        -- The list of retrievers to use for agentic retrieval.
+        retrievers: {AgenticRetriever}
+        -- Configuration settings for the agentic retrieval operation.
+        agenticRetrieveConfiguration: AgenticRetrieveConfiguration
+        -- Policy configuration for guardrails and content filtering.
+        policyConfiguration: AgenticRetrievePolicyConfiguration
+        -- Opaque continuation token for paginated results.
+        nextToken: string
+        -- Contains information about the user making the request. This is used for access control filtering to ensure that retrieval results only include documents the user is authorized to access.
+        userContext: UserContext
+        -- Whether to generate a response based on the retrieved results.
+        generateResponse: boolean
+    end
+
     -- Contains configurations for knowledge base query. For more information, see Query configurations. This data type is used in the following API operations: Retrieve request – in the retrievalConfiguration field RetrieveAndGenerate request – in the retrievalConfiguration field
     record KnowledgeBaseRetrievalConfiguration
         -- Contains details about how the results from the vector search should be returned. For more information, see Query configurations.
         vectorSearchConfiguration: KnowledgeBaseVectorSearchConfiguration
+        -- Contains configurations for managed search. For more information, see Query configurations.
+        managedSearchConfiguration: ManagedSearchConfiguration
     end
 
     -- Details of the knowledge base associated withe inline agent.
@@ -3239,6 +3704,7 @@ local record M
         guardrailConfiguration: GuardrailConfiguration
         -- If there are more results than can fit in the response, the response returns a nextToken. Use this token in the nextToken field of another request to retrieve the next batch of results.
         nextToken: string
+        userContext: UserContext
     end
 
     -- Contains details about the resource being queried. This data type is used in the following API operations: RetrieveAndGenerate request – in the retrieveAndGenerateConfiguration field
@@ -3284,6 +3750,7 @@ local record M
         retrieveAndGenerateConfiguration: RetrieveAndGenerateConfiguration
         -- Contains details about the session with the knowledge base.
         sessionConfiguration: RetrieveAndGenerateSessionConfiguration
+        userContext: UserContext
     end
 
     record RetrieveAndGenerateStreamInput
@@ -3295,6 +3762,7 @@ local record M
         retrieveAndGenerateConfiguration: RetrieveAndGenerateConfiguration
         -- Contains details about the session with the knowledge base.
         sessionConfiguration: RetrieveAndGenerateSessionConfiguration
+        userContext: UserContext
     end
 
     -- Contains parameters that specify various attributes that persist across a session or prompt. You can define session state attributes as key-value pairs when writing a Lambda function for an action group or pass them when making an InvokeAgent request. Use session state attributes to control and provide conversational context for your agent and to help customize your agent's behavior. For more information, see Control session context.

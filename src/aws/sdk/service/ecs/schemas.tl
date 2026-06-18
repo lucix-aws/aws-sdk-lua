@@ -8190,9 +8190,6 @@ M.CreateExpressGatewayServiceInput = schema.new({
             type = "string",
             name = "executionRoleArn",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         infrastructureRoleArn = schema.new({
             id = id.from(_N, "CreateExpressGatewayServiceInput", "infrastructureRoleArn"),
@@ -8227,9 +8224,6 @@ M.CreateExpressGatewayServiceInput = schema.new({
             name = "primaryContainer",
             target_id = id.from(_N, "ExpressGatewayContainer"),
             target = M.ExpressGatewayContainer,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         taskRoleArn = schema.new({
             id = id.from(_N, "CreateExpressGatewayServiceInput", "taskRoleArn"),
@@ -8269,6 +8263,12 @@ M.CreateExpressGatewayServiceInput = schema.new({
             name = "tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
+        }),
+        taskDefinitionArn = schema.new({
+            id = id.from(_N, "CreateExpressGatewayServiceInput", "taskDefinitionArn"),
+            type = "string",
+            name = "taskDefinitionArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8318,6 +8318,12 @@ M.ExpressGatewayServiceConfiguration = schema.new({
             id = id.from(_N, "ExpressGatewayServiceConfiguration", "taskRoleArn"),
             type = "string",
             name = "taskRoleArn",
+            target_id = prelude.String.id,
+        }),
+        taskDefinitionArn = schema.new({
+            id = id.from(_N, "ExpressGatewayServiceConfiguration", "taskDefinitionArn"),
+            type = "string",
+            name = "taskDefinitionArn",
             target_id = prelude.String.id,
         }),
         cpu = schema.new({
@@ -10477,6 +10483,12 @@ M.UpdateExpressGatewayServiceInput = schema.new({
             name = "scalingTarget",
             target_id = id.from(_N, "ExpressGatewayScalingTarget"),
             target = M.ExpressGatewayScalingTarget,
+        }),
+        taskDefinitionArn = schema.new({
+            id = id.from(_N, "UpdateExpressGatewayServiceInput", "taskDefinitionArn"),
+            type = "string",
+            name = "taskDefinitionArn",
+            target_id = prelude.String.id,
         }),
     },
 })

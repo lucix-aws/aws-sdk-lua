@@ -233,6 +233,78 @@ local record M
         InclusionAnnotation: TimestampedInclusionAnnotation
     end
 
+    -- A form on an asset, consisting of the form type identifier and its JSON content.
+    record AssetFormEntry
+        -- The identifier of the form type that defines this form's schema.
+        FormTypeId: string
+        -- The JSON content of the form, conforming to the schema of the specified form type.
+        Content: string
+    end
+
+    -- A reference to a form type that is included in an asset type.
+    record AssetTypeFormReference
+        -- The identifier of the referenced form type.
+        FormTypeIdentifier: string
+    end
+
+    -- A summary of an asset type.
+    record AssetTypeItem
+        -- The identifier of the asset type.
+        Id: string
+        -- The name of the asset type.
+        Name: string
+    end
+
+    record AssociateGlossaryTermsInput
+        -- The unique identifier of the asset to associate glossary terms with.
+        Identifier: string
+        -- The list of glossary term identifiers to associate with the asset.
+        GlossaryTermIdentifiers: {string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record AssociateGlossaryTermsOutput
+        -- The unique identifier of the asset.
+        Identifier: string
+        -- The glossary terms now associated with the asset.
+        GlossaryTerms: {string}
+    end
+
+    -- Two processes are trying to modify a resource simultaneously.
+    record ConcurrentModificationException
+        -- A message describing the problem.
+        Message: string
+    end
+
+    -- A specified entity does not exist
+    record EntityNotFoundException
+        -- A message describing the problem.
+        Message: string
+        -- Indicates whether or not the exception relates to a federated source.
+        FromFederationSource: boolean
+    end
+
+    -- An internal service error occurred.
+    record InternalServiceException
+        -- A message describing the problem.
+        Message: string
+    end
+
+    -- The input provided was not valid.
+    record InvalidInputException
+        -- A message describing the problem.
+        Message: string
+        -- Indicates whether or not the exception relates to a federated source.
+        FromFederationSource: boolean
+    end
+
+    -- The throttling threshhold was exceeded.
+    record ThrottlingException
+        -- A message describing the problem.
+        Message: string
+    end
+
     -- Specifies a single column in a Glue schema definition.
     record GlueStudioSchemaColumn
         -- The name of the column in the Glue Studio schema.
@@ -604,32 +676,10 @@ local record M
         Errors: {PartitionError}
     end
 
-    -- A specified entity does not exist
-    record EntityNotFoundException
-        -- A message describing the problem.
-        Message: string
-        -- Indicates whether or not the exception relates to a federated source.
-        FromFederationSource: boolean
-    end
-
     -- An encryption operation failed.
     record GlueEncryptionException
         -- The message describing the problem.
         Message: string
-    end
-
-    -- An internal service error occurred.
-    record InternalServiceException
-        -- A message describing the problem.
-        Message: string
-    end
-
-    -- The input provided was not valid.
-    record InvalidInputException
-        -- A message describing the problem.
-        Message: string
-        -- Indicates whether or not the exception relates to a federated source.
-        FromFederationSource: boolean
     end
 
     -- The operation timed out.
@@ -1418,6 +1468,46 @@ local record M
         DevEndpoints: {DevEndpoint}
         -- A list of DevEndpoints not found.
         DevEndpointsNotFound: {string}
+    end
+
+    record BatchGetIterableFormsInput
+        -- The unique identifier of the asset.
+        AssetIdentifier: string
+        -- The name of the iterable form to retrieve items from.
+        IterableFormName: string
+        -- The list of item identifiers to retrieve. Each identifier can be an item ID or item name.
+        ItemIdentifiers: {string}
+    end
+
+    -- An error that occurred when retrieving an iterable form item.
+    record ItemError
+        -- The identifier of the item that caused the error.
+        ItemIdentifier: string
+        -- The error code.
+        Code: string
+        -- The error message.
+        Message: string
+    end
+
+    -- A full iterable form item with its forms.
+    record IterableFormItem
+        -- The unique identifier of the item.
+        ItemId: string
+        -- The name of the item.
+        ItemName: string
+        -- The identifiers of the glossary terms associated with the item.
+        GlossaryTerms: {string}
+        -- The forms on the item, keyed by form name.
+        Forms: {string : AssetFormEntry}
+        -- Additional attachments on the item for more context, keyed by attachment name.
+        Attachments: {string : AssetFormEntry}
+    end
+
+    record BatchGetIterableFormsOutput
+        -- The list of retrieved iterable form items.
+        Items: {IterableFormItem}
+        -- The list of errors for items that could not be retrieved.
+        Errors: {ItemError}
     end
 
     record BatchGetJobsInput
@@ -3696,12 +3786,6 @@ local record M
         Failures: {BatchGetTableOptimizerError}
     end
 
-    -- The throttling threshhold was exceeded.
-    record ThrottlingException
-        -- A message describing the problem.
-        Message: string
-    end
-
     record BatchGetTriggersInput
         -- A list of trigger names, which may be the names returned from the ListTriggers operation.
         TriggerNames: {string}
@@ -4342,12 +4426,6 @@ local record M
     record CreateBlueprintOutput
         -- Returns the name of the blueprint that was registered.
         Name: string
-    end
-
-    -- Two processes are trying to modify a resource simultaneously.
-    record ConcurrentModificationException
-        -- A message describing the problem.
-        Message: string
     end
 
     -- Input properties to configure data lake access for your catalog resource in the Glue Data Catalog.
@@ -5109,6 +5187,50 @@ local record M
     record ValidationException
         -- A message describing the problem.
         Message: string
+    end
+
+    record CreateGlossaryInput
+        -- The name of the glossary.
+        Name: string
+        -- The description of the glossary.
+        Description: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record CreateGlossaryOutput
+        -- The unique identifier of the glossary.
+        Id: string
+        -- The name of the glossary.
+        Name: string
+        -- The description of the glossary.
+        Description: string
+    end
+
+    record CreateGlossaryTermInput
+        -- The unique identifier of the glossary in which to create the term.
+        GlossaryIdentifier: string
+        -- The name of the glossary term.
+        Name: string
+        -- A short description of the glossary term.
+        ShortDescription: string
+        -- A long description of the glossary term.
+        LongDescription: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record CreateGlossaryTermOutput
+        -- The unique identifier of the glossary term.
+        Id: string
+        -- The unique identifier of the glossary containing this term.
+        GlossaryId: string
+        -- The name of the glossary term.
+        Name: string
+        -- The short description of the glossary term.
+        ShortDescription: string
+        -- The long description of the glossary term.
+        LongDescription: string
     end
 
     -- Request to create a new Glue Identity Center configuration.
@@ -6328,6 +6450,34 @@ local record M
         Name: string
     end
 
+    record DeleteAssetInput
+        -- The unique identifier of the asset to delete.
+        Identifier: string
+    end
+
+    record DeleteAssetOutput
+    end
+
+    record DeleteAssetTypeInput
+        -- The identifier of the asset type to delete.
+        Identifier: string
+    end
+
+    record DeleteAssetTypeOutput
+    end
+
+    record DeleteAttachmentInput
+        -- The unique identifier of the asset from which to delete the attachment.
+        Identifier: string
+        -- The name of the attachment to delete.
+        AttachmentName: string
+    end
+
+    record DeleteAttachmentOutput
+        -- The unique identifier of the asset.
+        Identifier: string
+    end
+
     record DeleteBlueprintInput
         -- The name of the blueprint to delete.
         Name: string
@@ -6471,6 +6621,30 @@ local record M
     end
 
     record DeleteDevEndpointOutput
+    end
+
+    record DeleteFormTypeInput
+        -- The identifier of the form type to delete.
+        Identifier: string
+    end
+
+    record DeleteFormTypeOutput
+    end
+
+    record DeleteGlossaryInput
+        -- The unique identifier of the glossary to delete.
+        Identifier: string
+    end
+
+    record DeleteGlossaryOutput
+    end
+
+    record DeleteGlossaryTermInput
+        -- The unique identifier of the glossary term to delete.
+        Identifier: string
+    end
+
+    record DeleteGlossaryTermOutput
     end
 
     -- Request to delete the existing Glue Identity Center configuration.
@@ -7171,6 +7345,70 @@ local record M
         Integrations: {Integration}
         -- A value that indicates the starting point for the next set of response records in a subsequent request.
         Marker: string
+    end
+
+    record DisassociateGlossaryTermsInput
+        -- The unique identifier of the asset to disassociate glossary terms from.
+        Identifier: string
+        -- The list of glossary term identifiers to disassociate from the asset.
+        GlossaryTermIdentifiers: {string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record DisassociateGlossaryTermsOutput
+        -- The unique identifier of the asset.
+        Identifier: string
+        -- The remaining glossary terms associated with the asset.
+        GlossaryTerms: {string}
+    end
+
+    record GetAssetInput
+        -- The unique identifier of the asset to retrieve.
+        Identifier: string
+    end
+
+    -- An iterable form available on an asset, identified by its form type.
+    record IterableFormEntry
+        -- The form type identifier of the iterable form (for example, columns), used to retrieve its items via ListIterableForms or BatchGetIterableForms.
+        FormTypeId: string
+    end
+
+    record GetAssetOutput
+        -- The unique identifier of the asset.
+        Id: string
+        -- The name of the asset.
+        Name: string
+        -- The description of the asset.
+        Description: string
+        -- The timestamp at which the asset was created.
+        CreatedAt: number
+        -- The timestamp at which the asset was last updated.
+        UpdatedAt: number
+        -- The identifier of the asset type for this asset.
+        AssetTypeId: string
+        -- The identifiers of the glossary terms associated with the asset.
+        GlossaryTerms: {string}
+        -- The forms on the asset, keyed by form name.
+        Forms: {string : AssetFormEntry}
+        -- Additional attachments on the asset for more context, keyed by attachment name.
+        Attachments: {string : AssetFormEntry}
+        -- The iterable forms available on the asset, keyed by form name (for example, columns). Use the form name with ListIterableForms or BatchGetIterableForms to retrieve the form's items.
+        IterableForms: {string : IterableFormEntry}
+    end
+
+    record GetAssetTypeInput
+        -- The identifier of the asset type to retrieve.
+        Identifier: string
+    end
+
+    record GetAssetTypeOutput
+        -- The identifier of the asset type.
+        Id: string
+        -- The name of the asset type.
+        Name: string
+        -- The forms that make up the asset type, keyed by form name.
+        Forms: {string : AssetTypeFormReference}
     end
 
     record GetBlueprintInput
@@ -8500,6 +8738,52 @@ local record M
         Records: {any}
         -- A continuation token, present if the current segment is not the last.
         NextToken: string
+    end
+
+    record GetFormTypeInput
+        -- The identifier of the form type to retrieve.
+        Identifier: string
+    end
+
+    record GetFormTypeOutput
+        -- The identifier of the form type.
+        Id: string
+        -- The name of the form type.
+        Name: string
+        -- The Smithy IDL schema of the form type.
+        Schema: string
+    end
+
+    record GetGlossaryInput
+        -- The unique identifier of the glossary to retrieve.
+        Identifier: string
+    end
+
+    record GetGlossaryOutput
+        -- The unique identifier of the glossary.
+        Id: string
+        -- The name of the glossary.
+        Name: string
+        -- The description of the glossary.
+        Description: string
+    end
+
+    record GetGlossaryTermInput
+        -- The unique identifier of the glossary term to retrieve.
+        Identifier: string
+    end
+
+    record GetGlossaryTermOutput
+        -- The unique identifier of the glossary term.
+        Id: string
+        -- The unique identifier of the glossary containing this term.
+        GlossaryId: string
+        -- The name of the glossary term.
+        Name: string
+        -- The short description of the glossary term.
+        ShortDescription: string
+        -- The long description of the glossary term.
+        LongDescription: string
     end
 
     -- Request to retrieve the Glue Identity Center configuration.
@@ -10264,6 +10548,20 @@ local record M
     record ImportCatalogToGlueOutput
     end
 
+    record ListAssetTypesInput
+        -- The maximum number of results to return in the response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+    end
+
+    record ListAssetTypesOutput
+        -- The list of asset type items.
+        Items: {AssetTypeItem}
+        -- A continuation token, present if the current segment is not the last.
+        NextToken: string
+    end
+
     record ListBlueprintsInput
         -- A continuation token, if this is a continuation request.
         NextToken: string
@@ -10780,6 +11078,78 @@ local record M
         NextToken: string
     end
 
+    record ListFormTypesInput
+        -- The maximum number of results to return in the response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+    end
+
+    -- A summary of a form type.
+    record FormTypeItem
+        -- The identifier of the form type.
+        Id: string
+        -- The name of the form type.
+        Name: string
+    end
+
+    record ListFormTypesOutput
+        -- The list of form type items.
+        Items: {FormTypeItem}
+        -- A continuation token, present if the current segment is not the last.
+        NextToken: string
+    end
+
+    record ListGlossariesInput
+        -- The maximum number of results to return in the response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+    end
+
+    -- A summary of a business glossary.
+    record GlossaryItem
+        -- The unique identifier of the glossary.
+        Id: string
+        -- The name of the glossary.
+        Name: string
+        -- The description of the glossary.
+        Description: string
+    end
+
+    record ListGlossariesOutput
+        -- The list of glossary items.
+        Items: {GlossaryItem}
+        -- A continuation token, present if the current segment is not the last.
+        NextToken: string
+    end
+
+    record ListGlossaryTermsInput
+        -- The unique identifier of the glossary whose terms to list.
+        GlossaryIdentifier: string
+        -- The maximum number of results to return in the response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+    end
+
+    -- A summary of a glossary term.
+    record GlossaryTermItem
+        -- The unique identifier of the glossary term.
+        Id: string
+        -- The name of the glossary term.
+        Name: string
+        -- The short description of the glossary term.
+        ShortDescription: string
+    end
+
+    record ListGlossaryTermsOutput
+        -- The list of glossary term items.
+        Items: {GlossaryTermItem}
+        -- A continuation token, present if the current segment is not the last.
+        NextToken: string
+    end
+
     -- A filter for integration resource properties.
     record IntegrationResourcePropertyFilter
         -- The name of the filter. Supported filter keys are SourceArn and TargetArn.
@@ -10814,6 +11184,36 @@ local record M
         IntegrationResourcePropertyList: {IntegrationResourceProperty}
         -- This is the pagination token for the next page.
         Marker: string
+    end
+
+    record ListIterableFormsInput
+        -- The unique identifier of the asset.
+        AssetIdentifier: string
+        -- The name of the iterable form to list items from.
+        IterableFormName: string
+        -- The maximum number of results to return in the response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+    end
+
+    -- A summary of an item in an iterable form.
+    record IterableFormListItem
+        -- The unique identifier of the item.
+        ItemId: string
+        -- The name of the item.
+        ItemName: string
+        -- The description of the item.
+        Description: string
+        -- The identifiers of the glossary terms associated with the item.
+        GlossaryTerms: {string}
+    end
+
+    record ListIterableFormsOutput
+        -- The list of iterable form items.
+        Items: {IterableFormListItem}
+        -- A continuation token, present if the current segment is not the last.
+        NextToken: string
     end
 
     record ListJobsInput
@@ -11145,6 +11545,82 @@ local record M
         IntegrationConfig: IntegrationConfig
     end
 
+    record PutAssetInput
+        -- The identifier of the asset type for the asset.
+        AssetTypeId: string
+        -- The unique identifier of the asset. If an asset with this identifier already exists, it is updated.
+        Identifier: string
+        -- The name of the asset.
+        Name: string
+        -- The description of the asset.
+        Description: string
+        -- The forms to set on the asset, keyed by form name. Each entry specifies the form type and its JSON content.
+        Forms: {string : AssetFormEntry}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record PutAssetOutput
+        -- The unique identifier of the asset.
+        Id: string
+        -- The name of the asset.
+        Name: string
+        -- The description of the asset.
+        Description: string
+        -- The timestamp at which the asset was created.
+        CreatedAt: number
+        -- The forms attached to the asset, keyed by form name.
+        Forms: {string : AssetFormEntry}
+    end
+
+    record PutAssetTypeInput
+        -- The name of the asset type.
+        Name: string
+        -- The forms that make up the asset type, keyed by form name. Each entry references the form type that defines the form's schema.
+        Forms: {string : AssetTypeFormReference}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record PutAssetTypeOutput
+        -- The identifier of the asset type.
+        Id: string
+        -- The name of the asset type.
+        Name: string
+        -- The forms that make up the asset type, keyed by form name.
+        Forms: {string : AssetTypeFormReference}
+    end
+
+    record PutAttachmentInput
+        -- The unique identifier of the asset to attach the form to.
+        AssetIdentifier: string
+        -- The name of the iterable form. When specified along with itemIdentifier, the attachment targets an item within the iterable form rather than the asset itself.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form. Required when iterableFormName is specified.
+        ItemIdentifier: string
+        -- The name of the attachment.
+        AttachmentName: string
+        -- The JSON content of the form, conforming to the schema of the specified form type.
+        Content: string
+        -- The identifier of the form type for this attachment.
+        FormTypeId: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record PutAttachmentOutput
+        -- The unique identifier of the asset.
+        AssetId: string
+        -- The name of the iterable form, if the attachment targets an item.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form, if applicable.
+        ItemIdentifier: string
+        -- The name of the attachment.
+        AttachmentName: string
+        -- The identifier of the form type for this attachment.
+        FormTypeId: string
+    end
+
     record PutDataCatalogEncryptionSettingsInput
         -- The ID of the Data Catalog to set the security configuration for. If none is provided, the
         -- Amazon Web Services account ID is used by default.
@@ -11165,6 +11641,24 @@ local record M
 
     -- Left blank.
     record PutDataQualityProfileAnnotationOutput
+    end
+
+    record PutFormTypeInput
+        -- The name of the form type. Must start with an uppercase letter.
+        Name: string
+        -- The Smithy IDL schema definition for the form type.
+        Schema: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record PutFormTypeOutput
+        -- The identifier of the form type.
+        Id: string
+        -- The name of the form type.
+        Name: string
+        -- The Smithy IDL schema of the form type.
+        Schema: string
     end
 
     enum EnableHybridValues
@@ -11545,6 +12039,83 @@ local record M
     record SessionBusyException
         -- A message describing the problem.
         Message: string
+    end
+
+    enum SearchFilterOperator
+        "equals"
+        "greaterThan"
+        "greaterThanOrEquals"
+        "lessThan"
+        "lessThanOrEquals"
+        "notExists"
+    end
+
+    -- A filter value. Exactly one of stringValue or longValue must be specified.
+    record SearchFilterValue
+        -- A string filter value.
+        StringValue: string
+        -- A long integer filter value.
+        LongValue: number
+    end
+
+    -- A filter that compares an attribute value using an operator.
+    record SearchAttributeFilter
+        -- The attribute name to filter on.
+        Attribute: string
+        -- The comparison operator. Valid values are equals, greaterThan, greaterThanOrEquals, lessThan, lessThanOrEquals, and notExists.
+        Operator: string
+        -- The value to compare against.
+        Value: SearchFilterValue
+    end
+
+    -- A map filter value. Currently supports string comparison only.
+    record SearchMapFilterValue
+        -- A string filter value.
+        StringValue: string
+    end
+
+    -- A filter on a map attribute's key-value pair.
+    record SearchMapFilter
+        -- The map attribute name to filter on.
+        Attribute: string
+        -- The key within the map attribute to filter on.
+        Key: string
+        -- The value to compare against.
+        Value: SearchMapFilterValue
+    end
+
+    enum SearchSortOrder
+        "ASCENDING"
+        "DESCENDING"
+    end
+
+    -- The sort criteria for search results.
+    record SearchSort
+        -- The attribute to sort by.
+        Attribute: string
+        -- The sort order. Valid values are ASCENDING and DESCENDING.
+        Order: string
+    end
+
+    -- A single search result item representing a matched asset.
+    record SearchResultItem
+        -- The unique identifier of the matched asset.
+        Id: string
+        -- The name of the matched asset.
+        AssetName: string
+        -- The description of the matched asset.
+        AssetDescription: string
+        -- The timestamp at which the matched asset was last updated.
+        UpdatedAt: number
+        -- The identifier of the asset type for the matched asset.
+        AssetTypeId: string
+    end
+
+    record SearchOutput
+        -- The list of assets matching the search criteria.
+        Items: {SearchResultItem}
+        -- A continuation token, present if the current segment is not the last.
+        NextToken: string
     end
 
     enum Comparator
@@ -12399,6 +12970,52 @@ local record M
     record UpdateDevEndpointOutput
     end
 
+    record UpdateGlossaryInput
+        -- The unique identifier of the glossary to update.
+        Identifier: string
+        -- The updated name of the glossary.
+        Name: string
+        -- The updated description of the glossary.
+        Description: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record UpdateGlossaryOutput
+        -- The unique identifier of the glossary.
+        Id: string
+        -- The name of the glossary.
+        Name: string
+        -- The description of the glossary.
+        Description: string
+    end
+
+    record UpdateGlossaryTermInput
+        -- The unique identifier of the glossary term to update.
+        Identifier: string
+        -- The updated name of the glossary term.
+        Name: string
+        -- The updated short description of the glossary term.
+        ShortDescription: string
+        -- The updated long description of the glossary term.
+        LongDescription: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record UpdateGlossaryTermOutput
+        -- The unique identifier of the glossary term.
+        Id: string
+        -- The unique identifier of the glossary containing this term.
+        GlossaryId: string
+        -- The name of the glossary term.
+        Name: string
+        -- The short description of the glossary term.
+        ShortDescription: string
+        -- The long description of the glossary term.
+        LongDescription: string
+    end
+
     -- Request to update an existing Glue Identity Center configuration.
     record UpdateGlueIdentityCenterConfigurationInput
         -- A list of Identity Center scopes that define the updated permissions and access levels for the Glue configuration.
@@ -13155,6 +13772,18 @@ local record M
         RowFilter: string
     end
 
+    -- A filter clause that supports nested boolean logic. Exactly one of andAllFilters, orAnyFilters, attributeFilter, or mapFilter must be specified.
+    record SearchFilterClause
+        -- A list of filter clauses that must all match (logical AND).
+        AndAllFilters: {SearchFilterClause}
+        -- A list of filter clauses where at least one must match (logical OR).
+        OrAnyFilters: {SearchFilterClause}
+        -- A filter on a single attribute value.
+        AttributeFilter: SearchAttributeFilter
+        -- A filter on a map attribute's key-value pair.
+        MapFilter: SearchMapFilter
+    end
+
     -- Specifies a version of a table.
     record TableVersion
         -- The table in question.
@@ -13548,6 +14177,19 @@ local record M
         -- This field specifies a day of the week and hour for a maintenance window for streaming jobs. Glue periodically performs maintenance activities. During these maintenance windows, Glue will need to restart your streaming jobs.
         -- Glue will restart the job within 3 hours of the specified maintenance window. For instance, if you set up the maintenance window for Monday at 10:00AM GMT, your jobs will be restarted between 10:00AM GMT to 1:00PM GMT.
         MaintenanceWindow: string
+    end
+
+    record SearchInput
+        -- The text to search for. At least one of searchText or filterClause must be provided.
+        SearchText: string
+        -- The maximum number of results to return in the response.
+        MaxResults: number
+        -- A continuation token, if this is a continuation call.
+        NextToken: string
+        -- The sort criteria for the search results.
+        Sort: SearchSort
+        -- The filter clause to apply to the search. Supports nested AND/OR logic with attribute-level and map-level filters.
+        FilterClause: SearchFilterClause
     end
 
     record GetJobOutput

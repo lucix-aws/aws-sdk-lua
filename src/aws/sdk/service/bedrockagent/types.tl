@@ -2,6 +2,15 @@
 
 local record M
 
+    enum AccessControlAccess
+        "ALLOW"
+        "DENY"
+    end
+
+    enum AccessControlPrincipalType
+        "USER"
+    end
+
     -- The request is denied because of missing access permissions.
     record AccessDeniedException
         message: string
@@ -1067,7 +1076,7 @@ local record M
         credentialsSecretArn: string
     end
 
-    -- The configuration information to connect to Confluence as your data source.
+    -- The configuration information to connect to Confluence as your data source for self-managed knowledge bases.
     record ConfluenceDataSourceConfiguration
         -- The endpoint information to connect to your Confluence data source.
         sourceConfiguration: ConfluenceSourceConfiguration
@@ -1075,7 +1084,58 @@ local record M
         crawlerConfiguration: ConfluenceCrawlerConfiguration
     end
 
-    -- The configuration information to connect to Amazon S3 as your data source.
+    enum EnabledOrDisabledState
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- Configuration for deletion protection.
+    record DeletionProtectionConfiguration
+        -- Enable or disable deletion protection for the connector.
+        deletionProtectionStatus: string
+        -- The threshold is the maximum percentage of documents that a sync job can delete from your index. If a sync would delete more than this percentage, the sync skips its delete phase, leaving your indexed documents in place. Not supported for the Custom connector.
+        deletionProtectionThreshold: number
+    end
+
+    -- Configuration for audio extraction.
+    record AudioExtractionConfiguration
+        -- Whether audio extraction is enabled or disabled.
+        audioExtractionStatus: string
+    end
+
+    -- Configuration for image extraction.
+    record ImageExtractionConfiguration
+        -- Whether image extraction is enabled or disabled.
+        imageExtractionStatus: string
+    end
+
+    -- Configuration for video extraction.
+    record VideoExtractionConfiguration
+        -- Whether video extraction is enabled or disabled.
+        videoExtractionStatus: string
+    end
+
+    -- Configuration for media extraction settings.
+    record MediaExtractionConfiguration
+        -- Configuration for image extraction.
+        imageExtractionConfiguration: ImageExtractionConfiguration
+        -- Configuration for audio extraction.
+        audioExtractionConfiguration: AudioExtractionConfiguration
+        -- Configuration for video extraction.
+        videoExtractionConfiguration: VideoExtractionConfiguration
+    end
+
+    -- Configuration for managed knowledge base connector data sources.
+    record ManagedKnowledgeBaseConnectorConfiguration
+        -- A safeguard against accidental bulk deletion of indexed content.
+        deletionProtectionConfiguration: DeletionProtectionConfiguration
+        -- Configuration for extracting media (images, audio, video) from data source files.
+        mediaExtractionConfiguration: MediaExtractionConfiguration
+        -- Connector-specific parameters. For more information, see Connect a data source.
+        connectorParameters: any
+    end
+
+    -- The configuration information to connect to Amazon S3 as your data source for self-managed knowledge bases. To configure this data source for managed knowledge bases, use managedKnowledgeBaseConnectorConfiguration.
     record S3DataSourceConfiguration
         -- The Amazon Resource Name (ARN) of the S3 bucket that contains your data.
         bucketArn: string
@@ -1144,7 +1204,7 @@ local record M
         credentialsSecretArn: string
     end
 
-    -- The configuration information to connect to SharePoint as your data source.
+    -- The configuration information to connect to SharePoint as your data source for self-managed knowledge bases.
     record SharePointDataSourceConfiguration
         -- The endpoint information to connect to your SharePoint data source.
         sourceConfiguration: SharePointSourceConfiguration
@@ -1160,6 +1220,7 @@ local record M
         "SHAREPOINT"
         "CUSTOM"
         "REDSHIFT_METADATA"
+        "MANAGED_KNOWLEDGE_BASE_CONNECTOR"
     end
 
     -- The rate limits for the URLs that you want to crawl. You should be authorized to crawl the URLs.
@@ -1219,19 +1280,21 @@ local record M
 
     -- The connection configuration for the data source.
     record DataSourceConfiguration
-        -- The configuration information to connect to Amazon S3 as your data source.
+        -- Contains the configuration for a data source that connects a managed knowledge base to a supported data source connector. Specify this object when the data source type is MANAGED_KNOWLEDGE_BASE_CONNECTOR.
+        managedKnowledgeBaseConnectorConfiguration: ManagedKnowledgeBaseConnectorConfiguration
+        -- The configuration information to connect to Amazon S3 as your data source for self-managed knowledge bases. To configure this data source for managed knowledge bases, use managedKnowledgeBaseConnectorConfiguration.
         s3Configuration: S3DataSourceConfiguration
-        -- The configuration of web URLs to crawl for your data source. You should be authorized to crawl the URLs. Crawling web URLs as your data source is in preview release and is subject to change.
+        -- The configuration of web URLs to crawl for your data source. You should be authorized to crawl the URLs. To configure this data source for managed knowledge bases, use managedKnowledgeBaseConnectorConfiguration. Web crawler data source connector for self-managed knowledge bases is in preview release and is subject to change.
         webConfiguration: WebDataSourceConfiguration
-        -- The configuration information to connect to Confluence as your data source. Confluence data source connector is in preview release and is subject to change.
+        -- The configuration information to connect to Confluence as your data source for self-managed knowledge bases. To configure this data source for managed knowledge bases, use managedKnowledgeBaseConnectorConfiguration. Confluence data source connector for self-managed knowledge bases is in preview release and is subject to change.
         confluenceConfiguration: ConfluenceDataSourceConfiguration
-        -- The configuration information to connect to Salesforce as your data source. Salesforce data source connector is in preview release and is subject to change.
+        -- The configuration information to connect to Salesforce as your data source. Salesforce data source connector for self-managed knowledge bases is in preview release and is subject to change.
         salesforceConfiguration: SalesforceDataSourceConfiguration
-        -- The configuration information to connect to SharePoint as your data source. SharePoint data source connector is in preview release and is subject to change.
+        -- The configuration information to connect to SharePoint as your data source for self-managed knowledge bases. To configure this data source for managed knowledge bases, use managedKnowledgeBaseConnectorConfiguration. SharePoint data source connector for self-managed knowledge bases is in preview release and is subject to change.
         sharePointConfiguration: SharePointDataSourceConfiguration
     end
 
-    -- Contains the configuration for server-side encryption.
+    -- Contains the configuration for server-side encryption for your managed knowledge base.
     record ServerSideEncryptionConfiguration
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the resource.
         kmsKeyArn: string
@@ -1389,11 +1452,12 @@ local record M
     enum ParsingStrategy
         "BEDROCK_FOUNDATION_MODEL"
         "BEDROCK_DATA_AUTOMATION"
+        "SMART_PARSING"
     end
 
     -- Settings for parsing document contents. If you exclude this field, the default parser converts the contents of each document into text before splitting it into chunks. Specify the parsing strategy to use in the parsingStrategy field and include the relevant configuration, or omit it to use the Amazon Bedrock default parser. For more information, see Parsing options for your data source. If you specify BEDROCK_DATA_AUTOMATION or BEDROCK_FOUNDATION_MODEL and it fails to parse a file, the Amazon Bedrock default parser will be used instead.
     record ParsingConfiguration
-        -- The parsing strategy for the data source.
+        -- The parsing strategy for the data source. Only SMART_PARSING can be selected for managed knowledge bases. For more information, see Customize ingestion for managed knowledge bases.
         parsingStrategy: string
         -- If you specify BEDROCK_FOUNDATION_MODEL as the parsing strategy for ingesting your data source, use this object to modify configurations for using a foundation model to parse documents.
         bedrockFoundationModelConfiguration: BedrockFoundationModelConfiguration
@@ -1424,7 +1488,7 @@ local record M
         description: string
         -- The connection configuration for the data source.
         dataSourceConfiguration: DataSourceConfiguration
-        -- The data deletion policy for the data source. You can set the data deletion policy to: DELETE: Deletes all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted, only the data. This flag is ignored if an Amazon Web Services account is deleted. RETAIN: Retains all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted if you delete a knowledge base or data source resource.
+        -- The data deletion policy for the data source. You can set the data deletion policy to: DELETE: Deletes all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted, only the data. This flag is ignored if an Amazon Web Services account is deleted. RETAIN: Retains all data from your data source that’s converted into vector embeddings upon deletion of a knowledge base or data source resource. Note that the vector store itself is not deleted if you delete a knowledge base or data source resource. For managed knowledge bases, the only supported option is DELETE, which is also the default.
         dataDeletionPolicy: string
         -- Contains details about the server-side encryption for the data source.
         serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration
@@ -1436,6 +1500,9 @@ local record M
         "AVAILABLE"
         "DELETING"
         "DELETE_UNSUCCESSFUL"
+        "CREATING"
+        "UPDATING"
+        "FAILED"
     end
 
     -- Contains details about a data source.
@@ -1553,6 +1620,20 @@ local record M
     record UpdateDataSourceOutput
         -- Contains details about the data source.
         dataSource: DataSource
+    end
+
+    record DeleteResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the knowledge base to remove the resource policy from.
+        resourceArn: string
+        -- The expected revision identifier of the resource policy. Use this to prevent conflicts when multiple users update the same policy concurrently.
+        expectedRevisionId: string
+    end
+
+    record DeleteResourcePolicyOutput
+        -- The ARN of the knowledge base that the resource policy was removed from.
+        resourceArn: string
+        -- The revision identifier after the resource policy was deleted.
+        revisionId: string
     end
 
     -- The configuration of a connection between a condition node and another node.
@@ -2704,6 +2785,20 @@ local record M
         status: string
     end
 
+    record GetResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the knowledge base to retrieve the resource policy for.
+        resourceArn: string
+    end
+
+    record GetResourcePolicyOutput
+        -- The ARN of the knowledge base that the resource policy is associated with.
+        resourceArn: string
+        -- The JSON-formatted resource policy associated with the knowledge base.
+        policy: string
+        -- The revision identifier of the resource policy.
+        revisionId: string
+    end
+
     record GetIngestionJobInput
         -- The unique identifier of the knowledge base for the data ingestion job you want to get information on.
         knowledgeBaseId: string
@@ -2729,6 +2824,8 @@ local record M
         numberOfDocumentsDeleted: number
         -- The number of source documents that failed to be ingested.
         numberOfDocumentsFailed: number
+        -- The number of source documents that were skipped during ingestion.
+        numberOfDocumentsSkipped: number
     end
 
     enum IngestionJobStatus
@@ -3025,6 +3122,14 @@ local record M
         s3: S3Content
     end
 
+    -- An access control entry specifying a principal and their access level.
+    record DocumentAccessControlEntry
+        -- The user identifier.
+        name: string
+        -- Whether to allow or deny access.
+        access: string
+    end
+
     enum MetadataValueType
         "BOOLEAN"
         "NUMBER"
@@ -3063,6 +3168,8 @@ local record M
         inlineAttributes: {MetadataAttribute}
         -- The Amazon S3 location of the file containing metadata to associate with the content to ingest.
         s3Location: CustomS3Location
+        -- Access control list for the document. Used when metadata type is IN_LINE_ATTRIBUTE.
+        accessControlList: {DocumentAccessControlEntry}
     end
 
     -- Contains information about a document to ingest into a knowledge base and metadata to associate with it.
@@ -3129,6 +3236,67 @@ local record M
     record KendraKnowledgeBaseConfiguration
         -- The ARN of the Amazon Kendra index.
         kendraIndexArn: string
+    end
+
+    -- Configuration for segmenting audio content during multimodal knowledge base ingestion. Determines how audio files are divided into chunks for processing.
+    record AudioSegmentationConfiguration
+        -- The duration in seconds for each audio segment. Audio files will be divided into chunks of this length for processing.
+        fixedLengthDuration: number
+    end
+
+    -- Configuration settings for processing audio content in multimodal knowledge bases.
+    record AudioConfiguration
+        -- Configuration for segmenting audio content during processing.
+        segmentationConfiguration: AudioSegmentationConfiguration
+    end
+
+    enum EmbeddingDataType
+        "FLOAT32"
+        "BINARY"
+    end
+
+    -- Configuration for segmenting video content during multimodal knowledge base ingestion. Determines how video files are divided into chunks for processing.
+    record VideoSegmentationConfiguration
+        -- The duration in seconds for each video segment. Video files will be divided into chunks of this length for processing.
+        fixedLengthDuration: number
+    end
+
+    -- Configuration settings for processing video content in multimodal knowledge bases.
+    record VideoConfiguration
+        -- Configuration for segmenting video content during processing.
+        segmentationConfiguration: VideoSegmentationConfiguration
+    end
+
+    -- The vector configuration details for the Bedrock embeddings model.
+    record BedrockEmbeddingModelConfiguration
+        -- The dimensions details for the vector configuration used on the Bedrock embeddings model.
+        dimensions: number
+        -- The data type for the vectors when using a model to convert text into vector embeddings. The model must support the specified data type for vector embeddings. Floating-point (float32) is the default data type, and is supported by most models for vector embeddings. See Supported embeddings models for information on the available models and their vector data types.
+        embeddingDataType: string
+        -- Configuration settings for processing audio content in multimodal knowledge bases.
+        audio: {AudioConfiguration}
+        -- Configuration settings for processing video content in multimodal knowledge bases.
+        video: {VideoConfiguration}
+    end
+
+    -- The configuration details for the embeddings model.
+    record EmbeddingModelConfiguration
+        -- The vector configuration details on the Bedrock embeddings model.
+        bedrockEmbeddingModelConfiguration: BedrockEmbeddingModelConfiguration
+    end
+
+    enum EmbeddingModelType
+        "CUSTOM"
+        "MANAGED"
+    end
+
+    -- Configurations for a managed knowledge base.
+    record ManagedKnowledgeBaseConfiguration
+        embeddingModelType: string
+        -- The ARN for the embeddings model.
+        embeddingModelArn: string
+        embeddingModelConfiguration: EmbeddingModelConfiguration
+        serverSideEncryptionConfiguration: ServerSideEncryptionConfiguration
     end
 
     enum RedshiftProvisionedAuthType
@@ -3285,68 +3453,22 @@ local record M
         "VECTOR"
         "KENDRA"
         "SQL"
-    end
-
-    -- Configuration for segmenting audio content during multimodal knowledge base ingestion. Determines how audio files are divided into chunks for processing.
-    record AudioSegmentationConfiguration
-        -- The duration in seconds for each audio segment. Audio files will be divided into chunks of this length for processing.
-        fixedLengthDuration: number
-    end
-
-    -- Configuration settings for processing audio content in multimodal knowledge bases.
-    record AudioConfiguration
-        -- Configuration for segmenting audio content during processing.
-        segmentationConfiguration: AudioSegmentationConfiguration
-    end
-
-    enum EmbeddingDataType
-        "FLOAT32"
-        "BINARY"
-    end
-
-    -- Configuration for segmenting video content during multimodal knowledge base ingestion. Determines how video files are divided into chunks for processing.
-    record VideoSegmentationConfiguration
-        -- The duration in seconds for each video segment. Video files will be divided into chunks of this length for processing.
-        fixedLengthDuration: number
-    end
-
-    -- Configuration settings for processing video content in multimodal knowledge bases.
-    record VideoConfiguration
-        -- Configuration for segmenting video content during processing.
-        segmentationConfiguration: VideoSegmentationConfiguration
-    end
-
-    -- The vector configuration details for the Bedrock embeddings model.
-    record BedrockEmbeddingModelConfiguration
-        -- The dimensions details for the vector configuration used on the Bedrock embeddings model.
-        dimensions: number
-        -- The data type for the vectors when using a model to convert text into vector embeddings. The model must support the specified data type for vector embeddings. Floating-point (float32) is the default data type, and is supported by most models for vector embeddings. See Supported embeddings models for information on the available models and their vector data types.
-        embeddingDataType: string
-        -- Configuration settings for processing audio content in multimodal knowledge bases.
-        audio: {AudioConfiguration}
-        -- Configuration settings for processing video content in multimodal knowledge bases.
-        video: {VideoConfiguration}
-    end
-
-    -- The configuration details for the embeddings model.
-    record EmbeddingModelConfiguration
-        -- The vector configuration details on the Bedrock embeddings model.
-        bedrockEmbeddingModelConfiguration: BedrockEmbeddingModelConfiguration
+        "MANAGED"
     end
 
     enum SupplementalDataStorageLocationType
         "S3"
     end
 
-    -- Contains information about a storage location for images extracted from multimodal documents in your data source.
+    -- Contains information about a storage location for multimedia content (images, audio, and video) extracted from multimodal documents in your data source.
     record SupplementalDataStorageLocation
-        -- Contains information about the Amazon S3 location for the extracted images.
+        -- Contains information about the Amazon S3 location for the extracted multimedia content.
         s3Location: S3Location
     end
 
-    -- Specifies configurations for the storage location of the images extracted from multimodal documents in your data source. These images can be retrieved and returned to the end user.
+    -- Specifies configurations for the storage location of multimedia content (images, audio, and video) extracted from multimodal documents in your data source. This content can be retrieved and returned to the end user with timestamp references for audio and video segments.
     record SupplementalDataStorageConfiguration
-        -- A list of objects specifying storage locations for images extracted from multimodal documents in your data source.
+        -- A list of objects specifying storage locations for multimedia content (images, audio, and video) extracted from multimodal documents in your data source.
         storageLocations: {SupplementalDataStorageLocation}
     end
 
@@ -3364,6 +3486,7 @@ local record M
     record KnowledgeBaseConfiguration
         -- Contains details about the model that's used to convert the data source into vector embeddings.
         vectorKnowledgeBaseConfiguration: VectorKnowledgeBaseConfiguration
+        managedKnowledgeBaseConfiguration: ManagedKnowledgeBaseConfiguration
         -- Settings for an Amazon Kendra knowledge base.
         kendraKnowledgeBaseConfiguration: KendraKnowledgeBaseConfiguration
         -- Specifies configurations for a knowledge base connected to an SQL database.
@@ -3593,6 +3716,7 @@ local record M
         "UPDATING"
         "FAILED"
         "DELETE_UNSUCCESSFUL"
+        "UPDATE_UNSUCCESSFUL"
     end
 
     -- Contains information about a knowledge base.
@@ -3986,6 +4110,22 @@ local record M
         createdAt: number
         -- The time at which the prompt was last updated.
         updatedAt: number
+    end
+
+    record PutResourcePolicyInput
+        -- The Amazon Resource Name (ARN) of the knowledge base to attach the resource policy to.
+        resourceArn: string
+        -- The JSON-formatted resource policy to associate with the knowledge base.
+        policy: string
+        -- The expected revision identifier of the resource policy. Use this to prevent conflicts when multiple users update the same policy concurrently. Specify the revisionId from the most recent GetResourcePolicy or PutResourcePolicy response.
+        expectedRevisionId: string
+    end
+
+    record PutResourcePolicyOutput
+        -- The ARN of the knowledge base that the resource policy was attached to.
+        resourceArn: string
+        -- The revision identifier of the resource policy. Use this value in the expectedRevisionId field of a subsequent PutResourcePolicy or DeleteResourcePolicy request.
+        revisionId: string
     end
 
     record ListTagsForResourceInput

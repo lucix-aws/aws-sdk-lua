@@ -256,6 +256,60 @@ function M.items_list_pentests(client, input)
     })
 end
 
+--- Returns a page iterator for listPrivateConnections.
+function M.pages_list_private_connections(client, input)
+    return paginator.pages(client, "listPrivateConnections", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "privateConnections",
+    })
+end
+
+--- Returns an item iterator for listPrivateConnections.
+function M.items_list_private_connections(client, input)
+    return paginator.items(client, "listPrivateConnections", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "privateConnections",
+    })
+end
+
+--- Returns a page iterator for listSecurityRequirementPacks.
+function M.pages_list_security_requirement_packs(client, input)
+    return paginator.pages(client, "listSecurityRequirementPacks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityRequirementPackSummaries",
+    })
+end
+
+--- Returns an item iterator for listSecurityRequirementPacks.
+function M.items_list_security_requirement_packs(client, input)
+    return paginator.items(client, "listSecurityRequirementPacks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityRequirementPackSummaries",
+    })
+end
+
+--- Returns a page iterator for listSecurityRequirements.
+function M.pages_list_security_requirements(client, input)
+    return paginator.pages(client, "listSecurityRequirements", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityRequirementSummaries",
+    })
+end
+
+--- Returns an item iterator for listSecurityRequirements.
+function M.items_list_security_requirements(client, input)
+    return paginator.items(client, "listSecurityRequirements", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "securityRequirementSummaries",
+    })
+end
+
 --- Returns a page iterator for listTargetDomains.
 function M.pages_list_target_domains(client, input)
     return paginator.pages(client, "listTargetDomains", input, {
@@ -271,6 +325,78 @@ function M.items_list_target_domains(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "targetDomainSummaries",
+    })
+end
+
+--- Returns a page iterator for listThreatModelJobTasks.
+function M.pages_list_threat_model_job_tasks(client, input)
+    return paginator.pages(client, "listThreatModelJobTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threatModelJobTaskSummaries",
+    })
+end
+
+--- Returns an item iterator for listThreatModelJobTasks.
+function M.items_list_threat_model_job_tasks(client, input)
+    return paginator.items(client, "listThreatModelJobTasks", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threatModelJobTaskSummaries",
+    })
+end
+
+--- Returns a page iterator for listThreatModelJobs.
+function M.pages_list_threat_model_jobs(client, input)
+    return paginator.pages(client, "listThreatModelJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threatModelJobSummaries",
+    })
+end
+
+--- Returns an item iterator for listThreatModelJobs.
+function M.items_list_threat_model_jobs(client, input)
+    return paginator.items(client, "listThreatModelJobs", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threatModelJobSummaries",
+    })
+end
+
+--- Returns a page iterator for listThreatModels.
+function M.pages_list_threat_models(client, input)
+    return paginator.pages(client, "listThreatModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threatModelSummaries",
+    })
+end
+
+--- Returns an item iterator for listThreatModels.
+function M.items_list_threat_models(client, input)
+    return paginator.items(client, "listThreatModels", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threatModelSummaries",
+    })
+end
+
+--- Returns a page iterator for listThreats.
+function M.pages_list_threats(client, input)
+    return paginator.pages(client, "listThreats", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threats",
+    })
+end
+
+--- Returns an item iterator for listThreats.
+function M.items_list_threats(client, input)
+    return paginator.items(client, "listThreats", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "threats",
     })
 end
 

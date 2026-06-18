@@ -1435,7 +1435,7 @@ local record M
         serviceDeploymentArn: string
     end
 
-    -- The service deploy ARN that you specified in the StopServiceDeployment doesn't exist. You can use ListServiceDeployments to retrieve the service deployment ARNs.
+    -- The service deploy ARN that you specified in the ContinueServiceDeployment doesn't exist. You can use ListServiceDeployments to retrieve the service deployment ARNs.
     record ServiceDeploymentNotFoundException
         -- Message that describes the cause of the exception.
         message: string
@@ -1754,7 +1754,7 @@ local record M
     end
 
     record ListDaemonsInput
-        -- The Amazon Resource Name (ARN) of the cluster to filter daemons by. If not specified, daemons from all clusters are returned.
+        -- The Amazon Resource Name (ARN) of the cluster to filter daemons by. If you do not specify a cluster, the default cluster is assumed.
         clusterArn: string
         -- The Amazon Resource Names (ARNs) of the capacity providers to filter daemons by. Only daemons associated with the specified capacity providers are returned.
         capacityProviderArns: {string}
@@ -2179,9 +2179,9 @@ local record M
         deleteRequestedAt: number
         -- The principal that registered the daemon task definition.
         registeredBy: string
-        -- The process namespace mode for the daemon. A value of shared means the daemon shares the PID namespace with co-located tasks, giving it visibility into application processes. A value of none means the daemon has its own isolated PID namespace.
+        -- The PID namespace mode for the daemon. The valid values are none and shared. The default is none. If none is specified or no value is provided, the daemon runs with its own PID namespace, isolated from other tasks. If shared is specified, the daemon joins the host PID namespace, making it accessible to non-daemon tasks that use pidMode: "host" or other daemons that use pidMode: "shared".
         pidMode: string
-        -- The IPC namespace mode for the daemon. A value of shared means the daemon shares the IPC namespace with co-located tasks, allowing communication through POSIX shared memory, semaphores, and message queues. A value of none means the daemon has its own isolated IPC namespace.
+        -- The IPC namespace mode for the daemon. The valid values are none and shared. The default is none. If none is specified or no value is provided, the daemon runs with its own IPC namespace, isolated from other tasks. If shared is specified, the daemon joins the host IPC namespace, making it accessible to non-daemon tasks that use ipcMode: "host" or other daemons that use ipcMode: "shared".
         ipcMode: string
     end
 
@@ -2260,9 +2260,9 @@ local record M
         volumes: {DaemonVolume}
         -- The metadata that you apply to the daemon task definition to help you categorize and organize them. Each tag consists of a key and an optional value. You define both of them. The following basic restrictions apply to tags: Maximum number of tags per resource - 50 For each resource, each tag key must be unique, and each tag key can have only one value. Maximum key length - 128 Unicode characters in UTF-8 Maximum value length - 256 Unicode characters in UTF-8 If your tagging schema is used across multiple services and resources, remember that other services may have restrictions on allowed characters. Generally allowed characters are: letters, numbers, and spaces representable in UTF-8, and the following characters: + - = . _ : / @. Tag keys and values are case-sensitive. Do not use aws:, AWS:, or any upper or lowercase combination of such as a prefix for either keys or values as it is reserved for Amazon Web Services use. You cannot edit or delete tag keys or values with this prefix. Tags with this prefix do not count against your tags per resource limit.
         tags: {Tag}
-        -- The process namespace mode for the daemon. When set to shared, the daemon shares the PID namespace with co-located tasks on the same container instance, giving the daemon visibility into application processes. When set to none, the daemon gets its own isolated PID namespace. The default is none.
+        -- The PID namespace mode for the daemon. The valid values are none and shared. The default is none. If none is specified or no value is provided, the daemon runs with its own PID namespace, isolated from other tasks. If shared is specified, the daemon joins the host PID namespace, making it accessible to non-daemon tasks that use pidMode: "host" or other daemons that use pidMode: "shared".
         pidMode: string
-        -- The IPC namespace mode for the daemon. When set to shared, the daemon shares the IPC namespace with co-located tasks on the same container instance, allowing communication through POSIX shared memory, semaphores, and message queues. When set to none, the daemon gets its own isolated IPC namespace. The default is none.
+        -- The IPC namespace mode for the daemon. The valid values are none and shared. The default is none. If none is specified or no value is provided, the daemon runs with its own IPC namespace, isolated from other tasks. If shared is specified, the daemon joins the host IPC namespace, making it accessible to non-daemon tasks that use ipcMode: "host" or other daemons that use ipcMode: "shared".
         ipcMode: string
     end
 
@@ -2939,23 +2939,23 @@ local record M
 
     -- The timeout configuration for a deployment lifecycle hook. This determines how long Amazon ECS waits for the hook to complete before taking the specified timeout action.
     record DeploymentLifecycleHookTimeoutConfiguration
-        -- The number of minutes Amazon ECS waits for the lifecycle hook to complete before taking the timeout action.
+        -- The number of minutes Amazon ECS waits for the lifecycle hook to complete before taking the timeout action. Default: 1440 (24 hours)
         timeoutInMinutes: number
-        -- The action Amazon ECS takes when the lifecycle hook times out. Valid values are: CONTINUE - Proceeds the deployment to the next lifecycle stage. ROLLBACK - Rolls back the deployment to the previous service revision.
+        -- The action Amazon ECS takes when the lifecycle hook times out. Valid values are: CONTINUE - Proceeds the deployment to the next lifecycle stage. ROLLBACK - Rolls back the deployment to the previous service revision. Default: ROLLBACK
         action: string
     end
 
-    -- A deployment lifecycle hook runs custom logic at specific stages of the deployment process. Currently, you can use Lambda functions as hook targets. For more information, see Lifecycle hooks for Amazon ECS service deployments in the Amazon Elastic Container Service Developer Guide.
+    -- A deployment lifecycle hook runs custom logic or pauses the deployment at specific stages of the deployment process. You can use Lambda functions or pause hooks as hook targets. For more information, see Lifecycle hooks for Amazon ECS service deployments in the Amazon Elastic Container Service Developer Guide.
     record DeploymentLifecycleHook
         -- The type of action the lifecycle hook performs. Valid values are: AWS_LAMBDA - Invokes a Lambda function at the specified lifecycle stage. This is the default value. PAUSE - Pauses the deployment at the specified lifecycle stage until you call ContinueServiceDeployment to continue or roll back. This field is optional. If not specified, the default value is AWS_LAMBDA.
         targetType: string
-        -- The Amazon Resource Name (ARN) of the hook target. Currently, only Lambda function ARNs are supported. You must provide this parameter when configuring a deployment lifecycle hook.
+        -- The Amazon Resource Name (ARN) of the hook target. For AWS_LAMBDA hooks, this is the Lambda function ARN. This field is not applicable for PAUSE hooks. You must provide this parameter when configuring an AWS_LAMBDA lifecycle hook.
         hookTargetArn: string
         -- The Amazon Resource Name (ARN) of the IAM role that grants Amazon ECS permission to call Lambda functions on your behalf. For more information, see Permissions required for Lambda functions in Amazon ECS blue/green deployments in the Amazon Elastic Container Service Developer Guide.
         roleArn: string
-        -- The lifecycle stages at which to run the hook. Choose from these valid values: RECONCILE_SERVICE The reconciliation stage that only happens when you start a new service deployment with more than 1 service revision in an ACTIVE state. You can use a lifecycle hook for this stage. PRE_SCALE_UP The green service revision has not started. The blue service revision is handling 100% of the production traffic. There is no test traffic. You can use a lifecycle hook for this stage. POST_SCALE_UP The green service revision has started. The blue service revision is handling 100% of the production traffic. There is no test traffic. You can use a lifecycle hook for this stage. TEST_TRAFFIC_SHIFT The blue and green service revisions are running. The blue service revision handles 100% of the production traffic. The green service revision is migrating from 0% to 100% of test traffic. You can use a lifecycle hook for this stage. POST_TEST_TRAFFIC_SHIFT The test traffic shift is complete. The green service revision handles 100% of the test traffic. You can use a lifecycle hook for this stage. PRODUCTION_TRAFFIC_SHIFT Production traffic is shifting to the green service revision. The green service revision is migrating from 0% to 100% of production traffic. You can use a lifecycle hook for this stage. POST_PRODUCTION_TRAFFIC_SHIFT The production traffic shift is complete. You can use a lifecycle hook for this stage. You must provide this parameter when configuring a deployment lifecycle hook.
+        -- The lifecycle stages at which to run the hook. Choose from these valid values: RECONCILE_SERVICE The reconciliation stage that only happens when you start a new service deployment with more than 1 service revision in an ACTIVE state. You can use a lifecycle hook for this stage. PRE_SCALE_UP The green service revision has not started. The blue service revision is handling 100% of the production traffic. There is no test traffic. You can use a lifecycle hook for this stage. POST_SCALE_UP The green service revision has started. The blue service revision is handling 100% of the production traffic. There is no test traffic. You can use a lifecycle hook for this stage. TEST_TRAFFIC_SHIFT The blue and green service revisions are running. The blue service revision handles 100% of the production traffic. The green service revision is migrating from 0% to 100% of test traffic. You can use a lifecycle hook for this stage. POST_TEST_TRAFFIC_SHIFT The test traffic shift is complete. The green service revision handles 100% of the test traffic. You can use a lifecycle hook for this stage. PRE_PRODUCTION_TRAFFIC_SHIFT Occurs before production traffic shift. For linear and canary deployments, this stage is invoked before every traffic shift step. You can use a lifecycle hook for this stage. PRODUCTION_TRAFFIC_SHIFT Production traffic is shifting to the green service revision. The green service revision is migrating from 0% to 100% of production traffic. For linear and canary deployments, this stage is invoked at every traffic shift step. You can use a lifecycle hook for this stage. POST_PRODUCTION_TRAFFIC_SHIFT The production traffic shift is complete. You can use a lifecycle hook for this stage. PAUSE hooks cannot be configured at TEST_TRAFFIC_SHIFT or PRODUCTION_TRAFFIC_SHIFT stages. These stages are only valid for AWS_LAMBDA hooks. You must provide this parameter when configuring a deployment lifecycle hook.
         lifecycleStages: {string}
-        -- Use this field to specify custom parameters that Amazon ECS will pass to your hook target invocations (such as a Lambda function).
+        -- Use this field to specify custom parameters that Amazon ECS passes to your Lambda function on each invocation. This field is not used for PAUSE hooks.
         hookDetails: any
         -- The timeout configuration for the lifecycle hook. This specifies how long Amazon ECS waits before taking the timeout action if the hook is not resolved.
         timeoutConfiguration: DeploymentLifecycleHookTimeoutConfiguration
@@ -2990,7 +2990,7 @@ local record M
         strategy: string
         -- The time period when both blue and green service revisions are running simultaneously after the production traffic has shifted. You must provide this parameter when you use the BLUE_GREEN deployment strategy.
         bakeTimeInMinutes: number
-        -- An array of deployment lifecycle hook objects to run custom logic at specific stages of the deployment lifecycle.
+        -- An array of deployment lifecycle hook objects to run custom logic or pause the deployment at specific stages of the deployment lifecycle.
         lifecycleHooks: {DeploymentLifecycleHook}
         -- Configuration for linear deployment strategy. Only valid when the deployment strategy is LINEAR. This configuration enables progressive traffic shifting in equal percentage increments with configurable bake times between each step.
         linearConfiguration: LinearConfiguration
@@ -3014,7 +3014,7 @@ local record M
         targetType: string
         -- The Amazon Resource Name (ARN) of the hook target. For AWS_LAMBDA hooks, this is the Lambda function ARN. For PAUSE hooks, this field is not set.
         targetArn: string
-        -- The status of the lifecycle hook. Valid values depend on the hook type: For AWS_LAMBDA hooks: IN_PROGRESS, SUCCEEDED, FAILED, and TIMED_OUT. For PAUSE hooks: AWAITING_ACTION, SUCCEEDED, FAILED, and TIMED_OUT.
+        -- The status of the lifecycle hook. Valid values include AWAITING_ACTION, IN_PROGRESS, SUCCEEDED, FAILED, and TIMED_OUT.
         status: string
         -- The time when the lifecycle hook times out. If the hook has not been completed by this time, Amazon ECS takes the timeout action.
         expiresAt: number
@@ -3099,7 +3099,7 @@ local record M
         status: string
         -- Information about why the service deployment is in the current status. For example, the circuit breaker detected a failure.
         statusReason: string
-        -- The current lifecycle stage of the deployment. Possible values include: RECONCILE_SERVICE The reconciliation stage that only happens when you start a new service deployment with more than 1 service revision in an ACTIVE state. PRE_SCALE_UP The green service revision has not started. The blue service revision is handling 100% of the production traffic. There is no test traffic. SCALE_UP The stage when the green service revision scales up to 100% and launches new tasks. The green service revision is not serving any traffic at this point. POST_SCALE_UP The green service revision has started. The blue service revision is handling 100% of the production traffic. There is no test traffic. TEST_TRAFFIC_SHIFT The blue and green service revisions are running. The blue service revision handles 100% of the production traffic. The green service revision is migrating from 0% to 100% of test traffic. POST_TEST_TRAFFIC_SHIFT The test traffic shift is complete. The green service revision handles 100% of the test traffic. PRODUCTION_TRAFFIC_SHIFT Production traffic is shifting to the green service revision. The green service revision is migrating from 0% to 100% of production traffic. POST_PRODUCTION_TRAFFIC_SHIFT The production traffic shift is complete. BAKE_TIME The stage when both blue and green service revisions are running simultaneously after the production traffic has shifted. CLEAN_UP The stage when the blue service revision has completely scaled down to 0 running tasks. The green service revision is now the production service revision after this stage.
+        -- The current lifecycle stage of the deployment. Possible values include: RECONCILE_SERVICE The reconciliation stage that only happens when you start a new service deployment with more than 1 service revision in an ACTIVE state. PRE_SCALE_UP The green service revision has not started. The blue service revision is handling 100% of the production traffic. There is no test traffic. SCALE_UP The stage when the green service revision scales up to 100% and launches new tasks. The green service revision is not serving any traffic at this point. POST_SCALE_UP The green service revision has started. The blue service revision is handling 100% of the production traffic. There is no test traffic. TEST_TRAFFIC_SHIFT The blue and green service revisions are running. The blue service revision handles 100% of the production traffic. The green service revision is migrating from 0% to 100% of test traffic. POST_TEST_TRAFFIC_SHIFT The test traffic shift is complete. The green service revision handles 100% of the test traffic. PRE_PRODUCTION_TRAFFIC_SHIFT Occurs before production traffic shift. For linear and canary deployments, this stage is invoked before every traffic shift step. PRODUCTION_TRAFFIC_SHIFT Production traffic is shifting to the green service revision. The green service revision is migrating from 0% to 100% of production traffic. For linear and canary deployments, this stage is invoked at every traffic shift step. POST_PRODUCTION_TRAFFIC_SHIFT The production traffic shift is complete. BAKE_TIME The stage when both blue and green service revisions are running simultaneously after the production traffic has shifted. CLEAN_UP The stage when the blue service revision has completely scaled down to 0 running tasks. The green service revision is now the production service revision after this stage.
         lifecycleStage: string
         -- The details of the lifecycle hooks for the current service deployment.
         lifecycleHookDetails: {DeploymentLifecycleHookDetail}
@@ -3202,6 +3202,8 @@ local record M
         scalingTarget: ExpressGatewayScalingTarget
         -- The metadata that you apply to the Express service to help categorize and organize it. Each tag consists of a key and an optional value. You can apply up to 50 tags to a service.
         tags: {Tag}
+        -- The Amazon Resource Name (ARN) of a task definition to use to create the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers. The task definition must have a container named Main with a single TCP port mapping that includes a container port and port name. The task definition must also have FARGATE compatibility. If you provide a task definition ARN, you cannot also specify primaryContainer, executionRoleArn, taskRoleArn, cpu, or memory.
+        taskDefinitionArn: string
     end
 
     -- The entry point into an Express service.
@@ -3220,6 +3222,8 @@ local record M
         executionRoleArn: string
         -- The ARN of the task role for the service revision.
         taskRoleArn: string
+        -- The ARN of the task definition used by this service revision. This is present for all Express services and reflects the task definition in use, whether managed by Amazon ECS or provided by the customer.
+        taskDefinitionArn: string
         -- The CPU allocation for tasks in this service revision.
         cpu: string
         -- The memory allocation for tasks in this service revision.
@@ -4029,6 +4033,8 @@ local record M
         memory: string
         -- The auto-scaling configuration for the Express service.
         scalingTarget: ExpressGatewayScalingTarget
+        -- The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers. The task definition must have a container named Main with a single TCP port mapping that includes a container port and port name. The task definition must also have FARGATE compatibility. If you provide a task definition ARN, you cannot also specify primaryContainer, taskRoleArn, cpu, or memory.
+        taskDefinitionArn: string
     end
 
     -- An object that describes an Express service to be updated.

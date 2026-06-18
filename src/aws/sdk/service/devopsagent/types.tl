@@ -125,6 +125,34 @@ local record M
         scopes: {string}
     end
 
+    enum RemoteAgentAuthorizationMethod
+        "oauth-client-credentials"
+        "api-key"
+        "bearer-token"
+    end
+
+    -- Details specific to a registered token-based remote A2A agent.
+    record RegisteredRemoteAgentDetails
+        name: string
+        endpoint: string
+        description: string
+        -- The authorization method used by the remote agent.
+        authorizationMethod: string
+        -- If the remote agent uses API key authentication, the header name.
+        apiKeyHeader: string
+    end
+
+    -- Details specific to a registered SigV4-authenticated remote A2A agent.
+    record RegisteredRemoteAgentSigV4Details
+        name: string
+        endpoint: string
+        description: string
+        region: string
+        -- The AWS service name for SigV4 signing.
+        service: string
+        roleArn: string
+    end
+
     -- Details specific to a registered ServiceNow instance.
     record RegisteredServiceNowDetails
         -- The ServiceNow instance url
@@ -167,6 +195,10 @@ local record M
         pagerduty: RegisteredPagerDutyDetails
         -- SigV4-authenticated MCP server-specific service details.
         mcpserversigv4: RegisteredMCPServerSigV4Details
+        -- Remote A2A agent-specific service details (token-based auth).
+        remoteagent: RegisteredRemoteAgentDetails
+        -- Remote A2A agent-specific service details (SigV4 auth).
+        remoteagentsigv4: RegisteredRemoteAgentSigV4Details
     end
 
     -- Details for completing OAuth authorization step.
@@ -197,6 +229,17 @@ local record M
         kmsKeyArn: string
         -- The unique identifier of the AgentSpace
         agentSpaceId: string
+    end
+
+    enum CapabilityType
+        "RELEASE_READINESS_REVIEW"
+        "RELEASE_READINESS_REVIEW_AUTOMATED_TESTING"
+    end
+
+    -- Capability configuration for the AWS DevOps Agent.
+    record CapabilityConfiguration
+        -- Whether the capability is enabled.
+        enabled: boolean
     end
 
     enum MonitorAccountType
@@ -252,6 +295,8 @@ local record M
         ownerType: string
         -- GitHub instance identifier (e.g., github.com or github.enterprise.com)
         instanceIdentifier: string
+        -- Optional role ARN that AIDevOps assumes at runtime for automatic verification testing and VPC connectivity on this association.
+        runtimeRoleArn: string
     end
 
     -- Configuration for GitLab project integration.
@@ -262,6 +307,8 @@ local record M
         projectPath: string
         -- GitLab instance identifier (e.g., gitlab.com or e2e.gamma.dev.us-east-1.gitlab.falco.ai.aws.dev)
         instanceIdentifier: string
+        -- Optional role ARN that AIDevOps assumes at runtime for automatic verification testing and VPC connectivity on this association.
+        runtimeRoleArn: string
     end
 
     -- Configuration for Model Context Protocol (MCP) server integration.
@@ -308,6 +355,14 @@ local record M
         services: {string}
         -- Email to be used in Pagerduty API header
         customerEmail: string
+    end
+
+    -- Configuration for token-based remote A2A agent integration.
+    record RemoteAgentConfiguration
+    end
+
+    -- Configuration for SigV4-authenticated remote A2A agent integration.
+    record RemoteAgentSigV4Configuration
     end
 
     -- Configuration for ServiceNow instance integration.
@@ -396,6 +451,10 @@ local record M
         pagerduty: PagerDutyConfiguration
         -- SigV4-authenticated MCP server integration configuration.
         mcpserversigv4: MCPServerSigV4Configuration
+        -- Remote A2A agent integration configuration (token-based auth).
+        remoteagent: RemoteAgentConfiguration
+        -- Remote A2A agent integration configuration (SigV4 auth).
+        remoteagentsigv4: RemoteAgentSigV4Configuration
     end
 
     -- Input for creating a new service association within an AgentSpace.
@@ -406,6 +465,8 @@ local record M
         serviceId: string
         -- The configuration that directs how AgentSpace interacts with the given service.
         configuration: ServiceConfiguration
+        -- Enabled capabilities for this association.
+        capabilities: {string : CapabilityConfiguration}
     end
 
     enum ValidationStatus
@@ -430,6 +491,8 @@ local record M
         serviceId: string
         -- The configuration that directs how AgentSpace interacts with the given service.
         configuration: ServiceConfiguration
+        -- Enabled capabilities for this association.
+        capabilities: {string : CapabilityConfiguration}
     end
 
     enum WebhookType
@@ -593,6 +656,8 @@ local record M
         associationId: string
         -- The configuration that directs how AgentSpace interacts with the given service. The entire configuration is replaced on update.
         configuration: ServiceConfiguration
+        -- Enabled capabilities for this association.
+        capabilities: {string : CapabilityConfiguration}
     end
 
     -- Output containing the updated association and optional webhook configuration.
@@ -849,18 +914,26 @@ local record M
         metadata: any
     end
 
+    -- Content for an asset sourced from an external URL.
+    record AssetSourceUrlContent
+        -- The source URL to import asset content from
+        url: string
+    end
+
     -- A zip file containing asset files
     record AssetZipContent
         -- The zip file bytes
         zipFile: string
     end
 
-    -- Content for an asset, either a single file or a zip bundle
+    -- Content for an asset: a single file, a zip bundle, or a source URL to import from
     record AssetContent
         -- A single file with path and content
         file: AssetFileContent
         -- A zip file containing multiple files
         zip: AssetZipContent
+        -- A source URL to import asset content from
+        sourceUrl: AssetSourceUrlContent
     end
 
     -- Represents a single file within an asset, including its path, content, version, and timestamps.
@@ -939,7 +1012,7 @@ local record M
         assetType: string
         -- The metadata describing this asset
         metadata: any
-        -- The content for the asset. Provide a single file or a zip bundle.
+        -- The content for the asset. Provide a single file, a zip bundle, or a sourceUrl to import from an external source.
         content: AssetContent
         -- A unique, case-sensitive identifier used for idempotent asset creation
         clientToken: string
@@ -998,6 +1071,8 @@ local record M
     enum TaskType
         "INVESTIGATION"
         "EVALUATION"
+        "RELEASE_READINESS_REVIEW"
+        "RELEASE_TESTING"
     end
 
     -- Request structure for creating a new backlog task
@@ -1220,7 +1295,9 @@ local record M
         schedule: ScheduleCondition
     end
 
+    -- Request structure for creating a new Trigger
     record CreateTriggerInput
+        -- The unique identifier for the agent space where the Trigger will be created
         agentSpaceId: string
         -- The condition that fires the new Trigger
         condition: TriggerCondition
@@ -1234,7 +1311,9 @@ local record M
 
     -- A Trigger fires on a schedule and invokes an agent
     record Trigger
+        -- The unique identifier for this Trigger
         triggerId: string
+        -- The agent space this Trigger belongs to
         agentSpaceId: string
         -- The condition that fires this Trigger
         condition: TriggerCondition
@@ -1248,6 +1327,7 @@ local record M
         updatedAt: number
     end
 
+    -- Response structure for creating a new Trigger
     record CreateTriggerOutput
         -- The Trigger object
         trigger: Trigger
@@ -1317,11 +1397,15 @@ local record M
         status: string
     end
 
+    -- Request structure for deleting a Trigger
     record DeleteTriggerInput
+        -- The unique identifier for the agent space containing the Trigger
         agentSpaceId: string
+        -- The unique identifier of the Trigger to delete
         triggerId: string
     end
 
+    -- Response structure for deleting a Trigger
     record DeleteTriggerOutput
     end
 
@@ -1530,11 +1614,15 @@ local record M
         recommendation: Recommendation
     end
 
+    -- Request structure for getting a Trigger
     record GetTriggerInput
+        -- The unique identifier for the agent space containing the Trigger
         agentSpaceId: string
+        -- The unique identifier of the Trigger to retrieve
         triggerId: string
     end
 
+    -- Response structure for getting a Trigger
     record GetTriggerOutput
         -- The Trigger object
         trigger: Trigger
@@ -1958,7 +2046,9 @@ local record M
         tags: {string : string}
     end
 
+    -- Request structure for listing Triggers in an agent space
     record ListTriggersInput
+        -- The unique identifier for the agent space whose Triggers should be listed
         agentSpaceId: string
         -- Filter results to Triggers in this status
         status: string
@@ -1968,9 +2058,11 @@ local record M
         maxResults: number
     end
 
+    -- Response structure for listing Triggers
     record ListTriggersOutput
         -- The list of Triggers
         items: {Trigger}
+        -- Pagination token to retrieve the next page of results
         nextToken: string
     end
 
@@ -2042,7 +2134,7 @@ local record M
         currentPage: string
         -- The ID of the last message in the conversation
         lastMessage: string
-        -- Response to a UI prompt (not a text conversation message)
+        -- Response to a UI prompt (not a text conversation message). Operator App SDK clients set this to the control-string sentinel `"APPROVAL_ACTION"` when the request is resuming a paused tool call after an operator approval decision; in that case the structured decision context lives on the sibling `approvalAction` member and the chat agent reads from there. Preserved as a String for back-compat: pre-typed-approval clients still encode arbitrary UI-prompt responses as JSON in this field, and the chat agent parses them out during the transition.
         userActionResponse: string
     end
 
@@ -2227,6 +2319,8 @@ local record M
         "mcpserversplunk"
         "azureidentity"
         "mcpserversigv4"
+        "remoteagent"
+        "remoteagentsigv4"
     end
 
     -- Represents a registered service with its configuration and accessible resources.
@@ -2284,6 +2378,8 @@ local record M
         "mcpserversplunk"
         "azureidentity"
         "mcpserversigv4"
+        "remoteagent"
+        "remoteagentsigv4"
     end
 
     -- OAuth client credentials configuration for Dynatrace.
@@ -2508,6 +2604,78 @@ local record M
         authorizationConfig: PagerDutyAuthorizationConfig
     end
 
+    -- API key configuration for remote A2A agent.
+    record RemoteAgentAPIKeyConfig
+        -- User friendly API key name specified by end user.
+        apiKeyName: string
+        -- API key value for authenticating with the service.
+        apiKeyValue: string
+        -- HTTP header name to send the API key in requests to the service.
+        apiKeyHeader: string
+    end
+
+    -- Bearer token configuration for remote A2A agent (RFC 6750).
+    record RemoteAgentBearerTokenConfig
+        -- User friendly bearer token name specified by end user.
+        tokenName: string
+        -- Bearer token value in alphanumeric for authenticating with the service.
+        tokenValue: string
+        -- HTTP header name to send the bearer token in requests to the service. Defaults to 'Authorization' per RFC 6750.
+        authorizationHeader: string
+    end
+
+    -- OAuth client credentials configuration for remote A2A agent.
+    record RemoteAgentOAuthClientCredentialsConfig
+        -- User friendly OAuth client name specified by end user.
+        clientName: string
+        -- OAuth client ID for authenticating with the service.
+        clientId: string
+        -- OAuth token exchange parameters for authenticating with the service.
+        exchangeParameters: {string : string}
+        -- OAuth client secret for authenticating with the service.
+        clientSecret: string
+        -- OAuth token exchange URL.
+        exchangeUrl: string
+        -- OAuth scopes for authentication.
+        scopes: {string}
+    end
+
+    -- Authorization configuration for remote A2A agents with token-based auth (API key, OAuth, bearer token).
+    record RemoteAgentAuthorizationConfig
+        -- Remote agent configuration with API key authentication.
+        apiKey: RemoteAgentAPIKeyConfig
+        -- Remote agent configuration with OAuth client credentials.
+        oAuthClientCredentials: RemoteAgentOAuthClientCredentialsConfig
+        -- Remote agent configuration with Bearer token (RFC 6750).
+        bearerToken: RemoteAgentBearerTokenConfig
+    end
+
+    -- Complete service details for token-based remote A2A agent integration.
+    record RemoteAgentServiceDetails
+        name: string
+        endpoint: string
+        description: string
+        -- Remote agent authorization configuration.
+        authorizationConfig: RemoteAgentAuthorizationConfig
+    end
+
+    -- SigV4 authorization configuration for remote A2A agent.
+    record RemoteAgentSigV4AuthorizationConfig
+        region: string
+        -- The AWS service name for SigV4 signing.
+        service: string
+        roleArn: string
+    end
+
+    -- Complete service details for SigV4-authenticated remote A2A agent integration.
+    record RemoteAgentSigV4ServiceDetails
+        name: string
+        endpoint: string
+        description: string
+        -- Remote agent SigV4 authorization configuration.
+        authorizationConfig: RemoteAgentSigV4AuthorizationConfig
+    end
+
     -- OAuth client credentials configuration for ServiceNow.
     record ServiceNowOAuthClientCredentialsConfig
         -- User friendly OAuth client name specified by end user.
@@ -2560,6 +2728,10 @@ local record M
         azureidentity: RegisteredAzureIdentityDetails
         -- SigV4-authenticated MCP server-specific service details.
         mcpserversigv4: MCPServerSigV4ServiceDetails
+        -- Remote A2A agent service details (token-based auth).
+        remoteagent: RemoteAgentServiceDetails
+        -- Remote A2A agent service details (SigV4 auth).
+        remoteagentsigv4: RemoteAgentSigV4ServiceDetails
     end
 
     -- Input for registering a new service with the platform.
@@ -2621,7 +2793,7 @@ local record M
         assetId: string
         -- Metadata fields to update. Only the fields present in this document are updated. Omitted fields retain their current values.
         metadata: any
-        -- Optional content to set or replace. A single file adds or replaces one file; a zip replaces all files.
+        -- Optional content update. A single file adds or replaces one file; a zip replaces all files; a sourceUrl re-syncs from the original source.
         content: AssetContent
         -- A unique, case-sensitive identifier used for idempotent asset update
         clientToken: string
@@ -2717,8 +2889,11 @@ local record M
         recommendation: Recommendation
     end
 
+    -- Request structure for updating a Trigger
     record UpdateTriggerInput
+        -- The unique identifier for the agent space containing the Trigger
         agentSpaceId: string
+        -- The unique identifier of the Trigger to update
         triggerId: string
         -- The new status for the Trigger
         status: string
@@ -2726,6 +2901,7 @@ local record M
         clientToken: string
     end
 
+    -- Response structure for updating a Trigger
     record UpdateTriggerOutput
         -- The Trigger object
         trigger: Trigger

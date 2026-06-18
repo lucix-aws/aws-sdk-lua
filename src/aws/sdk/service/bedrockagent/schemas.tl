@@ -9,9 +9,9 @@ local _N = "com.amazonaws.bedrockagent"
 
 local M: {string:any} = {}
 
-M.FlowValidations = schema.new({ type = "list", list_member = M.FlowValidation })
-
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.FlowValidations = schema.new({ type = "list", list_member = M.FlowValidation })
 
 M.ActionGroupSignatureParams = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -96,6 +96,8 @@ M.SharePointSiteUrls = schema.new({ type = "list", list_member = prelude.String 
 M.HierarchicalChunkingLevelConfigurations = schema.new({ type = "list", list_member = M.HierarchicalChunkingLevelConfiguration })
 
 M.MetadataAttributes = schema.new({ type = "list", list_member = M.MetadataAttribute })
+
+M.DocumentAccessControlList = schema.new({ type = "list", list_member = M.DocumentAccessControlEntry })
 
 M.SupplementalDataStorageLocations = schema.new({ type = "list", list_member = M.SupplementalDataStorageLocation })
 
@@ -3511,6 +3513,134 @@ M.ConfluenceDataSourceConfiguration = schema.new({
     },
 })
 
+M.DeletionProtectionConfiguration = schema.new({
+    id = id.from(_N, "DeletionProtectionConfiguration"),
+    type = "structure",
+    members = {
+        deletionProtectionStatus = schema.new({
+            id = id.from(_N, "DeletionProtectionConfiguration", "deletionProtectionStatus"),
+            type = "string",
+            name = "deletionProtectionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deletionProtectionThreshold = schema.new({
+            id = id.from(_N, "DeletionProtectionConfiguration", "deletionProtectionThreshold"),
+            type = "integer",
+            name = "deletionProtectionThreshold",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 15 },
+            },
+        }),
+    },
+})
+
+M.AudioExtractionConfiguration = schema.new({
+    id = id.from(_N, "AudioExtractionConfiguration"),
+    type = "structure",
+    members = {
+        audioExtractionStatus = schema.new({
+            id = id.from(_N, "AudioExtractionConfiguration", "audioExtractionStatus"),
+            type = "string",
+            name = "audioExtractionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ImageExtractionConfiguration = schema.new({
+    id = id.from(_N, "ImageExtractionConfiguration"),
+    type = "structure",
+    members = {
+        imageExtractionStatus = schema.new({
+            id = id.from(_N, "ImageExtractionConfiguration", "imageExtractionStatus"),
+            type = "string",
+            name = "imageExtractionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VideoExtractionConfiguration = schema.new({
+    id = id.from(_N, "VideoExtractionConfiguration"),
+    type = "structure",
+    members = {
+        videoExtractionStatus = schema.new({
+            id = id.from(_N, "VideoExtractionConfiguration", "videoExtractionStatus"),
+            type = "string",
+            name = "videoExtractionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MediaExtractionConfiguration = schema.new({
+    id = id.from(_N, "MediaExtractionConfiguration"),
+    type = "structure",
+    members = {
+        imageExtractionConfiguration = schema.new({
+            id = id.from(_N, "MediaExtractionConfiguration", "imageExtractionConfiguration"),
+            type = "structure",
+            name = "imageExtractionConfiguration",
+            target_id = id.from(_N, "ImageExtractionConfiguration"),
+            target = M.ImageExtractionConfiguration,
+        }),
+        audioExtractionConfiguration = schema.new({
+            id = id.from(_N, "MediaExtractionConfiguration", "audioExtractionConfiguration"),
+            type = "structure",
+            name = "audioExtractionConfiguration",
+            target_id = id.from(_N, "AudioExtractionConfiguration"),
+            target = M.AudioExtractionConfiguration,
+        }),
+        videoExtractionConfiguration = schema.new({
+            id = id.from(_N, "MediaExtractionConfiguration", "videoExtractionConfiguration"),
+            type = "structure",
+            name = "videoExtractionConfiguration",
+            target_id = id.from(_N, "VideoExtractionConfiguration"),
+            target = M.VideoExtractionConfiguration,
+        }),
+    },
+})
+
+M.ManagedKnowledgeBaseConnectorConfiguration = schema.new({
+    id = id.from(_N, "ManagedKnowledgeBaseConnectorConfiguration"),
+    type = "structure",
+    members = {
+        deletionProtectionConfiguration = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConnectorConfiguration", "deletionProtectionConfiguration"),
+            type = "structure",
+            name = "deletionProtectionConfiguration",
+            target_id = id.from(_N, "DeletionProtectionConfiguration"),
+            target = M.DeletionProtectionConfiguration,
+        }),
+        mediaExtractionConfiguration = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConnectorConfiguration", "mediaExtractionConfiguration"),
+            type = "structure",
+            name = "mediaExtractionConfiguration",
+            target_id = id.from(_N, "MediaExtractionConfiguration"),
+            target = M.MediaExtractionConfiguration,
+        }),
+        connectorParameters = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConnectorConfiguration", "connectorParameters"),
+            type = "document",
+            name = "connectorParameters",
+            target_id = prelude.Document.id,
+        }),
+    },
+})
+
 M.S3DataSourceConfiguration = schema.new({
     id = id.from(_N, "S3DataSourceConfiguration"),
     type = "structure",
@@ -3854,6 +3984,13 @@ M.DataSourceConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        managedKnowledgeBaseConnectorConfiguration = schema.new({
+            id = id.from(_N, "DataSourceConfiguration", "managedKnowledgeBaseConnectorConfiguration"),
+            type = "structure",
+            name = "managedKnowledgeBaseConnectorConfiguration",
+            target_id = id.from(_N, "ManagedKnowledgeBaseConnectorConfiguration"),
+            target = M.ManagedKnowledgeBaseConnectorConfiguration,
         }),
         s3Configuration = schema.new({
             id = id.from(_N, "DataSourceConfiguration", "s3Configuration"),
@@ -4855,6 +4992,54 @@ M.UpdateDataSourceOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.DeleteResourcePolicyInput = schema.new({
+    id = id.from(_N, "DeleteResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        expectedRevisionId = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyInput", "expectedRevisionId"),
+            type = "string",
+            name = "expectedRevisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "expectedRevisionId" },
+            },
+        }),
+    },
+})
+
+M.DeleteResourcePolicyOutput = schema.new({
+    id = id.from(_N, "DeleteResourcePolicyResponse"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyOutput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "DeleteResourcePolicyOutput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8136,6 +8321,61 @@ M.PrepareFlowOutput = schema.new({
     },
 })
 
+M.GetResourcePolicyInput = schema.new({
+    id = id.from(_N, "GetResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "GetResourcePolicyInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetResourcePolicyOutput = schema.new({
+    id = id.from(_N, "GetResourcePolicyResponse"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.MEDIA_TYPE] = { value = "application/json" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "GetResourcePolicyOutput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetIngestionJobInput = schema.new({
     id = id.from(_N, "GetIngestionJobRequest"),
     type = "structure",
@@ -8235,6 +8475,15 @@ M.IngestionJobStatistics = schema.new({
             id = id.from(_N, "IngestionJobStatistics", "numberOfDocumentsFailed"),
             type = "long",
             name = "numberOfDocumentsFailed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        numberOfDocumentsSkipped = schema.new({
+            id = id.from(_N, "IngestionJobStatistics", "numberOfDocumentsSkipped"),
+            type = "long",
+            name = "numberOfDocumentsSkipped",
             target_id = prelude.Long.id,
             traits = {
                 [traits.DEFAULT] = { value = 0 },
@@ -9076,6 +9325,40 @@ M.DocumentContent = schema.new({
     },
 })
 
+M.DocumentAccessControlEntry = schema.new({
+    id = id.from(_N, "DocumentAccessControlEntry"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "DocumentAccessControlEntry", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "DocumentAccessControlEntry", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        access = schema.new({
+            id = id.from(_N, "DocumentAccessControlEntry", "access"),
+            type = "string",
+            name = "access",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.MetadataAttributeValue = schema.new({
     id = id.from(_N, "MetadataAttributeValue"),
     type = "structure",
@@ -9169,6 +9452,13 @@ M.DocumentMetadata = schema.new({
             name = "s3Location",
             target_id = id.from(_N, "CustomS3Location"),
             target = M.CustomS3Location,
+        }),
+        accessControlList = schema.new({
+            id = id.from(_N, "DocumentMetadata", "accessControlList"),
+            type = "list",
+            name = "accessControlList",
+            target_id = prelude.Document.id,
+            list_member = M.DocumentAccessControlEntry,
         }),
     },
 })
@@ -9399,6 +9689,152 @@ M.KendraKnowledgeBaseConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.AudioSegmentationConfiguration = schema.new({
+    id = id.from(_N, "AudioSegmentationConfiguration"),
+    type = "structure",
+    members = {
+        fixedLengthDuration = schema.new({
+            id = id.from(_N, "AudioSegmentationConfiguration", "fixedLengthDuration"),
+            type = "integer",
+            name = "fixedLengthDuration",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AudioConfiguration = schema.new({
+    id = id.from(_N, "AudioConfiguration"),
+    type = "structure",
+    members = {
+        segmentationConfiguration = schema.new({
+            id = id.from(_N, "AudioConfiguration", "segmentationConfiguration"),
+            type = "structure",
+            name = "segmentationConfiguration",
+            target_id = id.from(_N, "AudioSegmentationConfiguration"),
+            target = M.AudioSegmentationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VideoSegmentationConfiguration = schema.new({
+    id = id.from(_N, "VideoSegmentationConfiguration"),
+    type = "structure",
+    members = {
+        fixedLengthDuration = schema.new({
+            id = id.from(_N, "VideoSegmentationConfiguration", "fixedLengthDuration"),
+            type = "integer",
+            name = "fixedLengthDuration",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VideoConfiguration = schema.new({
+    id = id.from(_N, "VideoConfiguration"),
+    type = "structure",
+    members = {
+        segmentationConfiguration = schema.new({
+            id = id.from(_N, "VideoConfiguration", "segmentationConfiguration"),
+            type = "structure",
+            name = "segmentationConfiguration",
+            target_id = id.from(_N, "VideoSegmentationConfiguration"),
+            target = M.VideoSegmentationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BedrockEmbeddingModelConfiguration = schema.new({
+    id = id.from(_N, "BedrockEmbeddingModelConfiguration"),
+    type = "structure",
+    members = {
+        dimensions = schema.new({
+            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "dimensions"),
+            type = "integer",
+            name = "dimensions",
+            target_id = prelude.Integer.id,
+        }),
+        embeddingDataType = schema.new({
+            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "embeddingDataType"),
+            type = "string",
+            name = "embeddingDataType",
+            target_id = prelude.String.id,
+        }),
+        audio = schema.new({
+            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "audio"),
+            type = "list",
+            name = "audio",
+            target_id = prelude.Document.id,
+            list_member = M.AudioConfiguration,
+        }),
+        video = schema.new({
+            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "video"),
+            type = "list",
+            name = "video",
+            target_id = prelude.Document.id,
+            list_member = M.VideoConfiguration,
+        }),
+    },
+})
+
+M.EmbeddingModelConfiguration = schema.new({
+    id = id.from(_N, "EmbeddingModelConfiguration"),
+    type = "structure",
+    members = {
+        bedrockEmbeddingModelConfiguration = schema.new({
+            id = id.from(_N, "EmbeddingModelConfiguration", "bedrockEmbeddingModelConfiguration"),
+            type = "structure",
+            name = "bedrockEmbeddingModelConfiguration",
+            target_id = id.from(_N, "BedrockEmbeddingModelConfiguration"),
+            target = M.BedrockEmbeddingModelConfiguration,
+        }),
+    },
+})
+
+M.ManagedKnowledgeBaseConfiguration = schema.new({
+    id = id.from(_N, "ManagedKnowledgeBaseConfiguration"),
+    type = "structure",
+    members = {
+        embeddingModelType = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConfiguration", "embeddingModelType"),
+            type = "string",
+            name = "embeddingModelType",
+            target_id = prelude.String.id,
+        }),
+        embeddingModelArn = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConfiguration", "embeddingModelArn"),
+            type = "string",
+            name = "embeddingModelArn",
+            target_id = prelude.String.id,
+        }),
+        embeddingModelConfiguration = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConfiguration", "embeddingModelConfiguration"),
+            type = "structure",
+            name = "embeddingModelConfiguration",
+            target_id = id.from(_N, "EmbeddingModelConfiguration"),
+            target = M.EmbeddingModelConfiguration,
+        }),
+        serverSideEncryptionConfiguration = schema.new({
+            id = id.from(_N, "ManagedKnowledgeBaseConfiguration", "serverSideEncryptionConfiguration"),
+            type = "structure",
+            name = "serverSideEncryptionConfiguration",
+            target_id = id.from(_N, "ServerSideEncryptionConfiguration"),
+            target = M.ServerSideEncryptionConfiguration,
         }),
     },
 })
@@ -9781,119 +10217,6 @@ M.SqlKnowledgeBaseConfiguration = schema.new({
     },
 })
 
-M.AudioSegmentationConfiguration = schema.new({
-    id = id.from(_N, "AudioSegmentationConfiguration"),
-    type = "structure",
-    members = {
-        fixedLengthDuration = schema.new({
-            id = id.from(_N, "AudioSegmentationConfiguration", "fixedLengthDuration"),
-            type = "integer",
-            name = "fixedLengthDuration",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.AudioConfiguration = schema.new({
-    id = id.from(_N, "AudioConfiguration"),
-    type = "structure",
-    members = {
-        segmentationConfiguration = schema.new({
-            id = id.from(_N, "AudioConfiguration", "segmentationConfiguration"),
-            type = "structure",
-            name = "segmentationConfiguration",
-            target_id = id.from(_N, "AudioSegmentationConfiguration"),
-            target = M.AudioSegmentationConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.VideoSegmentationConfiguration = schema.new({
-    id = id.from(_N, "VideoSegmentationConfiguration"),
-    type = "structure",
-    members = {
-        fixedLengthDuration = schema.new({
-            id = id.from(_N, "VideoSegmentationConfiguration", "fixedLengthDuration"),
-            type = "integer",
-            name = "fixedLengthDuration",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.VideoConfiguration = schema.new({
-    id = id.from(_N, "VideoConfiguration"),
-    type = "structure",
-    members = {
-        segmentationConfiguration = schema.new({
-            id = id.from(_N, "VideoConfiguration", "segmentationConfiguration"),
-            type = "structure",
-            name = "segmentationConfiguration",
-            target_id = id.from(_N, "VideoSegmentationConfiguration"),
-            target = M.VideoSegmentationConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.BedrockEmbeddingModelConfiguration = schema.new({
-    id = id.from(_N, "BedrockEmbeddingModelConfiguration"),
-    type = "structure",
-    members = {
-        dimensions = schema.new({
-            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "dimensions"),
-            type = "integer",
-            name = "dimensions",
-            target_id = prelude.Integer.id,
-        }),
-        embeddingDataType = schema.new({
-            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "embeddingDataType"),
-            type = "string",
-            name = "embeddingDataType",
-            target_id = prelude.String.id,
-        }),
-        audio = schema.new({
-            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "audio"),
-            type = "list",
-            name = "audio",
-            target_id = prelude.Document.id,
-            list_member = M.AudioConfiguration,
-        }),
-        video = schema.new({
-            id = id.from(_N, "BedrockEmbeddingModelConfiguration", "video"),
-            type = "list",
-            name = "video",
-            target_id = prelude.Document.id,
-            list_member = M.VideoConfiguration,
-        }),
-    },
-})
-
-M.EmbeddingModelConfiguration = schema.new({
-    id = id.from(_N, "EmbeddingModelConfiguration"),
-    type = "structure",
-    members = {
-        bedrockEmbeddingModelConfiguration = schema.new({
-            id = id.from(_N, "EmbeddingModelConfiguration", "bedrockEmbeddingModelConfiguration"),
-            type = "structure",
-            name = "bedrockEmbeddingModelConfiguration",
-            target_id = id.from(_N, "BedrockEmbeddingModelConfiguration"),
-            target = M.BedrockEmbeddingModelConfiguration,
-        }),
-    },
-})
-
 M.SupplementalDataStorageLocation = schema.new({
     id = id.from(_N, "SupplementalDataStorageLocation"),
     type = "structure",
@@ -9983,6 +10306,13 @@ M.KnowledgeBaseConfiguration = schema.new({
             name = "vectorKnowledgeBaseConfiguration",
             target_id = id.from(_N, "VectorKnowledgeBaseConfiguration"),
             target = M.VectorKnowledgeBaseConfiguration,
+        }),
+        managedKnowledgeBaseConfiguration = schema.new({
+            id = id.from(_N, "KnowledgeBaseConfiguration", "managedKnowledgeBaseConfiguration"),
+            type = "structure",
+            name = "managedKnowledgeBaseConfiguration",
+            target_id = id.from(_N, "ManagedKnowledgeBaseConfiguration"),
+            target = M.ManagedKnowledgeBaseConfiguration,
         }),
         kendraKnowledgeBaseConfiguration = schema.new({
             id = id.from(_N, "KnowledgeBaseConfiguration", "kendraKnowledgeBaseConfiguration"),
@@ -12164,6 +12494,67 @@ M.UpdatePromptOutput = schema.new({
     },
 })
 
+M.PutResourcePolicyInput = schema.new({
+    id = id.from(_N, "PutResourcePolicyRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        policy = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "policy"),
+            type = "string",
+            name = "policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.MEDIA_TYPE] = { value = "application/json" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expectedRevisionId = schema.new({
+            id = id.from(_N, "PutResourcePolicyInput", "expectedRevisionId"),
+            type = "string",
+            name = "expectedRevisionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutResourcePolicyOutput = schema.new({
+    id = id.from(_N, "PutResourcePolicyResponse"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        revisionId = schema.new({
+            id = id.from(_N, "PutResourcePolicyOutput", "revisionId"),
+            type = "string",
+            name = "revisionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -13593,6 +13984,18 @@ M.DeletePrompt = schema.operation({
     },
 })
 
+M.DeleteResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "DeleteResourcePolicy"),
+    input = M.DeleteResourcePolicyInput,
+    output = M.DeleteResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/resourcepolicy/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisassociateAgentCollaborator = schema.operation({
     id = id.from("com.amazonaws.bedrockagent", "DisassociateAgentCollaborator"),
     input = M.DisassociateAgentCollaboratorInput,
@@ -13779,6 +14182,18 @@ M.GetPrompt = schema.operation({
     output = M.GetPromptOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/prompts/{promptIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "GetResourcePolicy"),
+    input = M.GetResourcePolicyInput,
+    output = M.GetResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/resourcepolicy/{resourceArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -13995,6 +14410,18 @@ M.PrepareFlow = schema.operation({
     output = M.PrepareFlowOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/flows/{flowIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutResourcePolicy = schema.operation({
+    id = id.from("com.amazonaws.bedrockagent", "PutResourcePolicy"),
+    input = M.PutResourcePolicyInput,
+    output = M.PutResourcePolicyOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/resourcepolicy/{resourceArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

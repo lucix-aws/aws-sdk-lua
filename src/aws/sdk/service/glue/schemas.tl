@@ -9,6 +9,8 @@ local _N = "com.amazonaws.glue"
 
 local M: {string:any} = {}
 
+M.GlossaryTermIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.PartitionInputList = schema.new({ type = "list", list_member = M.PartitionInput })
 
 M.PartitionErrors = schema.new({ type = "list", list_member = M.PartitionError })
@@ -50,6 +52,12 @@ M.DataQualityResultsList = schema.new({ type = "list", list_member = M.DataQuali
 M.DevEndpointNames = schema.new({ type = "list", list_member = prelude.String })
 
 M.DevEndpointList = schema.new({ type = "list", list_member = M.DevEndpoint })
+
+M.ItemIdentifierList = schema.new({ type = "list", list_member = prelude.String })
+
+M.IterableFormItemList = schema.new({ type = "list", list_member = M.IterableFormItem })
+
+M.ItemErrorList = schema.new({ type = "list", list_member = M.ItemError })
 
 M.JobNameList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -143,6 +151,12 @@ M.IntegrationFilterList = schema.new({ type = "list", list_member = M.Integratio
 
 M.IntegrationsList = schema.new({ type = "list", list_member = M.Integration })
 
+M.AssetFormMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AssetFormEntry })
+
+M.IterableFormMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IterableFormEntry })
+
+M.AssetTypeFormsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AssetTypeFormReference })
+
 M.BlueprintRuns = schema.new({ type = "list", list_member = M.BlueprintRun })
 
 M.CatalogList = schema.new({ type = "list", list_member = M.Catalog })
@@ -225,6 +239,8 @@ M.UserDefinedFunctionList = schema.new({ type = "list", list_member = M.UserDefi
 
 M.WorkflowRuns = schema.new({ type = "list", list_member = M.WorkflowRun })
 
+M.AssetTypeItemList = schema.new({ type = "list", list_member = M.AssetTypeItem })
+
 M.ColumnStatisticsTaskRunIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ConnectionTypeList = schema.new({ type = "list", list_member = M.ConnectionTypeBrief })
@@ -249,9 +265,17 @@ M.DevEndpointNameList = schema.new({ type = "list", list_member = prelude.String
 
 M.EntityList = schema.new({ type = "list", list_member = M.Entity })
 
+M.FormTypeItemList = schema.new({ type = "list", list_member = M.FormTypeItem })
+
+M.GlossaryItemList = schema.new({ type = "list", list_member = M.GlossaryItem })
+
+M.GlossaryTermItemList = schema.new({ type = "list", list_member = M.GlossaryTermItem })
+
 M.IntegrationResourcePropertyFilterList = schema.new({ type = "list", list_member = M.IntegrationResourcePropertyFilter })
 
 M.IntegrationResourcePropertyList = schema.new({ type = "list", list_member = M.IntegrationResourceProperty })
+
+M.IterableFormListItemList = schema.new({ type = "list", list_member = M.IterableFormListItem })
 
 M.MaterializedViewRefreshTaskRunsList = schema.new({ type = "list", list_member = M.MaterializedViewRefreshTaskRun })
 
@@ -278,6 +302,8 @@ M.MetadataList = schema.new({ type = "list", list_member = M.MetadataKeyValuePai
 M.MetadataInfoMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.MetadataInfo })
 
 M.NodeIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SearchResultItemList = schema.new({ type = "list", list_member = M.SearchResultItem })
 
 M.SearchPropertyPredicates = schema.new({ type = "list", list_member = M.PropertyPredicate })
 
@@ -362,6 +388,8 @@ M.PredecessorList = schema.new({ type = "list", list_member = M.Predecessor })
 M.CodeGenNodeArgs = schema.new({ type = "list", list_member = M.CodeGenNodeArg })
 
 M.ConnectorPropertyList = schema.new({ type = "list", list_member = M.ConnectorProperty })
+
+M.SearchFilterClauseList = schema.new({ type = "list", list_member = M.SearchFilterClause })
 
 M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -1044,6 +1072,208 @@ M.StatisticAnnotation = schema.new({
             name = "InclusionAnnotation",
             target_id = id.from(_N, "TimestampedInclusionAnnotation"),
             target = M.TimestampedInclusionAnnotation,
+        }),
+    },
+})
+
+M.AssetFormEntry = schema.new({
+    id = id.from(_N, "AssetFormEntry"),
+    type = "structure",
+    members = {
+        FormTypeId = schema.new({
+            id = id.from(_N, "AssetFormEntry", "FormTypeId"),
+            type = "string",
+            name = "FormTypeId",
+            target_id = prelude.String.id,
+        }),
+        Content = schema.new({
+            id = id.from(_N, "AssetFormEntry", "Content"),
+            type = "string",
+            name = "Content",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssetTypeFormReference = schema.new({
+    id = id.from(_N, "AssetTypeFormReference"),
+    type = "structure",
+    members = {
+        FormTypeIdentifier = schema.new({
+            id = id.from(_N, "AssetTypeFormReference", "FormTypeIdentifier"),
+            type = "string",
+            name = "FormTypeIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AssetTypeItem = schema.new({
+    id = id.from(_N, "AssetTypeItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "AssetTypeItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "AssetTypeItem", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateGlossaryTermsInput = schema.new({
+    id = id.from(_N, "AssociateGlossaryTermsRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        GlossaryTermIdentifiers = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsInput", "GlossaryTermIdentifiers"),
+            type = "list",
+            name = "GlossaryTermIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.AssociateGlossaryTermsOutput = schema.new({
+    id = id.from(_N, "AssociateGlossaryTermsResponse"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        GlossaryTerms = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsOutput", "GlossaryTerms"),
+            type = "list",
+            name = "GlossaryTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ConcurrentModificationException = schema.new({
+    id = id.from(_N, "ConcurrentModificationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConcurrentModificationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EntityNotFoundException = schema.new({
+    id = id.from(_N, "EntityNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "EntityNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        FromFederationSource = schema.new({
+            id = id.from(_N, "EntityNotFoundException", "FromFederationSource"),
+            type = "boolean",
+            name = "FromFederationSource",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.InternalServiceException = schema.new({
+    id = id.from(_N, "InternalServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InternalServiceException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InvalidInputException = schema.new({
+    id = id.from(_N, "InvalidInputException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "InvalidInputException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        FromFederationSource = schema.new({
+            id = id.from(_N, "InvalidInputException", "FromFederationSource"),
+            type = "boolean",
+            name = "FromFederationSource",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1991,28 +2221,6 @@ M.BatchCreatePartitionOutput = schema.new({
     },
 })
 
-M.EntityNotFoundException = schema.new({
-    id = id.from(_N, "EntityNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "EntityNotFoundException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-        FromFederationSource = schema.new({
-            id = id.from(_N, "EntityNotFoundException", "FromFederationSource"),
-            type = "boolean",
-            name = "FromFederationSource",
-            target_id = prelude.Boolean.id,
-        }),
-    },
-})
-
 M.GlueEncryptionException = schema.new({
     id = id.from(_N, "GlueEncryptionException"),
     type = "structure",
@@ -2025,44 +2233,6 @@ M.GlueEncryptionException = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InternalServiceException = schema.new({
-    id = id.from(_N, "InternalServiceException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InternalServiceException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InvalidInputException = schema.new({
-    id = id.from(_N, "InvalidInputException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InvalidInputException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-        FromFederationSource = schema.new({
-            id = id.from(_N, "InvalidInputException", "FromFederationSource"),
-            type = "boolean",
-            name = "FromFederationSource",
-            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -3929,6 +4099,131 @@ M.BatchGetDevEndpointsOutput = schema.new({
             name = "DevEndpointsNotFound",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchGetIterableFormsInput = schema.new({
+    id = id.from(_N, "BatchGetIterableFormsRequest"),
+    type = "structure",
+    members = {
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "BatchGetIterableFormsInput", "AssetIdentifier"),
+            type = "string",
+            name = "AssetIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "BatchGetIterableFormsInput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ItemIdentifiers = schema.new({
+            id = id.from(_N, "BatchGetIterableFormsInput", "ItemIdentifiers"),
+            type = "list",
+            name = "ItemIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ItemError = schema.new({
+    id = id.from(_N, "ItemError"),
+    type = "structure",
+    members = {
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "ItemError", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
+            target_id = prelude.String.id,
+        }),
+        Code = schema.new({
+            id = id.from(_N, "ItemError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ItemError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IterableFormItem = schema.new({
+    id = id.from(_N, "IterableFormItem"),
+    type = "structure",
+    members = {
+        ItemId = schema.new({
+            id = id.from(_N, "IterableFormItem", "ItemId"),
+            type = "string",
+            name = "ItemId",
+            target_id = prelude.String.id,
+        }),
+        ItemName = schema.new({
+            id = id.from(_N, "IterableFormItem", "ItemName"),
+            type = "string",
+            name = "ItemName",
+            target_id = prelude.String.id,
+        }),
+        GlossaryTerms = schema.new({
+            id = id.from(_N, "IterableFormItem", "GlossaryTerms"),
+            type = "list",
+            name = "GlossaryTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Forms = schema.new({
+            id = id.from(_N, "IterableFormItem", "Forms"),
+            type = "map",
+            name = "Forms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetFormEntry,
+        }),
+        Attachments = schema.new({
+            id = id.from(_N, "IterableFormItem", "Attachments"),
+            type = "map",
+            name = "Attachments",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetFormEntry,
+        }),
+    },
+})
+
+M.BatchGetIterableFormsOutput = schema.new({
+    id = id.from(_N, "BatchGetIterableFormsResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "BatchGetIterableFormsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.IterableFormItem,
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "BatchGetIterableFormsOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.ItemError,
         }),
     },
 })
@@ -10148,22 +10443,6 @@ M.BatchGetTableOptimizerOutput = schema.new({
     },
 })
 
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ThrottlingException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.BatchGetTriggersInput = schema.new({
     id = id.from(_N, "BatchGetTriggersRequest"),
     type = "structure",
@@ -11542,22 +11821,6 @@ M.CreateBlueprintOutput = schema.new({
             id = id.from(_N, "CreateBlueprintOutput", "Name"),
             type = "string",
             name = "Name",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ConcurrentModificationException = schema.new({
-    id = id.from(_N, "ConcurrentModificationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ConcurrentModificationException", "Message"),
-            type = "string",
-            name = "Message",
             target_id = prelude.String.id,
         }),
     },
@@ -13031,6 +13294,145 @@ M.ValidationException = schema.new({
             id = id.from(_N, "ValidationException", "Message"),
             type = "string",
             name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateGlossaryInput = schema.new({
+    id = id.from(_N, "CreateGlossaryRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateGlossaryInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateGlossaryInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateGlossaryInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateGlossaryOutput = schema.new({
+    id = id.from(_N, "CreateGlossaryResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "CreateGlossaryOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateGlossaryOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateGlossaryOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateGlossaryTermInput = schema.new({
+    id = id.from(_N, "CreateGlossaryTermRequest"),
+    type = "structure",
+    members = {
+        GlossaryIdentifier = schema.new({
+            id = id.from(_N, "CreateGlossaryTermInput", "GlossaryIdentifier"),
+            type = "string",
+            name = "GlossaryIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateGlossaryTermInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ShortDescription = schema.new({
+            id = id.from(_N, "CreateGlossaryTermInput", "ShortDescription"),
+            type = "string",
+            name = "ShortDescription",
+            target_id = prelude.String.id,
+        }),
+        LongDescription = schema.new({
+            id = id.from(_N, "CreateGlossaryTermInput", "LongDescription"),
+            type = "string",
+            name = "LongDescription",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateGlossaryTermInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateGlossaryTermOutput = schema.new({
+    id = id.from(_N, "CreateGlossaryTermResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "CreateGlossaryTermOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        GlossaryId = schema.new({
+            id = id.from(_N, "CreateGlossaryTermOutput", "GlossaryId"),
+            type = "string",
+            name = "GlossaryId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateGlossaryTermOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ShortDescription = schema.new({
+            id = id.from(_N, "CreateGlossaryTermOutput", "ShortDescription"),
+            type = "string",
+            name = "ShortDescription",
+            target_id = prelude.String.id,
+        }),
+        LongDescription = schema.new({
+            id = id.from(_N, "CreateGlossaryTermOutput", "LongDescription"),
+            type = "string",
+            name = "LongDescription",
             target_id = prelude.String.id,
         }),
     },
@@ -15911,6 +16313,90 @@ M.CreateWorkflowOutput = schema.new({
     },
 })
 
+M.DeleteAssetInput = schema.new({
+    id = id.from(_N, "DeleteAssetRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteAssetInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAssetOutput = schema.new({
+    id = id.from(_N, "DeleteAssetResponse"),
+    type = "structure",
+})
+
+M.DeleteAssetTypeInput = schema.new({
+    id = id.from(_N, "DeleteAssetTypeRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteAssetTypeInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAssetTypeOutput = schema.new({
+    id = id.from(_N, "DeleteAssetTypeResponse"),
+    type = "structure",
+})
+
+M.DeleteAttachmentInput = schema.new({
+    id = id.from(_N, "DeleteAttachmentRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteAttachmentInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AttachmentName = schema.new({
+            id = id.from(_N, "DeleteAttachmentInput", "AttachmentName"),
+            type = "string",
+            name = "AttachmentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAttachmentOutput = schema.new({
+    id = id.from(_N, "DeleteAttachmentResponse"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteAttachmentOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteBlueprintInput = schema.new({
     id = id.from(_N, "DeleteBlueprintRequest"),
     type = "structure",
@@ -16308,6 +16794,72 @@ M.DeleteDevEndpointInput = schema.new({
 
 M.DeleteDevEndpointOutput = schema.new({
     id = id.from(_N, "DeleteDevEndpointResponse"),
+    type = "structure",
+})
+
+M.DeleteFormTypeInput = schema.new({
+    id = id.from(_N, "DeleteFormTypeRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteFormTypeInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFormTypeOutput = schema.new({
+    id = id.from(_N, "DeleteFormTypeResponse"),
+    type = "structure",
+})
+
+M.DeleteGlossaryInput = schema.new({
+    id = id.from(_N, "DeleteGlossaryRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteGlossaryInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteGlossaryOutput = schema.new({
+    id = id.from(_N, "DeleteGlossaryResponse"),
+    type = "structure",
+})
+
+M.DeleteGlossaryTermInput = schema.new({
+    id = id.from(_N, "DeleteGlossaryTermRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DeleteGlossaryTermInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteGlossaryTermOutput = schema.new({
+    id = id.from(_N, "DeleteGlossaryTermResponse"),
     type = "structure",
 })
 
@@ -18233,6 +18785,216 @@ M.DescribeIntegrationsOutput = schema.new({
             type = "string",
             name = "Marker",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DisassociateGlossaryTermsInput = schema.new({
+    id = id.from(_N, "DisassociateGlossaryTermsRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        GlossaryTermIdentifiers = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsInput", "GlossaryTermIdentifiers"),
+            type = "list",
+            name = "GlossaryTermIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DisassociateGlossaryTermsOutput = schema.new({
+    id = id.from(_N, "DisassociateGlossaryTermsResponse"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsOutput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+        }),
+        GlossaryTerms = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsOutput", "GlossaryTerms"),
+            type = "list",
+            name = "GlossaryTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GetAssetInput = schema.new({
+    id = id.from(_N, "GetAssetInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetAssetInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.IterableFormEntry = schema.new({
+    id = id.from(_N, "IterableFormEntry"),
+    type = "structure",
+    members = {
+        FormTypeId = schema.new({
+            id = id.from(_N, "IterableFormEntry", "FormTypeId"),
+            type = "string",
+            name = "FormTypeId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetAssetOutput = schema.new({
+    id = id.from(_N, "GetAssetOutput"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetAssetOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetAssetOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetAssetOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetAssetOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetAssetOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AssetTypeId = schema.new({
+            id = id.from(_N, "GetAssetOutput", "AssetTypeId"),
+            type = "string",
+            name = "AssetTypeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GlossaryTerms = schema.new({
+            id = id.from(_N, "GetAssetOutput", "GlossaryTerms"),
+            type = "list",
+            name = "GlossaryTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Forms = schema.new({
+            id = id.from(_N, "GetAssetOutput", "Forms"),
+            type = "map",
+            name = "Forms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetFormEntry,
+        }),
+        Attachments = schema.new({
+            id = id.from(_N, "GetAssetOutput", "Attachments"),
+            type = "map",
+            name = "Attachments",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetFormEntry,
+        }),
+        IterableForms = schema.new({
+            id = id.from(_N, "GetAssetOutput", "IterableForms"),
+            type = "map",
+            name = "IterableForms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.IterableFormEntry,
+        }),
+    },
+})
+
+M.GetAssetTypeInput = schema.new({
+    id = id.from(_N, "GetAssetTypeRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetAssetTypeInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAssetTypeOutput = schema.new({
+    id = id.from(_N, "GetAssetTypeResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetAssetTypeOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetAssetTypeOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Forms = schema.new({
+            id = id.from(_N, "GetAssetTypeOutput", "Forms"),
+            type = "map",
+            name = "Forms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetTypeFormReference,
         }),
     },
 })
@@ -21714,6 +22476,144 @@ M.GetEntityRecordsOutput = schema.new({
             id = id.from(_N, "GetEntityRecordsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetFormTypeInput = schema.new({
+    id = id.from(_N, "GetFormTypeRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetFormTypeInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetFormTypeOutput = schema.new({
+    id = id.from(_N, "GetFormTypeResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetFormTypeOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetFormTypeOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Schema = schema.new({
+            id = id.from(_N, "GetFormTypeOutput", "Schema"),
+            type = "string",
+            name = "Schema",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetGlossaryInput = schema.new({
+    id = id.from(_N, "GetGlossaryRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetGlossaryInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetGlossaryOutput = schema.new({
+    id = id.from(_N, "GetGlossaryResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetGlossaryOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetGlossaryOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetGlossaryOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetGlossaryTermInput = schema.new({
+    id = id.from(_N, "GetGlossaryTermRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "GetGlossaryTermInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetGlossaryTermOutput = schema.new({
+    id = id.from(_N, "GetGlossaryTermResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GetGlossaryTermOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        GlossaryId = schema.new({
+            id = id.from(_N, "GetGlossaryTermOutput", "GlossaryId"),
+            type = "string",
+            name = "GlossaryId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetGlossaryTermOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ShortDescription = schema.new({
+            id = id.from(_N, "GetGlossaryTermOutput", "ShortDescription"),
+            type = "string",
+            name = "ShortDescription",
+            target_id = prelude.String.id,
+        }),
+        LongDescription = schema.new({
+            id = id.from(_N, "GetGlossaryTermOutput", "LongDescription"),
+            type = "string",
+            name = "LongDescription",
             target_id = prelude.String.id,
         }),
     },
@@ -26096,6 +26996,51 @@ M.ImportCatalogToGlueOutput = schema.new({
     type = "structure",
 })
 
+M.ListAssetTypesInput = schema.new({
+    id = id.from(_N, "ListAssetTypesRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAssetTypesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAssetTypesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAssetTypesOutput = schema.new({
+    id = id.from(_N, "ListAssetTypesResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListAssetTypesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.AssetTypeItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAssetTypesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListBlueprintsInput = schema.new({
     id = id.from(_N, "ListBlueprintsRequest"),
     type = "structure",
@@ -27438,6 +28383,223 @@ M.ListEntitiesOutput = schema.new({
     },
 })
 
+M.ListFormTypesInput = schema.new({
+    id = id.from(_N, "ListFormTypesRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListFormTypesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFormTypesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.FormTypeItem = schema.new({
+    id = id.from(_N, "FormTypeItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "FormTypeItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "FormTypeItem", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFormTypesOutput = schema.new({
+    id = id.from(_N, "ListFormTypesResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListFormTypesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.FormTypeItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFormTypesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGlossariesInput = schema.new({
+    id = id.from(_N, "ListGlossariesRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListGlossariesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGlossariesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.GlossaryItem = schema.new({
+    id = id.from(_N, "GlossaryItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GlossaryItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GlossaryItem", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GlossaryItem", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGlossariesOutput = schema.new({
+    id = id.from(_N, "ListGlossariesResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListGlossariesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.GlossaryItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGlossariesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGlossaryTermsInput = schema.new({
+    id = id.from(_N, "ListGlossaryTermsRequest"),
+    type = "structure",
+    members = {
+        GlossaryIdentifier = schema.new({
+            id = id.from(_N, "ListGlossaryTermsInput", "GlossaryIdentifier"),
+            type = "string",
+            name = "GlossaryIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "glossaryIdentifier" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListGlossaryTermsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGlossaryTermsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.GlossaryTermItem = schema.new({
+    id = id.from(_N, "GlossaryTermItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "GlossaryTermItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GlossaryTermItem", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ShortDescription = schema.new({
+            id = id.from(_N, "GlossaryTermItem", "ShortDescription"),
+            type = "string",
+            name = "ShortDescription",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListGlossaryTermsOutput = schema.new({
+    id = id.from(_N, "ListGlossaryTermsResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListGlossaryTermsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.GlossaryTermItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListGlossaryTermsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.IntegrationResourcePropertyFilter = schema.new({
     id = id.from(_N, "IntegrationResourcePropertyFilter"),
     type = "structure",
@@ -27535,6 +28697,103 @@ M.ListIntegrationResourcePropertiesOutput = schema.new({
             id = id.from(_N, "ListIntegrationResourcePropertiesOutput", "Marker"),
             type = "string",
             name = "Marker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIterableFormsInput = schema.new({
+    id = id.from(_N, "ListIterableFormsRequest"),
+    type = "structure",
+    members = {
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "ListIterableFormsInput", "AssetIdentifier"),
+            type = "string",
+            name = "AssetIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "ListIterableFormsInput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListIterableFormsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIterableFormsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.IterableFormListItem = schema.new({
+    id = id.from(_N, "IterableFormListItem"),
+    type = "structure",
+    members = {
+        ItemId = schema.new({
+            id = id.from(_N, "IterableFormListItem", "ItemId"),
+            type = "string",
+            name = "ItemId",
+            target_id = prelude.String.id,
+        }),
+        ItemName = schema.new({
+            id = id.from(_N, "IterableFormListItem", "ItemName"),
+            type = "string",
+            name = "ItemName",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "IterableFormListItem", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        GlossaryTerms = schema.new({
+            id = id.from(_N, "IterableFormListItem", "GlossaryTerms"),
+            type = "list",
+            name = "GlossaryTerms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListIterableFormsOutput = schema.new({
+    id = id.from(_N, "ListIterableFormsResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListIterableFormsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.IterableFormListItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListIterableFormsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
             target_id = prelude.String.id,
         }),
     },
@@ -28489,6 +29748,276 @@ M.ModifyIntegrationOutput = schema.new({
     },
 })
 
+M.PutAssetInput = schema.new({
+    id = id.from(_N, "PutAssetRequest"),
+    type = "structure",
+    members = {
+        AssetTypeId = schema.new({
+            id = id.from(_N, "PutAssetInput", "AssetTypeId"),
+            type = "string",
+            name = "AssetTypeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "PutAssetInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "PutAssetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "PutAssetInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Forms = schema.new({
+            id = id.from(_N, "PutAssetInput", "Forms"),
+            type = "map",
+            name = "Forms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetFormEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "PutAssetInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PutAssetOutput = schema.new({
+    id = id.from(_N, "PutAssetResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "PutAssetOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "PutAssetOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "PutAssetOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "PutAssetOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        Forms = schema.new({
+            id = id.from(_N, "PutAssetOutput", "Forms"),
+            type = "map",
+            name = "Forms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetFormEntry,
+        }),
+    },
+})
+
+M.PutAssetTypeInput = schema.new({
+    id = id.from(_N, "PutAssetTypeRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "PutAssetTypeInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Forms = schema.new({
+            id = id.from(_N, "PutAssetTypeInput", "Forms"),
+            type = "map",
+            name = "Forms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetTypeFormReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "PutAssetTypeInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PutAssetTypeOutput = schema.new({
+    id = id.from(_N, "PutAssetTypeResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "PutAssetTypeOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "PutAssetTypeOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Forms = schema.new({
+            id = id.from(_N, "PutAssetTypeOutput", "Forms"),
+            type = "map",
+            name = "Forms",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AssetTypeFormReference,
+        }),
+    },
+})
+
+M.PutAttachmentInput = schema.new({
+    id = id.from(_N, "PutAttachmentRequest"),
+    type = "structure",
+    members = {
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "PutAttachmentInput", "AssetIdentifier"),
+            type = "string",
+            name = "AssetIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "PutAttachmentInput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "PutAttachmentInput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
+            target_id = prelude.String.id,
+        }),
+        AttachmentName = schema.new({
+            id = id.from(_N, "PutAttachmentInput", "AttachmentName"),
+            type = "string",
+            name = "AttachmentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Content = schema.new({
+            id = id.from(_N, "PutAttachmentInput", "Content"),
+            type = "string",
+            name = "Content",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FormTypeId = schema.new({
+            id = id.from(_N, "PutAttachmentInput", "FormTypeId"),
+            type = "string",
+            name = "FormTypeId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "PutAttachmentInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PutAttachmentOutput = schema.new({
+    id = id.from(_N, "PutAttachmentResponse"),
+    type = "structure",
+    members = {
+        AssetId = schema.new({
+            id = id.from(_N, "PutAttachmentOutput", "AssetId"),
+            type = "string",
+            name = "AssetId",
+            target_id = prelude.String.id,
+        }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "PutAttachmentOutput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "PutAttachmentOutput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
+            target_id = prelude.String.id,
+        }),
+        AttachmentName = schema.new({
+            id = id.from(_N, "PutAttachmentOutput", "AttachmentName"),
+            type = "string",
+            name = "AttachmentName",
+            target_id = prelude.String.id,
+        }),
+        FormTypeId = schema.new({
+            id = id.from(_N, "PutAttachmentOutput", "FormTypeId"),
+            type = "string",
+            name = "FormTypeId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PutDataCatalogEncryptionSettingsInput = schema.new({
     id = id.from(_N, "PutDataCatalogEncryptionSettingsRequest"),
     type = "structure",
@@ -28545,6 +30074,65 @@ M.PutDataQualityProfileAnnotationInput = schema.new({
 M.PutDataQualityProfileAnnotationOutput = schema.new({
     id = id.from(_N, "PutDataQualityProfileAnnotationResponse"),
     type = "structure",
+})
+
+M.PutFormTypeInput = schema.new({
+    id = id.from(_N, "PutFormTypeRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "PutFormTypeInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Schema = schema.new({
+            id = id.from(_N, "PutFormTypeInput", "Schema"),
+            type = "string",
+            name = "Schema",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "PutFormTypeInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PutFormTypeOutput = schema.new({
+    id = id.from(_N, "PutFormTypeResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "PutFormTypeOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "PutFormTypeOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Schema = schema.new({
+            id = id.from(_N, "PutFormTypeOutput", "Schema"),
+            type = "string",
+            name = "Schema",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.PutResourcePolicyInput = schema.new({
@@ -29592,6 +31180,184 @@ M.SessionBusyException = schema.new({
             id = id.from(_N, "SessionBusyException", "Message"),
             type = "string",
             name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchFilterValue = schema.new({
+    id = id.from(_N, "SearchFilterValue"),
+    type = "union",
+    members = {
+        StringValue = schema.new({
+            id = id.from(_N, "SearchFilterValue", "StringValue"),
+            type = "string",
+            name = "StringValue",
+            target_id = prelude.String.id,
+        }),
+        LongValue = schema.new({
+            id = id.from(_N, "SearchFilterValue", "LongValue"),
+            type = "long",
+            name = "LongValue",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.SearchAttributeFilter = schema.new({
+    id = id.from(_N, "SearchAttributeFilter"),
+    type = "structure",
+    members = {
+        Attribute = schema.new({
+            id = id.from(_N, "SearchAttributeFilter", "Attribute"),
+            type = "string",
+            name = "Attribute",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "SearchAttributeFilter", "Operator"),
+            type = "string",
+            name = "Operator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "SearchAttributeFilter", "Value"),
+            type = "union",
+            name = "Value",
+            target_id = id.from(_N, "SearchFilterValue"),
+            target = M.SearchFilterValue,
+        }),
+    },
+})
+
+M.SearchMapFilterValue = schema.new({
+    id = id.from(_N, "SearchMapFilterValue"),
+    type = "union",
+    members = {
+        StringValue = schema.new({
+            id = id.from(_N, "SearchMapFilterValue", "StringValue"),
+            type = "string",
+            name = "StringValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchMapFilter = schema.new({
+    id = id.from(_N, "SearchMapFilter"),
+    type = "structure",
+    members = {
+        Attribute = schema.new({
+            id = id.from(_N, "SearchMapFilter", "Attribute"),
+            type = "string",
+            name = "Attribute",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "SearchMapFilter", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "SearchMapFilter", "Value"),
+            type = "union",
+            name = "Value",
+            target_id = id.from(_N, "SearchMapFilterValue"),
+            target = M.SearchMapFilterValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchSort = schema.new({
+    id = id.from(_N, "SearchSort"),
+    type = "structure",
+    members = {
+        Attribute = schema.new({
+            id = id.from(_N, "SearchSort", "Attribute"),
+            type = "string",
+            name = "Attribute",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Order = schema.new({
+            id = id.from(_N, "SearchSort", "Order"),
+            type = "string",
+            name = "Order",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchResultItem = schema.new({
+    id = id.from(_N, "SearchResultItem"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "SearchResultItem", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        AssetName = schema.new({
+            id = id.from(_N, "SearchResultItem", "AssetName"),
+            type = "string",
+            name = "AssetName",
+            target_id = prelude.String.id,
+        }),
+        AssetDescription = schema.new({
+            id = id.from(_N, "SearchResultItem", "AssetDescription"),
+            type = "string",
+            name = "AssetDescription",
+            target_id = prelude.String.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "SearchResultItem", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AssetTypeId = schema.new({
+            id = id.from(_N, "SearchResultItem", "AssetTypeId"),
+            type = "string",
+            name = "AssetTypeId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchOutput = schema.new({
+    id = id.from(_N, "SearchOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "SearchOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.SearchResultItem,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
             target_id = prelude.String.id,
         }),
     },
@@ -31821,6 +33587,150 @@ M.UpdateDevEndpointOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateGlossaryInput = schema.new({
+    id = id.from(_N, "UpdateGlossaryRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UpdateGlossaryInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateGlossaryInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateGlossaryInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateGlossaryInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateGlossaryOutput = schema.new({
+    id = id.from(_N, "UpdateGlossaryResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "UpdateGlossaryOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateGlossaryOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateGlossaryOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGlossaryTermInput = schema.new({
+    id = id.from(_N, "UpdateGlossaryTermRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ShortDescription = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermInput", "ShortDescription"),
+            type = "string",
+            name = "ShortDescription",
+            target_id = prelude.String.id,
+        }),
+        LongDescription = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermInput", "LongDescription"),
+            type = "string",
+            name = "LongDescription",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateGlossaryTermOutput = schema.new({
+    id = id.from(_N, "UpdateGlossaryTermResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        GlossaryId = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermOutput", "GlossaryId"),
+            type = "string",
+            name = "GlossaryId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        ShortDescription = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermOutput", "ShortDescription"),
+            type = "string",
+            name = "ShortDescription",
+            target_id = prelude.String.id,
+        }),
+        LongDescription = schema.new({
+            id = id.from(_N, "UpdateGlossaryTermOutput", "LongDescription"),
+            type = "string",
+            name = "LongDescription",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.UpdateGlueIdentityCenterConfigurationInput = schema.new({
     id = id.from(_N, "UpdateGlueIdentityCenterConfigurationRequest"),
     type = "structure",
@@ -33887,6 +35797,41 @@ M.GetUnfilteredTableMetadataOutput = schema.new({
     },
 })
 
+M.SearchFilterClause = schema.new({
+    id = id.from(_N, "SearchFilterClause"),
+    type = "union",
+    members = {
+        AndAllFilters = schema.new({
+            id = id.from(_N, "SearchFilterClause", "AndAllFilters"),
+            type = "list",
+            name = "AndAllFilters",
+            target_id = prelude.Document.id,
+            list_member = M.SearchFilterClause,
+        }),
+        OrAnyFilters = schema.new({
+            id = id.from(_N, "SearchFilterClause", "OrAnyFilters"),
+            type = "list",
+            name = "OrAnyFilters",
+            target_id = prelude.Document.id,
+            list_member = M.SearchFilterClause,
+        }),
+        AttributeFilter = schema.new({
+            id = id.from(_N, "SearchFilterClause", "AttributeFilter"),
+            type = "structure",
+            name = "AttributeFilter",
+            target_id = id.from(_N, "SearchAttributeFilter"),
+            target = M.SearchAttributeFilter,
+        }),
+        MapFilter = schema.new({
+            id = id.from(_N, "SearchFilterClause", "MapFilter"),
+            type = "structure",
+            name = "MapFilter",
+            target_id = id.from(_N, "SearchMapFilter"),
+            target = M.SearchMapFilter,
+        }),
+    },
+})
+
 M.TableVersion = schema.new({
     id = id.from(_N, "TableVersion"),
     type = "structure",
@@ -34514,6 +36459,45 @@ M.JobUpdate = schema.new({
     },
 })
 
+M.SearchInput = schema.new({
+    id = id.from(_N, "SearchInput"),
+    type = "structure",
+    members = {
+        SearchText = schema.new({
+            id = id.from(_N, "SearchInput", "SearchText"),
+            type = "string",
+            name = "SearchText",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Sort = schema.new({
+            id = id.from(_N, "SearchInput", "Sort"),
+            type = "structure",
+            name = "Sort",
+            target_id = id.from(_N, "SearchSort"),
+            target = M.SearchSort,
+        }),
+        FilterClause = schema.new({
+            id = id.from(_N, "SearchInput", "FilterClause"),
+            type = "union",
+            name = "FilterClause",
+            target_id = id.from(_N, "SearchFilterClause"),
+            target = M.SearchFilterClause,
+        }),
+    },
+})
+
 M.GetJobOutput = schema.new({
     id = id.from(_N, "GetJobResponse"),
     type = "structure",
@@ -34614,6 +36598,18 @@ M.Service = schema.service({
     id = id.from("com.amazonaws.glue", "AWSGlue"),
     version = "2017-03-31",
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AssociateGlossaryTerms = schema.operation({
+    id = id.from("com.amazonaws.glue", "AssociateGlossaryTerms"),
+    input = M.AssociateGlossaryTermsInput,
+    output = M.AssociateGlossaryTermsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets/{Identifier}/associate-glossary-terms" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -34724,6 +36720,18 @@ M.BatchGetDevEndpoints = schema.operation({
     input = M.BatchGetDevEndpointsInput,
     output = M.BatchGetDevEndpointsOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetIterableForms = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetIterableForms"),
+    input = M.BatchGetIterableFormsInput,
+    output = M.BatchGetIterableFormsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets/{AssetIdentifier}/iterable-forms/{IterableFormName}/batch-get" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -34983,6 +36991,30 @@ M.CreateDevEndpoint = schema.operation({
     },
 })
 
+M.CreateGlossary = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateGlossary"),
+    input = M.CreateGlossaryInput,
+    output = M.CreateGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/glossaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.glue", "CreateGlossaryTerm"),
+    input = M.CreateGlossaryTermInput,
+    output = M.CreateGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/glossary-terms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateGlueIdentityCenterConfiguration = schema.operation({
     id = id.from("com.amazonaws.glue", "CreateGlueIdentityCenterConfiguration"),
     input = M.CreateGlueIdentityCenterConfigurationInput,
@@ -35192,6 +37224,42 @@ M.CreateWorkflow = schema.operation({
     },
 })
 
+M.DeleteAsset = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteAsset"),
+    input = M.DeleteAssetInput,
+    output = M.DeleteAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assets/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAssetType = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteAssetType"),
+    input = M.DeleteAssetTypeInput,
+    output = M.DeleteAssetTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/asset-types/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteAttachment = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteAttachment"),
+    input = M.DeleteAttachmentInput,
+    output = M.DeleteAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/assets/{Identifier}/attachments/{AttachmentName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteBlueprint = schema.operation({
     id = id.from("com.amazonaws.glue", "DeleteBlueprint"),
     input = M.DeleteBlueprintInput,
@@ -35329,6 +37397,42 @@ M.DeleteDevEndpoint = schema.operation({
     input = M.DeleteDevEndpointInput,
     output = M.DeleteDevEndpointOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteFormType = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteFormType"),
+    input = M.DeleteFormTypeInput,
+    output = M.DeleteFormTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/form-types/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlossary = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteGlossary"),
+    input = M.DeleteGlossaryInput,
+    output = M.DeleteGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/glossaries/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.glue", "DeleteGlossaryTerm"),
+    input = M.DeleteGlossaryTermInput,
+    output = M.DeleteGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/glossary-terms/{Identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -35604,6 +37708,42 @@ M.DescribeIntegrations = schema.operation({
     input = M.DescribeIntegrationsInput,
     output = M.DescribeIntegrationsOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisassociateGlossaryTerms = schema.operation({
+    id = id.from("com.amazonaws.glue", "DisassociateGlossaryTerms"),
+    input = M.DisassociateGlossaryTermsInput,
+    output = M.DisassociateGlossaryTermsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets/{Identifier}/disassociate-glossary-terms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAsset = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetAsset"),
+    input = M.GetAssetInput,
+    output = M.GetAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetAssetType = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetAssetType"),
+    input = M.GetAssetTypeInput,
+    output = M.GetAssetTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-types/{Identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -35967,6 +38107,42 @@ M.GetEntityRecords = schema.operation({
     input = M.GetEntityRecordsInput,
     output = M.GetEntityRecordsOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetFormType = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetFormType"),
+    input = M.GetFormTypeInput,
+    output = M.GetFormTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/form-types/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlossary = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetGlossary"),
+    input = M.GetGlossaryInput,
+    output = M.GetGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/glossaries/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetGlossaryTerm"),
+    input = M.GetGlossaryTermInput,
+    output = M.GetGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/glossary-terms/{Identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -36512,6 +38688,18 @@ M.ImportCatalogToGlue = schema.operation({
     },
 })
 
+M.ListAssetTypes = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListAssetTypes"),
+    input = M.ListAssetTypesInput,
+    output = M.ListAssetTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/asset-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListBlueprints = schema.operation({
     id = id.from("com.amazonaws.glue", "ListBlueprints"),
     input = M.ListBlueprintsInput,
@@ -36666,11 +38854,59 @@ M.ListEntities = schema.operation({
     },
 })
 
+M.ListFormTypes = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListFormTypes"),
+    input = M.ListFormTypesInput,
+    output = M.ListFormTypesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/form-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGlossaries = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListGlossaries"),
+    input = M.ListGlossariesInput,
+    output = M.ListGlossariesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/glossaries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGlossaryTerms = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListGlossaryTerms"),
+    input = M.ListGlossaryTermsInput,
+    output = M.ListGlossaryTermsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/glossary-terms" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListIntegrationResourceProperties = schema.operation({
     id = id.from("com.amazonaws.glue", "ListIntegrationResourceProperties"),
     input = M.ListIntegrationResourcePropertiesInput,
     output = M.ListIntegrationResourcePropertiesOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIterableForms = schema.operation({
+    id = id.from("com.amazonaws.glue", "ListIterableForms"),
+    input = M.ListIterableFormsInput,
+    output = M.ListIterableFormsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/assets/{AssetIdentifier}/iterable-forms/{IterableFormName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -36820,6 +39056,42 @@ M.ModifyIntegration = schema.operation({
     },
 })
 
+M.PutAsset = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutAsset"),
+    input = M.PutAssetInput,
+    output = M.PutAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assets" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAssetType = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutAssetType"),
+    input = M.PutAssetTypeInput,
+    output = M.PutAssetTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/asset-types" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAttachment = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutAttachment"),
+    input = M.PutAttachmentInput,
+    output = M.PutAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/assets/{AssetIdentifier}/attachment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.PutDataCatalogEncryptionSettings = schema.operation({
     id = id.from("com.amazonaws.glue", "PutDataCatalogEncryptionSettings"),
     input = M.PutDataCatalogEncryptionSettingsInput,
@@ -36836,6 +39108,18 @@ M.PutDataQualityProfileAnnotation = schema.operation({
     input = M.PutDataQualityProfileAnnotationInput,
     output = M.PutDataQualityProfileAnnotationOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutFormType = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutFormType"),
+    input = M.PutFormTypeInput,
+    output = M.PutFormTypeOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/form-types" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -36946,6 +39230,18 @@ M.RunStatement = schema.operation({
     input = M.RunStatementInput,
     output = M.RunStatementOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.Search = schema.operation({
+    id = id.from("com.amazonaws.glue", "Search"),
+    input = M.SearchInput,
+    output = M.SearchOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -37375,6 +39671,30 @@ M.UpdateDevEndpoint = schema.operation({
     input = M.UpdateDevEndpointInput,
     output = M.UpdateDevEndpointOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlossary = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateGlossary"),
+    input = M.UpdateGlossaryInput,
+    output = M.UpdateGlossaryOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/glossaries/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGlossaryTerm = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateGlossaryTerm"),
+    input = M.UpdateGlossaryTermInput,
+    output = M.UpdateGlossaryTermOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/glossary-terms/{Identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

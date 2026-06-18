@@ -33,6 +33,7 @@ local record Client
     createGatewayRule: function(Client, types.CreateGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayRuleOutput>
     createGatewayTarget: function(Client, types.CreateGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayTargetOutput>
     createHarness: function(Client, types.CreateHarnessInput, ? base_client.InvokeOptions): async.Operation<types.CreateHarnessOutput>
+    createHarnessEndpoint: function(Client, types.CreateHarnessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateHarnessEndpointOutput>
     createMemory: function(Client, types.CreateMemoryInput, ? base_client.InvokeOptions): async.Operation<types.CreateMemoryOutput>
     createOauth2CredentialProvider: function(Client, types.CreateOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateOauth2CredentialProviderOutput>
     createOnlineEvaluationConfig: function(Client, types.CreateOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.CreateOnlineEvaluationConfigOutput>
@@ -58,6 +59,7 @@ local record Client
     deleteGatewayRule: function(Client, types.DeleteGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayRuleOutput>
     deleteGatewayTarget: function(Client, types.DeleteGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayTargetOutput>
     deleteHarness: function(Client, types.DeleteHarnessInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHarnessOutput>
+    deleteHarnessEndpoint: function(Client, types.DeleteHarnessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHarnessEndpointOutput>
     deleteMemory: function(Client, types.DeleteMemoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemoryOutput>
     deleteOauth2CredentialProvider: function(Client, types.DeleteOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOauth2CredentialProviderOutput>
     deleteOnlineEvaluationConfig: function(Client, types.DeleteOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOnlineEvaluationConfigOutput>
@@ -84,6 +86,7 @@ local record Client
     getGatewayRule: function(Client, types.GetGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayRuleOutput>
     getGatewayTarget: function(Client, types.GetGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayTargetOutput>
     getHarness: function(Client, types.GetHarnessInput, ? base_client.InvokeOptions): async.Operation<types.GetHarnessOutput>
+    getHarnessEndpoint: function(Client, types.GetHarnessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.GetHarnessEndpointOutput>
     getMemory: function(Client, types.GetMemoryInput, ? base_client.InvokeOptions): async.Operation<types.GetMemoryOutput>
     getOauth2CredentialProvider: function(Client, types.GetOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetOauth2CredentialProviderOutput>
     getOnlineEvaluationConfig: function(Client, types.GetOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.GetOnlineEvaluationConfigOutput>
@@ -117,7 +120,9 @@ local record Client
     listGatewayRules: function(Client, types.ListGatewayRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayRulesOutput>
     listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
     listGatewayTargets: function(Client, types.ListGatewayTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayTargetsOutput>
+    listHarnessEndpoints: function(Client, types.ListHarnessEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListHarnessEndpointsOutput>
     listHarnesses: function(Client, types.ListHarnessesInput, ? base_client.InvokeOptions): async.Operation<types.ListHarnessesOutput>
+    listHarnessVersions: function(Client, types.ListHarnessVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListHarnessVersionsOutput>
     listMemories: function(Client, types.ListMemoriesInput, ? base_client.InvokeOptions): async.Operation<types.ListMemoriesOutput>
     listOauth2CredentialProviders: function(Client, types.ListOauth2CredentialProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListOauth2CredentialProvidersOutput>
     listOnlineEvaluationConfigs: function(Client, types.ListOnlineEvaluationConfigsInput, ? base_client.InvokeOptions): async.Operation<types.ListOnlineEvaluationConfigsOutput>
@@ -153,6 +158,7 @@ local record Client
     updateGatewayRule: function(Client, types.UpdateGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayRuleOutput>
     updateGatewayTarget: function(Client, types.UpdateGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayTargetOutput>
     updateHarness: function(Client, types.UpdateHarnessInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHarnessOutput>
+    updateHarnessEndpoint: function(Client, types.UpdateHarnessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHarnessEndpointOutput>
     updateMemory: function(Client, types.UpdateMemoryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMemoryOutput>
     updateOauth2CredentialProvider: function(Client, types.UpdateOauth2CredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOauth2CredentialProviderOutput>
     updateOnlineEvaluationConfig: function(Client, types.UpdateOnlineEvaluationConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOnlineEvaluationConfigOutput>
@@ -269,6 +275,10 @@ function C:createHarness(input: types.CreateHarnessInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHarness as schema.OperationSchema, input, options) as async.Operation<types.CreateHarnessOutput>
 end
 
+function C:createHarnessEndpoint(input: types.CreateHarnessEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateHarnessEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateHarnessEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateHarnessEndpointOutput>
+end
+
 function C:createMemory(input: types.CreateMemoryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMemoryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMemory as schema.OperationSchema, input, options) as async.Operation<types.CreateMemoryOutput>
 end
@@ -367,6 +377,10 @@ end
 
 function C:deleteHarness(input: types.DeleteHarnessInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHarnessOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHarness as schema.OperationSchema, input, options) as async.Operation<types.DeleteHarnessOutput>
+end
+
+function C:deleteHarnessEndpoint(input: types.DeleteHarnessEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteHarnessEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteHarnessEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteHarnessEndpointOutput>
 end
 
 function C:deleteMemory(input: types.DeleteMemoryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMemoryOutput>
@@ -471,6 +485,10 @@ end
 
 function C:getHarness(input: types.GetHarnessInput, options?: base_client.InvokeOptions): async.Operation<types.GetHarnessOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHarness as schema.OperationSchema, input, options) as async.Operation<types.GetHarnessOutput>
+end
+
+function C:getHarnessEndpoint(input: types.GetHarnessEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.GetHarnessEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetHarnessEndpoint as schema.OperationSchema, input, options) as async.Operation<types.GetHarnessEndpointOutput>
 end
 
 function C:getMemory(input: types.GetMemoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetMemoryOutput>
@@ -605,8 +623,16 @@ function C:listGatewayTargets(input: types.ListGatewayTargetsInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGatewayTargets as schema.OperationSchema, input, options) as async.Operation<types.ListGatewayTargetsOutput>
 end
 
+function C:listHarnessEndpoints(input: types.ListHarnessEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHarnessEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHarnessEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListHarnessEndpointsOutput>
+end
+
 function C:listHarnesses(input: types.ListHarnessesInput, options?: base_client.InvokeOptions): async.Operation<types.ListHarnessesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHarnesses as schema.OperationSchema, input, options) as async.Operation<types.ListHarnessesOutput>
+end
+
+function C:listHarnessVersions(input: types.ListHarnessVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListHarnessVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListHarnessVersions as schema.OperationSchema, input, options) as async.Operation<types.ListHarnessVersionsOutput>
 end
 
 function C:listMemories(input: types.ListMemoriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListMemoriesOutput>
@@ -747,6 +773,10 @@ end
 
 function C:updateHarness(input: types.UpdateHarnessInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHarnessOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHarness as schema.OperationSchema, input, options) as async.Operation<types.UpdateHarnessOutput>
+end
+
+function C:updateHarnessEndpoint(input: types.UpdateHarnessEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateHarnessEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateHarnessEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateHarnessEndpointOutput>
 end
 
 function C:updateMemory(input: types.UpdateMemoryInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMemoryOutput>

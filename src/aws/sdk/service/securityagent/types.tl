@@ -412,12 +412,22 @@ local record M
         artifactType: string
     end
 
+    -- A reference to a document in a third-party provider, such as a Confluence page linked via an integration.
+    record IntegratedDocument
+        -- The identifier of the integration that provides access to the document.
+        integrationId: string
+        -- The provider-specific resource identifier for the document.
+        resourceId: string
+    end
+
     -- Represents a document that provides context for security testing.
     record DocumentInfo
         -- The Amazon S3 location of the document.
         s3Location: string
         -- The unique identifier of the artifact associated with the document.
         artifactId: string
+        -- A reference to a document in an integrated third-party provider.
+        integratedDocument: IntegratedDocument
     end
 
     -- Represents a target endpoint for penetration testing.
@@ -454,6 +464,75 @@ local record M
         integratedRepositories: {IntegratedRepository}
     end
 
+    -- Contains information about a successfully created security requirement.
+    record BatchCreateSecurityRequirementResult
+        -- The unique identifier of the pack containing the security requirement.
+        packId: string
+        -- The name of the security requirement.
+        name: string
+        -- A description of the security requirement.
+        description: string
+        -- The security domain the requirement belongs to.
+        domain: string
+        -- The evaluation criteria used to assess compliance with this requirement.
+        evaluation: string
+        -- The recommended remediation steps when the requirement is not met.
+        remediation: string
+        -- The date and time the security requirement was created, in UTC format.
+        createdAt: number
+        -- The date and time the security requirement was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Contains the details for a security requirement to create within a pack.
+    record CreateSecurityRequirementEntry
+        -- The name of the security requirement.
+        name: string
+        -- A description of the security requirement.
+        description: string
+        -- The security domain the requirement belongs to.
+        domain: string
+        -- The evaluation criteria used to assess compliance with this requirement.
+        evaluation: string
+        -- The recommended remediation steps when the requirement is not met.
+        remediation: string
+    end
+
+    record BatchCreateSecurityRequirementsInput
+        -- The unique identifier of the security requirement pack to add requirements to.
+        packId: string
+        -- The list of security requirements to create.
+        securityRequirements: {CreateSecurityRequirementEntry}
+    end
+
+    -- Contains information about an error that occurred for a specific security requirement during a batch operation.
+    record BatchSecurityRequirementError
+        -- The name of the security requirement that caused the error.
+        securityRequirementName: string
+        -- The error code.
+        code: string
+        -- The error message.
+        message: string
+    end
+
+    record BatchCreateSecurityRequirementsOutput
+        -- The list of security requirements that were successfully created.
+        securityRequirements: {BatchCreateSecurityRequirementResult}
+        -- The list of errors for security requirements that failed to be created.
+        errors: {BatchSecurityRequirementError}
+    end
+
+    -- The request could not be completed due to a conflict with the current state of the resource.
+    record ConflictException
+        -- Error description.
+        message: string
+    end
+
+    -- The request exceeds a service quota. Review your current usage and request a quota increase if needed.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
     -- Input for deleting multiple code reviews.
     record BatchDeleteCodeReviewsInput
         -- The list of code review identifiers to delete.
@@ -486,9 +565,19 @@ local record M
         agentSpaceId: string
     end
 
+    enum CleanUpStrategy
+        "BEST_EFFORT_DELETE"
+        "RETAIN_ALL"
+    end
+
     enum CodeRemediationStrategy
         "AUTOMATIC"
         "DISABLED"
+    end
+
+    enum SkillType
+        "FINDING_PERSONALIZATION"
+        "LOGIN_OPTIMIZATION"
     end
 
     enum RiskType
@@ -587,6 +676,10 @@ local record M
         networkTrafficConfig: NetworkTrafficConfig
         -- The code remediation strategy for the pentest.
         codeRemediationStrategy: string
+        -- Strategy for cleaning up resources after pentest job completion.
+        cleanUpStrategy: string
+        -- A list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
+        disableManagedSkills: {string}
         -- The date and time the pentest was created, in UTC format.
         createdAt: number
         -- The date and time the pentest was last updated, in UTC format.
@@ -607,6 +700,44 @@ local record M
         deleted: {Pentest}
         -- The list of pentests that failed to delete, including the reason for each failure.
         failed: {DeletePentestFailure}
+    end
+
+    record BatchDeleteSecurityRequirementsInput
+        -- The unique identifier of the security requirement pack to remove requirements from.
+        packId: string
+        -- The list of security requirement names to delete.
+        securityRequirementNames: {string}
+    end
+
+    record BatchDeleteSecurityRequirementsOutput
+        -- The list of security requirement names that were successfully deleted.
+        deletedSecurityRequirementNames: {string}
+        -- The list of errors for security requirements that failed to be deleted.
+        errors: {BatchSecurityRequirementError}
+    end
+
+    -- Input for deleting multiple threat models.
+    record BatchDeleteThreatModelsInput
+        -- The list of threat model identifiers to delete.
+        threatModelIds: {string}
+        -- The unique identifier of the agent space that contains the threat models to delete.
+        agentSpaceId: string
+    end
+
+    -- Contains information about a threat model that failed to delete.
+    record DeleteThreatModelFailure
+        -- The unique identifier of the threat model that failed to delete.
+        threatModelId: string
+        -- The reason the threat model failed to delete.
+        reason: string
+    end
+
+    -- Output for the BatchDeleteThreatModels operation.
+    record BatchDeleteThreatModelsOutput
+        -- The list of threat model identifiers that were successfully deleted.
+        deleted: {string}
+        -- The list of threat models that failed to delete, including the reason for each failure.
+        failed: {DeleteThreatModelFailure}
     end
 
     record BatchGetArtifactMetadataInput
@@ -673,6 +804,7 @@ local record M
         "STATIC_ANALYSIS"
         "PENTEST"
         "FINALIZING"
+        "VALIDATION"
     end
 
     enum StepStatus
@@ -685,7 +817,7 @@ local record M
 
     -- Represents a step in the pentest job execution pipeline. Steps include preflight, static analysis, pentest, and finalizing.
     record Step
-        -- The name of the step. Valid values include PREFLIGHT, STATIC_ANALYSIS, PENTEST, and FINALIZING.
+        -- The name of the step. Valid values include PREFLIGHT, STATIC_ANALYSIS, PENTEST, VALIDATION, and FINALIZING.
         name: string
         -- The current status of the step.
         status: string
@@ -819,6 +951,11 @@ local record M
         agentSpaceId: string
     end
 
+    enum ValidationMode
+        "DISABLED"
+        "SIMULATED"
+    end
+
     -- Represents a code review configuration that defines the parameters for automated security-focused code analysis, including target assets and logging configuration.
     record CodeReview
         -- The unique identifier of the code review.
@@ -835,6 +972,8 @@ local record M
         logConfig: CloudWatchLog
         -- The code remediation strategy for the code review.
         codeRemediationStrategy: string
+        -- The validation mode for the code review. Valid values are SIMULATED and DISABLED.
+        validationMode: string
         -- The date and time the code review was created, in UTC format.
         createdAt: number
         -- The date and time the code review was last updated, in UTC format.
@@ -919,6 +1058,14 @@ local record M
         "FALSE_POSITIVE"
     end
 
+    enum ValidationStatus
+        "CONFIRMED"
+        "NOT_REPRODUCED"
+        "VALIDATION_FAILED"
+        "VALIDATING"
+        "NOT_VALIDATED"
+    end
+
     -- Represents an environment variable required to run a verification script.
     record VerificationScriptEnvVar
         -- The name of the environment variable.
@@ -971,16 +1118,22 @@ local record M
         reasoning: string
         -- The confidence level of the finding. Valid values include FALSE_POSITIVE, UNCONFIRMED, LOW, MEDIUM, and HIGH.
         confidence: string
+        -- The simulated validation status of the finding. Valid values are NOT_VALIDATED, VALIDATING, CONFIRMED, NOT_REPRODUCED, and VALIDATION_FAILED.
+        validationStatus: string
         -- The attack script used to reproduce the finding.
         attackScript: string
         -- The code remediation task associated with the finding, if code remediation was initiated.
         codeRemediationTask: CodeRemediationTask
         -- The identifier of the entity that last updated the finding.
         lastUpdatedBy: string
+        -- A customer-provided note on the finding.
+        customerNote: string
         -- The file locations involved in the vulnerability, as reported by the code scanner.
         codeLocations: {CodeLocation}
         -- The verification script metadata for reproducing the finding, including download URL, instructions, and required environment variables.
         verificationScript: VerificationScript
+        -- The rationale provided by the alignment agent explaining how the finding was adjusted based on customer preferences.
+        alignmentRationale: string
         -- The date and time the finding was created, in UTC format.
         createdAt: number
         -- The date and time the finding was last updated, in UTC format.
@@ -1047,6 +1200,10 @@ local record M
         integratedRepositories: {IntegratedRepository}
         -- The code remediation strategy for the pentest job.
         codeRemediationStrategy: string
+        -- Strategy for cleaning up resources after pentest job completion.
+        cleanUpStrategy: string
+        -- A list of managed skills disabled for this pentest job. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
+        disableManagedSkills: {string}
         -- The date and time the pentest job was created, in UTC format.
         createdAt: number
         -- The date and time the pentest job was last updated, in UTC format.
@@ -1121,6 +1278,40 @@ local record M
         pentests: {Pentest}
         -- The list of pentest identifiers that were not found.
         notFound: {string}
+    end
+
+    -- Contains information about a successfully retrieved security requirement.
+    record BatchGetSecurityRequirementResult
+        -- The unique identifier of the pack containing the security requirement.
+        packId: string
+        -- The name of the security requirement.
+        name: string
+        -- A description of the security requirement.
+        description: string
+        -- The security domain the requirement belongs to.
+        domain: string
+        -- The evaluation criteria used to assess compliance with this requirement.
+        evaluation: string
+        -- The recommended remediation steps when the requirement is not met.
+        remediation: string
+        -- The date and time the security requirement was created, in UTC format.
+        createdAt: number
+        -- The date and time the security requirement was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    record BatchGetSecurityRequirementsInput
+        -- The unique identifier of the security requirement pack to retrieve requirements from.
+        packId: string
+        -- The list of security requirement names to retrieve.
+        securityRequirementNames: {string}
+    end
+
+    record BatchGetSecurityRequirementsOutput
+        -- The list of security requirements that were successfully retrieved.
+        securityRequirements: {BatchGetSecurityRequirementResult}
+        -- The list of errors for security requirements that failed to be retrieved.
+        errors: {BatchSecurityRequirementError}
     end
 
     -- Input for batch retrieving target domains.
@@ -1200,6 +1391,308 @@ local record M
         notFound: {string}
     end
 
+    -- Input for BatchGetThreatModelJobs operation.
+    record BatchGetThreatModelJobsInput
+        -- The list of threat model job identifiers to retrieve.
+        threatModelJobIds: {string}
+        -- The unique identifier of the agent space that contains the threat model jobs.
+        agentSpaceId: string
+    end
+
+    -- Represents a threat model job, which is an execution instance of a threat model.
+    record ThreatModelJob
+        -- The unique identifier of the threat model job.
+        threatModelJobId: string
+        -- The unique identifier of the threat model associated with the job.
+        threatModelId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The title of the threat model job.
+        title: string
+        -- The current status of the threat model job.
+        status: string
+        -- The date and time the threat model job was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat model job was last updated, in UTC format.
+        updatedAt: number
+        -- The date and time the threat model job execution started, in UTC format.
+        executionStartTime: number
+        -- The date and time the threat model job execution ended, in UTC format.
+        executionEndTime: number
+        -- The list of source code repositories used for threat modeling.
+        sourceCode: {SourceCodeRepository}
+        -- The list of integrated repositories used for threat modeling.
+        integratedRepositories: {IntegratedRepository}
+        -- The list of documents used for threat modeling.
+        documents: {DocumentInfo}
+        -- The scoped documents for the agent to focus on during threat modeling.
+        scopeDocs: {DocumentInfo}
+        -- Error information if the threat model job encountered an error.
+        errorInformation: ErrorInformation
+        -- The system overview generated during threat modeling.
+        systemOverview: string
+    end
+
+    -- Output for the BatchGetThreatModelJobs operation.
+    record BatchGetThreatModelJobsOutput
+        -- The list of threat model jobs that were found.
+        threatModelJobs: {ThreatModelJob}
+        -- The list of threat model job identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Input for retrieving multiple tasks associated with a threat model job.
+    record BatchGetThreatModelJobTasksInput
+        -- The unique identifier of the agent space that contains the tasks.
+        agentSpaceId: string
+        -- The list of task identifiers to retrieve.
+        threatModelJobTaskIds: {string}
+    end
+
+    -- Represents an individual task within a threat model job.
+    record ThreatModelJobTask
+        -- The unique identifier of the task.
+        taskId: string
+        -- The unique identifier of the threat model associated with the task.
+        threatModelId: string
+        -- The unique identifier of the threat model job that contains the task.
+        threatModelJobId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The title of the task.
+        title: string
+        -- A description of the task.
+        description: string
+        -- The current execution status of the task.
+        executionStatus: string
+        -- The location of the task execution logs.
+        logsLocation: LogLocation
+        -- The date and time the task was created, in UTC format.
+        createdAt: number
+        -- The date and time the task was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the BatchGetThreatModelJobTasks operation.
+    record BatchGetThreatModelJobTasksOutput
+        -- The list of threat model job tasks that were found.
+        threatModelJobTasks: {ThreatModelJobTask}
+        -- The list of task identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Input for retrieving multiple threat models by their IDs.
+    record BatchGetThreatModelsInput
+        -- The list of threat model identifiers to retrieve.
+        threatModelIds: {string}
+        -- The unique identifier of the agent space that contains the threat models.
+        agentSpaceId: string
+    end
+
+    -- Represents a threat model configuration that defines the parameters for automated threat analysis, including target assets and logging configuration.
+    record ThreatModel
+        -- The unique identifier of the threat model.
+        threatModelId: string
+        -- The unique identifier of the agent space that contains the threat model.
+        agentSpaceId: string
+        -- The title of the threat model.
+        title: string
+        -- A description of the application or system being threat modeled.
+        description: string
+        -- The assets included in the threat model.
+        assets: Assets
+        -- The scoped documents for the agent to focus on during threat modeling.
+        scopeDocs: {DocumentInfo}
+        -- The IAM service role used for the threat model.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the threat model.
+        logConfig: CloudWatchLog
+        -- The date and time the threat model was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat model was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the BatchGetThreatModels operation.
+    record BatchGetThreatModelsOutput
+        -- The list of threat models that were found.
+        threatModels: {ThreatModel}
+        -- The list of threat model identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Input for retrieving multiple threats.
+    record BatchGetThreatsInput
+        -- The list of threat identifiers to retrieve.
+        threatIds: {string}
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+    end
+
+    -- DFD element that a threat is anchored to.
+    record ThreatAnchorShape
+        -- The kind of DFD element.
+        kind: string
+        -- The identifier of the DFD element.
+        id: string
+        -- The package identifier containing the DFD element.
+        packageId: string
+    end
+
+    enum ThreatActor
+        "CUSTOMER"
+        "AGENT"
+    end
+
+    -- Source code file supporting a threat.
+    record ThreatEvidenceShape
+        -- The package identifier containing the evidence file.
+        packageId: string
+        -- The file path of the evidence.
+        path: string
+    end
+
+    enum ThreatSeverity
+        "CRITICAL"
+        "HIGH"
+        "MEDIUM"
+        "LOW"
+        "INFO"
+    end
+
+    enum ThreatStatus
+        "OPEN"
+        "RESOLVED"
+        "DISMISSED"
+    end
+
+    enum StrideCategory
+        "SPOOFING"
+        "TAMPERING"
+        "REPUDIATION"
+        "INFORMATION_DISCLOSURE"
+        "DENIAL_OF_SERVICE"
+        "ELEVATION_OF_PRIVILEGE"
+    end
+
+    -- Represents a threat identified during threat modeling.
+    record Threat
+        -- The unique identifier of the threat.
+        threatId: string
+        -- The unique identifier of the threat model job that produced the threat.
+        threatJobId: string
+        -- A short title summarizing the threat.
+        title: string
+        -- The natural-language threat statement.
+        statement: string
+        -- The severity level of the threat.
+        severity: string
+        -- The current status of the threat.
+        status: string
+        -- Optional customer comment on the threat.
+        comments: string
+        -- The actor or origin of the threat.
+        threatSource: string
+        -- The conditions required for the threat to be exploitable.
+        prerequisites: string
+        -- What the threat source can do.
+        threatAction: string
+        -- The direct consequence of the threat action.
+        threatImpact: string
+        -- The security goals affected by the threat.
+        impactedGoal: {string}
+        -- The specific assets affected by the threat.
+        impactedAssets: {string}
+        -- The DFD element this threat is anchored to.
+        anchor: ThreatAnchorShape
+        -- The source code files supporting the threat.
+        evidence: {ThreatEvidenceShape}
+        -- The STRIDE categories applicable to this threat.
+        stride: {string}
+        -- The recommended mitigation guidance for this threat.
+        recommendation: string
+        -- Who created this threat.
+        createdBy: string
+        -- Who last updated this threat.
+        updatedBy: string
+        -- The date and time the threat was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the BatchGetThreats operation.
+    record BatchGetThreatsOutput
+        -- The list of threats that were found.
+        threats: {Threat}
+        -- The list of threat identifiers that were not found.
+        notFound: {string}
+    end
+
+    -- Contains the details for updating an existing security requirement within a pack. The name is an immutable identifier used to locate the requirement and cannot be modified.
+    record UpdateSecurityRequirementEntry
+        -- The name of the security requirement to update. This is an immutable identifier and cannot be changed once the requirement is created.
+        name: string
+        -- The updated description of the security requirement.
+        description: string
+        -- The updated security domain the requirement belongs to.
+        domain: string
+        -- The updated evaluation criteria used to assess compliance with this requirement.
+        evaluation: string
+        -- The updated remediation steps when the requirement is not met.
+        remediation: string
+    end
+
+    record BatchUpdateSecurityRequirementsInput
+        -- The unique identifier of the security requirement pack containing the requirements to update.
+        packId: string
+        -- The list of security requirement updates to apply.
+        securityRequirements: {UpdateSecurityRequirementEntry}
+    end
+
+    record BatchUpdateSecurityRequirementsOutput
+        -- The list of security requirement names that were successfully updated.
+        updatedSecurityRequirementNames: {string}
+        -- The list of errors for security requirements that failed to be updated.
+        errors: {BatchSecurityRequirementError}
+    end
+
+    -- The configuration for creating a Bitbucket integration.
+    record BitbucketIntegrationInput
+        -- The Atlassian installation identifier, available from the Atlassian administration console.
+        installationId: string
+        -- The Bitbucket workspace slug that identifies the workspace to integrate, for example acme-corp.
+        workspace: string
+        -- The OAuth 2.0 authorization code returned from the consent redirect.
+        code: string
+        -- The CSRF state token echoed back from the OAuth redirect.
+        state: string
+    end
+
+    -- Metadata for an integrated Bitbucket repository.
+    record BitbucketRepositoryMetadata
+        name: string
+        providerResourceId: string
+        -- The workspace slug that owns the repository.
+        workspace: string
+        accessType: string
+    end
+
+    -- A Bitbucket repository integrated as a resource.
+    record BitbucketRepositoryResource
+        name: string
+        -- The workspace slug that owns the repository.
+        workspace: string
+    end
+
+    -- Capabilities for an integrated Bitbucket repository.
+    record BitbucketResourceCapabilities
+        -- Whether to post code review comments on pull requests.
+        leaveComments: boolean
+        -- Whether to create pull requests with automated fixes.
+        remediateCode: boolean
+    end
+
     -- Contains summary information about a code review job.
     record CodeReviewJobSummary
         -- The unique identifier of the code review job.
@@ -1252,10 +1745,53 @@ local record M
         updatedAt: number
     end
 
-    -- The request could not be completed due to a conflict with the current state of the resource.
-    record ConflictException
-        -- Error description.
-        message: string
+    -- Metadata for an integrated Confluence document.
+    record ConfluenceDocumentMetadata
+        name: string
+        providerResourceId: string
+        -- The Confluence space key containing the document.
+        spaceKey: string
+        -- The Confluence page identifier.
+        pageId: string
+        -- The display title of the Confluence page.
+        title: string
+        -- The display title of the Confluence space.
+        spaceTitle: string
+    end
+
+    -- A Confluence document (page) integrated as a resource.
+    record ConfluenceDocumentResource
+        name: string
+        -- The Confluence space key containing the document.
+        spaceKey: string
+        -- The Confluence page identifier.
+        pageId: string
+        -- The display title of the Confluence page.
+        title: string
+        -- The display title of the Confluence space.
+        spaceTitle: string
+    end
+
+    -- The configuration for creating a Confluence integration.
+    record ConfluenceIntegrationInput
+        -- The Atlassian installation identifier, available from the Atlassian administration console.
+        installationId: string
+        -- The OAuth 2.0 authorization code returned from the consent redirect.
+        code: string
+        -- The CSRF state token echoed back from the OAuth redirect.
+        state: string
+        -- The Confluence Cloud site URL, for example https://mysite.atlassian.net.
+        siteUrl: string
+    end
+
+    -- Capabilities for an integrated Confluence space.
+    record ConfluenceResourceCapabilities
+        -- Whether to fetch documents from this space.
+        fetchDocument: boolean
+        -- Whether to create documents in this space.
+        createDocument: boolean
+        -- Whether to update documents in this space.
+        updateDocument: boolean
     end
 
     -- Input for creating a new code review.
@@ -1272,6 +1808,8 @@ local record M
         logConfig: CloudWatchLog
         -- The code remediation strategy for the code review. Valid values are AUTOMATIC and DISABLED.
         codeRemediationStrategy: string
+        -- The validation mode for the code review. Valid values are SIMULATED and DISABLED.
+        validationMode: string
     end
 
     -- Output for the CreateCodeReview operation.
@@ -1294,6 +1832,8 @@ local record M
         agentSpaceId: string
         -- The code remediation strategy for the code review.
         codeRemediationStrategy: string
+        -- The validation mode for the code review.
+        validationMode: string
     end
 
     -- The input required to create a GitHub integration, including the OAuth authorization code and CSRF state.
@@ -1304,16 +1844,46 @@ local record M
         state: string
         -- The name of the GitHub organization to integrate with.
         organizationName: string
+        -- The HTTPS URL of a self-hosted GitHub Enterprise Server instance. Omit this value for GitHub.com.
+        targetUrl: string
+        -- The installation identifier provided by GitHub Enterprise Server on the install callback. Required for GitHub Enterprise Server integrations and ignored for GitHub.com.
+        installationId: string
+    end
+
+    enum GitLabTokenType
+        "PERSONAL"
+        "GROUP"
+    end
+
+    -- The configuration for creating a GitLab integration.
+    record GitLabIntegrationInput
+        -- The GitLab access token used to authenticate. This can be a personal access token or a group access token.
+        accessToken: string
+        -- The HTTPS URL of a self-managed GitLab instance. Omit this value for GitLab SaaS (gitlab.com).
+        targetUrl: string
+        -- The type of GitLab access token provided in accessToken.
+        tokenType: string
+        -- The identifier of the GitLab group. Required when tokenType is group and ignored for personal tokens.
+        groupId: string
     end
 
     -- The provider-specific input for creating an integration. This is a union type that contains provider-specific configuration.
     record ProviderInput
         -- The GitHub-specific input for creating an integration.
         github: GitHubIntegrationInput
+        -- The configuration for a GitLab integration.
+        gitlab: GitLabIntegrationInput
+        -- The configuration for a Bitbucket integration.
+        bitbucket: BitbucketIntegrationInput
+        -- The configuration for a Confluence integration.
+        confluence: ConfluenceIntegrationInput
     end
 
     enum Provider
         "GITHUB"
+        "GITLAB"
+        "BITBUCKET"
+        "CONFLUENCE"
     end
 
     record CreateIntegrationInput
@@ -1327,6 +1897,8 @@ local record M
         kmsKeyId: string
         -- The tags to associate with the integration.
         tags: {string : string}
+        -- The name of an active private connection used to reach a self-hosted provider instance over private networking. Specify this when the instance is not publicly reachable.
+        privateConnectionName: string
     end
 
     record CreateIntegrationOutput
@@ -1392,6 +1964,8 @@ local record M
         networkTrafficConfig: NetworkTrafficConfig
         -- The code remediation strategy for the pentest. Valid values are AUTOMATIC and DISABLED.
         codeRemediationStrategy: string
+        -- A list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
+        disableManagedSkills: {string}
     end
 
     -- Output for the CreatePentest operation.
@@ -1414,6 +1988,127 @@ local record M
         logConfig: CloudWatchLog
         -- The unique identifier of the agent space that contains the pentest.
         agentSpaceId: string
+    end
+
+    -- The configuration for a self-managed private connection.
+    record SelfManagedInput
+        -- The identifier or ARN of the resource configuration.
+        resourceConfigurationId: string
+        -- The certificate for the private connection.
+        certificate: string
+    end
+
+    enum ResourceConfigDnsResolution
+        "PUBLIC"
+        "IN_VPC"
+    end
+
+    enum IpAddressType
+        "IPV4"
+        "IPV6"
+        "DUAL_STACK"
+    end
+
+    -- The configuration for a service-managed private connection.
+    record ServiceManagedInput
+        -- The IP address or DNS name of the target resource.
+        hostAddress: string
+        -- The VPC to create the service-managed resource gateway in.
+        vpcId: string
+        -- The subnets that the service-managed resource gateway spans.
+        subnetIds: {string}
+        -- The security groups to attach to the service-managed resource gateway.
+        securityGroupIds: {string}
+        -- The IP address type of the service-managed resource gateway.
+        ipAddressType: string
+        -- The number of IPv4 addresses in each elastic network interface for the service-managed resource gateway.
+        ipv4AddressesPerEni: number
+        -- The TCP port ranges that a consumer can use to access the resource.
+        portRanges: {string}
+        -- The certificate for the private connection.
+        certificate: string
+        -- The DNS resolution mode for the resource gateway. Defaults to PUBLIC when not set.
+        dnsResolution: string
+    end
+
+    -- The configuration for a private connection. Specify either a service-managed or a self-managed mode.
+    record PrivateConnectionMode
+        -- The configuration for a service-managed private connection, where the service manages the resource gateway lifecycle.
+        serviceManaged: ServiceManagedInput
+        -- The configuration for a self-managed private connection, where you manage your own resource configuration.
+        selfManaged: SelfManagedInput
+    end
+
+    record CreatePrivateConnectionInput
+        -- A unique name for the private connection within your account.
+        privateConnectionName: string
+        -- The configuration for the private connection. Specify either a service-managed or a self-managed mode.
+        mode: PrivateConnectionMode
+        -- The tags to attach to the private connection.
+        tags: {string : string}
+    end
+
+    enum PrivateConnectionStatus
+        "ACTIVE"
+        "CREATE_IN_PROGRESS"
+        "CREATE_FAILED"
+        "DELETE_IN_PROGRESS"
+        "DELETE_FAILED"
+    end
+
+    enum PrivateConnectionType
+        "SERVICE_MANAGED"
+        "SELF_MANAGED"
+    end
+
+    record CreatePrivateConnectionOutput
+        -- The name of the private connection.
+        name: string
+        -- The current status of the private connection.
+        status: string
+        -- The identifier or ARN of the VPC Lattice resource gateway.
+        resourceGatewayId: string
+        -- The IP address or DNS name of the target resource.
+        hostAddress: string
+        -- The identifier of the VPC the resource gateway is created in.
+        vpcId: string
+        -- The identifier or ARN of the VPC Lattice resource configuration.
+        resourceConfigurationId: string
+        -- The date and time the connection's certificate expires, in UTC format.
+        certificateExpiryTime: number
+        -- The DNS resolution mode for the resource gateway.
+        dnsResolution: string
+        -- A message describing why the private connection entered a failed state, if applicable.
+        failureMessage: string
+        -- The tags attached to the private connection.
+        tags: {string : string}
+    end
+
+    enum SecurityRequirementPackStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    record CreateSecurityRequirementPackInput
+        -- The name of the security requirement pack.
+        name: string
+        -- A description of the security requirement pack.
+        description: string
+        -- The status of the pack. Defaults to ENABLED if not provided.
+        status: string
+        -- The identifier of the AWS KMS key used to encrypt pack contents.
+        kmsKeyId: string
+        -- The tags to associate with the security requirement pack.
+        tags: {string : string}
+    end
+
+    record CreateSecurityRequirementPackOutput
+        -- The unique identifier of the created security requirement pack.
+        packId: string
+        -- The status of the created security requirement pack.
+        status: string
+        -- The identifier of the AWS KMS key used to encrypt pack contents.
+        kmsKeyId: string
     end
 
     -- Input for creating a new target domain.
@@ -1442,6 +2137,144 @@ local record M
         createdAt: number
         -- The date and time the target domain was verified, in UTC format.
         verifiedAt: number
+    end
+
+    -- Input for creating a new threat.
+    record CreateThreatInput
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The unique identifier of the threat model job the threat belongs to.
+        threatJobId: string
+        -- A short title summarizing the threat.
+        title: string
+        -- The natural-language threat statement.
+        statement: string
+        -- The severity level of the threat.
+        severity: string
+        -- Optional customer comment on the threat.
+        comments: string
+        -- The STRIDE categories applicable to this threat.
+        stride: {string}
+        -- The actor or origin of the threat.
+        threatSource: string
+        -- The conditions required for the threat to be exploitable.
+        prerequisites: string
+        -- What the threat source can do.
+        threatAction: string
+        -- The direct consequence of the threat action.
+        threatImpact: string
+        -- The security goals affected by the threat.
+        impactedGoal: {string}
+        -- The specific assets affected by the threat.
+        impactedAssets: {string}
+        -- The DFD element this threat is anchored to.
+        anchor: ThreatAnchorShape
+        -- The source code files supporting the threat.
+        evidence: {ThreatEvidenceShape}
+        -- The recommended mitigation guidance for this threat.
+        recommendation: string
+    end
+
+    -- Output for the CreateThreat operation.
+    record CreateThreatOutput
+        -- The unique identifier of the created threat.
+        threatId: string
+        -- The unique identifier of the threat model job the threat belongs to.
+        threatJobId: string
+        -- A short title summarizing the threat.
+        title: string
+        -- The natural-language threat statement.
+        statement: string
+        -- The severity level of the threat.
+        severity: string
+        -- The current status of the threat.
+        status: string
+        -- Optional customer comment on the threat.
+        comments: string
+        -- The STRIDE categories applicable to this threat.
+        stride: {string}
+        -- The actor or origin of the threat.
+        threatSource: string
+        -- The conditions required for the threat to be exploitable.
+        prerequisites: string
+        -- What the threat source can do.
+        threatAction: string
+        -- The direct consequence of the threat action.
+        threatImpact: string
+        -- The security goals affected by the threat.
+        impactedGoal: {string}
+        -- The specific assets affected by the threat.
+        impactedAssets: {string}
+        -- The DFD element this threat is anchored to.
+        anchor: ThreatAnchorShape
+        -- The source code files supporting the threat.
+        evidence: {ThreatEvidenceShape}
+        -- The recommended mitigation guidance for this threat.
+        recommendation: string
+        -- Who created this threat.
+        createdBy: string
+        -- Who last updated this threat.
+        updatedBy: string
+        -- The date and time the threat was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Destination for publishing scan reports to an integrated document provider.
+    record ReportDestination
+        -- The integration identifier for the document provider.
+        integrationId: string
+        -- The container identifier where the report will be published.
+        containerId: string
+        -- The parent document identifier under which the report will be created.
+        parentId: string
+        -- The existing document identifier to update instead of creating a new document.
+        documentId: string
+    end
+
+    -- Input for creating a new threat model.
+    record CreateThreatModelInput
+        -- The title of the threat model.
+        title: string
+        -- The unique identifier of the agent space to create the threat model in.
+        agentSpaceId: string
+        -- A description of the application or system being threat modeled.
+        description: string
+        -- The assets to include in the threat model.
+        assets: Assets
+        -- The scoped documents for the agent to focus on during threat modeling.
+        scopeDocs: {DocumentInfo}
+        -- The IAM service role to use for the threat model.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the threat model.
+        logConfig: CloudWatchLog
+        -- The destination for publishing scan reports to an integrated document provider.
+        reportDestination: ReportDestination
+    end
+
+    -- Output for the CreateThreatModel operation.
+    record CreateThreatModelOutput
+        -- The unique identifier of the created threat model.
+        threatModelId: string
+        -- The title of the threat model.
+        title: string
+        -- The unique identifier of the agent space that contains the threat model.
+        agentSpaceId: string
+        -- A description of the application or system being threat modeled.
+        description: string
+        -- The assets included in the threat model.
+        assets: Assets
+        -- The scoped documents for the agent to focus on during threat modeling.
+        scopeDocs: {DocumentInfo}
+        -- The IAM service role used for the threat model.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the threat model.
+        logConfig: CloudWatchLog
+        -- The date and time the threat model was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat model was last updated, in UTC format.
+        updatedAt: number
     end
 
     record DeleteArtifactInput
@@ -1478,6 +2311,42 @@ local record M
     record DeleteMembershipOutput
     end
 
+    record DeletePrivateConnectionInput
+        -- The name of the private connection to delete.
+        privateConnectionName: string
+    end
+
+    record DeletePrivateConnectionOutput
+        -- The name of the private connection.
+        name: string
+        -- The current status of the private connection.
+        status: string
+        -- The identifier or ARN of the VPC Lattice resource gateway.
+        resourceGatewayId: string
+        -- The IP address or DNS name of the target resource.
+        hostAddress: string
+        -- The identifier of the VPC the resource gateway is created in.
+        vpcId: string
+        -- The identifier or ARN of the VPC Lattice resource configuration.
+        resourceConfigurationId: string
+        -- The date and time the connection's certificate expires, in UTC format.
+        certificateExpiryTime: number
+        -- The DNS resolution mode for the resource gateway.
+        dnsResolution: string
+        -- A message describing why the private connection entered a failed state, if applicable.
+        failureMessage: string
+        -- The tags attached to the private connection.
+        tags: {string : string}
+    end
+
+    record DeleteSecurityRequirementPackInput
+        -- The unique identifier of the security requirement pack to delete.
+        packId: string
+    end
+
+    record DeleteSecurityRequirementPackOutput
+    end
+
     -- Input for deleting a target domain.
     record DeleteTargetDomainInput
         -- The unique identifier of the target domain to delete.
@@ -1488,6 +2357,40 @@ local record M
     record DeleteTargetDomainOutput
         -- The unique identifier of the deleted target domain.
         targetDomainId: string
+    end
+
+    record DescribePrivateConnectionInput
+        -- The name of the private connection to describe.
+        privateConnectionName: string
+    end
+
+    record DescribePrivateConnectionOutput
+        -- The name of the private connection.
+        name: string
+        -- The current status of the private connection.
+        status: string
+        -- The identifier or ARN of the VPC Lattice resource gateway.
+        resourceGatewayId: string
+        -- The IP address or DNS name of the target resource.
+        hostAddress: string
+        -- The identifier of the VPC the resource gateway is created in.
+        vpcId: string
+        -- The identifier or ARN of the VPC Lattice resource configuration.
+        resourceConfigurationId: string
+        -- The date and time the connection's certificate expires, in UTC format.
+        certificateExpiryTime: number
+        -- The DNS resolution mode for the resource gateway.
+        dnsResolution: string
+        -- A message describing why the private connection entered a failed state, if applicable.
+        failureMessage: string
+        -- The tags attached to the private connection.
+        tags: {string : string}
+    end
+
+    -- Source of the diff for a differential code scan.
+    record DiffSource
+        -- S3 URI pointing to a unified diff file. The file must be in standard unified diff format and stored in an S3 bucket connected to your Agent Space.
+        s3Uri: string
     end
 
     -- Represents an endpoint discovered during a pentest job.
@@ -1532,6 +2435,8 @@ local record M
         riskLevel: string
         -- The confidence level of the finding.
         confidence: string
+        -- The simulated validation status of the finding.
+        validationStatus: string
         -- The date and time the finding was created, in UTC format.
         createdAt: number
         -- The date and time the finding was last updated, in UTC format.
@@ -1581,6 +2486,50 @@ local record M
         displayName: string
         -- The identifier of the AWS KMS key used to encrypt data associated with the integration.
         kmsKeyId: string
+        -- The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.
+        targetUrl: string
+        -- The name of the private connection used to reach the integration's self-hosted instance over private networking, if one is configured.
+        privateConnectionName: string
+    end
+
+    record GetSecurityRequirementPackInput
+        -- The unique identifier of the security requirement pack to retrieve.
+        packId: string
+    end
+
+    enum SecurityRequirementPackImportStatus
+        "PENDING"
+        "IN_PROGRESS"
+        "FAILED"
+        "COMPLETED"
+    end
+
+    enum ManagementType
+        "AWS_MANAGED"
+        "CUSTOMER_MANAGED"
+    end
+
+    record GetSecurityRequirementPackOutput
+        -- The unique identifier of the security requirement pack.
+        packId: string
+        -- The name of the security requirement pack.
+        name: string
+        -- A description of the security requirement pack.
+        description: string
+        -- The vendor name for AWS managed packs, such as ISO or NIST.
+        vendorName: string
+        -- The management type of the pack. Valid values are AWS_MANAGED and CUSTOMER_MANAGED.
+        managementType: string
+        -- The status of the security requirement pack.
+        status: string
+        -- The status of the security requirements import workflow for this pack.
+        importStatus: string
+        -- The date and time the security requirement pack was created, in UTC format.
+        createdAt: number
+        -- The date and time the security requirement pack was last updated, in UTC format.
+        updatedAt: number
+        -- The identifier of the AWS KMS key used to encrypt pack contents.
+        kmsKeyId: string
     end
 
     -- Contains metadata about a GitHub repository that is integrated with the service.
@@ -1611,6 +2560,68 @@ local record M
         remediateCode: boolean
     end
 
+    -- Metadata for an integrated GitLab repository.
+    record GitLabRepositoryMetadata
+        name: string
+        providerResourceId: string
+        -- The namespace (group or user path) that owns the project.
+        namespace: string
+        accessType: string
+    end
+
+    -- A GitLab repository integrated as a resource.
+    record GitLabRepositoryResource
+        name: string
+        -- The namespace (group or user path) that owns the project.
+        namespace: string
+    end
+
+    -- Capabilities for an integrated GitLab repository.
+    record GitLabResourceCapabilities
+        -- Whether to post code review comments on merge request discussions.
+        leaveComments: boolean
+        -- Whether to create merge requests with automated fixes.
+        remediateCode: boolean
+    end
+
+    enum SecurityRequirementArtifactFormat
+        "MD"
+        "PDF"
+        "TXT"
+        "DOCX"
+        "DOC"
+    end
+
+    -- A document used as source material for importing security requirements.
+    record SecurityRequirementArtifact
+        -- The file name of the document.
+        name: string
+        -- The format of the document. Valid values are MD, PDF, TXT, DOCX, and DOC.
+        format: string
+        -- The binary content of the document.
+        content: string
+    end
+
+    -- The source from which to import security requirements. Currently supports document uploads.
+    record ImportSource
+        -- The list of documents to extract security requirements from.
+        documents: {SecurityRequirementArtifact}
+    end
+
+    record ImportSecurityRequirementsInput
+        -- The unique identifier of the security requirement pack to import requirements into.
+        packId: string
+        -- The import source containing the documents to extract security requirements from.
+        input: ImportSource
+    end
+
+    record ImportSecurityRequirementsOutput
+        -- The unique identifier of the security requirement pack.
+        packId: string
+        -- The status of the import workflow.
+        importStatus: string
+    end
+
     record InitiateProviderRegistrationInput
         -- The provider to initiate registration with. Currently, only GITHUB is supported.
         provider: string
@@ -1627,12 +2638,18 @@ local record M
     record IntegratedResource
         -- The GitHub repository resource information.
         githubRepository: GitHubRepositoryResource
+        gitlabRepository: GitLabRepositoryResource
+        bitbucketRepository: BitbucketRepositoryResource
+        confluenceDocument: ConfluenceDocumentResource
     end
 
     -- The capabilities for an integrated resource from a third-party provider. This is a union type that contains provider-specific capabilities.
     record ProviderResourceCapabilities
         -- The GitHub-specific resource capabilities.
         github: GitHubResourceCapabilities
+        gitlab: GitLabResourceCapabilities
+        bitbucket: BitbucketResourceCapabilities
+        confluence: ConfluenceResourceCapabilities
     end
 
     -- Represents an input item for updating integrated resources, including the resource and its capabilities.
@@ -1647,6 +2664,9 @@ local record M
     record IntegratedResourceMetadata
         -- The GitHub repository metadata.
         githubRepository: GitHubRepositoryMetadata
+        gitlabRepository: GitLabRepositoryMetadata
+        bitbucketRepository: BitbucketRepositoryMetadata
+        confluenceDocument: ConfluenceDocumentMetadata
     end
 
     -- Contains summary information about an integrated resource.
@@ -1688,6 +2708,10 @@ local record M
         providerType: string
         -- The display name of the integration.
         displayName: string
+        -- The HTTPS URL of the customer self-hosted instance, such as a GitHub Enterprise Server or self-managed GitLab instance. This value is absent for SaaS integrations.
+        targetUrl: string
+        -- The name of the private connection used to reach the integration's self-hosted instance over private networking, if one is configured.
+        privateConnectionName: string
     end
 
     record ListIntegrationsOutput
@@ -1831,6 +2855,7 @@ local record M
 
     enum ResourceType
         "CODE_REPOSITORY"
+        "DOCUMENT"
     end
 
     record ListIntegratedResourcesInput
@@ -1962,7 +2987,7 @@ local record M
         maxResults: number
         -- The unique identifier of the pentest job to list tasks for.
         pentestJobId: string
-        -- Filter tasks by step name. Valid values include PREFLIGHT, STATIC_ANALYSIS, PENTEST, and FINALIZING.
+        -- Filter tasks by step name. Valid values include PREFLIGHT, STATIC_ANALYSIS, PENTEST, VALIDATION, and FINALIZING.
         stepName: string
         -- Filter tasks by category name.
         categoryName: string
@@ -2032,6 +3057,118 @@ local record M
         nextToken: string
     end
 
+    record ListPrivateConnectionsInput
+        -- The maximum number of private connections to return in a single response.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    -- Summarizes a private connection.
+    record PrivateConnectionSummary
+        -- The name of the private connection.
+        name: string
+        -- The current status of the private connection.
+        status: string
+        -- The identifier or ARN of the VPC Lattice resource gateway.
+        resourceGatewayId: string
+        -- The IP address or DNS name of the target resource.
+        hostAddress: string
+        -- The identifier of the VPC the resource gateway is created in.
+        vpcId: string
+        -- The identifier or ARN of the VPC Lattice resource configuration.
+        resourceConfigurationId: string
+        -- The date and time the connection's certificate expires, in UTC format.
+        certificateExpiryTime: number
+        -- The DNS resolution mode for the resource gateway.
+        dnsResolution: string
+        -- A message describing why the private connection entered a failed state, if applicable.
+        failureMessage: string
+        -- The tags attached to the private connection.
+        tags: {string : string}
+    end
+
+    record ListPrivateConnectionsOutput
+        -- The list of private connections.
+        privateConnections: {PrivateConnectionSummary}
+        -- The token to use to retrieve the next page of results, if more results are available.
+        nextToken: string
+    end
+
+    -- Filter criteria for listing security requirement packs.
+    record ListSecurityRequirementPackFilter
+        -- Filter packs by management type. Valid values are AWS_MANAGED and CUSTOMER_MANAGED.
+        managementType: string
+        -- Filter packs by status. Valid values are ENABLED and DISABLED.
+        status: string
+    end
+
+    record ListSecurityRequirementPacksInput
+        -- The filter criteria for listing security requirement packs.
+        filter: ListSecurityRequirementPackFilter
+        -- The pagination token from a previous request to retrieve the next page of results.
+        nextToken: string
+        -- The maximum number of results to return in a single request.
+        maxResults: number
+    end
+
+    -- Contains summary information about a security requirement pack.
+    record SecurityRequirementPackSummary
+        -- The unique identifier of the security requirement pack.
+        packId: string
+        -- The name of the security requirement pack.
+        name: string
+        -- A description of the security requirement pack.
+        description: string
+        -- The vendor name for AWS managed packs.
+        vendorName: string
+        -- The management type of the pack.
+        managementType: string
+        -- The status of the security requirement pack.
+        status: string
+        -- The date and time the security requirement pack was created, in UTC format.
+        createdAt: number
+        -- The date and time the security requirement pack was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    record ListSecurityRequirementPacksOutput
+        -- The list of security requirement pack summaries.
+        securityRequirementPackSummaries: {SecurityRequirementPackSummary}
+        -- The pagination token to use in a subsequent request to retrieve the next page of results.
+        nextToken: string
+    end
+
+    record ListSecurityRequirementsInput
+        -- The unique identifier of the security requirement pack to list requirements for.
+        packId: string
+        -- The pagination token from a previous request to retrieve the next page of results.
+        nextToken: string
+        -- The maximum number of results to return in a single request.
+        maxResults: number
+    end
+
+    -- Contains summary information about a security requirement.
+    record SecurityRequirementSummary
+        -- The unique identifier of the pack containing the security requirement.
+        packId: string
+        -- The name of the security requirement.
+        name: string
+        -- A description of the security requirement.
+        description: string
+        -- The date and time the security requirement was created, in UTC format.
+        createdAt: number
+        -- The date and time the security requirement was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    record ListSecurityRequirementsOutput
+        -- The list of security requirement summaries.
+        securityRequirementSummaries: {SecurityRequirementSummary}
+        -- The pagination token to use in a subsequent request to retrieve the next page of results.
+        nextToken: string
+    end
+
     -- Input for ListTagsForResource operation.
     record ListTagsForResourceInput
         -- The Amazon Resource Name (ARN) of the resource to list tags for.
@@ -2070,6 +3207,214 @@ local record M
         nextToken: string
     end
 
+    -- Input for ListThreatModelJobs operation.
+    record ListThreatModelJobsInput
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The unique identifier of the threat model to list jobs for.
+        threatModelId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+    end
+
+    -- Contains summary information about a threat model job.
+    record ThreatModelJobSummary
+        -- The unique identifier of the threat model job.
+        threatModelJobId: string
+        -- The unique identifier of the threat model associated with the job.
+        threatModelId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The title of the threat model job.
+        title: string
+        -- The current status of the threat model job.
+        status: string
+        -- The date and time the threat model job was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat model job was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the ListThreatModelJobs operation.
+    record ListThreatModelJobsOutput
+        -- The list of threat model job summaries.
+        threatModelJobSummaries: {ThreatModelJobSummary}
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+    end
+
+    -- Input for listing tasks associated with a threat model job.
+    record ListThreatModelJobTasksInput
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The unique identifier of the threat model job to list tasks for.
+        threatModelJobId: string
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+    end
+
+    -- Contains summary information about a threat model job task.
+    record ThreatModelJobTaskSummary
+        -- The unique identifier of the task.
+        taskId: string
+        -- The unique identifier of the threat model associated with the task.
+        threatModelId: string
+        -- The unique identifier of the threat model job that contains the task.
+        threatModelJobId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The title of the task.
+        title: string
+        -- The current execution status of the task.
+        executionStatus: string
+        -- The date and time the task was created, in UTC format.
+        createdAt: number
+        -- The date and time the task was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the ListThreatModelJobTasks operation.
+    record ListThreatModelJobTasksOutput
+        -- The list of threat model job task summaries.
+        threatModelJobTaskSummaries: {ThreatModelJobTaskSummary}
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+    end
+
+    -- Input for listing threat models.
+    record ListThreatModelsInput
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+        -- The unique identifier of the agent space to list threat models for.
+        agentSpaceId: string
+    end
+
+    -- Contains summary information about a threat model.
+    record ThreatModelSummary
+        -- The unique identifier of the threat model.
+        threatModelId: string
+        -- The unique identifier of the agent space that contains the threat model.
+        agentSpaceId: string
+        -- The title of the threat model.
+        title: string
+        -- The date and time the threat model was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat model was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the ListThreatModels operation.
+    record ListThreatModelsOutput
+        -- The list of threat model summaries.
+        threatModelSummaries: {ThreatModelSummary}
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+    end
+
+    -- Input for listing threats.
+    record ListThreatsInput
+        -- The unique identifier of the threat model job to list threats for.
+        threatJobId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+    end
+
+    -- Contains summary information about a threat.
+    record ThreatSummary
+        -- The unique identifier of the threat.
+        threatId: string
+        -- The unique identifier of the threat model job that produced the threat.
+        threatJobId: string
+        -- A short title summarizing the threat.
+        title: string
+        -- The natural-language threat statement.
+        statement: string
+        -- The severity level of the threat.
+        severity: string
+        -- The current status of the threat.
+        status: string
+        -- The STRIDE categories applicable to this threat.
+        stride: {string}
+        -- Who created this threat.
+        createdBy: string
+        -- Who last updated this threat.
+        updatedBy: string
+        -- The date and time the threat was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Output for the ListThreats operation.
+    record ListThreatsOutput
+        -- The list of threat summaries.
+        threats: {ThreatSummary}
+        -- A token to use for paginating results that are returned in the response.
+        nextToken: string
+    end
+
+    record UpdatePrivateConnectionCertificateInput
+        -- The name of the private connection to update.
+        privateConnectionName: string
+        -- The PEM-encoded certificate chain for the private connection.
+        certificate: string
+    end
+
+    record UpdatePrivateConnectionCertificateOutput
+        -- The name of the private connection.
+        name: string
+        -- The current status of the private connection.
+        status: string
+        -- The identifier or ARN of the VPC Lattice resource gateway.
+        resourceGatewayId: string
+        -- The IP address or DNS name of the target resource.
+        hostAddress: string
+        -- The identifier of the VPC the resource gateway is created in.
+        vpcId: string
+        -- The identifier or ARN of the VPC Lattice resource configuration.
+        resourceConfigurationId: string
+        -- The date and time the connection's certificate expires, in UTC format.
+        certificateExpiryTime: number
+        -- The DNS resolution mode for the resource gateway.
+        dnsResolution: string
+        -- A message describing why the private connection entered a failed state, if applicable.
+        failureMessage: string
+        -- The tags attached to the private connection.
+        tags: {string : string}
+    end
+
+    record UpdateSecurityRequirementPackInput
+        -- The unique identifier of the security requirement pack to update.
+        packId: string
+        -- The updated name of the security requirement pack.
+        name: string
+        -- The updated description of the security requirement pack.
+        description: string
+        -- The updated status of the security requirement pack.
+        status: string
+    end
+
+    record UpdateSecurityRequirementPackOutput
+        -- The unique identifier of the security requirement pack.
+        packId: string
+        -- The name of the security requirement pack.
+        name: string
+        -- The description of the security requirement pack.
+        description: string
+        -- The status of the security requirement pack.
+        status: string
+    end
+
     -- Input for the StartCodeRemediation operation.
     record StartCodeRemediationInput
         -- The unique identifier of the agent space.
@@ -2092,6 +3437,8 @@ local record M
         agentSpaceId: string
         -- The unique identifier of the code review to start a job for.
         codeReviewId: string
+        -- Source of the diff for a differential scan. When present, the job analyzes only the changed lines instead of performing a full scan.
+        diffSource: DiffSource
     end
 
     -- Output for the StartCodeReviewJob operation.
@@ -2138,6 +3485,32 @@ local record M
         agentSpaceId: string
     end
 
+    -- Input for starting a threat model job.
+    record StartThreatModelJobInput
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The unique identifier of the threat model to start a job for.
+        threatModelId: string
+    end
+
+    -- Output for the StartThreatModelJob operation.
+    record StartThreatModelJobOutput
+        -- The title of the threat model job.
+        title: string
+        -- The current status of the threat model job.
+        status: string
+        -- The date and time the threat model job was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat model job was last updated, in UTC format.
+        updatedAt: number
+        -- The unique identifier of the threat model.
+        threatModelId: string
+        -- The unique identifier of the started threat model job.
+        threatModelJobId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+    end
+
     -- Input for stopping the execution of a code review job.
     record StopCodeReviewJobInput
         -- The unique identifier of the agent space.
@@ -2160,6 +3533,18 @@ local record M
 
     -- Output for the StopPentestJob operation.
     record StopPentestJobOutput
+    end
+
+    -- Input for stopping a threat model job.
+    record StopThreatModelJobInput
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- The unique identifier of the threat model job to stop.
+        threatModelJobId: string
+    end
+
+    -- Output for the StopThreatModelJob operation.
+    record StopThreatModelJobOutput
     end
 
     -- Input for TagResource operation.
@@ -2228,6 +3613,8 @@ local record M
         logConfig: CloudWatchLog
         -- The updated code remediation strategy for the code review.
         codeRemediationStrategy: string
+        -- The updated validation mode for the code review. Valid values are SIMULATED and DISABLED.
+        validationMode: string
     end
 
     -- Output for the UpdateCodeReview operation.
@@ -2250,6 +3637,8 @@ local record M
         agentSpaceId: string
         -- The code remediation strategy for the code review.
         codeRemediationStrategy: string
+        -- The validation mode for the code review.
+        validationMode: string
     end
 
     -- Input for updating an existing security finding.
@@ -2258,10 +3647,24 @@ local record M
         findingId: string
         -- The unique identifier of the agent space that contains the finding.
         agentSpaceId: string
+        -- The updated name for the finding.
+        name: string
+        -- The updated description for the finding.
+        description: string
+        -- The updated risk type for the finding.
+        riskType: string
         -- The updated risk level for the finding.
         riskLevel: string
+        -- The updated numerical risk score for the finding.
+        riskScore: string
+        -- The updated attack script for the finding.
+        attackScript: string
+        -- The updated reasoning for the finding.
+        reasoning: string
         -- The updated status for the finding.
         status: string
+        -- A customer-provided note on the finding.
+        customerNote: string
     end
 
     -- Output for the UpdateFinding operation.
@@ -2302,6 +3705,8 @@ local record M
         networkTrafficConfig: NetworkTrafficConfig
         -- The updated code remediation strategy for the pentest.
         codeRemediationStrategy: string
+        -- The updated list of managed skills to disable for this pentest. Valid values include FINDING_PERSONALIZATION and LOGIN_OPTIMIZATION.
+        disableManagedSkills: {string}
     end
 
     -- Output for the UpdatePentest operation.
@@ -2324,6 +3729,132 @@ local record M
         logConfig: CloudWatchLog
         -- The unique identifier of the agent space that contains the pentest.
         agentSpaceId: string
+    end
+
+    -- Input for updating an existing threat.
+    record UpdateThreatInput
+        -- The unique identifier of the threat to update.
+        threatId: string
+        -- The unique identifier of the agent space.
+        agentSpaceId: string
+        -- A short title summarizing the threat.
+        title: string
+        -- The updated status of the threat.
+        status: string
+        -- Optional customer comment.
+        comments: string
+        -- The updated natural-language threat statement.
+        statement: string
+        -- The updated severity level of the threat.
+        severity: string
+        -- The updated actor or origin of the threat.
+        threatSource: string
+        -- The updated conditions required for the threat to be exploitable.
+        prerequisites: string
+        -- The updated description of what the threat source can do.
+        threatAction: string
+        -- The updated direct consequence of the threat action.
+        threatImpact: string
+        -- The updated security goals affected by the threat.
+        impactedGoal: {string}
+        -- The updated list of specific assets affected by the threat.
+        impactedAssets: {string}
+        -- The updated DFD element this threat is anchored to.
+        anchor: ThreatAnchorShape
+        -- The updated source code files supporting the threat.
+        evidence: {ThreatEvidenceShape}
+        -- The updated recommended mitigation guidance for this threat.
+        recommendation: string
+    end
+
+    -- Output for the UpdateThreat operation.
+    record UpdateThreatOutput
+        -- The unique identifier of the threat.
+        threatId: string
+        -- The unique identifier of the threat model job the threat belongs to.
+        threatJobId: string
+        -- A short title summarizing the threat.
+        title: string
+        -- The natural-language threat statement.
+        statement: string
+        -- The severity level of the threat.
+        severity: string
+        -- The current status of the threat.
+        status: string
+        -- Optional customer comment on the threat.
+        comments: string
+        -- The STRIDE categories applicable to this threat.
+        stride: {string}
+        -- The actor or origin of the threat.
+        threatSource: string
+        -- The conditions required for the threat to be exploitable.
+        prerequisites: string
+        -- What the threat source can do.
+        threatAction: string
+        -- The direct consequence of the threat action.
+        threatImpact: string
+        -- The security goals affected by the threat.
+        impactedGoal: {string}
+        -- The specific assets affected by the threat.
+        impactedAssets: {string}
+        -- The DFD element this threat is anchored to.
+        anchor: ThreatAnchorShape
+        -- The source code files supporting the threat.
+        evidence: {ThreatEvidenceShape}
+        -- The recommended mitigation guidance for this threat.
+        recommendation: string
+        -- Who created this threat.
+        createdBy: string
+        -- Who last updated this threat.
+        updatedBy: string
+        -- The date and time the threat was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat was last updated, in UTC format.
+        updatedAt: number
+    end
+
+    -- Input for updating an existing threat model.
+    record UpdateThreatModelInput
+        -- The unique identifier of the threat model to update.
+        threatModelId: string
+        -- The unique identifier of the agent space that contains the threat model.
+        agentSpaceId: string
+        -- The updated title of the threat model.
+        title: string
+        -- The updated description of the application or system being threat modeled.
+        description: string
+        -- The updated assets for the threat model.
+        assets: Assets
+        -- The updated scoped documents for the agent to focus on during threat modeling.
+        scopeDocs: {DocumentInfo}
+        -- The updated IAM service role for the threat model.
+        serviceRole: string
+        -- The updated CloudWatch Logs configuration for the threat model.
+        logConfig: CloudWatchLog
+    end
+
+    -- Output for the UpdateThreatModel operation.
+    record UpdateThreatModelOutput
+        -- The unique identifier of the threat model.
+        threatModelId: string
+        -- The title of the threat model.
+        title: string
+        -- The unique identifier of the agent space that contains the threat model.
+        agentSpaceId: string
+        -- A description of the application or system being threat modeled.
+        description: string
+        -- The assets included in the threat model.
+        assets: Assets
+        -- The scoped documents for the agent to focus on during threat modeling.
+        scopeDocs: {DocumentInfo}
+        -- The IAM service role used for the threat model.
+        serviceRole: string
+        -- The CloudWatch Logs configuration for the threat model.
+        logConfig: CloudWatchLog
+        -- The date and time the threat model was created, in UTC format.
+        createdAt: number
+        -- The date and time the threat model was last updated, in UTC format.
+        updatedAt: number
     end
 
     -- Input for verifying ownership for a registered target domain in an agent space.

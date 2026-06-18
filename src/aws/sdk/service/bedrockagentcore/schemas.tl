@@ -143,6 +143,8 @@ M.ToolDescriptionResultList = schema.new({ type = "list", list_member = M.ToolDe
 
 M.LinkedAccountList = schema.new({ type = "list", list_member = M.LinkedAccount })
 
+M.HarnessAwsSkillPaths = schema.new({ type = "list", list_member = prelude.String })
+
 M.HarnessToolResultBlocksDelta = schema.new({ type = "list", list_member = M.HarnessToolResultBlockDelta })
 
 M.EvaluationToolNames = schema.new({ type = "list", list_member = prelude.String })
@@ -4999,10 +5001,10 @@ M.OnlineEvaluationConfigSource = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        sessionFilterConfig = schema.new({
-            id = id.from(_N, "OnlineEvaluationConfigSource", "sessionFilterConfig"),
+        timeRange = schema.new({
+            id = id.from(_N, "OnlineEvaluationConfigSource", "timeRange"),
             type = "structure",
-            name = "sessionFilterConfig",
+            name = "timeRange",
             target_id = id.from(_N, "SessionFilterConfig"),
             target = M.SessionFilterConfig,
         }),
@@ -8630,6 +8632,20 @@ M.HarnessModelConfiguration = schema.new({
     },
 })
 
+M.HarnessSkillAwsSkillsSource = schema.new({
+    id = id.from(_N, "HarnessSkillAwsSkillsSource"),
+    type = "structure",
+    members = {
+        paths = schema.new({
+            id = id.from(_N, "HarnessSkillAwsSkillsSource", "paths"),
+            type = "list",
+            name = "paths",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.HarnessSkillGitAuth = schema.new({
     id = id.from(_N, "HarnessSkillGitAuth"),
     type = "structure",
@@ -8720,6 +8736,13 @@ M.HarnessSkill = schema.new({
             name = "git",
             target_id = id.from(_N, "HarnessSkillGitSource"),
             target = M.HarnessSkillGitSource,
+        }),
+        awsSkills = schema.new({
+            id = id.from(_N, "HarnessSkill", "awsSkills"),
+            type = "structure",
+            name = "awsSkills",
+            target_id = id.from(_N, "HarnessSkillAwsSkillsSource"),
+            target = M.HarnessSkillAwsSkillsSource,
         }),
     },
 })
@@ -8997,6 +9020,15 @@ M.InvokeHarnessInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_QUERY] = { name = "harnessArn" },
+            },
+        }),
+        qualifier = schema.new({
+            id = id.from(_N, "InvokeHarnessInput", "qualifier"),
+            type = "string",
+            name = "qualifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "qualifier" },
             },
         }),
         runtimeSessionId = schema.new({

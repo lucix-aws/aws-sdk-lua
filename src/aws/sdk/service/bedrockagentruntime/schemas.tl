@@ -9,6 +9,10 @@ local _N = "com.amazonaws.bedrockagentruntime"
 
 local M: {string:any} = {}
 
+M.AgenticRetrieveMessages = schema.new({ type = "list", list_member = M.AgenticRetrieveMessage })
+
+M.AgenticRetrievers = schema.new({ type = "list", list_member = M.AgenticRetriever })
+
 M.FlowExecutionErrors = schema.new({ type = "list", list_member = M.FlowExecutionError })
 
 M.FlowExecutionEvents = schema.new({ type = "list", list_member = M.FlowExecutionEvent })
@@ -65,6 +69,8 @@ M.PromptConfigurations = schema.new({ type = "list", list_member = M.PromptConfi
 
 M.BedrockSessionContentBlocks = schema.new({ type = "list", list_member = M.BedrockSessionContentBlock })
 
+M.AgenticRetrieveResults = schema.new({ type = "list", list_member = M.AgenticRetrieveResultItem })
+
 M.Messages = schema.new({ type = "list", list_member = M.Message })
 
 M.CallerChain = schema.new({ type = "list", list_member = M.Caller })
@@ -80,6 +86,18 @@ M.ExternalSources = schema.new({ type = "list", list_member = M.ExternalSource }
 M.RetrievedReferences = schema.new({ type = "list", list_member = M.RetrievedReference })
 
 M.RetrievalResultMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
+M.AgenticRetrieveCitationList = schema.new({ type = "list", list_member = M.AgenticRetrieveCitation })
+
+M.AgenticRetrieveActions = schema.new({ type = "list", list_member = M.AgenticRetrieveAction })
+
+M.AgenticRetrieveWarnings = schema.new({ type = "list", list_member = M.AgenticRetrieveWarning })
+
+M.AgenticRetrieveFailures = schema.new({ type = "list", list_member = M.AgenticRetrieveFailure })
+
+M.AgenticRetrieveSourceMetadataList = schema.new({ type = "list", list_member = M.AgenticRetrieveSourceMetadata })
+
+M.AgenticRetrieveTraceResults = schema.new({ type = "list", list_member = M.AgenticRetrieveTraceResultItem })
 
 M.FlowInputFields = schema.new({ type = "list", list_member = M.FlowInputField })
 
@@ -101,6 +119,8 @@ M.MetadataAttributeSchemaList = schema.new({ type = "list", list_member = M.Meta
 
 M.RetrievalResultContentRow = schema.new({ type = "list", list_member = M.RetrievalResultContentColumn })
 
+M.AgenticRetrieveMetadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Document })
+
 M.AgentTraces = schema.new({ type = "list", list_member = M.TracePart })
 
 M.FlowTraceNodeInputFields = schema.new({ type = "list", list_member = M.FlowTraceNodeInputField })
@@ -117,6 +137,8 @@ M.GuardrailAssessmentList = schema.new({ type = "list", list_member = M.Guardrai
 
 M.StopSequences = schema.new({ type = "list", list_member = prelude.String })
 
+M.AgenticRetrieveCitationReferenceList = schema.new({ type = "list", list_member = M.AgenticRetrieveCitationReference })
+
 M.NodeInputExecutionChain = schema.new({ type = "list", list_member = M.NodeInputExecutionChainItem })
 
 M.NodeOutputNextList = schema.new({ type = "list", list_member = M.NodeOutputNext })
@@ -128,6 +150,8 @@ M.FunctionParameters = schema.new({ type = "list", list_member = M.FunctionParam
 M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ParameterDetail })
 
 M.RAGStopSequences = schema.new({ type = "list", list_member = prelude.String })
+
+M.AgenticRetrieveSourceRetrieverList = schema.new({ type = "list", list_member = M.AgenticRetrieveSourceRetriever })
 
 M.FlowTraceNodeInputExecutionChain = schema.new({ type = "list", list_member = M.FlowTraceNodeInputExecutionChainItem })
 
@@ -1100,6 +1124,1054 @@ M.AgentCollaboratorInvocationOutput = schema.new({
     },
 })
 
+M.AgenticRetrieveSourceRetriever = schema.new({
+    id = id.from(_N, "AgenticRetrieveSourceRetriever"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "AgenticRetrieveSourceRetriever", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveFullDocExpansionDetails = schema.new({
+    id = id.from(_N, "AgenticRetrieveFullDocExpansionDetails"),
+    type = "structure",
+    members = {
+        documentId = schema.new({
+            id = id.from(_N, "AgenticRetrieveFullDocExpansionDetails", "documentId"),
+            type = "string",
+            name = "documentId",
+            target_id = prelude.String.id,
+        }),
+        sourceRetriever = schema.new({
+            id = id.from(_N, "AgenticRetrieveFullDocExpansionDetails", "sourceRetriever"),
+            type = "structure",
+            name = "sourceRetriever",
+            target_id = id.from(_N, "AgenticRetrieveSourceRetriever"),
+            target = M.AgenticRetrieveSourceRetriever,
+        }),
+    },
+})
+
+M.AgenticRetrieveMessageContent = schema.new({
+    id = id.from(_N, "AgenticRetrieveMessageContent"),
+    type = "structure",
+    members = {
+        text = schema.new({
+            id = id.from(_N, "AgenticRetrieveMessageContent", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveActionDetails = schema.new({
+    id = id.from(_N, "AgenticRetrieveActionDetails"),
+    type = "structure",
+    members = {
+        inputQuery = schema.new({
+            id = id.from(_N, "AgenticRetrieveActionDetails", "inputQuery"),
+            type = "structure",
+            name = "inputQuery",
+            target_id = id.from(_N, "AgenticRetrieveMessageContent"),
+            target = M.AgenticRetrieveMessageContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceRetrievers = schema.new({
+            id = id.from(_N, "AgenticRetrieveActionDetails", "sourceRetrievers"),
+            type = "list",
+            name = "sourceRetrievers",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveSourceRetriever,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveAction = schema.new({
+    id = id.from(_N, "AgenticRetrieveAction"),
+    type = "structure",
+    members = {
+        retrieve = schema.new({
+            id = id.from(_N, "AgenticRetrieveAction", "retrieve"),
+            type = "structure",
+            name = "retrieve",
+            target_id = id.from(_N, "AgenticRetrieveActionDetails"),
+            target = M.AgenticRetrieveActionDetails,
+        }),
+        fullDocumentExpansion = schema.new({
+            id = id.from(_N, "AgenticRetrieveAction", "fullDocumentExpansion"),
+            type = "structure",
+            name = "fullDocumentExpansion",
+            target_id = id.from(_N, "AgenticRetrieveFullDocExpansionDetails"),
+            target = M.AgenticRetrieveFullDocExpansionDetails,
+        }),
+    },
+})
+
+M.AgenticRetrieveBedrockGuardrailConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrieveBedrockGuardrailConfiguration"),
+    type = "structure",
+    members = {
+        guardrailId = schema.new({
+            id = id.from(_N, "AgenticRetrieveBedrockGuardrailConfiguration", "guardrailId"),
+            type = "string",
+            name = "guardrailId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        guardrailVersion = schema.new({
+            id = id.from(_N, "AgenticRetrieveBedrockGuardrailConfiguration", "guardrailVersion"),
+            type = "string",
+            name = "guardrailVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveBedrockRerankingModelConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrieveBedrockRerankingModelConfiguration"),
+    type = "structure",
+    members = {
+        modelArn = schema.new({
+            id = id.from(_N, "AgenticRetrieveBedrockRerankingModelConfiguration", "modelArn"),
+            type = "string",
+            name = "modelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveBedrockRerankingConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrieveBedrockRerankingConfiguration"),
+    type = "structure",
+    members = {
+        modelConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveBedrockRerankingConfiguration", "modelConfiguration"),
+            type = "structure",
+            name = "modelConfiguration",
+            target_id = id.from(_N, "AgenticRetrieveBedrockRerankingModelConfiguration"),
+            target = M.AgenticRetrieveBedrockRerankingModelConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveCitationReference = schema.new({
+    id = id.from(_N, "AgenticRetrieveCitationReference"),
+    type = "structure",
+    members = {
+        resultIndex = schema.new({
+            id = id.from(_N, "AgenticRetrieveCitationReference", "resultIndex"),
+            type = "integer",
+            name = "resultIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveCitation = schema.new({
+    id = id.from(_N, "AgenticRetrieveCitation"),
+    type = "structure",
+    members = {
+        startIndex = schema.new({
+            id = id.from(_N, "AgenticRetrieveCitation", "startIndex"),
+            type = "integer",
+            name = "startIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endIndex = schema.new({
+            id = id.from(_N, "AgenticRetrieveCitation", "endIndex"),
+            type = "integer",
+            name = "endIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        references = schema.new({
+            id = id.from(_N, "AgenticRetrieveCitation", "references"),
+            type = "list",
+            name = "references",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveCitationReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BedrockFoundationModelModelConfiguration = schema.new({
+    id = id.from(_N, "BedrockFoundationModelModelConfiguration"),
+    type = "structure",
+    members = {
+        modelArn = schema.new({
+            id = id.from(_N, "BedrockFoundationModelModelConfiguration", "modelArn"),
+            type = "string",
+            name = "modelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BedrockFoundationModelConfiguration = schema.new({
+    id = id.from(_N, "BedrockFoundationModelConfiguration"),
+    type = "structure",
+    members = {
+        modelConfiguration = schema.new({
+            id = id.from(_N, "BedrockFoundationModelConfiguration", "modelConfiguration"),
+            type = "structure",
+            name = "modelConfiguration",
+            target_id = id.from(_N, "BedrockFoundationModelModelConfiguration"),
+            target = M.BedrockFoundationModelModelConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.FoundationModelConfiguration = schema.new({
+    id = id.from(_N, "FoundationModelConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "FoundationModelConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        bedrockFoundationModelConfiguration = schema.new({
+            id = id.from(_N, "FoundationModelConfiguration", "bedrockFoundationModelConfiguration"),
+            type = "structure",
+            name = "bedrockFoundationModelConfiguration",
+            target_id = id.from(_N, "BedrockFoundationModelConfiguration"),
+            target = M.BedrockFoundationModelConfiguration,
+        }),
+    },
+})
+
+M.AgenticRetrieveRerankingConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrieveRerankingConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "AgenticRetrieveRerankingConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        bedrockRerankingConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveRerankingConfiguration", "bedrockRerankingConfiguration"),
+            type = "structure",
+            name = "bedrockRerankingConfiguration",
+            target_id = id.from(_N, "AgenticRetrieveBedrockRerankingConfiguration"),
+            target = M.AgenticRetrieveBedrockRerankingConfiguration,
+        }),
+    },
+})
+
+M.AgenticRetrieveConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrieveConfiguration"),
+    type = "structure",
+    members = {
+        foundationModelType = schema.new({
+            id = id.from(_N, "AgenticRetrieveConfiguration", "foundationModelType"),
+            type = "string",
+            name = "foundationModelType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "MANAGED" },
+            },
+        }),
+        foundationModelConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveConfiguration", "foundationModelConfiguration"),
+            type = "structure",
+            name = "foundationModelConfiguration",
+            target_id = id.from(_N, "FoundationModelConfiguration"),
+            target = M.FoundationModelConfiguration,
+        }),
+        rerankingModelType = schema.new({
+            id = id.from(_N, "AgenticRetrieveConfiguration", "rerankingModelType"),
+            type = "string",
+            name = "rerankingModelType",
+            target_id = prelude.String.id,
+        }),
+        rerankingConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveConfiguration", "rerankingConfiguration"),
+            type = "structure",
+            name = "rerankingConfiguration",
+            target_id = id.from(_N, "AgenticRetrieveRerankingConfiguration"),
+            target = M.AgenticRetrieveRerankingConfiguration,
+        }),
+        maxAgentIteration = schema.new({
+            id = id.from(_N, "AgenticRetrieveConfiguration", "maxAgentIteration"),
+            type = "integer",
+            name = "maxAgentIteration",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 5 },
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveFailure = schema.new({
+    id = id.from(_N, "AgenticRetrieveFailure"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AgenticRetrieveFailure", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveGeneratedResponse = schema.new({
+    id = id.from(_N, "AgenticRetrieveGeneratedResponse"),
+    type = "structure",
+    members = {
+        answer = schema.new({
+            id = id.from(_N, "AgenticRetrieveGeneratedResponse", "answer"),
+            type = "string",
+            name = "answer",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        citations = schema.new({
+            id = id.from(_N, "AgenticRetrieveGeneratedResponse", "citations"),
+            type = "list",
+            name = "citations",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveCitation,
+        }),
+    },
+})
+
+M.AgenticRetrieveGuardrailWarning = schema.new({
+    id = id.from(_N, "AgenticRetrieveGuardrailWarning"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AgenticRetrieveGuardrailWarning", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        version = schema.new({
+            id = id.from(_N, "AgenticRetrieveGuardrailWarning", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        action = schema.new({
+            id = id.from(_N, "AgenticRetrieveGuardrailWarning", "action"),
+            type = "string",
+            name = "action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "AgenticRetrieveGuardrailWarning", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveMessage = schema.new({
+    id = id.from(_N, "AgenticRetrieveMessage"),
+    type = "structure",
+    members = {
+        content = schema.new({
+            id = id.from(_N, "AgenticRetrieveMessage", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "AgenticRetrieveMessageContent"),
+            target = M.AgenticRetrieveMessageContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        role = schema.new({
+            id = id.from(_N, "AgenticRetrieveMessage", "role"),
+            type = "string",
+            name = "role",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrievePolicyConfiguration = schema.new({
+    id = id.from(_N, "AgenticRetrievePolicyConfiguration"),
+    type = "structure",
+    members = {
+        bedrockGuardrailConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrievePolicyConfiguration", "bedrockGuardrailConfiguration"),
+            type = "structure",
+            name = "bedrockGuardrailConfiguration",
+            target_id = id.from(_N, "AgenticRetrieveBedrockGuardrailConfiguration"),
+            target = M.AgenticRetrieveBedrockGuardrailConfiguration,
+        }),
+    },
+})
+
+M.FilterAttribute = schema.new({
+    id = id.from(_N, "FilterAttribute"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "FilterAttribute", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "FilterAttribute", "value"),
+            type = "document",
+            name = "value",
+            target_id = prelude.Document.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveResponseEvent = schema.new({
+    id = id.from(_N, "AgenticRetrieveResponseEvent"),
+    type = "structure",
+    members = {
+        text = schema.new({
+            id = id.from(_N, "AgenticRetrieveResponseEvent", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RetrievalContent = schema.new({
+    id = id.from(_N, "RetrievalContent"),
+    type = "structure",
+    members = {
+        byteContent = schema.new({
+            id = id.from(_N, "RetrievalContent", "byteContent"),
+            type = "blob",
+            name = "byteContent",
+            target_id = prelude.Blob.id,
+        }),
+        text = schema.new({
+            id = id.from(_N, "RetrievalContent", "text"),
+            type = "string",
+            name = "text",
+            target_id = prelude.String.id,
+        }),
+        mimeType = schema.new({
+            id = id.from(_N, "RetrievalContent", "mimeType"),
+            type = "string",
+            name = "mimeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveResultItem = schema.new({
+    id = id.from(_N, "AgenticRetrieveResultItem"),
+    type = "structure",
+    members = {
+        content = schema.new({
+            id = id.from(_N, "AgenticRetrieveResultItem", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "RetrievalContent"),
+            target = M.RetrievalContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "AgenticRetrieveResultItem", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+        sourceRetriever = schema.new({
+            id = id.from(_N, "AgenticRetrieveResultItem", "sourceRetriever"),
+            type = "structure",
+            name = "sourceRetriever",
+            target_id = id.from(_N, "AgenticRetrieveSourceRetriever"),
+            target = M.AgenticRetrieveSourceRetriever,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveResultEvent = schema.new({
+    id = id.from(_N, "AgenticRetrieveResultEvent"),
+    type = "structure",
+    members = {
+        results = schema.new({
+            id = id.from(_N, "AgenticRetrieveResultEvent", "results"),
+            type = "list",
+            name = "results",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveResultItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        generatedResponse = schema.new({
+            id = id.from(_N, "AgenticRetrieveResultEvent", "generatedResponse"),
+            type = "structure",
+            name = "generatedResponse",
+            target_id = id.from(_N, "AgenticRetrieveGeneratedResponse"),
+            target = M.AgenticRetrieveGeneratedResponse,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "AgenticRetrieveResultEvent", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveSourceMetadata = schema.new({
+    id = id.from(_N, "AgenticRetrieveSourceMetadata"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "AgenticRetrieveSourceMetadata", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+        }),
+        retrievalType = schema.new({
+            id = id.from(_N, "AgenticRetrieveSourceMetadata", "retrievalType"),
+            type = "string",
+            name = "retrievalType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UserContext = schema.new({
+    id = id.from(_N, "UserContext"),
+    type = "structure",
+    members = {
+        userId = schema.new({
+            id = id.from(_N, "UserContext", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BadGatewayException = schema.new({
+    id = id.from(_N, "BadGatewayException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "BadGatewayException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        resourceName = schema.new({
+            id = id.from(_N, "BadGatewayException", "resourceName"),
+            type = "string",
+            name = "resourceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DependencyFailedException = schema.new({
+    id = id.from(_N, "DependencyFailedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "DependencyFailedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        resourceName = schema.new({
+            id = id.from(_N, "DependencyFailedException", "resourceName"),
+            type = "string",
+            name = "resourceName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "InternalServerException", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveTraceResultItem = schema.new({
+    id = id.from(_N, "AgenticRetrieveTraceResultItem"),
+    type = "structure",
+    members = {
+        content = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceResultItem", "content"),
+            type = "structure",
+            name = "content",
+            target_id = id.from(_N, "RetrievalContent"),
+            target = M.RetrievalContent,
+        }),
+        metadata = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceResultItem", "metadata"),
+            type = "map",
+            name = "metadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+        sourceRetriever = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceResultItem", "sourceRetriever"),
+            type = "structure",
+            name = "sourceRetriever",
+            target_id = id.from(_N, "AgenticRetrieveSourceRetriever"),
+            target = M.AgenticRetrieveSourceRetriever,
+        }),
+    },
+})
+
+M.AgenticRetrieveWarningMessage = schema.new({
+    id = id.from(_N, "AgenticRetrieveWarningMessage"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AgenticRetrieveWarningMessage", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveWarning = schema.new({
+    id = id.from(_N, "AgenticRetrieveWarning"),
+    type = "union",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "AgenticRetrieveWarning", "message"),
+            type = "structure",
+            name = "message",
+            target_id = id.from(_N, "AgenticRetrieveWarningMessage"),
+            target = M.AgenticRetrieveWarningMessage,
+        }),
+        guardrail = schema.new({
+            id = id.from(_N, "AgenticRetrieveWarning", "guardrail"),
+            type = "structure",
+            name = "guardrail",
+            target_id = id.from(_N, "AgenticRetrieveGuardrailWarning"),
+            target = M.AgenticRetrieveGuardrailWarning,
+        }),
+    },
+})
+
+M.AgenticRetrieveTraceEventAttributes = schema.new({
+    id = id.from(_N, "AgenticRetrieveTraceEventAttributes"),
+    type = "structure",
+    members = {
+        step = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "step"),
+            type = "string",
+            name = "step",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        actions = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "actions"),
+            type = "list",
+            name = "actions",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveAction,
+        }),
+        warnings = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "warnings"),
+            type = "list",
+            name = "warnings",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveWarning,
+        }),
+        failures = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "failures"),
+            type = "list",
+            name = "failures",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveFailure,
+        }),
+        retrievalMetadata = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "retrievalMetadata"),
+            type = "list",
+            name = "retrievalMetadata",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveSourceMetadata,
+        }),
+        retrievalResponse = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEventAttributes", "retrievalResponse"),
+            type = "list",
+            name = "retrievalResponse",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveTraceResultItem,
+        }),
+    },
+})
+
+M.AgenticRetrieveTraceEvent = schema.new({
+    id = id.from(_N, "AgenticRetrieveTraceEvent"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEvent", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEvent", "timestamp"),
+            type = "long",
+            name = "timestamp",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attributes = schema.new({
+            id = id.from(_N, "AgenticRetrieveTraceEvent", "attributes"),
+            type = "structure",
+            name = "attributes",
+            target_id = id.from(_N, "AgenticRetrieveTraceEventAttributes"),
+            target = M.AgenticRetrieveTraceEventAttributes,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgenticRetrieveStreamResponseOutput = schema.new({
+    id = id.from(_N, "AgenticRetrieveStreamResponseOutput"),
+    type = "union",
+    members = {
+        result = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "result"),
+            type = "structure",
+            name = "result",
+            target_id = id.from(_N, "AgenticRetrieveResultEvent"),
+            target = M.AgenticRetrieveResultEvent,
+        }),
+        traceEvent = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "traceEvent"),
+            type = "structure",
+            name = "traceEvent",
+            target_id = id.from(_N, "AgenticRetrieveTraceEvent"),
+            target = M.AgenticRetrieveTraceEvent,
+        }),
+        responseEvent = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "responseEvent"),
+            type = "structure",
+            name = "responseEvent",
+            target_id = id.from(_N, "AgenticRetrieveResponseEvent"),
+            target = M.AgenticRetrieveResponseEvent,
+        }),
+        internalServerException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "internalServerException"),
+            type = "structure",
+            name = "internalServerException",
+            target_id = id.from(_N, "InternalServerException"),
+            target = M.InternalServerException,
+        }),
+        validationException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "validationException"),
+            type = "structure",
+            name = "validationException",
+            target_id = id.from(_N, "ValidationException"),
+            target = M.ValidationException,
+        }),
+        resourceNotFoundException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "resourceNotFoundException"),
+            type = "structure",
+            name = "resourceNotFoundException",
+            target_id = id.from(_N, "ResourceNotFoundException"),
+            target = M.ResourceNotFoundException,
+        }),
+        serviceQuotaExceededException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "serviceQuotaExceededException"),
+            type = "structure",
+            name = "serviceQuotaExceededException",
+            target_id = id.from(_N, "ServiceQuotaExceededException"),
+            target = M.ServiceQuotaExceededException,
+        }),
+        throttlingException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "throttlingException"),
+            type = "structure",
+            name = "throttlingException",
+            target_id = id.from(_N, "ThrottlingException"),
+            target = M.ThrottlingException,
+        }),
+        accessDeniedException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "accessDeniedException"),
+            type = "structure",
+            name = "accessDeniedException",
+            target_id = id.from(_N, "AccessDeniedException"),
+            target = M.AccessDeniedException,
+        }),
+        conflictException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "conflictException"),
+            type = "structure",
+            name = "conflictException",
+            target_id = id.from(_N, "ConflictException"),
+            target = M.ConflictException,
+        }),
+        dependencyFailedException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "dependencyFailedException"),
+            type = "structure",
+            name = "dependencyFailedException",
+            target_id = id.from(_N, "DependencyFailedException"),
+            target = M.DependencyFailedException,
+        }),
+        badGatewayException = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamResponseOutput", "badGatewayException"),
+            type = "structure",
+            name = "badGatewayException",
+            target_id = id.from(_N, "BadGatewayException"),
+            target = M.BadGatewayException,
+        }),
+    },
+})
+
+M.AgenticRetrieveStreamOutput = schema.new({
+    id = id.from(_N, "AgenticRetrieveStreamResponse"),
+    type = "structure",
+    members = {
+        stream = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamOutput", "stream"),
+            type = "union",
+            name = "stream",
+            target_id = id.from(_N, "AgenticRetrieveStreamResponseOutput"),
+            target = M.AgenticRetrieveStreamResponseOutput,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+                [traits.STREAMING] = {},
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+    },
+})
+
 M.Caller = schema.new({
     id = id.from(_N, "Caller"),
     type = "union",
@@ -1945,6 +3017,19 @@ M.RetrievalResultCustomDocumentLocation = schema.new({
     },
 })
 
+M.RetrievalResultGoogleDriveLocation = schema.new({
+    id = id.from(_N, "RetrievalResultGoogleDriveLocation"),
+    type = "structure",
+    members = {
+        url = schema.new({
+            id = id.from(_N, "RetrievalResultGoogleDriveLocation", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RetrievalResultKendraDocumentLocation = schema.new({
     id = id.from(_N, "RetrievalResultKendraDocumentLocation"),
     type = "structure",
@@ -1953,6 +3038,19 @@ M.RetrievalResultKendraDocumentLocation = schema.new({
             id = id.from(_N, "RetrievalResultKendraDocumentLocation", "uri"),
             type = "string",
             name = "uri",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RetrievalResultOneDriveLocation = schema.new({
+    id = id.from(_N, "RetrievalResultOneDriveLocation"),
+    type = "structure",
+    members = {
+        url = schema.new({
+            id = id.from(_N, "RetrievalResultOneDriveLocation", "url"),
+            type = "string",
+            name = "url",
             target_id = prelude.String.id,
         }),
     },
@@ -2091,6 +3189,20 @@ M.RetrievalResultLocation = schema.new({
             name = "sqlLocation",
             target_id = id.from(_N, "RetrievalResultSqlLocation"),
             target = M.RetrievalResultSqlLocation,
+        }),
+        oneDriveLocation = schema.new({
+            id = id.from(_N, "RetrievalResultLocation", "oneDriveLocation"),
+            type = "structure",
+            name = "oneDriveLocation",
+            target_id = id.from(_N, "RetrievalResultOneDriveLocation"),
+            target = M.RetrievalResultOneDriveLocation,
+        }),
+        googleDriveLocation = schema.new({
+            id = id.from(_N, "RetrievalResultLocation", "googleDriveLocation"),
+            type = "structure",
+            name = "googleDriveLocation",
+            target_id = id.from(_N, "RetrievalResultGoogleDriveLocation"),
+            target = M.RetrievalResultGoogleDriveLocation,
         }),
     },
 })
@@ -2710,76 +3822,6 @@ M.GetExecutionFlowSnapshotOutput = schema.new({
             id = id.from(_N, "GetExecutionFlowSnapshotOutput", "customerEncryptionKeyArn"),
             type = "string",
             name = "customerEncryptionKeyArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.InternalServerException = schema.new({
-    id = id.from(_N, "InternalServerException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InternalServerException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-        reason = schema.new({
-            id = id.from(_N, "InternalServerException", "reason"),
-            type = "string",
-            name = "reason",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ThrottlingException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -3898,82 +4940,6 @@ M.ListFlowExecutionsOutput = schema.new({
             id = id.from(_N, "ListFlowExecutionsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.BadGatewayException = schema.new({
-    id = id.from(_N, "BadGatewayException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "BadGatewayException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-        resourceName = schema.new({
-            id = id.from(_N, "BadGatewayException", "resourceName"),
-            type = "string",
-            name = "resourceName",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ConflictException = schema.new({
-    id = id.from(_N, "ConflictException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ConflictException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DependencyFailedException = schema.new({
-    id = id.from(_N, "DependencyFailedException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "DependencyFailedException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-        resourceName = schema.new({
-            id = id.from(_N, "DependencyFailedException", "resourceName"),
-            type = "string",
-            name = "resourceName",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -5147,6 +6113,87 @@ M.GenerateQueryOutput = schema.new({
     },
 })
 
+M.GetDocumentContentInput = schema.new({
+    id = id.from(_N, "GetDocumentContentRequest"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "GetDocumentContentInput", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        dataSourceId = schema.new({
+            id = id.from(_N, "GetDocumentContentInput", "dataSourceId"),
+            type = "string",
+            name = "dataSourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        documentId = schema.new({
+            id = id.from(_N, "GetDocumentContentInput", "documentId"),
+            type = "string",
+            name = "documentId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        outputFormat = schema.new({
+            id = id.from(_N, "GetDocumentContentInput", "outputFormat"),
+            type = "string",
+            name = "outputFormat",
+            target_id = prelude.String.id,
+        }),
+        userContext = schema.new({
+            id = id.from(_N, "GetDocumentContentInput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
+    },
+})
+
+M.GetDocumentContentOutput = schema.new({
+    id = id.from(_N, "GetDocumentContentResponse"),
+    type = "structure",
+    members = {
+        mimeType = schema.new({
+            id = id.from(_N, "GetDocumentContentOutput", "mimeType"),
+            type = "string",
+            name = "mimeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        presignedUrl = schema.new({
+            id = id.from(_N, "GetDocumentContentOutput", "presignedUrl"),
+            type = "string",
+            name = "presignedUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        documentContentLength = schema.new({
+            id = id.from(_N, "GetDocumentContentOutput", "documentContentLength"),
+            type = "long",
+            name = "documentContentLength",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
 M.BedrockModelConfigurations = schema.new({
     id = id.from(_N, "BedrockModelConfigurations"),
     type = "structure",
@@ -5342,27 +6389,139 @@ M.InputFile = schema.new({
     },
 })
 
-M.FilterAttribute = schema.new({
-    id = id.from(_N, "FilterAttribute"),
+M.FieldForReranking = schema.new({
+    id = id.from(_N, "FieldForReranking"),
     type = "structure",
     members = {
-        key = schema.new({
-            id = id.from(_N, "FilterAttribute", "key"),
+        fieldName = schema.new({
+            id = id.from(_N, "FieldForReranking", "fieldName"),
             type = "string",
-            name = "key",
+            name = "fieldName",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        value = schema.new({
-            id = id.from(_N, "FilterAttribute", "value"),
-            type = "document",
-            name = "value",
+    },
+})
+
+M.RerankingMetadataSelectiveModeConfiguration = schema.new({
+    id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration"),
+    type = "union",
+    members = {
+        fieldsToInclude = schema.new({
+            id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration", "fieldsToInclude"),
+            type = "list",
+            name = "fieldsToInclude",
             target_id = prelude.Document.id,
+            list_member = M.FieldForReranking,
+        }),
+        fieldsToExclude = schema.new({
+            id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration", "fieldsToExclude"),
+            type = "list",
+            name = "fieldsToExclude",
+            target_id = prelude.Document.id,
+            list_member = M.FieldForReranking,
+        }),
+    },
+})
+
+M.MetadataConfigurationForReranking = schema.new({
+    id = id.from(_N, "MetadataConfigurationForReranking"),
+    type = "structure",
+    members = {
+        selectionMode = schema.new({
+            id = id.from(_N, "MetadataConfigurationForReranking", "selectionMode"),
+            type = "string",
+            name = "selectionMode",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        selectiveModeConfiguration = schema.new({
+            id = id.from(_N, "MetadataConfigurationForReranking", "selectiveModeConfiguration"),
+            type = "union",
+            name = "selectiveModeConfiguration",
+            target_id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration"),
+            target = M.RerankingMetadataSelectiveModeConfiguration,
+        }),
+    },
+})
+
+M.ManagedSearchBedrockRerankingModelConfiguration = schema.new({
+    id = id.from(_N, "ManagedSearchBedrockRerankingModelConfiguration"),
+    type = "structure",
+    members = {
+        modelArn = schema.new({
+            id = id.from(_N, "ManagedSearchBedrockRerankingModelConfiguration", "modelArn"),
+            type = "string",
+            name = "modelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        additionalModelRequestFields = schema.new({
+            id = id.from(_N, "ManagedSearchBedrockRerankingModelConfiguration", "additionalModelRequestFields"),
+            type = "map",
+            name = "additionalModelRequestFields",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Document,
+        }),
+    },
+})
+
+M.ManagedSearchBedrockRerankingConfiguration = schema.new({
+    id = id.from(_N, "ManagedSearchBedrockRerankingConfiguration"),
+    type = "structure",
+    members = {
+        modelConfiguration = schema.new({
+            id = id.from(_N, "ManagedSearchBedrockRerankingConfiguration", "modelConfiguration"),
+            type = "structure",
+            name = "modelConfiguration",
+            target_id = id.from(_N, "ManagedSearchBedrockRerankingModelConfiguration"),
+            target = M.ManagedSearchBedrockRerankingModelConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        numberOfRerankedResults = schema.new({
+            id = id.from(_N, "ManagedSearchBedrockRerankingConfiguration", "numberOfRerankedResults"),
+            type = "integer",
+            name = "numberOfRerankedResults",
+            target_id = prelude.Integer.id,
+        }),
+        metadataConfiguration = schema.new({
+            id = id.from(_N, "ManagedSearchBedrockRerankingConfiguration", "metadataConfiguration"),
+            type = "structure",
+            name = "metadataConfiguration",
+            target_id = id.from(_N, "MetadataConfigurationForReranking"),
+            target = M.MetadataConfigurationForReranking,
+        }),
+    },
+})
+
+M.ManagedSearchRerankingConfiguration = schema.new({
+    id = id.from(_N, "ManagedSearchRerankingConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "ManagedSearchRerankingConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        bedrockRerankingConfiguration = schema.new({
+            id = id.from(_N, "ManagedSearchRerankingConfiguration", "bedrockRerankingConfiguration"),
+            type = "structure",
+            name = "bedrockRerankingConfiguration",
+            target_id = id.from(_N, "ManagedSearchBedrockRerankingConfiguration"),
+            target = M.ManagedSearchBedrockRerankingConfiguration,
         }),
     },
 })
@@ -5423,66 +6582,6 @@ M.ImplicitFilterConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.FieldForReranking = schema.new({
-    id = id.from(_N, "FieldForReranking"),
-    type = "structure",
-    members = {
-        fieldName = schema.new({
-            id = id.from(_N, "FieldForReranking", "fieldName"),
-            type = "string",
-            name = "fieldName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.RerankingMetadataSelectiveModeConfiguration = schema.new({
-    id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration"),
-    type = "union",
-    members = {
-        fieldsToInclude = schema.new({
-            id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration", "fieldsToInclude"),
-            type = "list",
-            name = "fieldsToInclude",
-            target_id = prelude.Document.id,
-            list_member = M.FieldForReranking,
-        }),
-        fieldsToExclude = schema.new({
-            id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration", "fieldsToExclude"),
-            type = "list",
-            name = "fieldsToExclude",
-            target_id = prelude.Document.id,
-            list_member = M.FieldForReranking,
-        }),
-    },
-})
-
-M.MetadataConfigurationForReranking = schema.new({
-    id = id.from(_N, "MetadataConfigurationForReranking"),
-    type = "structure",
-    members = {
-        selectionMode = schema.new({
-            id = id.from(_N, "MetadataConfigurationForReranking", "selectionMode"),
-            type = "string",
-            name = "selectionMode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        selectiveModeConfiguration = schema.new({
-            id = id.from(_N, "MetadataConfigurationForReranking", "selectiveModeConfiguration"),
-            type = "union",
-            name = "selectiveModeConfiguration",
-            target_id = id.from(_N, "RerankingMetadataSelectiveModeConfiguration"),
-            target = M.RerankingMetadataSelectiveModeConfiguration,
         }),
     },
 })
@@ -7717,6 +8816,12 @@ M.KnowledgeBaseRetrievalResult = schema.new({
             map_key = prelude.String,
             map_value = prelude.Document,
         }),
+        documentId = schema.new({
+            id = id.from(_N, "KnowledgeBaseRetrievalResult", "documentId"),
+            type = "string",
+            name = "documentId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -8975,6 +10080,185 @@ M.KnowledgeBaseVectorSearchConfiguration = schema.new({
     },
 })
 
+M.ManagedSearchConfiguration = schema.new({
+    id = id.from(_N, "ManagedSearchConfiguration"),
+    type = "structure",
+    members = {
+        numberOfResults = schema.new({
+            id = id.from(_N, "ManagedSearchConfiguration", "numberOfResults"),
+            type = "integer",
+            name = "numberOfResults",
+            target_id = prelude.Integer.id,
+        }),
+        filter = schema.new({
+            id = id.from(_N, "ManagedSearchConfiguration", "filter"),
+            type = "union",
+            name = "filter",
+            target_id = id.from(_N, "RetrievalFilter"),
+            target = M.RetrievalFilter,
+        }),
+        rerankingModelType = schema.new({
+            id = id.from(_N, "ManagedSearchConfiguration", "rerankingModelType"),
+            type = "string",
+            name = "rerankingModelType",
+            target_id = prelude.String.id,
+        }),
+        rerankingConfiguration = schema.new({
+            id = id.from(_N, "ManagedSearchConfiguration", "rerankingConfiguration"),
+            type = "structure",
+            name = "rerankingConfiguration",
+            target_id = id.from(_N, "ManagedSearchRerankingConfiguration"),
+            target = M.ManagedSearchRerankingConfiguration,
+        }),
+    },
+})
+
+M.RetrievalOverrides = schema.new({
+    id = id.from(_N, "RetrievalOverrides"),
+    type = "structure",
+    members = {
+        filter = schema.new({
+            id = id.from(_N, "RetrievalOverrides", "filter"),
+            type = "union",
+            name = "filter",
+            target_id = id.from(_N, "RetrievalFilter"),
+            target = M.RetrievalFilter,
+        }),
+        maxNumberOfResults = schema.new({
+            id = id.from(_N, "RetrievalOverrides", "maxNumberOfResults"),
+            type = "integer",
+            name = "maxNumberOfResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.KnowledgeBaseRetrieverConfiguration = schema.new({
+    id = id.from(_N, "KnowledgeBaseRetrieverConfiguration"),
+    type = "structure",
+    members = {
+        knowledgeBaseId = schema.new({
+            id = id.from(_N, "KnowledgeBaseRetrieverConfiguration", "knowledgeBaseId"),
+            type = "string",
+            name = "knowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievalOverrides = schema.new({
+            id = id.from(_N, "KnowledgeBaseRetrieverConfiguration", "retrievalOverrides"),
+            type = "structure",
+            name = "retrievalOverrides",
+            target_id = id.from(_N, "RetrievalOverrides"),
+            target = M.RetrievalOverrides,
+        }),
+    },
+})
+
+M.RetrieverConfiguration = schema.new({
+    id = id.from(_N, "RetrieverConfiguration"),
+    type = "union",
+    members = {
+        knowledgeBase = schema.new({
+            id = id.from(_N, "RetrieverConfiguration", "knowledgeBase"),
+            type = "structure",
+            name = "knowledgeBase",
+            target_id = id.from(_N, "KnowledgeBaseRetrieverConfiguration"),
+            target = M.KnowledgeBaseRetrieverConfiguration,
+        }),
+    },
+})
+
+M.AgenticRetriever = schema.new({
+    id = id.from(_N, "AgenticRetriever"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "AgenticRetriever", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        configuration = schema.new({
+            id = id.from(_N, "AgenticRetriever", "configuration"),
+            type = "union",
+            name = "configuration",
+            target_id = id.from(_N, "RetrieverConfiguration"),
+            target = M.RetrieverConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgenticRetrieveStreamInput = schema.new({
+    id = id.from(_N, "AgenticRetrieveStreamRequest"),
+    type = "structure",
+    members = {
+        messages = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "messages"),
+            type = "list",
+            name = "messages",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetrieveMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retrievers = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "retrievers"),
+            type = "list",
+            name = "retrievers",
+            target_id = prelude.Document.id,
+            list_member = M.AgenticRetriever,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agenticRetrieveConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "agenticRetrieveConfiguration"),
+            type = "structure",
+            name = "agenticRetrieveConfiguration",
+            target_id = id.from(_N, "AgenticRetrieveConfiguration"),
+            target = M.AgenticRetrieveConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        policyConfiguration = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "policyConfiguration"),
+            type = "structure",
+            name = "policyConfiguration",
+            target_id = id.from(_N, "AgenticRetrievePolicyConfiguration"),
+            target = M.AgenticRetrievePolicyConfiguration,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        userContext = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
+        generateResponse = schema.new({
+            id = id.from(_N, "AgenticRetrieveStreamInput", "generateResponse"),
+            type = "boolean",
+            name = "generateResponse",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+    },
+})
+
 M.KnowledgeBaseRetrievalConfiguration = schema.new({
     id = id.from(_N, "KnowledgeBaseRetrievalConfiguration"),
     type = "structure",
@@ -8985,9 +10269,13 @@ M.KnowledgeBaseRetrievalConfiguration = schema.new({
             name = "vectorSearchConfiguration",
             target_id = id.from(_N, "KnowledgeBaseVectorSearchConfiguration"),
             target = M.KnowledgeBaseVectorSearchConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        managedSearchConfiguration = schema.new({
+            id = id.from(_N, "KnowledgeBaseRetrievalConfiguration", "managedSearchConfiguration"),
+            type = "structure",
+            name = "managedSearchConfiguration",
+            target_id = id.from(_N, "ManagedSearchConfiguration"),
+            target = M.ManagedSearchConfiguration,
         }),
     },
 })
@@ -9140,6 +10428,13 @@ M.RetrieveInput = schema.new({
             name = "nextToken",
             target_id = prelude.String.id,
         }),
+        userContext = schema.new({
+            id = id.from(_N, "RetrieveInput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
     },
 })
 
@@ -9291,6 +10586,13 @@ M.RetrieveAndGenerateOperationInput = schema.new({
             target_id = id.from(_N, "RetrieveAndGenerateSessionConfiguration"),
             target = M.RetrieveAndGenerateSessionConfiguration,
         }),
+        userContext = schema.new({
+            id = id.from(_N, "RetrieveAndGenerateOperationInput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
+        }),
     },
 })
 
@@ -9327,6 +10629,13 @@ M.RetrieveAndGenerateStreamInput = schema.new({
             name = "sessionConfiguration",
             target_id = id.from(_N, "RetrieveAndGenerateSessionConfiguration"),
             target = M.RetrieveAndGenerateSessionConfiguration,
+        }),
+        userContext = schema.new({
+            id = id.from(_N, "RetrieveAndGenerateStreamInput", "userContext"),
+            type = "structure",
+            name = "userContext",
+            target_id = id.from(_N, "UserContext"),
+            target = M.UserContext,
         }),
     },
 })
@@ -9671,6 +10980,19 @@ M.Service = schema.service({
     },
 })
 
+M.AgenticRetrieveStream = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "AgenticRetrieveStream"),
+    input = M.AgenticRetrieveStreamInput,
+    output = M.AgenticRetrieveStreamOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/agenticRetrieveStream" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.EVENT_STREAM] = M.AgenticRetrieveStreamResponseOutput,
+    },
+})
+
 M.CreateInvocation = schema.operation({
     id = id.from("com.amazonaws.bedrockagentruntime", "CreateInvocation"),
     input = M.CreateInvocationInput,
@@ -9749,6 +11071,18 @@ M.GetAgentMemory = schema.operation({
     output = M.GetAgentMemoryOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/agents/{agentId}/agentAliases/{agentAliasId}/memories" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDocumentContent = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentruntime", "GetDocumentContent"),
+    input = M.GetDocumentContentInput,
+    output = M.GetDocumentContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/knowledgebases/{knowledgeBaseId}/datasources/{dataSourceId}/documents/{documentId}/content" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

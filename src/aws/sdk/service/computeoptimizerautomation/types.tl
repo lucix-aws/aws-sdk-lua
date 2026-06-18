@@ -343,11 +343,23 @@ local record M
         "NumericLessThanEquals"
         "NumericGreaterThan"
         "NumericGreaterThanEquals"
+        "StringEqualsIfExists"
+        "StringNotEqualsIfExists"
+        "StringEqualsIgnoreCaseIfExists"
+        "StringNotEqualsIgnoreCaseIfExists"
+        "StringLikeIfExists"
+        "StringNotLikeIfExists"
+        "NumericEqualsIfExists"
+        "NumericNotEqualsIfExists"
+        "NumericLessThanIfExists"
+        "NumericLessThanEqualsIfExists"
+        "NumericGreaterThanIfExists"
+        "NumericGreaterThanEqualsIfExists"
     end
 
     -- Defines a condition for filtering based on integer values with comparison operators.
     record IntegerCriteriaCondition
-        -- The comparison operator to use, such as equals, greater than, less than, etc.
+        -- The comparison operator used to evaluate the attribute against the specified values.
         comparison: string
         -- The list of integer values to compare against using the specified comparison operator.
         values: {number}
@@ -355,7 +367,7 @@ local record M
 
     -- Criteria condition for filtering based on string values, including comparison operators and target values.
     record StringCriteriaCondition
-        -- The comparison operator used to evaluate the string criteria, such as equals, not equals, or contains.
+        -- The comparison operator used to evaluate the attribute against the specified values.
         comparison: string
         -- List of string values to compare against when applying the criteria condition.
         values: {string}
@@ -363,7 +375,7 @@ local record M
 
     -- Defines a condition for filtering based on double/floating-point numeric values with comparison operators.
     record DoubleCriteriaCondition
-        -- The comparison operator to use, such as equals, greater than, less than, etc.
+        -- The comparison operator used to evaluate the attribute against the specified values.
         comparison: string
         -- The list of double values to compare against using the specified comparison operator.
         values: {number}
@@ -371,7 +383,7 @@ local record M
 
     -- Criteria condition for filtering resources based on their tags, including comparison operators and values.
     record ResourceTagsCriteriaCondition
-        -- The comparison operator used to evaluate the tag criteria, such as equals, not equals, or contains.
+        -- The comparison operator used to evaluate the attribute against the specified values.
         comparison: string
         -- The tag key to use for comparison when filtering resources.
         key: string

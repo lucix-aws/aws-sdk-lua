@@ -53,6 +53,8 @@ M.TaskStatusList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TaskTypeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AssociationCapabilities = schema.new({ type = "map", map_key = prelude.String, map_value = M.CapabilityConfiguration })
+
 M.WebhooksList = schema.new({ type = "list", list_member = M.Webhook })
 
 M.AssociationsList = schema.new({ type = "list", list_member = M.Association })
@@ -428,6 +430,107 @@ M.RegisteredPagerDutyDetails = schema.new({
     },
 })
 
+M.RegisteredRemoteAgentDetails = schema.new({
+    id = id.from(_N, "RegisteredRemoteAgentDetails"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentDetails", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentDetails", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentDetails", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        authorizationMethod = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentDetails", "authorizationMethod"),
+            type = "string",
+            name = "authorizationMethod",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        apiKeyHeader = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentDetails", "apiKeyHeader"),
+            type = "string",
+            name = "apiKeyHeader",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RegisteredRemoteAgentSigV4Details = schema.new({
+    id = id.from(_N, "RegisteredRemoteAgentSigV4Details"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentSigV4Details", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentSigV4Details", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentSigV4Details", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        region = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentSigV4Details", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        service = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentSigV4Details", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "RegisteredRemoteAgentSigV4Details", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RegisteredServiceNowDetails = schema.new({
     id = id.from(_N, "RegisteredServiceNowDetails"),
     type = "structure",
@@ -561,6 +664,20 @@ M.AdditionalServiceDetails = schema.new({
             target_id = id.from(_N, "RegisteredMCPServerSigV4Details"),
             target = M.RegisteredMCPServerSigV4Details,
         }),
+        remoteagent = schema.new({
+            id = id.from(_N, "AdditionalServiceDetails", "remoteagent"),
+            type = "structure",
+            name = "remoteagent",
+            target_id = id.from(_N, "RegisteredRemoteAgentDetails"),
+            target = M.RegisteredRemoteAgentDetails,
+        }),
+        remoteagentsigv4 = schema.new({
+            id = id.from(_N, "AdditionalServiceDetails", "remoteagentsigv4"),
+            type = "structure",
+            name = "remoteagentsigv4",
+            target_id = id.from(_N, "RegisteredRemoteAgentSigV4Details"),
+            target = M.RegisteredRemoteAgentSigV4Details,
+        }),
     },
 })
 
@@ -653,6 +770,19 @@ M.AgentSpace = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CapabilityConfiguration = schema.new({
+    id = id.from(_N, "CapabilityConfiguration"),
+    type = "structure",
+    members = {
+        enabled = schema.new({
+            id = id.from(_N, "CapabilityConfiguration", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -815,6 +945,12 @@ M.GitHubConfiguration = schema.new({
             name = "instanceIdentifier",
             target_id = prelude.String.id,
         }),
+        runtimeRoleArn = schema.new({
+            id = id.from(_N, "GitHubConfiguration", "runtimeRoleArn"),
+            type = "string",
+            name = "runtimeRoleArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -844,6 +980,12 @@ M.GitLabConfiguration = schema.new({
             id = id.from(_N, "GitLabConfiguration", "instanceIdentifier"),
             type = "string",
             name = "instanceIdentifier",
+            target_id = prelude.String.id,
+        }),
+        runtimeRoleArn = schema.new({
+            id = id.from(_N, "GitLabConfiguration", "runtimeRoleArn"),
+            type = "string",
+            name = "runtimeRoleArn",
             target_id = prelude.String.id,
         }),
     },
@@ -971,6 +1113,16 @@ M.PagerDutyConfiguration = schema.new({
             },
         }),
     },
+})
+
+M.RemoteAgentConfiguration = schema.new({
+    id = id.from(_N, "RemoteAgentConfiguration"),
+    type = "structure",
+})
+
+M.RemoteAgentSigV4Configuration = schema.new({
+    id = id.from(_N, "RemoteAgentSigV4Configuration"),
+    type = "structure",
 })
 
 M.ServiceNowConfiguration = schema.new({
@@ -1237,6 +1389,20 @@ M.ServiceConfiguration = schema.new({
             target_id = id.from(_N, "MCPServerSigV4Configuration"),
             target = M.MCPServerSigV4Configuration,
         }),
+        remoteagent = schema.new({
+            id = id.from(_N, "ServiceConfiguration", "remoteagent"),
+            type = "structure",
+            name = "remoteagent",
+            target_id = id.from(_N, "RemoteAgentConfiguration"),
+            target = M.RemoteAgentConfiguration,
+        }),
+        remoteagentsigv4 = schema.new({
+            id = id.from(_N, "ServiceConfiguration", "remoteagentsigv4"),
+            type = "structure",
+            name = "remoteagentsigv4",
+            target_id = id.from(_N, "RemoteAgentSigV4Configuration"),
+            target = M.RemoteAgentSigV4Configuration,
+        }),
     },
 })
 
@@ -1272,6 +1438,14 @@ M.AssociateServiceInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        capabilities = schema.new({
+            id = id.from(_N, "AssociateServiceInput", "capabilities"),
+            type = "map",
+            name = "capabilities",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.CapabilityConfiguration,
         }),
     },
 })
@@ -1342,6 +1516,14 @@ M.Association = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        capabilities = schema.new({
+            id = id.from(_N, "Association", "capabilities"),
+            type = "map",
+            name = "capabilities",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.CapabilityConfiguration,
         }),
     },
 })
@@ -1843,6 +2025,14 @@ M.UpdateAssociationInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        capabilities = schema.new({
+            id = id.from(_N, "UpdateAssociationInput", "capabilities"),
+            type = "map",
+            name = "capabilities",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.CapabilityConfiguration,
         }),
     },
 })
@@ -2654,6 +2844,22 @@ M.AssetFileContent = schema.new({
     },
 })
 
+M.AssetSourceUrlContent = schema.new({
+    id = id.from(_N, "AssetSourceUrlContent"),
+    type = "structure",
+    members = {
+        url = schema.new({
+            id = id.from(_N, "AssetSourceUrlContent", "url"),
+            type = "string",
+            name = "url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AssetZipContent = schema.new({
     id = id.from(_N, "AssetZipContent"),
     type = "structure",
@@ -2687,6 +2893,13 @@ M.AssetContent = schema.new({
             name = "zip",
             target_id = id.from(_N, "AssetZipContent"),
             target = M.AssetZipContent,
+        }),
+        sourceUrl = schema.new({
+            id = id.from(_N, "AssetContent", "sourceUrl"),
+            type = "structure",
+            name = "sourceUrl",
+            target_id = id.from(_N, "AssetSourceUrlContent"),
+            target = M.AssetSourceUrlContent,
         }),
     },
 })
@@ -7674,6 +7887,270 @@ M.PagerDutyDetails = schema.new({
     },
 })
 
+M.RemoteAgentAPIKeyConfig = schema.new({
+    id = id.from(_N, "RemoteAgentAPIKeyConfig"),
+    type = "structure",
+    members = {
+        apiKeyName = schema.new({
+            id = id.from(_N, "RemoteAgentAPIKeyConfig", "apiKeyName"),
+            type = "string",
+            name = "apiKeyName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        apiKeyValue = schema.new({
+            id = id.from(_N, "RemoteAgentAPIKeyConfig", "apiKeyValue"),
+            type = "string",
+            name = "apiKeyValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        apiKeyHeader = schema.new({
+            id = id.from(_N, "RemoteAgentAPIKeyConfig", "apiKeyHeader"),
+            type = "string",
+            name = "apiKeyHeader",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoteAgentBearerTokenConfig = schema.new({
+    id = id.from(_N, "RemoteAgentBearerTokenConfig"),
+    type = "structure",
+    members = {
+        tokenName = schema.new({
+            id = id.from(_N, "RemoteAgentBearerTokenConfig", "tokenName"),
+            type = "string",
+            name = "tokenName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tokenValue = schema.new({
+            id = id.from(_N, "RemoteAgentBearerTokenConfig", "tokenValue"),
+            type = "string",
+            name = "tokenValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        authorizationHeader = schema.new({
+            id = id.from(_N, "RemoteAgentBearerTokenConfig", "authorizationHeader"),
+            type = "string",
+            name = "authorizationHeader",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "Authorization" },
+            },
+        }),
+    },
+})
+
+M.RemoteAgentOAuthClientCredentialsConfig = schema.new({
+    id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig"),
+    type = "structure",
+    members = {
+        clientName = schema.new({
+            id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig", "clientName"),
+            type = "string",
+            name = "clientName",
+            target_id = prelude.String.id,
+        }),
+        clientId = schema.new({
+            id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig", "clientId"),
+            type = "string",
+            name = "clientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        exchangeParameters = schema.new({
+            id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig", "exchangeParameters"),
+            type = "map",
+            name = "exchangeParameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        clientSecret = schema.new({
+            id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig", "clientSecret"),
+            type = "string",
+            name = "clientSecret",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        exchangeUrl = schema.new({
+            id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig", "exchangeUrl"),
+            type = "string",
+            name = "exchangeUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scopes = schema.new({
+            id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig", "scopes"),
+            type = "list",
+            name = "scopes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.RemoteAgentAuthorizationConfig = schema.new({
+    id = id.from(_N, "RemoteAgentAuthorizationConfig"),
+    type = "union",
+    members = {
+        apiKey = schema.new({
+            id = id.from(_N, "RemoteAgentAuthorizationConfig", "apiKey"),
+            type = "structure",
+            name = "apiKey",
+            target_id = id.from(_N, "RemoteAgentAPIKeyConfig"),
+            target = M.RemoteAgentAPIKeyConfig,
+        }),
+        oAuthClientCredentials = schema.new({
+            id = id.from(_N, "RemoteAgentAuthorizationConfig", "oAuthClientCredentials"),
+            type = "structure",
+            name = "oAuthClientCredentials",
+            target_id = id.from(_N, "RemoteAgentOAuthClientCredentialsConfig"),
+            target = M.RemoteAgentOAuthClientCredentialsConfig,
+        }),
+        bearerToken = schema.new({
+            id = id.from(_N, "RemoteAgentAuthorizationConfig", "bearerToken"),
+            type = "structure",
+            name = "bearerToken",
+            target_id = id.from(_N, "RemoteAgentBearerTokenConfig"),
+            target = M.RemoteAgentBearerTokenConfig,
+        }),
+    },
+})
+
+M.RemoteAgentServiceDetails = schema.new({
+    id = id.from(_N, "RemoteAgentServiceDetails"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RemoteAgentServiceDetails", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "RemoteAgentServiceDetails", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "RemoteAgentServiceDetails", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        authorizationConfig = schema.new({
+            id = id.from(_N, "RemoteAgentServiceDetails", "authorizationConfig"),
+            type = "union",
+            name = "authorizationConfig",
+            target_id = id.from(_N, "RemoteAgentAuthorizationConfig"),
+            target = M.RemoteAgentAuthorizationConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RemoteAgentSigV4AuthorizationConfig = schema.new({
+    id = id.from(_N, "RemoteAgentSigV4AuthorizationConfig"),
+    type = "structure",
+    members = {
+        region = schema.new({
+            id = id.from(_N, "RemoteAgentSigV4AuthorizationConfig", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        service = schema.new({
+            id = id.from(_N, "RemoteAgentSigV4AuthorizationConfig", "service"),
+            type = "string",
+            name = "service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "RemoteAgentSigV4AuthorizationConfig", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RemoteAgentSigV4ServiceDetails = schema.new({
+    id = id.from(_N, "RemoteAgentSigV4ServiceDetails"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RemoteAgentSigV4ServiceDetails", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endpoint = schema.new({
+            id = id.from(_N, "RemoteAgentSigV4ServiceDetails", "endpoint"),
+            type = "string",
+            name = "endpoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "RemoteAgentSigV4ServiceDetails", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        authorizationConfig = schema.new({
+            id = id.from(_N, "RemoteAgentSigV4ServiceDetails", "authorizationConfig"),
+            type = "structure",
+            name = "authorizationConfig",
+            target_id = id.from(_N, "RemoteAgentSigV4AuthorizationConfig"),
+            target = M.RemoteAgentSigV4AuthorizationConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ServiceNowOAuthClientCredentialsConfig = schema.new({
     id = id.from(_N, "ServiceNowOAuthClientCredentialsConfig"),
     type = "structure",
@@ -7837,6 +8314,20 @@ M.ServiceDetails = schema.new({
             name = "mcpserversigv4",
             target_id = id.from(_N, "MCPServerSigV4ServiceDetails"),
             target = M.MCPServerSigV4ServiceDetails,
+        }),
+        remoteagent = schema.new({
+            id = id.from(_N, "ServiceDetails", "remoteagent"),
+            type = "structure",
+            name = "remoteagent",
+            target_id = id.from(_N, "RemoteAgentServiceDetails"),
+            target = M.RemoteAgentServiceDetails,
+        }),
+        remoteagentsigv4 = schema.new({
+            id = id.from(_N, "ServiceDetails", "remoteagentsigv4"),
+            type = "structure",
+            name = "remoteagentsigv4",
+            target_id = id.from(_N, "RemoteAgentSigV4ServiceDetails"),
+            target = M.RemoteAgentSigV4ServiceDetails,
         }),
     },
 })

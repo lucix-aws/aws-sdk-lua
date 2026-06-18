@@ -425,6 +425,20 @@ local record M
         codeConfiguration: CodeConfiguration
     end
 
+    -- A hosting environment whose workloads are allowed to invoke the target. At launch, the only supported hosting environment is AgentCore Gateway.
+    record HostingEnvironment
+        -- The Amazon Resource Name (ARN) of the hosting environment.
+        arn: string
+    end
+
+    -- The configuration that restricts which workloads in the request's identity chain are allowed to invoke the target, identified by their hosting environments and workload identities. At launch, this is supported only for AgentCore Runtime targets, and the allowed workloads are AgentCore Gateways.
+    record AllowedWorkloadConfiguration
+        -- The list of hosting environments whose workloads are allowed to invoke the target. At launch, the only supported hosting environment is AgentCore Gateway.
+        hostingEnvironments: {HostingEnvironment}
+        -- The list of workload identities that are allowed to invoke the target.
+        workloadIdentities: {string}
+    end
+
     enum ClaimMatchOperatorType
         "EQUALS"
         "CONTAINS"
@@ -520,6 +534,8 @@ local record M
         privateEndpoint: PrivateEndpoint
         -- The private endpoint overrides for the custom JWT authorizer configuration.
         privateEndpointOverrides: {PrivateEndpointOverride}
+        -- The configuration that restricts which workloads in the request's identity chain are allowed to invoke the target, identified by their hosting environments and workload identities. At launch, this is supported only for AgentCore Runtime targets, and the allowed workloads are AgentCore Gateways.
+        allowedWorkloadConfiguration: AllowedWorkloadConfiguration
     end
 
     -- Represents inbound authorization configuration options used to authenticate incoming requests.
@@ -852,11 +868,11 @@ local record M
         skillDefinition: SkillDefinition
     end
 
-    -- Contains a reference to a secret stored in AWS Secrets Manager.
+    -- Contains a reference to a secret stored in Amazon Web Services Secrets Manager.
     record SecretReference
-        -- The ID of the AWS Secrets Manager secret that stores the secret value.
+        -- The ID of the Amazon Web Services Secrets Manager secret that stores the secret value.
         secretId: string
-        -- The JSON key used to extract the secret value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the secret value from the Amazon Web Services Secrets Manager secret.
         jsonKey: string
     end
 
@@ -870,26 +886,26 @@ local record M
         name: string
         -- The API key to use for authentication. This value is encrypted and stored securely.
         apiKey: string
-        -- A reference to the AWS Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
         apiKeySecretConfig: SecretReference
-        -- The source type of the API key secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the API key secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         apiKeySecretSource: string
         -- A map of tag keys and values to assign to the API key credential provider. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
         tags: {string : string}
     end
 
-    -- Contains information about a secret in AWS Secrets Manager.
+    -- Contains information about a secret in Amazon Web Services Secrets Manager.
     record Secret
-        -- The Amazon Resource Name (ARN) of the secret in AWS Secrets Manager.
+        -- The Amazon Resource Name (ARN) of the secret in Amazon Web Services Secrets Manager.
         secretArn: string
     end
 
     record CreateApiKeyCredentialProviderOutput
         -- The Amazon Resource Name (ARN) of the secret containing the API key.
         apiKeySecretArn: Secret
-        -- The JSON key used to extract the API key value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the API key value from the Amazon Web Services Secrets Manager secret.
         apiKeySecretJsonKey: string
-        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         apiKeySecretSource: string
         -- The name of the created API key credential provider.
         name: string
@@ -931,11 +947,11 @@ local record M
     end
 
     record GetApiKeyCredentialProviderOutput
-        -- The Amazon Resource Name (ARN) of the API key secret in AWS Secrets Manager.
+        -- The Amazon Resource Name (ARN) of the API key secret in Amazon Web Services Secrets Manager.
         apiKeySecretArn: Secret
-        -- The JSON key used to extract the API key value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the API key value from the Amazon Web Services Secrets Manager secret.
         apiKeySecretJsonKey: string
-        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         apiKeySecretSource: string
         -- The name of the API key credential provider.
         name: string
@@ -978,18 +994,18 @@ local record M
         name: string
         -- The new API key to use for authentication. This value replaces the existing API key and is encrypted and stored securely.
         apiKey: string
-        -- A reference to the AWS Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the API key. This includes the secret ID and the JSON key used to extract the API key value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
         apiKeySecretConfig: SecretReference
-        -- The source type of the API key secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the API key secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         apiKeySecretSource: string
     end
 
     record UpdateApiKeyCredentialProviderOutput
-        -- The Amazon Resource Name (ARN) of the API key secret in AWS Secrets Manager.
+        -- The Amazon Resource Name (ARN) of the API key secret in Amazon Web Services Secrets Manager.
         apiKeySecretArn: Secret
-        -- The JSON key used to extract the API key value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the API key value from the Amazon Web Services Secrets Manager secret.
         apiKeySecretJsonKey: string
-        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         apiKeySecretSource: string
         -- The name of the API key credential provider.
         name: string
@@ -2228,10 +2244,28 @@ local record M
         "DEBUG"
     end
 
+    enum InterceptorPayloadExclusion
+        "RESPONSE_BODY"
+    end
+
+    -- A selector that identifies a payload field to exclude from the interceptor input.
+    record InterceptorPayloadExclusionSelector
+        -- The field to exclude from the interceptor input.
+        field: string
+    end
+
+    -- The filter that controls which fields of the request or response payload are included in the input to the interceptor.
+    record InterceptorPayloadFilter
+        -- The list of selectors that identify payload fields to exclude from the interceptor input.
+        exclude: {InterceptorPayloadExclusionSelector}
+    end
+
     -- The input configuration of the interceptor.
     record InterceptorInputConfiguration
         -- Indicates whether to pass request headers as input into the interceptor. When set to true, request headers will be passed.
         passRequestHeaders: boolean
+        -- The filter that determines which parts of the request or response payload are passed as input to the interceptor.
+        payloadFilter: InterceptorPayloadFilter
     end
 
     enum GatewayInterceptionPoint
@@ -2343,6 +2377,18 @@ local record M
         tags: {string : string}
     end
 
+    -- The Lambda configuration for custom transformations. This structure defines the Lambda function that the gateway invokes to transform data.
+    record LambdaTransformConfiguration
+        -- The Amazon Resource Name (ARN) of the Lambda function. This function is invoked by the gateway to transform data.
+        arn: string
+    end
+
+    -- The configuration for custom transformations applied to requests and responses through the gateway. This structure defines how the gateway transforms data.
+    record CustomTransformConfiguration
+        -- The Lambda configuration for custom transformations. This configuration defines how the gateway uses a Lambda function to transform data.
+        lambda: LambdaTransformConfiguration
+    end
+
     enum GatewayStatus
         "CREATING"
         "UPDATING"
@@ -2350,6 +2396,17 @@ local record M
         "DELETING"
         "READY"
         "FAILED"
+    end
+
+    enum WafFailureMode
+        "FAIL_CLOSE"
+        "FAIL_OPEN"
+    end
+
+    -- The Amazon Web Services WAF configuration for the gateway. This configuration controls how the gateway behaves when the associated web ACL cannot be evaluated.
+    record WafConfiguration
+        -- The failure mode that determines how the gateway handles requests when Amazon Web Services WAF is unreachable or times out. Valid values include: FAIL_CLOSE - The gateway blocks requests when Amazon Web Services WAF cannot be evaluated. FAIL_OPEN - The gateway allows requests when Amazon Web Services WAF cannot be evaluated.
+        failureMode: string
     end
 
     record CreateGatewayOutput
@@ -2383,6 +2440,8 @@ local record M
         authorizerConfiguration: AuthorizerConfiguration
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt data associated with the gateway.
         kmsKeyArn: string
+        -- The custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.
+        customTransformConfiguration: CustomTransformConfiguration
         -- The list of interceptor configurations for the created gateway.
         interceptorConfigurations: {GatewayInterceptorConfiguration}
         -- The policy engine configuration for the created gateway.
@@ -2391,6 +2450,10 @@ local record M
         workloadIdentityDetails: WorkloadIdentityDetails
         -- The level of detail in error messages returned when invoking the gateway. If the value is DEBUG, granular exception messages are returned to help a user debug the gateway. If the value is omitted, a generic error message is returned to the end user.
         exceptionLevel: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services WAF web ACL associated with the gateway.
+        webAclArn: string
+        -- The Amazon Web Services WAF configuration for the gateway.
+        wafConfiguration: WafConfiguration
     end
 
     record DeleteGatewayInput
@@ -2442,6 +2505,8 @@ local record M
         authorizerConfiguration: AuthorizerConfiguration
         -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the gateway.
         kmsKeyArn: string
+        -- The custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.
+        customTransformConfiguration: CustomTransformConfiguration
         -- The interceptors configured on the gateway.
         interceptorConfigurations: {GatewayInterceptorConfiguration}
         -- The policy engine configuration for the gateway.
@@ -2450,6 +2515,10 @@ local record M
         workloadIdentityDetails: WorkloadIdentityDetails
         -- The level of detail in error messages returned when invoking the gateway. If the value is DEBUG, granular exception messages are returned to help a user debug the gateway. If the value is omitted, a generic error message is returned to the end user.
         exceptionLevel: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services WAF web ACL associated with the gateway.
+        webAclArn: string
+        -- The Amazon Web Services WAF configuration for the gateway.
+        wafConfiguration: WafConfiguration
     end
 
     record ListGatewaysInput
@@ -2504,12 +2573,16 @@ local record M
         authorizerConfiguration: AuthorizerConfiguration
         -- The updated ARN of the KMS key used to encrypt the gateway.
         kmsKeyArn: string
+        -- The updated custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.
+        customTransformConfiguration: CustomTransformConfiguration
         -- The updated interceptor configurations for the gateway.
         interceptorConfigurations: {GatewayInterceptorConfiguration}
         -- The updated policy engine configuration for the gateway. A policy engine is a collection of policies that evaluates and authorizes agent tool calls. When associated with a gateway, the policy engine intercepts all agent requests and determines whether to allow or deny each action based on the defined policies.
         policyEngineConfiguration: GatewayPolicyEngineConfiguration
         -- The level of detail in error messages returned when invoking the gateway. If the value is DEBUG, granular exception messages are returned to help a user debug the gateway. If the value is omitted, a generic error message is returned to the end user.
         exceptionLevel: string
+        -- The updated Amazon Web Services WAF configuration for the gateway.
+        wafConfiguration: WafConfiguration
     end
 
     record UpdateGatewayOutput
@@ -2542,6 +2615,8 @@ local record M
         authorizerConfiguration: AuthorizerConfiguration
         -- The updated ARN of the KMS key used to encrypt the gateway.
         kmsKeyArn: string
+        -- The custom transformation configuration for the gateway. This configuration defines how the gateway transforms requests and responses.
+        customTransformConfiguration: CustomTransformConfiguration
         -- The updated interceptor configurations for the gateway.
         interceptorConfigurations: {GatewayInterceptorConfiguration}
         -- The updated policy engine configuration for the gateway.
@@ -2550,6 +2625,10 @@ local record M
         workloadIdentityDetails: WorkloadIdentityDetails
         -- The level of detail in error messages returned when invoking the gateway. If the value is DEBUG, granular exception messages are returned to help a user debug the gateway. If the value is omitted, a generic error message is returned to the end user.
         exceptionLevel: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services WAF web ACL associated with the gateway.
+        webAclArn: string
+        -- The Amazon Web Services WAF configuration for the gateway.
+        wafConfiguration: WafConfiguration
     end
 
     -- A condition that matches requests based on the request path.
@@ -2847,18 +2926,129 @@ local record M
         allowedResponseHeaders: {string}
     end
 
+    -- The Amazon S3 configuration for a gateway. This structure defines how the gateway accesses files in Amazon S3.
+    record S3Configuration
+        -- The URI of the Amazon S3 object. This URI specifies the location of the object in Amazon S3.
+        uri: string
+        -- The account ID of the Amazon S3 bucket owner. This ID is used for cross-account access to the bucket.
+        bucketOwnerAccountId: string
+    end
+
+    -- Configuration for API schema.
+    record ApiSchemaConfiguration
+        s3: S3Configuration
+        -- The inline payload containing the API schema definition.
+        inlinePayload: string
+    end
+
+    -- The API schema configuration for an HTTP target. This schema defines the API structure that the target exposes.
+    record HttpApiSchemaConfiguration
+        source: ApiSchemaConfiguration
+    end
+
     -- Configuration for an AgentCore Runtime target. Specifies the agent runtime to route requests to via HTTP.
     record RuntimeTargetConfiguration
         -- The Amazon Resource Name (ARN) of the AgentCore Runtime to route requests to.
         arn: string
         -- The qualifier for the agent runtime, used to target a specific endpoint version. If not specified, the default endpoint is used.
         qualifier: string
+        -- The API schema configuration that defines the structure of the runtime target's API.
+        schema: HttpApiSchemaConfiguration
+    end
+
+    enum PassthroughProtocolType
+        "MCP"
+        "A2A"
+        "INFERENCE"
+        "CUSTOM"
+    end
+
+    -- The configuration for session-sticky routing to a target. Session stickiness routes requests that share a session identifier to the same target.
+    record StickinessConfiguration
+        -- The expression that identifies where to extract the session identifier from the request (for example, $context.header.x-session-id).
+        identifier: string
+        -- The session stickiness timeout, in seconds. After this duration of inactivity, the session affinity expires. Valid values range from 1 to 86400.
+        timeout: number
+    end
+
+    -- The configuration for an HTTP passthrough target. A passthrough target forwards requests directly to an external HTTP endpoint.
+    record PassthroughTargetConfiguration
+        -- The HTTPS endpoint that the gateway forwards requests to for this passthrough target.
+        endpoint: string
+        -- The application protocol the passthrough target implements. Required for passthrough targets.
+        protocolType: string
+        -- The API schema configuration that defines the structure of the passthrough target's API.
+        schema: HttpApiSchemaConfiguration
+        -- The session stickiness configuration for the passthrough target. This configuration routes requests within the same session to the same target.
+        stickinessConfiguration: StickinessConfiguration
     end
 
     -- The HTTP target configuration for a gateway target. Contains the configuration for HTTP-based target endpoints.
     record HttpTargetConfiguration
         -- The AgentCore Runtime target configuration for HTTP-based communication with an agent runtime.
         agentcoreRuntime: RuntimeTargetConfiguration
+        -- The passthrough configuration for the HTTP target. A passthrough target forwards requests directly to an external HTTP endpoint.
+        passthrough: PassthroughTargetConfiguration
+    end
+
+    -- The source identifying the inference connector.
+    record InferenceConnectorSource
+        -- The identifier for the inference connector (for example, bedrock-mantle, openai, or anthropic).
+        connectorId: string
+    end
+
+    -- The configuration for a connector-based inference target. This configuration uses a built-in connector that provides predefined rules for a large language model (LLM) provider.
+    record InferenceConnectorTargetConfiguration
+        -- The source configuration identifying which inference connector to use.
+        source: InferenceConnectorSource
+    end
+
+    -- The configuration that controls how a provider prefix is applied to model IDs during translation.
+    record ProviderPrefix
+        -- Whether clients can omit the provider prefix from model IDs. If true, the gateway accepts model IDs without the prefix and restores the full prefixed form before forwarding to the provider. The default is false.
+        strip: boolean
+        -- The single character that separates the provider prefix from the model name (for example, .). The default is ..
+        separator: string
+    end
+
+    -- The configuration that translates model IDs between client-facing names and provider model IDs.
+    record ModelMapping
+        -- The provider prefix configuration used for model ID translation.
+        providerPrefix: ProviderPrefix
+    end
+
+    -- A model entry that specifies a model supported for an inference operation.
+    record ModelEntry
+        -- The model ID or glob pattern that identifies the model (for example, anthropic.claude-opus-* or openai.gpt-oss-*).
+        model: string
+    end
+
+    -- The configuration for a specific inference operation, including its request path and the models that the operation supports.
+    record InferenceOperationConfiguration
+        -- The request path for this operation (for example, /v1/messages or /v1/responses).
+        path: string
+        -- The provider path to forward requests to, if it differs from the request path. For example, /anthropic/v1/messages when the provider expects a different path than the client-facing /v1/messages.
+        providerPath: string
+        -- The list of models supported for this operation.
+        models: {ModelEntry}
+    end
+
+    -- The configuration for a provider-based inference target. This configuration explicitly defines the endpoint, model mapping, and operations used to route requests to a large language model (LLM) provider.
+    record InferenceProviderTargetConfiguration
+        -- The HTTPS endpoint of the inference provider that the gateway forwards requests to.
+        endpoint: string
+        -- The configuration that translates client-facing model IDs to the model IDs expected by the provider.
+        modelMapping: ModelMapping
+        -- A list of per-operation configurations that map request paths to the models supported for each operation.
+        operations: {InferenceOperationConfiguration}
+    end
+
+    -- The configuration for an inference target. An inference target routes requests to a large language model (LLM) provider, either through a built-in connector or an explicitly configured provider.
+    record InferenceTargetConfiguration
+        -- The connector-based inference configuration. Use this option to route requests to an LLM provider through a built-in connector that includes predefined provider rules.
+        connector: InferenceConnectorTargetConfiguration
+        -- The provider-based inference configuration. Use this option to explicitly configure the endpoint, model mapping, and operations for an LLM provider.
+        provider: InferenceProviderTargetConfiguration
     end
 
     enum RestApiMethod
@@ -2909,6 +3099,44 @@ local record M
         apiGatewayToolConfiguration: ApiGatewayToolConfiguration
     end
 
+    -- Specifies a parameter override for a connector tool, allowing you to control parameter visibility and descriptions.
+    record ConnectorParameterOverride
+        -- A JSON Pointer path identifying the parameter (for example, /numberOfResults or /filter).
+        path: string
+        -- An agent-facing description override for this parameter.
+        description: string
+        -- Whether this parameter is visible to the agent. If not specified, uses the service default.
+        visible: boolean
+    end
+
+    -- Configuration for a single tool within a connector.
+    record ConnectorConfiguration
+        -- The tool or operation name (for example, retrieve or webSearch).
+        name: string
+        -- An agent-facing description override for this tool.
+        description: string
+        -- Parameters to set as fixed or default values when provisioning this tool.
+        parameterValues: any
+        -- Parameters to expose to the agent at runtime, with optional description overrides.
+        parameterOverrides: {ConnectorParameterOverride}
+    end
+
+    -- The source identifying the connector integration.
+    record ConnectorSource
+        -- The identifier for the connector integration (for example, bedrock-knowledge-bases).
+        connectorId: string
+    end
+
+    -- Configuration for a connector integration target. Connectors provide pre-built integrations with Amazon Web Services services and third-party tools.
+    record ConnectorTargetConfiguration
+        -- The source configuration identifying which connector to use.
+        source: ConnectorSource
+        -- A list of tool names to enable from this connector. If absent, all tools provided by the connector are enabled.
+        enabled: {string}
+        -- A list of per-tool configurations for the connector.
+        configurations: {ConnectorConfiguration}
+    end
+
     enum SchemaType
         "string"
         "number"
@@ -2916,14 +3144,6 @@ local record M
         "array"
         "boolean"
         "integer"
-    end
-
-    -- The Amazon S3 configuration for a gateway. This structure defines how the gateway accesses files in Amazon S3.
-    record S3Configuration
-        -- The URI of the Amazon S3 object. This URI specifies the location of the object in Amazon S3.
-        uri: string
-        -- The account ID of the Amazon S3 bucket owner. This ID is used for cross-account access to the bucket.
-        bucketOwnerAccountId: string
     end
 
     enum ListingMode
@@ -2949,13 +3169,6 @@ local record M
         listingMode: string
         -- Priority for resolving MCP server targets with shared resource URIs. Lower values take precedence. Defaults to 1000 when not set.
         resourcePriority: number
-    end
-
-    -- Configuration for API schema.
-    record ApiSchemaConfiguration
-        s3: S3Configuration
-        -- The inline payload containing the API schema definition.
-        inlinePayload: string
     end
 
     -- OAuth2-specific authorization data, including the authorization URL and user identifier for the authorization session.
@@ -3035,6 +3248,18 @@ local record M
         nextToken: string
     end
 
+    enum TargetType
+        "OPEN_API_SCHEMA"
+        "SMITHY_MODEL"
+        "MCP_SERVER"
+        "LAMBDA"
+        "API_GATEWAY"
+        "CONNECTOR"
+        "AGENTCORE_RUNTIME"
+        "PASSTHROUGH"
+        "PROVIDER"
+    end
+
     -- Contains summary information about a gateway target. A target represents an endpoint that the gateway can connect to.
     record TargetSummary
         -- The unique identifier of the target.
@@ -3051,6 +3276,13 @@ local record M
         updatedAt: number
         -- Priority for resolving resource URI conflicts across targets. Lower values take precedence. Defaults to 1000 when not set.
         resourcePriority: number
+        -- The timestamp when the target was last synchronized.
+        lastSynchronizedAt: number
+        authorizationData: AuthorizationData
+        -- The type of the target.
+        targetType: string
+        -- The listing mode for the target. MCP resources for DEFAULT targets are cached at the control plane for faster access. MCP resources for DYNAMIC targets are retrieved dynamically when listing tools.
+        listingMode: string
     end
 
     record ListGatewayTargetsOutput
@@ -3104,6 +3336,122 @@ local record M
         lastModifiedDate: number
     end
 
+    record CreateHarnessEndpointInput
+        -- The ID of the harness to create an endpoint for.
+        harnessId: string
+        -- The name of the endpoint. Must start with a letter and contain only alphanumeric characters and underscores.
+        endpointName: string
+        -- The harness version that the endpoint points to and serves invocations from.
+        targetVersion: string
+        -- A description of the endpoint.
+        description: string
+        -- A unique, case-sensitive identifier to ensure idempotency of the request.
+        clientToken: string
+        -- Tags to apply to the endpoint resource.
+        tags: {string : string}
+    end
+
+    enum HarnessEndpointStatus
+        "CREATING"
+        "CREATE_FAILED"
+        "UPDATING"
+        "UPDATE_FAILED"
+        "READY"
+        "DELETING"
+        "DELETE_FAILED"
+    end
+
+    -- Representation of a harness endpoint. An endpoint is a named, stable reference to a specific version of a harness that callers invoke, allowing the underlying version to be updated without changing how the agent is invoked.
+    record HarnessEndpoint
+        -- The ID of the harness that the endpoint belongs to.
+        harnessId: string
+        -- The name of the harness that the endpoint belongs to.
+        harnessName: string
+        -- The name of the endpoint.
+        endpointName: string
+        -- The ARN of the endpoint.
+        arn: string
+        -- The status of the endpoint.
+        status: string
+        -- The timestamp when the endpoint was created.
+        createdAt: number
+        -- The timestamp when the endpoint was last updated.
+        updatedAt: number
+        -- The harness version that the endpoint is currently serving.
+        liveVersion: string
+        -- The harness version that the endpoint points to. While an update is in progress, this can differ from the live version until the endpoint finishes transitioning.
+        targetVersion: string
+        -- The description of the endpoint.
+        description: string
+        -- The reason the endpoint's last create or update operation failed.
+        failureReason: string
+    end
+
+    record CreateHarnessEndpointOutput
+        -- The endpoint that was created.
+        endpoint: HarnessEndpoint
+    end
+
+    record DeleteHarnessEndpointInput
+        -- The ID of the harness that the endpoint belongs to.
+        harnessId: string
+        -- The name of the endpoint to delete.
+        endpointName: string
+        -- A unique, case-sensitive identifier to ensure idempotency of the request.
+        clientToken: string
+    end
+
+    record DeleteHarnessEndpointOutput
+        -- The endpoint that was deleted.
+        endpoint: HarnessEndpoint
+    end
+
+    record GetHarnessEndpointInput
+        -- The ID of the harness that the endpoint belongs to.
+        harnessId: string
+        -- The name of the endpoint to retrieve.
+        endpointName: string
+    end
+
+    record GetHarnessEndpointOutput
+        -- The endpoint resource.
+        endpoint: HarnessEndpoint
+    end
+
+    record ListHarnessEndpointsInput
+        -- The ID of the harness whose endpoints are listed.
+        harnessId: string
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The token for the next set of results.
+        nextToken: string
+    end
+
+    record ListHarnessEndpointsOutput
+        -- The list of harness endpoints.
+        endpoints: {HarnessEndpoint}
+        -- The token for the next set of results.
+        nextToken: string
+    end
+
+    record UpdateHarnessEndpointInput
+        -- The ID of the harness that the endpoint belongs to.
+        harnessId: string
+        -- The name of the endpoint to update.
+        endpointName: string
+        -- The harness version that the endpoint points to. If not specified, the existing value is retained.
+        targetVersion: string
+        -- A description of the endpoint. If not specified, the existing value is retained.
+        description: string
+        -- A unique, case-sensitive identifier to ensure idempotency of the request.
+        clientToken: string
+    end
+
+    record UpdateHarnessEndpointOutput
+        -- The updated endpoint.
+        endpoint: HarnessEndpoint
+    end
+
     -- The AgentCore Runtime environment request configuration.
     record HarnessAgentCoreRuntimeEnvironmentRequest
         lifecycleConfiguration: LifecycleConfiguration
@@ -3145,10 +3493,37 @@ local record M
         retrievalConfig: {string : HarnessAgentCoreMemoryRetrievalConfig}
     end
 
+    -- Explicitly opt out of memory.
+    record HarnessDisabledMemoryConfiguration
+    end
+
+    enum HarnessManagedMemoryStrategyType
+        "SEMANTIC"
+        "SUMMARIZATION"
+        "USER_PREFERENCE"
+        "EPISODIC"
+    end
+
+    -- Configuration for managed memory creation.
+    record HarnessManagedMemoryConfiguration
+        -- The ARN of the managed AgentCore Memory resource. Read-only on Get, ignored on Create/Update input.
+        arn: string
+        -- Strategy types to enable. Defaults to [SEMANTIC, SUMMARIZATION].
+        strategies: {string}
+        -- Event retention in days. Defaults to 30.
+        eventExpiryDuration: number
+        -- Customer-managed KMS key. Defaults to AWS-owned key. Not updatable after creation.
+        encryptionKeyArn: string
+    end
+
     -- The memory configuration for a harness.
     record HarnessMemoryConfiguration
         -- The AgentCore Memory configuration.
         agentCoreMemoryConfiguration: HarnessAgentCoreMemoryConfiguration
+        -- Harness creates and manages a memory resource in the customer's account.
+        managedMemoryConfiguration: HarnessManagedMemoryConfiguration
+        -- Explicitly opt out of memory.
+        disabled: HarnessDisabledMemoryConfiguration
     end
 
     enum HarnessBedrockApiFormat
@@ -3242,6 +3617,12 @@ local record M
         liteLlmModelConfig: HarnessLiteLlmModelConfig
     end
 
+    -- Passed to show that AWS Skills should be included.
+    record HarnessSkillAwsSkillsSource
+        -- Optionally filter allowed skills with glob syntax, e.g., ['core-skills/*'].
+        paths: {string}
+    end
+
     -- Authentication configuration for accessing a private git repository.
     record HarnessSkillGitAuth
         -- The ARN of the credential in AgentCore Identity containing the password or personal access token.
@@ -3274,6 +3655,8 @@ local record M
         s3: HarnessSkillS3Source
         -- A git repository containing the skill.
         git: HarnessSkillGitSource
+        -- AWS Skills baked into the harness's underlying Runtime.
+        awsSkills: HarnessSkillAwsSkillsSource
     end
 
     -- A content block in the system prompt.
@@ -3467,31 +3850,33 @@ local record M
         "DELETE_FAILED"
     end
 
-    -- Representation of a Harness.
+    -- Representation of a harness.
     record Harness
-        -- The ID of the Harness.
+        -- The ID of the harness.
         harnessId: string
-        -- The name of the Harness.
+        -- The name of the harness.
         harnessName: string
-        -- The ARN of the Harness.
+        -- The ARN of the harness.
         arn: string
-        -- The status of the Harness.
+        -- The status of the harness.
         status: string
-        -- IAM role the Harness assumes when running.
+        -- The version of the harness. Incremented on every successful UpdateHarness.
+        harnessVersion: string
+        -- IAM role the harness assumes when running.
         executionRoleArn: string
-        -- The createdAt time of the Harness.
+        -- The createdAt time of the harness.
         createdAt: number
-        -- The updatedAt time of the Harness.
+        -- The updatedAt time of the harness.
         updatedAt: number
         -- The configuration of the default model used by the Harness.
         model: HarnessModelConfiguration
-        -- The system prompt of the Harness.
+        -- The system prompt of the harness.
         systemPrompt: {HarnessSystemContentBlock}
-        -- The tools of the Harness.
+        -- The tools of the harness.
         tools: {HarnessTool}
-        -- The skills of the Harness.
+        -- The skills of the harness.
         skills: {HarnessSkill}
-        -- The allowed tools of the Harness. All tools are allowed by default.
+        -- The allowed tools of the harness. All tools are allowed by default.
         allowedTools: {string}
         -- Configuration for truncating model context.
         truncation: HarnessTruncationConfiguration
@@ -3499,7 +3884,7 @@ local record M
         environment: HarnessEnvironmentProvider
         -- The environment artifact (e.g., container) in which the Harness operates.
         environmentArtifact: HarnessEnvironmentArtifact
-        -- Environment variables exposed in the environment in which the Harness operates.
+        -- Environment variables exposed in the environment in which the harness operates.
         environmentVariables: {string : string}
         authorizerConfiguration: AuthorizerConfiguration
         -- AgentCore Memory instance configuration for short and long term memory.
@@ -3524,6 +3909,8 @@ local record M
         harnessId: string
         -- A unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
+        -- Whether to delete the managed memory on harness deletion. Default: true. If false, the memory is disassociated and becomes a regular customer-owned resource.
+        deleteManagedMemory: boolean
     end
 
     record DeleteHarnessOutput
@@ -3534,6 +3921,8 @@ local record M
     record GetHarnessInput
         -- The ID of the harness to retrieve.
         harnessId: string
+        -- Specific version of the harness to retrieve. If omitted, returns the current Harness configuration, including its status.
+        harnessVersion: string
     end
 
     record GetHarnessOutput
@@ -3562,11 +3951,49 @@ local record M
         createdAt: number
         -- The timestamp when the harness was last updated.
         updatedAt: number
+        -- The latest version of the harness.
+        harnessVersion: string
     end
 
     record ListHarnessesOutput
         -- The list of harness summaries.
         harnesses: {HarnessSummary}
+        -- The token for the next set of results.
+        nextToken: string
+    end
+
+    record ListHarnessVersionsInput
+        -- The ID of the harness whose versions are listed.
+        harnessId: string
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The token for the next set of results.
+        nextToken: string
+    end
+
+    -- Summary information about a single version of a harness.
+    record HarnessVersionSummary
+        -- The ID of the harness.
+        harnessId: string
+        -- The name of the harness.
+        harnessName: string
+        -- The ARN of the harness.
+        arn: string
+        -- The version of the harness that this summary describes.
+        harnessVersion: string
+        -- The status of this harness version.
+        status: string
+        -- The timestamp when this harness version was created.
+        createdAt: number
+        -- The timestamp when this harness version was last updated.
+        updatedAt: number
+        -- Reason why the create or update operation for this harness version failed.
+        failureReason: string
+    end
+
+    record ListHarnessVersionsOutput
+        -- The list of harness version summaries.
+        harnessVersions: {HarnessVersionSummary}
         -- The token for the next set of results.
         nextToken: string
     end
@@ -4306,6 +4733,9 @@ local record M
         indexedKeys: {IndexedKey}
         -- Configuration for streaming memory record data to external resources.
         streamDeliveryResources: StreamDeliveryResources
+        -- ARN of the resource managing this memory (e.g. a harness). When set, strategy
+        -- modifications and deletion are only allowed through the managing resource.
+        managedByResourceArn: string
     end
 
     record CreateMemoryOutput
@@ -4373,6 +4803,8 @@ local record M
         createdAt: number
         -- The timestamp when the memory was last updated.
         updatedAt: number
+        -- ARN of the resource managing this memory (e.g. a harness). Null if not managed.
+        managedByResourceArn: string
     end
 
     record ListMemoriesOutput
@@ -4550,9 +4982,9 @@ local record M
         clientId: string
         -- The client secret for the Atlassian OAuth2 provider. This secret is assigned by Atlassian and used along with the client ID to authenticate your application.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret for the Atlassian OAuth2 provider. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret for the Atlassian OAuth2 provider. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
     end
 
@@ -4613,9 +5045,9 @@ local record M
         clientId: string
         -- The client secret for the custom OAuth2 provider.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
         -- The configuration for on-behalf-of token exchange. This enables authentication flows that use RFC 8693 token exchange or RFC 7523 JWT authorization grants.
         onBehalfOfTokenExchangeConfig: OnBehalfOfTokenExchangeConfigType
@@ -4633,9 +5065,9 @@ local record M
         clientId: string
         -- The client secret for the GitHub OAuth2 provider.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
     end
 
@@ -4645,9 +5077,9 @@ local record M
         clientId: string
         -- The client secret for the Google OAuth2 provider.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
     end
 
@@ -4657,9 +5089,9 @@ local record M
         clientId: string
         -- The client secret for the supported OAuth2 provider. This secret is assigned by the OAuth2 provider and used along with the client ID to authenticate your application.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
         -- Token issuer of your isolated OAuth2 application tenant. This URL identifies the authorization server that issues tokens for this provider.
         issuer: string
@@ -4675,9 +5107,9 @@ local record M
         clientId: string
         -- The client secret for the LinkedIn OAuth2 provider. This secret is assigned by LinkedIn and used along with the client ID to authenticate your application.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
     end
 
@@ -4687,9 +5119,9 @@ local record M
         clientId: string
         -- The client secret for the Microsoft OAuth2 provider.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
         -- The Microsoft Entra ID (formerly Azure AD) tenant ID for your organization. This identifies the specific tenant within Microsoft's identity platform where your application is registered.
         tenantId: string
@@ -4701,9 +5133,9 @@ local record M
         clientId: string
         -- The client secret for the Salesforce OAuth2 provider.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
     end
 
@@ -4713,9 +5145,9 @@ local record M
         clientId: string
         -- The client secret for the Slack OAuth2 provider.
         clientSecret: string
-        -- A reference to the AWS Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the client secret. This includes the secret ID and the JSON key used to extract the client secret value from the secret. Required when clientSecretSource is set to EXTERNAL.
         clientSecretConfig: SecretReference
-        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the client secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         clientSecretSource: string
     end
 
@@ -4862,11 +5294,11 @@ local record M
     end
 
     record CreateOauth2CredentialProviderOutput
-        -- The Amazon Resource Name (ARN) of the client secret in AWS Secrets Manager.
+        -- The Amazon Resource Name (ARN) of the client secret in Amazon Web Services Secrets Manager.
         clientSecretArn: Secret
-        -- The JSON key used to extract the client secret value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the client secret value from the Amazon Web Services Secrets Manager secret.
         clientSecretJsonKey: string
-        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         clientSecretSource: string
         -- The name of the OAuth2 credential provider.
         name: string
@@ -4893,11 +5325,11 @@ local record M
     end
 
     record GetOauth2CredentialProviderOutput
-        -- The Amazon Resource Name (ARN) of the client secret in AWS Secrets Manager.
+        -- The Amazon Resource Name (ARN) of the client secret in Amazon Web Services Secrets Manager.
         clientSecretArn: Secret
-        -- The JSON key used to extract the client secret value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the client secret value from the Amazon Web Services Secrets Manager secret.
         clientSecretJsonKey: string
-        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         clientSecretSource: string
         -- The name of the OAuth2 credential provider.
         name: string
@@ -4957,11 +5389,11 @@ local record M
     end
 
     record UpdateOauth2CredentialProviderOutput
-        -- The Amazon Resource Name (ARN) of the client secret in AWS Secrets Manager.
+        -- The Amazon Resource Name (ARN) of the client secret in Amazon Web Services Secrets Manager.
         clientSecretArn: Secret
-        -- The JSON key used to extract the client secret value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the client secret value from the Amazon Web Services Secrets Manager secret.
         clientSecretJsonKey: string
-        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the client secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         clientSecretSource: string
         -- The name of the OAuth2 credential provider.
         name: string
@@ -5013,8 +5445,9 @@ local record M
         evaluatorId: string
     end
 
-    -- A reference to an insight analysis to run against sessions.
+    -- A reference to an insight analysis to run against sessions during evaluation. Insights provide deeper analysis beyond individual evaluator scores, including failure detection, user intent clustering, and execution summarization.
     record Insight
+        -- The unique identifier of the insight to run.
         insightId: string
     end
 
@@ -5282,15 +5715,15 @@ local record M
         apiKeyId: string
         -- The API key secret provided by Coinbase Developer Platform.
         apiKeySecret: string
-        -- The source type of the API key secret for the Coinbase Developer Platform. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the API key secret for the Coinbase Developer Platform. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         apiKeySecretSource: string
-        -- A reference to the AWS Secrets Manager secret that stores the API key secret. This includes the secret ID and the JSON key used to extract the API key secret value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the API key secret. This includes the secret ID and the JSON key used to extract the API key secret value from the secret. Required when apiKeySecretSource is set to EXTERNAL.
         apiKeySecretConfig: SecretReference
         -- The wallet secret provided by Coinbase Developer Platform.
         walletSecret: string
-        -- The source type of the wallet secret for the Coinbase Developer Platform. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the wallet secret for the Coinbase Developer Platform. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         walletSecretSource: string
-        -- A reference to the AWS Secrets Manager secret that stores the wallet secret. This includes the secret ID and the JSON key used to extract the wallet secret value from the secret. Required when walletSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the wallet secret. This includes the secret ID and the JSON key used to extract the wallet secret value from the secret. Required when walletSecretSource is set to EXTERNAL.
         walletSecretConfig: SecretReference
     end
 
@@ -5300,15 +5733,15 @@ local record M
         appId: string
         -- The app secret provided by Privy.
         appSecret: string
-        -- The source type of the app secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the app secret. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         appSecretSource: string
-        -- A reference to the AWS Secrets Manager secret that stores the app secret. This includes the secret ID and the JSON key used to extract the app secret value from the secret. Required when appSecretSource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the app secret. This includes the secret ID and the JSON key used to extract the app secret value from the secret. Required when appSecretSource is set to EXTERNAL.
         appSecretConfig: SecretReference
         -- The authorization private key for the Stripe Privy integration.
         authorizationPrivateKey: string
-        -- The source type of the authorization private key. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in AWS Secrets Manager.
+        -- The source type of the authorization private key. Use MANAGED if the secret is managed by the service, or EXTERNAL if you manage the secret yourself in Amazon Web Services Secrets Manager.
         authorizationPrivateKeySource: string
-        -- A reference to the AWS Secrets Manager secret that stores the authorization private key. This includes the secret ID and the JSON key used to extract the authorization private key value from the secret. Required when authorizationPrivateKeySource is set to EXTERNAL.
+        -- A reference to the Amazon Web Services Secrets Manager secret that stores the authorization private key. This includes the secret ID and the JSON key used to extract the authorization private key value from the secret. Required when authorizationPrivateKeySource is set to EXTERNAL.
         authorizationPrivateKeyConfig: SecretReference
         -- The authorization ID for the Stripe Privy integration.
         authorizationId: string
@@ -5338,14 +5771,14 @@ local record M
         -- The API key identifier provided by Coinbase Developer Platform.
         apiKeyId: string
         apiKeySecretArn: Secret
-        -- The JSON key used to extract the API key secret value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the API key secret value from the Amazon Web Services Secrets Manager secret.
         apiKeySecretJsonKey: string
-        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the API key secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         apiKeySecretSource: string
         walletSecretArn: Secret
-        -- The JSON key used to extract the wallet secret value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the wallet secret value from the Amazon Web Services Secrets Manager secret.
         walletSecretJsonKey: string
-        -- The source type of the wallet secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the wallet secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         walletSecretSource: string
     end
 
@@ -5354,14 +5787,14 @@ local record M
         -- The app ID provided by Privy.
         appId: string
         appSecretArn: Secret
-        -- The JSON key used to extract the app secret value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the app secret value from the Amazon Web Services Secrets Manager secret.
         appSecretJsonKey: string
-        -- The source type of the app secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the app secret. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         appSecretSource: string
         authorizationPrivateKeyArn: Secret
-        -- The JSON key used to extract the authorization private key value from the AWS Secrets Manager secret.
+        -- The JSON key used to extract the authorization private key value from the Amazon Web Services Secrets Manager secret.
         authorizationPrivateKeyJsonKey: string
-        -- The source type of the authorization private key. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in AWS Secrets Manager.
+        -- The source type of the authorization private key. Either MANAGED if the secret is managed by the service, or EXTERNAL if managed by the user in Amazon Web Services Secrets Manager.
         authorizationPrivateKeySource: string
         -- The authorization ID for the Stripe Privy integration.
         authorizationId: string
@@ -6095,6 +6528,12 @@ local record M
         statement: string
     end
 
+    -- An AgentCore policy statement, which supports plain Cedar policies as well as guardrails definitions.
+    record PolicyStatement
+        -- The body of the AgentCore policy statement. Contains the policy logic, which can be a Cedar policy or a guardrails definition.
+        statement: string
+    end
+
     -- Represents the information identifying a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Cedar policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
     record PolicyGenerationDetails
         -- The unique identifier for this policy generation request.
@@ -6109,6 +6548,8 @@ local record M
         cedar: CedarPolicy
         -- The generated policy asset information within the policy definition structure. This contains information identifying a generated policy asset from the AI-powered policy generation process within the AgentCore Policy system. Each asset contains a Cedar policy statement generated from natural language input, along with associated metadata and analysis findings to help users evaluate and select the most appropriate policy option.
         policyGeneration: PolicyGenerationDetails
+        -- An AgentCore policy statement that defines the access control rules. The statement can be a Cedar policy or a guardrails definition.
+        policy: PolicyStatement
     end
 
     enum FindingType
@@ -6265,6 +6706,11 @@ local record M
         statusReasons: {string}
     end
 
+    enum EnforcementMode
+        "ACTIVE"
+        "LOG_ONLY"
+    end
+
     enum PolicyValidationMode
         "FAIL_ON_ANY_FINDINGS"
         "IGNORE_ALL_FINDINGS"
@@ -6279,6 +6725,8 @@ local record M
         description: string
         -- The validation mode for the policy creation. Determines how Cedar analyzer validation results are handled during policy creation. FAIL_ON_ANY_FINDINGS (default) runs the Cedar analyzer to validate the policy against the Cedar schema and tool context, failing creation if the analyzer detects any validation issues to ensure strict conformance. IGNORE_ALL_FINDINGS runs the Cedar analyzer but allows policy creation even if validation issues are detected, useful for testing or when the policy schema is evolving. Use FAIL_ON_ANY_FINDINGS for production policies to ensure correctness, and IGNORE_ALL_FINDINGS only when you understand and accept the analyzer findings.
         validationMode: string
+        -- The enforcement mode for the policy. Run this policy in LOG_ONLY mode to collect data on how it affects your application. Once you are satisfied with the data gathered, switch the policy to ACTIVE. Defaults to ACTIVE.
+        enforcementMode: string
         -- The identifier of the policy engine which contains this policy. Policy engines group related policies and provide the execution context for policy evaluation.
         policyEngineId: string
         -- A unique, case-sensitive identifier to ensure the idempotency of the request. The AWS SDK automatically generates this token, so you don't need to provide it in most cases. If you retry a request with the same client token, the service returns the same response without creating a duplicate policy.
@@ -6310,6 +6758,8 @@ local record M
         policyArn: string
         -- The current status of the policy. A status of ACTIVE indicates the policy is ready for use.
         status: string
+        -- The enforcement mode of the created policy.
+        enforcementMode: string
         -- The Cedar policy statement that was created. This is the validated policy definition that will be used for agent behavior control and access decisions.
         definition: PolicyDefinition
         -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
@@ -6340,6 +6790,8 @@ local record M
         policyArn: string
         -- The status of the policy deletion operation. This provides information about any issues that occurred during the deletion process.
         status: string
+        -- The enforcement mode of the deleted policy.
+        enforcementMode: string
         definition: PolicyDefinition
         -- The human-readable description of the deleted policy.
         description: string
@@ -6369,6 +6821,8 @@ local record M
         policyArn: string
         -- The current status of the policy.
         status: string
+        -- The current enforcement mode of the policy.
+        enforcementMode: string
         -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
         definition: PolicyDefinition
         -- The human-readable description of the policy's purpose and functionality. This helps administrators understand and manage the policy.
@@ -6399,6 +6853,8 @@ local record M
         policyArn: string
         -- The current status of the policy.
         status: string
+        -- The current enforcement mode of the policy.
+        enforcementMode: string
     end
 
     record ListPoliciesInput
@@ -6428,6 +6884,8 @@ local record M
         policyArn: string
         -- The current status of the policy.
         status: string
+        -- The current enforcement mode of the policy.
+        enforcementMode: string
         -- The Cedar policy statement that defines the access control rules. This contains the actual policy logic used for agent behavior control and access decisions.
         definition: PolicyDefinition
         -- A human-readable description of the policy's purpose and functionality. Limited to 4,096 characters, this helps administrators understand and manage the policy.
@@ -6470,6 +6928,8 @@ local record M
         policyArn: string
         -- The current status of the policy.
         status: string
+        -- The current enforcement mode of the policy.
+        enforcementMode: string
     end
 
     record ListPolicySummariesOutput
@@ -6490,6 +6950,8 @@ local record M
         definition: PolicyDefinition
         -- The validation mode for the policy update. Determines how Cedar analyzer validation results are handled during policy updates. FAIL_ON_ANY_FINDINGS runs the Cedar analyzer and fails the update if validation issues are detected, ensuring the policy conforms to the Cedar schema and tool context. IGNORE_ALL_FINDINGS runs the Cedar analyzer but allows updates despite validation warnings. Use FAIL_ON_ANY_FINDINGS to ensure policy correctness during updates, especially when modifying policy logic or conditions.
         validationMode: string
+        -- The enforcement mode for the policy. Run this policy in LOG_ONLY mode to collect data on how it affects your application. Once you are satisfied with the data gathered, switch the policy to ACTIVE. If you omit this field, the policy's existing enforcement mode is unchanged.
+        enforcementMode: string
     end
 
     record UpdatePolicyOutput
@@ -6507,6 +6969,8 @@ local record M
         policyArn: string
         -- The current status of the updated policy.
         status: string
+        -- The current enforcement mode of the updated policy.
+        enforcementMode: string
         -- The updated Cedar policy statement.
         definition: PolicyDefinition
         -- The updated description of the policy.
@@ -7313,6 +7777,8 @@ local record M
         mcpServer: McpServerTargetConfiguration
         -- The configuration for an Amazon API Gateway target.
         apiGateway: ApiGatewayTargetConfiguration
+        -- The connector integration configuration for the Model Context Protocol target. This configuration defines how the gateway uses a pre-built connector to communicate with the target.
+        connector: ConnectorTargetConfiguration
     end
 
     -- The configuration for a gateway target. This structure defines how the gateway connects to and interacts with the target endpoint.
@@ -7321,6 +7787,8 @@ local record M
         mcp: McpTargetConfiguration
         -- The HTTP target configuration. Use this to route gateway requests to an HTTP-based endpoint such as an AgentCore Runtime.
         http: HttpTargetConfiguration
+        -- The inference configuration for the target. This configuration routes requests to a large language model (LLM) provider.
+        inference: InferenceTargetConfiguration
     end
 
     record CreateGatewayTargetInput

@@ -15,6 +15,8 @@ M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_val
 
 M.__listOfUser = schema.new({ type = "list", list_member = M.User })
 
+M.__listOfResourceShareError = schema.new({ type = "list", list_member = M.ResourceShareError })
+
 M.__listOfActionRequired = schema.new({ type = "list", list_member = M.ActionRequired })
 
 M.__listOfBrokerInstance = schema.new({ type = "list", list_member = M.BrokerInstance })
@@ -24,6 +26,8 @@ M.__listOfUserSummary = schema.new({ type = "list", list_member = M.UserSummary 
 M.__listOfBrokerEngineType = schema.new({ type = "list", list_member = M.BrokerEngineType })
 
 M.__listOfBrokerInstanceOption = schema.new({ type = "list", list_member = M.BrokerInstanceOption })
+
+M.__listOfSharedResource = schema.new({ type = "list", list_member = M.SharedResource })
 
 M.__listOfBrokerSummary = schema.new({ type = "list", list_member = M.BrokerSummary })
 
@@ -489,6 +493,40 @@ M.ConfigurationId = schema.new({
     },
 })
 
+M.ResourceShareError = schema.new({
+    id = id.from(_N, "ResourceShareError"),
+    type = "structure",
+    members = {
+        ErrorCode = schema.new({
+            id = id.from(_N, "ResourceShareError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorCode" },
+            },
+        }),
+        ResourceShareArn = schema.new({
+            id = id.from(_N, "ResourceShareError", "ResourceShareArn"),
+            type = "string",
+            name = "ResourceShareArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareArn" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ResourceShareError", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+    },
+})
+
 M.SanitizationWarning = schema.new({
     id = id.from(_N, "SanitizationWarning"),
     type = "structure",
@@ -519,6 +557,100 @@ M.SanitizationWarning = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "reason" },
+            },
+        }),
+    },
+})
+
+M.SharedResourceError = schema.new({
+    id = id.from(_N, "SharedResourceError"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "SharedResourceError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "SharedResourceError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.SharedResource = schema.new({
+    id = id.from(_N, "SharedResource"),
+    type = "structure",
+    members = {
+        DnsNames = schema.new({
+            id = id.from(_N, "SharedResource", "DnsNames"),
+            type = "list",
+            name = "DnsNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "dnsNames" },
+            },
+        }),
+        Error = schema.new({
+            id = id.from(_N, "SharedResource", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "SharedResourceError"),
+            target = M.SharedResourceError,
+            traits = {
+                [traits.JSON_NAME] = { name = "error" },
+            },
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "SharedResource", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "resourceArn" },
+            },
+        }),
+        ResourceShareArns = schema.new({
+            id = id.from(_N, "SharedResource", "ResourceShareArns"),
+            type = "list",
+            name = "ResourceShareArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareArns" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SharedResource", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "SharedResource", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "type" },
             },
         }),
     },
@@ -630,6 +762,16 @@ M.BadRequestException = schema.new({
                 [traits.JSON_NAME] = { name = "message" },
             },
         }),
+        ResourceShareErrors = schema.new({
+            id = id.from(_N, "BadRequestException", "ResourceShareErrors"),
+            type = "list",
+            name = "ResourceShareErrors",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceShareError,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareErrors" },
+            },
+        }),
     },
 })
 
@@ -693,6 +835,16 @@ M.ConflictException = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+        ResourceShareErrors = schema.new({
+            id = id.from(_N, "ConflictException", "ResourceShareErrors"),
+            type = "list",
+            name = "ResourceShareErrors",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceShareError,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareErrors" },
             },
         }),
     },
@@ -1161,6 +1313,16 @@ M.ForbiddenException = schema.new({
                 [traits.JSON_NAME] = { name = "message" },
             },
         }),
+        ResourceShareErrors = schema.new({
+            id = id.from(_N, "ForbiddenException", "ResourceShareErrors"),
+            type = "list",
+            name = "ResourceShareErrors",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceShareError,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareErrors" },
+            },
+        }),
     },
 })
 
@@ -1189,6 +1351,16 @@ M.InternalServerErrorException = schema.new({
                 [traits.JSON_NAME] = { name = "message" },
             },
         }),
+        ResourceShareErrors = schema.new({
+            id = id.from(_N, "InternalServerErrorException", "ResourceShareErrors"),
+            type = "list",
+            name = "ResourceShareErrors",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceShareError,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareErrors" },
+            },
+        }),
     },
 })
 
@@ -1215,6 +1387,16 @@ M.UnauthorizedException = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+        ResourceShareErrors = schema.new({
+            id = id.from(_N, "UnauthorizedException", "ResourceShareErrors"),
+            type = "list",
+            name = "ResourceShareErrors",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceShareError,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareErrors" },
             },
         }),
     },
@@ -1395,6 +1577,16 @@ M.NotFoundException = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+        ResourceShareErrors = schema.new({
+            id = id.from(_N, "NotFoundException", "ResourceShareErrors"),
+            type = "list",
+            name = "ResourceShareErrors",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceShareError,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareErrors" },
             },
         }),
     },
@@ -2528,6 +2720,67 @@ M.DescribeConfigurationRevisionOutput = schema.new({
     },
 })
 
+M.DescribeSharedResourcesInput = schema.new({
+    id = id.from(_N, "DescribeSharedResourcesRequest"),
+    type = "structure",
+    members = {
+        BrokerId = schema.new({
+            id = id.from(_N, "DescribeSharedResourcesInput", "BrokerId"),
+            type = "string",
+            name = "BrokerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeSharedResourcesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeSharedResourcesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.DescribeSharedResourcesOutput = schema.new({
+    id = id.from(_N, "DescribeSharedResourcesResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeSharedResourcesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+        SharedResources = schema.new({
+            id = id.from(_N, "DescribeSharedResourcesOutput", "SharedResources"),
+            type = "list",
+            name = "SharedResources",
+            target_id = prelude.Document.id,
+            list_member = M.SharedResource,
+            traits = {
+                [traits.JSON_NAME] = { name = "sharedResources" },
+            },
+        }),
+    },
+})
+
 M.DescribeUserInput = schema.new({
     id = id.from(_N, "DescribeUserRequest"),
     type = "structure",
@@ -3113,6 +3366,16 @@ M.UpdateBrokerInput = schema.new({
                 [traits.JSON_NAME] = { name = "maintenanceWindowStartTime" },
             },
         }),
+        ResourceShareArns = schema.new({
+            id = id.from(_N, "UpdateBrokerInput", "ResourceShareArns"),
+            type = "list",
+            name = "ResourceShareArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareArns" },
+            },
+        }),
         SecurityGroups = schema.new({
             id = id.from(_N, "UpdateBrokerInput", "SecurityGroups"),
             type = "list",
@@ -3222,6 +3485,16 @@ M.UpdateBrokerOutput = schema.new({
             target = M.WeeklyStartTime,
             traits = {
                 [traits.JSON_NAME] = { name = "maintenanceWindowStartTime" },
+            },
+        }),
+        ResourceShareArns = schema.new({
+            id = id.from(_N, "UpdateBrokerOutput", "ResourceShareArns"),
+            type = "list",
+            name = "ResourceShareArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "resourceShareArns" },
             },
         }),
         SecurityGroups = schema.new({
@@ -3622,6 +3895,18 @@ M.DescribeConfigurationRevision = schema.operation({
     output = M.DescribeConfigurationRevisionOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/configurations/{ConfigurationId}/revisions/{ConfigurationRevision}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeSharedResources = schema.operation({
+    id = id.from("com.amazonaws.mq", "DescribeSharedResources"),
+    input = M.DescribeSharedResourcesInput,
+    output = M.DescribeSharedResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/brokers/{BrokerId}/shared-resources" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for describeSharedResources.
+function M.pages_describe_shared_resources(client, input)
+    return paginator.pages(client, "describeSharedResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SharedResources",
+    })
+end
+
+--- Returns an item iterator for describeSharedResources.
+function M.items_describe_shared_resources(client, input)
+    return paginator.items(client, "describeSharedResources", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "SharedResources",
+    })
+end
+
 --- Returns a page iterator for listBrokers.
 function M.pages_list_brokers(client, input)
     return paginator.pages(client, "listBrokers", input, {

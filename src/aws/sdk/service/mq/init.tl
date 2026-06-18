@@ -31,6 +31,7 @@ local record Client
     describeBrokerInstanceOptions: function(Client, types.DescribeBrokerInstanceOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBrokerInstanceOptionsOutput>
     describeConfiguration: function(Client, types.DescribeConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationOutput>
     describeConfigurationRevision: function(Client, types.DescribeConfigurationRevisionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationRevisionOutput>
+    describeSharedResources: function(Client, types.DescribeSharedResourcesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSharedResourcesOutput>
     describeUser: function(Client, types.DescribeUserInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
     listBrokers: function(Client, types.ListBrokersInput, ? base_client.InvokeOptions): async.Operation<types.ListBrokersOutput>
     listConfigurationRevisions: function(Client, types.ListConfigurationRevisionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationRevisionsOutput>
@@ -136,6 +137,10 @@ end
 
 function C:describeConfigurationRevision(input: types.DescribeConfigurationRevisionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeConfigurationRevisionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeConfigurationRevision as schema.OperationSchema, input, options) as async.Operation<types.DescribeConfigurationRevisionOutput>
+end
+
+function C:describeSharedResources(input: types.DescribeSharedResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSharedResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSharedResources as schema.OperationSchema, input, options) as async.Operation<types.DescribeSharedResourcesOutput>
 end
 
 function C:describeUser(input: types.DescribeUserInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>

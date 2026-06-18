@@ -173,10 +173,12 @@ local record M
         "configuration-mismatch-category-tool-definition"
         "coding-use-case-specific-failure-types-category-edge-case-oversights"
         "coding-use-case-specific-failure-types-category-dependency-issues"
+        "other"
     end
 
     -- A signal indicating a detected failure within a span.
     record InsightsFailureSignal
+        -- The failure category classification for this signal.
         category: string
         -- The evidence supporting the failure detection.
         evidence: string
@@ -1554,7 +1556,7 @@ local record M
         -- The Amazon Resource Name (ARN) of the online evaluation configuration to use as the session source.
         onlineEvaluationConfigArn: string
         -- Optional session filter configuration to narrow down which sessions from the online evaluation configuration to include.
-        sessionFilterConfig: SessionFilterConfig
+        timeRange: SessionFilterConfig
     end
 
     -- Configuration for the data source used in evaluation.
@@ -1599,7 +1601,7 @@ local record M
         evaluatorSummaries: {EvaluatorSummary}
     end
 
-    -- An evaluator to run against sessions
+    -- An evaluator to run against sessions during batch evaluation.
     record Evaluator
         -- The unique identifier of the evaluator. Can reference built-in evaluators (e.g., Builtin.Helpfulness) or custom evaluators.
         evaluatorId: string
@@ -1629,7 +1631,7 @@ local record M
         affectedSessions: {ExecutionSummaryAffectedSession}
     end
 
-    -- Customer-facing execution summary clustering result written to S3.
+    -- The execution summary clustering result containing grouped execution patterns identified across evaluated sessions.
     record ExecutionSummaryClusteringResultContent
         -- The list of execution summary clusters identified across analyzed sessions.
         executionSummaries: {ExecutionSummaryCluster}
@@ -1679,14 +1681,15 @@ local record M
         subCategories: {FailureSubCategoryCluster}
     end
 
-    -- Unified customer-facing clustering result written to S3.
+    -- The failure analysis clustering result containing categorized failure clusters with root causes and remediation recommendations.
     record FailureAnalysisResultContent
         -- The list of failure category clusters identified across analyzed sessions.
         failures: {FailureCategoryCluster}
     end
 
-    -- A reference to an insight analysis to run against sessions.
+    -- A reference to an insight analysis to run against sessions during batch evaluation. Insights provide deeper analysis beyond individual evaluator scores, including failure detection, user intent clustering, and execution summarization.
     record Insight
+        -- The unique identifier of the insight to run.
         insightId: string
     end
 
@@ -1726,7 +1729,7 @@ local record M
         affectedSessions: {UserIntentAffectedSession}
     end
 
-    -- Customer-facing user intent clustering result written to S3.
+    -- The user intent clustering result containing grouped user intents identified across evaluated sessions.
     record UserIntentClusteringResultContent
         -- The list of user intent clusters identified across analyzed sessions.
         userIntents: {UserIntentCluster}
@@ -1753,8 +1756,11 @@ local record M
         outputConfig: OutputConfig
         -- The aggregated evaluation results, including session completion counts and evaluator score summaries.
         evaluationResults: EvaluationJobResults
+        -- The failure analysis results from insights, containing categorized failure clusters with root causes and recommendations.
         failureAnalysisResult: FailureAnalysisResultContent
+        -- The user intent clustering results from insights, containing grouped user intents across evaluated sessions.
         userIntentResult: UserIntentClusteringResultContent
+        -- The execution summary clustering results from insights, containing grouped execution patterns across evaluated sessions.
         executionSummaryResult: ExecutionSummaryClusteringResultContent
         -- The error details if the batch evaluation encountered failures.
         errorDetails: {string}
@@ -2741,6 +2747,12 @@ local record M
         liteLlmModelConfig: HarnessLiteLlmModelConfig
     end
 
+    -- Passed to show that AWS Skills should be included.
+    record HarnessSkillAwsSkillsSource
+        -- Optionally filter allowed skills with glob syntax, e.g., ['core-skills/*'].
+        paths: {string}
+    end
+
     -- Authentication configuration for accessing a private git repository.
     record HarnessSkillGitAuth
         -- The ARN of the credential in AgentCore Identity containing the password or personal access token.
@@ -2773,6 +2785,8 @@ local record M
         s3: HarnessSkillS3Source
         -- A git repository containing the skill.
         git: HarnessSkillGitSource
+        -- AWS Skills baked into the Harness's underlying Runtime.
+        awsSkills: HarnessSkillAwsSkillsSource
     end
 
     -- A content block in the system prompt.
@@ -2883,6 +2897,8 @@ local record M
     record InvokeHarnessInput
         -- The ARN of the harness to invoke.
         harnessArn: string
+        -- The endpoint name to invoke. If omitted, the DEFAULT endpoint is used.
+        qualifier: string
         -- The session ID for the invocation. Use the same session ID across requests to continue a conversation.
         runtimeSessionId: string
         -- An identifier for the end user making the request. This value is passed through to the runtime container.
