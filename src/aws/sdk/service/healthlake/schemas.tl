@@ -103,6 +103,19 @@ M.IdentityProviderConfiguration = schema.new({
     },
 })
 
+M.NlpConfiguration = schema.new({
+    id = id.from(_N, "NlpConfiguration"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "NlpConfiguration", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.PreloadDataConfig = schema.new({
     id = id.from(_N, "PreloadDataConfig"),
     type = "structure",
@@ -115,6 +128,20 @@ M.PreloadDataConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.ProfileConfiguration = schema.new({
+    id = id.from(_N, "ProfileConfiguration"),
+    type = "structure",
+    members = {
+        DefaultProfiles = schema.new({
+            id = id.from(_N, "ProfileConfiguration", "DefaultProfiles"),
+            type = "list",
+            name = "DefaultProfiles",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -238,6 +265,27 @@ M.CreateFHIRDatastoreInput = schema.new({
             name = "IdentityProviderConfiguration",
             target_id = id.from(_N, "IdentityProviderConfiguration"),
             target = M.IdentityProviderConfiguration,
+        }),
+        AnalyticsConfiguration = schema.new({
+            id = id.from(_N, "CreateFHIRDatastoreInput", "AnalyticsConfiguration"),
+            type = "structure",
+            name = "AnalyticsConfiguration",
+            target_id = id.from(_N, "AnalyticsConfiguration"),
+            target = M.AnalyticsConfiguration,
+        }),
+        NlpConfiguration = schema.new({
+            id = id.from(_N, "CreateFHIRDatastoreInput", "NlpConfiguration"),
+            type = "structure",
+            name = "NlpConfiguration",
+            target_id = id.from(_N, "NlpConfiguration"),
+            target = M.NlpConfiguration,
+        }),
+        ProfileConfiguration = schema.new({
+            id = id.from(_N, "CreateFHIRDatastoreInput", "ProfileConfiguration"),
+            type = "structure",
+            name = "ProfileConfiguration",
+            target_id = id.from(_N, "ProfileConfiguration"),
+            target = M.ProfileConfiguration,
         }),
     },
 })
@@ -379,33 +427,6 @@ M.ErrorCause = schema.new({
             type = "string",
             name = "ErrorCategory",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.NlpConfiguration = schema.new({
-    id = id.from(_N, "NlpConfiguration"),
-    type = "structure",
-    members = {
-        Status = schema.new({
-            id = id.from(_N, "NlpConfiguration", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ProfileConfiguration = schema.new({
-    id = id.from(_N, "ProfileConfiguration"),
-    type = "structure",
-    members = {
-        DefaultProfiles = schema.new({
-            id = id.from(_N, "ProfileConfiguration", "DefaultProfiles"),
-            type = "list",
-            name = "DefaultProfiles",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -1484,19 +1505,19 @@ M.UpdateFHIRDatastoreInput = schema.new({
             name = "DatastoreName",
             target_id = prelude.String.id,
         }),
-        AnalyticsConfiguration = schema.new({
-            id = id.from(_N, "UpdateFHIRDatastoreInput", "AnalyticsConfiguration"),
-            type = "structure",
-            name = "AnalyticsConfiguration",
-            target_id = id.from(_N, "AnalyticsConfiguration"),
-            target = M.AnalyticsConfiguration,
-        }),
         NlpConfiguration = schema.new({
             id = id.from(_N, "UpdateFHIRDatastoreInput", "NlpConfiguration"),
             type = "structure",
             name = "NlpConfiguration",
             target_id = id.from(_N, "NlpConfiguration"),
             target = M.NlpConfiguration,
+        }),
+        AnalyticsConfiguration = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "AnalyticsConfiguration"),
+            type = "structure",
+            name = "AnalyticsConfiguration",
+            target_id = id.from(_N, "AnalyticsConfiguration"),
+            target = M.AnalyticsConfiguration,
         }),
         ProfileConfiguration = schema.new({
             id = id.from(_N, "UpdateFHIRDatastoreInput", "ProfileConfiguration"),

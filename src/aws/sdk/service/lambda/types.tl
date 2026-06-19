@@ -124,6 +124,10 @@ local record M
         Principal: string
         -- For Amazon Web Services services, the ARN of the Amazon Web Services resource that invokes the function. For example, an Amazon S3 bucket or Amazon SNS topic. Note that Lambda configures the comparison using the StringLike operator.
         SourceArn: string
+        -- The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Control access to Lambda function URLs.
+        FunctionUrlAuthType: string
+        -- Indicates whether the permission applies when the function is invoked through a function URL.
+        InvokedViaFunctionUrl: boolean
         -- For Amazon Web Services service, the ID of the Amazon Web Services account that owns the resource. Use this together with SourceArn to ensure that the specified account owns the resource. It is possible for an Amazon S3 bucket to be deleted by its owner and recreated by another account.
         SourceAccount: string
         -- For Alexa Smart Home functions, a token that the invoker must supply.
@@ -134,15 +138,19 @@ local record M
         RevisionId: string
         -- The identifier for your organization in Organizations. Use this to grant permissions to all the Amazon Web Services accounts under this organization.
         PrincipalOrgID: string
-        -- The type of authentication that your function URL uses. Set to AWS_IAM if you want to restrict access to authenticated users only. Set to NONE if you want to bypass IAM authentication to create a public endpoint. For more information, see Control access to Lambda function URLs.
-        FunctionUrlAuthType: string
-        -- Indicates whether the permission applies when the function is invoked through a function URL.
-        InvokedViaFunctionUrl: boolean
     end
 
     record AddPermissionOutput
         -- The permission statement that's added to the function policy.
         Statement: string
+    end
+
+    -- The resource-based policy you tried to add to the Lambda function would grant public access to it, and your account's BlockPublicAccess setting prevents public access. For more information about blocking public access to Lambda functions, see Block public access to Lambda resources.
+    record PublicPolicyException
+        -- The exception type.
+        Type: string
+        -- The exception message.
+        Message: string
     end
 
     -- The traffic-shifting configuration of a Lambda function alias.
@@ -165,6 +173,14 @@ local record M
         RoutingConfig: AliasRoutingConfiguration
         -- A unique identifier that changes when you update the alias.
         RevisionId: string
+    end
+
+    -- Lambda couldn't create the alias because your Amazon Web Services account has exceeded the maximum number of aliases allowed per Lambda function. For more information, see Lambda quotas.
+    record AliasLimitExceededException
+        -- The exception type.
+        Type: string
+        -- The exception message.
+        message: string
     end
 
     -- List of signing profiles that can sign a code package.
@@ -523,7 +539,7 @@ local record M
         SubType: string
         -- The action to take on the operation.
         Action: string
-        -- The payload for successful operations.
+        -- The payload for successful operations. The maximum payload size is 6 MB for synchronous EXECUTION operations (RequestResponse invocationType), 1 MB for asynchronous EXECUTION (Event invocationType) and CHAINED_INVOKE operations, and 256 KB for CONTEXT, STEP, WAIT, and CALLBACK operations.
         Payload: string
         -- The error information for failed operations.
         Error: ErrorObject
@@ -931,6 +947,14 @@ local record M
         BatchSize: number
         -- An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering.
         FilterCriteria: FilterCriteria
+        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria. By default, Lambda does not encrypt your filter criteria object. Specify this property to encrypt data using your own customer managed key.
+        KMSKeyArn: string
+        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
+        MetricsConfig: EventSourceMappingMetricsConfig
+        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
+        LoggingConfig: EventSourceMappingLoggingConfig
+        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
+        ScalingConfig: ScalingConfig
         -- The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For Kinesis, DynamoDB, and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For Kinesis, DynamoDB, and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.
         MaximumBatchingWindowInSeconds: number
         -- (Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently.
@@ -965,16 +989,8 @@ local record M
         AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig
         -- Specific configuration settings for a self-managed Apache Kafka event source.
         SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig
-        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
-        ScalingConfig: ScalingConfig
         -- Specific configuration settings for a DocumentDB event source.
         DocumentDBEventSourceConfig: DocumentDBEventSourceConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria. By default, Lambda does not encrypt your filter criteria object. Specify this property to encrypt data using your own customer managed key.
-        KMSKeyArn: string
-        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
-        MetricsConfig: EventSourceMappingMetricsConfig
-        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
-        LoggingConfig: EventSourceMappingLoggingConfig
         -- (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see provisioned mode.
         ProvisionedPollerConfig: ProvisionedPollerConfig
     end
@@ -1005,6 +1021,16 @@ local record M
         EventSourceArn: string
         -- An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering. If filter criteria is encrypted, this field shows up as null in the response of ListEventSourceMapping API calls. You can view this field in plaintext in the response of GetEventSourceMapping and DeleteEventSourceMapping calls if you have kms:Decrypt permissions for the correct KMS key.
         FilterCriteria: FilterCriteria
+        -- An object that contains details about an error related to filter criteria encryption.
+        FilterCriteriaError: FilterCriteriaError
+        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
+        KMSKeyArn: string
+        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
+        MetricsConfig: EventSourceMappingMetricsConfig
+        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
+        LoggingConfig: EventSourceMappingLoggingConfig
+        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
+        ScalingConfig: ScalingConfig
         -- The ARN of the Lambda function.
         FunctionArn: string
         -- The date that the event source mapping was last updated or that its state changed.
@@ -1039,20 +1065,10 @@ local record M
         AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig
         -- Specific configuration settings for a self-managed Apache Kafka event source.
         SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig
-        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
-        ScalingConfig: ScalingConfig
         -- Specific configuration settings for a DocumentDB event source.
         DocumentDBEventSourceConfig: DocumentDBEventSourceConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
-        KMSKeyArn: string
-        -- An object that contains details about an error related to filter criteria encryption.
-        FilterCriteriaError: FilterCriteriaError
         -- The Amazon Resource Name (ARN) of the event source mapping.
         EventSourceMappingArn: string
-        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
-        MetricsConfig: EventSourceMappingMetricsConfig
-        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
-        LoggingConfig: EventSourceMappingLoggingConfig
         -- (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see provisioned mode.
         ProvisionedPollerConfig: ProvisionedPollerConfig
     end
@@ -1080,6 +1096,16 @@ local record M
         EventSourceArn: string
         -- An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering. If filter criteria is encrypted, this field shows up as null in the response of ListEventSourceMapping API calls. You can view this field in plaintext in the response of GetEventSourceMapping and DeleteEventSourceMapping calls if you have kms:Decrypt permissions for the correct KMS key.
         FilterCriteria: FilterCriteria
+        -- An object that contains details about an error related to filter criteria encryption.
+        FilterCriteriaError: FilterCriteriaError
+        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
+        KMSKeyArn: string
+        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
+        MetricsConfig: EventSourceMappingMetricsConfig
+        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
+        LoggingConfig: EventSourceMappingLoggingConfig
+        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
+        ScalingConfig: ScalingConfig
         -- The ARN of the Lambda function.
         FunctionArn: string
         -- The date that the event source mapping was last updated or that its state changed.
@@ -1114,20 +1140,10 @@ local record M
         AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig
         -- Specific configuration settings for a self-managed Apache Kafka event source.
         SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig
-        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
-        ScalingConfig: ScalingConfig
         -- Specific configuration settings for a DocumentDB event source.
         DocumentDBEventSourceConfig: DocumentDBEventSourceConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
-        KMSKeyArn: string
-        -- An object that contains details about an error related to filter criteria encryption.
-        FilterCriteriaError: FilterCriteriaError
         -- The Amazon Resource Name (ARN) of the event source mapping.
         EventSourceMappingArn: string
-        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
-        MetricsConfig: EventSourceMappingMetricsConfig
-        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
-        LoggingConfig: EventSourceMappingLoggingConfig
         -- (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see provisioned mode.
         ProvisionedPollerConfig: ProvisionedPollerConfig
     end
@@ -1161,6 +1177,16 @@ local record M
         EventSourceArn: string
         -- An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering. If filter criteria is encrypted, this field shows up as null in the response of ListEventSourceMapping API calls. You can view this field in plaintext in the response of GetEventSourceMapping and DeleteEventSourceMapping calls if you have kms:Decrypt permissions for the correct KMS key.
         FilterCriteria: FilterCriteria
+        -- An object that contains details about an error related to filter criteria encryption.
+        FilterCriteriaError: FilterCriteriaError
+        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
+        KMSKeyArn: string
+        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
+        MetricsConfig: EventSourceMappingMetricsConfig
+        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
+        LoggingConfig: EventSourceMappingLoggingConfig
+        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
+        ScalingConfig: ScalingConfig
         -- The ARN of the Lambda function.
         FunctionArn: string
         -- The date that the event source mapping was last updated or that its state changed.
@@ -1195,20 +1221,10 @@ local record M
         AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig
         -- Specific configuration settings for a self-managed Apache Kafka event source.
         SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig
-        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
-        ScalingConfig: ScalingConfig
         -- Specific configuration settings for a DocumentDB event source.
         DocumentDBEventSourceConfig: DocumentDBEventSourceConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
-        KMSKeyArn: string
-        -- An object that contains details about an error related to filter criteria encryption.
-        FilterCriteriaError: FilterCriteriaError
         -- The Amazon Resource Name (ARN) of the event source mapping.
         EventSourceMappingArn: string
-        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
-        MetricsConfig: EventSourceMappingMetricsConfig
-        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
-        LoggingConfig: EventSourceMappingLoggingConfig
         -- (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see provisioned mode.
         ProvisionedPollerConfig: ProvisionedPollerConfig
     end
@@ -1242,6 +1258,16 @@ local record M
         EventSourceArn: string
         -- An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering. If filter criteria is encrypted, this field shows up as null in the response of ListEventSourceMapping API calls. You can view this field in plaintext in the response of GetEventSourceMapping and DeleteEventSourceMapping calls if you have kms:Decrypt permissions for the correct KMS key.
         FilterCriteria: FilterCriteria
+        -- An object that contains details about an error related to filter criteria encryption.
+        FilterCriteriaError: FilterCriteriaError
+        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
+        KMSKeyArn: string
+        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
+        MetricsConfig: EventSourceMappingMetricsConfig
+        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
+        LoggingConfig: EventSourceMappingLoggingConfig
+        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
+        ScalingConfig: ScalingConfig
         -- The ARN of the Lambda function.
         FunctionArn: string
         -- The date that the event source mapping was last updated or that its state changed.
@@ -1276,20 +1302,10 @@ local record M
         AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig
         -- Specific configuration settings for a self-managed Apache Kafka event source.
         SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig
-        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
-        ScalingConfig: ScalingConfig
         -- Specific configuration settings for a DocumentDB event source.
         DocumentDBEventSourceConfig: DocumentDBEventSourceConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
-        KMSKeyArn: string
-        -- An object that contains details about an error related to filter criteria encryption.
-        FilterCriteriaError: FilterCriteriaError
         -- The Amazon Resource Name (ARN) of the event source mapping.
         EventSourceMappingArn: string
-        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
-        MetricsConfig: EventSourceMappingMetricsConfig
-        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
-        LoggingConfig: EventSourceMappingLoggingConfig
         -- (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see provisioned mode.
         ProvisionedPollerConfig: ProvisionedPollerConfig
     end
@@ -1312,8 +1328,17 @@ local record M
         BatchSize: number
         -- An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering.
         FilterCriteria: FilterCriteria
+        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria. By default, Lambda does not encrypt your filter criteria object. Specify this property to encrypt data using your own customer managed key.
+        KMSKeyArn: string
+        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
+        MetricsConfig: EventSourceMappingMetricsConfig
+        LoggingConfig: EventSourceMappingLoggingConfig
+        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
+        ScalingConfig: ScalingConfig
         -- The maximum amount of time, in seconds, that Lambda spends gathering records before invoking the function. You can configure MaximumBatchingWindowInSeconds to any value from 0 seconds to 300 seconds in increments of seconds. For Kinesis, DynamoDB, and Amazon SQS event sources, the default batching window is 0 seconds. For Amazon MSK, Self-managed Apache Kafka, Amazon MQ, and DocumentDB event sources, the default batching window is 500 ms. Note that because you can only change MaximumBatchingWindowInSeconds in increments of seconds, you cannot revert back to the 500 ms default batching window after you have changed it. To restore the default batching window, you must create a new event source mapping. Related setting: For Kinesis, DynamoDB, and Amazon SQS event sources, when you set BatchSize to a value greater than 10, you must set MaximumBatchingWindowInSeconds to at least 1.
         MaximumBatchingWindowInSeconds: number
+        -- (Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently.
+        ParallelizationFactor: number
         -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) A configuration object that specifies the destination of an event after Lambda processes it.
         DestinationConfig: DestinationConfig
         -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records older than the specified age. The default value is infinite (-1).
@@ -1322,25 +1347,16 @@ local record M
         BisectBatchOnFunctionError: boolean
         -- (Kinesis, DynamoDB Streams, Amazon MSK, and self-managed Apache Kafka) Discard records after the specified number of retries. The default value is infinite (-1). When set to infinite (-1), failed records are retried until the record expires.
         MaximumRetryAttempts: number
-        -- (Kinesis and DynamoDB Streams only) The number of batches to process from each shard concurrently.
-        ParallelizationFactor: number
-        -- An array of authentication protocols or VPC components required to secure your event source.
-        SourceAccessConfigurations: {SourceAccessConfiguration}
         -- (Kinesis and DynamoDB Streams only) The duration in seconds of a processing window for DynamoDB and Kinesis Streams event sources. A value of 0 seconds indicates no tumbling window.
         TumblingWindowInSeconds: number
+        -- An array of authentication protocols or VPC components required to secure your event source.
+        SourceAccessConfigurations: {SourceAccessConfiguration}
         -- (Kinesis, DynamoDB Streams, Amazon MSK, self-managed Apache Kafka, and Amazon SQS) A list of current response type enums applied to the event source mapping.
         FunctionResponseTypes: {string}
-        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
-        ScalingConfig: ScalingConfig
         AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig
         SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig
         -- Specific configuration settings for a DocumentDB event source.
         DocumentDBEventSourceConfig: DocumentDBEventSourceConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria. By default, Lambda does not encrypt your filter criteria object. Specify this property to encrypt data using your own customer managed key.
-        KMSKeyArn: string
-        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
-        MetricsConfig: EventSourceMappingMetricsConfig
-        LoggingConfig: EventSourceMappingLoggingConfig
         -- (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see provisioned mode.
         ProvisionedPollerConfig: ProvisionedPollerConfig
     end
@@ -1363,6 +1379,16 @@ local record M
         EventSourceArn: string
         -- An object that defines the filter criteria that determine whether Lambda should process an event. For more information, see Lambda event filtering. If filter criteria is encrypted, this field shows up as null in the response of ListEventSourceMapping API calls. You can view this field in plaintext in the response of GetEventSourceMapping and DeleteEventSourceMapping calls if you have kms:Decrypt permissions for the correct KMS key.
         FilterCriteria: FilterCriteria
+        -- An object that contains details about an error related to filter criteria encryption.
+        FilterCriteriaError: FilterCriteriaError
+        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
+        KMSKeyArn: string
+        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
+        MetricsConfig: EventSourceMappingMetricsConfig
+        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
+        LoggingConfig: EventSourceMappingLoggingConfig
+        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
+        ScalingConfig: ScalingConfig
         -- The ARN of the Lambda function.
         FunctionArn: string
         -- The date that the event source mapping was last updated or that its state changed.
@@ -1397,20 +1423,10 @@ local record M
         AmazonManagedKafkaEventSourceConfig: AmazonManagedKafkaEventSourceConfig
         -- Specific configuration settings for a self-managed Apache Kafka event source.
         SelfManagedKafkaEventSourceConfig: SelfManagedKafkaEventSourceConfig
-        -- (Amazon SQS only) The scaling configuration for the event source. For more information, see Configuring maximum concurrency for Amazon SQS event sources.
-        ScalingConfig: ScalingConfig
         -- Specific configuration settings for a DocumentDB event source.
         DocumentDBEventSourceConfig: DocumentDBEventSourceConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that Lambda uses to encrypt your function's filter criteria.
-        KMSKeyArn: string
-        -- An object that contains details about an error related to filter criteria encryption.
-        FilterCriteriaError: FilterCriteriaError
         -- The Amazon Resource Name (ARN) of the event source mapping.
         EventSourceMappingArn: string
-        -- The metrics configuration for your event source. For more information, see Event source mapping metrics.
-        MetricsConfig: EventSourceMappingMetricsConfig
-        -- (Amazon MSK, and self-managed Apache Kafka only) The logging configuration for your event source. For more information, see Event source mapping logging.
-        LoggingConfig: EventSourceMappingLoggingConfig
         -- (Amazon SQS, Amazon MSK, and self-managed Apache Kafka only) The provisioned mode configuration for the event source. For more information, see provisioned mode.
         ProvisionedPollerConfig: ProvisionedPollerConfig
     end
@@ -1551,44 +1567,44 @@ local record M
         "nodejs12.x"
         "nodejs14.x"
         "nodejs16.x"
+        "nodejs18.x"
+        "nodejs20.x"
+        "nodejs22.x"
+        "nodejs24.x"
         "java8"
         "java8.al2"
         "java11"
+        "java17"
+        "java21"
+        "java25"
         "python2.7"
         "python3.6"
         "python3.7"
         "python3.8"
         "python3.9"
+        "python3.10"
+        "python3.11"
+        "python3.12"
+        "python3.13"
+        "python3.14"
         "dotnetcore1.0"
         "dotnetcore2.0"
         "dotnetcore2.1"
         "dotnetcore3.1"
         "dotnet6"
         "dotnet8"
+        "dotnet10"
         "nodejs4.3-edge"
         "go1.x"
         "ruby2.5"
         "ruby2.7"
-        "provided"
-        "provided.al2"
-        "nodejs18.x"
-        "python3.10"
-        "java17"
         "ruby3.2"
         "ruby3.3"
         "ruby3.4"
-        "python3.11"
-        "nodejs20.x"
-        "provided.al2023"
-        "python3.12"
-        "java21"
-        "python3.13"
-        "nodejs22.x"
-        "nodejs24.x"
-        "python3.14"
-        "java25"
-        "dotnet10"
         "ruby4.0"
+        "provided"
+        "provided.al2"
+        "provided.al2023"
     end
 
     enum SnapStartApplyOn
@@ -1652,6 +1668,8 @@ local record M
         MemorySize: number
         -- Set to true to publish the first version of the function during creation.
         Publish: boolean
+        -- Specifies where to publish the function version or configuration.
+        PublishTo: string
         -- For network connectivity to Amazon Web Services resources in a VPC, specify a list of security groups and subnets in the VPC. When you connect a function to a VPC, it can access resources and the internet only through that VPC. For more information, see Configuring a Lambda function to access resources in a VPC.
         VpcConfig: VpcConfig
         -- The type of deployment package. Set to Image for container image and set to Zip for .zip file archive.
@@ -1670,10 +1688,10 @@ local record M
         Layers: {string}
         -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
         FileSystemConfigs: {FileSystemConfig}
-        -- Container image configuration values that override the values in the container image Dockerfile.
-        ImageConfig: ImageConfig
         -- To enable code signing for this function, specify the ARN of a code-signing configuration. A code-signing configuration includes a set of signing profiles, which define the trusted publishers for this function.
         CodeSigningConfigArn: string
+        -- Container image configuration values that override the values in the container image Dockerfile.
+        ImageConfig: ImageConfig
         -- The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.
         Architectures: {string}
         -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
@@ -1682,14 +1700,12 @@ local record M
         SnapStart: SnapStart
         -- The function's Amazon CloudWatch Logs configuration settings.
         LoggingConfig: LoggingConfig
-        -- Configuration for the capacity provider that manages compute resources for Lambda functions.
-        CapacityProviderConfig: CapacityProviderConfig
-        -- Specifies where to publish the function version or configuration.
-        PublishTo: string
-        -- Configuration settings for durable functions. Enables creating functions with durability that can remember their state and continue execution even after interruptions.
-        DurableConfig: DurableConfig
         -- Configuration for multi-tenant applications that use Lambda functions. Defines tenant isolation settings and resource allocations. Required for functions supporting multiple tenants.
         TenancyConfig: TenancyConfig
+        -- Configuration for the capacity provider that manages compute resources for Lambda functions.
+        CapacityProviderConfig: CapacityProviderConfig
+        -- Configuration settings for durable functions. Enables creating functions with durability that can remember their state and continue execution even after interruptions.
+        DurableConfig: DurableConfig
     end
 
     -- Error messages for environment variables that couldn't be applied.
@@ -1752,6 +1768,7 @@ local record M
         "InvalidRuntime"
         "InvalidZipFileException"
         "FunctionError"
+        "ServiceQuotaExceededException"
         "VcpuLimitExceeded"
         "CapacityProviderScalingLimitExceeded"
         "InsufficientCapacity"
@@ -1833,7 +1850,7 @@ local record M
         "InvalidRuntime"
         "InvalidZipFileException"
         "FunctionError"
-        "DrainingDurableExecutions"
+        "ServiceQuotaExceededException"
         "VcpuLimitExceeded"
         "CapacityProviderScalingLimitExceeded"
         "InsufficientCapacity"
@@ -1847,6 +1864,7 @@ local record M
         "FunctionError.TooManyExtensions"
         "FunctionError.InitResourceExhausted"
         "DisallowedByVpcEncryptionControl"
+        "DrainingDurableExecutions"
     end
 
     -- The function's X-Ray tracing configuration.
@@ -1923,14 +1941,14 @@ local record M
         LastUpdateStatusReasonCode: string
         -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
         FileSystemConfigs: {FileSystemConfig}
-        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
-        PackageType: string
-        -- The function's image configuration values.
-        ImageConfigResponse: ImageConfigResponse
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
         -- The ARN of the signing job.
         SigningJobArn: string
+        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
+        PackageType: string
+        -- The function's image configuration values.
+        ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
         -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
@@ -1941,14 +1959,14 @@ local record M
         RuntimeVersionConfig: RuntimeVersionConfig
         -- The function's Amazon CloudWatch Logs configuration settings.
         LoggingConfig: LoggingConfig
+        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
+        TenancyConfig: TenancyConfig
         -- Configuration for the capacity provider that manages compute resources for Lambda functions.
         CapacityProviderConfig: CapacityProviderConfig
         -- The SHA256 hash of the function configuration.
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
-        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
-        TenancyConfig: TenancyConfig
     end
 
     -- The maximum number of function versions that can be associated with a single capacity provider has been exceeded. For more information, see Lambda quotas.
@@ -2121,14 +2139,14 @@ local record M
         LastUpdateStatusReasonCode: string
         -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
         FileSystemConfigs: {FileSystemConfig}
-        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
-        PackageType: string
-        -- The function's image configuration values.
-        ImageConfigResponse: ImageConfigResponse
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
         -- The ARN of the signing job.
         SigningJobArn: string
+        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
+        PackageType: string
+        -- The function's image configuration values.
+        ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
         -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
@@ -2139,14 +2157,14 @@ local record M
         RuntimeVersionConfig: RuntimeVersionConfig
         -- The function's Amazon CloudWatch Logs configuration settings.
         LoggingConfig: LoggingConfig
+        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
+        TenancyConfig: TenancyConfig
         -- Configuration for the capacity provider that manages compute resources for Lambda functions.
         CapacityProviderConfig: CapacityProviderConfig
         -- The SHA256 hash of the function configuration.
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
-        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
-        TenancyConfig: TenancyConfig
     end
 
     -- An object that contains details about an error related to retrieving tags.
@@ -2255,14 +2273,14 @@ local record M
         LastUpdateStatusReasonCode: string
         -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
         FileSystemConfigs: {FileSystemConfig}
-        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
-        PackageType: string
-        -- The function's image configuration values.
-        ImageConfigResponse: ImageConfigResponse
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
         -- The ARN of the signing job.
         SigningJobArn: string
+        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
+        PackageType: string
+        -- The function's image configuration values.
+        ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
         -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
@@ -2273,14 +2291,14 @@ local record M
         RuntimeVersionConfig: RuntimeVersionConfig
         -- The function's Amazon CloudWatch Logs configuration settings.
         LoggingConfig: LoggingConfig
+        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
+        TenancyConfig: TenancyConfig
         -- Configuration for the capacity provider that manages compute resources for Lambda functions.
         CapacityProviderConfig: CapacityProviderConfig
         -- The SHA256 hash of the function configuration.
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
-        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
-        TenancyConfig: TenancyConfig
     end
 
     record GetFunctionRecursionConfigInput
@@ -2376,10 +2394,34 @@ local record M
     record GetRuntimeManagementConfigOutput
         -- The current runtime update mode of the function.
         UpdateRuntimeOn: string
-        -- The ARN of the runtime the function is configured to use. If the runtime update mode is Manual, the ARN is returned, otherwise null is returned.
-        RuntimeVersionArn: string
         -- The Amazon Resource Name (ARN) of your function.
         FunctionArn: string
+        -- The ARN of the runtime the function is configured to use. If the runtime update mode is Manual, the ARN is returned, otherwise null is returned.
+        RuntimeVersionArn: string
+    end
+
+    -- The Lambda function couldn't be invoked because its code artifact user has been deleted. Wait for Lambda to provision a new code artifact user, or update the function's code package to recreate it.
+    record CodeArtifactUserDeletedException
+        -- The exception type.
+        Type: string
+        -- The exception message.
+        message: string
+    end
+
+    -- The Lambda function couldn't be invoked because provisioning of its code artifact user failed. Update the function's code package or check the Lambda function's State and StateReasonCode for additional context.
+    record CodeArtifactUserFailedException
+        -- The exception type.
+        Type: string
+        -- The exception message.
+        message: string
+    end
+
+    -- The Lambda function couldn't be invoked because its code artifact user is still being provisioned. Wait for the function's State to become Active and try the request again.
+    record CodeArtifactUserPendingException
+        -- The exception type.
+        Type: string
+        -- The exception message.
+        message: string
     end
 
     -- The durable execution with the specified name has already been started. Each durable execution name must be unique within the function. Use a different name or check the status of the existing execution.
@@ -2435,6 +2477,14 @@ local record M
     -- Lambda couldn't create an elastic network interface in the VPC, specified as part of Lambda function configuration, because the limit for network interfaces has been reached. For more information, see Lambda quotas.
     record ENILimitReachedException
         Type: string
+        Message: string
+    end
+
+    -- Lambda couldn't invoke the Lambda function because the elastic network interface (ENI) configured for its VPC connection isn't ready yet. Wait a few moments and try the request again. For more information about VPC configuration, see Configuring a Lambda function to access resources in a VPC.
+    record ENINotReadyException
+        -- The exception type.
+        Type: string
+        -- The exception message.
         Message: string
     end
 
@@ -2539,6 +2589,14 @@ local record M
         Message: string
     end
 
+    -- The Lambda function doesn't support the invocation mode requested. For example, calling Invoke with InvocationType=RequestResponse on a function configured for asynchronous-only invocation, or vice versa. For more information about invocation types, see Invoking Lambda functions.
+    record ModeNotSupportedException
+        -- The exception type.
+        Type: string
+        -- The exception message.
+        message: string
+    end
+
     -- The function has no published versions available.
     record NoPublishedVersionException
         -- The exception type.
@@ -2599,6 +2657,14 @@ local record M
         message: string
     end
 
+    -- The request would exceed a service quota. For more information about Lambda service quotas, see Lambda quotas. To request a quota increase, see Requesting a quota increase in the Service Quotas User Guide.
+    record ServiceQuotaExceededException
+        -- The exception type.
+        Type: string
+        -- The exception message.
+        Message: string
+    end
+
     -- The afterRestore() runtime hook encountered an error. For more information, check the Amazon CloudWatch logs.
     record SnapStartException
         Type: string
@@ -2608,6 +2674,14 @@ local record M
     -- Lambda is initializing your function. You can invoke the function when the function state becomes Active.
     record SnapStartNotReadyException
         Type: string
+        Message: string
+    end
+
+    -- Lambda couldn't regenerate the SnapStart snapshot for the function. SnapStart-enabled functions periodically regenerate snapshots when their underlying runtime or dependencies change; this regeneration failed. Wait for Lambda to retry, or update the function's configuration to trigger a new snapshot. For more information, see Lambda SnapStart.
+    record SnapStartRegenerationFailureException
+        -- The exception type.
+        Type: string
+        -- The exception message.
         Message: string
     end
 
@@ -2881,18 +2955,18 @@ local record M
         S3ObjectVersion: string
         -- URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip file archive.
         ImageUri: string
+        -- The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.
+        Architectures: {string}
         -- Set to true to publish a new version of the function after updating the code. This has the same effect as calling PublishVersion separately.
         Publish: boolean
+        -- Specifies where to publish the function version or configuration.
+        PublishTo: string
         -- Set to true to validate the request parameters and access permissions without modifying the function code.
         DryRun: boolean
         -- Update the function only if the revision ID matches the ID that's specified. Use this option to avoid modifying a function that has changed since you last read it.
         RevisionId: string
-        -- The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.
-        Architectures: {string}
         -- The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an Amazon Web Services managed key.
         SourceKMSKeyArn: string
-        -- Specifies where to publish the function version or configuration.
-        PublishTo: string
     end
 
     -- Details about a function's configuration.
@@ -2951,14 +3025,14 @@ local record M
         LastUpdateStatusReasonCode: string
         -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
         FileSystemConfigs: {FileSystemConfig}
-        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
-        PackageType: string
-        -- The function's image configuration values.
-        ImageConfigResponse: ImageConfigResponse
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
         -- The ARN of the signing job.
         SigningJobArn: string
+        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
+        PackageType: string
+        -- The function's image configuration values.
+        ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
         -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
@@ -2969,14 +3043,14 @@ local record M
         RuntimeVersionConfig: RuntimeVersionConfig
         -- The function's Amazon CloudWatch Logs configuration settings.
         LoggingConfig: LoggingConfig
+        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
+        TenancyConfig: TenancyConfig
         -- Configuration for the capacity provider that manages compute resources for Lambda functions.
         CapacityProviderConfig: CapacityProviderConfig
         -- The SHA256 hash of the function configuration.
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
-        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
-        TenancyConfig: TenancyConfig
     end
 
     record UpdateFunctionConfigurationInput
@@ -3080,14 +3154,14 @@ local record M
         LastUpdateStatusReasonCode: string
         -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
         FileSystemConfigs: {FileSystemConfig}
-        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
-        PackageType: string
-        -- The function's image configuration values.
-        ImageConfigResponse: ImageConfigResponse
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
         -- The ARN of the signing job.
         SigningJobArn: string
+        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
+        PackageType: string
+        -- The function's image configuration values.
+        ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
         -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
@@ -3098,14 +3172,14 @@ local record M
         RuntimeVersionConfig: RuntimeVersionConfig
         -- The function's Amazon CloudWatch Logs configuration settings.
         LoggingConfig: LoggingConfig
+        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
+        TenancyConfig: TenancyConfig
         -- Configuration for the capacity provider that manages compute resources for Lambda functions.
         CapacityProviderConfig: CapacityProviderConfig
         -- The SHA256 hash of the function configuration.
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
-        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
-        TenancyConfig: TenancyConfig
     end
 
     record UpdateFunctionUrlConfigInput
@@ -3334,14 +3408,14 @@ local record M
         LastUpdateStatusReasonCode: string
         -- Connection settings for an Amazon EFS file system or an Amazon S3 Files file system.
         FileSystemConfigs: {FileSystemConfig}
-        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
-        PackageType: string
-        -- The function's image configuration values.
-        ImageConfigResponse: ImageConfigResponse
         -- The ARN of the signing profile version.
         SigningProfileVersionArn: string
         -- The ARN of the signing job.
         SigningJobArn: string
+        -- The type of deployment package. Set to Image for container image and set Zip for .zip file archive.
+        PackageType: string
+        -- The function's image configuration values.
+        ImageConfigResponse: ImageConfigResponse
         -- The instruction set architecture that the function supports. Architecture is a string array with one of the valid values. The default architecture value is x86_64.
         Architectures: {string}
         -- The size of the function's /tmp directory in MB. The default value is 512, but can be any whole number between 512 and 10,240 MB. For more information, see Configuring ephemeral storage (console).
@@ -3352,14 +3426,14 @@ local record M
         RuntimeVersionConfig: RuntimeVersionConfig
         -- The function's Amazon CloudWatch Logs configuration settings.
         LoggingConfig: LoggingConfig
+        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
+        TenancyConfig: TenancyConfig
         -- Configuration for the capacity provider that manages compute resources for Lambda functions.
         CapacityProviderConfig: CapacityProviderConfig
         -- The SHA256 hash of the function configuration.
         ConfigSha256: string
         -- The function's durable execution configuration settings, if the function is configured for durability.
         DurableConfig: DurableConfig
-        -- The function's tenant isolation configuration settings. Determines whether the Lambda function runs on a shared or dedicated infrastructure per unique tenant.
-        TenancyConfig: TenancyConfig
     end
 
     record GetAccountSettingsInput
@@ -3763,14 +3837,14 @@ local record M
     end
 
     record ListLayersInput
+        -- The compatible instruction set architecture.
+        CompatibleArchitecture: string
         -- A runtime identifier. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes.
         CompatibleRuntime: string
         -- A pagination token returned by a previous call.
         Marker: string
         -- The maximum number of layers to return.
         MaxItems: number
-        -- The compatible instruction set architecture.
-        CompatibleArchitecture: string
     end
 
     -- Details about a version of an Lambda layer.
@@ -3783,12 +3857,12 @@ local record M
         Description: string
         -- The date that the version was created, in ISO 8601 format. For example, 2018-11-27T15:10:45.123+0000.
         CreatedDate: string
+        -- A list of compatible instruction set architectures.
+        CompatibleArchitectures: {string}
         -- The layer's compatible runtimes. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes.
         CompatibleRuntimes: {string}
         -- The layer's open-source license.
         LicenseInfo: string
-        -- A list of compatible instruction set architectures.
-        CompatibleArchitectures: {string}
     end
 
     -- Details about an Lambda layer.
@@ -3852,12 +3926,12 @@ local record M
         CreatedDate: string
         -- The version number.
         Version: number
+        -- A list of compatible instruction set architectures.
+        CompatibleArchitectures: {string}
         -- The layer's compatible runtimes. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes.
         CompatibleRuntimes: {string}
         -- The layer's software license.
         LicenseInfo: string
-        -- A list of compatible instruction set architectures.
-        CompatibleArchitectures: {string}
     end
 
     record GetLayerVersionByArnInput
@@ -3878,12 +3952,12 @@ local record M
         CreatedDate: string
         -- The version number.
         Version: number
+        -- A list of compatible instruction set architectures.
+        CompatibleArchitectures: {string}
         -- The layer's compatible runtimes. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes.
         CompatibleRuntimes: {string}
         -- The layer's software license.
         LicenseInfo: string
-        -- A list of compatible instruction set architectures.
-        CompatibleArchitectures: {string}
     end
 
     record GetLayerVersionPolicyInput
@@ -3901,6 +3975,8 @@ local record M
     end
 
     record ListLayerVersionsInput
+        -- The compatible instruction set architecture.
+        CompatibleArchitecture: string
         -- A runtime identifier. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes.
         CompatibleRuntime: string
         -- The name or Amazon Resource Name (ARN) of the layer.
@@ -3909,8 +3985,6 @@ local record M
         Marker: string
         -- The maximum number of versions to return.
         MaxItems: number
-        -- The compatible instruction set architecture.
-        CompatibleArchitecture: string
     end
 
     record ListLayerVersionsOutput
@@ -3939,12 +4013,12 @@ local record M
         Description: string
         -- The function layer archive.
         Content: LayerVersionContentInput
+        -- A list of compatible instruction set architectures.
+        CompatibleArchitectures: {string}
         -- A list of compatible function runtimes. Used for filtering with ListLayers and ListLayerVersions. The following list includes deprecated runtimes. For more information, see Runtime deprecation policy.
         CompatibleRuntimes: {string}
         -- The layer's software license. It can be any of the following: An SPDX license identifier. For example, MIT. The URL of a license hosted on the internet. For example, https://opensource.org/licenses/MIT. The full text of the license.
         LicenseInfo: string
-        -- A list of compatible instruction set architectures.
-        CompatibleArchitectures: {string}
     end
 
     record PublishLayerVersionOutput
@@ -3960,12 +4034,12 @@ local record M
         CreatedDate: string
         -- The version number.
         Version: number
+        -- A list of compatible instruction set architectures.
+        CompatibleArchitectures: {string}
         -- The layer's compatible runtimes. The following list includes deprecated runtimes. For more information, see Runtime use after deprecation. For a list of all currently supported runtimes, see Supported runtimes.
         CompatibleRuntimes: {string}
         -- The layer's software license.
         LicenseInfo: string
-        -- A list of compatible instruction set architectures.
-        CompatibleArchitectures: {string}
     end
 
     record RemoveLayerVersionPermissionInput
@@ -3995,7 +4069,7 @@ local record M
         StartedAfter: number
         -- Filter executions that started before this timestamp (ISO 8601 format).
         StartedBefore: number
-        -- Set to true to return results in reverse chronological order (newest first). Default is false.
+        -- Set to true to return results in chronological order (oldest first). Default is false.
         ReverseOrder: boolean
         -- Pagination token from a previous request to continue retrieving results.
         Marker: string
@@ -4130,10 +4204,10 @@ local record M
     record PutProvisionedConcurrencyConfigOutput
         -- The amount of provisioned concurrency requested.
         RequestedProvisionedConcurrentExecutions: number
-        -- The amount of provisioned concurrency available.
-        AvailableProvisionedConcurrentExecutions: number
         -- The amount of provisioned concurrency allocated. When a weighted alias is used during linear and canary deployments, this value fluctuates depending on the amount of concurrency that is provisioned for the function versions.
         AllocatedProvisionedConcurrentExecutions: number
+        -- The amount of provisioned concurrency available.
+        AvailableProvisionedConcurrentExecutions: number
         -- The status of the allocation process.
         Status: string
         -- For failed allocations, the reason that provisioned concurrency could not be allocated.

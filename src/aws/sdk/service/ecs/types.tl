@@ -3320,6 +3320,20 @@ local record M
         advancedConfiguration: AdvancedConfiguration
     end
 
+    -- The configuration for a specific set of metrics to collect for a service.
+    record MetricConfiguration
+        -- The list of metric names to configure. The supported metric names are CPUUtilization and MemoryUtilization.
+        metricNames: {string}
+        -- The resolution, in seconds, at which to collect the metrics. The valid values are 20 and 60.
+        resolutionSeconds: number
+    end
+
+    -- The optional monitoring configuration for a service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
+    record MonitoringConfiguration
+        -- The list of metric configurations for the service monitoring.
+        metricConfigurations: {MetricConfiguration}
+    end
+
     enum AssignPublicIp
         "ENABLED"
         "DISABLED"
@@ -3606,6 +3620,8 @@ local record M
         volumeConfigurations: {ServiceVolumeConfiguration}
         -- The VPC Lattice configuration for the service being created.
         vpcLatticeConfigurations: {VpcLatticeConfiguration}
+        -- The optional monitoring configuration for the service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
+        monitoring: MonitoringConfiguration
     end
 
     -- The summary of the current service revision configuration
@@ -4104,6 +4120,8 @@ local record M
         volumeConfigurations: {ServiceVolumeConfiguration}
         -- An object representing the VPC Lattice configuration for the service being updated. This parameter triggers a new service deployment.
         vpcLatticeConfigurations: {VpcLatticeConfiguration}
+        -- The optional monitoring configuration for the service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
+        monitoring: MonitoringConfiguration
     end
 
     record UpdateServiceOutput
@@ -4395,6 +4413,8 @@ local record M
         resolvedConfiguration: ResolvedConfiguration
         -- The resources created and managed by Amazon ECS when you create an Express service for Amazon ECS.
         ecsManagedResources: ECSManagedResources
+        -- The optional monitoring configuration for the service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
+        monitoring: MonitoringConfiguration
     end
 
     record DescribeServiceRevisionsOutput

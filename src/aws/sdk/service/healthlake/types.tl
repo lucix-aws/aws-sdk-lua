@@ -79,6 +79,19 @@ local record M
         IdpLambdaArn: string
     end
 
+    enum NlpStatus
+        "ENABLED"
+        "DISABLED"
+        "ENABLING"
+        "DISABLING"
+    end
+
+    -- The natural language processing (NLP) configuration for a data store.
+    record NlpConfiguration
+        -- The status of the NLP configuration.
+        Status: string
+    end
+
     enum PreloadDataType
         "SYNTHEA"
     end
@@ -87,6 +100,12 @@ local record M
     record PreloadDataConfig
         -- The type of preloaded data. Only Synthea preloaded data is supported.
         PreloadDataType: string
+    end
+
+    -- The profile configuration for a data store.
+    record ProfileConfiguration
+        -- The list of default profiles for the data store.
+        DefaultProfiles: {string}
     end
 
     -- The customer-managed-key (CMK) used when creating a data store. If a customer-owned key
@@ -134,6 +153,12 @@ local record M
         Tags: {Tag}
         -- The identity provider configuration to use for the data store.
         IdentityProviderConfiguration: IdentityProviderConfiguration
+        -- The analytics configuration for the data store.
+        AnalyticsConfiguration: AnalyticsConfiguration
+        -- The natural language processing (NLP) configuration for the data store.
+        NlpConfiguration: NlpConfiguration
+        -- The profile configuration for the data store.
+        ProfileConfiguration: ProfileConfiguration
     end
 
     enum DatastoreStatus
@@ -198,25 +223,6 @@ local record M
         ErrorMessage: string
         -- The error category for ErrorCause.
         ErrorCategory: string
-    end
-
-    enum NlpStatus
-        "ENABLED"
-        "DISABLED"
-        "ENABLING"
-        "DISABLING"
-    end
-
-    -- The natural language processing (NLP) configuration for a data store.
-    record NlpConfiguration
-        -- The status of the NLP configuration.
-        Status: string
-    end
-
-    -- The profile configuration for a data store.
-    record ProfileConfiguration
-        -- The list of default profiles for the data store.
-        DefaultProfiles: {string}
     end
 
     -- The data store properties.
@@ -570,10 +576,10 @@ local record M
         DatastoreId: string
         -- The data store name.
         DatastoreName: string
+        -- The natural language processing (NLP) configuration for the data store.
+        NlpConfiguration: NlpConfiguration
         -- The analytics configuration for the data store.
         AnalyticsConfiguration: AnalyticsConfiguration
-        -- The NLP configuration for the data store.
-        NlpConfiguration: NlpConfiguration
         -- The profile configuration for the data store.
         ProfileConfiguration: ProfileConfiguration
         -- The identity provider configuration for the data store.

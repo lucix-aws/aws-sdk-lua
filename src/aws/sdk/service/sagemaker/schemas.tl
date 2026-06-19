@@ -7666,6 +7666,147 @@ M.ClarifyExplainerConfig = schema.new({
     },
 })
 
+M.RollingDeploymentPolicy = schema.new({
+    id = id.from(_N, "RollingDeploymentPolicy"),
+    type = "structure",
+    members = {
+        MaximumBatchSize = schema.new({
+            id = id.from(_N, "RollingDeploymentPolicy", "MaximumBatchSize"),
+            type = "structure",
+            name = "MaximumBatchSize",
+            target_id = id.from(_N, "CapacitySizeConfig"),
+            target = M.CapacitySizeConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RollbackMaximumBatchSize = schema.new({
+            id = id.from(_N, "RollingDeploymentPolicy", "RollbackMaximumBatchSize"),
+            type = "structure",
+            name = "RollbackMaximumBatchSize",
+            target_id = id.from(_N, "CapacitySizeConfig"),
+            target = M.CapacitySizeConfig,
+        }),
+    },
+})
+
+M.DeploymentConfiguration = schema.new({
+    id = id.from(_N, "DeploymentConfiguration"),
+    type = "structure",
+    members = {
+        RollingUpdatePolicy = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "RollingUpdatePolicy"),
+            type = "structure",
+            name = "RollingUpdatePolicy",
+            target_id = id.from(_N, "RollingDeploymentPolicy"),
+            target = M.RollingDeploymentPolicy,
+        }),
+        WaitIntervalInSeconds = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "WaitIntervalInSeconds"),
+            type = "integer",
+            name = "WaitIntervalInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        AutoRollbackConfiguration = schema.new({
+            id = id.from(_N, "DeploymentConfiguration", "AutoRollbackConfiguration"),
+            type = "list",
+            name = "AutoRollbackConfiguration",
+            target_id = prelude.Document.id,
+            list_member = M.AlarmDetails,
+        }),
+    },
+})
+
+M.ClusterPatchSchedule = schema.new({
+    id = id.from(_N, "ClusterPatchSchedule"),
+    type = "structure",
+    members = {
+        NextPatchDate = schema.new({
+            id = id.from(_N, "ClusterPatchSchedule", "NextPatchDate"),
+            type = "timestamp",
+            name = "NextPatchDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ClusterAutoPatchConfig = schema.new({
+    id = id.from(_N, "ClusterAutoPatchConfig"),
+    type = "structure",
+    members = {
+        PatchingStrategy = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfig", "PatchingStrategy"),
+            type = "string",
+            name = "PatchingStrategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PatchSchedule = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfig", "PatchSchedule"),
+            type = "structure",
+            name = "PatchSchedule",
+            target_id = id.from(_N, "ClusterPatchSchedule"),
+            target = M.ClusterPatchSchedule,
+        }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfig", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
+        }),
+    },
+})
+
+M.ClusterPatchScheduleDetails = schema.new({
+    id = id.from(_N, "ClusterPatchScheduleDetails"),
+    type = "structure",
+    members = {
+        NextPatchDate = schema.new({
+            id = id.from(_N, "ClusterPatchScheduleDetails", "NextPatchDate"),
+            type = "timestamp",
+            name = "NextPatchDate",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ClusterAutoPatchConfigDetails = schema.new({
+    id = id.from(_N, "ClusterAutoPatchConfigDetails"),
+    type = "structure",
+    members = {
+        PatchingStrategy = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfigDetails", "PatchingStrategy"),
+            type = "string",
+            name = "PatchingStrategy",
+            target_id = prelude.String.id,
+        }),
+        CurrentPatchSchedule = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfigDetails", "CurrentPatchSchedule"),
+            type = "structure",
+            name = "CurrentPatchSchedule",
+            target_id = id.from(_N, "ClusterPatchScheduleDetails"),
+            target = M.ClusterPatchScheduleDetails,
+        }),
+        DesiredPatchSchedule = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfigDetails", "DesiredPatchSchedule"),
+            type = "structure",
+            name = "DesiredPatchSchedule",
+            target_id = id.from(_N, "ClusterPatchScheduleDetails"),
+            target = M.ClusterPatchScheduleDetails,
+        }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "ClusterAutoPatchConfigDetails", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfiguration"),
+            target = M.DeploymentConfiguration,
+        }),
+    },
+})
+
 M.ClusterAutoScalingConfig = schema.new({
     id = id.from(_N, "ClusterAutoScalingConfig"),
     type = "structure",
@@ -8216,57 +8357,6 @@ M.ClusterFsxOpenZfsConfig = schema.new({
     },
 })
 
-M.RollingDeploymentPolicy = schema.new({
-    id = id.from(_N, "RollingDeploymentPolicy"),
-    type = "structure",
-    members = {
-        MaximumBatchSize = schema.new({
-            id = id.from(_N, "RollingDeploymentPolicy", "MaximumBatchSize"),
-            type = "structure",
-            name = "MaximumBatchSize",
-            target_id = id.from(_N, "CapacitySizeConfig"),
-            target = M.CapacitySizeConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RollbackMaximumBatchSize = schema.new({
-            id = id.from(_N, "RollingDeploymentPolicy", "RollbackMaximumBatchSize"),
-            type = "structure",
-            name = "RollbackMaximumBatchSize",
-            target_id = id.from(_N, "CapacitySizeConfig"),
-            target = M.CapacitySizeConfig,
-        }),
-    },
-})
-
-M.DeploymentConfiguration = schema.new({
-    id = id.from(_N, "DeploymentConfiguration"),
-    type = "structure",
-    members = {
-        RollingUpdatePolicy = schema.new({
-            id = id.from(_N, "DeploymentConfiguration", "RollingUpdatePolicy"),
-            type = "structure",
-            name = "RollingUpdatePolicy",
-            target_id = id.from(_N, "RollingDeploymentPolicy"),
-            target = M.RollingDeploymentPolicy,
-        }),
-        WaitIntervalInSeconds = schema.new({
-            id = id.from(_N, "DeploymentConfiguration", "WaitIntervalInSeconds"),
-            type = "integer",
-            name = "WaitIntervalInSeconds",
-            target_id = prelude.Integer.id,
-        }),
-        AutoRollbackConfiguration = schema.new({
-            id = id.from(_N, "DeploymentConfiguration", "AutoRollbackConfiguration"),
-            type = "list",
-            name = "AutoRollbackConfiguration",
-            target_id = prelude.Document.id,
-            list_member = M.AlarmDetails,
-        }),
-    },
-})
-
 M.ClusterInstanceRequirementDetails = schema.new({
     id = id.from(_N, "ClusterInstanceRequirementDetails"),
     type = "structure",
@@ -8606,6 +8696,13 @@ M.ClusterInstanceGroupDetails = schema.new({
             target_id = id.from(_N, "ScheduledUpdateConfig"),
             target = M.ScheduledUpdateConfig,
         }),
+        AutoPatchConfig = schema.new({
+            id = id.from(_N, "ClusterInstanceGroupDetails", "AutoPatchConfig"),
+            type = "structure",
+            name = "AutoPatchConfig",
+            target_id = id.from(_N, "ClusterAutoPatchConfigDetails"),
+            target = M.ClusterAutoPatchConfigDetails,
+        }),
         CurrentImageId = schema.new({
             id = id.from(_N, "ClusterInstanceGroupDetails", "CurrentImageId"),
             type = "string",
@@ -8616,6 +8713,18 @@ M.ClusterInstanceGroupDetails = schema.new({
             id = id.from(_N, "ClusterInstanceGroupDetails", "DesiredImageId"),
             type = "string",
             name = "DesiredImageId",
+            target_id = prelude.String.id,
+        }),
+        CurrentImageReleaseVersion = schema.new({
+            id = id.from(_N, "ClusterInstanceGroupDetails", "CurrentImageReleaseVersion"),
+            type = "string",
+            name = "CurrentImageReleaseVersion",
+            target_id = prelude.String.id,
+        }),
+        DesiredImageReleaseVersion = schema.new({
+            id = id.from(_N, "ClusterInstanceGroupDetails", "DesiredImageReleaseVersion"),
+            type = "string",
+            name = "DesiredImageReleaseVersion",
             target_id = prelude.String.id,
         }),
         ImageVersionStatus = schema.new({
@@ -8860,6 +8969,19 @@ M.ClusterInstanceGroupSpecification = schema.new({
             name = "ImageId",
             target_id = prelude.String.id,
         }),
+        AutoPatchConfig = schema.new({
+            id = id.from(_N, "ClusterInstanceGroupSpecification", "AutoPatchConfig"),
+            type = "structure",
+            name = "AutoPatchConfig",
+            target_id = id.from(_N, "ClusterAutoPatchConfig"),
+            target = M.ClusterAutoPatchConfig,
+        }),
+        ImageReleaseVersion = schema.new({
+            id = id.from(_N, "ClusterInstanceGroupSpecification", "ImageReleaseVersion"),
+            type = "string",
+            name = "ImageReleaseVersion",
+            target_id = prelude.String.id,
+        }),
         KubernetesConfig = schema.new({
             id = id.from(_N, "ClusterInstanceGroupSpecification", "KubernetesConfig"),
             type = "structure",
@@ -9099,6 +9221,18 @@ M.ClusterNodeDetails = schema.new({
             name = "DesiredImageId",
             target_id = prelude.String.id,
         }),
+        CurrentImageReleaseVersion = schema.new({
+            id = id.from(_N, "ClusterNodeDetails", "CurrentImageReleaseVersion"),
+            type = "string",
+            name = "CurrentImageReleaseVersion",
+            target_id = prelude.String.id,
+        }),
+        DesiredImageReleaseVersion = schema.new({
+            id = id.from(_N, "ClusterNodeDetails", "DesiredImageReleaseVersion"),
+            type = "string",
+            name = "DesiredImageReleaseVersion",
+            target_id = prelude.String.id,
+        }),
         ImageVersionStatus = schema.new({
             id = id.from(_N, "ClusterNodeDetails", "ImageVersionStatus"),
             type = "string",
@@ -9208,6 +9342,12 @@ M.ClusterNodeSummary = schema.new({
             id = id.from(_N, "ClusterNodeSummary", "PrivateDnsHostname"),
             type = "string",
             name = "PrivateDnsHostname",
+            target_id = prelude.String.id,
+        }),
+        CurrentImageReleaseVersion = schema.new({
+            id = id.from(_N, "ClusterNodeSummary", "CurrentImageReleaseVersion"),
+            type = "string",
+            name = "CurrentImageReleaseVersion",
             target_id = prelude.String.id,
         }),
         ImageVersionStatus = schema.new({
@@ -9723,6 +9863,12 @@ M.ClusterSummary = schema.new({
             name = "TrainingPlanArns",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        ImageVersionStatus = schema.new({
+            id = id.from(_N, "ClusterSummary", "ImageVersionStatus"),
+            type = "string",
+            name = "ImageVersionStatus",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -54558,6 +54704,12 @@ M.UpdateClusterSoftwareInstanceGroupSpecification = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ImageReleaseVersion = schema.new({
+            id = id.from(_N, "UpdateClusterSoftwareInstanceGroupSpecification", "ImageReleaseVersion"),
+            type = "string",
+            name = "ImageReleaseVersion",
+            target_id = prelude.String.id,
         }),
     },
 })

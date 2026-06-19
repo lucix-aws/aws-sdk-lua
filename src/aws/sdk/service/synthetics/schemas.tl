@@ -13,6 +13,8 @@ M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
 
 M.BrowserConfigs = schema.new({ type = "list", list_member = M.BrowserConfig })
 
+M.AddReplicaLocations = schema.new({ type = "list", list_member = M.AddReplicaLocationInput })
+
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.DescribeCanariesNameFilter = schema.new({ type = "list", list_member = prelude.String })
@@ -35,6 +37,8 @@ M.VisualReferences = schema.new({ type = "list", list_member = M.VisualReference
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RemoveReplicaLocations = schema.new({ type = "list", list_member = prelude.String })
+
 M.BlueprintTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.Dependencies = schema.new({ type = "list", list_member = M.Dependency })
@@ -51,6 +55,8 @@ M.VisualReferencesOutput = schema.new({ type = "list", list_member = M.VisualRef
 
 M.BaseScreenshots = schema.new({ type = "list", list_member = M.BaseScreenshot })
 
+M.Replicas = schema.new({ type = "list", list_member = M.Replica })
+
 M.BaseScreenshotIgnoreCoordinates = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
@@ -65,6 +71,56 @@ M.AccessDeniedException = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VpcConfigInput = schema.new({
+    id = id.from(_N, "VpcConfigInput"),
+    type = "structure",
+    members = {
+        SubnetIds = schema.new({
+            id = id.from(_N, "VpcConfigInput", "SubnetIds"),
+            type = "list",
+            name = "SubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SecurityGroupIds = schema.new({
+            id = id.from(_N, "VpcConfigInput", "SecurityGroupIds"),
+            type = "list",
+            name = "SecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Ipv6AllowedForDualStack = schema.new({
+            id = id.from(_N, "VpcConfigInput", "Ipv6AllowedForDualStack"),
+            type = "boolean",
+            name = "Ipv6AllowedForDualStack",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AddReplicaLocationInput = schema.new({
+    id = id.from(_N, "AddReplicaLocationInput"),
+    type = "structure",
+    members = {
+        Location = schema.new({
+            id = id.from(_N, "AddReplicaLocationInput", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VpcConfig = schema.new({
+            id = id.from(_N, "AddReplicaLocationInput", "VpcConfig"),
+            type = "structure",
+            name = "VpcConfig",
+            target_id = id.from(_N, "VpcConfigInput"),
+            target = M.VpcConfigInput,
         }),
     },
 })
@@ -372,6 +428,135 @@ M.EngineConfig = schema.new({
     },
 })
 
+M.ReplicationStatus = schema.new({
+    id = id.from(_N, "ReplicationStatus"),
+    type = "structure",
+    members = {
+        State = schema.new({
+            id = id.from(_N, "ReplicationStatus", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+        }),
+        StateReason = schema.new({
+            id = id.from(_N, "ReplicationStatus", "StateReason"),
+            type = "string",
+            name = "StateReason",
+            target_id = prelude.String.id,
+        }),
+        StateReasonCode = schema.new({
+            id = id.from(_N, "ReplicationStatus", "StateReasonCode"),
+            type = "string",
+            name = "StateReasonCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VpcConfigOutput = schema.new({
+    id = id.from(_N, "VpcConfigOutput"),
+    type = "structure",
+    members = {
+        VpcId = schema.new({
+            id = id.from(_N, "VpcConfigOutput", "VpcId"),
+            type = "string",
+            name = "VpcId",
+            target_id = prelude.String.id,
+        }),
+        SubnetIds = schema.new({
+            id = id.from(_N, "VpcConfigOutput", "SubnetIds"),
+            type = "list",
+            name = "SubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SecurityGroupIds = schema.new({
+            id = id.from(_N, "VpcConfigOutput", "SecurityGroupIds"),
+            type = "list",
+            name = "SecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Ipv6AllowedForDualStack = schema.new({
+            id = id.from(_N, "VpcConfigOutput", "Ipv6AllowedForDualStack"),
+            type = "boolean",
+            name = "Ipv6AllowedForDualStack",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.Replica = schema.new({
+    id = id.from(_N, "Replica"),
+    type = "structure",
+    members = {
+        Location = schema.new({
+            id = id.from(_N, "Replica", "Location"),
+            type = "string",
+            name = "Location",
+            target_id = prelude.String.id,
+        }),
+        ReplicationStatus = schema.new({
+            id = id.from(_N, "Replica", "ReplicationStatus"),
+            type = "structure",
+            name = "ReplicationStatus",
+            target_id = id.from(_N, "ReplicationStatus"),
+            target = M.ReplicationStatus,
+        }),
+        CanaryState = schema.new({
+            id = id.from(_N, "Replica", "CanaryState"),
+            type = "string",
+            name = "CanaryState",
+            target_id = prelude.String.id,
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "Replica", "LastModified"),
+            type = "timestamp",
+            name = "LastModified",
+            target_id = prelude.Timestamp.id,
+        }),
+        VpcConfig = schema.new({
+            id = id.from(_N, "Replica", "VpcConfig"),
+            type = "structure",
+            name = "VpcConfig",
+            target_id = id.from(_N, "VpcConfigOutput"),
+            target = M.VpcConfigOutput,
+        }),
+    },
+})
+
+M.MultiLocationConfig = schema.new({
+    id = id.from(_N, "MultiLocationConfig"),
+    type = "structure",
+    members = {
+        LocationType = schema.new({
+            id = id.from(_N, "MultiLocationConfig", "LocationType"),
+            type = "string",
+            name = "LocationType",
+            target_id = prelude.String.id,
+        }),
+        PrimaryLocation = schema.new({
+            id = id.from(_N, "MultiLocationConfig", "PrimaryLocation"),
+            type = "string",
+            name = "PrimaryLocation",
+            target_id = prelude.String.id,
+        }),
+        Replicas = schema.new({
+            id = id.from(_N, "MultiLocationConfig", "Replicas"),
+            type = "list",
+            name = "Replicas",
+            target_id = prelude.Document.id,
+            list_member = M.Replica,
+        }),
+        ReplicationState = schema.new({
+            id = id.from(_N, "MultiLocationConfig", "ReplicationState"),
+            type = "string",
+            name = "ReplicationState",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CanaryRunConfigOutput = schema.new({
     id = id.from(_N, "CanaryRunConfigOutput"),
     type = "structure",
@@ -524,39 +709,6 @@ M.VisualReferenceOutput = schema.new({
     },
 })
 
-M.VpcConfigOutput = schema.new({
-    id = id.from(_N, "VpcConfigOutput"),
-    type = "structure",
-    members = {
-        VpcId = schema.new({
-            id = id.from(_N, "VpcConfigOutput", "VpcId"),
-            type = "string",
-            name = "VpcId",
-            target_id = prelude.String.id,
-        }),
-        SubnetIds = schema.new({
-            id = id.from(_N, "VpcConfigOutput", "SubnetIds"),
-            type = "list",
-            name = "SubnetIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        SecurityGroupIds = schema.new({
-            id = id.from(_N, "VpcConfigOutput", "SecurityGroupIds"),
-            type = "list",
-            name = "SecurityGroupIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        Ipv6AllowedForDualStack = schema.new({
-            id = id.from(_N, "VpcConfigOutput", "Ipv6AllowedForDualStack"),
-            type = "boolean",
-            name = "Ipv6AllowedForDualStack",
-            target_id = prelude.Boolean.id,
-        }),
-    },
-})
-
 M.Canary = schema.new({
     id = id.from(_N, "Canary"),
     type = "structure",
@@ -684,6 +836,13 @@ M.Canary = schema.new({
             name = "VisualReferences",
             target_id = prelude.Document.id,
             list_member = M.VisualReferenceOutput,
+        }),
+        MultiLocationConfig = schema.new({
+            id = id.from(_N, "Canary", "MultiLocationConfig"),
+            type = "structure",
+            name = "MultiLocationConfig",
+            target_id = id.from(_N, "MultiLocationConfig"),
+            target = M.MultiLocationConfig,
         }),
         Tags = schema.new({
             id = id.from(_N, "Canary", "Tags"),
@@ -838,6 +997,12 @@ M.CanaryRun = schema.new({
             id = id.from(_N, "CanaryRun", "BrowserType"),
             type = "string",
             name = "BrowserType",
+            target_id = prelude.String.id,
+        }),
+        Location = schema.new({
+            id = id.from(_N, "CanaryRun", "Location"),
+            type = "string",
+            name = "Location",
             target_id = prelude.String.id,
         }),
     },
@@ -1001,33 +1166,6 @@ M.CanaryScheduleInput = schema.new({
     },
 })
 
-M.VpcConfigInput = schema.new({
-    id = id.from(_N, "VpcConfigInput"),
-    type = "structure",
-    members = {
-        SubnetIds = schema.new({
-            id = id.from(_N, "VpcConfigInput", "SubnetIds"),
-            type = "list",
-            name = "SubnetIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        SecurityGroupIds = schema.new({
-            id = id.from(_N, "VpcConfigInput", "SecurityGroupIds"),
-            type = "list",
-            name = "SecurityGroupIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-        Ipv6AllowedForDualStack = schema.new({
-            id = id.from(_N, "VpcConfigInput", "Ipv6AllowedForDualStack"),
-            type = "boolean",
-            name = "Ipv6AllowedForDualStack",
-            target_id = prelude.Boolean.id,
-        }),
-    },
-})
-
 M.CreateCanaryInput = schema.new({
     id = id.from(_N, "CreateCanaryRequest"),
     type = "structure",
@@ -1133,6 +1271,13 @@ M.CreateCanaryInput = schema.new({
             name = "BrowserConfigs",
             target_id = prelude.Document.id,
             list_member = M.BrowserConfig,
+        }),
+        AddReplicaLocations = schema.new({
+            id = id.from(_N, "CreateCanaryInput", "AddReplicaLocations"),
+            type = "list",
+            name = "AddReplicaLocations",
+            target_id = prelude.Document.id,
+            list_member = M.AddReplicaLocationInput,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateCanaryInput", "Tags"),
@@ -2258,6 +2403,20 @@ M.UpdateCanaryInput = schema.new({
             name = "BrowserConfigs",
             target_id = prelude.Document.id,
             list_member = M.BrowserConfig,
+        }),
+        AddReplicaLocations = schema.new({
+            id = id.from(_N, "UpdateCanaryInput", "AddReplicaLocations"),
+            type = "list",
+            name = "AddReplicaLocations",
+            target_id = prelude.Document.id,
+            list_member = M.AddReplicaLocationInput,
+        }),
+        RemoveReplicaLocations = schema.new({
+            id = id.from(_N, "UpdateCanaryInput", "RemoveReplicaLocations"),
+            type = "list",
+            name = "RemoveReplicaLocations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

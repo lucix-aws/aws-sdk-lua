@@ -610,6 +610,7 @@ local record M
         "WarmPoolMinSize"
         "WarmPoolState"
         "WarmPoolReuseOnScaleIn"
+        "ControlPlaneEgressMode"
     end
 
     -- An object representing the details of an update request.
@@ -644,6 +645,7 @@ local record M
         "CapabilityUpdate"
         "ControlPlaneScalingConfigUpdate"
         "VendedLogsUpdate"
+        "ControlPlaneEgressUpdate"
     end
 
     -- An object representing an asynchronous update.
@@ -1300,6 +1302,12 @@ local record M
         remotePodNetworks: {RemotePodNetwork}
     end
 
+    enum ControlPlaneEgressModeType
+        "AWS_MANAGED"
+        "CUSTOMER_ROUTED"
+        "CUSTOMER_ISOLATED"
+    end
+
     -- An object representing the VPC configuration to use for an Amazon EKS cluster.
     record VpcConfigRequest
         -- Specify subnets for your Amazon EKS nodes. Amazon EKS creates cross-account elastic network
@@ -1350,6 +1358,18 @@ local record M
         -- IPv4 clusters or IPv6 clusters that were made before
         -- October 2024.
         publicAccessCidrs: {string}
+        -- Specifies the control plane egress routing mode for the cluster. If the cluster is set
+        -- to AWS_MANAGED, Amazon EKS manages the egress path from the control plane
+        -- and you don't need to configure NAT gateways or other routing infrastructure for control
+        -- plane traffic. If the cluster is set to CUSTOMER_ROUTED, you manage the
+        -- egress path from the control plane in your VPC subnets. You are responsible for ensuring
+        -- that the control plane can reach required endpoints such as webhook servers and OIDC
+        -- providers. The default value is AWS_MANAGED. Once set to
+        -- CUSTOMER_ROUTED, this setting cannot be changed back to
+        -- AWS_MANAGED on the same cluster.
+        -- Learn more about control plane
+        -- egress routing in the Amazon EKS User Guide.
+        controlPlaneEgressMode: string
     end
 
     -- Indicates the current configuration of the block storage capability on your EKS Auto
@@ -1699,6 +1719,13 @@ local record M
         -- IPv4 clusters or IPv6 clusters that were made before
         -- October 2024.
         publicAccessCidrs: {string}
+        -- The current control plane egress routing mode for the cluster. If the cluster is set
+        -- to AWS_MANAGED, Amazon EKS manages the egress path from the control plane.
+        -- If the cluster is set to CUSTOMER_ROUTED, you manage the egress path from
+        -- the control plane in your VPC subnets.
+        -- Learn more about control plane
+        -- egress routing in the Amazon EKS User Guide.
+        controlPlaneEgressMode: string
     end
 
     enum ClusterStatus
@@ -4096,6 +4123,9 @@ local record M
     record UpdateClusterConfigInput
         -- The name of the Amazon EKS cluster to update.
         name: string
+        -- An object representing the VPC configuration to use for the cluster update. You can
+        -- use this parameter to update the control plane egress mode, the subnets used by the
+        -- cluster, the security groups, and the endpoint access settings.
         resourcesVpcConfig: VpcConfigRequest
         -- Enable or disable exporting the Kubernetes control plane logs for your cluster to CloudWatch Logs .
         -- By default, cluster control plane logs aren't exported to CloudWatch Logs . For more information,

@@ -161,6 +161,8 @@ M.LocationOrderOverrideList = schema.new({ type = "list", list_member = prelude.
 
 M.ContainerPortRangeList = schema.new({ type = "list", list_member = M.ContainerPortRange })
 
+M.LinuxCapabilityList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ContainerPortMappingList = schema.new({ type = "list", list_member = M.ContainerPortMapping })
 
 M.PlayerConnectionEndpointList = schema.new({ type = "list", list_member = M.PlayerConnectionEndpoint })
@@ -1167,6 +1169,20 @@ M.ContainerFleet = schema.new({
     },
 })
 
+M.LinuxCapabilities = schema.new({
+    id = id.from(_N, "LinuxCapabilities"),
+    type = "structure",
+    members = {
+        Include = schema.new({
+            id = id.from(_N, "LinuxCapabilities", "Include"),
+            type = "list",
+            name = "Include",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.ContainerMountPoint = schema.new({
     id = id.from(_N, "ContainerMountPoint"),
     type = "structure",
@@ -1302,6 +1318,13 @@ M.GameServerContainerDefinition = schema.new({
             name = "ServerSdkVersion",
             target_id = prelude.String.id,
         }),
+        LinuxCapabilities = schema.new({
+            id = id.from(_N, "GameServerContainerDefinition", "LinuxCapabilities"),
+            type = "structure",
+            name = "LinuxCapabilities",
+            target_id = id.from(_N, "LinuxCapabilities"),
+            target = M.LinuxCapabilities,
+        }),
     },
 })
 
@@ -1420,6 +1443,13 @@ M.SupportContainerDefinition = schema.new({
             type = "double",
             name = "Vcpu",
             target_id = prelude.Double.id,
+        }),
+        LinuxCapabilities = schema.new({
+            id = id.from(_N, "SupportContainerDefinition", "LinuxCapabilities"),
+            type = "structure",
+            name = "LinuxCapabilities",
+            target_id = id.from(_N, "LinuxCapabilities"),
+            target = M.LinuxCapabilities,
         }),
     },
 })
@@ -2003,6 +2033,13 @@ M.GameServerContainerDefinitionInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        LinuxCapabilities = schema.new({
+            id = id.from(_N, "GameServerContainerDefinitionInput", "LinuxCapabilities"),
+            type = "structure",
+            name = "LinuxCapabilities",
+            target_id = id.from(_N, "LinuxCapabilities"),
+            target = M.LinuxCapabilities,
+        }),
     },
 })
 
@@ -2080,6 +2117,13 @@ M.SupportContainerDefinitionInput = schema.new({
             type = "double",
             name = "Vcpu",
             target_id = prelude.Double.id,
+        }),
+        LinuxCapabilities = schema.new({
+            id = id.from(_N, "SupportContainerDefinitionInput", "LinuxCapabilities"),
+            type = "structure",
+            name = "LinuxCapabilities",
+            target_id = id.from(_N, "LinuxCapabilities"),
+            target = M.LinuxCapabilities,
         }),
     },
 })
@@ -5062,6 +5106,12 @@ M.DescribeContainerGroupPortMappingsOutput = schema.new({
             id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "FleetId"),
             type = "string",
             name = "FleetId",
+            target_id = prelude.String.id,
+        }),
+        FleetArn = schema.new({
+            id = id.from(_N, "DescribeContainerGroupPortMappingsOutput", "FleetArn"),
+            type = "string",
+            name = "FleetArn",
             target_id = prelude.String.id,
         }),
         Location = schema.new({

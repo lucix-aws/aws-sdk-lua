@@ -2306,6 +2306,18 @@ local record M
         nextToken: string
         -- The maximum number of events to return. The default is 10,000 events.
         limit: number
+        -- If the value is true, the earliest log events are returned first. If the value is
+        -- false, the latest log events are returned first. The default value is true.
+        -- The startFromHead parameter sets the sort direction on the first request.
+        -- On subsequent requests, the nextToken determines the sort direction. To continue
+        -- paginating in the same direction, provide the returned nextToken. If you provide
+        -- both nextToken and startFromHead, the direction of the
+        -- nextToken is used.
+        -- Setting startFromHead to false is supported only when
+        -- startTime is on or after Jan 1, 2024 00:00:00 UTC. A request with
+        -- startFromHead set to false and a startTime before
+        -- this date returns an InvalidParameterException.
+        startFromHead: boolean
         -- If the value is true, the operation attempts to provide responses that contain events
         -- from multiple log streams within the log group, interleaved in a single response. If the value
         -- is false, all the matched log events in the first log stream are searched first, then those in
@@ -2337,7 +2349,8 @@ local record M
         -- Indicates which log streams have been searched and whether each has been searched
         -- completely.
         searchedLogStreams: {SearchedLogStream}
-        -- The token to use when requesting the next set of items. The token expires after 24
+        -- The token for the next set of items in the sorting direction specified by the
+        -- startFromHead parameter in the first request. The token expires after 24
         -- hours.
         -- If the results don't include a nextToken, then pagination is finished.
         nextToken: string

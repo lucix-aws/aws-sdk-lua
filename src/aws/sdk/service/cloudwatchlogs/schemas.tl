@@ -4790,6 +4790,12 @@ M.FilterLogEventsInput = schema.new({
             name = "limit",
             target_id = prelude.Integer.id,
         }),
+        startFromHead = schema.new({
+            id = id.from(_N, "FilterLogEventsInput", "startFromHead"),
+            type = "boolean",
+            name = "startFromHead",
+            target_id = prelude.Boolean.id,
+        }),
         interleaved = schema.new({
             id = id.from(_N, "FilterLogEventsInput", "interleaved"),
             type = "boolean",

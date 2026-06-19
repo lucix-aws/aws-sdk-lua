@@ -672,9 +672,6 @@ M.ComputeResource = schema.new({
             name = "subnets",
             target_id = prelude.Document.id,
             list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         securityGroupIds = schema.new({
             id = id.from(_N, "ComputeResource", "securityGroupIds"),

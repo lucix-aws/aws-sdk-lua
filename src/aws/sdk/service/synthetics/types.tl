@@ -7,6 +7,27 @@ local record M
         Message: string
     end
 
+    -- If this canary is to test an endpoint in a VPC, this structure contains
+    -- information about the subnets and security groups of the VPC endpoint.
+    -- For more information, see
+    -- Running a Canary in a VPC.
+    record VpcConfigInput
+        -- The IDs of the subnets where this canary is to run.
+        SubnetIds: {string}
+        -- The IDs of the security groups for this canary.
+        SecurityGroupIds: {string}
+        -- Set this to true to allow outbound IPv6 traffic on VPC canaries that are connected to dual-stack subnets. The default is false
+        Ipv6AllowedForDualStack: boolean
+    end
+
+    -- A structure that specifies a replica location for a canary, including the Region and optional VPC configuration.
+    record AddReplicaLocationInput
+        -- The Amazon Web Services Region where the canary replica should be created, for example us-east-1.
+        Location: string
+        -- The VPC configuration to use for the canary replica in this location. If not specified, the replica runs without VPC connectivity.
+        VpcConfig: VpcConfigInput
+    end
+
     enum EncryptionMode
         "SSE_S3"
         "SSE_KMS"
@@ -155,6 +176,80 @@ local record M
         BrowserType: string
     end
 
+    enum LocationType
+        "Primary"
+        "Replica"
+    end
+
+    enum CanaryState
+        "CREATING"
+        "READY"
+        "STARTING"
+        "RUNNING"
+        "UPDATING"
+        "STOPPING"
+        "STOPPED"
+        "ERROR"
+        "DELETING"
+    end
+
+    enum ReplicationState
+        "InProgress"
+        "InSync"
+        "Inconsistent"
+    end
+
+    -- A structure that contains information about the replication status of a canary replica.
+    record ReplicationStatus
+        -- The replication state of the replica. Valid values are InProgress, InSync, and Inconsistent.
+        State: string
+        -- A description that provides more detail about the current replication state.
+        StateReason: string
+        -- A code that provides more detail about the current replication state.
+        StateReasonCode: string
+    end
+
+    -- If this canary is to test an endpoint in a VPC, this structure contains
+    -- information about the subnets and security groups of the VPC endpoint.
+    -- For more information, see
+    -- Running a Canary in a VPC.
+    record VpcConfigOutput
+        -- The IDs of the VPC where this canary is to run.
+        VpcId: string
+        -- The IDs of the subnets where this canary is to run.
+        SubnetIds: {string}
+        -- The IDs of the security groups for this canary.
+        SecurityGroupIds: {string}
+        -- Indicates whether this canary allows outbound IPv6 traffic if it is connected to dual-stack subnets.
+        Ipv6AllowedForDualStack: boolean
+    end
+
+    -- A structure that contains information about a canary replica in a specific location.
+    record Replica
+        -- The Amazon Web Services Region where this replica is located.
+        Location: string
+        -- A structure that contains information about the replication status of this replica.
+        ReplicationStatus: ReplicationStatus
+        -- The current state of the canary in this replica location.
+        CanaryState: string
+        -- The date and time that the replica was last modified.
+        LastModified: number
+        -- The VPC configuration for the canary replica in this location.
+        VpcConfig: VpcConfigOutput
+    end
+
+    -- A structure that contains information about the multi-location configuration of a canary, including whether it is a primary or replica, the primary location, and the list of replicas.
+    record MultiLocationConfig
+        -- Indicates whether this canary is the Primary or a Replica in the multi-location configuration.
+        LocationType: string
+        -- The Amazon Web Services Region where the primary canary is located.
+        PrimaryLocation: string
+        -- A list of replicas for this canary. This field is present only for the primary location canary.
+        Replicas: {Replica}
+        -- The overall replication state of the canary across all replica locations. This field is present only for the primary location canary. Valid values are InProgress, InSync, and Inconsistent.
+        ReplicationState: string
+    end
+
     enum ProvisionedResourceCleanupSetting
         "AUTOMATIC"
         "OFF"
@@ -202,18 +297,6 @@ local record M
         DurationInSeconds: number
         -- A structure that contains the retry configuration for a canary
         RetryConfig: RetryConfigOutput
-    end
-
-    enum CanaryState
-        "CREATING"
-        "READY"
-        "STARTING"
-        "RUNNING"
-        "UPDATING"
-        "STOPPING"
-        "STOPPED"
-        "ERROR"
-        "DELETING"
     end
 
     enum CanaryStateReasonCode
@@ -264,21 +347,6 @@ local record M
         BaseCanaryRunId: string
         -- The browser type associated with this visual reference.
         BrowserType: string
-    end
-
-    -- If this canary is to test an endpoint in a VPC, this structure contains
-    -- information about the subnets and security groups of the VPC endpoint.
-    -- For more information, see
-    -- Running a Canary in a VPC.
-    record VpcConfigOutput
-        -- The IDs of the VPC where this canary is to run.
-        VpcId: string
-        -- The IDs of the subnets where this canary is to run.
-        SubnetIds: {string}
-        -- The IDs of the security groups for this canary.
-        SecurityGroupIds: {string}
-        -- Indicates whether this canary allows outbound IPv6 traffic if it is connected to dual-stack subnets.
-        Ipv6AllowedForDualStack: boolean
     end
 
     -- This structure contains all information about one canary in your account.
@@ -342,6 +410,8 @@ local record M
         -- Versions older than syn-nodejs-puppeteer-11.0 supports both visualReference and visualReferences for backward compatibility. It is recommended to use visualReferences
         -- for consistency and future compatibility.
         VisualReferences: {VisualReferenceOutput}
+        -- If this canary is part of a multi-location configuration, this structure contains information about the canary's location type, primary location, and replicas.
+        MultiLocationConfig: MultiLocationConfig
         -- The list of key-value pairs that are associated with the canary.
         Tags: {string : string}
         -- A structure that contains the configuration for canary artifacts, including
@@ -420,6 +490,8 @@ local record M
         DryRunConfig: CanaryDryRunConfigOutput
         -- The browser type associated with this canary run.
         BrowserType: string
+        -- The Amazon Web Services Region where this canary run was executed.
+        Location: string
     end
 
     -- This structure contains information about the most recent run of a single canary.
@@ -549,19 +621,6 @@ local record M
         "lambda-function"
     end
 
-    -- If this canary is to test an endpoint in a VPC, this structure contains
-    -- information about the subnets and security groups of the VPC endpoint.
-    -- For more information, see
-    -- Running a Canary in a VPC.
-    record VpcConfigInput
-        -- The IDs of the subnets where this canary is to run.
-        SubnetIds: {string}
-        -- The IDs of the security groups for this canary.
-        SecurityGroupIds: {string}
-        -- Set this to true to allow outbound IPv6 traffic on VPC canaries that are connected to dual-stack subnets. The default is false
-        Ipv6AllowedForDualStack: boolean
-    end
-
     record CreateCanaryInput
         -- The name for this canary. Be sure to give it a descriptive name
         -- that distinguishes it from other canaries in your account.
@@ -634,6 +693,9 @@ local record M
         -- Firefox and Chrome browsers. To create a multibrowser canary, you need to specify the BrowserConfigs with a list of browsers you want to use.
         -- If not specified, browserConfigs defaults to Chrome.
         BrowserConfigs: {BrowserConfig}
+        -- A list of locations (Amazon Web Services Regions) to add as replicas for the canary. Each location specifies a Region and optional VPC configuration for the replica.
+        -- You can add up to 50 replica locations.
+        AddReplicaLocations: {AddReplicaLocationInput}
         -- A list of key-value pairs to associate with the canary.
         -- You can associate as many as 50 tags with a canary.
         -- Tags can help you organize and categorize your
@@ -1191,6 +1253,12 @@ local record M
         -- A structure that specifies the browser type to use for a canary run. CloudWatch Synthetics supports running canaries on both CHROME and FIREFOX browsers.
         -- If not specified, browserConfigs defaults to Chrome.
         BrowserConfigs: {BrowserConfig}
+        -- A list of locations (Amazon Web Services Regions) to add as replicas for the canary. Each location specifies a Region and optional VPC configuration for the replica.
+        -- You can add up to 50 replica locations.
+        AddReplicaLocations: {AddReplicaLocationInput}
+        -- A list of locations (Amazon Web Services Regions) to remove as replicas for the canary. You must specify at least one location to remove. All replicas can be removed in a single API
+        -- call and you cannot remove the primary location.
+        RemoveReplicaLocations: {string}
     end
 
     record UpdateCanaryOutput

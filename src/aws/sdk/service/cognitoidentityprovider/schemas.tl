@@ -5934,6 +5934,12 @@ M.CustomDomainConfigType = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        SecurityPolicy = schema.new({
+            id = id.from(_N, "CustomDomainConfigType", "SecurityPolicy"),
+            type = "string",
+            name = "SecurityPolicy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

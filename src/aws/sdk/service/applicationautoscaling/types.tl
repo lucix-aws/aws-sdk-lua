@@ -1280,6 +1280,8 @@ local record M
         "WorkSpacesAverageUserSessionsCapacityUtilization"
         "SageMakerInferenceComponentConcurrentRequestsPerCopyHighResolution"
         "SageMakerVariantConcurrentRequestsPerModelHighResolution"
+        "ECSServiceAverageCPUUtilizationHighResolution"
+        "ECSServiceAverageMemoryUtilizationHighResolution"
     end
 
     -- Represents a predefined metric for a target tracking scaling policy to use with
@@ -1287,8 +1289,19 @@ local record M
     -- For more information, Predefined metrics for target tracking scaling policies in the
     -- Application Auto Scaling User Guide.
     record PredefinedMetricSpecification
-        -- The metric type. The ALBRequestCountPerTarget metric type applies only to
+        -- The metric type. The following are notes about specific metric types:
+        -- ALBRequestCountPerTarget - This metric type applies only to
         -- Spot Fleets and ECS services.
+        -- ECSServiceAverageCPUUtilizationHighResolution - The high-resolution
+        -- version of ECSServiceAverageCPUUtilization that uses 20-second CloudWatch
+        -- metrics. Use this metric for target tracking scaling policies that evaluate metrics
+        -- every 20 seconds. You must enable high-resolution metrics in Amazon ECS before creating
+        -- a scaling policy with this metric type.
+        -- ECSServiceAverageMemoryUtilizationHighResolution - The high-resolution
+        -- version of ECSServiceAverageMemoryUtilization that uses 20-second CloudWatch
+        -- metrics. Use this metric for target tracking scaling policies that evaluate metrics
+        -- every 20 seconds. You must enable high-resolution metrics in Amazon ECS before creating
+        -- a scaling policy with this metric type.
         PredefinedMetricType: string
         -- Identifies the resource associated with the metric type. You can't specify a resource
         -- label unless the metric type is ALBRequestCountPerTarget and there is a target

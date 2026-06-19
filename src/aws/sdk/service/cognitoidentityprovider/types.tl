@@ -4628,11 +4628,28 @@ local record M
         message: string
     end
 
-    -- The configuration for a hosted UI custom domain.
+    enum SecurityPolicyType
+        "TLS_V1"
+        "TLS_V1_2_2021"
+        "TLS_V1_3_2025"
+    end
+
+    -- The configuration for a custom domain, including the SSL certificate and TLS security
+    -- policy.
     record CustomDomainConfigType
         -- The Amazon Resource Name (ARN) of an Certificate Manager SSL certificate. You use
         -- this certificate for the subdomain of your custom domain.
         CertificateArn: string
+        -- The security policy for the custom domain. Defines the minimum TLS version and cipher
+        -- suites that CloudFront uses when communicating with viewers (clients). Valid values are
+        -- as follows:
+        -- TLS_V1: Supports TLS 1.0 and later. Provides the broadest client
+        -- compatibility.
+        -- TLS_V1_2_2021: Supports TLS 1.2 and later with 2021 cipher
+        -- suites. Recommended minimum for most use cases.
+        -- TLS_V1_3_2025: Supports TLS 1.3 and later with 2025 cipher
+        -- suites. Provides the strongest security posture.
+        SecurityPolicy: string
     end
 
     -- Specifies failover configuration for multi-region user pool domains. Contains settings for the secondary region and health check configuration.

@@ -137,6 +137,8 @@ M.DeploymentLifecycleHookList = schema.new({ type = "list", list_member = M.Depl
 
 M.ServiceConnectServiceList = schema.new({ type = "list", list_member = M.ServiceConnectService })
 
+M.MetricConfigurationList = schema.new({ type = "list", list_member = M.MetricConfiguration })
+
 M.Deployments = schema.new({ type = "list", list_member = M.Deployment })
 
 M.ServiceEvents = schema.new({ type = "list", list_member = M.ServiceEvent })
@@ -222,6 +224,8 @@ M.DeploymentLifecycleHookStageList = schema.new({ type = "list", list_member = p
 M.ServiceConnectClientAliasList = schema.new({ type = "list", list_member = M.ServiceConnectClientAlias })
 
 M.EBSTagSpecifications = schema.new({ type = "list", list_member = M.EBSTagSpecification })
+
+M.MetricNamesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ServiceConnectServiceResourceList = schema.new({ type = "list", list_member = M.ServiceConnectServiceResource })
 
@@ -8554,6 +8558,46 @@ M.LoadBalancer = schema.new({
     },
 })
 
+M.MetricConfiguration = schema.new({
+    id = id.from(_N, "MetricConfiguration"),
+    type = "structure",
+    members = {
+        metricNames = schema.new({
+            id = id.from(_N, "MetricConfiguration", "metricNames"),
+            type = "list",
+            name = "metricNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resolutionSeconds = schema.new({
+            id = id.from(_N, "MetricConfiguration", "resolutionSeconds"),
+            type = "integer",
+            name = "resolutionSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MonitoringConfiguration = schema.new({
+    id = id.from(_N, "MonitoringConfiguration"),
+    type = "structure",
+    members = {
+        metricConfigurations = schema.new({
+            id = id.from(_N, "MonitoringConfiguration", "metricConfigurations"),
+            type = "list",
+            name = "metricConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.MetricConfiguration,
+        }),
+    },
+})
+
 M.AwsVpcConfiguration = schema.new({
     id = id.from(_N, "AwsVpcConfiguration"),
     type = "structure",
@@ -9271,6 +9315,13 @@ M.CreateServiceInput = schema.new({
             name = "vpcLatticeConfigurations",
             target_id = prelude.Document.id,
             list_member = M.VpcLatticeConfiguration,
+        }),
+        monitoring = schema.new({
+            id = id.from(_N, "CreateServiceInput", "monitoring"),
+            type = "structure",
+            name = "monitoring",
+            target_id = id.from(_N, "MonitoringConfiguration"),
+            target = M.MonitoringConfiguration,
         }),
     },
 })
@@ -10711,6 +10762,13 @@ M.UpdateServiceInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.VpcLatticeConfiguration,
         }),
+        monitoring = schema.new({
+            id = id.from(_N, "UpdateServiceInput", "monitoring"),
+            type = "structure",
+            name = "monitoring",
+            target_id = id.from(_N, "MonitoringConfiguration"),
+            target = M.MonitoringConfiguration,
+        }),
     },
 })
 
@@ -11622,6 +11680,13 @@ M.ServiceRevision = schema.new({
             name = "ecsManagedResources",
             target_id = id.from(_N, "ECSManagedResources"),
             target = M.ECSManagedResources,
+        }),
+        monitoring = schema.new({
+            id = id.from(_N, "ServiceRevision", "monitoring"),
+            type = "structure",
+            name = "monitoring",
+            target_id = id.from(_N, "MonitoringConfiguration"),
+            target = M.MonitoringConfiguration,
         }),
     },
 })

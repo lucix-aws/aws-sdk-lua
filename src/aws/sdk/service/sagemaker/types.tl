@@ -3888,6 +3888,63 @@ local record M
         ShapConfig: ClarifyShapConfig
     end
 
+    -- The configurations that SageMaker uses when updating the AMI versions.
+    record RollingDeploymentPolicy
+        -- The maximum amount of instances in the cluster that SageMaker can update at a time.
+        MaximumBatchSize: CapacitySizeConfig
+        -- The maximum amount of instances in the cluster that SageMaker can roll back at a time.
+        RollbackMaximumBatchSize: CapacitySizeConfig
+    end
+
+    -- The configuration to use when updating the AMI versions.
+    record DeploymentConfiguration
+        -- The policy that SageMaker uses when updating the AMI versions of the cluster.
+        RollingUpdatePolicy: RollingDeploymentPolicy
+        -- The duration in seconds that SageMaker waits before updating more instances in the cluster.
+        WaitIntervalInSeconds: number
+        -- An array that contains the alarms that SageMaker monitors to know whether to roll back the AMI update.
+        AutoRollbackConfiguration: {AlarmDetails}
+    end
+
+    enum ClusterPatchingStrategy
+        "WhenIdle"
+        "WhenAllIdle"
+    end
+
+    -- The schedule configuration for automatic patching.
+    record ClusterPatchSchedule
+        -- The date and time of the next scheduled automatic patch. The system sets this automatically when a patch is detected. Use this field to reschedule the patch to a different date.
+        NextPatchDate: number
+    end
+
+    -- The configuration for automatic patching of the instance group. When configured, the system automatically applies security patch AMI updates to the instance group.
+    record ClusterAutoPatchConfig
+        -- The strategy for applying patches to instances in the group.
+        PatchingStrategy: string
+        -- The schedule for automatic patching, including the next patch date.
+        PatchSchedule: ClusterPatchSchedule
+        -- The deployment configuration for rolling patch updates, including rollback settings and batch sizes. Only applicable when using a rolling patching strategy.
+        DeploymentConfig: DeploymentConfiguration
+    end
+
+    -- The schedule details for automatic patching, including the next scheduled patch date.
+    record ClusterPatchScheduleDetails
+        -- The date and time of the next scheduled automatic patch.
+        NextPatchDate: number
+    end
+
+    -- The auto-patching configuration details for the instance group, including the patching strategy and schedule.
+    record ClusterAutoPatchConfigDetails
+        -- The strategy used for applying patches to instances in the group.
+        PatchingStrategy: string
+        -- The currently active patch schedule that the system will execute.
+        CurrentPatchSchedule: ClusterPatchScheduleDetails
+        -- The requested patch schedule. Differs from CurrentPatchSchedule when a reschedule request is pending.
+        DesiredPatchSchedule: ClusterPatchScheduleDetails
+        -- The deployment configuration for rolling patch updates.
+        DeploymentConfig: DeploymentConfiguration
+    end
+
     enum ClusterAutoScalerType
         "Karpenter"
     end
@@ -4126,24 +4183,8 @@ local record M
     enum ClusterImageVersionStatus
         "UpToDate"
         "UpdateAvailable"
-    end
-
-    -- The configurations that SageMaker uses when updating the AMI versions.
-    record RollingDeploymentPolicy
-        -- The maximum amount of instances in the cluster that SageMaker can update at a time.
-        MaximumBatchSize: CapacitySizeConfig
-        -- The maximum amount of instances in the cluster that SageMaker can roll back at a time.
-        RollbackMaximumBatchSize: CapacitySizeConfig
-    end
-
-    -- The configuration to use when updating the AMI versions.
-    record DeploymentConfiguration
-        -- The policy that SageMaker uses when updating the AMI versions of the cluster.
-        RollingUpdatePolicy: RollingDeploymentPolicy
-        -- The duration in seconds that SageMaker waits before updating more instances in the cluster.
-        WaitIntervalInSeconds: number
-        -- An array that contains the alarms that SageMaker monitors to know whether to roll back the AMI update.
-        AutoRollbackConfiguration: {AlarmDetails}
+        "SecurityUpdateRequired"
+        "EndOfLife"
     end
 
     -- The instance requirement details for a flexible instance group, including the current and desired instance types.
@@ -4305,10 +4346,16 @@ local record M
         OverrideVpcConfig: VpcConfig
         -- The configuration object of the schedule that SageMaker follows when updating the AMI.
         ScheduledUpdateConfig: ScheduledUpdateConfig
+        -- The auto-patching configuration for the instance group, including the current patching strategy and next scheduled patch date.
+        AutoPatchConfig: ClusterAutoPatchConfigDetails
         -- The ID of the Amazon Machine Image (AMI) currently in use by the instance group.
         CurrentImageId: string
         -- The ID of the Amazon Machine Image (AMI) desired for the instance group.
         DesiredImageId: string
+        -- The version of the HyperPod-managed AMI currently running on the instance group.
+        CurrentImageReleaseVersion: string
+        -- The desired version of the HyperPod-managed AMI for the instance group. This may differ from the current version when an update is pending.
+        DesiredImageReleaseVersion: string
         -- The status of the image version for the instance group. Indicates whether the instance group is running the latest image version or if an update is available.
         ImageVersionStatus: string
         -- A map indicating active operations currently in progress for the instance group of a SageMaker HyperPod cluster. When there is a scaling operation in progress, this map contains a key Scaling with value 1.
@@ -4386,6 +4433,10 @@ local record M
         ScheduledUpdateConfig: ScheduledUpdateConfig
         -- When configuring your HyperPod cluster, you can specify an image ID using one of the following options: HyperPodPublicAmiId: Use a HyperPod public AMI CustomAmiId: Use your custom AMI default: Use the default latest system image If you choose to use a custom AMI (CustomAmiId), ensure it meets the following requirements: Encryption: The custom AMI must be unencrypted. Ownership: The custom AMI must be owned by the same Amazon Web Services account that is creating the HyperPod cluster. Volume support: Only the primary AMI snapshot volume is supported; additional AMI volumes are not supported. When updating the instance group's AMI through the UpdateClusterSoftware operation, if an instance group uses a custom AMI, you must provide an ImageId or use the default as input. Note that if you don't specify an instance group in your UpdateClusterSoftware request, then all of the instance groups are patched with the specified image.
         ImageId: string
+        -- The configuration for automatic OS security patching. If present, the system automatically applies PATCH AMI updates to this instance group.
+        AutoPatchConfig: ClusterAutoPatchConfig
+        -- The version of the HyperPod-managed AMI to use for the instance group. Uses semantic versioning in the format MAJOR.MINOR.PATCH (for example, 1.2.3). If omitted, the latest available version is used.
+        ImageReleaseVersion: string
         -- Specifies the Kubernetes configuration for the instance group. You describe what you want the labels and taints to look like, and the cluster works to reconcile the actual state with the declared state for nodes in this instance group.
         KubernetesConfig: ClusterKubernetesConfig
         -- Specifies the Slurm configuration for the instance group.
@@ -4468,6 +4519,10 @@ local record M
         CurrentImageId: string
         -- The ID of the Amazon Machine Image (AMI) desired for the node.
         DesiredImageId: string
+        -- The version of the HyperPod-managed AMI currently running on the node.
+        CurrentImageReleaseVersion: string
+        -- The desired version of the HyperPod-managed AMI for the node. This may differ from the current version when an update is pending.
+        DesiredImageReleaseVersion: string
         -- The status of the image version for the cluster node.
         ImageVersionStatus: string
         -- Contains information about the UltraServer.
@@ -4509,6 +4564,8 @@ local record M
         UltraServerInfo: UltraServerInfo
         -- The private DNS hostname of the SageMaker HyperPod cluster node.
         PrivateDnsHostname: string
+        -- The version of the HyperPod-managed AMI currently running on the node.
+        CurrentImageReleaseVersion: string
         -- The status of the image version for the cluster node.
         ImageVersionStatus: string
     end
@@ -4709,6 +4766,8 @@ local record M
         ClusterStatus: string
         -- A list of Amazon Resource Names (ARNs) of the training plans associated with this cluster. For more information about how to reserve GPU capacity for your SageMaker HyperPod clusters using Amazon SageMaker Training Plan, see CreateTrainingPlan .
         TrainingPlanArns: {string}
+        -- The aggregate status of the image version across the cluster's instance groups.
+        ImageVersionStatus: string
     end
 
     -- Defines the configuration for managed tier checkpointing in a HyperPod cluster. Managed tier checkpointing uses multiple storage tiers, including cluster CPU memory, to provide faster checkpoint operations and improved fault tolerance for large-scale model training. The system automatically saves checkpoints at high frequency to memory and periodically persists them to durable storage, like Amazon S3.
@@ -20893,6 +20952,8 @@ local record M
     record UpdateClusterSoftwareInstanceGroupSpecification
         -- The name of the instance group to update.
         InstanceGroupName: string
+        -- The version of the HyperPod-managed AMI to update to for the instance group. Uses semantic versioning in the format MAJOR.MINOR.PATCH.
+        ImageReleaseVersion: string
     end
 
     record UpdateClusterSoftwareInput

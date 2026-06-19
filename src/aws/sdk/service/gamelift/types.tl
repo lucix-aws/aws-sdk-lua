@@ -33,7 +33,7 @@ local record M
         Message: string
     end
 
-    -- The requested resources was not found. The resource was either not created yet or deleted.
+    -- The requested resource was not found. The resource was either not created yet or deleted.
     record NotFoundException
         Message: string
     end
@@ -1229,6 +1229,71 @@ local record M
         "PER_INSTANCE"
     end
 
+    enum LinuxCapability
+        "AUDIT_CONTROL"
+        "AUDIT_WRITE"
+        "BLOCK_SUSPEND"
+        "CHOWN"
+        "DAC_OVERRIDE"
+        "DAC_READ_SEARCH"
+        "FOWNER"
+        "FSETID"
+        "IPC_LOCK"
+        "IPC_OWNER"
+        "KILL"
+        "LEASE"
+        "LINUX_IMMUTABLE"
+        "MAC_ADMIN"
+        "MAC_OVERRIDE"
+        "MKNOD"
+        "NET_ADMIN"
+        "NET_BIND_SERVICE"
+        "NET_BROADCAST"
+        "NET_RAW"
+        "SETFCAP"
+        "SETGID"
+        "SETPCAP"
+        "SETUID"
+        "SYS_ADMIN"
+        "SYS_BOOT"
+        "SYS_CHROOT"
+        "SYS_MODULE"
+        "SYS_NICE"
+        "SYS_PACCT"
+        "SYS_PTRACE"
+        "SYS_RAWIO"
+        "SYS_RESOURCE"
+        "SYS_TIME"
+        "SYS_TTY_CONFIG"
+        "SYSLOG"
+        "WAKE_ALARM"
+    end
+
+    -- A set of Linux capabilities that are added to a container's default Docker configuration
+    -- for a container defined in the ContainerGroupDefinition. For more detailed information about these Linux
+    -- capabilities, see the capabilities(7) Linux manual page.
+    -- Modifying capabilities on an existing container: To
+    -- remove a capability, update the Include list with only the needed capabilities.
+    -- To revert back to default capabilities, omit LinuxCapabilities within the
+    -- ContainerDefinition.
+    -- Part of:
+    -- GameServerContainerDefinition,
+    -- GameServerContainerDefinitionInput,
+    -- SupportContainerDefinition,
+    -- SupportContainerDefinitionInput
+    -- Returned by:
+    -- CreateContainerGroupDefinition,
+    -- DescribeContainerGroupDefinition,
+    -- ListContainerGroupDefinitions,
+    -- ListContainerGroupDefinitionVersions,
+    -- UpdateContainerGroupDefinition
+    record LinuxCapabilities
+        -- The list of Linux capabilities to add to the container's default configuration.
+        -- Specify each capability as a string from the set of supported capability names (for example,
+        -- NET_BIND_SERVICE or SYS_PTRACE).
+        Include: {string}
+    end
+
     enum ContainerMountPointAccessLevel
         "READ_ONLY"
         "READ_AND_WRITE"
@@ -1294,8 +1359,10 @@ local record M
     -- Part of:
     -- ContainerGroupDefinition
     -- Returned by:
+    -- CreateContainerGroupDefinition,
     -- DescribeContainerGroupDefinition,
     -- ListContainerGroupDefinitions,
+    -- ListContainerGroupDefinitionVersions,
     -- UpdateContainerGroupDefinition
     record GameServerContainerDefinition
         -- The container definition identifier. Container names are unique within a container group
@@ -1326,6 +1393,8 @@ local record M
         -- The Amazon GameLift Servers server SDK version that the game server is integrated with. Only game servers
         -- using 5.2.0 or higher are compatible with container fleets.
         ServerSdkVersion: string
+        -- Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see LinuxCapabilities.
+        LinuxCapabilities: LinuxCapabilities
     end
 
     enum ContainerOperatingSystem
@@ -1377,8 +1446,10 @@ local record M
     -- Part of:
     -- ContainerGroupDefinition
     -- Returned by:
+    -- CreateContainerGroupDefinition,
     -- DescribeContainerGroupDefinition,
     -- ListContainerGroupDefinitions,
+    -- ListContainerGroupDefinitionVersions,
     -- UpdateContainerGroupDefinition
     record SupportContainerDefinition
         -- The container definition identifier. Container names are unique within a container group
@@ -1423,6 +1494,8 @@ local record M
         -- Related data type:
         -- ContainerGroupDefinition TotalVcpuLimit
         Vcpu: number
+        -- Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see LinuxCapabilities.
+        LinuxCapabilities: LinuxCapabilities
     end
 
     -- The properties that describe a container group resource. You can update all properties of
@@ -1731,7 +1804,7 @@ local record M
         -- Port range: 4192 to a number calculated based on your fleet configuration.
         -- Amazon GameLift Servers uses the following formula: 4192 + [# of game server container
         -- groups per fleet instance] * [# of container ports in the game server
-        -- container group definition] + [# of container ports in the game server
+        -- container group definition] + [# of container ports in the per instance
         -- container group definition]
         -- You can also choose to manually set this parameter. When manually setting this
         -- parameter, you must use port numbers that match the fleet's inbound permissions port
@@ -1753,7 +1826,7 @@ local record M
         -- Port range: 4192 to a number calculated based on your fleet configuration. Amazon GameLift Servers uses the
         -- following formula: 4192 + [# of game server container groups per fleet
         -- instance] * [# of container ports in the game server container group
-        -- definition] + [# of container ports in the game server container group
+        -- definition] + [# of container ports in the per instance container group
         -- definition]
         -- You can also choose to manually set this parameter. When manually setting this
         -- parameter, you must use port numbers that match the fleet's connection port
@@ -1777,10 +1850,10 @@ local record M
         -- Instance type determines the computing resources and processing power that's available
         -- to host your game servers. This includes including CPU, memory, storage, and networking
         -- capacity.
-        -- By default, Amazon GameLift Servers selects an instance type that fits the needs of your container
-        -- groups and is available in all selected fleet locations. You can also choose to manually
-        -- set this parameter. See Amazon Elastic Compute Cloud
-        -- Instance Types for detailed descriptions of Amazon EC2 instance types.
+        -- By default, Amazon GameLift Servers uses the c5.large instance type. If this instance
+        -- type does not have sufficient resources for your container groups, you can choose a
+        -- different instance type that better fits your needs. See Amazon Elastic Compute Cloud Instance Types for detailed descriptions
+        -- of Amazon EC2 instance types.
         -- You can't update this fleet property later.
         InstanceType: string
         -- Indicates whether to use On-Demand or Spot instances for this fleet. Learn more about
@@ -1897,6 +1970,8 @@ local record M
         -- The Amazon GameLift Servers server SDK version that the game server is integrated with. Only game servers
         -- using 5.2.0 or higher are compatible with container fleets.
         ServerSdkVersion: string
+        -- Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see LinuxCapabilities.
+        LinuxCapabilities: LinuxCapabilities
     end
 
     -- Describes a support container in a container group. You can define a support container in
@@ -1972,6 +2047,8 @@ local record M
         -- Related data type:
         -- ContainerGroupDefinition TotalCpuLimit
         Vcpu: number
+        -- Linux-specific modifications that are applied to the default Docker container configuration, such as Linux capabilities. For more information see LinuxCapabilities.
+        LinuxCapabilities: LinuxCapabilities
     end
 
     record CreateContainerGroupDefinitionInput
@@ -2051,6 +2128,12 @@ local record M
     -- a CreateGameSession request, Amazon GameLift Servers checks that the player (identified by
     -- CreatorId) has created fewer than game session limit in the specified
     -- time period.
+    -- The purpose of this policy is to prevent a single player from consuming a large share of
+    -- available hosting resources. For example, setting NewGameSessionsPerCreator to
+    -- 4 and PolicyPeriodInMinutes to 10 limits each player
+    -- to creating 4 game sessions every 10 minutes. Setting these values too high (for example,
+    -- 200 game sessions every 1000 minutes) still allows a single player to rapidly consume
+    -- resources. We recommend keeping these values small.
     record ResourceCreationLimitPolicy
         -- A policy that puts limits on the number of game sessions that a player can create
         -- within a specified span of time. With this policy, you can control players' ability to
@@ -2876,8 +2959,7 @@ local record M
         -- only once. Subsequent requests with the same string return the original
         -- GameSession object, with an updated status. Maximum token length is 48
         -- characters. If provided, this string is included in the new game session's ID.
-        -- The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//. Idempotency tokens remain in use for 30 days after a game session has ended;
+        -- The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///. Idempotency tokens remain in use for 30 days after a game session has ended;
         -- game session objects are retained for this time period and then deleted.
         IdempotencyToken: string
         -- A set of custom game session properties, formatted as a single string value. This data is passed to a game server process with a request to start a new game session. For more information, see Start a game session.
@@ -2917,8 +2999,7 @@ local record M
     -- 14 days.
     -- All APIs by task
     record GameSession
-        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- A descriptive label that is associated with a game session. Session names do not need to be unique.
         Name: string
@@ -3431,8 +3512,7 @@ local record M
     end
 
     record CreatePlayerSessionInput
-        -- An identifier for the game session that is unique across all regions to add a player to. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to add a player to. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- A unique identifier for a player. Player IDs are developer-defined.
         PlayerId: string
@@ -3462,8 +3542,7 @@ local record M
         PlayerSessionId: string
         -- A unique identifier for a player that is associated with this player session.
         PlayerId: string
-        -- An identifier for the game session that is unique across all regions that the player session is connected to. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions that the player session is connected to. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- A unique identifier for the fleet that the player's game session is running on.
         FleetId: string
@@ -3522,8 +3601,7 @@ local record M
     end
 
     record CreatePlayerSessionsInput
-        -- An identifier for the game session that is unique across all regions to add players to. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to add players to. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- List of unique identifiers for the players to be added.
         PlayerIds: {string}
@@ -4010,6 +4088,9 @@ local record M
     record DescribeContainerGroupPortMappingsOutput
         -- A unique identifier for the container fleet.
         FleetId: string
+        -- The Amazon Resource Name (ARN) that is assigned to a Amazon GameLift Servers fleet resource and uniquely identifies it. ARNs are unique across all Regions. Format is arn:aws:gamelift:::fleet/fleet-a1234567-b8c9-0d1e-2fa3-b45c6d7e8912. In a GameLift fleet ARN, the resource ID matches the FleetId
+        -- value.
+        FleetArn: string
         -- The location of the fleet instance, expressed as an Amazon Web Services Region code, such as
         -- us-west-2.
         Location: string
@@ -4726,8 +4807,7 @@ local record M
         -- A unique identifier for the fleet to retrieve all game sessions active on the fleet. You can use either the fleet
         -- ID or ARN value.
         FleetId: string
-        -- An identifier for the game session that is unique across all regions to retrieve. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to retrieve. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- A unique identifier for the alias associated with the fleet to retrieve all game sessions for. You can use either
         -- the alias ID or ARN value.
@@ -4782,13 +4862,14 @@ local record M
 
     -- Regional latency information for a player, used when requesting a new game session.
     -- This value indicates the amount of time lag that exists when the player is connected to
-    -- a fleet in the specified Region. The relative difference between a player's latency
-    -- values for multiple Regions are used to determine which fleets are best suited to place
+    -- a fleet in the specified location (an Amazon Web Services Region or a custom location for Amazon GameLift Servers Anywhere fleets). The relative difference between a player's latency
+    -- values for multiple locations are used to determine which fleets are best suited to place
     -- a new game session for the player.
     record PlayerLatency
         -- A unique identifier for a player associated with the latency data.
         PlayerId: string
-        -- Name of the Region that is associated with the latency value.
+        -- Name of the Region or custom location that is associated with the latency value. For
+        -- Amazon GameLift Servers Anywhere fleets, use the custom location name.
         RegionIdentifier: string
         -- Amount of time that represents the time lag experienced by the player when connected
         -- to the specified Region.
@@ -4874,18 +4955,16 @@ local record M
         MaximumPlayerSessionCount: number
         -- A descriptive label that is associated with a game session. Session names do not need to be unique.
         GameSessionName: string
-        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//. This value is the same as GameSessionArn. This value isn't final until placement status is
+        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///. This value is the same as GameSessionArn. This value isn't final until placement status is
         -- FULFILLED.
         GameSessionId: string
-        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//. This value is the same as GameSessionId. This value isn't final until placement status is
+        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///. This value is the same as GameSessionId. This value isn't final until placement status is
         -- FULFILLED.
         GameSessionArn: string
         -- Name of the Region where the game session created by this placement request is
         -- running. This value isn't final until placement status is FULFILLED.
         GameSessionRegion: string
-        -- A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to Amazon Web Services Regions.
+        -- A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to a fleet location (Amazon Web Services Regions or custom locations for Amazon GameLift Servers Anywhere fleets).
         PlayerLatencies: {PlayerLatency}
         -- Time stamp indicating when this request was placed in the queue. Format is a number expressed in Unix time as milliseconds (for example "1469498468.057").
         StartTime: number
@@ -4955,8 +5034,7 @@ local record M
     record DescribeGameSessionsInput
         -- A unique identifier for the fleet to retrieve game sessions for. You can use either the fleet ID or ARN value.
         FleetId: string
-        -- An identifier for the game session that is unique across all regions to retrieve. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to retrieve. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- A unique identifier for the alias associated with the fleet to retrieve game sessions for. You can use either the
         -- alias ID or ARN value.
@@ -5081,8 +5159,7 @@ local record M
     -- each player in the original matchmaking request, is added to the matchmaking
     -- ticket.
     record GameSessionConnectionInfo
-        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionArn: string
         -- The IP address of the game session. To connect to a Amazon GameLift Servers game server, an app needs both the IP address and port number.
         IpAddress: string
@@ -5120,7 +5197,7 @@ local record M
         -- Name of the team that the player is assigned to in a match. Team names are defined in
         -- a matchmaking rule set.
         Team: string
-        -- A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to Amazon Web Services Regions. If this property is present, FlexMatch considers placing the match only in
+        -- A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to a fleet location (Amazon Web Services Regions or custom locations for Amazon GameLift Servers Anywhere fleets). If this property is present, FlexMatch considers placing the match only in
         -- Regions for which latency is reported.
         -- If a matchmaker has a rule that evaluates player latency, players must report latency
         -- in order to be matched. If no latency is reported in this scenario, FlexMatch assumes that
@@ -5246,8 +5323,7 @@ local record M
     end
 
     record DescribePlayerSessionsInput
-        -- An identifier for the game session that is unique across all regions to retrieve player sessions for. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to retrieve player sessions for. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- A unique identifier for a player to retrieve player sessions for.
         PlayerId: string
@@ -5617,8 +5693,7 @@ local record M
     end
 
     record GetGameSessionLogUrlInput
-        -- An identifier for the game session that is unique across all regions to get logs for. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to get logs for. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
     end
 
@@ -5674,8 +5749,7 @@ local record M
     end
 
     record GetPlayerConnectionDetailsInput
-        -- An identifier for the game session that is unique across all regions for which to retrieve player connection details. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions for which to retrieve player connection details. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- List of unique identifiers for players. Connection details are returned for each player in this list.
         PlayerIds: {string}
@@ -5707,8 +5781,7 @@ local record M
     end
 
     record GetPlayerConnectionDetailsOutput
-        -- An identifier for the game session that is unique across all regions for which the player connection details were retrieved. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions for which the player connection details were retrieved. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- A collection of player connection detail objects, one for each requested player.
         PlayerConnectionDetails: {PlayerConnectionDetail}
@@ -6263,7 +6336,7 @@ local record M
         MaximumPlayerSessionCount: number
         -- A descriptive label that is associated with a game session. Session names do not need to be unique.
         GameSessionName: string
-        -- A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to Amazon Web Services Regions. This information is used to try to place the new game session where it
+        -- A set of values, expressed in milliseconds, that indicates the amount of latency that a player experiences when connected to a fleet location (Amazon Web Services Regions or custom locations for Amazon GameLift Servers Anywhere fleets). This information is used to try to place the new game session where it
         -- can offer the best possible gameplay experience for the players.
         PlayerLatencies: {PlayerLatency}
         -- Set of information on each player to create a player session for.
@@ -6298,8 +6371,7 @@ local record M
         -- session is listed in the GameSession object, MatchmakerData
         -- property.
         ConfigurationName: string
-        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//. When using FlexMatch as a standalone matchmaking
+        -- An identifier for the game session that is unique across all regions. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///. When using FlexMatch as a standalone matchmaking
         -- solution, this parameter is not needed.
         GameSessionArn: string
         -- Match information on all players that are currently assigned to the game session. This
@@ -6424,8 +6496,7 @@ local record M
     end
 
     record TerminateGameSessionInput
-        -- An identifier for the game session that is unique across all regions to be terminated. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to be terminated. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- The method to use to terminate the game session. Available methods include:
         -- TRIGGER_ON_PROCESS_TERMINATE – Prompts the Amazon GameLift Servers service to
@@ -6773,8 +6844,7 @@ local record M
     end
 
     record UpdateGameSessionInput
-        -- An identifier for the game session that is unique across all regions to update. The value is always a full ARN in the following format:
-        -- arn:aws:gamelift:::gamesession//.
+        -- An identifier for the game session that is unique across all regions to update. The value is always a full ARN in the following format: For Home Region game session - arn:aws:gamelift:::gamesession//. For Remote Location game session - arn:aws:gamelift:::gamesession///.
         GameSessionId: string
         -- The maximum number of players that can be connected simultaneously to the game session.
         MaximumPlayerSessionCount: number

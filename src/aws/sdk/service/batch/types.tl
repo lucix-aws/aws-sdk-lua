@@ -152,8 +152,10 @@ local record M
     enum CRAllocationStrategy
         "BEST_FIT"
         "BEST_FIT_PROGRESSIVE"
+        "BEST_FIT_PROGRESSIVE_ORDERED"
         "SPOT_CAPACITY_OPTIMIZED"
         "SPOT_PRICE_CAPACITY_OPTIMIZED"
+        "SPOT_CAPACITY_OPTIMIZED_PRIORITIZED"
     end
 
     -- Provides information used to select Amazon Machine Images (AMIs) for instances in the
@@ -390,6 +392,23 @@ local record M
         -- of the jobs in the queue. Its preference is for instance types with lower cost vCPUs. If
         -- additional instances of the previously selected instance types aren't available, Batch
         -- selects new instance types.
+        -- BEST_FIT_PROGRESSIVE_ORDERED
+        -- This is an advanced allocation strategy only for customers who want to control which
+        -- instance types are preferred during scaling.
+        -- Placing large instance types at the top of the list may result in over-provisioning for
+        -- small jobs. Placing small instance types at the top may cause the compute environment to
+        -- reach Amazon EC2 instance count limits before reaching maxvCpus.
+        -- Batch selects instance types in the order they appear in the
+        -- instanceTypes list. When an instance family is specified, sizes within that
+        -- family are expanded using BEST_FIT_PROGRESSIVE logic—preferring sizes that
+        -- best fit the jobs, with larger sizes as fallback. Instance types that cannot meet the resource
+        -- requirements of the jobs are skipped. This strategy is only available for On-Demand Instance
+        -- (EC2) compute resources.
+        -- If an instance family and an explicit instance type from that family both appear in
+        -- instanceTypes, the explicit type takes its listed position and is excluded from
+        -- the family expansion. For example, in ["m7a.4xlarge", "m7a", "m6a"],
+        -- m7a.4xlarge is always placed first and is excluded from the m7a
+        -- family expansion.
         -- SPOT_CAPACITY_OPTIMIZED
         -- Batch selects one or more instance types that are large enough to meet the requirements
         -- of the jobs in the queue. Its preference is for instance types that are less likely to be
@@ -400,22 +419,35 @@ local record M
         -- select the Spot Instance pools that are the least likely to be interrupted and have the lowest
         -- possible price. This allocation strategy is only available for Spot Instance compute
         -- resources.
-        -- With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and
-        -- SPOT_PRICE_CAPACITY_OPTIMIZED (recommended) strategies using On-Demand or Spot
-        -- Instances, and the BEST_FIT strategy using Spot Instances, Batch might need to
-        -- exceed maxvCpus to meet your capacity requirements. In this event, Batch never
-        -- exceeds maxvCpus by more than a single instance.
+        -- SPOT_CAPACITY_OPTIMIZED_PRIORITIZED
+        -- This is an advanced allocation strategy for customers who want to influence instance
+        -- type selection during scaling. This strategy optimizes for capacity
+        -- first, and honors instance type priorities on a best-effort basis (priorities are
+        -- honored when they do not significantly reduce available Spot capacity).
+        -- Placing large instance types at the top of the list may result in over-provisioning for
+        -- small jobs. Placing small instance types at the top may cause the compute environment to
+        -- reach Amazon EC2 instance count limits before reaching maxvCpus.
+        -- Batch selects instance types in the order they appear in the
+        -- instanceTypes list, but optimizes for capacity
+        -- first. The customer-defined priority is honored on a best-effort basis. When Spot
+        -- Instance capacity pools are similarly available, priority order is respected. When capacity is
+        -- constrained, Batch selects from the most available pools regardless of priority to minimize
+        -- the likelihood of Spot Instance interruptions. This strategy is only available for Spot
+        -- Instance compute resources.
+        -- With any allocation strategy except BEST_FIT using On-Demand
+        -- (EC2) compute resources, Batch might need to exceed maxvCpus to meet your
+        -- capacity requirements. In this event, Batch never exceeds maxvCpus by more than
+        -- a single instance.
         allocationStrategy: string
         -- The minimum number of vCPUs that a compute environment should maintain (even if the compute
         -- environment is DISABLED).
         -- This parameter isn't applicable to jobs that are running on Fargate resources. Don't specify it.
         minvCpus: number
         -- The maximum number of vCPUs that a compute environment can support.
-        -- With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and
-        -- SPOT_PRICE_CAPACITY_OPTIMIZED (recommended) strategies using On-Demand or Spot Instances,
-        -- and the BEST_FIT strategy using Spot Instances, Batch might need to exceed
-        -- maxvCpus to meet your capacity requirements. In this event, Batch never exceeds
-        -- maxvCpus by more than a single instance.
+        -- With any allocation strategy except BEST_FIT using On-Demand
+        -- (EC2) compute resources, Batch might need to exceed maxvCpus to meet your
+        -- capacity requirements. In this event, Batch never exceeds maxvCpus by more than
+        -- a single instance.
         maxvCpus: number
         -- The desired number of vCPUS in the compute environment. Batch modifies this value between
         -- the minimum and maximum values based on job queue demand.
@@ -464,7 +496,9 @@ local record M
         -- The VPC subnets where the compute resources are launched. These subnets must be within the
         -- same VPC. Fargate compute resources can contain up to 16 subnets. For more information, see
         -- VPCs and subnets
-        -- in the Amazon VPC User Guide.
+        -- in the Amazon VPC User Guide. This parameter is required for compute
+        -- environments using EC2, SPOT, FARGATE, or
+        -- FARGATE_SPOT compute resources.
         -- Batch on Amazon EC2 and Batch on Amazon EKS support Local Zones. For more information, see Local
         -- Zones in the Amazon EC2 User Guide for Linux Instances, Amazon EKS and Amazon Web Services Local
         -- Zones in the Amazon EKS User Guide and Amazon ECS
@@ -4792,8 +4826,10 @@ local record M
 
     enum CRUpdateAllocationStrategy
         "BEST_FIT_PROGRESSIVE"
+        "BEST_FIT_PROGRESSIVE_ORDERED"
         "SPOT_CAPACITY_OPTIMIZED"
         "SPOT_PRICE_CAPACITY_OPTIMIZED"
+        "SPOT_CAPACITY_OPTIMIZED_PRIORITIZED"
     end
 
     -- An object that represents the attributes of a compute environment that can be updated. For
@@ -4805,11 +4841,10 @@ local record M
         -- This parameter isn't applicable to jobs that are running on Fargate resources. Don't specify it.
         minvCpus: number
         -- The maximum number of Amazon EC2 vCPUs that an environment can reach.
-        -- With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and
-        -- SPOT_PRICE_CAPACITY_OPTIMIZED (recommended) strategies using On-Demand or Spot
-        -- Instances, and the BEST_FIT strategy using Spot Instances, Batch might need to
-        -- exceed maxvCpus to meet your capacity requirements. In this event, Batch never
-        -- exceeds maxvCpus by more than a single instance.
+        -- With any allocation strategy except BEST_FIT using On-Demand
+        -- (EC2) compute resources, Batch might need to exceed maxvCpus to meet your
+        -- capacity requirements. In this event, Batch never exceeds maxvCpus by more than
+        -- a single instance.
         maxvCpus: number
         -- The desired number of vCPUS in the compute environment. Batch modifies this value between
         -- the minimum and maximum values based on job queue demand.
@@ -4861,6 +4896,23 @@ local record M
         -- of the jobs in the queue. Its preference is for instance types with lower cost vCPUs. If
         -- additional instances of the previously selected instance types aren't available, Batch
         -- selects new instance types.
+        -- BEST_FIT_PROGRESSIVE_ORDERED
+        -- This is an advanced allocation strategy only for customers who want to control which
+        -- instance types are preferred during scaling.
+        -- Placing large instance types at the top of the list may result in over-provisioning for
+        -- small jobs. Placing small instance types at the top may cause the compute environment to
+        -- reach Amazon EC2 instance count limits before reaching maxvCpus.
+        -- Batch selects instance types in the order they appear in the
+        -- instanceTypes list. When an instance family is specified, sizes within that
+        -- family are expanded using BEST_FIT_PROGRESSIVE logic—preferring sizes that
+        -- best fit the jobs, with larger sizes as fallback. Instance types that cannot meet the resource
+        -- requirements of the jobs are skipped. This strategy is only available for On-Demand Instance
+        -- (EC2) compute resources.
+        -- If an instance family and an explicit instance type from that family both appear in
+        -- instanceTypes, the explicit type takes its listed position and is excluded from
+        -- the family expansion. For example, in ["m7a.4xlarge", "m7a", "m6a"],
+        -- m7a.4xlarge is always placed first and is excluded from the m7a
+        -- family expansion.
         -- SPOT_CAPACITY_OPTIMIZED
         -- Batch selects one or more instance types that are large enough to meet the requirements
         -- of the jobs in the queue. Its preference is for instance types that are less likely to be
@@ -4871,11 +4923,25 @@ local record M
         -- select the Spot Instance pools that are the least likely to be interrupted and have the lowest
         -- possible price. This allocation strategy is only available for Spot Instance compute
         -- resources.
-        -- With BEST_FIT_PROGRESSIVE,SPOT_CAPACITY_OPTIMIZED and
-        -- SPOT_PRICE_CAPACITY_OPTIMIZED (recommended) strategies using On-Demand or Spot Instances,
-        -- and the BEST_FIT strategy using Spot Instances, Batch might need to exceed
-        -- maxvCpus to meet your capacity requirements. In this event, Batch never exceeds
-        -- maxvCpus by more than a single instance.
+        -- SPOT_CAPACITY_OPTIMIZED_PRIORITIZED
+        -- This is an advanced allocation strategy for customers who want to influence instance
+        -- type selection during scaling. This strategy optimizes for capacity
+        -- first, and honors instance type priorities on a best-effort basis (priorities are
+        -- honored when they do not significantly reduce available Spot capacity).
+        -- Placing large instance types at the top of the list may result in over-provisioning for
+        -- small jobs. Placing small instance types at the top may cause the compute environment to
+        -- reach Amazon EC2 instance count limits before reaching maxvCpus.
+        -- Batch selects instance types in the order they appear in the
+        -- instanceTypes list, but optimizes for capacity
+        -- first. The customer-defined priority is honored on a best-effort basis. When Spot
+        -- Instance capacity pools are similarly available, priority order is respected. When capacity is
+        -- constrained, Batch selects from the most available pools regardless of priority to minimize
+        -- the likelihood of Spot Instance interruptions. This strategy is only available for Spot
+        -- Instance compute resources.
+        -- With any allocation strategy except BEST_FIT using On-Demand
+        -- (EC2) compute resources, Batch might need to exceed maxvCpus to meet your
+        -- capacity requirements. In this event, Batch never exceeds maxvCpus by more than
+        -- a single instance.
         allocationStrategy: string
         -- The instances types that can be launched. You can specify instance families to launch any
         -- instance type within those families (for example, c5 or p3), or you can

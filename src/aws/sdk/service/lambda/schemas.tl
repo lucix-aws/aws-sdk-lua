@@ -53,9 +53,9 @@ M.ArchitecturesList = schema.new({ type = "list", list_member = prelude.String }
 
 M.LayersReferenceList = schema.new({ type = "list", list_member = M.Layer })
 
-M.FunctionUrlConfigList = schema.new({ type = "list", list_member = M.FunctionUrlConfig })
-
 M.ProvisionedConcurrencyConfigList = schema.new({ type = "list", list_member = M.ProvisionedConcurrencyConfigListItem })
+
+M.FunctionUrlConfigList = schema.new({ type = "list", list_member = M.FunctionUrlConfig })
 
 M.AliasList = schema.new({ type = "list", list_member = M.AliasConfiguration })
 
@@ -63,9 +63,9 @@ M.LayersList = schema.new({ type = "list", list_member = M.LayersListItem })
 
 M.LayerVersionsList = schema.new({ type = "list", list_member = M.LayerVersionsListItem })
 
-M.CompatibleRuntimes = schema.new({ type = "list", list_member = prelude.String })
-
 M.CompatibleArchitectures = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompatibleRuntimes = schema.new({ type = "list", list_member = prelude.String })
 
 M.StackTraceEntries = schema.new({ type = "list", list_member = prelude.String })
 
@@ -81,9 +81,9 @@ M.SigningProfileVersionArns = schema.new({ type = "list", list_member = prelude.
 
 M.FilterList = schema.new({ type = "list", list_member = M.Filter })
 
-M.Endpoints = schema.new({ type = "map", map_key = prelude.String, map_value = M.EndpointLists })
-
 M.EventSourceMappingMetricList = schema.new({ type = "list", list_member = prelude.String })
+
+M.Endpoints = schema.new({ type = "map", map_key = prelude.String, map_value = M.EndpointLists })
 
 M.SubnetIds = schema.new({ type = "list", list_member = prelude.String })
 
@@ -486,6 +486,18 @@ M.AddPermissionInput = schema.new({
             name = "SourceArn",
             target_id = prelude.String.id,
         }),
+        FunctionUrlAuthType = schema.new({
+            id = id.from(_N, "AddPermissionInput", "FunctionUrlAuthType"),
+            type = "string",
+            name = "FunctionUrlAuthType",
+            target_id = prelude.String.id,
+        }),
+        InvokedViaFunctionUrl = schema.new({
+            id = id.from(_N, "AddPermissionInput", "InvokedViaFunctionUrl"),
+            type = "boolean",
+            name = "InvokedViaFunctionUrl",
+            target_id = prelude.Boolean.id,
+        }),
         SourceAccount = schema.new({
             id = id.from(_N, "AddPermissionInput", "SourceAccount"),
             type = "string",
@@ -519,18 +531,6 @@ M.AddPermissionInput = schema.new({
             name = "PrincipalOrgID",
             target_id = prelude.String.id,
         }),
-        FunctionUrlAuthType = schema.new({
-            id = id.from(_N, "AddPermissionInput", "FunctionUrlAuthType"),
-            type = "string",
-            name = "FunctionUrlAuthType",
-            target_id = prelude.String.id,
-        }),
-        InvokedViaFunctionUrl = schema.new({
-            id = id.from(_N, "AddPermissionInput", "InvokedViaFunctionUrl"),
-            type = "boolean",
-            name = "InvokedViaFunctionUrl",
-            target_id = prelude.Boolean.id,
-        }),
     },
 })
 
@@ -542,6 +542,28 @@ M.AddPermissionOutput = schema.new({
             id = id.from(_N, "AddPermissionOutput", "Statement"),
             type = "string",
             name = "Statement",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PublicPolicyException = schema.new({
+    id = id.from(_N, "PublicPolicyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "PublicPolicyException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "PublicPolicyException", "Message"),
+            type = "string",
+            name = "Message",
             target_id = prelude.String.id,
         }),
     },
@@ -601,6 +623,28 @@ M.AliasConfiguration = schema.new({
             id = id.from(_N, "AliasConfiguration", "RevisionId"),
             type = "string",
             name = "RevisionId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AliasLimitExceededException = schema.new({
+    id = id.from(_N, "AliasLimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "AliasLimitExceededException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "AliasLimitExceededException", "message"),
+            type = "string",
+            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -2514,6 +2558,33 @@ M.CreateEventSourceMappingInput = schema.new({
             target_id = id.from(_N, "FilterCriteria"),
             target = M.FilterCriteria,
         }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingInput", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        MetricsConfig = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingInput", "MetricsConfig"),
+            type = "structure",
+            name = "MetricsConfig",
+            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
+            target = M.EventSourceMappingMetricsConfig,
+        }),
+        LoggingConfig = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingInput", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
+            target = M.EventSourceMappingLoggingConfig,
+        }),
+        ScalingConfig = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingInput", "ScalingConfig"),
+            type = "structure",
+            name = "ScalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
         MaximumBatchingWindowInSeconds = schema.new({
             id = id.from(_N, "CreateEventSourceMappingInput", "MaximumBatchingWindowInSeconds"),
             type = "integer",
@@ -2626,39 +2697,12 @@ M.CreateEventSourceMappingInput = schema.new({
             target_id = id.from(_N, "SelfManagedKafkaEventSourceConfig"),
             target = M.SelfManagedKafkaEventSourceConfig,
         }),
-        ScalingConfig = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingInput", "ScalingConfig"),
-            type = "structure",
-            name = "ScalingConfig",
-            target_id = id.from(_N, "ScalingConfig"),
-            target = M.ScalingConfig,
-        }),
         DocumentDBEventSourceConfig = schema.new({
             id = id.from(_N, "CreateEventSourceMappingInput", "DocumentDBEventSourceConfig"),
             type = "structure",
             name = "DocumentDBEventSourceConfig",
             target_id = id.from(_N, "DocumentDBEventSourceConfig"),
             target = M.DocumentDBEventSourceConfig,
-        }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingInput", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        MetricsConfig = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingInput", "MetricsConfig"),
-            type = "structure",
-            name = "MetricsConfig",
-            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
-            target = M.EventSourceMappingMetricsConfig,
-        }),
-        LoggingConfig = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingInput", "LoggingConfig"),
-            type = "structure",
-            name = "LoggingConfig",
-            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
-            target = M.EventSourceMappingLoggingConfig,
         }),
         ProvisionedPollerConfig = schema.new({
             id = id.from(_N, "CreateEventSourceMappingInput", "ProvisionedPollerConfig"),
@@ -2741,6 +2785,40 @@ M.CreateEventSourceMappingOutput = schema.new({
             name = "FilterCriteria",
             target_id = id.from(_N, "FilterCriteria"),
             target = M.FilterCriteria,
+        }),
+        FilterCriteriaError = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingOutput", "FilterCriteriaError"),
+            type = "structure",
+            name = "FilterCriteriaError",
+            target_id = id.from(_N, "FilterCriteriaError"),
+            target = M.FilterCriteriaError,
+        }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingOutput", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        MetricsConfig = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingOutput", "MetricsConfig"),
+            type = "structure",
+            name = "MetricsConfig",
+            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
+            target = M.EventSourceMappingMetricsConfig,
+        }),
+        LoggingConfig = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingOutput", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
+            target = M.EventSourceMappingLoggingConfig,
+        }),
+        ScalingConfig = schema.new({
+            id = id.from(_N, "CreateEventSourceMappingOutput", "ScalingConfig"),
+            type = "structure",
+            name = "ScalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
         }),
         FunctionArn = schema.new({
             id = id.from(_N, "CreateEventSourceMappingOutput", "FunctionArn"),
@@ -2852,13 +2930,6 @@ M.CreateEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "SelfManagedKafkaEventSourceConfig"),
             target = M.SelfManagedKafkaEventSourceConfig,
         }),
-        ScalingConfig = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingOutput", "ScalingConfig"),
-            type = "structure",
-            name = "ScalingConfig",
-            target_id = id.from(_N, "ScalingConfig"),
-            target = M.ScalingConfig,
-        }),
         DocumentDBEventSourceConfig = schema.new({
             id = id.from(_N, "CreateEventSourceMappingOutput", "DocumentDBEventSourceConfig"),
             type = "structure",
@@ -2866,38 +2937,11 @@ M.CreateEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "DocumentDBEventSourceConfig"),
             target = M.DocumentDBEventSourceConfig,
         }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingOutput", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        FilterCriteriaError = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingOutput", "FilterCriteriaError"),
-            type = "structure",
-            name = "FilterCriteriaError",
-            target_id = id.from(_N, "FilterCriteriaError"),
-            target = M.FilterCriteriaError,
-        }),
         EventSourceMappingArn = schema.new({
             id = id.from(_N, "CreateEventSourceMappingOutput", "EventSourceMappingArn"),
             type = "string",
             name = "EventSourceMappingArn",
             target_id = prelude.String.id,
-        }),
-        MetricsConfig = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingOutput", "MetricsConfig"),
-            type = "structure",
-            name = "MetricsConfig",
-            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
-            target = M.EventSourceMappingMetricsConfig,
-        }),
-        LoggingConfig = schema.new({
-            id = id.from(_N, "CreateEventSourceMappingOutput", "LoggingConfig"),
-            type = "structure",
-            name = "LoggingConfig",
-            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
-            target = M.EventSourceMappingLoggingConfig,
         }),
         ProvisionedPollerConfig = schema.new({
             id = id.from(_N, "CreateEventSourceMappingOutput", "ProvisionedPollerConfig"),
@@ -2978,6 +3022,40 @@ M.DeleteEventSourceMappingOutput = schema.new({
             name = "FilterCriteria",
             target_id = id.from(_N, "FilterCriteria"),
             target = M.FilterCriteria,
+        }),
+        FilterCriteriaError = schema.new({
+            id = id.from(_N, "DeleteEventSourceMappingOutput", "FilterCriteriaError"),
+            type = "structure",
+            name = "FilterCriteriaError",
+            target_id = id.from(_N, "FilterCriteriaError"),
+            target = M.FilterCriteriaError,
+        }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "DeleteEventSourceMappingOutput", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        MetricsConfig = schema.new({
+            id = id.from(_N, "DeleteEventSourceMappingOutput", "MetricsConfig"),
+            type = "structure",
+            name = "MetricsConfig",
+            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
+            target = M.EventSourceMappingMetricsConfig,
+        }),
+        LoggingConfig = schema.new({
+            id = id.from(_N, "DeleteEventSourceMappingOutput", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
+            target = M.EventSourceMappingLoggingConfig,
+        }),
+        ScalingConfig = schema.new({
+            id = id.from(_N, "DeleteEventSourceMappingOutput", "ScalingConfig"),
+            type = "structure",
+            name = "ScalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
         }),
         FunctionArn = schema.new({
             id = id.from(_N, "DeleteEventSourceMappingOutput", "FunctionArn"),
@@ -3089,13 +3167,6 @@ M.DeleteEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "SelfManagedKafkaEventSourceConfig"),
             target = M.SelfManagedKafkaEventSourceConfig,
         }),
-        ScalingConfig = schema.new({
-            id = id.from(_N, "DeleteEventSourceMappingOutput", "ScalingConfig"),
-            type = "structure",
-            name = "ScalingConfig",
-            target_id = id.from(_N, "ScalingConfig"),
-            target = M.ScalingConfig,
-        }),
         DocumentDBEventSourceConfig = schema.new({
             id = id.from(_N, "DeleteEventSourceMappingOutput", "DocumentDBEventSourceConfig"),
             type = "structure",
@@ -3103,38 +3174,11 @@ M.DeleteEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "DocumentDBEventSourceConfig"),
             target = M.DocumentDBEventSourceConfig,
         }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "DeleteEventSourceMappingOutput", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        FilterCriteriaError = schema.new({
-            id = id.from(_N, "DeleteEventSourceMappingOutput", "FilterCriteriaError"),
-            type = "structure",
-            name = "FilterCriteriaError",
-            target_id = id.from(_N, "FilterCriteriaError"),
-            target = M.FilterCriteriaError,
-        }),
         EventSourceMappingArn = schema.new({
             id = id.from(_N, "DeleteEventSourceMappingOutput", "EventSourceMappingArn"),
             type = "string",
             name = "EventSourceMappingArn",
             target_id = prelude.String.id,
-        }),
-        MetricsConfig = schema.new({
-            id = id.from(_N, "DeleteEventSourceMappingOutput", "MetricsConfig"),
-            type = "structure",
-            name = "MetricsConfig",
-            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
-            target = M.EventSourceMappingMetricsConfig,
-        }),
-        LoggingConfig = schema.new({
-            id = id.from(_N, "DeleteEventSourceMappingOutput", "LoggingConfig"),
-            type = "structure",
-            name = "LoggingConfig",
-            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
-            target = M.EventSourceMappingLoggingConfig,
         }),
         ProvisionedPollerConfig = schema.new({
             id = id.from(_N, "DeleteEventSourceMappingOutput", "ProvisionedPollerConfig"),
@@ -3237,6 +3281,40 @@ M.GetEventSourceMappingOutput = schema.new({
             name = "FilterCriteria",
             target_id = id.from(_N, "FilterCriteria"),
             target = M.FilterCriteria,
+        }),
+        FilterCriteriaError = schema.new({
+            id = id.from(_N, "GetEventSourceMappingOutput", "FilterCriteriaError"),
+            type = "structure",
+            name = "FilterCriteriaError",
+            target_id = id.from(_N, "FilterCriteriaError"),
+            target = M.FilterCriteriaError,
+        }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "GetEventSourceMappingOutput", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        MetricsConfig = schema.new({
+            id = id.from(_N, "GetEventSourceMappingOutput", "MetricsConfig"),
+            type = "structure",
+            name = "MetricsConfig",
+            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
+            target = M.EventSourceMappingMetricsConfig,
+        }),
+        LoggingConfig = schema.new({
+            id = id.from(_N, "GetEventSourceMappingOutput", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
+            target = M.EventSourceMappingLoggingConfig,
+        }),
+        ScalingConfig = schema.new({
+            id = id.from(_N, "GetEventSourceMappingOutput", "ScalingConfig"),
+            type = "structure",
+            name = "ScalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
         }),
         FunctionArn = schema.new({
             id = id.from(_N, "GetEventSourceMappingOutput", "FunctionArn"),
@@ -3348,13 +3426,6 @@ M.GetEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "SelfManagedKafkaEventSourceConfig"),
             target = M.SelfManagedKafkaEventSourceConfig,
         }),
-        ScalingConfig = schema.new({
-            id = id.from(_N, "GetEventSourceMappingOutput", "ScalingConfig"),
-            type = "structure",
-            name = "ScalingConfig",
-            target_id = id.from(_N, "ScalingConfig"),
-            target = M.ScalingConfig,
-        }),
         DocumentDBEventSourceConfig = schema.new({
             id = id.from(_N, "GetEventSourceMappingOutput", "DocumentDBEventSourceConfig"),
             type = "structure",
@@ -3362,38 +3433,11 @@ M.GetEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "DocumentDBEventSourceConfig"),
             target = M.DocumentDBEventSourceConfig,
         }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "GetEventSourceMappingOutput", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        FilterCriteriaError = schema.new({
-            id = id.from(_N, "GetEventSourceMappingOutput", "FilterCriteriaError"),
-            type = "structure",
-            name = "FilterCriteriaError",
-            target_id = id.from(_N, "FilterCriteriaError"),
-            target = M.FilterCriteriaError,
-        }),
         EventSourceMappingArn = schema.new({
             id = id.from(_N, "GetEventSourceMappingOutput", "EventSourceMappingArn"),
             type = "string",
             name = "EventSourceMappingArn",
             target_id = prelude.String.id,
-        }),
-        MetricsConfig = schema.new({
-            id = id.from(_N, "GetEventSourceMappingOutput", "MetricsConfig"),
-            type = "structure",
-            name = "MetricsConfig",
-            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
-            target = M.EventSourceMappingMetricsConfig,
-        }),
-        LoggingConfig = schema.new({
-            id = id.from(_N, "GetEventSourceMappingOutput", "LoggingConfig"),
-            type = "structure",
-            name = "LoggingConfig",
-            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
-            target = M.EventSourceMappingLoggingConfig,
         }),
         ProvisionedPollerConfig = schema.new({
             id = id.from(_N, "GetEventSourceMappingOutput", "ProvisionedPollerConfig"),
@@ -3500,6 +3544,40 @@ M.EventSourceMappingConfiguration = schema.new({
             name = "FilterCriteria",
             target_id = id.from(_N, "FilterCriteria"),
             target = M.FilterCriteria,
+        }),
+        FilterCriteriaError = schema.new({
+            id = id.from(_N, "EventSourceMappingConfiguration", "FilterCriteriaError"),
+            type = "structure",
+            name = "FilterCriteriaError",
+            target_id = id.from(_N, "FilterCriteriaError"),
+            target = M.FilterCriteriaError,
+        }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "EventSourceMappingConfiguration", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        MetricsConfig = schema.new({
+            id = id.from(_N, "EventSourceMappingConfiguration", "MetricsConfig"),
+            type = "structure",
+            name = "MetricsConfig",
+            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
+            target = M.EventSourceMappingMetricsConfig,
+        }),
+        LoggingConfig = schema.new({
+            id = id.from(_N, "EventSourceMappingConfiguration", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
+            target = M.EventSourceMappingLoggingConfig,
+        }),
+        ScalingConfig = schema.new({
+            id = id.from(_N, "EventSourceMappingConfiguration", "ScalingConfig"),
+            type = "structure",
+            name = "ScalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
         }),
         FunctionArn = schema.new({
             id = id.from(_N, "EventSourceMappingConfiguration", "FunctionArn"),
@@ -3611,13 +3689,6 @@ M.EventSourceMappingConfiguration = schema.new({
             target_id = id.from(_N, "SelfManagedKafkaEventSourceConfig"),
             target = M.SelfManagedKafkaEventSourceConfig,
         }),
-        ScalingConfig = schema.new({
-            id = id.from(_N, "EventSourceMappingConfiguration", "ScalingConfig"),
-            type = "structure",
-            name = "ScalingConfig",
-            target_id = id.from(_N, "ScalingConfig"),
-            target = M.ScalingConfig,
-        }),
         DocumentDBEventSourceConfig = schema.new({
             id = id.from(_N, "EventSourceMappingConfiguration", "DocumentDBEventSourceConfig"),
             type = "structure",
@@ -3625,38 +3696,11 @@ M.EventSourceMappingConfiguration = schema.new({
             target_id = id.from(_N, "DocumentDBEventSourceConfig"),
             target = M.DocumentDBEventSourceConfig,
         }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "EventSourceMappingConfiguration", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        FilterCriteriaError = schema.new({
-            id = id.from(_N, "EventSourceMappingConfiguration", "FilterCriteriaError"),
-            type = "structure",
-            name = "FilterCriteriaError",
-            target_id = id.from(_N, "FilterCriteriaError"),
-            target = M.FilterCriteriaError,
-        }),
         EventSourceMappingArn = schema.new({
             id = id.from(_N, "EventSourceMappingConfiguration", "EventSourceMappingArn"),
             type = "string",
             name = "EventSourceMappingArn",
             target_id = prelude.String.id,
-        }),
-        MetricsConfig = schema.new({
-            id = id.from(_N, "EventSourceMappingConfiguration", "MetricsConfig"),
-            type = "structure",
-            name = "MetricsConfig",
-            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
-            target = M.EventSourceMappingMetricsConfig,
-        }),
-        LoggingConfig = schema.new({
-            id = id.from(_N, "EventSourceMappingConfiguration", "LoggingConfig"),
-            type = "structure",
-            name = "LoggingConfig",
-            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
-            target = M.EventSourceMappingLoggingConfig,
         }),
         ProvisionedPollerConfig = schema.new({
             id = id.from(_N, "EventSourceMappingConfiguration", "ProvisionedPollerConfig"),
@@ -3727,10 +3771,43 @@ M.UpdateEventSourceMappingInput = schema.new({
             target_id = id.from(_N, "FilterCriteria"),
             target = M.FilterCriteria,
         }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingInput", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        MetricsConfig = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingInput", "MetricsConfig"),
+            type = "structure",
+            name = "MetricsConfig",
+            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
+            target = M.EventSourceMappingMetricsConfig,
+        }),
+        LoggingConfig = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingInput", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
+            target = M.EventSourceMappingLoggingConfig,
+        }),
+        ScalingConfig = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingInput", "ScalingConfig"),
+            type = "structure",
+            name = "ScalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
+        }),
         MaximumBatchingWindowInSeconds = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingInput", "MaximumBatchingWindowInSeconds"),
             type = "integer",
             name = "MaximumBatchingWindowInSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ParallelizationFactor = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingInput", "ParallelizationFactor"),
+            type = "integer",
+            name = "ParallelizationFactor",
             target_id = prelude.Integer.id,
         }),
         DestinationConfig = schema.new({
@@ -3758,10 +3835,10 @@ M.UpdateEventSourceMappingInput = schema.new({
             name = "MaximumRetryAttempts",
             target_id = prelude.Integer.id,
         }),
-        ParallelizationFactor = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingInput", "ParallelizationFactor"),
+        TumblingWindowInSeconds = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingInput", "TumblingWindowInSeconds"),
             type = "integer",
-            name = "ParallelizationFactor",
+            name = "TumblingWindowInSeconds",
             target_id = prelude.Integer.id,
         }),
         SourceAccessConfigurations = schema.new({
@@ -3771,25 +3848,12 @@ M.UpdateEventSourceMappingInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.SourceAccessConfiguration,
         }),
-        TumblingWindowInSeconds = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingInput", "TumblingWindowInSeconds"),
-            type = "integer",
-            name = "TumblingWindowInSeconds",
-            target_id = prelude.Integer.id,
-        }),
         FunctionResponseTypes = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingInput", "FunctionResponseTypes"),
             type = "list",
             name = "FunctionResponseTypes",
             target_id = prelude.Document.id,
             list_member = prelude.String,
-        }),
-        ScalingConfig = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingInput", "ScalingConfig"),
-            type = "structure",
-            name = "ScalingConfig",
-            target_id = id.from(_N, "ScalingConfig"),
-            target = M.ScalingConfig,
         }),
         AmazonManagedKafkaEventSourceConfig = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingInput", "AmazonManagedKafkaEventSourceConfig"),
@@ -3811,26 +3875,6 @@ M.UpdateEventSourceMappingInput = schema.new({
             name = "DocumentDBEventSourceConfig",
             target_id = id.from(_N, "DocumentDBEventSourceConfig"),
             target = M.DocumentDBEventSourceConfig,
-        }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingInput", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        MetricsConfig = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingInput", "MetricsConfig"),
-            type = "structure",
-            name = "MetricsConfig",
-            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
-            target = M.EventSourceMappingMetricsConfig,
-        }),
-        LoggingConfig = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingInput", "LoggingConfig"),
-            type = "structure",
-            name = "LoggingConfig",
-            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
-            target = M.EventSourceMappingLoggingConfig,
         }),
         ProvisionedPollerConfig = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingInput", "ProvisionedPollerConfig"),
@@ -3894,6 +3938,40 @@ M.UpdateEventSourceMappingOutput = schema.new({
             name = "FilterCriteria",
             target_id = id.from(_N, "FilterCriteria"),
             target = M.FilterCriteria,
+        }),
+        FilterCriteriaError = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingOutput", "FilterCriteriaError"),
+            type = "structure",
+            name = "FilterCriteriaError",
+            target_id = id.from(_N, "FilterCriteriaError"),
+            target = M.FilterCriteriaError,
+        }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingOutput", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        MetricsConfig = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingOutput", "MetricsConfig"),
+            type = "structure",
+            name = "MetricsConfig",
+            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
+            target = M.EventSourceMappingMetricsConfig,
+        }),
+        LoggingConfig = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingOutput", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
+            target = M.EventSourceMappingLoggingConfig,
+        }),
+        ScalingConfig = schema.new({
+            id = id.from(_N, "UpdateEventSourceMappingOutput", "ScalingConfig"),
+            type = "structure",
+            name = "ScalingConfig",
+            target_id = id.from(_N, "ScalingConfig"),
+            target = M.ScalingConfig,
         }),
         FunctionArn = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingOutput", "FunctionArn"),
@@ -4005,13 +4083,6 @@ M.UpdateEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "SelfManagedKafkaEventSourceConfig"),
             target = M.SelfManagedKafkaEventSourceConfig,
         }),
-        ScalingConfig = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingOutput", "ScalingConfig"),
-            type = "structure",
-            name = "ScalingConfig",
-            target_id = id.from(_N, "ScalingConfig"),
-            target = M.ScalingConfig,
-        }),
         DocumentDBEventSourceConfig = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingOutput", "DocumentDBEventSourceConfig"),
             type = "structure",
@@ -4019,38 +4090,11 @@ M.UpdateEventSourceMappingOutput = schema.new({
             target_id = id.from(_N, "DocumentDBEventSourceConfig"),
             target = M.DocumentDBEventSourceConfig,
         }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingOutput", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        FilterCriteriaError = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingOutput", "FilterCriteriaError"),
-            type = "structure",
-            name = "FilterCriteriaError",
-            target_id = id.from(_N, "FilterCriteriaError"),
-            target = M.FilterCriteriaError,
-        }),
         EventSourceMappingArn = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingOutput", "EventSourceMappingArn"),
             type = "string",
             name = "EventSourceMappingArn",
             target_id = prelude.String.id,
-        }),
-        MetricsConfig = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingOutput", "MetricsConfig"),
-            type = "structure",
-            name = "MetricsConfig",
-            target_id = id.from(_N, "EventSourceMappingMetricsConfig"),
-            target = M.EventSourceMappingMetricsConfig,
-        }),
-        LoggingConfig = schema.new({
-            id = id.from(_N, "UpdateEventSourceMappingOutput", "LoggingConfig"),
-            type = "structure",
-            name = "LoggingConfig",
-            target_id = id.from(_N, "EventSourceMappingLoggingConfig"),
-            target = M.EventSourceMappingLoggingConfig,
         }),
         ProvisionedPollerConfig = schema.new({
             id = id.from(_N, "UpdateEventSourceMappingOutput", "ProvisionedPollerConfig"),
@@ -4502,6 +4546,12 @@ M.CreateFunctionInput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        PublishTo = schema.new({
+            id = id.from(_N, "CreateFunctionInput", "PublishTo"),
+            type = "string",
+            name = "PublishTo",
+            target_id = prelude.String.id,
+        }),
         VpcConfig = schema.new({
             id = id.from(_N, "CreateFunctionInput", "VpcConfig"),
             type = "structure",
@@ -4564,18 +4614,18 @@ M.CreateFunctionInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FileSystemConfig,
         }),
+        CodeSigningConfigArn = schema.new({
+            id = id.from(_N, "CreateFunctionInput", "CodeSigningConfigArn"),
+            type = "string",
+            name = "CodeSigningConfigArn",
+            target_id = prelude.String.id,
+        }),
         ImageConfig = schema.new({
             id = id.from(_N, "CreateFunctionInput", "ImageConfig"),
             type = "structure",
             name = "ImageConfig",
             target_id = id.from(_N, "ImageConfig"),
             target = M.ImageConfig,
-        }),
-        CodeSigningConfigArn = schema.new({
-            id = id.from(_N, "CreateFunctionInput", "CodeSigningConfigArn"),
-            type = "string",
-            name = "CodeSigningConfigArn",
-            target_id = prelude.String.id,
         }),
         Architectures = schema.new({
             id = id.from(_N, "CreateFunctionInput", "Architectures"),
@@ -4605,6 +4655,13 @@ M.CreateFunctionInput = schema.new({
             target_id = id.from(_N, "LoggingConfig"),
             target = M.LoggingConfig,
         }),
+        TenancyConfig = schema.new({
+            id = id.from(_N, "CreateFunctionInput", "TenancyConfig"),
+            type = "structure",
+            name = "TenancyConfig",
+            target_id = id.from(_N, "TenancyConfig"),
+            target = M.TenancyConfig,
+        }),
         CapacityProviderConfig = schema.new({
             id = id.from(_N, "CreateFunctionInput", "CapacityProviderConfig"),
             type = "structure",
@@ -4612,25 +4669,12 @@ M.CreateFunctionInput = schema.new({
             target_id = id.from(_N, "CapacityProviderConfig"),
             target = M.CapacityProviderConfig,
         }),
-        PublishTo = schema.new({
-            id = id.from(_N, "CreateFunctionInput", "PublishTo"),
-            type = "string",
-            name = "PublishTo",
-            target_id = prelude.String.id,
-        }),
         DurableConfig = schema.new({
             id = id.from(_N, "CreateFunctionInput", "DurableConfig"),
             type = "structure",
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
-        }),
-        TenancyConfig = schema.new({
-            id = id.from(_N, "CreateFunctionInput", "TenancyConfig"),
-            type = "structure",
-            name = "TenancyConfig",
-            target_id = id.from(_N, "TenancyConfig"),
-            target = M.TenancyConfig,
         }),
     },
 })
@@ -5029,6 +5073,18 @@ M.CreateFunctionOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FileSystemConfig,
         }),
+        SigningProfileVersionArn = schema.new({
+            id = id.from(_N, "CreateFunctionOutput", "SigningProfileVersionArn"),
+            type = "string",
+            name = "SigningProfileVersionArn",
+            target_id = prelude.String.id,
+        }),
+        SigningJobArn = schema.new({
+            id = id.from(_N, "CreateFunctionOutput", "SigningJobArn"),
+            type = "string",
+            name = "SigningJobArn",
+            target_id = prelude.String.id,
+        }),
         PackageType = schema.new({
             id = id.from(_N, "CreateFunctionOutput", "PackageType"),
             type = "string",
@@ -5041,18 +5097,6 @@ M.CreateFunctionOutput = schema.new({
             name = "ImageConfigResponse",
             target_id = id.from(_N, "ImageConfigResponse"),
             target = M.ImageConfigResponse,
-        }),
-        SigningProfileVersionArn = schema.new({
-            id = id.from(_N, "CreateFunctionOutput", "SigningProfileVersionArn"),
-            type = "string",
-            name = "SigningProfileVersionArn",
-            target_id = prelude.String.id,
-        }),
-        SigningJobArn = schema.new({
-            id = id.from(_N, "CreateFunctionOutput", "SigningJobArn"),
-            type = "string",
-            name = "SigningJobArn",
-            target_id = prelude.String.id,
         }),
         Architectures = schema.new({
             id = id.from(_N, "CreateFunctionOutput", "Architectures"),
@@ -5089,6 +5133,13 @@ M.CreateFunctionOutput = schema.new({
             target_id = id.from(_N, "LoggingConfig"),
             target = M.LoggingConfig,
         }),
+        TenancyConfig = schema.new({
+            id = id.from(_N, "CreateFunctionOutput", "TenancyConfig"),
+            type = "structure",
+            name = "TenancyConfig",
+            target_id = id.from(_N, "TenancyConfig"),
+            target = M.TenancyConfig,
+        }),
         CapacityProviderConfig = schema.new({
             id = id.from(_N, "CreateFunctionOutput", "CapacityProviderConfig"),
             type = "structure",
@@ -5108,13 +5159,6 @@ M.CreateFunctionOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
-        }),
-        TenancyConfig = schema.new({
-            id = id.from(_N, "CreateFunctionOutput", "TenancyConfig"),
-            type = "structure",
-            name = "TenancyConfig",
-            target_id = id.from(_N, "TenancyConfig"),
-            target = M.TenancyConfig,
         }),
     },
 })
@@ -5631,6 +5675,18 @@ M.FunctionConfiguration = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FileSystemConfig,
         }),
+        SigningProfileVersionArn = schema.new({
+            id = id.from(_N, "FunctionConfiguration", "SigningProfileVersionArn"),
+            type = "string",
+            name = "SigningProfileVersionArn",
+            target_id = prelude.String.id,
+        }),
+        SigningJobArn = schema.new({
+            id = id.from(_N, "FunctionConfiguration", "SigningJobArn"),
+            type = "string",
+            name = "SigningJobArn",
+            target_id = prelude.String.id,
+        }),
         PackageType = schema.new({
             id = id.from(_N, "FunctionConfiguration", "PackageType"),
             type = "string",
@@ -5643,18 +5699,6 @@ M.FunctionConfiguration = schema.new({
             name = "ImageConfigResponse",
             target_id = id.from(_N, "ImageConfigResponse"),
             target = M.ImageConfigResponse,
-        }),
-        SigningProfileVersionArn = schema.new({
-            id = id.from(_N, "FunctionConfiguration", "SigningProfileVersionArn"),
-            type = "string",
-            name = "SigningProfileVersionArn",
-            target_id = prelude.String.id,
-        }),
-        SigningJobArn = schema.new({
-            id = id.from(_N, "FunctionConfiguration", "SigningJobArn"),
-            type = "string",
-            name = "SigningJobArn",
-            target_id = prelude.String.id,
         }),
         Architectures = schema.new({
             id = id.from(_N, "FunctionConfiguration", "Architectures"),
@@ -5691,6 +5735,13 @@ M.FunctionConfiguration = schema.new({
             target_id = id.from(_N, "LoggingConfig"),
             target = M.LoggingConfig,
         }),
+        TenancyConfig = schema.new({
+            id = id.from(_N, "FunctionConfiguration", "TenancyConfig"),
+            type = "structure",
+            name = "TenancyConfig",
+            target_id = id.from(_N, "TenancyConfig"),
+            target = M.TenancyConfig,
+        }),
         CapacityProviderConfig = schema.new({
             id = id.from(_N, "FunctionConfiguration", "CapacityProviderConfig"),
             type = "structure",
@@ -5710,13 +5761,6 @@ M.FunctionConfiguration = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
-        }),
-        TenancyConfig = schema.new({
-            id = id.from(_N, "FunctionConfiguration", "TenancyConfig"),
-            type = "structure",
-            name = "TenancyConfig",
-            target_id = id.from(_N, "TenancyConfig"),
-            target = M.TenancyConfig,
         }),
     },
 })
@@ -6062,6 +6106,18 @@ M.GetFunctionConfigurationOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FileSystemConfig,
         }),
+        SigningProfileVersionArn = schema.new({
+            id = id.from(_N, "GetFunctionConfigurationOutput", "SigningProfileVersionArn"),
+            type = "string",
+            name = "SigningProfileVersionArn",
+            target_id = prelude.String.id,
+        }),
+        SigningJobArn = schema.new({
+            id = id.from(_N, "GetFunctionConfigurationOutput", "SigningJobArn"),
+            type = "string",
+            name = "SigningJobArn",
+            target_id = prelude.String.id,
+        }),
         PackageType = schema.new({
             id = id.from(_N, "GetFunctionConfigurationOutput", "PackageType"),
             type = "string",
@@ -6074,18 +6130,6 @@ M.GetFunctionConfigurationOutput = schema.new({
             name = "ImageConfigResponse",
             target_id = id.from(_N, "ImageConfigResponse"),
             target = M.ImageConfigResponse,
-        }),
-        SigningProfileVersionArn = schema.new({
-            id = id.from(_N, "GetFunctionConfigurationOutput", "SigningProfileVersionArn"),
-            type = "string",
-            name = "SigningProfileVersionArn",
-            target_id = prelude.String.id,
-        }),
-        SigningJobArn = schema.new({
-            id = id.from(_N, "GetFunctionConfigurationOutput", "SigningJobArn"),
-            type = "string",
-            name = "SigningJobArn",
-            target_id = prelude.String.id,
         }),
         Architectures = schema.new({
             id = id.from(_N, "GetFunctionConfigurationOutput", "Architectures"),
@@ -6122,6 +6166,13 @@ M.GetFunctionConfigurationOutput = schema.new({
             target_id = id.from(_N, "LoggingConfig"),
             target = M.LoggingConfig,
         }),
+        TenancyConfig = schema.new({
+            id = id.from(_N, "GetFunctionConfigurationOutput", "TenancyConfig"),
+            type = "structure",
+            name = "TenancyConfig",
+            target_id = id.from(_N, "TenancyConfig"),
+            target = M.TenancyConfig,
+        }),
         CapacityProviderConfig = schema.new({
             id = id.from(_N, "GetFunctionConfigurationOutput", "CapacityProviderConfig"),
             type = "structure",
@@ -6141,13 +6192,6 @@ M.GetFunctionConfigurationOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
-        }),
-        TenancyConfig = schema.new({
-            id = id.from(_N, "GetFunctionConfigurationOutput", "TenancyConfig"),
-            type = "structure",
-            name = "TenancyConfig",
-            target_id = id.from(_N, "TenancyConfig"),
-            target = M.TenancyConfig,
         }),
     },
 })
@@ -6427,16 +6471,82 @@ M.GetRuntimeManagementConfigOutput = schema.new({
             name = "UpdateRuntimeOn",
             target_id = prelude.String.id,
         }),
+        FunctionArn = schema.new({
+            id = id.from(_N, "GetRuntimeManagementConfigOutput", "FunctionArn"),
+            type = "string",
+            name = "FunctionArn",
+            target_id = prelude.String.id,
+        }),
         RuntimeVersionArn = schema.new({
             id = id.from(_N, "GetRuntimeManagementConfigOutput", "RuntimeVersionArn"),
             type = "string",
             name = "RuntimeVersionArn",
             target_id = prelude.String.id,
         }),
-        FunctionArn = schema.new({
-            id = id.from(_N, "GetRuntimeManagementConfigOutput", "FunctionArn"),
+    },
+})
+
+M.CodeArtifactUserDeletedException = schema.new({
+    id = id.from(_N, "CodeArtifactUserDeletedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "CodeArtifactUserDeletedException", "Type"),
             type = "string",
-            name = "FunctionArn",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "CodeArtifactUserDeletedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CodeArtifactUserFailedException = schema.new({
+    id = id.from(_N, "CodeArtifactUserFailedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "CodeArtifactUserFailedException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "CodeArtifactUserFailedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CodeArtifactUserPendingException = schema.new({
+    id = id.from(_N, "CodeArtifactUserPendingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "CodeArtifactUserPendingException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "CodeArtifactUserPendingException", "message"),
+            type = "string",
+            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -6639,6 +6749,28 @@ M.ENILimitReachedException = schema.new({
         }),
         Message = schema.new({
             id = id.from(_N, "ENILimitReachedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ENINotReadyException = schema.new({
+    id = id.from(_N, "ENINotReadyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ENINotReadyException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ENINotReadyException", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
@@ -6986,6 +7118,28 @@ M.KMSNotFoundException = schema.new({
     },
 })
 
+M.ModeNotSupportedException = schema.new({
+    id = id.from(_N, "ModeNotSupportedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ModeNotSupportedException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "ModeNotSupportedException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.NoPublishedVersionException = schema.new({
     id = id.from(_N, "NoPublishedVersionException"),
     type = "structure",
@@ -7162,6 +7316,28 @@ M.SerializedRequestEntityTooLargeException = schema.new({
     },
 })
 
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SnapStartException = schema.new({
     id = id.from(_N, "SnapStartException"),
     type = "structure",
@@ -7199,6 +7375,28 @@ M.SnapStartNotReadyException = schema.new({
         }),
         Message = schema.new({
             id = id.from(_N, "SnapStartNotReadyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SnapStartRegenerationFailureException = schema.new({
+    id = id.from(_N, "SnapStartRegenerationFailureException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "SnapStartRegenerationFailureException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "SnapStartRegenerationFailureException", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
@@ -8085,6 +8283,13 @@ M.UpdateFunctionCodeInput = schema.new({
             name = "ImageUri",
             target_id = prelude.String.id,
         }),
+        Architectures = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeInput", "Architectures"),
+            type = "list",
+            name = "Architectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         Publish = schema.new({
             id = id.from(_N, "UpdateFunctionCodeInput", "Publish"),
             type = "boolean",
@@ -8093,6 +8298,12 @@ M.UpdateFunctionCodeInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+        PublishTo = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeInput", "PublishTo"),
+            type = "string",
+            name = "PublishTo",
+            target_id = prelude.String.id,
         }),
         DryRun = schema.new({
             id = id.from(_N, "UpdateFunctionCodeInput", "DryRun"),
@@ -8109,23 +8320,10 @@ M.UpdateFunctionCodeInput = schema.new({
             name = "RevisionId",
             target_id = prelude.String.id,
         }),
-        Architectures = schema.new({
-            id = id.from(_N, "UpdateFunctionCodeInput", "Architectures"),
-            type = "list",
-            name = "Architectures",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
         SourceKMSKeyArn = schema.new({
             id = id.from(_N, "UpdateFunctionCodeInput", "SourceKMSKeyArn"),
             type = "string",
             name = "SourceKMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        PublishTo = schema.new({
-            id = id.from(_N, "UpdateFunctionCodeInput", "PublishTo"),
-            type = "string",
-            name = "PublishTo",
             target_id = prelude.String.id,
         }),
     },
@@ -8306,6 +8504,18 @@ M.UpdateFunctionCodeOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FileSystemConfig,
         }),
+        SigningProfileVersionArn = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeOutput", "SigningProfileVersionArn"),
+            type = "string",
+            name = "SigningProfileVersionArn",
+            target_id = prelude.String.id,
+        }),
+        SigningJobArn = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeOutput", "SigningJobArn"),
+            type = "string",
+            name = "SigningJobArn",
+            target_id = prelude.String.id,
+        }),
         PackageType = schema.new({
             id = id.from(_N, "UpdateFunctionCodeOutput", "PackageType"),
             type = "string",
@@ -8318,18 +8528,6 @@ M.UpdateFunctionCodeOutput = schema.new({
             name = "ImageConfigResponse",
             target_id = id.from(_N, "ImageConfigResponse"),
             target = M.ImageConfigResponse,
-        }),
-        SigningProfileVersionArn = schema.new({
-            id = id.from(_N, "UpdateFunctionCodeOutput", "SigningProfileVersionArn"),
-            type = "string",
-            name = "SigningProfileVersionArn",
-            target_id = prelude.String.id,
-        }),
-        SigningJobArn = schema.new({
-            id = id.from(_N, "UpdateFunctionCodeOutput", "SigningJobArn"),
-            type = "string",
-            name = "SigningJobArn",
-            target_id = prelude.String.id,
         }),
         Architectures = schema.new({
             id = id.from(_N, "UpdateFunctionCodeOutput", "Architectures"),
@@ -8366,6 +8564,13 @@ M.UpdateFunctionCodeOutput = schema.new({
             target_id = id.from(_N, "LoggingConfig"),
             target = M.LoggingConfig,
         }),
+        TenancyConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeOutput", "TenancyConfig"),
+            type = "structure",
+            name = "TenancyConfig",
+            target_id = id.from(_N, "TenancyConfig"),
+            target = M.TenancyConfig,
+        }),
         CapacityProviderConfig = schema.new({
             id = id.from(_N, "UpdateFunctionCodeOutput", "CapacityProviderConfig"),
             type = "structure",
@@ -8385,13 +8590,6 @@ M.UpdateFunctionCodeOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
-        }),
-        TenancyConfig = schema.new({
-            id = id.from(_N, "UpdateFunctionCodeOutput", "TenancyConfig"),
-            type = "structure",
-            name = "TenancyConfig",
-            target_id = id.from(_N, "TenancyConfig"),
-            target = M.TenancyConfig,
         }),
     },
 })
@@ -8720,6 +8918,18 @@ M.UpdateFunctionConfigurationOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FileSystemConfig,
         }),
+        SigningProfileVersionArn = schema.new({
+            id = id.from(_N, "UpdateFunctionConfigurationOutput", "SigningProfileVersionArn"),
+            type = "string",
+            name = "SigningProfileVersionArn",
+            target_id = prelude.String.id,
+        }),
+        SigningJobArn = schema.new({
+            id = id.from(_N, "UpdateFunctionConfigurationOutput", "SigningJobArn"),
+            type = "string",
+            name = "SigningJobArn",
+            target_id = prelude.String.id,
+        }),
         PackageType = schema.new({
             id = id.from(_N, "UpdateFunctionConfigurationOutput", "PackageType"),
             type = "string",
@@ -8732,18 +8942,6 @@ M.UpdateFunctionConfigurationOutput = schema.new({
             name = "ImageConfigResponse",
             target_id = id.from(_N, "ImageConfigResponse"),
             target = M.ImageConfigResponse,
-        }),
-        SigningProfileVersionArn = schema.new({
-            id = id.from(_N, "UpdateFunctionConfigurationOutput", "SigningProfileVersionArn"),
-            type = "string",
-            name = "SigningProfileVersionArn",
-            target_id = prelude.String.id,
-        }),
-        SigningJobArn = schema.new({
-            id = id.from(_N, "UpdateFunctionConfigurationOutput", "SigningJobArn"),
-            type = "string",
-            name = "SigningJobArn",
-            target_id = prelude.String.id,
         }),
         Architectures = schema.new({
             id = id.from(_N, "UpdateFunctionConfigurationOutput", "Architectures"),
@@ -8780,6 +8978,13 @@ M.UpdateFunctionConfigurationOutput = schema.new({
             target_id = id.from(_N, "LoggingConfig"),
             target = M.LoggingConfig,
         }),
+        TenancyConfig = schema.new({
+            id = id.from(_N, "UpdateFunctionConfigurationOutput", "TenancyConfig"),
+            type = "structure",
+            name = "TenancyConfig",
+            target_id = id.from(_N, "TenancyConfig"),
+            target = M.TenancyConfig,
+        }),
         CapacityProviderConfig = schema.new({
             id = id.from(_N, "UpdateFunctionConfigurationOutput", "CapacityProviderConfig"),
             type = "structure",
@@ -8799,13 +9004,6 @@ M.UpdateFunctionConfigurationOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
-        }),
-        TenancyConfig = schema.new({
-            id = id.from(_N, "UpdateFunctionConfigurationOutput", "TenancyConfig"),
-            type = "structure",
-            name = "TenancyConfig",
-            target_id = id.from(_N, "TenancyConfig"),
-            target = M.TenancyConfig,
         }),
     },
 })
@@ -9543,6 +9741,18 @@ M.PublishVersionOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.FileSystemConfig,
         }),
+        SigningProfileVersionArn = schema.new({
+            id = id.from(_N, "PublishVersionOutput", "SigningProfileVersionArn"),
+            type = "string",
+            name = "SigningProfileVersionArn",
+            target_id = prelude.String.id,
+        }),
+        SigningJobArn = schema.new({
+            id = id.from(_N, "PublishVersionOutput", "SigningJobArn"),
+            type = "string",
+            name = "SigningJobArn",
+            target_id = prelude.String.id,
+        }),
         PackageType = schema.new({
             id = id.from(_N, "PublishVersionOutput", "PackageType"),
             type = "string",
@@ -9555,18 +9765,6 @@ M.PublishVersionOutput = schema.new({
             name = "ImageConfigResponse",
             target_id = id.from(_N, "ImageConfigResponse"),
             target = M.ImageConfigResponse,
-        }),
-        SigningProfileVersionArn = schema.new({
-            id = id.from(_N, "PublishVersionOutput", "SigningProfileVersionArn"),
-            type = "string",
-            name = "SigningProfileVersionArn",
-            target_id = prelude.String.id,
-        }),
-        SigningJobArn = schema.new({
-            id = id.from(_N, "PublishVersionOutput", "SigningJobArn"),
-            type = "string",
-            name = "SigningJobArn",
-            target_id = prelude.String.id,
         }),
         Architectures = schema.new({
             id = id.from(_N, "PublishVersionOutput", "Architectures"),
@@ -9603,6 +9801,13 @@ M.PublishVersionOutput = schema.new({
             target_id = id.from(_N, "LoggingConfig"),
             target = M.LoggingConfig,
         }),
+        TenancyConfig = schema.new({
+            id = id.from(_N, "PublishVersionOutput", "TenancyConfig"),
+            type = "structure",
+            name = "TenancyConfig",
+            target_id = id.from(_N, "TenancyConfig"),
+            target = M.TenancyConfig,
+        }),
         CapacityProviderConfig = schema.new({
             id = id.from(_N, "PublishVersionOutput", "CapacityProviderConfig"),
             type = "structure",
@@ -9622,13 +9827,6 @@ M.PublishVersionOutput = schema.new({
             name = "DurableConfig",
             target_id = id.from(_N, "DurableConfig"),
             target = M.DurableConfig,
-        }),
-        TenancyConfig = schema.new({
-            id = id.from(_N, "PublishVersionOutput", "TenancyConfig"),
-            type = "structure",
-            name = "TenancyConfig",
-            target_id = id.from(_N, "TenancyConfig"),
-            target = M.TenancyConfig,
         }),
     },
 })
@@ -10763,6 +10961,15 @@ M.ListLayersInput = schema.new({
     id = id.from(_N, "ListLayersRequest"),
     type = "structure",
     members = {
+        CompatibleArchitecture = schema.new({
+            id = id.from(_N, "ListLayersInput", "CompatibleArchitecture"),
+            type = "string",
+            name = "CompatibleArchitecture",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "CompatibleArchitecture" },
+            },
+        }),
         CompatibleRuntime = schema.new({
             id = id.from(_N, "ListLayersInput", "CompatibleRuntime"),
             type = "string",
@@ -10788,15 +10995,6 @@ M.ListLayersInput = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "MaxItems" },
-            },
-        }),
-        CompatibleArchitecture = schema.new({
-            id = id.from(_N, "ListLayersInput", "CompatibleArchitecture"),
-            type = "string",
-            name = "CompatibleArchitecture",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "CompatibleArchitecture" },
             },
         }),
     },
@@ -10833,6 +11031,13 @@ M.LayerVersionsListItem = schema.new({
             name = "CreatedDate",
             target_id = prelude.String.id,
         }),
+        CompatibleArchitectures = schema.new({
+            id = id.from(_N, "LayerVersionsListItem", "CompatibleArchitectures"),
+            type = "list",
+            name = "CompatibleArchitectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         CompatibleRuntimes = schema.new({
             id = id.from(_N, "LayerVersionsListItem", "CompatibleRuntimes"),
             type = "list",
@@ -10845,13 +11050,6 @@ M.LayerVersionsListItem = schema.new({
             type = "string",
             name = "LicenseInfo",
             target_id = prelude.String.id,
-        }),
-        CompatibleArchitectures = schema.new({
-            id = id.from(_N, "LayerVersionsListItem", "CompatibleArchitectures"),
-            type = "list",
-            name = "CompatibleArchitectures",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -11044,6 +11242,13 @@ M.GetLayerVersionOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        CompatibleArchitectures = schema.new({
+            id = id.from(_N, "GetLayerVersionOutput", "CompatibleArchitectures"),
+            type = "list",
+            name = "CompatibleArchitectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         CompatibleRuntimes = schema.new({
             id = id.from(_N, "GetLayerVersionOutput", "CompatibleRuntimes"),
             type = "list",
@@ -11056,13 +11261,6 @@ M.GetLayerVersionOutput = schema.new({
             type = "string",
             name = "LicenseInfo",
             target_id = prelude.String.id,
-        }),
-        CompatibleArchitectures = schema.new({
-            id = id.from(_N, "GetLayerVersionOutput", "CompatibleArchitectures"),
-            type = "list",
-            name = "CompatibleArchitectures",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -11128,6 +11326,13 @@ M.GetLayerVersionByArnOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        CompatibleArchitectures = schema.new({
+            id = id.from(_N, "GetLayerVersionByArnOutput", "CompatibleArchitectures"),
+            type = "list",
+            name = "CompatibleArchitectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         CompatibleRuntimes = schema.new({
             id = id.from(_N, "GetLayerVersionByArnOutput", "CompatibleRuntimes"),
             type = "list",
@@ -11140,13 +11345,6 @@ M.GetLayerVersionByArnOutput = schema.new({
             type = "string",
             name = "LicenseInfo",
             target_id = prelude.String.id,
-        }),
-        CompatibleArchitectures = schema.new({
-            id = id.from(_N, "GetLayerVersionByArnOutput", "CompatibleArchitectures"),
-            type = "list",
-            name = "CompatibleArchitectures",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -11202,6 +11400,15 @@ M.ListLayerVersionsInput = schema.new({
     id = id.from(_N, "ListLayerVersionsRequest"),
     type = "structure",
     members = {
+        CompatibleArchitecture = schema.new({
+            id = id.from(_N, "ListLayerVersionsInput", "CompatibleArchitecture"),
+            type = "string",
+            name = "CompatibleArchitecture",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "CompatibleArchitecture" },
+            },
+        }),
         CompatibleRuntime = schema.new({
             id = id.from(_N, "ListLayerVersionsInput", "CompatibleRuntime"),
             type = "string",
@@ -11237,15 +11444,6 @@ M.ListLayerVersionsInput = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "MaxItems" },
-            },
-        }),
-        CompatibleArchitecture = schema.new({
-            id = id.from(_N, "ListLayerVersionsInput", "CompatibleArchitecture"),
-            type = "string",
-            name = "CompatibleArchitecture",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "CompatibleArchitecture" },
             },
         }),
     },
@@ -11332,6 +11530,13 @@ M.PublishLayerVersionInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        CompatibleArchitectures = schema.new({
+            id = id.from(_N, "PublishLayerVersionInput", "CompatibleArchitectures"),
+            type = "list",
+            name = "CompatibleArchitectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         CompatibleRuntimes = schema.new({
             id = id.from(_N, "PublishLayerVersionInput", "CompatibleRuntimes"),
             type = "list",
@@ -11344,13 +11549,6 @@ M.PublishLayerVersionInput = schema.new({
             type = "string",
             name = "LicenseInfo",
             target_id = prelude.String.id,
-        }),
-        CompatibleArchitectures = schema.new({
-            id = id.from(_N, "PublishLayerVersionInput", "CompatibleArchitectures"),
-            type = "list",
-            name = "CompatibleArchitectures",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -11399,6 +11597,13 @@ M.PublishLayerVersionOutput = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        CompatibleArchitectures = schema.new({
+            id = id.from(_N, "PublishLayerVersionOutput", "CompatibleArchitectures"),
+            type = "list",
+            name = "CompatibleArchitectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         CompatibleRuntimes = schema.new({
             id = id.from(_N, "PublishLayerVersionOutput", "CompatibleRuntimes"),
             type = "list",
@@ -11411,13 +11616,6 @@ M.PublishLayerVersionOutput = schema.new({
             type = "string",
             name = "LicenseInfo",
             target_id = prelude.String.id,
-        }),
-        CompatibleArchitectures = schema.new({
-            id = id.from(_N, "PublishLayerVersionOutput", "CompatibleArchitectures"),
-            type = "list",
-            name = "CompatibleArchitectures",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
         }),
     },
 })
@@ -11979,16 +12177,16 @@ M.PutProvisionedConcurrencyConfigOutput = schema.new({
             name = "RequestedProvisionedConcurrentExecutions",
             target_id = prelude.Integer.id,
         }),
-        AvailableProvisionedConcurrentExecutions = schema.new({
-            id = id.from(_N, "PutProvisionedConcurrencyConfigOutput", "AvailableProvisionedConcurrentExecutions"),
-            type = "integer",
-            name = "AvailableProvisionedConcurrentExecutions",
-            target_id = prelude.Integer.id,
-        }),
         AllocatedProvisionedConcurrentExecutions = schema.new({
             id = id.from(_N, "PutProvisionedConcurrencyConfigOutput", "AllocatedProvisionedConcurrentExecutions"),
             type = "integer",
             name = "AllocatedProvisionedConcurrentExecutions",
+            target_id = prelude.Integer.id,
+        }),
+        AvailableProvisionedConcurrentExecutions = schema.new({
+            id = id.from(_N, "PutProvisionedConcurrencyConfigOutput", "AvailableProvisionedConcurrentExecutions"),
+            type = "integer",
+            name = "AvailableProvisionedConcurrentExecutions",
             target_id = prelude.Integer.id,
         }),
         Status = schema.new({
@@ -12294,7 +12492,7 @@ M.UntagResourceInput = schema.new({
             type = "list",
             name = "TagKeys",
             target_id = prelude.Document.id,
-            list_member = prelude.String,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "Key" } } }),
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_QUERY] = { name = "tagKeys" },

@@ -2269,6 +2269,12 @@ M.VpcConfigRequest = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        controlPlaneEgressMode = schema.new({
+            id = id.from(_N, "VpcConfigRequest", "controlPlaneEgressMode"),
+            type = "string",
+            name = "controlPlaneEgressMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2800,6 +2806,12 @@ M.VpcConfigResponse = schema.new({
             name = "publicAccessCidrs",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        controlPlaneEgressMode = schema.new({
+            id = id.from(_N, "VpcConfigResponse", "controlPlaneEgressMode"),
+            type = "string",
+            name = "controlPlaneEgressMode",
+            target_id = prelude.String.id,
         }),
     },
 })
