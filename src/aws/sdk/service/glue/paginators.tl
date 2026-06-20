@@ -654,18 +654,18 @@ function M.items_list_workflows(client, input)
     })
 end
 
---- Returns a page iterator for search.
-function M.pages_search(client, input)
-    return paginator.pages(client, "search", input, {
+--- Returns a page iterator for searchAssets.
+function M.pages_search_assets(client, input)
+    return paginator.pages(client, "searchAssets", input, {
         input_token = "NextToken",
         output_token = "NextToken",
         items = "Items",
     })
 end
 
---- Returns an item iterator for search.
-function M.items_search(client, input)
-    return paginator.items(client, "search", input, {
+--- Returns an item iterator for searchAssets.
+function M.items_search_assets(client, input)
+    return paginator.items(client, "searchAssets", input, {
         input_token = "NextToken",
         output_token = "NextToken",
         items = "Items",

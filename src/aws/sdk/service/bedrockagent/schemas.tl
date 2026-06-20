@@ -7062,6 +7062,15 @@ M.GetFlowVersionInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        includedData = schema.new({
+            id = id.from(_N, "GetFlowVersionInput", "includedData"),
+            type = "string",
+            name = "includedData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includedData" },
+            },
+        }),
     },
 })
 
@@ -7191,6 +7200,15 @@ M.GetFlowInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
+            },
+        }),
+        includedData = schema.new({
+            id = id.from(_N, "GetFlowInput", "includedData"),
+            type = "string",
+            name = "includedData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includedData" },
             },
         }),
     },
@@ -12118,6 +12136,15 @@ M.GetPromptInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "promptVersion" },
+            },
+        }),
+        includedData = schema.new({
+            id = id.from(_N, "GetPromptInput", "includedData"),
+            type = "string",
+            name = "includedData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "includedData" },
             },
         }),
     },

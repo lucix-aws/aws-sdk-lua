@@ -2337,11 +2337,18 @@ local record M
         version: string
     end
 
+    enum IncludedData
+        "ALL_DATA"
+        "METADATA_ONLY"
+    end
+
     record GetFlowVersionInput
         -- The unique identifier of the flow for which to get information.
         flowIdentifier: string
         -- The version of the flow for which to get information.
         flowVersion: string
+        -- Controls the scope of data returned. Set to METADATA_ONLY to return only resource metadata. Set to ALL_DATA or omit this field to return the full response.
+        includedData: string
     end
 
     record ListFlowVersionsInput
@@ -2377,6 +2384,8 @@ local record M
     record GetFlowInput
         -- The unique identifier of the flow.
         flowIdentifier: string
+        -- Controls the scope of data returned. Set to METADATA_ONLY to return only resource metadata. Set to ALL_DATA or omit this field to return the full response.
+        includedData: string
     end
 
     -- Details about a cyclic connection detected in the flow.
@@ -4015,6 +4024,8 @@ local record M
         promptIdentifier: string
         -- The version of the prompt about which you want to retrieve information. Omit this field to return information about the working draft of the prompt.
         promptVersion: string
+        -- Controls the scope of data returned. Set to METADATA_ONLY to return only resource metadata. Set to ALL_DATA or omit this field to return the full response.
+        includedData: string
     end
 
     record GetPromptOutput

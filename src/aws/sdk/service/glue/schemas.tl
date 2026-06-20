@@ -1134,10 +1134,10 @@ M.AssociateGlossaryTermsInput = schema.new({
     id = id.from(_N, "AssociateGlossaryTermsRequest"),
     type = "structure",
     members = {
-        Identifier = schema.new({
-            id = id.from(_N, "AssociateGlossaryTermsInput", "Identifier"),
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsInput", "AssetIdentifier"),
             type = "string",
-            name = "Identifier",
+            name = "AssetIdentifier",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -1170,10 +1170,10 @@ M.AssociateGlossaryTermsOutput = schema.new({
     id = id.from(_N, "AssociateGlossaryTermsResponse"),
     type = "structure",
     members = {
-        Identifier = schema.new({
-            id = id.from(_N, "AssociateGlossaryTermsOutput", "Identifier"),
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "AssociateGlossaryTermsOutput", "AssetIdentifier"),
             type = "string",
-            name = "Identifier",
+            name = "AssetIdentifier",
             target_id = prelude.String.id,
         }),
         GlossaryTerms = schema.new({
@@ -16361,14 +16361,32 @@ M.DeleteAttachmentInput = schema.new({
     id = id.from(_N, "DeleteAttachmentRequest"),
     type = "structure",
     members = {
-        Identifier = schema.new({
-            id = id.from(_N, "DeleteAttachmentInput", "Identifier"),
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "DeleteAttachmentInput", "AssetIdentifier"),
             type = "string",
-            name = "Identifier",
+            name = "AssetIdentifier",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IterableFormName = schema.new({
+            id = id.from(_N, "DeleteAttachmentInput", "IterableFormName"),
+            type = "string",
+            name = "IterableFormName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "iterableFormName" },
+            },
+        }),
+        ItemIdentifier = schema.new({
+            id = id.from(_N, "DeleteAttachmentInput", "ItemIdentifier"),
+            type = "string",
+            name = "ItemIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "itemIdentifier" },
             },
         }),
         AttachmentName = schema.new({
@@ -16388,10 +16406,10 @@ M.DeleteAttachmentOutput = schema.new({
     id = id.from(_N, "DeleteAttachmentResponse"),
     type = "structure",
     members = {
-        Identifier = schema.new({
-            id = id.from(_N, "DeleteAttachmentOutput", "Identifier"),
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "DeleteAttachmentOutput", "AssetIdentifier"),
             type = "string",
-            name = "Identifier",
+            name = "AssetIdentifier",
             target_id = prelude.String.id,
         }),
     },
@@ -18793,10 +18811,10 @@ M.DisassociateGlossaryTermsInput = schema.new({
     id = id.from(_N, "DisassociateGlossaryTermsRequest"),
     type = "structure",
     members = {
-        Identifier = schema.new({
-            id = id.from(_N, "DisassociateGlossaryTermsInput", "Identifier"),
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsInput", "AssetIdentifier"),
             type = "string",
-            name = "Identifier",
+            name = "AssetIdentifier",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -18829,10 +18847,10 @@ M.DisassociateGlossaryTermsOutput = schema.new({
     id = id.from(_N, "DisassociateGlossaryTermsResponse"),
     type = "structure",
     members = {
-        Identifier = schema.new({
-            id = id.from(_N, "DisassociateGlossaryTermsOutput", "Identifier"),
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "DisassociateGlossaryTermsOutput", "AssetIdentifier"),
             type = "string",
-            name = "Identifier",
+            name = "AssetIdentifier",
             target_id = prelude.String.id,
         }),
         GlossaryTerms = schema.new({
@@ -29985,10 +30003,10 @@ M.PutAttachmentOutput = schema.new({
     id = id.from(_N, "PutAttachmentResponse"),
     type = "structure",
     members = {
-        AssetId = schema.new({
-            id = id.from(_N, "PutAttachmentOutput", "AssetId"),
+        AssetIdentifier = schema.new({
+            id = id.from(_N, "PutAttachmentOutput", "AssetIdentifier"),
             type = "string",
-            name = "AssetId",
+            name = "AssetIdentifier",
             target_id = prelude.String.id,
         }),
         IterableFormName = schema.new({
@@ -31343,19 +31361,19 @@ M.SearchResultItem = schema.new({
     },
 })
 
-M.SearchOutput = schema.new({
-    id = id.from(_N, "SearchOutput"),
+M.SearchAssetsOutput = schema.new({
+    id = id.from(_N, "SearchAssetsOutput"),
     type = "structure",
     members = {
         Items = schema.new({
-            id = id.from(_N, "SearchOutput", "Items"),
+            id = id.from(_N, "SearchAssetsOutput", "Items"),
             type = "list",
             name = "Items",
             target_id = prelude.Document.id,
             list_member = M.SearchResultItem,
         }),
         NextToken = schema.new({
-            id = id.from(_N, "SearchOutput", "NextToken"),
+            id = id.from(_N, "SearchAssetsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -36459,37 +36477,37 @@ M.JobUpdate = schema.new({
     },
 })
 
-M.SearchInput = schema.new({
-    id = id.from(_N, "SearchInput"),
+M.SearchAssetsInput = schema.new({
+    id = id.from(_N, "SearchAssetsInput"),
     type = "structure",
     members = {
         SearchText = schema.new({
-            id = id.from(_N, "SearchInput", "SearchText"),
+            id = id.from(_N, "SearchAssetsInput", "SearchText"),
             type = "string",
             name = "SearchText",
             target_id = prelude.String.id,
         }),
         MaxResults = schema.new({
-            id = id.from(_N, "SearchInput", "MaxResults"),
+            id = id.from(_N, "SearchAssetsInput", "MaxResults"),
             type = "integer",
             name = "MaxResults",
             target_id = prelude.Integer.id,
         }),
         NextToken = schema.new({
-            id = id.from(_N, "SearchInput", "NextToken"),
+            id = id.from(_N, "SearchAssetsInput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
         }),
         Sort = schema.new({
-            id = id.from(_N, "SearchInput", "Sort"),
+            id = id.from(_N, "SearchAssetsInput", "Sort"),
             type = "structure",
             name = "Sort",
             target_id = id.from(_N, "SearchSort"),
             target = M.SearchSort,
         }),
         FilterClause = schema.new({
-            id = id.from(_N, "SearchInput", "FilterClause"),
+            id = id.from(_N, "SearchAssetsInput", "FilterClause"),
             type = "union",
             name = "FilterClause",
             target_id = id.from(_N, "SearchFilterClause"),
@@ -36609,7 +36627,7 @@ M.AssociateGlossaryTerms = schema.operation({
     input = M.AssociateGlossaryTermsInput,
     output = M.AssociateGlossaryTermsOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/assets/{Identifier}/associate-glossary-terms" },
+        [traits.HTTP] = { method = "POST", path = "/assets/{AssetIdentifier}/associate-glossary-terms" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -37253,7 +37271,7 @@ M.DeleteAttachment = schema.operation({
     input = M.DeleteAttachmentInput,
     output = M.DeleteAttachmentOutput,
     traits = {
-        [traits.HTTP] = { method = "DELETE", path = "/assets/{Identifier}/attachments/{AttachmentName}" },
+        [traits.HTTP] = { method = "DELETE", path = "/assets/{AssetIdentifier}/attachments/{AttachmentName}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -37719,7 +37737,7 @@ M.DisassociateGlossaryTerms = schema.operation({
     input = M.DisassociateGlossaryTermsInput,
     output = M.DisassociateGlossaryTermsOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/assets/{Identifier}/disassociate-glossary-terms" },
+        [traits.HTTP] = { method = "POST", path = "/assets/{AssetIdentifier}/disassociate-glossary-terms" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -39236,12 +39254,12 @@ M.RunStatement = schema.operation({
     },
 })
 
-M.Search = schema.operation({
-    id = id.from("com.amazonaws.glue", "Search"),
-    input = M.SearchInput,
-    output = M.SearchOutput,
+M.SearchAssets = schema.operation({
+    id = id.from("com.amazonaws.glue", "SearchAssets"),
+    input = M.SearchAssetsInput,
+    output = M.SearchAssetsOutput,
     traits = {
-        [traits.HTTP] = { method = "POST", path = "/search" },
+        [traits.HTTP] = { method = "POST", path = "/search-assets" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

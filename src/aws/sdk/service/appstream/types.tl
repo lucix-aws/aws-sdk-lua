@@ -55,6 +55,7 @@ local record M
     enum AgentAction
         "COMPUTER_VISION"
         "COMPUTER_INPUT"
+        "FORWARD_MCP_TOOLS"
     end
 
     enum Permission
@@ -64,10 +65,16 @@ local record M
 
     -- A permission setting for an agent action. Each setting specifies an agent action and whether it is enabled or disabled.
     record AgentAccessSetting
-        -- The agent action to configure. Valid values are COMPUTER_VISION and COMPUTER_INPUT. If you enable COMPUTER_INPUT, you must also enable COMPUTER_VISION.
+        -- The agent action to configure. Valid values are COMPUTER_VISION, COMPUTER_INPUT, and FORWARD_MCP_TOOLS. If you enable COMPUTER_INPUT, you must also enable COMPUTER_VISION.
         AgentAction: string
         -- Whether the agent action is enabled or disabled.
         Permission: string
+    end
+
+    enum UserControlMode
+        "VIEW_ONLY"
+        "VIEW_STOP"
+        "DISABLED"
     end
 
     -- The configuration for agent access on a stack. Agent access enables AI agents to interact with desktop applications during streaming sessions.
@@ -82,6 +89,8 @@ local record M
         ScreenResolution: string
         -- The image format for agent screen captures.
         ScreenImageFormat: string
+        -- The user control mode for agent sessions. This setting determines how users can interact with agent sessions.
+        UserControlMode: string
     end
 
     -- The configuration for updating agent access on a stack. This type supports partial updates, so you only need to specify the fields you want to change.
@@ -96,6 +105,8 @@ local record M
         ScreenResolution: string
         -- The image format for agent screen captures.
         ScreenImageFormat: string
+        -- The user control mode for agent sessions. This setting determines how users can interact with agent sessions.
+        UserControlMode: string
     end
 
     enum AgentSoftwareVersion

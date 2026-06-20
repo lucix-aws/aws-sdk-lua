@@ -2250,12 +2250,34 @@ local record M
         "CHECKBOX"
     end
 
+    -- Information about automatic fail configuration for an evaluation form.
+    record AutomaticFailConfiguration
+        -- The referenceId of the target section for auto failure.
+        TargetSection: string
+    end
+
+    -- Information about the points configuration for an answer option.
+    record QuestionOptionPointsConfiguration
+        -- The point value assigned to the answer option.
+        PointValue: number
+        -- The flag to mark the option as a bonus option.
+        IsBonus: boolean
+    end
+
     -- An option for a multi-select question in an evaluation form.
     record EvaluationFormMultiSelectQuestionOption
         -- Reference identifier for this option.
         RefId: string
         -- Display text for this option.
         Text: string
+        -- The score assigned to the answer option.
+        Score: number
+        -- The flag to mark the option as automatic fail. If an automatic fail answer is provided, the overall evaluation
+        -- gets a score of 0.
+        AutomaticFail: boolean
+        AutomaticFailConfiguration: AutomaticFailConfiguration
+        -- The points configuration for point-based scoring.
+        PointsConfiguration: QuestionOptionPointsConfiguration
     end
 
     -- Properties for a multi-select question in an evaluation form.
@@ -2305,12 +2327,6 @@ local record M
         AnswerSource: EvaluationFormQuestionAutomationAnswerSource
     end
 
-    -- Information about automatic fail configuration for an evaluation form.
-    record AutomaticFailConfiguration
-        -- The referenceId of the target section for auto failure.
-        TargetSection: string
-    end
-
     -- Information about the option range used for scoring in numeric questions.
     record EvaluationFormNumericQuestionOption
         -- The minimum answer value of the range option.
@@ -2324,6 +2340,8 @@ local record M
         AutomaticFail: boolean
         -- A configuration for automatic fail.
         AutomaticFailConfiguration: AutomaticFailConfiguration
+        -- The points configuration for point-based scoring.
+        PointsConfiguration: QuestionOptionPointsConfiguration
     end
 
     -- Information about properties for a numeric question in an evaluation form.
@@ -2391,6 +2409,8 @@ local record M
         AutomaticFail: boolean
         -- Whether automatic fail is configured on a single select question.
         AutomaticFailConfiguration: AutomaticFailConfiguration
+        -- The points configuration for point-based scoring.
+        PointsConfiguration: QuestionOptionPointsConfiguration
     end
 
     -- Information about the options in single select questions.
@@ -2426,6 +2446,41 @@ local record M
         Text: EvaluationFormTextQuestionProperties
         -- Properties for multi-select question types.
         MultiSelect: EvaluationFormMultiSelectQuestionProperties
+    end
+
+    -- Information about the points configuration for a question.
+    record QuestionPointsConfiguration
+        -- The maximum point value.
+        MaxPointValue: number
+        -- The minimum point value.
+        MinPointValue: number
+        -- The flag to mark the question as a bonus question.
+        IsBonus: boolean
+    end
+
+    enum PerformanceCategoryName
+        "NEEDS_IMPROVEMENT"
+        "EXCEEDS_EXPECTATIONS"
+    end
+
+    -- Information about a score threshold for a performance category.
+    record EvaluationFormScoreThreshold
+        -- The performance category name.
+        PerformanceCategory: string
+        -- The minimum score percentage for the performance category.
+        MinScorePercentage: number
+        -- The maximum score percentage for the performance category.
+        MaxScorePercentage: number
+    end
+
+    -- Scoring configuration for a question in an evaluation form.
+    record EvaluationFormQuestionScoringConfiguration
+        -- The points configuration for point-based scoring.
+        PointsConfiguration: QuestionPointsConfiguration
+        -- The flag to exclude the question from scoring.
+        IsExcludedFromScoring: boolean
+        -- The score thresholds for performance categories.
+        ScoreThresholds: {EvaluationFormScoreThreshold}
     end
 
     enum EvaluationFormLanguageCode
@@ -2475,6 +2530,7 @@ local record M
     enum EvaluationFormScoringMode
         "QUESTION_ONLY"
         "SECTION_ONLY"
+        "POINTS_BASED"
     end
 
     enum EvaluationFormScoringStatus
@@ -2488,6 +2544,8 @@ local record M
         Mode: string
         -- The scoring status of the evaluation form.
         Status: string
+        -- The score thresholds for performance categories.
+        ScoreThresholds: {EvaluationFormScoreThreshold}
     end
 
     enum ContactInteractionType
@@ -5335,6 +5393,12 @@ local record M
         AutomaticFail: boolean
         -- Weight applied to this evaluation score.
         AppliedWeight: number
+        -- The points earned for the item.
+        EarnedPoints: number
+        -- The maximum base points possible for the item.
+        MaxBasePoint: number
+        -- The performance category for the score.
+        PerformanceCategory: string
     end
 
     -- Metadata information about a contact evaluation.
@@ -5685,6 +5749,12 @@ local record M
         EvaluationFormId: string
         -- A version of the evaluation form.
         EvaluationFormVersion: number
+    end
+
+    enum EvaluationFormValidationStatus
+        "IN_PROGRESS"
+        "COMPLETED"
+        "FAILED"
     end
 
     enum EvaluationFormVersionStatus
@@ -7422,7 +7492,9 @@ local record M
         Channels: {string}
         -- A list of up to 100 routing profile IDs or ARNs.
         RoutingProfiles: {string}
-        -- A list of expressions as a filter, in which an expression is an object of a step in a routing criteria.
+        -- A list of expressions as a filter, in which an expression is an object of a step in a routing
+        -- criteria. Accepts filter values up to 3,000 characters in length. Filter values are case-sensitive.
+        -- JSON object key order and whitespace may be arbitrary; array order and tree structure must be preserved.
         RoutingStepExpressions: {string}
         -- A list of up to 50 agent status IDs or ARNs.
         AgentStatuses: {string}
@@ -7791,6 +7863,62 @@ local record M
         EffectiveOverrideHoursList: {EffectiveOverrideHours}
         -- The time zone for the hours of operation.
         TimeZone: string
+    end
+
+    record GetEvaluationFormValidationInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The unique identifier for the evaluation form.
+        EvaluationFormId: string
+        -- The version of the evaluation form to retrieve validation results for.
+        EvaluationFormVersion: number
+    end
+
+    -- Information about an evaluation form item affected by a validation finding.
+    record EvaluationFormValidationFindingItem
+        -- The identifier of the evaluation form item (question or section) affected by the finding.
+        RefId: string
+        -- The specific property of the evaluation form item that the finding relates to.
+        Property: string
+    end
+
+    enum EvaluationFormValidationFindingSeverity
+        "WARNING"
+        "ERROR"
+    end
+
+    -- Information about a finding from the evaluation form validation process. Each finding identifies a structural
+    -- issue or quality improvement opportunity for the evaluation form.
+    record EvaluationFormValidationFinding
+        -- A code that identifies the type of validation issue found.
+        IssueCode: string
+        -- A list of evaluation form items affected by this finding.
+        Items: {EvaluationFormValidationFindingItem}
+        -- A description of the validation issue.
+        Description: string
+        -- A suggested fix for the validation issue.
+        Suggestion: string
+        -- The severity of the finding. Valid values: WARNING, ERROR.
+        Severity: string
+    end
+
+    record GetEvaluationFormValidationOutput
+        -- The current status of the validation process. Valid values: IN_PROGRESS,
+        -- COMPLETED, FAILED.
+        Status: string
+        -- The reason the validation failed. This field is populated only when the status is
+        -- FAILED.
+        FailureReason: string
+        -- The unique identifier for the evaluation form.
+        EvaluationFormId: string
+        -- A version of the evaluation form.
+        EvaluationFormVersion: number
+        -- The timestamp when the validation process was started.
+        StartedTime: number
+        -- A list of findings from the validation process. Each finding identifies a structural issue or quality
+        -- improvement for the evaluation form, and may include a suggested fix. This field is populated when the status is
+        -- COMPLETED.
+        Findings: {EvaluationFormValidationFinding}
     end
 
     record GetFederationTokenInput
@@ -8409,9 +8537,9 @@ local record M
         -- connect:Chat, connect:SMS, connect:Telephony, and
         -- connect:WebRTC are valid filter value examples (not exhaustive) for the
         -- contact/segmentAttributes/connect:Subtype filter key.
-        -- ROUTING_STEP_EXPRESSION accepts a filter value up to 3,000 characters in length. This filter
-        -- is case-sensitive and order-sensitive. JSON string fields must be sorted in ascending order, and JSON array order
-        -- must be preserved.
+        -- ROUTING_STEP_EXPRESSION accepts a filter value up to 3,000 characters in length. Filter values
+        -- are case-sensitive. JSON object key order and whitespace may be arbitrary; array order and tree structure must be
+        -- preserved.
         -- TRUE and FALSE are the only valid filter values for the Q_CONNECT_ENABLED filter key.
         -- TRUE includes all contacts that had Connect AI Agents enabled as part of the flow.
         -- FALSE includes all contacts that did not have Connect AI Agents enabled as part of the flow.
@@ -12351,9 +12479,60 @@ local record M
         ComparisonType: string
     end
 
+    enum ContactEvaluationAttributeKey
+        "ContactAgentId"
+    end
+
+    -- The value of a contact evaluation attribute condition.
+    record ContactEvaluationAttributeValue
+        -- A string value for the attribute.
+        StringValue: string
+    end
+
+    enum ContactEvaluationAttributeComparisonType
+        "EXACT"
+    end
+
+    -- An attribute condition for contact evaluation filtering.
+    record ContactEvaluationAttributeCondition
+        -- The key of the attribute.
+        AttributeKey: string
+        -- The value of the attribute.
+        AttributeValue: ContactEvaluationAttributeValue
+        -- The comparison type for the condition.
+        ComparisonType: string
+    end
+
+    -- A list of conditions which would be applied together with an AND condition.
+    record ContactEvaluationAttributeAndCondition
+        -- A list of tag conditions to apply.
+        TagConditions: {TagCondition}
+        -- A list of attribute conditions to apply.
+        AttributeConditions: {ContactEvaluationAttributeCondition}
+    end
+
+    -- An object that can be used to specify tag conditions and attribute conditions inside the
+    -- SearchFilter for contact evaluations. This accepts an OR or AND
+    -- (List of List) input where:
+    -- The top level list specifies conditions that need to be applied with OR operator.
+    -- The inner list specifies conditions that need to be applied with AND operator.
+    record ContactEvaluationAttributeFilter
+        -- A list of conditions which would be applied together with an OR condition.
+        OrConditions: {ContactEvaluationAttributeAndCondition}
+        -- A list of conditions which would be applied together with an AND condition.
+        AndCondition: ContactEvaluationAttributeAndCondition
+        -- A tag condition to apply.
+        TagCondition: TagCondition
+        -- An attribute condition to apply.
+        ContactEvaluationAttributeCondition: ContactEvaluationAttributeCondition
+    end
+
     -- Filters to be applied to search results.
     record EvaluationSearchFilter
+        -- An object that can be used to specify tag conditions.
         AttributeFilter: ControlPlaneAttributeFilter
+        -- An object that can be used to specify tag conditions and attribute conditions for contact evaluations.
+        ContactEvaluationAttributeFilter: ContactEvaluationAttributeFilter
     end
 
     -- Metadata information about an evaluation search.
@@ -12391,6 +12570,12 @@ local record M
         ContactParticipantRole: string
         -- Identifier for a contact participant in the evaluation.
         ContactParticipantId: string
+        -- The points earned for the evaluation.
+        EarnedPoints: number
+        -- The maximum base points possible for the evaluation.
+        MaxBasePoint: number
+        -- The performance category for the evaluation score.
+        PerformanceCategory: string
     end
 
     -- Summary of evaluation obtained from the search operation.
@@ -13827,6 +14012,24 @@ local record M
     record StartEmailContactOutput
         -- The identifier of this contact within the Connect Customer instance.
         ContactId: string
+    end
+
+    record StartEvaluationFormValidationInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The unique identifier for the evaluation form.
+        EvaluationFormId: string
+        -- The version of the evaluation form to validate.
+        EvaluationFormVersion: number
+    end
+
+    record StartEvaluationFormValidationOutput
+        -- The unique identifier for the evaluation form.
+        EvaluationFormId: string
+        -- The Amazon Resource Name (ARN) for the evaluation form resource.
+        EvaluationFormArn: string
+        -- A version of the evaluation form.
+        EvaluationFormVersion: number
     end
 
     record StartOutboundChatContactOutput
@@ -15836,6 +16039,8 @@ local record M
         Enablement: EvaluationFormItemEnablementConfiguration
         -- The scoring weight of the section.
         Weight: number
+        -- The scoring configuration of the question.
+        ScoringConfiguration: EvaluationFormQuestionScoringConfiguration
     end
 
     -- Step defines the list of agents to be routed or route based on the agent requirements such as ProficiencyLevel,
@@ -16558,6 +16763,10 @@ local record M
         Items: {EvaluationFormItem}
         -- The scoring weight of the section.
         Weight: number
+        -- The flag to exclude the section from scoring.
+        IsExcludedFromScoring: boolean
+        -- The score thresholds for performance categories.
+        ScoreThresholds: {EvaluationFormScoreThreshold}
     end
 
     record CreateEvaluationFormInput
@@ -16628,6 +16837,11 @@ local record M
         TargetConfiguration: EvaluationFormTargetConfiguration
         -- Configuration for language settings of this evaluation form.
         LanguageConfiguration: EvaluationFormLanguageConfiguration
+        -- The status of the most recent validation run for this evaluation form. Valid values:
+        -- IN_PROGRESS, COMPLETED, FAILED.
+        LatestValidationStatus: string
+        -- The timestamp when the most recent validation was started for this evaluation form.
+        LastValidationTime: number
     end
 
     -- Information about an evaluation form used in a contact evaluation.

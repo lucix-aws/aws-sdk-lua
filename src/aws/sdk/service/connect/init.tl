@@ -184,6 +184,7 @@ local record Client
     getCurrentMetricData: function(Client, types.GetCurrentMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetCurrentMetricDataOutput>
     getCurrentUserData: function(Client, types.GetCurrentUserDataInput, ? base_client.InvokeOptions): async.Operation<types.GetCurrentUserDataOutput>
     getEffectiveHoursOfOperations: function(Client, types.GetEffectiveHoursOfOperationsInput, ? base_client.InvokeOptions): async.Operation<types.GetEffectiveHoursOfOperationsOutput>
+    getEvaluationFormValidation: function(Client, types.GetEvaluationFormValidationInput, ? base_client.InvokeOptions): async.Operation<types.GetEvaluationFormValidationOutput>
     getFederationToken: function(Client, types.GetFederationTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetFederationTokenOutput>
     getFlowAssociation: function(Client, types.GetFlowAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetFlowAssociationOutput>
     getMetricData: function(Client, types.GetMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.GetMetricDataOutput>
@@ -305,6 +306,7 @@ local record Client
     startContactRecording: function(Client, types.StartContactRecordingInput, ? base_client.InvokeOptions): async.Operation<types.StartContactRecordingOutput>
     startContactStreaming: function(Client, types.StartContactStreamingInput, ? base_client.InvokeOptions): async.Operation<types.StartContactStreamingOutput>
     startEmailContact: function(Client, types.StartEmailContactInput, ? base_client.InvokeOptions): async.Operation<types.StartEmailContactOutput>
+    startEvaluationFormValidation: function(Client, types.StartEvaluationFormValidationInput, ? base_client.InvokeOptions): async.Operation<types.StartEvaluationFormValidationOutput>
     startOutboundChatContact: function(Client, types.StartOutboundChatContactInput, ? base_client.InvokeOptions): async.Operation<types.StartOutboundChatContactOutput>
     startOutboundEmailContact: function(Client, types.StartOutboundEmailContactInput, ? base_client.InvokeOptions): async.Operation<types.StartOutboundEmailContactOutput>
     startOutboundVoiceContact: function(Client, types.StartOutboundVoiceContactInput, ? base_client.InvokeOptions): async.Operation<types.StartOutboundVoiceContactOutput>
@@ -1096,6 +1098,10 @@ function C:getEffectiveHoursOfOperations(input: types.GetEffectiveHoursOfOperati
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEffectiveHoursOfOperations as schema.OperationSchema, input, options) as async.Operation<types.GetEffectiveHoursOfOperationsOutput>
 end
 
+function C:getEvaluationFormValidation(input: types.GetEvaluationFormValidationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEvaluationFormValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEvaluationFormValidation as schema.OperationSchema, input, options) as async.Operation<types.GetEvaluationFormValidationOutput>
+end
+
 function C:getFederationToken(input: types.GetFederationTokenInput, options?: base_client.InvokeOptions): async.Operation<types.GetFederationTokenOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFederationToken as schema.OperationSchema, input, options) as async.Operation<types.GetFederationTokenOutput>
 end
@@ -1578,6 +1584,10 @@ end
 
 function C:startEmailContact(input: types.StartEmailContactInput, options?: base_client.InvokeOptions): async.Operation<types.StartEmailContactOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartEmailContact as schema.OperationSchema, input, options) as async.Operation<types.StartEmailContactOutput>
+end
+
+function C:startEvaluationFormValidation(input: types.StartEvaluationFormValidationInput, options?: base_client.InvokeOptions): async.Operation<types.StartEvaluationFormValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartEvaluationFormValidation as schema.OperationSchema, input, options) as async.Operation<types.StartEvaluationFormValidationOutput>
 end
 
 function C:startOutboundChatContact(input: types.StartOutboundChatContactInput, options?: base_client.InvokeOptions): async.Operation<types.StartOutboundChatContactOutput>

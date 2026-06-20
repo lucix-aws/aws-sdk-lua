@@ -159,6 +159,8 @@ M.EffectiveHoursOfOperationList = schema.new({ type = "list", list_member = M.Ef
 
 M.EffectiveOverrideHoursList = schema.new({ type = "list", list_member = M.EffectiveOverrideHours })
 
+M.EvaluationFormValidationFindingList = schema.new({ type = "list", list_member = M.EvaluationFormValidationFinding })
+
 M.HistoricalMetrics = schema.new({ type = "list", list_member = M.HistoricalMetric })
 
 M.HistoricalMetricResults = schema.new({ type = "list", list_member = M.HistoricalMetricResult })
@@ -391,6 +393,8 @@ M.IpCidrList = schema.new({ type = "list", list_member = prelude.String })
 
 M.PrimaryValuesSet = schema.new({ type = "list", list_member = M.PrimaryValue })
 
+M.EvaluationFormScoreThresholdList = schema.new({ type = "list", list_member = M.EvaluationFormScoreThreshold })
+
 M.EvaluationReviewNotificationRecipientList = schema.new({ type = "list", list_member = M.EvaluationReviewNotificationRecipient })
 
 M.PredefinedAttributeStringValuesList = schema.new({ type = "list", list_member = prelude.String })
@@ -545,6 +549,8 @@ M.OperationalHours = schema.new({ type = "list", list_member = M.OperationalHour
 
 M.OverrideHours = schema.new({ type = "list", list_member = M.OverrideHour })
 
+M.EvaluationFormValidationFindingItemList = schema.new({ type = "list", list_member = M.EvaluationFormValidationFindingItem })
+
 M.HistoricalMetricDataCollections = schema.new({ type = "list", list_member = M.HistoricalMetricData })
 
 M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
@@ -562,6 +568,8 @@ M.ValueList = schema.new({ type = "list", list_member = prelude.String })
 M.ActionSummaries = schema.new({ type = "list", list_member = M.ActionSummary })
 
 M.CommonAttributeOrConditionList = schema.new({ type = "list", list_member = M.CommonAttributeAndCondition })
+
+M.ContactEvaluationAttributeOrConditionList = schema.new({ type = "list", list_member = M.ContactEvaluationAttributeAndCondition })
 
 M.TagOrConditionList = schema.new({ type = "list", list_member = M.TagAndConditionList })
 
@@ -608,6 +616,8 @@ M.RealTimeContactAnalysisMatchedDetails = schema.new({ type = "map", map_key = p
 M.RealTimeContactAnalysisIssuesDetected = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisIssueDetected })
 
 M.RealTimeContactAnalysisAttachments = schema.new({ type = "list", list_member = M.RealTimeContactAnalysisAttachment })
+
+M.ContactEvaluationAttributeConditionList = schema.new({ type = "list", list_member = M.ContactEvaluationAttributeCondition })
 
 M.TranscriptCriteriaList = schema.new({ type = "list", list_member = M.TranscriptCriteria })
 
@@ -5994,6 +6004,45 @@ M.EvaluationFormMultiSelectQuestionAutomation = schema.new({
     },
 })
 
+M.AutomaticFailConfiguration = schema.new({
+    id = id.from(_N, "AutomaticFailConfiguration"),
+    type = "structure",
+    members = {
+        TargetSection = schema.new({
+            id = id.from(_N, "AutomaticFailConfiguration", "TargetSection"),
+            type = "string",
+            name = "TargetSection",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.QuestionOptionPointsConfiguration = schema.new({
+    id = id.from(_N, "QuestionOptionPointsConfiguration"),
+    type = "structure",
+    members = {
+        PointValue = schema.new({
+            id = id.from(_N, "QuestionOptionPointsConfiguration", "PointValue"),
+            type = "integer",
+            name = "PointValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        IsBonus = schema.new({
+            id = id.from(_N, "QuestionOptionPointsConfiguration", "IsBonus"),
+            type = "boolean",
+            name = "IsBonus",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
 M.EvaluationFormMultiSelectQuestionOption = schema.new({
     id = id.from(_N, "EvaluationFormMultiSelectQuestionOption"),
     type = "structure",
@@ -6015,6 +6064,38 @@ M.EvaluationFormMultiSelectQuestionOption = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        Score = schema.new({
+            id = id.from(_N, "EvaluationFormMultiSelectQuestionOption", "Score"),
+            type = "integer",
+            name = "Score",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        AutomaticFail = schema.new({
+            id = id.from(_N, "EvaluationFormMultiSelectQuestionOption", "AutomaticFail"),
+            type = "boolean",
+            name = "AutomaticFail",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        AutomaticFailConfiguration = schema.new({
+            id = id.from(_N, "EvaluationFormMultiSelectQuestionOption", "AutomaticFailConfiguration"),
+            type = "structure",
+            name = "AutomaticFailConfiguration",
+            target_id = id.from(_N, "AutomaticFailConfiguration"),
+            target = M.AutomaticFailConfiguration,
+        }),
+        PointsConfiguration = schema.new({
+            id = id.from(_N, "EvaluationFormMultiSelectQuestionOption", "PointsConfiguration"),
+            type = "structure",
+            name = "PointsConfiguration",
+            target_id = id.from(_N, "QuestionOptionPointsConfiguration"),
+            target = M.QuestionOptionPointsConfiguration,
         }),
     },
 })
@@ -6086,19 +6167,6 @@ M.EvaluationFormNumericQuestionAutomation = schema.new({
     },
 })
 
-M.AutomaticFailConfiguration = schema.new({
-    id = id.from(_N, "AutomaticFailConfiguration"),
-    type = "structure",
-    members = {
-        TargetSection = schema.new({
-            id = id.from(_N, "AutomaticFailConfiguration", "TargetSection"),
-            type = "string",
-            name = "TargetSection",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.EvaluationFormNumericQuestionOption = schema.new({
     id = id.from(_N, "EvaluationFormNumericQuestionOption"),
     type = "structure",
@@ -6147,6 +6215,13 @@ M.EvaluationFormNumericQuestionOption = schema.new({
             name = "AutomaticFailConfiguration",
             target_id = id.from(_N, "AutomaticFailConfiguration"),
             target = M.AutomaticFailConfiguration,
+        }),
+        PointsConfiguration = schema.new({
+            id = id.from(_N, "EvaluationFormNumericQuestionOption", "PointsConfiguration"),
+            type = "structure",
+            name = "PointsConfiguration",
+            target_id = id.from(_N, "QuestionOptionPointsConfiguration"),
+            target = M.QuestionOptionPointsConfiguration,
         }),
     },
 })
@@ -6317,6 +6392,13 @@ M.EvaluationFormSingleSelectQuestionOption = schema.new({
             target_id = id.from(_N, "AutomaticFailConfiguration"),
             target = M.AutomaticFailConfiguration,
         }),
+        PointsConfiguration = schema.new({
+            id = id.from(_N, "EvaluationFormSingleSelectQuestionOption", "PointsConfiguration"),
+            type = "structure",
+            name = "PointsConfiguration",
+            target_id = id.from(_N, "QuestionOptionPointsConfiguration"),
+            target = M.QuestionOptionPointsConfiguration,
+        }),
     },
 })
 
@@ -6409,6 +6491,104 @@ M.EvaluationFormQuestionTypeProperties = schema.new({
             name = "MultiSelect",
             target_id = id.from(_N, "EvaluationFormMultiSelectQuestionProperties"),
             target = M.EvaluationFormMultiSelectQuestionProperties,
+        }),
+    },
+})
+
+M.QuestionPointsConfiguration = schema.new({
+    id = id.from(_N, "QuestionPointsConfiguration"),
+    type = "structure",
+    members = {
+        MaxPointValue = schema.new({
+            id = id.from(_N, "QuestionPointsConfiguration", "MaxPointValue"),
+            type = "integer",
+            name = "MaxPointValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MinPointValue = schema.new({
+            id = id.from(_N, "QuestionPointsConfiguration", "MinPointValue"),
+            type = "integer",
+            name = "MinPointValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        IsBonus = schema.new({
+            id = id.from(_N, "QuestionPointsConfiguration", "IsBonus"),
+            type = "boolean",
+            name = "IsBonus",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
+M.EvaluationFormScoreThreshold = schema.new({
+    id = id.from(_N, "EvaluationFormScoreThreshold"),
+    type = "structure",
+    members = {
+        PerformanceCategory = schema.new({
+            id = id.from(_N, "EvaluationFormScoreThreshold", "PerformanceCategory"),
+            type = "string",
+            name = "PerformanceCategory",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MinScorePercentage = schema.new({
+            id = id.from(_N, "EvaluationFormScoreThreshold", "MinScorePercentage"),
+            type = "double",
+            name = "MinScorePercentage",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MaxScorePercentage = schema.new({
+            id = id.from(_N, "EvaluationFormScoreThreshold", "MaxScorePercentage"),
+            type = "double",
+            name = "MaxScorePercentage",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.EvaluationFormQuestionScoringConfiguration = schema.new({
+    id = id.from(_N, "EvaluationFormQuestionScoringConfiguration"),
+    type = "structure",
+    members = {
+        PointsConfiguration = schema.new({
+            id = id.from(_N, "EvaluationFormQuestionScoringConfiguration", "PointsConfiguration"),
+            type = "structure",
+            name = "PointsConfiguration",
+            target_id = id.from(_N, "QuestionPointsConfiguration"),
+            target = M.QuestionPointsConfiguration,
+        }),
+        IsExcludedFromScoring = schema.new({
+            id = id.from(_N, "EvaluationFormQuestionScoringConfiguration", "IsExcludedFromScoring"),
+            type = "boolean",
+            name = "IsExcludedFromScoring",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        ScoreThresholds = schema.new({
+            id = id.from(_N, "EvaluationFormQuestionScoringConfiguration", "ScoreThresholds"),
+            type = "list",
+            name = "ScoreThresholds",
+            target_id = prelude.Document.id,
+            list_member = M.EvaluationFormScoreThreshold,
         }),
     },
 })
@@ -6512,6 +6692,13 @@ M.EvaluationFormScoringStrategy = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ScoreThresholds = schema.new({
+            id = id.from(_N, "EvaluationFormScoringStrategy", "ScoreThresholds"),
+            type = "list",
+            name = "ScoreThresholds",
+            target_id = prelude.Document.id,
+            list_member = M.EvaluationFormScoreThreshold,
         }),
     },
 })
@@ -13485,6 +13672,30 @@ M.EvaluationScore = schema.new({
             name = "AppliedWeight",
             target_id = prelude.Double.id,
         }),
+        EarnedPoints = schema.new({
+            id = id.from(_N, "EvaluationScore", "EarnedPoints"),
+            type = "integer",
+            name = "EarnedPoints",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        MaxBasePoint = schema.new({
+            id = id.from(_N, "EvaluationScore", "MaxBasePoint"),
+            type = "integer",
+            name = "MaxBasePoint",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        PerformanceCategory = schema.new({
+            id = id.from(_N, "EvaluationScore", "PerformanceCategory"),
+            type = "string",
+            name = "PerformanceCategory",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -19201,6 +19412,166 @@ M.GetEffectiveHoursOfOperationsOutput = schema.new({
             type = "string",
             name = "TimeZone",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetEvaluationFormValidationInput = schema.new({
+    id = id.from(_N, "GetEvaluationFormValidationRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EvaluationFormId = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationInput", "EvaluationFormId"),
+            type = "string",
+            name = "EvaluationFormId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EvaluationFormVersion = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationInput", "EvaluationFormVersion"),
+            type = "integer",
+            name = "EvaluationFormVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_QUERY] = { name = "version" },
+            },
+        }),
+    },
+})
+
+M.EvaluationFormValidationFindingItem = schema.new({
+    id = id.from(_N, "EvaluationFormValidationFindingItem"),
+    type = "structure",
+    members = {
+        RefId = schema.new({
+            id = id.from(_N, "EvaluationFormValidationFindingItem", "RefId"),
+            type = "string",
+            name = "RefId",
+            target_id = prelude.String.id,
+        }),
+        Property = schema.new({
+            id = id.from(_N, "EvaluationFormValidationFindingItem", "Property"),
+            type = "string",
+            name = "Property",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EvaluationFormValidationFinding = schema.new({
+    id = id.from(_N, "EvaluationFormValidationFinding"),
+    type = "structure",
+    members = {
+        IssueCode = schema.new({
+            id = id.from(_N, "EvaluationFormValidationFinding", "IssueCode"),
+            type = "string",
+            name = "IssueCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Items = schema.new({
+            id = id.from(_N, "EvaluationFormValidationFinding", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.EvaluationFormValidationFindingItem,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "EvaluationFormValidationFinding", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Suggestion = schema.new({
+            id = id.from(_N, "EvaluationFormValidationFinding", "Suggestion"),
+            type = "string",
+            name = "Suggestion",
+            target_id = prelude.String.id,
+        }),
+        Severity = schema.new({
+            id = id.from(_N, "EvaluationFormValidationFinding", "Severity"),
+            type = "string",
+            name = "Severity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetEvaluationFormValidationOutput = schema.new({
+    id = id.from(_N, "GetEvaluationFormValidationResponse"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationOutput", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        EvaluationFormId = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationOutput", "EvaluationFormId"),
+            type = "string",
+            name = "EvaluationFormId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EvaluationFormVersion = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationOutput", "EvaluationFormVersion"),
+            type = "integer",
+            name = "EvaluationFormVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        StartedTime = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationOutput", "StartedTime"),
+            type = "timestamp",
+            name = "StartedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Findings = schema.new({
+            id = id.from(_N, "GetEvaluationFormValidationOutput", "Findings"),
+            type = "list",
+            name = "Findings",
+            target_id = prelude.Document.id,
+            list_member = M.EvaluationFormValidationFinding,
         }),
     },
 })
@@ -28340,6 +28711,101 @@ M.NumberCondition = schema.new({
     },
 })
 
+M.ContactEvaluationAttributeValue = schema.new({
+    id = id.from(_N, "ContactEvaluationAttributeValue"),
+    type = "structure",
+    members = {
+        StringValue = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeValue", "StringValue"),
+            type = "string",
+            name = "StringValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContactEvaluationAttributeCondition = schema.new({
+    id = id.from(_N, "ContactEvaluationAttributeCondition"),
+    type = "structure",
+    members = {
+        AttributeKey = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeCondition", "AttributeKey"),
+            type = "string",
+            name = "AttributeKey",
+            target_id = prelude.String.id,
+        }),
+        AttributeValue = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeCondition", "AttributeValue"),
+            type = "structure",
+            name = "AttributeValue",
+            target_id = id.from(_N, "ContactEvaluationAttributeValue"),
+            target = M.ContactEvaluationAttributeValue,
+        }),
+        ComparisonType = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeCondition", "ComparisonType"),
+            type = "string",
+            name = "ComparisonType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContactEvaluationAttributeAndCondition = schema.new({
+    id = id.from(_N, "ContactEvaluationAttributeAndCondition"),
+    type = "structure",
+    members = {
+        TagConditions = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeAndCondition", "TagConditions"),
+            type = "list",
+            name = "TagConditions",
+            target_id = prelude.Document.id,
+            list_member = M.TagCondition,
+        }),
+        AttributeConditions = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeAndCondition", "AttributeConditions"),
+            type = "list",
+            name = "AttributeConditions",
+            target_id = prelude.Document.id,
+            list_member = M.ContactEvaluationAttributeCondition,
+        }),
+    },
+})
+
+M.ContactEvaluationAttributeFilter = schema.new({
+    id = id.from(_N, "ContactEvaluationAttributeFilter"),
+    type = "structure",
+    members = {
+        OrConditions = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeFilter", "OrConditions"),
+            type = "list",
+            name = "OrConditions",
+            target_id = prelude.Document.id,
+            list_member = M.ContactEvaluationAttributeAndCondition,
+        }),
+        AndCondition = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeFilter", "AndCondition"),
+            type = "structure",
+            name = "AndCondition",
+            target_id = id.from(_N, "ContactEvaluationAttributeAndCondition"),
+            target = M.ContactEvaluationAttributeAndCondition,
+        }),
+        TagCondition = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeFilter", "TagCondition"),
+            type = "structure",
+            name = "TagCondition",
+            target_id = id.from(_N, "TagCondition"),
+            target = M.TagCondition,
+        }),
+        ContactEvaluationAttributeCondition = schema.new({
+            id = id.from(_N, "ContactEvaluationAttributeFilter", "ContactEvaluationAttributeCondition"),
+            type = "structure",
+            name = "ContactEvaluationAttributeCondition",
+            target_id = id.from(_N, "ContactEvaluationAttributeCondition"),
+            target = M.ContactEvaluationAttributeCondition,
+        }),
+    },
+})
+
 M.EvaluationSearchFilter = schema.new({
     id = id.from(_N, "EvaluationSearchFilter"),
     type = "structure",
@@ -28350,6 +28816,13 @@ M.EvaluationSearchFilter = schema.new({
             name = "AttributeFilter",
             target_id = id.from(_N, "ControlPlaneAttributeFilter"),
             target = M.ControlPlaneAttributeFilter,
+        }),
+        ContactEvaluationAttributeFilter = schema.new({
+            id = id.from(_N, "EvaluationSearchFilter", "ContactEvaluationAttributeFilter"),
+            type = "structure",
+            name = "ContactEvaluationAttributeFilter",
+            target_id = id.from(_N, "ContactEvaluationAttributeFilter"),
+            target = M.ContactEvaluationAttributeFilter,
         }),
     },
 })
@@ -28470,6 +28943,30 @@ M.EvaluationSearchMetadata = schema.new({
             id = id.from(_N, "EvaluationSearchMetadata", "ContactParticipantId"),
             type = "string",
             name = "ContactParticipantId",
+            target_id = prelude.String.id,
+        }),
+        EarnedPoints = schema.new({
+            id = id.from(_N, "EvaluationSearchMetadata", "EarnedPoints"),
+            type = "integer",
+            name = "EarnedPoints",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        MaxBasePoint = schema.new({
+            id = id.from(_N, "EvaluationSearchMetadata", "MaxBasePoint"),
+            type = "integer",
+            name = "MaxBasePoint",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        PerformanceCategory = schema.new({
+            id = id.from(_N, "EvaluationSearchMetadata", "PerformanceCategory"),
+            type = "string",
+            name = "PerformanceCategory",
             target_id = prelude.String.id,
         }),
     },
@@ -32087,6 +32584,78 @@ M.StartEmailContactOutput = schema.new({
             type = "string",
             name = "ContactId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartEvaluationFormValidationInput = schema.new({
+    id = id.from(_N, "StartEvaluationFormValidationRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "StartEvaluationFormValidationInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EvaluationFormId = schema.new({
+            id = id.from(_N, "StartEvaluationFormValidationInput", "EvaluationFormId"),
+            type = "string",
+            name = "EvaluationFormId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EvaluationFormVersion = schema.new({
+            id = id.from(_N, "StartEvaluationFormValidationInput", "EvaluationFormVersion"),
+            type = "integer",
+            name = "EvaluationFormVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.StartEvaluationFormValidationOutput = schema.new({
+    id = id.from(_N, "StartEvaluationFormValidationResponse"),
+    type = "structure",
+    members = {
+        EvaluationFormId = schema.new({
+            id = id.from(_N, "StartEvaluationFormValidationOutput", "EvaluationFormId"),
+            type = "string",
+            name = "EvaluationFormId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EvaluationFormArn = schema.new({
+            id = id.from(_N, "StartEvaluationFormValidationOutput", "EvaluationFormArn"),
+            type = "string",
+            name = "EvaluationFormArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EvaluationFormVersion = schema.new({
+            id = id.from(_N, "StartEvaluationFormValidationOutput", "EvaluationFormVersion"),
+            type = "integer",
+            name = "EvaluationFormVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
         }),
     },
 })
@@ -37780,6 +38349,13 @@ M.EvaluationFormQuestion = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        ScoringConfiguration = schema.new({
+            id = id.from(_N, "EvaluationFormQuestion", "ScoringConfiguration"),
+            type = "structure",
+            name = "ScoringConfiguration",
+            target_id = id.from(_N, "EvaluationFormQuestionScoringConfiguration"),
+            target = M.EvaluationFormQuestionScoringConfiguration,
+        }),
     },
 })
 
@@ -39519,6 +40095,22 @@ M.EvaluationFormSection = schema.new({
                 [traits.DEFAULT] = { value = 0 },
             },
         }),
+        IsExcludedFromScoring = schema.new({
+            id = id.from(_N, "EvaluationFormSection", "IsExcludedFromScoring"),
+            type = "boolean",
+            name = "IsExcludedFromScoring",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        ScoreThresholds = schema.new({
+            id = id.from(_N, "EvaluationFormSection", "ScoreThresholds"),
+            type = "list",
+            name = "ScoreThresholds",
+            target_id = prelude.Document.id,
+            list_member = M.EvaluationFormScoreThreshold,
+        }),
     },
 })
 
@@ -39779,6 +40371,18 @@ M.EvaluationForm = schema.new({
             name = "LanguageConfiguration",
             target_id = id.from(_N, "EvaluationFormLanguageConfiguration"),
             target = M.EvaluationFormLanguageConfiguration,
+        }),
+        LatestValidationStatus = schema.new({
+            id = id.from(_N, "EvaluationForm", "LatestValidationStatus"),
+            type = "string",
+            name = "LatestValidationStatus",
+            target_id = prelude.String.id,
+        }),
+        LastValidationTime = schema.new({
+            id = id.from(_N, "EvaluationForm", "LastValidationTime"),
+            type = "timestamp",
+            name = "LastValidationTime",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -42592,6 +43196,18 @@ M.GetEffectiveHoursOfOperations = schema.operation({
     },
 })
 
+M.GetEvaluationFormValidation = schema.operation({
+    id = id.from("com.amazonaws.connect", "GetEvaluationFormValidation"),
+    input = M.GetEvaluationFormValidationInput,
+    output = M.GetEvaluationFormValidationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/validation-results" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetFederationToken = schema.operation({
     id = id.from("com.amazonaws.connect", "GetFederationToken"),
     input = M.GetFederationTokenInput,
@@ -44038,6 +44654,18 @@ M.StartEmailContact = schema.operation({
     output = M.StartEmailContactOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/contact/email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartEvaluationFormValidation = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartEvaluationFormValidation"),
+    input = M.StartEvaluationFormValidationInput,
+    output = M.StartEvaluationFormValidationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/evaluation-forms/{InstanceId}/{EvaluationFormId}/validate" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

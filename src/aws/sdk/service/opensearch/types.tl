@@ -705,6 +705,43 @@ local record M
         DomainPackageDetailsList: {DomainPackageDetails}
     end
 
+    -- Configuration for creating a new workspace when attaching a data source to an OpenSearch application. The workspace is created after the data source is successfully attached.
+    record WorkspaceConfigurationInput
+        -- The name of the workspace to create. Must be between 1 and 40 characters and can contain alphanumeric characters, parentheses, brackets, hyphens, underscores, and spaces.
+        name: string
+        -- The type of workspace to create, which determines the use-case features enabled for the workspace. Valid values are OBSERVABILITY, SECURITY_ANALYTICS, and SEARCH.
+        workspaceType: string
+    end
+
+    record AttachDataSourceInput
+        -- The unique identifier or name of the OpenSearch application to attach the data source to. This is the same identifier used with UpdateApplication, GetApplication, and DeleteApplication.
+        id: string
+        dataSourceArn: string
+        -- The identifier of an existing workspace to update with the new data source. Mutually exclusive with workspaceConfiguration.
+        workspaceId: string
+        -- Configuration for creating a new workspace during the attachment. If specified, a workspace is created and linked to the data source after the attachment completes. Mutually exclusive with workspaceId.
+        workspaceConfiguration: WorkspaceConfigurationInput
+        -- A unique, case-sensitive identifier to ensure idempotency of the request. If you retry a request with the same client token and the same parameters, the retry succeeds without performing any further actions.
+        clientToken: string
+    end
+
+    enum DataSourceAttachmentStatus
+        "PENDING"
+        "ATTACHED"
+        "FAILED"
+    end
+
+    record AttachDataSourceOutput
+        -- The unique identifier assigned to the data source attachment.
+        attachmentId: string
+        -- The unique identifier of the OpenSearch application.
+        id: string
+        arn: string
+        dataSourceArn: string
+        -- The status of the data source attachment. Valid values are PENDING (waiting for resources to become active), ATTACHED (successfully attached), and FAILED (attachment timed out or encountered a non-retryable error).
+        status: string
+    end
+
     enum AWSServicePrincipal
         "application.opensearchservice.amazonaws.com"
     end
@@ -2224,6 +2261,23 @@ local record M
         status: string
     end
 
+    record DescribeDataSourceAttachmentInput
+        -- The unique identifier or name of the OpenSearch application.
+        id: string
+        dataSourceArn: string
+    end
+
+    record DescribeDataSourceAttachmentOutput
+        -- The unique identifier assigned to the data source attachment.
+        attachmentId: string
+        -- The unique identifier of the OpenSearch application.
+        id: string
+        arn: string
+        dataSourceArn: string
+        -- The status of the data source attachment. Valid values are PENDING, ATTACHED, and FAILED.
+        status: string
+    end
+
     -- Container for the parameters to the DescribeDomain operation.
     record DescribeDomainInput
         -- The name of the domain that you want information about.
@@ -3257,6 +3311,19 @@ local record M
         VpcEndpointErrors: {VpcEndpointError}
     end
 
+    record DetachDataSourceInput
+        -- The unique identifier or name of the OpenSearch application to detach the data source from.
+        id: string
+        dataSourceArn: string
+    end
+
+    record DetachDataSourceOutput
+        -- The unique identifier of the OpenSearch application.
+        id: string
+        arn: string
+        dataSourceArn: string
+    end
+
     -- Container for the request parameters to the DissociatePackage
     -- operation.
     record DissociatePackageInput
@@ -3662,6 +3729,31 @@ local record M
         -- Summarizes OpenSearch applications, including ID, ARN, name, endpoint, status,
         -- creation time, and last update time.
         ApplicationSummaries: {ApplicationSummary}
+        nextToken: string
+    end
+
+    record ListDataSourceAttachmentsInput
+        -- The unique identifier or name of the OpenSearch application to list attachments for.
+        id: string
+        -- The pagination token from a previous call to retrieve the next set of results.
+        nextToken: string
+        -- The maximum number of results to return per page. The default is 50.
+        maxResults: number
+    end
+
+    -- Summary information about a data source attachment, including its identifier, data source ARN, and current status.
+    record DataSourceAttachmentSummary
+        -- The unique identifier assigned to the data source attachment.
+        attachmentId: string
+        dataSourceArn: string
+        -- The current status of the data source attachment. Valid values are PENDING, ATTACHED, and FAILED.
+        status: string
+    end
+
+    record ListDataSourceAttachmentsOutput
+        -- A list of data source attachment summaries for the specified application.
+        attachments: {DataSourceAttachmentSummary}
+        -- The pagination token to use in a subsequent call to retrieve the next set of results.
         nextToken: string
     end
 

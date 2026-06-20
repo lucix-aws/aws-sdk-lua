@@ -77,6 +77,8 @@ M.ApplicationStatuses = schema.new({ type = "list", list_member = prelude.String
 
 M.ApplicationSummaries = schema.new({ type = "list", list_member = M.ApplicationSummary })
 
+M.DataSourceAttachmentSummaryList = schema.new({ type = "list", list_member = M.DataSourceAttachmentSummary })
+
 M.DataSourceList = schema.new({ type = "list", list_member = M.DataSourceDetails })
 
 M.DirectQueryDataSourceList = schema.new({ type = "list", list_member = M.DirectQueryDataSource })
@@ -1611,6 +1613,113 @@ M.AssociatePackagesOutput = schema.new({
             name = "DomainPackageDetailsList",
             target_id = prelude.Document.id,
             list_member = M.DomainPackageDetails,
+        }),
+    },
+})
+
+M.WorkspaceConfigurationInput = schema.new({
+    id = id.from(_N, "WorkspaceConfigurationInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "WorkspaceConfigurationInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        workspaceType = schema.new({
+            id = id.from(_N, "WorkspaceConfigurationInput", "workspaceType"),
+            type = "string",
+            name = "workspaceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AttachDataSourceInput = schema.new({
+    id = id.from(_N, "AttachDataSourceRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "AttachDataSourceInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        dataSourceArn = schema.new({
+            id = id.from(_N, "AttachDataSourceInput", "dataSourceArn"),
+            type = "string",
+            name = "dataSourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        workspaceId = schema.new({
+            id = id.from(_N, "AttachDataSourceInput", "workspaceId"),
+            type = "string",
+            name = "workspaceId",
+            target_id = prelude.String.id,
+        }),
+        workspaceConfiguration = schema.new({
+            id = id.from(_N, "AttachDataSourceInput", "workspaceConfiguration"),
+            type = "structure",
+            name = "workspaceConfiguration",
+            target_id = id.from(_N, "WorkspaceConfigurationInput"),
+            target = M.WorkspaceConfigurationInput,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "AttachDataSourceInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AttachDataSourceOutput = schema.new({
+    id = id.from(_N, "AttachDataSourceResponse"),
+    type = "structure",
+    members = {
+        attachmentId = schema.new({
+            id = id.from(_N, "AttachDataSourceOutput", "attachmentId"),
+            type = "string",
+            name = "attachmentId",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "AttachDataSourceOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "AttachDataSourceOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        dataSourceArn = schema.new({
+            id = id.from(_N, "AttachDataSourceOutput", "dataSourceArn"),
+            type = "string",
+            name = "dataSourceArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "AttachDataSourceOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -4421,6 +4530,69 @@ M.DeregisterCapabilityOutput = schema.new({
     },
 })
 
+M.DescribeDataSourceAttachmentInput = schema.new({
+    id = id.from(_N, "DescribeDataSourceAttachmentRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DescribeDataSourceAttachmentInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        dataSourceArn = schema.new({
+            id = id.from(_N, "DescribeDataSourceAttachmentInput", "dataSourceArn"),
+            type = "string",
+            name = "dataSourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeDataSourceAttachmentOutput = schema.new({
+    id = id.from(_N, "DescribeDataSourceAttachmentResponse"),
+    type = "structure",
+    members = {
+        attachmentId = schema.new({
+            id = id.from(_N, "DescribeDataSourceAttachmentOutput", "attachmentId"),
+            type = "string",
+            name = "attachmentId",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "DescribeDataSourceAttachmentOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "DescribeDataSourceAttachmentOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        dataSourceArn = schema.new({
+            id = id.from(_N, "DescribeDataSourceAttachmentOutput", "dataSourceArn"),
+            type = "string",
+            name = "dataSourceArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DescribeDataSourceAttachmentOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribeDomainInput = schema.new({
     id = id.from(_N, "DescribeDomainRequest"),
     type = "structure",
@@ -6701,6 +6873,57 @@ M.DescribeVpcEndpointsOutput = schema.new({
     },
 })
 
+M.DetachDataSourceInput = schema.new({
+    id = id.from(_N, "DetachDataSourceRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DetachDataSourceInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        dataSourceArn = schema.new({
+            id = id.from(_N, "DetachDataSourceInput", "dataSourceArn"),
+            type = "string",
+            name = "dataSourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DetachDataSourceOutput = schema.new({
+    id = id.from(_N, "DetachDataSourceResponse"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DetachDataSourceOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "DetachDataSourceOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+        }),
+        dataSourceArn = schema.new({
+            id = id.from(_N, "DetachDataSourceOutput", "dataSourceArn"),
+            type = "string",
+            name = "dataSourceArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DissociatePackageInput = schema.new({
     id = id.from(_N, "DissociatePackageRequest"),
     type = "structure",
@@ -7637,6 +7860,83 @@ M.ListApplicationsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListApplicationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDataSourceAttachmentsInput = schema.new({
+    id = id.from(_N, "ListDataSourceAttachmentsRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "ListDataSourceAttachmentsInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDataSourceAttachmentsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDataSourceAttachmentsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.DataSourceAttachmentSummary = schema.new({
+    id = id.from(_N, "DataSourceAttachmentSummary"),
+    type = "structure",
+    members = {
+        attachmentId = schema.new({
+            id = id.from(_N, "DataSourceAttachmentSummary", "attachmentId"),
+            type = "string",
+            name = "attachmentId",
+            target_id = prelude.String.id,
+        }),
+        dataSourceArn = schema.new({
+            id = id.from(_N, "DataSourceAttachmentSummary", "dataSourceArn"),
+            type = "string",
+            name = "dataSourceArn",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "DataSourceAttachmentSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDataSourceAttachmentsOutput = schema.new({
+    id = id.from(_N, "ListDataSourceAttachmentsResponse"),
+    type = "structure",
+    members = {
+        attachments = schema.new({
+            id = id.from(_N, "ListDataSourceAttachmentsOutput", "attachments"),
+            type = "list",
+            name = "attachments",
+            target_id = prelude.Document.id,
+            list_member = M.DataSourceAttachmentSummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDataSourceAttachmentsOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -10069,6 +10369,18 @@ M.AssociatePackages = schema.operation({
     },
 })
 
+M.AttachDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "AttachDataSource"),
+    input = M.AttachDataSourceInput,
+    output = M.AttachDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/application/{id}/attachDataSource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AuthorizeVpcEndpointAccess = schema.operation({
     id = id.from("com.amazonaws.opensearch", "AuthorizeVpcEndpointAccess"),
     input = M.AuthorizeVpcEndpointAccessInput,
@@ -10297,6 +10609,18 @@ M.DeregisterCapability = schema.operation({
     },
 })
 
+M.DescribeDataSourceAttachment = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DescribeDataSourceAttachment"),
+    input = M.DescribeDataSourceAttachmentInput,
+    output = M.DescribeDataSourceAttachmentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/application/{id}/describeDataSourceAttachment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeDomain = schema.operation({
     id = id.from("com.amazonaws.opensearch", "DescribeDomain"),
     input = M.DescribeDomainInput,
@@ -10489,6 +10813,18 @@ M.DescribeVpcEndpoints = schema.operation({
     },
 })
 
+M.DetachDataSource = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "DetachDataSource"),
+    input = M.DetachDataSourceInput,
+    output = M.DetachDataSourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/application/{id}/detachDataSource" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DissociatePackage = schema.operation({
     id = id.from("com.amazonaws.opensearch", "DissociatePackage"),
     input = M.DissociatePackageInput,
@@ -10651,6 +10987,18 @@ M.ListApplications = schema.operation({
     output = M.ListApplicationsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/list-applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataSourceAttachments = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "ListDataSourceAttachments"),
+    input = M.ListDataSourceAttachmentsInput,
+    output = M.ListDataSourceAttachmentsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/application/{id}/listDataSourceAttachments" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

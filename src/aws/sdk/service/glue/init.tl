@@ -255,7 +255,7 @@ local record Client
     resetJobBookmark: function(Client, types.ResetJobBookmarkInput, ? base_client.InvokeOptions): async.Operation<types.ResetJobBookmarkOutput>
     resumeWorkflowRun: function(Client, types.ResumeWorkflowRunInput, ? base_client.InvokeOptions): async.Operation<types.ResumeWorkflowRunOutput>
     runStatement: function(Client, types.RunStatementInput, ? base_client.InvokeOptions): async.Operation<types.RunStatementOutput>
-    search: function(Client, types.SearchInput, ? base_client.InvokeOptions): async.Operation<types.SearchOutput>
+    searchAssets: function(Client, types.SearchAssetsInput, ? base_client.InvokeOptions): async.Operation<types.SearchAssetsOutput>
     searchTables: function(Client, types.SearchTablesInput, ? base_client.InvokeOptions): async.Operation<types.SearchTablesOutput>
     startBlueprintRun: function(Client, types.StartBlueprintRunInput, ? base_client.InvokeOptions): async.Operation<types.StartBlueprintRunOutput>
     startColumnStatisticsTaskRun: function(Client, types.StartColumnStatisticsTaskRunInput, ? base_client.InvokeOptions): async.Operation<types.StartColumnStatisticsTaskRunOutput>
@@ -1305,8 +1305,8 @@ function C:runStatement(input: types.RunStatementInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RunStatement as schema.OperationSchema, input, options) as async.Operation<types.RunStatementOutput>
 end
 
-function C:search(input: types.SearchInput, options?: base_client.InvokeOptions): async.Operation<types.SearchOutput>
-    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Search as schema.OperationSchema, input, options) as async.Operation<types.SearchOutput>
+function C:searchAssets(input: types.SearchAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchAssetsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchAssets as schema.OperationSchema, input, options) as async.Operation<types.SearchAssetsOutput>
 end
 
 function C:searchTables(input: types.SearchTablesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTablesOutput>

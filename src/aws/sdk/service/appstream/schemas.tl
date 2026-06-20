@@ -280,6 +280,12 @@ M.AgentAccessConfig = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        UserControlMode = schema.new({
+            id = id.from(_N, "AgentAccessConfig", "UserControlMode"),
+            type = "string",
+            name = "UserControlMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -316,6 +322,12 @@ M.AgentAccessConfigForUpdate = schema.new({
             id = id.from(_N, "AgentAccessConfigForUpdate", "ScreenImageFormat"),
             type = "string",
             name = "ScreenImageFormat",
+            target_id = prelude.String.id,
+        }),
+        UserControlMode = schema.new({
+            id = id.from(_N, "AgentAccessConfigForUpdate", "UserControlMode"),
+            type = "string",
+            name = "UserControlMode",
             target_id = prelude.String.id,
         }),
     },

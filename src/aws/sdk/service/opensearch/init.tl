@@ -24,6 +24,7 @@ local record Client
     addTags: function(Client, types.AddTagsInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsOutput>
     associatePackage: function(Client, types.AssociatePackageInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePackageOutput>
     associatePackages: function(Client, types.AssociatePackagesInput, ? base_client.InvokeOptions): async.Operation<types.AssociatePackagesOutput>
+    attachDataSource: function(Client, types.AttachDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.AttachDataSourceOutput>
     authorizeVpcEndpointAccess: function(Client, types.AuthorizeVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeVpcEndpointAccessOutput>
     cancelDomainConfigChange: function(Client, types.CancelDomainConfigChangeInput, ? base_client.InvokeOptions): async.Operation<types.CancelDomainConfigChangeOutput>
     cancelServiceSoftwareUpdate: function(Client, types.CancelServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.CancelServiceSoftwareUpdateOutput>
@@ -43,6 +44,7 @@ local record Client
     deletePackage: function(Client, types.DeletePackageInput, ? base_client.InvokeOptions): async.Operation<types.DeletePackageOutput>
     deleteVpcEndpoint: function(Client, types.DeleteVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointOutput>
     deregisterCapability: function(Client, types.DeregisterCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterCapabilityOutput>
+    describeDataSourceAttachment: function(Client, types.DescribeDataSourceAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataSourceAttachmentOutput>
     describeDomain: function(Client, types.DescribeDomainInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainOutput>
     describeDomainAutoTunes: function(Client, types.DescribeDomainAutoTunesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainAutoTunesOutput>
     describeDomainChangeProgress: function(Client, types.DescribeDomainChangeProgressInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDomainChangeProgressOutput>
@@ -59,6 +61,7 @@ local record Client
     describeReservedInstanceOfferings: function(Client, types.DescribeReservedInstanceOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstanceOfferingsOutput>
     describeReservedInstances: function(Client, types.DescribeReservedInstancesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedInstancesOutput>
     describeVpcEndpoints: function(Client, types.DescribeVpcEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVpcEndpointsOutput>
+    detachDataSource: function(Client, types.DetachDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.DetachDataSourceOutput>
     dissociatePackage: function(Client, types.DissociatePackageInput, ? base_client.InvokeOptions): async.Operation<types.DissociatePackageOutput>
     dissociatePackages: function(Client, types.DissociatePackagesInput, ? base_client.InvokeOptions): async.Operation<types.DissociatePackagesOutput>
     getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
@@ -73,6 +76,7 @@ local record Client
     getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeHistoryOutput>
     getUpgradeStatus: function(Client, types.GetUpgradeStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeStatusOutput>
     listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listDataSourceAttachments: function(Client, types.ListDataSourceAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourceAttachmentsOutput>
     listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
     listDirectQueryDataSources: function(Client, types.ListDirectQueryDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDirectQueryDataSourcesOutput>
     listDomainMaintenances: function(Client, types.ListDomainMaintenancesInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainMaintenancesOutput>
@@ -174,6 +178,10 @@ function C:associatePackages(input: types.AssociatePackagesInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociatePackages as schema.OperationSchema, input, options) as async.Operation<types.AssociatePackagesOutput>
 end
 
+function C:attachDataSource(input: types.AttachDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.AttachDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachDataSource as schema.OperationSchema, input, options) as async.Operation<types.AttachDataSourceOutput>
+end
+
 function C:authorizeVpcEndpointAccess(input: types.AuthorizeVpcEndpointAccessInput, options?: base_client.InvokeOptions): async.Operation<types.AuthorizeVpcEndpointAccessOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AuthorizeVpcEndpointAccess as schema.OperationSchema, input, options) as async.Operation<types.AuthorizeVpcEndpointAccessOutput>
 end
@@ -250,6 +258,10 @@ function C:deregisterCapability(input: types.DeregisterCapabilityInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeregisterCapability as schema.OperationSchema, input, options) as async.Operation<types.DeregisterCapabilityOutput>
 end
 
+function C:describeDataSourceAttachment(input: types.DescribeDataSourceAttachmentInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDataSourceAttachmentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataSourceAttachment as schema.OperationSchema, input, options) as async.Operation<types.DescribeDataSourceAttachmentOutput>
+end
+
 function C:describeDomain(input: types.DescribeDomainInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDomainOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDomain as schema.OperationSchema, input, options) as async.Operation<types.DescribeDomainOutput>
 end
@@ -314,6 +326,10 @@ function C:describeVpcEndpoints(input: types.DescribeVpcEndpointsInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeVpcEndpoints as schema.OperationSchema, input, options) as async.Operation<types.DescribeVpcEndpointsOutput>
 end
 
+function C:detachDataSource(input: types.DetachDataSourceInput, options?: base_client.InvokeOptions): async.Operation<types.DetachDataSourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DetachDataSource as schema.OperationSchema, input, options) as async.Operation<types.DetachDataSourceOutput>
+end
+
 function C:dissociatePackage(input: types.DissociatePackageInput, options?: base_client.InvokeOptions): async.Operation<types.DissociatePackageOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DissociatePackage as schema.OperationSchema, input, options) as async.Operation<types.DissociatePackageOutput>
 end
@@ -368,6 +384,10 @@ end
 
 function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
+end
+
+function C:listDataSourceAttachments(input: types.ListDataSourceAttachmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourceAttachmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataSourceAttachments as schema.OperationSchema, input, options) as async.Operation<types.ListDataSourceAttachmentsOutput>
 end
 
 function C:listDataSources(input: types.ListDataSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>

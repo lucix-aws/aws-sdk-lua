@@ -257,7 +257,7 @@ local record M
 
     record AssociateGlossaryTermsInput
         -- The unique identifier of the asset to associate glossary terms with.
-        Identifier: string
+        AssetIdentifier: string
         -- The list of glossary term identifiers to associate with the asset.
         GlossaryTermIdentifiers: {string}
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
@@ -266,7 +266,7 @@ local record M
 
     record AssociateGlossaryTermsOutput
         -- The unique identifier of the asset.
-        Identifier: string
+        AssetIdentifier: string
         -- The glossary terms now associated with the asset.
         GlossaryTerms: {string}
     end
@@ -6468,14 +6468,18 @@ local record M
 
     record DeleteAttachmentInput
         -- The unique identifier of the asset from which to delete the attachment.
-        Identifier: string
+        AssetIdentifier: string
+        -- The name of the iterable form. When specified along with itemIdentifier, the attachment is deleted from an item within the iterable form rather than from the asset itself.
+        IterableFormName: string
+        -- The identifier of the item within the iterable form. Required when iterableFormName is specified.
+        ItemIdentifier: string
         -- The name of the attachment to delete.
         AttachmentName: string
     end
 
     record DeleteAttachmentOutput
         -- The unique identifier of the asset.
-        Identifier: string
+        AssetIdentifier: string
     end
 
     record DeleteBlueprintInput
@@ -7349,7 +7353,7 @@ local record M
 
     record DisassociateGlossaryTermsInput
         -- The unique identifier of the asset to disassociate glossary terms from.
-        Identifier: string
+        AssetIdentifier: string
         -- The list of glossary term identifiers to disassociate from the asset.
         GlossaryTermIdentifiers: {string}
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
@@ -7358,7 +7362,7 @@ local record M
 
     record DisassociateGlossaryTermsOutput
         -- The unique identifier of the asset.
-        Identifier: string
+        AssetIdentifier: string
         -- The remaining glossary terms associated with the asset.
         GlossaryTerms: {string}
     end
@@ -11610,7 +11614,7 @@ local record M
 
     record PutAttachmentOutput
         -- The unique identifier of the asset.
-        AssetId: string
+        AssetIdentifier: string
         -- The name of the iterable form, if the attachment targets an item.
         IterableFormName: string
         -- The identifier of the item within the iterable form, if applicable.
@@ -12111,7 +12115,7 @@ local record M
         AssetTypeId: string
     end
 
-    record SearchOutput
+    record SearchAssetsOutput
         -- The list of assets matching the search criteria.
         Items: {SearchResultItem}
         -- A continuation token, present if the current segment is not the last.
@@ -14179,7 +14183,7 @@ local record M
         MaintenanceWindow: string
     end
 
-    record SearchInput
+    record SearchAssetsInput
         -- The text to search for. At least one of searchText or filterClause must be provided.
         SearchText: string
         -- The maximum number of results to return in the response.
