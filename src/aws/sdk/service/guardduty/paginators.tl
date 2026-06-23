@@ -128,6 +128,24 @@ function M.items_list_i_p_sets(client, input)
     })
 end
 
+--- Returns a page iterator for listInvestigations.
+function M.pages_list_investigations(client, input)
+    return paginator.pages(client, "listInvestigations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Investigations",
+    })
+end
+
+--- Returns an item iterator for listInvestigations.
+function M.items_list_investigations(client, input)
+    return paginator.items(client, "listInvestigations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Investigations",
+    })
+end
+
 --- Returns a page iterator for listInvitations.
 function M.pages_list_invitations(client, input)
     return paginator.pages(client, "listInvitations", input, {

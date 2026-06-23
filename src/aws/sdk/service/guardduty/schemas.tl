@@ -51,6 +51,8 @@ M.DetectorIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.FilterNames = schema.new({ type = "list", list_member = prelude.String })
 
+M.InvestigationSummaries = schema.new({ type = "list", list_member = M.InvestigationSummary })
+
 M.Invitations = schema.new({ type = "list", list_member = M.Invitation })
 
 M.IpSetIds = schema.new({ type = "list", list_member = prelude.String })
@@ -2400,6 +2402,43 @@ M.BucketLevelPermissions = schema.new({
     },
 })
 
+M.CloudDetails = schema.new({
+    id = id.from(_N, "CloudDetails"),
+    type = "structure",
+    members = {
+        Provider = schema.new({
+            id = id.from(_N, "CloudDetails", "Provider"),
+            type = "string",
+            name = "Provider",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "provider" },
+            },
+        }),
+        Region = schema.new({
+            id = id.from(_N, "CloudDetails", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "region" },
+            },
+        }),
+        Account = schema.new({
+            id = id.from(_N, "CloudDetails", "Account"),
+            type = "string",
+            name = "Account",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "account" },
+            },
+        }),
+    },
+})
+
 M.CloudformationStack = schema.new({
     id = id.from(_N, "CloudformationStack"),
     type = "structure",
@@ -3685,6 +3724,60 @@ M.CreateFilterOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+    },
+})
+
+M.CreateInvestigationInput = schema.new({
+    id = id.from(_N, "CreateInvestigationRequest"),
+    type = "structure",
+    members = {
+        DetectorId = schema.new({
+            id = id.from(_N, "CreateInvestigationInput", "DetectorId"),
+            type = "string",
+            name = "DetectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TriggerPrompt = schema.new({
+            id = id.from(_N, "CreateInvestigationInput", "TriggerPrompt"),
+            type = "string",
+            name = "TriggerPrompt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "triggerPrompt" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateInvestigationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateInvestigationOutput = schema.new({
+    id = id.from(_N, "CreateInvestigationResponse"),
+    type = "structure",
+    members = {
+        InvestigationId = schema.new({
+            id = id.from(_N, "CreateInvestigationOutput", "InvestigationId"),
+            type = "string",
+            name = "InvestigationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "investigationId" },
             },
         }),
     },
@@ -11183,6 +11276,235 @@ M.GetFindingsStatisticsOutput = schema.new({
     },
 })
 
+M.GetInvestigationInput = schema.new({
+    id = id.from(_N, "GetInvestigationRequest"),
+    type = "structure",
+    members = {
+        DetectorId = schema.new({
+            id = id.from(_N, "GetInvestigationInput", "DetectorId"),
+            type = "string",
+            name = "DetectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        InvestigationId = schema.new({
+            id = id.from(_N, "GetInvestigationInput", "InvestigationId"),
+            type = "string",
+            name = "InvestigationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.Product = schema.new({
+    id = id.from(_N, "Product"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "Product", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "name" },
+            },
+        }),
+        Feature = schema.new({
+            id = id.from(_N, "Product", "Feature"),
+            type = "string",
+            name = "Feature",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "feature" },
+            },
+        }),
+    },
+})
+
+M.InvestigationMetadata = schema.new({
+    id = id.from(_N, "InvestigationMetadata"),
+    type = "structure",
+    members = {
+        Version = schema.new({
+            id = id.from(_N, "InvestigationMetadata", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "version" },
+            },
+        }),
+        Product = schema.new({
+            id = id.from(_N, "InvestigationMetadata", "Product"),
+            type = "structure",
+            name = "Product",
+            target_id = id.from(_N, "Product"),
+            target = M.Product,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "product" },
+            },
+        }),
+    },
+})
+
+M.Investigation = schema.new({
+    id = id.from(_N, "Investigation"),
+    type = "structure",
+    members = {
+        InvestigationId = schema.new({
+            id = id.from(_N, "Investigation", "InvestigationId"),
+            type = "string",
+            name = "InvestigationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "investigationId" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "Investigation", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        TriggerPrompt = schema.new({
+            id = id.from(_N, "Investigation", "TriggerPrompt"),
+            type = "string",
+            name = "TriggerPrompt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "triggerPrompt" },
+            },
+        }),
+        TriggeredBy = schema.new({
+            id = id.from(_N, "Investigation", "TriggeredBy"),
+            type = "string",
+            name = "TriggeredBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "triggeredBy" },
+            },
+        }),
+        Metadata = schema.new({
+            id = id.from(_N, "Investigation", "Metadata"),
+            type = "structure",
+            name = "Metadata",
+            target_id = id.from(_N, "InvestigationMetadata"),
+            target = M.InvestigationMetadata,
+            traits = {
+                [traits.JSON_NAME] = { name = "metadata" },
+            },
+        }),
+        Cloud = schema.new({
+            id = id.from(_N, "Investigation", "Cloud"),
+            type = "structure",
+            name = "Cloud",
+            target_id = id.from(_N, "CloudDetails"),
+            target = M.CloudDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "cloud" },
+            },
+        }),
+        RiskLevel = schema.new({
+            id = id.from(_N, "Investigation", "RiskLevel"),
+            type = "string",
+            name = "RiskLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "riskLevel" },
+            },
+        }),
+        Risk = schema.new({
+            id = id.from(_N, "Investigation", "Risk"),
+            type = "string",
+            name = "Risk",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "risk" },
+            },
+        }),
+        Confidence = schema.new({
+            id = id.from(_N, "Investigation", "Confidence"),
+            type = "string",
+            name = "Confidence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "confidence" },
+            },
+        }),
+        Summary = schema.new({
+            id = id.from(_N, "Investigation", "Summary"),
+            type = "string",
+            name = "Summary",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "summary" },
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "Investigation", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "startTime" },
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "Investigation", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "endTime" },
+            },
+        }),
+        Error = schema.new({
+            id = id.from(_N, "Investigation", "Error"),
+            type = "string",
+            name = "Error",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "error" },
+            },
+        }),
+    },
+})
+
+M.GetInvestigationOutput = schema.new({
+    id = id.from(_N, "GetInvestigationResponse"),
+    type = "structure",
+    members = {
+        Investigation = schema.new({
+            id = id.from(_N, "GetInvestigationOutput", "Investigation"),
+            type = "structure",
+            name = "Investigation",
+            target_id = id.from(_N, "Investigation"),
+            target = M.Investigation,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "investigation" },
+            },
+        }),
+    },
+})
+
 M.GetInvitationsCountInput = schema.new({
     id = id.from(_N, "GetInvitationsCountRequest"),
     type = "structure",
@@ -13700,6 +14022,191 @@ M.ListFindingsOutput = schema.new({
     },
 })
 
+M.InvestigationSortCriteria = schema.new({
+    id = id.from(_N, "InvestigationSortCriteria"),
+    type = "structure",
+    members = {
+        AttributeName = schema.new({
+            id = id.from(_N, "InvestigationSortCriteria", "AttributeName"),
+            type = "string",
+            name = "AttributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "attributeName" },
+            },
+        }),
+        OrderBy = schema.new({
+            id = id.from(_N, "InvestigationSortCriteria", "OrderBy"),
+            type = "string",
+            name = "OrderBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "orderBy" },
+            },
+        }),
+    },
+})
+
+M.ListInvestigationsInput = schema.new({
+    id = id.from(_N, "ListInvestigationsRequest"),
+    type = "structure",
+    members = {
+        DetectorId = schema.new({
+            id = id.from(_N, "ListInvestigationsInput", "DetectorId"),
+            type = "string",
+            name = "DetectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SortCriteria = schema.new({
+            id = id.from(_N, "ListInvestigationsInput", "SortCriteria"),
+            type = "structure",
+            name = "SortCriteria",
+            target_id = id.from(_N, "InvestigationSortCriteria"),
+            target = M.InvestigationSortCriteria,
+            traits = {
+                [traits.JSON_NAME] = { name = "sortCriteria" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListInvestigationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInvestigationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.InvestigationSummary = schema.new({
+    id = id.from(_N, "InvestigationSummary"),
+    type = "structure",
+    members = {
+        InvestigationId = schema.new({
+            id = id.from(_N, "InvestigationSummary", "InvestigationId"),
+            type = "string",
+            name = "InvestigationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "investigationId" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "InvestigationSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        TriggerPrompt = schema.new({
+            id = id.from(_N, "InvestigationSummary", "TriggerPrompt"),
+            type = "string",
+            name = "TriggerPrompt",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "triggerPrompt" },
+            },
+        }),
+        RiskLevel = schema.new({
+            id = id.from(_N, "InvestigationSummary", "RiskLevel"),
+            type = "string",
+            name = "RiskLevel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "riskLevel" },
+            },
+        }),
+        Confidence = schema.new({
+            id = id.from(_N, "InvestigationSummary", "Confidence"),
+            type = "string",
+            name = "Confidence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "confidence" },
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "InvestigationSummary", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "title" },
+            },
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "InvestigationSummary", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "accountId" },
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "InvestigationSummary", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "startTime" },
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "InvestigationSummary", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "endTime" },
+            },
+        }),
+    },
+})
+
+M.ListInvestigationsOutput = schema.new({
+    id = id.from(_N, "ListInvestigationsResponse"),
+    type = "structure",
+    members = {
+        Investigations = schema.new({
+            id = id.from(_N, "ListInvestigationsOutput", "Investigations"),
+            type = "list",
+            name = "Investigations",
+            target_id = prelude.Document.id,
+            list_member = M.InvestigationSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "investigations" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInvestigationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
 M.ListInvitationsInput = schema.new({
     id = id.from(_N, "ListInvitationsRequest"),
     type = "structure",
@@ -15977,6 +16484,18 @@ M.CreateFilter = schema.operation({
     },
 })
 
+M.CreateInvestigation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "CreateInvestigation"),
+    input = M.CreateInvestigationInput,
+    output = M.CreateInvestigationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/investigation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateIPSet = schema.operation({
     id = id.from("com.amazonaws.guardduty", "CreateIPSet"),
     input = M.CreateIPSetInput,
@@ -16373,6 +16892,18 @@ M.GetFindingsStatistics = schema.operation({
     },
 })
 
+M.GetInvestigation = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "GetInvestigation"),
+    input = M.GetInvestigationInput,
+    output = M.GetInvestigationOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/detector/{DetectorId}/investigation/{InvestigationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetInvitationsCount = schema.operation({
     id = id.from("com.amazonaws.guardduty", "GetInvitationsCount"),
     input = M.GetInvitationsCountInput,
@@ -16595,6 +17126,18 @@ M.ListFindings = schema.operation({
     output = M.ListFindingsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/findings" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInvestigations = schema.operation({
+    id = id.from("com.amazonaws.guardduty", "ListInvestigations"),
+    input = M.ListInvestigationsInput,
+    output = M.ListInvestigationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/detector/{DetectorId}/investigation/list" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

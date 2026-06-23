@@ -1504,6 +1504,11 @@ local record M
         "REMOVE"
     end
 
+    enum ScratchStorageMode
+        "LOCAL"
+        "SHARED"
+    end
+
     enum WorkflowType
         "PRIVATE"
         "READY2RUN"
@@ -1553,6 +1558,8 @@ local record M
         configurationName: string
         -- Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).
         engineSettings: any
+        -- Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If not specified, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.
+        scratchStorageMode: string
     end
 
     -- Contains detailed information about the source code repository that hosts the workflow definition files.
@@ -2367,6 +2374,8 @@ local record M
         workflowUuid: string
         -- Configuration for run networking behavior. If absent, this will default to RESTRICTED.
         networkingMode: string
+        -- Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If absent, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.
+        scratchStorageMode: string
         -- Configuration details for the workflow run.
         configuration: ConfigurationDetails
         -- VPC configuration for the workflow run.
@@ -3811,6 +3820,8 @@ local record M
         workflowVersionName: string
         -- Optional configuration for run networking behavior. If not specified, this will default to RESTRICTED.
         networkingMode: string
+        -- Optional configuration for enabling scratch ephemeral storage mounted at /tmp. If not specified, this will default to SHARED. This configuration is applicable only for CPU tasks. For tasks using GPUs, scratch storage is always LOCAL.
+        scratchStorageMode: string
         -- Optional configuration name to use for the workflow run.
         configurationName: string
         -- Engine-specific settings for the workflow run. Use this field to specify configuration options that are specific to the workflow engine (for example, Nextflow profiles).

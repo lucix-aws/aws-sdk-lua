@@ -1323,6 +1323,8 @@ M.MarketplaceProductCodeList = schema.new({ type = "list", list_member = prelude
 
 M.ImageNameList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ImageWatermarkFilterResponseList = schema.new({ type = "list", list_member = M.ImageWatermarkFilterResponse })
+
 M.MetricPoints = schema.new({ type = "list", list_member = M.MetricPoint })
 
 M.MetricValueSet = schema.new({ type = "list", list_member = M.MetricValue })
@@ -1348,6 +1350,8 @@ M.ImageProviderRequestList = schema.new({ type = "list", list_member = prelude.S
 M.MarketplaceProductCodeRequestList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ImageNameCriteriaRequestList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ImageWatermarkFilterRequestList = schema.new({ type = "list", list_member = M.ImageWatermarkFilterRequest })
 
 M.InstanceSecondaryInterfacePrivateIpAddressListRequest = schema.new({ type = "list", list_member = M.InstanceSecondaryInterfacePrivateIpAddressRequest })
 
@@ -82375,6 +82379,53 @@ M.DeprecationTimeCondition = schema.new({
     },
 })
 
+M.ImageWatermarkFilterResponse = schema.new({
+    id = id.from(_N, "ImageWatermarkFilterResponse"),
+    type = "structure",
+    members = {
+        WatermarkKey = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterResponse", "WatermarkKey"),
+            type = "string",
+            name = "WatermarkKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "watermarkKey" },
+                [traits.EC2_QUERY_NAME] = { name = "WatermarkKey" },
+            },
+        }),
+        SourceImageRegion = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterResponse", "SourceImageRegion"),
+            type = "string",
+            name = "SourceImageRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "sourceImageRegion" },
+                [traits.EC2_QUERY_NAME] = { name = "SourceImageRegion" },
+            },
+        }),
+        MaximumDaysSinceSourceImageCreated = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterResponse", "MaximumDaysSinceSourceImageCreated"),
+            type = "integer",
+            name = "MaximumDaysSinceSourceImageCreated",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maximumDaysSinceSourceImageCreated" },
+                [traits.EC2_QUERY_NAME] = { name = "MaximumDaysSinceSourceImageCreated" },
+            },
+        }),
+        MaximumDaysSinceWatermarkCreated = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterResponse", "MaximumDaysSinceWatermarkCreated"),
+            type = "integer",
+            name = "MaximumDaysSinceWatermarkCreated",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maximumDaysSinceWatermarkCreated" },
+                [traits.EC2_QUERY_NAME] = { name = "MaximumDaysSinceWatermarkCreated" },
+            },
+        }),
+    },
+})
+
 M.ImageCriterion = schema.new({
     id = id.from(_N, "ImageCriterion"),
     type = "structure",
@@ -82432,6 +82483,17 @@ M.ImageCriterion = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "creationDateCondition" },
                 [traits.EC2_QUERY_NAME] = { name = "CreationDateCondition" },
+            },
+        }),
+        ImageWatermarks = schema.new({
+            id = id.from(_N, "ImageCriterion", "ImageWatermarks"),
+            type = "list",
+            name = "ImageWatermarks",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ImageWatermarkFilterResponse, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "imageWatermarkSet" },
+                [traits.EC2_QUERY_NAME] = { name = "ImageWatermarkSet" },
             },
         }),
     },
@@ -100720,6 +100782,37 @@ M.DeprecationTimeConditionRequest = schema.new({
     },
 })
 
+M.ImageWatermarkFilterRequest = schema.new({
+    id = id.from(_N, "ImageWatermarkFilterRequest"),
+    type = "structure",
+    members = {
+        WatermarkKey = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterRequest", "WatermarkKey"),
+            type = "string",
+            name = "WatermarkKey",
+            target_id = prelude.String.id,
+        }),
+        SourceImageRegion = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterRequest", "SourceImageRegion"),
+            type = "string",
+            name = "SourceImageRegion",
+            target_id = prelude.String.id,
+        }),
+        MaximumDaysSinceSourceImageCreated = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterRequest", "MaximumDaysSinceSourceImageCreated"),
+            type = "integer",
+            name = "MaximumDaysSinceSourceImageCreated",
+            target_id = prelude.Integer.id,
+        }),
+        MaximumDaysSinceWatermarkCreated = schema.new({
+            id = id.from(_N, "ImageWatermarkFilterRequest", "MaximumDaysSinceWatermarkCreated"),
+            type = "integer",
+            name = "MaximumDaysSinceWatermarkCreated",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ImageCriterionRequest = schema.new({
     id = id.from(_N, "ImageCriterionRequest"),
     type = "structure",
@@ -100767,6 +100860,16 @@ M.ImageCriterionRequest = schema.new({
             name = "CreationDateCondition",
             target_id = id.from(_N, "CreationDateConditionRequest"),
             target = M.CreationDateConditionRequest,
+        }),
+        ImageWatermarks = schema.new({
+            id = id.from(_N, "ImageCriterionRequest", "ImageWatermarks"),
+            type = "list",
+            name = "ImageWatermarks",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ImageWatermarkFilterRequest, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ImageWatermark" },
+            },
         }),
     },
 })

@@ -4757,6 +4757,12 @@ M.DefaultRunSetting = schema.new({
             name = "engineSettings",
             target_id = prelude.Document.id,
         }),
+        scratchStorageMode = schema.new({
+            id = id.from(_N, "DefaultRunSetting", "scratchStorageMode"),
+            type = "string",
+            name = "scratchStorageMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7055,6 +7061,12 @@ M.GetRunOutput = schema.new({
             id = id.from(_N, "GetRunOutput", "networkingMode"),
             type = "string",
             name = "networkingMode",
+            target_id = prelude.String.id,
+        }),
+        scratchStorageMode = schema.new({
+            id = id.from(_N, "GetRunOutput", "scratchStorageMode"),
+            type = "string",
+            name = "scratchStorageMode",
             target_id = prelude.String.id,
         }),
         configuration = schema.new({
@@ -11950,6 +11962,12 @@ M.StartRunInput = schema.new({
             id = id.from(_N, "StartRunInput", "networkingMode"),
             type = "string",
             name = "networkingMode",
+            target_id = prelude.String.id,
+        }),
+        scratchStorageMode = schema.new({
+            id = id.from(_N, "StartRunInput", "scratchStorageMode"),
+            type = "string",
+            name = "scratchStorageMode",
             target_id = prelude.String.id,
         }),
         configurationName = schema.new({

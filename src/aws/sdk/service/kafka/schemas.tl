@@ -2397,6 +2397,23 @@ M.ApacheKafkaCluster = schema.new({
     },
 })
 
+M.KafkaClusterMTLSAuthentication = schema.new({
+    id = id.from(_N, "KafkaClusterMTLSAuthentication"),
+    type = "structure",
+    members = {
+        SecretArn = schema.new({
+            id = id.from(_N, "KafkaClusterMTLSAuthentication", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "secretArn" },
+            },
+        }),
+    },
+})
+
 M.KafkaClusterSaslScramAuthentication = schema.new({
     id = id.from(_N, "KafkaClusterSaslScramAuthentication"),
     type = "structure",
@@ -2435,8 +2452,17 @@ M.KafkaClusterClientAuthentication = schema.new({
             target_id = id.from(_N, "KafkaClusterSaslScramAuthentication"),
             target = M.KafkaClusterSaslScramAuthentication,
             traits = {
-                [traits.REQUIRED] = {},
                 [traits.JSON_NAME] = { name = "saslScram" },
+            },
+        }),
+        MTLS = schema.new({
+            id = id.from(_N, "KafkaClusterClientAuthentication", "MTLS"),
+            type = "structure",
+            name = "MTLS",
+            target_id = id.from(_N, "KafkaClusterMTLSAuthentication"),
+            target = M.KafkaClusterMTLSAuthentication,
+            traits = {
+                [traits.JSON_NAME] = { name = "mTLS" },
             },
         }),
     },

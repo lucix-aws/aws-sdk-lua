@@ -49,6 +49,7 @@ local record Client
     deleteRetentionPolicy: function(Client, types.DeleteRetentionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRetentionPolicyOutput>
     deleteScheduledQuery: function(Client, types.DeleteScheduledQueryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledQueryOutput>
     deleteSubscriptionFilter: function(Client, types.DeleteSubscriptionFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSubscriptionFilterOutput>
+    deleteSyslogConfiguration: function(Client, types.DeleteSyslogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSyslogConfigurationOutput>
     deleteTransformer: function(Client, types.DeleteTransformerInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransformerOutput>
     describeAccountPolicies: function(Client, types.DescribeAccountPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountPoliciesOutput>
     describeConfigurationTemplates: function(Client, types.DescribeConfigurationTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeConfigurationTemplatesOutput>
@@ -97,6 +98,7 @@ local record Client
     listLogGroupsForQuery: function(Client, types.ListLogGroupsForQueryInput, ? base_client.InvokeOptions): async.Operation<types.ListLogGroupsForQueryOutput>
     listScheduledQueries: function(Client, types.ListScheduledQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduledQueriesOutput>
     listSourcesForS3TableIntegration: function(Client, types.ListSourcesForS3TableIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.ListSourcesForS3TableIntegrationOutput>
+    listSyslogConfigurations: function(Client, types.ListSyslogConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListSyslogConfigurationsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     listTagsLogGroup: function(Client, types.ListTagsLogGroupInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsLogGroupOutput>
     putAccountPolicy: function(Client, types.PutAccountPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountPolicyOutput>
@@ -116,6 +118,7 @@ local record Client
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     putRetentionPolicy: function(Client, types.PutRetentionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutRetentionPolicyOutput>
     putSubscriptionFilter: function(Client, types.PutSubscriptionFilterInput, ? base_client.InvokeOptions): async.Operation<types.PutSubscriptionFilterOutput>
+    putSyslogConfiguration: function(Client, types.PutSyslogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutSyslogConfigurationOutput>
     putTransformer: function(Client, types.PutTransformerInput, ? base_client.InvokeOptions): async.Operation<types.PutTransformerOutput>
     startLiveTail: function(Client, types.StartLiveTailInput, ? base_client.InvokeOptions): async.Operation<types.StartLiveTailOutput>
     startQuery: function(Client, types.StartQueryInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryOutput>
@@ -297,6 +300,10 @@ end
 
 function C:deleteSubscriptionFilter(input: types.DeleteSubscriptionFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSubscriptionFilterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSubscriptionFilter as schema.OperationSchema, input, options) as async.Operation<types.DeleteSubscriptionFilterOutput>
+end
+
+function C:deleteSyslogConfiguration(input: types.DeleteSyslogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSyslogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSyslogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSyslogConfigurationOutput>
 end
 
 function C:deleteTransformer(input: types.DeleteTransformerInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransformerOutput>
@@ -491,6 +498,10 @@ function C:listSourcesForS3TableIntegration(input: types.ListSourcesForS3TableIn
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSourcesForS3TableIntegration as schema.OperationSchema, input, options) as async.Operation<types.ListSourcesForS3TableIntegrationOutput>
 end
 
+function C:listSyslogConfigurations(input: types.ListSyslogConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSyslogConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSyslogConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListSyslogConfigurationsOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
@@ -565,6 +576,10 @@ end
 
 function C:putSubscriptionFilter(input: types.PutSubscriptionFilterInput, options?: base_client.InvokeOptions): async.Operation<types.PutSubscriptionFilterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSubscriptionFilter as schema.OperationSchema, input, options) as async.Operation<types.PutSubscriptionFilterOutput>
+end
+
+function C:putSyslogConfiguration(input: types.PutSyslogConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutSyslogConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutSyslogConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutSyslogConfigurationOutput>
 end
 
 function C:putTransformer(input: types.PutTransformerInput, options?: base_client.InvokeOptions): async.Operation<types.PutTransformerOutput>

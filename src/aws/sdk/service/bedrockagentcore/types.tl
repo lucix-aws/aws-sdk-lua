@@ -3228,6 +3228,10 @@ local record M
         name: string
     end
 
+    enum ExtractionMode
+        "SKIP"
+    end
+
     -- Value associated with the eventMetadata key.
     record MetadataValue
         -- Value associated with the eventMetadata key.
@@ -3280,6 +3284,8 @@ local record M
         clientToken: string
         -- The key-value metadata to attach to the event.
         metadata: {string : MetadataValue}
+        -- Controls long-term memory extraction for this event. When set to SKIP, the event is stored in short-term memory but is excluded from long-term memory extraction. If not specified, the event is processed for extraction as usual.
+        extractionMode: string
     end
 
     -- Contains information about an event in an AgentCore Memory resource.

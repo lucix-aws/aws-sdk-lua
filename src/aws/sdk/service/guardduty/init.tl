@@ -23,6 +23,7 @@ local record Client
     archiveFindings: function(Client, types.ArchiveFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ArchiveFindingsOutput>
     createDetector: function(Client, types.CreateDetectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateDetectorOutput>
     createFilter: function(Client, types.CreateFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateFilterOutput>
+    createInvestigation: function(Client, types.CreateInvestigationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInvestigationOutput>
     createIPSet: function(Client, types.CreateIPSetInput, ? base_client.InvokeOptions): async.Operation<types.CreateIPSetOutput>
     createMalwareProtectionPlan: function(Client, types.CreateMalwareProtectionPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateMalwareProtectionPlanOutput>
     createMembers: function(Client, types.CreateMembersInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembersOutput>
@@ -56,6 +57,7 @@ local record Client
     getFilter: function(Client, types.GetFilterInput, ? base_client.InvokeOptions): async.Operation<types.GetFilterOutput>
     getFindings: function(Client, types.GetFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsOutput>
     getFindingsStatistics: function(Client, types.GetFindingsStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingsStatisticsOutput>
+    getInvestigation: function(Client, types.GetInvestigationInput, ? base_client.InvokeOptions): async.Operation<types.GetInvestigationOutput>
     getInvitationsCount: function(Client, types.GetInvitationsCountInput, ? base_client.InvokeOptions): async.Operation<types.GetInvitationsCountOutput>
     getIPSet: function(Client, types.GetIPSetInput, ? base_client.InvokeOptions): async.Operation<types.GetIPSetOutput>
     getMalwareProtectionPlan: function(Client, types.GetMalwareProtectionPlanInput, ? base_client.InvokeOptions): async.Operation<types.GetMalwareProtectionPlanOutput>
@@ -75,6 +77,7 @@ local record Client
     listDetectors: function(Client, types.ListDetectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListDetectorsOutput>
     listFilters: function(Client, types.ListFiltersInput, ? base_client.InvokeOptions): async.Operation<types.ListFiltersOutput>
     listFindings: function(Client, types.ListFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
+    listInvestigations: function(Client, types.ListInvestigationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>
     listInvitations: function(Client, types.ListInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
     listIPSets: function(Client, types.ListIPSetsInput, ? base_client.InvokeOptions): async.Operation<types.ListIPSetsOutput>
     listMalwareProtectionPlans: function(Client, types.ListMalwareProtectionPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListMalwareProtectionPlansOutput>
@@ -167,6 +170,10 @@ end
 
 function C:createFilter(input: types.CreateFilterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFilterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFilter as schema.OperationSchema, input, options) as async.Operation<types.CreateFilterOutput>
+end
+
+function C:createInvestigation(input: types.CreateInvestigationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInvestigationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInvestigation as schema.OperationSchema, input, options) as async.Operation<types.CreateInvestigationOutput>
 end
 
 function C:createIPSet(input: types.CreateIPSetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIPSetOutput>
@@ -301,6 +308,10 @@ function C:getFindingsStatistics(input: types.GetFindingsStatisticsInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetFindingsStatistics as schema.OperationSchema, input, options) as async.Operation<types.GetFindingsStatisticsOutput>
 end
 
+function C:getInvestigation(input: types.GetInvestigationInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvestigationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvestigation as schema.OperationSchema, input, options) as async.Operation<types.GetInvestigationOutput>
+end
+
 function C:getInvitationsCount(input: types.GetInvitationsCountInput, options?: base_client.InvokeOptions): async.Operation<types.GetInvitationsCountOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInvitationsCount as schema.OperationSchema, input, options) as async.Operation<types.GetInvitationsCountOutput>
 end
@@ -375,6 +386,10 @@ end
 
 function C:listFindings(input: types.ListFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindings as schema.OperationSchema, input, options) as async.Operation<types.ListFindingsOutput>
+end
+
+function C:listInvestigations(input: types.ListInvestigationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvestigationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInvestigations as schema.OperationSchema, input, options) as async.Operation<types.ListInvestigationsOutput>
 end
 
 function C:listInvitations(input: types.ListInvitationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>

@@ -10169,6 +10169,12 @@ M.CreateEventInput = schema.new({
             map_key = prelude.String,
             map_value = M.MetadataValue,
         }),
+        extractionMode = schema.new({
+            id = id.from(_N, "CreateEventInput", "extractionMode"),
+            type = "string",
+            name = "extractionMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

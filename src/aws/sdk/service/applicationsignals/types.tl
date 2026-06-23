@@ -7,6 +7,92 @@ local record M
         Message: string
     end
 
+    enum InstrumentationType
+        "BREAKPOINT"
+        "PROBE"
+    end
+
+    -- Parameters for targeted delete by ARN list.
+    record BatchDeleteByResourceArns
+        -- List of resource ARNs to delete.
+        ResourceArns: {string}
+        -- Instrumentation type: BREAKPOINT or PROBE.
+        InstrumentationType: string
+    end
+
+    -- Scope parameters for bulk delete by scope.
+    record BatchDeleteScope
+        -- Service name for the instrumentation configurations.
+        Service: string
+        -- Environment identifier for the instrumentation configurations.
+        Environment: string
+        -- Instrumentation type: BREAKPOINT or PROBE.
+        InstrumentationType: string
+    end
+
+    -- Union type for batch delete target selection.
+    -- Exactly one of the two modes must be specified.
+    record BatchDeleteDeletionTarget
+        -- Delete all configurations matching the specified scope.
+        Scope: BatchDeleteScope
+        -- Delete specific configurations by ARN list.
+        ResourceArns: BatchDeleteByResourceArns
+    end
+
+    record BatchDeleteInstrumentationConfigurationsInput
+        -- The deletion target - either bulk by scope or targeted by ARN list.
+        DeletionTarget: BatchDeleteDeletionTarget
+    end
+
+    enum BatchDeleteErrorCode
+        "ResourceNotFoundException"
+        "AccessDeniedException"
+        "InternalServiceException"
+    end
+
+    -- Represents an error that occurred when attempting to delete a configuration.
+    record BatchDeleteError
+        -- ARN of the configuration that failed to delete.
+        ResourceArn: string
+        -- Error code indicating the type of failure.
+        Code: string
+        -- Descriptive error message.
+        Message: string
+    end
+
+    -- Represents a successfully deleted instrumentation configuration.
+    record BatchDeleteSuccessfulDeletion
+        -- ARN of the deleted configuration (populated only when deleting by ARN list).
+        ResourceArn: string
+        -- Signal type of the deleted configuration (populated only when deleting by scope).
+        SignalType: string
+        -- Location hash of the deleted configuration (populated only when deleting by scope).
+        LocationHash: string
+    end
+
+    record BatchDeleteInstrumentationConfigurationsOutput
+        -- Number of configurations successfully deleted.
+        -- When deleting by scope, this is the total count of deleted items.
+        -- When deleting by ARN list, this equals the length of SuccessfulDeletions.
+        DeletedCount: number
+        -- List of successfully deleted configurations.
+        -- Deleting by scope populates SignalType and LocationHash per item.
+        -- Deleting by ARN list populates ResourceArn per item.
+        SuccessfulDeletions: {BatchDeleteSuccessfulDeletion}
+        -- List of configurations that failed to delete.
+        Errors: {BatchDeleteError}
+    end
+
+    -- The request was throttled because of quota limits.
+    record ThrottlingException
+        Message: string
+    end
+
+    -- The resource is not valid.
+    record ValidationException
+        message: string
+    end
+
     record BatchGetServiceLevelObjectiveBudgetReportInput
         -- The date and time that you want the report to be for. It is expressed as the number of milliseconds since Jan 1, 1970 00:00:00 UTC.
         Timestamp: number
@@ -315,16 +401,6 @@ local record M
         Errors: {ServiceLevelObjectiveBudgetReportError}
     end
 
-    -- The request was throttled because of quota limits.
-    record ThrottlingException
-        Message: string
-    end
-
-    -- The resource is not valid.
-    record ValidationException
-        message: string
-    end
-
     -- The recurrence rule for the SLO time window exclusion .
     record RecurrenceRule
         -- A cron or rate expression that specifies the schedule for the exclusion window.
@@ -386,10 +462,295 @@ local record M
         Message: string
     end
 
+    -- This operation attempted to create a resource that already exists.
+    record ConflictException
+        Message: string
+    end
+
+    -- Guardrails that prevent instrumentation from impacting application performance by limiting how much data is captured.
+    record CaptureLimitsConfig
+        -- The maximum number of times the instrumentation point can be hit before it is automatically disabled. Defaults to 100.
+        MaxHits: number
+        -- The maximum length of captured string values in characters. Strings longer than this are truncated. Defaults to 128.
+        MaxStringLength: number
+        -- The maximum number of items to capture from any collection to prevent large payloads. Defaults to 10.
+        MaxCollectionWidth: number
+        -- The maximum nesting depth to traverse inside collections. Defaults to 3.
+        MaxCollectionDepth: number
+        -- The maximum number of stack frames to capture in stack traces. Defaults to 2.
+        MaxStackFrames: number
+        -- The maximum total size, in bytes, of a captured stack trace. Defaults to 1000.
+        MaxStackTraceSize: number
+        -- The maximum depth for nested object traversal when capturing structured data. Defaults to 3.
+        MaxObjectDepth: number
+        -- The maximum number of fields to capture for any object. Defaults to 10.
+        MaxFieldsPerObject: number
+    end
+
+    -- Defines what data to capture for code-level instrumentation, including arguments, return values, stack traces, local variables, and safety limits.
+    record CodeCaptureConfiguration
+        -- The function arguments to capture. Omit to capture defaults, use an empty list to capture none, use ["*"] to capture all arguments, or specify argument names to capture selectively (up to 10 entries).
+        CaptureArguments: {string}
+        -- Whether to capture the return value. Defaults to false.
+        CaptureReturn: boolean
+        -- Whether to capture a stack trace when the instrumentation point is hit. Defaults to true.
+        CaptureStackTrace: boolean
+        -- The local variables to capture by name. Omit or pass an empty list to capture none. You can specify up to 20 names.
+        CaptureLocals: {string}
+        -- Safety limits that bound what is captured, including hit counts, string length, collection depth, and stack trace size.
+        CaptureLimits: CaptureLimitsConfig
+    end
+
+    -- A union that defines what data to capture when the instrumentation point is hit. Specify CodeCapture for code-level capture settings.
+    record CaptureConfiguration
+        -- Capture settings for code-level instrumentation, including arguments, return values, stack traces, local variables, and safety limits.
+        CodeCapture: CodeCaptureConfiguration
+    end
+
+    enum ProgrammingLanguage
+        "Java"
+        "Python"
+        "Javascript"
+    end
+
+    -- Identifies a code location to instrument, including the programming language, code unit, class, method, file path, and optional line number.
+    record CodeLocation
+        -- The programming language for this instrumentation point, such as Java, Python, or JavaScript.
+        Language: string
+        -- The package, module, or namespace that contains the target code, for example com.amazon.payment or payment_service.
+        CodeUnit: string
+        -- The class or type name that contains the method. This is required for Java and optional for Python module-level functions.
+        ClassName: string
+        -- The method or function name to instrument, such as validateCreditCard or __init__.
+        MethodName: string
+        -- The source file path relative to the project or source root, such as src/payment/PaymentProcessor.java or src/payment/PaymentProcessor.py.
+        FilePath: string
+        -- The line number to instrument. Provide this to disambiguate overloaded methods and to target a specific line when needed.
+        LineNumber: number
+    end
+
+    -- A union that identifies the location to instrument. Specify a CodeLocation for code-level instrumentation.
+    record Location
+        -- A code location for code-level instrumentation, including language, code unit, class, method, file path, and optional line number.
+        CodeLocation: CodeLocation
+    end
+
+    enum DynamicInstrumentationSignalType
+        "SNAPSHOT"
+    end
+
+    -- A key-value pair associated with a resource. Tags can help you organize and categorize your resources.
+    record Tag
+        -- A string that you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
+        Key: string
+        -- The value for the specified tag key.
+        Value: string
+    end
+
+    record CreateInstrumentationConfigurationInput
+        -- Type of instrumentation: BREAKPOINT (temporary) or PROBE (permanent)
+        InstrumentationType: string
+        -- The name of the service to instrument. This should match the service.name resource attribute reported by the application.
+        Service: string
+        -- The environment that the service is running in, such as eks:cluster-prod/namespace or ec2:production.
+        Environment: string
+        -- The telemetry signal type to emit for this instrumentation. The supported value is SNAPSHOT.
+        SignalType: string
+        -- The location where instrumentation should be applied. Specify a CodeLocation for code-level instrumentation.
+        Location: Location
+        -- An optional short description (up to 50 characters) that explains the purpose of this instrumentation.
+        Description: string
+        -- For BREAKPOINT: optional, defaults to 24 hours, must be between 5 min and 24 hours.
+        -- For PROBE: not supported. PROBE configurations are permanent and persist until explicitly deleted.
+        ExpiresAt: number
+        -- Client-side filters that target specific instances. Each object in the array is AND-matched on its keys, and multiple objects are OR-matched to decide where to apply the instrumentation.
+        AttributeFilters: {{string : string}}
+        -- Specifies what to capture when the instrumentation point is hit. Specify CodeCapture for code-level capture settings.
+        CaptureConfiguration: CaptureConfiguration
+        -- An optional list of key-value pairs to associate with the instrumentation configuration. Tags can help you organize and categorize your resources.
+        Tags: {Tag}
+    end
+
+    record CreateInstrumentationConfigurationOutput
+        -- The type of instrumentation that was created, echoed from the request.
+        InstrumentationType: string
+        -- The service name for the instrumentation configuration, echoed from the request.
+        Service: string
+        -- The environment for the instrumentation configuration, echoed from the request.
+        Environment: string
+        -- The telemetry signal type for the instrumentation configuration, echoed from the request.
+        SignalType: string
+        -- The location where instrumentation is applied, echoed from the request.
+        Location: Location
+        -- A stable hash computed from the location that uniquely identifies this instrumentation point within the service, environment, and signal type.
+        LocationHash: string
+        -- The optional description that was stored with the instrumentation configuration.
+        Description: string
+        -- The timestamp after which this configuration is no longer served to clients. Present only for BREAKPOINT configurations; PROBE configurations do not expire.
+        ExpiresAt: number
+        -- The attribute filters returned with the configuration so SDKs can perform client-side targeting.
+        AttributeFilters: {{string : string}}
+        -- The capture settings that were stored for this instrumentation configuration.
+        CaptureConfiguration: CaptureConfiguration
+        -- The server-generated creation timestamp for this instrumentation configuration.
+        CreatedAt: number
+        -- ARN for the created instrumentation configuration
+        ARN: string
+    end
+
+    -- This request exceeds a service quota.
+    record ServiceQuotaExceededException
+        Message: string
+    end
+
     record DeleteGroupingConfigurationInput
     end
 
     record DeleteGroupingConfigurationOutput
+    end
+
+    -- Union type for identifying an instrumentation configuration by code location or locationHash.
+    -- Used in Get/Delete/GetStatus operations to allow flexible identification.
+    record LocationIdentifier
+        -- The full code location specification (will be hashed internally)
+        CodeLocation: CodeLocation
+        -- The pre-computed location hash (16-character hex string)
+        LocationHash: string
+    end
+
+    record DeleteInstrumentationConfigurationInput
+        -- Type of instrumentation configuration (BREAKPOINT or PROBE).
+        -- Required to identify the configuration to delete.
+        InstrumentationType: string
+        -- Service name for the instrumentation configuration.
+        Service: string
+        -- Environment name for the instrumentation configuration.
+        Environment: string
+        -- Signal type for the instrumentation configuration.
+        SignalType: string
+        -- Location identifier - either full code location or a pre-computed hash.
+        LocationIdentifier: LocationIdentifier
+    end
+
+    enum DynamicInstrumentationDeletionStatus
+        "DELETED"
+    end
+
+    record DeleteInstrumentationConfigurationOutput
+        -- The result of the delete request. The value is DELETED when the configuration has been removed.
+        DeletionStatus: string
+    end
+
+    record GetInstrumentationConfigurationInput
+        -- Type of instrumentation configuration (BREAKPOINT or PROBE).
+        -- Required to identify the configuration to retrieve.
+        InstrumentationType: string
+        -- Service name for the instrumentation configuration.
+        Service: string
+        -- Environment name for the instrumentation configuration.
+        Environment: string
+        -- Signal type for the instrumentation configuration.
+        SignalType: string
+        -- Location identifier - either full code location or a pre-computed hash.
+        LocationIdentifier: LocationIdentifier
+    end
+
+    -- The full instrumentation configuration, including the instrumentation type, service, environment, signal type, location details, stable location hash, capture settings, filters, expiration, creation time, and ARN.
+    record InstrumentationConfiguration
+        -- The type of instrumentation for this configuration.
+        InstrumentationType: string
+        -- The service that this instrumentation configuration targets.
+        Service: string
+        -- The environment where the service is running.
+        Environment: string
+        -- The telemetry signal type for this instrumentation configuration.
+        SignalType: string
+        -- The location where this instrumentation is applied.
+        Location: Location
+        -- The stable hash derived from the location that uniquely identifies this instrumentation point within the service and environment.
+        LocationHash: string
+        -- An optional short description of the instrumentation configuration.
+        Description: string
+        -- The timestamp when this configuration expires.
+        ExpiresAt: number
+        -- Client-side filters that determine which instances apply this instrumentation.
+        AttributeFilters: {{string : string}}
+        -- The capture settings for this instrumentation configuration.
+        CaptureConfiguration: CaptureConfiguration
+        -- The timestamp when this instrumentation configuration was created.
+        CreatedAt: number
+        -- ARN for the instrumentation configuration
+        ARN: string
+    end
+
+    record GetInstrumentationConfigurationOutput
+        -- The complete instrumentation configuration, including its location hash, capture settings, filters, expiration, and creation time.
+        Configuration: InstrumentationConfiguration
+    end
+
+    enum InstrumentationConfigurationStatus
+        "READY"
+        "ERROR"
+        "ACTIVE"
+        "DISABLED"
+    end
+
+    record GetInstrumentationConfigurationStatusInput
+        -- Type of instrumentation configuration (BREAKPOINT or PROBE).
+        -- Required to identify the configuration to retrieve.
+        InstrumentationType: string
+        -- Service name for the instrumentation configuration.
+        Service: string
+        -- Environment name for the instrumentation configuration.
+        Environment: string
+        -- Signal type for the instrumentation configuration.
+        SignalType: string
+        -- Location identifier - either full code location or a pre-computed hash.
+        LocationIdentifier: LocationIdentifier
+        -- The single status to query for. If omitted, only ACTIVE status events are returned.
+        Status: string
+        -- The start of the time range to retrieve status events for. StartTime and EndTime must both be provided together or both be omitted. When both are omitted, the time range defaults to the last hour.
+        StartTime: number
+        -- The end of the time range to retrieve status events for. StartTime and EndTime must both be provided together or both be omitted. When both are omitted, the time range defaults to the last hour.
+        EndTime: number
+        -- The maximum number of status events to return in one call. The default is 60.
+        MaxResults: number
+        -- Use the token returned by a previous call to retrieve the next page of status events.
+        NextToken: string
+    end
+
+    enum InstrumentationErrorCause
+        "FILE_NOT_FOUND"
+        "METHOD_NOT_FOUND"
+        "LINE_NOT_EXECUTABLE"
+        "OVERLOADED_METHODS"
+        "LANGUAGE_MISMATCH"
+        "RUNTIME_ERROR"
+    end
+
+    -- A status event for an instrumentation configuration returned by GetInstrumentationConfigurationStatus. Events include the timestamp and, for errors, an error cause.
+    record InstrumentationStatusEvent
+        -- The time when the status was reported, rounded to the nearest minute.
+        Time: number
+        -- The error cause when the status is ERROR.
+        ErrorCause: string
+    end
+
+    record GetInstrumentationConfigurationStatusOutput
+        -- The service name echoed from the request.
+        Service: string
+        -- The environment echoed from the request.
+        Environment: string
+        -- The telemetry signal type echoed from the request.
+        SignalType: string
+        -- The code location echoed from the request.
+        Location: Location
+        -- The status that was queried. If not specified in the request, this is ACTIVE.
+        Status: string
+        -- The list of status events within the requested time window, sorted with the most recent first. Error events include an error cause.
+        Events: {InstrumentationStatusEvent}
+        -- Pagination token to continue retrieving status events.
+        NextToken: string
     end
 
     record GetServiceInput
@@ -707,6 +1068,63 @@ local record M
         NextToken: string
     end
 
+    record ListInstrumentationConfigurationsInput
+        -- The name of the service to retrieve instrumentation configurations for.
+        Service: string
+        -- The environment that the service is running in.
+        Environment: string
+        -- Type of instrumentation configuration (BREAKPOINT or PROBE).
+        -- Required to determine which backing store to query.
+        InstrumentationType: string
+        -- The timestamp from the last successful sync. When provided, the response returns Changed as false if nothing is new since this time, or returns the latest configurations when changes exist.
+        SyncedAt: number
+        -- The maximum number of configurations to return in one call. The default is 50 and the maximum is 100.
+        MaxResults: number
+        -- Use the token returned by a previous call to retrieve the next page of configurations.
+        NextToken: string
+    end
+
+    -- An instrumentation configuration that omits service and environment because they are provided at a higher level, such as in a list response.
+    record InstrumentationConfigurationWithoutServiceEnv
+        -- The type of instrumentation for this configuration.
+        InstrumentationType: string
+        -- The telemetry signal type for this instrumentation configuration.
+        SignalType: string
+        -- The location where this instrumentation is applied.
+        Location: Location
+        -- The stable hash derived from the location that identifies this instrumentation point.
+        LocationHash: string
+        -- An optional short description of the instrumentation configuration.
+        Description: string
+        -- The timestamp when this configuration expires.
+        ExpiresAt: number
+        -- Client-side filters that determine which instances apply this instrumentation.
+        AttributeFilters: {{string : string}}
+        -- The capture settings for this instrumentation configuration.
+        CaptureConfiguration: CaptureConfiguration
+        -- The timestamp when this instrumentation configuration was created.
+        CreatedAt: number
+        -- ARN for the instrumentation configuration
+        ARN: string
+    end
+
+    record ListInstrumentationConfigurationsOutput
+        -- The service name associated with the returned configurations.
+        Service: string
+        -- The environment associated with the returned configurations.
+        Environment: string
+        -- Indicates whether there are configuration changes since the provided SyncedAt timestamp.
+        Changed: boolean
+        -- The current set of active instrumentation configurations for the service and environment. Items omit service and environment because they are provided in the request.
+        LatestConfigurations: {InstrumentationConfigurationWithoutServiceEnv}
+        -- The server timestamp to supply on the next sync call.
+        SyncedAt: number
+        -- The suggested number of seconds to wait before the next sync request. This is at least 60 seconds to prevent excessive polling.
+        SyncInterval: number
+        -- Pagination token to continue listing configurations when more results are available.
+        NextToken: string
+    end
+
     record ListServiceDependenciesInput
         -- The start of the time period to retrieve information about. When used in a raw HTTP Query API, it is formatted as be epoch time in seconds. For example: 1698778057 Your requested start time will be rounded to the nearest hour.
         StartTime: number
@@ -916,14 +1334,6 @@ local record M
         ResourceArn: string
     end
 
-    -- A key-value pair associated with a resource. Tags can help you organize and categorize your resources.
-    record Tag
-        -- A string that you can use to assign a value. The combination of tag keys and values can help you organize and categorize your resources.
-        Key: string
-        -- The value for the specified tag key.
-        Value: string
-    end
-
     record ListTagsForResourceOutput
         -- The list of tag keys and values associated with the resource you specified.
         Tags: {Tag}
@@ -947,9 +1357,60 @@ local record M
         GroupingConfiguration: GroupingConfiguration
     end
 
-    -- This operation attempted to create a resource that already exists.
-    record ConflictException
-        Message: string
+    -- The status of a single instrumentation configuration reported by an SDK instance.
+    record InstrumentationConfigurationStatusReport
+        -- The type of instrumentation configuration being reported.
+        InstrumentationType: string
+        -- The telemetry signal type for this instrumentation configuration.
+        SignalType: string
+        -- The stable hash of the instrumentation location that identifies the configuration being reported.
+        LocationHash: string
+        -- The status of the instrumentation configuration: READY, ERROR, ACTIVE, or DISABLED.
+        Status: string
+        -- The timestamp when the status event occurred.
+        Time: number
+        -- The error cause when the status is ERROR, such as the file or method not being found.
+        ErrorCause: string
+    end
+
+    record ReportInstrumentationConfigurationStatusInput
+        -- The service that the reported configurations belong to.
+        Service: string
+        -- The environment that the service is running in.
+        Environment: string
+        -- An array of configuration status reports (up to 100) that include the instrumentation type, signal type, location hash, status, timestamp, and optional error cause.
+        Configurations: {InstrumentationConfigurationStatusReport}
+    end
+
+    enum UnprocessedStatusEventFailureReason
+        "THROTTLED"
+        "INTERNAL_ERROR"
+        "VALIDATION_ERROR"
+    end
+
+    -- A status event that could not be processed by the service.
+    record UnprocessedStatusEvent
+        -- The type of instrumentation configuration for the unprocessed status event.
+        InstrumentationType: string
+        -- The telemetry signal type for the unprocessed status event.
+        SignalType: string
+        -- The stable hash of the instrumentation location for the unprocessed event.
+        LocationHash: string
+        -- The status that failed to be processed.
+        Status: string
+        -- The timestamp of the status event that failed to be processed.
+        Time: number
+        -- The reason why this status event could not be processed, such as throttling or validation errors.
+        FailedReason: string
+    end
+
+    record ReportInstrumentationConfigurationStatusOutput
+        -- The service name echoed from the request.
+        Service: string
+        -- The environment echoed from the request.
+        Environment: string
+        -- Status events that failed to be processed. Each entry includes the configuration identifiers, status, timestamp, and a reason for the failure.
+        UnprocessedStatusEvents: {UnprocessedStatusEvent}
     end
 
     -- This object defines the length of the look-back window used to calculate one burn rate metric for this SLO. The burn rate measures how fast the service is consuming the error budget, relative to the attainment goal of the SLO. A burn rate of exactly 1 indicates that the SLO goal will be met exactly. For example, if you specify 60 as the number of minutes in the look-back window, the burn rate is calculated as the following: burn rate = error rate over the look-back window / (100% - attainment goal percentage) For more information about burn rates, see Calculate burn rates.
@@ -1084,11 +1545,6 @@ local record M
     record CreateServiceLevelObjectiveOutput
         -- A structure that contains information about the SLO that you just created.
         Slo: ServiceLevelObjective
-    end
-
-    -- This request exceeds a service quota.
-    record ServiceQuotaExceededException
-        Message: string
     end
 
     record DeleteServiceLevelObjectiveInput

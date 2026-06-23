@@ -5180,6 +5180,141 @@ M.RouterInputConfiguration = schema.new({
     },
 })
 
+M.BlackFramesConfiguration = schema.new({
+    id = id.from(_N, "BlackFramesConfiguration"),
+    type = "structure",
+    members = {
+        State = schema.new({
+            id = id.from(_N, "BlackFramesConfiguration", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "state" },
+            },
+        }),
+        ThresholdSeconds = schema.new({
+            id = id.from(_N, "BlackFramesConfiguration", "ThresholdSeconds"),
+            type = "integer",
+            name = "ThresholdSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "thresholdSeconds" },
+            },
+        }),
+    },
+})
+
+M.FrozenFramesConfiguration = schema.new({
+    id = id.from(_N, "FrozenFramesConfiguration"),
+    type = "structure",
+    members = {
+        State = schema.new({
+            id = id.from(_N, "FrozenFramesConfiguration", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "state" },
+            },
+        }),
+        ThresholdSeconds = schema.new({
+            id = id.from(_N, "FrozenFramesConfiguration", "ThresholdSeconds"),
+            type = "integer",
+            name = "ThresholdSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "thresholdSeconds" },
+            },
+        }),
+    },
+})
+
+M.SilentAudioConfiguration = schema.new({
+    id = id.from(_N, "SilentAudioConfiguration"),
+    type = "structure",
+    members = {
+        State = schema.new({
+            id = id.from(_N, "SilentAudioConfiguration", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "state" },
+            },
+        }),
+        ThresholdSeconds = schema.new({
+            id = id.from(_N, "SilentAudioConfiguration", "ThresholdSeconds"),
+            type = "integer",
+            name = "ThresholdSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "thresholdSeconds" },
+            },
+        }),
+    },
+})
+
+M.ContentQualityAnalysisFeatureConfiguration = schema.new({
+    id = id.from(_N, "ContentQualityAnalysisFeatureConfiguration"),
+    type = "structure",
+    members = {
+        BlackFrames = schema.new({
+            id = id.from(_N, "ContentQualityAnalysisFeatureConfiguration", "BlackFrames"),
+            type = "structure",
+            name = "BlackFrames",
+            target_id = id.from(_N, "BlackFramesConfiguration"),
+            target = M.BlackFramesConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "blackFrames" },
+            },
+        }),
+        FrozenFrames = schema.new({
+            id = id.from(_N, "ContentQualityAnalysisFeatureConfiguration", "FrozenFrames"),
+            type = "structure",
+            name = "FrozenFrames",
+            target_id = id.from(_N, "FrozenFramesConfiguration"),
+            target = M.FrozenFramesConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "frozenFrames" },
+            },
+        }),
+        SilentAudio = schema.new({
+            id = id.from(_N, "ContentQualityAnalysisFeatureConfiguration", "SilentAudio"),
+            type = "structure",
+            name = "SilentAudio",
+            target_id = id.from(_N, "SilentAudioConfiguration"),
+            target = M.SilentAudioConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "silentAudio" },
+            },
+        }),
+    },
+})
+
+M.RouterContentQualityAnalysisConfiguration = schema.new({
+    id = id.from(_N, "RouterContentQualityAnalysisConfiguration"),
+    type = "union",
+    members = {
+        ContentLevel = schema.new({
+            id = id.from(_N, "RouterContentQualityAnalysisConfiguration", "ContentLevel"),
+            type = "structure",
+            name = "ContentLevel",
+            target_id = id.from(_N, "ContentQualityAnalysisFeatureConfiguration"),
+            target = M.ContentQualityAnalysisFeatureConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "contentLevel" },
+            },
+        }),
+    },
+})
+
 M.DefaultMaintenanceConfiguration = schema.new({
     id = id.from(_N, "DefaultMaintenanceConfiguration"),
     type = "structure",
@@ -5818,6 +5953,27 @@ M.RouterInput = schema.new({
             target = M.MaintenanceSchedule,
             traits = {
                 [traits.JSON_NAME] = { name = "maintenanceSchedule" },
+            },
+        }),
+        ContentQualityAnalysisType = schema.new({
+            id = id.from(_N, "RouterInput", "ContentQualityAnalysisType"),
+            type = "string",
+            name = "ContentQualityAnalysisType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "contentQualityAnalysisType" },
+            },
+        }),
+        ContentQualityAnalysisConfiguration = schema.new({
+            id = id.from(_N, "RouterInput", "ContentQualityAnalysisConfiguration"),
+            type = "union",
+            name = "ContentQualityAnalysisConfiguration",
+            target_id = id.from(_N, "RouterContentQualityAnalysisConfiguration"),
+            target = M.RouterContentQualityAnalysisConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "contentQualityAnalysisConfiguration" },
             },
         }),
     },
@@ -8725,6 +8881,16 @@ M.CreateRouterInputInput = schema.new({
             traits = {
                 [traits.JSON_NAME] = { name = "clientToken" },
                 [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        ContentQualityAnalysisConfiguration = schema.new({
+            id = id.from(_N, "CreateRouterInputInput", "ContentQualityAnalysisConfiguration"),
+            type = "union",
+            name = "ContentQualityAnalysisConfiguration",
+            target_id = id.from(_N, "RouterContentQualityAnalysisConfiguration"),
+            target = M.RouterContentQualityAnalysisConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "contentQualityAnalysisConfiguration" },
             },
         }),
     },
@@ -13051,6 +13217,16 @@ M.UpdateRouterInputInput = schema.new({
             target = M.MaintenanceConfiguration,
             traits = {
                 [traits.JSON_NAME] = { name = "maintenanceConfiguration" },
+            },
+        }),
+        ContentQualityAnalysisConfiguration = schema.new({
+            id = id.from(_N, "UpdateRouterInputInput", "ContentQualityAnalysisConfiguration"),
+            type = "union",
+            name = "ContentQualityAnalysisConfiguration",
+            target_id = id.from(_N, "RouterContentQualityAnalysisConfiguration"),
+            target = M.RouterContentQualityAnalysisConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "contentQualityAnalysisConfiguration" },
             },
         }),
     },

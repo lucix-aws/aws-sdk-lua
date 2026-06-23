@@ -18,16 +18,22 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    batchDeleteInstrumentationConfigurations: function(Client, types.BatchDeleteInstrumentationConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteInstrumentationConfigurationsOutput>
     batchGetServiceLevelObjectiveBudgetReport: function(Client, types.BatchGetServiceLevelObjectiveBudgetReportInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetServiceLevelObjectiveBudgetReportOutput>
     batchUpdateExclusionWindows: function(Client, types.BatchUpdateExclusionWindowsInput, ? base_client.InvokeOptions): async.Operation<types.BatchUpdateExclusionWindowsOutput>
+    createInstrumentationConfiguration: function(Client, types.CreateInstrumentationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstrumentationConfigurationOutput>
     createServiceLevelObjective: function(Client, types.CreateServiceLevelObjectiveInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceLevelObjectiveOutput>
     deleteGroupingConfiguration: function(Client, types.DeleteGroupingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGroupingConfigurationOutput>
+    deleteInstrumentationConfiguration: function(Client, types.DeleteInstrumentationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstrumentationConfigurationOutput>
     deleteServiceLevelObjective: function(Client, types.DeleteServiceLevelObjectiveInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceLevelObjectiveOutput>
+    getInstrumentationConfiguration: function(Client, types.GetInstrumentationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetInstrumentationConfigurationOutput>
+    getInstrumentationConfigurationStatus: function(Client, types.GetInstrumentationConfigurationStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetInstrumentationConfigurationStatusOutput>
     getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
     getServiceLevelObjective: function(Client, types.GetServiceLevelObjectiveInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceLevelObjectiveOutput>
     listAuditFindings: function(Client, types.ListAuditFindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListAuditFindingsOutput>
     listEntityEvents: function(Client, types.ListEntityEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListEntityEventsOutput>
     listGroupingAttributeDefinitions: function(Client, types.ListGroupingAttributeDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListGroupingAttributeDefinitionsOutput>
+    listInstrumentationConfigurations: function(Client, types.ListInstrumentationConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInstrumentationConfigurationsOutput>
     listServiceDependencies: function(Client, types.ListServiceDependenciesInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceDependenciesOutput>
     listServiceDependents: function(Client, types.ListServiceDependentsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceDependentsOutput>
     listServiceLevelObjectiveExclusionWindows: function(Client, types.ListServiceLevelObjectiveExclusionWindowsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceLevelObjectiveExclusionWindowsOutput>
@@ -37,6 +43,7 @@ local record Client
     listServiceStates: function(Client, types.ListServiceStatesInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceStatesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putGroupingConfiguration: function(Client, types.PutGroupingConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutGroupingConfigurationOutput>
+    reportInstrumentationConfigurationStatus: function(Client, types.ReportInstrumentationConfigurationStatusInput, ? base_client.InvokeOptions): async.Operation<types.ReportInstrumentationConfigurationStatusOutput>
     startDiscovery: function(Client, types.StartDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.StartDiscoveryOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
@@ -85,12 +92,20 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:batchDeleteInstrumentationConfigurations(input: types.BatchDeleteInstrumentationConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteInstrumentationConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteInstrumentationConfigurations as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteInstrumentationConfigurationsOutput>
+end
+
 function C:batchGetServiceLevelObjectiveBudgetReport(input: types.BatchGetServiceLevelObjectiveBudgetReportInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetServiceLevelObjectiveBudgetReportOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetServiceLevelObjectiveBudgetReport as schema.OperationSchema, input, options) as async.Operation<types.BatchGetServiceLevelObjectiveBudgetReportOutput>
 end
 
 function C:batchUpdateExclusionWindows(input: types.BatchUpdateExclusionWindowsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchUpdateExclusionWindowsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchUpdateExclusionWindows as schema.OperationSchema, input, options) as async.Operation<types.BatchUpdateExclusionWindowsOutput>
+end
+
+function C:createInstrumentationConfiguration(input: types.CreateInstrumentationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateInstrumentationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateInstrumentationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateInstrumentationConfigurationOutput>
 end
 
 function C:createServiceLevelObjective(input: types.CreateServiceLevelObjectiveInput, options?: base_client.InvokeOptions): async.Operation<types.CreateServiceLevelObjectiveOutput>
@@ -101,8 +116,20 @@ function C:deleteGroupingConfiguration(input: types.DeleteGroupingConfigurationI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGroupingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteGroupingConfigurationOutput>
 end
 
+function C:deleteInstrumentationConfiguration(input: types.DeleteInstrumentationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteInstrumentationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteInstrumentationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteInstrumentationConfigurationOutput>
+end
+
 function C:deleteServiceLevelObjective(input: types.DeleteServiceLevelObjectiveInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteServiceLevelObjectiveOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteServiceLevelObjective as schema.OperationSchema, input, options) as async.Operation<types.DeleteServiceLevelObjectiveOutput>
+end
+
+function C:getInstrumentationConfiguration(input: types.GetInstrumentationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstrumentationConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstrumentationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetInstrumentationConfigurationOutput>
+end
+
+function C:getInstrumentationConfigurationStatus(input: types.GetInstrumentationConfigurationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetInstrumentationConfigurationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInstrumentationConfigurationStatus as schema.OperationSchema, input, options) as async.Operation<types.GetInstrumentationConfigurationStatusOutput>
 end
 
 function C:getService(input: types.GetServiceInput, options?: base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
@@ -123,6 +150,10 @@ end
 
 function C:listGroupingAttributeDefinitions(input: types.ListGroupingAttributeDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGroupingAttributeDefinitionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGroupingAttributeDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListGroupingAttributeDefinitionsOutput>
+end
+
+function C:listInstrumentationConfigurations(input: types.ListInstrumentationConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstrumentationConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstrumentationConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListInstrumentationConfigurationsOutput>
 end
 
 function C:listServiceDependencies(input: types.ListServiceDependenciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListServiceDependenciesOutput>
@@ -159,6 +190,10 @@ end
 
 function C:putGroupingConfiguration(input: types.PutGroupingConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutGroupingConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutGroupingConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutGroupingConfigurationOutput>
+end
+
+function C:reportInstrumentationConfigurationStatus(input: types.ReportInstrumentationConfigurationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.ReportInstrumentationConfigurationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ReportInstrumentationConfigurationStatus as schema.OperationSchema, input, options) as async.Operation<types.ReportInstrumentationConfigurationStatusOutput>
 end
 
 function C:startDiscovery(input: types.StartDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.StartDiscoveryOutput>

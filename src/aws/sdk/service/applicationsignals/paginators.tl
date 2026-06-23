@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for getInstrumentationConfigurationStatus.
+function M.pages_get_instrumentation_configuration_status(client, input)
+    return paginator.pages(client, "getInstrumentationConfigurationStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
+--- Returns an item iterator for getInstrumentationConfigurationStatus.
+function M.items_get_instrumentation_configuration_status(client, input)
+    return paginator.items(client, "getInstrumentationConfigurationStatus", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Events",
+    })
+end
+
 --- Returns a page iterator for listEntityEvents.
 function M.pages_list_entity_events(client, input)
     return paginator.pages(client, "listEntityEvents", input, {
@@ -19,6 +37,24 @@ function M.items_list_entity_events(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "ChangeEvents",
+    })
+end
+
+--- Returns a page iterator for listInstrumentationConfigurations.
+function M.pages_list_instrumentation_configurations(client, input)
+    return paginator.pages(client, "listInstrumentationConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LatestConfigurations",
+    })
+end
+
+--- Returns an item iterator for listInstrumentationConfigurations.
+function M.items_list_instrumentation_configurations(client, input)
+    return paginator.items(client, "listInstrumentationConfigurations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "LatestConfigurations",
     })
 end
 

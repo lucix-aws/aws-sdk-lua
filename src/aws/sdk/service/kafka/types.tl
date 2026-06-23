@@ -699,6 +699,12 @@ local record M
         BootstrapBrokerString: string
     end
 
+    -- Details for mTLS client authentication.
+    record KafkaClusterMTLSAuthentication
+        -- The Amazon Resource Name (ARN) of the Secrets Manager secret.
+        SecretArn: string
+    end
+
     enum KafkaClusterSaslScramMechanism
         "SHA256"
         "SHA512"
@@ -716,6 +722,8 @@ local record M
     record KafkaClusterClientAuthentication
         -- Details for SASL/SCRAM client authentication.
         SaslScram: KafkaClusterSaslScramAuthentication
+        -- Details for mTLS client authentication.
+        MTLS: KafkaClusterMTLSAuthentication
     end
 
     enum KafkaClusterEncryptionInTransitType

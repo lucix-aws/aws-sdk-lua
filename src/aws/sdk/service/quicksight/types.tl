@@ -17280,10 +17280,8 @@ local record M
         "TOPIC"
         "DASHBOARD"
         "KNOWLEDGE_BASE"
-        "SPACE"
         "ACTION_CONNECTOR"
         "DATA_SET"
-        "ARTIFACT"
     end
 
     -- A QuickSight resource that is associated with a space.

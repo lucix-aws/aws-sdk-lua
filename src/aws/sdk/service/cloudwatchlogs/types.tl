@@ -1122,6 +1122,16 @@ local record M
     record DeleteSubscriptionFilterOutput
     end
 
+    record DeleteSyslogConfigurationInput
+        -- The name or ARN of the log group to remove the syslog configuration from.
+        logGroupIdentifier: string
+        -- The ID of the VPC endpoint associated with the syslog configuration to delete.
+        vpcEndpointId: string
+    end
+
+    record DeleteSyslogConfigurationOutput
+    end
+
     record DeleteTransformerInput
         -- Specify either the name or ARN of the log group to delete the transformer for. If the log
         -- group is in a source account and you are using a monitoring account, you must use the log
@@ -3720,6 +3730,42 @@ local record M
         nextToken: string
     end
 
+    record ListSyslogConfigurationsInput
+        -- The name or ARN of the log group to filter syslog configurations for.
+        logGroupIdentifier: string
+        -- The ID of the VPC endpoint to filter syslog configurations for.
+        vpcEndpointId: string
+        -- The token for the next set of items to return. You received this token from a previous
+        -- call.
+        nextToken: string
+        -- The maximum number of syslog configurations to return in the response.
+        maxResults: number
+    end
+
+    enum SyslogSourceType
+        "VPCE"
+    end
+
+    -- Contains information about a syslog configuration associated with a log group.
+    record SyslogConfiguration
+        -- The ARN of the log group associated with this syslog configuration.
+        logGroupArn: string
+        -- The source type for the syslog configuration.
+        sourceType: string
+        -- The ID of the VPC endpoint used for syslog ingestion.
+        vpcEndpointId: string
+        -- The time when the syslog configuration was created, expressed as the number of
+        -- milliseconds after Jan 1, 1970 00:00:00 UTC.
+        createdAt: number
+    end
+
+    record ListSyslogConfigurationsOutput
+        -- The list of syslog configurations.
+        syslogConfigurations: {SyslogConfiguration}
+        -- The token for the next set of items to return. The token expires after 24 hours.
+        nextToken: string
+    end
+
     record ListTagsForResourceInput
         -- The ARN of the resource that you want to view tags for.
         -- The ARN format of a log group is
@@ -4057,6 +4103,8 @@ local record M
         -- APPLICATION_LOGS and TRACES.
         -- For Amazon Bedrock AgentCore Gateway, the valid values are
         -- APPLICATION_LOGS and TRACES.
+        -- For Amazon Bedrock AgentCore Payments, the valid values are
+        -- APPLICATION_LOGS and TRACES.
         -- For CloudFront, the valid value is ACCESS_LOGS.
         -- For DevOps Agent, the valid value is APPLICATION_LOGS.
         -- For Amazon CodeWhisperer, the valid value is EVENT_LOGS.
@@ -4067,6 +4115,13 @@ local record M
         -- For Amazon EKS Auto Mode, the valid values are AUTO_MODE_BLOCK_STORAGE_LOGS,
         -- AUTO_MODE_COMPUTE_LOGS, AUTO_MODE_IPAM_LOGS, and
         -- AUTO_MODE_LOAD_BALANCING_LOGS.
+        -- For Amazon EKS Capability Logs, the valid values are EKS_CAPABILITY_ACK_LOGS,
+        -- EKS_CAPABILITY_ARGOCD_APPLICATION_LOGS,
+        -- EKS_CAPABILITY_ARGOCD_APPLICATIONSET_LOGS,
+        -- EKS_CAPABILITY_ARGOCD_COMMITSERVER_LOGS,
+        -- EKS_CAPABILITY_ARGOCD_REPOSERVER_LOGS,
+        -- EKS_CAPABILITY_ARGOCD_SERVER_LOGS, and
+        -- EKS_CAPABILITY_KRO_LOGS.
         -- For Entity Resolution, the valid value is WORKFLOW_LOGS.
         -- For IAM Identity Center, the valid value is
         -- ERROR_LOGS.
@@ -4075,8 +4130,9 @@ local record M
         -- For Network Load Balancer, the valid value is NLB_ACCESS_LOGS.
         -- For PCS, the valid values are PCS_SCHEDULER_LOGS,
         -- PCS_JOBCOMP_LOGS, and PCS_SCHEDULER_AUDIT_LOGS.
-        -- For Quick, the valid values are CHAT_LOGS and
-        -- FEEDBACK_LOGS.
+        -- For Quick, the valid values are AGENT_HOURS_LOGS,
+        -- CHAT_LOGS, FEEDBACK_LOGS, and
+        -- INDEX_USAGE_LOGS.
         -- For Amazon Web Services RTB Fabric, the valid values is
         -- APPLICATION_LOGS.
         -- For Amazon Q, the valid values are EVENT_LOGS and
@@ -4472,6 +4528,16 @@ local record M
     end
 
     record PutSubscriptionFilterOutput
+    end
+
+    record PutSyslogConfigurationInput
+        -- The name or ARN of the log group to associate with the syslog configuration.
+        logGroupIdentifier: string
+        -- The ID of the VPC endpoint to use for syslog ingestion.
+        vpcEndpointId: string
+    end
+
+    record PutSyslogConfigurationOutput
     end
 
     record PutTransformerInput

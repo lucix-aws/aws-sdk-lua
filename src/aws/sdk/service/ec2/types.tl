@@ -33226,6 +33226,25 @@ local record M
         MaximumDaysSinceDeprecated: number
     end
 
+    -- The watermark filter criteria for an allowed image. Each entry can specify one or more
+    -- fields. All specified fields must match the same watermark on the image.
+    record ImageWatermarkFilterResponse
+        -- The accountId:name of the watermark. Supports wildcards (*,
+        -- ?).
+        WatermarkKey: string
+        -- The Region where the watermark was originally created. Supports wildcards (*,
+        -- ?).
+        SourceImageRegion: string
+        -- The maximum number of days that have elapsed since the source image was
+        -- created.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaximumDaysSinceSourceImageCreated: number
+        -- The maximum number of days that have elapsed since the watermark was attached to the
+        -- image.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaximumDaysSinceWatermarkCreated: number
+    end
+
     -- The criteria that are evaluated to determine which AMIs are discoverable and usable in
     -- your account for the specified Amazon Web Services Region.
     -- For more information, see How Allowed AMIs
@@ -33261,6 +33280,12 @@ local record M
         DeprecationTimeCondition: DeprecationTimeCondition
         -- The maximum age for allowed images.
         CreationDateCondition: CreationDateCondition
+        -- The watermark criteria that an AMI must match to be allowed. An AMI is allowed if it
+        -- carries at least one watermark that satisfies an ImageWatermarkFilter. A watermark satisfies a
+        -- filter when all specified fields in the ImageWatermarkFilter match the corresponding values on
+        -- the watermark of the AMI.
+        -- Maximum: 50 values
+        ImageWatermarks: {ImageWatermarkFilterResponse}
     end
 
     record GetAllowedImagesSettingsOutput
@@ -38548,6 +38573,8 @@ local record M
         -- Static VPN
         -- Direct Connect Gateway
         -- Connect
+        -- VPN Concentrator
+        -- Client VPN
         -- You must first delete all transit gateway attachments configured prior to modifying the ASN on
         -- the transit gateway.
         AmazonSideAsn: number
@@ -40214,6 +40241,25 @@ local record M
         MaximumDaysSinceDeprecated: number
     end
 
+    -- The watermark filter criteria for an allowed image. Each entry can specify one or more
+    -- fields. All specified fields must match the same watermark on the image.
+    record ImageWatermarkFilterRequest
+        -- The accountId:name of the watermark. Supports wildcards (*,
+        -- ?).
+        WatermarkKey: string
+        -- The Region where the watermark was originally created. Supports wildcards (*,
+        -- ?).
+        SourceImageRegion: string
+        -- The maximum number of days that have elapsed since the source image was
+        -- created.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaximumDaysSinceSourceImageCreated: number
+        -- The maximum number of days that have elapsed since the watermark was attached to the
+        -- image.
+        -- Constraints: Minimum value of 0. Maximum value of 2147483647.
+        MaximumDaysSinceWatermarkCreated: number
+    end
+
     -- The criteria that are evaluated to determine which AMIs are discoverable and usable in
     -- your account for the specified Amazon Web Services Region.
     -- The ImageCriteria can include up to:
@@ -40222,6 +40268,7 @@ local record M
     -- 200 values for ImageProviders
     -- 50 values for ImageNames
     -- 50 values for MarketplaceProductCodes
+    -- 50 values for ImageWatermarks
     -- For more information, see How Allowed AMIs
     -- works in the Amazon EC2 User Guide.
     record ImageCriterionRequest
@@ -40256,6 +40303,12 @@ local record M
         DeprecationTimeCondition: DeprecationTimeConditionRequest
         -- The maximum age for allowed images.
         CreationDateCondition: CreationDateConditionRequest
+        -- The watermark criteria that an AMI must match to be allowed. An AMI is allowed if it
+        -- carries at least one watermark that satisfies an ImageWatermarkFilter. A watermark satisfies a
+        -- filter when all specified fields in the ImageWatermarkFilter match the corresponding values on
+        -- the watermark of the AMI.
+        -- Maximum: 50 values
+        ImageWatermarks: {ImageWatermarkFilterRequest}
     end
 
     record ReplaceImageCriteriaInAllowedImagesSettingsInput

@@ -645,6 +645,20 @@ local record M
         BlockPublicAccess: BlockPublicAccess
     end
 
+    enum CloudProvider
+        "AWS"
+    end
+
+    -- Contains details about the cloud environment associated with an investigation.
+    record CloudDetails
+        -- The cloud provider. Currently, only AWS is supported.
+        Provider: string
+        -- The Amazon Web Services Region in which the investigated resource resides.
+        Region: string
+        -- The Amazon Web Services account ID of the investigated resource.
+        Account: string
+    end
+
     -- Contains information about the CloudFormation stack involved in a GuardDuty finding, including unique identifiers of the Amazon EC2 instances.
     record CloudformationStack
         -- A list of unique identifiers for the compromised Amazon EC2 instances that were created as part of the same CloudFormation stack.
@@ -701,6 +715,13 @@ local record M
         Matches: {string}
         -- Represents the not match condition to be applied to a single field when querying for findings. The not-matches condition is available only for create-filter and update-filter APIs.
         NotMatches: {string}
+    end
+
+    enum Confidence
+        "Unknown"
+        "Low"
+        "Medium"
+        "High"
     end
 
     -- A request conflict exception object.
@@ -1103,6 +1124,20 @@ local record M
     record CreateFilterOutput
         -- The name of the successfully created filter.
         Name: string
+    end
+
+    record CreateInvestigationInput
+        -- The unique ID of the GuardDuty detector for the account in which the investigation is created. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
+        DetectorId: string
+        -- A natural-language description of what to investigate. For example: "Investigate finding 1ab2c3d4e5f6a7b8c9d0e1f2a3b4c5d6 in account 123456789012" "Analyze findings in account with id 123456789012" "Analyze findings in my organization"
+        TriggerPrompt: string
+        -- The idempotency token for the create request.
+        ClientToken: string
+    end
+
+    record CreateInvestigationOutput
+        -- The unique identifier of the newly created investigation.
+        InvestigationId: string
     end
 
     enum IpSetFormat
@@ -3341,6 +3376,78 @@ local record M
         NextToken: string
     end
 
+    record GetInvestigationInput
+        -- The unique ID of the GuardDuty detector associated with the investigation. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
+        DetectorId: string
+        -- The unique identifier of the investigation to retrieve.
+        InvestigationId: string
+    end
+
+    -- Contains information about the product that produced an investigation.
+    record Product
+        -- The name of the product.
+        Name: string
+        -- The specific feature within the product that produced the investigation.
+        Feature: string
+    end
+
+    -- Contains metadata about the product and version that produced an investigation.
+    record InvestigationMetadata
+        -- The version of the investigation engine that produced the results.
+        Version: string
+        -- Information about the product that produced the investigation.
+        Product: Product
+    end
+
+    enum RiskLevel
+        "Info"
+        "Low"
+        "Medium"
+        "High"
+        "Critical"
+    end
+
+    enum InvestigationStatus
+        "RUNNING"
+        "COMPLETED"
+        "FAILED"
+    end
+
+    -- Contains the details and results of a GuardDuty investigation.
+    record Investigation
+        -- The unique identifier of the investigation.
+        InvestigationId: string
+        -- The current status of the investigation. Possible values are RUNNING, COMPLETED, and FAILED.
+        Status: string
+        -- The natural-language prompt that initiated this investigation.
+        TriggerPrompt: string
+        -- The account that initiated the investigation.
+        TriggeredBy: string
+        -- Metadata about the product and version that produced the investigation.
+        Metadata: InvestigationMetadata
+        -- Details about the cloud environment in which the investigation was performed, including the provider, region, and account.
+        Cloud: CloudDetails
+        -- The assessed risk level of the investigated threat. Possible values are Info, Low, Medium, High, and Critical.
+        RiskLevel: string
+        -- A human-readable description of the assessed risk.
+        Risk: string
+        -- The confidence level of the investigation's assessment. Possible values are Unknown, Low, Medium, and High.
+        Confidence: string
+        -- A structured summary of the investigation findings, including affected resources, threat assessment, and recommended remediation steps.
+        Summary: string
+        -- The timestamp at which the investigation started.
+        StartTime: number
+        -- The timestamp at which the investigation completed.
+        EndTime: number
+        -- Details about the error if the investigation status is FAILED.
+        Error: string
+    end
+
+    record GetInvestigationOutput
+        -- The details and results of the requested investigation.
+        Investigation: Investigation
+    end
+
     record GetInvitationsCountInput
     end
 
@@ -4111,6 +4218,62 @@ local record M
     record ListFindingsOutput
         -- The IDs of the findings that you're listing.
         FindingIds: {string}
+        -- The pagination parameter to be used on the next list operation to retrieve more items.
+        NextToken: string
+    end
+
+    enum InvestigationSortField
+        "START_TIME"
+        "END_TIME"
+        "STATUS"
+        "RISK_LEVEL"
+        "CONFIDENCE"
+    end
+
+    -- Contains information about the criteria used for sorting investigations.
+    record InvestigationSortCriteria
+        -- The attribute by which to sort investigations.
+        AttributeName: string
+        -- The order in which the sorted results are to be displayed.
+        OrderBy: string
+    end
+
+    record ListInvestigationsInput
+        -- The unique ID of the GuardDuty detector whose investigations you want to list. To find the detectorId in the current Region, see the Settings page in the GuardDuty console, or run the ListDetectors API.
+        DetectorId: string
+        -- Represents the criteria used for sorting investigations.
+        SortCriteria: InvestigationSortCriteria
+        -- You can use this parameter to indicate the maximum number of items you want in the response. The default value is 50.
+        MaxResults: number
+        -- You can use this parameter when paginating results. Set the value of this parameter to null on your first call to the list action. For subsequent calls to the action, fill nextToken in the request with the value of NextToken from the previous response to continue listing data.
+        NextToken: string
+    end
+
+    -- Contains summary information about a GuardDuty investigation.
+    record InvestigationSummary
+        -- The unique identifier of the investigation.
+        InvestigationId: string
+        -- The current status of the investigation.
+        Status: string
+        -- The natural-language prompt that initiated this investigation.
+        TriggerPrompt: string
+        -- The assessed risk level of the investigated threat.
+        RiskLevel: string
+        -- The confidence level of the investigation's assessment.
+        Confidence: string
+        -- A short title summarizing the investigation.
+        Title: string
+        -- The Amazon Web Services account ID associated with the investigation.
+        AccountId: string
+        -- The timestamp at which the investigation started.
+        StartTime: number
+        -- The timestamp at which the investigation completed.
+        EndTime: number
+    end
+
+    record ListInvestigationsOutput
+        -- A list of investigation summaries associated with the specified detector.
+        Investigations: {InvestigationSummary}
         -- The pagination parameter to be used on the next list operation to retrieve more items.
         NextToken: string
     end

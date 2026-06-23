@@ -9,6 +9,10 @@ local _N = "com.amazonaws.applicationsignals"
 
 local M: {string:any} = {}
 
+M.BatchDeleteSuccessfulDeletionList = schema.new({ type = "list", list_member = M.BatchDeleteSuccessfulDeletion })
+
+M.BatchDeleteErrorList = schema.new({ type = "list", list_member = M.BatchDeleteError })
+
 M.ServiceLevelObjectiveIds = schema.new({ type = "list", list_member = prelude.String })
 
 M.ServiceLevelObjectiveBudgetReports = schema.new({ type = "list", list_member = M.ServiceLevelObjectiveBudgetReport })
@@ -18,6 +22,12 @@ M.ServiceLevelObjectiveBudgetReportErrors = schema.new({ type = "list", list_mem
 M.ExclusionWindows = schema.new({ type = "list", list_member = M.ExclusionWindow })
 
 M.BatchUpdateExclusionWindowsErrors = schema.new({ type = "list", list_member = M.BatchUpdateExclusionWindowsError })
+
+M.DynamicInstrumentationAttributeFilters = schema.new({ type = "list", list_member = M.DynamicInstrumentationAttributeFilterGroup })
+
+M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.InstrumentationStatusEventList = schema.new({ type = "list", list_member = M.InstrumentationStatusEvent })
 
 M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -33,6 +43,8 @@ M.ChangeEvents = schema.new({ type = "list", list_member = M.ChangeEvent })
 
 M.GroupingAttributeDefinitions = schema.new({ type = "list", list_member = M.GroupingAttributeDefinition })
 
+M.InstrumentationConfigurationsWithoutServiceEnv = schema.new({ type = "list", list_member = M.InstrumentationConfigurationWithoutServiceEnv })
+
 M.ServiceDependencies = schema.new({ type = "list", list_member = M.ServiceDependency })
 
 M.ServiceDependents = schema.new({ type = "list", list_member = M.ServiceDependent })
@@ -45,7 +57,9 @@ M.AttributeFilters = schema.new({ type = "list", list_member = M.AttributeFilter
 
 M.ServiceStates = schema.new({ type = "list", list_member = M.ServiceState })
 
-M.TagList = schema.new({ type = "list", list_member = M.Tag })
+M.InstrumentationConfigurationStatusList = schema.new({ type = "list", list_member = M.InstrumentationConfigurationStatusReport })
+
+M.UnprocessedStatusEventList = schema.new({ type = "list", list_member = M.UnprocessedStatusEvent })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -55,11 +69,17 @@ M.ServiceLevelObjectiveSummaries = schema.new({ type = "list", list_member = M.S
 
 M.BurnRateConfigurations = schema.new({ type = "list", list_member = M.BurnRateConfiguration })
 
+M.DynamicInstrumentationAttributeFilterGroup = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.AttributeMaps = schema.new({ type = "list", list_member = M.AttributeMap })
 
 M.ServiceGroups = schema.new({ type = "list", list_member = M.ServiceGroup })
 
 M.MetricReferences = schema.new({ type = "list", list_member = M.MetricReference })
+
+M.BatchDeleteResourceArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -94,6 +114,234 @@ M.AccessDeniedException = schema.new({
             id = id.from(_N, "AccessDeniedException", "Message"),
             type = "string",
             name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteByResourceArns = schema.new({
+    id = id.from(_N, "BatchDeleteByResourceArns"),
+    type = "structure",
+    members = {
+        ResourceArns = schema.new({
+            id = id.from(_N, "BatchDeleteByResourceArns", "ResourceArns"),
+            type = "list",
+            name = "ResourceArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstrumentationType = schema.new({
+            id = id.from(_N, "BatchDeleteByResourceArns", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteScope = schema.new({
+    id = id.from(_N, "BatchDeleteScope"),
+    type = "structure",
+    members = {
+        Service = schema.new({
+            id = id.from(_N, "BatchDeleteScope", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "BatchDeleteScope", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstrumentationType = schema.new({
+            id = id.from(_N, "BatchDeleteScope", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteDeletionTarget = schema.new({
+    id = id.from(_N, "BatchDeleteDeletionTarget"),
+    type = "union",
+    members = {
+        Scope = schema.new({
+            id = id.from(_N, "BatchDeleteDeletionTarget", "Scope"),
+            type = "structure",
+            name = "Scope",
+            target_id = id.from(_N, "BatchDeleteScope"),
+            target = M.BatchDeleteScope,
+        }),
+        ResourceArns = schema.new({
+            id = id.from(_N, "BatchDeleteDeletionTarget", "ResourceArns"),
+            type = "structure",
+            name = "ResourceArns",
+            target_id = id.from(_N, "BatchDeleteByResourceArns"),
+            target = M.BatchDeleteByResourceArns,
+        }),
+    },
+})
+
+M.BatchDeleteInstrumentationConfigurationsInput = schema.new({
+    id = id.from(_N, "BatchDeleteInstrumentationConfigurationsRequest"),
+    type = "structure",
+    members = {
+        DeletionTarget = schema.new({
+            id = id.from(_N, "BatchDeleteInstrumentationConfigurationsInput", "DeletionTarget"),
+            type = "union",
+            name = "DeletionTarget",
+            target_id = id.from(_N, "BatchDeleteDeletionTarget"),
+            target = M.BatchDeleteDeletionTarget,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteError = schema.new({
+    id = id.from(_N, "BatchDeleteError"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "BatchDeleteError", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "BatchDeleteError", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "BatchDeleteError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchDeleteSuccessfulDeletion = schema.new({
+    id = id.from(_N, "BatchDeleteSuccessfulDeletion"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "BatchDeleteSuccessfulDeletion", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "BatchDeleteSuccessfulDeletion", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+        }),
+        LocationHash = schema.new({
+            id = id.from(_N, "BatchDeleteSuccessfulDeletion", "LocationHash"),
+            type = "string",
+            name = "LocationHash",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.BatchDeleteInstrumentationConfigurationsOutput = schema.new({
+    id = id.from(_N, "BatchDeleteInstrumentationConfigurationsResponse"),
+    type = "structure",
+    members = {
+        DeletedCount = schema.new({
+            id = id.from(_N, "BatchDeleteInstrumentationConfigurationsOutput", "DeletedCount"),
+            type = "integer",
+            name = "DeletedCount",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SuccessfulDeletions = schema.new({
+            id = id.from(_N, "BatchDeleteInstrumentationConfigurationsOutput", "SuccessfulDeletions"),
+            type = "list",
+            name = "SuccessfulDeletions",
+            target_id = prelude.Document.id,
+            list_member = M.BatchDeleteSuccessfulDeletion,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Errors = schema.new({
+            id = id.from(_N, "BatchDeleteInstrumentationConfigurationsOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchDeleteError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -875,41 +1123,6 @@ M.BatchGetServiceLevelObjectiveBudgetReportOutput = schema.new({
     },
 })
 
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ThrottlingException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.RecurrenceRule = schema.new({
     id = id.from(_N, "RecurrenceRule"),
     type = "structure",
@@ -1116,11 +1329,892 @@ M.ResourceNotFoundException = schema.new({
     },
 })
 
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CaptureLimitsConfig = schema.new({
+    id = id.from(_N, "CaptureLimitsConfig"),
+    type = "structure",
+    members = {
+        MaxHits = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxHits"),
+            type = "integer",
+            name = "MaxHits",
+            target_id = prelude.Integer.id,
+        }),
+        MaxStringLength = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxStringLength"),
+            type = "integer",
+            name = "MaxStringLength",
+            target_id = prelude.Integer.id,
+        }),
+        MaxCollectionWidth = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxCollectionWidth"),
+            type = "integer",
+            name = "MaxCollectionWidth",
+            target_id = prelude.Integer.id,
+        }),
+        MaxCollectionDepth = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxCollectionDepth"),
+            type = "integer",
+            name = "MaxCollectionDepth",
+            target_id = prelude.Integer.id,
+        }),
+        MaxStackFrames = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxStackFrames"),
+            type = "integer",
+            name = "MaxStackFrames",
+            target_id = prelude.Integer.id,
+        }),
+        MaxStackTraceSize = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxStackTraceSize"),
+            type = "integer",
+            name = "MaxStackTraceSize",
+            target_id = prelude.Integer.id,
+        }),
+        MaxObjectDepth = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxObjectDepth"),
+            type = "integer",
+            name = "MaxObjectDepth",
+            target_id = prelude.Integer.id,
+        }),
+        MaxFieldsPerObject = schema.new({
+            id = id.from(_N, "CaptureLimitsConfig", "MaxFieldsPerObject"),
+            type = "integer",
+            name = "MaxFieldsPerObject",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CodeCaptureConfiguration = schema.new({
+    id = id.from(_N, "CodeCaptureConfiguration"),
+    type = "structure",
+    members = {
+        CaptureArguments = schema.new({
+            id = id.from(_N, "CodeCaptureConfiguration", "CaptureArguments"),
+            type = "list",
+            name = "CaptureArguments",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CaptureReturn = schema.new({
+            id = id.from(_N, "CodeCaptureConfiguration", "CaptureReturn"),
+            type = "boolean",
+            name = "CaptureReturn",
+            target_id = prelude.Boolean.id,
+        }),
+        CaptureStackTrace = schema.new({
+            id = id.from(_N, "CodeCaptureConfiguration", "CaptureStackTrace"),
+            type = "boolean",
+            name = "CaptureStackTrace",
+            target_id = prelude.Boolean.id,
+        }),
+        CaptureLocals = schema.new({
+            id = id.from(_N, "CodeCaptureConfiguration", "CaptureLocals"),
+            type = "list",
+            name = "CaptureLocals",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CaptureLimits = schema.new({
+            id = id.from(_N, "CodeCaptureConfiguration", "CaptureLimits"),
+            type = "structure",
+            name = "CaptureLimits",
+            target_id = id.from(_N, "CaptureLimitsConfig"),
+            target = M.CaptureLimitsConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CaptureConfiguration = schema.new({
+    id = id.from(_N, "CaptureConfiguration"),
+    type = "union",
+    members = {
+        CodeCapture = schema.new({
+            id = id.from(_N, "CaptureConfiguration", "CodeCapture"),
+            type = "structure",
+            name = "CodeCapture",
+            target_id = id.from(_N, "CodeCaptureConfiguration"),
+            target = M.CodeCaptureConfiguration,
+        }),
+    },
+})
+
+M.CodeLocation = schema.new({
+    id = id.from(_N, "CodeLocation"),
+    type = "structure",
+    members = {
+        Language = schema.new({
+            id = id.from(_N, "CodeLocation", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CodeUnit = schema.new({
+            id = id.from(_N, "CodeLocation", "CodeUnit"),
+            type = "string",
+            name = "CodeUnit",
+            target_id = prelude.String.id,
+        }),
+        ClassName = schema.new({
+            id = id.from(_N, "CodeLocation", "ClassName"),
+            type = "string",
+            name = "ClassName",
+            target_id = prelude.String.id,
+        }),
+        MethodName = schema.new({
+            id = id.from(_N, "CodeLocation", "MethodName"),
+            type = "string",
+            name = "MethodName",
+            target_id = prelude.String.id,
+        }),
+        FilePath = schema.new({
+            id = id.from(_N, "CodeLocation", "FilePath"),
+            type = "string",
+            name = "FilePath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LineNumber = schema.new({
+            id = id.from(_N, "CodeLocation", "LineNumber"),
+            type = "integer",
+            name = "LineNumber",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.Location = schema.new({
+    id = id.from(_N, "Location"),
+    type = "union",
+    members = {
+        CodeLocation = schema.new({
+            id = id.from(_N, "Location", "CodeLocation"),
+            type = "structure",
+            name = "CodeLocation",
+            target_id = id.from(_N, "CodeLocation"),
+            target = M.CodeLocation,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateInstrumentationConfigurationInput = schema.new({
+    id = id.from(_N, "CreateInstrumentationConfigurationRequest"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "Location"),
+            type = "union",
+            name = "Location",
+            target_id = id.from(_N, "Location"),
+            target = M.Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AttributeFilters = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "AttributeFilters"),
+            type = "list",
+            name = "AttributeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.DynamicInstrumentationAttributeFilterGroup,
+        }),
+        CaptureConfiguration = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "CaptureConfiguration"),
+            type = "union",
+            name = "CaptureConfiguration",
+            target_id = id.from(_N, "CaptureConfiguration"),
+            target = M.CaptureConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateInstrumentationConfigurationOutput = schema.new({
+    id = id.from(_N, "CreateInstrumentationConfigurationResponse"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "Location"),
+            type = "union",
+            name = "Location",
+            target_id = id.from(_N, "Location"),
+            target = M.Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationHash = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "LocationHash"),
+            type = "string",
+            name = "LocationHash",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AttributeFilters = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "AttributeFilters"),
+            type = "list",
+            name = "AttributeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.DynamicInstrumentationAttributeFilterGroup,
+        }),
+        CaptureConfiguration = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "CaptureConfiguration"),
+            type = "union",
+            name = "CaptureConfiguration",
+            target_id = id.from(_N, "CaptureConfiguration"),
+            target = M.CaptureConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ARN = schema.new({
+            id = id.from(_N, "CreateInstrumentationConfigurationOutput", "ARN"),
+            type = "string",
+            name = "ARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteGroupingConfigurationInput = prelude.Unit
 
 M.DeleteGroupingConfigurationOutput = schema.new({
     id = id.from(_N, "DeleteGroupingConfigurationOutput"),
     type = "structure",
+})
+
+M.LocationIdentifier = schema.new({
+    id = id.from(_N, "LocationIdentifier"),
+    type = "union",
+    members = {
+        CodeLocation = schema.new({
+            id = id.from(_N, "LocationIdentifier", "CodeLocation"),
+            type = "structure",
+            name = "CodeLocation",
+            target_id = id.from(_N, "CodeLocation"),
+            target = M.CodeLocation,
+        }),
+        LocationHash = schema.new({
+            id = id.from(_N, "LocationIdentifier", "LocationHash"),
+            type = "string",
+            name = "LocationHash",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteInstrumentationConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteInstrumentationConfigurationRequest"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "DeleteInstrumentationConfigurationInput", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "DeleteInstrumentationConfigurationInput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "DeleteInstrumentationConfigurationInput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "DeleteInstrumentationConfigurationInput", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationIdentifier = schema.new({
+            id = id.from(_N, "DeleteInstrumentationConfigurationInput", "LocationIdentifier"),
+            type = "union",
+            name = "LocationIdentifier",
+            target_id = id.from(_N, "LocationIdentifier"),
+            target = M.LocationIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteInstrumentationConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteInstrumentationConfigurationResponse"),
+    type = "structure",
+    members = {
+        DeletionStatus = schema.new({
+            id = id.from(_N, "DeleteInstrumentationConfigurationOutput", "DeletionStatus"),
+            type = "string",
+            name = "DeletionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetInstrumentationConfigurationInput = schema.new({
+    id = id.from(_N, "GetInstrumentationConfigurationRequest"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationInput", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationInput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationInput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationInput", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationIdentifier = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationInput", "LocationIdentifier"),
+            type = "union",
+            name = "LocationIdentifier",
+            target_id = id.from(_N, "LocationIdentifier"),
+            target = M.LocationIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InstrumentationConfiguration = schema.new({
+    id = id.from(_N, "InstrumentationConfiguration"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "Location"),
+            type = "union",
+            name = "Location",
+            target_id = id.from(_N, "Location"),
+            target = M.Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationHash = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "LocationHash"),
+            type = "string",
+            name = "LocationHash",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AttributeFilters = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "AttributeFilters"),
+            type = "list",
+            name = "AttributeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.DynamicInstrumentationAttributeFilterGroup,
+        }),
+        CaptureConfiguration = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "CaptureConfiguration"),
+            type = "union",
+            name = "CaptureConfiguration",
+            target_id = id.from(_N, "CaptureConfiguration"),
+            target = M.CaptureConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ARN = schema.new({
+            id = id.from(_N, "InstrumentationConfiguration", "ARN"),
+            type = "string",
+            name = "ARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetInstrumentationConfigurationOutput = schema.new({
+    id = id.from(_N, "GetInstrumentationConfigurationResponse"),
+    type = "structure",
+    members = {
+        Configuration = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationOutput", "Configuration"),
+            type = "structure",
+            name = "Configuration",
+            target_id = id.from(_N, "InstrumentationConfiguration"),
+            target = M.InstrumentationConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetInstrumentationConfigurationStatusInput = schema.new({
+    id = id.from(_N, "GetInstrumentationConfigurationStatusRequest"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Service = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationIdentifier = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "LocationIdentifier"),
+            type = "union",
+            name = "LocationIdentifier",
+            target_id = id.from(_N, "LocationIdentifier"),
+            target = M.LocationIdentifier,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 60 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InstrumentationStatusEvent = schema.new({
+    id = id.from(_N, "InstrumentationStatusEvent"),
+    type = "structure",
+    members = {
+        Time = schema.new({
+            id = id.from(_N, "InstrumentationStatusEvent", "Time"),
+            type = "timestamp",
+            name = "Time",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ErrorCause = schema.new({
+            id = id.from(_N, "InstrumentationStatusEvent", "ErrorCause"),
+            type = "string",
+            name = "ErrorCause",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetInstrumentationConfigurationStatusOutput = schema.new({
+    id = id.from(_N, "GetInstrumentationConfigurationStatusResponse"),
+    type = "structure",
+    members = {
+        Service = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusOutput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusOutput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusOutput", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusOutput", "Location"),
+            type = "union",
+            name = "Location",
+            target_id = id.from(_N, "Location"),
+            target = M.Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Events = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusOutput", "Events"),
+            type = "list",
+            name = "Events",
+            target_id = prelude.Document.id,
+            list_member = M.InstrumentationStatusEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetInstrumentationConfigurationStatusOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.GetServiceInput = schema.new({
@@ -2078,6 +3172,217 @@ M.ListGroupingAttributeDefinitionsOutput = schema.new({
     },
 })
 
+M.ListInstrumentationConfigurationsInput = schema.new({
+    id = id.from(_N, "ListInstrumentationConfigurationsRequest"),
+    type = "structure",
+    members = {
+        Service = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsInput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsInput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InstrumentationType = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsInput", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SyncedAt = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsInput", "SyncedAt"),
+            type = "timestamp",
+            name = "SyncedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 50 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InstrumentationConfigurationWithoutServiceEnv = schema.new({
+    id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Location = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "Location"),
+            type = "union",
+            name = "Location",
+            target_id = id.from(_N, "Location"),
+            target = M.Location,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationHash = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "LocationHash"),
+            type = "string",
+            name = "LocationHash",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AttributeFilters = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "AttributeFilters"),
+            type = "list",
+            name = "AttributeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.DynamicInstrumentationAttributeFilterGroup,
+        }),
+        CaptureConfiguration = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "CaptureConfiguration"),
+            type = "union",
+            name = "CaptureConfiguration",
+            target_id = id.from(_N, "CaptureConfiguration"),
+            target = M.CaptureConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ARN = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationWithoutServiceEnv", "ARN"),
+            type = "string",
+            name = "ARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListInstrumentationConfigurationsOutput = schema.new({
+    id = id.from(_N, "InstrumentationConfigurationsPage"),
+    type = "structure",
+    members = {
+        Service = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsOutput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsOutput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Changed = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsOutput", "Changed"),
+            type = "boolean",
+            name = "Changed",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LatestConfigurations = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsOutput", "LatestConfigurations"),
+            type = "list",
+            name = "LatestConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.InstrumentationConfigurationWithoutServiceEnv,
+        }),
+        SyncedAt = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsOutput", "SyncedAt"),
+            type = "timestamp",
+            name = "SyncedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SyncInterval = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsOutput", "SyncInterval"),
+            type = "integer",
+            name = "SyncInterval",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListInstrumentationConfigurationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListServiceDependenciesInput = schema.new({
     id = id.from(_N, "ListServiceDependenciesInput"),
     type = "structure",
@@ -2872,31 +4177,6 @@ M.ListTagsForResourceInput = schema.new({
     },
 })
 
-M.Tag = schema.new({
-    id = id.from(_N, "Tag"),
-    type = "structure",
-    members = {
-        Key = schema.new({
-            id = id.from(_N, "Tag", "Key"),
-            type = "string",
-            name = "Key",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Value = schema.new({
-            id = id.from(_N, "Tag", "Value"),
-            type = "string",
-            name = "Value",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.ListTagsForResourceOutput = schema.new({
     id = id.from(_N, "ListTagsForResourceResponse"),
     type = "structure",
@@ -2971,18 +4251,188 @@ M.PutGroupingConfigurationOutput = schema.new({
     },
 })
 
-M.ConflictException = schema.new({
-    id = id.from(_N, "ConflictException"),
+M.InstrumentationConfigurationStatusReport = schema.new({
+    id = id.from(_N, "InstrumentationConfigurationStatusReport"),
     type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
     members = {
-        Message = schema.new({
-            id = id.from(_N, "ConflictException", "Message"),
+        InstrumentationType = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationStatusReport", "InstrumentationType"),
             type = "string",
-            name = "Message",
+            name = "InstrumentationType",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationStatusReport", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationHash = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationStatusReport", "LocationHash"),
+            type = "string",
+            name = "LocationHash",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationStatusReport", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Time = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationStatusReport", "Time"),
+            type = "timestamp",
+            name = "Time",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ErrorCause = schema.new({
+            id = id.from(_N, "InstrumentationConfigurationStatusReport", "ErrorCause"),
+            type = "string",
+            name = "ErrorCause",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ReportInstrumentationConfigurationStatusInput = schema.new({
+    id = id.from(_N, "ReportInstrumentationConfigurationStatusRequest"),
+    type = "structure",
+    members = {
+        Service = schema.new({
+            id = id.from(_N, "ReportInstrumentationConfigurationStatusInput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "ReportInstrumentationConfigurationStatusInput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Configurations = schema.new({
+            id = id.from(_N, "ReportInstrumentationConfigurationStatusInput", "Configurations"),
+            type = "list",
+            name = "Configurations",
+            target_id = prelude.Document.id,
+            list_member = M.InstrumentationConfigurationStatusReport,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UnprocessedStatusEvent = schema.new({
+    id = id.from(_N, "UnprocessedStatusEvent"),
+    type = "structure",
+    members = {
+        InstrumentationType = schema.new({
+            id = id.from(_N, "UnprocessedStatusEvent", "InstrumentationType"),
+            type = "string",
+            name = "InstrumentationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SignalType = schema.new({
+            id = id.from(_N, "UnprocessedStatusEvent", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LocationHash = schema.new({
+            id = id.from(_N, "UnprocessedStatusEvent", "LocationHash"),
+            type = "string",
+            name = "LocationHash",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UnprocessedStatusEvent", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Time = schema.new({
+            id = id.from(_N, "UnprocessedStatusEvent", "Time"),
+            type = "timestamp",
+            name = "Time",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FailedReason = schema.new({
+            id = id.from(_N, "UnprocessedStatusEvent", "FailedReason"),
+            type = "string",
+            name = "FailedReason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ReportInstrumentationConfigurationStatusOutput = schema.new({
+    id = id.from(_N, "ReportInstrumentationConfigurationStatusResponse"),
+    type = "structure",
+    members = {
+        Service = schema.new({
+            id = id.from(_N, "ReportInstrumentationConfigurationStatusOutput", "Service"),
+            type = "string",
+            name = "Service",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Environment = schema.new({
+            id = id.from(_N, "ReportInstrumentationConfigurationStatusOutput", "Environment"),
+            type = "string",
+            name = "Environment",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UnprocessedStatusEvents = schema.new({
+            id = id.from(_N, "ReportInstrumentationConfigurationStatusOutput", "UnprocessedStatusEvents"),
+            type = "list",
+            name = "UnprocessedStatusEvents",
+            target_id = prelude.Document.id,
+            list_member = M.UnprocessedStatusEvent,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3398,25 +4848,6 @@ M.CreateServiceLevelObjectiveOutput = schema.new({
     },
 })
 
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.DeleteServiceLevelObjectiveInput = schema.new({
     id = id.from(_N, "DeleteServiceLevelObjectiveInput"),
     type = "structure",
@@ -3825,6 +5256,18 @@ M.Service = schema.service({
     },
 })
 
+M.BatchDeleteInstrumentationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "BatchDeleteInstrumentationConfigurations"),
+    input = M.BatchDeleteInstrumentationConfigurationsInput,
+    output = M.BatchDeleteInstrumentationConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/batch-delete-instrumentation-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BatchGetServiceLevelObjectiveBudgetReport = schema.operation({
     id = id.from("com.amazonaws.applicationsignals", "BatchGetServiceLevelObjectiveBudgetReport"),
     input = M.BatchGetServiceLevelObjectiveBudgetReportInput,
@@ -3843,6 +5286,18 @@ M.BatchUpdateExclusionWindows = schema.operation({
     output = M.BatchUpdateExclusionWindowsOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/exclusion-windows" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateInstrumentationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "CreateInstrumentationConfiguration"),
+    input = M.CreateInstrumentationConfigurationInput,
+    output = M.CreateInstrumentationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/create-instrumentation-configuration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3873,12 +5328,48 @@ M.DeleteGroupingConfiguration = schema.operation({
     },
 })
 
+M.DeleteInstrumentationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "DeleteInstrumentationConfiguration"),
+    input = M.DeleteInstrumentationConfigurationInput,
+    output = M.DeleteInstrumentationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/delete-instrumentation-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteServiceLevelObjective = schema.operation({
     id = id.from("com.amazonaws.applicationsignals", "DeleteServiceLevelObjective"),
     input = M.DeleteServiceLevelObjectiveInput,
     output = M.DeleteServiceLevelObjectiveOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/slo/{Id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstrumentationConfiguration = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "GetInstrumentationConfiguration"),
+    input = M.GetInstrumentationConfigurationInput,
+    output = M.GetInstrumentationConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-instrumentation-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetInstrumentationConfigurationStatus = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "GetInstrumentationConfigurationStatus"),
+    input = M.GetInstrumentationConfigurationStatusInput,
+    output = M.GetInstrumentationConfigurationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-instrumentation-configuration-status" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -3939,6 +5430,18 @@ M.ListGroupingAttributeDefinitions = schema.operation({
     output = M.ListGroupingAttributeDefinitionsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/grouping-attribute-definitions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListInstrumentationConfigurations = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ListInstrumentationConfigurations"),
+    input = M.ListInstrumentationConfigurationsInput,
+    output = M.ListInstrumentationConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/list-instrumentation-configurations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -4047,6 +5550,18 @@ M.PutGroupingConfiguration = schema.operation({
     output = M.PutGroupingConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/grouping-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ReportInstrumentationConfigurationStatus = schema.operation({
+    id = id.from("com.amazonaws.applicationsignals", "ReportInstrumentationConfigurationStatus"),
+    input = M.ReportInstrumentationConfigurationStatusInput,
+    output = M.ReportInstrumentationConfigurationStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/report-instrumentation-configuration-status" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

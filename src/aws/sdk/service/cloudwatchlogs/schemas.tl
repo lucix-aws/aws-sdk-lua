@@ -115,6 +115,8 @@ M.ScheduledQuerySummaryList = schema.new({ type = "list", list_member = M.Schedu
 
 M.S3TableIntegrationSources = schema.new({ type = "list", list_member = M.S3TableIntegrationSource })
 
+M.SyslogConfigurations = schema.new({ type = "list", list_member = M.SyslogConfiguration })
+
 M.DeliverySourceConfiguration = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.InputLogEvents = schema.new({ type = "list", list_member = M.InputLogEvent })
@@ -2564,6 +2566,30 @@ M.DeleteSubscriptionFilterInput = schema.new({
 })
 
 M.DeleteSubscriptionFilterOutput = prelude.Unit
+
+M.DeleteSyslogConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteSyslogConfigurationRequest"),
+    type = "structure",
+    members = {
+        logGroupIdentifier = schema.new({
+            id = id.from(_N, "DeleteSyslogConfigurationInput", "logGroupIdentifier"),
+            type = "string",
+            name = "logGroupIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vpcEndpointId = schema.new({
+            id = id.from(_N, "DeleteSyslogConfigurationInput", "vpcEndpointId"),
+            type = "string",
+            name = "vpcEndpointId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteSyslogConfigurationOutput = prelude.Unit
 
 M.DeleteTransformerInput = schema.new({
     id = id.from(_N, "DeleteTransformerRequest"),
@@ -7722,6 +7748,91 @@ M.ListSourcesForS3TableIntegrationOutput = schema.new({
     },
 })
 
+M.ListSyslogConfigurationsInput = schema.new({
+    id = id.from(_N, "ListSyslogConfigurationsRequest"),
+    type = "structure",
+    members = {
+        logGroupIdentifier = schema.new({
+            id = id.from(_N, "ListSyslogConfigurationsInput", "logGroupIdentifier"),
+            type = "string",
+            name = "logGroupIdentifier",
+            target_id = prelude.String.id,
+        }),
+        vpcEndpointId = schema.new({
+            id = id.from(_N, "ListSyslogConfigurationsInput", "vpcEndpointId"),
+            type = "string",
+            name = "vpcEndpointId",
+            target_id = prelude.String.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSyslogConfigurationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListSyslogConfigurationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.SyslogConfiguration = schema.new({
+    id = id.from(_N, "SyslogConfiguration"),
+    type = "structure",
+    members = {
+        logGroupArn = schema.new({
+            id = id.from(_N, "SyslogConfiguration", "logGroupArn"),
+            type = "string",
+            name = "logGroupArn",
+            target_id = prelude.String.id,
+        }),
+        sourceType = schema.new({
+            id = id.from(_N, "SyslogConfiguration", "sourceType"),
+            type = "string",
+            name = "sourceType",
+            target_id = prelude.String.id,
+        }),
+        vpcEndpointId = schema.new({
+            id = id.from(_N, "SyslogConfiguration", "vpcEndpointId"),
+            type = "string",
+            name = "vpcEndpointId",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SyslogConfiguration", "createdAt"),
+            type = "long",
+            name = "createdAt",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.ListSyslogConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListSyslogConfigurationsResponse"),
+    type = "structure",
+    members = {
+        syslogConfigurations = schema.new({
+            id = id.from(_N, "ListSyslogConfigurationsOutput", "syslogConfigurations"),
+            type = "list",
+            name = "syslogConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.SyslogConfiguration,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSyslogConfigurationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -8900,6 +9011,30 @@ M.PutSubscriptionFilterInput = schema.new({
 })
 
 M.PutSubscriptionFilterOutput = prelude.Unit
+
+M.PutSyslogConfigurationInput = schema.new({
+    id = id.from(_N, "PutSyslogConfigurationRequest"),
+    type = "structure",
+    members = {
+        logGroupIdentifier = schema.new({
+            id = id.from(_N, "PutSyslogConfigurationInput", "logGroupIdentifier"),
+            type = "string",
+            name = "logGroupIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vpcEndpointId = schema.new({
+            id = id.from(_N, "PutSyslogConfigurationInput", "vpcEndpointId"),
+            type = "string",
+            name = "vpcEndpointId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutSyslogConfigurationOutput = prelude.Unit
 
 M.PutTransformerInput = schema.new({
     id = id.from(_N, "PutTransformerRequest"),
@@ -10375,6 +10510,17 @@ M.DeleteSubscriptionFilter = schema.operation({
     },
 })
 
+M.DeleteSyslogConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "DeleteSyslogConfiguration"),
+    input = M.DeleteSyslogConfigurationInput,
+    output = M.DeleteSyslogConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteTransformer = schema.operation({
     id = id.from("com.amazonaws.cloudwatchlogs", "DeleteTransformer"),
     input = M.DeleteTransformerInput,
@@ -10904,6 +11050,17 @@ M.ListSourcesForS3TableIntegration = schema.operation({
     },
 })
 
+M.ListSyslogConfigurations = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "ListSyslogConfigurations"),
+    input = M.ListSyslogConfigurationsInput,
+    output = M.ListSyslogConfigurationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTagsForResource = schema.operation({
     id = id.from("com.amazonaws.cloudwatchlogs", "ListTagsForResource"),
     input = M.ListTagsForResourceInput,
@@ -11106,6 +11263,17 @@ M.PutSubscriptionFilter = schema.operation({
     id = id.from("com.amazonaws.cloudwatchlogs", "PutSubscriptionFilter"),
     input = M.PutSubscriptionFilterInput,
     output = M.PutSubscriptionFilterOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutSyslogConfiguration = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutSyslogConfiguration"),
+    input = M.PutSyslogConfigurationInput,
+    output = M.PutSyslogConfigurationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

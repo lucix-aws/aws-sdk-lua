@@ -1038,9 +1038,9 @@ local record M
         MediaStreamSourceConfigurations: {MediaStreamSourceConfiguration}
         -- The name of the source.
         Name: string
-        -- The IP address that the flow communicates with to initiate connection with the sender.
-        SenderControlPort: number
         -- The port that the flow uses to send outbound requests to initiate connection with the sender.
+        SenderControlPort: number
+        -- The IP address that the flow communicates with to initiate connection with the sender.
         SenderIpAddress: string
         -- The ARN of the source.
         SourceArn: string
@@ -1098,7 +1098,7 @@ local record M
 
     -- Configures settings for the BlackFrames metric.
     record BlackFrames
-        -- Indicates whether the BlackFrames metric is enabled or disabled..
+        -- Indicates whether the BlackFrames metric is enabled or disabled.
         State: string
         -- Specifies the number of consecutive seconds of black frames that triggers an event or alert.
         ThresholdSeconds: number
@@ -1489,6 +1489,55 @@ local record M
         Merge: MergeRouterInputConfiguration
     end
 
+    enum ContentQualityAnalysisState
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- Detects black frames in the router input's source content and reports them through a CloudWatch metric, an EventBridge event, and a router input message.
+    record BlackFramesConfiguration
+        -- Indicates whether black frames detection is enabled or disabled.
+        State: string
+        -- The number of consecutive seconds of black frames that MediaConnect must detect before it reports an issue.
+        ThresholdSeconds: number
+    end
+
+    -- Detects frozen video frames in the router input's source content and reports them through a CloudWatch metric, an EventBridge event, and a router input message.
+    record FrozenFramesConfiguration
+        -- Indicates whether frozen frames detection is enabled or disabled.
+        State: string
+        -- The number of consecutive seconds of a frozen frame that MediaConnect must detect before it reports an issue.
+        ThresholdSeconds: number
+    end
+
+    -- Detects silent audio in the router input's source content and reports it through a CloudWatch metric, an EventBridge event, and a router input message.
+    record SilentAudioConfiguration
+        -- Indicates whether silent audio detection is enabled or disabled.
+        State: string
+        -- The number of consecutive seconds of silence that MediaConnect must detect before it reports an issue.
+        ThresholdSeconds: number
+    end
+
+    -- Configures the content quality analysis features for the router input.
+    record ContentQualityAnalysisFeatureConfiguration
+        -- Settings for black frames detection.
+        BlackFrames: BlackFramesConfiguration
+        -- Settings for frozen frames detection.
+        FrozenFrames: FrozenFramesConfiguration
+        -- Settings for silent audio detection.
+        SilentAudio: SilentAudioConfiguration
+    end
+
+    -- The content quality analysis configuration for the router input. The content quality analysis feature only monitors the first video stream and the first audio stream it encounters within the router input source.
+    record RouterContentQualityAnalysisConfiguration
+        -- The content quality analysis configuration.
+        ContentLevel: ContentQualityAnalysisFeatureConfiguration
+    end
+
+    enum RouterContentQualityAnalysisType
+        "CONTENT_LEVEL"
+    end
+
     enum RouterInputType
         "STANDARD"
         "FAILOVER"
@@ -1704,6 +1753,10 @@ local record M
         MaintenanceScheduleType: string
         -- The current maintenance schedule details for this router input.
         MaintenanceSchedule: MaintenanceSchedule
+        -- The type of content quality analysis applied to the router input.
+        ContentQualityAnalysisType: string
+        -- The content quality analysis configuration for the router input.
+        ContentQualityAnalysisConfiguration: RouterContentQualityAnalysisConfiguration
     end
 
     record BatchGetRouterInputOutput
@@ -2335,11 +2388,6 @@ local record M
         "DISCONNECTED"
     end
 
-    enum ContentQualityAnalysisState
-        "ENABLED"
-        "DISABLED"
-    end
-
     -- Exception raised by Elemental MediaConnect when creating the flow. See the error message for the operation for more information on the cause of this exception.
     record CreateFlow420Exception
         Message: string
@@ -2531,6 +2579,8 @@ local record M
         Tags: {string : string}
         -- A unique identifier for the request to ensure idempotency.
         ClientToken: string
+        -- The content quality analysis configuration for the router input.
+        ContentQualityAnalysisConfiguration: RouterContentQualityAnalysisConfiguration
     end
 
     record CreateRouterInputOutput
@@ -3622,6 +3672,8 @@ local record M
         TransitEncryption: RouterInputTransitEncryption
         -- The updated maintenance configuration settings for the router input, including any changes to preferred maintenance windows and schedules.
         MaintenanceConfiguration: MaintenanceConfiguration
+        -- The content quality analysis configuration for the router input.
+        ContentQualityAnalysisConfiguration: RouterContentQualityAnalysisConfiguration
     end
 
     record UpdateRouterInputOutput
