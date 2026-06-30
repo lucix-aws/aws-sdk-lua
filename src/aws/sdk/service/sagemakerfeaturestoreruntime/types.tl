@@ -108,14 +108,82 @@ local record M
         Message: string
     end
 
-    enum DeletionMode
-        "SoftDelete"
-        "HardDelete"
-    end
-
     enum TargetStore
         "OnlineStore"
         "OfflineStore"
+    end
+
+    enum TtlDurationUnit
+        "Seconds"
+        "Minutes"
+        "Hours"
+        "Days"
+        "Weeks"
+    end
+
+    -- Time to live duration, where the record is hard deleted after the expiration time is
+    -- reached; ExpiresAt = EventTime + TtlDuration. For
+    -- information on HardDelete, see the DeleteRecord API in the Amazon SageMaker API Reference guide.
+    record TtlDuration
+        -- TtlDuration time unit.
+        Unit: string
+        -- TtlDuration time value.
+        Value: number
+    end
+
+    -- An entry to write as part of a BatchWriteRecord request.
+    record BatchWriteRecordEntry
+        -- The name or Amazon Resource Name (ARN) of the FeatureGroup to write the
+        -- record to.
+        FeatureGroupName: string
+        -- List of FeatureValues to be inserted. This will be a full over-write.
+        Record: {FeatureValue}
+        -- A list of stores to which you're adding the record. By default, Feature Store adds the
+        -- record to all of the stores that you're using for the
+        -- FeatureGroup.
+        TargetStores: {string}
+        -- Time to live duration for this entry, where the record is hard deleted after the
+        -- expiration time is reached; ExpiresAt = EventTime +
+        -- TtlDuration. This overrides the request level
+        -- TtlDuration.
+        TtlDuration: TtlDuration
+    end
+
+    record BatchWriteRecordInput
+        -- A list of records to write. Each entry specifies the FeatureGroup, the
+        -- record data, and optionally target stores and a TTL duration.
+        Entries: {BatchWriteRecordEntry}
+        -- Time to live duration applied to all entries in the batch that do not specify their own
+        -- TtlDuration; ExpiresAt = EventTime +
+        -- TtlDuration. For information on HardDelete, see the DeleteRecord API in the Amazon SageMaker API Reference guide.
+        TtlDuration: TtlDuration
+    end
+
+    -- The error that has occurred when attempting to write a record in a batch.
+    record BatchWriteRecordError
+        -- The entry that failed to be written.
+        Entry: BatchWriteRecordEntry
+        -- The error code for the failed record write.
+        ErrorCode: string
+        -- The error message for the failed record write.
+        ErrorMessage: string
+    end
+
+    record BatchWriteRecordOutput
+        -- A list of errors that occurred when writing records in the batch.
+        Errors: {BatchWriteRecordError}
+        -- A list of entries that were not processed. These entries can be retried.
+        UnprocessedEntries: {BatchWriteRecordEntry}
+    end
+
+    -- A resource that is required to perform an action was not found.
+    record ResourceNotFound
+        Message: string
+    end
+
+    enum DeletionMode
+        "SoftDelete"
+        "HardDelete"
     end
 
     record DeleteRecordInput
@@ -162,27 +230,25 @@ local record M
         ExpiresAt: string
     end
 
-    -- A resource that is required to perform an action was not found.
-    record ResourceNotFound
-        Message: string
+    record ListRecordsInput
+        -- The name or Amazon Resource Name (ARN) of the feature group to list records from.
+        FeatureGroupName: string
+        -- The maximum number of record identifiers to return in a single page of results. For the InMemory tier, this value is a hint and not a strict requirement. The response may contain more or fewer results than the specified MaxResults.
+        MaxResults: number
+        -- A token to resume pagination of ListRecords results.
+        NextToken: string
+        -- If set to true, the result includes records that have been soft
+        -- deleted.
+        IncludeSoftDeletedRecords: boolean
     end
 
-    enum TtlDurationUnit
-        "Seconds"
-        "Minutes"
-        "Hours"
-        "Days"
-        "Weeks"
-    end
-
-    -- Time to live duration, where the record is hard deleted after the expiration time is
-    -- reached; ExpiresAt = EventTime + TtlDuration. For
-    -- information on HardDelete, see the DeleteRecord API in the Amazon SageMaker API Reference guide.
-    record TtlDuration
-        -- TtlDuration time unit.
-        Unit: string
-        -- TtlDuration time value.
-        Value: number
+    record ListRecordsOutput
+        -- A list of record identifier values for the records stored in the
+        -- OnlineStore.
+        RecordIdentifiers: {string}
+        -- A token to resume pagination if the response includes more record identifiers than
+        -- MaxResults.
+        NextToken: string
     end
 
     record PutRecordInput

@@ -283,6 +283,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     testConnection: function(Client, types.TestConnectionOperationInput, ? base_client.InvokeOptions): async.Operation<types.TestConnectionOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAsset: function(Client, types.UpdateAssetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>
     updateBlueprint: function(Client, types.UpdateBlueprintInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBlueprintOutput>
     updateCatalog: function(Client, types.UpdateCatalogInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCatalogOutput>
     updateClassifier: function(Client, types.UpdateClassifierInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClassifierOutput>
@@ -1415,6 +1416,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateAsset(input: types.UpdateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAssetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAsset as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssetOutput>
 end
 
 function C:updateBlueprint(input: types.UpdateBlueprintInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBlueprintOutput>

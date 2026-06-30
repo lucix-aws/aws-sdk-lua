@@ -2802,6 +2802,59 @@ M.PutOutboundRequestBatchOutput = schema.new({
     },
 })
 
+M.WebNotificationContext = schema.new({
+    id = id.from(_N, "WebNotificationContext"),
+    type = "structure",
+    members = {
+        sessionId = schema.new({
+            id = id.from(_N, "WebNotificationContext", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+        }),
+        browserId = schema.new({
+            id = id.from(_N, "WebNotificationContext", "browserId"),
+            type = "string",
+            name = "browserId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChannelContext = schema.new({
+    id = id.from(_N, "ChannelContext"),
+    type = "structure",
+    members = {
+        webNotificationContext = schema.new({
+            id = id.from(_N, "ChannelContext", "webNotificationContext"),
+            type = "structure",
+            name = "webNotificationContext",
+            target_id = id.from(_N, "WebNotificationContext"),
+            target = M.WebNotificationContext,
+        }),
+    },
+})
+
+M.EventTriggerContext = schema.new({
+    id = id.from(_N, "EventTriggerContext"),
+    type = "structure",
+    members = {
+        sourceEvent = schema.new({
+            id = id.from(_N, "EventTriggerContext", "sourceEvent"),
+            type = "string",
+            name = "sourceEvent",
+            target_id = prelude.String.id,
+        }),
+        channelContext = schema.new({
+            id = id.from(_N, "EventTriggerContext", "channelContext"),
+            type = "structure",
+            name = "channelContext",
+            target_id = id.from(_N, "ChannelContext"),
+            target = M.ChannelContext,
+        }),
+    },
+})
+
 M.ProfileOutboundRequest = schema.new({
     id = id.from(_N, "ProfileOutboundRequest"),
     type = "structure",
@@ -2832,6 +2885,13 @@ M.ProfileOutboundRequest = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        eventTriggerContext = schema.new({
+            id = id.from(_N, "ProfileOutboundRequest", "eventTriggerContext"),
+            type = "structure",
+            name = "eventTriggerContext",
+            target_id = id.from(_N, "EventTriggerContext"),
+            target = M.EventTriggerContext,
         }),
     },
 })

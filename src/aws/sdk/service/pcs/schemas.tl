@@ -2453,6 +2453,22 @@ M.RegisterComputeNodeGroupInstanceOutput = schema.new({
     },
 })
 
+M.UpdateSchedulerRequest = schema.new({
+    id = id.from(_N, "UpdateSchedulerRequest"),
+    type = "structure",
+    members = {
+        version = schema.new({
+            id = id.from(_N, "UpdateSchedulerRequest", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateAccountingRequest = schema.new({
     id = id.from(_N, "UpdateAccountingRequest"),
     type = "structure",
@@ -2561,6 +2577,13 @@ M.UpdateClusterInput = schema.new({
             name = "slurmConfiguration",
             target_id = id.from(_N, "UpdateClusterSlurmConfigurationRequest"),
             target = M.UpdateClusterSlurmConfigurationRequest,
+        }),
+        scheduler = schema.new({
+            id = id.from(_N, "UpdateClusterInput", "scheduler"),
+            type = "structure",
+            name = "scheduler",
+            target_id = id.from(_N, "UpdateSchedulerRequest"),
+            target = M.UpdateSchedulerRequest,
         }),
     },
 })

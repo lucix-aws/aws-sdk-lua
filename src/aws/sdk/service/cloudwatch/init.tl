@@ -56,6 +56,7 @@ local record Client
     putCompositeAlarm: function(Client, types.PutCompositeAlarmInput, ? base_client.InvokeOptions): async.Operation<types.PutCompositeAlarmOutput>
     putDashboard: function(Client, types.PutDashboardInput, ? base_client.InvokeOptions): async.Operation<types.PutDashboardOutput>
     putInsightRule: function(Client, types.PutInsightRuleInput, ? base_client.InvokeOptions): async.Operation<types.PutInsightRuleOutput>
+    putLogAlarm: function(Client, types.PutLogAlarmInput, ? base_client.InvokeOptions): async.Operation<types.PutLogAlarmOutput>
     putManagedInsightRules: function(Client, types.PutManagedInsightRulesInput, ? base_client.InvokeOptions): async.Operation<types.PutManagedInsightRulesOutput>
     putMetricAlarm: function(Client, types.PutMetricAlarmInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricAlarmOutput>
     putMetricData: function(Client, types.PutMetricDataInput, ? base_client.InvokeOptions): async.Operation<types.PutMetricDataOutput>
@@ -261,6 +262,10 @@ end
 
 function C:putInsightRule(input: types.PutInsightRuleInput, options?: base_client.InvokeOptions): async.Operation<types.PutInsightRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutInsightRule as schema.OperationSchema, input, options) as async.Operation<types.PutInsightRuleOutput>
+end
+
+function C:putLogAlarm(input: types.PutLogAlarmInput, options?: base_client.InvokeOptions): async.Operation<types.PutLogAlarmOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutLogAlarm as schema.OperationSchema, input, options) as async.Operation<types.PutLogAlarmOutput>
 end
 
 function C:putManagedInsightRules(input: types.PutManagedInsightRulesInput, options?: base_client.InvokeOptions): async.Operation<types.PutManagedInsightRulesOutput>

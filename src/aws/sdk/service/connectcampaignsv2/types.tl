@@ -646,6 +646,7 @@ local record M
         "Campaign-Telephony"
         "Campaign-Orchestration"
         "Campaign-WhatsApp"
+        "Campaign-WebNotification"
     end
 
     -- Customer Profiles integration summary
@@ -816,11 +817,29 @@ local record M
         failedRequests: {FailedRequest}
     end
 
+    -- Context metadata for the web notification type channel
+    record WebNotificationContext
+        sessionId: string
+        browserId: string
+    end
+
+    -- Additional metadata related to the event trigger context
+    record ChannelContext
+        webNotificationContext: WebNotificationContext
+    end
+
+    -- Event trigger context data
+    record EventTriggerContext
+        sourceEvent: string
+        channelContext: ChannelContext
+    end
+
     -- Information about a profile outbound request
     record ProfileOutboundRequest
         clientToken: string
         profileId: string
         expirationTime: number
+        eventTriggerContext: EventTriggerContext
     end
 
     -- The request for PutProfileOutboundRequestBatch API

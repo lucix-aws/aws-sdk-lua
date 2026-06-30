@@ -21,6 +21,8 @@ M.WorkflowConfigurationList = schema.new({ type = "list", list_member = M.Workfl
 
 M.InstanceBlockDeviceMappings = schema.new({ type = "list", list_member = M.InstanceBlockDeviceMapping })
 
+M.AmiWatermarksList = schema.new({ type = "list", list_member = prelude.String })
+
 M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityGroupIds = schema.new({ type = "list", list_member = prelude.String })
@@ -2662,6 +2664,13 @@ M.CreateImageRecipeInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        amiWatermarks = schema.new({
+            id = id.from(_N, "CreateImageRecipeInput", "amiWatermarks"),
+            type = "list",
+            name = "amiWatermarks",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreateImageRecipeInput", "clientToken"),
             type = "string",
@@ -4397,6 +4406,13 @@ M.ImageRecipe = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        amiWatermarks = schema.new({
+            id = id.from(_N, "ImageRecipe", "amiWatermarks"),
+            type = "list",
+            name = "amiWatermarks",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

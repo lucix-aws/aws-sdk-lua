@@ -48,6 +48,7 @@ local record Client
     deleteProtectConfiguration: function(Client, types.DeleteProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProtectConfigurationOutput>
     deleteProtectConfigurationRuleSetNumberOverride: function(Client, types.DeleteProtectConfigurationRuleSetNumberOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProtectConfigurationRuleSetNumberOverrideOutput>
     deleteRcsAgent: function(Client, types.DeleteRcsAgentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRcsAgentOutput>
+    deleteRcsMessageSpendLimitOverride: function(Client, types.DeleteRcsMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRcsMessageSpendLimitOverrideOutput>
     deleteRegistration: function(Client, types.DeleteRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistrationOutput>
     deleteRegistrationAttachment: function(Client, types.DeleteRegistrationAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistrationAttachmentOutput>
     deleteRegistrationFieldValue: function(Client, types.DeleteRegistrationFieldValueInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRegistrationFieldValueOutput>
@@ -102,6 +103,7 @@ local record Client
     sendMediaMessage: function(Client, types.SendMediaMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendMediaMessageOutput>
     sendNotifyTextMessage: function(Client, types.SendNotifyTextMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendNotifyTextMessageOutput>
     sendNotifyVoiceMessage: function(Client, types.SendNotifyVoiceMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendNotifyVoiceMessageOutput>
+    sendRcsMessage: function(Client, types.SendRcsMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendRcsMessageOutput>
     sendTextMessage: function(Client, types.SendTextMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendTextMessageOutput>
     sendVoiceMessage: function(Client, types.SendVoiceMessageInput, ? base_client.InvokeOptions): async.Operation<types.SendVoiceMessageOutput>
     setAccountDefaultProtectConfiguration: function(Client, types.SetAccountDefaultProtectConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.SetAccountDefaultProtectConfigurationOutput>
@@ -110,6 +112,7 @@ local record Client
     setDefaultSenderId: function(Client, types.SetDefaultSenderIdInput, ? base_client.InvokeOptions): async.Operation<types.SetDefaultSenderIdOutput>
     setMediaMessageSpendLimitOverride: function(Client, types.SetMediaMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetMediaMessageSpendLimitOverrideOutput>
     setNotifyMessageSpendLimitOverride: function(Client, types.SetNotifyMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
+    setRcsMessageSpendLimitOverride: function(Client, types.SetRcsMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetRcsMessageSpendLimitOverrideOutput>
     setTextMessageSpendLimitOverride: function(Client, types.SetTextMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetTextMessageSpendLimitOverrideOutput>
     setVoiceMessageSpendLimitOverride: function(Client, types.SetVoiceMessageSpendLimitOverrideInput, ? base_client.InvokeOptions): async.Operation<types.SetVoiceMessageSpendLimitOverrideOutput>
     submitRegistrationVersion: function(Client, types.SubmitRegistrationVersionInput, ? base_client.InvokeOptions): async.Operation<types.SubmitRegistrationVersionOutput>
@@ -286,6 +289,10 @@ end
 
 function C:deleteRcsAgent(input: types.DeleteRcsAgentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRcsAgentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRcsAgent as schema.OperationSchema, input, options) as async.Operation<types.DeleteRcsAgentOutput>
+end
+
+function C:deleteRcsMessageSpendLimitOverride(input: types.DeleteRcsMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRcsMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRcsMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.DeleteRcsMessageSpendLimitOverrideOutput>
 end
 
 function C:deleteRegistration(input: types.DeleteRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRegistrationOutput>
@@ -504,6 +511,10 @@ function C:sendNotifyVoiceMessage(input: types.SendNotifyVoiceMessageInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendNotifyVoiceMessage as schema.OperationSchema, input, options) as async.Operation<types.SendNotifyVoiceMessageOutput>
 end
 
+function C:sendRcsMessage(input: types.SendRcsMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendRcsMessageOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendRcsMessage as schema.OperationSchema, input, options) as async.Operation<types.SendRcsMessageOutput>
+end
+
 function C:sendTextMessage(input: types.SendTextMessageInput, options?: base_client.InvokeOptions): async.Operation<types.SendTextMessageOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendTextMessage as schema.OperationSchema, input, options) as async.Operation<types.SendTextMessageOutput>
 end
@@ -534,6 +545,10 @@ end
 
 function C:setNotifyMessageSpendLimitOverride(input: types.SetNotifyMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetNotifyMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.SetNotifyMessageSpendLimitOverrideOutput>
+end
+
+function C:setRcsMessageSpendLimitOverride(input: types.SetRcsMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.SetRcsMessageSpendLimitOverrideOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SetRcsMessageSpendLimitOverride as schema.OperationSchema, input, options) as async.Operation<types.SetRcsMessageSpendLimitOverrideOutput>
 end
 
 function C:setTextMessageSpendLimitOverride(input: types.SetTextMessageSpendLimitOverrideInput, options?: base_client.InvokeOptions): async.Operation<types.SetTextMessageSpendLimitOverrideOutput>

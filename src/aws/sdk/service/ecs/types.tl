@@ -2913,12 +2913,28 @@ local record M
         canaryBakeTimeInMinutes: number
     end
 
+    enum ThresholdType
+        "COUNT"
+        "BOUNDED_PERCENT"
+        "UNBOUNDED_PERCENT"
+    end
+
+    -- Defines the failure threshold that the deployment circuit breaker uses to monitor a deployment. The type and value together determine the number of task failures that are tolerated before the circuit breaker triggers. By default, the threshold configuration uses a type of BOUNDED_PERCENT with a value of 50.
+    record ThresholdConfiguration
+        -- The integer used to calculate the failure threshold. When type is COUNT, this is the failure threshold itself. When type is a percentage type, this is the percentage that Amazon ECS multiplies by the latest service desired count to calculate the failure threshold.
+        value: number
+    end
+
     -- The deployment circuit breaker can only be used for services using the rolling update (ECS) deployment type. The deployment circuit breaker determines whether a service deployment will fail if the service can't reach a steady state. If it is turned on, a service deployment will transition to a failed state and stop launching new tasks. You can also configure Amazon ECS to roll back your service to the last completed deployment after a failure. For more information, see Rolling update in the Amazon Elastic Container Service Developer Guide. For more information about API failure reasons, see API failure reasons in the Amazon Elastic Container Service Developer Guide.
     record DeploymentCircuitBreaker
         -- Determines whether to use the deployment circuit breaker logic for the service.
         enable: boolean
         -- Determines whether to configure Amazon ECS to roll back the service if a service deployment fails. If rollback is on, when a service deployment fails, the service is rolled back to the last deployment that completed successfully.
         rollback: boolean
+        -- Determines whether the deployment circuit breaker resets its failure count when a task reaches a healthy state. When set to true, a healthy task resets the failure count to 0; when false, it doesn't.
+        resetOnHealthyTask: boolean
+        -- The threshold configuration that controls when the deployment circuit breaker triggers. For more information, see ThresholdConfiguration.
+        thresholdConfiguration: ThresholdConfiguration
     end
 
     enum DeploymentLifecycleHookStage
@@ -4049,7 +4065,7 @@ local record M
         memory: string
         -- The auto-scaling configuration for the Express service.
         scalingTarget: ExpressGatewayScalingTarget
-        -- The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers. The task definition must have a container named Main with a single TCP port mapping that includes a container port and port name. The task definition must also have FARGATE compatibility. If you provide a task definition ARN, you cannot also specify primaryContainer, taskRoleArn, cpu, or memory.
+        -- The Amazon Resource Name (ARN) of a task definition to use to update the Express Gateway service. This allows you to manage your own task definition, giving you more control over the service configuration such as adding sidecar containers. The task definition must have a container named Main with a single TCP port mapping that includes a container port and port name. The task definition must also have FARGATE compatibility. If you provide a task definition ARN, you cannot also specify primaryContainer, executionRoleArn, taskRoleArn, cpu, or memory.
         taskDefinitionArn: string
     end
 

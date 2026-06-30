@@ -8,13 +8,17 @@ local record M
         "Alarm"
     end
 
-    -- Represents an individual contributor to a multi-timeseries alarm, containing information about a specific time series and its contribution to the alarm's state.
+    -- Represents an individual contributor to a multi-timeseries alarm, containing
+    -- information about a specific time series and its contribution to the alarm's
+    -- state.
     record AlarmContributor
         -- The unique identifier for this alarm contributor.
         ContributorId: string
-        -- A map of attributes that describe the contributor, such as metric dimensions and other identifying characteristics.
+        -- A map of attributes that describe the contributor, such as metric dimensions and other
+        -- identifying characteristics.
         ContributorAttributes: {string : string}
-        -- An explanation for the contributor's current state, providing context about why it is in its current condition.
+        -- An explanation for the contributor's current state, providing context about why it is
+        -- in its current condition.
         StateReason: string
         -- The timestamp when the contributor last transitioned to its current state.
         StateTransitionedTimestamp: number
@@ -23,6 +27,7 @@ local record M
     enum AlarmType
         "CompositeAlarm"
         "MetricAlarm"
+        "LogAlarm"
     end
 
     enum HistoryItemType
@@ -37,7 +42,8 @@ local record M
     record AlarmHistoryItem
         -- The descriptive name for the alarm.
         AlarmName: string
-        -- The unique identifier of the alarm contributor associated with this history item, if applicable.
+        -- The unique identifier of the alarm contributor associated with this history item, if
+        -- applicable.
         AlarmContributorId: string
         -- The type of alarm, either metric alarm or composite alarm.
         AlarmType: string
@@ -49,7 +55,9 @@ local record M
         HistorySummary: string
         -- Data about the alarm, in JSON format.
         HistoryData: string
-        -- A map of attributes that describe the alarm contributor associated with this history item, providing context about the contributor's characteristics at the time of the event.
+        -- A map of attributes that describe the alarm contributor associated with this history
+        -- item, providing context about the contributor's characteristics at the time of the
+        -- event.
         AlarmContributorAttributes: {string : string}
     end
 
@@ -59,15 +67,19 @@ local record M
         "EXPIRED"
     end
 
-    -- Summary information about an alarm mute rule, including its name, status, and configuration details.
+    -- Summary information about an alarm mute rule, including its name, status, and
+    -- configuration details.
     record AlarmMuteRuleSummary
         -- The Amazon Resource Name (ARN) of the alarm mute rule.
         AlarmMuteRuleArn: string
-        -- The date and time when the mute rule expires and is no longer evaluated. This field is only present if an expiration date was configured.
+        -- The date and time when the mute rule expires and is no longer evaluated. This field
+        -- is only present if an expiration date was configured.
         ExpireDate: number
-        -- The current status of the alarm mute rule. Valid values are SCHEDULED, ACTIVE, or EXPIRED.
+        -- The current status of the alarm mute rule. Valid values are SCHEDULED,
+        -- ACTIVE, or EXPIRED.
         Status: string
-        -- Indicates whether the mute rule is one-time or recurring. Valid values are ONE_TIME or RECURRING.
+        -- Indicates whether the mute rule is one-time or recurring. Valid values are
+        -- ONE_TIME or RECURRING.
         MuteType: string
         -- The date and time when the mute rule was last updated.
         LastUpdatedTimestamp: number
@@ -613,6 +625,11 @@ local record M
     record DeleteAlarmsOutput
     end
 
+    -- The operation could not be completed because the request conflicts with the current state of the alarm or its underlying scheduled query resource.
+    record ResourceConflict
+        message: string
+    end
+
     -- The named resource does not exist.
     record ResourceNotFound
         message: string
@@ -708,12 +725,14 @@ local record M
     record DescribeAlarmContributorsInput
         -- The name of the alarm for which to retrieve contributor information.
         AlarmName: string
-        -- The token returned by a previous call to indicate that there is more data available.
+        -- The token returned by a previous call to indicate that there is more data
+        -- available.
         NextToken: string
     end
 
     record DescribeAlarmContributorsOutput
-        -- A list of alarm contributors that provide details about the individual time series contributing to the alarm's state.
+        -- A list of alarm contributors that provide details about the individual time series
+        -- contributing to the alarm's state.
         AlarmContributors: {AlarmContributor}
         -- The token that marks the start of the next batch of returned results.
         NextToken: string
@@ -732,10 +751,12 @@ local record M
     record DescribeAlarmHistoryInput
         -- The name of the alarm.
         AlarmName: string
-        -- The unique identifier of a specific alarm contributor to filter the alarm history results.
+        -- The unique identifier of a specific alarm contributor to filter the alarm history
+        -- results.
         AlarmContributorId: string
-        -- Use this parameter to specify whether you want the operation to return metric alarms
-        -- or composite alarms. If you omit this parameter, only metric alarms are returned.
+        -- Use this parameter to specify whether you want the operation to return metric alarms,
+        -- composite alarms, or log alarms. If you omit this parameter, only metric alarms are
+        -- returned.
         AlarmTypes: {string}
         -- The type of alarm histories to retrieve.
         HistoryItemType: string
@@ -770,14 +791,16 @@ local record M
         -- If this parameter is specified, you cannot specify
         -- AlarmNames.
         AlarmNamePrefix: string
-        -- Use this parameter to specify whether you want the operation to return metric alarms
-        -- or composite alarms. If you omit this parameter, only metric alarms are returned, even
-        -- if composite alarms exist in the account.
+        -- Use this parameter to specify whether you want the operation to return metric alarms,
+        -- composite alarms, or log alarms. If you omit this parameter, only metric alarms are
+        -- returned, even if composite alarms or log alarms exist in the account.
         -- For example, if you omit this parameter or specify MetricAlarms, the
-        -- operation returns only a list of metric alarms. It does not return any composite alarms,
-        -- even if composite alarms exist in the account.
+        -- operation returns only a list of metric alarms. It does not return any composite alarms
+        -- or log alarms, even if they exist in the account.
         -- If you specify CompositeAlarms, the operation returns only a list of
-        -- composite alarms, and does not return any metric alarms.
+        -- composite alarms, and does not return any metric alarms or log alarms.
+        -- If you specify LogAlarms, the operation returns only a list of log
+        -- alarms, and does not return any metric alarms or composite alarms.
         AlarmTypes: {string}
         -- If you use this parameter and specify the name of a composite alarm, the operation
         -- returns information about the "children" alarms of the alarm you specify. These are the
@@ -821,17 +844,104 @@ local record M
         NextToken: string
     end
 
-    -- The evaluation criteria for an alarm. This is a union type that currently
-    -- supports PromQLCriteria.
-    record EvaluationCriteria
-        -- The PromQL criteria for the alarm evaluation.
-        PromQLCriteria: AlarmPromQLCriteria
-    end
-
     enum EvaluationState
         "PARTIAL_DATA"
         "EVALUATION_FAILURE"
         "EVALUATION_ERROR"
+    end
+
+    -- Contains the schedule expression and time-range offsets that define when a scheduled query runs and what time range each execution covers.
+    record ScheduleConfiguration
+        -- The schedule expression that defines how often the underlying CloudWatch Logs scheduled query runs. Specify a rate() expression, for example rate(5 minutes).
+        ScheduleExpression: string
+        -- The offset, in seconds, before the scheduled execution time at which the query time range begins. For example, an offset of 360 (6 minutes) on a query running at 12:05:00 starts the query time range at 11:59:00.
+        StartTimeOffset: number
+        -- The offset, in seconds, before the scheduled execution time at which the query time range ends. Must be non-negative and less than StartTimeOffset. The default is 0.
+        EndTimeOffset: number
+    end
+
+    -- A key-value pair associated with a CloudWatch resource.
+    record Tag
+        -- A string that you can use to assign a value. The combination of tag keys and values
+        -- can help you organize and categorize your resources.
+        Key: string
+        -- The value for the specified tag key.
+        Value: string
+    end
+
+    -- The configuration of the CloudWatch Logs scheduled query that backs a log alarm.
+    record ScheduledQueryConfiguration
+        -- The CloudWatch Logs query to execute on each scheduled run. Length constraints: maximum of 10,000 characters.
+        QueryString: string
+        -- The log groups to query. Each entry can be a log group name or ARN. Use the ARN form when querying log groups in a different account (for example, when running cross-account queries from a monitoring account). The list must contain between 1 and 50 entries.
+        LogGroupIdentifiers: {string}
+        -- The Amazon Resource Name (ARN) of the CloudWatch Logs scheduled query that the alarm uses. This field is populated in DescribeAlarms responses.
+        QueryARN: string
+        -- The Amazon Resource Name (ARN) of the IAM role that CloudWatch assumes when executing the scheduled query against the configured log groups.
+        ScheduledQueryRoleARN: string
+        -- The schedule and time-range offset configuration for the underlying scheduled query.
+        ScheduleConfiguration: ScheduleConfiguration
+        -- The expression that defines how to aggregate query results into one or more scalar values for alarm evaluation. For example, count(*) or avg(latency) by host | sort desc. Length constraints: minimum 1 character, maximum 2048 characters.
+        AggregationExpression: string
+        -- A list of key-value pairs to associate with the underlying scheduled query resource.
+        Tags: {Tag}
+    end
+
+    -- The details about a log alarm.
+    record LogAlarm
+        -- The name of the alarm.
+        AlarmName: string
+        -- The Amazon Resource Name (ARN) of the alarm.
+        AlarmArn: string
+        -- The description of the alarm.
+        AlarmDescription: string
+        -- The time stamp of the last update to the alarm configuration.
+        AlarmConfigurationUpdatedTimestamp: number
+        -- Indicates whether actions should be executed during any changes to the alarm state.
+        ActionsEnabled: boolean
+        -- The actions to execute when this alarm transitions to the OK state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        OKActions: {string}
+        -- The actions to execute when this alarm transitions to the ALARM state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        AlarmActions: {string}
+        -- The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        InsufficientDataActions: {string}
+        -- The state value for the alarm.
+        StateValue: string
+        -- An explanation for the alarm state, in text format.
+        StateReason: string
+        -- An explanation for the alarm state, in JSON format.
+        StateReasonData: string
+        -- The time stamp of the last update to the value of either the StateValue or EvaluationState parameters.
+        StateUpdatedTimestamp: number
+        -- The configuration of the underlying CloudWatch Logs scheduled query, including the query string, log groups, schedule, aggregation expression, and the ARN of the managed scheduled query.
+        ScheduledQueryConfiguration: ScheduledQueryConfiguration
+        -- The number of most recent scheduled query results that the alarm evaluates against the threshold (the N in M-of-N evaluation).
+        QueryResultsToEvaluate: number
+        -- The number of query results, out of the most recent QueryResultsToEvaluate results, that must breach the threshold to trigger the alarm to transition to ALARM (the M in M-of-N evaluation).
+        QueryResultsToAlarm: number
+        -- The value to compare with the aggregated query result.
+        Threshold: number
+        -- The arithmetic operation to use when comparing the aggregated query result and the threshold. The aggregated query result is used as the first operand.
+        ComparisonOperator: string
+        -- How this alarm handles missing data points. Valid values are breaching, notBreaching, ignore, and missing.
+        TreatMissingData: string
+        -- The date and time that the alarm's StateValue most recently changed.
+        StateTransitionedTimestamp: number
+        -- If the value of this field is EVALUATION_ERROR, it indicates configuration errors in the alarm setup that require review and correction. Refer to the StateReason field of the alarm for more details.
+        -- If the value of this field is EVALUATION_FAILURE, it indicates temporary CloudWatch issues. We recommend manual monitoring until the issue is resolved.
+        -- If the value of this field is PARTIAL_DATA, it indicates that the query returned the maximum 500 contributor groups but more matched. The alarm evaluates the available contributors, but results might be incomplete.
+        EvaluationState: string
+        -- The number of log lines from the most recent scheduled query execution that are included in alarm action notifications. Valid range is 0 through 50. A value of 0 means no log lines are included.
+        ActionLogLineCount: number
+        -- The Amazon Resource Name (ARN) of the IAM role that CloudWatch assumes to retrieve log events for inclusion in alarm action notifications. Set when ActionLogLineCount is greater than 0.
+        ActionLogLineRoleArn: string
+    end
+
+    -- The evaluation criteria for an alarm. This is a union type that currently supports
+    -- PromQLCriteria.
+    record EvaluationCriteria
+        -- The PromQL criteria for the alarm evaluation.
+        PromQLCriteria: AlarmPromQLCriteria
     end
 
     enum Statistic
@@ -924,10 +1034,15 @@ local record M
         -- ANOMALY_DETECTION_BAND function used as the threshold for the
         -- alarm.
         ThresholdMetricId: string
-        -- If the value of this field is PARTIAL_DATA, it indicates that not all the available data was able to be retrieved due to quota limitations. For more information, see Create
+        -- If the value of this field is PARTIAL_DATA, it indicates that not all the
+        -- available data was able to be retrieved due to quota limitations. For more information,
+        -- see Create
         -- alarms on Metrics Insights queries.
-        -- If the value of this field is EVALUATION_ERROR, it indicates configuration errors in alarm setup that require review and correction. Refer to StateReason field of the alarm for more details.
-        -- If the value of this field is EVALUATION_FAILURE, it indicates temporary CloudWatch issues. We recommend manual monitoring until the issue is resolved
+        -- If the value of this field is EVALUATION_ERROR, it indicates
+        -- configuration errors in alarm setup that require review and correction. Refer to
+        -- StateReason field of the alarm for more details.
+        -- If the value of this field is EVALUATION_FAILURE, it indicates temporary
+        -- CloudWatch issues. We recommend manual monitoring until the issue is resolved
         EvaluationState: string
         -- The date and time that the alarm's StateValue most recently
         -- changed.
@@ -943,6 +1058,8 @@ local record M
         CompositeAlarms: {CompositeAlarm}
         -- The information about any metric alarms returned by the operation.
         MetricAlarms: {MetricAlarm}
+        -- The information about any log alarms returned by the operation.
+        LogAlarms: {LogAlarm}
         -- The token that marks the start of the next batch of returned results.
         NextToken: string
     end
@@ -1033,8 +1150,10 @@ local record M
         Definition: string
         -- An optional built-in rule that Amazon Web Services manages.
         ManagedRule: boolean
-        -- Displays whether the rule is evaluated on the transformed versions of logs, for log groups
-        -- that have Log transformation enabled. If this is false, log events are evaluated before they are transformed.
+        -- Displays whether the rule is evaluated on the transformed versions of logs, for log
+        -- groups that have Log
+        -- transformation enabled. If this is false, log events are
+        -- evaluated before they are transformed.
         ApplyOnTransformedLogs: boolean
     end
 
@@ -1124,15 +1243,14 @@ local record M
         -- ResourceType, Identifier, Name, and
         -- Environment.
         -- For details about how to use the key attributes to specify an entity, see How
-        -- to add related
-        -- information to telemetry in the CloudWatch User
-        -- Guide.
+        -- to add related information to telemetry in the CloudWatch
+        -- User Guide.
         KeyAttributes: {string : string}
         -- Additional attributes of the entity that are not used to specify the identity of the
         -- entity. A list of key-value pairs.
         -- For details about how to use the attributes, see How
-        -- to add related information to
-        -- telemetry in the CloudWatch User Guide.
+        -- to add related information to telemetry in the CloudWatch
+        -- User Guide.
         Attributes: {string : string}
     end
 
@@ -1200,8 +1318,8 @@ local record M
         StorageResolution: number
     end
 
-    -- A set of metrics that are associated with an entity, such as a specific service
-    -- or resource. Contains the entity and the list of metric data associated with it.
+    -- A set of metrics that are associated with an entity, such as a specific service or
+    -- resource. Contains the entity and the list of metric data associated with it.
     record EntityMetricData
         -- The entity associated with the metrics.
         Entity: Entity
@@ -1215,44 +1333,71 @@ local record M
     end
 
     -- Specifies which alarms an alarm mute rule applies to.
-    -- You can target up to 100 specific alarms by name. When a mute rule is active, the targeted alarms continue to evaluate metrics and transition between states, but their configured actions are muted.
+    -- You can target up to 100 specific alarms by name. When a mute rule is active, the
+    -- targeted alarms continue to evaluate metrics and transition between states, but their
+    -- configured actions are muted.
     record MuteTargets
-        -- The list of alarm names that this mute rule targets. You can specify up to 100 alarm names.
-        -- Each alarm name must be between 1 and 255 characters in length. The alarm names must match existing alarms in your Amazon Web Services account and region.
+        -- The list of alarm names that this mute rule targets. You can specify up to 100 alarm
+        -- names.
+        -- Each alarm name must be between 1 and 255 characters in length. The alarm names must
+        -- match existing alarms in your Amazon Web Services account and region.
         AlarmNames: {string}
     end
 
     -- Specifies when and how long an alarm mute rule is active.
-    -- The schedule uses either a cron expression for recurring mute windows or an at expression for one-time mute windows. When the schedule activates, the mute rule mutes alarm actions for the specified duration.
+    -- The schedule uses either a cron expression for recurring mute windows or an at
+    -- expression for one-time mute windows. When the schedule activates, the mute rule mutes
+    -- alarm actions for the specified duration.
     record Schedule
-        -- The schedule expression that defines when the mute rule activates. The expression must be between 1 and 256 characters in length.
+        -- The schedule expression that defines when the mute rule activates. The expression must
+        -- be between 1 and 256 characters in length.
         -- You can use one of two expression formats:
-        -- Cron expressions - For recurring mute windows. Format: cron(Minutes Hours Day-of-month Month Day-of-week)
+        -- Cron expressions - For recurring mute
+        -- windows. Format: cron(Minutes Hours Day-of-month Month
+        -- Day-of-week)
         -- Examples:
         -- cron(0 2 * * *) - Activates daily at 2:00 AM
-        -- cron(0 2 * * SUN) - Activates every Sunday at 2:00 AM for weekly system maintenance
-        -- cron(0 1 1 * *) - Activates on the first day of each month at 1:00 AM for monthly database maintenance
-        -- cron(0 18 * * FRI) - Activates every Friday at 6:00 PM
-        -- cron(0 23 * * *) - Activates every day at 11:00 PM during nightly backup operations
-        -- The characters *, -, and , are supported in all fields. English names can be used for the month (JAN-DEC) and day of week (SUN-SAT) fields.
-        -- At expressions - For one-time mute windows. Format: at(yyyy-MM-ddThh:mm)
+        -- cron(0 2 * * SUN) - Activates every Sunday at 2:00 AM for
+        -- weekly system maintenance
+        -- cron(0 1 1 * *) - Activates on the first day of each
+        -- month at 1:00 AM for monthly database maintenance
+        -- cron(0 18 * * FRI) - Activates every Friday at 6:00
+        -- PM
+        -- cron(0 23 * * *) - Activates every day at 11:00 PM during
+        -- nightly backup operations
+        -- The characters *, -, and , are
+        -- supported in all fields. English names can be used for the month (JAN-DEC) and
+        -- day of week (SUN-SAT) fields.
+        -- At expressions - For one-time mute windows.
+        -- Format: at(yyyy-MM-ddThh:mm)
         -- Examples:
-        -- at(2024-05-10T14:00) - Activates once on May 10, 2024 at 2:00 PM during an active incident response session
-        -- at(2024-12-23T00:00) - Activates once on December 23, 2024 at midnight during annual company shutdown
+        -- at(2024-05-10T14:00) - Activates once on May 10, 2024 at
+        -- 2:00 PM during an active incident response session
+        -- at(2024-12-23T00:00) - Activates once on December 23,
+        -- 2024 at midnight during annual company shutdown
         Expression: string
-        -- The length of time that alarms remain muted when the schedule activates. The duration must be between 1 and 50 characters in length.
-        -- Specify the duration using ISO 8601 duration format with a minimum of 1 minute (PT1M) and maximum of 15 days (P15D).
+        -- The length of time that alarms remain muted when the schedule activates. The duration
+        -- must be between 1 and 50 characters in length.
+        -- Specify the duration using ISO 8601 duration format with a minimum of 1 minute
+        -- (PT1M) and maximum of 15 days (P15D).
         -- Examples:
         -- PT4H - 4 hours for weekly system maintenance
-        -- P2DT12H - 2 days and 12 hours for weekend muting from Friday 6:00 PM to Monday 6:00 AM
+        -- P2DT12H - 2 days and 12 hours for weekend muting from Friday 6:00
+        -- PM to Monday 6:00 AM
         -- PT6H - 6 hours for monthly database maintenance
         -- PT2H - 2 hours for nightly backup operations
         -- P7D - 7 days for annual company shutdown
-        -- The duration begins when the schedule expression time is reached. For recurring schedules, the duration applies to each occurrence.
+        -- The duration begins when the schedule expression time is reached. For recurring
+        -- schedules, the duration applies to each occurrence.
         Duration: string
-        -- The time zone to use when evaluating the schedule expression. The time zone must be between 1 and 50 characters in length.
-        -- Specify the time zone using standard timezone identifiers (for example, America/New_York, Europe/London, or Asia/Tokyo).
-        -- If you don't specify a time zone, UTC is used by default. The time zone affects how cron and at expressions are interpreted, as well as start and expire dates you specify
+        -- The time zone to use when evaluating the schedule expression. The time zone must be
+        -- between 1 and 50 characters in length.
+        -- Specify the time zone using standard timezone identifiers (for example,
+        -- America/New_York, Europe/London, or
+        -- Asia/Tokyo).
+        -- If you don't specify a time zone, UTC is used by default. The time zone affects how
+        -- cron and at expressions are interpreted, as well as start and expire dates you
+        -- specify
         -- Examples:
         -- America/New_York - Eastern Time (US)
         -- America/Los_Angeles - Pacific Time (US)
@@ -1263,9 +1408,12 @@ local record M
     end
 
     -- Defines the schedule configuration for an alarm mute rule.
-    -- The rule contains a schedule that specifies when and how long alarms should be muted. The schedule can be a recurring pattern using cron expressions or a one-time mute window using at expressions.
+    -- The rule contains a schedule that specifies when and how long alarms should be muted.
+    -- The schedule can be a recurring pattern using cron expressions or a one-time mute window
+    -- using at expressions.
     record Rule
-        -- The schedule configuration that defines when the mute rule activates and how long it remains active.
+        -- The schedule configuration that defines when the mute rule activates and how long it
+        -- remains active.
         Schedule: Schedule
     end
 
@@ -1280,15 +1428,18 @@ local record M
         Rule: Rule
         -- Specifies which alarms this rule applies to.
         MuteTargets: MuteTargets
-        -- The date and time when the mute rule becomes active. If not set, the rule is active immediately.
+        -- The date and time when the mute rule becomes active. If not set, the rule is active
+        -- immediately.
         StartDate: number
         -- The date and time when the mute rule expires and is no longer evaluated.
         ExpireDate: number
-        -- The current status of the alarm mute rule. Valid values are SCHEDULED, ACTIVE, or EXPIRED.
+        -- The current status of the alarm mute rule. Valid values are SCHEDULED,
+        -- ACTIVE, or EXPIRED.
         Status: string
         -- The date and time when the mute rule was last updated.
         LastUpdatedTimestamp: number
-        -- Indicates whether the mute rule is one-time or recurring. Valid values are ONE_TIME or RECURRING.
+        -- Indicates whether the mute rule is one-time or recurring. Valid values are
+        -- ONE_TIME or RECURRING.
         MuteType: string
     end
 
@@ -1496,8 +1647,8 @@ local record M
         -- clock interval. For example, 12:32:34 is rounded down to 12:30:00.
         -- Start time greater than 63 days ago - Round down to the nearest 1-hour
         -- clock interval. For example, 12:32:34 is rounded down to 12:00:00.
-        -- If you set Period to 5, 10, 20, or 30, the start time of your request is
-        -- rounded down to the nearest time that corresponds to even 5-, 10-, 20-, or 30-second
+        -- If you set Period to 5, 10, 20, or 30, the start time of your request
+        -- is rounded down to the nearest time that corresponds to even 5-, 10-, 20-, or 30-second
         -- divisions of a minute. For example, if you make a query at (HH:mm:ss) 01:05:23 for the
         -- previous 10-second period, the start time of your request is rounded down and you
         -- receive data from 01:05:10 to 01:05:20. If you make a query at 15:07:17 for the previous
@@ -1627,8 +1778,8 @@ local record M
         -- clock interval. For example, 12:32:34 is rounded down to 12:30:00.
         -- Start time greater than 63 days ago - Round down to the nearest 1-hour
         -- clock interval. For example, 12:32:34 is rounded down to 12:00:00.
-        -- If you set Period to 5, 10, 20, or 30, the start time of your request is
-        -- rounded down to the nearest time that corresponds to even 5-, 10-, 20-, or 30-second
+        -- If you set Period to 5, 10, 20, or 30, the start time of your request
+        -- is rounded down to the nearest time that corresponds to even 5-, 10-, 20-, or 30-second
         -- divisions of a minute. For example, if you make a query at (HH:mm:ss) 01:05:23 for the
         -- previous 10-second period, the start time of your request is rounded down and you
         -- receive data from 01:05:10 to 01:05:20. If you make a query at 15:07:17 for the previous
@@ -1830,26 +1981,31 @@ local record M
 
     record GetOTelEnrichmentOutput
         -- The status of OTel enrichment for the account. Valid values are
-        -- Running (enrichment is enabled) and Stopped
-        -- (enrichment is disabled).
+        -- Running (enrichment is enabled) and Stopped (enrichment is
+        -- disabled).
         Status: string
     end
 
     record ListAlarmMuteRulesInput
-        -- Filter results to show only mute rules that target the specified alarm name.
+        -- Filter results to show only mute rules that target the specified alarm
+        -- name.
         AlarmName: string
-        -- Filter results to show only mute rules with the specified statuses. Valid values are SCHEDULED, ACTIVE, or EXPIRED.
+        -- Filter results to show only mute rules with the specified statuses. Valid values
+        -- are SCHEDULED, ACTIVE, or EXPIRED.
         Statuses: {string}
-        -- The maximum number of mute rules to return in one call. The default is 50.
+        -- The maximum number of mute rules to return in one call. The default is
+        -- 50.
         MaxRecords: number
-        -- The token returned from a previous call to indicate where to continue retrieving results.
+        -- The token returned from a previous call to indicate where to continue retrieving
+        -- results.
         NextToken: string
     end
 
     record ListAlarmMuteRulesOutput
         -- A list of alarm mute rule summaries.
         AlarmMuteRuleSummaries: {AlarmMuteRuleSummary}
-        -- The token to use when requesting the next set of results. If this field is absent, there are no more results to retrieve.
+        -- The token to use when requesting the next set of results. If this field is absent,
+        -- there are no more results to retrieve.
         NextToken: string
     end
 
@@ -1925,8 +2081,9 @@ local record M
         -- The name of the metric to filter against. Only the metrics with names that match
         -- exactly will be returned.
         MetricName: string
-        -- The dimensions to filter against. Only the dimension with names that match exactly will be
-        -- returned. If you specify one dimension name and a metric has that dimension and also other dimensions, it will be returned.
+        -- The dimensions to filter against. Only the dimension with names that match exactly
+        -- will be returned. If you specify one dimension name and a metric has that dimension and
+        -- also other dimensions, it will be returned.
         Dimensions: {DimensionFilter}
         -- The token returned by a previous call to indicate that there is more data
         -- available.
@@ -2014,15 +2171,6 @@ local record M
         ResourceARN: string
     end
 
-    -- A key-value pair associated with a CloudWatch resource.
-    record Tag
-        -- A string that you can use to assign a value. The combination of tag keys and values
-        -- can help you organize and categorize your resources.
-        Key: string
-        -- The value for the specified tag key.
-        Value: string
-    end
-
     record ListTagsForResourceOutput
         -- The list of tag keys and values associated with the resource you specified.
         Tags: {Tag}
@@ -2042,11 +2190,18 @@ local record M
         Rule: Rule
         -- Specifies which alarms this rule applies to.
         MuteTargets: MuteTargets
-        -- A list of key-value pairs to associate with the alarm mute rule. You can use tags to categorize and manage your mute rules.
+        -- A list of key-value pairs to associate with the alarm mute rule. You can use tags
+        -- to categorize and manage your mute rules.
         Tags: {Tag}
-        -- The date and time after which the mute rule takes effect, specified as a timestamp in ISO 8601 format (for example, 2026-04-15T08:00:00Z). If not specified, the mute rule takes effect immediately upon creation and the mutes are applied as per the schedule expression.
+        -- The date and time after which the mute rule takes effect, specified as a timestamp
+        -- in ISO 8601 format (for example, 2026-04-15T08:00:00Z). If not specified,
+        -- the mute rule takes effect immediately upon creation and the mutes are applied as per
+        -- the schedule expression.
         StartDate: number
-        -- The date and time when the mute rule expires and is no longer evaluated, specified as a timestamp in ISO 8601 format (for example, 2026-12-31T23:59:59Z). After this time, the rule status becomes EXPIRED and will no longer mute the targeted alarms.
+        -- The date and time when the mute rule expires and is no longer evaluated, specified
+        -- as a timestamp in ISO 8601 format (for example, 2026-12-31T23:59:59Z).
+        -- After this time, the rule status becomes EXPIRED and will no longer mute the targeted
+        -- alarms.
         ExpireDate: number
     end
 
@@ -2119,7 +2274,8 @@ local record M
         -- arn:aws:lambda:region:account-id:function:function-name:alias-name
         -- Systems Manager actions:
         -- arn:aws:ssm:region:account-id:opsitem:severity
-        -- Start a Amazon Q Developer operational investigation
+        -- Start a Amazon Q Developer operational
+        -- investigation
         -- arn:aws:aiops:region:account-id:investigation-group:investigation-group-id
         AlarmActions: {string}
         -- The description for the composite alarm.
@@ -2242,9 +2398,9 @@ local record M
         -- scope user permissions by granting a user permission to access or change only dashboards
         -- with certain tag values.
         -- You can use this parameter only when creating a new dashboard. If you specify
-        -- Tags when updating an existing dashboard, the tag updates are ignored. To
-        -- add or update tags on an existing dashboard, use TagResource. To
-        -- remove tags, use UntagResource.
+        -- Tags when updating an existing dashboard, the tag updates are ignored.
+        -- To add or update tags on an existing dashboard, use TagResource.
+        -- To remove tags, use UntagResource.
         Tags: {Tag}
     end
 
@@ -2279,18 +2435,91 @@ local record M
         -- tags you specify in this parameter are ignored. To change the tags of an existing rule,
         -- use TagResource.
         Tags: {Tag}
-        -- Specify true to have this rule evaluate log events after they have been transformed by
-        -- Log transformation. If you specify true, then the log events in log groups that have transformers will
-        -- be evaluated by Contributor Insights after being transformed. Log groups that don't have
-        -- transformers will still have their original log events evaluated by Contributor Insights.
+        -- Specify true to have this rule evaluate log events after they have been
+        -- transformed by Log
+        -- transformation. If you specify true, then the log events in log
+        -- groups that have transformers will be evaluated by Contributor Insights after being
+        -- transformed. Log groups that don't have transformers will still have their original log
+        -- events evaluated by Contributor Insights.
         -- The default is false
-        -- If a log group has a transformer, and transformation fails for some log events, those log events won't be evaluated by
-        -- Contributor Insights. For information about investigating log transformation failures, see
-        -- Transformation metrics and errors.
+        -- If a log group has a transformer, and transformation fails for some log events,
+        -- those log events won't be evaluated by Contributor Insights. For information about
+        -- investigating log transformation failures, see Transformation metrics and errors.
         ApplyOnTransformedLogs: boolean
     end
 
     record PutInsightRuleOutput
+    end
+
+    record PutLogAlarmInput
+        -- The name for the alarm. This name must be unique within the Amazon Web Services account and Region.
+        AlarmName: string
+        -- The description for the alarm.
+        AlarmDescription: string
+        -- The configuration of the underlying CloudWatch Logs scheduled query that this alarm evaluates, including the query string, log groups, schedule, and aggregation expression.
+        ScheduledQueryConfiguration: ScheduledQueryConfiguration
+        -- The number of log lines from the most recent scheduled query execution to include in alarm action notifications. Valid range is 0 through 50. The default is 0, which means no log lines are included.
+        ActionLogLineCount: number
+        -- The Amazon Resource Name (ARN) of an IAM role that CloudWatch assumes to retrieve log events for inclusion in alarm action notifications. Required when ActionLogLineCount is greater than 0.
+        ActionLogLineRoleArn: string
+        -- Indicates whether actions should be executed during any changes to the alarm state. The default is true.
+        ActionsEnabled: boolean
+        -- The actions to execute when this alarm transitions to the OK state
+        -- from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        -- Valid Values:
+        -- Amazon SNS actions:
+        -- arn:aws:sns:region:account-id:sns-topic-name
+        -- Lambda actions:
+        -- Invoke the latest version of a Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name
+        -- Invoke a specific version of a Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name:version-number
+        -- Invoke a function by using an alias Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name:alias-name
+        OKActions: {string}
+        -- The actions to execute when this alarm transitions to the ALARM state
+        -- from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        -- Valid Values:
+        -- Amazon SNS actions:
+        -- arn:aws:sns:region:account-id:sns-topic-name
+        -- Lambda actions:
+        -- Invoke the latest version of a Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name
+        -- Invoke a specific version of a Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name:version-number
+        -- Invoke a function by using an alias Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name:alias-name
+        -- Systems Manager actions:
+        -- arn:aws:ssm:region:account-id:opsitem:severity
+        AlarmActions: {string}
+        -- The actions to execute when this alarm transitions to the INSUFFICIENT_DATA state
+        -- from any other state. Each action is specified as an Amazon Resource Name (ARN).
+        -- Valid Values:
+        -- Amazon SNS actions:
+        -- arn:aws:sns:region:account-id:sns-topic-name
+        -- Lambda actions:
+        -- Invoke the latest version of a Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name
+        -- Invoke a specific version of a Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name:version-number
+        -- Invoke a function by using an alias Lambda function:
+        -- arn:aws:lambda:region:account-id:function:function-name:alias-name
+        InsufficientDataActions: {string}
+        -- The number of most recent scheduled query results to evaluate against the threshold (the N in M-of-N evaluation). Valid range is 1 through 100.
+        QueryResultsToEvaluate: number
+        -- The number of query results, out of the most recent QueryResultsToEvaluate results, that must breach the threshold to trigger the alarm to transition to ALARM (the M in M-of-N evaluation). Must be less than or equal to QueryResultsToEvaluate.
+        QueryResultsToAlarm: number
+        -- The value to compare with the aggregated query result.
+        Threshold: number
+        -- The arithmetic operation to use when comparing the aggregated query result and the threshold. The aggregated query result is used as the first operand. Valid values are GreaterThanThreshold, GreaterThanOrEqualToThreshold, LessThanThreshold, and LessThanOrEqualToThreshold.
+        ComparisonOperator: string
+        -- Sets how this alarm is to handle missing data points. Valid values are breaching, notBreaching, ignore, and missing. If this parameter is omitted, the default behavior of missing is used.
+        TreatMissingData: string
+        -- A list of key-value pairs to associate with the alarm. You can use tags to categorize and manage your alarms.
+        Tags: {Tag}
+    end
+
+    record PutLogAlarmOutput
     end
 
     -- Contains the information that's required to enable a managed Contributor Insights
@@ -2387,7 +2616,8 @@ local record M
         -- SSM integration actions:
         -- arn:aws:ssm:region:account-id:opsitem:severity#CATEGORY=category-name
         -- arn:aws:ssm-incidents::account-id:responseplan/response-plan-name
-        -- Start a Amazon Q Developer operational investigation
+        -- Start a Amazon Q Developer operational
+        -- investigation
         -- arn:aws:aiops:region:account-id:investigation-group:investigation-group-id
         AlarmActions: {string}
         -- The actions to execute when this alarm transitions to the
@@ -2461,23 +2691,24 @@ local record M
         -- The dimensions for the metric specified in MetricName.
         Dimensions: {Dimension}
         -- The length, in seconds, used each time the metric specified in
-        -- MetricName is evaluated. Valid values are 10, 20, 30, and any multiple of
-        -- 60.
+        -- MetricName is evaluated. Valid values are 10, 20, 30, and any multiple
+        -- of 60.
         -- Period is required for alarms based on static thresholds. If you are
         -- creating an alarm based on a metric math expression, you specify the period for each
         -- metric within the objects in the Metrics array.
         -- Be sure to specify 10, 20, or 30 only for metrics that are stored by a
         -- PutMetricData call with a StorageResolution of 1. If you
-        -- specify a period of 10, 20, or 30 for a metric that does not have sub-minute resolution, the
-        -- alarm still attempts to gather data at the period rate that you specify. In this case,
-        -- it does not receive data for the attempts that do not correspond to a one-minute data
-        -- resolution, and the alarm might often lapse into INSUFFICENT_DATA status. Specifying 10, 20,
-        -- or 30 also sets this alarm as a high-resolution alarm, which has a higher charge than
-        -- other alarms. For more information about pricing, see Amazon CloudWatch
+        -- specify a period of 10, 20, or 30 for a metric that does not have sub-minute resolution,
+        -- the alarm still attempts to gather data at the period rate that you specify. In this
+        -- case, it does not receive data for the attempts that do not correspond to a one-minute
+        -- data resolution, and the alarm might often lapse into INSUFFICENT_DATA status.
+        -- Specifying 10, 20, or 30 also sets this alarm as a high-resolution alarm, which has a
+        -- higher charge than other alarms. For more information about pricing, see Amazon CloudWatch
         -- Pricing.
         -- An alarm's total current evaluation period can be no longer than seven days, so
         -- Period multiplied by EvaluationPeriods can't be more than
-        -- 604,800 seconds. For alarms with a period of less than one hour (3,600 seconds), the total evaluation period can't be longer than one day (86,400 seconds).
+        -- 604,800 seconds. For alarms with a period of less than one hour (3,600 seconds), the
+        -- total evaluation period can't be longer than one day (86,400 seconds).
         Period: number
         -- The unit of measure for the statistic. For example, the units for the Amazon EC2
         -- NetworkIn metric are Bytes because NetworkIn tracks the number of bytes that an instance
@@ -2544,10 +2775,10 @@ local record M
         -- in the array. For more information, see MetricDataQuery.
         -- If you use the Metrics parameter, you cannot include the
         -- Namespace, MetricName, Dimensions,
-        -- Period, Unit, Statistic,
-        -- or ExtendedStatistic parameters of PutMetricAlarm
-        -- in the same operation. Instead, you retrieve the metrics you are using in your
-        -- math expression as part of the Metrics array.
+        -- Period, Unit, Statistic, or
+        -- ExtendedStatistic parameters of PutMetricAlarm in the same
+        -- operation. Instead, you retrieve the metrics you are using in your math expression as
+        -- part of the Metrics array.
         Metrics: {MetricDataQuery}
         -- A list of key-value pairs to associate with the alarm. You can associate as many as
         -- 50 tags with an alarm. To be able to associate tags with the alarm when you create the
@@ -2576,8 +2807,8 @@ local record M
         -- ExtendedStatistic, Metrics, Threshold,
         -- ComparisonOperator, ThresholdMetricId,
         -- EvaluationPeriods, or DatapointsToAlarm parameters of
-        -- PutMetricAlarm in the same operation. Instead, all evaluation parameters
-        -- are defined within this structure.
+        -- PutMetricAlarm in the same operation. Instead, all evaluation
+        -- parameters are defined within this structure.
         -- For an example of how to use this parameter, see the PromQL
         -- alarm example on this page.
         EvaluationCriteria: EvaluationCriteria
@@ -2603,8 +2834,8 @@ local record M
         -- The limit of metrics allowed, 1000, is the sum of both EntityMetricData
         -- and MetricData metrics.
         MetricData: {MetricDatum}
-        -- Data for metrics that contain associated entity information. You can include up to
-        -- two EntityMetricData objects, each of which can contain a single
+        -- Data for metrics that contain associated entity information. You can include up to two
+        -- EntityMetricData objects, each of which can contain a single
         -- Entity and associated metrics.
         -- The limit of metrics allowed, 1000, is the sum of both EntityMetricData
         -- and MetricData metrics.
@@ -2614,14 +2845,13 @@ local record M
         -- data) will fail the entire request, and no data will be ingested. The failed
         -- operation will return a 400 result with the error.
         -- When set to false: Validation errors in the entity will not
-        -- associate the metric with the entity, but the metric data will still be
-        -- accepted and ingested. Validation errors in the metric data will fail the
-        -- entire request, and no data will be ingested.
-        -- In the case of an invalid entity, the operation will return a
-        -- 200 status, but an additional response header will contain
-        -- information about the validation errors. The new header,
-        -- X-Amzn-Failure-Message is an enumeration of the following
-        -- values:
+        -- associate the metric with the entity, but the metric data will still be accepted
+        -- and ingested. Validation errors in the metric data will fail the entire request,
+        -- and no data will be ingested.
+        -- In the case of an invalid entity, the operation will return a 200
+        -- status, but an additional response header will contain information about the
+        -- validation errors. The new header, X-Amzn-Failure-Message is an
+        -- enumeration of the following values:
         -- InvalidEntity - The provided entity is invalid.
         -- InvalidKeyAttributes - The provided
         -- KeyAttributes of an entity is invalid.
@@ -2631,12 +2861,10 @@ local record M
         -- KeyAttributes of an entity is invalid.
         -- EntitySizeTooLarge - The number of
         -- EntityMetricData objects allowed is 2.
-        -- MissingRequiredFields - There are missing required
-        -- fields in the KeyAttributes for the provided
+        -- MissingRequiredFields - There are missing required fields
+        -- in the KeyAttributes for the provided
         -- Type.
-        -- For details of the requirements for specifying an entity, see
-        -- How
-        -- to add related information to telemetry in the
+        -- For details of the requirements for specifying an entity, see How to add related information to telemetry in the
         -- CloudWatch User Guide.
         -- This parameter is required when EntityMetricData is
         -- included.

@@ -13002,6 +13002,7 @@ local record M
         "cluster"
         "spread"
         "partition"
+        "precision-time"
     end
 
     record CreatePlacementGroupInput
@@ -13019,6 +13020,9 @@ local record M
         LinkedGroupId: string
         -- Reserved for internal use.
         Operator: OperatorRequest
+        -- The ID of a parent placement group. Valid only when Strategy
+        -- is set to cluster.
+        ParentGroupId: string
         -- Checks whether you have the required permissions for the operation, without actually making the
         -- request, and provides an error response. If you have the required permissions, the error response is
         -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
@@ -13062,6 +13066,8 @@ local record M
         LinkedGroupId: string
         -- The service provider that manages the Placement Group.
         Operator: OperatorResponse
+        -- The ID of the parent placement group.
+        ParentGroupId: string
     end
 
     record CreatePlacementGroupOutput
@@ -26955,7 +26961,7 @@ local record M
         -- deleted).
         -- strategy - The strategy of the placement group
         -- (cluster | spread |
-        -- partition).
+        -- partition | precision-time).
         -- tag: - The key/value combination of a tag assigned to the resource. Use the tag key in the filter name and the tag value as the filter value.
         -- For example, to find all resources that have a tag with the key Owner and the value TeamA, specify tag:Owner for the filter name and TeamA for the filter value.
         -- tag-key - The key of a tag assigned to the resource. Use this filter to find all resources that have a tag with a specific key, regardless of the tag value.

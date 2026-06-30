@@ -66,4 +66,24 @@ function M.wait_until_composite_alarm_exists(client, input, options)
     }, options)
 end
 
+--- Wait until LogAlarmExists.
+function M.wait_until_log_alarm_exists(client, input, options)
+    return waiter.wait(client, "describeAlarms", input, {
+        min_delay = 5,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "length(LogAlarms[]) > `0`",
+                        expected = "true",
+                        comparator = "booleanEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
 return M

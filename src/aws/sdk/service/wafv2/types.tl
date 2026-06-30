@@ -1945,6 +1945,7 @@ local record M
         "COGNITO_USER_POOL"
         "APP_RUNNER_SERVICE"
         "VERIFIED_ACCESS_INSTANCE"
+        "AGENTCORE_GATEWAY"
     end
 
     record AssociateWebACLInput
@@ -1960,6 +1961,7 @@ local record M
         -- For an App Runner service: arn:partition:apprunner:region:account-id:service/apprunner-service-name/apprunner-service-id
         -- For an Amazon Web Services Verified Access instance: arn:partition:ec2:region:account-id:verified-access-instance/instance-id
         -- For an Amplify application: arn:partition:amplify:region:account-id:apps/app-id
+        -- For an Amazon Bedrock AgentCore Gateway: arn:partition:bedrock-agentcore:region:account-id:gateway/gateway-id
         ResourceArn: string
     end
 
@@ -2879,6 +2881,7 @@ local record M
         -- For an App Runner service: arn:partition:apprunner:region:account-id:service/apprunner-service-name/apprunner-service-id
         -- For an Amazon Web Services Verified Access instance: arn:partition:ec2:region:account-id:verified-access-instance/instance-id
         -- For an Amplify application: arn:partition:amplify:region:account-id:apps/app-id
+        -- For an Amazon Bedrock AgentCore Gateway: arn:partition:bedrock-agentcore:region:account-id:gateway/gateway-id
         ResourceArn: string
     end
 
@@ -3443,7 +3446,7 @@ local record M
         Intent: string
         -- The organization associated with the AI bot.
         Organization: string
-        -- Whether the AI bot's identity was verified.
+        -- Indicates whether the AI bot's identity was verified — for example, through a cryptographically signed request (Web Bot Auth) or another published verification method. This value is meaningful only when GroupBy is NAME, where each result represents a single, identifiable bot. For all other GroupBy values (CATEGORY, INTENT, ORGANIZATION, or WEBACL), a result aggregates multiple bots that may have different verification states, so Verified is always returned as false and should be ignored. Type and required-ness are unchanged (Boolean, optional).
         Verified: boolean
         -- The value for the group-by dimension, when grouping is applied.
         GroupByValue: string
@@ -3822,6 +3825,7 @@ local record M
         -- For an App Runner service: arn:partition:apprunner:region:account-id:service/apprunner-service-name/apprunner-service-id
         -- For an Amazon Web Services Verified Access instance: arn:partition:ec2:region:account-id:verified-access-instance/instance-id
         -- For an Amplify application: arn:partition:amplify:region:account-id:apps/app-id
+        -- For an Amazon Bedrock AgentCore Gateway: arn:partition:bedrock-agentcore:region:account-id:gateway/gateway-id
         ResourceArn: string
     end
 
@@ -4100,6 +4104,7 @@ local record M
         "APP_RUNNER_SERVICE"
         "VERIFIED_ACCESS_INSTANCE"
         "AMPLIFY"
+        "AGENTCORE_GATEWAY"
     end
 
     record ListResourcesForWebACLInput

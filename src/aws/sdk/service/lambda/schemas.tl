@@ -4245,6 +4245,12 @@ M.FunctionCode = schema.new({
             name = "S3ObjectVersion",
             target_id = prelude.String.id,
         }),
+        S3ObjectStorageMode = schema.new({
+            id = id.from(_N, "FunctionCode", "S3ObjectStorageMode"),
+            type = "string",
+            name = "S3ObjectStorageMode",
+            target_id = prelude.String.id,
+        }),
         ImageUri = schema.new({
             id = id.from(_N, "FunctionCode", "ImageUri"),
             type = "string",
@@ -5450,6 +5456,50 @@ M.GetFunctionInput = schema.new({
     },
 })
 
+M.FunctionCodeLocationError = schema.new({
+    id = id.from(_N, "FunctionCodeLocationError"),
+    type = "structure",
+    members = {
+        ErrorCode = schema.new({
+            id = id.from(_N, "FunctionCodeLocationError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "FunctionCodeLocationError", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResolvedS3Object = schema.new({
+    id = id.from(_N, "ResolvedS3Object"),
+    type = "structure",
+    members = {
+        S3Bucket = schema.new({
+            id = id.from(_N, "ResolvedS3Object", "S3Bucket"),
+            type = "string",
+            name = "S3Bucket",
+            target_id = prelude.String.id,
+        }),
+        S3Key = schema.new({
+            id = id.from(_N, "ResolvedS3Object", "S3Key"),
+            type = "string",
+            name = "S3Key",
+            target_id = prelude.String.id,
+        }),
+        S3ObjectVersion = schema.new({
+            id = id.from(_N, "ResolvedS3Object", "S3ObjectVersion"),
+            type = "string",
+            name = "S3ObjectVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FunctionCodeLocation = schema.new({
     id = id.from(_N, "FunctionCodeLocation"),
     type = "structure",
@@ -5478,11 +5528,25 @@ M.FunctionCodeLocation = schema.new({
             name = "ResolvedImageUri",
             target_id = prelude.String.id,
         }),
+        ResolvedS3Object = schema.new({
+            id = id.from(_N, "FunctionCodeLocation", "ResolvedS3Object"),
+            type = "structure",
+            name = "ResolvedS3Object",
+            target_id = id.from(_N, "ResolvedS3Object"),
+            target = M.ResolvedS3Object,
+        }),
         SourceKMSKeyArn = schema.new({
             id = id.from(_N, "FunctionCodeLocation", "SourceKMSKeyArn"),
             type = "string",
             name = "SourceKMSKeyArn",
             target_id = prelude.String.id,
+        }),
+        Error = schema.new({
+            id = id.from(_N, "FunctionCodeLocation", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "FunctionCodeLocationError"),
+            target = M.FunctionCodeLocationError,
         }),
     },
 })
@@ -8275,6 +8339,12 @@ M.UpdateFunctionCodeInput = schema.new({
             id = id.from(_N, "UpdateFunctionCodeInput", "S3ObjectVersion"),
             type = "string",
             name = "S3ObjectVersion",
+            target_id = prelude.String.id,
+        }),
+        S3ObjectStorageMode = schema.new({
+            id = id.from(_N, "UpdateFunctionCodeInput", "S3ObjectStorageMode"),
+            type = "string",
+            name = "S3ObjectStorageMode",
             target_id = prelude.String.id,
         }),
         ImageUri = schema.new({
@@ -11195,6 +11265,13 @@ M.LayerVersionContentOutput = schema.new({
             name = "SigningJobArn",
             target_id = prelude.String.id,
         }),
+        ResolvedS3Object = schema.new({
+            id = id.from(_N, "LayerVersionContentOutput", "ResolvedS3Object"),
+            type = "structure",
+            name = "ResolvedS3Object",
+            target_id = id.from(_N, "ResolvedS3Object"),
+            target = M.ResolvedS3Object,
+        }),
     },
 })
 
@@ -11489,6 +11566,12 @@ M.LayerVersionContentInput = schema.new({
             id = id.from(_N, "LayerVersionContentInput", "S3ObjectVersion"),
             type = "string",
             name = "S3ObjectVersion",
+            target_id = prelude.String.id,
+        }),
+        S3ObjectStorageMode = schema.new({
+            id = id.from(_N, "LayerVersionContentInput", "S3ObjectStorageMode"),
+            type = "string",
+            name = "S3ObjectStorageMode",
             target_id = prelude.String.id,
         }),
         ZipFile = schema.new({

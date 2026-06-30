@@ -468,7 +468,7 @@ local record M
 
     -- The cluster management and job scheduling software associated with the cluster.
     record Scheduler
-        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. For more information, see Slurm versions in PCS in the PCS User Guide. Valid Values: 23.11 | 24.05 | 24.11 | 25.05 | 25.11
+        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. You can upgrade this version using the UpdateCluster API action. For more information, see Upgrading the Slurm version on a cluster and Slurm versions in PCS in the PCS User Guide. Valid Values: 23.11 | 24.05 | 24.11 | 25.05 | 25.11
         version: string
     end
 
@@ -784,6 +784,12 @@ local record M
         endpoints: {Endpoint}
     end
 
+    -- The scheduler configuration for updating a cluster. Use this to specify the Slurm version to upgrade to.
+    record UpdateSchedulerRequest
+        -- The Slurm version to upgrade the cluster to. You can only upgrade to a newer version. For more information about supported versions and upgrade paths, see Upgrading the Slurm version on a cluster in the PCS User Guide. Valid Values: 24.05 | 24.11 | 25.05 | 25.11
+        version: string
+    end
+
     -- The accounting configuration includes configurable settings for Slurm accounting.
     record UpdateAccountingRequest
         -- The default value for all purge settings for slurmdbd.conf. For more information, see the slurmdbd.conf documentation at SchedMD. The default value for defaultPurgeTimeInDays is -1. A value of -1 means there is no purge time and records persist as long as the cluster exists. 0 isn't a valid value.
@@ -821,6 +827,8 @@ local record M
         clientToken: string
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: UpdateClusterSlurmConfigurationRequest
+        -- The scheduler configuration to update for the cluster. Use this to upgrade the Slurm version. For more information, see Upgrading the Slurm version on a cluster in the PCS User Guide.
+        scheduler: UpdateSchedulerRequest
     end
 
     record UpdateClusterOutput

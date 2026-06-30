@@ -620,6 +620,8 @@ local record M
         certificateArn: string
         -- The type of IAM policy. NONE: The resource does not use an IAM policy. This is the default. AWS_IAM: The resource uses an IAM policy. When this type is used, auth is enabled and an auth policy is required.
         authType: string
+        -- The amount of time, in seconds, that a connection can remain idle (no data sent) before VPC Lattice closes it. The valid range is 60 to 600 seconds. If you don't specify a value, the default is 60 seconds. This setting does not change the maximum connection duration of 10 minutes; connections are still closed when they reach that limit.
+        idleTimeoutSeconds: number
     end
 
     -- Describes the DNS information of a service.
@@ -653,6 +655,8 @@ local record M
         status: string
         -- The type of IAM policy.
         authType: string
+        -- The amount of time, in seconds, that a connection can remain idle before VPC Lattice closes it.
+        idleTimeoutSeconds: number
         -- The public DNS name of the service.
         dnsEntry: DnsEntry
     end
@@ -1336,9 +1340,9 @@ local record M
         vpcId: string
         -- The IDs of the VPC subnets for resource gateway.
         subnetIds: {string}
-        -- Indicates whether the resource gateway is managed by an AWS service.
+        -- Indicates whether the resource gateway is managed by an Amazon Web Services service.
         serviceManaged: boolean
-        -- The AWS service that manages the resource gateway.
+        -- The Amazon Web Services service that manages the resource gateway.
         managedBy: string
         -- The security group IDs associated with the resource gateway.
         securityGroupIds: {string}
@@ -1420,6 +1424,8 @@ local record M
         status: string
         -- The type of IAM policy.
         authType: string
+        -- The amount of time, in seconds, that a connection can remain idle before VPC Lattice closes it.
+        idleTimeoutSeconds: number
         -- The failure code.
         failureCode: string
         -- The failure message.
@@ -2304,6 +2310,8 @@ local record M
         certificateArn: string
         -- The type of IAM policy. NONE: The resource does not use an IAM policy. This is the default. AWS_IAM: The resource uses an IAM policy. When this type is used, auth is enabled and an auth policy is required.
         authType: string
+        -- The amount of time, in seconds, that a connection can remain idle (no data sent) before VPC Lattice closes it. The valid range is 60 to 600 seconds. If you don't specify a value, the default is 60 seconds. This setting does not change the maximum connection duration of 10 minutes; connections are still closed when they reach that limit.
+        idleTimeoutSeconds: number
     end
 
     record UpdateServiceOutput
@@ -2319,6 +2327,8 @@ local record M
         certificateArn: string
         -- The type of IAM policy.
         authType: string
+        -- The amount of time, in seconds, that a connection can remain idle before VPC Lattice closes it.
+        idleTimeoutSeconds: number
     end
 
     record UpdateServiceNetworkInput

@@ -29652,6 +29652,12 @@ M.CreatePlacementGroupInput = schema.new({
             target_id = id.from(_N, "OperatorRequest"),
             target = M.OperatorRequest,
         }),
+        ParentGroupId = schema.new({
+            id = id.from(_N, "CreatePlacementGroupInput", "ParentGroupId"),
+            type = "string",
+            name = "ParentGroupId",
+            target_id = prelude.String.id,
+        }),
         DryRun = schema.new({
             id = id.from(_N, "CreatePlacementGroupInput", "DryRun"),
             type = "boolean",
@@ -29789,6 +29795,16 @@ M.PlacementGroup = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "operator" },
                 [traits.EC2_QUERY_NAME] = { name = "Operator" },
+            },
+        }),
+        ParentGroupId = schema.new({
+            id = id.from(_N, "PlacementGroup", "ParentGroupId"),
+            type = "string",
+            name = "ParentGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "parentGroupId" },
+                [traits.EC2_QUERY_NAME] = { name = "ParentGroupId" },
             },
         }),
     },

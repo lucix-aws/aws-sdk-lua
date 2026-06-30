@@ -12656,6 +12656,28 @@ local record M
     record UntagResourceOutput
     end
 
+    record UpdateAssetInput
+        -- The unique identifier of the asset to update.
+        Identifier: string
+        -- The new name of the asset.
+        Name: string
+        -- The new description of the asset.
+        Description: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record UpdateAssetOutput
+        -- The unique identifier of the asset.
+        Id: string
+        -- The name of the asset.
+        Name: string
+        -- The description of the asset.
+        Description: string
+        -- The timestamp at which the asset was last updated.
+        UpdatedAt: number
+    end
+
     record UpdateBlueprintInput
         -- The name of the blueprint.
         Name: string

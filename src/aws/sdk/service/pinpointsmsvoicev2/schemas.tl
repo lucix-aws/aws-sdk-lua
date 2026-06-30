@@ -19,6 +19,8 @@ M.IsoCountryCodeList = schema.new({ type = "list", list_member = prelude.String 
 
 M.NotifyEnabledChannelsList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RcsEventTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.EventDestinationList = schema.new({ type = "list", list_member = M.EventDestination })
@@ -175,6 +177,8 @@ M.NonEmptyTagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RcsSuggestedActionList = schema.new({ type = "list", list_member = M.RcsSuggestedAction })
+
 M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NotifyConfigurationTierList = schema.new({ type = "list", list_member = prelude.String })
@@ -194,6 +198,10 @@ M.NotifyTierList = schema.new({ type = "list", list_member = prelude.String })
 M.StringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SelectOptionDescriptionsList = schema.new({ type = "list", list_member = M.SelectOptionDescription })
+
+M.RcsCarouselCardContentList = schema.new({ type = "list", list_member = M.RcsCarouselCardContent })
+
+M.RcsCardSuggestedActionList = schema.new({ type = "list", list_member = M.RcsSuggestedAction })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -1808,6 +1816,31 @@ M.CreateRcsAgentOutput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        TwoWayMediaS3BucketName = schema.new({
+            id = id.from(_N, "CreateRcsAgentOutput", "TwoWayMediaS3BucketName"),
+            type = "string",
+            name = "TwoWayMediaS3BucketName",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3KeyPrefix = schema.new({
+            id = id.from(_N, "CreateRcsAgentOutput", "TwoWayMediaS3KeyPrefix"),
+            type = "string",
+            name = "TwoWayMediaS3KeyPrefix",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3Role = schema.new({
+            id = id.from(_N, "CreateRcsAgentOutput", "TwoWayMediaS3Role"),
+            type = "string",
+            name = "TwoWayMediaS3Role",
+            target_id = prelude.String.id,
+        }),
+        TwoWayRcsEventsEnabled = schema.new({
+            id = id.from(_N, "CreateRcsAgentOutput", "TwoWayRcsEventsEnabled"),
+            type = "list",
+            name = "TwoWayRcsEventsEnabled",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         Tags = schema.new({
             id = id.from(_N, "CreateRcsAgentOutput", "Tags"),
             type = "list",
@@ -3284,6 +3317,31 @@ M.DeleteRcsAgentOutput = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+        TwoWayRcsEventsEnabled = schema.new({
+            id = id.from(_N, "DeleteRcsAgentOutput", "TwoWayRcsEventsEnabled"),
+            type = "list",
+            name = "TwoWayRcsEventsEnabled",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.DeleteRcsMessageSpendLimitOverrideInput = schema.new({
+    id = id.from(_N, "DeleteRcsMessageSpendLimitOverrideRequest"),
+    type = "structure",
+})
+
+M.DeleteRcsMessageSpendLimitOverrideOutput = schema.new({
+    id = id.from(_N, "DeleteRcsMessageSpendLimitOverrideResult"),
+    type = "structure",
+    members = {
+        MonthlyLimit = schema.new({
+            id = id.from(_N, "DeleteRcsMessageSpendLimitOverrideOutput", "MonthlyLimit"),
+            type = "long",
+            name = "MonthlyLimit",
+            target_id = prelude.Long.id,
         }),
     },
 })
@@ -5467,6 +5525,31 @@ M.RcsAgentInformation = schema.new({
             type = "string",
             name = "PoolId",
             target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3BucketName = schema.new({
+            id = id.from(_N, "RcsAgentInformation", "TwoWayMediaS3BucketName"),
+            type = "string",
+            name = "TwoWayMediaS3BucketName",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3KeyPrefix = schema.new({
+            id = id.from(_N, "RcsAgentInformation", "TwoWayMediaS3KeyPrefix"),
+            type = "string",
+            name = "TwoWayMediaS3KeyPrefix",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3Role = schema.new({
+            id = id.from(_N, "RcsAgentInformation", "TwoWayMediaS3Role"),
+            type = "string",
+            name = "TwoWayMediaS3Role",
+            target_id = prelude.String.id,
+        }),
+        TwoWayRcsEventsEnabled = schema.new({
+            id = id.from(_N, "RcsAgentInformation", "TwoWayRcsEventsEnabled"),
+            type = "list",
+            name = "TwoWayRcsEventsEnabled",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
         TestingAgent = schema.new({
             id = id.from(_N, "RcsAgentInformation", "TestingAgent"),
@@ -9568,6 +9651,709 @@ M.SendNotifyVoiceMessageOutput = schema.new({
     },
 })
 
+M.RcsFallbackConfiguration = schema.new({
+    id = id.from(_N, "RcsFallbackConfiguration"),
+    type = "structure",
+    members = {
+        Channel = schema.new({
+            id = id.from(_N, "RcsFallbackConfiguration", "Channel"),
+            type = "string",
+            name = "Channel",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MessageBody = schema.new({
+            id = id.from(_N, "RcsFallbackConfiguration", "MessageBody"),
+            type = "string",
+            name = "MessageBody",
+            target_id = prelude.String.id,
+        }),
+        MediaUrls = schema.new({
+            id = id.from(_N, "RcsFallbackConfiguration", "MediaUrls"),
+            type = "list",
+            name = "MediaUrls",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        OriginationIdentity = schema.new({
+            id = id.from(_N, "RcsFallbackConfiguration", "OriginationIdentity"),
+            type = "string",
+            name = "OriginationIdentity",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RcsCarouselCardMedia = schema.new({
+    id = id.from(_N, "RcsCarouselCardMedia"),
+    type = "structure",
+    members = {
+        FileUrl = schema.new({
+            id = id.from(_N, "RcsCarouselCardMedia", "FileUrl"),
+            type = "string",
+            name = "FileUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ThumbnailUrl = schema.new({
+            id = id.from(_N, "RcsCarouselCardMedia", "ThumbnailUrl"),
+            type = "string",
+            name = "ThumbnailUrl",
+            target_id = prelude.String.id,
+        }),
+        Height = schema.new({
+            id = id.from(_N, "RcsCarouselCardMedia", "Height"),
+            type = "string",
+            name = "Height",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RcsCreateCalendarEventAction = schema.new({
+    id = id.from(_N, "RcsCreateCalendarEventAction"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "RcsCreateCalendarEventAction", "Text"),
+            type = "string",
+            name = "Text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PostbackData = schema.new({
+            id = id.from(_N, "RcsCreateCalendarEventAction", "PostbackData"),
+            type = "string",
+            name = "PostbackData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "RcsCreateCalendarEventAction", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "RcsCreateCalendarEventAction", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "RcsCreateCalendarEventAction", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RcsCreateCalendarEventAction", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RcsDialPhoneAction = schema.new({
+    id = id.from(_N, "RcsDialPhoneAction"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "RcsDialPhoneAction", "Text"),
+            type = "string",
+            name = "Text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PostbackData = schema.new({
+            id = id.from(_N, "RcsDialPhoneAction", "PostbackData"),
+            type = "string",
+            name = "PostbackData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PhoneNumber = schema.new({
+            id = id.from(_N, "RcsDialPhoneAction", "PhoneNumber"),
+            type = "string",
+            name = "PhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RcsOpenUrlAction = schema.new({
+    id = id.from(_N, "RcsOpenUrlAction"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "RcsOpenUrlAction", "Text"),
+            type = "string",
+            name = "Text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PostbackData = schema.new({
+            id = id.from(_N, "RcsOpenUrlAction", "PostbackData"),
+            type = "string",
+            name = "PostbackData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Url = schema.new({
+            id = id.from(_N, "RcsOpenUrlAction", "Url"),
+            type = "string",
+            name = "Url",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Application = schema.new({
+            id = id.from(_N, "RcsOpenUrlAction", "Application"),
+            type = "string",
+            name = "Application",
+            target_id = prelude.String.id,
+        }),
+        WebviewViewMode = schema.new({
+            id = id.from(_N, "RcsOpenUrlAction", "WebviewViewMode"),
+            type = "string",
+            name = "WebviewViewMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RcsReplyAction = schema.new({
+    id = id.from(_N, "RcsReplyAction"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "RcsReplyAction", "Text"),
+            type = "string",
+            name = "Text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PostbackData = schema.new({
+            id = id.from(_N, "RcsReplyAction", "PostbackData"),
+            type = "string",
+            name = "PostbackData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RcsRequestLocationAction = schema.new({
+    id = id.from(_N, "RcsRequestLocationAction"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "RcsRequestLocationAction", "Text"),
+            type = "string",
+            name = "Text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PostbackData = schema.new({
+            id = id.from(_N, "RcsRequestLocationAction", "PostbackData"),
+            type = "string",
+            name = "PostbackData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RcsShowLocationAction = schema.new({
+    id = id.from(_N, "RcsShowLocationAction"),
+    type = "structure",
+    members = {
+        Text = schema.new({
+            id = id.from(_N, "RcsShowLocationAction", "Text"),
+            type = "string",
+            name = "Text",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PostbackData = schema.new({
+            id = id.from(_N, "RcsShowLocationAction", "PostbackData"),
+            type = "string",
+            name = "PostbackData",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Latitude = schema.new({
+            id = id.from(_N, "RcsShowLocationAction", "Latitude"),
+            type = "double",
+            name = "Latitude",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Longitude = schema.new({
+            id = id.from(_N, "RcsShowLocationAction", "Longitude"),
+            type = "double",
+            name = "Longitude",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Label = schema.new({
+            id = id.from(_N, "RcsShowLocationAction", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RcsSuggestedAction = schema.new({
+    id = id.from(_N, "RcsSuggestedAction"),
+    type = "union",
+    members = {
+        Reply = schema.new({
+            id = id.from(_N, "RcsSuggestedAction", "Reply"),
+            type = "structure",
+            name = "Reply",
+            target_id = id.from(_N, "RcsReplyAction"),
+            target = M.RcsReplyAction,
+        }),
+        OpenUrl = schema.new({
+            id = id.from(_N, "RcsSuggestedAction", "OpenUrl"),
+            type = "structure",
+            name = "OpenUrl",
+            target_id = id.from(_N, "RcsOpenUrlAction"),
+            target = M.RcsOpenUrlAction,
+        }),
+        DialPhone = schema.new({
+            id = id.from(_N, "RcsSuggestedAction", "DialPhone"),
+            type = "structure",
+            name = "DialPhone",
+            target_id = id.from(_N, "RcsDialPhoneAction"),
+            target = M.RcsDialPhoneAction,
+        }),
+        ShowLocation = schema.new({
+            id = id.from(_N, "RcsSuggestedAction", "ShowLocation"),
+            type = "structure",
+            name = "ShowLocation",
+            target_id = id.from(_N, "RcsShowLocationAction"),
+            target = M.RcsShowLocationAction,
+        }),
+        RequestLocation = schema.new({
+            id = id.from(_N, "RcsSuggestedAction", "RequestLocation"),
+            type = "structure",
+            name = "RequestLocation",
+            target_id = id.from(_N, "RcsRequestLocationAction"),
+            target = M.RcsRequestLocationAction,
+        }),
+        CreateCalendarEvent = schema.new({
+            id = id.from(_N, "RcsSuggestedAction", "CreateCalendarEvent"),
+            type = "structure",
+            name = "CreateCalendarEvent",
+            target_id = id.from(_N, "RcsCreateCalendarEventAction"),
+            target = M.RcsCreateCalendarEventAction,
+        }),
+    },
+})
+
+M.RcsCarouselCardContent = schema.new({
+    id = id.from(_N, "RcsCarouselCardContent"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "RcsCarouselCardContent", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RcsCarouselCardContent", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Media = schema.new({
+            id = id.from(_N, "RcsCarouselCardContent", "Media"),
+            type = "structure",
+            name = "Media",
+            target_id = id.from(_N, "RcsCarouselCardMedia"),
+            target = M.RcsCarouselCardMedia,
+        }),
+        Suggestions = schema.new({
+            id = id.from(_N, "RcsCarouselCardContent", "Suggestions"),
+            type = "list",
+            name = "Suggestions",
+            target_id = prelude.Document.id,
+            list_member = M.RcsSuggestedAction,
+        }),
+    },
+})
+
+M.RcsCarousel = schema.new({
+    id = id.from(_N, "RcsCarousel"),
+    type = "structure",
+    members = {
+        CardWidth = schema.new({
+            id = id.from(_N, "RcsCarousel", "CardWidth"),
+            type = "string",
+            name = "CardWidth",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CardContents = schema.new({
+            id = id.from(_N, "RcsCarousel", "CardContents"),
+            type = "list",
+            name = "CardContents",
+            target_id = prelude.Document.id,
+            list_member = M.RcsCarouselCardContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RcsFileMessage = schema.new({
+    id = id.from(_N, "RcsFileMessage"),
+    type = "structure",
+    members = {
+        FileUrl = schema.new({
+            id = id.from(_N, "RcsFileMessage", "FileUrl"),
+            type = "string",
+            name = "FileUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ThumbnailUrl = schema.new({
+            id = id.from(_N, "RcsFileMessage", "ThumbnailUrl"),
+            type = "string",
+            name = "ThumbnailUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RcsCardMedia = schema.new({
+    id = id.from(_N, "RcsCardMedia"),
+    type = "structure",
+    members = {
+        FileUrl = schema.new({
+            id = id.from(_N, "RcsCardMedia", "FileUrl"),
+            type = "string",
+            name = "FileUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ThumbnailUrl = schema.new({
+            id = id.from(_N, "RcsCardMedia", "ThumbnailUrl"),
+            type = "string",
+            name = "ThumbnailUrl",
+            target_id = prelude.String.id,
+        }),
+        Height = schema.new({
+            id = id.from(_N, "RcsCardMedia", "Height"),
+            type = "string",
+            name = "Height",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RcsCardContent = schema.new({
+    id = id.from(_N, "RcsCardContent"),
+    type = "structure",
+    members = {
+        Title = schema.new({
+            id = id.from(_N, "RcsCardContent", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "RcsCardContent", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Media = schema.new({
+            id = id.from(_N, "RcsCardContent", "Media"),
+            type = "structure",
+            name = "Media",
+            target_id = id.from(_N, "RcsCardMedia"),
+            target = M.RcsCardMedia,
+        }),
+        Suggestions = schema.new({
+            id = id.from(_N, "RcsCardContent", "Suggestions"),
+            type = "list",
+            name = "Suggestions",
+            target_id = prelude.Document.id,
+            list_member = M.RcsSuggestedAction,
+        }),
+    },
+})
+
+M.RcsStandaloneCard = schema.new({
+    id = id.from(_N, "RcsStandaloneCard"),
+    type = "structure",
+    members = {
+        CardOrientation = schema.new({
+            id = id.from(_N, "RcsStandaloneCard", "CardOrientation"),
+            type = "string",
+            name = "CardOrientation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ThumbnailImageAlignment = schema.new({
+            id = id.from(_N, "RcsStandaloneCard", "ThumbnailImageAlignment"),
+            type = "string",
+            name = "ThumbnailImageAlignment",
+            target_id = prelude.String.id,
+        }),
+        CardContent = schema.new({
+            id = id.from(_N, "RcsStandaloneCard", "CardContent"),
+            type = "structure",
+            name = "CardContent",
+            target_id = id.from(_N, "RcsCardContent"),
+            target = M.RcsCardContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RcsTextMessage = schema.new({
+    id = id.from(_N, "RcsTextMessage"),
+    type = "structure",
+    members = {
+        Body = schema.new({
+            id = id.from(_N, "RcsTextMessage", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RcsContent = schema.new({
+    id = id.from(_N, "RcsContent"),
+    type = "union",
+    members = {
+        TextMessage = schema.new({
+            id = id.from(_N, "RcsContent", "TextMessage"),
+            type = "structure",
+            name = "TextMessage",
+            target_id = id.from(_N, "RcsTextMessage"),
+            target = M.RcsTextMessage,
+        }),
+        FileMessage = schema.new({
+            id = id.from(_N, "RcsContent", "FileMessage"),
+            type = "structure",
+            name = "FileMessage",
+            target_id = id.from(_N, "RcsFileMessage"),
+            target = M.RcsFileMessage,
+        }),
+        RichCard = schema.new({
+            id = id.from(_N, "RcsContent", "RichCard"),
+            type = "structure",
+            name = "RichCard",
+            target_id = id.from(_N, "RcsStandaloneCard"),
+            target = M.RcsStandaloneCard,
+        }),
+        Carousel = schema.new({
+            id = id.from(_N, "RcsContent", "Carousel"),
+            type = "structure",
+            name = "Carousel",
+            target_id = id.from(_N, "RcsCarousel"),
+            target = M.RcsCarousel,
+        }),
+    },
+})
+
+M.RcsMessageContent = schema.new({
+    id = id.from(_N, "RcsMessageContent"),
+    type = "structure",
+    members = {
+        Content = schema.new({
+            id = id.from(_N, "RcsMessageContent", "Content"),
+            type = "union",
+            name = "Content",
+            target_id = id.from(_N, "RcsContent"),
+            target = M.RcsContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Suggestions = schema.new({
+            id = id.from(_N, "RcsMessageContent", "Suggestions"),
+            type = "list",
+            name = "Suggestions",
+            target_id = prelude.Document.id,
+            list_member = M.RcsSuggestedAction,
+        }),
+    },
+})
+
+M.SendRcsMessageInput = schema.new({
+    id = id.from(_N, "SendRcsMessageRequest"),
+    type = "structure",
+    members = {
+        DestinationPhoneNumber = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "DestinationPhoneNumber"),
+            type = "string",
+            name = "DestinationPhoneNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OriginationIdentity = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "OriginationIdentity"),
+            type = "string",
+            name = "OriginationIdentity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RcsMessageContent = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "RcsMessageContent"),
+            type = "structure",
+            name = "RcsMessageContent",
+            target_id = id.from(_N, "RcsMessageContent"),
+            target = M.RcsMessageContent,
+        }),
+        TimeToLive = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "TimeToLive"),
+            type = "integer",
+            name = "TimeToLive",
+            target_id = prelude.Integer.id,
+        }),
+        MessageTrafficType = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "MessageTrafficType"),
+            type = "string",
+            name = "MessageTrafficType",
+            target_id = prelude.String.id,
+        }),
+        FallbackConfiguration = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "FallbackConfiguration"),
+            type = "structure",
+            name = "FallbackConfiguration",
+            target_id = id.from(_N, "RcsFallbackConfiguration"),
+            target = M.RcsFallbackConfiguration,
+        }),
+        ProtectConfigurationId = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "ProtectConfigurationId"),
+            type = "string",
+            name = "ProtectConfigurationId",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationSetName = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "ConfigurationSetName"),
+            type = "string",
+            name = "ConfigurationSetName",
+            target_id = prelude.String.id,
+        }),
+        MaxPrice = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "MaxPrice"),
+            type = "string",
+            name = "MaxPrice",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Context = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "Context"),
+            type = "map",
+            name = "Context",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        MessageFeedbackEnabled = schema.new({
+            id = id.from(_N, "SendRcsMessageInput", "MessageFeedbackEnabled"),
+            type = "boolean",
+            name = "MessageFeedbackEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.SendRcsMessageOutput = schema.new({
+    id = id.from(_N, "SendRcsMessageResult"),
+    type = "structure",
+    members = {
+        MessageId = schema.new({
+            id = id.from(_N, "SendRcsMessageOutput", "MessageId"),
+            type = "string",
+            name = "MessageId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SendTextMessageInput = schema.new({
     id = id.from(_N, "SendTextMessageRequest"),
     type = "structure",
@@ -10021,6 +10807,35 @@ M.SetNotifyMessageSpendLimitOverrideOutput = schema.new({
     members = {
         MonthlyLimit = schema.new({
             id = id.from(_N, "SetNotifyMessageSpendLimitOverrideOutput", "MonthlyLimit"),
+            type = "long",
+            name = "MonthlyLimit",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.SetRcsMessageSpendLimitOverrideInput = schema.new({
+    id = id.from(_N, "SetRcsMessageSpendLimitOverrideRequest"),
+    type = "structure",
+    members = {
+        MonthlyLimit = schema.new({
+            id = id.from(_N, "SetRcsMessageSpendLimitOverrideInput", "MonthlyLimit"),
+            type = "long",
+            name = "MonthlyLimit",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SetRcsMessageSpendLimitOverrideOutput = schema.new({
+    id = id.from(_N, "SetRcsMessageSpendLimitOverrideResult"),
+    type = "structure",
+    members = {
+        MonthlyLimit = schema.new({
+            id = id.from(_N, "SetRcsMessageSpendLimitOverrideOutput", "MonthlyLimit"),
             type = "long",
             name = "MonthlyLimit",
             target_id = prelude.Long.id,
@@ -11034,6 +11849,31 @@ M.UpdateRcsAgentInput = schema.new({
             name = "TwoWayEnabled",
             target_id = prelude.Boolean.id,
         }),
+        TwoWayMediaS3BucketName = schema.new({
+            id = id.from(_N, "UpdateRcsAgentInput", "TwoWayMediaS3BucketName"),
+            type = "string",
+            name = "TwoWayMediaS3BucketName",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3KeyPrefix = schema.new({
+            id = id.from(_N, "UpdateRcsAgentInput", "TwoWayMediaS3KeyPrefix"),
+            type = "string",
+            name = "TwoWayMediaS3KeyPrefix",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3Role = schema.new({
+            id = id.from(_N, "UpdateRcsAgentInput", "TwoWayMediaS3Role"),
+            type = "string",
+            name = "TwoWayMediaS3Role",
+            target_id = prelude.String.id,
+        }),
+        TwoWayRcsEventsEnabled = schema.new({
+            id = id.from(_N, "UpdateRcsAgentInput", "TwoWayRcsEventsEnabled"),
+            type = "list",
+            name = "TwoWayRcsEventsEnabled",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -11124,6 +11964,31 @@ M.UpdateRcsAgentOutput = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+        TwoWayMediaS3BucketName = schema.new({
+            id = id.from(_N, "UpdateRcsAgentOutput", "TwoWayMediaS3BucketName"),
+            type = "string",
+            name = "TwoWayMediaS3BucketName",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3KeyPrefix = schema.new({
+            id = id.from(_N, "UpdateRcsAgentOutput", "TwoWayMediaS3KeyPrefix"),
+            type = "string",
+            name = "TwoWayMediaS3KeyPrefix",
+            target_id = prelude.String.id,
+        }),
+        TwoWayMediaS3Role = schema.new({
+            id = id.from(_N, "UpdateRcsAgentOutput", "TwoWayMediaS3Role"),
+            type = "string",
+            name = "TwoWayMediaS3Role",
+            target_id = prelude.String.id,
+        }),
+        TwoWayRcsEventsEnabled = schema.new({
+            id = id.from(_N, "UpdateRcsAgentOutput", "TwoWayRcsEventsEnabled"),
+            type = "list",
+            name = "TwoWayRcsEventsEnabled",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -11663,6 +12528,17 @@ M.DeleteRcsAgent = schema.operation({
     id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteRcsAgent"),
     input = M.DeleteRcsAgentInput,
     output = M.DeleteRcsAgentOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteRcsMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "DeleteRcsMessageSpendLimitOverride"),
+    input = M.DeleteRcsMessageSpendLimitOverrideInput,
+    output = M.DeleteRcsMessageSpendLimitOverrideOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -12264,6 +13140,17 @@ M.SendNotifyVoiceMessage = schema.operation({
     },
 })
 
+M.SendRcsMessage = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendRcsMessage"),
+    input = M.SendRcsMessageInput,
+    output = M.SendRcsMessageOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.SendTextMessage = schema.operation({
     id = id.from("com.amazonaws.pinpointsmsvoicev2", "SendTextMessage"),
     input = M.SendTextMessageInput,
@@ -12345,6 +13232,17 @@ M.SetNotifyMessageSpendLimitOverride = schema.operation({
     id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetNotifyMessageSpendLimitOverride"),
     input = M.SetNotifyMessageSpendLimitOverrideInput,
     output = M.SetNotifyMessageSpendLimitOverrideOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SetRcsMessageSpendLimitOverride = schema.operation({
+    id = id.from("com.amazonaws.pinpointsmsvoicev2", "SetRcsMessageSpendLimitOverride"),
+    input = M.SetRcsMessageSpendLimitOverrideInput,
+    output = M.SetRcsMessageSpendLimitOverrideOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

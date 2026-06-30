@@ -908,16 +908,6 @@ M.CreateEnvironmentInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        licenseInfo = schema.new({
-            id = id.from(_N, "CreateEnvironmentInput", "licenseInfo"),
-            type = "list",
-            name = "licenseInfo",
-            target_id = prelude.Document.id,
-            list_member = M.LicenseInfo,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
         initialVlans = schema.new({
             id = id.from(_N, "CreateEnvironmentInput", "initialVlans"),
             type = "structure",
@@ -928,25 +918,26 @@ M.CreateEnvironmentInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        hosts = schema.new({
-            id = id.from(_N, "CreateEnvironmentInput", "hosts"),
-            type = "list",
-            name = "hosts",
-            target_id = prelude.Document.id,
-            list_member = M.HostInfoForCreate,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
         connectivityInfo = schema.new({
             id = id.from(_N, "CreateEnvironmentInput", "connectivityInfo"),
             type = "structure",
             name = "connectivityInfo",
             target_id = id.from(_N, "ConnectivityInfo"),
             target = M.ConnectivityInfo,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        licenseInfo = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "licenseInfo"),
+            type = "list",
+            name = "licenseInfo",
+            target_id = prelude.Document.id,
+            list_member = M.LicenseInfo,
+        }),
+        hosts = schema.new({
+            id = id.from(_N, "CreateEnvironmentInput", "hosts"),
+            type = "list",
+            name = "hosts",
+            target_id = prelude.Document.id,
+            list_member = M.HostInfoForCreate,
         }),
         vcfHostnames = schema.new({
             id = id.from(_N, "CreateEnvironmentInput", "vcfHostnames"),
@@ -954,18 +945,12 @@ M.CreateEnvironmentInput = schema.new({
             name = "vcfHostnames",
             target_id = id.from(_N, "VcfHostnames"),
             target = M.VcfHostnames,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         siteId = schema.new({
             id = id.from(_N, "CreateEnvironmentInput", "siteId"),
             type = "string",
             name = "siteId",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -978,6 +963,12 @@ M.Check = schema.new({
             id = id.from(_N, "Check", "type"),
             type = "string",
             name = "type",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "Check", "id"),
+            type = "string",
+            name = "id",
             target_id = prelude.String.id,
         }),
         result = schema.new({

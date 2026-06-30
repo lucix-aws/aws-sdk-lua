@@ -1466,6 +1466,11 @@ local record M
         LambdaManagedInstancesCapacityProviderConfig: LambdaManagedInstancesCapacityProviderConfig
     end
 
+    enum S3ObjectStorageMode
+        "COPY"
+        "REFERENCE"
+    end
+
     -- The code for the Lambda function. You can either specify an object in Amazon S3, upload a .zip file archive deployment package directly, or specify the URI of a container image.
     record FunctionCode
         -- The base64-encoded contents of the deployment package. Amazon Web Services SDK and CLI clients handle the encoding for you.
@@ -1476,6 +1481,8 @@ local record M
         S3Key: string
         -- For versioned objects, the version of the deployment package object to use.
         S3ObjectVersion: string
+        -- Specifies how the deployment package is stored. Use COPY (default) to upload a copy of your deployment package to Lambda. Use REFERENCE to have Lambda reference the deployment package from the specified Amazon S3 bucket.
+        S3ObjectStorageMode: string
         -- URI of a container image in the Amazon ECR registry.
         ImageUri: string
         -- The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an Amazon Web Services owned key.
@@ -2064,6 +2071,24 @@ local record M
         Qualifier: string
     end
 
+    -- Details about an error related to retrieving a function's deployment package.
+    record FunctionCodeLocationError
+        -- The error code for the failed retrieval.
+        ErrorCode: string
+        -- A description of the error.
+        Message: string
+    end
+
+    -- Details about the resolved Amazon S3 object that contains a function's deployment package.
+    record ResolvedS3Object
+        -- The Amazon S3 bucket that contains the deployment package.
+        S3Bucket: string
+        -- The Amazon S3 key of the deployment package.
+        S3Key: string
+        -- The version of the deployment package object.
+        S3ObjectVersion: string
+    end
+
     -- Details about a function's deployment package.
     record FunctionCodeLocation
         -- The service that's hosting the file.
@@ -2074,8 +2099,12 @@ local record M
         ImageUri: string
         -- The resolved URI for the image.
         ResolvedImageUri: string
+        -- The resolved Amazon S3 object that contains the deployment package.
+        ResolvedS3Object: ResolvedS3Object
         -- The ARN of the Key Management Service (KMS) customer managed key that's used to encrypt your function's .zip deployment package. If you don't provide a customer managed key, Lambda uses an Amazon Web Services owned key.
         SourceKMSKeyArn: string
+        -- An object that contains details about an error related to function deployment package retrieval.
+        Error: FunctionCodeLocationError
     end
 
     record Concurrency
@@ -2953,6 +2982,8 @@ local record M
         S3Key: string
         -- For versioned objects, the version of the deployment package object to use.
         S3ObjectVersion: string
+        -- Specifies how the deployment package is stored. Use COPY (default) to upload a copy of your deployment package to Lambda. Use REFERENCE to have Lambda reference the deployment package from the specified Amazon S3 bucket.
+        S3ObjectStorageMode: string
         -- URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip file archive.
         ImageUri: string
         -- The instruction set architecture that the function supports. Enter a string array with one of the valid values (arm64 or x86_64). The default value is x86_64.
@@ -3911,6 +3942,7 @@ local record M
         SigningProfileVersionArn: string
         -- The Amazon Resource Name (ARN) of a signing job.
         SigningJobArn: string
+        ResolvedS3Object: ResolvedS3Object
     end
 
     record GetLayerVersionOutput
@@ -4002,6 +4034,7 @@ local record M
         S3Key: string
         -- For versioned objects, the version of the layer archive object to use.
         S3ObjectVersion: string
+        S3ObjectStorageMode: string
         -- The base64-encoded contents of the layer archive. Amazon Web Services SDK and Amazon Web Services CLI clients handle the encoding for you.
         ZipFile: string
     end

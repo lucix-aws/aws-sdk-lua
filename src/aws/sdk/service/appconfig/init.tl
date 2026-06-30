@@ -22,6 +22,7 @@ local record Client
     createConfigurationProfile: function(Client, types.CreateConfigurationProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationProfileOutput>
     createDeploymentStrategy: function(Client, types.CreateDeploymentStrategyInput, ? base_client.InvokeOptions): async.Operation<types.CreateDeploymentStrategyOutput>
     createEnvironment: function(Client, types.CreateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnvironmentOutput>
+    createExperimentDefinition: function(Client, types.CreateExperimentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.CreateExperimentDefinitionOutput>
     createExtension: function(Client, types.CreateExtensionInput, ? base_client.InvokeOptions): async.Operation<types.CreateExtensionOutput>
     createExtensionAssociation: function(Client, types.CreateExtensionAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateExtensionAssociationOutput>
     createHostedConfigurationVersion: function(Client, types.CreateHostedConfigurationVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateHostedConfigurationVersionOutput>
@@ -29,6 +30,7 @@ local record Client
     deleteConfigurationProfile: function(Client, types.DeleteConfigurationProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationProfileOutput>
     deleteDeploymentStrategy: function(Client, types.DeleteDeploymentStrategyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeploymentStrategyOutput>
     deleteEnvironment: function(Client, types.DeleteEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
+    deleteExperimentDefinition: function(Client, types.DeleteExperimentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExperimentDefinitionOutput>
     deleteExtension: function(Client, types.DeleteExtensionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExtensionOutput>
     deleteExtensionAssociation: function(Client, types.DeleteExtensionAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteExtensionAssociationOutput>
     deleteHostedConfigurationVersion: function(Client, types.DeleteHostedConfigurationVersionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHostedConfigurationVersionOutput>
@@ -39,6 +41,8 @@ local record Client
     getDeployment: function(Client, types.GetDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.GetDeploymentOutput>
     getDeploymentStrategy: function(Client, types.GetDeploymentStrategyInput, ? base_client.InvokeOptions): async.Operation<types.GetDeploymentStrategyOutput>
     getEnvironment: function(Client, types.GetEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.GetEnvironmentOutput>
+    getExperimentDefinition: function(Client, types.GetExperimentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.GetExperimentDefinitionOutput>
+    getExperimentRun: function(Client, types.GetExperimentRunInput, ? base_client.InvokeOptions): async.Operation<types.GetExperimentRunOutput>
     getExtension: function(Client, types.GetExtensionInput, ? base_client.InvokeOptions): async.Operation<types.GetExtensionOutput>
     getExtensionAssociation: function(Client, types.GetExtensionAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetExtensionAssociationOutput>
     getHostedConfigurationVersion: function(Client, types.GetHostedConfigurationVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetHostedConfigurationVersionOutput>
@@ -47,12 +51,17 @@ local record Client
     listDeployments: function(Client, types.ListDeploymentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDeploymentsOutput>
     listDeploymentStrategies: function(Client, types.ListDeploymentStrategiesInput, ? base_client.InvokeOptions): async.Operation<types.ListDeploymentStrategiesOutput>
     listEnvironments: function(Client, types.ListEnvironmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnvironmentsOutput>
+    listExperimentDefinitions: function(Client, types.ListExperimentDefinitionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExperimentDefinitionsOutput>
+    listExperimentRunEvents: function(Client, types.ListExperimentRunEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListExperimentRunEventsOutput>
+    listExperimentRuns: function(Client, types.ListExperimentRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListExperimentRunsOutput>
     listExtensionAssociations: function(Client, types.ListExtensionAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListExtensionAssociationsOutput>
     listExtensions: function(Client, types.ListExtensionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExtensionsOutput>
     listHostedConfigurationVersions: function(Client, types.ListHostedConfigurationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedConfigurationVersionsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     startDeployment: function(Client, types.StartDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StartDeploymentOutput>
+    startExperimentRun: function(Client, types.StartExperimentRunInput, ? base_client.InvokeOptions): async.Operation<types.StartExperimentRunOutput>
     stopDeployment: function(Client, types.StopDeploymentInput, ? base_client.InvokeOptions): async.Operation<types.StopDeploymentOutput>
+    stopExperimentRun: function(Client, types.StopExperimentRunInput, ? base_client.InvokeOptions): async.Operation<types.StopExperimentRunOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAccountSettings: function(Client, types.UpdateAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccountSettingsOutput>
@@ -60,6 +69,8 @@ local record Client
     updateConfigurationProfile: function(Client, types.UpdateConfigurationProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationProfileOutput>
     updateDeploymentStrategy: function(Client, types.UpdateDeploymentStrategyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDeploymentStrategyOutput>
     updateEnvironment: function(Client, types.UpdateEnvironmentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
+    updateExperimentDefinition: function(Client, types.UpdateExperimentDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExperimentDefinitionOutput>
+    updateExperimentRun: function(Client, types.UpdateExperimentRunInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExperimentRunOutput>
     updateExtension: function(Client, types.UpdateExtensionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExtensionOutput>
     updateExtensionAssociation: function(Client, types.UpdateExtensionAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateExtensionAssociationOutput>
     validateConfiguration: function(Client, types.ValidateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ValidateConfigurationOutput>
@@ -123,6 +134,10 @@ function C:createEnvironment(input: types.CreateEnvironmentInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.CreateEnvironmentOutput>
 end
 
+function C:createExperimentDefinition(input: types.CreateExperimentDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExperimentDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExperimentDefinition as schema.OperationSchema, input, options) as async.Operation<types.CreateExperimentDefinitionOutput>
+end
+
 function C:createExtension(input: types.CreateExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateExtensionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateExtension as schema.OperationSchema, input, options) as async.Operation<types.CreateExtensionOutput>
 end
@@ -149,6 +164,10 @@ end
 
 function C:deleteEnvironment(input: types.DeleteEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEnvironmentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteEnvironment as schema.OperationSchema, input, options) as async.Operation<types.DeleteEnvironmentOutput>
+end
+
+function C:deleteExperimentDefinition(input: types.DeleteExperimentDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExperimentDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteExperimentDefinition as schema.OperationSchema, input, options) as async.Operation<types.DeleteExperimentDefinitionOutput>
 end
 
 function C:deleteExtension(input: types.DeleteExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteExtensionOutput>
@@ -191,6 +210,14 @@ function C:getEnvironment(input: types.GetEnvironmentInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnvironment as schema.OperationSchema, input, options) as async.Operation<types.GetEnvironmentOutput>
 end
 
+function C:getExperimentDefinition(input: types.GetExperimentDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.GetExperimentDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExperimentDefinition as schema.OperationSchema, input, options) as async.Operation<types.GetExperimentDefinitionOutput>
+end
+
+function C:getExperimentRun(input: types.GetExperimentRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetExperimentRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExperimentRun as schema.OperationSchema, input, options) as async.Operation<types.GetExperimentRunOutput>
+end
+
 function C:getExtension(input: types.GetExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.GetExtensionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetExtension as schema.OperationSchema, input, options) as async.Operation<types.GetExtensionOutput>
 end
@@ -223,6 +250,18 @@ function C:listEnvironments(input: types.ListEnvironmentsInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnvironments as schema.OperationSchema, input, options) as async.Operation<types.ListEnvironmentsOutput>
 end
 
+function C:listExperimentDefinitions(input: types.ListExperimentDefinitionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExperimentDefinitionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExperimentDefinitions as schema.OperationSchema, input, options) as async.Operation<types.ListExperimentDefinitionsOutput>
+end
+
+function C:listExperimentRunEvents(input: types.ListExperimentRunEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExperimentRunEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExperimentRunEvents as schema.OperationSchema, input, options) as async.Operation<types.ListExperimentRunEventsOutput>
+end
+
+function C:listExperimentRuns(input: types.ListExperimentRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExperimentRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExperimentRuns as schema.OperationSchema, input, options) as async.Operation<types.ListExperimentRunsOutput>
+end
+
 function C:listExtensionAssociations(input: types.ListExtensionAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExtensionAssociationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListExtensionAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListExtensionAssociationsOutput>
 end
@@ -243,8 +282,16 @@ function C:startDeployment(input: types.StartDeploymentInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDeployment as schema.OperationSchema, input, options) as async.Operation<types.StartDeploymentOutput>
 end
 
+function C:startExperimentRun(input: types.StartExperimentRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartExperimentRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartExperimentRun as schema.OperationSchema, input, options) as async.Operation<types.StartExperimentRunOutput>
+end
+
 function C:stopDeployment(input: types.StopDeploymentInput, options?: base_client.InvokeOptions): async.Operation<types.StopDeploymentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopDeployment as schema.OperationSchema, input, options) as async.Operation<types.StopDeploymentOutput>
+end
+
+function C:stopExperimentRun(input: types.StopExperimentRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopExperimentRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopExperimentRun as schema.OperationSchema, input, options) as async.Operation<types.StopExperimentRunOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -273,6 +320,14 @@ end
 
 function C:updateEnvironment(input: types.UpdateEnvironmentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEnvironmentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateEnvironment as schema.OperationSchema, input, options) as async.Operation<types.UpdateEnvironmentOutput>
+end
+
+function C:updateExperimentDefinition(input: types.UpdateExperimentDefinitionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExperimentDefinitionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExperimentDefinition as schema.OperationSchema, input, options) as async.Operation<types.UpdateExperimentDefinitionOutput>
+end
+
+function C:updateExperimentRun(input: types.UpdateExperimentRunInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExperimentRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateExperimentRun as schema.OperationSchema, input, options) as async.Operation<types.UpdateExperimentRunOutput>
 end
 
 function C:updateExtension(input: types.UpdateExtensionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateExtensionOutput>

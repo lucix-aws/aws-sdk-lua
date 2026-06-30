@@ -21,6 +21,12 @@ local record M
         ProtectionPeriodInMinutes: number
     end
 
+    -- Configuration settings for vended metrics.
+    record VendedMetricsSettings
+        -- Whether vended metrics are enabled for the account.
+        Enabled: boolean
+    end
+
     -- An action defines the tasks that the extension performs during the AppConfig
     -- workflow. Each action includes an action point, as shown in the following list:
     -- PRE_CREATE_HOSTED_CONFIGURATION_VERSION
@@ -142,9 +148,6 @@ local record M
     -- The number of one more AppConfig resources exceeds the maximum allowed. Verify that your
     -- environment doesn't exceed the following service quotas:
     -- Applications: 100 max
-    -- Deployment strategies: 20 max
-    -- Configuration profiles: 100 max per application
-    -- Environments: 20 max per application
     -- To resolve this issue, you can delete one or more resources and try again. Or, you can
     -- request a quota increase. For more information about quotas and to request an increase, see
     -- Service quotas for AppConfig in the Amazon Web Services General Reference.
@@ -279,6 +282,7 @@ local record M
         -- A description of the deployment strategy.
         Description: string
         -- Total amount of time for a deployment to last.
+        -- AppConfig Agent supports deploying feature flag or free-form configuration data to specific segments or individual users during a gradual rollout. Entity-based gradual deployments ensure that once a user or segment receives a configuration version, they continue to receive that same version throughout the deployment period, regardless of which compute resource serves their requests. For more information, see Using AppConfig Agent for user-based or entity-based gradual deployments
         DeploymentDurationInMinutes: number
         -- Specifies the amount of time AppConfig monitors for Amazon CloudWatch alarms after the
         -- configuration has been deployed to 100% of its targets, before considering the deployment
@@ -395,6 +399,119 @@ local record M
         Message: string
     end
 
+    -- A value for a feature flag attribute. Only one of the members can be set.
+    record AttributeValue
+        -- A string value for the attribute.
+        StringValue: string
+        -- A numeric value for the attribute.
+        NumberValue: number
+        -- A Boolean value for the attribute.
+        BooleanValue: boolean
+        -- An array of string values for the attribute.
+        StringArray: {string}
+        -- An array of numeric values for the attribute.
+        NumberArray: {number}
+    end
+
+    -- The feature flag value configuration for a treatment, including the enabled state and attribute values.
+    record FlagValue
+        -- Whether the feature flag is enabled for this treatment.
+        Enabled: boolean
+        -- The attribute values associated with this flag value.
+        AttributeValues: {string : AttributeValue}
+    end
+
+    -- Input structure for defining a treatment when creating or updating an experiment definition.
+    record TreatmentInput
+        -- The traffic allocation weight for this treatment.
+        Weight: number
+        -- A description of the treatment.
+        Description: string
+        -- The feature flag value to serve to users assigned to this treatment.
+        FlagValue: FlagValue
+    end
+
+    record CreateExperimentDefinitionInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- A name for the experiment definition.
+        Name: string
+        -- The configuration profile ID or name that stores the feature flag.
+        ConfigurationProfileIdentifier: string
+        -- The environment ID or name where the experiment will run.
+        EnvironmentIdentifier: string
+        -- The key of the existing feature flag to use with the experiment.
+        FlagKey: string
+        -- A list of treatments to evaluate during the experiment. Each treatment defines a distinct variation compared to the control.
+        Treatments: {TreatmentInput}
+        -- The control treatment that represents the baseline experience for comparison.
+        Control: TreatmentInput
+        -- A rule that defines which users are eligible to be assigned to treatments during the experiment.
+        AudienceRule: string
+        -- A description of the goal or hypothesis the experiment is designed to validate.
+        Hypothesis: string
+        -- A description of the intended audience for the experiment.
+        AudienceDescription: string
+        -- Information about the conditions under which you would launch the winning treatment.
+        LaunchCriteria: string
+        -- The tags to assign to the experiment definition. Tags help organize and categorize your AppConfig resources.
+        Tags: {string : string}
+    end
+
+    -- Describes a treatment in an experiment, including its traffic allocation weight and feature flag value.
+    record Treatment
+        -- The unique key that identifies this treatment.
+        Key: string
+        -- The traffic allocation weight for this treatment.
+        Weight: number
+        -- A description of the treatment.
+        Description: string
+        -- The feature flag value served to users assigned to this treatment.
+        FlagValue: FlagValue
+    end
+
+    enum ExperimentDefinitionStatus
+        "ACTIVE"
+        "IDLE"
+        "ARCHIVED"
+    end
+
+    -- Describes an experiment definition, including the target audience, feature flag, treatments, and current status.
+    record CreateExperimentDefinitionOutput
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        Id: string
+        -- The name of the experiment definition.
+        Name: string
+        -- The hypothesis that the experiment is designed to validate.
+        Hypothesis: string
+        -- The current status of the experiment definition. Valid values: ACTIVE, IDLE, ARCHIVED.
+        Status: string
+        -- The configuration profile ID associated with the experiment.
+        ConfigurationProfileId: string
+        -- The environment ID where the experiment runs.
+        EnvironmentId: string
+        -- The key of the feature flag used by the experiment.
+        FlagKey: string
+        -- The rule that defines which users are eligible to be assigned to treatments.
+        AudienceRule: string
+        -- A description of the intended audience for the experiment.
+        AudienceDescription: string
+        -- The conditions under which the winning treatment should be launched.
+        LaunchCriteria: string
+        -- The list of treatments defined for the experiment.
+        Treatments: {Treatment}
+        -- The control treatment used as the baseline for comparison.
+        Control: Treatment
+        -- The date and time the experiment definition was created, in ISO 8601 format.
+        CreatedAt: number
+        -- The date and time the experiment definition was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt experiment data.
+        KmsKeyIdentifier: string
+    end
+
     -- A value such as an Amazon Resource Name (ARN) or an Amazon Simple Notification Service topic entered
     -- in an extension when invoked. Parameter values are specified in an extension association.
     -- For more information about extensions, see Extending
@@ -492,6 +609,7 @@ local record M
         -- The configuration profile ID.
         ConfigurationProfileId: string
         -- A description of the configuration.
+        -- Due to HTTP limitations, this field only supports ASCII characters.
         Description: string
         -- The configuration data, as bytes.
         -- AppConfig accepts any type of data, including text formats like JSON or
@@ -615,6 +733,23 @@ local record M
     record DeleteEnvironmentOutput
     end
 
+    enum DeleteType
+        "ARCHIVE"
+        "DESTROY"
+    end
+
+    record DeleteExperimentDefinitionInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- The type of deletion to perform. Valid values include archive (hide but preserve) and permanent (delete permanently).
+        DeleteType: string
+    end
+
+    record DeleteExperimentDefinitionOutput
+    end
+
     record DeleteExtensionInput
         -- The name, ID, or Amazon Resource Name (ARN) of the extension you want to delete.
         ExtensionIdentifier: string
@@ -656,6 +791,8 @@ local record M
         -- configuration profile or from the environment during the specified interval. The default
         -- interval for ProtectionPeriodInMinutes is 60.
         DeletionProtection: DeletionProtectionSettings
+        -- Configuration for vended metrics in the account.
+        VendedMetrics: VendedMetricsSettings
     end
 
     record GetApplicationInput
@@ -939,6 +1076,135 @@ local record M
         Monitors: {Monitor}
     end
 
+    record GetExperimentDefinitionInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+    end
+
+    -- Describes an experiment definition, including the target audience, feature flag, treatments, and current status.
+    record GetExperimentDefinitionOutput
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        Id: string
+        -- The name of the experiment definition.
+        Name: string
+        -- The hypothesis that the experiment is designed to validate.
+        Hypothesis: string
+        -- The current status of the experiment definition. Valid values: ACTIVE, IDLE, ARCHIVED.
+        Status: string
+        -- The configuration profile ID associated with the experiment.
+        ConfigurationProfileId: string
+        -- The environment ID where the experiment runs.
+        EnvironmentId: string
+        -- The key of the feature flag used by the experiment.
+        FlagKey: string
+        -- The rule that defines which users are eligible to be assigned to treatments.
+        AudienceRule: string
+        -- A description of the intended audience for the experiment.
+        AudienceDescription: string
+        -- The conditions under which the winning treatment should be launched.
+        LaunchCriteria: string
+        -- The list of treatments defined for the experiment.
+        Treatments: {Treatment}
+        -- The control treatment used as the baseline for comparison.
+        Control: Treatment
+        -- The date and time the experiment definition was created, in ISO 8601 format.
+        CreatedAt: number
+        -- The date and time the experiment definition was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt experiment data.
+        KmsKeyIdentifier: string
+    end
+
+    record GetExperimentRunInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- The run number to retrieve.
+        Run: number
+    end
+
+    -- A snapshot of the experiment definition captured at the time an experiment run was started. This preserves the configuration that was active during the run.
+    record ExperimentDefinitionSnapshot
+        -- The application ID at the time the run was started.
+        ApplicationId: string
+        -- The experiment definition ID.
+        Id: string
+        -- The name of the experiment definition at the time the run was started.
+        Name: string
+        -- The hypothesis at the time the run was started.
+        Hypothesis: string
+        -- The configuration profile ID at the time the run was started.
+        ConfigurationProfileId: string
+        -- The environment ID at the time the run was started.
+        EnvironmentId: string
+        -- The feature flag key at the time the run was started.
+        FlagKey: string
+        -- The audience rule at the time the run was started.
+        AudienceRule: string
+        -- The audience description at the time the run was started.
+        AudienceDescription: string
+        -- The launch criteria at the time the run was started.
+        LaunchCriteria: string
+        -- The treatments at the time the run was started.
+        Treatments: {Treatment}
+        -- The control treatment at the time the run was started.
+        Control: Treatment
+    end
+
+    -- The result of an experiment run, including the executive summary and launch decision rationale.
+    record ExperimentRunResult
+        -- A summary of the experiment outcome and key findings.
+        ExecutiveSummary: string
+        -- Evidence in favor of launching the winning treatment.
+        ReasonsToLaunch: string
+        -- Evidence against launching the treatment.
+        ReasonsNotToLaunch: string
+    end
+
+    enum ExperimentRunStatus
+        "RUNNING"
+        "DONE"
+    end
+
+    -- Treatment assignment overrides that assign specific entity IDs to treatments, bypassing random assignment.
+    record TreatmentOverrides
+        -- A map of entity IDs to treatment keys. Each entry assigns the specified entity to the specified treatment, bypassing random assignment.
+        Inline: {string : string}
+    end
+
+    -- Describes an experiment run, including its status, exposure settings, and treatment overrides.
+    record GetExperimentRunOutput
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        ExperimentDefinitionId: string
+        -- The experiment run number.
+        Run: number
+        -- A description of the experiment run.
+        Description: string
+        -- The current status of the experiment run. Valid values: RUNNING, DONE.
+        Status: string
+        -- The percentage of the target audience exposed to treatments.
+        ExposurePercentage: number
+        -- Treatment assignment overrides that assign specific entity IDs to treatments.
+        TreatmentOverrides: TreatmentOverrides
+        -- The result of the experiment run, including the executive summary and launch decision rationale.
+        Result: ExperimentRunResult
+        -- The date and time the experiment run started, in ISO 8601 format.
+        StartedAt: number
+        -- The date and time the experiment run was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The date and time the experiment run ended, in ISO 8601 format.
+        EndedAt: number
+        -- A snapshot of the experiment definition at the time the run was started.
+        ExperimentDefinitionSnapshot: ExperimentDefinitionSnapshot
+    end
+
     record GetExtensionInput
         -- The name, the ID, or the Amazon Resource Name (ARN) of the extension.
         ExtensionIdentifier: string
@@ -1105,10 +1371,17 @@ local record M
         NextToken: string
     end
 
+    enum DeploymentType
+        "USER"
+        "MANAGED"
+    end
+
     -- Information about the deployment.
     record DeploymentSummary
         -- The sequence number of the deployment.
         DeploymentNumber: number
+        -- The ID of the configuration profile that was deployed.
+        ConfigurationProfileId: string
         -- The name of the configuration.
         ConfigurationName: string
         -- The version of the configuration.
@@ -1133,6 +1406,8 @@ local record M
         CompletedAt: number
         -- A user-defined label for an AppConfig hosted configuration version.
         VersionLabel: string
+        -- The type of deployment.
+        Type: string
     end
 
     record ListDeploymentsOutput
@@ -1212,6 +1487,138 @@ local record M
         Items: {Environment}
         -- The token for the next set of items to return. Use this token to get the next set of
         -- results.
+        NextToken: string
+    end
+
+    record ListExperimentDefinitionsInput
+        -- The application ID or name to filter results.
+        ApplicationIdentifier: string
+        -- The configuration profile ID or name to filter results.
+        ConfigurationProfileIdentifier: string
+        -- The environment ID or name to filter results.
+        EnvironmentIdentifier: string
+        -- A filter for the experiment definition status.
+        Status: string
+        -- The maximum number of items to return for this call.
+        MaxResults: number
+        -- A token to start the list from a previously truncated response.
+        NextToken: string
+    end
+
+    -- Summary information about an experiment definition.
+    record ExperimentDefinitionSummary
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        Id: string
+        -- The name of the experiment definition.
+        Name: string
+        -- The hypothesis that the experiment is designed to validate.
+        Hypothesis: string
+        -- The current status of the experiment definition.
+        Status: string
+        -- The configuration profile ID associated with the experiment.
+        ConfigurationProfileId: string
+        -- The environment ID where the experiment runs.
+        EnvironmentId: string
+        -- The key of the feature flag used by the experiment.
+        FlagKey: string
+        -- The date and time the experiment definition was created, in ISO 8601 format.
+        CreatedAt: number
+        -- The date and time the experiment definition was last updated, in ISO 8601 format.
+        UpdatedAt: number
+    end
+
+    -- The response for a list experiment definitions request.
+    record ListExperimentDefinitionsOutput
+        -- The list of experiment definitions.
+        Items: {ExperimentDefinitionSummary}
+        -- A token to use for the next set of results.
+        NextToken: string
+    end
+
+    record ListExperimentRunEventsInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- The run number.
+        Run: number
+        -- The maximum number of items to return.
+        MaxResults: number
+        -- A token to start the list from a previously truncated response.
+        NextToken: string
+    end
+
+    enum ExperimentRunEventType
+        "RUN_STARTED"
+        "EXPOSURE_UPDATED"
+        "OVERRIDES_UPDATED"
+        "RUN_STOPPED"
+    end
+
+    -- Describes an event that occurred during an experiment run.
+    record ExperimentRunEvent
+        -- A description of the event.
+        Description: string
+        -- The Amazon Resource Name (ARN) of the deployment associated with this event.
+        AssociatedDeployment: string
+        -- The type of event. Valid values: RUN_STARTED, EXPOSURE_UPDATED, OVERRIDES_UPDATED, RUN_STOPPED.
+        EventType: string
+        -- The date and time the event occurred, in ISO 8601 format.
+        OccurredAt: number
+        -- The principal that triggered the event.
+        TriggeredBy: string
+        -- The exposure percentage at the time of the event.
+        ExposurePercentage: number
+        -- The treatment overrides at the time of the event.
+        TreatmentOverrides: TreatmentOverrides
+    end
+
+    -- The response for a list experiment run events request.
+    record ListExperimentRunEventsOutput
+        -- The list of experiment run events.
+        Items: {ExperimentRunEvent}
+        -- A token to use for the next set of results.
+        NextToken: string
+    end
+
+    record ListExperimentRunsInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- The maximum number of items to return.
+        MaxResults: number
+        -- A token to start the list from a previously truncated response.
+        NextToken: string
+        -- A filter for the experiment run status.
+        Status: string
+    end
+
+    -- Summary information about an experiment run.
+    record ExperimentRunSummary
+        -- The experiment definition ID.
+        ExperimentDefinitionId: string
+        -- The experiment run number.
+        Run: number
+        -- A description of the experiment run.
+        Description: string
+        -- The current status of the experiment run.
+        Status: string
+        -- The date and time the experiment run started, in ISO 8601 format.
+        StartedAt: number
+        -- The date and time the experiment run was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The date and time the experiment run ended, in ISO 8601 format.
+        EndedAt: number
+    end
+
+    -- The response for a list experiment runs request.
+    record ListExperimentRunsOutput
+        -- The list of experiment runs.
+        Items: {ExperimentRunSummary}
+        -- A token to use for the next set of results.
         NextToken: string
     end
 
@@ -1370,6 +1777,8 @@ local record M
         -- A map of dynamic extension parameter names to values to pass to associated extensions
         -- with PRE_START_DEPLOYMENT actions.
         DynamicExtensionParameters: {string : string}
+        -- The number of the latest deployment. Use this value to ensure that the deployment starts from the expected state and to prevent conflicting updates.
+        LatestDeploymentNumber: number
     end
 
     record StartDeploymentOutput
@@ -1426,6 +1835,59 @@ local record M
         KmsKeyIdentifier: string
         -- A user-defined label for an AppConfig hosted configuration version.
         VersionLabel: string
+    end
+
+    -- Optional deployment parameters for an experiment run, including extension parameters and tags.
+    record DeploymentParameters
+        -- A map of extension parameters for the deployment.
+        DynamicExtensionParameters: {string : string}
+        -- The tags to assign to the deployment.
+        Tags: {string : string}
+    end
+
+    record StartExperimentRunInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- A description of this experiment run.
+        Description: string
+        -- The percentage of the target audience to expose to treatments. Set to 0 to validate the experiment before exposing production users.
+        ExposurePercentage: number
+        -- Treatment assignment overrides that assign specific entity IDs to treatments directly, bypassing random assignment.
+        TreatmentOverrides: TreatmentOverrides
+        -- The tags to assign to the experiment run.
+        Tags: {string : string}
+        -- Optional deployment parameters including a KMS key for encryption.
+        DeploymentParameters: DeploymentParameters
+    end
+
+    -- Describes an experiment run, including its status, exposure settings, and treatment overrides.
+    record StartExperimentRunOutput
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        ExperimentDefinitionId: string
+        -- The experiment run number.
+        Run: number
+        -- A description of the experiment run.
+        Description: string
+        -- The current status of the experiment run. Valid values: RUNNING, DONE.
+        Status: string
+        -- The percentage of the target audience exposed to treatments.
+        ExposurePercentage: number
+        -- Treatment assignment overrides that assign specific entity IDs to treatments.
+        TreatmentOverrides: TreatmentOverrides
+        -- The result of the experiment run, including the executive summary and launch decision rationale.
+        Result: ExperimentRunResult
+        -- The date and time the experiment run started, in ISO 8601 format.
+        StartedAt: number
+        -- The date and time the experiment run was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The date and time the experiment run ended, in ISO 8601 format.
+        EndedAt: number
+        -- A snapshot of the experiment definition at the time the run was started.
+        ExperimentDefinitionSnapshot: ExperimentDefinitionSnapshot
     end
 
     record StopDeploymentInput
@@ -1497,6 +1959,47 @@ local record M
         VersionLabel: string
     end
 
+    record StopExperimentRunInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- The run number to stop.
+        Run: number
+        -- The result of the experiment run, including an executive summary and reasons for or against launching.
+        Result: ExperimentRunResult
+        -- Optional deployment parameters for the stop operation.
+        DeploymentParameters: DeploymentParameters
+    end
+
+    -- Describes an experiment run, including its status, exposure settings, and treatment overrides.
+    record StopExperimentRunOutput
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        ExperimentDefinitionId: string
+        -- The experiment run number.
+        Run: number
+        -- A description of the experiment run.
+        Description: string
+        -- The current status of the experiment run. Valid values: RUNNING, DONE.
+        Status: string
+        -- The percentage of the target audience exposed to treatments.
+        ExposurePercentage: number
+        -- Treatment assignment overrides that assign specific entity IDs to treatments.
+        TreatmentOverrides: TreatmentOverrides
+        -- The result of the experiment run, including the executive summary and launch decision rationale.
+        Result: ExperimentRunResult
+        -- The date and time the experiment run started, in ISO 8601 format.
+        StartedAt: number
+        -- The date and time the experiment run was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The date and time the experiment run ended, in ISO 8601 format.
+        EndedAt: number
+        -- A snapshot of the experiment definition at the time the run was started.
+        ExperimentDefinitionSnapshot: ExperimentDefinitionSnapshot
+    end
+
     record TagResourceInput
         -- The ARN of the resource for which to retrieve tags.
         ResourceArn: string
@@ -1526,6 +2029,8 @@ local record M
         -- configuration profile or from the environment during the specified interval. The default
         -- interval for ProtectionPeriodInMinutes is 60.
         DeletionProtection: DeletionProtectionSettings
+        -- Configuration for vended metrics in the account.
+        VendedMetrics: VendedMetricsSettings
     end
 
     record UpdateAccountSettingsOutput
@@ -1535,6 +2040,8 @@ local record M
         -- configuration profile or from the environment during the specified interval. The default
         -- interval for ProtectionPeriodInMinutes is 60.
         DeletionProtection: DeletionProtectionSettings
+        -- Configuration for vended metrics in the account.
+        VendedMetrics: VendedMetricsSettings
     end
 
     record UpdateApplicationInput
@@ -1699,6 +2206,106 @@ local record M
         State: string
         -- Amazon CloudWatch alarms monitored during the deployment.
         Monitors: {Monitor}
+    end
+
+    record UpdateExperimentDefinitionInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- An updated list of treatments.
+        Treatments: {TreatmentInput}
+        -- An updated control treatment.
+        Control: TreatmentInput
+        -- An updated hypothesis.
+        Hypothesis: string
+        -- An updated audience rule.
+        AudienceRule: string
+        -- An updated audience description.
+        AudienceDescription: string
+        -- Updated launch criteria.
+        LaunchCriteria: string
+    end
+
+    -- Describes an experiment definition, including the target audience, feature flag, treatments, and current status.
+    record UpdateExperimentDefinitionOutput
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        Id: string
+        -- The name of the experiment definition.
+        Name: string
+        -- The hypothesis that the experiment is designed to validate.
+        Hypothesis: string
+        -- The current status of the experiment definition. Valid values: ACTIVE, IDLE, ARCHIVED.
+        Status: string
+        -- The configuration profile ID associated with the experiment.
+        ConfigurationProfileId: string
+        -- The environment ID where the experiment runs.
+        EnvironmentId: string
+        -- The key of the feature flag used by the experiment.
+        FlagKey: string
+        -- The rule that defines which users are eligible to be assigned to treatments.
+        AudienceRule: string
+        -- A description of the intended audience for the experiment.
+        AudienceDescription: string
+        -- The conditions under which the winning treatment should be launched.
+        LaunchCriteria: string
+        -- The list of treatments defined for the experiment.
+        Treatments: {Treatment}
+        -- The control treatment used as the baseline for comparison.
+        Control: Treatment
+        -- The date and time the experiment definition was created, in ISO 8601 format.
+        CreatedAt: number
+        -- The date and time the experiment definition was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt experiment data.
+        KmsKeyIdentifier: string
+    end
+
+    record UpdateExperimentRunInput
+        -- The application ID or name.
+        ApplicationIdentifier: string
+        -- The experiment definition ID or name.
+        ExperimentDefinitionIdentifier: string
+        -- The run number to update.
+        Run: number
+        -- An updated description for the experiment run.
+        Description: string
+        -- The new exposure percentage. This value can only be increased from the current setting.
+        ExposurePercentage: number
+        -- Updated treatment assignment overrides.
+        TreatmentOverrides: TreatmentOverrides
+        -- Updated deployment parameters.
+        DeploymentParameters: DeploymentParameters
+    end
+
+    -- Describes an experiment run, including its status, exposure settings, and treatment overrides.
+    record UpdateExperimentRunOutput
+        -- The application ID.
+        ApplicationId: string
+        -- The experiment definition ID.
+        ExperimentDefinitionId: string
+        -- The experiment run number.
+        Run: number
+        -- A description of the experiment run.
+        Description: string
+        -- The current status of the experiment run. Valid values: RUNNING, DONE.
+        Status: string
+        -- The percentage of the target audience exposed to treatments.
+        ExposurePercentage: number
+        -- Treatment assignment overrides that assign specific entity IDs to treatments.
+        TreatmentOverrides: TreatmentOverrides
+        -- The result of the experiment run, including the executive summary and launch decision rationale.
+        Result: ExperimentRunResult
+        -- The date and time the experiment run started, in ISO 8601 format.
+        StartedAt: number
+        -- The date and time the experiment run was last updated, in ISO 8601 format.
+        UpdatedAt: number
+        -- The date and time the experiment run ended, in ISO 8601 format.
+        EndedAt: number
+        -- A snapshot of the experiment definition at the time the run was started.
+        ExperimentDefinitionSnapshot: ExperimentDefinitionSnapshot
     end
 
     record UpdateExtensionInput

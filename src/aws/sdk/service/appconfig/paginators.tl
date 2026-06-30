@@ -94,6 +94,60 @@ function M.items_list_environments(client, input)
     })
 end
 
+--- Returns a page iterator for listExperimentDefinitions.
+function M.pages_list_experiment_definitions(client, input)
+    return paginator.pages(client, "listExperimentDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listExperimentDefinitions.
+function M.items_list_experiment_definitions(client, input)
+    return paginator.items(client, "listExperimentDefinitions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listExperimentRunEvents.
+function M.pages_list_experiment_run_events(client, input)
+    return paginator.pages(client, "listExperimentRunEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listExperimentRunEvents.
+function M.items_list_experiment_run_events(client, input)
+    return paginator.items(client, "listExperimentRunEvents", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listExperimentRuns.
+function M.pages_list_experiment_runs(client, input)
+    return paginator.pages(client, "listExperimentRuns", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listExperimentRuns.
+function M.items_list_experiment_runs(client, input)
+    return paginator.items(client, "listExperimentRuns", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for listExtensionAssociations.
 function M.pages_list_extension_associations(client, input)
     return paginator.pages(client, "listExtensionAssociations", input, {

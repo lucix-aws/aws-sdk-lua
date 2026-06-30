@@ -7587,6 +7587,32 @@ M.CanaryConfiguration = schema.new({
     },
 })
 
+M.ThresholdConfiguration = schema.new({
+    id = id.from(_N, "ThresholdConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "ThresholdConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "ThresholdConfiguration", "value"),
+            type = "integer",
+            name = "value",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
 M.DeploymentCircuitBreaker = schema.new({
     id = id.from(_N, "DeploymentCircuitBreaker"),
     type = "structure",
@@ -7610,6 +7636,19 @@ M.DeploymentCircuitBreaker = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+        resetOnHealthyTask = schema.new({
+            id = id.from(_N, "DeploymentCircuitBreaker", "resetOnHealthyTask"),
+            type = "boolean",
+            name = "resetOnHealthyTask",
+            target_id = prelude.Boolean.id,
+        }),
+        thresholdConfiguration = schema.new({
+            id = id.from(_N, "DeploymentCircuitBreaker", "thresholdConfiguration"),
+            type = "structure",
+            name = "thresholdConfiguration",
+            target_id = id.from(_N, "ThresholdConfiguration"),
+            target = M.ThresholdConfiguration,
         }),
     },
 })

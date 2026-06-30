@@ -175,6 +175,7 @@ local record M
         "KEYWORDS_PER_POOL"
         "MONTHLY_SPEND_LIMIT_REACHED_FOR_MEDIA"
         "MONTHLY_SPEND_LIMIT_REACHED_FOR_NOTIFY"
+        "MONTHLY_SPEND_LIMIT_REACHED_FOR_RCS"
         "MONTHLY_SPEND_LIMIT_REACHED_FOR_TEXT"
         "MONTHLY_SPEND_LIMIT_REACHED_FOR_VOICE"
         "NOTIFY_CONFIGURATIONS_PER_ACCOUNT"
@@ -426,6 +427,15 @@ local record M
         "MEDIA_FILE_INACCESSIBLE"
         "MEDIA_FILE_TYPE_UNSUPPORTED"
         "MEDIA_FILE_SIZE_EXCEEDED"
+        "RCS_ALL"
+        "RCS_QUEUED"
+        "RCS_SENT"
+        "RCS_DELIVERED"
+        "RCS_READ"
+        "RCS_FAILED"
+        "RCS_TTL_EXPIRED"
+        "RCS_PROTECT_BLOCKED"
+        "RCS_FALLEN_BACK_TO_SMS"
     end
 
     -- An object that defines an Amazon SNS destination for events. You can use Amazon SNS to send notification when certain events occur.
@@ -777,6 +787,14 @@ local record M
         TwoWayChannelRole: string
         -- By default this is set to false. When set to true you can receive incoming text messages from your end recipients.
         TwoWayEnabled: boolean
+        -- The name of the S3 bucket where inbound RCS media files are stored.
+        TwoWayMediaS3BucketName: string
+        -- The key prefix used for inbound RCS media objects in the S3 bucket.
+        TwoWayMediaS3KeyPrefix: string
+        -- The ARN of the IAM role used to write inbound RCS media files to the S3 bucket. The role must have s3:PutObject permission on the bucket and a trust policy allowing sms-voice.amazonaws.com to assume it.
+        TwoWayMediaS3Role: string
+        -- The list of RCS event types enabled for two-way messaging on the agent.
+        TwoWayRcsEventsEnabled: {string}
         -- An array of tags (key and value pairs) associated with the RCS agent.
         Tags: {Tag}
     end
@@ -1253,6 +1271,16 @@ local record M
         TwoWayChannelRole: string
         -- By default this is set to false. When set to true you can receive incoming text messages from your end recipients.
         TwoWayEnabled: boolean
+        -- The list of RCS event types that were enabled for two-way messaging on the deleted agent.
+        TwoWayRcsEventsEnabled: {string}
+    end
+
+    record DeleteRcsMessageSpendLimitOverrideInput
+    end
+
+    record DeleteRcsMessageSpendLimitOverrideOutput
+        -- The current monthly limit to enforce on RCS message spending.
+        MonthlyLimit: number
     end
 
     record DeleteRegistrationInput
@@ -2084,6 +2112,14 @@ local record M
         TwoWayEnabled: boolean
         -- The unique identifier of the pool associated with the RCS agent.
         PoolId: string
+        -- The name of the S3 bucket where inbound RCS media files are stored.
+        TwoWayMediaS3BucketName: string
+        -- The key prefix used for inbound RCS media objects in the S3 bucket.
+        TwoWayMediaS3KeyPrefix: string
+        -- The ARN of the IAM role used to write inbound RCS media files to the S3 bucket.
+        TwoWayMediaS3Role: string
+        -- The list of RCS event types enabled for two-way messaging on the agent.
+        TwoWayRcsEventsEnabled: {string}
         -- The testing agent information associated with the RCS agent.
         TestingAgent: TestingAgentInformation
     end
@@ -2601,6 +2637,7 @@ local record M
         "VOICE_MESSAGE_MONTHLY_SPEND_LIMIT"
         "MEDIA_MESSAGE_MONTHLY_SPEND_LIMIT"
         "NOTIFY_MESSAGE_MONTHLY_SPEND_LIMIT"
+        "RCS_MESSAGE_MONTHLY_SPEND_LIMIT"
     end
 
     -- Describes the current monthly spend limits for sending voice and text messages. For more information on increasing your monthly spend limit, see Requesting a spending quota increase in the End User Messaging SMS User Guide.
@@ -3278,7 +3315,7 @@ local record M
     end
 
     record RequestSenderIdInput
-        -- The sender ID string to request.
+        -- The sender ID string to request. The sender ID can be 1-11 alphanumeric characters including letters (A-Z, a-z), numbers (0-9), or hyphens (-). The sender ID must contain at least one letter and cannot start or end with a hyphen.
         SenderId: string
         -- The two-character code, in ISO 3166-1 alpha-2 format, for the country or region.
         IsoCountryCode: string
@@ -3430,10 +3467,241 @@ local record M
         ResolvedMessageBody: string
     end
 
+    enum RcsFallbackChannel
+        "SMS"
+        "MMS"
+    end
+
+    -- Configuration for SMS or MMS fallback when RCS delivery fails or the TimeToLive expires without delivery confirmation.
+    record RcsFallbackConfiguration
+        -- The fallback channel to use when RCS delivery fails. Valid values are SMS and MMS. SMS and MMS are mutually exclusive.
+        Channel: string
+        -- The text body of the fallback message. Required for SMS fallback. For MMS fallback, at least one of MessageBody or MediaUrls must be provided.
+        MessageBody: string
+        -- An array of S3 URIs to media files for MMS fallback. Only valid when Channel is MMS.
+        MediaUrls: {string}
+        -- The origination identity to use for the fallback message. This can be a PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, or SenderIdArn. Pool IDs and pool ARNs are not accepted. If not specified and the original message was sent via a pool, the service selects a suitable number from the pool.
+        OriginationIdentity: string
+    end
+
+    -- The media content of a carousel card. Display height is restricted to SHORT or MEDIUM (TALL is not supported in carousels).
+    record RcsCarouselCardMedia
+        -- The S3 URI of the media file for the carousel card. Maximum 2000 characters.
+        FileUrl: string
+        -- The S3 URI of an optional thumbnail image for the carousel card media. Maximum 2000 characters.
+        ThumbnailUrl: string
+        -- The display height of the media in the carousel card. Valid values are SHORT and MEDIUM.
+        Height: string
+    end
+
+    -- A suggested action that creates a calendar event on the recipient's device.
+    record RcsCreateCalendarEventAction
+        -- The display text of the action. Maximum 25 characters.
+        Text: string
+        -- The postback data sent to your webhook when the user taps this action. Maximum 2048 characters.
+        PostbackData: string
+        -- The title of the calendar event. Maximum 100 characters.
+        Title: string
+        -- The start time of the calendar event in ISO 8601 format.
+        StartTime: number
+        -- The end time of the calendar event in ISO 8601 format.
+        EndTime: number
+        -- An optional description for the calendar event. Maximum 500 characters.
+        Description: string
+    end
+
+    -- A suggested action that initiates a phone call to a specified number when tapped by the recipient.
+    record RcsDialPhoneAction
+        -- The display text of the action. Maximum 25 characters.
+        Text: string
+        -- The postback data sent to your webhook when the user taps this action. Maximum 2048 characters.
+        PostbackData: string
+        -- The phone number to dial in E.164 format.
+        PhoneNumber: string
+    end
+
+    -- A suggested action that opens a URL in the recipient's browser or an in-app webview.
+    record RcsOpenUrlAction
+        -- The display text of the action. Maximum 25 characters.
+        Text: string
+        -- The postback data sent to your webhook when the user taps this action. Maximum 2048 characters.
+        PostbackData: string
+        -- The URL to open. Must start with https://. Maximum 2048 characters.
+        Url: string
+        -- How to open the URL. BROWSER opens in the device's default browser. WEBVIEW opens in an in-app webview.
+        Application: string
+        -- The display mode of the webview. Valid values are FULL, HALF, and TALL. Only applicable when Application is WEBVIEW.
+        WebviewViewMode: string
+    end
+
+    -- A suggested reply action that sends predefined text and postback data when tapped by the recipient.
+    record RcsReplyAction
+        -- The display text of the suggested reply. Maximum 25 characters.
+        Text: string
+        -- The postback data sent to your webhook when the user taps this reply. Maximum 2048 characters.
+        PostbackData: string
+    end
+
+    -- A suggested action that requests the recipient's current location.
+    record RcsRequestLocationAction
+        -- The display text of the action. Maximum 25 characters.
+        Text: string
+        -- The postback data sent to your webhook when the user taps this action. Maximum 2048 characters.
+        PostbackData: string
+    end
+
+    -- A suggested action that shows a location on a map when tapped by the recipient.
+    record RcsShowLocationAction
+        -- The display text of the action. Maximum 25 characters.
+        Text: string
+        -- The postback data sent to your webhook when the user taps this action. Maximum 2048 characters.
+        PostbackData: string
+        -- The latitude of the location. Valid values are -90 to 90.
+        Latitude: number
+        -- The longitude of the location. Valid values are -180 to 180.
+        Longitude: number
+        -- An optional label for the location pin. Maximum 100 characters.
+        Label: string
+    end
+
+    -- A suggested action displayed to the RCS message recipient. Can be a reply, open URL, dial phone, show location, request location, or create calendar event.
+    record RcsSuggestedAction
+        -- A suggested reply that sends predefined text and postback data when tapped.
+        Reply: RcsReplyAction
+        -- A suggested action that opens a URL in the user's browser or a webview.
+        OpenUrl: RcsOpenUrlAction
+        -- A suggested action that initiates a phone call to the specified number.
+        DialPhone: RcsDialPhoneAction
+        -- A suggested action that shows a location on a map.
+        ShowLocation: RcsShowLocationAction
+        -- A suggested action that requests the user's current location.
+        RequestLocation: RcsRequestLocationAction
+        -- A suggested action that creates a calendar event on the user's device.
+        CreateCalendarEvent: RcsCreateCalendarEventAction
+    end
+
+    -- The content of a carousel card, including title, description, media, and card-level suggested actions. Media height is restricted to SHORT or MEDIUM.
+    record RcsCarouselCardContent
+        -- The title of the carousel card. Maximum 200 characters.
+        Title: string
+        -- The description text of the carousel card. Maximum 2000 characters.
+        Description: string
+        -- The media content of the carousel card. Media height is restricted to SHORT or MEDIUM (TALL is not supported in carousels).
+        Media: RcsCarouselCardMedia
+        -- Card-level suggested actions for this carousel card. Maximum 4 suggestions per card.
+        Suggestions: {RcsSuggestedAction}
+    end
+
+    -- A carousel of 2 to 10 scrollable rich cards.
+    record RcsCarousel
+        -- The width of cards in the carousel. Valid values are SMALL and MEDIUM.
+        CardWidth: string
+        -- The list of cards in the carousel. Minimum 2, maximum 10 cards.
+        CardContents: {RcsCarouselCardContent}
+    end
+
+    -- A file message containing a media file (image, video, audio, or PDF) with an optional thumbnail.
+    record RcsFileMessage
+        -- The S3 URI of the media file to send, in the format s3://bucket-name/key. The service downloads the file from your S3 bucket, rehosts it, and generates a presigned URL for the aggregator. Maximum 2000 characters.
+        FileUrl: string
+        -- The S3 URI of an optional thumbnail image for the media file, in the format s3://bucket-name/key. Maximum 2000 characters.
+        ThumbnailUrl: string
+    end
+
+    -- The media content of a rich card, including the file URL, optional thumbnail, and display height.
+    record RcsCardMedia
+        -- The S3 URI of the media file for the card, in the format s3://bucket-name/key. Maximum 2000 characters.
+        FileUrl: string
+        -- The S3 URI of an optional thumbnail image for the card media. Maximum 2000 characters.
+        ThumbnailUrl: string
+        -- The display height of the media in the card. Valid values are SHORT, MEDIUM, and TALL.
+        Height: string
+    end
+
+    -- The content of a rich card, including title, description, media, and card-level suggested actions.
+    record RcsCardContent
+        -- The title of the card. Maximum 200 characters.
+        Title: string
+        -- The description text of the card. Maximum 2000 characters.
+        Description: string
+        -- The media content of the card, including the file URL, optional thumbnail, and display height.
+        Media: RcsCardMedia
+        -- Card-level suggested actions. Maximum 4 suggestions per card.
+        Suggestions: {RcsSuggestedAction}
+    end
+
+    -- A standalone rich card with media, title, description, and suggested actions.
+    record RcsStandaloneCard
+        -- The orientation of the rich card. Valid values are HORIZONTAL and VERTICAL.
+        CardOrientation: string
+        -- The alignment of the thumbnail image in a horizontal card. Valid values are LEFT and RIGHT. Only applicable when CardOrientation is HORIZONTAL.
+        ThumbnailImageAlignment: string
+        -- The content of the rich card, including title, description, media, and card-level suggested actions.
+        CardContent: RcsCardContent
+    end
+
+    -- A plain text RCS message body.
+    record RcsTextMessage
+        -- The text body of the RCS message. Maximum 3072 characters.
+        Body: string
+    end
+
+    -- The message body of an RCS message. Exactly one content type must be specified.
+    record RcsContent
+        -- A plain text RCS message.
+        TextMessage: RcsTextMessage
+        -- A file message containing a media file (image, video, audio, or PDF) with an optional thumbnail.
+        FileMessage: RcsFileMessage
+        -- A standalone rich card with media, title, description, and suggested actions.
+        RichCard: RcsStandaloneCard
+        -- A carousel of 2 to 10 scrollable cards, each with media, title, description, and suggested actions.
+        Carousel: RcsCarousel
+    end
+
+    -- The content of an RCS message, containing the message body (text, file, rich card, or carousel) and optional message-level suggested actions.
+    record RcsMessageContent
+        -- The content of the RCS message. Exactly one content type must be specified: TextMessage, FileMessage, RichCard, or Carousel.
+        Content: RcsContent
+        -- Message-level suggested actions displayed to the recipient. Maximum 11 suggestions per message.
+        Suggestions: {RcsSuggestedAction}
+    end
+
+    record SendRcsMessageInput
+        -- The destination phone number in E.164 format.
+        DestinationPhoneNumber: string
+        -- The origination identity of the message. This can be either the RcsAgentId, RcsAgentArn, PoolId, or PoolArn.
+        OriginationIdentity: string
+        -- The content of the RCS message. Contains the message content (text, file, rich card, or carousel) and optional message-level suggested actions.
+        RcsMessageContent: RcsMessageContent
+        -- The duration in seconds that the RCS message is valid for delivery. If the message cannot be delivered within this duration, it is considered expired. Valid values are 1 to 172800 (48 hours). If a FallbackConfiguration is provided, the fallback is triggered when the duration expires without delivery confirmation.
+        TimeToLive: number
+        -- The traffic type of the RCS message. Valid values are AUTHENTICATION, TRANSACTION, PROMOTION, SERVICE_REQUEST, and ACKNOWLEDGEMENT. This field is reserved for future use.
+        MessageTrafficType: string
+        -- Configuration for SMS or MMS fallback when RCS delivery fails. If provided, the service sends a fallback message via the specified channel when the RCS message fails or the TimeToLive expires.
+        FallbackConfiguration: RcsFallbackConfiguration
+        -- The unique identifier of the protect configuration to use.
+        ProtectConfigurationId: string
+        -- The name of the configuration set to use. This can be either the ConfigurationSetName or ConfigurationSetArn.
+        ConfigurationSetName: string
+        -- The maximum amount that you want to spend, in US dollars, per each RCS message.
+        MaxPrice: string
+        -- When set to true, the message is checked and validated, but isn't sent to the end recipient.
+        DryRun: boolean
+        -- You can specify custom data in this field. If you do, that data is logged to the event destination.
+        Context: {string : string}
+        -- Set to true to enable message feedback for the message. When a user receives the message you need to update the message status using PutMessageFeedback.
+        MessageFeedbackEnabled: boolean
+    end
+
+    record SendRcsMessageOutput
+        -- The unique identifier for the message.
+        MessageId: string
+    end
+
     record SendTextMessageInput
         -- The destination phone number in E.164 format.
         DestinationPhoneNumber: string
-        -- The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, SenderId, SenderIdArn, PoolId, or PoolArn. If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).
+        -- The origination identity of the message. This can be either the PhoneNumber, PhoneNumberId, PhoneNumberArn, RcsAgentId, RcsAgentArn, SenderId, SenderIdArn, PoolId, or PoolArn. If you are using a shared End User Messaging SMS resource then you must use the full Amazon Resource Name(ARN).
         OriginationIdentity: string
         -- The body of the text message.
         MessageBody: string
@@ -3581,6 +3849,16 @@ local record M
         MonthlyLimit: number
     end
 
+    record SetRcsMessageSpendLimitOverrideInput
+        -- The new monthly limit to enforce on RCS message spending.
+        MonthlyLimit: number
+    end
+
+    record SetRcsMessageSpendLimitOverrideOutput
+        -- The current monthly limit to enforce on RCS message spending.
+        MonthlyLimit: number
+    end
+
     record SetTextMessageSpendLimitOverrideInput
         -- The new monthly limit to enforce on text messages.
         MonthlyLimit: number
@@ -3672,11 +3950,9 @@ local record M
     record UpdateNotifyConfigurationInput
         -- The identifier of the notify configuration to update. The NotifyConfigurationId can be found using the DescribeNotifyConfigurations operation.
         NotifyConfigurationId: string
-        -- The template ID to set as the default, or the special value
-        -- UNSET_DEFAULT_TEMPLATE to clear the current default template.
+        -- The default template identifier to associate with the notify configuration. If specified, this template is used when sending messages without an explicit template identifier. Pass the special value UNSET_DEFAULT_TEMPLATE to clear the current default template from the notify configuration.
         DefaultTemplateId: string
-        -- The pool ID or ARN to associate, or the special value
-        -- UNSET_DEFAULT_POOL_FOR_NOTIFY to clear the current default pool.
+        -- The pool identifier or Amazon Resource Name (ARN) to associate with the notify configuration. Pass the special value UNSET_DEFAULT_POOL_FOR_NOTIFY to clear the current default pool from the notify configuration.
         PoolId: string
         -- An array of two-character ISO country codes, in ISO 3166-1 alpha-2 format, that are enabled for the notify configuration.
         EnabledCountries: {string}
@@ -3876,6 +4152,14 @@ local record M
         TwoWayChannelRole: string
         -- By default this is set to false. When set to true you can receive incoming text messages from your end recipients.
         TwoWayEnabled: boolean
+        -- The name of the S3 bucket where inbound RCS media files are stored. Two-way messaging must be enabled on the agent. To remove the media configuration, pass the sentinel value UNSET_RCS_MEDIA_CONFIGURATION for both this field and TwoWayMediaS3Role.
+        TwoWayMediaS3BucketName: string
+        -- The key prefix used for inbound RCS media objects in the S3 bucket.
+        TwoWayMediaS3KeyPrefix: string
+        -- The ARN of the IAM role used to write inbound RCS media files to the S3 bucket. The role must have s3:PutObject permission on the bucket and a trust policy allowing sms-voice.amazonaws.com to assume it. To remove the media configuration, pass the sentinel value UNSET_RCS_MEDIA_CONFIGURATION for both this field and TwoWayMediaS3BucketName.
+        TwoWayMediaS3Role: string
+        -- The list of RCS event types to enable for two-way messaging. Pass an empty list to disable all event types. The special value ALL enables all current and future event types and must be the sole element if used.
+        TwoWayRcsEventsEnabled: {string}
     end
 
     record UpdateRcsAgentOutput
@@ -3899,6 +4183,14 @@ local record M
         TwoWayChannelRole: string
         -- By default this is set to false. When set to true you can receive incoming text messages from your end recipients.
         TwoWayEnabled: boolean
+        -- The name of the S3 bucket where inbound RCS media files are stored.
+        TwoWayMediaS3BucketName: string
+        -- The key prefix used for inbound RCS media objects in the S3 bucket.
+        TwoWayMediaS3KeyPrefix: string
+        -- The ARN of the IAM role used to write inbound RCS media files to the S3 bucket.
+        TwoWayMediaS3Role: string
+        -- The list of RCS event types enabled for two-way messaging on the agent.
+        TwoWayRcsEventsEnabled: {string}
     end
 
     record UpdateSenderIdInput

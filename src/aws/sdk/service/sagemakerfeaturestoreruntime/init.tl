@@ -19,8 +19,10 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     batchGetRecord: function(Client, types.BatchGetRecordInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetRecordOutput>
+    batchWriteRecord: function(Client, types.BatchWriteRecordInput, ? base_client.InvokeOptions): async.Operation<types.BatchWriteRecordOutput>
     deleteRecord: function(Client, types.DeleteRecordInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRecordOutput>
     getRecord: function(Client, types.GetRecordInput, ? base_client.InvokeOptions): async.Operation<types.GetRecordOutput>
+    listRecords: function(Client, types.ListRecordsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecordsOutput>
     putRecord: function(Client, types.PutRecordInput, ? base_client.InvokeOptions): async.Operation<types.PutRecordOutput>
 end
 
@@ -70,12 +72,20 @@ function C:batchGetRecord(input: types.BatchGetRecordInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetRecord as schema.OperationSchema, input, options) as async.Operation<types.BatchGetRecordOutput>
 end
 
+function C:batchWriteRecord(input: types.BatchWriteRecordInput, options?: base_client.InvokeOptions): async.Operation<types.BatchWriteRecordOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchWriteRecord as schema.OperationSchema, input, options) as async.Operation<types.BatchWriteRecordOutput>
+end
+
 function C:deleteRecord(input: types.DeleteRecordInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRecordOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteRecord as schema.OperationSchema, input, options) as async.Operation<types.DeleteRecordOutput>
 end
 
 function C:getRecord(input: types.GetRecordInput, options?: base_client.InvokeOptions): async.Operation<types.GetRecordOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetRecord as schema.OperationSchema, input, options) as async.Operation<types.GetRecordOutput>
+end
+
+function C:listRecords(input: types.ListRecordsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecordsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecords as schema.OperationSchema, input, options) as async.Operation<types.ListRecordsOutput>
 end
 
 function C:putRecord(input: types.PutRecordInput, options?: base_client.InvokeOptions): async.Operation<types.PutRecordOutput>

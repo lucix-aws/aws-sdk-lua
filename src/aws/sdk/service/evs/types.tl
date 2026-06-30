@@ -167,7 +167,7 @@ local record M
         entitlements: {VmEntitlement}
     end
 
-    -- The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX uplink VLAN for connectivity to the NSX overlay network.
+    -- The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX uplink VLAN for connectivity to the NSX overlay network. Not supported when vcfVersion is SELF_DEPLOYED.
     record ConnectivityInfo
         -- The unique IDs for private route server peers.
         privateRouteServerPeerings: {string}
@@ -240,11 +240,11 @@ local record M
         securityGroups: {string}
     end
 
-    -- The DNS hostnames that Amazon EVS uses to install VMware vCenter Server, NSX, SDDC Manager, and Cloud Builder. Each hostname must be unique, and resolve to a domain name that you've registered in your DNS service of choice. Hostnames cannot be changed. VMware VCF requires the deployment of two NSX Edge nodes, and three NSX Manager virtual machines.
+    -- The DNS hostnames that Amazon EVS uses to install VMware vCenter Server, NSX, SDDC Manager, and Cloud Builder. Each hostname must be unique, and resolve to a domain name that you've registered in your DNS service of choice. Hostnames cannot be changed. VMware VCF requires the deployment of two NSX Edge nodes, and three NSX Manager virtual machines. Not supported when vcfVersion is SELF_DEPLOYED.
     record VcfHostnames
         -- The VMware vCenter hostname.
         vCenter: string
-        -- The VMware NSX hostname.
+        -- The VMware NSX Virtual IP (VIP) hostname.
         nsx: string
         -- The hostname for the first VMware NSX Manager virtual machine (VM).
         nsxManager1: string
@@ -265,6 +265,7 @@ local record M
     enum VcfVersion
         "VCF-5.2.1"
         "VCF-5.2.2"
+        "SELF_DEPLOYED"
     end
 
     record CreateEnvironmentInput
@@ -280,23 +281,23 @@ local record M
         serviceAccessSecurityGroups: ServiceAccessSecurityGroups
         -- A unique ID for the VPC that the environment is deployed inside. Amazon EVS requires that all VPC subnets exist in a single Availability Zone in a Region where the service is available. The VPC that you specify must have a valid DHCP option set with domain name, at least two DNS servers, and an NTP server. These settings are used to configure your VCF appliances and hosts. The VPC cannot be used with any other deployed Amazon EVS environment. Amazon EVS does not provide multi-VPC support for environments at this time. Amazon EVS does not support the following Amazon Web Services networking options for NSX overlay connectivity: cross-Region VPC peering, Amazon S3 gateway endpoints, or Amazon Web Services Direct Connect virtual private gateway associations. Ensure that you specify a VPC that is adequately sized to accommodate the Amazon EVS subnets.
         vpcId: string
-        -- The subnet that is used to establish connectivity between the Amazon EVS control plane and VPC. Amazon EVS uses this subnet to validate mandatory DNS records for your VCF appliances and hosts and create the environment.
+        -- The subnet that is used to establish connectivity between the Amazon EVS control plane and VPC. The Amazon EVS control plane uses this subnet to interface with your environment. This includes validating DNS records and enabling Amazon EVS Connectors.
         serviceAccessSubnetId: string
-        -- The VCF version to use for the environment.
+        -- The VCF version to use for the environment. SELF_DEPLOYED: You install VCF yourself. The licenseInfo, hosts, vcfHostnames, siteId, and connectivityInfo parameters are not supported. Any other valid value: Amazon EVS installs and configures VCF for you in the version you specify.
         vcfVersion: string
-        -- Customer confirmation that the customer has purchased and will continue to maintain the required number of VCF software licenses to cover all physical processor cores in the Amazon EVS environment. Information about your VCF software in Amazon EVS will be shared with Broadcom to verify license compliance. Amazon EVS does not validate license keys. To validate license keys, visit the Broadcom support portal.
+        -- Confirmation that the customer has purchased and will continue to maintain the required number of VCF software licenses to cover all physical processor cores in the Amazon EVS environment. Information about your VCF software in Amazon EVS will be shared with Broadcom to verify license compliance. Amazon EVS does not validate license keys. To validate license keys, visit the Broadcom support portal.
         termsAccepted: boolean
-        -- The license information that Amazon EVS requires to create an environment. Amazon EVS requires two license keys: a VCF solution key and a vSAN license key. The VCF solution key must meet minimum core requirements, and the vSAN license key must meet minimum capacity requirements for your selected instance type. For information about minimum license requirements, see the VCF subscriptions section in the Amazon EVS User Guide. VCF licenses can be used for only one Amazon EVS environment. Amazon EVS does not support reuse of VCF licenses for multiple environments. VCF license information can be retrieved from the Broadcom portal.
-        licenseInfo: {LicenseInfo}
         -- The initial VLAN subnets for the Amazon EVS environment. For each Amazon EVS VLAN subnet, you must specify a non-overlapping CIDR block. Amazon EVS VLAN subnets have a minimum CIDR block size of /28 and a maximum size of /24.
         initialVlans: InitialVlans
-        -- The ESX hosts to add to the environment. Amazon EVS requires that you provide details for a minimum of 4 hosts during environment creation. For each host, you must provide the desired hostname, EC2 SSH keypair name, and EC2 instance type. Optionally, you can also provide a partition or cluster placement group to use, or use Amazon EC2 Dedicated Hosts.
-        hosts: {HostInfoForCreate}
-        -- The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX edges over the NSX uplink subnet, providing BGP-based dynamic routing for overlay networks.
+        -- The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX edges over the NSX uplink subnet, providing BGP-based dynamic routing for overlay networks. Not supported when vcfVersion is SELF_DEPLOYED.
         connectivityInfo: ConnectivityInfo
-        -- The DNS hostnames for the virtual machines that host the VCF management appliances. Amazon EVS requires that you provide DNS hostnames for the following appliances: vCenter, NSX Manager, SDDC Manager, and Cloud Builder.
+        -- The license information that Amazon EVS requires to create an environment. Amazon EVS requires two license keys: a VCF solution key and a vSAN license key. The VCF solution key must meet minimum core requirements, and the vSAN license key must meet minimum capacity requirements for your selected instance type. For information about minimum license requirements, see the VCF subscriptions section in the Amazon EVS User Guide. VCF licenses can be used for only one Amazon EVS environment. Amazon EVS does not support reuse of VCF licenses for multiple environments. VCF license information can be retrieved from the Broadcom portal. Not supported when vcfVersion is SELF_DEPLOYED.
+        licenseInfo: {LicenseInfo}
+        -- The ESX hosts to add to the environment. For each host, provide the desired hostname, EC2 SSH keypair name, and EC2 instance type. Optionally, provide a partition or cluster placement group, or use Amazon EC2 Dedicated Hosts. Not supported when vcfVersion is SELF_DEPLOYED. In that case, you can add hosts using CreateEnvironmentHost after the environment is created.
+        hosts: {HostInfoForCreate}
+        -- The DNS hostnames for the virtual machines that host the VCF management appliances. Provide hostnames for vCenter, NSX Manager, SDDC Manager, and Cloud Builder. Not supported when vcfVersion is SELF_DEPLOYED.
         vcfHostnames: VcfHostnames
-        -- The Broadcom Site ID that is allocated to you as part of your electronic software delivery. This ID allows customer access to the Broadcom portal, and is provided to you by Broadcom at the close of your software contract or contract renewal. Amazon EVS uses the Broadcom Site ID that you provide to meet Broadcom VCF license usage reporting requirements for Amazon EVS.
+        -- The Broadcom Site ID that is allocated to you as part of your electronic software delivery. This ID allows customer access to the Broadcom portal, and is provided to you by Broadcom at the close of your software contract or contract renewal. Amazon EVS uses the Broadcom Site ID that you provide to meet Broadcom VCF license usage reporting requirements for Amazon EVS. Not supported when vcfVersion is SELF_DEPLOYED.
         siteId: string
     end
 
@@ -314,10 +315,18 @@ local record M
         "VCENTER_REACHABILITY"
         "VCENTER_VM_SYNC"
         "VCENTER_VM_EVENT"
+        "OPERATIONS_MANAGER_REACHABILITY"
+        "SDDC_MANAGER_REACHABILITY"
+        "SDDC_MANAGER_HOST_COUNT"
+        "SDDC_MANAGER_KEY_COVERAGE"
+        "SDDC_MANAGER_KEY_REUSE"
+        "CONNECTOR_HEALTH"
     end
 
     -- A check on the environment to identify environment health and validate VMware VCF licensing compliance.
     record Check
+        -- A unique ID for the check.
+        id: string
         -- The check result.
         result: string
         -- The time when environment health began to be impaired.
@@ -368,7 +377,7 @@ local record M
         siteId: string
         -- Reports impaired functionality that stems from issues internal to the environment, such as impaired reachability.
         environmentStatus: string
-        -- A check on the environment to identify instance health and VMware VCF licensing issues.
+        -- A check on the environment to identify connector health.
         checks: {Check}
         -- The connectivity configuration for the environment. Amazon EVS requires that you specify two route server peer IDs. During environment creation, the route server endpoints peer with the NSX uplink VLAN for connectivity to the NSX overlay network.
         connectivityInfo: ConnectivityInfo
@@ -388,6 +397,8 @@ local record M
     end
 
     enum ConnectorType
+        "OPERATIONS_MANAGER"
+        "SDDC_MANAGER"
         "VCENTER"
     end
 
@@ -398,7 +409,7 @@ local record M
         environmentId: string
         -- The fully qualified domain name (FQDN) of the VCF appliance that the connector targets.
         applianceFqdn: string
-        -- The ARN or name of the Amazon Web Services Secrets Manager secret that stores the credentials for the VCF appliance. Do not use credentials with Administrator privileges. We recommend using a service account with the minimum required permissions.
+        -- The ARN or name of the Amazon Web Services Secrets Manager secret that stores the credentials for the VCF appliance. SDDC_MANAGER requires an apiKey field; OPERATIONS_MANAGER and VCENTER require username and password fields. Do not use credentials with Administrator privileges. We recommend using a service account with read-only permissions.
         secretIdentifier: string
     end
 
@@ -422,7 +433,7 @@ local record M
         "DELETED"
     end
 
-    -- An object that represents a connector for an Amazon EVS environment. A connector establishes a vCenter connection using the credentials stored in Amazon Web Services Secrets Manager.
+    -- An object that represents a connector for an Amazon EVS environment. A connector establishes a connection to the given appliance type using the credentials stored in Amazon Web Services Secrets Manager.
     record Connector
         -- The unique ID of the environment that the connector belongs to.
         environmentId: string
@@ -498,7 +509,7 @@ local record M
         networkInterfaceId: string
     end
 
-    -- An ESX host that runs on an Amazon EC2 bare metal instance. Four hosts are created in an Amazon EVS environment during environment creation. You can add hosts to an environment using the CreateEnvironmentHost operation. Amazon EVS supports 4-32 hosts per environment.
+    -- An ESX host that runs on an Amazon EC2 bare metal instance.
     record Host
         -- The DNS hostname of the host. DNS hostnames for hosts must be unique across Amazon EVS environments and within VCF.
         hostName: string

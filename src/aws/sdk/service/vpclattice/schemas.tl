@@ -1901,6 +1901,12 @@ M.CreateServiceInput = schema.new({
             name = "authType",
             target_id = prelude.String.id,
         }),
+        idleTimeoutSeconds = schema.new({
+            id = id.from(_N, "CreateServiceInput", "idleTimeoutSeconds"),
+            type = "integer",
+            name = "idleTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -1968,6 +1974,12 @@ M.CreateServiceOutput = schema.new({
             type = "string",
             name = "authType",
             target_id = prelude.String.id,
+        }),
+        idleTimeoutSeconds = schema.new({
+            id = id.from(_N, "CreateServiceOutput", "idleTimeoutSeconds"),
+            type = "integer",
+            name = "idleTimeoutSeconds",
+            target_id = prelude.Integer.id,
         }),
         dnsEntry = schema.new({
             id = id.from(_N, "CreateServiceOutput", "dnsEntry"),
@@ -4186,6 +4198,12 @@ M.GetServiceOutput = schema.new({
             type = "string",
             name = "authType",
             target_id = prelude.String.id,
+        }),
+        idleTimeoutSeconds = schema.new({
+            id = id.from(_N, "GetServiceOutput", "idleTimeoutSeconds"),
+            type = "integer",
+            name = "idleTimeoutSeconds",
+            target_id = prelude.Integer.id,
         }),
         failureCode = schema.new({
             id = id.from(_N, "GetServiceOutput", "failureCode"),
@@ -7046,6 +7064,12 @@ M.UpdateServiceInput = schema.new({
             name = "authType",
             target_id = prelude.String.id,
         }),
+        idleTimeoutSeconds = schema.new({
+            id = id.from(_N, "UpdateServiceInput", "idleTimeoutSeconds"),
+            type = "integer",
+            name = "idleTimeoutSeconds",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -7088,6 +7112,12 @@ M.UpdateServiceOutput = schema.new({
             type = "string",
             name = "authType",
             target_id = prelude.String.id,
+        }),
+        idleTimeoutSeconds = schema.new({
+            id = id.from(_N, "UpdateServiceOutput", "idleTimeoutSeconds"),
+            type = "integer",
+            name = "idleTimeoutSeconds",
+            target_id = prelude.Integer.id,
         }),
     },
 })

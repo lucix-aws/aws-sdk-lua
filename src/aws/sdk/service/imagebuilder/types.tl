@@ -1061,11 +1061,20 @@ local record M
 
     -- The logging configuration that's defined for pipeline execution.
     record PipelineLoggingConfiguration
-        -- The log group name that Image Builder uses for image creation. If not specified, the log group
-        -- name defaults to /aws/imagebuilder/image-name.
+        -- Specifies the CloudWatch Logs log group name for image build logs.
+        -- The log group name can contain alphanumeric characters, hyphens,
+        -- underscores, forward slashes, and periods, up to 512 characters.
+        -- Log group names not starting with /aws/imagebuilder/
+        -- require an executionRole with CloudWatch Logs write
+        -- permissions. If not specified, defaults to
+        -- /aws/imagebuilder/image-name.
         imageLogGroupName: string
-        -- The log group name that Image Builder uses for the log output during creation of a new pipeline.
-        -- If not specified, the pipeline log group name defaults to
+        -- Specifies the CloudWatch Logs log group name for pipeline execution
+        -- logs. The log group name can contain alphanumeric characters, hyphens,
+        -- underscores, forward slashes, and periods, up to 512 characters.
+        -- Log group names not starting with /aws/imagebuilder/
+        -- require an executionRole with CloudWatch Logs write
+        -- permissions. If not specified, defaults to
         -- /aws/imagebuilder/pipeline/pipeline-name.
         pipelineLogGroupName: string
     end
@@ -1149,7 +1158,12 @@ local record M
         -- The name or Amazon Resource Name (ARN) for the IAM role you create that grants
         -- Image Builder access to perform workflow actions.
         executionRole: string
-        -- Define logging configuration for the image build process.
+        -- Specifies the logging configuration for the image pipeline. Use this
+        -- to define custom CloudWatch Logs log groups for your pipeline execution
+        -- logs and image build logs. The service manages log groups with names
+        -- starting with /aws/imagebuilder/ using the service-linked
+        -- role. For custom log group names outside of this prefix, you must also
+        -- provide an executionRole.
         loggingConfiguration: PipelineLoggingConfiguration
     end
 
@@ -1202,6 +1216,13 @@ local record M
         -- Tags that are applied to the AMI that Image Builder creates during the Build phase
         -- prior to image distribution.
         amiTags: {string : string}
+        -- The AMI watermark names to attach to the output AMI from this recipe.
+        -- AMI watermarks are lineage markers. They automatically propagate to
+        -- derivative AMIs when the source AMI is copied or distributed across
+        -- Regions or accounts.
+        -- AMI watermarks are supported only for image recipes. AMIs with
+        -- watermarks cannot be made public.
+        amiWatermarks: {string}
         -- Unique, case-sensitive identifier you provide to ensure
         -- idempotency of the request. For more information, see Ensuring idempotency
         -- in the Amazon EC2 API Reference.
@@ -1721,11 +1742,17 @@ local record M
     end
 
     record DistributeImageInput
-        -- The source image Amazon Resource Name (ARN) to distribute.
+        -- The source image to distribute. Specify an AMI identifier,
+        -- SSM parameter path, or Image Builder image Amazon Resource Name (ARN). When you specify an
+        -- Image Builder image Amazon Resource Name (ARN), the image must be in the AVAILABLE
+        -- state.
         sourceImage: string
-        -- The Amazon Resource Name (ARN) of the distribution configuration to use.
+        -- The Amazon Resource Name (ARN) of the distribution configuration. The configuration
+        -- defines target Regions, accounts, and AMI settings. The distribution
+        -- configuration must be in the same Region as this operation.
         distributionConfigurationArn: string
-        -- The IAM role to use for the distribution.
+        -- The name or Amazon Resource Name (ARN) of the IAM role that Image Builder assumes to distribute
+        -- the image.
         executionRole: string
         -- The tags to apply to the distributed image.
         tags: {string : string}
@@ -1922,6 +1949,10 @@ local record M
         -- Tags that are applied to the AMI that Image Builder creates during the Build phase
         -- prior to image distribution.
         amiTags: {string : string}
+        -- The AMI watermark names attached to the output AMI from this recipe.
+        -- AMI watermarks are lineage markers that automatically propagate to
+        -- derivative AMIs when the source AMI is copied or distributed.
+        amiWatermarks: {string}
     end
 
     enum ImageSource
@@ -3907,12 +3938,18 @@ local record M
     record SendWorkflowStepActionInput
         -- Uniquely identifies the workflow step that sent the step action.
         stepExecutionId: string
-        -- The Amazon Resource Name (ARN) of the image build version to send action for.
+        -- The Amazon Resource Name (ARN) of the image build version associated with the workflow
+        -- step execution. This value must match the image that owns the waiting step.
+        -- If the ARN does not correspond to the image running the workflow,
+        -- then the request fails with a validation error.
         imageBuildVersionArn: string
-        -- The action for the image creation process to take while a workflow
-        -- WaitForAction step waits for an asynchronous action to complete.
+        -- The action to perform on the paused workflow step. The workflow
+        -- step must be in a waiting state to accept an action. The request
+        -- fails if the step has already timed out or been actioned.
         action: string
-        -- The reason why this action is sent.
+        -- The reason for the action. This value is stored with the step
+        -- execution record and is accessible in subsequent workflow steps
+        -- via step output references.
         reason: string
         -- Unique, case-sensitive identifier you provide to ensure
         -- idempotency of the request. For more information, see Ensuring idempotency
@@ -3981,19 +4018,36 @@ local record M
     end
 
     record StartResourceStateUpdateInput
-        -- The Amazon Resource Name (ARN) of the Image Builder resource that is updated. The state update might also
-        -- impact associated resources.
+        -- The Amazon Resource Name (ARN) of the image build version to update. The
+        -- image must be in one of these terminal states: AVAILABLE,
+        -- DEPRECATED, DISABLED,
+        -- FAILED, or CANCELLED. Images with
+        -- FAILED or CANCELLED status can transition only
+        -- to DELETED.
         resourceArn: string
-        -- Indicates the lifecycle action to take for this request.
+        -- Specifies the lifecycle action to take for this request. For AMI-based
+        -- images, valid values are AVAILABLE,
+        -- DEPRECATED, DISABLED, and
+        -- DELETED. For container-based images, only
+        -- DELETED is supported.
         state: ResourceState
         -- The name or Amazon Resource Name (ARN) of the IAM role that’s used to update image state.
         executionRole: string
-        -- A list of image resources to update state for.
+        -- Specifies which image resources to include in the state update.
+        -- When specified, the lifecycle action applies to underlying resources.
+        -- These resources include AMIs, snapshots, and containers in addition
+        -- to the Image Builder image resource. Requires executionRole to
+        -- also be specified. To delete an image and its underlying resources, you must
+        -- specify includeResources. To delete only the Image Builder
+        -- image record without affecting underlying resources, use the
+        -- DeleteImage API instead.
         includeResources: ResourceStateUpdateIncludeResources
         -- Skip action on the image resource and associated resources if specified
         -- exclusion rules are met.
         exclusionRules: ResourceStateUpdateExclusionRules
-        -- The timestamp that indicates when resources are updated by a lifecycle action.
+        -- Specifies the timestamp when the state transition takes
+        -- effect. Use this parameter only when the target status is
+        -- DEPRECATED. The value must be a future time.
         updateAt: number
         -- Unique, case-sensitive identifier you provide to ensure
         -- idempotency of the request. For more information, see Ensuring idempotency

@@ -29,6 +29,8 @@ M.CompositeAlarms = schema.new({ type = "list", list_member = M.CompositeAlarm }
 
 M.MetricAlarms = schema.new({ type = "list", list_member = M.MetricAlarm })
 
+M.LogAlarms = schema.new({ type = "list", list_member = M.LogAlarm })
+
 M.AnomalyDetectorTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.AnomalyDetectors = schema.new({ type = "list", list_member = M.AnomalyDetector })
@@ -94,6 +96,8 @@ M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 M.MuteTargetAlarmNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AnomalyDetectorExcludedTimeRanges = schema.new({ type = "list", list_member = M.Range })
+
+M.LogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContributorAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -1091,6 +1095,22 @@ M.DeleteAlarmsInput = schema.new({
 
 M.DeleteAlarmsOutput = prelude.Unit
 
+M.ResourceConflict = schema.new({
+    id = id.from(_N, "ResourceConflict"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceConflict", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ResourceNotFound = schema.new({
     id = id.from(_N, "ResourceNotFound"),
     type = "structure",
@@ -1502,6 +1522,266 @@ M.DescribeAlarmsInput = schema.new({
     },
 })
 
+M.ScheduleConfiguration = schema.new({
+    id = id.from(_N, "ScheduleConfiguration"),
+    type = "structure",
+    members = {
+        ScheduleExpression = schema.new({
+            id = id.from(_N, "ScheduleConfiguration", "ScheduleExpression"),
+            type = "string",
+            name = "ScheduleExpression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTimeOffset = schema.new({
+            id = id.from(_N, "ScheduleConfiguration", "StartTimeOffset"),
+            type = "long",
+            name = "StartTimeOffset",
+            target_id = prelude.Long.id,
+        }),
+        EndTimeOffset = schema.new({
+            id = id.from(_N, "ScheduleConfiguration", "EndTimeOffset"),
+            type = "long",
+            name = "EndTimeOffset",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.Tag = schema.new({
+    id = id.from(_N, "Tag"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "Tag", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "Tag", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ScheduledQueryConfiguration = schema.new({
+    id = id.from(_N, "ScheduledQueryConfiguration"),
+    type = "structure",
+    members = {
+        QueryString = schema.new({
+            id = id.from(_N, "ScheduledQueryConfiguration", "QueryString"),
+            type = "string",
+            name = "QueryString",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LogGroupIdentifiers = schema.new({
+            id = id.from(_N, "ScheduledQueryConfiguration", "LogGroupIdentifiers"),
+            type = "list",
+            name = "LogGroupIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        QueryARN = schema.new({
+            id = id.from(_N, "ScheduledQueryConfiguration", "QueryARN"),
+            type = "string",
+            name = "QueryARN",
+            target_id = prelude.String.id,
+        }),
+        ScheduledQueryRoleARN = schema.new({
+            id = id.from(_N, "ScheduledQueryConfiguration", "ScheduledQueryRoleARN"),
+            type = "string",
+            name = "ScheduledQueryRoleARN",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScheduleConfiguration = schema.new({
+            id = id.from(_N, "ScheduledQueryConfiguration", "ScheduleConfiguration"),
+            type = "structure",
+            name = "ScheduleConfiguration",
+            target_id = id.from(_N, "ScheduleConfiguration"),
+            target = M.ScheduleConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AggregationExpression = schema.new({
+            id = id.from(_N, "ScheduledQueryConfiguration", "AggregationExpression"),
+            type = "string",
+            name = "AggregationExpression",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "ScheduledQueryConfiguration", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.LogAlarm = schema.new({
+    id = id.from(_N, "LogAlarm"),
+    type = "structure",
+    members = {
+        AlarmName = schema.new({
+            id = id.from(_N, "LogAlarm", "AlarmName"),
+            type = "string",
+            name = "AlarmName",
+            target_id = prelude.String.id,
+        }),
+        AlarmArn = schema.new({
+            id = id.from(_N, "LogAlarm", "AlarmArn"),
+            type = "string",
+            name = "AlarmArn",
+            target_id = prelude.String.id,
+        }),
+        AlarmDescription = schema.new({
+            id = id.from(_N, "LogAlarm", "AlarmDescription"),
+            type = "string",
+            name = "AlarmDescription",
+            target_id = prelude.String.id,
+        }),
+        AlarmConfigurationUpdatedTimestamp = schema.new({
+            id = id.from(_N, "LogAlarm", "AlarmConfigurationUpdatedTimestamp"),
+            type = "timestamp",
+            name = "AlarmConfigurationUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        ActionsEnabled = schema.new({
+            id = id.from(_N, "LogAlarm", "ActionsEnabled"),
+            type = "boolean",
+            name = "ActionsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        OKActions = schema.new({
+            id = id.from(_N, "LogAlarm", "OKActions"),
+            type = "list",
+            name = "OKActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AlarmActions = schema.new({
+            id = id.from(_N, "LogAlarm", "AlarmActions"),
+            type = "list",
+            name = "AlarmActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        InsufficientDataActions = schema.new({
+            id = id.from(_N, "LogAlarm", "InsufficientDataActions"),
+            type = "list",
+            name = "InsufficientDataActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        StateValue = schema.new({
+            id = id.from(_N, "LogAlarm", "StateValue"),
+            type = "string",
+            name = "StateValue",
+            target_id = prelude.String.id,
+        }),
+        StateReason = schema.new({
+            id = id.from(_N, "LogAlarm", "StateReason"),
+            type = "string",
+            name = "StateReason",
+            target_id = prelude.String.id,
+        }),
+        StateReasonData = schema.new({
+            id = id.from(_N, "LogAlarm", "StateReasonData"),
+            type = "string",
+            name = "StateReasonData",
+            target_id = prelude.String.id,
+        }),
+        StateUpdatedTimestamp = schema.new({
+            id = id.from(_N, "LogAlarm", "StateUpdatedTimestamp"),
+            type = "timestamp",
+            name = "StateUpdatedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        ScheduledQueryConfiguration = schema.new({
+            id = id.from(_N, "LogAlarm", "ScheduledQueryConfiguration"),
+            type = "structure",
+            name = "ScheduledQueryConfiguration",
+            target_id = id.from(_N, "ScheduledQueryConfiguration"),
+            target = M.ScheduledQueryConfiguration,
+        }),
+        QueryResultsToEvaluate = schema.new({
+            id = id.from(_N, "LogAlarm", "QueryResultsToEvaluate"),
+            type = "integer",
+            name = "QueryResultsToEvaluate",
+            target_id = prelude.Integer.id,
+        }),
+        QueryResultsToAlarm = schema.new({
+            id = id.from(_N, "LogAlarm", "QueryResultsToAlarm"),
+            type = "integer",
+            name = "QueryResultsToAlarm",
+            target_id = prelude.Integer.id,
+        }),
+        Threshold = schema.new({
+            id = id.from(_N, "LogAlarm", "Threshold"),
+            type = "double",
+            name = "Threshold",
+            target_id = prelude.Double.id,
+        }),
+        ComparisonOperator = schema.new({
+            id = id.from(_N, "LogAlarm", "ComparisonOperator"),
+            type = "string",
+            name = "ComparisonOperator",
+            target_id = prelude.String.id,
+        }),
+        TreatMissingData = schema.new({
+            id = id.from(_N, "LogAlarm", "TreatMissingData"),
+            type = "string",
+            name = "TreatMissingData",
+            target_id = prelude.String.id,
+        }),
+        StateTransitionedTimestamp = schema.new({
+            id = id.from(_N, "LogAlarm", "StateTransitionedTimestamp"),
+            type = "timestamp",
+            name = "StateTransitionedTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        EvaluationState = schema.new({
+            id = id.from(_N, "LogAlarm", "EvaluationState"),
+            type = "string",
+            name = "EvaluationState",
+            target_id = prelude.String.id,
+        }),
+        ActionLogLineCount = schema.new({
+            id = id.from(_N, "LogAlarm", "ActionLogLineCount"),
+            type = "integer",
+            name = "ActionLogLineCount",
+            target_id = prelude.Integer.id,
+        }),
+        ActionLogLineRoleArn = schema.new({
+            id = id.from(_N, "LogAlarm", "ActionLogLineRoleArn"),
+            type = "string",
+            name = "ActionLogLineRoleArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EvaluationCriteria = schema.new({
     id = id.from(_N, "EvaluationCriteria"),
     type = "union",
@@ -1732,6 +2012,13 @@ M.DescribeAlarmsOutput = schema.new({
             name = "MetricAlarms",
             target_id = prelude.Document.id,
             list_member = M.MetricAlarm,
+        }),
+        LogAlarms = schema.new({
+            id = id.from(_N, "DescribeAlarmsOutput", "LogAlarms"),
+            type = "list",
+            name = "LogAlarms",
+            target_id = prelude.Document.id,
+            list_member = M.LogAlarm,
         }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeAlarmsOutput", "NextToken"),
@@ -3611,31 +3898,6 @@ M.ListTagsForResourceInput = schema.new({
     },
 })
 
-M.Tag = schema.new({
-    id = id.from(_N, "Tag"),
-    type = "structure",
-    members = {
-        Key = schema.new({
-            id = id.from(_N, "Tag", "Key"),
-            type = "string",
-            name = "Key",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Value = schema.new({
-            id = id.from(_N, "Tag", "Value"),
-            type = "string",
-            name = "Value",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.ListTagsForResourceOutput = schema.new({
     id = id.from(_N, "ListTagsForResourceOutput"),
     type = "structure",
@@ -3970,6 +4232,128 @@ M.PutInsightRuleOutput = schema.new({
     id = id.from(_N, "PutInsightRuleOutput"),
     type = "structure",
 })
+
+M.PutLogAlarmInput = schema.new({
+    id = id.from(_N, "PutLogAlarmInput"),
+    type = "structure",
+    members = {
+        AlarmName = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "AlarmName"),
+            type = "string",
+            name = "AlarmName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AlarmDescription = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "AlarmDescription"),
+            type = "string",
+            name = "AlarmDescription",
+            target_id = prelude.String.id,
+        }),
+        ScheduledQueryConfiguration = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "ScheduledQueryConfiguration"),
+            type = "structure",
+            name = "ScheduledQueryConfiguration",
+            target_id = id.from(_N, "ScheduledQueryConfiguration"),
+            target = M.ScheduledQueryConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ActionLogLineCount = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "ActionLogLineCount"),
+            type = "integer",
+            name = "ActionLogLineCount",
+            target_id = prelude.Integer.id,
+        }),
+        ActionLogLineRoleArn = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "ActionLogLineRoleArn"),
+            type = "string",
+            name = "ActionLogLineRoleArn",
+            target_id = prelude.String.id,
+        }),
+        ActionsEnabled = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "ActionsEnabled"),
+            type = "boolean",
+            name = "ActionsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        OKActions = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "OKActions"),
+            type = "list",
+            name = "OKActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AlarmActions = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "AlarmActions"),
+            type = "list",
+            name = "AlarmActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        InsufficientDataActions = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "InsufficientDataActions"),
+            type = "list",
+            name = "InsufficientDataActions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        QueryResultsToEvaluate = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "QueryResultsToEvaluate"),
+            type = "integer",
+            name = "QueryResultsToEvaluate",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QueryResultsToAlarm = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "QueryResultsToAlarm"),
+            type = "integer",
+            name = "QueryResultsToAlarm",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Threshold = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "Threshold"),
+            type = "double",
+            name = "Threshold",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ComparisonOperator = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "ComparisonOperator"),
+            type = "string",
+            name = "ComparisonOperator",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TreatMissingData = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "TreatMissingData"),
+            type = "string",
+            name = "TreatMissingData",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "PutLogAlarmInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.PutLogAlarmOutput = prelude.Unit
 
 M.ManagedRule = schema.new({
     id = id.from(_N, "ManagedRule"),
@@ -4945,6 +5329,17 @@ M.PutInsightRule = schema.operation({
     id = id.from("com.amazonaws.cloudwatch", "PutInsightRule"),
     input = M.PutInsightRuleInput,
     output = M.PutInsightRuleOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutLogAlarm = schema.operation({
+    id = id.from("com.amazonaws.cloudwatch", "PutLogAlarm"),
+    input = M.PutLogAlarmInput,
+    output = M.PutLogAlarmOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

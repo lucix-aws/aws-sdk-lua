@@ -45,6 +45,8 @@ M.IncludedPropertyList = schema.new({ type = "list", list_member = M.IncludedPro
 
 M.ResourcePropertyList = schema.new({ type = "list", list_member = M.ResourceProperty })
 
+M.CFNResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -1352,6 +1354,31 @@ M.GetServiceViewInput = schema.new({
     },
 })
 
+M.ServiceLinkedRecorderInfo = schema.new({
+    id = id.from(_N, "ServiceLinkedRecorderInfo"),
+    type = "structure",
+    members = {
+        ServicePrincipal = schema.new({
+            id = id.from(_N, "ServiceLinkedRecorderInfo", "ServicePrincipal"),
+            type = "string",
+            name = "ServicePrincipal",
+            target_id = prelude.String.id,
+        }),
+        RecorderName = schema.new({
+            id = id.from(_N, "ServiceLinkedRecorderInfo", "RecorderName"),
+            type = "string",
+            name = "RecorderName",
+            target_id = prelude.String.id,
+        }),
+        RecorderType = schema.new({
+            id = id.from(_N, "ServiceLinkedRecorderInfo", "RecorderType"),
+            type = "string",
+            name = "RecorderType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ServiceView = schema.new({
     id = id.from(_N, "ServiceView"),
     type = "structure",
@@ -1396,6 +1423,13 @@ M.ServiceView = schema.new({
             type = "string",
             name = "ScopeType",
             target_id = prelude.String.id,
+        }),
+        ServiceLinkedRecorder = schema.new({
+            id = id.from(_N, "ServiceView", "ServiceLinkedRecorder"),
+            type = "structure",
+            name = "ServiceLinkedRecorder",
+            target_id = id.from(_N, "ServiceLinkedRecorderInfo"),
+            target = M.ServiceLinkedRecorderInfo,
         }),
     },
 })
@@ -1636,6 +1670,12 @@ M.Resource = schema.new({
             name = "Service",
             target_id = prelude.String.id,
         }),
+        CfnResourceType = schema.new({
+            id = id.from(_N, "Resource", "CfnResourceType"),
+            type = "string",
+            name = "CfnResourceType",
+            target_id = prelude.String.id,
+        }),
         LastReportedAt = schema.new({
             id = id.from(_N, "Resource", "LastReportedAt"),
             type = "timestamp",
@@ -1868,6 +1908,13 @@ M.SupportedResourceType = schema.new({
             type = "string",
             name = "ResourceType",
             target_id = prelude.String.id,
+        }),
+        CFNResourceTypes = schema.new({
+            id = id.from(_N, "SupportedResourceType", "CFNResourceTypes"),
+            type = "list",
+            name = "CFNResourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

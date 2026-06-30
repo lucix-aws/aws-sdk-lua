@@ -17,11 +17,19 @@ M.BatchGetRecordErrors = schema.new({ type = "list", list_member = M.BatchGetRec
 
 M.UnprocessedIdentifiers = schema.new({ type = "list", list_member = M.BatchGetRecordIdentifier })
 
+M.BatchWriteRecordEntries = schema.new({ type = "list", list_member = M.BatchWriteRecordEntry })
+
+M.BatchWriteRecordErrors = schema.new({ type = "list", list_member = M.BatchWriteRecordError })
+
+M.UnprocessedBatchWriteRecordEntries = schema.new({ type = "list", list_member = M.BatchWriteRecordEntry })
+
 M.TargetStores = schema.new({ type = "list", list_member = prelude.String })
 
 M.FeatureNames = schema.new({ type = "list", list_member = prelude.String })
 
 M.Record = schema.new({ type = "list", list_member = M.FeatureValue })
+
+M.RecordIdentifierList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RecordIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
@@ -297,6 +305,173 @@ M.ValidationError = schema.new({
     },
 })
 
+M.TtlDuration = schema.new({
+    id = id.from(_N, "TtlDuration"),
+    type = "structure",
+    members = {
+        Unit = schema.new({
+            id = id.from(_N, "TtlDuration", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "TtlDuration", "Value"),
+            type = "integer",
+            name = "Value",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchWriteRecordEntry = schema.new({
+    id = id.from(_N, "BatchWriteRecordEntry"),
+    type = "structure",
+    members = {
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "BatchWriteRecordEntry", "FeatureGroupName"),
+            type = "string",
+            name = "FeatureGroupName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Record = schema.new({
+            id = id.from(_N, "BatchWriteRecordEntry", "Record"),
+            type = "list",
+            name = "Record",
+            target_id = prelude.Document.id,
+            list_member = M.FeatureValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetStores = schema.new({
+            id = id.from(_N, "BatchWriteRecordEntry", "TargetStores"),
+            type = "list",
+            name = "TargetStores",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TtlDuration = schema.new({
+            id = id.from(_N, "BatchWriteRecordEntry", "TtlDuration"),
+            type = "structure",
+            name = "TtlDuration",
+            target_id = id.from(_N, "TtlDuration"),
+            target = M.TtlDuration,
+        }),
+    },
+})
+
+M.BatchWriteRecordInput = schema.new({
+    id = id.from(_N, "BatchWriteRecordRequest"),
+    type = "structure",
+    members = {
+        Entries = schema.new({
+            id = id.from(_N, "BatchWriteRecordInput", "Entries"),
+            type = "list",
+            name = "Entries",
+            target_id = prelude.Document.id,
+            list_member = M.BatchWriteRecordEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TtlDuration = schema.new({
+            id = id.from(_N, "BatchWriteRecordInput", "TtlDuration"),
+            type = "structure",
+            name = "TtlDuration",
+            target_id = id.from(_N, "TtlDuration"),
+            target = M.TtlDuration,
+        }),
+    },
+})
+
+M.BatchWriteRecordError = schema.new({
+    id = id.from(_N, "BatchWriteRecordError"),
+    type = "structure",
+    members = {
+        Entry = schema.new({
+            id = id.from(_N, "BatchWriteRecordError", "Entry"),
+            type = "structure",
+            name = "Entry",
+            target_id = id.from(_N, "BatchWriteRecordEntry"),
+            target = M.BatchWriteRecordEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ErrorCode = schema.new({
+            id = id.from(_N, "BatchWriteRecordError", "ErrorCode"),
+            type = "string",
+            name = "ErrorCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ErrorMessage = schema.new({
+            id = id.from(_N, "BatchWriteRecordError", "ErrorMessage"),
+            type = "string",
+            name = "ErrorMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchWriteRecordOutput = schema.new({
+    id = id.from(_N, "BatchWriteRecordResponse"),
+    type = "structure",
+    members = {
+        Errors = schema.new({
+            id = id.from(_N, "BatchWriteRecordOutput", "Errors"),
+            type = "list",
+            name = "Errors",
+            target_id = prelude.Document.id,
+            list_member = M.BatchWriteRecordError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UnprocessedEntries = schema.new({
+            id = id.from(_N, "BatchWriteRecordOutput", "UnprocessedEntries"),
+            type = "list",
+            name = "UnprocessedEntries",
+            target_id = prelude.Document.id,
+            list_member = M.BatchWriteRecordEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ResourceNotFound = schema.new({
+    id = id.from(_N, "ResourceNotFound"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFound", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteRecordInput = schema.new({
     id = id.from(_N, "DeleteRecordRequest"),
     type = "structure",
@@ -421,43 +596,60 @@ M.GetRecordOutput = schema.new({
     },
 })
 
-M.ResourceNotFound = schema.new({
-    id = id.from(_N, "ResourceNotFound"),
+M.ListRecordsInput = schema.new({
+    id = id.from(_N, "ListRecordsRequest"),
     type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
     members = {
-        Message = schema.new({
-            id = id.from(_N, "ResourceNotFound", "Message"),
+        FeatureGroupName = schema.new({
+            id = id.from(_N, "ListRecordsInput", "FeatureGroupName"),
             type = "string",
-            name = "Message",
+            name = "FeatureGroupName",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListRecordsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListRecordsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        IncludeSoftDeletedRecords = schema.new({
+            id = id.from(_N, "ListRecordsInput", "IncludeSoftDeletedRecords"),
+            type = "boolean",
+            name = "IncludeSoftDeletedRecords",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
 
-M.TtlDuration = schema.new({
-    id = id.from(_N, "TtlDuration"),
+M.ListRecordsOutput = schema.new({
+    id = id.from(_N, "ListRecordsResponse"),
     type = "structure",
     members = {
-        Unit = schema.new({
-            id = id.from(_N, "TtlDuration", "Unit"),
-            type = "string",
-            name = "Unit",
-            target_id = prelude.String.id,
+        RecordIdentifiers = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "RecordIdentifiers"),
+            type = "list",
+            name = "RecordIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        Value = schema.new({
-            id = id.from(_N, "TtlDuration", "Value"),
-            type = "integer",
-            name = "Value",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        NextToken = schema.new({
+            id = id.from(_N, "ListRecordsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -542,6 +734,18 @@ M.BatchGetRecord = schema.operation({
     },
 })
 
+M.BatchWriteRecord = schema.operation({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "BatchWriteRecord"),
+    input = M.BatchWriteRecordInput,
+    output = M.BatchWriteRecordOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/BatchWriteRecord" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteRecord = schema.operation({
     id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "DeleteRecord"),
     input = M.DeleteRecordInput,
@@ -560,6 +764,18 @@ M.GetRecord = schema.operation({
     output = M.GetRecordOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/FeatureGroup/{FeatureGroupName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListRecords = schema.operation({
+    id = id.from("com.amazonaws.sagemakerfeaturestoreruntime", "ListRecords"),
+    input = M.ListRecordsInput,
+    output = M.ListRecordsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/FeatureGroup/{FeatureGroupName}/ListRecords" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

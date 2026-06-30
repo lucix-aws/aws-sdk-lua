@@ -465,6 +465,21 @@ local record M
         ServiceViewArn: string
     end
 
+    enum RecorderType
+        "AWS"
+        "THIRD_PARTY"
+    end
+
+    -- Contains information about the service-linked recorder paired with a service view.
+    record ServiceLinkedRecorderInfo
+        -- The service principal of the Amazon Web Services service that owns the service-linked recorder, such as observabilityadmin.amazonaws.com.
+        ServicePrincipal: string
+        -- The name of the service-linked recorder, such as AWSConfigurationRecorderForObservabilityAdmin.
+        RecorderName: string
+        -- The type of the recorder. Valid values are AWS and THIRD_PARTY.
+        RecorderType: string
+    end
+
     -- Contains the configuration and properties of a Resource Explorer service view.
     record ServiceView
         -- The Amazon Resource Name (ARN) of the service view.
@@ -478,6 +493,8 @@ local record M
         StreamingAccessForService: string
         -- The scope type of the service view, which determines what resources are included.
         ScopeType: string
+        -- Information about the service-linked recorder associated with this service view. When a service view is paired with a service-linked recorder, Resource Explorer uses the recorder's resource type list to filter search results and streaming data.
+        ServiceLinkedRecorder: ServiceLinkedRecorderInfo
     end
 
     record GetServiceViewOutput
@@ -562,6 +579,8 @@ local record M
         ResourceType: string
         -- The Amazon Web Services service that owns the resource and is responsible for creating and updating it.
         Service: string
+        -- The CloudFormation resource type identifier for the resource, such as AWS::EC2::Instance or AWS::S3::Bucket.
+        CfnResourceType: string
         -- The date and time that Resource Explorer last queried this resource and updated the index with the latest information about the resource.
         LastReportedAt: number
         -- A structure with additional type-specific details about the resource. These properties can be added by turning on integration between Resource Explorer and other Amazon Web Services services.
@@ -642,6 +661,8 @@ local record M
         Service: string
         -- The unique identifier of the resource type.
         ResourceType: string
+        -- The CloudFormation resource type identifiers for this resource type, such as AWS::EC2::Instance.
+        CFNResourceTypes: {string}
     end
 
     record ListSupportedResourceTypesOutput

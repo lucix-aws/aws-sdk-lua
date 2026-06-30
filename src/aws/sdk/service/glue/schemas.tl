@@ -32757,6 +32757,78 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateAssetInput = schema.new({
+    id = id.from(_N, "UpdateAssetRequest"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "UpdateAssetInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateAssetOutput = schema.new({
+    id = id.from(_N, "UpdateAssetResponse"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "UpdateAssetOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateAssetOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateAssetOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "UpdateAssetOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.UpdateBlueprintInput = schema.new({
     id = id.from(_N, "UpdateBlueprintRequest"),
     type = "structure",
@@ -39557,6 +39629,18 @@ M.UntagResource = schema.operation({
     input = M.UntagResourceInput,
     output = M.UntagResourceOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateAsset = schema.operation({
+    id = id.from("com.amazonaws.glue", "UpdateAsset"),
+    input = M.UpdateAssetInput,
+    output = M.UpdateAssetOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/assets/{Identifier}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
