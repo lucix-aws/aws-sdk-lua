@@ -19,21 +19,43 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addTagsToCertificate: function(Client, types.AddTagsToCertificateInput, ? base_client.InvokeOptions): async.Operation<types.AddTagsToCertificateOutput>
+    createAcmeDomainValidation: function(Client, types.CreateAcmeDomainValidationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAcmeDomainValidationOutput>
+    createAcmeEndpoint: function(Client, types.CreateAcmeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateAcmeEndpointOutput>
+    createAcmeExternalAccountBinding: function(Client, types.CreateAcmeExternalAccountBindingInput, ? base_client.InvokeOptions): async.Operation<types.CreateAcmeExternalAccountBindingOutput>
+    deleteAcmeDomainValidation: function(Client, types.DeleteAcmeDomainValidationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAcmeDomainValidationOutput>
+    deleteAcmeEndpoint: function(Client, types.DeleteAcmeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAcmeEndpointOutput>
+    deleteAcmeExternalAccountBinding: function(Client, types.DeleteAcmeExternalAccountBindingInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAcmeExternalAccountBindingOutput>
     deleteCertificate: function(Client, types.DeleteCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
+    describeAcmeAccount: function(Client, types.DescribeAcmeAccountInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAcmeAccountOutput>
+    describeAcmeDomainValidation: function(Client, types.DescribeAcmeDomainValidationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAcmeDomainValidationOutput>
+    describeAcmeEndpoint: function(Client, types.DescribeAcmeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAcmeEndpointOutput>
+    describeAcmeExternalAccountBinding: function(Client, types.DescribeAcmeExternalAccountBindingInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAcmeExternalAccountBindingOutput>
     describeCertificate: function(Client, types.DescribeCertificateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
     exportCertificate: function(Client, types.ExportCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ExportCertificateOutput>
     getAccountConfiguration: function(Client, types.GetAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountConfigurationOutput>
+    getAcmeExternalAccountBindingCredentials: function(Client, types.GetAcmeExternalAccountBindingCredentialsInput, ? base_client.InvokeOptions): async.Operation<types.GetAcmeExternalAccountBindingCredentialsOutput>
     getCertificate: function(Client, types.GetCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetCertificateOutput>
     importCertificate: function(Client, types.ImportCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ImportCertificateOutput>
+    listAcmeAccounts: function(Client, types.ListAcmeAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcmeAccountsOutput>
+    listAcmeDomainValidations: function(Client, types.ListAcmeDomainValidationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcmeDomainValidationsOutput>
+    listAcmeEndpoints: function(Client, types.ListAcmeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcmeEndpointsOutput>
+    listAcmeExternalAccountBindings: function(Client, types.ListAcmeExternalAccountBindingsInput, ? base_client.InvokeOptions): async.Operation<types.ListAcmeExternalAccountBindingsOutput>
     listCertificates: function(Client, types.ListCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
     listTagsForCertificate: function(Client, types.ListTagsForCertificateInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForCertificateOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putAccountConfiguration: function(Client, types.PutAccountConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountConfigurationOutput>
     removeTagsFromCertificate: function(Client, types.RemoveTagsFromCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RemoveTagsFromCertificateOutput>
     renewCertificate: function(Client, types.RenewCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RenewCertificateOutput>
     requestCertificate: function(Client, types.RequestCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RequestCertificateOutput>
     resendValidationEmail: function(Client, types.ResendValidationEmailInput, ? base_client.InvokeOptions): async.Operation<types.ResendValidationEmailOutput>
+    revokeAcmeAccount: function(Client, types.RevokeAcmeAccountInput, ? base_client.InvokeOptions): async.Operation<types.RevokeAcmeAccountOutput>
+    revokeAcmeExternalAccountBinding: function(Client, types.RevokeAcmeExternalAccountBindingInput, ? base_client.InvokeOptions): async.Operation<types.RevokeAcmeExternalAccountBindingOutput>
     revokeCertificate: function(Client, types.RevokeCertificateInput, ? base_client.InvokeOptions): async.Operation<types.RevokeCertificateOutput>
     searchCertificates: function(Client, types.SearchCertificatesInput, ? base_client.InvokeOptions): async.Operation<types.SearchCertificatesOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateAcmeDomainValidation: function(Client, types.UpdateAcmeDomainValidationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAcmeDomainValidationOutput>
+    updateAcmeEndpoint: function(Client, types.UpdateAcmeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAcmeEndpointOutput>
     updateCertificateOptions: function(Client, types.UpdateCertificateOptionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCertificateOptionsOutput>
 end
 
@@ -83,8 +105,48 @@ function C:addTagsToCertificate(input: types.AddTagsToCertificateInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddTagsToCertificate as schema.OperationSchema, input, options) as async.Operation<types.AddTagsToCertificateOutput>
 end
 
+function C:createAcmeDomainValidation(input: types.CreateAcmeDomainValidationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAcmeDomainValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAcmeDomainValidation as schema.OperationSchema, input, options) as async.Operation<types.CreateAcmeDomainValidationOutput>
+end
+
+function C:createAcmeEndpoint(input: types.CreateAcmeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAcmeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAcmeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.CreateAcmeEndpointOutput>
+end
+
+function C:createAcmeExternalAccountBinding(input: types.CreateAcmeExternalAccountBindingInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAcmeExternalAccountBindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAcmeExternalAccountBinding as schema.OperationSchema, input, options) as async.Operation<types.CreateAcmeExternalAccountBindingOutput>
+end
+
+function C:deleteAcmeDomainValidation(input: types.DeleteAcmeDomainValidationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAcmeDomainValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAcmeDomainValidation as schema.OperationSchema, input, options) as async.Operation<types.DeleteAcmeDomainValidationOutput>
+end
+
+function C:deleteAcmeEndpoint(input: types.DeleteAcmeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAcmeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAcmeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteAcmeEndpointOutput>
+end
+
+function C:deleteAcmeExternalAccountBinding(input: types.DeleteAcmeExternalAccountBindingInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAcmeExternalAccountBindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAcmeExternalAccountBinding as schema.OperationSchema, input, options) as async.Operation<types.DeleteAcmeExternalAccountBindingOutput>
+end
+
 function C:deleteCertificate(input: types.DeleteCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCertificateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCertificate as schema.OperationSchema, input, options) as async.Operation<types.DeleteCertificateOutput>
+end
+
+function C:describeAcmeAccount(input: types.DescribeAcmeAccountInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAcmeAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAcmeAccount as schema.OperationSchema, input, options) as async.Operation<types.DescribeAcmeAccountOutput>
+end
+
+function C:describeAcmeDomainValidation(input: types.DescribeAcmeDomainValidationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAcmeDomainValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAcmeDomainValidation as schema.OperationSchema, input, options) as async.Operation<types.DescribeAcmeDomainValidationOutput>
+end
+
+function C:describeAcmeEndpoint(input: types.DescribeAcmeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAcmeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAcmeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DescribeAcmeEndpointOutput>
+end
+
+function C:describeAcmeExternalAccountBinding(input: types.DescribeAcmeExternalAccountBindingInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAcmeExternalAccountBindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAcmeExternalAccountBinding as schema.OperationSchema, input, options) as async.Operation<types.DescribeAcmeExternalAccountBindingOutput>
 end
 
 function C:describeCertificate(input: types.DescribeCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeCertificateOutput>
@@ -99,6 +161,10 @@ function C:getAccountConfiguration(input: types.GetAccountConfigurationInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetAccountConfigurationOutput>
 end
 
+function C:getAcmeExternalAccountBindingCredentials(input: types.GetAcmeExternalAccountBindingCredentialsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAcmeExternalAccountBindingCredentialsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAcmeExternalAccountBindingCredentials as schema.OperationSchema, input, options) as async.Operation<types.GetAcmeExternalAccountBindingCredentialsOutput>
+end
+
 function C:getCertificate(input: types.GetCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetCertificateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetCertificateOutput>
 end
@@ -107,12 +173,32 @@ function C:importCertificate(input: types.ImportCertificateInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ImportCertificate as schema.OperationSchema, input, options) as async.Operation<types.ImportCertificateOutput>
 end
 
+function C:listAcmeAccounts(input: types.ListAcmeAccountsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAcmeAccountsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAcmeAccounts as schema.OperationSchema, input, options) as async.Operation<types.ListAcmeAccountsOutput>
+end
+
+function C:listAcmeDomainValidations(input: types.ListAcmeDomainValidationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAcmeDomainValidationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAcmeDomainValidations as schema.OperationSchema, input, options) as async.Operation<types.ListAcmeDomainValidationsOutput>
+end
+
+function C:listAcmeEndpoints(input: types.ListAcmeEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAcmeEndpointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAcmeEndpoints as schema.OperationSchema, input, options) as async.Operation<types.ListAcmeEndpointsOutput>
+end
+
+function C:listAcmeExternalAccountBindings(input: types.ListAcmeExternalAccountBindingsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAcmeExternalAccountBindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAcmeExternalAccountBindings as schema.OperationSchema, input, options) as async.Operation<types.ListAcmeExternalAccountBindingsOutput>
+end
+
 function C:listCertificates(input: types.ListCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListCertificatesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCertificates as schema.OperationSchema, input, options) as async.Operation<types.ListCertificatesOutput>
 end
 
 function C:listTagsForCertificate(input: types.ListTagsForCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForCertificateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForCertificate as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForCertificateOutput>
+end
+
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
 function C:putAccountConfiguration(input: types.PutAccountConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountConfigurationOutput>
@@ -135,12 +221,36 @@ function C:resendValidationEmail(input: types.ResendValidationEmailInput, option
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ResendValidationEmail as schema.OperationSchema, input, options) as async.Operation<types.ResendValidationEmailOutput>
 end
 
+function C:revokeAcmeAccount(input: types.RevokeAcmeAccountInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeAcmeAccountOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeAcmeAccount as schema.OperationSchema, input, options) as async.Operation<types.RevokeAcmeAccountOutput>
+end
+
+function C:revokeAcmeExternalAccountBinding(input: types.RevokeAcmeExternalAccountBindingInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeAcmeExternalAccountBindingOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeAcmeExternalAccountBinding as schema.OperationSchema, input, options) as async.Operation<types.RevokeAcmeExternalAccountBindingOutput>
+end
+
 function C:revokeCertificate(input: types.RevokeCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeCertificateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeCertificate as schema.OperationSchema, input, options) as async.Operation<types.RevokeCertificateOutput>
 end
 
 function C:searchCertificates(input: types.SearchCertificatesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchCertificatesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchCertificates as schema.OperationSchema, input, options) as async.Operation<types.SearchCertificatesOutput>
+end
+
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
+end
+
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateAcmeDomainValidation(input: types.UpdateAcmeDomainValidationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAcmeDomainValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAcmeDomainValidation as schema.OperationSchema, input, options) as async.Operation<types.UpdateAcmeDomainValidationOutput>
+end
+
+function C:updateAcmeEndpoint(input: types.UpdateAcmeEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAcmeEndpointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAcmeEndpoint as schema.OperationSchema, input, options) as async.Operation<types.UpdateAcmeEndpointOutput>
 end
 
 function C:updateCertificateOptions(input: types.UpdateCertificateOptionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCertificateOptionsOutput>

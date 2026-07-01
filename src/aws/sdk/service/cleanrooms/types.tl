@@ -392,6 +392,10 @@ local record M
         disallowedOutputColumns: {string}
         -- The differential privacy configuration.
         differentialPrivacy: DifferentialPrivacyConfiguration
+        -- The list of Amazon Web Services account IDs that are allowed to receive results from queries run on the configured table.
+        allowedResultReceivers: {string}
+        -- The list of allowed additional analyses for the custom analysis rule.
+        allowedAdditionalAnalyses: {string}
     end
 
     -- Provides the name of the columns that are required to overlap.
@@ -999,6 +1003,12 @@ local record M
         "ADDITIONAL_ANALYSES_NOT_ALLOWED"
         "RESULT_RECEIVERS_NOT_ALLOWED"
         "ANALYSIS_RULE_TYPES_NOT_COMPATIBLE"
+        "INTERMEDIATE_TABLE_NOT_POPULATED"
+        "INTERMEDIATE_TABLE_ANALYSIS_RULE_MISSING"
+        "INTERMEDIATE_TABLE_BASE_TABLE_REMOVED"
+        "INTERMEDIATE_TABLE_INHERITED_CONSTRAINTS_VIOLATED"
+        "INTERMEDIATE_TABLE_DISALLOWED_BY_DATA_PROVIDER"
+        "INTERMEDIATE_TABLE_RETENTION_PERIOD_EXPIRED"
     end
 
     -- A reason why the schema status is set to its current value.
@@ -1028,6 +1038,12 @@ local record M
         analysisType: string
     end
 
+    -- Contains the schema type properties for a configured table association.
+    record ConfiguredTableAssociationSchemaTypeProperties
+        -- The unique identifier of the configured table association.
+        configuredTableAssociationId: string
+    end
+
     enum IdNamespaceType
         "SOURCE"
         "TARGET"
@@ -1043,12 +1059,24 @@ local record M
     record IdMappingTableSchemaTypeProperties
         -- Defines which ID namespace associations are used to create the ID mapping table.
         idMappingTableInputSource: {IdMappingTableInputSource}
+        -- The unique identifier of the ID mapping table.
+        idMappingTableId: string
+    end
+
+    -- Contains the schema type properties for an intermediate table.
+    record IntermediateTableSchemaTypeProperties
+        -- The unique identifier of the intermediate table.
+        intermediateTableId: string
     end
 
     -- Information about the schema type properties.
     record SchemaTypeProperties
         -- The ID mapping table for the schema type properties.
         idMappingTable: IdMappingTableSchemaTypeProperties
+        -- The schema type properties for an intermediate table.
+        intermediateTable: IntermediateTableSchemaTypeProperties
+        -- The schema type properties for a configured table association.
+        configuredTableAssociation: ConfiguredTableAssociationSchemaTypeProperties
     end
 
     enum SelectedAnalysisMethod
@@ -1059,6 +1087,7 @@ local record M
     enum SchemaType
         "TABLE"
         "ID_MAPPING_TABLE"
+        "INTERMEDIATE_TABLE"
     end
 
     -- A schema is a relation within a collaboration.
@@ -1151,19 +1180,19 @@ local record M
 
     -- An object representing the collaboration member's payment responsibilities set by the collaboration creator for query and job compute costs.
     record JobComputePaymentConfig
-        -- Indicates whether the collaboration creator has configured the collaboration member to pay for query and job compute costs (TRUE) or has not configured the collaboration member to pay for query and job compute costs (FALSE). Exactly one member can be configured to pay for query and job compute costs. An error is returned if the collaboration creator sets a TRUE value for more than one member in the collaboration. An error is returned if the collaboration creator sets a FALSE value for the member who can run queries and jobs.
+        -- Indicates whether the collaboration creator has configured the collaboration member to pay for query and job compute costs (TRUE) or has not configured the collaboration member to pay for query and job compute costs (FALSE). One or more members can be configured as payer candidates for query and job compute costs. An error is returned if the collaboration creator sets a FALSE value for the member who can run queries and jobs.
         isResponsible: boolean
     end
 
     -- An object representing the collaboration member's model inference payment responsibilities set by the collaboration creator.
     record ModelInferencePaymentConfig
-        -- Indicates whether the collaboration creator has configured the collaboration member to pay for model inference costs (TRUE) or has not configured the collaboration member to pay for model inference costs (FALSE). Exactly one member can be configured to pay for model inference costs. An error is returned if the collaboration creator sets a TRUE value for more than one member in the collaboration. If the collaboration creator hasn't specified anyone as the member paying for model inference costs, then the member who can query is the default payer. An error is returned if the collaboration creator sets a FALSE value for the member who can query.
+        -- Indicates whether the collaboration creator has configured the collaboration member to pay for model inference costs (TRUE) or has not configured the collaboration member to pay for model inference costs (FALSE). One or more members can be configured as payer candidates for model inference costs. If the collaboration creator hasn't specified anyone as the member paying for model inference costs, then the member who can query is the default payer.
         isResponsible: boolean
     end
 
     -- An object representing the collaboration member's model training payment responsibilities set by the collaboration creator.
     record ModelTrainingPaymentConfig
-        -- Indicates whether the collaboration creator has configured the collaboration member to pay for model training costs (TRUE) or has not configured the collaboration member to pay for model training costs (FALSE). Exactly one member can be configured to pay for model training costs. An error is returned if the collaboration creator sets a TRUE value for more than one member in the collaboration. If the collaboration creator hasn't specified anyone as the member paying for model training costs, then the member who can query is the default payer. An error is returned if the collaboration creator sets a FALSE value for the member who can query.
+        -- Indicates whether the collaboration creator has configured the collaboration member to pay for model training costs (TRUE) or has not configured the collaboration member to pay for model training costs (FALSE). One or more members can be configured as payer candidates for model training costs. If the collaboration creator hasn't specified anyone as the member paying for model training costs, then the member who can query is the default payer.
         isResponsible: boolean
     end
 
@@ -1185,7 +1214,7 @@ local record M
 
     -- An object representing the collaboration member's payment responsibilities set by the collaboration creator for query compute costs.
     record QueryComputePaymentConfig
-        -- Indicates whether the collaboration creator has configured the collaboration member to pay for query compute costs (TRUE) or has not configured the collaboration member to pay for query compute costs (FALSE). Exactly one member can be configured to pay for query compute costs. An error is returned if the collaboration creator sets a TRUE value for more than one member in the collaboration. If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer. An error is returned if the collaboration creator sets a FALSE value for the member who can query.
+        -- Indicates whether the collaboration creator has configured the collaboration member to pay for query compute costs (TRUE) or has not configured the collaboration member to pay for query compute costs (FALSE). One or more members can be configured as payer candidates for query compute costs. If the collaboration creator hasn't specified anyone as the member paying for query compute costs, then the member who can query is the default payer.
         isResponsible: boolean
     end
 
@@ -2244,6 +2273,34 @@ local record M
         "CUSTOM"
     end
 
+    enum ResourceStatus
+        "CREATED"
+        "POPULATE_STARTED"
+        "POPULATE_SUCCESS"
+        "POPULATE_FAILED"
+        "DISALLOWED_BY_DATA_PROVIDER"
+        "BASE_TABLE_REMOVED"
+        "RETENTION_PERIOD_EXPIRED"
+    end
+
+    enum ChildResourceType
+        "INTERMEDIATE_TABLE"
+    end
+
+    -- Contains information about a child resource of a given resource in a collaboration.
+    record ChildResource
+        -- The unique identifier of the child resource.
+        resourceId: string
+        -- The type of the child resource.
+        resourceType: string
+        -- The name of the child resource.
+        resourceName: string
+        -- The Amazon Web Services account ID of the member who owns the child resource.
+        ownerAccountId: string
+        -- The current status of the child resource.
+        resourceStatus: string
+    end
+
     -- A configured table association links a configured table to a collaboration.
     record ConfiguredTableAssociation
         -- The unique ARN for the configured table association.
@@ -2270,6 +2327,8 @@ local record M
         createTime: number
         -- The time the configured table association was last updated.
         updateTime: number
+        -- The child resources that depend on this configured table association.
+        childResources: {ChildResource}
     end
 
     record CreateConfiguredTableAssociationOutput
@@ -2742,6 +2801,8 @@ local record M
         inputReferenceProperties: IdMappingTableInputReferenceProperties
         -- The Amazon Resource Name (ARN) of the Amazon Web Services KMS key.
         kmsKeyArn: string
+        -- The child resources that depend on this ID mapping table.
+        childResources: {ChildResource}
     end
 
     record CreateIdMappingTableOutput
@@ -2983,6 +3044,533 @@ local record M
         idNamespaceAssociation: IdNamespaceAssociation
     end
 
+    -- Contains the SQL parameters used to populate an intermediate table.
+    record PopulationAnalysisSqlParameters
+        -- The SQL query string used to populate the intermediate table. Maximum length of 500,000 characters.
+        queryString: string
+        -- The Amazon Resource Name (ARN) of the analysis template to use for populating the intermediate table.
+        analysisTemplateArn: string
+    end
+
+    -- Contains the configuration that defines the analysis used to populate an intermediate table.
+    record PopulationAnalysisConfiguration
+        -- The SQL parameters for the population analysis, including the query string or analysis template ARN.
+        sqlParameters: PopulationAnalysisSqlParameters
+    end
+
+    record CreateIntermediateTableInput
+        -- The unique identifier of the membership where the intermediate table is created.
+        membershipIdentifier: string
+        -- The display name for the intermediate table.
+        name: string
+        -- A description of the intermediate table.
+        description: string
+        -- The configuration that defines the analysis used to populate the intermediate table. This configuration contains the SQL query or analysis template reference.
+        populationAnalysisConfiguration: PopulationAnalysisConfiguration
+        -- The Amazon Resource Name (ARN) of the customer-managed KMS key used to encrypt the intermediate table data.
+        kmsKeyArn: string
+        -- The number of days to retain populated data versions. Minimum value of 1, maximum value of 365.
+        retentionInDays: number
+        -- An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.
+        tags: {string : string}
+    end
+
+    enum IntermediateTableAnalysisRuleType
+        "CUSTOM"
+    end
+
+    enum PopulateIntermediateTableAnalysisType
+        "QUERY"
+    end
+
+    enum BaseTableDependencyType
+        "TABLE"
+        "INTERMEDIATE_TABLE"
+        "ID_MAPPING_TABLE"
+    end
+
+    -- Contains information about a parent table that contributes an additional analyses constraint.
+    record InheritedAdditionalAnalysesSource
+        -- The name of the parent table.
+        name: string
+        -- The unique identifier of the parent table.
+        id: string
+        -- The additional analyses setting defined on the parent table.
+        value: string
+        -- The Amazon Web Services account ID of the member who owns the parent table.
+        sourceAccountId: string
+    end
+
+    -- Contains the inherited additional analyses constraint and its sources from parent tables.
+    record InheritedAdditionalAnalyses
+        -- The effective additional analyses setting inherited from parent tables.
+        value: string
+        -- The list of parent tables that contribute to this inherited constraint.
+        sources: {InheritedAdditionalAnalysesSource}
+    end
+
+    -- Contains information about a parent table that contributes an allowed additional analyses constraint.
+    record InheritedAllowedAdditionalAnalysesSource
+        -- The name of the parent table.
+        name: string
+        -- The unique identifier of the parent table.
+        id: string
+        -- The allowed additional analyses defined on the parent table.
+        value: {string}
+        -- The Amazon Web Services account ID of the member who owns the parent table.
+        sourceAccountId: string
+    end
+
+    -- Contains the inherited allowed additional analyses constraint and its sources from parent tables.
+    record InheritedAllowedAdditionalAnalyses
+        -- The effective list of allowed additional analyses inherited from parent tables.
+        value: {string}
+        -- The list of parent tables that contribute to this inherited constraint.
+        sources: {InheritedAllowedAdditionalAnalysesSource}
+    end
+
+    -- Contains information about a parent table that contributes an allowed result receivers constraint.
+    record InheritedAllowedResultReceiversSource
+        -- The name of the parent table.
+        name: string
+        -- The unique identifier of the parent table.
+        id: string
+        -- The allowed result receiver account IDs defined on the parent table.
+        value: {string}
+        -- The Amazon Web Services account ID of the member who owns the parent table.
+        sourceAccountId: string
+    end
+
+    -- Contains the inherited allowed result receivers constraint and its sources from parent tables.
+    record InheritedAllowedResultReceivers
+        -- The effective list of Amazon Web Services account IDs allowed to receive results, inherited from parent tables.
+        value: {string}
+        -- The list of parent tables that contribute to this inherited constraint.
+        sources: {InheritedAllowedResultReceiversSource}
+    end
+
+    -- Contains column lineage information that traces a disallowed output column back to its source in a base table.
+    record ColumnLineageEntry
+        -- The name of the column in the intermediate table.
+        column: string
+        -- The name of the column in the source table.
+        sourceColumn: string
+        -- The name of the source table.
+        sourceName: string
+        -- The unique identifier of the source table.
+        sourceId: string
+        -- The type of the source table.
+        sourceType: string
+        -- The Amazon Web Services account ID of the owner of the source table.
+        sourceAccountId: string
+    end
+
+    -- Contains the inherited disallowed output columns constraint and the column lineage tracing each column to its source.
+    record InheritedDisallowedOutputColumns
+        -- The list of column names that are disallowed from appearing in query output, inherited from parent tables.
+        value: {string}
+        -- The lineage information that traces each disallowed output column back to its source in a parent table.
+        columnLineage: {ColumnLineageEntry}
+    end
+
+    -- Contains the privacy constraints inherited from parent tables for an intermediate table version.
+    record IntermediateTableInheritedConstraints
+        -- The inherited additional analyses constraint.
+        additionalAnalyses: InheritedAdditionalAnalyses
+        -- The inherited allowed additional analyses constraint.
+        allowedAdditionalAnalyses: InheritedAllowedAdditionalAnalyses
+        -- The inherited allowed result receivers constraint.
+        allowedResultReceivers: InheritedAllowedResultReceivers
+        -- The inherited disallowed output columns constraint.
+        disallowedOutputColumns: InheritedDisallowedOutputColumns
+    end
+
+    -- Contains the details of the currently active version of an intermediate table.
+    record IntermediateTableActiveVersion
+        -- The unique identifier of the active version.
+        versionId: string
+        -- The identifier of the protected query that created this version.
+        analysisId: string
+        -- The type of analysis that created this version.
+        analysisType: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt this version's data.
+        kmsKeyArn: string
+        -- The runtime parameters that were used when populating this version.
+        parameters: {string : string}
+        -- The privacy constraints inherited from parent tables at the time this version was populated.
+        inheritedConstraints: IntermediateTableInheritedConstraints
+        -- The time when this version expires based on the retention period.
+        expirationTime: number
+    end
+
+    -- Contains the schema definition of an intermediate table.
+    record IntermediateTableSchema
+        -- The list of columns in the intermediate table schema.
+        columns: {Column}
+    end
+
+    enum IntermediateTableStatus
+        "CREATED"
+        "POPULATE_STARTED"
+        "POPULATE_SUCCESS"
+        "POPULATE_FAILED"
+        "DISALLOWED_BY_DATA_PROVIDER"
+        "BASE_TABLE_REMOVED"
+        "RETENTION_PERIOD_EXPIRED"
+    end
+
+    enum BaseTableParentType
+        "DIRECT"
+        "INDIRECT"
+    end
+
+    -- Contains information about a base table that an intermediate table depends on.
+    record IntermediateTableDependency
+        -- The unique identifier of the dependency table.
+        id: string
+        -- The name of the dependency table.
+        name: string
+        -- Whether the dependency is direct or indirect. A direct dependency is a table explicitly referenced in the stored query, while an indirect dependency is referenced through another intermediate table.
+        parentType: string
+        -- The Amazon Web Services account ID of the member who owns the dependency table.
+        creatorAccountId: string
+    end
+
+    -- Contains the details of an intermediate table in Clean Rooms. An intermediate table stores a query definition and its materialized results within a collaboration.
+    record IntermediateTable
+        -- The unique identifier of the intermediate table.
+        id: string
+        -- The Amazon Resource Name (ARN) of the intermediate table.
+        arn: string
+        -- The name of the intermediate table.
+        name: string
+        -- The description of the intermediate table.
+        description: string
+        -- The Amazon Resource Name (ARN) of the membership that contains the intermediate table.
+        membershipArn: string
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipId: string
+        -- The Amazon Resource Name (ARN) of the collaboration that contains the intermediate table.
+        collaborationArn: string
+        -- The unique identifier of the collaboration that contains the intermediate table.
+        collaborationId: string
+        -- The child resources that depend on this intermediate table.
+        childResources: {ChildResource}
+        -- The time the intermediate table was created.
+        createTime: number
+        -- The time the intermediate table was last updated.
+        updateTime: number
+        -- The current status of the intermediate table.
+        status: string
+        -- The reason for the current status of the intermediate table.
+        statusReason: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt the intermediate table data.
+        kmsKeyArn: string
+        -- The analysis configuration that defines the query used to populate the intermediate table.
+        populationAnalysisConfiguration: PopulationAnalysisConfiguration
+        -- The number of days that populated data is retained before expiring.
+        retentionInDays: number
+        -- The list of base tables that this intermediate table depends on.
+        tableDependencies: {IntermediateTableDependency}
+        -- The details of the currently active version of the intermediate table.
+        intermediateTableVersion: IntermediateTableActiveVersion
+        -- The types of analysis rules associated with the intermediate table.
+        analysisRuleTypes: {string}
+        -- The schema of the intermediate table, containing column definitions. Available after the table has been successfully populated.
+        schema: IntermediateTableSchema
+    end
+
+    record CreateIntermediateTableOutput
+        -- The intermediate table that was created.
+        intermediateTable: IntermediateTable
+    end
+
+    -- Contains the custom analysis rule configuration for an intermediate table.
+    record IntermediateTableAnalysisRuleCustom
+        -- The list of allowed analyses that can be performed on the intermediate table.
+        allowedAnalyses: {string}
+        -- The setting that controls whether additional analyses are allowed on the intermediate table.
+        additionalAnalyses: string
+        -- The list of allowed additional analyses for the intermediate table.
+        allowedAdditionalAnalyses: {string}
+        -- The list of Amazon Web Services account IDs for the allowed analysis providers.
+        allowedAnalysisProviders: {string}
+        -- The list of Amazon Web Services account IDs that are allowed to receive results from queries run on the intermediate table.
+        allowedResultReceivers: {string}
+        differentialPrivacy: DifferentialPrivacyConfiguration
+        -- The list of columns that are not allowed in the query output.
+        disallowedOutputColumns: {string}
+    end
+
+    -- Contains the version 1 policy for an intermediate table analysis rule.
+    record IntermediateTableAnalysisRulePolicyV1
+        -- The custom analysis rule policy.
+        custom: IntermediateTableAnalysisRuleCustom
+    end
+
+    -- Contains the policy for an intermediate table analysis rule.
+    record IntermediateTableAnalysisRulePolicy
+        -- The version 1 policy for the analysis rule.
+        v1: IntermediateTableAnalysisRulePolicyV1
+    end
+
+    record CreateIntermediateTableAnalysisRuleInput
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- The unique identifier of the intermediate table for which to create the analysis rule.
+        intermediateTableIdentifier: string
+        -- The type of analysis rule to create. Currently, only CUSTOM is supported.
+        analysisRuleType: string
+        -- The analysis rule policy to apply to the intermediate table.
+        analysisRulePolicy: IntermediateTableAnalysisRulePolicy
+    end
+
+    -- Contains the details of an analysis rule for an intermediate table.
+    record IntermediateTableAnalysisRule
+        -- The unique identifier of the intermediate table associated with this analysis rule.
+        intermediateTableIdentifier: string
+        -- The Amazon Resource Name (ARN) of the intermediate table associated with this analysis rule.
+        intermediateTableArn: string
+        -- The policy of the analysis rule.
+        analysisRulePolicy: IntermediateTableAnalysisRulePolicy
+        -- The type of the analysis rule.
+        analysisRuleType: string
+        -- The time the analysis rule was created.
+        createTime: number
+        -- The time the analysis rule was last updated.
+        updateTime: number
+    end
+
+    record CreateIntermediateTableAnalysisRuleOutput
+        -- The analysis rule that was created for the intermediate table.
+        analysisRule: IntermediateTableAnalysisRule
+    end
+
+    record DeleteIntermediateTableInput
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- The unique identifier of the intermediate table to delete.
+        intermediateTableIdentifier: string
+    end
+
+    record DeleteIntermediateTableOutput
+    end
+
+    record DeleteIntermediateTableAnalysisRuleInput
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- The unique identifier of the intermediate table from which to delete the analysis rule.
+        intermediateTableIdentifier: string
+        -- The type of analysis rule to delete. Currently, only CUSTOM is supported.
+        analysisRuleType: string
+    end
+
+    record DeleteIntermediateTableAnalysisRuleOutput
+    end
+
+    record GetIntermediateTableInput
+        -- The unique identifier of the intermediate table to retrieve.
+        intermediateTableIdentifier: string
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+    end
+
+    record GetIntermediateTableOutput
+        -- The intermediate table retrieved.
+        intermediateTable: IntermediateTable
+    end
+
+    record GetIntermediateTableAnalysisRuleInput
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- The unique identifier of the intermediate table for which to retrieve the analysis rule.
+        intermediateTableIdentifier: string
+        -- The type of analysis rule to retrieve. Currently, only CUSTOM is supported.
+        analysisRuleType: string
+    end
+
+    record GetIntermediateTableAnalysisRuleOutput
+        -- The analysis rule for the intermediate table.
+        analysisRule: IntermediateTableAnalysisRule
+    end
+
+    record ListIntermediateTablesInput
+        -- The unique identifier of the membership for which to list intermediate tables.
+        membershipIdentifier: string
+        -- The pagination token that's used to fetch the next set of results.
+        nextToken: string
+        -- The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a nextToken even if the maxResults value has not been met.
+        maxResults: number
+    end
+
+    -- Contains summary information about an intermediate table.
+    record IntermediateTableSummary
+        -- The unique identifier of the intermediate table.
+        id: string
+        -- The Amazon Resource Name (ARN) of the intermediate table.
+        arn: string
+        -- The name of the intermediate table.
+        name: string
+        -- The description of the intermediate table.
+        description: string
+        -- The Amazon Resource Name (ARN) of the membership that contains the intermediate table.
+        membershipArn: string
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipId: string
+        -- The Amazon Resource Name (ARN) of the collaboration that contains the intermediate table.
+        collaborationArn: string
+        -- The unique identifier of the collaboration that contains the intermediate table.
+        collaborationId: string
+        -- The time the intermediate table was created.
+        createTime: number
+        -- The time the intermediate table was last updated.
+        updateTime: number
+        -- The current status of the intermediate table.
+        status: string
+        -- The number of days that populated data is retained before expiring.
+        retentionInDays: number
+        -- The types of analysis rules associated with the intermediate table.
+        analysisRuleTypes: {string}
+    end
+
+    record ListIntermediateTablesOutput
+        -- The list of intermediate table summaries.
+        intermediateTableSummaries: {IntermediateTableSummary}
+        -- The pagination token that's used to fetch the next set of results.
+        nextToken: string
+    end
+
+    record ListIntermediateTableVersionsInput
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- The unique identifier of the intermediate table for which to list versions.
+        intermediateTableIdentifier: string
+        -- The pagination token that's used to fetch the next set of results.
+        nextToken: string
+        -- The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a nextToken even if the maxResults value has not been met.
+        maxResults: number
+    end
+
+    enum IntermediateTableVersionStatus
+        "POPULATE_STARTED"
+        "POPULATE_SUCCESS"
+        "POPULATE_FAILED"
+        "RETENTION_PERIOD_EXPIRED"
+    end
+
+    -- Contains summary information about a version of an intermediate table.
+    record IntermediateTableVersionSummary
+        -- The unique identifier of the version.
+        versionId: string
+        -- The unique identifier of the intermediate table that this version belongs to.
+        tableId: string
+        -- The time the version was created.
+        createTime: number
+        -- The identifier of the protected query that created this version.
+        analysisId: string
+        -- The status of the version.
+        status: string
+        -- The type of analysis that created this version.
+        analysisType: string
+        -- The Amazon Resource Name (ARN) of the KMS key used to encrypt this version's data.
+        kmsKeyArn: string
+        -- The time when this version expires based on the retention period.
+        expirationTime: number
+    end
+
+    record ListIntermediateTableVersionsOutput
+        -- The list of intermediate table version summaries.
+        intermediateTableVersionSummaries: {IntermediateTableVersionSummary}
+        -- The pagination token that's used to fetch the next set of results.
+        nextToken: string
+    end
+
+    -- The configuration properties that define the compute environment settings for workers in Clean Rooms. These properties enable customization of the underlying compute environment to optimize performance for your specific workloads.
+    record WorkerComputeConfigurationProperties
+        -- The Spark configuration properties for SQL and PySpark workloads. This map contains key-value pairs that configure Apache Spark settings to optimize performance for your data processing jobs. You can specify up to 50 Spark properties, with each key being 1-200 characters and each value being 0-500 characters. These properties allow you to adjust compute capacity for large datasets and complex workloads.
+        spark: {string : string}
+    end
+
+    enum WorkerComputeType
+        "CR.1X"
+        "CR.4X"
+    end
+
+    -- The configuration of the compute resources for workers running an analysis with the Clean Rooms SQL analytics engine.
+    record WorkerComputeConfiguration
+        -- The number of workers. SQL queries support a minimum value of 2 and a maximum value of 400. PySpark jobs support a minimum value of 4 and a maximum value of 128.
+        number: number
+        -- The configuration properties for the worker compute environment. These properties allow you to customize the compute settings for your Clean Rooms workloads.
+        properties: WorkerComputeConfigurationProperties
+    end
+
+    -- The compute configuration for an intermediate table population operation.
+    record IntermediateTableComputeConfiguration
+        queryComputeConfiguration: WorkerComputeConfiguration
+    end
+
+    record PopulateIntermediateTableInput
+        -- The unique identifier of the intermediate table to populate.
+        intermediateTableIdentifier: string
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- The runtime parameter values that override the defaults in the stored query.
+        parameters: {string : string}
+        -- The compute configuration for the population query execution.
+        computeConfiguration: IntermediateTableComputeConfiguration
+        -- The account ID of the member that pays for the analysis compute costs.
+        analysisPayerAccountId: string
+    end
+
+    record PopulateIntermediateTableOutput
+        -- The identifier for the protected query execution. Use this value with GetProtectedQuery to track the population progress.
+        analysisId: string
+        -- The type of analysis performed to populate the intermediate table.
+        analysisType: string
+        -- The unique identifier of the version created by this population operation.
+        versionId: string
+    end
+
+    -- Contains the name and type of a column in an intermediate table.
+    record IntermediateTableColumn
+        -- The name of the column.
+        name: string
+    end
+
+    record UpdateIntermediateTableInput
+        -- The unique identifier of the intermediate table to update.
+        intermediateTableIdentifier: string
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- A new description for the intermediate table.
+        description: string
+        -- The Amazon Resource Name (ARN) of the customer-managed KMS key to use for encrypting future population data.
+        kmsKeyArn: string
+        -- The list of columns with updated type definitions. Only the type of existing columns can be updated.
+        columns: {IntermediateTableColumn}
+    end
+
+    record UpdateIntermediateTableOutput
+        -- The updated intermediate table.
+        intermediateTable: IntermediateTable
+    end
+
+    record UpdateIntermediateTableAnalysisRuleInput
+        -- The unique identifier of the membership that contains the intermediate table.
+        membershipIdentifier: string
+        -- The unique identifier of the intermediate table for which to update the analysis rule.
+        intermediateTableIdentifier: string
+        -- The type of analysis rule to update. Currently, only CUSTOM is supported.
+        analysisRuleType: string
+        -- The updated analysis rule policy for the intermediate table.
+        analysisRulePolicy: IntermediateTableAnalysisRulePolicy
+    end
+
+    record UpdateIntermediateTableAnalysisRuleOutput
+        -- The updated analysis rule for the intermediate table.
+        analysisRule: IntermediateTableAnalysisRule
+    end
+
     record ListTagsForResourceInput
         -- The Amazon Resource Name (ARN) associated with the resource you want to list tags on.
         resourceArn: string
@@ -3052,7 +3640,7 @@ local record M
 
     -- An object representing the payment responsibilities accepted by the collaboration member for query and job compute costs.
     record MembershipJobComputePaymentConfig
-        -- Indicates whether the collaboration member has accepted to pay for job compute costs (TRUE) or has not accepted to pay for query and job compute costs (FALSE). There is only one member who pays for queries and jobs. An error message is returned for the following reasons: If you set the value to FALSE but you are responsible to pay for query and job compute costs. If you set the value to TRUE but you are not responsible to pay for query and job compute costs.
+        -- Indicates whether the collaboration member has accepted to pay for job compute costs (TRUE) or has not accepted to pay for query and job compute costs (FALSE). There can be one or more members who are designated as payer candidates for queries and jobs. An error message is returned for the following reasons: If you set the value to FALSE but you are responsible to pay for query and job compute costs. If you set the value to TRUE but you are not responsible to pay for query and job compute costs.
         isResponsible: boolean
     end
 
@@ -3183,6 +3771,18 @@ local record M
     record DeleteMembershipOutput
     end
 
+    record DisallowIntermediateTableInput
+        -- The unique identifier of the membership that contains the intermediate table to disallow.
+        membershipIdentifier: string
+        -- The name of the intermediate table to disallow.
+        intermediateTableName: string
+        -- Specifies whether to cascade the disallow action to descendant intermediate tables. Default is true.
+        includeDescendants: boolean
+    end
+
+    record DisallowIntermediateTableOutput
+    end
+
     record GetMembershipInput
         -- The identifier for a membership resource.
         membershipIdentifier: string
@@ -3198,12 +3798,6 @@ local record M
         membershipIdentifier: string
         -- The identifier for the protected job instance.
         protectedJobIdentifier: string
-    end
-
-    -- The configuration properties that define the compute environment settings for workers in Clean Rooms. These properties enable customization of the underlying compute environment to optimize performance for your specific workloads.
-    record WorkerComputeConfigurationProperties
-        -- The Spark configuration properties for SQL and PySpark workloads. This map contains key-value pairs that configure Apache Spark settings to optimize performance for your data processing jobs. You can specify up to 50 Spark properties, with each key being 1-200 characters and each value being 0-500 characters. These properties allow you to adjust compute capacity for large datasets and complex workloads.
-        spark: {string : string}
     end
 
     enum ProtectedJobWorkerComputeType
@@ -3358,19 +3952,6 @@ local record M
         protectedQueryIdentifier: string
     end
 
-    enum WorkerComputeType
-        "CR.1X"
-        "CR.4X"
-    end
-
-    -- The configuration of the compute resources for workers running an analysis with the Clean Rooms SQL analytics engine.
-    record WorkerComputeConfiguration
-        -- The number of workers. SQL queries support a minimum value of 2 and a maximum value of 400. PySpark jobs support a minimum value of 4 and a maximum value of 128.
-        number: number
-        -- The configuration properties for the worker compute environment. These properties allow you to customize the compute settings for your Clean Rooms workloads.
-        properties: WorkerComputeConfigurationProperties
-    end
-
     -- The configuration of the compute resources for an analysis with the Spark analytics engine.
     record ComputeConfiguration
         -- The worker configuration for the compute environment.
@@ -3458,6 +4039,16 @@ local record M
         locations: {ProtectedQueryDistributeOutputConfigurationLocation}
     end
 
+    -- Contains the output configuration of an intermediate table when a protected query populates it.
+    record IntermediateTableOutputConfiguration
+        -- The unique identifier of the intermediate table.
+        id: string
+        -- The Amazon Resource Name (ARN) of the intermediate table.
+        arn: string
+        -- The name of the intermediate table.
+        name: string
+    end
+
     -- Contains configuration details for protected query output.
     record ProtectedQueryOutputConfiguration
         -- Required configuration for a protected query with an s3 output type.
@@ -3466,6 +4057,8 @@ local record M
         member: ProtectedQueryMemberOutputConfiguration
         -- Required configuration for a protected query with a distribute output type.
         distribute: ProtectedQueryDistributeOutputConfiguration
+        -- The intermediate table output configuration, present when the protected query was triggered by a populate operation.
+        intermediateTable: IntermediateTableOutputConfiguration
     end
 
     -- Contains configurations for protected query results.
@@ -3740,6 +4333,8 @@ local record M
         receiverConfigurations: {ReceiverConfiguration}
         -- The account ID of the member that pays for the query compute costs.
         queryComputePayerAccountId: string
+        -- The intermediate table configuration, present when the protected query was triggered by a populate operation.
+        intermediateTableConfiguration: IntermediateTableOutputConfiguration
     end
 
     record ListProtectedQueriesOutput

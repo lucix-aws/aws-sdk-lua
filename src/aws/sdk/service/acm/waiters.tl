@@ -4,6 +4,138 @@ local waiter = require("smithy.waiter")
 
 local M = {}
 
+--- Wait until AcmeDomainValidationDeleted.
+function M.wait_until_acme_domain_validation_deleted(client, input, options)
+    return waiter.wait(client, "describeAcmeDomainValidation", input, {
+        min_delay = 5,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "AcmeDomainValidation.Status",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until AcmeDomainValidationValidated.
+function M.wait_until_acme_domain_validation_validated(client, input, options)
+    return waiter.wait(client, "describeAcmeDomainValidation", input, {
+        min_delay = 5,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "AcmeDomainValidation.Status",
+                        expected = "VALID",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "AcmeDomainValidation.Status",
+                        expected = "INVALID",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "AcmeDomainValidation.Status",
+                        expected = "VALIDATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until AcmeEndpointActive.
+function M.wait_until_acme_endpoint_active(client, input, options)
+    return waiter.wait(client, "describeAcmeEndpoint", input, {
+        min_delay = 5,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "AcmeEndpoint.Status",
+                        expected = "ACTIVE",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "AcmeEndpoint.Status",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "AcmeEndpoint.Status",
+                        expected = "CREATING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
+--- Wait until AcmeEndpointDeleted.
+function M.wait_until_acme_endpoint_deleted(client, input, options)
+    return waiter.wait(client, "describeAcmeEndpoint", input, {
+        min_delay = 5,
+        max_delay = 300,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+            {
+                state = "retry",
+                matcher = {
+                    output = {
+                        path = "AcmeEndpoint.Status",
+                        expected = "DELETING",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until CertificateValidated.
 function M.wait_until_certificate_validated(client, input, options)
     return waiter.wait(client, "describeCertificate", input, {

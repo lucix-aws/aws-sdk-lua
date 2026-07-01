@@ -238,6 +238,42 @@ function M.items_list_id_namespace_associations(client, input)
     })
 end
 
+--- Returns a page iterator for listIntermediateTableVersions.
+function M.pages_list_intermediate_table_versions(client, input)
+    return paginator.pages(client, "listIntermediateTableVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "intermediateTableVersionSummaries",
+    })
+end
+
+--- Returns an item iterator for listIntermediateTableVersions.
+function M.items_list_intermediate_table_versions(client, input)
+    return paginator.items(client, "listIntermediateTableVersions", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "intermediateTableVersionSummaries",
+    })
+end
+
+--- Returns a page iterator for listIntermediateTables.
+function M.pages_list_intermediate_tables(client, input)
+    return paginator.pages(client, "listIntermediateTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "intermediateTableSummaries",
+    })
+end
+
+--- Returns an item iterator for listIntermediateTables.
+function M.items_list_intermediate_tables(client, input)
+    return paginator.items(client, "listIntermediateTables", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "intermediateTableSummaries",
+    })
+end
+
 --- Returns a page iterator for listMembers.
 function M.pages_list_members(client, input)
     return paginator.pages(client, "listMembers", input, {

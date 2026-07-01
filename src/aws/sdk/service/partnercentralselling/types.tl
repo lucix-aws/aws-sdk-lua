@@ -460,6 +460,8 @@ local record M
         "AwsProducts"
         "AwsMarketplaceOffers"
         "AwsMarketplaceOfferSets"
+        "AwsMarketplaceSolutions"
+        "AwsMarketplaceProducts"
     end
 
     record AssociateOpportunityInput
@@ -907,6 +909,10 @@ local record M
         AwsProducts: {string}
         -- Specifies the partner solutions related to the opportunity. These solutions represent the partner's offerings that are being positioned as part of the overall AWS opportunity.
         Solutions: {string}
+        -- The AWS Marketplace solution ARNs associated with this opportunity.
+        AwsMarketplaceSolutions: {string}
+        -- The AWS Marketplace product ARNs associated with this opportunity.
+        AwsMarketplaceProducts: {string}
     end
 
     enum SalesInvolvementType
@@ -2203,6 +2209,10 @@ local record M
         Solutions: {string}
         -- Enables the association of specific Amazon Web Services products with the Opportunity. Partners can indicate the relevant Amazon Web Services products for the Opportunity's solution and align with the customer's needs. Returns multiple values separated by commas. For example, "AWSProducts" : ["AmazonRedshift", "AWSAppFabric", "AWSCleanRooms"]. Use the file with the list of Amazon Web Services products hosted on GitHub: Amazon Web Services products.
         AwsProducts: {string}
+        -- Specifies the AWS Marketplace solutions to associate with the Opportunity. Each value is an Amazon Resource Name (ARN) that identifies a solution listing in AWS Marketplace.
+        AwsMarketplaceSolutions: {string}
+        -- Specifies the AWS Marketplace products to associate with the Opportunity. Each value is an Amazon Resource Name (ARN) that identifies a product listing in AWS Marketplace.
+        AwsMarketplaceProducts: {string}
     end
 
     record GetOpportunityOutput
@@ -3031,6 +3041,8 @@ local record M
         Identifier: {string}
         -- Filters the solutions based on the category to which they belong. This allows partners to search for solutions within specific categories, such as Software, Consulting, or Managed Services.
         Category: {string}
+        -- Filters results by AWS Marketplace solution ARN. You can provide up to 10 ARNs.
+        AwsMarketplaceSolutionArn: {string}
     end
 
     -- Specifies minimal information for the solution offered to solve the customer's business problem.
@@ -3049,6 +3061,8 @@ local record M
         Category: string
         -- Indicates the solution creation date. This is useful to track and audit.
         CreatedDate: number
+        -- The Amazon Resource Name (ARN) of the AWS Marketplace solution associated with this partner solution.
+        AwsMarketplaceSolutionArn: string
     end
 
     record ListSolutionsOutput

@@ -5,34 +5,40 @@ return
     version = "1.0",
     parameters = {
         Region = {
-            builtIn = "AWS::Region",
-            required = false,
-            documentation = "The AWS region used to dispatch the request.",
             type = "string",
-        },
-        UseDualStack = {
-            builtIn = "AWS::UseDualStack",
+            builtIn = "AWS::Region",
             required = true,
-            default = false,
-            documentation = "When true, use the dual-stack endpoint. If the configured endpoint does not support dual-stack, dispatching the request MAY return an error.",
-            type = "boolean",
-        },
-        UseFIPS = {
-            builtIn = "AWS::UseFIPS",
-            required = true,
-            default = false,
-            documentation = "When true, send this request to the FIPS-compliant regional endpoint. If the configured endpoint does not have a FIPS compliant endpoint, dispatching the request will return an error.",
-            type = "boolean",
+            documentation = "The AWS region to send requests to.",
         },
         Endpoint = {
-            builtIn = "SDK::Endpoint",
-            required = false,
-            documentation = "Override the endpoint used to send this request",
             type = "string",
+            builtIn = "SDK::Endpoint",
+            documentation = "Override the endpoint used to send requests.",
+        },
+        UseFIPS = {
+            type = "boolean",
+            builtIn = "AWS::UseFIPS",
+            documentation = "Use FIPS endpoints.",
+            default = false,
+            required = true,
+        },
+        UseDualStack = {
+            type = "boolean",
+            builtIn = "AWS::UseDualStack",
+            documentation = "Use dual-stack endpoints.",
+            default = false,
+            required = true,
+        },
+        ServiceType = {
+            type = "string",
+            required = true,
+            documentation = "The service type: ACM or ACM-ACME. Injected via @staticContextParams.",
         },
     },
     rules = {
         {
+            documentation = "Use custom endpoint if provided",
+            type = "endpoint",
             conditions = {
                 {
                     fn = "isSet",
@@ -43,300 +49,228 @@ return
                     },
                 },
             },
-            rules = {
-                {
-                    conditions = {
-                        {
-                            fn = "booleanEquals",
-                            argv = {
-                                {
-                                    ref = "UseFIPS",
-                                },
-                                true,
-                            },
-                        },
-                    },
-                    error = "Invalid Configuration: FIPS and custom endpoint are not supported",
-                    type = "error",
-                },
-                {
-                    conditions = {
-                        {
-                            fn = "booleanEquals",
-                            argv = {
-                                {
-                                    ref = "UseDualStack",
-                                },
-                                true,
-                            },
-                        },
-                    },
-                    error = "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                    type = "error",
-                },
-                {
-                    conditions = {},
-                    endpoint = {
-                        url = {
-                            ref = "Endpoint",
-                        },
-                        properties = {},
-                        headers = {},
-                    },
-                    type = "endpoint",
-                },
+            endpoint = {
+                url = "{Endpoint}",
             },
-            type = "tree",
         },
         {
+            documentation = "Resolve partition for region",
+            type = "tree",
             conditions = {
                 {
-                    fn = "isSet",
+                    fn = "aws.partition",
                     argv = {
                         {
                             ref = "Region",
                         },
                     },
+                    assign = "PartitionResult",
                 },
             },
             rules = {
                 {
+                    documentation = "ACME operations",
+                    type = "tree",
                     conditions = {
                         {
-                            fn = "aws.partition",
+                            fn = "stringEquals",
                             argv = {
                                 {
-                                    ref = "Region",
+                                    ref = "ServiceType",
                                 },
+                                "ACM-ACME",
                             },
-                            assign = "PartitionResult",
                         },
                     },
                     rules = {
                         {
+                            documentation = "ACME with custom endpoint",
                             conditions = {
                                 {
-                                    fn = "booleanEquals",
+                                    fn = "isSet",
                                     argv = {
                                         {
-                                            ref = "UseFIPS",
+                                            ref = "Endpoint",
                                         },
-                                        true,
-                                    },
-                                },
-                                {
-                                    fn = "booleanEquals",
-                                    argv = {
-                                        {
-                                            ref = "UseDualStack",
-                                        },
-                                        true,
                                     },
                                 },
                             },
-                            rules = {
-                                {
-                                    conditions = {
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                true,
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsFIPS",
-                                                    },
-                                                },
-                                            },
-                                        },
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                true,
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsDualStack",
-                                                    },
-                                                },
-                                            },
-                                        },
-                                    },
-                                    rules = {
-                                        {
-                                            conditions = {},
-                                            endpoint = {
-                                                url = "https://acm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                    },
-                                    type = "tree",
-                                },
-                                {
-                                    conditions = {},
-                                    error = "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                    type = "error",
-                                },
-                            },
-                            type = "tree",
-                        },
-                        {
-                            conditions = {
-                                {
-                                    fn = "booleanEquals",
-                                    argv = {
-                                        {
-                                            ref = "UseFIPS",
-                                        },
-                                        true,
-                                    },
-                                },
-                            },
-                            rules = {
-                                {
-                                    conditions = {
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsFIPS",
-                                                    },
-                                                },
-                                                true,
-                                            },
-                                        },
-                                    },
-                                    rules = {
-                                        {
-                                            conditions = {
-                                                {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                        "aws-us-gov",
-                                                    },
-                                                },
-                                            },
-                                            endpoint = {
-                                                url = "https://acm.{Region}.amazonaws.com",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                        {
-                                            conditions = {},
-                                            endpoint = {
-                                                url = "https://acm-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                    },
-                                    type = "tree",
-                                },
-                                {
-                                    conditions = {},
-                                    error = "FIPS is enabled but this partition does not support FIPS",
-                                    type = "error",
-                                },
-                            },
-                            type = "tree",
-                        },
-                        {
-                            conditions = {
-                                {
-                                    fn = "booleanEquals",
-                                    argv = {
-                                        {
-                                            ref = "UseDualStack",
-                                        },
-                                        true,
-                                    },
-                                },
-                            },
-                            rules = {
-                                {
-                                    conditions = {
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                true,
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsDualStack",
-                                                    },
-                                                },
-                                            },
-                                        },
-                                    },
-                                    rules = {
-                                        {
-                                            conditions = {},
-                                            endpoint = {
-                                                url = "https://acm.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                    },
-                                    type = "tree",
-                                },
-                                {
-                                    conditions = {},
-                                    error = "DualStack is enabled but this partition does not support DualStack",
-                                    type = "error",
-                                },
-                            },
-                            type = "tree",
-                        },
-                        {
-                            conditions = {},
                             endpoint = {
-                                url = "https://acm.{Region}.{PartitionResult#dnsSuffix}",
-                                properties = {},
-                                headers = {},
+                                url = "{Endpoint}",
                             },
                             type = "endpoint",
                         },
+                        {
+                            documentation = "ACME operations are only available in commercial AWS partitions",
+                            conditions = {
+                                {
+                                    fn = "stringEquals",
+                                    argv = {
+                                        {
+                                            fn = "getAttr",
+                                            argv = {
+                                                {
+                                                    ref = "PartitionResult",
+                                                },
+                                                "name",
+                                            },
+                                        },
+                                        "aws",
+                                    },
+                                },
+                            },
+                            rules = {
+                                {
+                                    documentation = "FIPS endpoints are not available for ACME operations",
+                                    conditions = {
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    error = "FIPS endpoints are not available for ACME operations",
+                                    type = "error",
+                                },
+                                {
+                                    documentation = "ACME standard",
+                                    conditions = {},
+                                    endpoint = {
+                                        url = "https://acm-acme.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                    },
+                                    type = "endpoint",
+                                },
+                            },
+                            type = "tree",
+                        },
+                        {
+                            documentation = "ACME operations are only available in commercial AWS partitions",
+                            conditions = {},
+                            error = "ACME operations are only available in commercial AWS partitions",
+                            type = "error",
+                        },
                     },
+                },
+                {
+                    documentation = "ACM operations",
                     type = "tree",
+                    conditions = {},
+                    rules = {
+                        {
+                            documentation = "ACM FIPS + DualStack",
+                            type = "endpoint",
+                            conditions = {
+                                {
+                                    fn = "booleanEquals",
+                                    argv = {
+                                        {
+                                            ref = "UseFIPS",
+                                        },
+                                        true,
+                                    },
+                                },
+                                {
+                                    fn = "booleanEquals",
+                                    argv = {
+                                        {
+                                            ref = "UseDualStack",
+                                        },
+                                        true,
+                                    },
+                                },
+                            },
+                            endpoint = {
+                                url = "https://acm-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                            },
+                        },
+                        {
+                            documentation = "ACM FIPS only",
+                            type = "tree",
+                            conditions = {
+                                {
+                                    fn = "booleanEquals",
+                                    argv = {
+                                        {
+                                            ref = "UseFIPS",
+                                        },
+                                        true,
+                                    },
+                                },
+                            },
+                            rules = {
+                                {
+                                    documentation = "ACM FIPS GovCloud",
+                                    type = "endpoint",
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-us-gov",
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://acm.{Region}.amazonaws.com",
+                                    },
+                                },
+                                {
+                                    documentation = "ACM FIPS standard",
+                                    type = "endpoint",
+                                    conditions = {},
+                                    endpoint = {
+                                        url = "https://acm-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                    },
+                                },
+                            },
+                        },
+                        {
+                            documentation = "ACM DualStack only",
+                            type = "endpoint",
+                            conditions = {
+                                {
+                                    fn = "booleanEquals",
+                                    argv = {
+                                        {
+                                            ref = "UseDualStack",
+                                        },
+                                        true,
+                                    },
+                                },
+                            },
+                            endpoint = {
+                                url = "https://acm.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                            },
+                        },
+                        {
+                            documentation = "ACM standard",
+                            type = "endpoint",
+                            conditions = {},
+                            endpoint = {
+                                url = "https://acm.{Region}.{PartitionResult#dnsSuffix}",
+                            },
+                        },
+                    },
                 },
             },
-            type = "tree",
         },
         {
-            conditions = {},
-            error = "Invalid Configuration: Missing Region",
+            documentation = "Fallback error if region is not set",
             type = "error",
+            conditions = {},
+            error = "Region must be set to resolve an endpoint.",
         },
     },
 }

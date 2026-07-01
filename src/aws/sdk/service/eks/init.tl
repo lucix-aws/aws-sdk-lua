@@ -21,6 +21,7 @@ local record Client
     associateAccessPolicy: function(Client, types.AssociateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAccessPolicyOutput>
     associateEncryptionConfig: function(Client, types.AssociateEncryptionConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateEncryptionConfigOutput>
     associateIdentityProviderConfig: function(Client, types.AssociateIdentityProviderConfigInput, ? base_client.InvokeOptions): async.Operation<types.AssociateIdentityProviderConfigOutput>
+    cancelUpdate: function(Client, types.CancelUpdateInput, ? base_client.InvokeOptions): async.Operation<types.CancelUpdateOutput>
     createAccessEntry: function(Client, types.CreateAccessEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessEntryOutput>
     createAddon: function(Client, types.CreateAddonInput, ? base_client.InvokeOptions): async.Operation<types.CreateAddonOutput>
     createCapability: function(Client, types.CreateCapabilityInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapabilityOutput>
@@ -136,6 +137,10 @@ end
 
 function C:associateIdentityProviderConfig(input: types.AssociateIdentityProviderConfigInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateIdentityProviderConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateIdentityProviderConfig as schema.OperationSchema, input, options) as async.Operation<types.AssociateIdentityProviderConfigOutput>
+end
+
+function C:cancelUpdate(input: types.CancelUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.CancelUpdateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelUpdate as schema.OperationSchema, input, options) as async.Operation<types.CancelUpdateOutput>
 end
 
 function C:createAccessEntry(input: types.CreateAccessEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessEntryOutput>

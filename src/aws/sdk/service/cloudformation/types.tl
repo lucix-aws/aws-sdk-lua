@@ -866,6 +866,26 @@ local record M
     record ContinueUpdateRollbackOutput
     end
 
+    enum DeploymentConfigMode
+        "STANDARD"
+        "EXPRESS"
+    end
+
+    -- The deployment configuration for a stack operation, including the deployment mode.
+    record DeploymentConfig
+        -- Specifies the deployment mode for the stack operation. Possible values are:
+        -- STANDARD - Use the standard deployment behavior, ensuring resources are
+        -- ready to serve traffic before completing the operation. This is the default. You do not need
+        -- to specify this value explicitly.
+        -- EXPRESS - Complete the stack operation when resource configuration is
+        -- applied, without waiting for resources to become ready to serve traffic. Resources continue
+        -- becoming ready in the background.
+        Mode: string
+        -- Specifies whether to disable rollback of the stack if the stack operation fails.
+        -- Default: false
+        DisableRollback: boolean
+    end
+
     enum DeploymentMode
         "REVERT_DRIFT"
     end
@@ -1134,6 +1154,12 @@ local record M
         -- For more information, see Using drift-aware
         -- change sets in the CloudFormation User Guide.
         DeploymentMode: string
+        -- The deployment configuration for this stack operation, including the deployment
+        -- mode.
+        DeploymentConfig: DeploymentConfig
+        -- Set to true to disable pre-deployment validations in changeset or stack operations.
+        -- Default: false
+        DisableValidation: boolean
     end
 
     -- The output for the CreateChangeSet action.
@@ -1396,6 +1422,12 @@ local record M
         -- Retain.
         -- Default: false
         RetainExceptOnCreate: boolean
+        -- The deployment configuration for this stack operation, including the deployment
+        -- mode.
+        DeploymentConfig: DeploymentConfig
+        -- Set to true to disable pre-deployment validations in changeset or stack operations.
+        -- Default: false
+        DisableValidation: boolean
     end
 
     -- The output for a CreateStack action.
@@ -1916,6 +1948,9 @@ local record M
         -- FORCE_DELETE_STACK - Delete the stack if it's stuck in a
         -- DELETE_FAILED state due to resource deletion failure.
         DeletionMode: string
+        -- The deployment configuration for this stack operation, including the deployment
+        -- mode.
+        DeploymentConfig: DeploymentConfig
     end
 
     record DeleteStackOutput
@@ -2147,6 +2182,8 @@ local record M
         -- The deployment mode specified when the change set was created. Valid value is
         -- REVERT_DRIFT. Only present for drift-aware change sets.
         DeploymentMode: string
+        -- The deployment configuration specified when the change set was created.
+        DeploymentConfig: DeploymentConfig
     end
 
     record DescribeChangeSetHooksInput
@@ -2188,7 +2225,9 @@ local record M
     end
 
     record DescribeEventsInput
-        -- The name or unique stack ID for which you want to retrieve events.
+        -- The name or unique stack ID for which you want to retrieve events. If you specified the
+        -- name of a change set, specify the stack name or ID (ARN) of the change set you want to
+        -- describe.
         StackName: string
         -- The name or Amazon Resource Name (ARN) of the change set for which you want to retrieve
         -- events.
@@ -3342,6 +3381,9 @@ local record M
         -- true: disable rollback.
         -- false: enable rollback.
         DisableRollback: boolean
+        -- The deployment configuration for the stack, including the deployment mode used for stack
+        -- operations.
+        DeploymentConfig: DeploymentConfig
         -- Amazon SNS topic Amazon Resource Names (ARNs) to which stack related events are published.
         NotificationARNs: {string}
         -- The amount of time within which stack creation should complete.
@@ -5951,6 +5993,9 @@ local record M
         -- Retain.
         -- Default: false
         RetainExceptOnCreate: boolean
+        -- The deployment configuration for this stack operation, including the deployment
+        -- mode.
+        DeploymentConfig: DeploymentConfig
     end
 
     record RollbackStackOutput
@@ -6340,6 +6385,12 @@ local record M
         -- Retain.
         -- Default: false
         RetainExceptOnCreate: boolean
+        -- The deployment configuration for this stack operation, including the deployment
+        -- mode.
+        DeploymentConfig: DeploymentConfig
+        -- Set to true to disable pre-deployment validations in changeset or stack operations.
+        -- Default: false
+        DisableValidation: boolean
     end
 
     -- The output for an UpdateStack action.

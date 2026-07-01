@@ -23,6 +23,7 @@ local record Client
     associateFirewallPolicy: function(Client, types.AssociateFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateFirewallPolicyOutput>
     associateSubnets: function(Client, types.AssociateSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateSubnetsOutput>
     attachRuleGroupsToProxyConfiguration: function(Client, types.AttachRuleGroupsToProxyConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
+    createContainerAssociation: function(Client, types.CreateContainerAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateContainerAssociationOutput>
     createFirewall: function(Client, types.CreateFirewallInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallOutput>
     createFirewallPolicy: function(Client, types.CreateFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateFirewallPolicyOutput>
     createProxy: function(Client, types.CreateProxyInput, ? base_client.InvokeOptions): async.Operation<types.CreateProxyOutput>
@@ -32,6 +33,7 @@ local record Client
     createRuleGroup: function(Client, types.CreateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateRuleGroupOutput>
     createTLSInspectionConfiguration: function(Client, types.CreateTLSInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTLSInspectionConfigurationOutput>
     createVpcEndpointAssociation: function(Client, types.CreateVpcEndpointAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointAssociationOutput>
+    deleteContainerAssociation: function(Client, types.DeleteContainerAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContainerAssociationOutput>
     deleteFirewall: function(Client, types.DeleteFirewallInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallOutput>
     deleteFirewallPolicy: function(Client, types.DeleteFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFirewallPolicyOutput>
     deleteNetworkFirewallTransitGatewayAttachment: function(Client, types.DeleteNetworkFirewallTransitGatewayAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNetworkFirewallTransitGatewayAttachmentOutput>
@@ -43,6 +45,7 @@ local record Client
     deleteRuleGroup: function(Client, types.DeleteRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleGroupOutput>
     deleteTLSInspectionConfiguration: function(Client, types.DeleteTLSInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTLSInspectionConfigurationOutput>
     deleteVpcEndpointAssociation: function(Client, types.DeleteVpcEndpointAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointAssociationOutput>
+    describeContainerAssociation: function(Client, types.DescribeContainerAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeContainerAssociationOutput>
     describeFirewall: function(Client, types.DescribeFirewallInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFirewallOutput>
     describeFirewallMetadata: function(Client, types.DescribeFirewallMetadataInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFirewallMetadataOutput>
     describeFirewallPolicy: function(Client, types.DescribeFirewallPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFirewallPolicyOutput>
@@ -63,6 +66,7 @@ local record Client
     disassociateSubnets: function(Client, types.DisassociateSubnetsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSubnetsOutput>
     getAnalysisReportResults: function(Client, types.GetAnalysisReportResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalysisReportResultsOutput>
     listAnalysisReports: function(Client, types.ListAnalysisReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysisReportsOutput>
+    listContainerAssociations: function(Client, types.ListContainerAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListContainerAssociationsOutput>
     listFirewallPolicies: function(Client, types.ListFirewallPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallPoliciesOutput>
     listFirewalls: function(Client, types.ListFirewallsInput, ? base_client.InvokeOptions): async.Operation<types.ListFirewallsOutput>
     listFlowOperationResults: function(Client, types.ListFlowOperationResultsInput, ? base_client.InvokeOptions): async.Operation<types.ListFlowOperationResultsOutput>
@@ -82,6 +86,7 @@ local record Client
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAvailabilityZoneChangeProtection: function(Client, types.UpdateAvailabilityZoneChangeProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
+    updateContainerAssociation: function(Client, types.UpdateContainerAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContainerAssociationOutput>
     updateFirewallAnalysisSettings: function(Client, types.UpdateFirewallAnalysisSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallAnalysisSettingsOutput>
     updateFirewallDeleteProtection: function(Client, types.UpdateFirewallDeleteProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallDeleteProtectionOutput>
     updateFirewallDescription: function(Client, types.UpdateFirewallDescriptionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFirewallDescriptionOutput>
@@ -161,6 +166,10 @@ function C:attachRuleGroupsToProxyConfiguration(input: types.AttachRuleGroupsToP
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AttachRuleGroupsToProxyConfiguration as schema.OperationSchema, input, options) as async.Operation<types.AttachRuleGroupsToProxyConfigurationOutput>
 end
 
+function C:createContainerAssociation(input: types.CreateContainerAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContainerAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContainerAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateContainerAssociationOutput>
+end
+
 function C:createFirewall(input: types.CreateFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFirewallOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFirewall as schema.OperationSchema, input, options) as async.Operation<types.CreateFirewallOutput>
 end
@@ -195,6 +204,10 @@ end
 
 function C:createVpcEndpointAssociation(input: types.CreateVpcEndpointAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpcEndpointAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcEndpointAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcEndpointAssociationOutput>
+end
+
+function C:deleteContainerAssociation(input: types.DeleteContainerAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContainerAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContainerAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteContainerAssociationOutput>
 end
 
 function C:deleteFirewall(input: types.DeleteFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFirewallOutput>
@@ -239,6 +252,10 @@ end
 
 function C:deleteVpcEndpointAssociation(input: types.DeleteVpcEndpointAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcEndpointAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcEndpointAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcEndpointAssociationOutput>
+end
+
+function C:describeContainerAssociation(input: types.DescribeContainerAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeContainerAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeContainerAssociation as schema.OperationSchema, input, options) as async.Operation<types.DescribeContainerAssociationOutput>
 end
 
 function C:describeFirewall(input: types.DescribeFirewallInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFirewallOutput>
@@ -321,6 +338,10 @@ function C:listAnalysisReports(input: types.ListAnalysisReportsInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnalysisReports as schema.OperationSchema, input, options) as async.Operation<types.ListAnalysisReportsOutput>
 end
 
+function C:listContainerAssociations(input: types.ListContainerAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListContainerAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListContainerAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListContainerAssociationsOutput>
+end
+
 function C:listFirewallPolicies(input: types.ListFirewallPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.ListFirewallPoliciesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFirewallPolicies as schema.OperationSchema, input, options) as async.Operation<types.ListFirewallPoliciesOutput>
 end
@@ -395,6 +416,10 @@ end
 
 function C:updateAvailabilityZoneChangeProtection(input: types.UpdateAvailabilityZoneChangeProtectionInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAvailabilityZoneChangeProtection as schema.OperationSchema, input, options) as async.Operation<types.UpdateAvailabilityZoneChangeProtectionOutput>
+end
+
+function C:updateContainerAssociation(input: types.UpdateContainerAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContainerAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContainerAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateContainerAssociationOutput>
 end
 
 function C:updateFirewallAnalysisSettings(input: types.UpdateFirewallAnalysisSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFirewallAnalysisSettingsOutput>

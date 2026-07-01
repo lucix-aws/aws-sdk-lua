@@ -15,6 +15,8 @@ M.SubnetMappings = schema.new({ type = "list", list_member = M.SubnetMapping })
 
 M.ProxyRuleGroupAttachmentList = schema.new({ type = "list", list_member = M.ProxyRuleGroupAttachment })
 
+M.ContainerMonitoringConfigurations = schema.new({ type = "list", list_member = M.ContainerMonitoringConfiguration })
+
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.EnabledAnalysisTypes = schema.new({ type = "list", list_member = prelude.String })
@@ -32,6 +34,8 @@ M.AzSubnets = schema.new({ type = "list", list_member = prelude.String })
 M.AnalysisReportResults = schema.new({ type = "list", list_member = M.AnalysisTypeReportResult })
 
 M.AnalysisReports = schema.new({ type = "list", list_member = M.AnalysisReport })
+
+M.ContainerAssociations = schema.new({ type = "list", list_member = M.ContainerAssociationSummary })
 
 M.FirewallPolicies = schema.new({ type = "list", list_member = M.FirewallPolicyMetadata })
 
@@ -100,6 +104,8 @@ M.AssociationSyncState = schema.new({ type = "map", map_key = prelude.String, ma
 M.LogDestinationConfigs = schema.new({ type = "list", list_member = M.LogDestinationConfig })
 
 M.RuleSummaries = schema.new({ type = "list", list_member = M.RuleSummary })
+
+M.ContainerAttributes = schema.new({ type = "list", list_member = M.ContainerAttribute })
 
 M.IPSets = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSet })
 
@@ -1114,6 +1120,194 @@ M.CheckCertificateRevocationStatusActions = schema.new({
     },
 })
 
+M.ContainerAssociationSummary = schema.new({
+    id = id.from(_N, "ContainerAssociationSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "ContainerAssociationSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ContainerAssociationSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerAttribute = schema.new({
+    id = id.from(_N, "ContainerAttribute"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "ContainerAttribute", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ContainerAttribute", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContainerMonitoringConfiguration = schema.new({
+    id = id.from(_N, "ContainerMonitoringConfiguration"),
+    type = "structure",
+    members = {
+        ClusterArn = schema.new({
+            id = id.from(_N, "ContainerMonitoringConfiguration", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttributeFilters = schema.new({
+            id = id.from(_N, "ContainerMonitoringConfiguration", "AttributeFilters"),
+            type = "list",
+            name = "AttributeFilters",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerAttribute,
+        }),
+    },
+})
+
+M.CreateContainerAssociationInput = schema.new({
+    id = id.from(_N, "CreateContainerAssociationRequest"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "CreateContainerAssociationInput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateContainerAssociationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "CreateContainerAssociationInput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContainerMonitoringConfigurations = schema.new({
+            id = id.from(_N, "CreateContainerAssociationInput", "ContainerMonitoringConfigurations"),
+            type = "list",
+            name = "ContainerMonitoringConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMonitoringConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateContainerAssociationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateContainerAssociationOutput = schema.new({
+    id = id.from(_N, "CreateContainerAssociationResponse"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+        }),
+        ContainerAssociationArn = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "ContainerAssociationArn"),
+            type = "string",
+            name = "ContainerAssociationArn",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        ContainerMonitoringConfigurations = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "ContainerMonitoringConfigurations"),
+            type = "list",
+            name = "ContainerMonitoringConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMonitoringConfiguration,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        UpdateToken = schema.new({
+            id = id.from(_N, "CreateContainerAssociationOutput", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.EncryptionConfiguration = schema.new({
     id = id.from(_N, "EncryptionConfiguration"),
     type = "structure",
@@ -1524,22 +1718,6 @@ M.CreateFirewallOutput = schema.new({
             name = "FirewallStatus",
             target_id = id.from(_N, "FirewallStatus"),
             target = M.FirewallStatus,
-        }),
-    },
-})
-
-M.LimitExceededException = schema.new({
-    id = id.from(_N, "LimitExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "LimitExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -3801,6 +3979,50 @@ M.CreateVpcEndpointAssociationOutput = schema.new({
     },
 })
 
+M.DeleteContainerAssociationInput = schema.new({
+    id = id.from(_N, "DeleteContainerAssociationRequest"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "DeleteContainerAssociationInput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+        }),
+        ContainerAssociationArn = schema.new({
+            id = id.from(_N, "DeleteContainerAssociationInput", "ContainerAssociationArn"),
+            type = "string",
+            name = "ContainerAssociationArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteContainerAssociationOutput = schema.new({
+    id = id.from(_N, "DeleteContainerAssociationResponse"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "DeleteContainerAssociationOutput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+        }),
+        ContainerAssociationArn = schema.new({
+            id = id.from(_N, "DeleteContainerAssociationOutput", "ContainerAssociationArn"),
+            type = "string",
+            name = "ContainerAssociationArn",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DeleteContainerAssociationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteFirewallInput = schema.new({
     id = id.from(_N, "DeleteFirewallRequest"),
     type = "structure",
@@ -4238,6 +4460,94 @@ M.DeleteVpcEndpointAssociationOutput = schema.new({
             name = "VpcEndpointAssociationStatus",
             target_id = id.from(_N, "VpcEndpointAssociationStatus"),
             target = M.VpcEndpointAssociationStatus,
+        }),
+    },
+})
+
+M.DescribeContainerAssociationInput = schema.new({
+    id = id.from(_N, "DescribeContainerAssociationRequest"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationInput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+        }),
+        ContainerAssociationArn = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationInput", "ContainerAssociationArn"),
+            type = "string",
+            name = "ContainerAssociationArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeContainerAssociationOutput = schema.new({
+    id = id.from(_N, "DescribeContainerAssociationResponse"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+        }),
+        ContainerAssociationArn = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "ContainerAssociationArn"),
+            type = "string",
+            name = "ContainerAssociationArn",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        ContainerMonitoringConfigurations = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "ContainerMonitoringConfigurations"),
+            type = "list",
+            name = "ContainerMonitoringConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMonitoringConfiguration,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        ResolvedCidrCount = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "ResolvedCidrCount"),
+            type = "integer",
+            name = "ResolvedCidrCount",
+            target_id = prelude.Integer.id,
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        UpdateToken = schema.new({
+            id = id.from(_N, "DescribeContainerAssociationOutput", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5793,6 +6103,45 @@ M.ListAnalysisReportsOutput = schema.new({
     },
 })
 
+M.ListContainerAssociationsInput = schema.new({
+    id = id.from(_N, "ListContainerAssociationsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListContainerAssociationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerAssociationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListContainerAssociationsOutput = schema.new({
+    id = id.from(_N, "ListContainerAssociationsResponse"),
+    type = "structure",
+    members = {
+        ContainerAssociations = schema.new({
+            id = id.from(_N, "ListContainerAssociationsOutput", "ContainerAssociations"),
+            type = "list",
+            name = "ContainerAssociations",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerAssociationSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListContainerAssociationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListFirewallPoliciesInput = schema.new({
     id = id.from(_N, "ListFirewallPoliciesRequest"),
     type = "structure",
@@ -6923,6 +7272,123 @@ M.UpdateAvailabilityZoneChangeProtectionOutput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+    },
+})
+
+M.UpdateContainerAssociationInput = schema.new({
+    id = id.from(_N, "UpdateContainerAssociationRequest"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationInput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+        }),
+        ContainerAssociationArn = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationInput", "ContainerAssociationArn"),
+            type = "string",
+            name = "ContainerAssociationArn",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationInput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContainerMonitoringConfigurations = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationInput", "ContainerMonitoringConfigurations"),
+            type = "list",
+            name = "ContainerMonitoringConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMonitoringConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        UpdateToken = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationInput", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateContainerAssociationOutput = schema.new({
+    id = id.from(_N, "UpdateContainerAssociationResponse"),
+    type = "structure",
+    members = {
+        ContainerAssociationName = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "ContainerAssociationName"),
+            type = "string",
+            name = "ContainerAssociationName",
+            target_id = prelude.String.id,
+        }),
+        ContainerAssociationArn = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "ContainerAssociationArn"),
+            type = "string",
+            name = "ContainerAssociationArn",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        ContainerMonitoringConfigurations = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "ContainerMonitoringConfigurations"),
+            type = "list",
+            name = "ContainerMonitoringConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ContainerMonitoringConfiguration,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        UpdateToken = schema.new({
+            id = id.from(_N, "UpdateContainerAssociationOutput", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8175,6 +8641,17 @@ M.AttachRuleGroupsToProxyConfiguration = schema.operation({
     },
 })
 
+M.CreateContainerAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "CreateContainerAssociation"),
+    input = M.CreateContainerAssociationInput,
+    output = M.CreateContainerAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateFirewall = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "CreateFirewall"),
     input = M.CreateFirewallInput,
@@ -8267,6 +8744,17 @@ M.CreateVpcEndpointAssociation = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "CreateVpcEndpointAssociation"),
     input = M.CreateVpcEndpointAssociationInput,
     output = M.CreateVpcEndpointAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContainerAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DeleteContainerAssociation"),
+    input = M.DeleteContainerAssociationInput,
+    output = M.DeleteContainerAssociationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -8388,6 +8876,17 @@ M.DeleteVpcEndpointAssociation = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "DeleteVpcEndpointAssociation"),
     input = M.DeleteVpcEndpointAssociationInput,
     output = M.DeleteVpcEndpointAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeContainerAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "DescribeContainerAssociation"),
+    input = M.DescribeContainerAssociationInput,
+    output = M.DescribeContainerAssociationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -8615,6 +9114,17 @@ M.ListAnalysisReports = schema.operation({
     },
 })
 
+M.ListContainerAssociations = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "ListContainerAssociations"),
+    input = M.ListContainerAssociationsInput,
+    output = M.ListContainerAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListFirewallPolicies = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "ListFirewallPolicies"),
     input = M.ListFirewallPoliciesInput,
@@ -8817,6 +9327,17 @@ M.UpdateAvailabilityZoneChangeProtection = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "UpdateAvailabilityZoneChangeProtection"),
     input = M.UpdateAvailabilityZoneChangeProtectionInput,
     output = M.UpdateAvailabilityZoneChangeProtectionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContainerAssociation = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateContainerAssociation"),
+    input = M.UpdateContainerAssociationInput,
+    output = M.UpdateContainerAssociationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

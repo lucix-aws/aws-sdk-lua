@@ -13,7 +13,17 @@ M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.ThrottlingReasonList = schema.new({ type = "list", list_member = M.ThrottlingReason })
 
+M.AcmeAccountList = schema.new({ type = "list", list_member = M.AcmeAccountSummary })
+
+M.AcmeDomainValidationList = schema.new({ type = "list", list_member = M.AcmeDomainValidationSummary })
+
+M.AcmeEndpointList = schema.new({ type = "list", list_member = M.AcmeEndpointSummary })
+
+M.AcmeExternalAccountBindingList = schema.new({ type = "list", list_member = M.AcmeExternalAccountBindingSummary })
+
 M.CertificateStatuses = schema.new({ type = "list", list_member = prelude.String })
+
+M.CertificateKeyPairOrigins = schema.new({ type = "list", list_member = prelude.String })
 
 M.CertificateSummaryList = schema.new({ type = "list", list_member = M.CertificateSummary })
 
@@ -22,6 +32,10 @@ M.DomainList = schema.new({ type = "list", list_member = prelude.String })
 M.DomainValidationOptionList = schema.new({ type = "list", list_member = M.DomainValidationOption })
 
 M.CertificateSearchResultList = schema.new({ type = "list", list_member = M.CertificateSearchResult })
+
+M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ContactList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DomainValidationList = schema.new({ type = "list", list_member = M.DomainValidation })
 
@@ -38,6 +52,8 @@ M.KeyUsageFilterList = schema.new({ type = "list", list_member = prelude.String 
 M.KeyAlgorithmList = schema.new({ type = "list", list_member = prelude.String })
 
 M.CertificateFilterStatementList = schema.new({ type = "list", list_member = M.CertificateFilterStatement })
+
+M.PublicKeyAlgorithmList = schema.new({ type = "list", list_member = prelude.String })
 
 M.KeyUsageNames = schema.new({ type = "list", list_member = prelude.String })
 
@@ -149,6 +165,24 @@ M.AcmCertificateMetadata = schema.new({
             name = "ValidationMethod",
             target_id = prelude.String.id,
         }),
+        CertificateKeyPairOrigin = schema.new({
+            id = id.from(_N, "AcmCertificateMetadata", "CertificateKeyPairOrigin"),
+            type = "string",
+            name = "CertificateKeyPairOrigin",
+            target_id = prelude.String.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmCertificateMetadata", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        AcmeAccountId = schema.new({
+            id = id.from(_N, "AcmCertificateMetadata", "AcmeAccountId"),
+            type = "string",
+            name = "AcmeAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -204,6 +238,385 @@ M.AcmCertificateMetadataFilter = schema.new({
             name = "ValidationMethod",
             target_id = prelude.String.id,
         }),
+        CertificateKeyPairOrigin = schema.new({
+            id = id.from(_N, "AcmCertificateMetadataFilter", "CertificateKeyPairOrigin"),
+            type = "string",
+            name = "CertificateKeyPairOrigin",
+            target_id = prelude.String.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmCertificateMetadataFilter", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        AcmeAccountId = schema.new({
+            id = id.from(_N, "AcmCertificateMetadataFilter", "AcmeAccountId"),
+            type = "string",
+            name = "AcmeAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AcmeAccount = schema.new({
+    id = id.from(_N, "AcmeAccount"),
+    type = "structure",
+    members = {
+        AccountUrl = schema.new({
+            id = id.from(_N, "AcmeAccount", "AccountUrl"),
+            type = "string",
+            name = "AccountUrl",
+            target_id = prelude.String.id,
+        }),
+        PublicKeyThumbprint = schema.new({
+            id = id.from(_N, "AcmeAccount", "PublicKeyThumbprint"),
+            type = "string",
+            name = "PublicKeyThumbprint",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AcmeAccount", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeAccount", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "AcmeAccount", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+        }),
+        Contacts = schema.new({
+            id = id.from(_N, "AcmeAccount", "Contacts"),
+            type = "list",
+            name = "Contacts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AcmeAccountSummary = schema.new({
+    id = id.from(_N, "AcmeAccountSummary"),
+    type = "structure",
+    members = {
+        AccountUrl = schema.new({
+            id = id.from(_N, "AcmeAccountSummary", "AccountUrl"),
+            type = "string",
+            name = "AccountUrl",
+            target_id = prelude.String.id,
+        }),
+        PublicKeyThumbprint = schema.new({
+            id = id.from(_N, "AcmeAccountSummary", "PublicKeyThumbprint"),
+            type = "string",
+            name = "PublicKeyThumbprint",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AcmeAccountSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeAccountSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "AcmeAccountSummary", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+        }),
+        Contacts = schema.new({
+            id = id.from(_N, "AcmeAccountSummary", "Contacts"),
+            type = "list",
+            name = "Contacts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.FailureDetails = schema.new({
+    id = id.from(_N, "FailureDetails"),
+    type = "structure",
+    members = {
+        Reason = schema.new({
+            id = id.from(_N, "FailureDetails", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "FailureDetails", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DomainScope = schema.new({
+    id = id.from(_N, "DomainScope"),
+    type = "structure",
+    members = {
+        ExactDomain = schema.new({
+            id = id.from(_N, "DomainScope", "ExactDomain"),
+            type = "string",
+            name = "ExactDomain",
+            target_id = prelude.String.id,
+        }),
+        Subdomains = schema.new({
+            id = id.from(_N, "DomainScope", "Subdomains"),
+            type = "string",
+            name = "Subdomains",
+            target_id = prelude.String.id,
+        }),
+        Wildcards = schema.new({
+            id = id.from(_N, "DomainScope", "Wildcards"),
+            type = "string",
+            name = "Wildcards",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceRecord = schema.new({
+    id = id.from(_N, "ResourceRecord"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "ResourceRecord", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ResourceRecord", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ResourceRecord", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DnsPrevalidationDetails = schema.new({
+    id = id.from(_N, "DnsPrevalidationDetails"),
+    type = "structure",
+    members = {
+        DomainScope = schema.new({
+            id = id.from(_N, "DnsPrevalidationDetails", "DomainScope"),
+            type = "structure",
+            name = "DomainScope",
+            target_id = id.from(_N, "DomainScope"),
+            target = M.DomainScope,
+        }),
+        HostedZoneId = schema.new({
+            id = id.from(_N, "DnsPrevalidationDetails", "HostedZoneId"),
+            type = "string",
+            name = "HostedZoneId",
+            target_id = prelude.String.id,
+        }),
+        ResourceRecord = schema.new({
+            id = id.from(_N, "DnsPrevalidationDetails", "ResourceRecord"),
+            type = "structure",
+            name = "ResourceRecord",
+            target_id = id.from(_N, "ResourceRecord"),
+            target = M.ResourceRecord,
+        }),
+    },
+})
+
+M.PrevalidationDetails = schema.new({
+    id = id.from(_N, "PrevalidationDetails"),
+    type = "union",
+    members = {
+        DnsPrevalidation = schema.new({
+            id = id.from(_N, "PrevalidationDetails", "DnsPrevalidation"),
+            type = "structure",
+            name = "DnsPrevalidation",
+            target_id = id.from(_N, "DnsPrevalidationDetails"),
+            target = M.DnsPrevalidationDetails,
+        }),
+    },
+})
+
+M.AcmeDomainValidation = schema.new({
+    id = id.from(_N, "AcmeDomainValidation"),
+    type = "structure",
+    members = {
+        AcmeDomainValidationArn = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "AcmeDomainValidationArn"),
+            type = "string",
+            name = "AcmeDomainValidationArn",
+            target_id = prelude.String.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        DomainName = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+        }),
+        PrevalidationType = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "PrevalidationType"),
+            type = "string",
+            name = "PrevalidationType",
+            target_id = prelude.String.id,
+        }),
+        PrevalidationDetails = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "PrevalidationDetails"),
+            type = "union",
+            name = "PrevalidationDetails",
+            target_id = id.from(_N, "PrevalidationDetails"),
+            target = M.PrevalidationDetails,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        FailureDetails = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "FailureDetails"),
+            type = "structure",
+            name = "FailureDetails",
+            target_id = id.from(_N, "FailureDetails"),
+            target = M.FailureDetails,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AcmeDomainValidation", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AcmeDomainValidationSummary = schema.new({
+    id = id.from(_N, "AcmeDomainValidationSummary"),
+    type = "structure",
+    members = {
+        AcmeDomainValidationArn = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "AcmeDomainValidationArn"),
+            type = "string",
+            name = "AcmeDomainValidationArn",
+            target_id = prelude.String.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        DomainName = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+        }),
+        PrevalidationType = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "PrevalidationType"),
+            type = "string",
+            name = "PrevalidationType",
+            target_id = prelude.String.id,
+        }),
+        PrevalidationDetails = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "PrevalidationDetails"),
+            type = "union",
+            name = "PrevalidationDetails",
+            target_id = id.from(_N, "PrevalidationDetails"),
+            target = M.PrevalidationDetails,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        FailureDetails = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "FailureDetails"),
+            type = "structure",
+            name = "FailureDetails",
+            target_id = id.from(_N, "FailureDetails"),
+            target = M.FailureDetails,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AcmeDomainValidationSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.PublicCertificateAuthority = schema.new({
+    id = id.from(_N, "PublicCertificateAuthority"),
+    type = "structure",
+    members = {
+        AllowedKeyAlgorithms = schema.new({
+            id = id.from(_N, "PublicCertificateAuthority", "AllowedKeyAlgorithms"),
+            type = "list",
+            name = "AllowedKeyAlgorithms",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.CertificateAuthority = schema.new({
+    id = id.from(_N, "CertificateAuthority"),
+    type = "union",
+    members = {
+        PublicCertificateAuthority = schema.new({
+            id = id.from(_N, "CertificateAuthority", "PublicCertificateAuthority"),
+            type = "structure",
+            name = "PublicCertificateAuthority",
+            target_id = id.from(_N, "PublicCertificateAuthority"),
+            target = M.PublicCertificateAuthority,
+        }),
     },
 })
 
@@ -225,6 +638,254 @@ M.Tag = schema.new({
             type = "string",
             name = "Value",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AcmeEndpoint = schema.new({
+    id = id.from(_N, "AcmeEndpoint"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointUrl = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "EndpointUrl"),
+            type = "string",
+            name = "EndpointUrl",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        AuthorizationBehavior = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "AuthorizationBehavior"),
+            type = "string",
+            name = "AuthorizationBehavior",
+            target_id = prelude.String.id,
+        }),
+        Contact = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "Contact"),
+            type = "string",
+            name = "Contact",
+            target_id = prelude.String.id,
+        }),
+        CertificateAuthority = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "CertificateAuthority"),
+            type = "union",
+            name = "CertificateAuthority",
+            target_id = id.from(_N, "CertificateAuthority"),
+            target = M.CertificateAuthority,
+        }),
+        CertificateTags = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "CertificateTags"),
+            type = "list",
+            name = "CertificateTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AcmeEndpoint", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AcmeEndpointSummary = schema.new({
+    id = id.from(_N, "AcmeEndpointSummary"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        EndpointUrl = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "EndpointUrl"),
+            type = "string",
+            name = "EndpointUrl",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        FailureReason = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "FailureReason"),
+            type = "string",
+            name = "FailureReason",
+            target_id = prelude.String.id,
+        }),
+        AuthorizationBehavior = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "AuthorizationBehavior"),
+            type = "string",
+            name = "AuthorizationBehavior",
+            target_id = prelude.String.id,
+        }),
+        Contact = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "Contact"),
+            type = "string",
+            name = "Contact",
+            target_id = prelude.String.id,
+        }),
+        CertificateAuthority = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "CertificateAuthority"),
+            type = "union",
+            name = "CertificateAuthority",
+            target_id = id.from(_N, "CertificateAuthority"),
+            target = M.CertificateAuthority,
+        }),
+        CertificateTags = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "CertificateTags"),
+            type = "list",
+            name = "CertificateTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AcmeEndpointSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AcmeExternalAccountBinding = schema.new({
+    id = id.from(_N, "AcmeExternalAccountBinding"),
+    type = "structure",
+    members = {
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        RevokedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "RevokedAt"),
+            type = "timestamp",
+            name = "RevokedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUsedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "LastUsedAt"),
+            type = "timestamp",
+            name = "LastUsedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBinding", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.AcmeExternalAccountBindingSummary = schema.new({
+    id = id.from(_N, "AcmeExternalAccountBindingSummary"),
+    type = "structure",
+    members = {
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        RevokedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "RevokedAt"),
+            type = "timestamp",
+            name = "RevokedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastUsedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "LastUsedAt"),
+            type = "timestamp",
+            name = "LastUsedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "AcmeExternalAccountBindingSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -395,6 +1056,22 @@ M.TooManyTagsException = schema.new({
     },
 })
 
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ValidationException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.HttpRedirect = schema.new({
     id = id.from(_N, "HttpRedirect"),
     type = "structure",
@@ -410,40 +1087,6 @@ M.HttpRedirect = schema.new({
             type = "string",
             name = "RedirectTo",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceRecord = schema.new({
-    id = id.from(_N, "ResourceRecord"),
-    type = "structure",
-    members = {
-        Name = schema.new({
-            id = id.from(_N, "ResourceRecord", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Type = schema.new({
-            id = id.from(_N, "ResourceRecord", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Value = schema.new({
-            id = id.from(_N, "ResourceRecord", "Value"),
-            type = "string",
-            name = "Value",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
     },
 })
@@ -768,6 +1411,24 @@ M.CertificateDetail = schema.new({
             target_id = id.from(_N, "CertificateOptions"),
             target = M.CertificateOptions,
         }),
+        CertificateKeyPairOrigin = schema.new({
+            id = id.from(_N, "CertificateDetail", "CertificateKeyPairOrigin"),
+            type = "string",
+            name = "CertificateKeyPairOrigin",
+            target_id = prelude.String.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "CertificateDetail", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+        AcmeAccountId = schema.new({
+            id = id.from(_N, "CertificateDetail", "AcmeAccountId"),
+            type = "string",
+            name = "AcmeAccountId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -970,6 +1631,351 @@ M.ConflictException = schema.new({
     },
 })
 
+M.DnsPrevalidationOptions = schema.new({
+    id = id.from(_N, "DnsPrevalidationOptions"),
+    type = "structure",
+    members = {
+        DomainScope = schema.new({
+            id = id.from(_N, "DnsPrevalidationOptions", "DomainScope"),
+            type = "structure",
+            name = "DomainScope",
+            target_id = id.from(_N, "DomainScope"),
+            target = M.DomainScope,
+        }),
+        HostedZoneId = schema.new({
+            id = id.from(_N, "DnsPrevalidationOptions", "HostedZoneId"),
+            type = "string",
+            name = "HostedZoneId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PrevalidationOptions = schema.new({
+    id = id.from(_N, "PrevalidationOptions"),
+    type = "union",
+    members = {
+        DnsPrevalidation = schema.new({
+            id = id.from(_N, "PrevalidationOptions", "DnsPrevalidation"),
+            type = "structure",
+            name = "DnsPrevalidation",
+            target_id = id.from(_N, "DnsPrevalidationOptions"),
+            target = M.DnsPrevalidationOptions,
+        }),
+    },
+})
+
+M.CreateAcmeDomainValidationInput = schema.new({
+    id = id.from(_N, "CreateAcmeDomainValidationRequest"),
+    type = "structure",
+    members = {
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateAcmeDomainValidationInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "CreateAcmeDomainValidationInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DomainName = schema.new({
+            id = id.from(_N, "CreateAcmeDomainValidationInput", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PrevalidationOptions = schema.new({
+            id = id.from(_N, "CreateAcmeDomainValidationInput", "PrevalidationOptions"),
+            type = "union",
+            name = "PrevalidationOptions",
+            target_id = id.from(_N, "PrevalidationOptions"),
+            target = M.PrevalidationOptions,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAcmeDomainValidationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAcmeDomainValidationOutput = schema.new({
+    id = id.from(_N, "CreateAcmeDomainValidationResponse"),
+    type = "structure",
+    members = {
+        AcmeDomainValidationArn = schema.new({
+            id = id.from(_N, "CreateAcmeDomainValidationOutput", "AcmeDomainValidationArn"),
+            type = "string",
+            name = "AcmeDomainValidationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServerException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAcmeEndpointInput = schema.new({
+    id = id.from(_N, "CreateAcmeEndpointRequest"),
+    type = "structure",
+    members = {
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateAcmeEndpointInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        AuthorizationBehavior = schema.new({
+            id = id.from(_N, "CreateAcmeEndpointInput", "AuthorizationBehavior"),
+            type = "string",
+            name = "AuthorizationBehavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Contact = schema.new({
+            id = id.from(_N, "CreateAcmeEndpointInput", "Contact"),
+            type = "string",
+            name = "Contact",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "REQUIRED" },
+            },
+        }),
+        CertificateAuthority = schema.new({
+            id = id.from(_N, "CreateAcmeEndpointInput", "CertificateAuthority"),
+            type = "union",
+            name = "CertificateAuthority",
+            target_id = id.from(_N, "CertificateAuthority"),
+            target = M.CertificateAuthority,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAcmeEndpointInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        CertificateTags = schema.new({
+            id = id.from(_N, "CreateAcmeEndpointInput", "CertificateTags"),
+            type = "list",
+            name = "CertificateTags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAcmeEndpointOutput = schema.new({
+    id = id.from(_N, "CreateAcmeEndpointResponse"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "CreateAcmeEndpointOutput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Expiration = schema.new({
+    id = id.from(_N, "Expiration"),
+    type = "structure",
+    members = {
+        Value = schema.new({
+            id = id.from(_N, "Expiration", "Value"),
+            type = "long",
+            name = "Value",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "Expiration", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateAcmeExternalAccountBindingInput = schema.new({
+    id = id.from(_N, "CreateAcmeExternalAccountBindingRequest"),
+    type = "structure",
+    members = {
+        IdempotencyToken = schema.new({
+            id = id.from(_N, "CreateAcmeExternalAccountBindingInput", "IdempotencyToken"),
+            type = "string",
+            name = "IdempotencyToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "CreateAcmeExternalAccountBindingInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateAcmeExternalAccountBindingInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Expiration = schema.new({
+            id = id.from(_N, "CreateAcmeExternalAccountBindingInput", "Expiration"),
+            type = "structure",
+            name = "Expiration",
+            target_id = id.from(_N, "Expiration"),
+            target = M.Expiration,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAcmeExternalAccountBindingInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateAcmeExternalAccountBindingOutput = schema.new({
+    id = id.from(_N, "CreateAcmeExternalAccountBindingResponse"),
+    type = "structure",
+    members = {
+        ExternalAccountBinding = schema.new({
+            id = id.from(_N, "CreateAcmeExternalAccountBindingOutput", "ExternalAccountBinding"),
+            type = "structure",
+            name = "ExternalAccountBinding",
+            target_id = id.from(_N, "AcmeExternalAccountBinding"),
+            target = M.AcmeExternalAccountBinding,
+        }),
+    },
+})
+
+M.DeleteAcmeDomainValidationInput = schema.new({
+    id = id.from(_N, "DeleteAcmeDomainValidationRequest"),
+    type = "structure",
+    members = {
+        AcmeDomainValidationArn = schema.new({
+            id = id.from(_N, "DeleteAcmeDomainValidationInput", "AcmeDomainValidationArn"),
+            type = "string",
+            name = "AcmeDomainValidationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAcmeDomainValidationOutput = prelude.Unit
+
+M.DeleteAcmeEndpointInput = schema.new({
+    id = id.from(_N, "DeleteAcmeEndpointRequest"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "DeleteAcmeEndpointInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAcmeEndpointOutput = prelude.Unit
+
+M.DeleteAcmeExternalAccountBindingInput = schema.new({
+    id = id.from(_N, "DeleteAcmeExternalAccountBindingRequest"),
+    type = "structure",
+    members = {
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "DeleteAcmeExternalAccountBindingInput", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteAcmeExternalAccountBindingOutput = prelude.Unit
+
 M.DeleteCertificateInput = schema.new({
     id = id.from(_N, "DeleteCertificateRequest"),
     type = "structure",
@@ -1000,6 +2006,135 @@ M.ResourceInUseException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeAcmeAccountInput = schema.new({
+    id = id.from(_N, "DescribeAcmeAccountRequest"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "DescribeAcmeAccountInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AccountUrl = schema.new({
+            id = id.from(_N, "DescribeAcmeAccountInput", "AccountUrl"),
+            type = "string",
+            name = "AccountUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAcmeAccountOutput = schema.new({
+    id = id.from(_N, "DescribeAcmeAccountResponse"),
+    type = "structure",
+    members = {
+        AcmeAccount = schema.new({
+            id = id.from(_N, "DescribeAcmeAccountOutput", "AcmeAccount"),
+            type = "structure",
+            name = "AcmeAccount",
+            target_id = id.from(_N, "AcmeAccount"),
+            target = M.AcmeAccount,
+        }),
+    },
+})
+
+M.DescribeAcmeDomainValidationInput = schema.new({
+    id = id.from(_N, "DescribeAcmeDomainValidationRequest"),
+    type = "structure",
+    members = {
+        AcmeDomainValidationArn = schema.new({
+            id = id.from(_N, "DescribeAcmeDomainValidationInput", "AcmeDomainValidationArn"),
+            type = "string",
+            name = "AcmeDomainValidationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAcmeDomainValidationOutput = schema.new({
+    id = id.from(_N, "DescribeAcmeDomainValidationResponse"),
+    type = "structure",
+    members = {
+        AcmeDomainValidation = schema.new({
+            id = id.from(_N, "DescribeAcmeDomainValidationOutput", "AcmeDomainValidation"),
+            type = "structure",
+            name = "AcmeDomainValidation",
+            target_id = id.from(_N, "AcmeDomainValidation"),
+            target = M.AcmeDomainValidation,
+        }),
+    },
+})
+
+M.DescribeAcmeEndpointInput = schema.new({
+    id = id.from(_N, "DescribeAcmeEndpointRequest"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "DescribeAcmeEndpointInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAcmeEndpointOutput = schema.new({
+    id = id.from(_N, "DescribeAcmeEndpointResponse"),
+    type = "structure",
+    members = {
+        AcmeEndpoint = schema.new({
+            id = id.from(_N, "DescribeAcmeEndpointOutput", "AcmeEndpoint"),
+            type = "structure",
+            name = "AcmeEndpoint",
+            target_id = id.from(_N, "AcmeEndpoint"),
+            target = M.AcmeEndpoint,
+        }),
+    },
+})
+
+M.DescribeAcmeExternalAccountBindingInput = schema.new({
+    id = id.from(_N, "DescribeAcmeExternalAccountBindingRequest"),
+    type = "structure",
+    members = {
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "DescribeAcmeExternalAccountBindingInput", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeAcmeExternalAccountBindingOutput = schema.new({
+    id = id.from(_N, "DescribeAcmeExternalAccountBindingResponse"),
+    type = "structure",
+    members = {
+        ExternalAccountBinding = schema.new({
+            id = id.from(_N, "DescribeAcmeExternalAccountBindingOutput", "ExternalAccountBinding"),
+            type = "structure",
+            name = "ExternalAccountBinding",
+            target_id = id.from(_N, "AcmeExternalAccountBinding"),
+            target = M.AcmeExternalAccountBinding,
         }),
     },
 })
@@ -1129,6 +2264,41 @@ M.GetAccountConfigurationOutput = schema.new({
     },
 })
 
+M.GetAcmeExternalAccountBindingCredentialsInput = schema.new({
+    id = id.from(_N, "GetAcmeExternalAccountBindingCredentialsRequest"),
+    type = "structure",
+    members = {
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "GetAcmeExternalAccountBindingCredentialsInput", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetAcmeExternalAccountBindingCredentialsOutput = schema.new({
+    id = id.from(_N, "GetAcmeExternalAccountBindingCredentialsResponse"),
+    type = "structure",
+    members = {
+        KeyId = schema.new({
+            id = id.from(_N, "GetAcmeExternalAccountBindingCredentialsOutput", "KeyId"),
+            type = "string",
+            name = "KeyId",
+            target_id = prelude.String.id,
+        }),
+        MacKey = schema.new({
+            id = id.from(_N, "GetAcmeExternalAccountBindingCredentialsOutput", "MacKey"),
+            type = "string",
+            name = "MacKey",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetCertificateInput = schema.new({
     id = id.from(_N, "GetCertificateRequest"),
     type = "structure",
@@ -1237,6 +2407,189 @@ M.LimitExceededException = schema.new({
     },
 })
 
+M.ListAcmeAccountsInput = schema.new({
+    id = id.from(_N, "ListAcmeAccountsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeAccountsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAcmeAccountsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "ListAcmeAccountsInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAcmeAccountsOutput = schema.new({
+    id = id.from(_N, "ListAcmeAccountsResponse"),
+    type = "structure",
+    members = {
+        AcmeAccounts = schema.new({
+            id = id.from(_N, "ListAcmeAccountsOutput", "AcmeAccounts"),
+            type = "list",
+            name = "AcmeAccounts",
+            target_id = prelude.Document.id,
+            list_member = M.AcmeAccountSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeAccountsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAcmeDomainValidationsInput = schema.new({
+    id = id.from(_N, "ListAcmeDomainValidationsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeDomainValidationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAcmeDomainValidationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "ListAcmeDomainValidationsInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAcmeDomainValidationsOutput = schema.new({
+    id = id.from(_N, "ListAcmeDomainValidationsResponse"),
+    type = "structure",
+    members = {
+        AcmeDomainValidations = schema.new({
+            id = id.from(_N, "ListAcmeDomainValidationsOutput", "AcmeDomainValidations"),
+            type = "list",
+            name = "AcmeDomainValidations",
+            target_id = prelude.Document.id,
+            list_member = M.AcmeDomainValidationSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeDomainValidationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAcmeEndpointsInput = schema.new({
+    id = id.from(_N, "ListAcmeEndpointsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeEndpointsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAcmeEndpointsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ListAcmeEndpointsOutput = schema.new({
+    id = id.from(_N, "ListAcmeEndpointsResponse"),
+    type = "structure",
+    members = {
+        AcmeEndpoints = schema.new({
+            id = id.from(_N, "ListAcmeEndpointsOutput", "AcmeEndpoints"),
+            type = "list",
+            name = "AcmeEndpoints",
+            target_id = prelude.Document.id,
+            list_member = M.AcmeEndpointSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeEndpointsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAcmeExternalAccountBindingsInput = schema.new({
+    id = id.from(_N, "ListAcmeExternalAccountBindingsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeExternalAccountBindingsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListAcmeExternalAccountBindingsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "ListAcmeExternalAccountBindingsInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAcmeExternalAccountBindingsOutput = schema.new({
+    id = id.from(_N, "ListAcmeExternalAccountBindingsResponse"),
+    type = "structure",
+    members = {
+        ExternalAccountBindings = schema.new({
+            id = id.from(_N, "ListAcmeExternalAccountBindingsOutput", "ExternalAccountBindings"),
+            type = "list",
+            name = "ExternalAccountBindings",
+            target_id = prelude.Document.id,
+            list_member = M.AcmeExternalAccountBindingSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListAcmeExternalAccountBindingsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InvalidArgsException = schema.new({
     id = id.from(_N, "InvalidArgsException"),
     type = "structure",
@@ -1301,6 +2654,13 @@ M.ListCertificatesInput = schema.new({
             id = id.from(_N, "ListCertificatesInput", "CertificateStatuses"),
             type = "list",
             name = "CertificateStatuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CertificateKeyPairOrigins = schema.new({
+            id = id.from(_N, "ListCertificatesInput", "CertificateKeyPairOrigins"),
+            type = "list",
+            name = "CertificateKeyPairOrigins",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -1465,6 +2825,12 @@ M.CertificateSummary = schema.new({
             name = "ManagedBy",
             target_id = prelude.String.id,
         }),
+        CertificateKeyPairOrigin = schema.new({
+            id = id.from(_N, "CertificateSummary", "CertificateKeyPairOrigin"),
+            type = "string",
+            name = "CertificateKeyPairOrigin",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1484,22 +2850,6 @@ M.ListCertificatesOutput = schema.new({
             name = "CertificateSummaryList",
             target_id = prelude.Document.id,
             list_member = M.CertificateSummary,
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ValidationException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -1526,6 +2876,36 @@ M.ListTagsForCertificateOutput = schema.new({
     members = {
         Tags = schema.new({
             id = id.from(_N, "ListTagsForCertificateOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceRequest"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceResponse"),
+    type = "structure",
+    members = {
+        Tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "Tags"),
             type = "list",
             name = "Tags",
             target_id = prelude.Document.id,
@@ -1784,6 +3164,51 @@ M.ResendValidationEmailInput = schema.new({
 })
 
 M.ResendValidationEmailOutput = prelude.Unit
+
+M.RevokeAcmeAccountInput = schema.new({
+    id = id.from(_N, "RevokeAcmeAccountRequest"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "RevokeAcmeAccountInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AccountUrl = schema.new({
+            id = id.from(_N, "RevokeAcmeAccountInput", "AccountUrl"),
+            type = "string",
+            name = "AccountUrl",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RevokeAcmeAccountOutput = prelude.Unit
+
+M.RevokeAcmeExternalAccountBindingInput = schema.new({
+    id = id.from(_N, "RevokeAcmeExternalAccountBindingRequest"),
+    type = "structure",
+    members = {
+        AcmeExternalAccountBindingArn = schema.new({
+            id = id.from(_N, "RevokeAcmeExternalAccountBindingInput", "AcmeExternalAccountBindingArn"),
+            type = "string",
+            name = "AcmeExternalAccountBindingArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RevokeAcmeExternalAccountBindingOutput = prelude.Unit
 
 M.RevokeCertificateInput = schema.new({
     id = id.from(_N, "RevokeCertificateRequest"),
@@ -2144,6 +3569,124 @@ M.SearchCertificatesOutput = schema.new({
     },
 })
 
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceRequest"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = prelude.Unit
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceRequest"),
+    type = "structure",
+    members = {
+        ResourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "TagKeys"),
+            type = "list",
+            name = "TagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = prelude.Unit
+
+M.UpdateAcmeDomainValidationInput = schema.new({
+    id = id.from(_N, "UpdateAcmeDomainValidationRequest"),
+    type = "structure",
+    members = {
+        AcmeDomainValidationArn = schema.new({
+            id = id.from(_N, "UpdateAcmeDomainValidationInput", "AcmeDomainValidationArn"),
+            type = "string",
+            name = "AcmeDomainValidationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PrevalidationOptions = schema.new({
+            id = id.from(_N, "UpdateAcmeDomainValidationInput", "PrevalidationOptions"),
+            type = "union",
+            name = "PrevalidationOptions",
+            target_id = id.from(_N, "PrevalidationOptions"),
+            target = M.PrevalidationOptions,
+        }),
+    },
+})
+
+M.UpdateAcmeDomainValidationOutput = prelude.Unit
+
+M.UpdateAcmeEndpointInput = schema.new({
+    id = id.from(_N, "UpdateAcmeEndpointRequest"),
+    type = "structure",
+    members = {
+        AcmeEndpointArn = schema.new({
+            id = id.from(_N, "UpdateAcmeEndpointInput", "AcmeEndpointArn"),
+            type = "string",
+            name = "AcmeEndpointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AuthorizationBehavior = schema.new({
+            id = id.from(_N, "UpdateAcmeEndpointInput", "AuthorizationBehavior"),
+            type = "string",
+            name = "AuthorizationBehavior",
+            target_id = prelude.String.id,
+        }),
+        Contact = schema.new({
+            id = id.from(_N, "UpdateAcmeEndpointInput", "Contact"),
+            type = "string",
+            name = "Contact",
+            target_id = prelude.String.id,
+        }),
+        CertificateAuthority = schema.new({
+            id = id.from(_N, "UpdateAcmeEndpointInput", "CertificateAuthority"),
+            type = "union",
+            name = "CertificateAuthority",
+            target_id = id.from(_N, "CertificateAuthority"),
+            target = M.CertificateAuthority,
+        }),
+    },
+})
+
+M.UpdateAcmeEndpointOutput = prelude.Unit
+
 M.UpdateCertificateOptionsInput = schema.new({
     id = id.from(_N, "UpdateCertificateOptionsRequest"),
     type = "structure",
@@ -2287,6 +3830,93 @@ M.AddTagsToCertificate = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.CreateAcmeDomainValidation = schema.operation({
+    id = id.from("com.amazonaws.acm", "CreateAcmeDomainValidation"),
+    input = M.CreateAcmeDomainValidationInput,
+    output = M.CreateAcmeDomainValidationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.CreateAcmeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.acm", "CreateAcmeEndpoint"),
+    input = M.CreateAcmeEndpointInput,
+    output = M.CreateAcmeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.CreateAcmeExternalAccountBinding = schema.operation({
+    id = id.from("com.amazonaws.acm", "CreateAcmeExternalAccountBinding"),
+    input = M.CreateAcmeExternalAccountBindingInput,
+    output = M.CreateAcmeExternalAccountBindingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.DeleteAcmeDomainValidation = schema.operation({
+    id = id.from("com.amazonaws.acm", "DeleteAcmeDomainValidation"),
+    input = M.DeleteAcmeDomainValidationInput,
+    output = M.DeleteAcmeDomainValidationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.DeleteAcmeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.acm", "DeleteAcmeEndpoint"),
+    input = M.DeleteAcmeEndpointInput,
+    output = M.DeleteAcmeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.DeleteAcmeExternalAccountBinding = schema.operation({
+    id = id.from("com.amazonaws.acm", "DeleteAcmeExternalAccountBinding"),
+    input = M.DeleteAcmeExternalAccountBindingInput,
+    output = M.DeleteAcmeExternalAccountBindingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
     },
 })
 
@@ -2297,6 +3927,65 @@ M.DeleteCertificate = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.DescribeAcmeAccount = schema.operation({
+    id = id.from("com.amazonaws.acm", "DescribeAcmeAccount"),
+    input = M.DescribeAcmeAccountInput,
+    output = M.DescribeAcmeAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.DescribeAcmeDomainValidation = schema.operation({
+    id = id.from("com.amazonaws.acm", "DescribeAcmeDomainValidation"),
+    input = M.DescribeAcmeDomainValidationInput,
+    output = M.DescribeAcmeDomainValidationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.DescribeAcmeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.acm", "DescribeAcmeEndpoint"),
+    input = M.DescribeAcmeEndpointInput,
+    output = M.DescribeAcmeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.DescribeAcmeExternalAccountBinding = schema.operation({
+    id = id.from("com.amazonaws.acm", "DescribeAcmeExternalAccountBinding"),
+    input = M.DescribeAcmeExternalAccountBindingInput,
+    output = M.DescribeAcmeExternalAccountBindingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
         },
     },
 })
@@ -2309,6 +3998,9 @@ M.DescribeCertificate = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
     },
 })
 
@@ -2319,6 +4011,9 @@ M.ExportCertificate = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
         },
     },
 })
@@ -2331,6 +4026,23 @@ M.GetAccountConfiguration = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.GetAcmeExternalAccountBindingCredentials = schema.operation({
+    id = id.from("com.amazonaws.acm", "GetAcmeExternalAccountBindingCredentials"),
+    input = M.GetAcmeExternalAccountBindingCredentialsInput,
+    output = M.GetAcmeExternalAccountBindingCredentialsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
     },
 })
 
@@ -2341,6 +4053,9 @@ M.GetCertificate = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
         },
     },
 })
@@ -2353,6 +4068,65 @@ M.ImportCertificate = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.ListAcmeAccounts = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListAcmeAccounts"),
+    input = M.ListAcmeAccountsInput,
+    output = M.ListAcmeAccountsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.ListAcmeDomainValidations = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListAcmeDomainValidations"),
+    input = M.ListAcmeDomainValidationsInput,
+    output = M.ListAcmeDomainValidationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.ListAcmeEndpoints = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListAcmeEndpoints"),
+    input = M.ListAcmeEndpointsInput,
+    output = M.ListAcmeEndpointsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.ListAcmeExternalAccountBindings = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListAcmeExternalAccountBindings"),
+    input = M.ListAcmeExternalAccountBindingsInput,
+    output = M.ListAcmeExternalAccountBindingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
     },
 })
 
@@ -2363,6 +4137,9 @@ M.ListCertificates = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
         },
     },
 })
@@ -2375,6 +4152,23 @@ M.ListTagsForCertificate = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.acm", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
     },
 })
 
@@ -2385,6 +4179,9 @@ M.PutAccountConfiguration = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
         },
     },
 })
@@ -2397,6 +4194,9 @@ M.RemoveTagsFromCertificate = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
     },
 })
 
@@ -2407,6 +4207,9 @@ M.RenewCertificate = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
         },
     },
 })
@@ -2419,6 +4222,9 @@ M.RequestCertificate = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
     },
 })
 
@@ -2429,6 +4235,37 @@ M.ResendValidationEmail = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.RevokeAcmeAccount = schema.operation({
+    id = id.from("com.amazonaws.acm", "RevokeAcmeAccount"),
+    input = M.RevokeAcmeAccountInput,
+    output = M.RevokeAcmeAccountOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.RevokeAcmeExternalAccountBinding = schema.operation({
+    id = id.from("com.amazonaws.acm", "RevokeAcmeExternalAccountBinding"),
+    input = M.RevokeAcmeExternalAccountBindingInput,
+    output = M.RevokeAcmeExternalAccountBindingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
         },
     },
 })
@@ -2441,6 +4278,9 @@ M.RevokeCertificate = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
     },
 })
 
@@ -2452,6 +4292,65 @@ M.SearchCertificates = schema.operation({
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.acm", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.acm", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
+        },
+    },
+})
+
+M.UpdateAcmeDomainValidation = schema.operation({
+    id = id.from("com.amazonaws.acm", "UpdateAcmeDomainValidation"),
+    input = M.UpdateAcmeDomainValidationInput,
+    output = M.UpdateAcmeDomainValidationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
+    },
+})
+
+M.UpdateAcmeEndpoint = schema.operation({
+    id = id.from("com.amazonaws.acm", "UpdateAcmeEndpoint"),
+    input = M.UpdateAcmeEndpointInput,
+    output = M.UpdateAcmeEndpointOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM-ACME" },
+        },
     },
 })
 
@@ -2462,6 +4361,9 @@ M.UpdateCertificateOptions = schema.operation({
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            ServiceType = { value = "ACM" },
         },
     },
 })

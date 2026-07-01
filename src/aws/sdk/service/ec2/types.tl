@@ -16233,6 +16233,23 @@ local record M
         Code: string
     end
 
+    enum PayerResponsibilityType
+        "vpc-endpoint-account"
+        "vpc-endpoint-service-account"
+    end
+
+    enum PayerResponsibilityScope
+        "vpc-endpoint-charges"
+    end
+
+    -- Describes a payer responsibility setting for a VPC endpoint.
+    record PayerResponsibilityEntry
+        -- The scope of usage/charges.
+        Scope: string
+        -- The Amazon Web Services account to which the usage is charged.
+        PayerResponsibilityType: string
+    end
+
     enum State
         "PendingAcceptance"
         "Pending"
@@ -16298,6 +16315,8 @@ local record M
         ResourceConfigurationArn: string
         -- The Region where the service is hosted.
         ServiceRegion: string
+        -- The payer responsibility settings for the endpoint.
+        PayerResponsibilities: {PayerResponsibilityEntry}
     end
 
     record CreateVpcEndpointOutput
@@ -31223,6 +31242,8 @@ local record M
         Tags: {Tag}
         -- The Region of the endpoint.
         VpcEndpointRegion: string
+        -- The payer responsibility settings for the endpoint.
+        PayerResponsibilities: {PayerResponsibilityEntry}
     end
 
     record DescribeVpcEndpointConnectionsOutput
@@ -39195,6 +39216,28 @@ local record M
     record ModifyVpcEndpointConnectionNotificationOutput
         -- Returns true if the request succeeds; otherwise, it returns an error.
         ReturnValue: boolean
+    end
+
+    record ModifyVpcEndpointPayerResponsibilityInput
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the VPC endpoint service.
+        ServiceId: string
+        -- The ID of the VPC endpoint.
+        VpcEndpointId: string
+        -- The Amazon Web Services account to which the usage of VPC endpoint is charged.
+        PayerResponsibility: string
+        -- The scope of usage/charges for which the billing account is being modified.
+        Scope: string
+    end
+
+    record ModifyVpcEndpointPayerResponsibilityOutput
+        -- The ID of the VPC endpoint.
+        VpcEndpointId: string
+        -- The payer responsibility settings for the VPC endpoint.
+        PayerResponsibilities: {PayerResponsibilityEntry}
     end
 
     record ModifyVpcEndpointServiceConfigurationInput

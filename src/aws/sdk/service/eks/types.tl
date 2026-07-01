@@ -514,6 +514,22 @@ local record M
         clientRequestToken: string
     end
 
+    enum CancellationStatus
+        "InProgress"
+        "Failed"
+        "Successful"
+    end
+
+    -- Contains information about the latest cancellation of an update to an Amazon EKS cluster.
+    record Cancellation
+        -- The current status of the cancellation. Valid values are InProgress,
+        -- Failed, and Successful.
+        status: string
+        -- A message providing additional details about the cancellation, such as the reason for
+        -- the cancellation or failure details.
+        reason: string
+    end
+
     enum ErrorCode
         "SubnetNotFound"
         "SecurityGroupNotFound"
@@ -646,6 +662,7 @@ local record M
         "ControlPlaneScalingConfigUpdate"
         "VendedLogsUpdate"
         "ControlPlaneEgressUpdate"
+        "VersionRollback"
     end
 
     -- An object representing an asynchronous update.
@@ -660,6 +677,9 @@ local record M
         createdAt: number
         -- Any errors associated with a Failed update.
         errors: {ErrorDetail}
+        -- The latest cancellation information for the update. This field is present only if any
+        -- cancellation is attempted for the update.
+        cancellation: Cancellation
     end
 
     record AssociateEncryptionConfigOutput
@@ -772,6 +792,34 @@ local record M
     record AutoScalingGroup
         -- The name of the Auto Scaling group associated with an Amazon EKS managed node group.
         name: string
+    end
+
+    record CancelUpdateInput
+        -- The name of the Amazon EKS cluster associated with the update.
+        name: string
+        -- The ID of the update to cancel.
+        updateId: string
+        -- A unique, case-sensitive identifier that you provide to ensure
+        -- the idempotency of the request.
+        clientRequestToken: string
+    end
+
+    record CancelUpdateOutput
+        -- The full description of the specified update.
+        update: Update
+    end
+
+    -- Amazon EKS detected upgrade readiness issues. Call the
+    -- ListInsights
+    -- API to view detected upgrade blocking issues.
+    -- Pass the
+    -- force
+    -- flag when updating to override upgrade readiness
+    -- errors.
+    record InvalidStateException
+        -- The Amazon EKS cluster associated with the exception.
+        clusterName: string
+        message: string
     end
 
     record CreateAccessEntryInput
@@ -3169,6 +3217,7 @@ local record M
     enum Category
         "UPGRADE_READINESS"
         "MISCONFIGURATION"
+        "ROLLBACK_READINESS"
     end
 
     -- Details about clients using the deprecated resources.
@@ -4182,17 +4231,13 @@ local record M
         update: Update
     end
 
-    -- Amazon EKS detected upgrade readiness issues. Call the
-    -- ListInsights
-    -- API to view detected upgrade blocking issues.
-    -- Pass the
-    -- force
-    -- flag when updating to override upgrade readiness
-    -- errors.
-    record InvalidStateException
-        -- The Amazon EKS cluster associated with the exception.
-        clusterName: string
-        message: string
+    -- The rollback configuration for the cluster version rollback.
+    record RollbackConfig
+        -- The length of time in minutes to wait before cancelling the update. Timeout is a
+        -- minimum-bound property, meaning the timeout occurs no sooner than the time you specify,
+        -- but can occur shortly thereafter. This value can be between 120 (2 hours) and 10080
+        -- (7 days). Default: 720 (12 hours) if not specified.
+        timeoutMinutes: number
     end
 
     record UpdateClusterVersionInput
@@ -4203,9 +4248,11 @@ local record M
         -- A unique, case-sensitive identifier that you provide to ensure
         -- the idempotency of the request.
         clientRequestToken: string
-        -- Set this value to true to override upgrade-blocking readiness checks when
+        -- Set this value to true to override upgrade-blocking or rollback-blocking readiness checks when
         -- updating a cluster.
         force: boolean
+        -- The rollback configuration for the cluster version rollback.
+        rollbackConfig: RollbackConfig
     end
 
     record UpdateClusterVersionOutput

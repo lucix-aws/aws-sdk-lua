@@ -31,6 +31,8 @@ local record Client
     createConfiguredTableAssociationAnalysisRule: function(Client, types.CreateConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfiguredTableAssociationAnalysisRuleOutput>
     createIdMappingTable: function(Client, types.CreateIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdMappingTableOutput>
     createIdNamespaceAssociation: function(Client, types.CreateIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIdNamespaceAssociationOutput>
+    createIntermediateTable: function(Client, types.CreateIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntermediateTableOutput>
+    createIntermediateTableAnalysisRule: function(Client, types.CreateIntermediateTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntermediateTableAnalysisRuleOutput>
     createMembership: function(Client, types.CreateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
     createPrivacyBudgetTemplate: function(Client, types.CreatePrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreatePrivacyBudgetTemplateOutput>
     deleteAnalysisTemplate: function(Client, types.DeleteAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAnalysisTemplateOutput>
@@ -42,9 +44,12 @@ local record Client
     deleteConfiguredTableAssociationAnalysisRule: function(Client, types.DeleteConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfiguredTableAssociationAnalysisRuleOutput>
     deleteIdMappingTable: function(Client, types.DeleteIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdMappingTableOutput>
     deleteIdNamespaceAssociation: function(Client, types.DeleteIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIdNamespaceAssociationOutput>
+    deleteIntermediateTable: function(Client, types.DeleteIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntermediateTableOutput>
+    deleteIntermediateTableAnalysisRule: function(Client, types.DeleteIntermediateTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntermediateTableAnalysisRuleOutput>
     deleteMember: function(Client, types.DeleteMemberInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemberOutput>
     deleteMembership: function(Client, types.DeleteMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMembershipOutput>
     deletePrivacyBudgetTemplate: function(Client, types.DeletePrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivacyBudgetTemplateOutput>
+    disallowIntermediateTable: function(Client, types.DisallowIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.DisallowIntermediateTableOutput>
     getAnalysisTemplate: function(Client, types.GetAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalysisTemplateOutput>
     getCollaboration: function(Client, types.GetCollaborationInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationOutput>
     getCollaborationAnalysisTemplate: function(Client, types.GetCollaborationAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationAnalysisTemplateOutput>
@@ -59,6 +64,8 @@ local record Client
     getConfiguredTableAssociationAnalysisRule: function(Client, types.GetConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetConfiguredTableAssociationAnalysisRuleOutput>
     getIdMappingTable: function(Client, types.GetIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.GetIdMappingTableOutput>
     getIdNamespaceAssociation: function(Client, types.GetIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetIdNamespaceAssociationOutput>
+    getIntermediateTable: function(Client, types.GetIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.GetIntermediateTableOutput>
+    getIntermediateTableAnalysisRule: function(Client, types.GetIntermediateTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetIntermediateTableAnalysisRuleOutput>
     getMembership: function(Client, types.GetMembershipInput, ? base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>
     getPrivacyBudgetTemplate: function(Client, types.GetPrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetPrivacyBudgetTemplateOutput>
     getProtectedJob: function(Client, types.GetProtectedJobInput, ? base_client.InvokeOptions): async.Operation<types.GetProtectedJobOutput>
@@ -78,6 +85,8 @@ local record Client
     listConfiguredTables: function(Client, types.ListConfiguredTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListConfiguredTablesOutput>
     listIdMappingTables: function(Client, types.ListIdMappingTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListIdMappingTablesOutput>
     listIdNamespaceAssociations: function(Client, types.ListIdNamespaceAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListIdNamespaceAssociationsOutput>
+    listIntermediateTables: function(Client, types.ListIntermediateTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListIntermediateTablesOutput>
+    listIntermediateTableVersions: function(Client, types.ListIntermediateTableVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntermediateTableVersionsOutput>
     listMembers: function(Client, types.ListMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
     listMemberships: function(Client, types.ListMembershipsInput, ? base_client.InvokeOptions): async.Operation<types.ListMembershipsOutput>
     listPrivacyBudgets: function(Client, types.ListPrivacyBudgetsInput, ? base_client.InvokeOptions): async.Operation<types.ListPrivacyBudgetsOutput>
@@ -87,6 +96,7 @@ local record Client
     listSchemas: function(Client, types.ListSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     populateIdMappingTable: function(Client, types.PopulateIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.PopulateIdMappingTableOutput>
+    populateIntermediateTable: function(Client, types.PopulateIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.PopulateIntermediateTableOutput>
     previewPrivacyImpact: function(Client, types.PreviewPrivacyImpactInput, ? base_client.InvokeOptions): async.Operation<types.PreviewPrivacyImpactOutput>
     startProtectedJob: function(Client, types.StartProtectedJobInput, ? base_client.InvokeOptions): async.Operation<types.StartProtectedJobOutput>
     startProtectedQuery: function(Client, types.StartProtectedQueryInput, ? base_client.InvokeOptions): async.Operation<types.StartProtectedQueryOutput>
@@ -102,6 +112,8 @@ local record Client
     updateConfiguredTableAssociationAnalysisRule: function(Client, types.UpdateConfiguredTableAssociationAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfiguredTableAssociationAnalysisRuleOutput>
     updateIdMappingTable: function(Client, types.UpdateIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdMappingTableOutput>
     updateIdNamespaceAssociation: function(Client, types.UpdateIdNamespaceAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdNamespaceAssociationOutput>
+    updateIntermediateTable: function(Client, types.UpdateIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntermediateTableOutput>
+    updateIntermediateTableAnalysisRule: function(Client, types.UpdateIntermediateTableAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIntermediateTableAnalysisRuleOutput>
     updateMembership: function(Client, types.UpdateMembershipInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMembershipOutput>
     updatePrivacyBudgetTemplate: function(Client, types.UpdatePrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePrivacyBudgetTemplateOutput>
     updateProtectedJob: function(Client, types.UpdateProtectedJobInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProtectedJobOutput>
@@ -202,6 +214,14 @@ function C:createIdNamespaceAssociation(input: types.CreateIdNamespaceAssociatio
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateIdNamespaceAssociationOutput>
 end
 
+function C:createIntermediateTable(input: types.CreateIntermediateTableInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIntermediateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntermediateTable as schema.OperationSchema, input, options) as async.Operation<types.CreateIntermediateTableOutput>
+end
+
+function C:createIntermediateTableAnalysisRule(input: types.CreateIntermediateTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIntermediateTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntermediateTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.CreateIntermediateTableAnalysisRuleOutput>
+end
+
 function C:createMembership(input: types.CreateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMembershipOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMembership as schema.OperationSchema, input, options) as async.Operation<types.CreateMembershipOutput>
 end
@@ -246,6 +266,14 @@ function C:deleteIdNamespaceAssociation(input: types.DeleteIdNamespaceAssociatio
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteIdNamespaceAssociationOutput>
 end
 
+function C:deleteIntermediateTable(input: types.DeleteIntermediateTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIntermediateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntermediateTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntermediateTableOutput>
+end
+
+function C:deleteIntermediateTableAnalysisRule(input: types.DeleteIntermediateTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIntermediateTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntermediateTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntermediateTableAnalysisRuleOutput>
+end
+
 function C:deleteMember(input: types.DeleteMemberInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMemberOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMember as schema.OperationSchema, input, options) as async.Operation<types.DeleteMemberOutput>
 end
@@ -256,6 +284,10 @@ end
 
 function C:deletePrivacyBudgetTemplate(input: types.DeletePrivacyBudgetTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePrivacyBudgetTemplateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePrivacyBudgetTemplate as schema.OperationSchema, input, options) as async.Operation<types.DeletePrivacyBudgetTemplateOutput>
+end
+
+function C:disallowIntermediateTable(input: types.DisallowIntermediateTableInput, options?: base_client.InvokeOptions): async.Operation<types.DisallowIntermediateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisallowIntermediateTable as schema.OperationSchema, input, options) as async.Operation<types.DisallowIntermediateTableOutput>
 end
 
 function C:getAnalysisTemplate(input: types.GetAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnalysisTemplateOutput>
@@ -312,6 +344,14 @@ end
 
 function C:getIdNamespaceAssociation(input: types.GetIdNamespaceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetIdNamespaceAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetIdNamespaceAssociationOutput>
+end
+
+function C:getIntermediateTable(input: types.GetIntermediateTableInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntermediateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntermediateTable as schema.OperationSchema, input, options) as async.Operation<types.GetIntermediateTableOutput>
+end
+
+function C:getIntermediateTableAnalysisRule(input: types.GetIntermediateTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetIntermediateTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIntermediateTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.GetIntermediateTableAnalysisRuleOutput>
 end
 
 function C:getMembership(input: types.GetMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.GetMembershipOutput>
@@ -390,6 +430,14 @@ function C:listIdNamespaceAssociations(input: types.ListIdNamespaceAssociationsI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIdNamespaceAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListIdNamespaceAssociationsOutput>
 end
 
+function C:listIntermediateTables(input: types.ListIntermediateTablesInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntermediateTablesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntermediateTables as schema.OperationSchema, input, options) as async.Operation<types.ListIntermediateTablesOutput>
+end
+
+function C:listIntermediateTableVersions(input: types.ListIntermediateTableVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListIntermediateTableVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListIntermediateTableVersions as schema.OperationSchema, input, options) as async.Operation<types.ListIntermediateTableVersionsOutput>
+end
+
 function C:listMembers(input: types.ListMembersInput, options?: base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMembers as schema.OperationSchema, input, options) as async.Operation<types.ListMembersOutput>
 end
@@ -424,6 +472,10 @@ end
 
 function C:populateIdMappingTable(input: types.PopulateIdMappingTableInput, options?: base_client.InvokeOptions): async.Operation<types.PopulateIdMappingTableOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PopulateIdMappingTable as schema.OperationSchema, input, options) as async.Operation<types.PopulateIdMappingTableOutput>
+end
+
+function C:populateIntermediateTable(input: types.PopulateIntermediateTableInput, options?: base_client.InvokeOptions): async.Operation<types.PopulateIntermediateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PopulateIntermediateTable as schema.OperationSchema, input, options) as async.Operation<types.PopulateIntermediateTableOutput>
 end
 
 function C:previewPrivacyImpact(input: types.PreviewPrivacyImpactInput, options?: base_client.InvokeOptions): async.Operation<types.PreviewPrivacyImpactOutput>
@@ -484,6 +536,14 @@ end
 
 function C:updateIdNamespaceAssociation(input: types.UpdateIdNamespaceAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIdNamespaceAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIdNamespaceAssociation as schema.OperationSchema, input, options) as async.Operation<types.UpdateIdNamespaceAssociationOutput>
+end
+
+function C:updateIntermediateTable(input: types.UpdateIntermediateTableInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIntermediateTableOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIntermediateTable as schema.OperationSchema, input, options) as async.Operation<types.UpdateIntermediateTableOutput>
+end
+
+function C:updateIntermediateTableAnalysisRule(input: types.UpdateIntermediateTableAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateIntermediateTableAnalysisRuleOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateIntermediateTableAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.UpdateIntermediateTableAnalysisRuleOutput>
 end
 
 function C:updateMembership(input: types.UpdateMembershipInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMembershipOutput>

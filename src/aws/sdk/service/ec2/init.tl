@@ -698,6 +698,7 @@ local record Client
     modifyVpcEncryptionControl: function(Client, types.ModifyVpcEncryptionControlInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEncryptionControlOutput>
     modifyVpcEndpoint: function(Client, types.ModifyVpcEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointOutput>
     modifyVpcEndpointConnectionNotification: function(Client, types.ModifyVpcEndpointConnectionNotificationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
+    modifyVpcEndpointPayerResponsibility: function(Client, types.ModifyVpcEndpointPayerResponsibilityInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointPayerResponsibilityOutput>
     modifyVpcEndpointServiceConfiguration: function(Client, types.ModifyVpcEndpointServiceConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>
     modifyVpcEndpointServicePayerResponsibility: function(Client, types.ModifyVpcEndpointServicePayerResponsibilityInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServicePayerResponsibilityOutput>
     modifyVpcEndpointServicePermissions: function(Client, types.ModifyVpcEndpointServicePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServicePermissionsOutput>
@@ -3549,6 +3550,10 @@ end
 
 function C:modifyVpcEndpointConnectionNotification(input: types.ModifyVpcEndpointConnectionNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEndpointConnectionNotification as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEndpointConnectionNotificationOutput>
+end
+
+function C:modifyVpcEndpointPayerResponsibility(input: types.ModifyVpcEndpointPayerResponsibilityInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointPayerResponsibilityOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyVpcEndpointPayerResponsibility as schema.OperationSchema, input, options) as async.Operation<types.ModifyVpcEndpointPayerResponsibilityOutput>
 end
 
 function C:modifyVpcEndpointServiceConfiguration(input: types.ModifyVpcEndpointServiceConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyVpcEndpointServiceConfigurationOutput>

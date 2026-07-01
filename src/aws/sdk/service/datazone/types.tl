@@ -1960,6 +1960,127 @@ local record M
         registerS3AccessGrantLocation: boolean
     end
 
+    -- Contains the network and authentication settings for a connection, including connection credentials, physical network requirements, and compute-environment validation options.
+    record ConnectivityProperties
+        -- The connection properties for this configuration.
+        connectionProperties: {string : string}
+        -- The physical network requirements for the connection, such as the subnet, security group, and VPC settings needed to reach the data source.
+        physicalConnectionRequirements: PhysicalConnectionRequirements
+        -- The name of the connectivity configuration.
+        name: string
+        -- The description of the connectivity configuration.
+        description: string
+        -- Specifies whether to validate credentials for the connectivity configuration. Defaults to true if not specified.
+        validateCredentials: boolean
+        -- The compute environments to use when validating connectivity. The service validates that the connection is reachable from each specified environment.
+        validateForComputeEnvironments: {string}
+        -- The Spark properties for this configuration.
+        sparkProperties: {string : string}
+        -- The Athena properties for this configuration.
+        athenaProperties: {string : string}
+        -- The Python properties for this configuration.
+        pythonProperties: {string : string}
+        -- The authentication settings for this configuration.
+        authenticationConfiguration: AuthenticationConfigurationInput
+    end
+
+    -- Contains the configuration for mapping user identities to Snowflake users, including the username attribute and optional prefix applied during the mapping.
+    record IdentityMapping
+        -- The username attribute used for the identity mapping.
+        usernameAttribute: string
+        -- The prefix used for the identity mapping.
+        prefix: string
+    end
+
+    enum Timezone
+        "UTC"
+        "AFRICA_JOHANNESBURG"
+        "AMERICA_MONTREAL"
+        "AMERICA_SAO_PAULO"
+        "ASIA_BAHRAIN"
+        "ASIA_BANGKOK"
+        "ASIA_CALCUTTA"
+        "ASIA_DUBAI"
+        "ASIA_HONG_KONG"
+        "ASIA_JAKARTA"
+        "ASIA_KUALA_LUMPUR"
+        "ASIA_SEOUL"
+        "ASIA_SHANGHAI"
+        "ASIA_SINGAPORE"
+        "ASIA_TAIPEI"
+        "ASIA_TOKYO"
+        "AUSTRALIA_MELBOURNE"
+        "AUSTRALIA_SYDNEY"
+        "CANADA_CENTRAL"
+        "CET"
+        "CST6CDT"
+        "ETC_GMT"
+        "ETC_GMT0"
+        "ETC_GMT_ADD_0"
+        "ETC_GMT_ADD_1"
+        "ETC_GMT_ADD_10"
+        "ETC_GMT_ADD_11"
+        "ETC_GMT_ADD_12"
+        "ETC_GMT_ADD_2"
+        "ETC_GMT_ADD_3"
+        "ETC_GMT_ADD_4"
+        "ETC_GMT_ADD_5"
+        "ETC_GMT_ADD_6"
+        "ETC_GMT_ADD_7"
+        "ETC_GMT_ADD_8"
+        "ETC_GMT_ADD_9"
+        "ETC_GMT_NEG_0"
+        "ETC_GMT_NEG_1"
+        "ETC_GMT_NEG_10"
+        "ETC_GMT_NEG_11"
+        "ETC_GMT_NEG_12"
+        "ETC_GMT_NEG_13"
+        "ETC_GMT_NEG_14"
+        "ETC_GMT_NEG_2"
+        "ETC_GMT_NEG_3"
+        "ETC_GMT_NEG_4"
+        "ETC_GMT_NEG_5"
+        "ETC_GMT_NEG_6"
+        "ETC_GMT_NEG_7"
+        "ETC_GMT_NEG_8"
+        "ETC_GMT_NEG_9"
+        "EUROPE_DUBLIN"
+        "EUROPE_LONDON"
+        "EUROPE_PARIS"
+        "EUROPE_STOCKHOLM"
+        "EUROPE_ZURICH"
+        "ISRAEL"
+        "MEXICO_GENERAL"
+        "MST7MDT"
+        "PACIFIC_AUCKLAND"
+        "US_CENTRAL"
+        "US_EASTERN"
+        "US_MOUNTAIN"
+        "US_PACIFIC"
+    end
+
+    -- Contains the settings for configuring lineage sync on a Snowflake connection, including the schedule, timezone, and enabled state.
+    record LineageSyncInput
+        -- The timezone of the lineage sync schedule.
+        timezone: string
+        -- Specifies whether lineage sync is enabled.
+        enabled: boolean
+        -- The schedule of the lineage sync.
+        schedule: string
+    end
+
+    -- Contains the Snowflake-specific settings required when creating or updating a connection, including the Snowflake role, identity mapping, and lineage sync configuration.
+    record SnowflakePropertiesInput
+        -- The connectivity properties of the Snowflake connection.
+        connectivityProperties: ConnectivityProperties
+        -- The Snowflake role used to access Snowflake resources.
+        snowflakeRole: string
+        -- The identity mapping configuration for the Snowflake connection.
+        identityMapping: IdentityMapping
+        -- The lineage sync configuration for the Snowflake connection.
+        lineageSync: LineageSyncInput
+    end
+
     -- The Spark EMR properties.
     record SparkEmrPropertiesInput
         -- The compute ARN of Spark EMR.
@@ -2046,6 +2167,8 @@ local record M
         sparkGlueProperties: SparkGluePropertiesInput
         -- The Amazon S3 properties of a connection.
         s3Properties: S3PropertiesInput
+        -- The Snowflake-specific connection properties to use when creating the connection.
+        snowflakeProperties: SnowflakePropertiesInput
         -- The Amazon Q properties of the connection.
         amazonQProperties: AmazonQPropertiesInput
         -- The MLflow properties of a connection.
@@ -2160,6 +2283,32 @@ local record M
         errorMessage: string
     end
 
+    -- Contains the current state of lineage sync for a Snowflake connection, including the schedule, timezone, enabled state, and the ID of the associated lineage job.
+    record LineageSyncOutput
+        -- The ID of the lineage sync job.
+        lineageJobId: string
+        -- The timezone of the lineage sync schedule.
+        timezone: string
+        -- Specifies whether lineage sync is enabled.
+        enabled: boolean
+        -- The schedule of the lineage sync.
+        schedule: string
+    end
+
+    -- Contains the Snowflake-specific settings returned for an existing connection, including the current role, identity mapping, lineage sync state, and connection status.
+    record SnowflakePropertiesOutput
+        -- The Snowflake role used to access Snowflake resources.
+        snowflakeRole: string
+        -- The identity mapping configuration for the Snowflake connection.
+        identityMapping: IdentityMapping
+        -- The lineage sync configuration for the Snowflake connection.
+        lineageSync: LineageSyncOutput
+        -- The status of the Snowflake connection.
+        status: string
+        -- An error message returned if the Snowflake connection failed to establish or validate.
+        errorMessage: string
+    end
+
     enum GovernanceType
         "AWS_MANAGED"
         "USER_MANAGED"
@@ -2269,6 +2418,8 @@ local record M
         sparkGlueProperties: SparkGluePropertiesOutput
         -- The Amazon S3 properties of a connection.
         s3Properties: S3PropertiesOutput
+        -- The Snowflake-specific connection properties for an existing connection.
+        snowflakeProperties: SnowflakePropertiesOutput
         -- The Amazon Q properties of the connection.
         amazonQProperties: AmazonQPropertiesOutput
         -- The MLflow properties of a connection.
@@ -2343,6 +2494,26 @@ local record M
         registerS3AccessGrantLocation: boolean
     end
 
+    -- Contains the connectivity settings to update on an existing connection. Include only the fields you want to change.
+    record ConnectivityPropertiesPatch
+        -- A description of the connectivity properties update.
+        description: string
+        -- The connection properties to update.
+        connectionProperties: {string : string}
+        -- The authentication settings to update.
+        authenticationConfiguration: AuthenticationConfigurationPatch
+    end
+
+    -- Contains the Snowflake-specific settings to update on an existing connection. Include only the fields you want to change.
+    record SnowflakePropertiesPatch
+        -- The connectivity properties patch of the Snowflake connection.
+        connectivityPropertiesPatch: ConnectivityPropertiesPatch
+        -- The Snowflake role used to access Snowflake resources.
+        snowflakeRole: string
+        -- The lineage sync configuration for the Snowflake connection.
+        lineageSync: LineageSyncInput
+    end
+
     -- The Spark EMR properties patch.
     record SparkEmrPropertiesPatch
         -- The compute ARN in the Spark EMR properties patch.
@@ -2387,6 +2558,8 @@ local record M
         sparkEmrProperties: SparkEmrPropertiesPatch
         -- The Amazon S3 properties of a connection properties patch.
         s3Properties: S3PropertiesPatch
+        -- The Snowflake-specific connection properties to update.
+        snowflakeProperties: SnowflakePropertiesPatch
         -- The Amazon Q properties of the connection.
         amazonQProperties: AmazonQPropertiesPatch
         -- The MLflow properties of a connection.
@@ -2828,73 +3001,6 @@ local record M
         enableBusinessNameGeneration: boolean
     end
 
-    enum Timezone
-        "UTC"
-        "AFRICA_JOHANNESBURG"
-        "AMERICA_MONTREAL"
-        "AMERICA_SAO_PAULO"
-        "ASIA_BAHRAIN"
-        "ASIA_BANGKOK"
-        "ASIA_CALCUTTA"
-        "ASIA_DUBAI"
-        "ASIA_HONG_KONG"
-        "ASIA_JAKARTA"
-        "ASIA_KUALA_LUMPUR"
-        "ASIA_SEOUL"
-        "ASIA_SHANGHAI"
-        "ASIA_SINGAPORE"
-        "ASIA_TAIPEI"
-        "ASIA_TOKYO"
-        "AUSTRALIA_MELBOURNE"
-        "AUSTRALIA_SYDNEY"
-        "CANADA_CENTRAL"
-        "CET"
-        "CST6CDT"
-        "ETC_GMT"
-        "ETC_GMT0"
-        "ETC_GMT_ADD_0"
-        "ETC_GMT_ADD_1"
-        "ETC_GMT_ADD_10"
-        "ETC_GMT_ADD_11"
-        "ETC_GMT_ADD_12"
-        "ETC_GMT_ADD_2"
-        "ETC_GMT_ADD_3"
-        "ETC_GMT_ADD_4"
-        "ETC_GMT_ADD_5"
-        "ETC_GMT_ADD_6"
-        "ETC_GMT_ADD_7"
-        "ETC_GMT_ADD_8"
-        "ETC_GMT_ADD_9"
-        "ETC_GMT_NEG_0"
-        "ETC_GMT_NEG_1"
-        "ETC_GMT_NEG_10"
-        "ETC_GMT_NEG_11"
-        "ETC_GMT_NEG_12"
-        "ETC_GMT_NEG_13"
-        "ETC_GMT_NEG_14"
-        "ETC_GMT_NEG_2"
-        "ETC_GMT_NEG_3"
-        "ETC_GMT_NEG_4"
-        "ETC_GMT_NEG_5"
-        "ETC_GMT_NEG_6"
-        "ETC_GMT_NEG_7"
-        "ETC_GMT_NEG_8"
-        "ETC_GMT_NEG_9"
-        "EUROPE_DUBLIN"
-        "EUROPE_LONDON"
-        "EUROPE_PARIS"
-        "EUROPE_STOCKHOLM"
-        "EUROPE_ZURICH"
-        "ISRAEL"
-        "MEXICO_GENERAL"
-        "MST7MDT"
-        "PACIFIC_AUCKLAND"
-        "US_CENTRAL"
-        "US_EASTERN"
-        "US_MOUNTAIN"
-        "US_PACIFIC"
-    end
-
     -- The details of the schedule of the data source runs.
     record ScheduleConfiguration
         -- The timezone of the data source run.
@@ -3220,7 +3326,7 @@ local record M
         environmentAccountIdentifier: string
         -- The region of the account in which the environment is being created.
         environmentAccountRegion: string
-        -- The ID of the blueprint with which the environment is being created.
+        -- The ID of the blueprint with which the environment is being created. This parameter is only valid for V1 domains. If provided for a V2 domain, the service returns a ValidationException.
         environmentBlueprintIdentifier: string
         -- The deployment order of the environment.
         deploymentOrder: number

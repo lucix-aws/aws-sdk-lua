@@ -2859,6 +2859,15 @@ M.TestTelemetryPipelineInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        SignalType = schema.new({
+            id = id.from(_N, "TestTelemetryPipelineInput", "SignalType"),
+            type = "string",
+            name = "SignalType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "LOG" },
+            },
+        }),
     },
 })
 

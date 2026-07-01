@@ -1158,6 +1158,18 @@ local record M
         PermissionsBoundary: PermissionsBoundary
     end
 
+    -- Contains information about an enabled Region of an IAM Identity Center instance, including the Region name, status, date added, and whether it is the primary Region.
+    record RegionMetadata
+        -- The Amazon Web Services Region name.
+        RegionName: string
+        -- The current status of the Region. Valid values are ACTIVE (Region is operational), ADDING (Region extension workflow is in progress), or REMOVING (Region removal workflow is in progress).
+        Status: string
+        -- The timestamp when the Region was added to the IAM Identity Center instance. For the primary Region, this is the instance creation time.
+        AddedDate: number
+        -- Indicates whether this is the primary Region where the IAM Identity Center instance was originally enabled. The primary Region cannot be removed.
+        IsPrimaryRegion: boolean
+    end
+
     -- Provides information about the IAM Identity Center instance.
     record InstanceMetadata
         -- The ARN of the Identity Center instance under which the operation will be executed. For more information about ARNs, see Amazon Resource Names (ARNs) and Amazon Web Services Service Namespaces in the Amazon Web Services General Reference.
@@ -1174,6 +1186,10 @@ local record M
         Status: string
         -- Provides additional context about the current status of the IAM Identity Center instance. This field is particularly useful when an instance is in a non-ACTIVE state, such as CREATE_FAILED. When an instance creation fails, this field contains information about the cause, which may include issues with KMS key configuration or insufficient permissions.
         StatusReason: string
+        -- The primary Region where the IAM Identity Center instance was originally enabled. The primary Region cannot be removed.
+        PrimaryRegion: string
+        -- The list of Regions enabled in the IAM Identity Center instance, including Regions with ACTIVE, ADDING, or REMOVING status.
+        Regions: {RegionMetadata}
     end
 
     -- Filters the operation status list based on the passed attribute value.
@@ -1496,18 +1512,6 @@ local record M
         MaxResults: number
         -- The pagination token for the list API. Initially the value is null. Use the output of previous API calls to make subsequent calls.
         NextToken: string
-    end
-
-    -- Contains information about an enabled Region of an IAM Identity Center instance, including the Region name, status, date added, and whether it is the primary Region.
-    record RegionMetadata
-        -- The Amazon Web Services Region name.
-        RegionName: string
-        -- The current status of the Region. Valid values are ACTIVE (Region is operational), ADDING (Region extension workflow is in progress), or REMOVING (Region removal workflow is in progress).
-        Status: string
-        -- The timestamp when the Region was added to the IAM Identity Center instance. For the primary Region, this is the instance creation time.
-        AddedDate: number
-        -- Indicates whether this is the primary Region where the IAM Identity Center instance was originally enabled. The primary Region cannot be removed.
-        IsPrimaryRegion: boolean
     end
 
     record ListRegionsOutput

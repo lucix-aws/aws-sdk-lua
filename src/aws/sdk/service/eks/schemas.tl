@@ -1183,6 +1183,25 @@ M.AssociateEncryptionConfigInput = schema.new({
     },
 })
 
+M.Cancellation = schema.new({
+    id = id.from(_N, "Cancellation"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "Cancellation", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        reason = schema.new({
+            id = id.from(_N, "Cancellation", "reason"),
+            type = "string",
+            name = "reason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ErrorDetail = schema.new({
     id = id.from(_N, "ErrorDetail"),
     type = "structure",
@@ -1269,6 +1288,13 @@ M.Update = schema.new({
             name = "errors",
             target_id = prelude.Document.id,
             list_member = M.ErrorDetail,
+        }),
+        cancellation = schema.new({
+            id = id.from(_N, "Update", "cancellation"),
+            type = "structure",
+            name = "cancellation",
+            target_id = id.from(_N, "Cancellation"),
+            target = M.Cancellation,
         }),
     },
 })
@@ -1523,6 +1549,78 @@ M.AutoScalingGroup = schema.new({
             id = id.from(_N, "AutoScalingGroup", "name"),
             type = "string",
             name = "name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CancelUpdateInput = schema.new({
+    id = id.from(_N, "CancelUpdateRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CancelUpdateInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        updateId = schema.new({
+            id = id.from(_N, "CancelUpdateInput", "updateId"),
+            type = "string",
+            name = "updateId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientRequestToken = schema.new({
+            id = id.from(_N, "CancelUpdateInput", "clientRequestToken"),
+            type = "string",
+            name = "clientRequestToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CancelUpdateOutput = schema.new({
+    id = id.from(_N, "CancelUpdateResponse"),
+    type = "structure",
+    members = {
+        update = schema.new({
+            id = id.from(_N, "CancelUpdateOutput", "update"),
+            type = "structure",
+            name = "update",
+            target_id = id.from(_N, "Update"),
+            target = M.Update,
+        }),
+    },
+})
+
+M.InvalidStateException = schema.new({
+    id = id.from(_N, "InvalidStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        clusterName = schema.new({
+            id = id.from(_N, "InvalidStateException", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "InvalidStateException", "message"),
+            type = "string",
+            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -7583,24 +7681,15 @@ M.UpdateClusterConfigOutput = schema.new({
     },
 })
 
-M.InvalidStateException = schema.new({
-    id = id.from(_N, "InvalidStateException"),
+M.RollbackConfig = schema.new({
+    id = id.from(_N, "RollbackConfig"),
     type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
     members = {
-        clusterName = schema.new({
-            id = id.from(_N, "InvalidStateException", "clusterName"),
-            type = "string",
-            name = "clusterName",
-            target_id = prelude.String.id,
-        }),
-        message = schema.new({
-            id = id.from(_N, "InvalidStateException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
+        timeoutMinutes = schema.new({
+            id = id.from(_N, "RollbackConfig", "timeoutMinutes"),
+            type = "integer",
+            name = "timeoutMinutes",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -7645,6 +7734,13 @@ M.UpdateClusterVersionInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+        rollbackConfig = schema.new({
+            id = id.from(_N, "UpdateClusterVersionInput", "rollbackConfig"),
+            type = "structure",
+            name = "rollbackConfig",
+            target_id = id.from(_N, "RollbackConfig"),
+            target = M.RollbackConfig,
         }),
     },
 })
@@ -8055,6 +8151,18 @@ M.AssociateIdentityProviderConfig = schema.operation({
     output = M.AssociateIdentityProviderConfigOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/clusters/{clusterName}/identity-provider-configs/associate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CancelUpdate = schema.operation({
+    id = id.from("com.amazonaws.eks", "CancelUpdate"),
+    input = M.CancelUpdateInput,
+    output = M.CancelUpdateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/clusters/{name}/updates/{updateId}/cancel-update" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

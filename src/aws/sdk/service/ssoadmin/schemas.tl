@@ -3232,6 +3232,40 @@ M.GetPermissionsBoundaryForPermissionSetOutput = schema.new({
     },
 })
 
+M.RegionMetadata = schema.new({
+    id = id.from(_N, "RegionMetadata"),
+    type = "structure",
+    members = {
+        RegionName = schema.new({
+            id = id.from(_N, "RegionMetadata", "RegionName"),
+            type = "string",
+            name = "RegionName",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "RegionMetadata", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        AddedDate = schema.new({
+            id = id.from(_N, "RegionMetadata", "AddedDate"),
+            type = "timestamp",
+            name = "AddedDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        IsPrimaryRegion = schema.new({
+            id = id.from(_N, "RegionMetadata", "IsPrimaryRegion"),
+            type = "boolean",
+            name = "IsPrimaryRegion",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
 M.InstanceMetadata = schema.new({
     id = id.from(_N, "InstanceMetadata"),
     type = "structure",
@@ -3277,6 +3311,19 @@ M.InstanceMetadata = schema.new({
             type = "string",
             name = "StatusReason",
             target_id = prelude.String.id,
+        }),
+        PrimaryRegion = schema.new({
+            id = id.from(_N, "InstanceMetadata", "PrimaryRegion"),
+            type = "string",
+            name = "PrimaryRegion",
+            target_id = prelude.String.id,
+        }),
+        Regions = schema.new({
+            id = id.from(_N, "InstanceMetadata", "Regions"),
+            type = "list",
+            name = "Regions",
+            target_id = prelude.Document.id,
+            list_member = M.RegionMetadata,
         }),
     },
 })
@@ -4240,40 +4287,6 @@ M.ListRegionsInput = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.RegionMetadata = schema.new({
-    id = id.from(_N, "RegionMetadata"),
-    type = "structure",
-    members = {
-        RegionName = schema.new({
-            id = id.from(_N, "RegionMetadata", "RegionName"),
-            type = "string",
-            name = "RegionName",
-            target_id = prelude.String.id,
-        }),
-        Status = schema.new({
-            id = id.from(_N, "RegionMetadata", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-        }),
-        AddedDate = schema.new({
-            id = id.from(_N, "RegionMetadata", "AddedDate"),
-            type = "timestamp",
-            name = "AddedDate",
-            target_id = prelude.Timestamp.id,
-        }),
-        IsPrimaryRegion = schema.new({
-            id = id.from(_N, "RegionMetadata", "IsPrimaryRegion"),
-            type = "boolean",
-            name = "IsPrimaryRegion",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.DEFAULT] = { value = false },
-            },
         }),
     },
 })

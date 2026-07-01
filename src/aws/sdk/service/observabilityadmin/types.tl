@@ -382,6 +382,7 @@ local record M
         "SECURITY_FINDING_LOGS"
         "ACCESS_LOGS"
         "CONNECTION_LOGS"
+        "S3_SERVER_ACCESS_LOGS"
     end
 
     -- Configuration parameters for Amazon Bedrock AgentCore logging, including logType settings.
@@ -515,6 +516,7 @@ local record M
         "AWS::SecurityHub::HubV2"
         "AWS::CloudWatch::OTelEnrichment"
         "AWS::MSK::Cluster"
+        "AWS::S3::Bucket"
     end
 
     enum TelemetrySourceType
@@ -1135,11 +1137,18 @@ local record M
         Type: string
     end
 
+    enum SignalType
+        "LOG"
+        "METRIC"
+    end
+
     record TestTelemetryPipelineInput
         -- The sample records to process through the pipeline configuration for testing purposes.
         Records: {Record}
         -- The pipeline configuration to test with the provided sample records.
         Configuration: TelemetryPipelineConfiguration
+        -- The type of telemetry signal to test. If not specified, defaults to log processing.
+        SignalType: string
     end
 
     -- Contains detailed error information from pipeline test operations, providing structured error responses for better debugging and troubleshooting capabilities.

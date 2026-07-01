@@ -375,6 +375,8 @@ M.SupportedMessagingContentTypes = schema.new({ type = "list", list_member = pre
 
 M.DisconnectOnCustomerExit = schema.new({ type = "list", list_member = prelude.String })
 
+M.AnalyticsModes = schema.new({ type = "list", list_member = prelude.String })
+
 M.EmailAttachments = schema.new({ type = "list", list_member = M.EmailAttachment })
 
 M.TaskAttachments = schema.new({ type = "list", list_member = M.TaskAttachment })
@@ -598,6 +600,10 @@ M.ContactSearchSummaryAiAgentInfoList = schema.new({ type = "list", list_member 
 M.AttributeOrConditionList = schema.new({ type = "list", list_member = M.AttributeAndCondition })
 
 M.Conditions = schema.new({ type = "list", list_member = M.Condition })
+
+M.Entities = schema.new({ type = "list", list_member = prelude.String })
+
+M.SummaryModes = schema.new({ type = "list", list_member = prelude.String })
 
 M.EmailHeaders = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
@@ -4889,6 +4895,99 @@ M.CreateAgentStatusOutput = schema.new({
             id = id.from(_N, "CreateAgentStatusOutput", "AgentStatusId"),
             type = "string",
             name = "AgentStatusId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAttachedFileInput = schema.new({
+    id = id.from(_N, "CreateAttachedFileRequest"),
+    type = "structure",
+    members = {
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateAttachedFileInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        InstanceId = schema.new({
+            id = id.from(_N, "CreateAttachedFileInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        FileUseCaseType = schema.new({
+            id = id.from(_N, "CreateAttachedFileInput", "FileUseCaseType"),
+            type = "string",
+            name = "FileUseCaseType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FileSourceUri = schema.new({
+            id = id.from(_N, "CreateAttachedFileInput", "FileSourceUri"),
+            type = "string",
+            name = "FileSourceUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssociatedResourceArn = schema.new({
+            id = id.from(_N, "CreateAttachedFileInput", "AssociatedResourceArn"),
+            type = "string",
+            name = "AssociatedResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "associatedResourceArn" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateAttachedFileInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateAttachedFileOutput = schema.new({
+    id = id.from(_N, "CreateAttachedFileResponse"),
+    type = "structure",
+    members = {
+        FileArn = schema.new({
+            id = id.from(_N, "CreateAttachedFileOutput", "FileArn"),
+            type = "string",
+            name = "FileArn",
+            target_id = prelude.String.id,
+        }),
+        FileId = schema.new({
+            id = id.from(_N, "CreateAttachedFileOutput", "FileId"),
+            type = "string",
+            name = "FileId",
+            target_id = prelude.String.id,
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "CreateAttachedFileOutput", "CreationTime"),
+            type = "string",
+            name = "CreationTime",
+            target_id = prelude.String.id,
+        }),
+        FileStatus = schema.new({
+            id = id.from(_N, "CreateAttachedFileOutput", "FileStatus"),
+            type = "string",
+            name = "FileStatus",
             target_id = prelude.String.id,
         }),
     },
@@ -32198,6 +32297,232 @@ M.StartChatContactOutput = schema.new({
     },
 })
 
+M.LanguageConfiguration = schema.new({
+    id = id.from(_N, "LanguageConfiguration"),
+    type = "structure",
+    members = {
+        LanguageLocale = schema.new({
+            id = id.from(_N, "LanguageConfiguration", "LanguageLocale"),
+            type = "string",
+            name = "LanguageLocale",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RedactionConfiguration = schema.new({
+    id = id.from(_N, "RedactionConfiguration"),
+    type = "structure",
+    members = {
+        Behavior = schema.new({
+            id = id.from(_N, "RedactionConfiguration", "Behavior"),
+            type = "string",
+            name = "Behavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Policy = schema.new({
+            id = id.from(_N, "RedactionConfiguration", "Policy"),
+            type = "string",
+            name = "Policy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Entities = schema.new({
+            id = id.from(_N, "RedactionConfiguration", "Entities"),
+            type = "list",
+            name = "Entities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaskMode = schema.new({
+            id = id.from(_N, "RedactionConfiguration", "MaskMode"),
+            type = "string",
+            name = "MaskMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RulesConfiguration = schema.new({
+    id = id.from(_N, "RulesConfiguration"),
+    type = "structure",
+    members = {
+        Behavior = schema.new({
+            id = id.from(_N, "RulesConfiguration", "Behavior"),
+            type = "string",
+            name = "Behavior",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SentimentConfiguration = schema.new({
+    id = id.from(_N, "SentimentConfiguration"),
+    type = "structure",
+    members = {
+        Behavior = schema.new({
+            id = id.from(_N, "SentimentConfiguration", "Behavior"),
+            type = "string",
+            name = "Behavior",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SummaryConfiguration = schema.new({
+    id = id.from(_N, "SummaryConfiguration"),
+    type = "structure",
+    members = {
+        SummaryModes = schema.new({
+            id = id.from(_N, "SummaryConfiguration", "SummaryModes"),
+            type = "list",
+            name = "SummaryModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnalyticsConfiguration = schema.new({
+    id = id.from(_N, "AnalyticsConfiguration"),
+    type = "structure",
+    members = {
+        LanguageConfiguration = schema.new({
+            id = id.from(_N, "AnalyticsConfiguration", "LanguageConfiguration"),
+            type = "structure",
+            name = "LanguageConfiguration",
+            target_id = id.from(_N, "LanguageConfiguration"),
+            target = M.LanguageConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RedactionConfiguration = schema.new({
+            id = id.from(_N, "AnalyticsConfiguration", "RedactionConfiguration"),
+            type = "structure",
+            name = "RedactionConfiguration",
+            target_id = id.from(_N, "RedactionConfiguration"),
+            target = M.RedactionConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SentimentConfiguration = schema.new({
+            id = id.from(_N, "AnalyticsConfiguration", "SentimentConfiguration"),
+            type = "structure",
+            name = "SentimentConfiguration",
+            target_id = id.from(_N, "SentimentConfiguration"),
+            target = M.SentimentConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SummaryConfiguration = schema.new({
+            id = id.from(_N, "AnalyticsConfiguration", "SummaryConfiguration"),
+            type = "structure",
+            name = "SummaryConfiguration",
+            target_id = id.from(_N, "SummaryConfiguration"),
+            target = M.SummaryConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RulesConfiguration = schema.new({
+            id = id.from(_N, "AnalyticsConfiguration", "RulesConfiguration"),
+            type = "structure",
+            name = "RulesConfiguration",
+            target_id = id.from(_N, "RulesConfiguration"),
+            target = M.RulesConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartContactConversationalAnalyticsJobInput = schema.new({
+    id = id.from(_N, "StartContactConversationalAnalyticsJobRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "StartContactConversationalAnalyticsJobInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactId = schema.new({
+            id = id.from(_N, "StartContactConversationalAnalyticsJobInput", "ContactId"),
+            type = "string",
+            name = "ContactId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        AnalyticsModes = schema.new({
+            id = id.from(_N, "StartContactConversationalAnalyticsJobInput", "AnalyticsModes"),
+            type = "list",
+            name = "AnalyticsModes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AnalyticsConfiguration = schema.new({
+            id = id.from(_N, "StartContactConversationalAnalyticsJobInput", "AnalyticsConfiguration"),
+            type = "structure",
+            name = "AnalyticsConfiguration",
+            target_id = id.from(_N, "AnalyticsConfiguration"),
+            target = M.AnalyticsConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartContactConversationalAnalyticsJobInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartContactConversationalAnalyticsJobOutput = schema.new({
+    id = id.from(_N, "StartContactConversationalAnalyticsJobResponse"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "StartContactConversationalAnalyticsJobOutput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+        }),
+        ContactId = schema.new({
+            id = id.from(_N, "StartContactConversationalAnalyticsJobOutput", "ContactId"),
+            type = "string",
+            name = "ContactId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AutoEvaluationConfiguration = schema.new({
     id = id.from(_N, "AutoEvaluationConfiguration"),
     type = "structure",
@@ -41600,6 +41925,18 @@ M.CreateAgentStatus = schema.operation({
     },
 })
 
+M.CreateAttachedFile = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateAttachedFile"),
+    input = M.CreateAttachedFileInput,
+    output = M.CreateAttachedFileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/attached-files/{InstanceId}/files" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateContact = schema.operation({
     id = id.from("com.amazonaws.connect", "CreateContact"),
     input = M.CreateContactInput,
@@ -44594,6 +44931,18 @@ M.StartChatContact = schema.operation({
     output = M.StartChatContactOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/contact/chat" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartContactConversationalAnalyticsJob = schema.operation({
+    id = id.from("com.amazonaws.connect", "StartContactConversationalAnalyticsJob"),
+    input = M.StartContactConversationalAnalyticsJobInput,
+    output = M.StartContactConversationalAnalyticsJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/start-conversational-analytics-job/{InstanceId}/{ContactId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

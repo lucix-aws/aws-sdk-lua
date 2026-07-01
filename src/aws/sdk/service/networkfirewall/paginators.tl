@@ -40,6 +40,24 @@ function M.items_list_analysis_reports(client, input)
     })
 end
 
+--- Returns a page iterator for listContainerAssociations.
+function M.pages_list_container_associations(client, input)
+    return paginator.pages(client, "listContainerAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContainerAssociations",
+    })
+end
+
+--- Returns an item iterator for listContainerAssociations.
+function M.items_list_container_associations(client, input)
+    return paginator.items(client, "listContainerAssociations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ContainerAssociations",
+    })
+end
+
 --- Returns a page iterator for listFirewallPolicies.
 function M.pages_list_firewall_policies(client, input)
     return paginator.pages(client, "listFirewallPolicies", input, {

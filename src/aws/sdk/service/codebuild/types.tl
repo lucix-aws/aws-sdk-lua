@@ -340,6 +340,7 @@ local record M
         -- Security groups configured for Docker servers should allow ingress network traffic from the VPC configured in the project. They should allow ingress on port 9876.
         securityGroupIds: {string}
         -- A DockerServerStatus object to use for this docker server.
+        -- Note that status is only an output and cannot be passed in as an input.
         status: DockerServerStatus
     end
 
@@ -369,6 +370,12 @@ local record M
     record ProjectFleet
         -- Specifies the compute fleet ARN for the build project.
         fleetArn: string
+    end
+
+    enum HostKernel
+        "LINUX_KERNEL_4"
+        "LINUX_KERNEL_6"
+        "LINUX_KERNEL_LATEST"
     end
 
     enum ImagePullCredentialsType
@@ -507,6 +514,17 @@ local record M
         imagePullCredentialsType: string
         -- A DockerServer object to use for this build project.
         dockerServer: DockerServer
+        -- The host operating system kernel used for on-demand builds in the build project.
+        -- The host kernel does not affect the build environment operating system, which is determined by the image you specify.
+        -- Valid values are:
+        -- LINUX_KERNEL_4: Runs on an Amazon Linux 2 host (kernel 4.x).
+        -- LINUX_KERNEL_6: Runs on an Amazon Linux 2023 host (kernel 6.x).
+        -- LINUX_KERNEL_LATEST: Runs on the latest supported host kernel.
+        -- This setting applies to the LINUX_CONTAINER, ARM_CONTAINER,
+        -- LINUX_EC2, and ARM_EC2
+        -- environment types. It is not applicable to Windows, Lambda, or Mac environment
+        -- types.
+        hostKernel: string
     end
 
     enum FileSystemType
@@ -3537,6 +3555,9 @@ local record M
         -- auto-retry limit is set to 2, CodeBuild will call the RetryBuild API to automatically
         -- retry your build for up to 2 additional times.
         autoRetryLimitOverride: number
+        -- The host operating system kernel for this build that overrides the one specified in the
+        -- build project.
+        hostKernelOverride: string
     end
 
     record StartBuildOutput

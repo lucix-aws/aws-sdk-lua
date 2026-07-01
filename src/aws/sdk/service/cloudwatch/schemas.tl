@@ -1796,6 +1796,45 @@ M.EvaluationCriteria = schema.new({
     },
 })
 
+M.SlidingWindow = schema.new({
+    id = id.from(_N, "SlidingWindow"),
+    type = "structure",
+})
+
+M.WallClockWindow = schema.new({
+    id = id.from(_N, "WallClockWindow"),
+    type = "structure",
+    members = {
+        Timezone = schema.new({
+            id = id.from(_N, "WallClockWindow", "Timezone"),
+            type = "string",
+            name = "Timezone",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.EvaluationWindow = schema.new({
+    id = id.from(_N, "EvaluationWindow"),
+    type = "union",
+    members = {
+        WallClockWindow = schema.new({
+            id = id.from(_N, "EvaluationWindow", "WallClockWindow"),
+            type = "structure",
+            name = "WallClockWindow",
+            target_id = id.from(_N, "WallClockWindow"),
+            target = M.WallClockWindow,
+        }),
+        SlidingWindow = schema.new({
+            id = id.from(_N, "EvaluationWindow", "SlidingWindow"),
+            type = "structure",
+            name = "SlidingWindow",
+            target_id = id.from(_N, "SlidingWindow"),
+            target = M.SlidingWindow,
+        }),
+    },
+})
+
 M.MetricAlarm = schema.new({
     id = id.from(_N, "MetricAlarm"),
     type = "structure",
@@ -1978,6 +2017,13 @@ M.MetricAlarm = schema.new({
             type = "timestamp",
             name = "StateTransitionedTimestamp",
             target_id = prelude.Timestamp.id,
+        }),
+        EvaluationWindow = schema.new({
+            id = id.from(_N, "MetricAlarm", "EvaluationWindow"),
+            type = "union",
+            name = "EvaluationWindow",
+            target_id = id.from(_N, "EvaluationWindow"),
+            target = M.EvaluationWindow,
         }),
         EvaluationCriteria = schema.new({
             id = id.from(_N, "MetricAlarm", "EvaluationCriteria"),
@@ -4562,6 +4608,13 @@ M.PutMetricAlarmInput = schema.new({
             type = "string",
             name = "ThresholdMetricId",
             target_id = prelude.String.id,
+        }),
+        EvaluationWindow = schema.new({
+            id = id.from(_N, "PutMetricAlarmInput", "EvaluationWindow"),
+            type = "union",
+            name = "EvaluationWindow",
+            target_id = id.from(_N, "EvaluationWindow"),
+            target = M.EvaluationWindow,
         }),
         EvaluationCriteria = schema.new({
             id = id.from(_N, "PutMetricAlarmInput", "EvaluationCriteria"),

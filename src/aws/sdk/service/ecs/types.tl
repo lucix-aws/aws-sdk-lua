@@ -2933,7 +2933,7 @@ local record M
         rollback: boolean
         -- Determines whether the deployment circuit breaker resets its failure count when a task reaches a healthy state. When set to true, a healthy task resets the failure count to 0; when false, it doesn't.
         resetOnHealthyTask: boolean
-        -- The threshold configuration that controls when the deployment circuit breaker triggers. For more information, see ThresholdConfiguration.
+        -- The threshold configuration that controls when the deployment circuit breaker triggers.
         thresholdConfiguration: ThresholdConfiguration
     end
 

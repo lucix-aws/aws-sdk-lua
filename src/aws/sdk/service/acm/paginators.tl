@@ -4,6 +4,78 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listAcmeAccounts.
+function M.pages_list_acme_accounts(client, input)
+    return paginator.pages(client, "listAcmeAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AcmeAccounts",
+    })
+end
+
+--- Returns an item iterator for listAcmeAccounts.
+function M.items_list_acme_accounts(client, input)
+    return paginator.items(client, "listAcmeAccounts", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AcmeAccounts",
+    })
+end
+
+--- Returns a page iterator for listAcmeDomainValidations.
+function M.pages_list_acme_domain_validations(client, input)
+    return paginator.pages(client, "listAcmeDomainValidations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AcmeDomainValidations",
+    })
+end
+
+--- Returns an item iterator for listAcmeDomainValidations.
+function M.items_list_acme_domain_validations(client, input)
+    return paginator.items(client, "listAcmeDomainValidations", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AcmeDomainValidations",
+    })
+end
+
+--- Returns a page iterator for listAcmeEndpoints.
+function M.pages_list_acme_endpoints(client, input)
+    return paginator.pages(client, "listAcmeEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AcmeEndpoints",
+    })
+end
+
+--- Returns an item iterator for listAcmeEndpoints.
+function M.items_list_acme_endpoints(client, input)
+    return paginator.items(client, "listAcmeEndpoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AcmeEndpoints",
+    })
+end
+
+--- Returns a page iterator for listAcmeExternalAccountBindings.
+function M.pages_list_acme_external_account_bindings(client, input)
+    return paginator.pages(client, "listAcmeExternalAccountBindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExternalAccountBindings",
+    })
+end
+
+--- Returns an item iterator for listAcmeExternalAccountBindings.
+function M.items_list_acme_external_account_bindings(client, input)
+    return paginator.items(client, "listAcmeExternalAccountBindings", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ExternalAccountBindings",
+    })
+end
+
 --- Returns a page iterator for listCertificates.
 function M.pages_list_certificates(client, input)
     return paginator.pages(client, "listCertificates", input, {

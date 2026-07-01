@@ -79,6 +79,14 @@ M.IdMappingTableSummaryList = schema.new({ type = "list", list_member = M.IdMapp
 
 M.IdNamespaceAssociationSummaryList = schema.new({ type = "list", list_member = M.IdNamespaceAssociationSummary })
 
+M.IntermediateTableSummaryList = schema.new({ type = "list", list_member = M.IntermediateTableSummary })
+
+M.IntermediateTableColumnList = schema.new({ type = "list", list_member = M.IntermediateTableColumn })
+
+M.IntermediateTableVersionSummaryList = schema.new({ type = "list", list_member = M.IntermediateTableVersionSummary })
+
+M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.MembershipSummaryList = schema.new({ type = "list", list_member = M.MembershipSummary })
 
 M.PrivacyBudgetSummaryList = schema.new({ type = "list", list_member = M.PrivacyBudgetSummary })
@@ -107,11 +115,15 @@ M.SchemaStatusDetailList = schema.new({ type = "list", list_member = M.SchemaSta
 
 M.ConfiguredTableAssociationAnalysisRuleTypeList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ChildResourceList = schema.new({ type = "list", list_member = M.ChildResource })
+
 M.ConfiguredTableAnalysisRuleTypeList = schema.new({ type = "list", list_member = prelude.String })
 
-M.JobParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+M.DependencyList = schema.new({ type = "list", list_member = M.IntermediateTableDependency })
 
-M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+M.IntermediateTableAnalysisRuleTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.JobParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AnalysisTemplateArtifactList = schema.new({ type = "list", list_member = M.AnalysisTemplateArtifact })
 
@@ -161,11 +173,11 @@ M.AllowedAnalysesList = schema.new({ type = "list", list_member = prelude.String
 
 M.AllowedAnalysisProviderList = schema.new({ type = "list", list_member = prelude.String })
 
+M.SparkProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.ProtectedJobMemberOutputList = schema.new({ type = "list", list_member = M.ProtectedJobSingleMemberOutput })
 
 M.ProtectedQueryMemberOutputList = schema.new({ type = "list", list_member = M.ProtectedQuerySingleMemberOutput })
-
-M.SparkProperties = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ProtectedQueryDistributeOutputConfigurationLocations = schema.new({ type = "list", list_member = M.ProtectedQueryDistributeOutputConfigurationLocation })
 
@@ -177,7 +189,17 @@ M.AccessBudgetDetailsList = schema.new({ type = "list", list_member = M.AccessBu
 
 M.DifferentialPrivacyColumnList = schema.new({ type = "list", list_member = M.DifferentialPrivacyColumn })
 
+M.InheritedAdditionalAnalysesSourceList = schema.new({ type = "list", list_member = M.InheritedAdditionalAnalysesSource })
+
+M.InheritedAllowedAdditionalAnalysesSourceList = schema.new({ type = "list", list_member = M.InheritedAllowedAdditionalAnalysesSource })
+
+M.AccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.InheritedAllowedResultReceiversSourceList = schema.new({ type = "list", list_member = M.InheritedAllowedResultReceiversSource })
+
 M.AnalysisRuleColumnNameList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ColumnLineageList = schema.new({ type = "list", list_member = M.ColumnLineageEntry })
 
 M.ProtectedJobReceiverAccountIds = schema.new({ type = "list", list_member = prelude.String })
 
@@ -984,6 +1006,20 @@ M.AnalysisRuleCustom = schema.new({
             name = "differentialPrivacy",
             target_id = id.from(_N, "DifferentialPrivacyConfiguration"),
             target = M.DifferentialPrivacyConfiguration,
+        }),
+        allowedResultReceivers = schema.new({
+            id = id.from(_N, "AnalysisRuleCustom", "allowedResultReceivers"),
+            type = "list",
+            name = "allowedResultReceivers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allowedAdditionalAnalyses = schema.new({
+            id = id.from(_N, "AnalysisRuleCustom", "allowedAdditionalAnalyses"),
+            type = "list",
+            name = "allowedAdditionalAnalyses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -2738,6 +2774,22 @@ M.SchemaStatusDetail = schema.new({
     },
 })
 
+M.ConfiguredTableAssociationSchemaTypeProperties = schema.new({
+    id = id.from(_N, "ConfiguredTableAssociationSchemaTypeProperties"),
+    type = "structure",
+    members = {
+        configuredTableAssociationId = schema.new({
+            id = id.from(_N, "ConfiguredTableAssociationSchemaTypeProperties", "configuredTableAssociationId"),
+            type = "string",
+            name = "configuredTableAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.IdMappingTableInputSource = schema.new({
     id = id.from(_N, "IdMappingTableInputSource"),
     type = "structure",
@@ -2777,6 +2829,28 @@ M.IdMappingTableSchemaTypeProperties = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        idMappingTableId = schema.new({
+            id = id.from(_N, "IdMappingTableSchemaTypeProperties", "idMappingTableId"),
+            type = "string",
+            name = "idMappingTableId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IntermediateTableSchemaTypeProperties = schema.new({
+    id = id.from(_N, "IntermediateTableSchemaTypeProperties"),
+    type = "structure",
+    members = {
+        intermediateTableId = schema.new({
+            id = id.from(_N, "IntermediateTableSchemaTypeProperties", "intermediateTableId"),
+            type = "string",
+            name = "intermediateTableId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
     },
 })
 
@@ -2790,6 +2864,20 @@ M.SchemaTypeProperties = schema.new({
             name = "idMappingTable",
             target_id = id.from(_N, "IdMappingTableSchemaTypeProperties"),
             target = M.IdMappingTableSchemaTypeProperties,
+        }),
+        intermediateTable = schema.new({
+            id = id.from(_N, "SchemaTypeProperties", "intermediateTable"),
+            type = "structure",
+            name = "intermediateTable",
+            target_id = id.from(_N, "IntermediateTableSchemaTypeProperties"),
+            target = M.IntermediateTableSchemaTypeProperties,
+        }),
+        configuredTableAssociation = schema.new({
+            id = id.from(_N, "SchemaTypeProperties", "configuredTableAssociation"),
+            type = "structure",
+            name = "configuredTableAssociation",
+            target_id = id.from(_N, "ConfiguredTableAssociationSchemaTypeProperties"),
+            target = M.ConfiguredTableAssociationSchemaTypeProperties,
         }),
     },
 })
@@ -3366,7 +3454,7 @@ M.CreateCollaborationInput = schema.new({
             name = "description",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         creatorMemberAbilities = schema.new({
@@ -6835,6 +6923,52 @@ M.CreateConfiguredTableAssociationInput = schema.new({
     },
 })
 
+M.ChildResource = schema.new({
+    id = id.from(_N, "ChildResource"),
+    type = "structure",
+    members = {
+        resourceId = schema.new({
+            id = id.from(_N, "ChildResource", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ChildResource", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceName = schema.new({
+            id = id.from(_N, "ChildResource", "resourceName"),
+            type = "string",
+            name = "resourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ownerAccountId = schema.new({
+            id = id.from(_N, "ChildResource", "ownerAccountId"),
+            type = "string",
+            name = "ownerAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceStatus = schema.new({
+            id = id.from(_N, "ChildResource", "resourceStatus"),
+            type = "string",
+            name = "resourceStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ConfiguredTableAssociation = schema.new({
     id = id.from(_N, "ConfiguredTableAssociation"),
     type = "structure",
@@ -6941,6 +7075,13 @@ M.ConfiguredTableAssociation = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        childResources = schema.new({
+            id = id.from(_N, "ConfiguredTableAssociation", "childResources"),
+            type = "list",
+            name = "childResources",
+            target_id = prelude.Document.id,
+            list_member = M.ChildResource,
         }),
     },
 })
@@ -8636,6 +8777,13 @@ M.IdMappingTable = schema.new({
             name = "kmsKeyArn",
             target_id = prelude.String.id,
         }),
+        childResources = schema.new({
+            id = id.from(_N, "IdMappingTable", "childResources"),
+            type = "list",
+            name = "childResources",
+            target_id = prelude.Document.id,
+            list_member = M.ChildResource,
+        }),
     },
 })
 
@@ -9505,6 +9653,1762 @@ M.UpdateIdNamespaceAssociationOutput = schema.new({
     },
 })
 
+M.PopulationAnalysisSqlParameters = schema.new({
+    id = id.from(_N, "PopulationAnalysisSqlParameters"),
+    type = "structure",
+    members = {
+        queryString = schema.new({
+            id = id.from(_N, "PopulationAnalysisSqlParameters", "queryString"),
+            type = "string",
+            name = "queryString",
+            target_id = prelude.String.id,
+        }),
+        analysisTemplateArn = schema.new({
+            id = id.from(_N, "PopulationAnalysisSqlParameters", "analysisTemplateArn"),
+            type = "string",
+            name = "analysisTemplateArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PopulationAnalysisConfiguration = schema.new({
+    id = id.from(_N, "PopulationAnalysisConfiguration"),
+    type = "union",
+    members = {
+        sqlParameters = schema.new({
+            id = id.from(_N, "PopulationAnalysisConfiguration", "sqlParameters"),
+            type = "structure",
+            name = "sqlParameters",
+            target_id = id.from(_N, "PopulationAnalysisSqlParameters"),
+            target = M.PopulationAnalysisSqlParameters,
+        }),
+    },
+})
+
+M.CreateIntermediateTableInput = schema.new({
+    id = id.from(_N, "CreateIntermediateTableInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "CreateIntermediateTableInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateIntermediateTableInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateIntermediateTableInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        populationAnalysisConfiguration = schema.new({
+            id = id.from(_N, "CreateIntermediateTableInput", "populationAnalysisConfiguration"),
+            type = "union",
+            name = "populationAnalysisConfiguration",
+            target_id = id.from(_N, "PopulationAnalysisConfiguration"),
+            target = M.PopulationAnalysisConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "CreateIntermediateTableInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        retentionInDays = schema.new({
+            id = id.from(_N, "CreateIntermediateTableInput", "retentionInDays"),
+            type = "integer",
+            name = "retentionInDays",
+            target_id = prelude.Integer.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateIntermediateTableInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.InheritedAdditionalAnalysesSource = schema.new({
+    id = id.from(_N, "InheritedAdditionalAnalysesSource"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "InheritedAdditionalAnalysesSource", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "InheritedAdditionalAnalysesSource", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "InheritedAdditionalAnalysesSource", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "InheritedAdditionalAnalysesSource", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceAccountId = schema.new({
+            id = id.from(_N, "InheritedAdditionalAnalysesSource", "sourceAccountId"),
+            type = "string",
+            name = "sourceAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InheritedAdditionalAnalyses = schema.new({
+    id = id.from(_N, "InheritedAdditionalAnalyses"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "InheritedAdditionalAnalyses", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sources = schema.new({
+            id = id.from(_N, "InheritedAdditionalAnalyses", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.InheritedAdditionalAnalysesSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InheritedAllowedAdditionalAnalysesSource = schema.new({
+    id = id.from(_N, "InheritedAllowedAdditionalAnalysesSource"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "InheritedAllowedAdditionalAnalysesSource", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "InheritedAllowedAdditionalAnalysesSource", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "InheritedAllowedAdditionalAnalysesSource", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "InheritedAllowedAdditionalAnalysesSource", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceAccountId = schema.new({
+            id = id.from(_N, "InheritedAllowedAdditionalAnalysesSource", "sourceAccountId"),
+            type = "string",
+            name = "sourceAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InheritedAllowedAdditionalAnalyses = schema.new({
+    id = id.from(_N, "InheritedAllowedAdditionalAnalyses"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "InheritedAllowedAdditionalAnalyses", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sources = schema.new({
+            id = id.from(_N, "InheritedAllowedAdditionalAnalyses", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.InheritedAllowedAdditionalAnalysesSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InheritedAllowedResultReceiversSource = schema.new({
+    id = id.from(_N, "InheritedAllowedResultReceiversSource"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "InheritedAllowedResultReceiversSource", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "InheritedAllowedResultReceiversSource", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "InheritedAllowedResultReceiversSource", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "InheritedAllowedResultReceiversSource", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceAccountId = schema.new({
+            id = id.from(_N, "InheritedAllowedResultReceiversSource", "sourceAccountId"),
+            type = "string",
+            name = "sourceAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InheritedAllowedResultReceivers = schema.new({
+    id = id.from(_N, "InheritedAllowedResultReceivers"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "InheritedAllowedResultReceivers", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sources = schema.new({
+            id = id.from(_N, "InheritedAllowedResultReceivers", "sources"),
+            type = "list",
+            name = "sources",
+            target_id = prelude.Document.id,
+            list_member = M.InheritedAllowedResultReceiversSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ColumnLineageEntry = schema.new({
+    id = id.from(_N, "ColumnLineageEntry"),
+    type = "structure",
+    members = {
+        column = schema.new({
+            id = id.from(_N, "ColumnLineageEntry", "column"),
+            type = "string",
+            name = "column",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceColumn = schema.new({
+            id = id.from(_N, "ColumnLineageEntry", "sourceColumn"),
+            type = "string",
+            name = "sourceColumn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceName = schema.new({
+            id = id.from(_N, "ColumnLineageEntry", "sourceName"),
+            type = "string",
+            name = "sourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceId = schema.new({
+            id = id.from(_N, "ColumnLineageEntry", "sourceId"),
+            type = "string",
+            name = "sourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceType = schema.new({
+            id = id.from(_N, "ColumnLineageEntry", "sourceType"),
+            type = "string",
+            name = "sourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceAccountId = schema.new({
+            id = id.from(_N, "ColumnLineageEntry", "sourceAccountId"),
+            type = "string",
+            name = "sourceAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InheritedDisallowedOutputColumns = schema.new({
+    id = id.from(_N, "InheritedDisallowedOutputColumns"),
+    type = "structure",
+    members = {
+        value = schema.new({
+            id = id.from(_N, "InheritedDisallowedOutputColumns", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        columnLineage = schema.new({
+            id = id.from(_N, "InheritedDisallowedOutputColumns", "columnLineage"),
+            type = "list",
+            name = "columnLineage",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnLineageEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntermediateTableInheritedConstraints = schema.new({
+    id = id.from(_N, "IntermediateTableInheritedConstraints"),
+    type = "structure",
+    members = {
+        additionalAnalyses = schema.new({
+            id = id.from(_N, "IntermediateTableInheritedConstraints", "additionalAnalyses"),
+            type = "structure",
+            name = "additionalAnalyses",
+            target_id = id.from(_N, "InheritedAdditionalAnalyses"),
+            target = M.InheritedAdditionalAnalyses,
+        }),
+        allowedAdditionalAnalyses = schema.new({
+            id = id.from(_N, "IntermediateTableInheritedConstraints", "allowedAdditionalAnalyses"),
+            type = "structure",
+            name = "allowedAdditionalAnalyses",
+            target_id = id.from(_N, "InheritedAllowedAdditionalAnalyses"),
+            target = M.InheritedAllowedAdditionalAnalyses,
+        }),
+        allowedResultReceivers = schema.new({
+            id = id.from(_N, "IntermediateTableInheritedConstraints", "allowedResultReceivers"),
+            type = "structure",
+            name = "allowedResultReceivers",
+            target_id = id.from(_N, "InheritedAllowedResultReceivers"),
+            target = M.InheritedAllowedResultReceivers,
+        }),
+        disallowedOutputColumns = schema.new({
+            id = id.from(_N, "IntermediateTableInheritedConstraints", "disallowedOutputColumns"),
+            type = "structure",
+            name = "disallowedOutputColumns",
+            target_id = id.from(_N, "InheritedDisallowedOutputColumns"),
+            target = M.InheritedDisallowedOutputColumns,
+        }),
+    },
+})
+
+M.IntermediateTableActiveVersion = schema.new({
+    id = id.from(_N, "IntermediateTableActiveVersion"),
+    type = "structure",
+    members = {
+        versionId = schema.new({
+            id = id.from(_N, "IntermediateTableActiveVersion", "versionId"),
+            type = "string",
+            name = "versionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "IntermediateTableActiveVersion", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisType = schema.new({
+            id = id.from(_N, "IntermediateTableActiveVersion", "analysisType"),
+            type = "string",
+            name = "analysisType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "IntermediateTableActiveVersion", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "IntermediateTableActiveVersion", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        inheritedConstraints = schema.new({
+            id = id.from(_N, "IntermediateTableActiveVersion", "inheritedConstraints"),
+            type = "structure",
+            name = "inheritedConstraints",
+            target_id = id.from(_N, "IntermediateTableInheritedConstraints"),
+            target = M.IntermediateTableInheritedConstraints,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        expirationTime = schema.new({
+            id = id.from(_N, "IntermediateTableActiveVersion", "expirationTime"),
+            type = "timestamp",
+            name = "expirationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.IntermediateTableSchema = schema.new({
+    id = id.from(_N, "IntermediateTableSchema"),
+    type = "structure",
+    members = {
+        columns = schema.new({
+            id = id.from(_N, "IntermediateTableSchema", "columns"),
+            type = "list",
+            name = "columns",
+            target_id = prelude.Document.id,
+            list_member = M.Column,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntermediateTableDependency = schema.new({
+    id = id.from(_N, "IntermediateTableDependency"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "IntermediateTableDependency", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "IntermediateTableDependency", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "IntermediateTableDependency", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        parentType = schema.new({
+            id = id.from(_N, "IntermediateTableDependency", "parentType"),
+            type = "string",
+            name = "parentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creatorAccountId = schema.new({
+            id = id.from(_N, "IntermediateTableDependency", "creatorAccountId"),
+            type = "string",
+            name = "creatorAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntermediateTable = schema.new({
+    id = id.from(_N, "IntermediateTable"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "IntermediateTable", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IntermediateTable", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "IntermediateTable", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "IntermediateTable", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        membershipArn = schema.new({
+            id = id.from(_N, "IntermediateTable", "membershipArn"),
+            type = "string",
+            name = "membershipArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        membershipId = schema.new({
+            id = id.from(_N, "IntermediateTable", "membershipId"),
+            type = "string",
+            name = "membershipId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        collaborationArn = schema.new({
+            id = id.from(_N, "IntermediateTable", "collaborationArn"),
+            type = "string",
+            name = "collaborationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        collaborationId = schema.new({
+            id = id.from(_N, "IntermediateTable", "collaborationId"),
+            type = "string",
+            name = "collaborationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        childResources = schema.new({
+            id = id.from(_N, "IntermediateTable", "childResources"),
+            type = "list",
+            name = "childResources",
+            target_id = prelude.Document.id,
+            list_member = M.ChildResource,
+        }),
+        createTime = schema.new({
+            id = id.from(_N, "IntermediateTable", "createTime"),
+            type = "timestamp",
+            name = "createTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateTime = schema.new({
+            id = id.from(_N, "IntermediateTable", "updateTime"),
+            type = "timestamp",
+            name = "updateTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "IntermediateTable", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "IntermediateTable", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "IntermediateTable", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        populationAnalysisConfiguration = schema.new({
+            id = id.from(_N, "IntermediateTable", "populationAnalysisConfiguration"),
+            type = "union",
+            name = "populationAnalysisConfiguration",
+            target_id = id.from(_N, "PopulationAnalysisConfiguration"),
+            target = M.PopulationAnalysisConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retentionInDays = schema.new({
+            id = id.from(_N, "IntermediateTable", "retentionInDays"),
+            type = "integer",
+            name = "retentionInDays",
+            target_id = prelude.Integer.id,
+        }),
+        tableDependencies = schema.new({
+            id = id.from(_N, "IntermediateTable", "tableDependencies"),
+            type = "list",
+            name = "tableDependencies",
+            target_id = prelude.Document.id,
+            list_member = M.IntermediateTableDependency,
+        }),
+        intermediateTableVersion = schema.new({
+            id = id.from(_N, "IntermediateTable", "intermediateTableVersion"),
+            type = "structure",
+            name = "intermediateTableVersion",
+            target_id = id.from(_N, "IntermediateTableActiveVersion"),
+            target = M.IntermediateTableActiveVersion,
+        }),
+        analysisRuleTypes = schema.new({
+            id = id.from(_N, "IntermediateTable", "analysisRuleTypes"),
+            type = "list",
+            name = "analysisRuleTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        schema = schema.new({
+            id = id.from(_N, "IntermediateTable", "schema"),
+            type = "structure",
+            name = "schema",
+            target_id = id.from(_N, "IntermediateTableSchema"),
+            target = M.IntermediateTableSchema,
+        }),
+    },
+})
+
+M.CreateIntermediateTableOutput = schema.new({
+    id = id.from(_N, "CreateIntermediateTableOutput"),
+    type = "structure",
+    members = {
+        intermediateTable = schema.new({
+            id = id.from(_N, "CreateIntermediateTableOutput", "intermediateTable"),
+            type = "structure",
+            name = "intermediateTable",
+            target_id = id.from(_N, "IntermediateTable"),
+            target = M.IntermediateTable,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntermediateTableAnalysisRuleCustom = schema.new({
+    id = id.from(_N, "IntermediateTableAnalysisRuleCustom"),
+    type = "structure",
+    members = {
+        allowedAnalyses = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "allowedAnalyses"),
+            type = "list",
+            name = "allowedAnalyses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        additionalAnalyses = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "additionalAnalyses"),
+            type = "string",
+            name = "additionalAnalyses",
+            target_id = prelude.String.id,
+        }),
+        allowedAdditionalAnalyses = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "allowedAdditionalAnalyses"),
+            type = "list",
+            name = "allowedAdditionalAnalyses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allowedAnalysisProviders = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "allowedAnalysisProviders"),
+            type = "list",
+            name = "allowedAnalysisProviders",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allowedResultReceivers = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "allowedResultReceivers"),
+            type = "list",
+            name = "allowedResultReceivers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        differentialPrivacy = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "differentialPrivacy"),
+            type = "structure",
+            name = "differentialPrivacy",
+            target_id = id.from(_N, "DifferentialPrivacyConfiguration"),
+            target = M.DifferentialPrivacyConfiguration,
+        }),
+        disallowedOutputColumns = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRuleCustom", "disallowedOutputColumns"),
+            type = "list",
+            name = "disallowedOutputColumns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.IntermediateTableAnalysisRulePolicyV1 = schema.new({
+    id = id.from(_N, "IntermediateTableAnalysisRulePolicyV1"),
+    type = "union",
+    members = {
+        custom = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRulePolicyV1", "custom"),
+            type = "structure",
+            name = "custom",
+            target_id = id.from(_N, "IntermediateTableAnalysisRuleCustom"),
+            target = M.IntermediateTableAnalysisRuleCustom,
+        }),
+    },
+})
+
+M.IntermediateTableAnalysisRulePolicy = schema.new({
+    id = id.from(_N, "IntermediateTableAnalysisRulePolicy"),
+    type = "union",
+    members = {
+        v1 = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRulePolicy", "v1"),
+            type = "union",
+            name = "v1",
+            target_id = id.from(_N, "IntermediateTableAnalysisRulePolicyV1"),
+            target = M.IntermediateTableAnalysisRulePolicyV1,
+        }),
+    },
+})
+
+M.CreateIntermediateTableAnalysisRuleInput = schema.new({
+    id = id.from(_N, "CreateIntermediateTableAnalysisRuleInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "CreateIntermediateTableAnalysisRuleInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "CreateIntermediateTableAnalysisRuleInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisRuleType = schema.new({
+            id = id.from(_N, "CreateIntermediateTableAnalysisRuleInput", "analysisRuleType"),
+            type = "string",
+            name = "analysisRuleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisRulePolicy = schema.new({
+            id = id.from(_N, "CreateIntermediateTableAnalysisRuleInput", "analysisRulePolicy"),
+            type = "union",
+            name = "analysisRulePolicy",
+            target_id = id.from(_N, "IntermediateTableAnalysisRulePolicy"),
+            target = M.IntermediateTableAnalysisRulePolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntermediateTableAnalysisRule = schema.new({
+    id = id.from(_N, "IntermediateTableAnalysisRule"),
+    type = "structure",
+    members = {
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRule", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        intermediateTableArn = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRule", "intermediateTableArn"),
+            type = "string",
+            name = "intermediateTableArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisRulePolicy = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRule", "analysisRulePolicy"),
+            type = "union",
+            name = "analysisRulePolicy",
+            target_id = id.from(_N, "IntermediateTableAnalysisRulePolicy"),
+            target = M.IntermediateTableAnalysisRulePolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisRuleType = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRule", "analysisRuleType"),
+            type = "string",
+            name = "analysisRuleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createTime = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRule", "createTime"),
+            type = "timestamp",
+            name = "createTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateTime = schema.new({
+            id = id.from(_N, "IntermediateTableAnalysisRule", "updateTime"),
+            type = "timestamp",
+            name = "updateTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateIntermediateTableAnalysisRuleOutput = schema.new({
+    id = id.from(_N, "CreateIntermediateTableAnalysisRuleOutput"),
+    type = "structure",
+    members = {
+        analysisRule = schema.new({
+            id = id.from(_N, "CreateIntermediateTableAnalysisRuleOutput", "analysisRule"),
+            type = "structure",
+            name = "analysisRule",
+            target_id = id.from(_N, "IntermediateTableAnalysisRule"),
+            target = M.IntermediateTableAnalysisRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteIntermediateTableInput = schema.new({
+    id = id.from(_N, "DeleteIntermediateTableInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "DeleteIntermediateTableInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "DeleteIntermediateTableInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteIntermediateTableOutput = schema.new({
+    id = id.from(_N, "DeleteIntermediateTableOutput"),
+    type = "structure",
+})
+
+M.DeleteIntermediateTableAnalysisRuleInput = schema.new({
+    id = id.from(_N, "DeleteIntermediateTableAnalysisRuleInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "DeleteIntermediateTableAnalysisRuleInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "DeleteIntermediateTableAnalysisRuleInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisRuleType = schema.new({
+            id = id.from(_N, "DeleteIntermediateTableAnalysisRuleInput", "analysisRuleType"),
+            type = "string",
+            name = "analysisRuleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteIntermediateTableAnalysisRuleOutput = schema.new({
+    id = id.from(_N, "DeleteIntermediateTableAnalysisRuleOutput"),
+    type = "structure",
+})
+
+M.GetIntermediateTableInput = schema.new({
+    id = id.from(_N, "GetIntermediateTableInput"),
+    type = "structure",
+    members = {
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "GetIntermediateTableInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "GetIntermediateTableInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetIntermediateTableOutput = schema.new({
+    id = id.from(_N, "GetIntermediateTableOutput"),
+    type = "structure",
+    members = {
+        intermediateTable = schema.new({
+            id = id.from(_N, "GetIntermediateTableOutput", "intermediateTable"),
+            type = "structure",
+            name = "intermediateTable",
+            target_id = id.from(_N, "IntermediateTable"),
+            target = M.IntermediateTable,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetIntermediateTableAnalysisRuleInput = schema.new({
+    id = id.from(_N, "GetIntermediateTableAnalysisRuleInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "GetIntermediateTableAnalysisRuleInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "GetIntermediateTableAnalysisRuleInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisRuleType = schema.new({
+            id = id.from(_N, "GetIntermediateTableAnalysisRuleInput", "analysisRuleType"),
+            type = "string",
+            name = "analysisRuleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetIntermediateTableAnalysisRuleOutput = schema.new({
+    id = id.from(_N, "GetIntermediateTableAnalysisRuleOutput"),
+    type = "structure",
+    members = {
+        analysisRule = schema.new({
+            id = id.from(_N, "GetIntermediateTableAnalysisRuleOutput", "analysisRule"),
+            type = "structure",
+            name = "analysisRule",
+            target_id = id.from(_N, "IntermediateTableAnalysisRule"),
+            target = M.IntermediateTableAnalysisRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListIntermediateTablesInput = schema.new({
+    id = id.from(_N, "ListIntermediateTablesInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "ListIntermediateTablesInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIntermediateTablesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListIntermediateTablesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.IntermediateTableSummary = schema.new({
+    id = id.from(_N, "IntermediateTableSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        membershipArn = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "membershipArn"),
+            type = "string",
+            name = "membershipArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        membershipId = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "membershipId"),
+            type = "string",
+            name = "membershipId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        collaborationArn = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "collaborationArn"),
+            type = "string",
+            name = "collaborationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        collaborationId = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "collaborationId"),
+            type = "string",
+            name = "collaborationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createTime = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "createTime"),
+            type = "timestamp",
+            name = "createTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateTime = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "updateTime"),
+            type = "timestamp",
+            name = "updateTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retentionInDays = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "retentionInDays"),
+            type = "integer",
+            name = "retentionInDays",
+            target_id = prelude.Integer.id,
+        }),
+        analysisRuleTypes = schema.new({
+            id = id.from(_N, "IntermediateTableSummary", "analysisRuleTypes"),
+            type = "list",
+            name = "analysisRuleTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListIntermediateTablesOutput = schema.new({
+    id = id.from(_N, "ListIntermediateTablesOutput"),
+    type = "structure",
+    members = {
+        intermediateTableSummaries = schema.new({
+            id = id.from(_N, "ListIntermediateTablesOutput", "intermediateTableSummaries"),
+            type = "list",
+            name = "intermediateTableSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.IntermediateTableSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIntermediateTablesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListIntermediateTableVersionsInput = schema.new({
+    id = id.from(_N, "ListIntermediateTableVersionsInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "ListIntermediateTableVersionsInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "ListIntermediateTableVersionsInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIntermediateTableVersionsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListIntermediateTableVersionsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.IntermediateTableVersionSummary = schema.new({
+    id = id.from(_N, "IntermediateTableVersionSummary"),
+    type = "structure",
+    members = {
+        versionId = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "versionId"),
+            type = "string",
+            name = "versionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tableId = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "tableId"),
+            type = "string",
+            name = "tableId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createTime = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "createTime"),
+            type = "timestamp",
+            name = "createTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisType = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "analysisType"),
+            type = "string",
+            name = "analysisType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        expirationTime = schema.new({
+            id = id.from(_N, "IntermediateTableVersionSummary", "expirationTime"),
+            type = "timestamp",
+            name = "expirationTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListIntermediateTableVersionsOutput = schema.new({
+    id = id.from(_N, "ListIntermediateTableVersionsOutput"),
+    type = "structure",
+    members = {
+        intermediateTableVersionSummaries = schema.new({
+            id = id.from(_N, "ListIntermediateTableVersionsOutput", "intermediateTableVersionSummaries"),
+            type = "list",
+            name = "intermediateTableVersionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.IntermediateTableVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListIntermediateTableVersionsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WorkerComputeConfigurationProperties = schema.new({
+    id = id.from(_N, "WorkerComputeConfigurationProperties"),
+    type = "union",
+    members = {
+        spark = schema.new({
+            id = id.from(_N, "WorkerComputeConfigurationProperties", "spark"),
+            type = "map",
+            name = "spark",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.WorkerComputeConfiguration = schema.new({
+    id = id.from(_N, "WorkerComputeConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "WorkerComputeConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        number = schema.new({
+            id = id.from(_N, "WorkerComputeConfiguration", "number"),
+            type = "integer",
+            name = "number",
+            target_id = prelude.Integer.id,
+        }),
+        properties = schema.new({
+            id = id.from(_N, "WorkerComputeConfiguration", "properties"),
+            type = "union",
+            name = "properties",
+            target_id = id.from(_N, "WorkerComputeConfigurationProperties"),
+            target = M.WorkerComputeConfigurationProperties,
+        }),
+    },
+})
+
+M.IntermediateTableComputeConfiguration = schema.new({
+    id = id.from(_N, "IntermediateTableComputeConfiguration"),
+    type = "union",
+    members = {
+        queryComputeConfiguration = schema.new({
+            id = id.from(_N, "IntermediateTableComputeConfiguration", "queryComputeConfiguration"),
+            type = "structure",
+            name = "queryComputeConfiguration",
+            target_id = id.from(_N, "WorkerComputeConfiguration"),
+            target = M.WorkerComputeConfiguration,
+        }),
+    },
+})
+
+M.PopulateIntermediateTableInput = schema.new({
+    id = id.from(_N, "PopulateIntermediateTableInput"),
+    type = "structure",
+    members = {
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableInput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        computeConfiguration = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableInput", "computeConfiguration"),
+            type = "union",
+            name = "computeConfiguration",
+            target_id = id.from(_N, "IntermediateTableComputeConfiguration"),
+            target = M.IntermediateTableComputeConfiguration,
+        }),
+        analysisPayerAccountId = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableInput", "analysisPayerAccountId"),
+            type = "string",
+            name = "analysisPayerAccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PopulateIntermediateTableOutput = schema.new({
+    id = id.from(_N, "PopulateIntermediateTableOutput"),
+    type = "structure",
+    members = {
+        analysisId = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableOutput", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisType = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableOutput", "analysisType"),
+            type = "string",
+            name = "analysisType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        versionId = schema.new({
+            id = id.from(_N, "PopulateIntermediateTableOutput", "versionId"),
+            type = "string",
+            name = "versionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.IntermediateTableColumn = schema.new({
+    id = id.from(_N, "IntermediateTableColumn"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "IntermediateTableColumn", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "IntermediateTableColumn", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateIntermediateTableInput = schema.new({
+    id = id.from(_N, "UpdateIntermediateTableInput"),
+    type = "structure",
+    members = {
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableInput", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+        columns = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableInput", "columns"),
+            type = "list",
+            name = "columns",
+            target_id = prelude.Document.id,
+            list_member = M.IntermediateTableColumn,
+        }),
+    },
+})
+
+M.UpdateIntermediateTableOutput = schema.new({
+    id = id.from(_N, "UpdateIntermediateTableOutput"),
+    type = "structure",
+    members = {
+        intermediateTable = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableOutput", "intermediateTable"),
+            type = "structure",
+            name = "intermediateTable",
+            target_id = id.from(_N, "IntermediateTable"),
+            target = M.IntermediateTable,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateIntermediateTableAnalysisRuleInput = schema.new({
+    id = id.from(_N, "UpdateIntermediateTableAnalysisRuleInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableAnalysisRuleInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        intermediateTableIdentifier = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableAnalysisRuleInput", "intermediateTableIdentifier"),
+            type = "string",
+            name = "intermediateTableIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisRuleType = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableAnalysisRuleInput", "analysisRuleType"),
+            type = "string",
+            name = "analysisRuleType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisRulePolicy = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableAnalysisRuleInput", "analysisRulePolicy"),
+            type = "union",
+            name = "analysisRulePolicy",
+            target_id = id.from(_N, "IntermediateTableAnalysisRulePolicy"),
+            target = M.IntermediateTableAnalysisRulePolicy,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateIntermediateTableAnalysisRuleOutput = schema.new({
+    id = id.from(_N, "UpdateIntermediateTableAnalysisRuleOutput"),
+    type = "structure",
+    members = {
+        analysisRule = schema.new({
+            id = id.from(_N, "UpdateIntermediateTableAnalysisRuleOutput", "analysisRule"),
+            type = "structure",
+            name = "analysisRule",
+            target_id = id.from(_N, "IntermediateTableAnalysisRule"),
+            target = M.IntermediateTableAnalysisRule,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceInput"),
     type = "structure",
@@ -10079,6 +11983,46 @@ M.DeleteMembershipOutput = schema.new({
     type = "structure",
 })
 
+M.DisallowIntermediateTableInput = schema.new({
+    id = id.from(_N, "DisallowIntermediateTableInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "DisallowIntermediateTableInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        intermediateTableName = schema.new({
+            id = id.from(_N, "DisallowIntermediateTableInput", "intermediateTableName"),
+            type = "string",
+            name = "intermediateTableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        includeDescendants = schema.new({
+            id = id.from(_N, "DisallowIntermediateTableInput", "includeDescendants"),
+            type = "boolean",
+            name = "includeDescendants",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+    },
+})
+
+M.DisallowIntermediateTableOutput = schema.new({
+    id = id.from(_N, "DisallowIntermediateTableOutput"),
+    type = "structure",
+})
+
 M.GetMembershipInput = schema.new({
     id = id.from(_N, "GetMembershipInput"),
     type = "structure",
@@ -10136,21 +12080,6 @@ M.GetProtectedJobInput = schema.new({
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
-        }),
-    },
-})
-
-M.WorkerComputeConfigurationProperties = schema.new({
-    id = id.from(_N, "WorkerComputeConfigurationProperties"),
-    type = "union",
-    members = {
-        spark = schema.new({
-            id = id.from(_N, "WorkerComputeConfigurationProperties", "spark"),
-            type = "map",
-            name = "spark",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
         }),
     },
 })
@@ -10576,32 +12505,6 @@ M.GetProtectedQueryInput = schema.new({
     },
 })
 
-M.WorkerComputeConfiguration = schema.new({
-    id = id.from(_N, "WorkerComputeConfiguration"),
-    type = "structure",
-    members = {
-        type = schema.new({
-            id = id.from(_N, "WorkerComputeConfiguration", "type"),
-            type = "string",
-            name = "type",
-            target_id = prelude.String.id,
-        }),
-        number = schema.new({
-            id = id.from(_N, "WorkerComputeConfiguration", "number"),
-            type = "integer",
-            name = "number",
-            target_id = prelude.Integer.id,
-        }),
-        properties = schema.new({
-            id = id.from(_N, "WorkerComputeConfiguration", "properties"),
-            type = "union",
-            name = "properties",
-            target_id = id.from(_N, "WorkerComputeConfigurationProperties"),
-            target = M.WorkerComputeConfigurationProperties,
-        }),
-    },
-})
-
 M.ComputeConfiguration = schema.new({
     id = id.from(_N, "ComputeConfiguration"),
     type = "union",
@@ -10856,6 +12759,40 @@ M.ProtectedQueryDistributeOutputConfiguration = schema.new({
     },
 })
 
+M.IntermediateTableOutputConfiguration = schema.new({
+    id = id.from(_N, "IntermediateTableOutputConfiguration"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "IntermediateTableOutputConfiguration", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "IntermediateTableOutputConfiguration", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "IntermediateTableOutputConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ProtectedQueryOutputConfiguration = schema.new({
     id = id.from(_N, "ProtectedQueryOutputConfiguration"),
     type = "union",
@@ -10880,6 +12817,13 @@ M.ProtectedQueryOutputConfiguration = schema.new({
             name = "distribute",
             target_id = id.from(_N, "ProtectedQueryDistributeOutputConfiguration"),
             target = M.ProtectedQueryDistributeOutputConfiguration,
+        }),
+        intermediateTable = schema.new({
+            id = id.from(_N, "ProtectedQueryOutputConfiguration", "intermediateTable"),
+            type = "structure",
+            name = "intermediateTable",
+            target_id = id.from(_N, "IntermediateTableOutputConfiguration"),
+            target = M.IntermediateTableOutputConfiguration,
         }),
     },
 })
@@ -11800,6 +13744,13 @@ M.ProtectedQuerySummary = schema.new({
             type = "string",
             name = "queryComputePayerAccountId",
             target_id = prelude.String.id,
+        }),
+        intermediateTableConfiguration = schema.new({
+            id = id.from(_N, "ProtectedQuerySummary", "intermediateTableConfiguration"),
+            type = "structure",
+            name = "intermediateTableConfiguration",
+            target_id = id.from(_N, "IntermediateTableOutputConfiguration"),
+            target = M.IntermediateTableOutputConfiguration,
         }),
     },
 })
@@ -13149,6 +15100,30 @@ M.CreateIdNamespaceAssociation = schema.operation({
     },
 })
 
+M.CreateIntermediateTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateIntermediateTable"),
+    input = M.CreateIntermediateTableInput,
+    output = M.CreateIntermediateTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/intermediateTables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIntermediateTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "CreateIntermediateTableAnalysisRule"),
+    input = M.CreateIntermediateTableAnalysisRuleInput,
+    output = M.CreateIntermediateTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}/analysisRule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateMembership = schema.operation({
     id = id.from("com.amazonaws.cleanrooms", "CreateMembership"),
     input = M.CreateMembershipInput,
@@ -13281,6 +15256,30 @@ M.DeleteIdNamespaceAssociation = schema.operation({
     },
 })
 
+M.DeleteIntermediateTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteIntermediateTable"),
+    input = M.DeleteIntermediateTableInput,
+    output = M.DeleteIntermediateTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIntermediateTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DeleteIntermediateTableAnalysisRule"),
+    input = M.DeleteIntermediateTableAnalysisRuleInput,
+    output = M.DeleteIntermediateTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}/analysisRule/{analysisRuleType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteMember = schema.operation({
     id = id.from("com.amazonaws.cleanrooms", "DeleteMember"),
     input = M.DeleteMemberInput,
@@ -13311,6 +15310,18 @@ M.DeletePrivacyBudgetTemplate = schema.operation({
     output = M.DeletePrivacyBudgetTemplateOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/memberships/{membershipIdentifier}/privacybudgettemplates/{privacyBudgetTemplateIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DisallowIntermediateTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "DisallowIntermediateTable"),
+    input = M.DisallowIntermediateTableInput,
+    output = M.DisallowIntermediateTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/disallowIntermediateTable" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -13479,6 +15490,30 @@ M.GetIdNamespaceAssociation = schema.operation({
     output = M.GetIdNamespaceAssociationOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntermediateTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetIntermediateTable"),
+    input = M.GetIntermediateTableInput,
+    output = M.GetIntermediateTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIntermediateTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetIntermediateTableAnalysisRule"),
+    input = M.GetIntermediateTableAnalysisRuleInput,
+    output = M.GetIntermediateTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}/analysisRule/{analysisRuleType}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -13713,6 +15748,30 @@ M.ListIdNamespaceAssociations = schema.operation({
     },
 })
 
+M.ListIntermediateTables = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListIntermediateTables"),
+    input = M.ListIntermediateTablesInput,
+    output = M.ListIntermediateTablesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/intermediateTables" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListIntermediateTableVersions = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListIntermediateTableVersions"),
+    input = M.ListIntermediateTableVersionsInput,
+    output = M.ListIntermediateTableVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}/versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListMembers = schema.operation({
     id = id.from("com.amazonaws.cleanrooms", "ListMembers"),
     input = M.ListMembersInput,
@@ -13815,6 +15874,18 @@ M.PopulateIdMappingTable = schema.operation({
     output = M.PopulateIdMappingTableOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/idmappingtables/{idMappingTableIdentifier}/populate" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PopulateIntermediateTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "PopulateIntermediateTable"),
+    input = M.PopulateIntermediateTableInput,
+    output = M.PopulateIntermediateTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}/populate" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -13995,6 +16066,30 @@ M.UpdateIdNamespaceAssociation = schema.operation({
     output = M.UpdateIdNamespaceAssociationOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/idnamespaceassociations/{idNamespaceAssociationIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntermediateTable = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateIntermediateTable"),
+    input = M.UpdateIntermediateTableInput,
+    output = M.UpdateIntermediateTableOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateIntermediateTableAnalysisRule = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "UpdateIntermediateTableAnalysisRule"),
+    input = M.UpdateIntermediateTableAnalysisRuleInput,
+    output = M.UpdateIntermediateTableAnalysisRuleOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/memberships/{membershipIdentifier}/intermediateTables/{intermediateTableIdentifier}/analysisRule/{analysisRuleType}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

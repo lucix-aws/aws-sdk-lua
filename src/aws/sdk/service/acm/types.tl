@@ -7,6 +7,12 @@ local record M
         Message: string
     end
 
+    enum CertificateKeyPairOrigin
+        "AWS_MANAGED"
+        "ACME"
+        "CUSTOMER_PROVIDED"
+    end
+
     enum CertificateExport
         "ENABLED"
         "DISABLED"
@@ -78,6 +84,12 @@ local record M
         ManagedBy: string
         -- Specifies the domain validation method.
         ValidationMethod: string
+        -- The origin of the certificate's key pair.
+        CertificateKeyPairOrigin: string
+        -- The ARN of the ACME endpoint used to issue the certificate.
+        AcmeEndpointArn: string
+        -- The ACME account identifier associated with the certificate.
+        AcmeAccountId: string
     end
 
     -- Filters certificates by ACM metadata.
@@ -98,6 +110,197 @@ local record M
         ManagedBy: string
         -- Filter by validation method.
         ValidationMethod: string
+        -- Filter by certificate key pair origin.
+        CertificateKeyPairOrigin: string
+        -- Filter by ACME endpoint ARN.
+        AcmeEndpointArn: string
+        -- Filter by ACME account identifier.
+        AcmeAccountId: string
+    end
+
+    enum AcmeAccountStatus
+        "VALID"
+        "DEACTIVATED"
+        "REVOKED"
+    end
+
+    -- Contains detailed information about an ACME account.
+    record AcmeAccount
+        -- The URL of the ACME account.
+        AccountUrl: string
+        -- The thumbprint of the public key associated with the ACME account.
+        PublicKeyThumbprint: string
+        -- The status of the ACME account.
+        Status: string
+        -- The time at which the ACME account was created.
+        CreatedAt: number
+        -- The Amazon Resource Name (ARN) of the external account binding associated with this ACME account.
+        AcmeExternalAccountBindingArn: string
+        -- The contact information for the ACME account.
+        Contacts: {string}
+    end
+
+    -- Contains summary information about an ACME account.
+    record AcmeAccountSummary
+        -- The URL of the ACME account.
+        AccountUrl: string
+        -- The thumbprint of the public key associated with the ACME account.
+        PublicKeyThumbprint: string
+        -- The status of the ACME account.
+        Status: string
+        -- The time at which the ACME account was created.
+        CreatedAt: number
+        -- The Amazon Resource Name (ARN) of the external account binding associated with this ACME account.
+        AcmeExternalAccountBindingArn: string
+        -- The contact information for the ACME account.
+        Contacts: {string}
+    end
+
+    enum AcmeAuthorizationBehavior
+        "PRE_APPROVED"
+    end
+
+    enum AcmeContact
+        "REQUIRED"
+        "NOT_REQUIRED"
+    end
+
+    enum AcmeDomainValidationFailureReason
+        "ACCESS_DENIED"
+        "DOMAIN_MISMATCH"
+        "DOMAIN_NOT_ALLOWED"
+        "ENDPOINT_NOT_ACTIVE"
+        "HOSTED_ZONE_NOT_FOUND"
+        "INTERNAL_FAILURE"
+        "INVALID_CHANGE_BATCH"
+        "INVALID_PUBLIC_DOMAIN"
+        "TIMED_OUT"
+    end
+
+    -- Contains details about a failure.
+    record FailureDetails
+        -- The reason for the failure.
+        Reason: string
+        -- A message describing the failure.
+        Message: string
+    end
+
+    enum DomainScopeOption
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- Specifies the scope of domain validation.
+    record DomainScope
+        -- Whether validation applies to the exact domain.
+        ExactDomain: string
+        -- Whether validation applies to subdomains.
+        Subdomains: string
+        -- Whether validation applies to wildcard domains.
+        Wildcards: string
+    end
+
+    enum RecordType
+        "CNAME"
+    end
+
+    -- Contains a DNS record value that you can use to validate ownership or control of a domain. This is used by the DescribeCertificate action.
+    record ResourceRecord
+        -- The name of the DNS record to create in your domain. This is supplied by ACM.
+        Name: string
+        -- The type of DNS record. Currently this can be CNAME.
+        Type: string
+        -- The value of the CNAME record to add to your DNS database. This is supplied by ACM.
+        Value: string
+    end
+
+    -- DNS prevalidation details including the resource record for validation.
+    record DnsPrevalidationDetails
+        -- The scope of domains covered by this prevalidation.
+        DomainScope: DomainScope
+        -- The Route 53 hosted zone ID for DNS validation.
+        HostedZoneId: string
+        -- The DNS resource record to create for domain validation.
+        ResourceRecord: ResourceRecord
+    end
+
+    -- Contains details about the prevalidation configuration.
+    record PrevalidationDetails
+        -- DNS-based prevalidation details.
+        DnsPrevalidation: DnsPrevalidationDetails
+    end
+
+    enum PrevalidationType
+        "DNS_PREVALIDATION"
+    end
+
+    enum AcmeDomainValidationStatus
+        "VALIDATING"
+        "VALID"
+        "INVALID"
+        "DELETING"
+    end
+
+    -- Contains detailed information about an ACME domain validation.
+    record AcmeDomainValidation
+        -- The Amazon Resource Name (ARN) of the ACME domain validation.
+        AcmeDomainValidationArn: string
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The domain name being validated.
+        DomainName: string
+        -- The type of prevalidation used.
+        PrevalidationType: string
+        -- Details about the prevalidation configuration.
+        PrevalidationDetails: PrevalidationDetails
+        -- The status of the domain validation.
+        Status: string
+        -- Details about the failure, if the validation failed.
+        FailureDetails: FailureDetails
+        -- The time at which the domain validation was created.
+        CreatedAt: number
+        -- The time at which the domain validation was last updated.
+        UpdatedAt: number
+    end
+
+    -- Contains summary information about an ACME domain validation.
+    record AcmeDomainValidationSummary
+        -- The Amazon Resource Name (ARN) of the ACME domain validation.
+        AcmeDomainValidationArn: string
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The domain name being validated.
+        DomainName: string
+        -- The type of prevalidation used.
+        PrevalidationType: string
+        -- Details about the prevalidation configuration.
+        PrevalidationDetails: PrevalidationDetails
+        -- The status of the domain validation.
+        Status: string
+        -- Details about the failure, if the validation failed.
+        FailureDetails: FailureDetails
+        -- The time at which the domain validation was created.
+        CreatedAt: number
+        -- The time at which the domain validation was last updated.
+        UpdatedAt: number
+    end
+
+    enum PublicKeyAlgorithm
+        "RSA_2048"
+        "EC_prime256v1"
+        "EC_secp384r1"
+    end
+
+    -- Configuration for a public certificate authority.
+    record PublicCertificateAuthority
+        -- The key algorithms allowed for certificates issued by this certificate authority.
+        AllowedKeyAlgorithms: {string}
+    end
+
+    -- Defines the certificate authority to use for an ACME endpoint.
+    record CertificateAuthority
+        -- Configuration for using a public certificate authority.
+        PublicCertificateAuthority: PublicCertificateAuthority
     end
 
     -- A key-value pair that identifies or specifies metadata about an ACM resource.
@@ -106,6 +309,101 @@ local record M
         Key: string
         -- The value of the tag.
         Value: string
+    end
+
+    enum AcmeEndpointStatus
+        "CREATING"
+        "ACTIVE"
+        "DELETING"
+        "FAILED"
+    end
+
+    -- Contains detailed information about an ACME endpoint.
+    record AcmeEndpoint
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The URL of the ACME endpoint.
+        EndpointUrl: string
+        -- The status of the ACME endpoint.
+        Status: string
+        -- The reason the ACME endpoint failed, if applicable.
+        FailureReason: string
+        -- The authorization behavior of the ACME endpoint.
+        AuthorizationBehavior: string
+        -- Whether ACME clients must provide contact information during account registration.
+        Contact: string
+        -- The certificate authority configuration for the ACME endpoint.
+        CertificateAuthority: CertificateAuthority
+        -- Tags applied to certificates issued through this ACME endpoint.
+        CertificateTags: {Tag}
+        -- The time at which the ACME endpoint was created.
+        CreatedAt: number
+        -- The time at which the ACME endpoint was last updated.
+        UpdatedAt: number
+    end
+
+    -- Contains summary information about an ACME endpoint.
+    record AcmeEndpointSummary
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The URL of the ACME endpoint.
+        EndpointUrl: string
+        -- The status of the ACME endpoint.
+        Status: string
+        -- The reason the ACME endpoint failed, if applicable.
+        FailureReason: string
+        -- The authorization behavior of the ACME endpoint.
+        AuthorizationBehavior: string
+        -- Whether ACME clients must provide contact information during account registration.
+        Contact: string
+        -- The certificate authority configuration for the ACME endpoint.
+        CertificateAuthority: CertificateAuthority
+        -- Tags applied to certificates issued through this ACME endpoint.
+        CertificateTags: {Tag}
+        -- The time at which the ACME endpoint was created.
+        CreatedAt: number
+        -- The time at which the ACME endpoint was last updated.
+        UpdatedAt: number
+    end
+
+    -- Contains detailed information about an ACME external account binding.
+    record AcmeExternalAccountBinding
+        -- The Amazon Resource Name (ARN) of the ACME external account binding.
+        AcmeExternalAccountBindingArn: string
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the external account binding.
+        RoleArn: string
+        -- The time at which the external account binding expires.
+        ExpiresAt: number
+        -- The time at which the external account binding was revoked.
+        RevokedAt: number
+        -- The time at which the external account binding was last used.
+        LastUsedAt: number
+        -- The time at which the external account binding was created.
+        CreatedAt: number
+        -- The time at which the external account binding was last updated.
+        UpdatedAt: number
+    end
+
+    -- Contains summary information about an ACME external account binding.
+    record AcmeExternalAccountBindingSummary
+        -- The Amazon Resource Name (ARN) of the ACME external account binding.
+        AcmeExternalAccountBindingArn: string
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The Amazon Resource Name (ARN) of the IAM role associated with the external account binding.
+        RoleArn: string
+        -- The time at which the external account binding expires.
+        ExpiresAt: number
+        -- The time at which the external account binding was revoked.
+        RevokedAt: number
+        -- The time at which the external account binding was last used.
+        LastUsedAt: number
+        -- The time at which the external account binding was created.
+        CreatedAt: number
+        -- The time at which the external account binding was last updated.
+        UpdatedAt: number
     end
 
     record AddTagsToCertificateInput
@@ -163,26 +461,17 @@ local record M
         message: string
     end
 
+    -- The supplied input failed to satisfy constraints of an Amazon Web Services service.
+    record ValidationException
+        message: string
+    end
+
     -- Contains information for HTTP-based domain validation of certificates requested through Amazon CloudFront and issued by ACM. This field exists only when the certificate type is AMAZON_ISSUED and the validation method is HTTP.
     record HttpRedirect
         -- The URL including the domain to be validated. The certificate authority sends GET requests here during validation.
         RedirectFrom: string
         -- The URL hosting the validation token. RedirectFrom must return this content or redirect here.
         RedirectTo: string
-    end
-
-    enum RecordType
-        "CNAME"
-    end
-
-    -- Contains a DNS record value that you can use to validate ownership or control of a domain. This is used by the DescribeCertificate action.
-    record ResourceRecord
-        -- The name of the DNS record to create in your domain. This is supplied by ACM.
-        Name: string
-        -- The type of DNS record. Currently this can be CNAME.
-        Type: string
-        -- The value of the CNAME record to add to your DNS database. This is supplied by ACM.
-        Value: string
     end
 
     enum DomainStatus
@@ -377,6 +666,12 @@ local record M
         RenewalEligibility: string
         -- Contains the certificate options. Certificate transparency logging opt-out is no longer available. All public certificates are recorded in a certificate transparency log.
         Options: CertificateOptions
+        -- The origin of the certificate's key pair.
+        CertificateKeyPairOrigin: string
+        -- The ARN of the ACME endpoint used to issue the certificate.
+        AcmeEndpointArn: string
+        -- The ACME account identifier associated with the certificate.
+        AcmeAccountId: string
     end
 
     -- Specifies a time range for filtering certificates.
@@ -455,6 +750,124 @@ local record M
         message: string
     end
 
+    -- DNS prevalidation options for domain validation.
+    record DnsPrevalidationOptions
+        -- The scope of domains covered by this prevalidation.
+        DomainScope: DomainScope
+        -- The Route 53 hosted zone ID for DNS validation.
+        HostedZoneId: string
+    end
+
+    -- Specifies prevalidation options for domain validation.
+    record PrevalidationOptions
+        -- DNS-based prevalidation options.
+        DnsPrevalidation: DnsPrevalidationOptions
+    end
+
+    record CreateAcmeDomainValidationInput
+        -- A unique, case-sensitive identifier to ensure idempotency of the request.
+        IdempotencyToken: string
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The domain name to validate.
+        DomainName: string
+        -- The prevalidation options for the domain.
+        PrevalidationOptions: PrevalidationOptions
+        -- One or more tags to associate with the domain validation.
+        Tags: {Tag}
+    end
+
+    record CreateAcmeDomainValidationOutput
+        -- The Amazon Resource Name (ARN) of the created domain validation.
+        AcmeDomainValidationArn: string
+    end
+
+    -- The request processing has failed because of an unknown error, exception, or failure.
+    record InternalServerException
+        message: string
+    end
+
+    -- A service quota has been exceeded.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
+    record CreateAcmeEndpointInput
+        -- A unique, case-sensitive identifier to ensure idempotency of the request.
+        IdempotencyToken: string
+        -- The authorization behavior for the ACME endpoint.
+        AuthorizationBehavior: string
+        -- Specifies whether ACME clients must provide contact information during account registration.
+        Contact: string
+        -- The type of certificate authority to use for issuing certificates through this ACME endpoint.
+        CertificateAuthority: CertificateAuthority
+        -- One or more tags to associate with the ACME endpoint.
+        Tags: {Tag}
+        -- Tags to apply to certificates issued through this ACME endpoint.
+        CertificateTags: {Tag}
+    end
+
+    record CreateAcmeEndpointOutput
+        -- The Amazon Resource Name (ARN) of the created ACME endpoint.
+        AcmeEndpointArn: string
+    end
+
+    enum TimeType
+        "MINUTES"
+        "HOURS"
+        "DAYS"
+    end
+
+    -- Specifies an expiration configuration.
+    record Expiration
+        -- The numeric value of the expiration.
+        Value: number
+        -- The time unit for the expiration value.
+        Type: string
+    end
+
+    record CreateAcmeExternalAccountBindingInput
+        -- A unique, case-sensitive identifier to ensure idempotency of the request.
+        IdempotencyToken: string
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The Amazon Resource Name (ARN) of the IAM role to associate with the external account binding.
+        RoleArn: string
+        -- The expiration configuration for the external account binding.
+        Expiration: Expiration
+        -- One or more tags to associate with the external account binding.
+        Tags: {Tag}
+    end
+
+    record CreateAcmeExternalAccountBindingOutput
+        -- The created external account binding.
+        ExternalAccountBinding: AcmeExternalAccountBinding
+    end
+
+    record DeleteAcmeDomainValidationInput
+        -- The Amazon Resource Name (ARN) of the ACME domain validation to delete.
+        AcmeDomainValidationArn: string
+    end
+
+    record DeleteAcmeDomainValidationOutput
+    end
+
+    record DeleteAcmeEndpointInput
+        -- The Amazon Resource Name (ARN) of the ACME endpoint to delete.
+        AcmeEndpointArn: string
+    end
+
+    record DeleteAcmeEndpointOutput
+    end
+
+    record DeleteAcmeExternalAccountBindingInput
+        -- The Amazon Resource Name (ARN) of the ACME external account binding to delete.
+        AcmeExternalAccountBindingArn: string
+    end
+
+    record DeleteAcmeExternalAccountBindingOutput
+    end
+
     record DeleteCertificateInput
         -- String that contains the ARN of the ACM certificate to be deleted. This must be of the form: arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012 For more information about ARNs, see Amazon Resource Names (ARNs).
         CertificateArn: string
@@ -466,6 +879,48 @@ local record M
     -- The certificate is in use by another Amazon Web Services service in the caller's account. Remove the association and try again.
     record ResourceInUseException
         message: string
+    end
+
+    record DescribeAcmeAccountInput
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The URL of the ACME account.
+        AccountUrl: string
+    end
+
+    record DescribeAcmeAccountOutput
+        -- The ACME account details.
+        AcmeAccount: AcmeAccount
+    end
+
+    record DescribeAcmeDomainValidationInput
+        -- The Amazon Resource Name (ARN) of the ACME domain validation.
+        AcmeDomainValidationArn: string
+    end
+
+    record DescribeAcmeDomainValidationOutput
+        -- The ACME domain validation details.
+        AcmeDomainValidation: AcmeDomainValidation
+    end
+
+    record DescribeAcmeEndpointInput
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+    end
+
+    record DescribeAcmeEndpointOutput
+        -- The ACME endpoint details.
+        AcmeEndpoint: AcmeEndpoint
+    end
+
+    record DescribeAcmeExternalAccountBindingInput
+        -- The Amazon Resource Name (ARN) of the ACME external account binding.
+        AcmeExternalAccountBindingArn: string
+    end
+
+    record DescribeAcmeExternalAccountBindingOutput
+        -- The external account binding details.
+        ExternalAccountBinding: AcmeExternalAccountBinding
     end
 
     record DescribeCertificateInput
@@ -513,6 +968,18 @@ local record M
         ExpiryEvents: ExpiryEventsConfiguration
     end
 
+    record GetAcmeExternalAccountBindingCredentialsInput
+        -- The Amazon Resource Name (ARN) of the ACME external account binding.
+        AcmeExternalAccountBindingArn: string
+    end
+
+    record GetAcmeExternalAccountBindingCredentialsOutput
+        -- The key identifier for the external account binding credentials.
+        KeyId: string
+        -- The MAC key for the external account binding credentials.
+        MacKey: string
+    end
+
     record GetCertificateInput
         -- String that contains a certificate ARN in the following format: arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012 For more information about ARNs, see Amazon Resource Names (ARNs).
         CertificateArn: string
@@ -548,6 +1015,68 @@ local record M
         message: string
     end
 
+    record ListAcmeAccountsInput
+        -- A token for pagination.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+    end
+
+    record ListAcmeAccountsOutput
+        -- The list of ACME accounts.
+        AcmeAccounts: {AcmeAccountSummary}
+        -- A token for pagination.
+        NextToken: string
+    end
+
+    record ListAcmeDomainValidationsInput
+        -- A token for pagination.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+    end
+
+    record ListAcmeDomainValidationsOutput
+        -- The list of domain validations.
+        AcmeDomainValidations: {AcmeDomainValidationSummary}
+        -- A token for pagination.
+        NextToken: string
+    end
+
+    record ListAcmeEndpointsInput
+        -- A token for pagination.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+    end
+
+    record ListAcmeEndpointsOutput
+        -- The list of ACME endpoints.
+        AcmeEndpoints: {AcmeEndpointSummary}
+        -- A token for pagination.
+        NextToken: string
+    end
+
+    record ListAcmeExternalAccountBindingsInput
+        -- A token for pagination.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+    end
+
+    record ListAcmeExternalAccountBindingsOutput
+        -- The list of external account bindings.
+        ExternalAccountBindings: {AcmeExternalAccountBindingSummary}
+        -- A token for pagination.
+        NextToken: string
+    end
+
     -- One or more of request parameters specified is not valid.
     record InvalidArgsException
         message: string
@@ -579,6 +1108,8 @@ local record M
     record ListCertificatesInput
         -- Filter the certificate list by status value.
         CertificateStatuses: {string}
+        -- Filter the certificate list by certificate key pair origin. Specify one or more CertificateKeyPairOrigin values. Default filtering returns only certificates with key pair origin of AWS_MANAGED and CUSTOMER_PROVIDED.
+        CertificateKeyPairOrigins: {string}
         -- Filter the certificate list. For more information, see the Filters structure.
         Includes: Filters
         -- Use this parameter only when paginating results and only in a subsequent request after you receive a response with truncated results. Set it to the value of NextToken from the response you just received.
@@ -615,7 +1146,7 @@ local record M
         ExportOption: string
         -- Indicates whether the certificate is currently in use by any Amazon Web Services resources.
         InUse: boolean
-        -- Indicates whether the certificate has been exported. This value exists only when the certificate type is PRIVATE.
+        -- Indicates whether the certificate has been exported.
         Exported: boolean
         -- Specifies whether the certificate is eligible for renewal. At this time, only exported private certificates can be renewed with the RenewCertificate command.
         RenewalEligibility: string
@@ -633,6 +1164,8 @@ local record M
         RevokedAt: number
         -- Identifies the Amazon Web Services service that manages the certificate issued by ACM.
         ManagedBy: string
+        -- The origin of the certificate's key pair.
+        CertificateKeyPairOrigin: string
     end
 
     record ListCertificatesOutput
@@ -642,11 +1175,6 @@ local record M
         CertificateSummaryList: {CertificateSummary}
     end
 
-    -- The supplied input failed to satisfy constraints of an Amazon Web Services service.
-    record ValidationException
-        message: string
-    end
-
     record ListTagsForCertificateInput
         -- String that contains the ARN of the ACM certificate for which you want to list the tags. This must have the following form: arn:aws:acm:region:123456789012:certificate/12345678-1234-1234-1234-123456789012 For more information about ARNs, see Amazon Resource Names (ARNs).
         CertificateArn: string
@@ -654,6 +1182,16 @@ local record M
 
     record ListTagsForCertificateOutput
         -- The key-value pairs that define the applied tags.
+        Tags: {Tag}
+    end
+
+    record ListTagsForResourceInput
+        -- The ARN of the ACM resource for which to list tags.
+        ResourceArn: string
+    end
+
+    record ListTagsForResourceOutput
+        -- The tags associated with the resource.
         Tags: {Tag}
     end
 
@@ -743,6 +1281,24 @@ local record M
     record ResendValidationEmailOutput
     end
 
+    record RevokeAcmeAccountInput
+        -- The Amazon Resource Name (ARN) of the ACME endpoint.
+        AcmeEndpointArn: string
+        -- The URL of the ACME account to revoke.
+        AccountUrl: string
+    end
+
+    record RevokeAcmeAccountOutput
+    end
+
+    record RevokeAcmeExternalAccountBindingInput
+        -- The Amazon Resource Name (ARN) of the ACME external account binding to revoke.
+        AcmeExternalAccountBindingArn: string
+    end
+
+    record RevokeAcmeExternalAccountBindingOutput
+    end
+
     record RevokeCertificateInput
         -- The Amazon Resource Name (ARN) of the public or private certificate that will be revoked. The ARN must have the following form: arn:aws:acm:region:account:certificate/12345678-1234-1234-1234-123456789012
         CertificateArn: string
@@ -774,6 +1330,9 @@ local record M
         "EXPORT_OPTION"
         "VALIDATION_METHOD"
         "IMPORTED_AT"
+        "ACME_ENDPOINT_ARN"
+        "ACME_ACCOUNT_ID"
+        "CERTIFICATE_KEY_PAIR_ORIGIN"
     end
 
     enum SearchCertificatesSortOrder
@@ -894,6 +1453,50 @@ local record M
         Results: {CertificateSearchResult}
         -- When the list is truncated, this value is present and contains the value to use for the NextToken parameter in a subsequent pagination request.
         NextToken: string
+    end
+
+    record TagResourceInput
+        -- The ARN of the ACM resource to which the tag is to be applied.
+        ResourceArn: string
+        -- The key-value pair that defines the tag to apply.
+        Tags: {Tag}
+    end
+
+    record TagResourceOutput
+    end
+
+    record UntagResourceInput
+        -- The ARN of the ACM resource from which the tag is to be removed.
+        ResourceArn: string
+        -- The key of each tag to remove.
+        TagKeys: {string}
+    end
+
+    record UntagResourceOutput
+    end
+
+    record UpdateAcmeDomainValidationInput
+        -- The Amazon Resource Name (ARN) of the ACME domain validation to update.
+        AcmeDomainValidationArn: string
+        -- The updated prevalidation options.
+        PrevalidationOptions: PrevalidationOptions
+    end
+
+    record UpdateAcmeDomainValidationOutput
+    end
+
+    record UpdateAcmeEndpointInput
+        -- The Amazon Resource Name (ARN) of the ACME endpoint to update.
+        AcmeEndpointArn: string
+        -- The updated authorization behavior.
+        AuthorizationBehavior: string
+        -- The updated contact requirement.
+        Contact: string
+        -- The updated certificate authority configuration.
+        CertificateAuthority: CertificateAuthority
+    end
+
+    record UpdateAcmeEndpointOutput
     end
 
     record UpdateCertificateOptionsInput

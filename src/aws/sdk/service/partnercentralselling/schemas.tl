@@ -89,6 +89,8 @@ M.FilterStatus = schema.new({ type = "list", list_member = prelude.String })
 
 M.SolutionIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
+M.AwsMarketplaceSolutionArnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.SolutionList = schema.new({ type = "list", list_member = M.SolutionBase })
 
 M.CustomerContactsList = schema.new({ type = "list", list_member = M.Contact })
@@ -112,6 +114,10 @@ M.AwsMarketplaceOfferIdentifiers = schema.new({ type = "list", list_member = pre
 M.AwsMarketplaceOfferSetIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
 M.AwsProductIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsMarketplaceSolutionIdentifiers = schema.new({ type = "list", list_member = prelude.String })
+
+M.AwsMarketplaceProductIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
 M.ProfileNextStepsHistories = schema.new({ type = "list", list_member = M.ProfileNextStepsHistory })
 
@@ -1091,6 +1097,20 @@ M.AwsOpportunityRelatedEntities = schema.new({
             id = id.from(_N, "AwsOpportunityRelatedEntities", "Solutions"),
             type = "list",
             name = "Solutions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AwsMarketplaceSolutions = schema.new({
+            id = id.from(_N, "AwsOpportunityRelatedEntities", "AwsMarketplaceSolutions"),
+            type = "list",
+            name = "AwsMarketplaceSolutions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AwsMarketplaceProducts = schema.new({
+            id = id.from(_N, "AwsOpportunityRelatedEntities", "AwsMarketplaceProducts"),
+            type = "list",
+            name = "AwsMarketplaceProducts",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -4494,6 +4514,20 @@ M.RelatedEntityIdentifiers = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        AwsMarketplaceSolutions = schema.new({
+            id = id.from(_N, "RelatedEntityIdentifiers", "AwsMarketplaceSolutions"),
+            type = "list",
+            name = "AwsMarketplaceSolutions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AwsMarketplaceProducts = schema.new({
+            id = id.from(_N, "RelatedEntityIdentifiers", "AwsMarketplaceProducts"),
+            type = "list",
+            name = "AwsMarketplaceProducts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -7051,6 +7085,13 @@ M.ListSolutionsInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        AwsMarketplaceSolutionArn = schema.new({
+            id = id.from(_N, "ListSolutionsInput", "AwsMarketplaceSolutionArn"),
+            type = "list",
+            name = "AwsMarketplaceSolutionArn",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -7121,6 +7162,12 @@ M.SolutionBase = schema.new({
             direct_traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        AwsMarketplaceSolutionArn = schema.new({
+            id = id.from(_N, "SolutionBase", "AwsMarketplaceSolutionArn"),
+            type = "string",
+            name = "AwsMarketplaceSolutionArn",
+            target_id = prelude.String.id,
         }),
     },
 })

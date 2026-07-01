@@ -1215,6 +1215,25 @@ M.ContinueUpdateRollbackOutput = schema.new({
     type = "structure",
 })
 
+M.DeploymentConfig = schema.new({
+    id = id.from(_N, "DeploymentConfig"),
+    type = "structure",
+    members = {
+        Mode = schema.new({
+            id = id.from(_N, "DeploymentConfig", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+        }),
+        DisableRollback = schema.new({
+            id = id.from(_N, "DeploymentConfig", "DisableRollback"),
+            type = "boolean",
+            name = "DisableRollback",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
 M.Parameter = schema.new({
     id = id.from(_N, "Parameter"),
     type = "structure",
@@ -1488,6 +1507,19 @@ M.CreateChangeSetInput = schema.new({
             type = "string",
             name = "DeploymentMode",
             target_id = prelude.String.id,
+        }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "CreateChangeSetInput", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfig"),
+            target = M.DeploymentConfig,
+        }),
+        DisableValidation = schema.new({
+            id = id.from(_N, "CreateChangeSetInput", "DisableValidation"),
+            type = "boolean",
+            name = "DisableValidation",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1779,6 +1811,19 @@ M.CreateStackInput = schema.new({
             id = id.from(_N, "CreateStackInput", "RetainExceptOnCreate"),
             type = "boolean",
             name = "RetainExceptOnCreate",
+            target_id = prelude.Boolean.id,
+        }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "CreateStackInput", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfig"),
+            target = M.DeploymentConfig,
+        }),
+        DisableValidation = schema.new({
+            id = id.from(_N, "CreateStackInput", "DisableValidation"),
+            type = "boolean",
+            name = "DisableValidation",
             target_id = prelude.Boolean.id,
         }),
     },
@@ -2482,6 +2527,13 @@ M.DeleteStackInput = schema.new({
             name = "DeletionMode",
             target_id = prelude.String.id,
         }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "DeleteStackInput", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfig"),
+            target = M.DeploymentConfig,
+        }),
     },
 })
 
@@ -2864,6 +2916,13 @@ M.DescribeChangeSetOutput = schema.new({
             type = "string",
             name = "DeploymentMode",
             target_id = prelude.String.id,
+        }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "DescribeChangeSetOutput", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfig"),
+            target = M.DeploymentConfig,
         }),
     },
 })
@@ -4769,6 +4828,13 @@ M.Stack = schema.new({
             type = "boolean",
             name = "DisableRollback",
             target_id = prelude.Boolean.id,
+        }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "Stack", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfig"),
+            target = M.DeploymentConfig,
         }),
         NotificationARNs = schema.new({
             id = id.from(_N, "Stack", "NotificationARNs"),
@@ -8924,6 +8990,13 @@ M.RollbackStackInput = schema.new({
             name = "RetainExceptOnCreate",
             target_id = prelude.Boolean.id,
         }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "RollbackStackInput", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfig"),
+            target = M.DeploymentConfig,
+        }),
     },
 })
 
@@ -9426,6 +9499,19 @@ M.UpdateStackInput = schema.new({
             id = id.from(_N, "UpdateStackInput", "RetainExceptOnCreate"),
             type = "boolean",
             name = "RetainExceptOnCreate",
+            target_id = prelude.Boolean.id,
+        }),
+        DeploymentConfig = schema.new({
+            id = id.from(_N, "UpdateStackInput", "DeploymentConfig"),
+            type = "structure",
+            name = "DeploymentConfig",
+            target_id = id.from(_N, "DeploymentConfig"),
+            target = M.DeploymentConfig,
+        }),
+        DisableValidation = schema.new({
+            id = id.from(_N, "UpdateStackInput", "DisableValidation"),
+            type = "boolean",
+            name = "DisableValidation",
             target_id = prelude.Boolean.id,
         }),
     },

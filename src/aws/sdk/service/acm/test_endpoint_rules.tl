@@ -13,6 +13,7 @@ describe("endpoint rules", function()
             Region = "af-south-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -24,6 +25,7 @@ describe("endpoint rules", function()
             Region = "ap-east-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -35,6 +37,7 @@ describe("endpoint rules", function()
             Region = "ap-northeast-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -46,6 +49,7 @@ describe("endpoint rules", function()
             Region = "ap-northeast-2",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -57,6 +61,7 @@ describe("endpoint rules", function()
             Region = "ap-northeast-3",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -68,6 +73,7 @@ describe("endpoint rules", function()
             Region = "ap-south-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -79,6 +85,7 @@ describe("endpoint rules", function()
             Region = "ap-southeast-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -90,6 +97,7 @@ describe("endpoint rules", function()
             Region = "ap-southeast-2",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -101,6 +109,7 @@ describe("endpoint rules", function()
             Region = "ap-southeast-3",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -112,21 +121,11 @@ describe("endpoint rules", function()
             Region = "ca-central-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://acm.ca-central-1.amazonaws.com", result.url)
-    end)
-
-    it("For region ca-central-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "ca-central-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm-fips.ca-central-1.amazonaws.com", result.url)
     end)
 
     it("For region eu-central-1 with FIPS disabled and DualStack disabled", function()
@@ -134,6 +133,7 @@ describe("endpoint rules", function()
             Region = "eu-central-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -145,6 +145,7 @@ describe("endpoint rules", function()
             Region = "eu-north-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -156,6 +157,7 @@ describe("endpoint rules", function()
             Region = "eu-south-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -167,6 +169,7 @@ describe("endpoint rules", function()
             Region = "eu-west-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -178,6 +181,7 @@ describe("endpoint rules", function()
             Region = "eu-west-2",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -189,6 +193,7 @@ describe("endpoint rules", function()
             Region = "eu-west-3",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -200,6 +205,7 @@ describe("endpoint rules", function()
             Region = "me-south-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -211,6 +217,7 @@ describe("endpoint rules", function()
             Region = "sa-east-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -222,21 +229,11 @@ describe("endpoint rules", function()
             Region = "us-east-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://acm.us-east-1.amazonaws.com", result.url)
-    end)
-
-    it("For region us-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm-fips.us-east-1.amazonaws.com", result.url)
     end)
 
     it("For region us-east-2 with FIPS disabled and DualStack disabled", function()
@@ -244,21 +241,11 @@ describe("endpoint rules", function()
             Region = "us-east-2",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://acm.us-east-2.amazonaws.com", result.url)
-    end)
-
-    it("For region us-east-2 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-east-2",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm-fips.us-east-2.amazonaws.com", result.url)
     end)
 
     it("For region us-west-1 with FIPS disabled and DualStack disabled", function()
@@ -266,21 +253,11 @@ describe("endpoint rules", function()
             Region = "us-west-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://acm.us-west-1.amazonaws.com", result.url)
-    end)
-
-    it("For region us-west-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-west-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm-fips.us-west-1.amazonaws.com", result.url)
     end)
 
     it("For region us-west-2 with FIPS disabled and DualStack disabled", function()
@@ -288,10 +265,59 @@ describe("endpoint rules", function()
             Region = "us-west-2",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://acm.us-west-2.amazonaws.com", result.url)
+    end)
+
+    it("For region ca-central-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "ca-central-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            ServiceType = "ACM",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-fips.ca-central-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            ServiceType = "ACM",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-fips.us-east-1.amazonaws.com", result.url)
+    end)
+
+    it("For region us-east-2 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-east-2",
+            UseFIPS = true,
+            UseDualStack = false,
+            ServiceType = "ACM",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-fips.us-east-2.amazonaws.com", result.url)
+    end)
+
+    it("For region us-west-1 with FIPS enabled and DualStack disabled", function()
+        local params = {
+            Region = "us-west-1",
+            UseFIPS = true,
+            UseDualStack = false,
+            ServiceType = "ACM",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-fips.us-west-1.amazonaws.com", result.url)
     end)
 
     it("For region us-west-2 with FIPS enabled and DualStack disabled", function()
@@ -299,6 +325,7 @@ describe("endpoint rules", function()
             Region = "us-west-2",
             UseFIPS = true,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -310,6 +337,7 @@ describe("endpoint rules", function()
             Region = "us-east-1",
             UseFIPS = true,
             UseDualStack = true,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -321,6 +349,7 @@ describe("endpoint rules", function()
             Region = "us-east-1",
             UseFIPS = false,
             UseDualStack = true,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -332,6 +361,7 @@ describe("endpoint rules", function()
             Region = "cn-north-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -343,6 +373,7 @@ describe("endpoint rules", function()
             Region = "cn-northwest-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -354,6 +385,7 @@ describe("endpoint rules", function()
             Region = "cn-north-1",
             UseFIPS = true,
             UseDualStack = true,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -365,6 +397,7 @@ describe("endpoint rules", function()
             Region = "cn-north-1",
             UseFIPS = true,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -376,6 +409,7 @@ describe("endpoint rules", function()
             Region = "cn-north-1",
             UseFIPS = false,
             UseDualStack = true,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -387,6 +421,7 @@ describe("endpoint rules", function()
             Region = "us-gov-east-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -398,6 +433,7 @@ describe("endpoint rules", function()
             Region = "us-gov-west-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -409,6 +445,7 @@ describe("endpoint rules", function()
             Region = "us-gov-east-1",
             UseFIPS = true,
             UseDualStack = true,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -420,6 +457,7 @@ describe("endpoint rules", function()
             Region = "us-gov-east-1",
             UseFIPS = true,
             UseDualStack = false,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
@@ -431,61 +469,19 @@ describe("endpoint rules", function()
             Region = "us-gov-east-1",
             UseFIPS = false,
             UseDualStack = true,
+            ServiceType = "ACM",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
         assert.are.equal("https://acm.us-gov-east-1.api.aws", result.url)
     end)
 
-    it("For region us-iso-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-iso-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm-fips.us-iso-east-1.c2s.ic.gov", result.url)
-    end)
-
-    it("For region us-iso-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-iso-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm.us-iso-east-1.c2s.ic.gov", result.url)
-    end)
-
-    it("For region us-isob-east-1 with FIPS enabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isob-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm-fips.us-isob-east-1.sc2s.sgov.gov", result.url)
-    end)
-
-    it("For region us-isob-east-1 with FIPS disabled and DualStack disabled", function()
-        local params = {
-            Region = "us-isob-east-1",
-            UseFIPS = false,
-            UseDualStack = false,
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
-        assert.are.equal("https://acm.us-isob-east-1.sc2s.sgov.gov", result.url)
-    end)
-
-    it("For custom endpoint with region set and fips disabled and dualstack disabled", function()
+    it("For custom endpoint with region set and fips disabled and DualStack disabled", function()
         local params = {
             Region = "us-east-1",
             UseFIPS = false,
             UseDualStack = false,
+            ServiceType = "ACM",
             Endpoint = "https://example.com",
         }
         local result, err = endpoint.resolve(ruleset, params)
@@ -493,10 +489,12 @@ describe("endpoint rules", function()
         assert.are.equal("https://example.com", result.url)
     end)
 
-    it("For custom endpoint with region not set and fips disabled and dualstack disabled", function()
+    it("For custom endpoint with FIPS enabled and DualStack disabled", function()
         local params = {
-            UseFIPS = false,
+            Region = "us-east-1",
+            UseFIPS = true,
             UseDualStack = false,
+            ServiceType = "ACM",
             Endpoint = "https://example.com",
         }
         local result, err = endpoint.resolve(ruleset, params)
@@ -504,38 +502,81 @@ describe("endpoint rules", function()
         assert.are.equal("https://example.com", result.url)
     end)
 
-    it("For custom endpoint with fips enabled and dualstack disabled", function()
-        local params = {
-            Region = "us-east-1",
-            UseFIPS = true,
-            UseDualStack = false,
-            Endpoint = "https://example.com",
-        }
-        local result, err = endpoint.resolve(ruleset, params)
-        assert.is_nil(result, "expected error but got result")
-        assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: FIPS and custom endpoint are not supported", err)
-    end)
-
-    it("For custom endpoint with fips disabled and dualstack enabled", function()
+    it("For custom endpoint with FIPS disabled and dualstack enabled", function()
         local params = {
             Region = "us-east-1",
             UseFIPS = false,
             UseDualStack = true,
+            ServiceType = "ACM",
             Endpoint = "https://example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://example.com", result.url)
+    end)
+
+    it("ACM-ACME standard endpoint for us-east-1", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://acm-acme.us-east-1.api.aws", result.url)
+    end)
+
+    it("ACM-ACME FIPS returns error", function()
+        local params = {
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
         }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_nil(result, "expected error but got result")
         assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: Dualstack and custom endpoint are not supported", err)
+        assert.are.equal("FIPS endpoints are not available for ACME operations", err)
     end)
 
-    it("Missing region", function()
-        local params = {}
+    it("ACM-ACME custom endpoint", function()
+        local params = {
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
+            Endpoint = "https://custom.example.com",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://custom.example.com", result.url)
+    end)
+
+    it("ACM-ACME in us-gov-west-1 returns partition error", function()
+        local params = {
+            Region = "us-gov-west-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
+        }
         local result, err = endpoint.resolve(ruleset, params)
         assert.is_nil(result, "expected error but got result")
         assert.is_not_nil(err, "expected error but got nil")
-        assert.are.equal("Invalid Configuration: Missing Region", err)
+        assert.are.equal("ACME operations are only available in commercial AWS partitions", err)
+    end)
+
+    it("ACM-ACME in cn-north-1 returns partition error", function()
+        local params = {
+            Region = "cn-north-1",
+            UseFIPS = false,
+            UseDualStack = false,
+            ServiceType = "ACM-ACME",
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("ACME operations are only available in commercial AWS partitions", err)
     end)
 
 end)

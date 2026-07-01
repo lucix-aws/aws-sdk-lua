@@ -1463,6 +1463,7 @@ local record M
         "EMAIL_MESSAGE_REDACTED"
         "EMAIL_MESSAGE_PLAIN_TEXT_REDACTED"
         "ATTACHMENT"
+        "VOICE_RECORDING"
     end
 
     -- Information about the attached file.
@@ -1746,6 +1747,42 @@ local record M
         AgentStatusARN: string
         -- The identifier of the agent status.
         AgentStatusId: string
+    end
+
+    record CreateAttachedFileInput
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services
+        -- SDK populates this field. For more information about idempotency, see
+        -- Making retries safe with idempotent APIs.
+        ClientToken: string
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The use case for the file.
+        -- Only VOICE_RECORDING is supported.
+        FileUseCaseType: string
+        -- The S3 URI of the file to be attached. Only S3 source URIs are supported.
+        FileSourceUri: string
+        -- The ARN of the completed voice contact to attach the file to. Only voice contacts with Telephony subtype are
+        -- supported.
+        -- This value must be a valid ARN.
+        AssociatedResourceArn: string
+        -- The tags used to organize, track, or control access for this resource. For example, { "Tags":
+        -- {"key1":"value1", "key2":"value2"} }.
+        Tags: {string : string}
+    end
+
+    -- Response from CreateAttachedFile API.
+    record CreateAttachedFileOutput
+        -- The unique identifier of the attached file resource (ARN).
+        FileArn: string
+        -- The unique identifier of the attached file resource.
+        FileId: string
+        -- The time of Creation of the file resource as an ISO timestamp. It's specified in ISO 8601 format:
+        -- yyyy-MM-ddThh:mm:ss.SSSZ. For example, 2024-05-03T02:41:28.172Z.
+        CreationTime: string
+        -- The current status of the attached file. Valid values: PROCESSING | APPROVED |
+        -- REJECTED | FAILED.
+        FileStatus: string
     end
 
     enum InitiateAs
@@ -13847,6 +13884,117 @@ local record M
         -- The contactId from which a persistent chat session is started. This field is populated only for persistent
         -- chats.
         ContinuedFromContactId: string
+    end
+
+    -- The language configuration for conversational analytics.
+    record LanguageConfiguration
+        -- The language locale setting for conversational analytics.
+        LanguageLocale: string
+    end
+
+    enum Behavior
+        "Enable"
+        "Disable"
+    end
+
+    enum MaskMode
+        "PII"
+        "EntityType"
+    end
+
+    enum Policy
+        "None"
+        "RedactedOnly"
+        "RedactedAndOriginal"
+    end
+
+    -- The redaction configuration for conversational analytics.
+    record RedactionConfiguration
+        -- Controls whether redaction is applied to the analytics output. Valid values: Enable |
+        -- Disable.
+        Behavior: string
+        -- The redaction output policy that determines which versions of the transcript are stored. Valid values:
+        -- None | RedactedOnly | RedactedAndOriginal.
+        Policy: string
+        -- The list of PII entity types to redact from the transcript (for example, NAME,
+        -- ADDRESS, CREDIT_DEBIT_NUMBER).
+        Entities: {string}
+        -- The masking mode that determines how redacted content is replaced in the output. Valid values:
+        -- PII (replaces with the literal string [PII]) | EntityType (replaces with the
+        -- entity type name, for example [NAME]).
+        MaskMode: string
+    end
+
+    -- The rules configuration for conversational analytics. Controls whether Contact Lens rules are evaluated against
+    -- the analytics output.
+    record RulesConfiguration
+        -- Controls whether Contact Lens rules are evaluated for the contact. Valid values: Enable |
+        -- Disable.
+        Behavior: string
+    end
+
+    -- The sentiment configuration for conversational analytics.
+    record SentimentConfiguration
+        -- Controls whether sentiment analysis is applied to the analytics output. Valid values: Enable |
+        -- Disable.
+        Behavior: string
+    end
+
+    enum SummaryMode
+        "PostContact"
+        "AutomatedInteraction"
+        "ContactChain"
+    end
+
+    -- The summary configuration for conversational analytics.
+    record SummaryConfiguration
+        -- The summary modes that determine what type of summarization is generated. Valid values:
+        -- PostContact | AutomatedInteraction | ContactChain.
+        SummaryModes: {string}
+    end
+
+    -- The configuration for conversational analytics.
+    record AnalyticsConfiguration
+        -- The language configuration for conversational analytics.
+        LanguageConfiguration: LanguageConfiguration
+        -- The redaction configuration for conversational analytics.
+        RedactionConfiguration: RedactionConfiguration
+        -- The sentiment configuration for conversational analytics.
+        SentimentConfiguration: SentimentConfiguration
+        -- The summary configuration for conversational analytics.
+        SummaryConfiguration: SummaryConfiguration
+        -- The rules configuration for conversational analytics.
+        RulesConfiguration: RulesConfiguration
+    end
+
+    enum AnalyticsMode
+        "PostContact"
+        "RealTime"
+        "ContactLens"
+        "AutomatedInteraction"
+    end
+
+    record StartContactConversationalAnalyticsJobInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the contact in this instance of Connect Customer.
+        ContactId: string
+        -- The analytics modes to run for the contact. Valid values: PostContact.
+        AnalyticsModes: {string}
+        -- The configuration for the conversational analytics job.
+        AnalyticsConfiguration: AnalyticsConfiguration
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services
+        -- SDK populates this field. For more information about idempotency, see
+        -- Making retries safe with idempotent APIs.
+        ClientToken: string
+    end
+
+    record StartContactConversationalAnalyticsJobOutput
+        -- The identifier of the Connect Customer instance.
+        InstanceId: string
+        -- The identifier of the contact.
+        ContactId: string
     end
 
     -- Configuration information about automated evaluations.

@@ -769,6 +769,12 @@ M.ProjectEnvironment = schema.new({
             target_id = id.from(_N, "DockerServer"),
             target = M.DockerServer,
         }),
+        hostKernel = schema.new({
+            id = id.from(_N, "ProjectEnvironment", "hostKernel"),
+            type = "string",
+            name = "hostKernel",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5728,6 +5734,12 @@ M.StartBuildInput = schema.new({
             type = "integer",
             name = "autoRetryLimitOverride",
             target_id = prelude.Integer.id,
+        }),
+        hostKernelOverride = schema.new({
+            id = id.from(_N, "StartBuildInput", "hostKernelOverride"),
+            type = "string",
+            name = "hostKernelOverride",
+            target_id = prelude.String.id,
         }),
     },
 })

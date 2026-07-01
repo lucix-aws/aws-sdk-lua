@@ -51,6 +51,7 @@ local record Client
     claimPhoneNumber: function(Client, types.ClaimPhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.ClaimPhoneNumberOutput>
     completeAttachedFileUpload: function(Client, types.CompleteAttachedFileUploadInput, ? base_client.InvokeOptions): async.Operation<types.CompleteAttachedFileUploadOutput>
     createAgentStatus: function(Client, types.CreateAgentStatusInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentStatusOutput>
+    createAttachedFile: function(Client, types.CreateAttachedFileInput, ? base_client.InvokeOptions): async.Operation<types.CreateAttachedFileOutput>
     createContact: function(Client, types.CreateContactInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactOutput>
     createContactFlow: function(Client, types.CreateContactFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowOutput>
     createContactFlowModule: function(Client, types.CreateContactFlowModuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowModuleOutput>
@@ -301,6 +302,7 @@ local record Client
     sendOutboundEmail: function(Client, types.SendOutboundEmailInput, ? base_client.InvokeOptions): async.Operation<types.SendOutboundEmailOutput>
     startAttachedFileUpload: function(Client, types.StartAttachedFileUploadInput, ? base_client.InvokeOptions): async.Operation<types.StartAttachedFileUploadOutput>
     startChatContact: function(Client, types.StartChatContactInput, ? base_client.InvokeOptions): async.Operation<types.StartChatContactOutput>
+    startContactConversationalAnalyticsJob: function(Client, types.StartContactConversationalAnalyticsJobInput, ? base_client.InvokeOptions): async.Operation<types.StartContactConversationalAnalyticsJobOutput>
     startContactEvaluation: function(Client, types.StartContactEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.StartContactEvaluationOutput>
     startContactMediaProcessing: function(Client, types.StartContactMediaProcessingInput, ? base_client.InvokeOptions): async.Operation<types.StartContactMediaProcessingOutput>
     startContactRecording: function(Client, types.StartContactRecordingInput, ? base_client.InvokeOptions): async.Operation<types.StartContactRecordingOutput>
@@ -564,6 +566,10 @@ end
 
 function C:createAgentStatus(input: types.CreateAgentStatusInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentStatusOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentStatus as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentStatusOutput>
+end
+
+function C:createAttachedFile(input: types.CreateAttachedFileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAttachedFileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAttachedFile as schema.OperationSchema, input, options) as async.Operation<types.CreateAttachedFileOutput>
 end
 
 function C:createContact(input: types.CreateContactInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContactOutput>
@@ -1564,6 +1570,10 @@ end
 
 function C:startChatContact(input: types.StartChatContactInput, options?: base_client.InvokeOptions): async.Operation<types.StartChatContactOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartChatContact as schema.OperationSchema, input, options) as async.Operation<types.StartChatContactOutput>
+end
+
+function C:startContactConversationalAnalyticsJob(input: types.StartContactConversationalAnalyticsJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartContactConversationalAnalyticsJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartContactConversationalAnalyticsJob as schema.OperationSchema, input, options) as async.Operation<types.StartContactConversationalAnalyticsJobOutput>
 end
 
 function C:startContactEvaluation(input: types.StartContactEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.StartContactEvaluationOutput>

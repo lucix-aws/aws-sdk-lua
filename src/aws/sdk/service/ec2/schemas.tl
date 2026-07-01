@@ -957,6 +957,8 @@ M.TrafficMirrorFilterRuleFieldList = schema.new({ type = "list", list_member = p
 
 M.TrafficMirrorSessionFieldList = schema.new({ type = "list", list_member = prelude.String })
 
+M.PayerResponsibilitySet = schema.new({ type = "list", list_member = M.PayerResponsibilityEntry })
+
 M.AddedPrincipalSet = schema.new({ type = "list", list_member = M.AddedPrincipal })
 
 M.InstanceMonitoringList = schema.new({ type = "list", list_member = M.InstanceMonitoring })
@@ -38748,6 +38750,33 @@ M.LastError = schema.new({
     },
 })
 
+M.PayerResponsibilityEntry = schema.new({
+    id = id.from(_N, "PayerResponsibilityEntry"),
+    type = "structure",
+    members = {
+        Scope = schema.new({
+            id = id.from(_N, "PayerResponsibilityEntry", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "scope" },
+                [traits.EC2_QUERY_NAME] = { name = "Scope" },
+            },
+        }),
+        PayerResponsibilityType = schema.new({
+            id = id.from(_N, "PayerResponsibilityEntry", "PayerResponsibilityType"),
+            type = "string",
+            name = "PayerResponsibilityType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "payerResponsibilityType" },
+                [traits.EC2_QUERY_NAME] = { name = "PayerResponsibilityType" },
+            },
+        }),
+    },
+})
+
 M.VpcEndpoint = schema.new({
     id = id.from(_N, "VpcEndpoint"),
     type = "structure",
@@ -39010,6 +39039,17 @@ M.VpcEndpoint = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "serviceRegion" },
                 [traits.EC2_QUERY_NAME] = { name = "ServiceRegion" },
+            },
+        }),
+        PayerResponsibilities = schema.new({
+            id = id.from(_N, "VpcEndpoint", "PayerResponsibilities"),
+            type = "list",
+            name = "PayerResponsibilities",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PayerResponsibilityEntry, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "payerResponsibilitySet" },
+                [traits.EC2_QUERY_NAME] = { name = "PayerResponsibilitySet" },
             },
         }),
     },
@@ -76833,6 +76873,17 @@ M.VpcEndpointConnection = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "VpcEndpointRegion" },
             },
         }),
+        PayerResponsibilities = schema.new({
+            id = id.from(_N, "VpcEndpointConnection", "PayerResponsibilities"),
+            type = "list",
+            name = "PayerResponsibilities",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PayerResponsibilityEntry, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "payerResponsibilitySet" },
+                [traits.EC2_QUERY_NAME] = { name = "PayerResponsibilitySet" },
+            },
+        }),
     },
 })
 
@@ -97945,6 +97996,80 @@ M.ModifyVpcEndpointConnectionNotificationOutput = schema.new({
     },
 })
 
+M.ModifyVpcEndpointPayerResponsibilityInput = schema.new({
+    id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        ServiceId = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityInput", "ServiceId"),
+            type = "string",
+            name = "ServiceId",
+            target_id = prelude.String.id,
+        }),
+        VpcEndpointId = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityInput", "VpcEndpointId"),
+            type = "string",
+            name = "VpcEndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PayerResponsibility = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityInput", "PayerResponsibility"),
+            type = "string",
+            name = "PayerResponsibility",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityInput", "Scope"),
+            type = "string",
+            name = "Scope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ModifyVpcEndpointPayerResponsibilityOutput = schema.new({
+    id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityResult"),
+    type = "structure",
+    members = {
+        VpcEndpointId = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityOutput", "VpcEndpointId"),
+            type = "string",
+            name = "VpcEndpointId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "vpcEndpointId" },
+                [traits.EC2_QUERY_NAME] = { name = "VpcEndpointId" },
+            },
+        }),
+        PayerResponsibilities = schema.new({
+            id = id.from(_N, "ModifyVpcEndpointPayerResponsibilityOutput", "PayerResponsibilities"),
+            type = "list",
+            name = "PayerResponsibilities",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.PayerResponsibilityEntry, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "payerResponsibilitySet" },
+                [traits.EC2_QUERY_NAME] = { name = "PayerResponsibilitySet" },
+            },
+        }),
+    },
+})
+
 M.ModifyVpcEndpointServiceConfigurationInput = schema.new({
     id = id.from(_N, "ModifyVpcEndpointServiceConfigurationRequest"),
     type = "structure",
@@ -113305,6 +113430,17 @@ M.ModifyVpcEndpointConnectionNotification = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyVpcEndpointConnectionNotification"),
     input = M.ModifyVpcEndpointConnectionNotificationInput,
     output = M.ModifyVpcEndpointConnectionNotificationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyVpcEndpointPayerResponsibility = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyVpcEndpointPayerResponsibility"),
+    input = M.ModifyVpcEndpointPayerResponsibilityInput,
+    output = M.ModifyVpcEndpointPayerResponsibilityOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

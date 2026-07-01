@@ -5909,6 +5909,174 @@ M.S3PropertiesInput = schema.new({
     },
 })
 
+M.ConnectivityProperties = schema.new({
+    id = id.from(_N, "ConnectivityProperties"),
+    type = "structure",
+    members = {
+        connectionProperties = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "connectionProperties"),
+            type = "map",
+            name = "connectionProperties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        physicalConnectionRequirements = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "physicalConnectionRequirements"),
+            type = "structure",
+            name = "physicalConnectionRequirements",
+            target_id = id.from(_N, "PhysicalConnectionRequirements"),
+            target = M.PhysicalConnectionRequirements,
+        }),
+        name = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        validateCredentials = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "validateCredentials"),
+            type = "boolean",
+            name = "validateCredentials",
+            target_id = prelude.Boolean.id,
+        }),
+        validateForComputeEnvironments = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "validateForComputeEnvironments"),
+            type = "list",
+            name = "validateForComputeEnvironments",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        sparkProperties = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "sparkProperties"),
+            type = "map",
+            name = "sparkProperties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        athenaProperties = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "athenaProperties"),
+            type = "map",
+            name = "athenaProperties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        pythonProperties = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "pythonProperties"),
+            type = "map",
+            name = "pythonProperties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        authenticationConfiguration = schema.new({
+            id = id.from(_N, "ConnectivityProperties", "authenticationConfiguration"),
+            type = "structure",
+            name = "authenticationConfiguration",
+            target_id = id.from(_N, "AuthenticationConfigurationInput"),
+            target = M.AuthenticationConfigurationInput,
+        }),
+    },
+})
+
+M.IdentityMapping = schema.new({
+    id = id.from(_N, "IdentityMapping"),
+    type = "structure",
+    members = {
+        usernameAttribute = schema.new({
+            id = id.from(_N, "IdentityMapping", "usernameAttribute"),
+            type = "string",
+            name = "usernameAttribute",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        prefix = schema.new({
+            id = id.from(_N, "IdentityMapping", "prefix"),
+            type = "string",
+            name = "prefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LineageSyncInput = schema.new({
+    id = id.from(_N, "LineageSyncInput"),
+    type = "structure",
+    members = {
+        timezone = schema.new({
+            id = id.from(_N, "LineageSyncInput", "timezone"),
+            type = "string",
+            name = "timezone",
+            target_id = prelude.String.id,
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "LineageSyncInput", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "LineageSyncInput", "schedule"),
+            type = "string",
+            name = "schedule",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SnowflakePropertiesInput = schema.new({
+    id = id.from(_N, "SnowflakePropertiesInput"),
+    type = "structure",
+    members = {
+        connectivityProperties = schema.new({
+            id = id.from(_N, "SnowflakePropertiesInput", "connectivityProperties"),
+            type = "structure",
+            name = "connectivityProperties",
+            target_id = id.from(_N, "ConnectivityProperties"),
+            target = M.ConnectivityProperties,
+        }),
+        snowflakeRole = schema.new({
+            id = id.from(_N, "SnowflakePropertiesInput", "snowflakeRole"),
+            type = "string",
+            name = "snowflakeRole",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        identityMapping = schema.new({
+            id = id.from(_N, "SnowflakePropertiesInput", "identityMapping"),
+            type = "structure",
+            name = "identityMapping",
+            target_id = id.from(_N, "IdentityMapping"),
+            target = M.IdentityMapping,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lineageSync = schema.new({
+            id = id.from(_N, "SnowflakePropertiesInput", "lineageSync"),
+            type = "structure",
+            name = "lineageSync",
+            target_id = id.from(_N, "LineageSyncInput"),
+            target = M.LineageSyncInput,
+        }),
+    },
+})
+
 M.SparkEmrPropertiesInput = schema.new({
     id = id.from(_N, "SparkEmrPropertiesInput"),
     type = "structure",
@@ -6149,6 +6317,13 @@ M.ConnectionPropertiesInput = schema.new({
             name = "s3Properties",
             target_id = id.from(_N, "S3PropertiesInput"),
             target = M.S3PropertiesInput,
+        }),
+        snowflakeProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesInput", "snowflakeProperties"),
+            type = "structure",
+            name = "snowflakeProperties",
+            target_id = id.from(_N, "SnowflakePropertiesInput"),
+            target = M.SnowflakePropertiesInput,
         }),
         amazonQProperties = schema.new({
             id = id.from(_N, "ConnectionPropertiesInput", "amazonQProperties"),
@@ -6410,6 +6585,88 @@ M.S3PropertiesOutput = schema.new({
         }),
         errorMessage = schema.new({
             id = id.from(_N, "S3PropertiesOutput", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.LineageSyncOutput = schema.new({
+    id = id.from(_N, "LineageSyncOutput"),
+    type = "structure",
+    members = {
+        lineageJobId = schema.new({
+            id = id.from(_N, "LineageSyncOutput", "lineageJobId"),
+            type = "string",
+            name = "lineageJobId",
+            target_id = prelude.String.id,
+        }),
+        timezone = schema.new({
+            id = id.from(_N, "LineageSyncOutput", "timezone"),
+            type = "string",
+            name = "timezone",
+            target_id = prelude.String.id,
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "LineageSyncOutput", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+        }),
+        schedule = schema.new({
+            id = id.from(_N, "LineageSyncOutput", "schedule"),
+            type = "string",
+            name = "schedule",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SnowflakePropertiesOutput = schema.new({
+    id = id.from(_N, "SnowflakePropertiesOutput"),
+    type = "structure",
+    members = {
+        snowflakeRole = schema.new({
+            id = id.from(_N, "SnowflakePropertiesOutput", "snowflakeRole"),
+            type = "string",
+            name = "snowflakeRole",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        identityMapping = schema.new({
+            id = id.from(_N, "SnowflakePropertiesOutput", "identityMapping"),
+            type = "structure",
+            name = "identityMapping",
+            target_id = id.from(_N, "IdentityMapping"),
+            target = M.IdentityMapping,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lineageSync = schema.new({
+            id = id.from(_N, "SnowflakePropertiesOutput", "lineageSync"),
+            type = "structure",
+            name = "lineageSync",
+            target_id = id.from(_N, "LineageSyncOutput"),
+            target = M.LineageSyncOutput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "SnowflakePropertiesOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "SnowflakePropertiesOutput", "errorMessage"),
             type = "string",
             name = "errorMessage",
             target_id = prelude.String.id,
@@ -6721,6 +6978,13 @@ M.ConnectionPropertiesOutput = schema.new({
             target_id = id.from(_N, "S3PropertiesOutput"),
             target = M.S3PropertiesOutput,
         }),
+        snowflakeProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesOutput", "snowflakeProperties"),
+            type = "structure",
+            name = "snowflakeProperties",
+            target_id = id.from(_N, "SnowflakePropertiesOutput"),
+            target = M.SnowflakePropertiesOutput,
+        }),
         amazonQProperties = schema.new({
             id = id.from(_N, "ConnectionPropertiesOutput", "amazonQProperties"),
             type = "structure",
@@ -6921,6 +7185,61 @@ M.S3PropertiesPatch = schema.new({
     },
 })
 
+M.ConnectivityPropertiesPatch = schema.new({
+    id = id.from(_N, "ConnectivityPropertiesPatch"),
+    type = "structure",
+    members = {
+        description = schema.new({
+            id = id.from(_N, "ConnectivityPropertiesPatch", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        connectionProperties = schema.new({
+            id = id.from(_N, "ConnectivityPropertiesPatch", "connectionProperties"),
+            type = "map",
+            name = "connectionProperties",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        authenticationConfiguration = schema.new({
+            id = id.from(_N, "ConnectivityPropertiesPatch", "authenticationConfiguration"),
+            type = "structure",
+            name = "authenticationConfiguration",
+            target_id = id.from(_N, "AuthenticationConfigurationPatch"),
+            target = M.AuthenticationConfigurationPatch,
+        }),
+    },
+})
+
+M.SnowflakePropertiesPatch = schema.new({
+    id = id.from(_N, "SnowflakePropertiesPatch"),
+    type = "structure",
+    members = {
+        connectivityPropertiesPatch = schema.new({
+            id = id.from(_N, "SnowflakePropertiesPatch", "connectivityPropertiesPatch"),
+            type = "structure",
+            name = "connectivityPropertiesPatch",
+            target_id = id.from(_N, "ConnectivityPropertiesPatch"),
+            target = M.ConnectivityPropertiesPatch,
+        }),
+        snowflakeRole = schema.new({
+            id = id.from(_N, "SnowflakePropertiesPatch", "snowflakeRole"),
+            type = "string",
+            name = "snowflakeRole",
+            target_id = prelude.String.id,
+        }),
+        lineageSync = schema.new({
+            id = id.from(_N, "SnowflakePropertiesPatch", "lineageSync"),
+            type = "structure",
+            name = "lineageSync",
+            target_id = id.from(_N, "LineageSyncInput"),
+            target = M.LineageSyncInput,
+        }),
+    },
+})
+
 M.SparkEmrPropertiesPatch = schema.new({
     id = id.from(_N, "SparkEmrPropertiesPatch"),
     type = "structure",
@@ -7047,6 +7366,13 @@ M.ConnectionPropertiesPatch = schema.new({
             name = "s3Properties",
             target_id = id.from(_N, "S3PropertiesPatch"),
             target = M.S3PropertiesPatch,
+        }),
+        snowflakeProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesPatch", "snowflakeProperties"),
+            type = "structure",
+            name = "snowflakeProperties",
+            target_id = id.from(_N, "SnowflakePropertiesPatch"),
+            target = M.SnowflakePropertiesPatch,
         }),
         amazonQProperties = schema.new({
             id = id.from(_N, "ConnectionPropertiesPatch", "amazonQProperties"),
