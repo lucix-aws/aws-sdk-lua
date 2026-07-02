@@ -13771,6 +13771,90 @@ local record M
     record SendOutboundEmailOutput
     end
 
+    -- Configuration for the recommender used to generate personalized recommendations included in an outbound web
+    -- notification.
+    record RecommenderConfig
+        -- The name of the Amazon Personalize domain that hosts the recommender.
+        DomainName: string
+        -- The name of the recommender used to generate the recommendations.
+        RecommenderName: string
+        -- A map of contextual key-value pairs supplied to the recommender to influence the recommendations
+        -- returned.
+        Context: {string : string}
+    end
+
+    -- Optional attributes used to populate the content of an outbound web notification, such as recommender
+    -- configuration for personalized content.
+    record ContentAttributes
+        -- Configuration for the recommender used to generate personalized recommendations for the notification
+        -- content.
+        RecommenderConfig: RecommenderConfig
+    end
+
+    enum NotificationType
+        "WIDGET_VIEW"
+        "WIDGET_ACTION"
+    end
+
+    -- The content of an outbound web notification, including the notification type, the view to render, and any
+    -- optional attributes used to populate the view.
+    record WebNotificationContent
+        -- The type of web notification to send.
+        Type: string
+        -- The Amazon Resource Name (ARN) of the view to render for the notification.
+        ViewArn: string
+        -- Optional attributes used to populate the notification content, such as recommender configuration for
+        -- personalized content.
+        Attributes: ContentAttributes
+    end
+
+    -- The destination for an outbound web notification, specifying the communication widget that delivers the
+    -- notification and the customer profile of the recipient.
+    record WidgetDestination
+        -- The identifier of the communication widget that delivers the notification to the customer's browser.
+        WidgetId: string
+        -- The identifier of the customer profile associated with the browser session that should receive the
+        -- notification.
+        ProfileId: string
+    end
+
+    -- The source of an outbound web notification. Identifies the campaign and outbound request that triggered the
+    -- notification.
+    record WebNotificationSource
+        -- Information about the campaign that triggered the web notification, including the campaign identifier and
+        -- outbound request identifier.
+        SourceCampaign: SourceCampaign
+    end
+
+    record SendOutboundWebNotificationInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services
+        -- SDK populates this field. For more information about idempotency, see
+        -- Making retries safe with idempotent APIs.
+        ClientToken: string
+        -- A unique identifier for the customer's web browser instance to which the notification is being sent.
+        BrowserId: string
+        -- A unique identifier for the customer's web session to which the notification is being sent.
+        SessionId: string
+        -- The timestamp, in Unix epoch time format, at which the web notification expires. After this time, the
+        -- notification is no longer delivered to the customer's browser.
+        ExpiresAt: number
+        -- The source of the web notification. A SourceCampaign object identifies the campaign and outbound
+        -- request that triggered this notification.
+        Source: WebNotificationSource
+        -- The destination for the web notification, specifying the communication widget that delivers the notification
+        -- and the customer profile of the recipient.
+        Destination: WidgetDestination
+        -- The content of the web notification, including the notification type, the view to render, and any optional
+        -- attributes used to populate it.
+        Content: WebNotificationContent
+    end
+
+    record SendOutboundWebNotificationOutput
+    end
+
     record StartAttachedFileUploadInput
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services

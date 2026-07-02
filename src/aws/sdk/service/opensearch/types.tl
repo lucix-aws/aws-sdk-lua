@@ -1298,6 +1298,11 @@ local record M
         KmsKeyId: string
     end
 
+    enum EngineMode
+        "GENERAL"
+        "OPTIMIZED"
+    end
+
     enum RolesKeyIdCOption
         "GroupName"
         "GroupId"
@@ -1413,6 +1418,13 @@ local record M
         UseLatestServiceSoftwareForBlueGreen: boolean
     end
 
+    enum DomainUseCase
+        "SEARCH"
+        "VECTOR"
+        "OBSERVABILITY"
+        "MIXED"
+    end
+
     -- Options to specify the subnets and security groups for an Amazon OpenSearch Service
     -- VPC endpoint. For more information, see Launching your Amazon
     -- OpenSearch Service domains using a VPC.
@@ -1521,6 +1533,10 @@ local record M
         -- operational needs such as migrations or maintenance windows.
         -- Maximum suspension duration: 3 days.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseRequestOptions
+        -- The primary use case for the domain. For valid values, see DomainUseCase.
+        UseCase: string
+        -- The engine mode for the domain. For valid values and requirements, see EngineMode.
+        EngineMode: string
     end
 
     enum PauseState
@@ -1772,6 +1788,10 @@ local record M
         DeploymentStrategyOptions: DeploymentStrategyOptions
         -- The current status of the domain's automated snapshot pause options.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseOptions
+        -- The primary use case for the domain.
+        UseCase: string
+        -- The engine mode for the domain.
+        EngineMode: string
     end
 
     -- The result of a CreateDomain operation. Contains the status of the newly
@@ -2534,6 +2554,14 @@ local record M
         Status: OptionStatus
     end
 
+    -- The status of the engine mode for the domain.
+    record EngineModeStatus
+        -- The engine mode configured for the domain.
+        Options: string
+        -- The current status of the engine mode for the domain.
+        Status: OptionStatus
+    end
+
     -- The status of the the OpenSearch or Elasticsearch version options for the specified
     -- Amazon OpenSearch Service domain.
     record VersionStatus
@@ -2598,6 +2626,14 @@ local record M
         Options: SoftwareUpdateOptions
         -- The status of service software update options, including creation date and last
         -- updated date.
+        Status: OptionStatus
+    end
+
+    -- The status of the use case for the domain.
+    record UseCaseStatus
+        -- The use case configured for the domain.
+        Options: string
+        -- The current status of the use case for the domain.
         Status: OptionStatus
     end
 
@@ -2666,6 +2702,10 @@ local record M
         DeploymentStrategyOptions: DeploymentStrategyOptionsStatus
         -- Specifies AutomatedSnapshotPauseOptions for the domain.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseOptionsStatus
+        -- The use case configured for the domain.
+        UseCase: UseCaseStatus
+        -- The engine mode configured for the domain.
+        EngineMode: EngineModeStatus
     end
 
     -- Contains the configuration information of the requested domain.
@@ -3697,6 +3737,52 @@ local record M
         UpgradeName: string
     end
 
+    enum InsightFeedbackEntityType
+        "DomainName"
+    end
+
+    -- Specifies the entity for which to submit insight feedback. An entity represents an
+    -- Amazon OpenSearch Service domain.
+    record InsightFeedbackEntity
+        -- The type of the entity. Possible values are DomainName.
+        Type: string
+        -- The value of the entity, such as a domain name.
+        Value: string
+    end
+
+    enum InsightFeedbackThumbs
+        "Up"
+        "Down"
+    end
+
+    -- Container for the parameters to the InsightFeedback operation.
+    record InsightFeedbackInput
+        -- The entity for which to submit insight feedback. Specifies the type and value of the
+        -- entity, such as a domain name.
+        Entity: InsightFeedbackEntity
+        -- The unique identifier of the insight for which to submit feedback.
+        InsightId: string
+        -- The thumbs up or thumbs down feedback for the insight. Possible values are
+        -- Up and Down.
+        Thumbs: string
+        -- Optional text feedback providing additional details about the insight. Maximum length
+        -- is 1000 characters.
+        FeedbackText: string
+    end
+
+    enum InsightResponseStatus
+        "SUCCESS"
+        "ERROR"
+    end
+
+    -- The result of an InsightFeedback request. Contains the status of the
+    -- feedback submission.
+    record InsightFeedbackOutput
+        -- The status of the feedback submission. Possible values are SUCCESS and
+        -- ERROR.
+        Status: string
+    end
+
     record ListApplicationsInput
         nextToken: string
         -- Filters the list of OpenSearch applications by status. Possible values:
@@ -4579,6 +4665,10 @@ local record M
         -- operational needs such as migrations or maintenance windows.
         -- Maximum suspension duration: 3 days.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseRequestOptions
+        -- The primary use case for the domain. For valid values, see DomainUseCase.
+        UseCase: string
+        -- The engine mode for the domain. The engine mode can't be changed after the domain is created. For valid values, see EngineMode.
+        EngineMode: string
     end
 
     -- The results of an UpdateDomain request. Contains the status of the domain

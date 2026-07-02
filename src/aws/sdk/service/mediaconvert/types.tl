@@ -4413,6 +4413,11 @@ local record M
         "CAVLC"
     end
 
+    enum H264ExplicitWeightedPrediction
+        "DISABLED"
+        "ENABLED"
+    end
+
     enum H264FieldEncoding
         "PAFF"
         "FORCE_FIELD"
@@ -4557,6 +4562,8 @@ local record M
         EndOfStreamMarkers: string
         -- Entropy encoding mode. Use CABAC (must be in Main or High profile) or CAVLC.
         EntropyEncoding: string
+        -- Enable or disable explicit weighted prediction for the H.264 encoder. Weighted prediction improves compression efficiency for content with fading or brightness changes between frames.
+        ExplicitWeightedPrediction: string
         -- The video encoding method for your MPEG-4 AVC output. Keep the default value, PAFF, to have MediaConvert use PAFF encoding for interlaced outputs. Choose Force field to disable PAFF encoding and create separate interlaced fields. Choose MBAFF to disable PAFF and have MediaConvert use MBAFF encoding for interlaced outputs.
         FieldEncoding: string
         -- Only use this setting when you change the default value, AUTO, for the setting H264AdaptiveQuantization. When you keep all defaults, excluding H264AdaptiveQuantization and all other adaptive quantization from your JSON job specification, MediaConvert automatically applies the best types of quantization for your video content. When you set H264AdaptiveQuantization to a value other than AUTO, the default value for H264FlickerAdaptiveQuantization is Disabled. Change this value to Enabled to reduce I-frame pop. I-frame pop appears as a visual flicker that can arise when the encoder saves bits by copying some macroblocks many times from frame to frame, and then refreshes them at the I-frame. When you enable this setting, the encoder updates these macroblocks slightly more often to smooth out the flicker. To manually enable or disable H264FlickerAdaptiveQuantization, you must set Adaptive quantization to a value other than AUTO.
@@ -5885,6 +5892,16 @@ local record M
         Profile: string
     end
 
+    -- Settings for integer-second duration normalization. When this preprocessor is present, the output duration will be adjusted to an exact integer-second boundary. If the input is within the trim threshold of an integer second, trailing frames are dropped. If within the compression threshold and less than 500ms over the previous integer second, the output is sped up slightly. Otherwise, black frames are padded to the next integer second.
+    record DurationControl
+        -- Required. Denominator of the maximum allowed compression ratio.
+        IntegerDurationMaximumCompressionDenominator: number
+        -- Required. Numerator of the maximum allowed compression ratio, defined as overrun divided by target duration. For example, numerator 5 with denominator 100 means max 5% compression. Set to 0 to disable compression entirely (only trim or pad will be used).
+        IntegerDurationMaximumCompressionNumerator: number
+        -- Maximum number of fractional milliseconds past an integer second that qualify for the trim path (frame dropping). Default is 0 (trimming disabled).
+        IntegerDurationTrimThresholdMilliseconds: number
+    end
+
     -- Setting for HDR10+ metadata insertion
     record Hdr10Plus
         -- Specify the HDR10+ mastering display normalized peak luminance, in nits. This is the normalized actual peak luminance of the mastering display, as defined by ST 2094-40.
@@ -6014,6 +6031,8 @@ local record M
         Deinterlacer: Deinterlacer
         -- Enable Dolby Vision feature to produce Dolby Vision compatible video output.
         DolbyVision: DolbyVision
+        -- Enable integer-second duration normalization. When enabled, the output duration is adjusted to land on an exact integer-second boundary. The adjustment method (trim, compress, or pad) is chosen automatically based on how far the input duration is from the nearest integer second.
+        DurationControl: DurationControl
         -- Enable HDR10+ analysis and metadata injection. Compatible with HEVC only.
         Hdr10Plus: Hdr10Plus
         -- Enable the Image inserter feature to include a graphic overlay on your video. Enable or disable this feature for each output individually. This setting is disabled by default.
@@ -6418,6 +6437,7 @@ local record M
         "avi"
         "mpegts"
         "mpegps"
+        "mp3"
     end
 
     -- The frame rate of the video or audio track, expressed as a fraction with numerator and denominator values.
@@ -6669,7 +6689,7 @@ local record M
     record Container
         -- The total duration of your media file, in seconds.
         Duration: number
-        -- The format of your media file. For example: MP4, QuickTime (MOV), Matroska (MKV), WebM, MXF, Wave, AVI, MPEG-TS, or MPEG-PS. Note that this will be blank if your media file has a format that the MediaConvert Probe operation does not recognize.
+        -- The format of your media file. For example: MP4, QuickTime (MOV), Matroska (MKV), WebM, MXF, Wave, AVI, MPEG-TS, MPEG-PS, or MP3. Note that this will be blank if your media file has a format that the MediaConvert Probe operation does not recognize.
         Format: string
         -- The start timecode of the media file, in HH:MM:SS:FF format (or HH:MM:SS;FF for drop frame timecode). Note that this field is null when the container does not include an embedded start timecode.
         StartTimecode: string

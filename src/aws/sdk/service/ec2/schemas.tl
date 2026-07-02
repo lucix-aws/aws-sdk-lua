@@ -5159,6 +5159,151 @@ M.AccountAttribute = schema.new({
     },
 })
 
+M.AccountVpcEncryptionControlExclusions = schema.new({
+    id = id.from(_N, "AccountVpcEncryptionControlExclusions"),
+    type = "structure",
+    members = {
+        InternetGateway = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "InternetGateway"),
+            type = "string",
+            name = "InternetGateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "internetGateway" },
+                [traits.EC2_QUERY_NAME] = { name = "InternetGateway" },
+            },
+        }),
+        EgressOnlyInternetGateway = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "EgressOnlyInternetGateway"),
+            type = "string",
+            name = "EgressOnlyInternetGateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "egressOnlyInternetGateway" },
+                [traits.EC2_QUERY_NAME] = { name = "EgressOnlyInternetGateway" },
+            },
+        }),
+        NatGateway = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "NatGateway"),
+            type = "string",
+            name = "NatGateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "natGateway" },
+                [traits.EC2_QUERY_NAME] = { name = "NatGateway" },
+            },
+        }),
+        VirtualPrivateGateway = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "VirtualPrivateGateway"),
+            type = "string",
+            name = "VirtualPrivateGateway",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "virtualPrivateGateway" },
+                [traits.EC2_QUERY_NAME] = { name = "VirtualPrivateGateway" },
+            },
+        }),
+        VpcPeering = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "VpcPeering"),
+            type = "string",
+            name = "VpcPeering",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "vpcPeering" },
+                [traits.EC2_QUERY_NAME] = { name = "VpcPeering" },
+            },
+        }),
+        Lambda = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "Lambda"),
+            type = "string",
+            name = "Lambda",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "lambda" },
+                [traits.EC2_QUERY_NAME] = { name = "Lambda" },
+            },
+        }),
+        VpcLattice = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "VpcLattice"),
+            type = "string",
+            name = "VpcLattice",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "vpcLattice" },
+                [traits.EC2_QUERY_NAME] = { name = "VpcLattice" },
+            },
+        }),
+        ElasticFileSystem = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControlExclusions", "ElasticFileSystem"),
+            type = "string",
+            name = "ElasticFileSystem",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "elasticFileSystem" },
+                [traits.EC2_QUERY_NAME] = { name = "ElasticFileSystem" },
+            },
+        }),
+    },
+})
+
+M.AccountVpcEncryptionControl = schema.new({
+    id = id.from(_N, "AccountVpcEncryptionControl"),
+    type = "structure",
+    members = {
+        State = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControl", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControl", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "mode" },
+                [traits.EC2_QUERY_NAME] = { name = "Mode" },
+            },
+        }),
+        Exclusions = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControl", "Exclusions"),
+            type = "structure",
+            name = "Exclusions",
+            target_id = id.from(_N, "AccountVpcEncryptionControlExclusions"),
+            target = M.AccountVpcEncryptionControlExclusions,
+            traits = {
+                [traits.XML_NAME] = { name = "exclusions" },
+                [traits.EC2_QUERY_NAME] = { name = "Exclusions" },
+            },
+        }),
+        ManagedBy = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControl", "ManagedBy"),
+            type = "string",
+            name = "ManagedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "managedBy" },
+                [traits.EC2_QUERY_NAME] = { name = "ManagedBy" },
+            },
+        }),
+        LastUpdateTimestamp = schema.new({
+            id = id.from(_N, "AccountVpcEncryptionControl", "LastUpdateTimestamp"),
+            type = "timestamp",
+            name = "LastUpdateTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "lastUpdateTimestamp" },
+                [traits.EC2_QUERY_NAME] = { name = "LastUpdateTimestamp" },
+            },
+        }),
+    },
+})
+
 M.ActiveInstance = schema.new({
     id = id.from(_N, "ActiveInstance"),
     type = "structure",
@@ -5978,6 +6123,19 @@ M.AllocateAddressOutput = schema.new({
     },
 })
 
+M.HostCpuOptionsRequest = schema.new({
+    id = id.from(_N, "HostCpuOptionsRequest"),
+    type = "structure",
+    members = {
+        AmdSevSnp = schema.new({
+            id = id.from(_N, "HostCpuOptionsRequest", "AmdSevSnp"),
+            type = "string",
+            name = "AmdSevSnp",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AllocateHostsInput = schema.new({
     id = id.from(_N, "AllocateHostsRequest"),
     type = "structure",
@@ -6031,6 +6189,13 @@ M.AllocateHostsInput = schema.new({
             type = "string",
             name = "AvailabilityZoneId",
             target_id = prelude.String.id,
+        }),
+        CpuOptions = schema.new({
+            id = id.from(_N, "AllocateHostsInput", "CpuOptions"),
+            type = "structure",
+            name = "CpuOptions",
+            target_id = id.from(_N, "HostCpuOptionsRequest"),
+            target = M.HostCpuOptionsRequest,
         }),
         AutoPlacement = schema.new({
             id = id.from(_N, "AllocateHostsInput", "AutoPlacement"),
@@ -46197,6 +46362,37 @@ M.DescribeAccountAttributesOutput = schema.new({
     },
 })
 
+M.DescribeAccountVpcEncryptionControlInput = schema.new({
+    id = id.from(_N, "DescribeAccountVpcEncryptionControlRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeAccountVpcEncryptionControlInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DescribeAccountVpcEncryptionControlOutput = schema.new({
+    id = id.from(_N, "DescribeAccountVpcEncryptionControlResult"),
+    type = "structure",
+    members = {
+        AccountVpcEncryptionControl = schema.new({
+            id = id.from(_N, "DescribeAccountVpcEncryptionControlOutput", "AccountVpcEncryptionControl"),
+            type = "structure",
+            name = "AccountVpcEncryptionControl",
+            target_id = id.from(_N, "AccountVpcEncryptionControl"),
+            target = M.AccountVpcEncryptionControl,
+            traits = {
+                [traits.XML_NAME] = { name = "accountVpcEncryptionControl" },
+                [traits.EC2_QUERY_NAME] = { name = "AccountVpcEncryptionControl" },
+            },
+        }),
+    },
+})
+
 M.Filter = schema.new({
     id = id.from(_N, "Filter"),
     type = "structure",
@@ -54510,6 +54706,23 @@ M.AvailableCapacity = schema.new({
     },
 })
 
+M.HostCpuOptions = schema.new({
+    id = id.from(_N, "HostCpuOptions"),
+    type = "structure",
+    members = {
+        AmdSevSnp = schema.new({
+            id = id.from(_N, "HostCpuOptions", "AmdSevSnp"),
+            type = "string",
+            name = "AmdSevSnp",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "amdSevSnp" },
+                [traits.EC2_QUERY_NAME] = { name = "AmdSevSnp" },
+            },
+        }),
+    },
+})
+
 M.HostProperties = schema.new({
     id = id.from(_N, "HostProperties"),
     type = "structure",
@@ -54810,6 +55023,17 @@ M.Host = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "assetId" },
                 [traits.EC2_QUERY_NAME] = { name = "AssetId" },
+            },
+        }),
+        CpuOptions = schema.new({
+            id = id.from(_N, "Host", "CpuOptions"),
+            type = "structure",
+            name = "CpuOptions",
+            target_id = id.from(_N, "HostCpuOptions"),
+            target = M.HostCpuOptions,
+            traits = {
+                [traits.XML_NAME] = { name = "cpuOptions" },
+                [traits.EC2_QUERY_NAME] = { name = "CpuOptions" },
             },
         }),
     },
@@ -75267,6 +75491,12 @@ M.DescribeVolumesModificationsInput = schema.new({
             name = "MaxResults",
             target_id = prelude.Integer.id,
         }),
+        IncludeManagedResources = schema.new({
+            id = id.from(_N, "DescribeVolumesModificationsInput", "IncludeManagedResources"),
+            type = "boolean",
+            name = "IncludeManagedResources",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -75432,6 +75662,17 @@ M.VolumeModification = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "endTime" },
                 [traits.EC2_QUERY_NAME] = { name = "EndTime" },
+            },
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "VolumeModification", "Operator"),
+            type = "structure",
+            name = "Operator",
+            target_id = id.from(_N, "OperatorResponse"),
+            target = M.OperatorResponse,
+            traits = {
+                [traits.XML_NAME] = { name = "operator" },
+                [traits.EC2_QUERY_NAME] = { name = "Operator" },
             },
         }),
     },
@@ -92115,6 +92356,91 @@ M.LockSnapshotOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "lockDurationStartTime" },
                 [traits.EC2_QUERY_NAME] = { name = "LockDurationStartTime" },
+            },
+        }),
+    },
+})
+
+M.ModifyAccountVpcEncryptionControlInput = schema.new({
+    id = id.from(_N, "ModifyAccountVpcEncryptionControlRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        Mode = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "Mode"),
+            type = "string",
+            name = "Mode",
+            target_id = prelude.String.id,
+        }),
+        InternetGateway = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "InternetGateway"),
+            type = "string",
+            name = "InternetGateway",
+            target_id = prelude.String.id,
+        }),
+        EgressOnlyInternetGateway = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "EgressOnlyInternetGateway"),
+            type = "string",
+            name = "EgressOnlyInternetGateway",
+            target_id = prelude.String.id,
+        }),
+        NatGateway = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "NatGateway"),
+            type = "string",
+            name = "NatGateway",
+            target_id = prelude.String.id,
+        }),
+        VirtualPrivateGateway = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "VirtualPrivateGateway"),
+            type = "string",
+            name = "VirtualPrivateGateway",
+            target_id = prelude.String.id,
+        }),
+        VpcPeering = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "VpcPeering"),
+            type = "string",
+            name = "VpcPeering",
+            target_id = prelude.String.id,
+        }),
+        Lambda = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "Lambda"),
+            type = "string",
+            name = "Lambda",
+            target_id = prelude.String.id,
+        }),
+        VpcLattice = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "VpcLattice"),
+            type = "string",
+            name = "VpcLattice",
+            target_id = prelude.String.id,
+        }),
+        ElasticFileSystem = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlInput", "ElasticFileSystem"),
+            type = "string",
+            name = "ElasticFileSystem",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ModifyAccountVpcEncryptionControlOutput = schema.new({
+    id = id.from(_N, "ModifyAccountVpcEncryptionControlResult"),
+    type = "structure",
+    members = {
+        AccountVpcEncryptionControl = schema.new({
+            id = id.from(_N, "ModifyAccountVpcEncryptionControlOutput", "AccountVpcEncryptionControl"),
+            type = "structure",
+            name = "AccountVpcEncryptionControl",
+            target_id = id.from(_N, "AccountVpcEncryptionControl"),
+            target = M.AccountVpcEncryptionControl,
+            traits = {
+                [traits.XML_NAME] = { name = "accountVpcEncryptionControl" },
+                [traits.EC2_QUERY_NAME] = { name = "AccountVpcEncryptionControl" },
             },
         }),
     },
@@ -108927,6 +109253,17 @@ M.DescribeAccountAttributes = schema.operation({
     },
 })
 
+M.DescribeAccountVpcEncryptionControl = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeAccountVpcEncryptionControl"),
+    input = M.DescribeAccountVpcEncryptionControlInput,
+    output = M.DescribeAccountVpcEncryptionControlOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeAddresses = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeAddresses"),
     input = M.DescribeAddressesInput,
@@ -112660,6 +112997,17 @@ M.LockSnapshot = schema.operation({
     id = id.from("com.amazonaws.ec2", "LockSnapshot"),
     input = M.LockSnapshotInput,
     output = M.LockSnapshotOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyAccountVpcEncryptionControl = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyAccountVpcEncryptionControl"),
+    input = M.ModifyAccountVpcEncryptionControlInput,
+    output = M.ModifyAccountVpcEncryptionControlOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

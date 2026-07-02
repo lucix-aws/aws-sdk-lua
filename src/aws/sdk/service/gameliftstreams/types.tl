@@ -435,6 +435,28 @@ local record M
         AssociatedApplications: {string}
     end
 
+    record CreateStreamSessionAdminShellInput
+        -- The stream group that runs this stream session. This value is an Amazon Resource Name (ARN) or ID that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4. Example ID: sg-1AB2C3De4.
+        Identifier: string
+        -- An Amazon Resource Name (ARN) or ID that uniquely identifies the stream session resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamsession/sg-1AB2C3De4/ABC123def4567. Example ID: ABC123def4567.
+        StreamSessionIdentifier: string
+    end
+
+    record CreateStreamSessionAdminShellOutput
+        -- An Amazon Web Services Systems Manager session identifier that uniquely identifies the requested terminal session. Use this value with the Amazon Web Services Systems Manager Session Manager plugin.
+        SessionId: string
+        -- An Amazon Web Services Systems Manager WebSocket connection endpoint for the requested terminal session.
+        StreamUrl: string
+        -- An Amazon Web Services Systems Manager authentication token that authenticates your access to the session ID and WebSocket URL. This token must be treated with the same level of security as other user credentials. The token value is only valid for establishing a new connection within 60 seconds of generation.
+        TokenValue: string
+    end
+
+    -- The terminal connection to the stream session is not yet available. Wait before retrying the request.
+    record StreamSessionAccessNotReadyException
+        -- Description of the error.
+        Message: string
+    end
+
     record CreateStreamSessionConnectionInput
         -- A unique identifier that represents a client request. The request is idempotent, which ensures that an API request completes only once. When users send a request, Amazon GameLift Streams automatically populates this field.
         ClientToken: string

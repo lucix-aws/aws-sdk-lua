@@ -31545,6 +31545,95 @@ M.CustomSql = schema.new({
     },
 })
 
+M.UploadSettings = schema.new({
+    id = id.from(_N, "UploadSettings"),
+    type = "structure",
+    members = {
+        Format = schema.new({
+            id = id.from(_N, "UploadSettings", "Format"),
+            type = "string",
+            name = "Format",
+            target_id = prelude.String.id,
+        }),
+        StartFromRow = schema.new({
+            id = id.from(_N, "UploadSettings", "StartFromRow"),
+            type = "integer",
+            name = "StartFromRow",
+            target_id = prelude.Integer.id,
+        }),
+        ContainsHeader = schema.new({
+            id = id.from(_N, "UploadSettings", "ContainsHeader"),
+            type = "boolean",
+            name = "ContainsHeader",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        TextQualifier = schema.new({
+            id = id.from(_N, "UploadSettings", "TextQualifier"),
+            type = "string",
+            name = "TextQualifier",
+            target_id = prelude.String.id,
+        }),
+        Delimiter = schema.new({
+            id = id.from(_N, "UploadSettings", "Delimiter"),
+            type = "string",
+            name = "Delimiter",
+            target_id = prelude.String.id,
+        }),
+        CustomCellAddressRange = schema.new({
+            id = id.from(_N, "UploadSettings", "CustomCellAddressRange"),
+            type = "string",
+            name = "CustomCellAddressRange",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FileSource = schema.new({
+    id = id.from(_N, "FileSource"),
+    type = "structure",
+    members = {
+        DataSourceArn = schema.new({
+            id = id.from(_N, "FileSource", "DataSourceArn"),
+            type = "string",
+            name = "DataSourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UploadSettings = schema.new({
+            id = id.from(_N, "FileSource", "UploadSettings"),
+            type = "structure",
+            name = "UploadSettings",
+            target_id = id.from(_N, "UploadSettings"),
+            target = M.UploadSettings,
+        }),
+        SheetIndex = schema.new({
+            id = id.from(_N, "FileSource", "SheetIndex"),
+            type = "integer",
+            name = "SheetIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        InputColumns = schema.new({
+            id = id.from(_N, "FileSource", "InputColumns"),
+            type = "list",
+            name = "InputColumns",
+            target_id = prelude.Document.id,
+            list_member = M.InputColumn,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.RelationalTable = schema.new({
     id = id.from(_N, "RelationalTable"),
     type = "structure",
@@ -31588,52 +31677,6 @@ M.RelationalTable = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.UploadSettings = schema.new({
-    id = id.from(_N, "UploadSettings"),
-    type = "structure",
-    members = {
-        Format = schema.new({
-            id = id.from(_N, "UploadSettings", "Format"),
-            type = "string",
-            name = "Format",
-            target_id = prelude.String.id,
-        }),
-        StartFromRow = schema.new({
-            id = id.from(_N, "UploadSettings", "StartFromRow"),
-            type = "integer",
-            name = "StartFromRow",
-            target_id = prelude.Integer.id,
-        }),
-        ContainsHeader = schema.new({
-            id = id.from(_N, "UploadSettings", "ContainsHeader"),
-            type = "boolean",
-            name = "ContainsHeader",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
-        }),
-        TextQualifier = schema.new({
-            id = id.from(_N, "UploadSettings", "TextQualifier"),
-            type = "string",
-            name = "TextQualifier",
-            target_id = prelude.String.id,
-        }),
-        Delimiter = schema.new({
-            id = id.from(_N, "UploadSettings", "Delimiter"),
-            type = "string",
-            name = "Delimiter",
-            target_id = prelude.String.id,
-        }),
-        CustomCellAddressRange = schema.new({
-            id = id.from(_N, "UploadSettings", "CustomCellAddressRange"),
-            type = "string",
-            name = "CustomCellAddressRange",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -31757,6 +31800,13 @@ M.PhysicalTable = schema.new({
             name = "SaaSTable",
             target_id = id.from(_N, "SaaSTable"),
             target = M.SaaSTable,
+        }),
+        FileSource = schema.new({
+            id = id.from(_N, "PhysicalTable", "FileSource"),
+            type = "structure",
+            name = "FileSource",
+            target_id = id.from(_N, "FileSource"),
+            target = M.FileSource,
         }),
     },
 })

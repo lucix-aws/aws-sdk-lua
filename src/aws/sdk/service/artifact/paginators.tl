@@ -4,6 +4,42 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listComplianceInquiries.
+function M.pages_list_compliance_inquiries(client, input)
+    return paginator.pages(client, "listComplianceInquiries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "complianceInquiries",
+    })
+end
+
+--- Returns an item iterator for listComplianceInquiries.
+function M.items_list_compliance_inquiries(client, input)
+    return paginator.items(client, "listComplianceInquiries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "complianceInquiries",
+    })
+end
+
+--- Returns a page iterator for listComplianceInquiryQueries.
+function M.pages_list_compliance_inquiry_queries(client, input)
+    return paginator.pages(client, "listComplianceInquiryQueries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "queries",
+    })
+end
+
+--- Returns an item iterator for listComplianceInquiryQueries.
+function M.items_list_compliance_inquiry_queries(client, input)
+    return paginator.items(client, "listComplianceInquiryQueries", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "queries",
+    })
+end
+
 --- Returns a page iterator for listCustomerAgreements.
 function M.pages_list_customer_agreements(client, input)
     return paginator.pages(client, "listCustomerAgreements", input, {

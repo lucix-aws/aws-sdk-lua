@@ -9500,6 +9500,15 @@ M.H264Settings = schema.new({
                 [traits.JSON_NAME] = { name = "entropyEncoding" },
             },
         }),
+        ExplicitWeightedPrediction = schema.new({
+            id = id.from(_N, "H264Settings", "ExplicitWeightedPrediction"),
+            type = "string",
+            name = "ExplicitWeightedPrediction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "explicitWeightedPrediction" },
+            },
+        }),
         FieldEncoding = schema.new({
             id = id.from(_N, "H264Settings", "FieldEncoding"),
             type = "string",
@@ -12047,6 +12056,40 @@ M.DolbyVision = schema.new({
     },
 })
 
+M.DurationControl = schema.new({
+    id = id.from(_N, "DurationControl"),
+    type = "structure",
+    members = {
+        IntegerDurationMaximumCompressionDenominator = schema.new({
+            id = id.from(_N, "DurationControl", "IntegerDurationMaximumCompressionDenominator"),
+            type = "integer",
+            name = "IntegerDurationMaximumCompressionDenominator",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "integerDurationMaximumCompressionDenominator" },
+            },
+        }),
+        IntegerDurationMaximumCompressionNumerator = schema.new({
+            id = id.from(_N, "DurationControl", "IntegerDurationMaximumCompressionNumerator"),
+            type = "integer",
+            name = "IntegerDurationMaximumCompressionNumerator",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "integerDurationMaximumCompressionNumerator" },
+            },
+        }),
+        IntegerDurationTrimThresholdMilliseconds = schema.new({
+            id = id.from(_N, "DurationControl", "IntegerDurationTrimThresholdMilliseconds"),
+            type = "integer",
+            name = "IntegerDurationTrimThresholdMilliseconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "integerDurationTrimThresholdMilliseconds" },
+            },
+        }),
+    },
+})
+
 M.Hdr10Plus = schema.new({
     id = id.from(_N, "Hdr10Plus"),
     type = "structure",
@@ -12346,6 +12389,16 @@ M.VideoPreprocessor = schema.new({
             target = M.DolbyVision,
             traits = {
                 [traits.JSON_NAME] = { name = "dolbyVision" },
+            },
+        }),
+        DurationControl = schema.new({
+            id = id.from(_N, "VideoPreprocessor", "DurationControl"),
+            type = "structure",
+            name = "DurationControl",
+            target_id = id.from(_N, "DurationControl"),
+            target = M.DurationControl,
+            traits = {
+                [traits.JSON_NAME] = { name = "durationControl" },
             },
         }),
         Hdr10Plus = schema.new({

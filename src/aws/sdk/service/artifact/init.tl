@@ -18,14 +18,22 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createComplianceInquiry: function(Client, types.CreateComplianceInquiryInput, ? base_client.InvokeOptions): async.Operation<types.CreateComplianceInquiryOutput>
+    exportComplianceInquiry: function(Client, types.ExportComplianceInquiryInput, ? base_client.InvokeOptions): async.Operation<types.ExportComplianceInquiryOutput>
     getAccountSettings: function(Client, types.GetAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
+    getComplianceInquiryMetadata: function(Client, types.GetComplianceInquiryMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetComplianceInquiryMetadataOutput>
     getReport: function(Client, types.GetReportInput, ? base_client.InvokeOptions): async.Operation<types.GetReportOutput>
     getReportMetadata: function(Client, types.GetReportMetadataInput, ? base_client.InvokeOptions): async.Operation<types.GetReportMetadataOutput>
     getTermForReport: function(Client, types.GetTermForReportInput, ? base_client.InvokeOptions): async.Operation<types.GetTermForReportOutput>
+    listComplianceInquiries: function(Client, types.ListComplianceInquiriesInput, ? base_client.InvokeOptions): async.Operation<types.ListComplianceInquiriesOutput>
+    listComplianceInquiryQueries: function(Client, types.ListComplianceInquiryQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListComplianceInquiryQueriesOutput>
     listCustomerAgreements: function(Client, types.ListCustomerAgreementsInput, ? base_client.InvokeOptions): async.Operation<types.ListCustomerAgreementsOutput>
     listReports: function(Client, types.ListReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
     listReportVersions: function(Client, types.ListReportVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportVersionsOutput>
+    listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putAccountSettings: function(Client, types.PutAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
+    tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
 
 local record M
@@ -70,8 +78,20 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:createComplianceInquiry(input: types.CreateComplianceInquiryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateComplianceInquiryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateComplianceInquiry as schema.OperationSchema, input, options) as async.Operation<types.CreateComplianceInquiryOutput>
+end
+
+function C:exportComplianceInquiry(input: types.ExportComplianceInquiryInput, options?: base_client.InvokeOptions): async.Operation<types.ExportComplianceInquiryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ExportComplianceInquiry as schema.OperationSchema, input, options) as async.Operation<types.ExportComplianceInquiryOutput>
+end
+
 function C:getAccountSettings(input: types.GetAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetAccountSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.GetAccountSettingsOutput>
+end
+
+function C:getComplianceInquiryMetadata(input: types.GetComplianceInquiryMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.GetComplianceInquiryMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetComplianceInquiryMetadata as schema.OperationSchema, input, options) as async.Operation<types.GetComplianceInquiryMetadataOutput>
 end
 
 function C:getReport(input: types.GetReportInput, options?: base_client.InvokeOptions): async.Operation<types.GetReportOutput>
@@ -86,6 +106,14 @@ function C:getTermForReport(input: types.GetTermForReportInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTermForReport as schema.OperationSchema, input, options) as async.Operation<types.GetTermForReportOutput>
 end
 
+function C:listComplianceInquiries(input: types.ListComplianceInquiriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListComplianceInquiriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComplianceInquiries as schema.OperationSchema, input, options) as async.Operation<types.ListComplianceInquiriesOutput>
+end
+
+function C:listComplianceInquiryQueries(input: types.ListComplianceInquiryQueriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListComplianceInquiryQueriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListComplianceInquiryQueries as schema.OperationSchema, input, options) as async.Operation<types.ListComplianceInquiryQueriesOutput>
+end
+
 function C:listCustomerAgreements(input: types.ListCustomerAgreementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCustomerAgreementsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCustomerAgreements as schema.OperationSchema, input, options) as async.Operation<types.ListCustomerAgreementsOutput>
 end
@@ -98,8 +126,20 @@ function C:listReportVersions(input: types.ListReportVersionsInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReportVersions as schema.OperationSchema, input, options) as async.Operation<types.ListReportVersionsOutput>
 end
 
+function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
+end
+
 function C:putAccountSettings(input: types.PutAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingsOutput>
+end
+
+function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
+end
+
+function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
 return M

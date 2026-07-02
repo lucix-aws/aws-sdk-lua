@@ -62,17 +62,11 @@ local record M
         -- Since Ubuntu 18.04 has ended standard support as of May 31, 2023, we recommend you choose
         -- Ubuntu 22.04.
         -- AMI aliases
-        -- Amazon Linux 2: amazonlinux-2-x86_64
         -- Amazon Linux 2023 (recommended): amazonlinux-2023-x86_64
-        -- Ubuntu 18.04: ubuntu-18.04-x86_64
         -- Ubuntu 22.04: ubuntu-22.04-x86_64
         -- SSM paths
-        -- Amazon Linux 2:
-        -- resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2-x86_64
         -- Amazon Linux 2023 (recommended):
         -- resolve:ssm:/aws/service/cloud9/amis/amazonlinux-2023-x86_64
-        -- Ubuntu 18.04:
-        -- resolve:ssm:/aws/service/cloud9/amis/ubuntu-18.04-x86_64
         -- Ubuntu 22.04:
         -- resolve:ssm:/aws/service/cloud9/amis/ubuntu-22.04-x86_64
         imageId: string

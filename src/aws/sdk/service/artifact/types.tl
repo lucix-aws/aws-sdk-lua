@@ -119,6 +119,225 @@ local record M
         "MODIFIED"
     end
 
+    -- File content structure for compliance inquiry uploads.
+    record InquiryFileContent
+        -- List of file sections/sheets to process.
+        fileSections: {string}
+        -- Binary content of the uploaded file.
+        content: string
+    end
+
+    -- Content for creating a compliance inquiry - either a single query or file content.
+    record InquiryContent
+        -- Single text query for AI-generated answer.
+        query: string
+        -- File content with multiple questions.
+        fileContent: InquiryFileContent
+    end
+
+    enum InquirySupportMode
+        "AI_ONLY"
+        "FULL_SUPPORT"
+    end
+
+    record CreateComplianceInquiryInput
+        -- Title of the inquiry.
+        name: string
+        -- Content for creating a compliance inquiry - either a single query or file content.
+        inquiryContent: InquiryContent
+        -- Idempotency token for the request.
+        clientToken: string
+        -- Support mode for inquiry processing. Only supported for file upload mode. Defaults to AI_ONLY if not specified.
+        supportMode: string
+        -- Tags to associate with the compliance inquiry resource.
+        tags: {string : string}
+    end
+
+    enum InputSource
+        "TEXT"
+        "FILE"
+    end
+
+    enum InquiryStatus
+        "PROCESSING"
+        "HUMAN_REVIEW"
+        "COMPLETED"
+        "FAILED"
+    end
+
+    enum InquiryStatusMessage
+        "Compliance inquiry processing is complete."
+        "Malware was detected on the file. Provide a new file and try again."
+        "Compliance inquiry processing is in-progress."
+        "An internal error occurred while processing the inquiry. Try again at a later time."
+        "Human review is in progress."
+        "Compliance inquiry processing is complete. One or more queries encountered errors during processing."
+    end
+
+    -- Summary information about a compliance inquiry.
+    record InquirySummary
+        -- ARN of the compliance inquiry resource.
+        arn: string
+        -- Title of the inquiry.
+        name: string
+        -- Unique resource ID for the compliance inquiry.
+        id: string
+        -- Current processing status of the inquiry.
+        status: string
+        -- Status message providing additional context.
+        statusMessage: string
+        -- Type of inquiry content (text or file).
+        inputSource: string
+        -- Timestamp indicating when the resource was created.
+        createdAt: number
+    end
+
+    record CreateComplianceInquiryOutput
+        -- Summary information about the created compliance inquiry.
+        complianceInquirySummary: InquirySummary
+        -- Tags associated with the compliance inquiry resource.
+        tags: {string : string}
+    end
+
+    record ExportComplianceInquiryInput
+        -- Unique resource ID for the compliance inquiry.
+        complianceInquiryId: string
+        -- List of query identifiers to include in the export.
+        queryIdentifiers: {number}
+        -- When true, include citations in the exported document.
+        includeCitations: boolean
+    end
+
+    record ExportComplianceInquiryOutput
+        -- Presigned S3 URL to access the exported compliance inquiry report.
+        documentPresignedUrl: string
+        -- Tags associated with the compliance inquiry resource.
+        tags: {string : string}
+    end
+
+    record GetComplianceInquiryMetadataInput
+        -- Unique resource ID for the compliance inquiry.
+        complianceInquiryId: string
+    end
+
+    -- Detailed information about a compliance inquiry.
+    record InquiryDetail
+        -- ARN of the compliance inquiry resource.
+        arn: string
+        -- Title of the inquiry.
+        name: string
+        -- Unique resource ID for the compliance inquiry.
+        id: string
+        -- Current processing status of the inquiry.
+        status: string
+        -- Status message providing additional context.
+        statusMessage: string
+        -- Type of inquiry content (text or file).
+        inputSource: string
+        -- Timestamp indicating when the resource was created.
+        createdAt: number
+        -- Timestamp indicating when the resource was last modified.
+        updatedAt: number
+        -- Support mode for this inquiry. AI_ONLY provides AI-generated responses. FULL_SUPPORT includes human expert review.
+        supportMode: string
+    end
+
+    record GetComplianceInquiryMetadataOutput
+        -- Detailed information about the compliance inquiry.
+        complianceInquiryDetail: InquiryDetail
+        -- Tags associated with the compliance inquiry resource.
+        tags: {string : string}
+    end
+
+    record ListComplianceInquiriesInput
+        -- Maximum number of resources to return in the paginated response.
+        maxResults: number
+        -- Pagination token to request the next page of resources.
+        nextToken: string
+    end
+
+    record ListComplianceInquiriesOutput
+        -- List of compliance inquiry resources.
+        complianceInquiries: {InquirySummary}
+        -- Pagination token to request the next page of resources.
+        nextToken: string
+    end
+
+    record ListComplianceInquiryQueriesInput
+        -- Unique resource ID for the compliance inquiry.
+        complianceInquiryId: string
+        -- Maximum number of resources to return in the paginated response.
+        maxResults: number
+        -- Pagination token to request the next page of resources.
+        nextToken: string
+    end
+
+    -- Citation information for AI-generated responses.
+    record Citation
+        -- Label identifying the compliance source.
+        sourceLabel: string
+        -- Content text from the compliance source.
+        sourceContent: string
+        -- Link to the compliance source.
+        sourceLink: string
+    end
+
+    enum ReviewType
+        "HUMAN"
+        "AI"
+    end
+
+    enum QueryStatus
+        "PROCESSING"
+        "COMPLETED"
+        "FAILED"
+    end
+
+    enum QueryStatusMessage
+        "Query processing is complete."
+        "Query processing is in-progress."
+        "An internal error occurred while processing the query. Try again at a later time."
+        "Query is pending human review."
+        "Query contains restricted or unsupported content."
+    end
+
+    -- A versioned snapshot of a response edit.
+    record ResponseVersion
+        -- The response text for this version.
+        responseText: string
+        -- ISO 8601 timestamp of when this edit was made.
+        timestamp: number
+    end
+
+    -- Summary information about a single query within a compliance inquiry.
+    record QuerySummary
+        -- Sequential identifier of the query within the inquiry.
+        queryIdentifier: number
+        -- The actual query text.
+        query: string
+        -- Generated response to the query.
+        response: string
+        -- Type of review for the response.
+        reviewType: string
+        -- Supporting citations for the response.
+        citations: {Citation}
+        -- Current processing status of the query.
+        status: string
+        -- Descriptive status message.
+        statusMessage: string
+        -- Timestamp when the query was created.
+        createdAt: number
+        -- Ordered list of response version history entries, oldest first.
+        updatedResponseVersions: {ResponseVersion}
+    end
+
+    record ListComplianceInquiryQueriesOutput
+        -- List of compliance query summaries.
+        queries: {QuerySummary}
+        -- Pagination token to request the next page of resources.
+        nextToken: string
+    end
+
     record ListCustomerAgreementsInput
         -- Maximum number of resources to return in the paginated response.
         maxResults: number
@@ -165,6 +384,16 @@ local record M
         customerAgreements: {CustomerAgreementSummary}
         -- Pagination token to request the next page of resources.
         nextToken: string
+    end
+
+    record ListTagsForResourceInput
+        -- The Amazon Resource Name (ARN) of the resource.
+        resourceArn: string
+    end
+
+    record ListTagsForResourceOutput
+        -- Tags associated with the resource.
+        tags: {string : string}
     end
 
     record GetReportInput
@@ -325,6 +554,26 @@ local record M
         reports: {ReportSummary}
         -- Pagination token to request the next page of resources.
         nextToken: string
+    end
+
+    record TagResourceInput
+        -- The Amazon Resource Name (ARN) of the resource.
+        resourceArn: string
+        -- Tags to add to the resource.
+        tags: {string : string}
+    end
+
+    record TagResourceOutput
+    end
+
+    record UntagResourceInput
+        -- The Amazon Resource Name (ARN) of the resource.
+        resourceArn: string
+        -- Tag keys to remove from the resource.
+        tagKeys: {string}
+    end
+
+    record UntagResourceOutput
     end
 
 end

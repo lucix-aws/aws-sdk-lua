@@ -9,11 +9,27 @@ local _N = "com.amazonaws.artifact"
 
 local M: {string:any} = {}
 
+M.TagsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
+
+M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.QueryIdentifiersList = schema.new({ type = "list", list_member = prelude.Integer })
+
+M.InquiriesList = schema.new({ type = "list", list_member = M.InquirySummary })
+
+M.QueriesList = schema.new({ type = "list", list_member = M.QuerySummary })
 
 M.CustomerAgreementList = schema.new({ type = "list", list_member = M.CustomerAgreementSummary })
 
 M.ReportsList = schema.new({ type = "list", list_member = M.ReportSummary })
+
+M.FileSectionList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CitationList = schema.new({ type = "list", list_member = M.Citation })
+
+M.ResponseVersionList = schema.new({ type = "list", list_member = M.ResponseVersion })
 
 M.AgreementTerms = schema.new({ type = "list", list_member = prelude.String })
 
@@ -352,6 +368,608 @@ M.PutAccountSettingsOutput = schema.new({
     },
 })
 
+M.InquiryFileContent = schema.new({
+    id = id.from(_N, "InquiryFileContent"),
+    type = "structure",
+    members = {
+        fileSections = schema.new({
+            id = id.from(_N, "InquiryFileContent", "fileSections"),
+            type = "list",
+            name = "fileSections",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        content = schema.new({
+            id = id.from(_N, "InquiryFileContent", "content"),
+            type = "blob",
+            name = "content",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InquiryContent = schema.new({
+    id = id.from(_N, "InquiryContent"),
+    type = "union",
+    members = {
+        query = schema.new({
+            id = id.from(_N, "InquiryContent", "query"),
+            type = "string",
+            name = "query",
+            target_id = prelude.String.id,
+        }),
+        fileContent = schema.new({
+            id = id.from(_N, "InquiryContent", "fileContent"),
+            type = "structure",
+            name = "fileContent",
+            target_id = id.from(_N, "InquiryFileContent"),
+            target = M.InquiryFileContent,
+        }),
+    },
+})
+
+M.CreateComplianceInquiryInput = schema.new({
+    id = id.from(_N, "CreateComplianceInquiryRequest"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateComplianceInquiryInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inquiryContent = schema.new({
+            id = id.from(_N, "CreateComplianceInquiryInput", "inquiryContent"),
+            type = "union",
+            name = "inquiryContent",
+            target_id = id.from(_N, "InquiryContent"),
+            target = M.InquiryContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateComplianceInquiryInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        supportMode = schema.new({
+            id = id.from(_N, "CreateComplianceInquiryInput", "supportMode"),
+            type = "string",
+            name = "supportMode",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateComplianceInquiryInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.InquirySummary = schema.new({
+    id = id.from(_N, "InquirySummary"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "InquirySummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "InquirySummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "InquirySummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "InquirySummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "InquirySummary", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inputSource = schema.new({
+            id = id.from(_N, "InquirySummary", "inputSource"),
+            type = "string",
+            name = "inputSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "InquirySummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateComplianceInquiryOutput = schema.new({
+    id = id.from(_N, "CreateComplianceInquiryResponse"),
+    type = "structure",
+    members = {
+        complianceInquirySummary = schema.new({
+            id = id.from(_N, "CreateComplianceInquiryOutput", "complianceInquirySummary"),
+            type = "structure",
+            name = "complianceInquirySummary",
+            target_id = id.from(_N, "InquirySummary"),
+            target = M.InquirySummary,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateComplianceInquiryOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ExportComplianceInquiryInput = schema.new({
+    id = id.from(_N, "ExportComplianceInquiryRequest"),
+    type = "structure",
+    members = {
+        complianceInquiryId = schema.new({
+            id = id.from(_N, "ExportComplianceInquiryInput", "complianceInquiryId"),
+            type = "string",
+            name = "complianceInquiryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        queryIdentifiers = schema.new({
+            id = id.from(_N, "ExportComplianceInquiryInput", "queryIdentifiers"),
+            type = "list",
+            name = "queryIdentifiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        includeCitations = schema.new({
+            id = id.from(_N, "ExportComplianceInquiryInput", "includeCitations"),
+            type = "boolean",
+            name = "includeCitations",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ExportComplianceInquiryOutput = schema.new({
+    id = id.from(_N, "ExportComplianceInquiryResponse"),
+    type = "structure",
+    members = {
+        documentPresignedUrl = schema.new({
+            id = id.from(_N, "ExportComplianceInquiryOutput", "documentPresignedUrl"),
+            type = "string",
+            name = "documentPresignedUrl",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "ExportComplianceInquiryOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.GetComplianceInquiryMetadataInput = schema.new({
+    id = id.from(_N, "GetComplianceInquiryMetadataRequest"),
+    type = "structure",
+    members = {
+        complianceInquiryId = schema.new({
+            id = id.from(_N, "GetComplianceInquiryMetadataInput", "complianceInquiryId"),
+            type = "string",
+            name = "complianceInquiryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "complianceInquiryId" },
+            },
+        }),
+    },
+})
+
+M.InquiryDetail = schema.new({
+    id = id.from(_N, "InquiryDetail"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "InquiryDetail", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "InquiryDetail", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        id = schema.new({
+            id = id.from(_N, "InquiryDetail", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "InquiryDetail", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "InquiryDetail", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        inputSource = schema.new({
+            id = id.from(_N, "InquiryDetail", "inputSource"),
+            type = "string",
+            name = "inputSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "InquiryDetail", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "InquiryDetail", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        supportMode = schema.new({
+            id = id.from(_N, "InquiryDetail", "supportMode"),
+            type = "string",
+            name = "supportMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetComplianceInquiryMetadataOutput = schema.new({
+    id = id.from(_N, "GetComplianceInquiryMetadataResponse"),
+    type = "structure",
+    members = {
+        complianceInquiryDetail = schema.new({
+            id = id.from(_N, "GetComplianceInquiryMetadataOutput", "complianceInquiryDetail"),
+            type = "structure",
+            name = "complianceInquiryDetail",
+            target_id = id.from(_N, "InquiryDetail"),
+            target = M.InquiryDetail,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "GetComplianceInquiryMetadataOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListComplianceInquiriesInput = schema.new({
+    id = id.from(_N, "ListComplianceInquiriesRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListComplianceInquiriesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListComplianceInquiriesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListComplianceInquiriesOutput = schema.new({
+    id = id.from(_N, "ListComplianceInquiriesResponse"),
+    type = "structure",
+    members = {
+        complianceInquiries = schema.new({
+            id = id.from(_N, "ListComplianceInquiriesOutput", "complianceInquiries"),
+            type = "list",
+            name = "complianceInquiries",
+            target_id = prelude.Document.id,
+            list_member = M.InquirySummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListComplianceInquiriesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListComplianceInquiryQueriesInput = schema.new({
+    id = id.from(_N, "ListComplianceInquiryQueriesRequest"),
+    type = "structure",
+    members = {
+        complianceInquiryId = schema.new({
+            id = id.from(_N, "ListComplianceInquiryQueriesInput", "complianceInquiryId"),
+            type = "string",
+            name = "complianceInquiryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "complianceInquiryId" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListComplianceInquiryQueriesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListComplianceInquiryQueriesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.Citation = schema.new({
+    id = id.from(_N, "Citation"),
+    type = "structure",
+    members = {
+        sourceLabel = schema.new({
+            id = id.from(_N, "Citation", "sourceLabel"),
+            type = "string",
+            name = "sourceLabel",
+            target_id = prelude.String.id,
+        }),
+        sourceContent = schema.new({
+            id = id.from(_N, "Citation", "sourceContent"),
+            type = "string",
+            name = "sourceContent",
+            target_id = prelude.String.id,
+        }),
+        sourceLink = schema.new({
+            id = id.from(_N, "Citation", "sourceLink"),
+            type = "string",
+            name = "sourceLink",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResponseVersion = schema.new({
+    id = id.from(_N, "ResponseVersion"),
+    type = "structure",
+    members = {
+        responseText = schema.new({
+            id = id.from(_N, "ResponseVersion", "responseText"),
+            type = "string",
+            name = "responseText",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "ResponseVersion", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.QuerySummary = schema.new({
+    id = id.from(_N, "QuerySummary"),
+    type = "structure",
+    members = {
+        queryIdentifier = schema.new({
+            id = id.from(_N, "QuerySummary", "queryIdentifier"),
+            type = "integer",
+            name = "queryIdentifier",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        query = schema.new({
+            id = id.from(_N, "QuerySummary", "query"),
+            type = "string",
+            name = "query",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        response = schema.new({
+            id = id.from(_N, "QuerySummary", "response"),
+            type = "string",
+            name = "response",
+            target_id = prelude.String.id,
+        }),
+        reviewType = schema.new({
+            id = id.from(_N, "QuerySummary", "reviewType"),
+            type = "string",
+            name = "reviewType",
+            target_id = prelude.String.id,
+        }),
+        citations = schema.new({
+            id = id.from(_N, "QuerySummary", "citations"),
+            type = "list",
+            name = "citations",
+            target_id = prelude.Document.id,
+            list_member = M.Citation,
+        }),
+        status = schema.new({
+            id = id.from(_N, "QuerySummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        statusMessage = schema.new({
+            id = id.from(_N, "QuerySummary", "statusMessage"),
+            type = "string",
+            name = "statusMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "QuerySummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedResponseVersions = schema.new({
+            id = id.from(_N, "QuerySummary", "updatedResponseVersions"),
+            type = "list",
+            name = "updatedResponseVersions",
+            target_id = prelude.Document.id,
+            list_member = M.ResponseVersion,
+        }),
+    },
+})
+
+M.ListComplianceInquiryQueriesOutput = schema.new({
+    id = id.from(_N, "ListComplianceInquiryQueriesResponse"),
+    type = "structure",
+    members = {
+        queries = schema.new({
+            id = id.from(_N, "ListComplianceInquiryQueriesOutput", "queries"),
+            type = "list",
+            name = "queries",
+            target_id = prelude.Document.id,
+            list_member = M.QuerySummary,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListComplianceInquiryQueriesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListCustomerAgreementsInput = schema.new({
     id = id.from(_N, "ListCustomerAgreementsRequest"),
     type = "structure",
@@ -489,6 +1107,38 @@ M.ListCustomerAgreementsOutput = schema.new({
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTagsForResourceInput = schema.new({
+    id = id.from(_N, "ListTagsForResourceRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "ListTagsForResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListTagsForResourceOutput = schema.new({
+    id = id.from(_N, "ListTagsForResourceResponse"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "ListTagsForResourceOutput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -975,6 +1625,72 @@ M.ListReportVersionsOutput = schema.new({
     },
 })
 
+M.TagResourceInput = schema.new({
+    id = id.from(_N, "TagResourceRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "TagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "TagResourceInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TagResourceOutput = schema.new({
+    id = id.from(_N, "TagResourceResponse"),
+    type = "structure",
+})
+
+M.UntagResourceInput = schema.new({
+    id = id.from(_N, "UntagResourceRequest"),
+    type = "structure",
+    members = {
+        resourceArn = schema.new({
+            id = id.from(_N, "UntagResourceInput", "resourceArn"),
+            type = "string",
+            name = "resourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        tagKeys = schema.new({
+            id = id.from(_N, "UntagResourceInput", "tagKeys"),
+            type = "list",
+            name = "tagKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "tagKeys" },
+            },
+        }),
+    },
+})
+
+M.UntagResourceOutput = schema.new({
+    id = id.from(_N, "UntagResourceResponse"),
+    type = "structure",
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -1000,12 +1716,48 @@ M.Service = schema.service({
     },
 })
 
+M.CreateComplianceInquiry = schema.operation({
+    id = id.from("com.amazonaws.artifact", "CreateComplianceInquiry"),
+    input = M.CreateComplianceInquiryInput,
+    output = M.CreateComplianceInquiryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/compliance-inquiry/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ExportComplianceInquiry = schema.operation({
+    id = id.from("com.amazonaws.artifact", "ExportComplianceInquiry"),
+    input = M.ExportComplianceInquiryInput,
+    output = M.ExportComplianceInquiryOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/compliance-inquiry/export" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetAccountSettings = schema.operation({
     id = id.from("com.amazonaws.artifact", "GetAccountSettings"),
     input = M.GetAccountSettingsInput,
     output = M.GetAccountSettingsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/account-settings/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetComplianceInquiryMetadata = schema.operation({
+    id = id.from("com.amazonaws.artifact", "GetComplianceInquiryMetadata"),
+    input = M.GetComplianceInquiryMetadataInput,
+    output = M.GetComplianceInquiryMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/compliance-inquiry/getMetadata" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -1048,6 +1800,30 @@ M.GetTermForReport = schema.operation({
     },
 })
 
+M.ListComplianceInquiries = schema.operation({
+    id = id.from("com.amazonaws.artifact", "ListComplianceInquiries"),
+    input = M.ListComplianceInquiriesInput,
+    output = M.ListComplianceInquiriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/compliance-inquiry/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListComplianceInquiryQueries = schema.operation({
+    id = id.from("com.amazonaws.artifact", "ListComplianceInquiryQueries"),
+    input = M.ListComplianceInquiryQueriesInput,
+    output = M.ListComplianceInquiryQueriesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/compliance-inquiry/listQueries" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListCustomerAgreements = schema.operation({
     id = id.from("com.amazonaws.artifact", "ListCustomerAgreements"),
     input = M.ListCustomerAgreementsInput,
@@ -1084,12 +1860,48 @@ M.ListReportVersions = schema.operation({
     },
 })
 
+M.ListTagsForResource = schema.operation({
+    id = id.from("com.amazonaws.artifact", "ListTagsForResource"),
+    input = M.ListTagsForResourceInput,
+    output = M.ListTagsForResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.PutAccountSettings = schema.operation({
     id = id.from("com.amazonaws.artifact", "PutAccountSettings"),
     input = M.PutAccountSettingsInput,
     output = M.PutAccountSettingsOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v1/account-settings/put" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.TagResource = schema.operation({
+    id = id.from("com.amazonaws.artifact", "TagResource"),
+    input = M.TagResourceInput,
+    output = M.TagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UntagResource = schema.operation({
+    id = id.from("com.amazonaws.artifact", "UntagResource"),
+    input = M.UntagResourceInput,
+    output = M.UntagResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

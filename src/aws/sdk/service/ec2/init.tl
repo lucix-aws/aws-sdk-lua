@@ -288,6 +288,7 @@ local record Client
     deregisterTransitGatewayMulticastGroupMembers: function(Client, types.DeregisterTransitGatewayMulticastGroupMembersInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayMulticastGroupMembersOutput>
     deregisterTransitGatewayMulticastGroupSources: function(Client, types.DeregisterTransitGatewayMulticastGroupSourcesInput, ? base_client.InvokeOptions): async.Operation<types.DeregisterTransitGatewayMulticastGroupSourcesOutput>
     describeAccountAttributes: function(Client, types.DescribeAccountAttributesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
+    describeAccountVpcEncryptionControl: function(Client, types.DescribeAccountVpcEncryptionControlInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccountVpcEncryptionControlOutput>
     describeAddresses: function(Client, types.DescribeAddressesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressesOutput>
     describeAddressesAttribute: function(Client, types.DescribeAddressesAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressesAttributeOutput>
     describeAddressTransfers: function(Client, types.DescribeAddressTransfersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressTransfersOutput>
@@ -628,6 +629,7 @@ local record Client
     listSnapshotsInRecycleBin: function(Client, types.ListSnapshotsInRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.ListSnapshotsInRecycleBinOutput>
     listVolumesInRecycleBin: function(Client, types.ListVolumesInRecycleBinInput, ? base_client.InvokeOptions): async.Operation<types.ListVolumesInRecycleBinOutput>
     lockSnapshot: function(Client, types.LockSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.LockSnapshotOutput>
+    modifyAccountVpcEncryptionControl: function(Client, types.ModifyAccountVpcEncryptionControlInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAccountVpcEncryptionControlOutput>
     modifyAddressAttribute: function(Client, types.ModifyAddressAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAddressAttributeOutput>
     modifyAvailabilityZoneGroup: function(Client, types.ModifyAvailabilityZoneGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAvailabilityZoneGroupOutput>
     modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationOutput>
@@ -1910,6 +1912,10 @@ end
 
 function C:describeAccountAttributes(input: types.DescribeAccountAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountAttributesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountAttributes as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountAttributesOutput>
+end
+
+function C:describeAccountVpcEncryptionControl(input: types.DescribeAccountVpcEncryptionControlInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccountVpcEncryptionControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAccountVpcEncryptionControl as schema.OperationSchema, input, options) as async.Operation<types.DescribeAccountVpcEncryptionControlOutput>
 end
 
 function C:describeAddresses(input: types.DescribeAddressesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAddressesOutput>
@@ -3270,6 +3276,10 @@ end
 
 function C:lockSnapshot(input: types.LockSnapshotInput, options?: base_client.InvokeOptions): async.Operation<types.LockSnapshotOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.LockSnapshot as schema.OperationSchema, input, options) as async.Operation<types.LockSnapshotOutput>
+end
+
+function C:modifyAccountVpcEncryptionControl(input: types.ModifyAccountVpcEncryptionControlInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyAccountVpcEncryptionControlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyAccountVpcEncryptionControl as schema.OperationSchema, input, options) as async.Operation<types.ModifyAccountVpcEncryptionControlOutput>
 end
 
 function C:modifyAddressAttribute(input: types.ModifyAddressAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyAddressAttributeOutput>

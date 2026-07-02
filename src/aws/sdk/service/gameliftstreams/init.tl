@@ -22,6 +22,7 @@ local record Client
     associateApplications: function(Client, types.AssociateApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateApplicationsOutput>
     createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
     createStreamGroup: function(Client, types.CreateStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamGroupOutput>
+    createStreamSessionAdminShell: function(Client, types.CreateStreamSessionAdminShellInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamSessionAdminShellOutput>
     createStreamSessionConnection: function(Client, types.CreateStreamSessionConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamSessionConnectionOutput>
     deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
     deleteStreamGroup: function(Client, types.DeleteStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamGroupOutput>
@@ -100,6 +101,10 @@ end
 
 function C:createStreamGroup(input: types.CreateStreamGroupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamGroupOutput>
+end
+
+function C:createStreamSessionAdminShell(input: types.CreateStreamSessionAdminShellInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamSessionAdminShellOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamSessionAdminShell as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamSessionAdminShellOutput>
 end
 
 function C:createStreamSessionConnection(input: types.CreateStreamSessionConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamSessionConnectionOutput>

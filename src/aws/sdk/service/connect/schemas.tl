@@ -627,6 +627,8 @@ M.ContactEvaluationAttributeConditionList = schema.new({ type = "list", list_mem
 
 M.TranscriptCriteriaList = schema.new({ type = "list", list_member = M.TranscriptCriteria })
 
+M.RecommenderContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.EvaluationAnswerDataStringValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.UserTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -32053,6 +32055,212 @@ M.SendOutboundEmailOutput = schema.new({
     type = "structure",
 })
 
+M.RecommenderConfig = schema.new({
+    id = id.from(_N, "RecommenderConfig"),
+    type = "structure",
+    members = {
+        DomainName = schema.new({
+            id = id.from(_N, "RecommenderConfig", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecommenderName = schema.new({
+            id = id.from(_N, "RecommenderConfig", "RecommenderName"),
+            type = "string",
+            name = "RecommenderName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Context = schema.new({
+            id = id.from(_N, "RecommenderConfig", "Context"),
+            type = "map",
+            name = "Context",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ContentAttributes = schema.new({
+    id = id.from(_N, "ContentAttributes"),
+    type = "structure",
+    members = {
+        RecommenderConfig = schema.new({
+            id = id.from(_N, "ContentAttributes", "RecommenderConfig"),
+            type = "structure",
+            name = "RecommenderConfig",
+            target_id = id.from(_N, "RecommenderConfig"),
+            target = M.RecommenderConfig,
+        }),
+    },
+})
+
+M.WebNotificationContent = schema.new({
+    id = id.from(_N, "WebNotificationContent"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "WebNotificationContent", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ViewArn = schema.new({
+            id = id.from(_N, "WebNotificationContent", "ViewArn"),
+            type = "string",
+            name = "ViewArn",
+            target_id = prelude.String.id,
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "WebNotificationContent", "Attributes"),
+            type = "structure",
+            name = "Attributes",
+            target_id = id.from(_N, "ContentAttributes"),
+            target = M.ContentAttributes,
+        }),
+    },
+})
+
+M.WidgetDestination = schema.new({
+    id = id.from(_N, "WidgetDestination"),
+    type = "structure",
+    members = {
+        WidgetId = schema.new({
+            id = id.from(_N, "WidgetDestination", "WidgetId"),
+            type = "string",
+            name = "WidgetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileId = schema.new({
+            id = id.from(_N, "WidgetDestination", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WebNotificationSource = schema.new({
+    id = id.from(_N, "WebNotificationSource"),
+    type = "structure",
+    members = {
+        SourceCampaign = schema.new({
+            id = id.from(_N, "WebNotificationSource", "SourceCampaign"),
+            type = "structure",
+            name = "SourceCampaign",
+            target_id = id.from(_N, "SourceCampaign"),
+            target = M.SourceCampaign,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SendOutboundWebNotificationInput = schema.new({
+    id = id.from(_N, "SendOutboundWebNotificationRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        BrowserId = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "BrowserId"),
+            type = "string",
+            name = "BrowserId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Source = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "Source"),
+            type = "structure",
+            name = "Source",
+            target_id = id.from(_N, "WebNotificationSource"),
+            target = M.WebNotificationSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Destination = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "Destination"),
+            type = "structure",
+            name = "Destination",
+            target_id = id.from(_N, "WidgetDestination"),
+            target = M.WidgetDestination,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Content = schema.new({
+            id = id.from(_N, "SendOutboundWebNotificationInput", "Content"),
+            type = "structure",
+            name = "Content",
+            target_id = id.from(_N, "WebNotificationContent"),
+            target = M.WebNotificationContent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SendOutboundWebNotificationOutput = schema.new({
+    id = id.from(_N, "SendOutboundWebNotificationResponse"),
+    type = "structure",
+})
+
 M.StartAttachedFileUploadInput = schema.new({
     id = id.from(_N, "StartAttachedFileUploadRequest"),
     type = "structure",
@@ -44907,6 +45115,18 @@ M.SendOutboundEmail = schema.operation({
     output = M.SendOutboundEmailOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/instance/{InstanceId}/outbound-email" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendOutboundWebNotification = schema.operation({
+    id = id.from("com.amazonaws.connect", "SendOutboundWebNotification"),
+    input = M.SendOutboundWebNotificationInput,
+    output = M.SendOutboundWebNotificationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/outbound-web-notification" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

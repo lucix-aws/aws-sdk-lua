@@ -2957,6 +2957,18 @@ M.CreateDomainInput = schema.new({
             target_id = id.from(_N, "AutomatedSnapshotPauseRequestOptions"),
             target = M.AutomatedSnapshotPauseRequestOptions,
         }),
+        UseCase = schema.new({
+            id = id.from(_N, "CreateDomainInput", "UseCase"),
+            type = "string",
+            name = "UseCase",
+            target_id = prelude.String.id,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "CreateDomainInput", "EngineMode"),
+            type = "string",
+            name = "EngineMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3438,6 +3450,18 @@ M.DomainStatus = schema.new({
             name = "AutomatedSnapshotPauseOptions",
             target_id = id.from(_N, "AutomatedSnapshotPauseOptions"),
             target = M.AutomatedSnapshotPauseOptions,
+        }),
+        UseCase = schema.new({
+            id = id.from(_N, "DomainStatus", "UseCase"),
+            type = "string",
+            name = "UseCase",
+            target_id = prelude.String.id,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "DomainStatus", "EngineMode"),
+            type = "string",
+            name = "EngineMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5206,6 +5230,32 @@ M.EncryptionAtRestOptionsStatus = schema.new({
     },
 })
 
+M.EngineModeStatus = schema.new({
+    id = id.from(_N, "EngineModeStatus"),
+    type = "structure",
+    members = {
+        Options = schema.new({
+            id = id.from(_N, "EngineModeStatus", "Options"),
+            type = "string",
+            name = "Options",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "EngineModeStatus", "Status"),
+            type = "structure",
+            name = "Status",
+            target_id = id.from(_N, "OptionStatus"),
+            target = M.OptionStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.VersionStatus = schema.new({
     id = id.from(_N, "VersionStatus"),
     type = "structure",
@@ -5403,6 +5453,32 @@ M.SoftwareUpdateOptionsStatus = schema.new({
     },
 })
 
+M.UseCaseStatus = schema.new({
+    id = id.from(_N, "UseCaseStatus"),
+    type = "structure",
+    members = {
+        Options = schema.new({
+            id = id.from(_N, "UseCaseStatus", "Options"),
+            type = "string",
+            name = "Options",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UseCaseStatus", "Status"),
+            type = "structure",
+            name = "Status",
+            target_id = id.from(_N, "OptionStatus"),
+            target = M.OptionStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.VPCDerivedInfoStatus = schema.new({
     id = id.from(_N, "VPCDerivedInfoStatus"),
     type = "structure",
@@ -5594,6 +5670,20 @@ M.DomainConfig = schema.new({
             name = "AutomatedSnapshotPauseOptions",
             target_id = id.from(_N, "AutomatedSnapshotPauseOptionsStatus"),
             target = M.AutomatedSnapshotPauseOptionsStatus,
+        }),
+        UseCase = schema.new({
+            id = id.from(_N, "DomainConfig", "UseCase"),
+            type = "structure",
+            name = "UseCase",
+            target_id = id.from(_N, "UseCaseStatus"),
+            target = M.UseCaseStatus,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "DomainConfig", "EngineMode"),
+            type = "structure",
+            name = "EngineMode",
+            target_id = id.from(_N, "EngineModeStatus"),
+            target = M.EngineModeStatus,
         }),
     },
 })
@@ -7762,6 +7852,85 @@ M.GetUpgradeStatusOutput = schema.new({
     },
 })
 
+M.InsightFeedbackEntity = schema.new({
+    id = id.from(_N, "InsightFeedbackEntity"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "InsightFeedbackEntity", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "InsightFeedbackEntity", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InsightFeedbackInput = schema.new({
+    id = id.from(_N, "InsightFeedbackRequest"),
+    type = "structure",
+    members = {
+        Entity = schema.new({
+            id = id.from(_N, "InsightFeedbackInput", "Entity"),
+            type = "structure",
+            name = "Entity",
+            target_id = id.from(_N, "InsightFeedbackEntity"),
+            target = M.InsightFeedbackEntity,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InsightId = schema.new({
+            id = id.from(_N, "InsightFeedbackInput", "InsightId"),
+            type = "string",
+            name = "InsightId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Thumbs = schema.new({
+            id = id.from(_N, "InsightFeedbackInput", "Thumbs"),
+            type = "string",
+            name = "Thumbs",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FeedbackText = schema.new({
+            id = id.from(_N, "InsightFeedbackInput", "FeedbackText"),
+            type = "string",
+            name = "FeedbackText",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.InsightFeedbackOutput = schema.new({
+    id = id.from(_N, "InsightFeedbackResponse"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "InsightFeedbackOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListApplicationsInput = schema.new({
     id = id.from(_N, "ListApplicationsRequest"),
     type = "structure",
@@ -9844,6 +10013,18 @@ M.UpdateDomainConfigInput = schema.new({
             target_id = id.from(_N, "AutomatedSnapshotPauseRequestOptions"),
             target = M.AutomatedSnapshotPauseRequestOptions,
         }),
+        UseCase = schema.new({
+            id = id.from(_N, "UpdateDomainConfigInput", "UseCase"),
+            type = "string",
+            name = "UseCase",
+            target_id = prelude.String.id,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "UpdateDomainConfigInput", "EngineMode"),
+            type = "string",
+            name = "EngineMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -10975,6 +11156,18 @@ M.GetUpgradeStatus = schema.operation({
     output = M.GetUpgradeStatusOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/2021-01-01/opensearch/upgradeDomain/{DomainName}/status" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.InsightFeedback = schema.operation({
+    id = id.from("com.amazonaws.opensearch", "InsightFeedback"),
+    input = M.InsightFeedbackInput,
+    output = M.InsightFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/2021-01-01/opensearch/insight-feedback" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

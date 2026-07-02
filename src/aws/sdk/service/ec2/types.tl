@@ -1207,6 +1207,68 @@ local record M
         "default-vpc"
     end
 
+    enum VpcEncryptionControlExclusionState
+        "enabling"
+        "enabled"
+        "disabling"
+        "disabled"
+    end
+
+    -- Describes the exclusion configurations for the various resource types in the account-level VPC Encryption Control configuration.
+    -- For more information, see Enforce VPC encryption in transit in the Amazon VPC User Guide.
+    record AccountVpcEncryptionControlExclusions
+        -- The exclusion configuration for internet gateway resource.
+        InternetGateway: string
+        -- The exclusion configuration for egress-only internet gateway resource.
+        EgressOnlyInternetGateway: string
+        -- The exclusion configuration for NAT gateway resource.
+        NatGateway: string
+        -- The exclusion configuration for virtual private gateway resource.
+        VirtualPrivateGateway: string
+        -- The exclusion configuration for VPC peering connection resource.
+        VpcPeering: string
+        -- The exclusion configuration for Lambda service.
+        Lambda: string
+        -- The exclusion configuration for VPC Lattice service.
+        VpcLattice: string
+        -- The exclusion configuration for Elastic File System service.
+        ElasticFileSystem: string
+    end
+
+    enum ManagedBy
+        "account"
+        "declarative-policy"
+    end
+
+    enum AccountVpcEncryptionControlMode
+        "unmanaged"
+        "attempt-monitor"
+        "attempt-enforce"
+    end
+
+    enum AccountVpcEncryptionControlState
+        "default-state"
+        "transitions-in-progress"
+        "transitions-partially-successful"
+        "transitions-successful"
+        "transitions-failed"
+    end
+
+    -- Describes the account-level VPC Encryption Control configuration, including its mode, state, and exclusions.
+    -- For more information, see Enforce VPC encryption in transit in the Amazon VPC User Guide.
+    record AccountVpcEncryptionControl
+        -- The current state of the account-level VPC Encryption Control configuration.
+        State: string
+        -- The encryption mode for the account-level VPC Encryption Control configuration.
+        Mode: string
+        -- Information about the traffic exclusions for the account-level VPC Encryption Control configuration.
+        Exclusions: AccountVpcEncryptionControlExclusions
+        -- The entity that manages the account-level VPC Encryption Control configuration.
+        ManagedBy: string
+        -- The date and time when the account-level VPC Encryption Control configuration was last updated.
+        LastUpdateTimestamp: number
+    end
+
     enum InstanceHealthStatus
         "healthy"
         "unhealthy"
@@ -1544,6 +1606,17 @@ local record M
         "off"
     end
 
+    enum AmdSevSnp
+        "enabled"
+        "disabled"
+    end
+
+    -- Contains the CPU configuration options for a Dedicated Host allocation request. Options include AMD Secure Encrypted Virtualization-Secure Nested Paging (AMD SEV-SNP) settings.
+    record HostCpuOptionsRequest
+        -- Specifies whether AMD Secure Encrypted Virtualization-Secure Nested Paging (AMD SEV-SNP) is enabled or disabled for the Dedicated Host. If you don't specify a value, AMD SEV-SNP is disabled.
+        AmdSevSnp: string
+    end
+
     enum HostMaintenance
         "on"
         "off"
@@ -1592,6 +1665,8 @@ local record M
         AssetIds: {string}
         -- The ID of the Availability Zone.
         AvailabilityZoneId: string
+        -- The CPU configuration options to apply to the Dedicated Host.
+        CpuOptions: HostCpuOptionsRequest
         -- Indicates whether the host accepts any untargeted instance launches that match its
         -- instance type configuration, or if it only accepts Host tenancy instance launches that
         -- specify its unique host ID. For more information, see Understanding auto-placement and affinity in the
@@ -1701,6 +1776,7 @@ local record M
         "released"
         "released-permanent-failure"
         "pending"
+        "configuring"
     end
 
     enum AllocationStrategy
@@ -6587,13 +6663,6 @@ local record M
     enum VpcEncryptionControlMode
         "monitor"
         "enforce"
-    end
-
-    enum VpcEncryptionControlExclusionState
-        "enabling"
-        "enabled"
-        "disabling"
-        "disabled"
     end
 
     -- Describes an exclusion configuration for VPC Encryption Control.
@@ -18950,6 +19019,18 @@ local record M
         AccountAttributes: {AccountAttribute}
     end
 
+    record DescribeAccountVpcEncryptionControlInput
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DescribeAccountVpcEncryptionControlOutput
+        -- Information about the account-level VPC Encryption Control configuration.
+        AccountVpcEncryptionControl: AccountVpcEncryptionControl
+    end
+
     -- A filter name and value pair that is used to return a more specific list of results from a describe operation.
     -- Filters can be used to match a set of resources by specific criteria, such as tags, attributes, or IDs.
     -- If you specify multiple filters, the filters are joined with an AND, and the request returns only
@@ -22103,6 +22184,12 @@ local record M
         AvailableVCpus: number
     end
 
+    -- Contains the CPU options for a Dedicated Host, including AMD Secure Encrypted Virtualization-Secure Nested Paging (AMD SEV-SNP) settings.
+    record HostCpuOptions
+        -- Specifies whether AMD Secure Encrypted Virtualization-Secure Nested Paging (AMD SEV-SNP) is enabled or disabled for the Dedicated Host. If you don't specify a value, AMD SEV-SNP is disabled.
+        AmdSevSnp: string
+    end
+
     -- Describes the properties of a Dedicated Host.
     record HostProperties
         -- The number of cores on the Dedicated Host.
@@ -22179,6 +22266,8 @@ local record M
         HostMaintenance: string
         -- The ID of the Outpost hardware asset on which the Dedicated Host is allocated.
         AssetId: string
+        -- The CPU options for the Dedicated Host, including AMD Secure Encrypted Virtualization-Secure Nested Paging (AMD SEV-SNP) settings.
+        CpuOptions: HostCpuOptions
     end
 
     record DescribeHostsOutput
@@ -30647,6 +30736,8 @@ local record M
         -- The maximum number of results (up to a limit of 500) to be returned in a paginated
         -- request. For more information, see Pagination.
         MaxResults: number
+        -- Indicates whether to include managed resources in the output. If this parameter is set to true, the output includes resources that are managed by Amazon Web Services services, even if managed resource visibility is set to hidden.
+        IncludeManagedResources: boolean
     end
 
     enum VolumeModificationState
@@ -30690,6 +30781,8 @@ local record M
         StartTime: number
         -- The modification completion or failure time.
         EndTime: number
+        -- The service provider that manages the resource.
+        Operator: OperatorResponse
     end
 
     record DescribeVolumesModificationsOutput
@@ -30958,11 +31051,6 @@ local record M
         "off"
         "block-bidirectional"
         "block-ingress"
-    end
-
-    enum ManagedBy
-        "account"
-        "declarative-policy"
     end
 
     enum VpcBlockPublicAccessState
@@ -36708,6 +36796,36 @@ local record M
         -- The date and time at which the lock duration started, in the UTC time zone
         -- (YYYY-MM-DDThh:mm:ss.sssZ).
         LockDurationStartTime: number
+    end
+
+    record ModifyAccountVpcEncryptionControlInput
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The encryption mode for the account encryption control configuration.
+        Mode: string
+        -- Specifies whether to exclude internet gateway resource from account-level encryption enforcement.
+        InternetGateway: string
+        -- Specifies whether to exclude egress-only internet gateway resource from account-level encryption enforcement.
+        EgressOnlyInternetGateway: string
+        -- Specifies whether to exclude NAT gateway resource from account-level encryption enforcement.
+        NatGateway: string
+        -- Specifies whether to exclude virtual private gateway resource from account-level encryption enforcement.
+        VirtualPrivateGateway: string
+        -- Specifies whether to exclude VPC peering connection resource from account-level encryption enforcement.
+        VpcPeering: string
+        -- Specifies whether to exclude Lambda service from account-level encryption enforcement.
+        Lambda: string
+        -- Specifies whether to exclude VPC Lattice service from account-level encryption enforcement.
+        VpcLattice: string
+        -- Specifies whether to exclude Elastic File System service from account-level encryption enforcement.
+        ElasticFileSystem: string
+    end
+
+    record ModifyAccountVpcEncryptionControlOutput
+        -- Information about the account-level VPC Encryption Control configuration.
+        AccountVpcEncryptionControl: AccountVpcEncryptionControl
     end
 
     record ModifyAddressAttributeInput

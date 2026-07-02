@@ -1194,6 +1194,77 @@ M.CreateStreamGroupOutput = schema.new({
     },
 })
 
+M.CreateStreamSessionAdminShellInput = schema.new({
+    id = id.from(_N, "CreateStreamSessionAdminShellInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "CreateStreamSessionAdminShellInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        StreamSessionIdentifier = schema.new({
+            id = id.from(_N, "CreateStreamSessionAdminShellInput", "StreamSessionIdentifier"),
+            type = "string",
+            name = "StreamSessionIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.CreateStreamSessionAdminShellOutput = schema.new({
+    id = id.from(_N, "CreateStreamSessionAdminShellOutput"),
+    type = "structure",
+    members = {
+        SessionId = schema.new({
+            id = id.from(_N, "CreateStreamSessionAdminShellOutput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+        StreamUrl = schema.new({
+            id = id.from(_N, "CreateStreamSessionAdminShellOutput", "StreamUrl"),
+            type = "string",
+            name = "StreamUrl",
+            target_id = prelude.String.id,
+        }),
+        TokenValue = schema.new({
+            id = id.from(_N, "CreateStreamSessionAdminShellOutput", "TokenValue"),
+            type = "string",
+            name = "TokenValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StreamSessionAccessNotReadyException = schema.new({
+    id = id.from(_N, "StreamSessionAccessNotReadyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "StreamSessionAccessNotReadyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateStreamSessionConnectionInput = schema.new({
     id = id.from(_N, "CreateStreamSessionConnectionInput"),
     type = "structure",
@@ -2567,6 +2638,18 @@ M.CreateStreamGroup = schema.operation({
     output = M.CreateStreamGroupOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/streamgroups" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateStreamSessionAdminShell = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "CreateStreamSessionAdminShell"),
+    input = M.CreateStreamSessionAdminShellInput,
+    output = M.CreateStreamSessionAdminShellOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/streamsessions/{StreamSessionIdentifier}/access" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

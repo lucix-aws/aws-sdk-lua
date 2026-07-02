@@ -12555,20 +12555,6 @@ local record M
         Columns: {InputColumn}
     end
 
-    -- A physical table type for relational data sources.
-    record RelationalTable
-        -- The Amazon Resource Name (ARN) for the data source.
-        DataSourceArn: string
-        -- The catalog associated with a table.
-        Catalog: string
-        -- The schema name. This name applies to certain relational database engines.
-        Schema: string
-        -- The name of the relational table.
-        Name: string
-        -- The column schema of the table.
-        InputColumns: {InputColumn}
-    end
-
     enum FileFormat
         "CSV"
         "TSV"
@@ -12597,6 +12583,34 @@ local record M
         Delimiter: string
         -- A custom cell address range for Excel files, specifying which cells to import from the spreadsheet.
         CustomCellAddressRange: string
+    end
+
+    -- A physical table type that contains the schema and upload settings for a file-based data source.
+    record FileSource
+        -- The Amazon Resource Name (ARN) for the data source.
+        DataSourceArn: string
+        -- Information about the format for the source file.
+        UploadSettings: UploadSettings
+        -- The zero-based index of the sheet to use within the file. For files that contain
+        -- multiple sheets, this identifies which sheet to read. Files that contain a single sheet,
+        -- or that have no concept of sheets, use sheet 0.
+        SheetIndex: number
+        -- The column schema of the file.
+        InputColumns: {InputColumn}
+    end
+
+    -- A physical table type for relational data sources.
+    record RelationalTable
+        -- The Amazon Resource Name (ARN) for the data source.
+        DataSourceArn: string
+        -- The catalog associated with a table.
+        Catalog: string
+        -- The schema name. This name applies to certain relational database engines.
+        Schema: string
+        -- The name of the relational table.
+        Name: string
+        -- The column schema of the table.
+        InputColumns: {InputColumn}
     end
 
     -- A physical table type for an S3 data source.
@@ -12636,10 +12650,12 @@ local record M
         RelationalTable: RelationalTable
         -- A physical table type built from the results of the custom SQL query.
         CustomSql: CustomSql
-        -- A physical table type for as S3 data source.
+        -- A physical table type for an S3 data source.
         S3Source: S3Source
         -- A physical table type for Software-as-a-Service (SaaS) sources.
         SaaSTable: SaaSTable
+        -- A physical table type for a file data source.
+        FileSource: FileSource
     end
 
     enum RowLevelPermissionFormatVersion

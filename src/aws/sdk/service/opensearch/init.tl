@@ -75,6 +75,7 @@ local record Client
     getPackageVersionHistory: function(Client, types.GetPackageVersionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetPackageVersionHistoryOutput>
     getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeHistoryOutput>
     getUpgradeStatus: function(Client, types.GetUpgradeStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeStatusOutput>
+    insightFeedback: function(Client, types.InsightFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.InsightFeedbackOutput>
     listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
     listDataSourceAttachments: function(Client, types.ListDataSourceAttachmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourceAttachmentsOutput>
     listDataSources: function(Client, types.ListDataSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataSourcesOutput>
@@ -380,6 +381,10 @@ end
 
 function C:getUpgradeStatus(input: types.GetUpgradeStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetUpgradeStatusOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetUpgradeStatus as schema.OperationSchema, input, options) as async.Operation<types.GetUpgradeStatusOutput>
+end
+
+function C:insightFeedback(input: types.InsightFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.InsightFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.InsightFeedback as schema.OperationSchema, input, options) as async.Operation<types.InsightFeedbackOutput>
 end
 
 function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
