@@ -111,6 +111,8 @@ M.AttributesRequireVerificationBeforeUpdateType = schema.new({ type = "list", li
 
 M.RecoveryMechanismsType = schema.new({ type = "list", list_member = M.RecoveryOptionType })
 
+M.StringToStringMapType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.EventFiltersType = schema.new({ type = "list", list_member = prelude.String })
 
 M.BlockedIPRangeListType = schema.new({ type = "list", list_member = prelude.String })
@@ -7499,6 +7501,104 @@ M.GetLogDeliveryConfigurationOutput = schema.new({
     },
 })
 
+M.LimitDefinitionType = schema.new({
+    id = id.from(_N, "LimitDefinitionType"),
+    type = "structure",
+    members = {
+        LimitClass = schema.new({
+            id = id.from(_N, "LimitDefinitionType", "LimitClass"),
+            type = "string",
+            name = "LimitClass",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Attributes = schema.new({
+            id = id.from(_N, "LimitDefinitionType", "Attributes"),
+            type = "map",
+            name = "Attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetProvisionedLimitInput = schema.new({
+    id = id.from(_N, "GetProvisionedLimitRequest"),
+    type = "structure",
+    members = {
+        LimitDefinition = schema.new({
+            id = id.from(_N, "GetProvisionedLimitInput", "LimitDefinition"),
+            type = "structure",
+            name = "LimitDefinition",
+            target_id = id.from(_N, "LimitDefinitionType"),
+            target = M.LimitDefinitionType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LimitType = schema.new({
+    id = id.from(_N, "LimitType"),
+    type = "structure",
+    members = {
+        LimitDefinition = schema.new({
+            id = id.from(_N, "LimitType", "LimitDefinition"),
+            type = "structure",
+            name = "LimitDefinition",
+            target_id = id.from(_N, "LimitDefinitionType"),
+            target = M.LimitDefinitionType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProvisionedLimitValue = schema.new({
+            id = id.from(_N, "LimitType", "ProvisionedLimitValue"),
+            type = "integer",
+            name = "ProvisionedLimitValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        FreeLimitValue = schema.new({
+            id = id.from(_N, "LimitType", "FreeLimitValue"),
+            type = "integer",
+            name = "FreeLimitValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.GetProvisionedLimitOutput = schema.new({
+    id = id.from(_N, "GetProvisionedLimitResponse"),
+    type = "structure",
+    members = {
+        Limit = schema.new({
+            id = id.from(_N, "GetProvisionedLimitOutput", "Limit"),
+            type = "structure",
+            name = "Limit",
+            target_id = id.from(_N, "LimitType"),
+            target = M.LimitType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetSigningCertificateInput = schema.new({
     id = id.from(_N, "GetSigningCertificateRequest"),
     type = "structure",
@@ -10136,6 +10236,66 @@ M.UpdateManagedLoginBrandingOutput = schema.new({
     },
 })
 
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateProvisionedLimitInput = schema.new({
+    id = id.from(_N, "UpdateProvisionedLimitRequest"),
+    type = "structure",
+    members = {
+        LimitDefinition = schema.new({
+            id = id.from(_N, "UpdateProvisionedLimitInput", "LimitDefinition"),
+            type = "structure",
+            name = "LimitDefinition",
+            target_id = id.from(_N, "LimitDefinitionType"),
+            target = M.LimitDefinitionType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestedLimitValue = schema.new({
+            id = id.from(_N, "UpdateProvisionedLimitInput", "RequestedLimitValue"),
+            type = "integer",
+            name = "RequestedLimitValue",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.UpdateProvisionedLimitOutput = schema.new({
+    id = id.from(_N, "UpdateProvisionedLimitResponse"),
+    type = "structure",
+    members = {
+        Limit = schema.new({
+            id = id.from(_N, "UpdateProvisionedLimitOutput", "Limit"),
+            type = "structure",
+            name = "Limit",
+            target_id = id.from(_N, "LimitType"),
+            target = M.LimitType,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateResourceServerInput = schema.new({
     id = id.from(_N, "UpdateResourceServerRequest"),
     type = "structure",
@@ -11723,6 +11883,17 @@ M.GetLogDeliveryConfiguration = schema.operation({
     },
 })
 
+M.GetProvisionedLimit = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "GetProvisionedLimit"),
+    input = M.GetProvisionedLimitInput,
+    output = M.GetProvisionedLimitOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetSigningCertificate = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "GetSigningCertificate"),
     input = M.GetSigningCertificateInput,
@@ -12189,6 +12360,17 @@ M.UpdateManagedLoginBranding = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateManagedLoginBranding"),
     input = M.UpdateManagedLoginBrandingInput,
     output = M.UpdateManagedLoginBrandingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProvisionedLimit = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "UpdateProvisionedLimit"),
+    input = M.UpdateProvisionedLimitInput,
+    output = M.UpdateProvisionedLimitOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

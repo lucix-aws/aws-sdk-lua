@@ -8564,6 +8564,13 @@ M.PutOrganizationConfigRuleInput = schema.new({
             target_id = id.from(_N, "OrganizationCustomPolicyRuleMetadata"),
             target = M.OrganizationCustomPolicyRuleMetadata,
         }),
+        Tags = schema.new({
+            id = id.from(_N, "PutOrganizationConfigRuleInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
     },
 })
 
@@ -8630,6 +8637,13 @@ M.PutOrganizationConformancePackInput = schema.new({
             name = "ExcludedAccounts",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "PutOrganizationConformancePackInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
         }),
     },
 })

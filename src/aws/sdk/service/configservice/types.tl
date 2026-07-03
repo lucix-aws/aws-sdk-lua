@@ -4771,6 +4771,8 @@ local record M
         -- logging enabled, and other custom rule metadata, such as resource type, resource ID of
         -- Amazon Web Services resource, and organization trigger types that initiate Config to evaluate Amazon Web Services resources against a rule.
         OrganizationCustomPolicyRuleMetadata: OrganizationCustomPolicyRuleMetadata
+        -- The tags for the organization Config rule. Each tag consists of a key and an optional value, both of which you define.
+        Tags: {Tag}
     end
 
     record PutOrganizationConfigRuleOutput
@@ -4799,6 +4801,8 @@ local record M
         ConformancePackInputParameters: {ConformancePackInputParameter}
         -- A list of Amazon Web Services accounts to be excluded from an organization conformance pack while deploying a conformance pack.
         ExcludedAccounts: {string}
+        -- The tags for the organization conformance pack. Each tag consists of a key and an optional value, both of which you define.
+        Tags: {Tag}
     end
 
     record PutOrganizationConformancePackOutput

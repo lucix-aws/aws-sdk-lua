@@ -92,6 +92,7 @@ local record Client
     getGroup: function(Client, types.GetGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetGroupOutput>
     getIdentityProviderByIdentifier: function(Client, types.GetIdentityProviderByIdentifierInput, ? base_client.InvokeOptions): async.Operation<types.GetIdentityProviderByIdentifierOutput>
     getLogDeliveryConfiguration: function(Client, types.GetLogDeliveryConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetLogDeliveryConfigurationOutput>
+    getProvisionedLimit: function(Client, types.GetProvisionedLimitInput, ? base_client.InvokeOptions): async.Operation<types.GetProvisionedLimitOutput>
     getSigningCertificate: function(Client, types.GetSigningCertificateInput, ? base_client.InvokeOptions): async.Operation<types.GetSigningCertificateOutput>
     getTokensFromRefreshToken: function(Client, types.GetTokensFromRefreshTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetTokensFromRefreshTokenOutput>
     getUICustomization: function(Client, types.GetUICustomizationInput, ? base_client.InvokeOptions): async.Operation<types.GetUICustomizationOutput>
@@ -135,6 +136,7 @@ local record Client
     updateGroup: function(Client, types.UpdateGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGroupOutput>
     updateIdentityProvider: function(Client, types.UpdateIdentityProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentityProviderOutput>
     updateManagedLoginBranding: function(Client, types.UpdateManagedLoginBrandingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateManagedLoginBrandingOutput>
+    updateProvisionedLimit: function(Client, types.UpdateProvisionedLimitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProvisionedLimitOutput>
     updateResourceServer: function(Client, types.UpdateResourceServerInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceServerOutput>
     updateTerms: function(Client, types.UpdateTermsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTermsOutput>
     updateUserAttributes: function(Client, types.UpdateUserAttributesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserAttributesOutput>
@@ -484,6 +486,10 @@ function C:getLogDeliveryConfiguration(input: types.GetLogDeliveryConfigurationI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetLogDeliveryConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetLogDeliveryConfigurationOutput>
 end
 
+function C:getProvisionedLimit(input: types.GetProvisionedLimitInput, options?: base_client.InvokeOptions): async.Operation<types.GetProvisionedLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProvisionedLimit as schema.OperationSchema, input, options) as async.Operation<types.GetProvisionedLimitOutput>
+end
+
 function C:getSigningCertificate(input: types.GetSigningCertificateInput, options?: base_client.InvokeOptions): async.Operation<types.GetSigningCertificateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSigningCertificate as schema.OperationSchema, input, options) as async.Operation<types.GetSigningCertificateOutput>
 end
@@ -654,6 +660,10 @@ end
 
 function C:updateManagedLoginBranding(input: types.UpdateManagedLoginBrandingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateManagedLoginBrandingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateManagedLoginBranding as schema.OperationSchema, input, options) as async.Operation<types.UpdateManagedLoginBrandingOutput>
+end
+
+function C:updateProvisionedLimit(input: types.UpdateProvisionedLimitInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProvisionedLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProvisionedLimit as schema.OperationSchema, input, options) as async.Operation<types.UpdateProvisionedLimitOutput>
 end
 
 function C:updateResourceServer(input: types.UpdateResourceServerInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateResourceServerOutput>

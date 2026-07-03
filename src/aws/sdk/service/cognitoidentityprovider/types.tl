@@ -5404,6 +5404,44 @@ local record M
         LogDeliveryConfiguration: LogDeliveryConfigurationType
     end
 
+    enum LimitClass
+        "API_CATEGORY"
+    end
+
+    -- The class and attributes that identify a specific limit at the account level.
+    record LimitDefinitionType
+        -- The class of the limit. For API rate limits, this is
+        -- API_CATEGORY.
+        LimitClass: string
+        -- The attributes that identify the specific limit. For API rate limits, specify the
+        -- Category key with a value like UserAuthentication or
+        -- UserCreation.
+        Attributes: {string : string}
+    end
+
+    record GetProvisionedLimitInput
+        -- The limit to retrieve. Specify the limit class and the attributes that identify the
+        -- limit.
+        LimitDefinition: LimitDefinitionType
+    end
+
+    -- The limit definition and current limit values for a provisioned limit.
+    record LimitType
+        -- The definition that identifies this limit, including the class and attributes.
+        LimitDefinition: LimitDefinitionType
+        -- The provisioned limit value, in requests per second (RPS). This is the rate that
+        -- Amazon Cognito currently enforces for your account.
+        ProvisionedLimitValue: number
+        -- The default (free) limit value, in requests per second (RPS). This is the rate
+        -- included at no additional cost.
+        FreeLimitValue: number
+    end
+
+    record GetProvisionedLimitOutput
+        -- The provisioned and default limit values for the requested limit.
+        Limit: LimitType
+    end
+
     -- Request to get a signing certificate from Amazon Cognito.
     record GetSigningCertificateInput
         -- The ID of the user pool where you want to view the signing certificate.
@@ -7302,6 +7340,24 @@ local record M
     record UpdateManagedLoginBrandingOutput
         -- The details of the branding style that you updated.
         ManagedLoginBranding: ManagedLoginBrandingType
+    end
+
+    -- The request exceeded your account's service quota. To increase your limit, use or submit a Service Quotas increase request.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
+    record UpdateProvisionedLimitInput
+        -- The limit to update. Specify the limit class and the attributes that identify the
+        -- limit.
+        LimitDefinition: LimitDefinitionType
+        -- The provisioned rate to set, in requests per second (RPS).
+        RequestedLimitValue: number
+    end
+
+    record UpdateProvisionedLimitOutput
+        -- The updated provisioned and default limit values.
+        Limit: LimitType
     end
 
     record UpdateResourceServerInput

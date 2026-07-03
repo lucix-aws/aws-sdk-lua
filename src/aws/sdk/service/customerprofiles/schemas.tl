@@ -157,6 +157,8 @@ M.ObjectTypeKeyList = schema.new({ type = "list", list_member = M.ObjectTypeKey 
 
 M.MetadataColumnsList = schema.new({ type = "list", list_member = prelude.String })
 
+M.DiversityValuesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.Integer })
+
 M.AttributeSourceIdMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.Tasks = schema.new({ type = "list", list_member = M.Task })
@@ -176,6 +178,8 @@ M.Batches = schema.new({ type = "list", list_member = M.Batch })
 M.EventParametersList = schema.new({ type = "list", list_member = M.EventParameters })
 
 M.ColumnNamesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DiversityColumnsList = schema.new({ type = "list", list_member = M.DiversityColumn })
 
 M.MatchingAttributes = schema.new({ type = "list", list_member = prelude.String })
 
@@ -3937,6 +3941,54 @@ M.CreateProfileOutput = schema.new({
     },
 })
 
+M.DiversityColumn = schema.new({
+    id = id.from(_N, "DiversityColumn"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "DiversityColumn", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CapType = schema.new({
+            id = id.from(_N, "DiversityColumn", "CapType"),
+            type = "string",
+            name = "CapType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Target = schema.new({
+            id = id.from(_N, "DiversityColumn", "Target"),
+            type = "string",
+            name = "Target",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DiversityConfig = schema.new({
+    id = id.from(_N, "DiversityConfig"),
+    type = "structure",
+    members = {
+        DiversityColumns = schema.new({
+            id = id.from(_N, "DiversityConfig", "DiversityColumns"),
+            type = "list",
+            name = "DiversityColumns",
+            target_id = prelude.Document.id,
+            list_member = M.DiversityColumn,
+        }),
+    },
+})
+
 M.EventParameters = schema.new({
     id = id.from(_N, "EventParameters"),
     type = "structure",
@@ -4034,6 +4086,13 @@ M.RecommenderConfig = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+        DiversityConfig = schema.new({
+            id = id.from(_N, "RecommenderConfig", "DiversityConfig"),
+            type = "structure",
+            name = "DiversityConfig",
+            target_id = id.from(_N, "DiversityConfig"),
+            target = M.DiversityConfig,
         }),
     },
 })
@@ -7700,6 +7759,30 @@ M.GetProfileObjectTypeTemplateOutput = schema.new({
     },
 })
 
+M.RecommendationDiversityConfig = schema.new({
+    id = id.from(_N, "RecommendationDiversityConfig"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "RecommendationDiversityConfig", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "RecommendationDiversityConfig", "Values"),
+            type = "map",
+            name = "Values",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.Integer,
+        }),
+    },
+})
+
 M.MetadataConfig = schema.new({
     id = id.from(_N, "MetadataConfig"),
     type = "structure",
@@ -7843,6 +7926,13 @@ M.GetProfileRecommendationsInput = schema.new({
             target_id = id.from(_N, "MetadataConfig"),
             target = M.MetadataConfig,
         }),
+        DiversityConfig = schema.new({
+            id = id.from(_N, "GetProfileRecommendationsInput", "DiversityConfig"),
+            type = "structure",
+            name = "DiversityConfig",
+            target_id = id.from(_N, "RecommendationDiversityConfig"),
+            target = M.RecommendationDiversityConfig,
+        }),
     },
 })
 
@@ -7951,6 +8041,12 @@ M.RecommenderUpdate = schema.new({
             name = "FailureReason",
             target_id = prelude.String.id,
         }),
+        RecommenderVersionName = schema.new({
+            id = id.from(_N, "RecommenderUpdate", "RecommenderVersionName"),
+            type = "string",
+            name = "RecommenderVersionName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7971,6 +8067,12 @@ M.TrainingMetrics = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.Double,
+        }),
+        RecommenderVersionName = schema.new({
+            id = id.from(_N, "TrainingMetrics", "RecommenderVersionName"),
+            type = "string",
+            name = "RecommenderVersionName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8046,6 +8148,12 @@ M.GetRecommenderOutput = schema.new({
             name = "LatestRecommenderUpdate",
             target_id = id.from(_N, "RecommenderUpdate"),
             target = M.RecommenderUpdate,
+        }),
+        ActiveRecommenderVersionName = schema.new({
+            id = id.from(_N, "GetRecommenderOutput", "ActiveRecommenderVersionName"),
+            type = "string",
+            name = "ActiveRecommenderVersionName",
+            target_id = prelude.String.id,
         }),
         TrainingMetrics = schema.new({
             id = id.from(_N, "GetRecommenderOutput", "TrainingMetrics"),
@@ -13718,6 +13826,12 @@ M.UpdateRecommenderInput = schema.new({
             name = "RecommenderConfig",
             target_id = id.from(_N, "RecommenderConfig"),
             target = M.RecommenderConfig,
+        }),
+        RecommenderVersionName = schema.new({
+            id = id.from(_N, "UpdateRecommenderInput", "RecommenderVersionName"),
+            type = "string",
+            name = "RecommenderVersionName",
+            target_id = prelude.String.id,
         }),
     },
 })

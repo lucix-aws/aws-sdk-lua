@@ -558,6 +558,12 @@ M.ResponseOutputItem = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        DualStackPlaybackUrl = schema.new({
+            id = id.from(_N, "ResponseOutputItem", "DualStackPlaybackUrl"),
+            type = "string",
+            name = "DualStackPlaybackUrl",
+            target_id = prelude.String.id,
+        }),
         SourceGroup = schema.new({
             id = id.from(_N, "ResponseOutputItem", "SourceGroup"),
             type = "string",
@@ -1148,6 +1154,12 @@ M.DashConfiguration = schema.new({
             name = "ManifestEndpointPrefix",
             target_id = prelude.String.id,
         }),
+        DualStackManifestEndpointPrefix = schema.new({
+            id = id.from(_N, "DashConfiguration", "DualStackManifestEndpointPrefix"),
+            type = "string",
+            name = "DualStackManifestEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
         MpdLocation = schema.new({
             id = id.from(_N, "DashConfiguration", "MpdLocation"),
             type = "string",
@@ -1171,6 +1183,12 @@ M.HlsConfiguration = schema.new({
             id = id.from(_N, "HlsConfiguration", "ManifestEndpointPrefix"),
             type = "string",
             name = "ManifestEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
+        DualStackManifestEndpointPrefix = schema.new({
+            id = id.from(_N, "HlsConfiguration", "DualStackManifestEndpointPrefix"),
+            type = "string",
+            name = "DualStackManifestEndpointPrefix",
             target_id = prelude.String.id,
         }),
     },
@@ -1415,10 +1433,22 @@ M.PlaybackConfiguration = schema.new({
             name = "PlaybackEndpointPrefix",
             target_id = prelude.String.id,
         }),
+        DualStackPlaybackEndpointPrefix = schema.new({
+            id = id.from(_N, "PlaybackConfiguration", "DualStackPlaybackEndpointPrefix"),
+            type = "string",
+            name = "DualStackPlaybackEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
         SessionInitializationEndpointPrefix = schema.new({
             id = id.from(_N, "PlaybackConfiguration", "SessionInitializationEndpointPrefix"),
             type = "string",
             name = "SessionInitializationEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
+        DualStackSessionInitializationEndpointPrefix = schema.new({
+            id = id.from(_N, "PlaybackConfiguration", "DualStackSessionInitializationEndpointPrefix"),
+            type = "string",
+            name = "DualStackSessionInitializationEndpointPrefix",
             target_id = prelude.String.id,
         }),
         SlateAdUrl = schema.new({
@@ -5021,10 +5051,22 @@ M.GetPlaybackConfigurationOutput = schema.new({
             name = "PlaybackEndpointPrefix",
             target_id = prelude.String.id,
         }),
+        DualStackPlaybackEndpointPrefix = schema.new({
+            id = id.from(_N, "GetPlaybackConfigurationOutput", "DualStackPlaybackEndpointPrefix"),
+            type = "string",
+            name = "DualStackPlaybackEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
         SessionInitializationEndpointPrefix = schema.new({
             id = id.from(_N, "GetPlaybackConfigurationOutput", "SessionInitializationEndpointPrefix"),
             type = "string",
             name = "SessionInitializationEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
+        DualStackSessionInitializationEndpointPrefix = schema.new({
+            id = id.from(_N, "GetPlaybackConfigurationOutput", "DualStackSessionInitializationEndpointPrefix"),
+            type = "string",
+            name = "DualStackSessionInitializationEndpointPrefix",
             target_id = prelude.String.id,
         }),
         SlateAdUrl = schema.new({
@@ -5871,10 +5913,22 @@ M.PutPlaybackConfigurationOutput = schema.new({
             name = "PlaybackEndpointPrefix",
             target_id = prelude.String.id,
         }),
+        DualStackPlaybackEndpointPrefix = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationOutput", "DualStackPlaybackEndpointPrefix"),
+            type = "string",
+            name = "DualStackPlaybackEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
         SessionInitializationEndpointPrefix = schema.new({
             id = id.from(_N, "PutPlaybackConfigurationOutput", "SessionInitializationEndpointPrefix"),
             type = "string",
             name = "SessionInitializationEndpointPrefix",
+            target_id = prelude.String.id,
+        }),
+        DualStackSessionInitializationEndpointPrefix = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationOutput", "DualStackSessionInitializationEndpointPrefix"),
+            type = "string",
+            name = "DualStackSessionInitializationEndpointPrefix",
             target_id = prelude.String.id,
         }),
         SlateAdUrl = schema.new({

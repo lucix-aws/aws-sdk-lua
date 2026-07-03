@@ -11,7 +11,8 @@ local record M
     record Address
         -- The name of the contact.
         ContactName: string
-        -- The phone number of the contact.
+        -- The phone number of the contact, including the country code (for example,
+        -- +12065550100).
         ContactPhoneNumber: string
         -- The first line of the address.
         AddressLine1: string
