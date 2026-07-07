@@ -15,6 +15,19 @@ local record M
         activeBeforeInclusive: number
     end
 
+    -- A monetary amount with a currency code. Used throughout the Billing API to represent credit balances, allocations, and adjustments.
+    record Amount
+        -- The ISO 4217 currency code for the amount (for example, USD).
+        currencyCode: string
+        -- The amount as a decimal string (for example, "743.21"). Negative values represent credits that reduce a bill.
+        currencyAmount: string
+    end
+
+    enum ApplicationType
+        "BEFORE_CROSS_SERVICE_DISCOUNTS"
+        "AFTER_DISCOUNTS"
+    end
+
     record AssociateSourceViewsInput
         -- The Amazon Resource Name (ARN) of the billing view to associate source views with.
         arn: string
@@ -199,6 +212,75 @@ local record M
         arn: string
     end
 
+    enum BillingFeature
+        "RI_SHARING"
+        "RI_SHARING_HISTORY"
+        "CREDIT_SHARING"
+        "CREDIT_SHARING_HISTORY"
+        "CREDIT_LEVEL_SHARING"
+        "BILLING_ALERTS"
+        "CREDIT_PREFERENCE_OPTIONS"
+    end
+
+    enum BillingFeatureFilterName
+        "PREFERENCE_KEY"
+    end
+
+    -- A filter that narrows the set of preferences returned by GetBillingPreferences.
+    record BillingFeatureFilter
+        -- The filter name. Currently the only supported value is PREFERENCE_KEY.
+        name: string
+        -- The filter values to match. For PREFERENCE_KEY, supply 1 to 10 preference key values to match.
+        value: {string}
+    end
+
+    record GetBillingPreferencesInput
+        -- Pagination token from a previous response. Pass the value returned in nextToken to retrieve the next page of results.
+        nextToken: string
+        -- The maximum number of records to return per page. Range: 1 to 50. Default: 50.
+        maxResults: number
+        -- The feature to retrieve. Specify exactly one value. Valid values: BILLING_ALERTS, RI_SHARING, RI_SHARING_HISTORY, CREDIT_SHARING, CREDIT_SHARING_HISTORY, CREDIT_LEVEL_SHARING, CREDIT_PREFERENCE_OPTIONS.
+        features: {string}
+        -- Filters to narrow results. Specify exactly one filter when supplied. The supported filter name is PREFERENCE_KEY, which accepts 1 to 10 values to match preference keys.
+        filters: {BillingFeatureFilter}
+    end
+
+    -- A specific billing period identified by year and month.
+    record BillingPeriod
+        -- The four-digit year of the billing period.
+        year: number
+        -- The month of the billing period as an integer between 1 and 12.
+        month: number
+    end
+
+    enum PreferenceValue
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- A single billing preference entry returned by GetBillingPreferences.
+    record BillingPreferenceSummary
+        -- The feature this preference belongs to.
+        feature: string
+        -- The preference key. Format depends on the feature.
+        key: string
+        -- The preference value. Valid values: ENABLED or DISABLED.
+        value: string
+        -- The display name of the account. Populated together with accountId; null otherwise.
+        accountName: string
+        -- The associated Amazon Web Services account ID. Populated for account-list keys; null otherwise.
+        accountId: string
+        -- The billing period associated with the preference change. Populated only for the history features RI_SHARING_HISTORY and CREDIT_SHARING_HISTORY.
+        billingPeriod: BillingPeriod
+    end
+
+    record GetBillingPreferencesOutput
+        -- The list of preference entries matching the request.
+        billingPreferences: {BillingPreferenceSummary}
+        -- Pagination token. Present when more pages are available; null when there are no more results.
+        nextToken: string
+    end
+
     record GetBillingViewInput
         -- The Amazon Resource Name (ARN) that can be used to uniquely identify the billing view.
         arn: string
@@ -271,6 +353,122 @@ local record M
     record GetBillingViewOutput
         -- The billing view element associated with the specified ARN.
         billingView: BillingViewElement
+    end
+
+    record GetCreditAllocationHistoryInput
+        -- The Amazon Web Services account ID whose allocation history to retrieve. Must be a 12-digit numeric string.
+        accountId: string
+        -- Filters the result to a single credit. When omitted, returns allocation entries for all credits.
+        creditId: number
+        -- Inclusive start date as Unix epoch seconds. Must be on or before endDate. The range from startDate to endDate cannot exceed 24 billing months.
+        startDate: number
+        -- Inclusive end date as Unix epoch seconds.
+        endDate: number
+        -- Pagination token from a previous response. Pass the value returned in nextToken to retrieve the next page of results.
+        nextToken: string
+        -- The maximum number of records to return per page. Range: 1 to 1000. Default: 100.
+        maxResults: number
+    end
+
+    -- A single entry in the credit allocation history, representing how a credit was applied to a specific service during a billing month.
+    record CreditAllocationHistoryEntry
+        -- The identifier of the credit that was applied.
+        creditId: string
+        -- The amount of credit applied. Negative values represent credits that reduced the bill.
+        creditAmount: Amount
+        -- A human-readable description of the credit allocation.
+        description: string
+        -- The Amazon Web Services account the credit was applied to.
+        accountId: string
+        -- The Amazon Web Services service the credit was applied to.
+        appliedServiceName: string
+        -- The billing month of the application in YYYY-MM format.
+        billingMonth: string
+        -- true when the entry was applied to an in-flight bill that has not yet been finalized.
+        isEstimatedBill: boolean
+    end
+
+    record GetCreditAllocationHistoryOutput
+        -- Allocation entries sorted by billingMonth in descending order.
+        creditAllocationHistoryList: {CreditAllocationHistoryEntry}
+        -- true when data could not be retrieved for one or more billing months. The failedMonths field lists which months are missing.
+        partialResults: boolean
+        -- Billing months in YYYY-MM format that failed to return data. Non-empty only when partialResults is true.
+        failedMonths: {string}
+        -- Pagination token. Present when more pages are available; null when there are no more results.
+        nextToken: string
+    end
+
+    record GetCreditsInput
+        -- The Amazon Web Services account ID. Must be a 12-digit numeric string.
+        accountId: string
+        -- The start date for the credit period as Unix epoch seconds. Must be a past date that is not more than one year before the current date.
+        startDate: number
+        -- The end date for the credit period as Unix epoch seconds. Must not be a future date and must be on or after startDate. Defaults to the current date when omitted.
+        endDate: number
+        -- When true and the caller is the management account, the response aggregates credits across the entire consolidated billing family. When false or omitted, returns only credits for the specified accountId.
+        payerAccountFlag: boolean
+    end
+
+    enum CreditSharingType
+        "DEFAULT"
+        "DISABLED"
+        "CUSTOM"
+        "COST_CATEGORY_RULE"
+    end
+
+    enum CreditStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- Detailed information about an Amazon Web Services credit, including its identifier, type, monetary amounts, applicable products, sharing configuration, and current enabled status.
+    record CreditData
+        -- The unique identifier for the credit.
+        creditId: string
+        -- The Amazon Web Services account ID that owns the credit.
+        accountId: string
+        -- The type of credit. Examples: Promotion, Refund, TrueUp.
+        creditType: string
+        -- The initial amount of the credit when it was issued.
+        initialAmount: Amount
+        -- The unused balance of the credit.
+        remainingAmount: Amount
+        -- The estimated remaining balance, including in-flight (open) bills that have not yet been finalized.
+        estimatedAmount: Amount
+        -- The names of Amazon Web Services services this credit applies to.
+        applicableProductNames: {string}
+        -- A human-readable description of the credit.
+        description: string
+        -- The date the credit becomes valid, as Unix epoch seconds.
+        startDate: number
+        -- The date the credit expires, as Unix epoch seconds.
+        endDate: number
+        -- The date the credit balance reached zero, as Unix epoch seconds.
+        exhaustDate: number
+        -- When the credit is applied during bill computation. Valid values: BEFORE_CROSS_SERVICE_DISCOUNTS, AFTER_DISCOUNTS.
+        applicationType: string
+        -- The Amazon Web Services account IDs entitled to apply this credit.
+        shareableAccounts: {string}
+        -- Whether the owning account has account-level credit sharing turned on.
+        accountHasCreditSharingEnabled: boolean
+        -- The display configuration for the credit in the Amazon Web Services Billing console.
+        creditConsoleVisibility: string
+        -- The sharing configuration for the credit. Valid values: DEFAULT, DISABLED, CUSTOM, COST_CATEGORY_RULE.
+        creditSharingType: string
+        -- The Amazon Resource Name (ARN) of the Cost Category controlling the credit's sharing scope. Present only when creditSharingType is COST_CATEGORY_RULE.
+        costCategoryArn: string
+        -- The rule name within the Cost Category. Present only when creditSharingType is COST_CATEGORY_RULE.
+        ruleName: string
+        -- Whether the credit participates in billing runs. Valid values: ENABLED, DISABLED.
+        creditStatus: string
+        -- Restricts which purchase types this credit applies to. When null or omitted, the credit applies to all purchase types.
+        purchaseTypeApplications: {string}
+    end
+
+    record GetCreditsOutput
+        -- The list of credits matching the request. Returns an empty list when no credits exist.
+        credits: {CreditData}
     end
 
     record GetResourcePolicyInput
@@ -367,6 +565,14 @@ local record M
         resourceTags: {ResourceTag}
     end
 
+    record RedeemCreditsInput
+        -- The promotional credit code to redeem.
+        promoCode: string
+    end
+
+    record RedeemCreditsOutput
+    end
+
     record TagResourceInput
         -- The Amazon Resource Name (ARN) of the resource.
         resourceArn: string
@@ -385,6 +591,24 @@ local record M
     end
 
     record UntagResourceOutput
+    end
+
+    -- A single key/value entry used to update a billing preference.
+    record BillingPreferenceForKey
+        -- The preference key. Format depends on the feature being updated.
+        key: string
+        -- The preference value. Valid values: ENABLED or DISABLED.
+        value: string
+    end
+
+    record UpdateBillingPreferencesInput
+        -- The feature to update. Valid values: BILLING_ALERTS, RI_SHARING, CREDIT_SHARING, CREDIT_LEVEL_SHARING, CREDIT_PREFERENCE_OPTIONS. The history features (RI_SHARING_HISTORY and CREDIT_SHARING_HISTORY) are read-only and cannot be updated.
+        feature: string
+        -- Key/value pairs to apply. All keys in a single request must be valid for the specified feature and must not be duplicated. For CREDIT_PREFERENCE_OPTIONS, all keys must reference the same creditId.
+        billingPreferencesPerKey: {BillingPreferenceForKey}
+    end
+
+    record UpdateBillingPreferencesOutput
     end
 
     record UpdateBillingViewInput

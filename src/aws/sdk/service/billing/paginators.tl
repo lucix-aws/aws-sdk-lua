@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for getCreditAllocationHistory.
+function M.pages_get_credit_allocation_history(client, input)
+    return paginator.pages(client, "getCreditAllocationHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "creditAllocationHistoryList",
+    })
+end
+
+--- Returns an item iterator for getCreditAllocationHistory.
+function M.items_get_credit_allocation_history(client, input)
+    return paginator.items(client, "getCreditAllocationHistory", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "creditAllocationHistoryList",
+    })
+end
+
 --- Returns a page iterator for listBillingViews.
 function M.pages_list_billing_views(client, input)
     return paginator.pages(client, "listBillingViews", input, {

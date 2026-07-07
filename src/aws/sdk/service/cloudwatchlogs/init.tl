@@ -89,6 +89,7 @@ local record Client
     getQueryResults: function(Client, types.GetQueryResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsOutput>
     getScheduledQuery: function(Client, types.GetScheduledQueryInput, ? base_client.InvokeOptions): async.Operation<types.GetScheduledQueryOutput>
     getScheduledQueryHistory: function(Client, types.GetScheduledQueryHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetScheduledQueryHistoryOutput>
+    getStorageTierPolicy: function(Client, types.GetStorageTierPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetStorageTierPolicyOutput>
     getTransformer: function(Client, types.GetTransformerInput, ? base_client.InvokeOptions): async.Operation<types.GetTransformerOutput>
     listAggregateLogGroupSummaries: function(Client, types.ListAggregateLogGroupSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListAggregateLogGroupSummariesOutput>
     listAnomalies: function(Client, types.ListAnomaliesInput, ? base_client.InvokeOptions): async.Operation<types.ListAnomaliesOutput>
@@ -117,6 +118,7 @@ local record Client
     putQueryDefinition: function(Client, types.PutQueryDefinitionInput, ? base_client.InvokeOptions): async.Operation<types.PutQueryDefinitionOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
     putRetentionPolicy: function(Client, types.PutRetentionPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutRetentionPolicyOutput>
+    putStorageTierPolicy: function(Client, types.PutStorageTierPolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutStorageTierPolicyOutput>
     putSubscriptionFilter: function(Client, types.PutSubscriptionFilterInput, ? base_client.InvokeOptions): async.Operation<types.PutSubscriptionFilterOutput>
     putSyslogConfiguration: function(Client, types.PutSyslogConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutSyslogConfigurationOutput>
     putTransformer: function(Client, types.PutTransformerInput, ? base_client.InvokeOptions): async.Operation<types.PutTransformerOutput>
@@ -462,6 +464,10 @@ function C:getScheduledQueryHistory(input: types.GetScheduledQueryHistoryInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetScheduledQueryHistory as schema.OperationSchema, input, options) as async.Operation<types.GetScheduledQueryHistoryOutput>
 end
 
+function C:getStorageTierPolicy(input: types.GetStorageTierPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetStorageTierPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStorageTierPolicy as schema.OperationSchema, input, options) as async.Operation<types.GetStorageTierPolicyOutput>
+end
+
 function C:getTransformer(input: types.GetTransformerInput, options?: base_client.InvokeOptions): async.Operation<types.GetTransformerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTransformer as schema.OperationSchema, input, options) as async.Operation<types.GetTransformerOutput>
 end
@@ -572,6 +578,10 @@ end
 
 function C:putRetentionPolicy(input: types.PutRetentionPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutRetentionPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutRetentionPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutRetentionPolicyOutput>
+end
+
+function C:putStorageTierPolicy(input: types.PutStorageTierPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.PutStorageTierPolicyOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutStorageTierPolicy as schema.OperationSchema, input, options) as async.Operation<types.PutStorageTierPolicyOutput>
 end
 
 function C:putSubscriptionFilter(input: types.PutSubscriptionFilterInput, options?: base_client.InvokeOptions): async.Operation<types.PutSubscriptionFilterOutput>

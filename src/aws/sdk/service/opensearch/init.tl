@@ -72,6 +72,7 @@ local record Client
     getDirectQueryDataSource: function(Client, types.GetDirectQueryDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.GetDirectQueryDataSourceOutput>
     getDomainMaintenanceStatus: function(Client, types.GetDomainMaintenanceStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetDomainMaintenanceStatusOutput>
     getIndex: function(Client, types.GetIndexInput, ? base_client.InvokeOptions): async.Operation<types.GetIndexOutput>
+    getMigration: function(Client, types.GetMigrationInput, ? base_client.InvokeOptions): async.Operation<types.GetMigrationOutput>
     getPackageVersionHistory: function(Client, types.GetPackageVersionHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetPackageVersionHistoryOutput>
     getUpgradeHistory: function(Client, types.GetUpgradeHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeHistoryOutput>
     getUpgradeStatus: function(Client, types.GetUpgradeStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetUpgradeStatusOutput>
@@ -85,6 +86,7 @@ local record Client
     listDomainsForPackage: function(Client, types.ListDomainsForPackageInput, ? base_client.InvokeOptions): async.Operation<types.ListDomainsForPackageOutput>
     listInsights: function(Client, types.ListInsightsInput, ? base_client.InvokeOptions): async.Operation<types.ListInsightsOutput>
     listInstanceTypeDetails: function(Client, types.ListInstanceTypeDetailsInput, ? base_client.InvokeOptions): async.Operation<types.ListInstanceTypeDetailsOutput>
+    listMigrations: function(Client, types.ListMigrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListMigrationsOutput>
     listPackagesForDomain: function(Client, types.ListPackagesForDomainInput, ? base_client.InvokeOptions): async.Operation<types.ListPackagesForDomainOutput>
     listScheduledActions: function(Client, types.ListScheduledActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListScheduledActionsOutput>
     listTags: function(Client, types.ListTagsInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsOutput>
@@ -100,6 +102,7 @@ local record Client
     revokeVpcEndpointAccess: function(Client, types.RevokeVpcEndpointAccessInput, ? base_client.InvokeOptions): async.Operation<types.RevokeVpcEndpointAccessOutput>
     rollbackServiceSoftwareUpdate: function(Client, types.RollbackServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.RollbackServiceSoftwareUpdateOutput>
     startDomainMaintenance: function(Client, types.StartDomainMaintenanceInput, ? base_client.InvokeOptions): async.Operation<types.StartDomainMaintenanceOutput>
+    startMigration: function(Client, types.StartMigrationInput, ? base_client.InvokeOptions): async.Operation<types.StartMigrationOutput>
     startServiceSoftwareUpdate: function(Client, types.StartServiceSoftwareUpdateInput, ? base_client.InvokeOptions): async.Operation<types.StartServiceSoftwareUpdateOutput>
     updateApplication: function(Client, types.UpdateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApplicationOutput>
     updateDataSource: function(Client, types.UpdateDataSourceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataSourceOutput>
@@ -371,6 +374,10 @@ function C:getIndex(input: types.GetIndexInput, options?: base_client.InvokeOpti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIndex as schema.OperationSchema, input, options) as async.Operation<types.GetIndexOutput>
 end
 
+function C:getMigration(input: types.GetMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.GetMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetMigration as schema.OperationSchema, input, options) as async.Operation<types.GetMigrationOutput>
+end
+
 function C:getPackageVersionHistory(input: types.GetPackageVersionHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetPackageVersionHistoryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPackageVersionHistory as schema.OperationSchema, input, options) as async.Operation<types.GetPackageVersionHistoryOutput>
 end
@@ -421,6 +428,10 @@ end
 
 function C:listInstanceTypeDetails(input: types.ListInstanceTypeDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInstanceTypeDetailsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInstanceTypeDetails as schema.OperationSchema, input, options) as async.Operation<types.ListInstanceTypeDetailsOutput>
+end
+
+function C:listMigrations(input: types.ListMigrationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMigrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMigrations as schema.OperationSchema, input, options) as async.Operation<types.ListMigrationsOutput>
 end
 
 function C:listPackagesForDomain(input: types.ListPackagesForDomainInput, options?: base_client.InvokeOptions): async.Operation<types.ListPackagesForDomainOutput>
@@ -481,6 +492,10 @@ end
 
 function C:startDomainMaintenance(input: types.StartDomainMaintenanceInput, options?: base_client.InvokeOptions): async.Operation<types.StartDomainMaintenanceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDomainMaintenance as schema.OperationSchema, input, options) as async.Operation<types.StartDomainMaintenanceOutput>
+end
+
+function C:startMigration(input: types.StartMigrationInput, options?: base_client.InvokeOptions): async.Operation<types.StartMigrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartMigration as schema.OperationSchema, input, options) as async.Operation<types.StartMigrationOutput>
 end
 
 function C:startServiceSoftwareUpdate(input: types.StartServiceSoftwareUpdateInput, options?: base_client.InvokeOptions): async.Operation<types.StartServiceSoftwareUpdateOutput>

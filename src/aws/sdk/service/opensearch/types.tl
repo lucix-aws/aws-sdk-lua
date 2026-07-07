@@ -3603,6 +3603,46 @@ local record M
         IndexSchema: any
     end
 
+    record GetMigrationInput
+        -- The unique identifier of the migration job to retrieve.
+        migrationId: string
+    end
+
+    -- Contains error details for a migration that failed or completed with errors.
+    record MigrationError
+        -- The error code identifying the type of failure.
+        code: string
+        -- A human-readable description of the error.
+        message: string
+    end
+
+    -- The source configuration for a migration, specifying the data source from which to export saved objects.
+    record MigrationSource
+        -- The Amazon Resource Name (ARN) of the data source to migrate saved objects from.
+        datasourceArn: string
+    end
+
+    record GetMigrationOutput
+        -- The unique identifier of the migration job.
+        migrationId: string
+        -- The current status of the migration job. Valid values are PENDING, IN_PROGRESS, SUCCEEDED, and FAILED.
+        status: string
+        -- The unique identifier of the OpenSearch application associated with the migration.
+        applicationId: string
+        -- The source configuration for the migration, including the data source ARN.
+        source: MigrationSource
+        -- The number of saved objects exported from the source data source.
+        exportedCount: number
+        -- The number of saved objects successfully imported into the target workspace.
+        importedCount: number
+        -- Error details if the migration failed or completed with errors.
+        error: MigrationError
+        -- The date and time when the migration job was created.
+        createdAt: number
+        -- The date and time when the migration job was last updated.
+        updatedAt: number
+    end
+
     -- Container for the request parameters to the GetPackageVersionHistory
     -- operation.
     record GetPackageVersionHistoryInput
@@ -4143,6 +4183,46 @@ local record M
         NextToken: string
     end
 
+    record ListMigrationsInput
+        -- The unique identifier of the OpenSearch application to list migrations for.
+        applicationId: string
+        -- Filters the results by migration status. Valid values are PENDING, IN_PROGRESS, SUCCEEDED, and FAILED.
+        status: string
+        -- The maximum number of results to return in a single call.
+        maxResults: number
+        -- The pagination token from a previous call to retrieve the next set of results.
+        nextToken: string
+    end
+
+    -- A summary of a migration job, including its status and progress.
+    record MigrationSummary
+        -- The unique identifier of the migration job.
+        migrationId: string
+        -- The current status of the migration job.
+        status: string
+        -- The unique identifier of the OpenSearch application associated with the migration.
+        applicationId: string
+        -- The source configuration for the migration.
+        source: MigrationSource
+        -- The number of saved objects exported from the source data source.
+        exportedCount: number
+        -- The number of saved objects successfully imported into the target workspace.
+        importedCount: number
+        -- Error details if the migration failed or completed with errors.
+        error: MigrationError
+        -- The date and time when the migration job was created.
+        createdAt: number
+        -- The date and time when the migration job was last updated.
+        updatedAt: number
+    end
+
+    record ListMigrationsOutput
+        -- A list of migration job summaries for the specified application.
+        migrations: {MigrationSummary}
+        -- The pagination token to use in a subsequent call to retrieve the next set of results.
+        nextToken: string
+    end
+
     -- Container for the request parameters to the ListPackagesForDomain
     -- operation.
     record ListPackagesForDomainInput
@@ -4467,6 +4547,60 @@ local record M
     record StartDomainMaintenanceOutput
         -- The request ID of requested action.
         MaintenanceId: string
+    end
+
+    -- Identifies a specific saved object by its type and unique identifier.
+    record SavedObjectIdentifier
+        -- The unique identifier of the saved object.
+        id: string
+    end
+
+    -- Options to filter the scope of saved objects to export during a migration.
+    record ExportOptions
+        -- A list of saved object types to include in the migration. Valid values include dashboard, visualization, index-pattern, search, and query.
+        types: {string}
+        -- A list of specific saved objects to include in the migration, identified by type and ID.
+        objects: {SavedObjectIdentifier}
+        -- Specifies whether to include all objects referenced by the exported objects, recursively.
+        includeReferencesDeep: boolean
+    end
+
+    -- The target workspace configuration for a migration. You can specify an existing workspace by ID or request creation of a new workspace.
+    record MigrationWorkspace
+        -- The unique identifier of an existing workspace to use as the migration target. Specify either this parameter or createWorkspace.
+        workspaceId: string
+        -- Specifies whether to create a new workspace as the migration target. If true, you must also specify name.
+        createWorkspace: boolean
+        -- The name of the new workspace to create. Required when createWorkspace is true.
+        name: string
+    end
+
+    -- The configuration options for a saved objects migration job.
+    record MigrationOptions
+        -- The data source from which to export saved objects.
+        source: MigrationSource
+        -- The target workspace configuration for importing saved objects. You can specify an existing workspace or request creation of a new workspace.
+        workspace: MigrationWorkspace
+        -- Options to filter the scope of saved objects to export from the source.
+        exportOptions: ExportOptions
+        -- The strategy for resolving conflicts when saved objects already exist in the target workspace. Valid values are CREATE_NEW_COPIES, which creates new objects with unique IDs, and overwrite, which replaces existing objects.
+        conflictResolution: string
+    end
+
+    record StartMigrationInput
+        -- The unique identifier of the OpenSearch application to migrate saved objects into.
+        applicationId: string
+        -- The configuration options for the migration, including the source data source, target workspace, export filters, and conflict resolution strategy.
+        migrationOptions: MigrationOptions
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon OpenSearch Service ignores the request but does not return an error.
+        clientToken: string
+    end
+
+    record StartMigrationOutput
+        -- The unique identifier of the migration job.
+        migrationId: string
+        -- The initial status of the migration job. The status is PENDING when a migration is first created.
+        status: string
     end
 
     enum ScheduleAt

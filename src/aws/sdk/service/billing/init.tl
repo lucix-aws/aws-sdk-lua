@@ -22,13 +22,18 @@ local record Client
     createBillingView: function(Client, types.CreateBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.CreateBillingViewOutput>
     deleteBillingView: function(Client, types.DeleteBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBillingViewOutput>
     disassociateSourceViews: function(Client, types.DisassociateSourceViewsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateSourceViewsOutput>
+    getBillingPreferences: function(Client, types.GetBillingPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingPreferencesOutput>
     getBillingView: function(Client, types.GetBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingViewOutput>
+    getCreditAllocationHistory: function(Client, types.GetCreditAllocationHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetCreditAllocationHistoryOutput>
+    getCredits: function(Client, types.GetCreditsInput, ? base_client.InvokeOptions): async.Operation<types.GetCreditsOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     listBillingViews: function(Client, types.ListBillingViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingViewsOutput>
     listSourceViewsForBillingView: function(Client, types.ListSourceViewsForBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceViewsForBillingViewOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    redeemCredits: function(Client, types.RedeemCreditsInput, ? base_client.InvokeOptions): async.Operation<types.RedeemCreditsOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateBillingPreferences: function(Client, types.UpdateBillingPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBillingPreferencesOutput>
     updateBillingView: function(Client, types.UpdateBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBillingViewOutput>
 end
 
@@ -90,8 +95,20 @@ function C:disassociateSourceViews(input: types.DisassociateSourceViewsInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateSourceViews as schema.OperationSchema, input, options) as async.Operation<types.DisassociateSourceViewsOutput>
 end
 
+function C:getBillingPreferences(input: types.GetBillingPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.GetBillingPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillingPreferences as schema.OperationSchema, input, options) as async.Operation<types.GetBillingPreferencesOutput>
+end
+
 function C:getBillingView(input: types.GetBillingViewInput, options?: base_client.InvokeOptions): async.Operation<types.GetBillingViewOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBillingView as schema.OperationSchema, input, options) as async.Operation<types.GetBillingViewOutput>
+end
+
+function C:getCreditAllocationHistory(input: types.GetCreditAllocationHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.GetCreditAllocationHistoryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCreditAllocationHistory as schema.OperationSchema, input, options) as async.Operation<types.GetCreditAllocationHistoryOutput>
+end
+
+function C:getCredits(input: types.GetCreditsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCreditsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCredits as schema.OperationSchema, input, options) as async.Operation<types.GetCreditsOutput>
 end
 
 function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
@@ -110,12 +127,20 @@ function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:redeemCredits(input: types.RedeemCreditsInput, options?: base_client.InvokeOptions): async.Operation<types.RedeemCreditsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RedeemCredits as schema.OperationSchema, input, options) as async.Operation<types.RedeemCreditsOutput>
+end
+
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateBillingPreferences(input: types.UpdateBillingPreferencesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBillingPreferencesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBillingPreferences as schema.OperationSchema, input, options) as async.Operation<types.UpdateBillingPreferencesOutput>
 end
 
 function C:updateBillingView(input: types.UpdateBillingViewInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBillingViewOutput>

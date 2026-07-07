@@ -3052,6 +3052,22 @@ local record M
         nextToken: string
     end
 
+    record GetStorageTierPolicyInput
+    end
+
+    enum StorageTier
+        "STANDARD"
+        "INTELLIGENT_TIERING"
+    end
+
+    record GetStorageTierPolicyOutput
+        -- The current storage tier for the account.
+        storageTier: string
+        -- The time when the storage tier policy was last updated, expressed as the number of
+        -- milliseconds after Jan 1, 1970 00:00:00 UTC.
+        lastUpdatedTime: number
+    end
+
     record GetTransformerInput
         -- Specify either the name or ARN of the log group to return transformer information for. If
         -- the log group is in a source account and you are using a monitoring account, you must use the
@@ -4091,8 +4107,8 @@ local record M
         -- Defines the type of log that the source is sending.
         -- For Amazon Bedrock Agents, the valid values are APPLICATION_LOGS and
         -- EVENT_LOGS.
-        -- For Amazon Bedrock Knowledge Bases, the valid value is
-        -- APPLICATION_LOGS.
+        -- For Amazon Bedrock Knowledge Bases, the valid values are
+        -- APPLICATION_LOGS and TRACES.
         -- For Amazon Bedrock AgentCore Runtime, the valid values are
         -- APPLICATION_LOGS, USAGE_LOGS and TRACES.
         -- For Amazon Bedrock AgentCore Tools, the valid values are
@@ -4137,6 +4153,8 @@ local record M
         -- APPLICATION_LOGS.
         -- For Amazon Q, the valid values are EVENT_LOGS and
         -- SYNC_JOB_LOGS.
+        -- For Amazon S3, the valid value is
+        -- S3_SERVER_ACCESS_LOGS.
         -- For Amazon Web Services Security Hub CSPM, the valid value is
         -- SECURITY_FINDING_LOGS.
         -- For Amazon Web Services Security Hub, the valid value is
@@ -4475,6 +4493,20 @@ local record M
     end
 
     record PutRetentionPolicyOutput
+    end
+
+    record PutStorageTierPolicyInput
+        -- The storage tier to set for the account. Valid values are STANDARD and
+        -- INTELLIGENT_TIERING.
+        storageTier: string
+    end
+
+    record PutStorageTierPolicyOutput
+        -- The storage tier that was set.
+        storageTier: string
+        -- The time when the storage tier policy was last updated, expressed as the number of
+        -- milliseconds after Jan 1, 1970 00:00:00 UTC.
+        lastUpdatedTime: number
     end
 
     record PutSubscriptionFilterInput

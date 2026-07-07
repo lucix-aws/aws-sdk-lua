@@ -15,6 +15,18 @@ M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.Val
 
 M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
 
+M.BillingFeatures = schema.new({ type = "list", list_member = prelude.String })
+
+M.BillingFeatureFilters = schema.new({ type = "list", list_member = M.BillingFeatureFilter })
+
+M.BillingPreferences = schema.new({ type = "list", list_member = M.BillingPreferenceSummary })
+
+M.CreditAllocationHistoryList = schema.new({ type = "list", list_member = M.CreditAllocationHistoryEntry })
+
+M.FailedMonthsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CreditDataList = schema.new({ type = "list", list_member = M.CreditData })
+
 M.BillingViewArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.BillingViewTypeList = schema.new({ type = "list", list_member = prelude.String })
@@ -25,9 +37,19 @@ M.BillingViewList = schema.new({ type = "list", list_member = M.BillingViewListE
 
 M.ResourceTagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.BillingPreferencesPerKey = schema.new({ type = "list", list_member = M.BillingPreferenceForKey })
+
 M.Values = schema.new({ type = "list", list_member = prelude.String })
 
+M.BillingFeatureFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.BillingViewStatusReasons = schema.new({ type = "list", list_member = prelude.String })
+
+M.ProductNames = schema.new({ type = "list", list_member = prelude.String })
+
+M.ShareableAccountIds = schema.new({ type = "list", list_member = prelude.String })
+
+M.PurchaseTypeApplications = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -66,6 +88,31 @@ M.ActiveTimeRange = schema.new({
             type = "timestamp",
             name = "activeBeforeInclusive",
             target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Amount = schema.new({
+    id = id.from(_N, "Amount"),
+    type = "structure",
+    members = {
+        currencyCode = schema.new({
+            id = id.from(_N, "Amount", "currencyCode"),
+            type = "string",
+            name = "currencyCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        currencyAmount = schema.new({
+            id = id.from(_N, "Amount", "currencyAmount"),
+            type = "string",
+            name = "currencyAmount",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -676,6 +723,163 @@ M.DisassociateSourceViewsOutput = schema.new({
     },
 })
 
+M.BillingFeatureFilter = schema.new({
+    id = id.from(_N, "BillingFeatureFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "BillingFeatureFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        value = schema.new({
+            id = id.from(_N, "BillingFeatureFilter", "value"),
+            type = "list",
+            name = "value",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GetBillingPreferencesInput = schema.new({
+    id = id.from(_N, "GetBillingPreferencesRequest"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "GetBillingPreferencesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetBillingPreferencesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        features = schema.new({
+            id = id.from(_N, "GetBillingPreferencesInput", "features"),
+            type = "list",
+            name = "features",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        filters = schema.new({
+            id = id.from(_N, "GetBillingPreferencesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.BillingFeatureFilter,
+        }),
+    },
+})
+
+M.BillingPeriod = schema.new({
+    id = id.from(_N, "BillingPeriod"),
+    type = "structure",
+    members = {
+        year = schema.new({
+            id = id.from(_N, "BillingPeriod", "year"),
+            type = "integer",
+            name = "year",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        month = schema.new({
+            id = id.from(_N, "BillingPeriod", "month"),
+            type = "integer",
+            name = "month",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BillingPreferenceSummary = schema.new({
+    id = id.from(_N, "BillingPreferenceSummary"),
+    type = "structure",
+    members = {
+        feature = schema.new({
+            id = id.from(_N, "BillingPreferenceSummary", "feature"),
+            type = "string",
+            name = "feature",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        key = schema.new({
+            id = id.from(_N, "BillingPreferenceSummary", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "BillingPreferenceSummary", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountName = schema.new({
+            id = id.from(_N, "BillingPreferenceSummary", "accountName"),
+            type = "string",
+            name = "accountName",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "BillingPreferenceSummary", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        billingPeriod = schema.new({
+            id = id.from(_N, "BillingPreferenceSummary", "billingPeriod"),
+            type = "structure",
+            name = "billingPeriod",
+            target_id = id.from(_N, "BillingPeriod"),
+            target = M.BillingPeriod,
+        }),
+    },
+})
+
+M.GetBillingPreferencesOutput = schema.new({
+    id = id.from(_N, "GetBillingPreferencesResponse"),
+    type = "structure",
+    members = {
+        billingPreferences = schema.new({
+            id = id.from(_N, "GetBillingPreferencesOutput", "billingPreferences"),
+            type = "list",
+            name = "billingPreferences",
+            target_id = prelude.Document.id,
+            list_member = M.BillingPreferenceSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetBillingPreferencesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetBillingViewInput = schema.new({
     id = id.from(_N, "GetBillingViewRequest"),
     type = "structure",
@@ -812,6 +1016,367 @@ M.GetBillingViewOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.GetCreditAllocationHistoryInput = schema.new({
+    id = id.from(_N, "GetCreditAllocationHistoryRequest"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creditId = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryInput", "creditId"),
+            type = "long",
+            name = "creditId",
+            target_id = prelude.Long.id,
+        }),
+        startDate = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryInput", "startDate"),
+            type = "timestamp",
+            name = "startDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endDate = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryInput", "endDate"),
+            type = "timestamp",
+            name = "endDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.CreditAllocationHistoryEntry = schema.new({
+    id = id.from(_N, "CreditAllocationHistoryEntry"),
+    type = "structure",
+    members = {
+        creditId = schema.new({
+            id = id.from(_N, "CreditAllocationHistoryEntry", "creditId"),
+            type = "string",
+            name = "creditId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creditAmount = schema.new({
+            id = id.from(_N, "CreditAllocationHistoryEntry", "creditAmount"),
+            type = "structure",
+            name = "creditAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreditAllocationHistoryEntry", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "CreditAllocationHistoryEntry", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        appliedServiceName = schema.new({
+            id = id.from(_N, "CreditAllocationHistoryEntry", "appliedServiceName"),
+            type = "string",
+            name = "appliedServiceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        billingMonth = schema.new({
+            id = id.from(_N, "CreditAllocationHistoryEntry", "billingMonth"),
+            type = "string",
+            name = "billingMonth",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        isEstimatedBill = schema.new({
+            id = id.from(_N, "CreditAllocationHistoryEntry", "isEstimatedBill"),
+            type = "boolean",
+            name = "isEstimatedBill",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetCreditAllocationHistoryOutput = schema.new({
+    id = id.from(_N, "GetCreditAllocationHistoryResponse"),
+    type = "structure",
+    members = {
+        creditAllocationHistoryList = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryOutput", "creditAllocationHistoryList"),
+            type = "list",
+            name = "creditAllocationHistoryList",
+            target_id = prelude.Document.id,
+            list_member = M.CreditAllocationHistoryEntry,
+        }),
+        partialResults = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryOutput", "partialResults"),
+            type = "boolean",
+            name = "partialResults",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        failedMonths = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryOutput", "failedMonths"),
+            type = "list",
+            name = "failedMonths",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "GetCreditAllocationHistoryOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetCreditsInput = schema.new({
+    id = id.from(_N, "GetCreditsRequest"),
+    type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "GetCreditsInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startDate = schema.new({
+            id = id.from(_N, "GetCreditsInput", "startDate"),
+            type = "timestamp",
+            name = "startDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endDate = schema.new({
+            id = id.from(_N, "GetCreditsInput", "endDate"),
+            type = "timestamp",
+            name = "endDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        payerAccountFlag = schema.new({
+            id = id.from(_N, "GetCreditsInput", "payerAccountFlag"),
+            type = "boolean",
+            name = "payerAccountFlag",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CreditData = schema.new({
+    id = id.from(_N, "CreditData"),
+    type = "structure",
+    members = {
+        creditId = schema.new({
+            id = id.from(_N, "CreditData", "creditId"),
+            type = "string",
+            name = "creditId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "CreditData", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creditType = schema.new({
+            id = id.from(_N, "CreditData", "creditType"),
+            type = "string",
+            name = "creditType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        initialAmount = schema.new({
+            id = id.from(_N, "CreditData", "initialAmount"),
+            type = "structure",
+            name = "initialAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        remainingAmount = schema.new({
+            id = id.from(_N, "CreditData", "remainingAmount"),
+            type = "structure",
+            name = "remainingAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        estimatedAmount = schema.new({
+            id = id.from(_N, "CreditData", "estimatedAmount"),
+            type = "structure",
+            name = "estimatedAmount",
+            target_id = id.from(_N, "Amount"),
+            target = M.Amount,
+        }),
+        applicableProductNames = schema.new({
+            id = id.from(_N, "CreditData", "applicableProductNames"),
+            type = "list",
+            name = "applicableProductNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreditData", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startDate = schema.new({
+            id = id.from(_N, "CreditData", "startDate"),
+            type = "timestamp",
+            name = "startDate",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endDate = schema.new({
+            id = id.from(_N, "CreditData", "endDate"),
+            type = "timestamp",
+            name = "endDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        exhaustDate = schema.new({
+            id = id.from(_N, "CreditData", "exhaustDate"),
+            type = "timestamp",
+            name = "exhaustDate",
+            target_id = prelude.Timestamp.id,
+        }),
+        applicationType = schema.new({
+            id = id.from(_N, "CreditData", "applicationType"),
+            type = "string",
+            name = "applicationType",
+            target_id = prelude.String.id,
+        }),
+        shareableAccounts = schema.new({
+            id = id.from(_N, "CreditData", "shareableAccounts"),
+            type = "list",
+            name = "shareableAccounts",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        accountHasCreditSharingEnabled = schema.new({
+            id = id.from(_N, "CreditData", "accountHasCreditSharingEnabled"),
+            type = "boolean",
+            name = "accountHasCreditSharingEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        creditConsoleVisibility = schema.new({
+            id = id.from(_N, "CreditData", "creditConsoleVisibility"),
+            type = "string",
+            name = "creditConsoleVisibility",
+            target_id = prelude.String.id,
+        }),
+        creditSharingType = schema.new({
+            id = id.from(_N, "CreditData", "creditSharingType"),
+            type = "string",
+            name = "creditSharingType",
+            target_id = prelude.String.id,
+        }),
+        costCategoryArn = schema.new({
+            id = id.from(_N, "CreditData", "costCategoryArn"),
+            type = "string",
+            name = "costCategoryArn",
+            target_id = prelude.String.id,
+        }),
+        ruleName = schema.new({
+            id = id.from(_N, "CreditData", "ruleName"),
+            type = "string",
+            name = "ruleName",
+            target_id = prelude.String.id,
+        }),
+        creditStatus = schema.new({
+            id = id.from(_N, "CreditData", "creditStatus"),
+            type = "string",
+            name = "creditStatus",
+            target_id = prelude.String.id,
+        }),
+        purchaseTypeApplications = schema.new({
+            id = id.from(_N, "CreditData", "purchaseTypeApplications"),
+            type = "list",
+            name = "purchaseTypeApplications",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GetCreditsOutput = schema.new({
+    id = id.from(_N, "GetCreditsResponse"),
+    type = "structure",
+    members = {
+        credits = schema.new({
+            id = id.from(_N, "GetCreditsOutput", "credits"),
+            type = "list",
+            name = "credits",
+            target_id = prelude.Document.id,
+            list_member = M.CreditData,
         }),
     },
 })
@@ -1092,6 +1657,27 @@ M.ListTagsForResourceOutput = schema.new({
     },
 })
 
+M.RedeemCreditsInput = schema.new({
+    id = id.from(_N, "RedeemCreditsRequest"),
+    type = "structure",
+    members = {
+        promoCode = schema.new({
+            id = id.from(_N, "RedeemCreditsInput", "promoCode"),
+            type = "string",
+            name = "promoCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RedeemCreditsOutput = schema.new({
+    id = id.from(_N, "RedeemCreditsResponse"),
+    type = "structure",
+})
+
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
     type = "structure",
@@ -1151,6 +1737,62 @@ M.UntagResourceInput = schema.new({
 
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
+    type = "structure",
+})
+
+M.BillingPreferenceForKey = schema.new({
+    id = id.from(_N, "BillingPreferenceForKey"),
+    type = "structure",
+    members = {
+        key = schema.new({
+            id = id.from(_N, "BillingPreferenceForKey", "key"),
+            type = "string",
+            name = "key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "BillingPreferenceForKey", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateBillingPreferencesInput = schema.new({
+    id = id.from(_N, "UpdateBillingPreferencesRequest"),
+    type = "structure",
+    members = {
+        feature = schema.new({
+            id = id.from(_N, "UpdateBillingPreferencesInput", "feature"),
+            type = "string",
+            name = "feature",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        billingPreferencesPerKey = schema.new({
+            id = id.from(_N, "UpdateBillingPreferencesInput", "billingPreferencesPerKey"),
+            type = "list",
+            name = "billingPreferencesPerKey",
+            target_id = prelude.Document.id,
+            list_member = M.BillingPreferenceForKey,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateBillingPreferencesOutput = schema.new({
+    id = id.from(_N, "UpdateBillingPreferencesResponse"),
     type = "structure",
 })
 
@@ -1280,10 +1922,43 @@ M.DisassociateSourceViews = schema.operation({
     },
 })
 
+M.GetBillingPreferences = schema.operation({
+    id = id.from("com.amazonaws.billing", "GetBillingPreferences"),
+    input = M.GetBillingPreferencesInput,
+    output = M.GetBillingPreferencesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetBillingView = schema.operation({
     id = id.from("com.amazonaws.billing", "GetBillingView"),
     input = M.GetBillingViewInput,
     output = M.GetBillingViewOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCreditAllocationHistory = schema.operation({
+    id = id.from("com.amazonaws.billing", "GetCreditAllocationHistory"),
+    input = M.GetCreditAllocationHistoryInput,
+    output = M.GetCreditAllocationHistoryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetCredits = schema.operation({
+    id = id.from("com.amazonaws.billing", "GetCredits"),
+    input = M.GetCreditsInput,
+    output = M.GetCreditsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -1336,6 +2011,17 @@ M.ListTagsForResource = schema.operation({
     },
 })
 
+M.RedeemCredits = schema.operation({
+    id = id.from("com.amazonaws.billing", "RedeemCredits"),
+    input = M.RedeemCreditsInput,
+    output = M.RedeemCreditsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.TagResource = schema.operation({
     id = id.from("com.amazonaws.billing", "TagResource"),
     input = M.TagResourceInput,
@@ -1351,6 +2037,17 @@ M.UntagResource = schema.operation({
     id = id.from("com.amazonaws.billing", "UntagResource"),
     input = M.UntagResourceInput,
     output = M.UntagResourceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateBillingPreferences = schema.operation({
+    id = id.from("com.amazonaws.billing", "UpdateBillingPreferences"),
+    input = M.UpdateBillingPreferencesInput,
+    output = M.UpdateBillingPreferencesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

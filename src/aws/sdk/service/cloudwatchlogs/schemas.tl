@@ -6312,6 +6312,30 @@ M.GetScheduledQueryHistoryOutput = schema.new({
     },
 })
 
+M.GetStorageTierPolicyInput = schema.new({
+    id = id.from(_N, "GetStorageTierPolicyRequest"),
+    type = "structure",
+})
+
+M.GetStorageTierPolicyOutput = schema.new({
+    id = id.from(_N, "GetStorageTierPolicyResponse"),
+    type = "structure",
+    members = {
+        storageTier = schema.new({
+            id = id.from(_N, "GetStorageTierPolicyOutput", "storageTier"),
+            type = "string",
+            name = "storageTier",
+            target_id = prelude.String.id,
+        }),
+        lastUpdatedTime = schema.new({
+            id = id.from(_N, "GetStorageTierPolicyOutput", "lastUpdatedTime"),
+            type = "long",
+            name = "lastUpdatedTime",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
 M.GetTransformerInput = schema.new({
     id = id.from(_N, "GetTransformerRequest"),
     type = "structure",
@@ -8933,6 +8957,41 @@ M.PutRetentionPolicyInput = schema.new({
 
 M.PutRetentionPolicyOutput = prelude.Unit
 
+M.PutStorageTierPolicyInput = schema.new({
+    id = id.from(_N, "PutStorageTierPolicyRequest"),
+    type = "structure",
+    members = {
+        storageTier = schema.new({
+            id = id.from(_N, "PutStorageTierPolicyInput", "storageTier"),
+            type = "string",
+            name = "storageTier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutStorageTierPolicyOutput = schema.new({
+    id = id.from(_N, "PutStorageTierPolicyResponse"),
+    type = "structure",
+    members = {
+        storageTier = schema.new({
+            id = id.from(_N, "PutStorageTierPolicyOutput", "storageTier"),
+            type = "string",
+            name = "storageTier",
+            target_id = prelude.String.id,
+        }),
+        lastUpdatedTime = schema.new({
+            id = id.from(_N, "PutStorageTierPolicyOutput", "lastUpdatedTime"),
+            type = "long",
+            name = "lastUpdatedTime",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
 M.PutSubscriptionFilterInput = schema.new({
     id = id.from(_N, "PutSubscriptionFilterRequest"),
     type = "structure",
@@ -10951,6 +11010,17 @@ M.GetScheduledQueryHistory = schema.operation({
     },
 })
 
+M.GetStorageTierPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "GetStorageTierPolicy"),
+    input = M.GetStorageTierPolicyInput,
+    output = M.GetStorageTierPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetTransformer = schema.operation({
     id = id.from("com.amazonaws.cloudwatchlogs", "GetTransformer"),
     input = M.GetTransformerInput,
@@ -11252,6 +11322,17 @@ M.PutRetentionPolicy = schema.operation({
     id = id.from("com.amazonaws.cloudwatchlogs", "PutRetentionPolicy"),
     input = M.PutRetentionPolicyInput,
     output = M.PutRetentionPolicyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutStorageTierPolicy = schema.operation({
+    id = id.from("com.amazonaws.cloudwatchlogs", "PutStorageTierPolicy"),
+    input = M.PutStorageTierPolicyInput,
+    output = M.PutStorageTierPolicyOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
