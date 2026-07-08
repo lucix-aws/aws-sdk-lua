@@ -54,6 +54,9 @@ local record M
         "AWS_ECR_CONTAINER_IMAGE"
         "AWS_LAMBDA_FUNCTION"
         "CODE_REPOSITORY"
+        "Microsoft.Compute/virtualMachines"
+        "Microsoft.ContainerRegistry/registry/containerImage"
+        "Microsoft.Web/sites"
     end
 
     enum AccountSortBy
@@ -269,6 +272,54 @@ local record M
         resourceIds: {StringFilter}
     end
 
+    enum ContainerImageSortBy
+        "CRITICAL"
+        "HIGH"
+        "ALL"
+    end
+
+    -- An aggregation of information about container images.
+    record ContainerImageAggregation
+        -- The resource IDs to aggregate findings for.
+        resourceIds: {StringFilter}
+        -- The image digests to aggregate findings for.
+        imageDigests: {StringFilter}
+        -- The image repositories to aggregate findings for.
+        repositories: {StringFilter}
+        -- The image registries to aggregate findings for.
+        registries: {StringFilter}
+        -- The image architectures to aggregate findings for.
+        architectures: {StringFilter}
+        -- The image tags to aggregate findings for.
+        imageTags: {StringFilter}
+        -- The cloud providers to aggregate findings for. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProviders: {StringFilter}
+        -- The cloud partitions to aggregate findings for. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartitions: {StringFilter}
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegions: {StringFilter}
+        -- The cloud organization IDs to aggregate findings for.
+        cloudOrgIds: {StringFilter}
+        -- The cloud account IDs to aggregate findings for.
+        cloudAccountIds: {StringFilter}
+        -- The last in-use timestamps to aggregate findings for.
+        lastInUseAt: {DateFilter}
+        -- The in-use counts to aggregate findings for.
+        inUseCount: {NumberFilter}
+        -- The order to sort results by. Valid values are ASC and DESC.
+        sortOrder: string
+        -- The value to sort results by. Specify a field name from the aggregation response, such as CRITICAL, HIGH, or ALL.
+        sortBy: string
+    end
+
     enum MapComparison
         "EQUALS"
     end
@@ -340,6 +391,24 @@ local record M
         resourceIds: {StringFilter}
         -- The hashes associated with the layers.
         layerHashes: {StringFilter}
+        -- The cloud providers to aggregate findings for. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProviders: {StringFilter}
+        -- The cloud account IDs to aggregate findings for.
+        cloudAccountIds: {StringFilter}
+        -- The cloud organization IDs to aggregate findings for.
+        cloudOrgIds: {StringFilter}
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegions: {StringFilter}
+        -- The cloud partitions to aggregate findings for. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartitions: {StringFilter}
         -- The order to sort results by.
         sortOrder: string
         -- The value to sort results by.
@@ -425,6 +494,46 @@ local record M
         sortBy: string
     end
 
+    enum ServerlessFunctionSortBy
+        "CRITICAL"
+        "HIGH"
+        "ALL"
+    end
+
+    -- An aggregation of information about serverless functions.
+    record ServerlessFunctionAggregation
+        -- The resource IDs to aggregate findings for.
+        resourceIds: {StringFilter}
+        -- The function names to aggregate findings for.
+        functionNames: {StringFilter}
+        -- The runtimes to aggregate findings for.
+        runtimes: {StringFilter}
+        -- The function tags to aggregate findings for.
+        functionTags: {MapFilter}
+        -- The cloud providers to aggregate findings for. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProviders: {StringFilter}
+        -- The cloud partitions to aggregate findings for. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartitions: {StringFilter}
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegions: {StringFilter}
+        -- The cloud organization IDs to aggregate findings for.
+        cloudOrgIds: {StringFilter}
+        -- The cloud account IDs to aggregate findings for.
+        cloudAccountIds: {StringFilter}
+        -- The order to sort results by. Valid values are ASC and DESC.
+        sortOrder: string
+        -- The value to sort results by. Specify a field name from the aggregation response, such as CRITICAL, HIGH, or ALL.
+        sortBy: string
+    end
+
     enum TitleSortBy
         "CRITICAL"
         "HIGH"
@@ -439,12 +548,53 @@ local record M
         vulnerabilityIds: {StringFilter}
         -- The resource type to aggregate on.
         resourceType: string
+        -- The type of finding to aggregate on.
+        findingType: string
         -- The order to sort results by.
         sortOrder: string
         -- The value to sort results by.
         sortBy: string
-        -- The type of finding to aggregate on.
-        findingType: string
+    end
+
+    enum VmInstanceSortBy
+        "CRITICAL"
+        "HIGH"
+        "ALL"
+        "NETWORK_FINDINGS"
+    end
+
+    -- An aggregation of information about VM instances.
+    record VmInstanceAggregation
+        -- The resource IDs to aggregate findings for.
+        resourceIds: {StringFilter}
+        -- The operating systems to aggregate findings for.
+        operatingSystems: {StringFilter}
+        -- The instance tags to aggregate findings for.
+        instanceTags: {MapFilter}
+        -- The VM image references to aggregate findings for.
+        vmImageReferences: {StringFilter}
+        -- The cloud providers to aggregate findings for. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProviders: {StringFilter}
+        -- The cloud partitions to aggregate findings for. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartitions: {StringFilter}
+        -- The cloud regions to aggregate findings for. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegions: {StringFilter}
+        -- The cloud organization IDs to aggregate findings for.
+        cloudOrgIds: {StringFilter}
+        -- The cloud account IDs to aggregate findings for.
+        cloudAccountIds: {StringFilter}
+        -- The order to sort results by. Valid values are ASC and DESC.
+        sortOrder: string
+        -- The value to sort results by. Specify a field name from the aggregation response, such as CRITICAL, HIGH, ALL, or NETWORK_FINDINGS.
+        sortBy: string
     end
 
     -- Contains details about an aggregation request.
@@ -483,6 +633,17 @@ local record M
         -- An object that contains details about an aggregation request based on code
         -- repositories.
         codeRepositoryAggregation: CodeRepositoryAggregation
+        -- An object that contains details about an aggregation request based on virtual machine (VM) instances.
+        vmInstanceAggregation: VmInstanceAggregation
+        -- An object that contains details about an aggregation request based on container images.
+        containerImageAggregation: ContainerImageAggregation
+        -- An object that contains details about an aggregation request based on serverless functions.
+        serverlessFunctionAggregation: ServerlessFunctionAggregation
+    end
+
+    enum Provider
+        "AWS"
+        "AZURE"
     end
 
     -- A response that contains the results of a finding aggregation by AMI.
@@ -491,6 +652,24 @@ local record M
         ami: string
         -- The Amazon Web Services account ID for the AMI.
         accountId: string
+        -- The cloud service provider associated with this Amazon Machine Image (AMI) aggregation. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProvider: string
+        -- The cloud infrastructure partition associated with this AMI aggregation. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartition: string
+        -- The cloud Region associated with this AMI aggregation. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegion: string
+        -- The cloud organization ID for the AMI aggregation.
+        cloudOrgId: string
+        -- The cloud account ID for the AMI aggregation.
+        cloudAccountId: string
         -- An object that contains the count of matched findings per severity.
         severityCounts: SeverityCounts
         -- The IDs of Amazon EC2 instances using this AMI.
@@ -538,6 +717,51 @@ local record M
         resourceId: string
     end
 
+    -- A response that contains the results of a container image aggregation.
+    record ContainerImageAggregationResponse
+        -- The resource ID for the container image.
+        resourceId: string
+        -- The cloud service provider associated with this container image aggregation. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProvider: string
+        -- The cloud account ID for the container image aggregation.
+        cloudAccountId: string
+        -- The cloud infrastructure partition associated with this container image aggregation. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartition: string
+        -- The cloud Region associated with this container image aggregation. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegion: string
+        -- The cloud organization ID for the container image aggregation.
+        cloudOrgId: string
+        -- The image digest for the container image.
+        imageDigest: string
+        -- The repository for the container image.
+        repository: string
+        -- The registry for the container image.
+        registry: string
+        -- The architecture of the container image.
+        architecture: string
+        -- The image tags attached to the container image.
+        imageTags: {string}
+        -- The account ID associated with the container image.
+        accountId: string
+        severityCounts: SeverityCounts
+        -- The last time the container image was in use.
+        lastInUseAt: number
+        -- The number of times the container image is in use.
+        inUseCount: number
+        -- The number of active findings with an exploit available for the container image.
+        exploitAvailableActiveFindingsCount: number
+        -- The number of active findings with a fix available for the container image.
+        fixAvailableActiveFindingsCount: number
+    end
+
     -- A response that contains the results of a finding aggregation by Amazon EC2 instance.
     record Ec2InstanceAggregationResponse
         -- The Amazon EC2 instance ID.
@@ -566,6 +790,24 @@ local record M
         exploitAvailableCount: number
         -- Details about the number of fixes.
         fixAvailableCount: number
+        -- The cloud service provider associated with this finding type aggregation. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProvider: string
+        -- The cloud account ID for the finding type aggregation.
+        cloudAccountId: string
+        -- The cloud organization ID for the finding type aggregation.
+        cloudOrgId: string
+        -- The cloud Region associated with this finding type aggregation. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegion: string
+        -- The cloud infrastructure partition associated with this finding type aggregation. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartition: string
     end
 
     -- A response that contains the results of a finding aggregation by image layer.
@@ -579,6 +821,24 @@ local record M
         -- The ID of the Amazon Web Services account that owns the container image hosting the layer
         -- image.
         accountId: string
+        -- The cloud service provider associated with this image layer aggregation. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProvider: string
+        -- The cloud account ID for the image layer aggregation.
+        cloudAccountId: string
+        -- The cloud organization ID for the image layer aggregation.
+        cloudOrgId: string
+        -- The cloud Region associated with this image layer aggregation. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegion: string
+        -- The cloud infrastructure partition associated with this image layer aggregation. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartition: string
         -- An object that represents the count of matched findings per severity.
         severityCounts: SeverityCounts
     end
@@ -636,10 +896,67 @@ local record M
         repository: string
         -- The ID of the Amazon Web Services account associated with the findings.
         accountId: string
+        -- The cloud service provider associated with this repository aggregation. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProvider: string
+        -- The cloud infrastructure partition associated with this repository aggregation. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartition: string
+        -- The cloud Region associated with this repository aggregation. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegion: string
+        -- The cloud organization ID for the repository aggregation.
+        cloudOrgId: string
+        -- The cloud account ID for the repository aggregation.
+        cloudAccountId: string
         -- An object that represent the count of matched findings per severity.
         severityCounts: SeverityCounts
         -- The number of container images impacted by the findings.
         affectedImages: number
+    end
+
+    -- A response that contains the results of a serverless function aggregation.
+    record ServerlessFunctionAggregationResponse
+        -- The resource ID for the serverless function.
+        resourceId: string
+        -- The cloud service provider associated with this serverless function aggregation. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProvider: string
+        -- The cloud account ID for the serverless function aggregation.
+        cloudAccountId: string
+        -- The cloud infrastructure partition associated with this serverless function aggregation. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartition: string
+        -- The cloud Region associated with this serverless function aggregation. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegion: string
+        -- The cloud organization ID for the serverless function aggregation.
+        cloudOrgId: string
+        -- The name of the serverless function.
+        functionName: string
+        -- The runtime of the serverless function.
+        runtime: string
+        -- The tags attached to the serverless function.
+        tags: {string : string}
+        -- The account ID associated with the serverless function.
+        accountId: string
+        severityCounts: SeverityCounts
+        -- The date and time the serverless function was last modified.
+        lastModifiedAt: number
+        -- The number of active findings with an exploit available for the serverless function.
+        exploitAvailableActiveFindingsCount: number
+        -- The number of active findings with a fix available for the serverless function.
+        fixAvailableActiveFindingsCount: number
     end
 
     -- A response that contains details on the results of a finding aggregation by
@@ -653,6 +970,45 @@ local record M
         accountId: string
         -- An object that represent the count of matched findings per severity.
         severityCounts: SeverityCounts
+    end
+
+    -- A response that contains the results of a VM instance aggregation.
+    record VmInstanceAggregationResponse
+        -- The resource ID for the VM instance.
+        resourceId: string
+        -- The cloud service provider associated with this VM instance aggregation. Valid values:
+        -- AWS – Findings from Amazon Web Services resources.
+        -- AZURE – Findings from Microsoft Azure resources.
+        cloudProvider: string
+        -- The cloud account ID for the VM instance aggregation.
+        cloudAccountId: string
+        -- The cloud infrastructure partition associated with this VM instance aggregation. Valid values:
+        -- aws – Amazon Web Services commercial Regions.
+        -- aws-cn – Amazon Web Services China Regions.
+        -- aws-us-gov – Amazon Web Services GovCloud (US) Regions.
+        -- AzureCloud – Azure commercial Regions.
+        cloudPartition: string
+        -- The cloud Region associated with this VM instance aggregation. The value format depends on the cloud provider:
+        -- An Amazon Web Services Region, such as us-east-1.
+        -- An Azure region, such as eastus.
+        cloudRegion: string
+        -- The cloud organization ID for the VM instance aggregation.
+        cloudOrgId: string
+        -- The VM image reference for the VM instance.
+        vmImageReference: string
+        -- The operating system of the VM instance.
+        operatingSystem: string
+        -- The tags attached to the VM instance.
+        tags: {string : string}
+        -- The account ID associated with the VM instance.
+        accountId: string
+        severityCounts: SeverityCounts
+        -- The number of network findings for the VM instance. This field applies only to Amazon Web Services resources.
+        networkFindings: number
+        -- The number of active findings with an exploit available for the VM instance.
+        exploitAvailableActiveFindingsCount: number
+        -- The number of active findings with a fix available for the VM instance.
+        fixAvailableActiveFindingsCount: number
     end
 
     -- A structure that contains details about the results of an aggregation type.
@@ -691,6 +1047,12 @@ local record M
         -- An object that contains details about an aggregation response based on code
         -- repositories.
         codeRepositoryAggregation: CodeRepositoryAggregationResponse
+        -- An object that contains details about an aggregation response based on VM instances.
+        vmInstanceAggregation: VmInstanceAggregationResponse
+        -- An object that contains details about an aggregation response based on container images.
+        containerImageAggregation: ContainerImageAggregationResponse
+        -- An object that contains details about an aggregation response based on serverless functions.
+        serverlessFunctionAggregation: ServerlessFunctionAggregationResponse
     end
 
     enum AggregationType
@@ -706,6 +1068,9 @@ local record M
         "AWS_LAMBDA_FUNCTION"
         "LAMBDA_LAYER"
         "CODE_REPOSITORY"
+        "VM_INSTANCE"
+        "CONTAINER_IMAGE"
+        "SERVERLESS_FUNCTION"
     end
 
     enum Architecture
@@ -826,6 +1191,18 @@ local record M
         codeRepository: boolean
     end
 
+    enum AwsConfigConnectorArnComparison
+        "EQUALS"
+    end
+
+    -- A filter that matches connectors by the ARN of the associated Amazon Web Services Config connector.
+    record AwsConfigConnectorArnFilter
+        -- The comparison operator for the Amazon Web Services Config connector ARN filter.
+        comparison: string
+        -- The Amazon Web Services Config connector ARN value to filter by.
+        value: string
+    end
+
     -- Details of the Amazon EC2 instance involved in a finding.
     record AwsEc2InstanceDetails
         -- The image ID of the Amazon EC2 instance.
@@ -925,6 +1302,9 @@ local record M
         "RUBY_3_2"
         "DOTNET_10"
         "NODEJS_24_X"
+        "NODEJS_22_X"
+        "JAVA_21"
+        "JAVA_25"
     end
 
     -- The VPC security groups and subnets that are attached to an Amazon Web Services Lambda
@@ -966,6 +1346,80 @@ local record M
         -- The date and time that a user last updated the configuration, in ISO 8601
         -- format
         lastModifiedAt: number
+    end
+
+    enum ScopeType
+        "TENANT"
+        "SUBSCRIPTION"
+    end
+
+    -- The scope of resources to scan for a single scanning type. Provide this as part of an AzureScopeConfigurationInput when you create or update a connector.
+    record ScopeConfigurationInput
+        -- The type of scope. Valid values are TENANT, which scans all resources in the Azure tenant, and SUBSCRIPTION, which scans only the resources in the specified Azure subscriptions.
+        scopeType: string
+        -- The list of scope values. For subscription-level scope, these are Azure subscription IDs.
+        scopeValues: {string}
+    end
+
+    -- The scope of Azure resources to scan, defined separately for VM, container image, and serverless scanning. Provide this when you create or update an Azure connector.
+    record AzureScopeConfigurationInput
+        -- The scope configuration input for VM scanning.
+        vmScanning: ScopeConfigurationInput
+        -- The scope configuration input for container image scanning.
+        containerImageScanning: ScopeConfigurationInput
+        -- The scope configuration input for serverless scanning.
+        serverlessScanning: ScopeConfigurationInput
+    end
+
+    -- The Azure-specific configuration details for creating a connector, including the Amazon Web Services Config connector association, scan scope, and regions to scan.
+    record AzureProviderDetailCreate
+        -- The ARN of the Amazon Web Services Config connector to associate with this connector.
+        awsConfigConnectorArn: string
+        -- The scope configuration that defines which Azure resources to scan.
+        scopeConfiguration: AzureScopeConfigurationInput
+        -- The Azure regions to scan.
+        azureRegions: {string}
+        -- Specifies whether to automatically install the VM scanner on connected Azure resources. Defaults to true.
+        autoInstallVMScanner: boolean
+    end
+
+    -- The Azure-specific configuration details for updating a connector, including the scan scope and regions to scan.
+    record AzureProviderDetailUpdate
+        -- The updated Azure regions to scan.
+        azureRegions: {string}
+        -- The updated scope configuration that defines which Azure resources to scan.
+        scopeConfiguration: AzureScopeConfigurationInput
+        -- Specifies whether to automatically install the VM scanner on connected Azure resources.
+        autoInstallVMScanner: boolean
+    end
+
+    enum ScopeState
+        "ACTIVE"
+        "PENDING"
+        "ERROR"
+        "DISABLED"
+    end
+
+    -- The scope of resources that Amazon Inspector scans for a single scanning type, including the scope level, the targeted resources, and the current state.
+    record ScopeConfiguration
+        -- The type of scope. Valid values are TENANT, which scans all resources in the Azure tenant, and SUBSCRIPTION, which scans only the resources in the specified Azure subscriptions.
+        scopeType: string
+        -- The list of scope values. For subscription-level scope, these are Azure subscription IDs.
+        scopeValues: {string}
+        -- The current state of the scope configuration.
+        state: string
+        -- The reason for the current state of the scope configuration.
+        stateReason: string
+    end
+
+    -- The scope of Azure resources that Amazon Inspector scans, defined separately for VM, container image, and serverless scanning. Returned as part of a connector's configuration.
+    record AzureScopeConfiguration
+        -- The scope configuration for VM scanning.
+        vmScanning: ScopeConfiguration
+        -- The scope configuration for container image scanning.
+        containerImageScanning: ScopeConfiguration
+        -- The scope configuration for serverless scanning.
+        serverlessScanning: ScopeConfiguration
     end
 
     -- One or more tags submitted as part of the request is not valid.
@@ -1229,6 +1683,12 @@ local record M
         accountIds: {string}
     end
 
+    enum CloudProvider
+        "AWS"
+        "AZURE"
+        "NOT_APPLICABLE"
+    end
+
     enum FreeTrialStatus
         "ACTIVE"
         "INACTIVE"
@@ -1240,6 +1700,9 @@ local record M
         "LAMBDA"
         "LAMBDA_CODE"
         "CODE_REPOSITORY"
+        "VM"
+        "CONTAINER_IMAGE"
+        "SERVERLESS_FUNCTION"
     end
 
     -- An object that contains information about the Amazon Inspector free trial for an account.
@@ -1248,6 +1711,8 @@ local record M
         start: number
         -- The order to sort results by.
         status: string
+        -- The cloud provider associated with the free trial information.
+        cloudProvider: string
     end
 
     -- Information about the Amazon Inspector free trial for an account.
@@ -1911,6 +2376,8 @@ local record M
         "SCAN_IN_PROGRESS"
         "IMAGE_ARCHIVED"
         "UNSUPPORTED_CODE_ARTIFACTS"
+        "RESOURCE_UNMANAGED"
+        "RESOURCE_STOPPED"
     end
 
     enum ScanStatusCode
@@ -2225,12 +2692,208 @@ local record M
         "ACCOUNT"
     end
 
+    enum EnablementStatus
+        "ENABLED"
+        "PENDING_ENABLEMENT"
+        "FAILED_TO_ENABLE"
+        "PENDING_UPDATE"
+        "FAILED_TO_UPDATE"
+        "PENDING_DELETION"
+        "DELETED"
+        "FAILED_TO_DELETE"
+    end
+
+    enum ConnectorHealthStatus
+        "CONNECTED"
+        "DEGRADED"
+        "FAILED_TO_CONNECT"
+        "PENDING_AUTHORIZATION"
+        "PENDING_CONFIGURATION"
+        "UNKNOWN"
+    end
+
+    -- The health and connectivity status of a connector, including the last time the status was checked and any diagnostic message. Returned as part of the Connector structure.
+    record ConnectorHealth
+        -- The health status of the connector.
+        connectorStatus: string
+        -- The date and time when the connector health was last checked.
+        lastCheckedAt: number
+        -- A message providing additional details about the connector health status.
+        message: string
+    end
+
+    enum ConnectorCloudProvider
+        "AZURE"
+    end
+
+    -- Describes a connector that links an external cloud provider to Amazon Inspector for vulnerability scanning.
+    record Connector
+        -- The Amazon Resource Name (ARN) of the connector.
+        connectorArn: string
+        -- The name of the connector.
+        name: string
+        -- A description of the connector.
+        description: string
+        -- The cloud provider for the connector.
+        provider: string
+        -- The enablement status of the connector, which indicates whether the connector is active and scanning resources.
+        enablementStatus: string
+        -- Additional information about the current enablement status of the connector.
+        enablementStatusReason: string
+        -- The health of the connector, which indicates whether Amazon Inspector can reach and scan the connected resources.
+        health: ConnectorHealth
+        -- The date and time when the connector was created.
+        createdAt: number
+        -- The date and time when the connector was last updated.
+        updatedAt: number
+        -- The Azure regions configured for the connector.
+        azureRegions: {string}
+        -- The ARN of the Amazon Web Services Config connector associated with this connector.
+        awsConfigConnectorArn: string
+        -- The Azure scope configuration for the connector.
+        scopeConfiguration: AzureScopeConfiguration
+        -- The tags associated with the connector.
+        tags: {string : string}
+        -- Specifies whether the VM scanner is automatically installed on connected resources.
+        autoInstallVMScanner: boolean
+    end
+
+    enum ConnectorArnComparison
+        "EQUALS"
+    end
+
+    -- A filter that matches connectors by connector ARN.
+    record ConnectorArnFilter
+        -- The comparison operator for the connector ARN filter.
+        comparison: string
+        -- The connector ARN value to filter by.
+        value: string
+    end
+
+    enum ContainerImagePullDateRescanDuration
+        "DAYS_3"
+        "DAYS_7"
+        "DAYS_14"
+        "DAYS_30"
+        "DAYS_60"
+        "DAYS_90"
+        "DAYS_180"
+    end
+
+    enum ContainerImageRescanDuration
+        "LIFETIME"
+        "DAYS_3"
+        "DAYS_7"
+        "DAYS_30"
+        "DAYS_180"
+        "DAYS_14"
+        "DAYS_60"
+        "DAYS_90"
+    end
+
+    -- The container image scanning settings for a connector, including how long pushed and pulled images continue to be rescanned for vulnerabilities.
+    record ConnectorContainerImageScanConfiguration
+        -- The amount of time after a container image is pushed to a repository during which Amazon Inspector continues to rescan the image for vulnerabilities. Valid values are LIFETIME, DAYS_3, DAYS_7, DAYS_14, DAYS_30, DAYS_60, DAYS_90, and DAYS_180.
+        pushDuration: string
+        -- The amount of time after a container image is last pulled from a repository during which Amazon Inspector continues to rescan the image for vulnerabilities. Valid values are DAYS_3, DAYS_7, DAYS_14, DAYS_30, DAYS_60, DAYS_90, and DAYS_180.
+        pullDuration: string
+    end
+
+    enum ConnectorTypeComparison
+        "EQUALS"
+    end
+
+    enum ConnectorType
+        "CUSTOMER_MANAGED"
+        "SERVICE_LINKED"
+    end
+
+    -- A filter that matches connectors by connector type.
+    record ConnectorTypeFilter
+        -- The comparison operator for the connector type filter.
+        comparison: string
+        -- The connector type value to filter by.
+        value: string
+    end
+
+    enum ProviderComparison
+        "EQUALS"
+    end
+
+    -- A filter that matches connectors by cloud provider.
+    record ProviderFilter
+        -- The comparison operator for the provider filter.
+        comparison: string
+        -- The cloud provider value to filter by.
+        value: string
+    end
+
+    -- Contains the filter criteria for narrowing the results returned by a ListConnectors request. You can filter by connector ARN, Amazon Web Services account ID, Amazon Web Services Config connector ARN, connector type, or cloud provider.
+    record ConnectorFilterCriteria
+        -- Filter by connector ARNs.
+        connectorArns: {ConnectorArnFilter}
+        -- Filter by Amazon Web Services account IDs.
+        accounts: {StringFilter}
+        -- Filter by Amazon Web Services Config connector ARNs.
+        awsConfigConnectorArns: {AwsConfigConnectorArnFilter}
+        -- Filter by connector type.
+        connectorType: {ConnectorTypeFilter}
+        -- Filter by cloud provider.
+        provider: {ProviderFilter}
+    end
+
+    -- The scan settings that Amazon Inspector applies to resources discovered through a connector.
+    record ConnectorScanConfiguration
+        -- The container image scanning configuration, including push and pull duration settings.
+        containerImageScanning: ConnectorContainerImageScanConfiguration
+    end
+
+    -- Represents a scan configuration and the connectors it applies to. Returned in the results of a ListConnectorScanConfigurations request.
+    record ConnectorScanConfigurationItem
+        -- The ARN of the Amazon Web Services Config connector.
+        awsConfigConnectorArn: string
+        -- The list of connector ARNs associated with this Amazon Web Services Config connector.
+        connectorArns: {string}
+        -- The scan configuration settings.
+        scanConfiguration: ConnectorScanConfiguration
+    end
+
+    -- Contains metadata about a container image associated with a covered resource.
+    record ContainerImageMetadata
+        -- The tags attached to the container image.
+        imageTags: {string}
+        -- The date and time the container image was pulled.
+        imagePulledAt: number
+        -- The last time the container image was in use.
+        lastInUseAt: number
+        -- The number of times the container image is in use.
+        inUseCount: number
+    end
+
+    -- Contains metadata about a container registry associated with a covered resource.
+    record ContainerRegistryMetadata
+        -- The name of the container registry.
+        name: string
+    end
+
+    -- Contains metadata about a container repository associated with a covered resource.
+    record ContainerRepositoryMetadata
+        -- The name of the container repository.
+        name: string
+        -- The scan frequency for the container repository.
+        scanFrequency: string
+    end
+
     enum GroupKey
         "SCAN_STATUS_CODE"
         "SCAN_STATUS_REASON"
         "ACCOUNT_ID"
         "RESOURCE_TYPE"
         "ECR_REPOSITORY_NAME"
+        "PROVIDER"
+        "PROVIDER_ACCOUNT_ID"
+        "PROVIDER_REGION"
+        "PROVIDER_ORG_ID"
     end
 
     -- a structure that contains information on the count of resources within a group.
@@ -2341,6 +3004,28 @@ local record M
         codeRepositoryProviderTypeVisibility: {CoverageStringFilter}
         -- Filter criteria for code repositories based on the ID of the last scanned commit.
         lastScannedCommitId: {CoverageStringFilter}
+        -- The cloud provider to filter coverage results by.
+        cloudProvider: {CoverageStringFilter}
+        -- The cloud provider account ID to filter coverage results by.
+        cloudProviderAccountId: {CoverageStringFilter}
+        -- The cloud provider region to filter coverage results by.
+        cloudProviderRegion: {CoverageStringFilter}
+        -- The cloud VM instance tags to filter coverage results by.
+        cloudVmInstanceTags: {CoverageMapFilter}
+        -- The cloud container image tags to filter coverage results by.
+        cloudContainerImageTags: {CoverageStringFilter}
+        -- The cloud container repository name to filter coverage results by.
+        cloudContainerRepositoryName: {CoverageStringFilter}
+        -- The cloud container registry name to filter coverage results by.
+        cloudContainerRegistryName: {CoverageStringFilter}
+        -- The cloud serverless function name to filter coverage results by.
+        cloudServerlessFunctionName: {CoverageStringFilter}
+        -- The cloud serverless function runtime to filter coverage results by.
+        cloudServerlessFunctionRuntime: {CoverageStringFilter}
+        -- The cloud serverless function tags to filter coverage results by.
+        cloudServerlessFunctionTags: {CoverageMapFilter}
+        -- The cloud provider organization ID to filter coverage results by.
+        cloudProviderOrgId: {CoverageStringFilter}
     end
 
     enum CoverageResourceType
@@ -2349,6 +3034,11 @@ local record M
         "AWS_ECR_REPOSITORY"
         "AWS_LAMBDA_FUNCTION"
         "CODE_REPOSITORY"
+        "Microsoft.Compute/virtualMachines"
+        "Microsoft.ContainerRegistry/registry/containerImage"
+        "Microsoft.ContainerRegistry/registry/containerRepository"
+        "Microsoft.Web/sites"
+        "Microsoft.ContainerRegistry/registries"
     end
 
     enum Ec2Platform
@@ -2408,6 +3098,34 @@ local record M
         runtime: string
     end
 
+    -- Contains metadata about a serverless function associated with a covered resource.
+    record ServerlessFunctionMetadata
+        -- The name of the serverless function.
+        serverlessFunctionName: string
+        -- The runtime of the serverless function.
+        runtime: string
+        -- The tags associated with the serverless function.
+        functionTags: {string : string}
+    end
+
+    enum VmPlatform
+        "WINDOWS"
+        "LINUX"
+        "UNKNOWN"
+    end
+
+    -- Contains metadata about a virtual machine (VM) instance associated with a covered resource.
+    record VmInstanceMetadata
+        -- The tags associated with the VM instance.
+        tags: {string : string}
+        -- The platform of the VM instance.
+        platform: string
+        -- The inventory hash of the VM instance.
+        inventoryHash: string
+        -- The image reference of the VM instance.
+        vmImageReference: string
+    end
+
     -- An object that contains details about the metadata for an Amazon ECR resource.
     record ResourceScanMetadata
         -- An object that contains details about the repository an Amazon ECR image resides in.
@@ -2421,12 +3139,23 @@ local record M
         lambdaFunction: LambdaFunctionMetadata
         -- Contains metadata about scan coverage for a code repository resource.
         codeRepository: CodeRepositoryMetadata
+        -- The VM instance metadata associated with a covered resource.
+        vmInstance: VmInstanceMetadata
+        -- The container image metadata associated with a covered resource.
+        containerImage: ContainerImageMetadata
+        -- The container repository metadata associated with a covered resource.
+        containerRepository: ContainerRepositoryMetadata
+        -- The container registry metadata associated with a covered resource.
+        containerRegistry: ContainerRegistryMetadata
+        -- The serverless function metadata associated with a covered resource.
+        serverlessFunction: ServerlessFunctionMetadata
     end
 
     enum ScanMode
         "EC2_SSM_AGENT_BASED"
         "EC2_AGENTLESS"
         "EC2_INSPECTOR_AGENT_BASED"
+        "VM_INSPECTOR_AGENT_BASED"
     end
 
     enum ScanType
@@ -2453,6 +3182,16 @@ local record M
         lastScannedAt: number
         -- The scan method that is applied to the instance.
         scanMode: string
+        -- The cloud provider of the covered resource.
+        provider: string
+        -- The cloud provider account ID of the covered resource.
+        providerAccountId: string
+        -- The cloud provider organization ID of the covered resource.
+        providerOrgId: string
+        -- The cloud provider region of the covered resource.
+        providerRegion: string
+        -- The cloud provider partition of the covered resource.
+        providerPartition: string
     end
 
     -- Creates CIS targets.
@@ -2538,6 +3277,32 @@ local record M
     record CreateCodeSecurityScanConfigurationOutput
         -- The Amazon Resource Name (ARN) of the created scan configuration.
         scanConfigurationArn: string
+    end
+
+    -- The provider-specific configuration details for creating a connector.
+    record ProviderDetailCreate
+        -- The Azure-specific details for creating a connector.
+        azure: AzureProviderDetailCreate
+    end
+
+    record CreateConnectorInput
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.
+        clientToken: string
+        -- The name of the connector.
+        name: string
+        -- The cloud provider for the connector.
+        provider: string
+        -- A description of the connector.
+        description: string
+        -- The provider-specific configuration details for the connector.
+        providerDetail: ProviderDetailCreate
+        -- The tags to apply to the connector.
+        tags: {string : string}
+    end
+
+    record CreateConnectorOutput
+        -- The Amazon Resource Name (ARN) of the created connector.
+        connectorArn: string
     end
 
     enum FilterAction
@@ -2683,6 +3448,44 @@ local record M
         -- Filter criteria for findings based on the repository provider type (such as GitHub,
         -- GitLab, etc.).
         codeRepositoryProviderType: {StringFilter}
+        -- Filter criteria for the cloud provider.
+        cloudProvider: {StringFilter}
+        -- Filter criteria for the cloud provider region.
+        cloudProviderRegion: {StringFilter}
+        -- Filter criteria for the cloud provider account ID.
+        cloudProviderAccountId: {StringFilter}
+        -- Filter criteria for the cloud provider organization ID.
+        cloudProviderOrgId: {StringFilter}
+        -- Filter criteria for the image reference of a VM instance.
+        cloudVmImageReference: {StringFilter}
+        -- Filter criteria for the network ID of a VM instance.
+        cloudVmNetworkId: {StringFilter}
+        -- Filter criteria for the subnet IDs of a VM instance.
+        cloudVmSubnetIds: {StringFilter}
+        -- Filter criteria for the repository name of a container image.
+        cloudImageRepositoryName: {StringFilter}
+        -- Filter criteria for the registry of a container image.
+        cloudImageRegistry: {StringFilter}
+        -- Filter criteria for the digest of a container image.
+        cloudImageDigest: {StringFilter}
+        -- Filter criteria for the tags of a container image.
+        cloudImageTags: {StringFilter}
+        -- Filter criteria for when a container image was pushed.
+        cloudImagePushedAt: {DateFilter}
+        -- Filter criteria for the architecture of a container image.
+        cloudImageArchitecture: {StringFilter}
+        -- Filter criteria for the last time a container image was in use.
+        cloudImageLastInUseAt: {DateFilter}
+        -- Filter criteria for the in-use count of a container image.
+        cloudImageInUseCount: {NumberFilter}
+        -- Filter criteria for the name of a serverless function.
+        cloudServerlessFunctionName: {StringFilter}
+        -- Filter criteria for the runtime of a serverless function.
+        cloudServerlessFunctionRuntime: {StringFilter}
+        -- Filter criteria for when a serverless function was last modified.
+        cloudServerlessFunctionLastModifiedAt: {DateFilter}
+        -- Filter criteria for the execution role of a serverless function.
+        cloudServerlessFunctionExecutionRole: {StringFilter}
     end
 
     record CreateFilterInput
@@ -2932,6 +3735,14 @@ local record M
     record DeleteCodeSecurityScanConfigurationOutput
         -- The Amazon Resource Name (ARN) of the deleted scan configuration.
         scanConfigurationArn: string
+    end
+
+    record DeleteConnectorInput
+        -- The Amazon Resource Name (ARN) of the connector to delete.
+        connectorArn: string
+    end
+
+    record DeleteConnectorOutput
     end
 
     record DeleteFilterInput
@@ -3336,6 +4147,84 @@ local record M
         recommendation: Recommendation
     end
 
+    -- Contains details about a container image involved in a finding.
+    record Image
+        -- The name of the repository the container image resides in.
+        repositoryName: string
+        -- The registry for the container image.
+        registry: string
+        -- The image tags attached to the container image.
+        imageTags: {string}
+        -- The image digest of the container image.
+        imageDigest: string
+        -- The date and time the container image was pushed.
+        pushedAt: number
+        -- The architecture of the container image.
+        architecture: string
+        -- The author of the container image.
+        author: string
+        -- The number of times the container image is in use.
+        inUseCount: number
+        -- The last time the container image was in use.
+        lastInUseAt: number
+        -- The platform of the container image.
+        platform: string
+    end
+
+    -- Contains details about a serverless function involved in a finding.
+    record ServerlessFunction
+        -- The name of the serverless function.
+        serverlessFunctionName: string
+        -- The runtime of the serverless function.
+        runtime: string
+        -- The version of the serverless function.
+        version: string
+        -- The code digest of the serverless function.
+        codeDigest: string
+        -- The date and time the serverless function was last modified.
+        lastModifiedAt: number
+        -- The network ID associated with the serverless function.
+        networkId: string
+        -- The subnet IDs associated with the serverless function.
+        subnetIds: {string}
+        -- The security group IDs associated with the serverless function.
+        securityGroupIds: {string}
+        -- The execution role of the serverless function.
+        executionRole: string
+        -- The package type of the serverless function.
+        packageType: string
+        -- The architectures of the serverless function.
+        architectures: {string}
+        -- The layers of the serverless function.
+        layers: {string}
+    end
+
+    -- Contains details about a VM instance involved in a finding.
+    record Vm
+        -- The name of the VM instance.
+        vmName: string
+        -- The image reference of the VM instance.
+        vmImageReference: string
+        -- The IPv4 addresses of the VM instance.
+        ipV4Addresses: {string}
+        -- The IPv6 addresses of the VM instance.
+        ipV6Addresses: {string}
+        -- The network ID associated with the VM instance.
+        networkId: string
+        -- The subnet IDs of the VM instance.
+        subnetIds: {string}
+        -- The security group IDs associated with the VM instance.
+        securityGroupIds: {string}
+        -- The date and time the VM instance was launched.
+        launchedAt: number
+        -- The platform of the VM instance.
+        platform: string
+        -- The execution role of the VM instance.
+        executionRole: string
+        -- The key name associated with the VM instance.
+        keyName: string
+    end
+
     -- Contains details about the resource involved in the finding.
     record ResourceDetails
         -- An object that contains details about the Amazon EC2 instance involved in the finding.
@@ -3348,6 +4237,12 @@ local record M
         awsLambdaFunction: AwsLambdaFunctionDetails
         -- Contains details about a code repository resource associated with a finding.
         codeRepository: CodeRepositoryDetails
+        -- An object that contains details about a VM instance involved in the finding.
+        vm: Vm
+        -- An object that contains details about a container image involved in the finding.
+        image: Image
+        -- An object that contains details about a serverless function involved in the finding.
+        serverlessFunction: ServerlessFunction
     end
 
     enum ResourceType
@@ -3356,6 +4251,9 @@ local record M
         "AWS_ECR_REPOSITORY"
         "AWS_LAMBDA_FUNCTION"
         "CODE_REPOSITORY"
+        "Microsoft.Compute/virtualMachines"
+        "Microsoft.ContainerRegistry/registry/containerImage"
+        "Microsoft.Web/sites"
     end
 
     -- Details about the resource involved in a finding.
@@ -3370,6 +4268,12 @@ local record M
         tags: {string : string}
         -- An object that contains details about the resource involved in a finding.
         details: ResourceDetails
+        -- The cloud provider of the resource.
+        provider: string
+        -- The cloud provider account ID of the resource.
+        providerAccountId: string
+        -- The cloud provider organization ID of the resource.
+        providerOrgId: string
     end
 
     enum Severity
@@ -3593,6 +4497,11 @@ local record M
     end
 
     record GetConfigurationInput
+        -- The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want
+        -- to retrieve. When specified, you must be the delegated administrator for this
+        -- member account. If not specified, the operation returns your own
+        -- configuration.
+        accountId: string
     end
 
     record GetConfigurationOutput
@@ -3712,6 +4621,10 @@ local record M
         -- Contains details about the resource filter criteria used for the software bill of
         -- materials (SBOM) report.
         filterCriteria: ResourceFilterCriteria
+    end
+
+    enum InheritanceMode
+        "INHERIT_FROM_ADMIN"
     end
 
     enum Service
@@ -3969,6 +4882,38 @@ local record M
         nextToken: string
     end
 
+    record ListConnectorsInput
+        -- The maximum number of results to return in a single call. To retrieve the remaining results, make another request with the nextToken value returned from this request.
+        maxResults: number
+        -- A token to use for paginating results. Set this value to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+        -- The filter criteria to apply to the list of connectors.
+        filterCriteria: ConnectorFilterCriteria
+    end
+
+    record ListConnectorsOutput
+        -- A list of connectors.
+        items: {Connector}
+        -- A pagination token. If this value is not null, there are additional results available. Use this token in the nextToken parameter of a subsequent request to retrieve the next page of results.
+        nextToken: string
+    end
+
+    record ListConnectorScanConfigurationsInput
+        -- The list of Amazon Web Services Config connector ARNs to filter results.
+        awsConfigConnectorArns: {string}
+        -- The maximum number of results to return in a single call. Valid range is 1 to 50. To retrieve the remaining results, make another request with the nextToken value returned from this request.
+        maxResults: number
+        -- A token to use for paginating results. Set this value to null for the first request. For subsequent calls, use the nextToken value returned from the previous request.
+        nextToken: string
+    end
+
+    record ListConnectorScanConfigurationsOutput
+        -- A list of scan configuration items.
+        scanConfigurations: {ConnectorScanConfigurationItem}
+        -- A pagination token. If this value is not null, there are additional results available. Use this token in the nextToken parameter of a subsequent request to retrieve the next page of results.
+        nextToken: string
+    end
+
     record ListCoverageInput
         -- The maximum number of results the response can return. If your request would return more
         -- than the maximum the response will return a nextToken value, use this value
@@ -4216,6 +5161,10 @@ local record M
         "CODE_REPOSITORY_IAC"
         "CODE_REPOSITORY_SCA"
         "EC2_AGENTLESS_INSTANCE_HOURS"
+        "AZURE_CONTAINER_IMAGE_INITIAL_SCAN"
+        "AZURE_CONTAINER_IMAGE_RESCAN"
+        "AZURE_VM_AGENT_BASED_INSTANCE_HOURS"
+        "AZURE_SERVERLESS_FUNCTION_HOURS"
     end
 
     -- Contains usage information about the cost of Amazon Inspector operation.
@@ -4226,6 +5175,8 @@ local record M
         estimatedMonthlyCost: number
         -- The currency type used when calculating usage data.
         currency: string
+        -- The cloud provider associated with the usage information.
+        cloudProvider: string
     end
 
     -- The total of usage for an account ID.
@@ -4534,14 +5485,73 @@ local record M
         scanConfigurationArn: string
     end
 
+    -- The per-scan-type inheritance reset settings for the UpdateConfiguration
+    -- operation. Each member is independently optional. Including a member in this structure
+    -- resets that scan type's configuration to inherit from the delegated administrator.
+    record UpdateConfigurationInheritance
+        -- The inheritance mode for Amazon EC2 scan configuration. Set to
+        -- INHERIT_FROM_ADMIN to reset the member account's Amazon EC2 scan configuration to
+        -- inherit from the delegated administrator. If omitted, the member account's existing Amazon EC2
+        -- scan configuration is not changed.
+        ec2Configuration: string
+        -- The inheritance mode for Amazon ECR scan configuration. Set to
+        -- INHERIT_FROM_ADMIN to reset the member account's Amazon ECR scan configuration to
+        -- inherit from the delegated administrator. If omitted, the member account's existing Amazon ECR
+        -- scan configuration is not changed.
+        ecrConfiguration: string
+    end
+
     record UpdateConfigurationInput
+        -- The 12-digit Amazon Web Services account ID of the member account whose scan configuration you want
+        -- to update. When specified, you must be the delegated administrator for this member
+        -- account. If not specified, the operation updates your own configuration and
+        -- propagates changes to any member accounts that have not been individually configured.
+        accountId: string
         -- Specifies how the ECR automated re-scan will be updated for your environment.
         ecrConfiguration: EcrConfiguration
         -- Specifies how the Amazon EC2 automated scan will be updated for your environment.
         ec2Configuration: Ec2Configuration
+        -- Specifies which scan-type configurations to reset to the delegated administrator's
+        -- inherited values for the targeted member account. Each member of this structure is
+        -- independently optional. When specified, ec2Configuration and
+        -- ecrConfiguration must be absent, and accountId must also be
+        -- present. Only INHERIT_FROM_ADMIN is valid for each member. If not specified,
+        -- the operation uses the ec2Configuration and ecrConfiguration
+        -- parameters instead.
+        updateConfigurationInheritance: UpdateConfigurationInheritance
     end
 
     record UpdateConfigurationOutput
+    end
+
+    -- The provider-specific configuration details for updating a connector.
+    record ProviderDetailUpdate
+        -- The Azure-specific details for updating a connector.
+        azure: AzureProviderDetailUpdate
+    end
+
+    record UpdateConnectorInput
+        -- The Amazon Resource Name (ARN) of the connector to update.
+        connectorArn: string
+        -- The updated description of the connector.
+        description: string
+        -- The updated provider-specific configuration details for the connector.
+        providerDetail: ProviderDetailUpdate
+    end
+
+    record UpdateConnectorOutput
+        -- The Amazon Resource Name (ARN) of the updated connector.
+        connectorArn: string
+    end
+
+    record UpdateConnectorScanConfigurationInput
+        -- The ARN of the Amazon Web Services Config connector.
+        awsConfigConnectorArn: string
+        -- The scan configuration settings to apply.
+        scanConfiguration: ConnectorScanConfiguration
+    end
+
+    record UpdateConnectorScanConfigurationOutput
     end
 
     record UpdateEc2DeepInspectionConfigurationInput

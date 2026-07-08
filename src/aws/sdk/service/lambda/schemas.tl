@@ -1893,6 +1893,94 @@ M.CheckpointDurableExecutionOutput = schema.new({
     },
 })
 
+M.KMSAccessDeniedException = schema.new({
+    id = id.from(_N, "KMSAccessDeniedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "KMSAccessDeniedException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "KMSAccessDeniedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSDisabledException = schema.new({
+    id = id.from(_N, "KMSDisabledException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "KMSDisabledException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "KMSDisabledException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSInvalidStateException = schema.new({
+    id = id.from(_N, "KMSInvalidStateException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "KMSInvalidStateException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "KMSInvalidStateException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KMSNotFoundException = schema.new({
+    id = id.from(_N, "KMSNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "KMSNotFoundException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "KMSNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CodeSigningPolicies = schema.new({
     id = id.from(_N, "CodeSigningPolicies"),
     type = "structure",
@@ -4283,6 +4371,12 @@ M.DurableConfig = schema.new({
     id = id.from(_N, "DurableConfig"),
     type = "structure",
     members = {
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "DurableConfig", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
         RetentionPeriodInDays = schema.new({
             id = id.from(_N, "DurableConfig", "RetentionPeriodInDays"),
             type = "integer",
@@ -7094,94 +7188,6 @@ M.InvokeOutput = schema.new({
     },
 })
 
-M.KMSAccessDeniedException = schema.new({
-    id = id.from(_N, "KMSAccessDeniedException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Type = schema.new({
-            id = id.from(_N, "KMSAccessDeniedException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        Message = schema.new({
-            id = id.from(_N, "KMSAccessDeniedException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSDisabledException = schema.new({
-    id = id.from(_N, "KMSDisabledException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Type = schema.new({
-            id = id.from(_N, "KMSDisabledException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        Message = schema.new({
-            id = id.from(_N, "KMSDisabledException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSInvalidStateException = schema.new({
-    id = id.from(_N, "KMSInvalidStateException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Type = schema.new({
-            id = id.from(_N, "KMSInvalidStateException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        Message = schema.new({
-            id = id.from(_N, "KMSInvalidStateException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.KMSNotFoundException = schema.new({
-    id = id.from(_N, "KMSNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Type = schema.new({
-            id = id.from(_N, "KMSNotFoundException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        Message = schema.new({
-            id = id.from(_N, "KMSNotFoundException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.ModeNotSupportedException = schema.new({
     id = id.from(_N, "ModeNotSupportedException"),
     type = "structure",
@@ -9941,6 +9947,16 @@ M.GetDurableExecutionInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        IncludeExecutionData = schema.new({
+            id = id.from(_N, "GetDurableExecutionInput", "IncludeExecutionData"),
+            type = "boolean",
+            name = "IncludeExecutionData",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+                [traits.HTTP_QUERY] = { name = "IncludeExecutionData" },
+            },
+        }),
     },
 })
 
@@ -10043,6 +10059,19 @@ M.GetDurableExecutionOutput = schema.new({
             name = "TraceHeader",
             target_id = id.from(_N, "TraceHeader"),
             target = M.TraceHeader,
+        }),
+        ExecutionDataIncluded = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "ExecutionDataIncluded"),
+            type = "boolean",
+            name = "ExecutionDataIncluded",
+            target_id = prelude.Boolean.id,
+        }),
+        DurableConfig = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "DurableConfig"),
+            type = "structure",
+            name = "DurableConfig",
+            target_id = id.from(_N, "DurableConfig"),
+            target = M.DurableConfig,
         }),
     },
 })
@@ -11897,6 +11926,12 @@ M.Execution = schema.new({
             type = "timestamp",
             name = "EndTimestamp",
             target_id = prelude.Timestamp.id,
+        }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "Execution", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })

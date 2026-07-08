@@ -166,4 +166,22 @@ function M.items_list_managed_firewall_domain_lists(client, input)
     })
 end
 
+--- Returns a page iterator for listSharedDNSViews.
+function M.pages_list_shared_d_n_s_views(client, input)
+    return paginator.pages(client, "listSharedDNSViews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dnsViews",
+    })
+end
+
+--- Returns an item iterator for listSharedDNSViews.
+function M.items_list_shared_d_n_s_views(client, input)
+    return paginator.items(client, "listSharedDNSViews", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "dnsViews",
+    })
+end
+
 return M

@@ -4995,6 +4995,115 @@ M.CreateAttachedFileOutput = schema.new({
     },
 })
 
+M.AuthScope = schema.new({
+    id = id.from(_N, "AuthScope"),
+    type = "structure",
+    members = {
+        SecurityProfileIds = schema.new({
+            id = id.from(_N, "AuthScope", "SecurityProfileIds"),
+            type = "list",
+            name = "SecurityProfileIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EntityType = schema.new({
+            id = id.from(_N, "AuthScope", "EntityType"),
+            type = "string",
+            name = "EntityType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EntityId = schema.new({
+            id = id.from(_N, "AuthScope", "EntityId"),
+            type = "string",
+            name = "EntityId",
+            target_id = prelude.String.id,
+        }),
+        DomainName = schema.new({
+            id = id.from(_N, "AuthScope", "DomainName"),
+            type = "string",
+            name = "DomainName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateAuthCodeInput = schema.new({
+    id = id.from(_N, "CreateAuthCodeRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "CreateAuthCodeInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "CreateAuthCodeInput", "Scope"),
+            type = "structure",
+            name = "Scope",
+            target_id = id.from(_N, "AuthScope"),
+            target = M.AuthScope,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxSessionDurationMinutes = schema.new({
+            id = id.from(_N, "CreateAuthCodeInput", "MaxSessionDurationMinutes"),
+            type = "integer",
+            name = "MaxSessionDurationMinutes",
+            target_id = prelude.Integer.id,
+        }),
+        SessionInactivityDurationMinutes = schema.new({
+            id = id.from(_N, "CreateAuthCodeInput", "SessionInactivityDurationMinutes"),
+            type = "integer",
+            name = "SessionInactivityDurationMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.CreateAuthCodeOutput = schema.new({
+    id = id.from(_N, "CreateAuthCodeResponse"),
+    type = "structure",
+    members = {
+        AuthCode = schema.new({
+            id = id.from(_N, "CreateAuthCodeOutput", "AuthCode"),
+            type = "string",
+            name = "AuthCode",
+            target_id = prelude.String.id,
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "CreateAuthCodeOutput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+        EntityType = schema.new({
+            id = id.from(_N, "CreateAuthCodeOutput", "EntityType"),
+            type = "string",
+            name = "EntityType",
+            target_id = prelude.String.id,
+        }),
+        EntityId = schema.new({
+            id = id.from(_N, "CreateAuthCodeOutput", "EntityId"),
+            type = "string",
+            name = "EntityId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Reference = schema.new({
     id = id.from(_N, "Reference"),
     type = "structure",
@@ -11911,6 +12020,38 @@ M.DeleteSecurityProfileInput = schema.new({
 })
 
 M.DeleteSecurityProfileOutput = prelude.Unit
+
+M.DeleteSessionInput = schema.new({
+    id = id.from(_N, "DeleteSessionRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DeleteSessionInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "DeleteSessionInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSessionOutput = schema.new({
+    id = id.from(_N, "DeleteSessionResponse"),
+    type = "structure",
+})
 
 M.DeleteTaskTemplateInput = schema.new({
     id = id.from(_N, "DeleteTaskTemplateRequest"),
@@ -19729,6 +19870,18 @@ M.GetFederationTokenOutput = schema.new({
     id = id.from(_N, "GetFederationTokenResponse"),
     type = "structure",
     members = {
+        UserId = schema.new({
+            id = id.from(_N, "GetFederationTokenOutput", "UserId"),
+            type = "string",
+            name = "UserId",
+            target_id = prelude.String.id,
+        }),
+        UserArn = schema.new({
+            id = id.from(_N, "GetFederationTokenOutput", "UserArn"),
+            type = "string",
+            name = "UserArn",
+            target_id = prelude.String.id,
+        }),
         Credentials = schema.new({
             id = id.from(_N, "GetFederationTokenOutput", "Credentials"),
             type = "structure",
@@ -19740,18 +19893,6 @@ M.GetFederationTokenOutput = schema.new({
             id = id.from(_N, "GetFederationTokenOutput", "SignInUrl"),
             type = "string",
             name = "SignInUrl",
-            target_id = prelude.String.id,
-        }),
-        UserArn = schema.new({
-            id = id.from(_N, "GetFederationTokenOutput", "UserArn"),
-            type = "string",
-            name = "UserArn",
-            target_id = prelude.String.id,
-        }),
-        UserId = schema.new({
-            id = id.from(_N, "GetFederationTokenOutput", "UserId"),
-            type = "string",
-            name = "UserId",
             target_id = prelude.String.id,
         }),
     },
@@ -42145,6 +42286,18 @@ M.CreateAttachedFile = schema.operation({
     },
 })
 
+M.CreateAuthCode = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateAuthCode"),
+    input = M.CreateAuthCodeInput,
+    output = M.CreateAuthCodeOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/auth/code/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateContact = schema.operation({
     id = id.from("com.amazonaws.connect", "CreateContact"),
     input = M.CreateContactInput,
@@ -42871,6 +43024,18 @@ M.DeleteSecurityProfile = schema.operation({
     output = M.DeleteSecurityProfileOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/security-profiles/{InstanceId}/{SecurityProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSession = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteSession"),
+    input = M.DeleteSessionInput,
+    output = M.DeleteSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/auth/sessions/{InstanceId}/{SessionId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

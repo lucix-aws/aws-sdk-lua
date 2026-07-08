@@ -1104,6 +1104,18 @@ local record M
         "PAID"
     end
 
+    -- Specifies the scope of resources to record from a third-party cloud service provider.
+    record ScopeConfiguration
+        -- The type of scope for the third-party cloud resources. Valid values include tenant and subscription.
+        scopeType: string
+        -- The list of specific scope values for the third-party cloud resources. For example, a list of Azure subscriptions or management groups.
+        scopeValues: {string}
+        -- Specifies whether to record resources from all supported regions for the third-party cloud service provider.
+        allRegions: boolean
+        -- The list of regions from the third-party cloud service provider to include when recording resources. Used when allRegions is set to false.
+        includedRegions: {string}
+    end
+
     -- Records configuration changes to the resource types in scope.
     -- For more information about the configuration recorder,
     -- see
@@ -1166,6 +1178,10 @@ local record M
         recordingScope: string
         -- For service-linked configuration recorders, specifies the linked Amazon Web Services service for the configuration recorder.
         servicePrincipal: string
+        -- The Amazon Resource Name (ARN) of the connector that specifies the connection between a third-party cloud service provider and Config.
+        connectorArn: string
+        -- Specifies the scope of resources to record from the third-party cloud service provider connected through the connector.
+        scopeConfiguration: ScopeConfiguration
     end
 
     record AssociateResourceTypesOutput
@@ -1173,7 +1189,12 @@ local record M
     end
 
     -- For PutServiceLinkedConfigurationRecorder, you cannot create a service-linked recorder because a service-linked recorder already exists for the specified service.
+    -- For PutThirdPartyServiceLinkedConfigurationRecorder, you cannot create a service-linked recorder because the specified service principal does not support multiple configuration recorders and one already exists.
+    -- For PutThirdPartyServiceLinkedConfigurationRecorder, another in-progress operation is currently referencing the same connector or service principal. Please try again later.
+    -- For PutConnector, you cannot create a connector because a connector already exists for the specified connector configuration.
     -- For DeleteServiceLinkedConfigurationRecorder, you cannot delete the service-linked recorder because it is currently in use by the linked Amazon Web Services service.
+    -- For DeleteServiceLinkedConfigurationRecorder, another in-progress operation is currently referencing the same connector. Please try again later.
+    -- For DeleteConnector, another in-progress operation is currently referencing the connector. Please try again later.
     -- For DeleteDeliveryChannel, you cannot delete the specified delivery channel because the customer managed configuration recorder is running. Use the StopConfigurationRecorder operation to stop the customer managed configuration
     -- recorder.
     -- For AssociateResourceTypes and DisassociateResourceTypes, one of the following errors:
@@ -1203,9 +1224,20 @@ local record M
     -- Your configuraiton recorder has a recording strategy that does not allow the association or disassociation of resource types.
     -- One or more of the specified resource types are already associated or disassociated with the configuration recorder.
     -- For service-linked configuration recorders, the configuration recorder does not record one or more of the specified resource types.
+    -- For DeleteServiceLinkedConfigurationRecorder, one of the following errors:
+    -- You have provided both Arn and ServicePrincipal. Only one of Arn or ServicePrincipal can be specified.
+    -- You have provided a service principal for service-linked configuration recorder that is not valid.
     record ValidationException
         -- Error executing the command
         message: string
+    end
+
+    -- The configuration details for connecting to Microsoft Azure.
+    record AzureConnectorConfiguration
+        -- The Azure tenant identifier.
+        tenantIdentifier: string
+        -- The Azure client identifier.
+        clientIdentifier: string
     end
 
     enum ConfigurationItemStatus
@@ -1953,7 +1985,11 @@ local record M
         servicePrincipal: string
     end
 
-    -- A summary of a configuration recorder, including the arn, name, servicePrincipal, and recordingScope.
+    enum Provider
+        "AZURE"
+    end
+
+    -- A summary of a configuration recorder, including the arn, name, servicePrincipal, recordingScope, and provider.
     record ConfigurationRecorderSummary
         -- The Amazon Resource Name (ARN) of the configuration recorder.
         arn: string
@@ -1963,6 +1999,8 @@ local record M
         servicePrincipal: string
         -- Indicates whether the ConfigurationItems in scope for the configuration recorder are recorded for free (INTERNAL) or if you are charged a service fee for recording (PAID).
         recordingScope: string
+        -- For service-linked configuration recorders that record resources from a third-party cloud service provider, indicates the cloud service provider. Currently, AZURE is supported.
+        provider: string
     end
 
     -- Filters the conformance pack by compliance types and Config rule names.
@@ -2124,6 +2162,50 @@ local record M
         message: string
     end
 
+    -- The provider-specific configuration for connecting to the third-party cloud service provider. You must specify exactly one provider configuration.
+    record ConnectorConfiguration
+        -- The configuration for an Azure connector.
+        azure: AzureConnectorConfiguration
+    end
+
+    -- The details of the connector, including the connector configuration and connector ARN.
+    record Connector
+        -- The name of the connector.
+        name: string
+        -- The Amazon Resource Name (ARN) of the connector.
+        arn: string
+        -- The provider-specific configuration for connecting to the third-party cloud service provider.
+        connectorConfiguration: ConnectorConfiguration
+        -- The date and time that the connector was created.
+        createdTime: number
+    end
+
+    enum ConnectorFilterName
+        "provider"
+    end
+
+    -- Filters connectors based on the connector provider.
+    record ConnectorFilter
+        -- The name of the filter. Currently, only provider is supported.
+        filterName: string
+        -- The value of the filter. For provider, valid values include: AZURE.
+        filterValues: {string}
+    end
+
+    -- A summary of a connector.
+    record ConnectorSummary
+        -- The Amazon Resource Name (ARN) of the connector.
+        arn: string
+        -- The name of the connector.
+        name: string
+        -- The third-party cloud service provider. Currently, AZURE is supported.
+        provider: string
+        -- The Azure tenant identifier for the connector.
+        tenantIdentifier: string
+        -- The date and time that the connector was created.
+        createdTime: number
+    end
+
     record DeleteAggregationAuthorizationInput
         -- The 12-digit account ID of the account authorized to aggregate
         -- data.
@@ -2213,6 +2295,20 @@ local record M
 
     -- You specified one or more conformance packs that do not exist.
     record NoSuchConformancePackException
+        -- Error executing the command
+        message: string
+    end
+
+    record DeleteConnectorInput
+        -- The Amazon Resource Name (ARN) of the connector that you want to delete.
+        Arn: string
+    end
+
+    record DeleteConnectorOutput
+    end
+
+    -- You have specified a resource that does not exist.
+    record ResourceNotFoundException
         -- Error executing the command
         message: string
     end
@@ -2323,6 +2419,7 @@ local record M
     -- You do not have permission to call IAM GetRole action or create a service-linked role.
     -- You do not have permission to read Amazon S3 bucket or call SSM:GetDocument.
     -- For PutServiceLinkedConfigurationRecorder, a service-linked configuration recorder cannot be created because you do not have the following permissions: IAM CreateServiceLinkedRole.
+    -- For PutConnector, a connector cannot be created because you do not have the following permissions: IAM CreateServiceLinkedRole.
     record InsufficientPermissionsException
         -- Error executing the command
         message: string
@@ -2405,8 +2502,10 @@ local record M
     end
 
     record DeleteServiceLinkedConfigurationRecorderInput
-        -- The service principal of the Amazon Web Services service for the service-linked configuration recorder that you want to delete.
+        -- The service principal of the Amazon Web Services service for the service-linked configuration recorder that you want to delete. This field is only supported for Amazon Web Services service principals. For third-party service-linked configuration recorders, use Arn instead.
         ServicePrincipal: string
+        -- The Amazon Resource Name (ARN) of the service-linked configuration recorder that you want to delete. For third-party service-linked configuration recorders, you must use Arn. You must specify exactly one of Arn or ServicePrincipal.
+        Arn: string
     end
 
     record DeleteServiceLinkedConfigurationRecorderOutput
@@ -2422,12 +2521,6 @@ local record M
     end
 
     record DeleteStoredQueryOutput
-    end
-
-    -- You have specified a resource that does not exist.
-    record ResourceNotFoundException
-        -- Error executing the command
-        message: string
     end
 
     -- The input for the DeliverConfigSnapshot
@@ -2667,15 +2760,15 @@ local record M
         -- If you do not specify any names, Config returns details for all
         -- your rules.
         ConfigRuleNames: {string}
-        -- The nextToken string returned on a previous page
-        -- that you use to get the next page of results in a paginated
-        -- response.
-        NextToken: string
         -- Returns a list of Detective or Proactive Config rules. By default, this API returns an unfiltered list. For more information on Detective or Proactive Config rules,
         -- see
         -- Evaluation Mode
         -- in the Config Developer Guide.
         Filters: DescribeConfigRulesFilters
+        -- The nextToken string returned on a previous page
+        -- that you use to get the next page of results in a paginated
+        -- response.
+        NextToken: string
     end
 
     record DescribeConfigRulesOutput
@@ -2739,7 +2832,7 @@ local record M
         -- A list of names of the configuration recorders that you want to specify.
         -- When making a request to this operation, you can only specify one configuration recorder.
         ConfigurationRecorderNames: {string}
-        -- For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder.
+        -- For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder. This field is only supported for Amazon Web Services service principals. For third-party service-linked configuration recorders, use Arn instead.
         ServicePrincipal: string
         -- The Amazon Resource Name (ARN) of the configuration recorder that you want to specify.
         Arn: string
@@ -2760,7 +2853,7 @@ local record M
         -- account, if applicable.
         -- When making a request to this operation, you can only specify one configuration recorder.
         ConfigurationRecorderNames: {string}
-        -- For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder.
+        -- For service-linked configuration recorders, you can use the service principal of the linked Amazon Web Services service to specify the configuration recorder. This field is only supported for Amazon Web Services service principals. For third-party service-linked configuration recorders, use Arn instead.
         ServicePrincipal: string
         -- The Amazon Resource Name (ARN) of the configuration recorder that you want to specify.
         Arn: string
@@ -3807,6 +3900,16 @@ local record M
         NextToken: string
     end
 
+    record GetConnectorInput
+        -- The Amazon Resource Name (ARN) of the connector.
+        Arn: string
+    end
+
+    record GetConnectorOutput
+        -- The details of the specified connector.
+        Connector: Connector
+    end
+
     record GetCustomRulePolicyInput
         -- The name of your Config Custom Policy rule.
         ConfigRuleName: string
@@ -4340,6 +4443,22 @@ local record M
         ConformancePackComplianceScores: {ConformancePackComplianceScore}
     end
 
+    record ListConnectorsInput
+        -- The maximum number of results to include in the response.
+        MaxResults: number
+        -- The NextToken string returned on a previous page that you use to get the next page of results in a paginated response.
+        NextToken: string
+        -- Filters the results based on a list of ConnectorFilter objects that you specify.
+        Filters: {ConnectorFilter}
+    end
+
+    record ListConnectorsOutput
+        -- A list of ConnectorSummary objects.
+        ConnectorSummaries: {ConnectorSummary}
+        -- The NextToken string returned on a previous page that you use to get the next page of results in a paginated response.
+        NextToken: string
+    end
+
     record ListDiscoveredResourcesInput
         -- The type of resources that you want Config to list in the
         -- response.
@@ -4472,6 +4591,7 @@ local record M
         -- ConfigurationAggregator
         -- AggregationAuthorization
         -- StoredQuery
+        -- Connector
         ResourceArn: string
         -- The maximum number of tags returned on each page. The limit maximum is 50. You cannot specify a number greater than 50. If you specify 0, Config uses the default.
         Limit: number
@@ -4523,6 +4643,12 @@ local record M
     -- Service Limits
     -- in the Config Developer Guide.
     record MaxNumberOfConformancePacksExceededException
+        -- Error executing the command
+        message: string
+    end
+
+    -- You have reached the limit of the number of connectors in your account.
+    record MaxNumberOfConnectorsExceededException
         -- Error executing the command
         message: string
     end
@@ -4706,6 +4832,18 @@ local record M
     record PutConformancePackOutput
         -- ARN of the conformance pack.
         ConformancePackArn: string
+    end
+
+    record PutConnectorInput
+        -- The provider-specific configuration for connecting to the third-party cloud service provider.
+        ConnectorConfiguration: ConnectorConfiguration
+        -- The tags for the connector. Each tag consists of a key and an optional value, both of which you define.
+        Tags: {Tag}
+    end
+
+    record PutConnectorOutput
+        -- The Amazon Resource Name (ARN) of the connector.
+        Arn: string
     end
 
     -- The input for the PutDeliveryChannel
@@ -4916,6 +5054,24 @@ local record M
         message: string
     end
 
+    record PutThirdPartyServiceLinkedConfigurationRecorderInput
+        -- The service principal of the Amazon Web Services service for the service-linked configuration recorder that you want to create.
+        ServicePrincipal: string
+        -- The Amazon Resource Name (ARN) of the connector that specifies the connection between the third-party cloud service provider and Config. The specified connector must exist.
+        ConnectorArn: string
+        -- Specifies the scope of resources to record from the third-party cloud service provider.
+        ScopeConfiguration: ScopeConfiguration
+        -- The tags for a service-linked configuration recorder. Each tag consists of a key and an optional value, both of which you define.
+        Tags: {Tag}
+    end
+
+    record PutThirdPartyServiceLinkedConfigurationRecorderOutput
+        -- The Amazon Resource Name (ARN) of the specified configuration recorder.
+        Arn: string
+        -- The name of the specified configuration recorder.
+        Name: string
+    end
+
     -- Details about the query.
     record QueryInfo
         -- Returns a FieldInfo object.
@@ -5041,6 +5197,7 @@ local record M
         -- ConfigurationAggregator
         -- AggregationAuthorization
         -- StoredQuery
+        -- Connector
         ResourceArn: string
         -- An array of tag object.
         Tags: {Tag}
@@ -5059,6 +5216,7 @@ local record M
         -- ConfigurationAggregator
         -- AggregationAuthorization
         -- StoredQuery
+        -- Connector
         ResourceArn: string
         -- The keys of the tags to be removed.
         TagKeys: {string}

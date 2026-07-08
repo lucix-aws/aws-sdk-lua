@@ -129,6 +129,10 @@ M.ConfigurationRecorderSummaries = schema.new({ type = "list", list_member = M.C
 
 M.ConformancePackComplianceScores = schema.new({ type = "list", list_member = M.ConformancePackComplianceScore })
 
+M.ConnectorFilterList = schema.new({ type = "list", list_member = M.ConnectorFilter })
+
+M.ConnectorSummaries = schema.new({ type = "list", list_member = M.ConnectorSummary })
+
 M.ResourceIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourceIdentifierList = schema.new({ type = "list", list_member = M.ResourceIdentifier })
@@ -185,6 +189,10 @@ M.OrganizationConfigRuleTriggerTypeNoSNs = schema.new({ type = "list", list_memb
 
 M.DebugLogDeliveryAccounts = schema.new({ type = "list", list_member = prelude.String })
 
+M.ScopeValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.IncludedRegions = schema.new({ type = "list", list_member = prelude.String })
+
 M.FieldInfoList = schema.new({ type = "list", list_member = M.FieldInfo })
 
 M.RecordingModeOverrides = schema.new({ type = "list", list_member = M.RecordingModeOverride })
@@ -196,6 +204,8 @@ M.RemediationParameters = schema.new({ type = "map", map_key = prelude.String, m
 M.RemediationExecutionSteps = schema.new({ type = "list", list_member = M.RemediationExecutionStep })
 
 M.ConfigurationRecorderFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ComplianceResourceTypes = schema.new({ type = "list", list_member = prelude.String })
 
@@ -988,6 +998,46 @@ M.RecordingMode = schema.new({
     },
 })
 
+M.ScopeConfiguration = schema.new({
+    id = id.from(_N, "ScopeConfiguration"),
+    type = "structure",
+    members = {
+        scopeType = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "scopeType"),
+            type = "string",
+            name = "scopeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scopeValues = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "scopeValues"),
+            type = "list",
+            name = "scopeValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        allRegions = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "allRegions"),
+            type = "boolean",
+            name = "allRegions",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        includedRegions = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "includedRegions"),
+            type = "list",
+            name = "includedRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.ConfigurationRecorder = schema.new({
     id = id.from(_N, "ConfigurationRecorder"),
     type = "structure",
@@ -1035,6 +1085,19 @@ M.ConfigurationRecorder = schema.new({
             type = "string",
             name = "servicePrincipal",
             target_id = prelude.String.id,
+        }),
+        connectorArn = schema.new({
+            id = id.from(_N, "ConfigurationRecorder", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+        }),
+        scopeConfiguration = schema.new({
+            id = id.from(_N, "ConfigurationRecorder", "scopeConfiguration"),
+            type = "structure",
+            name = "scopeConfiguration",
+            target_id = id.from(_N, "ScopeConfiguration"),
+            target = M.ScopeConfiguration,
         }),
     },
 })
@@ -1100,6 +1163,31 @@ M.ValidationException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AzureConnectorConfiguration = schema.new({
+    id = id.from(_N, "AzureConnectorConfiguration"),
+    type = "structure",
+    members = {
+        tenantIdentifier = schema.new({
+            id = id.from(_N, "AzureConnectorConfiguration", "tenantIdentifier"),
+            type = "string",
+            name = "tenantIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientIdentifier = schema.new({
+            id = id.from(_N, "AzureConnectorConfiguration", "clientIdentifier"),
+            type = "string",
+            name = "clientIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2267,6 +2355,12 @@ M.ConfigurationRecorderSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        provider = schema.new({
+            id = id.from(_N, "ConfigurationRecorderSummary", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2674,6 +2768,136 @@ M.ConformancePackTemplateValidationException = schema.new({
     },
 })
 
+M.ConnectorConfiguration = schema.new({
+    id = id.from(_N, "ConnectorConfiguration"),
+    type = "structure",
+    members = {
+        azure = schema.new({
+            id = id.from(_N, "ConnectorConfiguration", "azure"),
+            type = "structure",
+            name = "azure",
+            target_id = id.from(_N, "AzureConnectorConfiguration"),
+            target = M.AzureConnectorConfiguration,
+        }),
+    },
+})
+
+M.Connector = schema.new({
+    id = id.from(_N, "Connector"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Connector", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "Connector", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectorConfiguration = schema.new({
+            id = id.from(_N, "Connector", "connectorConfiguration"),
+            type = "structure",
+            name = "connectorConfiguration",
+            target_id = id.from(_N, "ConnectorConfiguration"),
+            target = M.ConnectorConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdTime = schema.new({
+            id = id.from(_N, "Connector", "createdTime"),
+            type = "timestamp",
+            name = "createdTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectorFilter = schema.new({
+    id = id.from(_N, "ConnectorFilter"),
+    type = "structure",
+    members = {
+        filterName = schema.new({
+            id = id.from(_N, "ConnectorFilter", "filterName"),
+            type = "string",
+            name = "filterName",
+            target_id = prelude.String.id,
+        }),
+        filterValues = schema.new({
+            id = id.from(_N, "ConnectorFilter", "filterValues"),
+            type = "list",
+            name = "filterValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ConnectorSummary = schema.new({
+    id = id.from(_N, "ConnectorSummary"),
+    type = "structure",
+    members = {
+        arn = schema.new({
+            id = id.from(_N, "ConnectorSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "ConnectorSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        provider = schema.new({
+            id = id.from(_N, "ConnectorSummary", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tenantIdentifier = schema.new({
+            id = id.from(_N, "ConnectorSummary", "tenantIdentifier"),
+            type = "string",
+            name = "tenantIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdTime = schema.new({
+            id = id.from(_N, "ConnectorSummary", "createdTime"),
+            type = "timestamp",
+            name = "createdTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.DeleteAggregationAuthorizationInput = schema.new({
     id = id.from(_N, "DeleteAggregationAuthorizationRequest"),
     type = "structure",
@@ -2846,6 +3070,40 @@ M.NoSuchConformancePackException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "NoSuchConformancePackException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteConnectorInput = schema.new({
+    id = id.from(_N, "DeleteConnectorRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeleteConnectorInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConnectorOutput = prelude.Unit
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -3291,9 +3549,12 @@ M.DeleteServiceLinkedConfigurationRecorderInput = schema.new({
             type = "string",
             name = "ServicePrincipal",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "DeleteServiceLinkedConfigurationRecorderInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3342,22 +3603,6 @@ M.DeleteStoredQueryInput = schema.new({
 M.DeleteStoredQueryOutput = schema.new({
     id = id.from(_N, "DeleteStoredQueryResponse"),
     type = "structure",
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
 })
 
 M.DeliverConfigSnapshotInput = schema.new({
@@ -3844,18 +4089,18 @@ M.DescribeConfigRulesInput = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
-        NextToken = schema.new({
-            id = id.from(_N, "DescribeConfigRulesInput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-        }),
         Filters = schema.new({
             id = id.from(_N, "DescribeConfigRulesInput", "Filters"),
             type = "structure",
             name = "Filters",
             target_id = id.from(_N, "DescribeConfigRulesFilters"),
             target = M.DescribeConfigRulesFilters,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeConfigRulesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -6461,6 +6706,39 @@ M.GetConformancePackComplianceSummaryOutput = schema.new({
     },
 })
 
+M.GetConnectorInput = schema.new({
+    id = id.from(_N, "GetConnectorRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetConnectorInput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetConnectorOutput = schema.new({
+    id = id.from(_N, "GetConnectorResponse"),
+    type = "structure",
+    members = {
+        Connector = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "Connector"),
+            type = "structure",
+            name = "Connector",
+            target_id = id.from(_N, "Connector"),
+            target = M.Connector,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetCustomRulePolicyInput = schema.new({
     id = id.from(_N, "GetCustomRulePolicyRequest"),
     type = "structure",
@@ -7532,6 +7810,58 @@ M.ListConformancePackComplianceScoresOutput = schema.new({
     },
 })
 
+M.ListConnectorsInput = schema.new({
+    id = id.from(_N, "ListConnectorsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorFilter,
+        }),
+    },
+})
+
+M.ListConnectorsOutput = schema.new({
+    id = id.from(_N, "ListConnectorsResponse"),
+    type = "structure",
+    members = {
+        ConnectorSummaries = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "ConnectorSummaries"),
+            type = "list",
+            name = "ConnectorSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListDiscoveredResourcesInput = schema.new({
     id = id.from(_N, "ListDiscoveredResourcesRequest"),
     type = "structure",
@@ -7964,6 +8294,22 @@ M.MaxNumberOfConformancePacksExceededException = schema.new({
     members = {
         message = schema.new({
             id = id.from(_N, "MaxNumberOfConformancePacksExceededException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MaxNumberOfConnectorsExceededException = schema.new({
+    id = id.from(_N, "MaxNumberOfConnectorsExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "MaxNumberOfConnectorsExceededException", "message"),
             type = "string",
             name = "message",
             target_id = prelude.String.id,
@@ -8423,6 +8769,46 @@ M.PutConformancePackOutput = schema.new({
             type = "string",
             name = "ConformancePackArn",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PutConnectorInput = schema.new({
+    id = id.from(_N, "PutConnectorRequest"),
+    type = "structure",
+    members = {
+        ConnectorConfiguration = schema.new({
+            id = id.from(_N, "PutConnectorInput", "ConnectorConfiguration"),
+            type = "structure",
+            name = "ConnectorConfiguration",
+            target_id = id.from(_N, "ConnectorConfiguration"),
+            target = M.ConnectorConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "PutConnectorInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.PutConnectorOutput = schema.new({
+    id = id.from(_N, "PutConnectorResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "PutConnectorOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -8944,6 +9330,73 @@ M.TooManyTagsException = schema.new({
     },
 })
 
+M.PutThirdPartyServiceLinkedConfigurationRecorderInput = schema.new({
+    id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderRequest"),
+    type = "structure",
+    members = {
+        ServicePrincipal = schema.new({
+            id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderInput", "ServicePrincipal"),
+            type = "string",
+            name = "ServicePrincipal",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConnectorArn = schema.new({
+            id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderInput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScopeConfiguration = schema.new({
+            id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderInput", "ScopeConfiguration"),
+            type = "structure",
+            name = "ScopeConfiguration",
+            target_id = id.from(_N, "ScopeConfiguration"),
+            target = M.ScopeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.PutThirdPartyServiceLinkedConfigurationRecorderOutput = schema.new({
+    id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderResponse"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "PutThirdPartyServiceLinkedConfigurationRecorderOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.QueryInfo = schema.new({
     id = id.from(_N, "QueryInfo"),
     type = "structure",
@@ -9416,6 +9869,17 @@ M.DeleteConformancePack = schema.operation({
     id = id.from("com.amazonaws.configservice", "DeleteConformancePack"),
     input = M.DeleteConformancePackInput,
     output = M.DeleteConformancePackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.configservice", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -9962,6 +10426,17 @@ M.GetConformancePackComplianceSummary = schema.operation({
     },
 })
 
+M.GetConnector = schema.operation({
+    id = id.from("com.amazonaws.configservice", "GetConnector"),
+    input = M.GetConnectorInput,
+    output = M.GetConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetCustomRulePolicy = schema.operation({
     id = id.from("com.amazonaws.configservice", "GetCustomRulePolicy"),
     input = M.GetCustomRulePolicyInput,
@@ -10083,6 +10558,17 @@ M.ListConformancePackComplianceScores = schema.operation({
     },
 })
 
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.configservice", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListDiscoveredResources = schema.operation({
     id = id.from("com.amazonaws.configservice", "ListDiscoveredResources"),
     input = M.ListDiscoveredResourcesInput,
@@ -10175,6 +10661,17 @@ M.PutConformancePack = schema.operation({
     id = id.from("com.amazonaws.configservice", "PutConformancePack"),
     input = M.PutConformancePackInput,
     output = M.PutConformancePackOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutConnector = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutConnector"),
+    input = M.PutConnectorInput,
+    output = M.PutConnectorOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -10296,6 +10793,17 @@ M.PutStoredQuery = schema.operation({
     id = id.from("com.amazonaws.configservice", "PutStoredQuery"),
     input = M.PutStoredQueryInput,
     output = M.PutStoredQueryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutThirdPartyServiceLinkedConfigurationRecorder = schema.operation({
+    id = id.from("com.amazonaws.configservice", "PutThirdPartyServiceLinkedConfigurationRecorder"),
+    input = M.PutThirdPartyServiceLinkedConfigurationRecorderInput,
+    output = M.PutThirdPartyServiceLinkedConfigurationRecorderOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

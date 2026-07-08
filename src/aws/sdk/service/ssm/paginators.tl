@@ -640,6 +640,24 @@ function M.items_list_associations(client, input)
     })
 end
 
+--- Returns a page iterator for listCloudConnectors.
+function M.pages_list_cloud_connectors(client, input)
+    return paginator.pages(client, "listCloudConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CloudConnectors",
+    })
+end
+
+--- Returns an item iterator for listCloudConnectors.
+function M.items_list_cloud_connectors(client, input)
+    return paginator.items(client, "listCloudConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "CloudConnectors",
+    })
+end
+
 --- Returns a page iterator for listCommandInvocations.
 function M.pages_list_command_invocations(client, input)
     return paginator.pages(client, "listCommandInvocations", input, {
@@ -871,6 +889,24 @@ function M.items_list_resource_data_sync(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "ResourceDataSyncItems",
+    })
+end
+
+--- Returns a page iterator for validateCloudConnector.
+function M.pages_validate_cloud_connector(client, input)
+    return paginator.pages(client, "validateCloudConnector", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ValidationFindings",
+    })
+end
+
+--- Returns an item iterator for validateCloudConnector.
+function M.items_validate_cloud_connector(client, input)
+    return paginator.items(client, "validateCloudConnector", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ValidationFindings",
     })
 end
 

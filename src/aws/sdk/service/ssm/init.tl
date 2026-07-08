@@ -25,6 +25,7 @@ local record Client
     createActivation: function(Client, types.CreateActivationInput, ? base_client.InvokeOptions): async.Operation<types.CreateActivationOutput>
     createAssociation: function(Client, types.CreateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssociationOutput>
     createAssociationBatch: function(Client, types.CreateAssociationBatchInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssociationBatchOutput>
+    createCloudConnector: function(Client, types.CreateCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateCloudConnectorOutput>
     createDocument: function(Client, types.CreateDocumentInput, ? base_client.InvokeOptions): async.Operation<types.CreateDocumentOutput>
     createMaintenanceWindow: function(Client, types.CreateMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.CreateMaintenanceWindowOutput>
     createOpsItem: function(Client, types.CreateOpsItemInput, ? base_client.InvokeOptions): async.Operation<types.CreateOpsItemOutput>
@@ -33,6 +34,7 @@ local record Client
     createResourceDataSync: function(Client, types.CreateResourceDataSyncInput, ? base_client.InvokeOptions): async.Operation<types.CreateResourceDataSyncOutput>
     deleteActivation: function(Client, types.DeleteActivationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteActivationOutput>
     deleteAssociation: function(Client, types.DeleteAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssociationOutput>
+    deleteCloudConnector: function(Client, types.DeleteCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCloudConnectorOutput>
     deleteDocument: function(Client, types.DeleteDocumentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDocumentOutput>
     deleteInventory: function(Client, types.DeleteInventoryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInventoryOutput>
     deleteMaintenanceWindow: function(Client, types.DeleteMaintenanceWindowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMaintenanceWindowOutput>
@@ -84,6 +86,7 @@ local record Client
     getAccessToken: function(Client, types.GetAccessTokenInput, ? base_client.InvokeOptions): async.Operation<types.GetAccessTokenOutput>
     getAutomationExecution: function(Client, types.GetAutomationExecutionInput, ? base_client.InvokeOptions): async.Operation<types.GetAutomationExecutionOutput>
     getCalendarState: function(Client, types.GetCalendarStateInput, ? base_client.InvokeOptions): async.Operation<types.GetCalendarStateOutput>
+    getCloudConnector: function(Client, types.GetCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetCloudConnectorOutput>
     getCommandInvocation: function(Client, types.GetCommandInvocationInput, ? base_client.InvokeOptions): async.Operation<types.GetCommandInvocationOutput>
     getConnectionStatus: function(Client, types.GetConnectionStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectionStatusOutput>
     getDefaultPatchBaseline: function(Client, types.GetDefaultPatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.GetDefaultPatchBaselineOutput>
@@ -111,6 +114,7 @@ local record Client
     labelParameterVersion: function(Client, types.LabelParameterVersionInput, ? base_client.InvokeOptions): async.Operation<types.LabelParameterVersionOutput>
     listAssociations: function(Client, types.ListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationsOutput>
     listAssociationVersions: function(Client, types.ListAssociationVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssociationVersionsOutput>
+    listCloudConnectors: function(Client, types.ListCloudConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListCloudConnectorsOutput>
     listCommandInvocations: function(Client, types.ListCommandInvocationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCommandInvocationsOutput>
     listCommands: function(Client, types.ListCommandsInput, ? base_client.InvokeOptions): async.Operation<types.ListCommandsOutput>
     listComplianceItems: function(Client, types.ListComplianceItemsInput, ? base_client.InvokeOptions): async.Operation<types.ListComplianceItemsOutput>
@@ -152,6 +156,7 @@ local record Client
     unlabelParameterVersion: function(Client, types.UnlabelParameterVersionInput, ? base_client.InvokeOptions): async.Operation<types.UnlabelParameterVersionOutput>
     updateAssociation: function(Client, types.UpdateAssociationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssociationOutput>
     updateAssociationStatus: function(Client, types.UpdateAssociationStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssociationStatusOutput>
+    updateCloudConnector: function(Client, types.UpdateCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCloudConnectorOutput>
     updateDocument: function(Client, types.UpdateDocumentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentOutput>
     updateDocumentDefaultVersion: function(Client, types.UpdateDocumentDefaultVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentDefaultVersionOutput>
     updateDocumentMetadata: function(Client, types.UpdateDocumentMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDocumentMetadataOutput>
@@ -164,6 +169,7 @@ local record Client
     updatePatchBaseline: function(Client, types.UpdatePatchBaselineInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePatchBaselineOutput>
     updateResourceDataSync: function(Client, types.UpdateResourceDataSyncInput, ? base_client.InvokeOptions): async.Operation<types.UpdateResourceDataSyncOutput>
     updateServiceSetting: function(Client, types.UpdateServiceSettingInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingOutput>
+    validateCloudConnector: function(Client, types.ValidateCloudConnectorInput, ? base_client.InvokeOptions): async.Operation<types.ValidateCloudConnectorOutput>
 end
 
 local record M
@@ -236,6 +242,10 @@ function C:createAssociationBatch(input: types.CreateAssociationBatchInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAssociationBatch as schema.OperationSchema, input, options) as async.Operation<types.CreateAssociationBatchOutput>
 end
 
+function C:createCloudConnector(input: types.CreateCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateCloudConnectorOutput>
+end
+
 function C:createDocument(input: types.CreateDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDocumentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDocument as schema.OperationSchema, input, options) as async.Operation<types.CreateDocumentOutput>
 end
@@ -266,6 +276,10 @@ end
 
 function C:deleteAssociation(input: types.DeleteAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteAssociationOutput>
+end
+
+function C:deleteCloudConnector(input: types.DeleteCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteCloudConnectorOutput>
 end
 
 function C:deleteDocument(input: types.DeleteDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDocumentOutput>
@@ -472,6 +486,10 @@ function C:getCalendarState(input: types.GetCalendarStateInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCalendarState as schema.OperationSchema, input, options) as async.Operation<types.GetCalendarStateOutput>
 end
 
+function C:getCloudConnector(input: types.GetCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.GetCloudConnectorOutput>
+end
+
 function C:getCommandInvocation(input: types.GetCommandInvocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetCommandInvocationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCommandInvocation as schema.OperationSchema, input, options) as async.Operation<types.GetCommandInvocationOutput>
 end
@@ -578,6 +596,10 @@ end
 
 function C:listAssociationVersions(input: types.ListAssociationVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssociationVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAssociationVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAssociationVersionsOutput>
+end
+
+function C:listCloudConnectors(input: types.ListCloudConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCloudConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCloudConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListCloudConnectorsOutput>
 end
 
 function C:listCommandInvocations(input: types.ListCommandInvocationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListCommandInvocationsOutput>
@@ -744,6 +766,10 @@ function C:updateAssociationStatus(input: types.UpdateAssociationStatusInput, op
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateAssociationStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateAssociationStatusOutput>
 end
 
+function C:updateCloudConnector(input: types.UpdateCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateCloudConnectorOutput>
+end
+
 function C:updateDocument(input: types.UpdateDocumentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDocumentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDocument as schema.OperationSchema, input, options) as async.Operation<types.UpdateDocumentOutput>
 end
@@ -790,6 +816,10 @@ end
 
 function C:updateServiceSetting(input: types.UpdateServiceSettingInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateServiceSettingOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateServiceSetting as schema.OperationSchema, input, options) as async.Operation<types.UpdateServiceSettingOutput>
+end
+
+function C:validateCloudConnector(input: types.ValidateCloudConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.ValidateCloudConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ValidateCloudConnector as schema.OperationSchema, input, options) as async.Operation<types.ValidateCloudConnectorOutput>
 end
 
 return M

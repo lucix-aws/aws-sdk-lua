@@ -19,6 +19,8 @@ M.Regions = schema.new({ type = "list", list_member = prelude.String })
 
 M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.ValidationExceptionField })
 
+M.SharedDNSViews = schema.new({ type = "list", list_member = M.SharedDNSViewSummary })
+
 M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
@@ -6233,8 +6235,7 @@ M.ListHostedZoneAssociationsInput = schema.new({
             name = "resourceArn",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
+                [traits.HTTP_QUERY] = { name = "resourceArn" },
             },
         }),
     },
@@ -6453,6 +6454,183 @@ M.UpdateHostedZoneAssociationOutput = schema.new({
             type = "string",
             name = "status",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListSharedDNSViewsInput = schema.new({
+    id = id.from(_N, "ListSharedDNSViewsInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListSharedDNSViewsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max_results" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListSharedDNSViewsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next_token" },
+            },
+        }),
+    },
+})
+
+M.SharedDNSViewSummary = schema.new({
+    id = id.from(_N, "SharedDNSViewSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arn = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dnssecValidation = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "dnssecValidation"),
+            type = "string",
+            name = "dnssecValidation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ednsClientSubnet = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "ednsClientSubnet"),
+            type = "string",
+            name = "ednsClientSubnet",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        firewallRulesFailOpen = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "firewallRulesFailOpen"),
+            type = "string",
+            name = "firewallRulesFailOpen",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        globalResolverId = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "globalResolverId"),
+            type = "string",
+            name = "globalResolverId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ownerAccountId = schema.new({
+            id = id.from(_N, "SharedDNSViewSummary", "ownerAccountId"),
+            type = "string",
+            name = "ownerAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListSharedDNSViewsOutput = schema.new({
+    id = id.from(_N, "ListSharedDNSViewsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListSharedDNSViewsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        dnsViews = schema.new({
+            id = id.from(_N, "ListSharedDNSViewsOutput", "dnsViews"),
+            type = "list",
+            name = "dnsViews",
+            target_id = prelude.Document.id,
+            list_member = M.SharedDNSViewSummary,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -7159,7 +7337,7 @@ M.ListHostedZoneAssociations = schema.operation({
     input = M.ListHostedZoneAssociationsInput,
     output = M.ListHostedZoneAssociationsOutput,
     traits = {
-        [traits.HTTP] = { method = "GET", path = "/hosted-zone-associations/resource-arn/{resourceArn+}" },
+        [traits.HTTP] = { method = "GET", path = "/hosted-zone-associations" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7172,6 +7350,18 @@ M.ListManagedFirewallDomainLists = schema.operation({
     output = M.ListManagedFirewallDomainListsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/list-managed-firewall-domain-lists/{managedFirewallDomainListType}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSharedDNSViews = schema.operation({
+    id = id.from("com.amazonaws.route53globalresolver", "ListSharedDNSViews"),
+    input = M.ListSharedDNSViewsInput,
+    output = M.ListSharedDNSViewsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/shared-dns-views" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

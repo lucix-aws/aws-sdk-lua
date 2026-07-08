@@ -915,6 +915,17 @@ local record M
         WildCardValue: string
     end
 
+    enum ResaleAuthorizationResellerRoleString
+        "ChannelPartner"
+        "Distributor"
+    end
+
+    -- Allows filtering on the ResellerRole of a ResaleAuthorization.
+    record ResaleAuthorizationResellerRoleFilter
+        -- Allows filtering on the ResellerRole of a ResaleAuthorization with list input.
+        ValueList: {string}
+    end
+
     enum ResaleAuthorizationStatusString
         "Draft"
         "Active"
@@ -955,6 +966,8 @@ local record M
         OfferExtendedStatus: ResaleAuthorizationOfferExtendedStatusFilter
         -- Allows filtering on the LastModifiedDate of a ResaleAuthorization.
         LastModifiedDate: ResaleAuthorizationLastModifiedDateFilter
+        -- Allows filtering on the ResellerRole of a ResaleAuthorization.
+        ResellerRole: ResaleAuthorizationResellerRoleFilter
     end
 
     -- Object that allows filtering on entity id of a SaaS product.
@@ -1301,6 +1314,8 @@ local record M
         CreatedDate: string
         -- The availability end date of the ResaleAuthorization.
         AvailabilityEndDate: string
+        -- The reseller role of the ResaleAuthorization.
+        ResellerRole: string
     end
 
     -- Object that contains summarized information about a SaaS product.

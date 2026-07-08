@@ -897,6 +897,12 @@ local record M
         -- The name of the Amazon Web Services account in which a finding was generated.
         -- Array Members: Minimum number of 1 item. Maximum number of 20 items.
         AwsAccountName: {StringFilter}
+        -- The cloud provider that the resource belongs to. Valid values are AWS and Azure.
+        ResourceProvider: {StringFilter}
+        -- The unique identifier of the account that owns the resource that the finding applies to, for example, Azure Subscription Id or Amazon Web Services Account Id
+        ResourceOwnerAccountId: {StringFilter}
+        -- The unique identifier of the organization that owns the resource that the finding applies to, for example, Azure Tenant Id
+        ResourceOwnerOrgId: {StringFilter}
     end
 
     enum RuleStatus
@@ -10047,12 +10053,42 @@ local record M
         -- Details about an external code repository with which you can connect your Amazon Web Services resources.
         -- The connection is established through Amazon Inspector.
         CodeRepository: CodeRepositoryDetails
+        -- Details about an Azure resource that is related to a finding.
+        AzureResource: any
+    end
+
+    -- Information about the account that owns a resource, for example, an Azure Subscription or Amazon Web Services Account.
+    record ResourceOwnerAccount
+        -- The unique identifier of the account that owns the resource, for example, Azure Subscription Id or Amazon Web Services Account Id.
+        Id: string
+    end
+
+    -- Information about the organization that owns a resource, for example, an Azure Tenant.
+    record ResourceOwnerOrg
+        -- The unique identifier of the organization that owns the resource, for example, Azure Tenant Id.
+        Id: string
+    end
+
+    -- Information about the owner of a resource, including the account and organization that the resource belongs to.
+    record ResourceOwner
+        -- Information about the account that owns the resource, for example, an Azure Subscription or Amazon Web Services Account.
+        Account: ResourceOwnerAccount
+        -- Information about the organization that owns the resource, for example, an Azure Tenant.
+        Org: ResourceOwnerOrg
     end
 
     enum Partition
         "aws"
         "aws-cn"
         "aws-us-gov"
+        "aws-us-iso"
+        "aws-us-iso-b"
+        "AzureCloud"
+    end
+
+    enum CloudProviderName
+        "Azure"
+        "AWS"
     end
 
     -- A resource related to a finding.
@@ -10071,6 +10107,10 @@ local record M
         -- The canonical Amazon Web Services external Region name where this resource is located.
         -- Length Constraints: Minimum length of 1. Maximum length of 16.
         Region: string
+        -- The cloud provider that the resource belongs to. Valid values are AWS and Azure.
+        Provider: string
+        -- Information about the account and organization that own the resource.
+        Owner: ResourceOwner
         -- Identifies the role of the resource in the finding. A resource is either the actor or target of the finding activity,
         ResourceRole: string
         -- A list of Amazon Web Services tags associated with a resource at the time the finding was
@@ -10818,6 +10858,12 @@ local record M
         ResourceApplicationName: {StringFilter}
         -- The ARN of the application that is related to a finding.
         ResourceApplicationArn: {StringFilter}
+        -- The unique identifier of the account that owns the resource that the finding applies to, for example, Azure Subscription Id or Amazon Web Services Account Id
+        ResourceOwnerAccountId: {StringFilter}
+        -- The unique identifier of the organization that owns the resource that the finding applies to, for example, Azure Tenant Id
+        ResourceOwnerOrgId: {StringFilter}
+        -- The cloud provider that the resource belongs to. Valid values are AWS and Azure.
+        ResourceProvider: {StringFilter}
     end
 
     -- Identifies which finding to get the finding history for.
@@ -10828,6 +10874,47 @@ local record M
         -- This can be the ARN for a third-party product that is integrated with Security Hub CSPM, or the ARN for
         -- a custom integration.
         ProductArn: string
+    end
+
+    enum ScopeType
+        "TENANT"
+        "SUBSCRIPTION"
+    end
+
+    -- The scope configuration for an Azure connector, defining the tenant or subscription scope.
+    record AzureScopeConfiguration
+        -- The type of scope. Valid values are tenant and subscription.
+        ScopeType: string
+        -- The list of scope values, such as subscription IDs, when the scope type is subscription.
+        ScopeValues: {string}
+    end
+
+    -- The detailed Azure configuration for a connector.
+    record AzureDetail
+        -- The ARN of the AWS Config connector used to establish the connection to Azure.
+        AWSConfigConnectorArn: string
+        -- The scope configuration that defines which Azure resources are monitored.
+        ScopeConfiguration: AzureScopeConfiguration
+        -- The list of Azure regions being monitored.
+        AzureRegions: {string}
+    end
+
+    -- The configuration for connecting to an Azure environment.
+    record AzureProviderConfiguration
+        -- The ARN of the AWS Config connector used to establish the connection to Azure.
+        AWSConfigConnectorArn: string
+        -- The scope configuration that defines which Azure resources are monitored.
+        ScopeConfiguration: AzureScopeConfiguration
+        -- The list of Azure regions to monitor.
+        AzureRegions: {string}
+    end
+
+    -- The configuration for updating an Azure connector's scope and regions.
+    record AzureUpdateConfiguration
+        -- The updated scope configuration.
+        ScopeConfiguration: AzureScopeConfiguration
+        -- The updated list of Azure regions to monitor.
+        AzureRegions: {string}
     end
 
     record BatchDeleteAutomationRulesInput
@@ -10859,6 +10946,11 @@ local record M
         StandardsSubscriptionArns: {string}
     end
 
+    enum StandardsProvider
+        "AWS"
+        "Azure"
+    end
+
     enum StandardsControlsUpdatable
         "READY_FOR_UPDATES"
         "NOT_READY_FOR_UPDATES"
@@ -10875,6 +10967,7 @@ local record M
     enum StatusReasonCode
         "NO_AVAILABLE_CONFIGURATION_RECORDER"
         "MAXIMUM_NUMBER_OF_CONFIG_RULES_EXCEEDED"
+        "NO_AVAILABLE_MULTICLOUD_CONNECTOR"
         "INTERNAL_ERROR"
     end
 
@@ -10908,6 +11001,8 @@ local record M
         StandardsControlsUpdatable: string
         -- The reason for the current status.
         StandardsStatusReason: StandardsStatusReason
+        -- The cloud provider whose resources the standard evaluates. For example, AWS or Azure.
+        Provider: string
     end
 
     record BatchDisableStandardsOutput
@@ -11064,6 +11159,11 @@ local record M
         Value: ParameterValue
     end
 
+    enum SecurityControlsProvider
+        "AWS"
+        "Azure"
+    end
+
     enum ControlStatus
         "ENABLED"
         "DISABLED"
@@ -11117,6 +11217,8 @@ local record M
         -- reason for updating the enablement status of a control. This field accepts alphanumeric
         -- characters in addition to white spaces, dashes, and underscores.
         LastUpdateReason: string
+        -- The cloud provider whose resources the security control evaluates. For example, AWS or Azure.
+        Provider: string
     end
 
     enum UnprocessedErrorCode
@@ -11619,6 +11721,11 @@ local record M
         "remediation.desc"
         "remediation.references"
         "resources.cloud_partition"
+        "resources.name"
+        "resources.owner.account.uid"
+        "resources.owner.org.uid"
+        "resources.owner.account.name"
+        "resources.provider"
         "resources.region"
         "resources.type"
         "resources.uid"
@@ -11794,13 +11901,60 @@ local record M
     enum ConnectorProviderName
         "JIRA_CLOUD"
         "SERVICENOW"
+        "AZURE"
     end
 
     enum ConnectorStatus
         "CONNECTED"
+        "DEGRADED"
         "FAILED_TO_CONNECT"
-        "PENDING_CONFIGURATION"
         "PENDING_AUTHORIZATION"
+        "PENDING_CONFIGURATION"
+        "UNKNOWN"
+    end
+
+    enum EnablementStatus
+        "ENABLED"
+        "PENDING_ENABLEMENT"
+        "FAILED_TO_ENABLE"
+        "PENDING_UPDATE"
+        "FAILED_TO_UPDATE"
+        "PENDING_DELETION"
+        "FAILED_TO_DELETE"
+    end
+
+    -- Information about the configuration and status of a Jira Cloud integration.
+    record JiraCloudDetail
+        -- The cloud id of the Jira Cloud.
+        CloudId: string
+        -- The projectKey of Jira Cloud.
+        ProjectKey: string
+        -- The URL domain of your Jira Cloud instance.
+        Domain: string
+        -- The URL to provide to customers for OAuth auth code flow.
+        AuthUrl: string
+        -- The status of the authorization between Jira Cloud and the service.
+        AuthStatus: string
+    end
+
+    -- Information about a ServiceNow ITSM integration.
+    record ServiceNowDetail
+        -- The instanceName of ServiceNow ITSM.
+        InstanceName: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the ServiceNow credentials.
+        SecretArn: string
+        -- The status of the authorization between ServiceNow and the service.
+        AuthStatus: string
+    end
+
+    -- The third-party provider detail for a service configuration.
+    record ProviderDetail
+        -- Details about a Jira Cloud integration.
+        JiraCloud: JiraCloudDetail
+        -- Details about a ServiceNow ITSM integration.
+        ServiceNow: ServiceNowDetail
+        -- Details about a Microsoft Azure CSPM integration.
+        Azure: AzureDetail
     end
 
     -- The connectorV2 third-party provider configuration summary.
@@ -11809,6 +11963,7 @@ local record M
         ProviderName: string
         -- The status for the connectorV2.
         ConnectorStatus: string
+        ProviderConfiguration: ProviderDetail
     end
 
     -- A condensed overview of the connectorV2..
@@ -11825,6 +11980,10 @@ local record M
         ProviderSummary: ProviderSummary
         -- ISO 8601 UTC timestamp for the time create the connectorV2.
         CreatedAt: number
+        -- The enablement status of the connector.
+        EnablementStatus: string
+        -- The reason for the current enablement status. Provides additional context when the connector is in a failed state.
+        EnablementStatusReason: string
     end
 
     enum ControlFindingGenerator
@@ -12010,6 +12169,50 @@ local record M
         ConfigurationPolicy: Policy
     end
 
+    -- The cloud provider configuration for creating a connector. This is a union type that currently supports Azure.
+    record CspmProviderConfiguration
+        -- The Azure provider configuration.
+        Azure: AzureProviderConfiguration
+    end
+
+    record CreateConnectorInput
+        -- The name of the connector. Must be unique within the account.
+        Name: string
+        -- The description of the connector.
+        Description: string
+        -- The configuration for the cloud provider to connect to. Currently supports Azure.
+        Provider: CspmProviderConfiguration
+        -- The tags to add to the connector resource.
+        Tags: {string : string}
+        -- A unique identifier used to ensure idempotency of the request.
+        ClientToken: string
+    end
+
+    enum CspmConnectorStatus
+        "CONNECTED"
+        "DEGRADED"
+        "FAILED_TO_CONNECT"
+        "UNKNOWN"
+    end
+
+    enum CspmEnablementStatus
+        "ENABLED"
+        "PENDING_ENABLEMENT"
+        "PENDING_UPDATE"
+        "PENDING_DELETION"
+    end
+
+    record CreateConnectorOutput
+        -- The Amazon Resource Name (ARN) of the connector.
+        ConnectorArn: string
+        -- The unique identifier of the connector.
+        ConnectorId: string
+        -- The connectivity status of the connector.
+        ConnectorStatus: string
+        -- The enablement status of the connector.
+        EnablementStatus: string
+    end
+
     -- The initial configuration settings required to establish an integration between Security Hub and Jira Cloud.
     record JiraCloudProviderConfiguration
         -- The project key for a JiraCloud instance.
@@ -12030,6 +12233,8 @@ local record M
         JiraCloud: JiraCloudProviderConfiguration
         -- The configuration settings required to establish an integration with ServiceNow ITSM.
         ServiceNow: ServiceNowProviderConfiguration
+        -- The configuration settings required to establish a CSPM integration with Microsoft Azure.
+        Azure: AzureProviderConfiguration
     end
 
     record CreateConnectorV2Input
@@ -12056,6 +12261,8 @@ local record M
         AuthUrl: string
         -- The current status of the connectorV2.
         ConnectorStatus: string
+        -- The enablement status of the connector after creation.
+        EnablementStatus: string
     end
 
     record CreateFindingAggregatorInput
@@ -12145,6 +12352,82 @@ local record M
         TicketSrcUrl: string
     end
 
+    enum CspmConnectorProviderName
+        "AZURE"
+    end
+
+    -- The detailed cloud provider configuration for a connector. This is a union type that currently supports Azure.
+    record CspmProviderDetail
+        -- The Azure provider detail.
+        Azure: AzureDetail
+    end
+
+    -- A summary of the cloud provider configuration for a connector.
+    record CspmProviderSummary
+        -- The name of the cloud provider.
+        ProviderName: string
+        -- The connectivity status of the connector.
+        ConnectorStatus: string
+        -- The provider configuration details.
+        ProviderConfiguration: CspmProviderDetail
+    end
+
+    -- A summary of a CSPM connector.
+    record CspmConnectorSummary
+        -- The Amazon Resource Name (ARN) of the connector.
+        ConnectorArn: string
+        -- The unique identifier of the connector.
+        ConnectorId: string
+        -- The name of the connector.
+        Name: string
+        -- The description of the connector.
+        Description: string
+        -- A summary of the cloud provider configuration for the connector.
+        ProviderSummary: CspmProviderSummary
+        -- The ISO 8601 UTC timestamp indicating when the connector was created.
+        CreatedAt: number
+        -- The service principal that created the connector.
+        CreatedBy: string
+        -- The enablement status of the connector.
+        EnablementStatus: string
+    end
+
+    enum HealthIssueCode
+        "AUTHENTICATION_FAILURE"
+        "STREAM_AUTHORIZATION_FAILURE"
+        "DISCOVERY_FAILURE"
+        "STREAM_LIMIT_EXCEEDED"
+        "STREAM_DISCONNECTED"
+        "RECORDING_FAILURE"
+        "NO_HEALTH_DATA"
+    end
+
+    -- Represents a specific health issue detected for a connector.
+    record HealthIssue
+        -- The error code that identifies the type of health issue.
+        Code: string
+        -- A human-readable message that describes the health issue.
+        Message: string
+    end
+
+    -- Information about the operational status and health of a CSPM connector.
+    record CspmHealthCheck
+        -- The connectivity status of the connector.
+        ConnectorStatus: string
+        -- A message describing the reason for the current connector status.
+        Message: string
+        -- The ISO 8601 UTC timestamp indicating when the health status was last checked.
+        LastCheckedAt: number
+        -- A list of health issues associated with the connector.
+        Issues: {HealthIssue}
+    end
+
+    -- The cloud provider configuration for updating a connector. This is a union type that currently supports Azure.
+    record CspmProviderUpdateConfiguration
+        -- The Azure update configuration.
+        Azure: AzureUpdateConfiguration
+    end
+
     enum SecurityControlProperty
         "Parameters"
     end
@@ -12194,12 +12477,24 @@ local record M
     record DeleteConfigurationPolicyOutput
     end
 
+    record DeleteConnectorInput
+        -- The unique identifier of the connector to delete.
+        ConnectorId: string
+    end
+
+    record DeleteConnectorOutput
+        -- The enablement status of the connector after the delete request.
+        EnablementStatus: string
+    end
+
     record DeleteConnectorV2Input
         -- The UUID of the connectorV2 to identify connectorV2 resource.
         ConnectorId: string
     end
 
     record DeleteConnectorV2Output
+        -- The enablement status of the connector after deletion.
+        EnablementStatus: string
     end
 
     record DeleteFindingAggregatorInput
@@ -12459,11 +12754,26 @@ local record M
     record DescribeSecurityHubV2Input
     end
 
+    enum FeatureStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- Contains the status and metadata for an opt-in feature.
+    record FeatureDetail
+        -- The current enablement status of the feature. Valid values: ENABLED | DISABLED.
+        FeatureStatus: string
+        -- The date and time when the feature status was last updated.
+        UpdatedAt: number
+    end
+
     record DescribeSecurityHubV2Output
         -- The ARN of the service resource.
         HubV2Arn: string
         -- The date and time when the service was enabled in the account.
         SubscribedAt: string
+        -- A map of opt-in features and their current status and metadata for the account in the current Region.
+        Features: {string : FeatureDetail}
     end
 
     record DescribeStandardsInput
@@ -12475,6 +12785,8 @@ local record M
         NextToken: string
         -- The maximum number of standards to return.
         MaxResults: number
+        -- A list of cloud providers to filter the standards by. For example, specify Azure to return only standards that evaluate Azure resources.
+        Providers: {string}
     end
 
     -- Provides details about the management of a security standard.
@@ -12503,6 +12815,8 @@ local record M
         -- standard is enabled by default unless EnableDefaultStandards is set to
         -- false.
         EnabledByDefault: boolean
+        -- The cloud provider whose resources the standard evaluates. For example, AWS or Azure.
+        Provider: string
         -- Provides details about the management of a standard.
         StandardsManagedBy: StandardsManagedBy
     end
@@ -12595,6 +12909,18 @@ local record M
     record DisableSecurityHubOutput
     end
 
+    enum FeatureName
+        "NETWORK_SCANNING"
+    end
+
+    record DisableSecurityHubFeatureV2Input
+        -- The name of the feature to disable.
+        FeatureName: string
+    end
+
+    record DisableSecurityHubFeatureV2Output
+    end
+
     record DisableSecurityHubV2Input
     end
 
@@ -12670,6 +12996,14 @@ local record M
     end
 
     record EnableSecurityHubOutput
+    end
+
+    record EnableSecurityHubFeatureV2Input
+        -- The name of the feature to enable.
+        FeatureName: string
+    end
+
+    record EnableSecurityHubFeatureV2Output
     end
 
     record EnableSecurityHubV2Input
@@ -12768,11 +13102,29 @@ local record M
         "finding_class_name"
         "finding_provider"
         "finding_activity_name"
+        "resource_cloud_providers"
+        "resource_regions"
+        "resource_owner_ids"
+        "resource_owner_organization_ids"
     end
 
     -- A filter for string-based fields in findings trend data.
     record FindingsTrendsStringFilter
-        -- The name of the findings field to filter on.
+        -- The name of the findings field to filter on. You can specify one of the following fields.
+        -- account_id – The Amazon Web Services account ID associated with the finding.
+        -- region – The Amazon Web Services Region associated with the finding.
+        -- finding_types – The finding types associated with the finding.
+        -- finding_status – The status of the finding.
+        -- finding_cve_ids – The Common Vulnerabilities and Exposures (CVE) identifiers associated with the finding.
+        -- finding_compliance_status – The compliance status of the finding.
+        -- finding_control_id – The identifier of the security control associated with the finding.
+        -- finding_class_name – The finding class, such as Compliance Finding.
+        -- finding_provider – The name of the product that generated the finding.
+        -- finding_activity_name – The activity name associated with the finding.
+        -- resource_cloud_providers – The cloud providers of the resources that the finding is associated with. Valid values are AWS and Azure.
+        -- resource_regions – The Regions of the associated resources. For an Amazon Web Services resource, this is the Amazon Web Services Region. For an Azure resource, this is the Azure Region, such as eastus.
+        -- resource_owner_ids – The identifiers of the accounts that own the associated resources. For an Amazon Web Services resource, this is the Amazon Web Services account ID. For an Azure resource, this is the Azure subscription ID.
+        -- resource_owner_organization_ids – The identifiers of the organizations that own the associated resources. For an Amazon Web Services resource, this is the Amazon Web Services organization ID. For an Azure resource, this is the Azure tenant ID.
         FieldName: string
         Filter: StringFilter
     end
@@ -12875,6 +13227,34 @@ local record M
         AssociationStatusMessage: string
     end
 
+    record GetConnectorInput
+        -- The unique identifier of the connector to retrieve.
+        ConnectorId: string
+    end
+
+    record GetConnectorOutput
+        -- The Amazon Resource Name (ARN) of the connector.
+        ConnectorArn: string
+        -- The unique identifier of the connector.
+        ConnectorId: string
+        -- The name of the connector.
+        Name: string
+        -- The description of the connector.
+        Description: string
+        -- The ISO 8601 UTC timestamp indicating when the connector was created.
+        CreatedAt: number
+        -- The ISO 8601 UTC timestamp indicating when the connector was last updated.
+        LastUpdatedAt: number
+        -- The health status of the connector, including connectivity status and last check time.
+        Health: CspmHealthCheck
+        -- The cloud provider configuration details for the connector.
+        ProviderDetail: CspmProviderDetail
+        -- The service principal that created the connector.
+        CreatedBy: string
+        -- The enablement status of the connector.
+        EnablementStatus: string
+    end
+
     record GetConnectorV2Input
         -- The UUID of the connectorV2 to identify connectorV2 resource.
         ConnectorId: string
@@ -12888,38 +13268,8 @@ local record M
         Message: string
         -- ISO 8601 UTC timestamp for the time check the health status of the connectorV2.
         LastCheckedAt: number
-    end
-
-    -- Information about the configuration and status of a Jira Cloud integration.
-    record JiraCloudDetail
-        -- The cloud id of the Jira Cloud.
-        CloudId: string
-        -- The projectKey of Jira Cloud.
-        ProjectKey: string
-        -- The URL domain of your Jira Cloud instance.
-        Domain: string
-        -- The URL to provide to customers for OAuth auth code flow.
-        AuthUrl: string
-        -- The status of the authorization between Jira Cloud and the service.
-        AuthStatus: string
-    end
-
-    -- Information about a ServiceNow ITSM integration.
-    record ServiceNowDetail
-        -- The instanceName of ServiceNow ITSM.
-        InstanceName: string
-        -- The Amazon Resource Name (ARN) of the Amazon Web Services Secrets Manager secret that contains the ServiceNow credentials.
-        SecretArn: string
-        -- The status of the authorization between ServiceNow and the service.
-        AuthStatus: string
-    end
-
-    -- The third-party provider detail for a service configuration.
-    record ProviderDetail
-        -- Details about a Jira Cloud integration.
-        JiraCloud: JiraCloudDetail
-        -- Details about a ServiceNow ITSM integration.
-        ServiceNow: ServiceNowDetail
+        -- A list of health issues associated with the connector, including error codes and messages.
+        Issues: {HealthIssue}
     end
 
     record GetConnectorV2Output
@@ -12941,6 +13291,10 @@ local record M
         Health: HealthCheck
         -- The third-party provider detail for a service configuration.
         ProviderDetail: ProviderDetail
+        -- The enablement status of the connector.
+        EnablementStatus: string
+        -- The reason for the current enablement status. Provides additional context when the connector is in a failed state.
+        EnablementStatusReason: string
     end
 
     record GetEnabledStandardsInput
@@ -12954,6 +13308,8 @@ local record M
         NextToken: string
         -- The maximum number of results to return in the response.
         MaxResults: number
+        -- A list of cloud providers to filter the enabled standards by. For example, specify Azure to return only enabled standards that evaluate Azure resources.
+        Providers: {string}
     end
 
     record GetEnabledStandardsOutput
@@ -13074,6 +13430,13 @@ local record M
         "metadata.product.name"
         "metadata.product.uid"
         "resources.type"
+        "resources.cloud_partition"
+        "resources.name"
+        "resources.owner.account.uid"
+        "resources.owner.org.uid"
+        "resources.owner.account.name"
+        "resources.provider"
+        "resources.region"
         "resources.uid"
         "severity"
         "status"
@@ -13426,7 +13789,13 @@ local record M
         "ResourceGuid"
         "ResourceId"
         "AccountId"
+        "AccountName"
         "Region"
+        "ResourceProvider"
+        "ResourceOwnerAccountId"
+        "ResourceOwnerOrgId"
+        "ResourceCloudPartition"
+        "ResourceRegion"
         "ResourceCategory"
         "ResourceType"
         "ResourceName"
@@ -13443,7 +13812,13 @@ local record M
 
     enum ResourceGroupByField
         "AccountId"
+        "AccountName"
         "Region"
+        "ResourceProvider"
+        "ResourceOwnerAccountId"
+        "ResourceOwnerOrgId"
+        "ResourceCloudPartition"
+        "ResourceRegion"
         "ResourceCategory"
         "ResourceType"
         "ResourceName"
@@ -13466,11 +13841,23 @@ local record M
         "region"
         "resource_type"
         "resource_category"
+        "resource_cloud_provider"
+        "resource_region"
+        "resource_owner_id"
+        "resource_owner_organization_id"
     end
 
     -- A filter for string-based fields in resources trend data, such as resource type or account ID.
     record ResourcesTrendsStringFilter
-        -- The name of the resources field to filter on, such as resourceType, accountId, or region.
+        -- The name of the resources field to filter on. You can specify one of the following fields.
+        -- account_id – The Amazon Web Services account ID that owns the resource.
+        -- region – The Amazon Web Services Region of the resource.
+        -- resource_type – The type of the resource.
+        -- resource_category – The category of the resource.
+        -- resource_cloud_provider – The cloud provider of the resource. Valid values are AWS and Azure.
+        -- resource_region – The Region of the resource. For an Amazon Web Services resource, this is the Amazon Web Services Region. For an Azure resource, this is the Azure Region, such as eastus.
+        -- resource_owner_id – The identifier of the account that owns the resource. For an Amazon Web Services resource, this is the Amazon Web Services account ID. For an Azure resource, this is the Azure subscription ID.
+        -- resource_owner_organization_id – The identifier of the organization that owns the resource. For an Amazon Web Services resource, this is the Amazon Web Services organization ID. For an Azure resource, this is the Azure tenant ID.
         FieldName: string
         Filter: StringFilter
     end
@@ -13544,6 +13931,7 @@ local record M
         "AI/ML"
         "Identity"
         "Network"
+        "Messaging"
         "Other"
     end
 
@@ -13561,10 +13949,22 @@ local record M
         ResourceGuid: string
         -- The unique identifier for a resource.
         ResourceId: string
-        -- The Amazon Web Services account that owns the resource.
+        -- The Amazon Web Services account that recorded the resource data in Security Hub.
         AccountId: string
-        -- The Amazon Web Services Region where the resource is located.
+        -- The name of the Amazon Web Services account that's associated with the resource.
+        AccountName: string
+        -- The Amazon Web Services Region that recorded the resource data in Security Hub.
         Region: string
+        -- The cloud provider where the resource exists. Valid values are AWS and Azure. This field is always included.
+        ResourceProvider: string
+        -- The identifier of the cloud account that owns the resource. For Amazon Web Services resources, this is the Amazon Web Services account ID. For Azure resources, this is the Azure subscription ID.
+        ResourceOwnerAccountId: string
+        -- The identifier of the cloud organization that owns the resource. For Amazon Web Services resources, this is the Organizations ID. For Azure resources, this is the Azure tenant ID.
+        ResourceOwnerOrgId: string
+        -- The cloud partition where the resource exists. For Amazon Web Services, valid values include aws, aws-cn, and aws-us-gov. This field isn't returned for cloud providers that don't use partitions.
+        ResourceCloudPartition: string
+        -- The native cloud region where the resource is located. For Amazon Web Services, this is an Amazon Web Services Region (for example, us-east-1). For Azure resources, this is the Azure region (for example, westus2). This field is always included.
+        ResourceRegion: string
         -- The grouping where the resource belongs.
         ResourceCategory: string
         -- The type of resource.
@@ -13637,6 +14037,8 @@ local record M
         -- An object that provides a security control parameter name, description, and the options for customizing it. This
         -- object is excluded for a control that doesn't support custom parameters.
         ParameterDefinitions: {string : ParameterDefinition}
+        -- The cloud provider whose resources the security control evaluates. For example, AWS or Azure.
+        Provider: string
     end
 
     record GetSecurityControlDefinitionOutput
@@ -13763,6 +14165,26 @@ local record M
         NextToken: string
     end
 
+    record ListConnectorsInput
+        -- The pagination token to request the next page of results.
+        NextToken: string
+        -- The maximum number of results to return.
+        MaxResults: number
+        -- The name of the cloud provider to filter connectors by.
+        ProviderName: string
+        -- The connectivity status to filter connectors by.
+        ConnectorStatus: string
+        -- The enablement status to filter connectors by.
+        EnablementStatus: string
+    end
+
+    record ListConnectorsOutput
+        -- The pagination token to use to request the next page of results. If there are no additional results, this value is null.
+        NextToken: string
+        -- An array of connector summaries.
+        Connectors: {CspmConnectorSummary}
+    end
+
     record ListConnectorsV2Input
         -- The pagination token per the Amazon Web Services Pagination standard
         NextToken: string
@@ -13772,6 +14194,8 @@ local record M
         ProviderName: string
         -- The status for the connectorV2.
         ConnectorStatus: string
+        -- The enablement status to filter connectors by.
+        EnablementStatus: string
     end
 
     record ListConnectorsV2Output
@@ -13892,6 +14316,8 @@ local record M
         -- NextToken parameter that you can use in a subsequent API call to get the
         -- next 25 controls. This repeats until all controls for the standard are returned.
         MaxResults: number
+        -- A list of cloud providers to filter the security control definitions by. For example, specify Azure to return only controls that evaluate Azure resources.
+        Providers: {string}
     end
 
     record ListSecurityControlDefinitionsOutput
@@ -13976,6 +14402,8 @@ local record M
         JiraCloud: JiraCloudUpdateConfiguration
         -- The parameters required to update the configuration for a ServiceNow integration.
         ServiceNow: ServiceNowUpdateConfiguration
+        -- The parameters required to update the configuration for a Microsoft Azure CSPM integration.
+        Azure: AzureUpdateConfiguration
     end
 
     record RegisterConnectorV2Input
@@ -14132,6 +14560,22 @@ local record M
         ConfigurationPolicy: Policy
     end
 
+    record UpdateConnectorInput
+        -- The unique identifier of the connector to update.
+        ConnectorId: string
+        -- The updated description of the connector.
+        Description: string
+        -- The updated cloud provider configuration for the connector.
+        Provider: CspmProviderUpdateConfiguration
+    end
+
+    record UpdateConnectorOutput
+        -- The connectivity status of the connector after the update.
+        ConnectorStatus: string
+        -- The enablement status of the connector after the update.
+        EnablementStatus: string
+    end
+
     record UpdateConnectorV2Input
         -- The UUID of the connectorV2 to identify connectorV2 resource.
         ConnectorId: string
@@ -14142,6 +14586,10 @@ local record M
     end
 
     record UpdateConnectorV2Output
+        -- The status of the connector after the update.
+        ConnectorStatus: string
+        -- The enablement status of the connector after the update.
+        EnablementStatus: string
     end
 
     record UpdateFindingAggregatorInput

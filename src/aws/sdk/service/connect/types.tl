@@ -1785,6 +1785,47 @@ local record M
         FileStatus: string
     end
 
+    enum AuthCodeEntityType
+        "CUSTOMER_PROFILE"
+    end
+
+    -- Contains the scope configuration for an authorization code. Defines the permissions and access boundaries for
+    -- the session.
+    record AuthScope
+        -- The list of security profile identifiers to scope the session to. Maximum of 10 security profiles.
+        SecurityProfileIds: {string}
+        -- The type of entity to scope the session to.
+        EntityType: string
+        -- The identifier of the entity to scope the session to.
+        EntityId: string
+        -- The name of the Customer Profiles domain to scope the session to.
+        DomainName: string
+    end
+
+    record CreateAuthCodeInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The scope for the authorization code. Defines the permissions and access boundaries for the session.
+        Scope: AuthScope
+        -- The maximum duration of the session, in minutes. Minimum value of 1440 (24 hours). Maximum value of 43200 (30
+        -- days). If no value is provided, the session will expire after 400 days.
+        MaxSessionDurationMinutes: number
+        -- The duration of inactivity, in minutes, after which the session expires. Minimum value of 1440 (24 hours).
+        -- Maximum value of 20160 (14 days).
+        SessionInactivityDurationMinutes: number
+    end
+
+    record CreateAuthCodeOutput
+        -- The authorization code to use for establishing a session.
+        AuthCode: string
+        -- The identifier of the session created with the authorization code.
+        SessionId: string
+        -- The type of entity associated with the authorization code.
+        EntityType: string
+        -- The identifier of the entity associated with the authorization code.
+        EntityId: string
+    end
+
     enum InitiateAs
         "CONNECTED_TO_USER"
         "COMPLETED"
@@ -4653,6 +4694,16 @@ local record M
     end
 
     record DeleteSecurityProfileOutput
+    end
+
+    record DeleteSessionInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the session to delete.
+        SessionId: string
+    end
+
+    record DeleteSessionOutput
     end
 
     record DeleteTaskTemplateInput
@@ -7976,14 +8027,14 @@ local record M
     end
 
     record GetFederationTokenOutput
+        -- The identifier for the user. This can be the ID or the ARN of the user.
+        UserId: string
+        -- The Amazon Resource Name (ARN) of the user.
+        UserArn: string
         -- The credentials to use for federation.
         Credentials: Credentials
         -- The URL to sign into the user's instance.
         SignInUrl: string
-        -- The Amazon Resource Name (ARN) of the user.
-        UserArn: string
-        -- The identifier for the user. This can be the ID or the ARN of the user.
-        UserId: string
     end
 
     -- No user with the specified credentials was found in the Connect Customer instance.

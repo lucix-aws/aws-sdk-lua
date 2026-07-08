@@ -191,6 +191,10 @@ M.AssociationList = schema.new({ type = "list", list_member = M.Association })
 
 M.AssociationVersionList = schema.new({ type = "list", list_member = M.AssociationVersionInfo })
 
+M.CloudConnectorFilterList = schema.new({ type = "list", list_member = M.CloudConnectorFilter })
+
+M.CloudConnectorSummaryList = schema.new({ type = "list", list_member = M.CloudConnectorSummary })
+
 M.CommandFilterList = schema.new({ type = "list", list_member = M.CommandFilter })
 
 M.CommandInvocationList = schema.new({ type = "list", list_member = M.CommandInvocation })
@@ -258,6 +262,8 @@ M.SessionManagerParameters = schema.new({ type = "map", map_key = prelude.String
 M.OpsItemOpsDataKeysList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MetadataKeysToDeleteList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ValidationFindingList = schema.new({ type = "list", list_member = M.ValidationFinding })
 
 M.ParameterValueList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -377,6 +383,8 @@ M.OpsAggregatorValueMap = schema.new({ type = "map", map_key = prelude.String, m
 
 M.OpsEntityItemMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.OpsEntityItem })
 
+M.CloudConnectorFilterValues = schema.new({ type = "list", list_member = prelude.String })
+
 M.CommandPluginList = schema.new({ type = "list", list_member = M.CommandPlugin })
 
 M.ComplianceStringFilterValueList = schema.new({ type = "list", list_member = prelude.String })
@@ -394,6 +402,8 @@ M.OpsItemRelatedItemsFilterValues = schema.new({ type = "list", list_member = pr
 M.OpsMetadataFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.InventoryItemContentContext = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AzureSubscriptionList = schema.new({ type = "list", list_member = M.AzureSubscription })
 
 M.PatchFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -2035,6 +2045,235 @@ M.CreateAssociationBatchOutput = schema.new({
     },
 })
 
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConflictException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AzureSubscription = schema.new({
+    id = id.from(_N, "AzureSubscription"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "AzureSubscription", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "AzureSubscription", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConfigurationTargets = schema.new({
+    id = id.from(_N, "ConfigurationTargets"),
+    type = "union",
+    members = {
+        Subscriptions = schema.new({
+            id = id.from(_N, "ConfigurationTargets", "Subscriptions"),
+            type = "list",
+            name = "Subscriptions",
+            target_id = prelude.Document.id,
+            list_member = M.AzureSubscription,
+        }),
+    },
+})
+
+M.AzureConfiguration = schema.new({
+    id = id.from(_N, "AzureConfiguration"),
+    type = "structure",
+    members = {
+        TenantId = schema.new({
+            id = id.from(_N, "AzureConfiguration", "TenantId"),
+            type = "string",
+            name = "TenantId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TenantDisplayName = schema.new({
+            id = id.from(_N, "AzureConfiguration", "TenantDisplayName"),
+            type = "string",
+            name = "TenantDisplayName",
+            target_id = prelude.String.id,
+        }),
+        ApplicationId = schema.new({
+            id = id.from(_N, "AzureConfiguration", "ApplicationId"),
+            type = "string",
+            name = "ApplicationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationDisplayName = schema.new({
+            id = id.from(_N, "AzureConfiguration", "ApplicationDisplayName"),
+            type = "string",
+            name = "ApplicationDisplayName",
+            target_id = prelude.String.id,
+        }),
+        Targets = schema.new({
+            id = id.from(_N, "AzureConfiguration", "Targets"),
+            type = "union",
+            name = "Targets",
+            target_id = id.from(_N, "ConfigurationTargets"),
+            target = M.ConfigurationTargets,
+        }),
+    },
+})
+
+M.CloudConnectorConfiguration = schema.new({
+    id = id.from(_N, "CloudConnectorConfiguration"),
+    type = "union",
+    members = {
+        AzureConfiguration = schema.new({
+            id = id.from(_N, "CloudConnectorConfiguration", "AzureConfiguration"),
+            type = "structure",
+            name = "AzureConfiguration",
+            target_id = id.from(_N, "AzureConfiguration"),
+            target = M.AzureConfiguration,
+        }),
+    },
+})
+
+M.CreateCloudConnectorInput = schema.new({
+    id = id.from(_N, "CreateCloudConnectorRequest"),
+    type = "structure",
+    members = {
+        DisplayName = schema.new({
+            id = id.from(_N, "CreateCloudConnectorInput", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateCloudConnectorInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateCloudConnectorInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "CreateCloudConnectorInput", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "CloudConnectorConfiguration"),
+            target = M.CloudConnectorConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConfigConnectorArn = schema.new({
+            id = id.from(_N, "CreateCloudConnectorInput", "ConfigConnectorArn"),
+            type = "string",
+            name = "ConfigConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateCloudConnectorInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateCloudConnectorOutput = schema.new({
+    id = id.from(_N, "CreateCloudConnectorResult"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "CreateCloudConnectorOutput", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceId = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ResourceId"),
+            type = "string",
+            name = "ResourceId",
+            target_id = prelude.String.id,
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        QuotaCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "QuotaCode"),
+            type = "string",
+            name = "QuotaCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceCode = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "ServiceCode"),
+            type = "string",
+            name = "ServiceCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AttachmentsSource = schema.new({
     id = id.from(_N, "AttachmentsSource"),
     type = "structure",
@@ -3635,6 +3874,51 @@ M.DeleteAssociationOutput = schema.new({
     type = "structure",
 })
 
+M.DeleteCloudConnectorInput = schema.new({
+    id = id.from(_N, "DeleteCloudConnectorRequest"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "DeleteCloudConnectorInput", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCloudConnectorOutput = schema.new({
+    id = id.from(_N, "DeleteCloudConnectorResult"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "DeleteCloudConnectorOutput", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AssociatedInstances = schema.new({
     id = id.from(_N, "AssociatedInstances"),
     type = "structure",
@@ -4204,22 +4488,6 @@ M.MalformedResourcePolicyDocumentException = schema.new({
     members = {
         Message = schema.new({
             id = id.from(_N, "MalformedResourcePolicyDocumentException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
@@ -6623,6 +6891,12 @@ M.InstanceInformation = schema.new({
             name = "SourceType",
             target_id = prelude.String.id,
         }),
+        SourceLocation = schema.new({
+            id = id.from(_N, "InstanceInformation", "SourceLocation"),
+            type = "string",
+            name = "SourceLocation",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7372,6 +7646,18 @@ M.InstanceProperty = schema.new({
             id = id.from(_N, "InstanceProperty", "SourceType"),
             type = "string",
             name = "SourceType",
+            target_id = prelude.String.id,
+        }),
+        SourceLocation = schema.new({
+            id = id.from(_N, "InstanceProperty", "SourceLocation"),
+            type = "string",
+            name = "SourceLocation",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "InstanceProperty", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
             target_id = prelude.String.id,
         }),
     },
@@ -10055,6 +10341,78 @@ M.UnsupportedCalendarException = schema.new({
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetCloudConnectorInput = schema.new({
+    id = id.from(_N, "GetCloudConnectorRequest"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "GetCloudConnectorInput", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetCloudConnectorOutput = schema.new({
+    id = id.from(_N, "GetCloudConnectorResult"),
+    type = "structure",
+    members = {
+        CloudConnectorArn = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "CloudConnectorArn"),
+            type = "string",
+            name = "CloudConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "CloudConnectorConfiguration"),
+            target = M.CloudConnectorConfiguration,
+        }),
+        ConfigConnectorArn = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "ConfigConnectorArn"),
+            type = "string",
+            name = "ConfigConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetCloudConnectorOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -13365,6 +13723,118 @@ M.ListAssociationVersionsOutput = schema.new({
     },
 })
 
+M.CloudConnectorFilter = schema.new({
+    id = id.from(_N, "CloudConnectorFilter"),
+    type = "structure",
+    members = {
+        FilterKey = schema.new({
+            id = id.from(_N, "CloudConnectorFilter", "FilterKey"),
+            type = "string",
+            name = "FilterKey",
+            target_id = prelude.String.id,
+        }),
+        FilterValues = schema.new({
+            id = id.from(_N, "CloudConnectorFilter", "FilterValues"),
+            type = "list",
+            name = "FilterValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListCloudConnectorsInput = schema.new({
+    id = id.from(_N, "ListCloudConnectorsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListCloudConnectorsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCloudConnectorsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "ListCloudConnectorsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.CloudConnectorFilter,
+        }),
+    },
+})
+
+M.CloudConnectorSummary = schema.new({
+    id = id.from(_N, "CloudConnectorSummary"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "CloudConnectorSummary", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListCloudConnectorsOutput = schema.new({
+    id = id.from(_N, "ListCloudConnectorsResult"),
+    type = "structure",
+    members = {
+        CloudConnectors = schema.new({
+            id = id.from(_N, "ListCloudConnectorsOutput", "CloudConnectors"),
+            type = "list",
+            name = "CloudConnectors",
+            target_id = prelude.Document.id,
+            list_member = M.CloudConnectorSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListCloudConnectorsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CommandFilter = schema.new({
     id = id.from(_N, "CommandFilter"),
     type = "structure",
@@ -14904,6 +15374,12 @@ M.InstanceInfo = schema.new({
             name = "ManagedStatus",
             target_id = prelude.String.id,
         }),
+        Name = schema.new({
+            id = id.from(_N, "InstanceInfo", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
         PlatformType = schema.new({
             id = id.from(_N, "InstanceInfo", "PlatformType"),
             type = "string",
@@ -14926,6 +15402,36 @@ M.InstanceInfo = schema.new({
             id = id.from(_N, "InstanceInfo", "ResourceType"),
             type = "string",
             name = "ResourceType",
+            target_id = prelude.String.id,
+        }),
+        SourceType = schema.new({
+            id = id.from(_N, "InstanceInfo", "SourceType"),
+            type = "string",
+            name = "SourceType",
+            target_id = prelude.String.id,
+        }),
+        SourceId = schema.new({
+            id = id.from(_N, "InstanceInfo", "SourceId"),
+            type = "string",
+            name = "SourceId",
+            target_id = prelude.String.id,
+        }),
+        SourceLocation = schema.new({
+            id = id.from(_N, "InstanceInfo", "SourceLocation"),
+            type = "string",
+            name = "SourceLocation",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "InstanceInfo", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "InstanceInfo", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
             target_id = prelude.String.id,
         }),
     },
@@ -17281,55 +17787,6 @@ M.SendCommandOutput = schema.new({
     },
 })
 
-M.ServiceQuotaExceededException = schema.new({
-    id = id.from(_N, "ServiceQuotaExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ResourceId = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "ResourceId"),
-            type = "string",
-            name = "ResourceId",
-            target_id = prelude.String.id,
-        }),
-        ResourceType = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "ResourceType"),
-            type = "string",
-            name = "ResourceType",
-            target_id = prelude.String.id,
-        }),
-        QuotaCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "QuotaCode"),
-            type = "string",
-            name = "QuotaCode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ServiceCode = schema.new({
-            id = id.from(_N, "ServiceQuotaExceededException", "ServiceCode"),
-            type = "string",
-            name = "ServiceCode",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
 M.StartAccessRequestInput = schema.new({
     id = id.from(_N, "StartAccessRequestRequest"),
     type = "structure",
@@ -18269,6 +18726,54 @@ M.UpdateAssociationStatusOutput = schema.new({
             name = "AssociationDescription",
             target_id = id.from(_N, "AssociationDescription"),
             target = M.AssociationDescription,
+        }),
+    },
+})
+
+M.UpdateCloudConnectorInput = schema.new({
+    id = id.from(_N, "UpdateCloudConnectorRequest"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "UpdateCloudConnectorInput", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DisplayName = schema.new({
+            id = id.from(_N, "UpdateCloudConnectorInput", "DisplayName"),
+            type = "string",
+            name = "DisplayName",
+            target_id = prelude.String.id,
+        }),
+        Configuration = schema.new({
+            id = id.from(_N, "UpdateCloudConnectorInput", "Configuration"),
+            type = "union",
+            name = "Configuration",
+            target_id = id.from(_N, "CloudConnectorConfiguration"),
+            target = M.CloudConnectorConfiguration,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateCloudConnectorInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateCloudConnectorOutput = schema.new({
+    id = id.from(_N, "UpdateCloudConnectorResult"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "UpdateCloudConnectorOutput", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -19535,6 +20040,114 @@ M.UpdateServiceSettingOutput = schema.new({
     type = "structure",
 })
 
+M.ValidateCloudConnectorInput = schema.new({
+    id = id.from(_N, "ValidateCloudConnectorRequest"),
+    type = "structure",
+    members = {
+        CloudConnectorId = schema.new({
+            id = id.from(_N, "ValidateCloudConnectorInput", "CloudConnectorId"),
+            type = "string",
+            name = "CloudConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ValidateCloudConnectorInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ValidateCloudConnectorInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationFindingScope = schema.new({
+    id = id.from(_N, "ValidationFindingScope"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ValidationFindingScope", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Id = schema.new({
+            id = id.from(_N, "ValidationFindingScope", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationFinding = schema.new({
+    id = id.from(_N, "ValidationFinding"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ValidationFinding", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Code = schema.new({
+            id = id.from(_N, "ValidationFinding", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ValidationFinding", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        ProviderMessage = schema.new({
+            id = id.from(_N, "ValidationFinding", "ProviderMessage"),
+            type = "string",
+            name = "ProviderMessage",
+            target_id = prelude.String.id,
+        }),
+        Scope = schema.new({
+            id = id.from(_N, "ValidationFinding", "Scope"),
+            type = "structure",
+            name = "Scope",
+            target_id = id.from(_N, "ValidationFindingScope"),
+            target = M.ValidationFindingScope,
+        }),
+    },
+})
+
+M.ValidateCloudConnectorOutput = schema.new({
+    id = id.from(_N, "ValidateCloudConnectorResult"),
+    type = "structure",
+    members = {
+        ValidationFindings = schema.new({
+            id = id.from(_N, "ValidateCloudConnectorOutput", "ValidationFindings"),
+            type = "list",
+            name = "ValidationFindings",
+            target_id = prelude.Document.id,
+            list_member = M.ValidationFinding,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ValidateCloudConnectorOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.InventoryAggregator = schema.new({
     id = id.from(_N, "InventoryAggregator"),
     type = "structure",
@@ -19880,6 +20493,17 @@ M.CreateAssociationBatch = schema.operation({
     },
 })
 
+M.CreateCloudConnector = schema.operation({
+    id = id.from("com.amazonaws.ssm", "CreateCloudConnector"),
+    input = M.CreateCloudConnectorInput,
+    output = M.CreateCloudConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateDocument = schema.operation({
     id = id.from("com.amazonaws.ssm", "CreateDocument"),
     input = M.CreateDocumentInput,
@@ -19961,6 +20585,17 @@ M.DeleteAssociation = schema.operation({
     id = id.from("com.amazonaws.ssm", "DeleteAssociation"),
     input = M.DeleteAssociationInput,
     output = M.DeleteAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCloudConnector = schema.operation({
+    id = id.from("com.amazonaws.ssm", "DeleteCloudConnector"),
+    input = M.DeleteCloudConnectorInput,
+    output = M.DeleteCloudConnectorOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -20529,6 +21164,17 @@ M.GetCalendarState = schema.operation({
     },
 })
 
+M.GetCloudConnector = schema.operation({
+    id = id.from("com.amazonaws.ssm", "GetCloudConnector"),
+    input = M.GetCloudConnectorInput,
+    output = M.GetCloudConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetCommandInvocation = schema.operation({
     id = id.from("com.amazonaws.ssm", "GetCommandInvocation"),
     input = M.GetCommandInvocationInput,
@@ -20819,6 +21465,17 @@ M.ListAssociationVersions = schema.operation({
     id = id.from("com.amazonaws.ssm", "ListAssociationVersions"),
     input = M.ListAssociationVersionsInput,
     output = M.ListAssociationVersionsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCloudConnectors = schema.operation({
+    id = id.from("com.amazonaws.ssm", "ListCloudConnectors"),
+    input = M.ListCloudConnectorsInput,
+    output = M.ListCloudConnectorsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -21277,6 +21934,17 @@ M.UpdateAssociationStatus = schema.operation({
     },
 })
 
+M.UpdateCloudConnector = schema.operation({
+    id = id.from("com.amazonaws.ssm", "UpdateCloudConnector"),
+    input = M.UpdateCloudConnectorInput,
+    output = M.UpdateCloudConnectorOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateDocument = schema.operation({
     id = id.from("com.amazonaws.ssm", "UpdateDocument"),
     input = M.UpdateDocumentInput,
@@ -21402,6 +22070,17 @@ M.UpdateServiceSetting = schema.operation({
     id = id.from("com.amazonaws.ssm", "UpdateServiceSetting"),
     input = M.UpdateServiceSettingInput,
     output = M.UpdateServiceSettingOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ValidateCloudConnector = schema.operation({
+    id = id.from("com.amazonaws.ssm", "ValidateCloudConnector"),
+    input = M.ValidateCloudConnectorInput,
+    output = M.ValidateCloudConnectorOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

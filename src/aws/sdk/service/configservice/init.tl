@@ -26,6 +26,7 @@ local record Client
     deleteConfigurationAggregator: function(Client, types.DeleteConfigurationAggregatorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationAggregatorOutput>
     deleteConfigurationRecorder: function(Client, types.DeleteConfigurationRecorderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationRecorderOutput>
     deleteConformancePack: function(Client, types.DeleteConformancePackInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConformancePackOutput>
+    deleteConnector: function(Client, types.DeleteConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
     deleteDeliveryChannel: function(Client, types.DeleteDeliveryChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDeliveryChannelOutput>
     deleteEvaluationResults: function(Client, types.DeleteEvaluationResultsInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEvaluationResultsOutput>
     deleteOrganizationConfigRule: function(Client, types.DeleteOrganizationConfigRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteOrganizationConfigRuleOutput>
@@ -75,6 +76,7 @@ local record Client
     getComplianceSummaryByResourceType: function(Client, types.GetComplianceSummaryByResourceTypeInput, ? base_client.InvokeOptions): async.Operation<types.GetComplianceSummaryByResourceTypeOutput>
     getConformancePackComplianceDetails: function(Client, types.GetConformancePackComplianceDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetConformancePackComplianceDetailsOutput>
     getConformancePackComplianceSummary: function(Client, types.GetConformancePackComplianceSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetConformancePackComplianceSummaryOutput>
+    getConnector: function(Client, types.GetConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectorOutput>
     getCustomRulePolicy: function(Client, types.GetCustomRulePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetCustomRulePolicyOutput>
     getDiscoveredResourceCounts: function(Client, types.GetDiscoveredResourceCountsInput, ? base_client.InvokeOptions): async.Operation<types.GetDiscoveredResourceCountsOutput>
     getOrganizationConfigRuleDetailedStatus: function(Client, types.GetOrganizationConfigRuleDetailedStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetOrganizationConfigRuleDetailedStatusOutput>
@@ -86,6 +88,7 @@ local record Client
     listAggregateDiscoveredResources: function(Client, types.ListAggregateDiscoveredResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListAggregateDiscoveredResourcesOutput>
     listConfigurationRecorders: function(Client, types.ListConfigurationRecordersInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationRecordersOutput>
     listConformancePackComplianceScores: function(Client, types.ListConformancePackComplianceScoresInput, ? base_client.InvokeOptions): async.Operation<types.ListConformancePackComplianceScoresOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
     listDiscoveredResources: function(Client, types.ListDiscoveredResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListDiscoveredResourcesOutput>
     listResourceEvaluations: function(Client, types.ListResourceEvaluationsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourceEvaluationsOutput>
     listStoredQueries: function(Client, types.ListStoredQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListStoredQueriesOutput>
@@ -95,6 +98,7 @@ local record Client
     putConfigurationAggregator: function(Client, types.PutConfigurationAggregatorInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationAggregatorOutput>
     putConfigurationRecorder: function(Client, types.PutConfigurationRecorderInput, ? base_client.InvokeOptions): async.Operation<types.PutConfigurationRecorderOutput>
     putConformancePack: function(Client, types.PutConformancePackInput, ? base_client.InvokeOptions): async.Operation<types.PutConformancePackOutput>
+    putConnector: function(Client, types.PutConnectorInput, ? base_client.InvokeOptions): async.Operation<types.PutConnectorOutput>
     putDeliveryChannel: function(Client, types.PutDeliveryChannelInput, ? base_client.InvokeOptions): async.Operation<types.PutDeliveryChannelOutput>
     putEvaluations: function(Client, types.PutEvaluationsInput, ? base_client.InvokeOptions): async.Operation<types.PutEvaluationsOutput>
     putExternalEvaluation: function(Client, types.PutExternalEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.PutExternalEvaluationOutput>
@@ -106,6 +110,7 @@ local record Client
     putRetentionConfiguration: function(Client, types.PutRetentionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutRetentionConfigurationOutput>
     putServiceLinkedConfigurationRecorder: function(Client, types.PutServiceLinkedConfigurationRecorderInput, ? base_client.InvokeOptions): async.Operation<types.PutServiceLinkedConfigurationRecorderOutput>
     putStoredQuery: function(Client, types.PutStoredQueryInput, ? base_client.InvokeOptions): async.Operation<types.PutStoredQueryOutput>
+    putThirdPartyServiceLinkedConfigurationRecorder: function(Client, types.PutThirdPartyServiceLinkedConfigurationRecorderInput, ? base_client.InvokeOptions): async.Operation<types.PutThirdPartyServiceLinkedConfigurationRecorderOutput>
     selectAggregateResourceConfig: function(Client, types.SelectAggregateResourceConfigInput, ? base_client.InvokeOptions): async.Operation<types.SelectAggregateResourceConfigOutput>
     selectResourceConfig: function(Client, types.SelectResourceConfigInput, ? base_client.InvokeOptions): async.Operation<types.SelectResourceConfigOutput>
     startConfigRulesEvaluation: function(Client, types.StartConfigRulesEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.StartConfigRulesEvaluationOutput>
@@ -189,6 +194,10 @@ end
 
 function C:deleteConformancePack(input: types.DeleteConformancePackInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConformancePackOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConformancePack as schema.OperationSchema, input, options) as async.Operation<types.DeleteConformancePackOutput>
+end
+
+function C:deleteConnector(input: types.DeleteConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorOutput>
 end
 
 function C:deleteDeliveryChannel(input: types.DeleteDeliveryChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDeliveryChannelOutput>
@@ -387,6 +396,10 @@ function C:getConformancePackComplianceSummary(input: types.GetConformancePackCo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConformancePackComplianceSummary as schema.OperationSchema, input, options) as async.Operation<types.GetConformancePackComplianceSummaryOutput>
 end
 
+function C:getConnector(input: types.GetConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnector as schema.OperationSchema, input, options) as async.Operation<types.GetConnectorOutput>
+end
+
 function C:getCustomRulePolicy(input: types.GetCustomRulePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetCustomRulePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCustomRulePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetCustomRulePolicyOutput>
 end
@@ -431,6 +444,10 @@ function C:listConformancePackComplianceScores(input: types.ListConformancePackC
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConformancePackComplianceScores as schema.OperationSchema, input, options) as async.Operation<types.ListConformancePackComplianceScoresOutput>
 end
 
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
+end
+
 function C:listDiscoveredResources(input: types.ListDiscoveredResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDiscoveredResourcesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDiscoveredResources as schema.OperationSchema, input, options) as async.Operation<types.ListDiscoveredResourcesOutput>
 end
@@ -465,6 +482,10 @@ end
 
 function C:putConformancePack(input: types.PutConformancePackInput, options?: base_client.InvokeOptions): async.Operation<types.PutConformancePackOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConformancePack as schema.OperationSchema, input, options) as async.Operation<types.PutConformancePackOutput>
+end
+
+function C:putConnector(input: types.PutConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.PutConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutConnector as schema.OperationSchema, input, options) as async.Operation<types.PutConnectorOutput>
 end
 
 function C:putDeliveryChannel(input: types.PutDeliveryChannelInput, options?: base_client.InvokeOptions): async.Operation<types.PutDeliveryChannelOutput>
@@ -509,6 +530,10 @@ end
 
 function C:putStoredQuery(input: types.PutStoredQueryInput, options?: base_client.InvokeOptions): async.Operation<types.PutStoredQueryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutStoredQuery as schema.OperationSchema, input, options) as async.Operation<types.PutStoredQueryOutput>
+end
+
+function C:putThirdPartyServiceLinkedConfigurationRecorder(input: types.PutThirdPartyServiceLinkedConfigurationRecorderInput, options?: base_client.InvokeOptions): async.Operation<types.PutThirdPartyServiceLinkedConfigurationRecorderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutThirdPartyServiceLinkedConfigurationRecorder as schema.OperationSchema, input, options) as async.Operation<types.PutThirdPartyServiceLinkedConfigurationRecorderOutput>
 end
 
 function C:selectAggregateResourceConfig(input: types.SelectAggregateResourceConfigInput, options?: base_client.InvokeOptions): async.Operation<types.SelectAggregateResourceConfigOutput>

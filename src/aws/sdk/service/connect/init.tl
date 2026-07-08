@@ -52,6 +52,7 @@ local record Client
     completeAttachedFileUpload: function(Client, types.CompleteAttachedFileUploadInput, ? base_client.InvokeOptions): async.Operation<types.CompleteAttachedFileUploadOutput>
     createAgentStatus: function(Client, types.CreateAgentStatusInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentStatusOutput>
     createAttachedFile: function(Client, types.CreateAttachedFileInput, ? base_client.InvokeOptions): async.Operation<types.CreateAttachedFileOutput>
+    createAuthCode: function(Client, types.CreateAuthCodeInput, ? base_client.InvokeOptions): async.Operation<types.CreateAuthCodeOutput>
     createContact: function(Client, types.CreateContactInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactOutput>
     createContactFlow: function(Client, types.CreateContactFlowInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowOutput>
     createContactFlowModule: function(Client, types.CreateContactFlowModuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateContactFlowModuleOutput>
@@ -113,6 +114,7 @@ local record Client
     deleteRoutingProfile: function(Client, types.DeleteRoutingProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRoutingProfileOutput>
     deleteRule: function(Client, types.DeleteRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRuleOutput>
     deleteSecurityProfile: function(Client, types.DeleteSecurityProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityProfileOutput>
+    deleteSession: function(Client, types.DeleteSessionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSessionOutput>
     deleteTaskTemplate: function(Client, types.DeleteTaskTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTaskTemplateOutput>
     deleteTestCase: function(Client, types.DeleteTestCaseInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTestCaseOutput>
     deleteTrafficDistributionGroup: function(Client, types.DeleteTrafficDistributionGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTrafficDistributionGroupOutput>
@@ -573,6 +575,10 @@ function C:createAttachedFile(input: types.CreateAttachedFileInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAttachedFile as schema.OperationSchema, input, options) as async.Operation<types.CreateAttachedFileOutput>
 end
 
+function C:createAuthCode(input: types.CreateAuthCodeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAuthCodeOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAuthCode as schema.OperationSchema, input, options) as async.Operation<types.CreateAuthCodeOutput>
+end
+
 function C:createContact(input: types.CreateContactInput, options?: base_client.InvokeOptions): async.Operation<types.CreateContactOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateContact as schema.OperationSchema, input, options) as async.Operation<types.CreateContactOutput>
 end
@@ -815,6 +821,10 @@ end
 
 function C:deleteSecurityProfile(input: types.DeleteSecurityProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityProfileOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityProfileOutput>
+end
+
+function C:deleteSession(input: types.DeleteSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSession as schema.OperationSchema, input, options) as async.Operation<types.DeleteSessionOutput>
 end
 
 function C:deleteTaskTemplate(input: types.DeleteTaskTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTaskTemplateOutput>

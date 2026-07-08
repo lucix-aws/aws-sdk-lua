@@ -130,6 +130,42 @@ function M.items_list_cis_scans(client, input)
     })
 end
 
+--- Returns a page iterator for listConnectorScanConfigurations.
+function M.pages_list_connector_scan_configurations(client, input)
+    return paginator.pages(client, "listConnectorScanConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scanConfigurations",
+    })
+end
+
+--- Returns an item iterator for listConnectorScanConfigurations.
+function M.items_list_connector_scan_configurations(client, input)
+    return paginator.items(client, "listConnectorScanConfigurations", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "scanConfigurations",
+    })
+end
+
+--- Returns a page iterator for listConnectors.
+function M.pages_list_connectors(client, input)
+    return paginator.pages(client, "listConnectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listConnectors.
+function M.items_list_connectors(client, input)
+    return paginator.items(client, "listConnectors", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listCoverage.
 function M.pages_list_coverage(client, input)
     return paginator.pages(client, "listCoverage", input, {

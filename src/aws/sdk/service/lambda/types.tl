@@ -673,6 +673,30 @@ local record M
         NewExecutionState: CheckpointUpdatedExecutionState
     end
 
+    -- Lambda couldn't decrypt the environment variables because KMS access was denied. Check the Lambda function's KMS permissions.
+    record KMSAccessDeniedException
+        Type: string
+        Message: string
+    end
+
+    -- Lambda couldn't decrypt the environment variables because the KMS key used is disabled. Check the Lambda function's KMS key settings.
+    record KMSDisabledException
+        Type: string
+        Message: string
+    end
+
+    -- Lambda couldn't decrypt the environment variables because the state of the KMS key used is not valid for Decrypt. Check the function's KMS key settings.
+    record KMSInvalidStateException
+        Type: string
+        Message: string
+    end
+
+    -- Lambda couldn't decrypt the environment variables because the KMS key was not found. Check the function's KMS key settings.
+    record KMSNotFoundException
+        Type: string
+        Message: string
+    end
+
     enum CodeSigningPolicy
         "Warn"
         "Enforce"
@@ -1495,8 +1519,10 @@ local record M
         TargetArn: string
     end
 
-    -- Configuration settings for durable functions, including execution timeout and retention period for execution history.
+    -- Configuration settings for durable functions, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
     record DurableConfig
+        -- The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
+        KMSKeyArn: string
         -- The number of days to retain execution history after a durable execution completes. After this period, execution history is no longer available through the GetDurableExecutionHistory API.
         RetentionPeriodInDays: number
         -- The maximum time (in seconds) that a durable execution can run before timing out. This timeout applies to the entire durable execution, not individual function invocations.
@@ -2569,7 +2595,7 @@ local record M
         LogType: string
         -- Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the context object. Lambda passes the ClientContext object to your function for synchronous invocations only.
         ClientContext: string
-        -- Optional unique name for the durable execution. When you start your special function, you can give it a unique name to identify this specific execution. It's like giving a nickname to a task.
+        -- A unique name for the durable execution. If you invoke a durable function using a name that already exists with the same payload, Lambda returns the existing execution instead of creating a duplicate. If the payload differs, Lambda returns a DurableExecutionAlreadyStartedException error. If not specified, Lambda generates a unique identifier automatically. For more information, see Execution names.
         DurableExecutionName: string
         -- The JSON that you want to provide to your Lambda function as input. The maximum payload size is 6 MB for synchronous invocations and 1 MB for asynchronous invocations. You can enter the JSON directly. For example, --payload '{ "key": "value" }'. You can also specify a file path. For example, --payload file://payload.json.
         Payload: string
@@ -2592,30 +2618,6 @@ local record M
         ExecutedVersion: string
         -- The ARN of the durable execution that was started. This is returned when invoking a durable function and provides a unique identifier for tracking the execution.
         DurableExecutionArn: string
-    end
-
-    -- Lambda couldn't decrypt the environment variables because KMS access was denied. Check the Lambda function's KMS permissions.
-    record KMSAccessDeniedException
-        Type: string
-        Message: string
-    end
-
-    -- Lambda couldn't decrypt the environment variables because the KMS key used is disabled. Check the Lambda function's KMS key settings.
-    record KMSDisabledException
-        Type: string
-        Message: string
-    end
-
-    -- Lambda couldn't decrypt the environment variables because the state of the KMS key used is not valid for Decrypt. Check the function's KMS key settings.
-    record KMSInvalidStateException
-        Type: string
-        Message: string
-    end
-
-    -- Lambda couldn't decrypt the environment variables because the KMS key was not found. Check the function's KMS key settings.
-    record KMSNotFoundException
-        Type: string
-        Message: string
     end
 
     -- The Lambda function doesn't support the invocation mode requested. For example, calling Invoke with InvocationType=RequestResponse on a function configured for asynchronous-only invocation, or vice versa. For more information about invocation types, see Invoking Lambda functions.
@@ -3125,7 +3127,7 @@ local record M
         LoggingConfig: LoggingConfig
         -- Configuration for the capacity provider that manages compute resources for Lambda functions.
         CapacityProviderConfig: CapacityProviderConfig
-        -- Configuration settings for durable functions. Allows updating execution timeout and retention period for functions with durability enabled.
+        -- Configuration settings for durable functions, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
         DurableConfig: DurableConfig
     end
 
@@ -3480,6 +3482,8 @@ local record M
     record GetDurableExecutionInput
         -- The Amazon Resource Name (ARN) of the durable execution.
         DurableExecutionArn: string
+        -- Specifies whether to include execution data such as input payload, result, and error information in the response. Set to false for a more compact response that includes only execution metadata. The default value is set to true.
+        IncludeExecutionData: boolean
     end
 
     enum ExecutionStatus
@@ -3520,6 +3524,10 @@ local record M
         Version: string
         -- The trace headers associated with the durable execution.
         TraceHeader: TraceHeader
+        -- Indicates whether execution data is included in this response. Returns false when IncludeExecutionData is set to false in the request.
+        ExecutionDataIncluded: boolean
+        -- Configuration settings for the durable execution, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
+        DurableConfig: DurableConfig
     end
 
     record GetDurableExecutionHistoryInput
@@ -4124,6 +4132,8 @@ local record M
         StartTimestamp: number
         -- The date and time when the durable execution ended, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
         EndTimestamp: number
+        -- The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
+        KMSKeyArn: string
     end
 
     -- The response from the ListDurableExecutionsByFunction operation, containing a list of durable executions and pagination information.

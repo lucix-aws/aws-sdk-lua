@@ -37,6 +37,7 @@ local record Client
     createAutomationRule: function(Client, types.CreateAutomationRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateAutomationRuleOutput>
     createAutomationRuleV2: function(Client, types.CreateAutomationRuleV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateAutomationRuleV2Output>
     createConfigurationPolicy: function(Client, types.CreateConfigurationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationPolicyOutput>
+    createConnector: function(Client, types.CreateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
     createConnectorV2: function(Client, types.CreateConnectorV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorV2Output>
     createFindingAggregator: function(Client, types.CreateFindingAggregatorInput, ? base_client.InvokeOptions): async.Operation<types.CreateFindingAggregatorOutput>
     createInsight: function(Client, types.CreateInsightInput, ? base_client.InvokeOptions): async.Operation<types.CreateInsightOutput>
@@ -47,6 +48,7 @@ local record Client
     deleteAggregatorV2: function(Client, types.DeleteAggregatorV2Input, ? base_client.InvokeOptions): async.Operation<types.DeleteAggregatorV2Output>
     deleteAutomationRuleV2: function(Client, types.DeleteAutomationRuleV2Input, ? base_client.InvokeOptions): async.Operation<types.DeleteAutomationRuleV2Output>
     deleteConfigurationPolicy: function(Client, types.DeleteConfigurationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationPolicyOutput>
+    deleteConnector: function(Client, types.DeleteConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
     deleteConnectorV2: function(Client, types.DeleteConnectorV2Input, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorV2Output>
     deleteFindingAggregator: function(Client, types.DeleteFindingAggregatorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFindingAggregatorOutput>
     deleteInsight: function(Client, types.DeleteInsightInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInsightOutput>
@@ -63,6 +65,7 @@ local record Client
     disableImportFindingsForProduct: function(Client, types.DisableImportFindingsForProductInput, ? base_client.InvokeOptions): async.Operation<types.DisableImportFindingsForProductOutput>
     disableOrganizationAdminAccount: function(Client, types.DisableOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisableOrganizationAdminAccountOutput>
     disableSecurityHub: function(Client, types.DisableSecurityHubInput, ? base_client.InvokeOptions): async.Operation<types.DisableSecurityHubOutput>
+    disableSecurityHubFeatureV2: function(Client, types.DisableSecurityHubFeatureV2Input, ? base_client.InvokeOptions): async.Operation<types.DisableSecurityHubFeatureV2Output>
     disableSecurityHubV2: function(Client, types.DisableSecurityHubV2Input, ? base_client.InvokeOptions): async.Operation<types.DisableSecurityHubV2Output>
     disassociateFromAdministratorAccount: function(Client, types.DisassociateFromAdministratorAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFromAdministratorAccountOutput>
     disassociateFromMasterAccount: function(Client, types.DisassociateFromMasterAccountInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateFromMasterAccountOutput>
@@ -70,6 +73,7 @@ local record Client
     enableImportFindingsForProduct: function(Client, types.EnableImportFindingsForProductInput, ? base_client.InvokeOptions): async.Operation<types.EnableImportFindingsForProductOutput>
     enableOrganizationAdminAccount: function(Client, types.EnableOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.EnableOrganizationAdminAccountOutput>
     enableSecurityHub: function(Client, types.EnableSecurityHubInput, ? base_client.InvokeOptions): async.Operation<types.EnableSecurityHubOutput>
+    enableSecurityHubFeatureV2: function(Client, types.EnableSecurityHubFeatureV2Input, ? base_client.InvokeOptions): async.Operation<types.EnableSecurityHubFeatureV2Output>
     enableSecurityHubV2: function(Client, types.EnableSecurityHubV2Input, ? base_client.InvokeOptions): async.Operation<types.EnableSecurityHubV2Output>
     generateRecommendedPolicyV2: function(Client, types.GenerateRecommendedPolicyV2Input, ? base_client.InvokeOptions): async.Operation<types.GenerateRecommendedPolicyV2Output>
     getAdministratorAccount: function(Client, types.GetAdministratorAccountInput, ? base_client.InvokeOptions): async.Operation<types.GetAdministratorAccountOutput>
@@ -77,6 +81,7 @@ local record Client
     getAutomationRuleV2: function(Client, types.GetAutomationRuleV2Input, ? base_client.InvokeOptions): async.Operation<types.GetAutomationRuleV2Output>
     getConfigurationPolicy: function(Client, types.GetConfigurationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationPolicyOutput>
     getConfigurationPolicyAssociation: function(Client, types.GetConfigurationPolicyAssociationInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationPolicyAssociationOutput>
+    getConnector: function(Client, types.GetConnectorInput, ? base_client.InvokeOptions): async.Operation<types.GetConnectorOutput>
     getConnectorV2: function(Client, types.GetConnectorV2Input, ? base_client.InvokeOptions): async.Operation<types.GetConnectorV2Output>
     getEnabledStandards: function(Client, types.GetEnabledStandardsInput, ? base_client.InvokeOptions): async.Operation<types.GetEnabledStandardsOutput>
     getFindingAggregator: function(Client, types.GetFindingAggregatorInput, ? base_client.InvokeOptions): async.Operation<types.GetFindingAggregatorOutput>
@@ -101,6 +106,7 @@ local record Client
     listAutomationRulesV2: function(Client, types.ListAutomationRulesV2Input, ? base_client.InvokeOptions): async.Operation<types.ListAutomationRulesV2Output>
     listConfigurationPolicies: function(Client, types.ListConfigurationPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationPoliciesOutput>
     listConfigurationPolicyAssociations: function(Client, types.ListConfigurationPolicyAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationPolicyAssociationsOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
     listConnectorsV2: function(Client, types.ListConnectorsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsV2Output>
     listEnabledProductsForImport: function(Client, types.ListEnabledProductsForImportInput, ? base_client.InvokeOptions): async.Operation<types.ListEnabledProductsForImportOutput>
     listFindingAggregators: function(Client, types.ListFindingAggregatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingAggregatorsOutput>
@@ -119,6 +125,7 @@ local record Client
     updateAggregatorV2: function(Client, types.UpdateAggregatorV2Input, ? base_client.InvokeOptions): async.Operation<types.UpdateAggregatorV2Output>
     updateAutomationRuleV2: function(Client, types.UpdateAutomationRuleV2Input, ? base_client.InvokeOptions): async.Operation<types.UpdateAutomationRuleV2Output>
     updateConfigurationPolicy: function(Client, types.UpdateConfigurationPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationPolicyOutput>
+    updateConnector: function(Client, types.UpdateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
     updateConnectorV2: function(Client, types.UpdateConnectorV2Input, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorV2Output>
     updateFindingAggregator: function(Client, types.UpdateFindingAggregatorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingAggregatorOutput>
     updateFindings: function(Client, types.UpdateFindingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFindingsOutput>
@@ -247,6 +254,10 @@ function C:createConfigurationPolicy(input: types.CreateConfigurationPolicyInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConfigurationPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateConfigurationPolicyOutput>
 end
 
+function C:createConnector(input: types.CreateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorOutput>
+end
+
 function C:createConnectorV2(input: types.CreateConnectorV2Input, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorV2Output>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnectorV2 as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorV2Output>
 end
@@ -285,6 +296,10 @@ end
 
 function C:deleteConfigurationPolicy(input: types.DeleteConfigurationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConfigurationPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConfigurationPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteConfigurationPolicyOutput>
+end
+
+function C:deleteConnector(input: types.DeleteConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorOutput>
 end
 
 function C:deleteConnectorV2(input: types.DeleteConnectorV2Input, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorV2Output>
@@ -351,6 +366,10 @@ function C:disableSecurityHub(input: types.DisableSecurityHubInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableSecurityHub as schema.OperationSchema, input, options) as async.Operation<types.DisableSecurityHubOutput>
 end
 
+function C:disableSecurityHubFeatureV2(input: types.DisableSecurityHubFeatureV2Input, options?: base_client.InvokeOptions): async.Operation<types.DisableSecurityHubFeatureV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableSecurityHubFeatureV2 as schema.OperationSchema, input, options) as async.Operation<types.DisableSecurityHubFeatureV2Output>
+end
+
 function C:disableSecurityHubV2(input: types.DisableSecurityHubV2Input, options?: base_client.InvokeOptions): async.Operation<types.DisableSecurityHubV2Output>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableSecurityHubV2 as schema.OperationSchema, input, options) as async.Operation<types.DisableSecurityHubV2Output>
 end
@@ -379,6 +398,10 @@ function C:enableSecurityHub(input: types.EnableSecurityHubInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableSecurityHub as schema.OperationSchema, input, options) as async.Operation<types.EnableSecurityHubOutput>
 end
 
+function C:enableSecurityHubFeatureV2(input: types.EnableSecurityHubFeatureV2Input, options?: base_client.InvokeOptions): async.Operation<types.EnableSecurityHubFeatureV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableSecurityHubFeatureV2 as schema.OperationSchema, input, options) as async.Operation<types.EnableSecurityHubFeatureV2Output>
+end
+
 function C:enableSecurityHubV2(input: types.EnableSecurityHubV2Input, options?: base_client.InvokeOptions): async.Operation<types.EnableSecurityHubV2Output>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableSecurityHubV2 as schema.OperationSchema, input, options) as async.Operation<types.EnableSecurityHubV2Output>
 end
@@ -405,6 +428,10 @@ end
 
 function C:getConfigurationPolicyAssociation(input: types.GetConfigurationPolicyAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.GetConfigurationPolicyAssociationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConfigurationPolicyAssociation as schema.OperationSchema, input, options) as async.Operation<types.GetConfigurationPolicyAssociationOutput>
+end
+
+function C:getConnector(input: types.GetConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.GetConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetConnector as schema.OperationSchema, input, options) as async.Operation<types.GetConnectorOutput>
 end
 
 function C:getConnectorV2(input: types.GetConnectorV2Input, options?: base_client.InvokeOptions): async.Operation<types.GetConnectorV2Output>
@@ -503,6 +530,10 @@ function C:listConfigurationPolicyAssociations(input: types.ListConfigurationPol
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConfigurationPolicyAssociations as schema.OperationSchema, input, options) as async.Operation<types.ListConfigurationPolicyAssociationsOutput>
 end
 
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
+end
+
 function C:listConnectorsV2(input: types.ListConnectorsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsV2Output>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectorsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsV2Output>
 end
@@ -573,6 +604,10 @@ end
 
 function C:updateConfigurationPolicy(input: types.UpdateConfigurationPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationPolicy as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationPolicyOutput>
+end
+
+function C:updateConnector(input: types.UpdateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorOutput>
 end
 
 function C:updateConnectorV2(input: types.UpdateConnectorV2Input, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorV2Output>

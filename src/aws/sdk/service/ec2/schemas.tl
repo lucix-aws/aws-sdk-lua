@@ -56011,6 +56011,16 @@ M.Image = schema.new({
                 [traits.EC2_QUERY_NAME] = { name = "FreeTierEligible" },
             },
         }),
+        PublicSsmParameterName = schema.new({
+            id = id.from(_N, "Image", "PublicSsmParameterName"),
+            type = "string",
+            name = "PublicSsmParameterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "publicSsmParameterName" },
+                [traits.EC2_QUERY_NAME] = { name = "PublicSsmParameterName" },
+            },
+        }),
         ImageWatermarks = schema.new({
             id = id.from(_N, "Image", "ImageWatermarks"),
             type = "list",

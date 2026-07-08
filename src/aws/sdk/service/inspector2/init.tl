@@ -32,12 +32,14 @@ local record Client
     createCisScanConfiguration: function(Client, types.CreateCisScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCisScanConfigurationOutput>
     createCodeSecurityIntegration: function(Client, types.CreateCodeSecurityIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeSecurityIntegrationOutput>
     createCodeSecurityScanConfiguration: function(Client, types.CreateCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
+    createConnector: function(Client, types.CreateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
     createFilter: function(Client, types.CreateFilterInput, ? base_client.InvokeOptions): async.Operation<types.CreateFilterOutput>
     createFindingsReport: function(Client, types.CreateFindingsReportInput, ? base_client.InvokeOptions): async.Operation<types.CreateFindingsReportOutput>
     createSbomExport: function(Client, types.CreateSbomExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateSbomExportOutput>
     deleteCisScanConfiguration: function(Client, types.DeleteCisScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCisScanConfigurationOutput>
     deleteCodeSecurityIntegration: function(Client, types.DeleteCodeSecurityIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeSecurityIntegrationOutput>
     deleteCodeSecurityScanConfiguration: function(Client, types.DeleteCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
+    deleteConnector: function(Client, types.DeleteConnectorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
     deleteFilter: function(Client, types.DeleteFilterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFilterOutput>
     describeOrganizationConfiguration: function(Client, types.DescribeOrganizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrganizationConfigurationOutput>
     disable: function(Client, types.DisableInput, ? base_client.InvokeOptions): async.Operation<types.DisableOutput>
@@ -66,6 +68,8 @@ local record Client
     listCodeSecurityIntegrations: function(Client, types.ListCodeSecurityIntegrationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeSecurityIntegrationsOutput>
     listCodeSecurityScanConfigurationAssociations: function(Client, types.ListCodeSecurityScanConfigurationAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeSecurityScanConfigurationAssociationsOutput>
     listCodeSecurityScanConfigurations: function(Client, types.ListCodeSecurityScanConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
+    listConnectors: function(Client, types.ListConnectorsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    listConnectorScanConfigurations: function(Client, types.ListConnectorScanConfigurationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectorScanConfigurationsOutput>
     listCoverage: function(Client, types.ListCoverageInput, ? base_client.InvokeOptions): async.Operation<types.ListCoverageOutput>
     listCoverageStatistics: function(Client, types.ListCoverageStatisticsInput, ? base_client.InvokeOptions): async.Operation<types.ListCoverageStatisticsOutput>
     listDelegatedAdminAccounts: function(Client, types.ListDelegatedAdminAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListDelegatedAdminAccountsOutput>
@@ -88,6 +92,8 @@ local record Client
     updateCodeSecurityIntegration: function(Client, types.UpdateCodeSecurityIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCodeSecurityIntegrationOutput>
     updateCodeSecurityScanConfiguration: function(Client, types.UpdateCodeSecurityScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCodeSecurityScanConfigurationOutput>
     updateConfiguration: function(Client, types.UpdateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
+    updateConnector: function(Client, types.UpdateConnectorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    updateConnectorScanConfiguration: function(Client, types.UpdateConnectorScanConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConnectorScanConfigurationOutput>
     updateEc2DeepInspectionConfiguration: function(Client, types.UpdateEc2DeepInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>
     updateEncryptionKey: function(Client, types.UpdateEncryptionKeyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEncryptionKeyOutput>
     updateFilter: function(Client, types.UpdateFilterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFilterOutput>
@@ -193,6 +199,10 @@ function C:createCodeSecurityScanConfiguration(input: types.CreateCodeSecuritySc
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateCodeSecurityScanConfigurationOutput>
 end
 
+function C:createConnector(input: types.CreateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.CreateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateConnector as schema.OperationSchema, input, options) as async.Operation<types.CreateConnectorOutput>
+end
+
 function C:createFilter(input: types.CreateFilterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFilterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFilter as schema.OperationSchema, input, options) as async.Operation<types.CreateFilterOutput>
 end
@@ -215,6 +225,10 @@ end
 
 function C:deleteCodeSecurityScanConfiguration(input: types.DeleteCodeSecurityScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCodeSecurityScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteCodeSecurityScanConfigurationOutput>
+end
+
+function C:deleteConnector(input: types.DeleteConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConnector as schema.OperationSchema, input, options) as async.Operation<types.DeleteConnectorOutput>
 end
 
 function C:deleteFilter(input: types.DeleteFilterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFilterOutput>
@@ -329,6 +343,14 @@ function C:listCodeSecurityScanConfigurations(input: types.ListCodeSecurityScanC
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCodeSecurityScanConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListCodeSecurityScanConfigurationsOutput>
 end
 
+function C:listConnectors(input: types.ListConnectorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectors as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorsOutput>
+end
+
+function C:listConnectorScanConfigurations(input: types.ListConnectorScanConfigurationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListConnectorScanConfigurationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListConnectorScanConfigurations as schema.OperationSchema, input, options) as async.Operation<types.ListConnectorScanConfigurationsOutput>
+end
+
 function C:listCoverage(input: types.ListCoverageInput, options?: base_client.InvokeOptions): async.Operation<types.ListCoverageOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCoverage as schema.OperationSchema, input, options) as async.Operation<types.ListCoverageOutput>
 end
@@ -415,6 +437,14 @@ end
 
 function C:updateConfiguration(input: types.UpdateConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationOutput>
+end
+
+function C:updateConnector(input: types.UpdateConnectorInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnector as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorOutput>
+end
+
+function C:updateConnectorScanConfiguration(input: types.UpdateConnectorScanConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConnectorScanConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConnectorScanConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateConnectorScanConfigurationOutput>
 end
 
 function C:updateEc2DeepInspectionConfiguration(input: types.UpdateEc2DeepInspectionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateEc2DeepInspectionConfigurationOutput>

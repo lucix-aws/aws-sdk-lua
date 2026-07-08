@@ -53,6 +53,8 @@ M.CisTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = p
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.ConnectorTagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.DisableResourceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccountList = schema.new({ type = "list", list_member = M.Account })
@@ -82,6 +84,12 @@ M.IntegrationSummaries = schema.new({ type = "list", list_member = M.CodeSecurit
 M.CodeSecurityScanConfigurationAssociationSummaries = schema.new({ type = "list", list_member = M.CodeSecurityScanConfigurationAssociationSummary })
 
 M.CodeSecurityScanConfigurationSummaries = schema.new({ type = "list", list_member = M.CodeSecurityScanConfigurationSummary })
+
+M.ConnectorList = schema.new({ type = "list", list_member = M.Connector })
+
+M.AwsConfigConnectorArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ConnectorScanConfigurationItemList = schema.new({ type = "list", list_member = M.ConnectorScanConfigurationItem })
 
 M.CoveredResources = schema.new({ type = "list", list_member = M.CoveredResource })
 
@@ -171,6 +179,14 @@ M.CisScanArnFilterList = schema.new({ type = "list", list_member = M.CisStringFi
 
 M.CisScheduledByFilterList = schema.new({ type = "list", list_member = M.CisStringFilter })
 
+M.ConnectorArnFilterList = schema.new({ type = "list", list_member = M.ConnectorArnFilter })
+
+M.AwsConfigConnectorArnFilterList = schema.new({ type = "list", list_member = M.AwsConfigConnectorArnFilter })
+
+M.ConnectorTypeFilterList = schema.new({ type = "list", list_member = M.ConnectorTypeFilter })
+
+M.ProviderFilterList = schema.new({ type = "list", list_member = M.ProviderFilter })
+
 M.CoverageStringFilterList = schema.new({ type = "list", list_member = M.CoverageStringFilter })
 
 M.CoverageMapFilterList = schema.new({ type = "list", list_member = M.CoverageMapFilter })
@@ -203,7 +219,11 @@ M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContinuousIntegrationScanSupportedEvents = schema.new({ type = "list", list_member = prelude.String })
 
+M.AzureRegionList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ClusterDetailsList = schema.new({ type = "list", list_member = M.ClusterDetails })
+
+M.ConnectorArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourceList = schema.new({ type = "list", list_member = M.Resource })
 
@@ -233,6 +253,8 @@ M.CweList = schema.new({ type = "list", list_member = prelude.String })
 
 M.Targets = schema.new({ type = "list", list_member = prelude.String })
 
+M.ScopeValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.TagList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LambdaLayerList = schema.new({ type = "list", list_member = prelude.String })
@@ -256,6 +278,12 @@ M.ImageTagList = schema.new({ type = "list", list_member = prelude.String })
 M.LayerList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ArchitectureList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CloudSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ServerlessFunctionLayerList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -792,6 +820,116 @@ M.CodeRepositoryAggregation = schema.new({
     },
 })
 
+M.ContainerImageAggregation = schema.new({
+    id = id.from(_N, "ContainerImageAggregation"),
+    type = "structure",
+    members = {
+        resourceIds = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "resourceIds"),
+            type = "list",
+            name = "resourceIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        imageDigests = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "imageDigests"),
+            type = "list",
+            name = "imageDigests",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        repositories = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "repositories"),
+            type = "list",
+            name = "repositories",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        registries = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "registries"),
+            type = "list",
+            name = "registries",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        architectures = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "architectures"),
+            type = "list",
+            name = "architectures",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        imageTags = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "imageTags"),
+            type = "list",
+            name = "imageTags",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudProviders = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "cloudProviders"),
+            type = "list",
+            name = "cloudProviders",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudPartitions = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "cloudPartitions"),
+            type = "list",
+            name = "cloudPartitions",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudRegions = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "cloudRegions"),
+            type = "list",
+            name = "cloudRegions",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudOrgIds = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "cloudOrgIds"),
+            type = "list",
+            name = "cloudOrgIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudAccountIds = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "cloudAccountIds"),
+            type = "list",
+            name = "cloudAccountIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        lastInUseAt = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "lastInUseAt"),
+            type = "list",
+            name = "lastInUseAt",
+            target_id = prelude.Document.id,
+            list_member = M.DateFilter,
+        }),
+        inUseCount = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "inUseCount"),
+            type = "list",
+            name = "inUseCount",
+            target_id = prelude.Document.id,
+            list_member = M.NumberFilter,
+        }),
+        sortOrder = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "sortOrder"),
+            type = "string",
+            name = "sortOrder",
+            target_id = prelude.String.id,
+        }),
+        sortBy = schema.new({
+            id = id.from(_N, "ContainerImageAggregation", "sortBy"),
+            type = "string",
+            name = "sortBy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.MapFilter = schema.new({
     id = id.from(_N, "MapFilter"),
     type = "structure",
@@ -923,6 +1061,41 @@ M.ImageLayerAggregation = schema.new({
             id = id.from(_N, "ImageLayerAggregation", "layerHashes"),
             type = "list",
             name = "layerHashes",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudProviders = schema.new({
+            id = id.from(_N, "ImageLayerAggregation", "cloudProviders"),
+            type = "list",
+            name = "cloudProviders",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudAccountIds = schema.new({
+            id = id.from(_N, "ImageLayerAggregation", "cloudAccountIds"),
+            type = "list",
+            name = "cloudAccountIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudOrgIds = schema.new({
+            id = id.from(_N, "ImageLayerAggregation", "cloudOrgIds"),
+            type = "list",
+            name = "cloudOrgIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudRegions = schema.new({
+            id = id.from(_N, "ImageLayerAggregation", "cloudRegions"),
+            type = "list",
+            name = "cloudRegions",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudPartitions = schema.new({
+            id = id.from(_N, "ImageLayerAggregation", "cloudPartitions"),
+            type = "list",
+            name = "cloudPartitions",
             target_id = prelude.Document.id,
             list_member = M.StringFilter,
         }),
@@ -1080,6 +1253,88 @@ M.RepositoryAggregation = schema.new({
     },
 })
 
+M.ServerlessFunctionAggregation = schema.new({
+    id = id.from(_N, "ServerlessFunctionAggregation"),
+    type = "structure",
+    members = {
+        resourceIds = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "resourceIds"),
+            type = "list",
+            name = "resourceIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        functionNames = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "functionNames"),
+            type = "list",
+            name = "functionNames",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        runtimes = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "runtimes"),
+            type = "list",
+            name = "runtimes",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        functionTags = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "functionTags"),
+            type = "list",
+            name = "functionTags",
+            target_id = prelude.Document.id,
+            list_member = M.MapFilter,
+        }),
+        cloudProviders = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "cloudProviders"),
+            type = "list",
+            name = "cloudProviders",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudPartitions = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "cloudPartitions"),
+            type = "list",
+            name = "cloudPartitions",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudRegions = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "cloudRegions"),
+            type = "list",
+            name = "cloudRegions",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudOrgIds = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "cloudOrgIds"),
+            type = "list",
+            name = "cloudOrgIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudAccountIds = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "cloudAccountIds"),
+            type = "list",
+            name = "cloudAccountIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        sortOrder = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "sortOrder"),
+            type = "string",
+            name = "sortOrder",
+            target_id = prelude.String.id,
+        }),
+        sortBy = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregation", "sortBy"),
+            type = "string",
+            name = "sortBy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.TitleAggregation = schema.new({
     id = id.from(_N, "TitleAggregation"),
     type = "structure",
@@ -1104,6 +1359,12 @@ M.TitleAggregation = schema.new({
             name = "resourceType",
             target_id = prelude.String.id,
         }),
+        findingType = schema.new({
+            id = id.from(_N, "TitleAggregation", "findingType"),
+            type = "string",
+            name = "findingType",
+            target_id = prelude.String.id,
+        }),
         sortOrder = schema.new({
             id = id.from(_N, "TitleAggregation", "sortOrder"),
             type = "string",
@@ -1116,10 +1377,86 @@ M.TitleAggregation = schema.new({
             name = "sortBy",
             target_id = prelude.String.id,
         }),
-        findingType = schema.new({
-            id = id.from(_N, "TitleAggregation", "findingType"),
+    },
+})
+
+M.VmInstanceAggregation = schema.new({
+    id = id.from(_N, "VmInstanceAggregation"),
+    type = "structure",
+    members = {
+        resourceIds = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "resourceIds"),
+            type = "list",
+            name = "resourceIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        operatingSystems = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "operatingSystems"),
+            type = "list",
+            name = "operatingSystems",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        instanceTags = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "instanceTags"),
+            type = "list",
+            name = "instanceTags",
+            target_id = prelude.Document.id,
+            list_member = M.MapFilter,
+        }),
+        vmImageReferences = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "vmImageReferences"),
+            type = "list",
+            name = "vmImageReferences",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudProviders = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "cloudProviders"),
+            type = "list",
+            name = "cloudProviders",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudPartitions = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "cloudPartitions"),
+            type = "list",
+            name = "cloudPartitions",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudRegions = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "cloudRegions"),
+            type = "list",
+            name = "cloudRegions",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudOrgIds = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "cloudOrgIds"),
+            type = "list",
+            name = "cloudOrgIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudAccountIds = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "cloudAccountIds"),
+            type = "list",
+            name = "cloudAccountIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        sortOrder = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "sortOrder"),
             type = "string",
-            name = "findingType",
+            name = "sortOrder",
+            target_id = prelude.String.id,
+        }),
+        sortBy = schema.new({
+            id = id.from(_N, "VmInstanceAggregation", "sortBy"),
+            type = "string",
+            name = "sortBy",
             target_id = prelude.String.id,
         }),
     },
@@ -1213,6 +1550,27 @@ M.AggregationRequest = schema.new({
             target_id = id.from(_N, "CodeRepositoryAggregation"),
             target = M.CodeRepositoryAggregation,
         }),
+        vmInstanceAggregation = schema.new({
+            id = id.from(_N, "AggregationRequest", "vmInstanceAggregation"),
+            type = "structure",
+            name = "vmInstanceAggregation",
+            target_id = id.from(_N, "VmInstanceAggregation"),
+            target = M.VmInstanceAggregation,
+        }),
+        containerImageAggregation = schema.new({
+            id = id.from(_N, "AggregationRequest", "containerImageAggregation"),
+            type = "structure",
+            name = "containerImageAggregation",
+            target_id = id.from(_N, "ContainerImageAggregation"),
+            target = M.ContainerImageAggregation,
+        }),
+        serverlessFunctionAggregation = schema.new({
+            id = id.from(_N, "AggregationRequest", "serverlessFunctionAggregation"),
+            type = "structure",
+            name = "serverlessFunctionAggregation",
+            target_id = id.from(_N, "ServerlessFunctionAggregation"),
+            target = M.ServerlessFunctionAggregation,
+        }),
     },
 })
 
@@ -1233,6 +1591,36 @@ M.AmiAggregationResponse = schema.new({
             id = id.from(_N, "AmiAggregationResponse", "accountId"),
             type = "string",
             name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "AmiAggregationResponse", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
+        }),
+        cloudPartition = schema.new({
+            id = id.from(_N, "AmiAggregationResponse", "cloudPartition"),
+            type = "string",
+            name = "cloudPartition",
+            target_id = prelude.String.id,
+        }),
+        cloudRegion = schema.new({
+            id = id.from(_N, "AmiAggregationResponse", "cloudRegion"),
+            type = "string",
+            name = "cloudRegion",
+            target_id = prelude.String.id,
+        }),
+        cloudOrgId = schema.new({
+            id = id.from(_N, "AmiAggregationResponse", "cloudOrgId"),
+            type = "string",
+            name = "cloudOrgId",
+            target_id = prelude.String.id,
+        }),
+        cloudAccountId = schema.new({
+            id = id.from(_N, "AmiAggregationResponse", "cloudAccountId"),
+            type = "string",
+            name = "cloudAccountId",
             target_id = prelude.String.id,
         }),
         severityCounts = schema.new({
@@ -1370,6 +1758,120 @@ M.CodeRepositoryAggregationResponse = schema.new({
     },
 })
 
+M.ContainerImageAggregationResponse = schema.new({
+    id = id.from(_N, "ContainerImageAggregationResponse"),
+    type = "structure",
+    members = {
+        resourceId = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
+        }),
+        cloudAccountId = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "cloudAccountId"),
+            type = "string",
+            name = "cloudAccountId",
+            target_id = prelude.String.id,
+        }),
+        cloudPartition = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "cloudPartition"),
+            type = "string",
+            name = "cloudPartition",
+            target_id = prelude.String.id,
+        }),
+        cloudRegion = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "cloudRegion"),
+            type = "string",
+            name = "cloudRegion",
+            target_id = prelude.String.id,
+        }),
+        cloudOrgId = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "cloudOrgId"),
+            type = "string",
+            name = "cloudOrgId",
+            target_id = prelude.String.id,
+        }),
+        imageDigest = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "imageDigest"),
+            type = "string",
+            name = "imageDigest",
+            target_id = prelude.String.id,
+        }),
+        repository = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "repository"),
+            type = "string",
+            name = "repository",
+            target_id = prelude.String.id,
+        }),
+        registry = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "registry"),
+            type = "string",
+            name = "registry",
+            target_id = prelude.String.id,
+        }),
+        architecture = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "architecture"),
+            type = "string",
+            name = "architecture",
+            target_id = prelude.String.id,
+        }),
+        imageTags = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "imageTags"),
+            type = "list",
+            name = "imageTags",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        severityCounts = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "severityCounts"),
+            type = "structure",
+            name = "severityCounts",
+            target_id = id.from(_N, "SeverityCounts"),
+            target = M.SeverityCounts,
+        }),
+        lastInUseAt = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "lastInUseAt"),
+            type = "timestamp",
+            name = "lastInUseAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        inUseCount = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "inUseCount"),
+            type = "long",
+            name = "inUseCount",
+            target_id = prelude.Long.id,
+        }),
+        exploitAvailableActiveFindingsCount = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "exploitAvailableActiveFindingsCount"),
+            type = "long",
+            name = "exploitAvailableActiveFindingsCount",
+            target_id = prelude.Long.id,
+        }),
+        fixAvailableActiveFindingsCount = schema.new({
+            id = id.from(_N, "ContainerImageAggregationResponse", "fixAvailableActiveFindingsCount"),
+            type = "long",
+            name = "fixAvailableActiveFindingsCount",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
 M.Ec2InstanceAggregationResponse = schema.new({
     id = id.from(_N, "Ec2InstanceAggregationResponse"),
     type = "structure",
@@ -1454,6 +1956,36 @@ M.FindingTypeAggregationResponse = schema.new({
             name = "fixAvailableCount",
             target_id = prelude.Long.id,
         }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "FindingTypeAggregationResponse", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
+        }),
+        cloudAccountId = schema.new({
+            id = id.from(_N, "FindingTypeAggregationResponse", "cloudAccountId"),
+            type = "string",
+            name = "cloudAccountId",
+            target_id = prelude.String.id,
+        }),
+        cloudOrgId = schema.new({
+            id = id.from(_N, "FindingTypeAggregationResponse", "cloudOrgId"),
+            type = "string",
+            name = "cloudOrgId",
+            target_id = prelude.String.id,
+        }),
+        cloudRegion = schema.new({
+            id = id.from(_N, "FindingTypeAggregationResponse", "cloudRegion"),
+            type = "string",
+            name = "cloudRegion",
+            target_id = prelude.String.id,
+        }),
+        cloudPartition = schema.new({
+            id = id.from(_N, "FindingTypeAggregationResponse", "cloudPartition"),
+            type = "string",
+            name = "cloudPartition",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1496,6 +2028,36 @@ M.ImageLayerAggregationResponse = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "ImageLayerAggregationResponse", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
+        }),
+        cloudAccountId = schema.new({
+            id = id.from(_N, "ImageLayerAggregationResponse", "cloudAccountId"),
+            type = "string",
+            name = "cloudAccountId",
+            target_id = prelude.String.id,
+        }),
+        cloudOrgId = schema.new({
+            id = id.from(_N, "ImageLayerAggregationResponse", "cloudOrgId"),
+            type = "string",
+            name = "cloudOrgId",
+            target_id = prelude.String.id,
+        }),
+        cloudRegion = schema.new({
+            id = id.from(_N, "ImageLayerAggregationResponse", "cloudRegion"),
+            type = "string",
+            name = "cloudRegion",
+            target_id = prelude.String.id,
+        }),
+        cloudPartition = schema.new({
+            id = id.from(_N, "ImageLayerAggregationResponse", "cloudPartition"),
+            type = "string",
+            name = "cloudPartition",
+            target_id = prelude.String.id,
         }),
         severityCounts = schema.new({
             id = id.from(_N, "ImageLayerAggregationResponse", "severityCounts"),
@@ -1660,6 +2222,36 @@ M.RepositoryAggregationResponse = schema.new({
             name = "accountId",
             target_id = prelude.String.id,
         }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "RepositoryAggregationResponse", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
+        }),
+        cloudPartition = schema.new({
+            id = id.from(_N, "RepositoryAggregationResponse", "cloudPartition"),
+            type = "string",
+            name = "cloudPartition",
+            target_id = prelude.String.id,
+        }),
+        cloudRegion = schema.new({
+            id = id.from(_N, "RepositoryAggregationResponse", "cloudRegion"),
+            type = "string",
+            name = "cloudRegion",
+            target_id = prelude.String.id,
+        }),
+        cloudOrgId = schema.new({
+            id = id.from(_N, "RepositoryAggregationResponse", "cloudOrgId"),
+            type = "string",
+            name = "cloudOrgId",
+            target_id = prelude.String.id,
+        }),
+        cloudAccountId = schema.new({
+            id = id.from(_N, "RepositoryAggregationResponse", "cloudAccountId"),
+            type = "string",
+            name = "cloudAccountId",
+            target_id = prelude.String.id,
+        }),
         severityCounts = schema.new({
             id = id.from(_N, "RepositoryAggregationResponse", "severityCounts"),
             type = "structure",
@@ -1671,6 +2263,103 @@ M.RepositoryAggregationResponse = schema.new({
             id = id.from(_N, "RepositoryAggregationResponse", "affectedImages"),
             type = "long",
             name = "affectedImages",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.ServerlessFunctionAggregationResponse = schema.new({
+    id = id.from(_N, "ServerlessFunctionAggregationResponse"),
+    type = "structure",
+    members = {
+        resourceId = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
+        }),
+        cloudAccountId = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "cloudAccountId"),
+            type = "string",
+            name = "cloudAccountId",
+            target_id = prelude.String.id,
+        }),
+        cloudPartition = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "cloudPartition"),
+            type = "string",
+            name = "cloudPartition",
+            target_id = prelude.String.id,
+        }),
+        cloudRegion = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "cloudRegion"),
+            type = "string",
+            name = "cloudRegion",
+            target_id = prelude.String.id,
+        }),
+        cloudOrgId = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "cloudOrgId"),
+            type = "string",
+            name = "cloudOrgId",
+            target_id = prelude.String.id,
+        }),
+        functionName = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "functionName"),
+            type = "string",
+            name = "functionName",
+            target_id = prelude.String.id,
+        }),
+        runtime = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "runtime"),
+            type = "string",
+            name = "runtime",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        severityCounts = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "severityCounts"),
+            type = "structure",
+            name = "severityCounts",
+            target_id = id.from(_N, "SeverityCounts"),
+            target = M.SeverityCounts,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        exploitAvailableActiveFindingsCount = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "exploitAvailableActiveFindingsCount"),
+            type = "long",
+            name = "exploitAvailableActiveFindingsCount",
+            target_id = prelude.Long.id,
+        }),
+        fixAvailableActiveFindingsCount = schema.new({
+            id = id.from(_N, "ServerlessFunctionAggregationResponse", "fixAvailableActiveFindingsCount"),
+            type = "long",
+            name = "fixAvailableActiveFindingsCount",
             target_id = prelude.Long.id,
         }),
     },
@@ -1707,6 +2396,103 @@ M.TitleAggregationResponse = schema.new({
             name = "severityCounts",
             target_id = id.from(_N, "SeverityCounts"),
             target = M.SeverityCounts,
+        }),
+    },
+})
+
+M.VmInstanceAggregationResponse = schema.new({
+    id = id.from(_N, "VmInstanceAggregationResponse"),
+    type = "structure",
+    members = {
+        resourceId = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
+        }),
+        cloudAccountId = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "cloudAccountId"),
+            type = "string",
+            name = "cloudAccountId",
+            target_id = prelude.String.id,
+        }),
+        cloudPartition = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "cloudPartition"),
+            type = "string",
+            name = "cloudPartition",
+            target_id = prelude.String.id,
+        }),
+        cloudRegion = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "cloudRegion"),
+            type = "string",
+            name = "cloudRegion",
+            target_id = prelude.String.id,
+        }),
+        cloudOrgId = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "cloudOrgId"),
+            type = "string",
+            name = "cloudOrgId",
+            target_id = prelude.String.id,
+        }),
+        vmImageReference = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "vmImageReference"),
+            type = "string",
+            name = "vmImageReference",
+            target_id = prelude.String.id,
+        }),
+        operatingSystem = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "operatingSystem"),
+            type = "string",
+            name = "operatingSystem",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+        severityCounts = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "severityCounts"),
+            type = "structure",
+            name = "severityCounts",
+            target_id = id.from(_N, "SeverityCounts"),
+            target = M.SeverityCounts,
+        }),
+        networkFindings = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "networkFindings"),
+            type = "long",
+            name = "networkFindings",
+            target_id = prelude.Long.id,
+        }),
+        exploitAvailableActiveFindingsCount = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "exploitAvailableActiveFindingsCount"),
+            type = "long",
+            name = "exploitAvailableActiveFindingsCount",
+            target_id = prelude.Long.id,
+        }),
+        fixAvailableActiveFindingsCount = schema.new({
+            id = id.from(_N, "VmInstanceAggregationResponse", "fixAvailableActiveFindingsCount"),
+            type = "long",
+            name = "fixAvailableActiveFindingsCount",
+            target_id = prelude.Long.id,
         }),
     },
 })
@@ -1798,6 +2584,27 @@ M.AggregationResponse = schema.new({
             name = "codeRepositoryAggregation",
             target_id = id.from(_N, "CodeRepositoryAggregationResponse"),
             target = M.CodeRepositoryAggregationResponse,
+        }),
+        vmInstanceAggregation = schema.new({
+            id = id.from(_N, "AggregationResponse", "vmInstanceAggregation"),
+            type = "structure",
+            name = "vmInstanceAggregation",
+            target_id = id.from(_N, "VmInstanceAggregationResponse"),
+            target = M.VmInstanceAggregationResponse,
+        }),
+        containerImageAggregation = schema.new({
+            id = id.from(_N, "AggregationResponse", "containerImageAggregation"),
+            type = "structure",
+            name = "containerImageAggregation",
+            target_id = id.from(_N, "ContainerImageAggregationResponse"),
+            target = M.ContainerImageAggregationResponse,
+        }),
+        serverlessFunctionAggregation = schema.new({
+            id = id.from(_N, "AggregationResponse", "serverlessFunctionAggregation"),
+            type = "structure",
+            name = "serverlessFunctionAggregation",
+            target_id = id.from(_N, "ServerlessFunctionAggregationResponse"),
+            target = M.ServerlessFunctionAggregationResponse,
         }),
     },
 })
@@ -2089,6 +2896,31 @@ M.AutoEnable = schema.new({
             type = "boolean",
             name = "codeRepository",
             target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AwsConfigConnectorArnFilter = schema.new({
+    id = id.from(_N, "AwsConfigConnectorArnFilter"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "AwsConfigConnectorArnFilter", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "AwsConfigConnectorArnFilter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2417,6 +3249,192 @@ M.AwsLambdaFunctionDetails = schema.new({
             type = "timestamp",
             name = "lastModifiedAt",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ScopeConfigurationInput = schema.new({
+    id = id.from(_N, "ScopeConfigurationInput"),
+    type = "structure",
+    members = {
+        scopeType = schema.new({
+            id = id.from(_N, "ScopeConfigurationInput", "scopeType"),
+            type = "string",
+            name = "scopeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scopeValues = schema.new({
+            id = id.from(_N, "ScopeConfigurationInput", "scopeValues"),
+            type = "list",
+            name = "scopeValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AzureScopeConfigurationInput = schema.new({
+    id = id.from(_N, "AzureScopeConfigurationInput"),
+    type = "structure",
+    members = {
+        vmScanning = schema.new({
+            id = id.from(_N, "AzureScopeConfigurationInput", "vmScanning"),
+            type = "structure",
+            name = "vmScanning",
+            target_id = id.from(_N, "ScopeConfigurationInput"),
+            target = M.ScopeConfigurationInput,
+        }),
+        containerImageScanning = schema.new({
+            id = id.from(_N, "AzureScopeConfigurationInput", "containerImageScanning"),
+            type = "structure",
+            name = "containerImageScanning",
+            target_id = id.from(_N, "ScopeConfigurationInput"),
+            target = M.ScopeConfigurationInput,
+        }),
+        serverlessScanning = schema.new({
+            id = id.from(_N, "AzureScopeConfigurationInput", "serverlessScanning"),
+            type = "structure",
+            name = "serverlessScanning",
+            target_id = id.from(_N, "ScopeConfigurationInput"),
+            target = M.ScopeConfigurationInput,
+        }),
+    },
+})
+
+M.AzureProviderDetailCreate = schema.new({
+    id = id.from(_N, "AzureProviderDetailCreate"),
+    type = "structure",
+    members = {
+        awsConfigConnectorArn = schema.new({
+            id = id.from(_N, "AzureProviderDetailCreate", "awsConfigConnectorArn"),
+            type = "string",
+            name = "awsConfigConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scopeConfiguration = schema.new({
+            id = id.from(_N, "AzureProviderDetailCreate", "scopeConfiguration"),
+            type = "structure",
+            name = "scopeConfiguration",
+            target_id = id.from(_N, "AzureScopeConfigurationInput"),
+            target = M.AzureScopeConfigurationInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        azureRegions = schema.new({
+            id = id.from(_N, "AzureProviderDetailCreate", "azureRegions"),
+            type = "list",
+            name = "azureRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        autoInstallVMScanner = schema.new({
+            id = id.from(_N, "AzureProviderDetailCreate", "autoInstallVMScanner"),
+            type = "boolean",
+            name = "autoInstallVMScanner",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+    },
+})
+
+M.AzureProviderDetailUpdate = schema.new({
+    id = id.from(_N, "AzureProviderDetailUpdate"),
+    type = "structure",
+    members = {
+        azureRegions = schema.new({
+            id = id.from(_N, "AzureProviderDetailUpdate", "azureRegions"),
+            type = "list",
+            name = "azureRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        scopeConfiguration = schema.new({
+            id = id.from(_N, "AzureProviderDetailUpdate", "scopeConfiguration"),
+            type = "structure",
+            name = "scopeConfiguration",
+            target_id = id.from(_N, "AzureScopeConfigurationInput"),
+            target = M.AzureScopeConfigurationInput,
+        }),
+        autoInstallVMScanner = schema.new({
+            id = id.from(_N, "AzureProviderDetailUpdate", "autoInstallVMScanner"),
+            type = "boolean",
+            name = "autoInstallVMScanner",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ScopeConfiguration = schema.new({
+    id = id.from(_N, "ScopeConfiguration"),
+    type = "structure",
+    members = {
+        scopeType = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "scopeType"),
+            type = "string",
+            name = "scopeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scopeValues = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "scopeValues"),
+            type = "list",
+            name = "scopeValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        state = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "state"),
+            type = "string",
+            name = "state",
+            target_id = prelude.String.id,
+        }),
+        stateReason = schema.new({
+            id = id.from(_N, "ScopeConfiguration", "stateReason"),
+            type = "string",
+            name = "stateReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AzureScopeConfiguration = schema.new({
+    id = id.from(_N, "AzureScopeConfiguration"),
+    type = "structure",
+    members = {
+        vmScanning = schema.new({
+            id = id.from(_N, "AzureScopeConfiguration", "vmScanning"),
+            type = "structure",
+            name = "vmScanning",
+            target_id = id.from(_N, "ScopeConfiguration"),
+            target = M.ScopeConfiguration,
+        }),
+        containerImageScanning = schema.new({
+            id = id.from(_N, "AzureScopeConfiguration", "containerImageScanning"),
+            type = "structure",
+            name = "containerImageScanning",
+            target_id = id.from(_N, "ScopeConfiguration"),
+            target = M.ScopeConfiguration,
+        }),
+        serverlessScanning = schema.new({
+            id = id.from(_N, "AzureScopeConfiguration", "serverlessScanning"),
+            type = "structure",
+            name = "serverlessScanning",
+            target_id = id.from(_N, "ScopeConfiguration"),
+            target = M.ScopeConfiguration,
         }),
     },
 })
@@ -3161,6 +4179,12 @@ M.FreeTrialInfo = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "FreeTrialInfo", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -5084,6 +6108,398 @@ M.ComputePlatform = schema.new({
     },
 })
 
+M.ConnectorHealth = schema.new({
+    id = id.from(_N, "ConnectorHealth"),
+    type = "structure",
+    members = {
+        connectorStatus = schema.new({
+            id = id.from(_N, "ConnectorHealth", "connectorStatus"),
+            type = "string",
+            name = "connectorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastCheckedAt = schema.new({
+            id = id.from(_N, "ConnectorHealth", "lastCheckedAt"),
+            type = "timestamp",
+            name = "lastCheckedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "ConnectorHealth", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Connector = schema.new({
+    id = id.from(_N, "Connector"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "Connector", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "Connector", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "Connector", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "Connector", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        enablementStatus = schema.new({
+            id = id.from(_N, "Connector", "enablementStatus"),
+            type = "string",
+            name = "enablementStatus",
+            target_id = prelude.String.id,
+        }),
+        enablementStatusReason = schema.new({
+            id = id.from(_N, "Connector", "enablementStatusReason"),
+            type = "string",
+            name = "enablementStatusReason",
+            target_id = prelude.String.id,
+        }),
+        health = schema.new({
+            id = id.from(_N, "Connector", "health"),
+            type = "structure",
+            name = "health",
+            target_id = id.from(_N, "ConnectorHealth"),
+            target = M.ConnectorHealth,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "Connector", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "Connector", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        azureRegions = schema.new({
+            id = id.from(_N, "Connector", "azureRegions"),
+            type = "list",
+            name = "azureRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        awsConfigConnectorArn = schema.new({
+            id = id.from(_N, "Connector", "awsConfigConnectorArn"),
+            type = "string",
+            name = "awsConfigConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        scopeConfiguration = schema.new({
+            id = id.from(_N, "Connector", "scopeConfiguration"),
+            type = "structure",
+            name = "scopeConfiguration",
+            target_id = id.from(_N, "AzureScopeConfiguration"),
+            target = M.AzureScopeConfiguration,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "Connector", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        autoInstallVMScanner = schema.new({
+            id = id.from(_N, "Connector", "autoInstallVMScanner"),
+            type = "boolean",
+            name = "autoInstallVMScanner",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ConnectorArnFilter = schema.new({
+    id = id.from(_N, "ConnectorArnFilter"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "ConnectorArnFilter", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "ConnectorArnFilter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectorContainerImageScanConfiguration = schema.new({
+    id = id.from(_N, "ConnectorContainerImageScanConfiguration"),
+    type = "structure",
+    members = {
+        pushDuration = schema.new({
+            id = id.from(_N, "ConnectorContainerImageScanConfiguration", "pushDuration"),
+            type = "string",
+            name = "pushDuration",
+            target_id = prelude.String.id,
+        }),
+        pullDuration = schema.new({
+            id = id.from(_N, "ConnectorContainerImageScanConfiguration", "pullDuration"),
+            type = "string",
+            name = "pullDuration",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConnectorTypeFilter = schema.new({
+    id = id.from(_N, "ConnectorTypeFilter"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "ConnectorTypeFilter", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "ConnectorTypeFilter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProviderFilter = schema.new({
+    id = id.from(_N, "ProviderFilter"),
+    type = "structure",
+    members = {
+        comparison = schema.new({
+            id = id.from(_N, "ProviderFilter", "comparison"),
+            type = "string",
+            name = "comparison",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "ProviderFilter", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConnectorFilterCriteria = schema.new({
+    id = id.from(_N, "ConnectorFilterCriteria"),
+    type = "structure",
+    members = {
+        connectorArns = schema.new({
+            id = id.from(_N, "ConnectorFilterCriteria", "connectorArns"),
+            type = "list",
+            name = "connectorArns",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorArnFilter,
+        }),
+        accounts = schema.new({
+            id = id.from(_N, "ConnectorFilterCriteria", "accounts"),
+            type = "list",
+            name = "accounts",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        awsConfigConnectorArns = schema.new({
+            id = id.from(_N, "ConnectorFilterCriteria", "awsConfigConnectorArns"),
+            type = "list",
+            name = "awsConfigConnectorArns",
+            target_id = prelude.Document.id,
+            list_member = M.AwsConfigConnectorArnFilter,
+        }),
+        connectorType = schema.new({
+            id = id.from(_N, "ConnectorFilterCriteria", "connectorType"),
+            type = "list",
+            name = "connectorType",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorTypeFilter,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "ConnectorFilterCriteria", "provider"),
+            type = "list",
+            name = "provider",
+            target_id = prelude.Document.id,
+            list_member = M.ProviderFilter,
+        }),
+    },
+})
+
+M.ConnectorScanConfiguration = schema.new({
+    id = id.from(_N, "ConnectorScanConfiguration"),
+    type = "structure",
+    members = {
+        containerImageScanning = schema.new({
+            id = id.from(_N, "ConnectorScanConfiguration", "containerImageScanning"),
+            type = "structure",
+            name = "containerImageScanning",
+            target_id = id.from(_N, "ConnectorContainerImageScanConfiguration"),
+            target = M.ConnectorContainerImageScanConfiguration,
+        }),
+    },
+})
+
+M.ConnectorScanConfigurationItem = schema.new({
+    id = id.from(_N, "ConnectorScanConfigurationItem"),
+    type = "structure",
+    members = {
+        awsConfigConnectorArn = schema.new({
+            id = id.from(_N, "ConnectorScanConfigurationItem", "awsConfigConnectorArn"),
+            type = "string",
+            name = "awsConfigConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectorArns = schema.new({
+            id = id.from(_N, "ConnectorScanConfigurationItem", "connectorArns"),
+            type = "list",
+            name = "connectorArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scanConfiguration = schema.new({
+            id = id.from(_N, "ConnectorScanConfigurationItem", "scanConfiguration"),
+            type = "structure",
+            name = "scanConfiguration",
+            target_id = id.from(_N, "ConnectorScanConfiguration"),
+            target = M.ConnectorScanConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContainerImageMetadata = schema.new({
+    id = id.from(_N, "ContainerImageMetadata"),
+    type = "structure",
+    members = {
+        imageTags = schema.new({
+            id = id.from(_N, "ContainerImageMetadata", "imageTags"),
+            type = "list",
+            name = "imageTags",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        imagePulledAt = schema.new({
+            id = id.from(_N, "ContainerImageMetadata", "imagePulledAt"),
+            type = "timestamp",
+            name = "imagePulledAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        lastInUseAt = schema.new({
+            id = id.from(_N, "ContainerImageMetadata", "lastInUseAt"),
+            type = "timestamp",
+            name = "lastInUseAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        inUseCount = schema.new({
+            id = id.from(_N, "ContainerImageMetadata", "inUseCount"),
+            type = "long",
+            name = "inUseCount",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.ContainerRegistryMetadata = schema.new({
+    id = id.from(_N, "ContainerRegistryMetadata"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ContainerRegistryMetadata", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ContainerRepositoryMetadata = schema.new({
+    id = id.from(_N, "ContainerRepositoryMetadata"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ContainerRepositoryMetadata", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        scanFrequency = schema.new({
+            id = id.from(_N, "ContainerRepositoryMetadata", "scanFrequency"),
+            type = "string",
+            name = "scanFrequency",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Counts = schema.new({
     id = id.from(_N, "Counts"),
     type = "structure",
@@ -5351,6 +6767,83 @@ M.CoverageFilterCriteria = schema.new({
             target_id = prelude.Document.id,
             list_member = M.CoverageStringFilter,
         }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudProvider"),
+            type = "list",
+            name = "cloudProvider",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudProviderAccountId = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudProviderAccountId"),
+            type = "list",
+            name = "cloudProviderAccountId",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudProviderRegion = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudProviderRegion"),
+            type = "list",
+            name = "cloudProviderRegion",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudVmInstanceTags = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudVmInstanceTags"),
+            type = "list",
+            name = "cloudVmInstanceTags",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageMapFilter,
+        }),
+        cloudContainerImageTags = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudContainerImageTags"),
+            type = "list",
+            name = "cloudContainerImageTags",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudContainerRepositoryName = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudContainerRepositoryName"),
+            type = "list",
+            name = "cloudContainerRepositoryName",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudContainerRegistryName = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudContainerRegistryName"),
+            type = "list",
+            name = "cloudContainerRegistryName",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudServerlessFunctionName = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudServerlessFunctionName"),
+            type = "list",
+            name = "cloudServerlessFunctionName",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudServerlessFunctionRuntime = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudServerlessFunctionRuntime"),
+            type = "list",
+            name = "cloudServerlessFunctionRuntime",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
+        cloudServerlessFunctionTags = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudServerlessFunctionTags"),
+            type = "list",
+            name = "cloudServerlessFunctionTags",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageMapFilter,
+        }),
+        cloudProviderOrgId = schema.new({
+            id = id.from(_N, "CoverageFilterCriteria", "cloudProviderOrgId"),
+            type = "list",
+            name = "cloudProviderOrgId",
+            target_id = prelude.Document.id,
+            list_member = M.CoverageStringFilter,
+        }),
     },
 })
 
@@ -5466,6 +6959,66 @@ M.LambdaFunctionMetadata = schema.new({
     },
 })
 
+M.ServerlessFunctionMetadata = schema.new({
+    id = id.from(_N, "ServerlessFunctionMetadata"),
+    type = "structure",
+    members = {
+        serverlessFunctionName = schema.new({
+            id = id.from(_N, "ServerlessFunctionMetadata", "serverlessFunctionName"),
+            type = "string",
+            name = "serverlessFunctionName",
+            target_id = prelude.String.id,
+        }),
+        runtime = schema.new({
+            id = id.from(_N, "ServerlessFunctionMetadata", "runtime"),
+            type = "string",
+            name = "runtime",
+            target_id = prelude.String.id,
+        }),
+        functionTags = schema.new({
+            id = id.from(_N, "ServerlessFunctionMetadata", "functionTags"),
+            type = "map",
+            name = "functionTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.VmInstanceMetadata = schema.new({
+    id = id.from(_N, "VmInstanceMetadata"),
+    type = "structure",
+    members = {
+        tags = schema.new({
+            id = id.from(_N, "VmInstanceMetadata", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        platform = schema.new({
+            id = id.from(_N, "VmInstanceMetadata", "platform"),
+            type = "string",
+            name = "platform",
+            target_id = prelude.String.id,
+        }),
+        inventoryHash = schema.new({
+            id = id.from(_N, "VmInstanceMetadata", "inventoryHash"),
+            type = "string",
+            name = "inventoryHash",
+            target_id = prelude.String.id,
+        }),
+        vmImageReference = schema.new({
+            id = id.from(_N, "VmInstanceMetadata", "vmImageReference"),
+            type = "string",
+            name = "vmImageReference",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ResourceScanMetadata = schema.new({
     id = id.from(_N, "ResourceScanMetadata"),
     type = "structure",
@@ -5504,6 +7057,41 @@ M.ResourceScanMetadata = schema.new({
             name = "codeRepository",
             target_id = id.from(_N, "CodeRepositoryMetadata"),
             target = M.CodeRepositoryMetadata,
+        }),
+        vmInstance = schema.new({
+            id = id.from(_N, "ResourceScanMetadata", "vmInstance"),
+            type = "structure",
+            name = "vmInstance",
+            target_id = id.from(_N, "VmInstanceMetadata"),
+            target = M.VmInstanceMetadata,
+        }),
+        containerImage = schema.new({
+            id = id.from(_N, "ResourceScanMetadata", "containerImage"),
+            type = "structure",
+            name = "containerImage",
+            target_id = id.from(_N, "ContainerImageMetadata"),
+            target = M.ContainerImageMetadata,
+        }),
+        containerRepository = schema.new({
+            id = id.from(_N, "ResourceScanMetadata", "containerRepository"),
+            type = "structure",
+            name = "containerRepository",
+            target_id = id.from(_N, "ContainerRepositoryMetadata"),
+            target = M.ContainerRepositoryMetadata,
+        }),
+        containerRegistry = schema.new({
+            id = id.from(_N, "ResourceScanMetadata", "containerRegistry"),
+            type = "structure",
+            name = "containerRegistry",
+            target_id = id.from(_N, "ContainerRegistryMetadata"),
+            target = M.ContainerRegistryMetadata,
+        }),
+        serverlessFunction = schema.new({
+            id = id.from(_N, "ResourceScanMetadata", "serverlessFunction"),
+            type = "structure",
+            name = "serverlessFunction",
+            target_id = id.from(_N, "ServerlessFunctionMetadata"),
+            target = M.ServerlessFunctionMetadata,
         }),
     },
 })
@@ -5572,6 +7160,36 @@ M.CoveredResource = schema.new({
             id = id.from(_N, "CoveredResource", "scanMode"),
             type = "string",
             name = "scanMode",
+            target_id = prelude.String.id,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "CoveredResource", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+        }),
+        providerAccountId = schema.new({
+            id = id.from(_N, "CoveredResource", "providerAccountId"),
+            type = "string",
+            name = "providerAccountId",
+            target_id = prelude.String.id,
+        }),
+        providerOrgId = schema.new({
+            id = id.from(_N, "CoveredResource", "providerOrgId"),
+            type = "string",
+            name = "providerOrgId",
+            target_id = prelude.String.id,
+        }),
+        providerRegion = schema.new({
+            id = id.from(_N, "CoveredResource", "providerRegion"),
+            type = "string",
+            name = "providerRegion",
+            target_id = prelude.String.id,
+        }),
+        providerPartition = schema.new({
+            id = id.from(_N, "CoveredResource", "providerPartition"),
+            type = "string",
+            name = "providerPartition",
             target_id = prelude.String.id,
         }),
     },
@@ -5839,6 +7457,94 @@ M.CreateCodeSecurityScanConfigurationOutput = schema.new({
             id = id.from(_N, "CreateCodeSecurityScanConfigurationOutput", "scanConfigurationArn"),
             type = "string",
             name = "scanConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProviderDetailCreate = schema.new({
+    id = id.from(_N, "ProviderDetailCreate"),
+    type = "union",
+    members = {
+        azure = schema.new({
+            id = id.from(_N, "ProviderDetailCreate", "azure"),
+            type = "structure",
+            name = "azure",
+            target_id = id.from(_N, "AzureProviderDetailCreate"),
+            target = M.AzureProviderDetailCreate,
+        }),
+    },
+})
+
+M.CreateConnectorInput = schema.new({
+    id = id.from(_N, "CreateConnectorRequest"),
+    type = "structure",
+    members = {
+        clientToken = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        provider = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        providerDetail = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "providerDetail"),
+            type = "union",
+            name = "providerDetail",
+            target_id = id.from(_N, "ProviderDetailCreate"),
+            target = M.ProviderDetailCreate,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateConnectorOutput = schema.new({
+    id = id.from(_N, "CreateConnectorResponse"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "CreateConnectorOutput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -6252,6 +7958,139 @@ M.FilterCriteria = schema.new({
             id = id.from(_N, "FilterCriteria", "codeRepositoryProviderType"),
             type = "list",
             name = "codeRepositoryProviderType",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudProvider"),
+            type = "list",
+            name = "cloudProvider",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudProviderRegion = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudProviderRegion"),
+            type = "list",
+            name = "cloudProviderRegion",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudProviderAccountId = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudProviderAccountId"),
+            type = "list",
+            name = "cloudProviderAccountId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudProviderOrgId = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudProviderOrgId"),
+            type = "list",
+            name = "cloudProviderOrgId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudVmImageReference = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudVmImageReference"),
+            type = "list",
+            name = "cloudVmImageReference",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudVmNetworkId = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudVmNetworkId"),
+            type = "list",
+            name = "cloudVmNetworkId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudVmSubnetIds = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudVmSubnetIds"),
+            type = "list",
+            name = "cloudVmSubnetIds",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudImageRepositoryName = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImageRepositoryName"),
+            type = "list",
+            name = "cloudImageRepositoryName",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudImageRegistry = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImageRegistry"),
+            type = "list",
+            name = "cloudImageRegistry",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudImageDigest = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImageDigest"),
+            type = "list",
+            name = "cloudImageDigest",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudImageTags = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImageTags"),
+            type = "list",
+            name = "cloudImageTags",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudImagePushedAt = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImagePushedAt"),
+            type = "list",
+            name = "cloudImagePushedAt",
+            target_id = prelude.Document.id,
+            list_member = M.DateFilter,
+        }),
+        cloudImageArchitecture = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImageArchitecture"),
+            type = "list",
+            name = "cloudImageArchitecture",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudImageLastInUseAt = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImageLastInUseAt"),
+            type = "list",
+            name = "cloudImageLastInUseAt",
+            target_id = prelude.Document.id,
+            list_member = M.DateFilter,
+        }),
+        cloudImageInUseCount = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudImageInUseCount"),
+            type = "list",
+            name = "cloudImageInUseCount",
+            target_id = prelude.Document.id,
+            list_member = M.NumberFilter,
+        }),
+        cloudServerlessFunctionName = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudServerlessFunctionName"),
+            type = "list",
+            name = "cloudServerlessFunctionName",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudServerlessFunctionRuntime = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudServerlessFunctionRuntime"),
+            type = "list",
+            name = "cloudServerlessFunctionRuntime",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        cloudServerlessFunctionLastModifiedAt = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudServerlessFunctionLastModifiedAt"),
+            type = "list",
+            name = "cloudServerlessFunctionLastModifiedAt",
+            target_id = prelude.Document.id,
+            list_member = M.DateFilter,
+        }),
+        cloudServerlessFunctionExecutionRole = schema.new({
+            id = id.from(_N, "FilterCriteria", "cloudServerlessFunctionExecutionRole"),
+            type = "list",
+            name = "cloudServerlessFunctionExecutionRole",
             target_id = prelude.Document.id,
             list_member = M.StringFilter,
         }),
@@ -6887,6 +8726,27 @@ M.DeleteCodeSecurityScanConfigurationOutput = schema.new({
             target_id = prelude.String.id,
         }),
     },
+})
+
+M.DeleteConnectorInput = schema.new({
+    id = id.from(_N, "DeleteConnectorRequest"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "DeleteConnectorInput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConnectorOutput = schema.new({
+    id = id.from(_N, "DeleteConnectorResponse"),
+    type = "structure",
 })
 
 M.DeleteFilterInput = schema.new({
@@ -7767,6 +9627,240 @@ M.Remediation = schema.new({
     },
 })
 
+M.Image = schema.new({
+    id = id.from(_N, "Image"),
+    type = "structure",
+    members = {
+        repositoryName = schema.new({
+            id = id.from(_N, "Image", "repositoryName"),
+            type = "string",
+            name = "repositoryName",
+            target_id = prelude.String.id,
+        }),
+        registry = schema.new({
+            id = id.from(_N, "Image", "registry"),
+            type = "string",
+            name = "registry",
+            target_id = prelude.String.id,
+        }),
+        imageTags = schema.new({
+            id = id.from(_N, "Image", "imageTags"),
+            type = "list",
+            name = "imageTags",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        imageDigest = schema.new({
+            id = id.from(_N, "Image", "imageDigest"),
+            type = "string",
+            name = "imageDigest",
+            target_id = prelude.String.id,
+        }),
+        pushedAt = schema.new({
+            id = id.from(_N, "Image", "pushedAt"),
+            type = "timestamp",
+            name = "pushedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        architecture = schema.new({
+            id = id.from(_N, "Image", "architecture"),
+            type = "string",
+            name = "architecture",
+            target_id = prelude.String.id,
+        }),
+        author = schema.new({
+            id = id.from(_N, "Image", "author"),
+            type = "string",
+            name = "author",
+            target_id = prelude.String.id,
+        }),
+        inUseCount = schema.new({
+            id = id.from(_N, "Image", "inUseCount"),
+            type = "long",
+            name = "inUseCount",
+            target_id = prelude.Long.id,
+        }),
+        lastInUseAt = schema.new({
+            id = id.from(_N, "Image", "lastInUseAt"),
+            type = "timestamp",
+            name = "lastInUseAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        platform = schema.new({
+            id = id.from(_N, "Image", "platform"),
+            type = "string",
+            name = "platform",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServerlessFunction = schema.new({
+    id = id.from(_N, "ServerlessFunction"),
+    type = "structure",
+    members = {
+        serverlessFunctionName = schema.new({
+            id = id.from(_N, "ServerlessFunction", "serverlessFunctionName"),
+            type = "string",
+            name = "serverlessFunctionName",
+            target_id = prelude.String.id,
+        }),
+        runtime = schema.new({
+            id = id.from(_N, "ServerlessFunction", "runtime"),
+            type = "string",
+            name = "runtime",
+            target_id = prelude.String.id,
+        }),
+        version = schema.new({
+            id = id.from(_N, "ServerlessFunction", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+        }),
+        codeDigest = schema.new({
+            id = id.from(_N, "ServerlessFunction", "codeDigest"),
+            type = "string",
+            name = "codeDigest",
+            target_id = prelude.String.id,
+        }),
+        lastModifiedAt = schema.new({
+            id = id.from(_N, "ServerlessFunction", "lastModifiedAt"),
+            type = "timestamp",
+            name = "lastModifiedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        networkId = schema.new({
+            id = id.from(_N, "ServerlessFunction", "networkId"),
+            type = "string",
+            name = "networkId",
+            target_id = prelude.String.id,
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "ServerlessFunction", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        securityGroupIds = schema.new({
+            id = id.from(_N, "ServerlessFunction", "securityGroupIds"),
+            type = "list",
+            name = "securityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        executionRole = schema.new({
+            id = id.from(_N, "ServerlessFunction", "executionRole"),
+            type = "string",
+            name = "executionRole",
+            target_id = prelude.String.id,
+        }),
+        packageType = schema.new({
+            id = id.from(_N, "ServerlessFunction", "packageType"),
+            type = "string",
+            name = "packageType",
+            target_id = prelude.String.id,
+        }),
+        architectures = schema.new({
+            id = id.from(_N, "ServerlessFunction", "architectures"),
+            type = "list",
+            name = "architectures",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        layers = schema.new({
+            id = id.from(_N, "ServerlessFunction", "layers"),
+            type = "list",
+            name = "layers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.Vm = schema.new({
+    id = id.from(_N, "Vm"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "Vm", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        vmName = schema.new({
+            id = id.from(_N, "Vm", "vmName"),
+            type = "string",
+            name = "vmName",
+            target_id = prelude.String.id,
+        }),
+        vmImageReference = schema.new({
+            id = id.from(_N, "Vm", "vmImageReference"),
+            type = "string",
+            name = "vmImageReference",
+            target_id = prelude.String.id,
+        }),
+        ipV4Addresses = schema.new({
+            id = id.from(_N, "Vm", "ipV4Addresses"),
+            type = "list",
+            name = "ipV4Addresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ipV6Addresses = schema.new({
+            id = id.from(_N, "Vm", "ipV6Addresses"),
+            type = "list",
+            name = "ipV6Addresses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        networkId = schema.new({
+            id = id.from(_N, "Vm", "networkId"),
+            type = "string",
+            name = "networkId",
+            target_id = prelude.String.id,
+        }),
+        subnetIds = schema.new({
+            id = id.from(_N, "Vm", "subnetIds"),
+            type = "list",
+            name = "subnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        securityGroupIds = schema.new({
+            id = id.from(_N, "Vm", "securityGroupIds"),
+            type = "list",
+            name = "securityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        launchedAt = schema.new({
+            id = id.from(_N, "Vm", "launchedAt"),
+            type = "timestamp",
+            name = "launchedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        platform = schema.new({
+            id = id.from(_N, "Vm", "platform"),
+            type = "string",
+            name = "platform",
+            target_id = prelude.String.id,
+        }),
+        executionRole = schema.new({
+            id = id.from(_N, "Vm", "executionRole"),
+            type = "string",
+            name = "executionRole",
+            target_id = prelude.String.id,
+        }),
+        keyName = schema.new({
+            id = id.from(_N, "Vm", "keyName"),
+            type = "string",
+            name = "keyName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ResourceDetails = schema.new({
     id = id.from(_N, "ResourceDetails"),
     type = "structure",
@@ -7798,6 +9892,27 @@ M.ResourceDetails = schema.new({
             name = "codeRepository",
             target_id = id.from(_N, "CodeRepositoryDetails"),
             target = M.CodeRepositoryDetails,
+        }),
+        vm = schema.new({
+            id = id.from(_N, "ResourceDetails", "vm"),
+            type = "structure",
+            name = "vm",
+            target_id = id.from(_N, "Vm"),
+            target = M.Vm,
+        }),
+        image = schema.new({
+            id = id.from(_N, "ResourceDetails", "image"),
+            type = "structure",
+            name = "image",
+            target_id = id.from(_N, "Image"),
+            target = M.Image,
+        }),
+        serverlessFunction = schema.new({
+            id = id.from(_N, "ResourceDetails", "serverlessFunction"),
+            type = "structure",
+            name = "serverlessFunction",
+            target_id = id.from(_N, "ServerlessFunction"),
+            target = M.ServerlessFunction,
         }),
     },
 })
@@ -7850,6 +9965,24 @@ M.Resource = schema.new({
             name = "details",
             target_id = id.from(_N, "ResourceDetails"),
             target = M.ResourceDetails,
+        }),
+        provider = schema.new({
+            id = id.from(_N, "Resource", "provider"),
+            type = "string",
+            name = "provider",
+            target_id = prelude.String.id,
+        }),
+        providerAccountId = schema.new({
+            id = id.from(_N, "Resource", "providerAccountId"),
+            type = "string",
+            name = "providerAccountId",
+            target_id = prelude.String.id,
+        }),
+        providerOrgId = schema.new({
+            id = id.from(_N, "Resource", "providerOrgId"),
+            type = "string",
+            name = "providerOrgId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -8487,6 +10620,14 @@ M.GetCodeSecurityScanConfigurationOutput = schema.new({
 M.GetConfigurationInput = schema.new({
     id = id.from(_N, "GetConfigurationRequest"),
     type = "structure",
+    members = {
+        accountId = schema.new({
+            id = id.from(_N, "GetConfigurationInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.GetConfigurationOutput = schema.new({
@@ -9398,6 +11539,104 @@ M.ListCodeSecurityScanConfigurationsOutput = schema.new({
     },
 })
 
+M.ListConnectorsInput = schema.new({
+    id = id.from(_N, "ListConnectorsRequest"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        filterCriteria = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "filterCriteria"),
+            type = "structure",
+            name = "filterCriteria",
+            target_id = id.from(_N, "ConnectorFilterCriteria"),
+            target = M.ConnectorFilterCriteria,
+        }),
+    },
+})
+
+M.ListConnectorsOutput = schema.new({
+    id = id.from(_N, "ListConnectorsResponse"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.Connector,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListConnectorScanConfigurationsInput = schema.new({
+    id = id.from(_N, "ListConnectorScanConfigurationsRequest"),
+    type = "structure",
+    members = {
+        awsConfigConnectorArns = schema.new({
+            id = id.from(_N, "ListConnectorScanConfigurationsInput", "awsConfigConnectorArns"),
+            type = "list",
+            name = "awsConfigConnectorArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListConnectorScanConfigurationsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListConnectorScanConfigurationsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListConnectorScanConfigurationsOutput = schema.new({
+    id = id.from(_N, "ListConnectorScanConfigurationsResponse"),
+    type = "structure",
+    members = {
+        scanConfigurations = schema.new({
+            id = id.from(_N, "ListConnectorScanConfigurationsOutput", "scanConfigurations"),
+            type = "list",
+            name = "scanConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ConnectorScanConfigurationItem,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListConnectorScanConfigurationsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListCoverageInput = schema.new({
     id = id.from(_N, "ListCoverageRequest"),
     type = "structure",
@@ -9877,6 +12116,12 @@ M.Usage = schema.new({
             id = id.from(_N, "Usage", "currency"),
             type = "string",
             name = "currency",
+            target_id = prelude.String.id,
+        }),
+        cloudProvider = schema.new({
+            id = id.from(_N, "Usage", "cloudProvider"),
+            type = "string",
+            name = "cloudProvider",
             target_id = prelude.String.id,
         }),
     },
@@ -10774,10 +13019,35 @@ M.UpdateCodeSecurityScanConfigurationOutput = schema.new({
     },
 })
 
+M.UpdateConfigurationInheritance = schema.new({
+    id = id.from(_N, "UpdateConfigurationInheritance"),
+    type = "structure",
+    members = {
+        ec2Configuration = schema.new({
+            id = id.from(_N, "UpdateConfigurationInheritance", "ec2Configuration"),
+            type = "string",
+            name = "ec2Configuration",
+            target_id = prelude.String.id,
+        }),
+        ecrConfiguration = schema.new({
+            id = id.from(_N, "UpdateConfigurationInheritance", "ecrConfiguration"),
+            type = "string",
+            name = "ecrConfiguration",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.UpdateConfigurationInput = schema.new({
     id = id.from(_N, "UpdateConfigurationRequest"),
     type = "structure",
     members = {
+        accountId = schema.new({
+            id = id.from(_N, "UpdateConfigurationInput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+        }),
         ecrConfiguration = schema.new({
             id = id.from(_N, "UpdateConfigurationInput", "ecrConfiguration"),
             type = "structure",
@@ -10792,11 +13062,105 @@ M.UpdateConfigurationInput = schema.new({
             target_id = id.from(_N, "Ec2Configuration"),
             target = M.Ec2Configuration,
         }),
+        updateConfigurationInheritance = schema.new({
+            id = id.from(_N, "UpdateConfigurationInput", "updateConfigurationInheritance"),
+            type = "structure",
+            name = "updateConfigurationInheritance",
+            target_id = id.from(_N, "UpdateConfigurationInheritance"),
+            target = M.UpdateConfigurationInheritance,
+        }),
     },
 })
 
 M.UpdateConfigurationOutput = schema.new({
     id = id.from(_N, "UpdateConfigurationResponse"),
+    type = "structure",
+})
+
+M.ProviderDetailUpdate = schema.new({
+    id = id.from(_N, "ProviderDetailUpdate"),
+    type = "union",
+    members = {
+        azure = schema.new({
+            id = id.from(_N, "ProviderDetailUpdate", "azure"),
+            type = "structure",
+            name = "azure",
+            target_id = id.from(_N, "AzureProviderDetailUpdate"),
+            target = M.AzureProviderDetailUpdate,
+        }),
+    },
+})
+
+M.UpdateConnectorInput = schema.new({
+    id = id.from(_N, "UpdateConnectorRequest"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        providerDetail = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "providerDetail"),
+            type = "union",
+            name = "providerDetail",
+            target_id = id.from(_N, "ProviderDetailUpdate"),
+            target = M.ProviderDetailUpdate,
+        }),
+    },
+})
+
+M.UpdateConnectorOutput = schema.new({
+    id = id.from(_N, "UpdateConnectorResponse"),
+    type = "structure",
+    members = {
+        connectorArn = schema.new({
+            id = id.from(_N, "UpdateConnectorOutput", "connectorArn"),
+            type = "string",
+            name = "connectorArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateConnectorScanConfigurationInput = schema.new({
+    id = id.from(_N, "UpdateConnectorScanConfigurationRequest"),
+    type = "structure",
+    members = {
+        awsConfigConnectorArn = schema.new({
+            id = id.from(_N, "UpdateConnectorScanConfigurationInput", "awsConfigConnectorArn"),
+            type = "string",
+            name = "awsConfigConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scanConfiguration = schema.new({
+            id = id.from(_N, "UpdateConnectorScanConfigurationInput", "scanConfiguration"),
+            type = "structure",
+            name = "scanConfiguration",
+            target_id = id.from(_N, "ConnectorScanConfiguration"),
+            target = M.ConnectorScanConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateConnectorScanConfigurationOutput = schema.new({
+    id = id.from(_N, "UpdateConnectorScanConfigurationResponse"),
     type = "structure",
 })
 
@@ -11204,6 +13568,18 @@ M.CreateCodeSecurityScanConfiguration = schema.operation({
     },
 })
 
+M.CreateConnector = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "CreateConnector"),
+    input = M.CreateConnectorInput,
+    output = M.CreateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connector/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateFilter = schema.operation({
     id = id.from("com.amazonaws.inspector2", "CreateFilter"),
     input = M.CreateFilterInput,
@@ -11270,6 +13646,18 @@ M.DeleteCodeSecurityScanConfiguration = schema.operation({
     output = M.DeleteCodeSecurityScanConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/codesecurity/scan-configuration/delete" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connector/delete" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11612,6 +14000,30 @@ M.ListCodeSecurityScanConfigurations = schema.operation({
     },
 })
 
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connector/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListConnectorScanConfigurations = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "ListConnectorScanConfigurations"),
+    input = M.ListConnectorScanConfigurationsInput,
+    output = M.ListConnectorScanConfigurationsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connectorscanconfigurations/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListCoverage = schema.operation({
     id = id.from("com.amazonaws.inspector2", "ListCoverage"),
     input = M.ListCoverageInput,
@@ -11870,6 +14282,30 @@ M.UpdateConfiguration = schema.operation({
     output = M.UpdateConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/configuration/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnector = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateConnector"),
+    input = M.UpdateConnectorInput,
+    output = M.UpdateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connector/update" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnectorScanConfiguration = schema.operation({
+    id = id.from("com.amazonaws.inspector2", "UpdateConnectorScanConfiguration"),
+    input = M.UpdateConnectorScanConfigurationInput,
+    output = M.UpdateConnectorScanConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connectorscanconfiguration/update" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

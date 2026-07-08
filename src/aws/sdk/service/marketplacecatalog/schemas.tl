@@ -97,6 +97,8 @@ M.ResaleAuthorizationStatusFilterValueList = schema.new({ type = "list", list_me
 
 M.ResaleAuthorizationOfferExtendedStatusFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ResaleAuthorizationResellerRoleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.MachineLearningProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.MachineLearningProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
@@ -2133,6 +2135,20 @@ M.ResaleAuthorizationResellerLegalNameFilter = schema.new({
     },
 })
 
+M.ResaleAuthorizationResellerRoleFilter = schema.new({
+    id = id.from(_N, "ResaleAuthorizationResellerRoleFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "ResaleAuthorizationResellerRoleFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.ResaleAuthorizationStatusFilter = schema.new({
     id = id.from(_N, "ResaleAuthorizationStatusFilter"),
     type = "structure",
@@ -2241,6 +2257,13 @@ M.ResaleAuthorizationFilters = schema.new({
             name = "LastModifiedDate",
             target_id = id.from(_N, "ResaleAuthorizationLastModifiedDateFilter"),
             target = M.ResaleAuthorizationLastModifiedDateFilter,
+        }),
+        ResellerRole = schema.new({
+            id = id.from(_N, "ResaleAuthorizationFilters", "ResellerRole"),
+            type = "structure",
+            name = "ResellerRole",
+            target_id = id.from(_N, "ResaleAuthorizationResellerRoleFilter"),
+            target = M.ResaleAuthorizationResellerRoleFilter,
         }),
     },
 })
@@ -2917,6 +2940,12 @@ M.ResaleAuthorizationSummary = schema.new({
             id = id.from(_N, "ResaleAuthorizationSummary", "AvailabilityEndDate"),
             type = "string",
             name = "AvailabilityEndDate",
+            target_id = prelude.String.id,
+        }),
+        ResellerRole = schema.new({
+            id = id.from(_N, "ResaleAuthorizationSummary", "ResellerRole"),
+            type = "string",
+            name = "ResellerRole",
             target_id = prelude.String.id,
         }),
     },

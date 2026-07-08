@@ -76,6 +76,7 @@ local record M
         "OpsMetadata"
         "Automation"
         "Association"
+        "CloudConnector"
     end
 
     record AddTagsToResourceInput
@@ -446,7 +447,6 @@ local record M
         TargetLocationAlarmConfiguration: AlarmConfiguration
         -- Indicates whether to include child organizational units (OUs) that are children of the
         -- targeted OUs. The default is false.
-        -- This parameter is not supported by State Manager.
         IncludeChildOrganizationUnits: boolean
         -- Amazon Web Services accounts or organizational units to exclude as expanded targets.
         ExcludeAccounts: {string}
@@ -565,7 +565,7 @@ local record M
         -- A location is a combination of Amazon Web Services Regions and Amazon Web Services accounts where you want to run the
         -- association. Use this action to create an association in multiple Regions and multiple
         -- accounts.
-        -- The IncludeChildOrganizationUnits parameter is not supported by State
+        -- The TargetLocationAlarmConfiguration parameter is not supported by State
         -- Manager.
         TargetLocations: {TargetLocation}
         -- Number of days to wait after the scheduled day to run an association. For example, if you
@@ -934,6 +934,84 @@ local record M
         Successful: {AssociationDescription}
         -- Information about the associations that failed.
         Failed: {FailedCreateAssociation}
+    end
+
+    -- An error occurred because of a conflict with a concurrent request or the current state of
+    -- the resource. Retry your request.
+    record ConflictException
+        Message: string
+    end
+
+    -- Information about an Azure subscription targeted by the cloud connector.
+    record AzureSubscription
+        -- The ID of the Azure subscription.
+        Id: string
+        -- The display name of the Azure subscription.
+        DisplayName: string
+    end
+
+    -- The target resources in the third-party cloud environment.
+    record ConfigurationTargets
+        -- A list of Azure subscriptions to target.
+        Subscriptions: {AzureSubscription}
+    end
+
+    -- The access details and targets for connecting to a Microsoft Azure tenant, including
+    -- the application registration used for authentication and the subscriptions to target.
+    record AzureConfiguration
+        -- The ID of the Azure tenant.
+        TenantId: string
+        -- The display name of the Azure tenant.
+        TenantDisplayName: string
+        -- The ID of the Azure application registration used for authentication.
+        ApplicationId: string
+        -- The display name of the Azure application registration.
+        ApplicationDisplayName: string
+        -- The target Azure subscriptions for the cloud connector.
+        Targets: ConfigurationTargets
+    end
+
+    -- The configuration that provides access details and targets for connecting to a third-party
+    -- cloud environment.
+    record CloudConnectorConfiguration
+        -- The access details and targets for connecting to a Microsoft Azure environment.
+        AzureConfiguration: AzureConfiguration
+    end
+
+    record CreateCloudConnectorInput
+        -- A friendly name for the cloud connector.
+        DisplayName: string
+        -- The Amazon Resource Name (ARN) of the IAM role that the cloud connector
+        -- uses to communicate with the third-party cloud environment.
+        RoleArn: string
+        -- A description for the cloud connector.
+        Description: string
+        -- The configuration details for connecting to the third-party cloud environment.
+        Configuration: CloudConnectorConfiguration
+        -- The ARN of the Amazon Web Services Config connector associated with this cloud connector.
+        ConfigConnectorArn: string
+        -- Optional metadata that you assign to a resource. Tags enable you to categorize a resource
+        -- in different ways, such as by purpose, owner, or environment.
+        Tags: {Tag}
+    end
+
+    record CreateCloudConnectorOutput
+        -- The ID of the cloud connector that was created.
+        CloudConnectorId: string
+    end
+
+    -- The request exceeds the service quota. Service quotas, also referred to as limits, are the
+    -- maximum number of service resources or operations for your Amazon Web Services account.
+    record ServiceQuotaExceededException
+        Message: string
+        -- The unique ID of the resource referenced in the failed request.
+        ResourceId: string
+        -- The resource type of the resource referenced in the failed request.
+        ResourceType: string
+        -- The quota code recognized by the Amazon Web Services Service Quotas service.
+        QuotaCode: string
+        -- The code for the Amazon Web Services service that owns the quota.
+        ServiceCode: string
     end
 
     enum AttachmentsSourceKey
@@ -1571,10 +1649,9 @@ local record M
         -- The number of days after the release date of each patch matched by the rule that the patch
         -- is marked as approved in the patch baseline. For example, a value of 7 means that
         -- patches are approved seven days after they are released.
-        -- Patch Manager evaluates patch release dates using Coordinated Universal Time (UTC). If the
-        -- day represented by 7 is 2025-11-16, patches released between
-        -- 2025-11-16T00:00:00Z and 2025-11-16T23:59:59Z will be included in the
-        -- approval.
+        -- Patch Manager evaluates patch release dates using Coordinated Universal Time (UTC). If a
+        -- patch is released at 2025-11-09T18:00:00Z and ApproveAfterDays is set to
+        -- 7, the patch will be approved after 2025-11-16T18:00:00Z.
         -- This parameter is marked as Required: No, but your request must include a value
         -- for either ApproveAfterDays or ApproveUntilDate.
         -- Not supported for Debian Server or Ubuntu Server.
@@ -1907,6 +1984,21 @@ local record M
     record DeleteAssociationOutput
     end
 
+    record DeleteCloudConnectorInput
+        -- The ID of the cloud connector to delete.
+        CloudConnectorId: string
+    end
+
+    record DeleteCloudConnectorOutput
+        -- The ID of the cloud connector that was deleted.
+        CloudConnectorId: string
+    end
+
+    -- The specified parameter to be shared could not be found.
+    record ResourceNotFoundException
+        Message: string
+    end
+
     -- You must disassociate a document from all managed nodes before you can delete it.
     record AssociatedInstances
     end
@@ -2129,11 +2221,6 @@ local record M
     -- The specified policy document is malformed or invalid, or excessive
     -- PutResourcePolicy or DeleteResourcePolicy calls have been made.
     record MalformedResourcePolicyDocumentException
-        Message: string
-    end
-
-    -- The specified parameter to be shared could not be found.
-    record ResourceNotFoundException
         Message: string
     end
 
@@ -3128,17 +3215,17 @@ local record M
     record InstanceInformationStringFilter
         -- The filter key name to describe your managed nodes.
         -- Valid filter key values: ActivationIds | AgentVersion | AssociationStatus | IamRole |
-        -- InstanceIds | PingStatus | PlatformType | ResourceType | SourceIds | SourceTypes | "tag-key" |
+        -- InstanceIds | PingStatus | PlatformTypes | ResourceType | SourceIds | SourceTypes | "tag-key" |
         -- "tag:{keyname}
         -- Valid values for the AssociationStatus filter key: Success | Pending |
         -- Failed
         -- Valid values for the PingStatus filter key: Online | ConnectionLost |
         -- Inactive (deprecated)
-        -- Valid values for the PlatformType filter key: Windows | Linux | MacOS
+        -- Valid values for the PlatformTypes filter key: Windows | Linux | MacOS
         -- Valid values for the ResourceType filter key: EC2Instance |
         -- ManagedInstance
         -- Valid values for the SourceType filter key: AWS::EC2::Instance |
-        -- AWS::SSM::ManagedInstance | AWS::IoT::Thing
+        -- AWS::SSM::ManagedInstance | AWS::IoT::Thing | Microsoft.Compute/virtualMachines
         -- Valid tag examples: Key=tag-key,Values=Purpose |
         -- Key=tag:Purpose,Values=Test.
         Key: string
@@ -3211,6 +3298,7 @@ local record M
         "AWS::EC2::Instance"
         "AWS::IoT::Thing"
         "AWS::SSM::ManagedInstance"
+        "Microsoft.Compute/virtualMachines"
     end
 
     -- Describes a filter for a specific list of managed nodes.
@@ -3278,8 +3366,11 @@ local record M
         -- the Thing name.
         SourceId: string
         -- The type of the source resource. For IoT Greengrass devices, SourceType
-        -- is AWS::IoT::Thing.
+        -- is AWS::IoT::Thing. For Azure Virtual Machines, SourceType is
+        -- Microsoft.Compute/virtualMachines.
         SourceType: string
+        -- The location of the source resource in the third-party cloud environment.
+        SourceLocation: string
     end
 
     record DescribeInstanceInformationOutput
@@ -3663,8 +3754,14 @@ local record M
         AssociationOverview: InstanceAggregatedAssociationOverview
         -- The ID of the source resource.
         SourceId: string
-        -- The type of the source resource.
+        -- The type of the source resource. Valid values: AWS::EC2::Instance |
+        -- AWS::SSM::ManagedInstance | AWS::IoT::Thing |
+        -- Microsoft.Compute/virtualMachines.
         SourceType: string
+        -- The location of the source resource in the third-party cloud environment.
+        SourceLocation: string
+        -- The Availability Zone where the managed node is located.
+        AvailabilityZone: string
     end
 
     record DescribeInstancePropertiesOutput
@@ -4141,6 +4238,8 @@ local record M
         -- AUTOMATION task types, TaskArn is the Amazon Web Services Systems Manager (SSM document) name or
         -- ARN. For LAMBDA tasks, it's the function name or ARN. For
         -- STEP_FUNCTIONS tasks, it's the state machine ARN.
+        -- Maintenance Window does not validate the TaskArn when you register a task.
+        -- A successful registration does not guarantee that the TaskArn is valid.
         TaskArn: string
         -- The type of task.
         Type: string
@@ -5022,6 +5121,30 @@ local record M
     -- The calendar entry contained in the specified SSM document isn't supported.
     record UnsupportedCalendarException
         Message: string
+    end
+
+    record GetCloudConnectorInput
+        -- The ID of the cloud connector to retrieve information about.
+        CloudConnectorId: string
+    end
+
+    record GetCloudConnectorOutput
+        -- The ARN of the cloud connector.
+        CloudConnectorArn: string
+        -- The friendly name of the cloud connector.
+        DisplayName: string
+        -- The description of the cloud connector.
+        Description: string
+        -- The ARN of the IAM role used by the cloud connector.
+        RoleArn: string
+        -- The configuration details for the third-party cloud environment connection.
+        Configuration: CloudConnectorConfiguration
+        -- The ARN of the Amazon Web Services Config connector associated with this cloud connector.
+        ConfigConnectorArn: string
+        -- The date and time the cloud connector was created.
+        CreatedAt: number
+        -- The date and time the cloud connector was last updated.
+        UpdatedAt: number
     end
 
     record GetCommandInvocationInput
@@ -6384,7 +6507,7 @@ local record M
         -- The name of the patch group whose patch baseline should be retrieved.
         PatchGroup: string
         -- Returns the operating system rule specified for patch groups using the patch
-        -- baseline.
+        -- baseline. The default value is WINDOWS.
         OperatingSystem: string
     end
 
@@ -6533,6 +6656,7 @@ local record M
         "LastExecutedAfter"
         "AssociationName"
         "ResourceGroupName"
+        "CloudConnectorId"
     end
 
     -- Describes a filter.
@@ -6713,6 +6837,58 @@ local record M
         AssociationVersions: {AssociationVersionInfo}
         -- The token for the next set of items to return. Use this token to get the next set of
         -- results.
+        NextToken: string
+    end
+
+    enum CloudConnectorFilterKey
+        "SubscriptionId"
+        "TenantId"
+    end
+
+    -- A filter for listing cloud connectors.
+    record CloudConnectorFilter
+        -- The name of the filter key.
+        FilterKey: string
+        -- The filter values. Valid values for each filter key are as follows:
+        -- SubscriptionId
+        -- The Azure subscription ID to filter by. To return only tenant-level connectors,
+        -- specify NONE.
+        -- TenantId
+        -- The Azure tenant ID to filter by. Filters the results to connectors
+        -- that target the specified tenant.
+        FilterValues: {string}
+    end
+
+    record ListCloudConnectorsInput
+        -- The maximum number of items to return for this call.
+        MaxResults: number
+        -- The token for the next set of items to return. (You received this token from a previous
+        -- call.)
+        NextToken: string
+        -- One or more filters to limit the cloud connectors returned in the response.
+        Filters: {CloudConnectorFilter}
+    end
+
+    -- Summary information about a cloud connector.
+    record CloudConnectorSummary
+        -- The ID of the cloud connector.
+        CloudConnectorId: string
+        -- The friendly name of the cloud connector.
+        DisplayName: string
+        -- The description of the cloud connector.
+        Description: string
+        -- The ARN of the IAM role used by the cloud connector.
+        RoleArn: string
+        -- The date and time the cloud connector was created.
+        CreatedAt: number
+        -- The date and time the cloud connector was last updated.
+        UpdatedAt: number
+    end
+
+    record ListCloudConnectorsOutput
+        -- A list of cloud connector summary objects.
+        CloudConnectors: {CloudConnectorSummary}
+        -- The token to use when requesting the next set of items.
         NextToken: string
     end
 
@@ -7605,6 +7781,11 @@ local record M
         "OrganizationalUnitPath"
         "Region"
         "AccountId"
+        "SourceType"
+        "SourceId"
+        "SourceLocation"
+        "AvailabilityZone"
+        "AvailabilityZoneId"
     end
 
     enum NodeFilterOperatorType
@@ -7661,6 +7842,8 @@ local record M
         IpAddress: string
         -- Indicates whether the node is managed by Systems Manager.
         ManagedStatus: string
+        -- The name assigned to the managed node.
+        Name: string
         -- The operating system platform type of the managed node.
         PlatformType: string
         -- The name of the operating system platform running on your managed node.
@@ -7670,6 +7853,18 @@ local record M
         -- The type of instance, either an EC2 instance or another supported machine type in a hybrid
         -- fleet.
         ResourceType: string
+        -- The type of the source resource. For IoT Greengrass devices,
+        -- SourceType is AWS::IoT::Thing.
+        SourceType: string
+        -- The ID of the source resource. For IoT Greengrass devices, SourceId is
+        -- the Thing name.
+        SourceId: string
+        -- The location of the source resource in the third-party cloud environment.
+        SourceLocation: string
+        -- The Availability Zone where the managed node is located.
+        AvailabilityZone: string
+        -- The Availability Zone ID where the managed node is located.
+        AvailabilityZoneId: string
     end
 
     -- Information about a managed node's type.
@@ -7729,6 +7924,8 @@ local record M
         "PlatformVersion"
         "Region"
         "ResourceType"
+        "SourceType"
+        "AvailabilityZone"
     end
 
     enum NodeTypeName
@@ -8922,20 +9119,6 @@ local record M
         Command: Command
     end
 
-    -- The request exceeds the service quota. Service quotas, also referred to as limits, are the
-    -- maximum number of service resources or operations for your Amazon Web Services account.
-    record ServiceQuotaExceededException
-        Message: string
-        -- The unique ID of the resource referenced in the failed request.
-        ResourceId: string
-        -- The resource type of the resource referenced in the failed request.
-        ResourceType: string
-        -- The quota code recognized by the Amazon Web Services Service Quotas service.
-        QuotaCode: string
-        -- The code for the Amazon Web Services service that owns the quota.
-        ServiceCode: string
-    end
-
     record StartAccessRequestInput
         -- A brief description explaining why you are requesting access to the node.
         Reason: string
@@ -9384,7 +9567,7 @@ local record M
         -- A location is a combination of Amazon Web Services Regions and Amazon Web Services accounts where you want to run the
         -- association. Use this action to update an association in multiple Regions and multiple
         -- accounts.
-        -- The IncludeChildOrganizationUnits parameter is not supported by State
+        -- The TargetLocationAlarmConfiguration parameter is not supported by State
         -- Manager.
         TargetLocations: {TargetLocation}
         -- Number of days to wait after the scheduled day to run an association. For example, if you
@@ -9444,6 +9627,23 @@ local record M
     record UpdateAssociationStatusOutput
         -- Information about the association.
         AssociationDescription: AssociationDescription
+    end
+
+    record UpdateCloudConnectorInput
+        -- The ID of the cloud connector to update.
+        CloudConnectorId: string
+        -- A new friendly name for the cloud connector.
+        DisplayName: string
+        -- The updated configuration details for connecting to the third-party cloud
+        -- environment.
+        Configuration: CloudConnectorConfiguration
+        -- A new description for the cloud connector.
+        Description: string
+    end
+
+    record UpdateCloudConnectorOutput
+        -- The ID of the cloud connector that was updated.
+        CloudConnectorId: string
     end
 
     -- The document has too many versions. Delete one or more document versions and try
@@ -10089,6 +10289,68 @@ local record M
 
     -- The result body of the UpdateServiceSetting API operation.
     record UpdateServiceSettingOutput
+    end
+
+    record ValidateCloudConnectorInput
+        -- The ID of the cloud connector to validate.
+        CloudConnectorId: string
+        -- The maximum number of validation findings to return.
+        MaxResults: number
+        -- The token for the next set of items to return. (You received this token from a previous
+        -- call.)
+        NextToken: string
+    end
+
+    enum ValidationFindingCode
+        "TargetInaccessible"
+        "TargetUnusable"
+        "TargetStateWarning"
+        "AwsRoleAssumptionFailed"
+        "WebIdentityTokenFailed"
+        "OutboundWebIdentityFederationDisabled"
+        "ProviderCredentialCreationFailed"
+        "TenantSummary"
+        "SubscriptionAccessible"
+    end
+
+    enum ValidationFindingScopeType
+        "azure:tenant"
+        "azure:subscription"
+    end
+
+    -- Identifies the specific resource scope of a validation finding.
+    record ValidationFindingScope
+        -- The type of the resource scope.
+        Type: string
+        -- The ID of the resource within the scope.
+        Id: string
+    end
+
+    enum ValidationFindingType
+        "INFO"
+        "WARN"
+        "ERROR"
+    end
+
+    -- A validation finding from a cloud connector validation check.
+    record ValidationFinding
+        -- The type of the validation finding.
+        Type: string
+        -- A code that identifies the specific validation finding.
+        Code: string
+        -- A message that describes the validation finding.
+        Message: string
+        -- A message from the third-party cloud provider related to the validation finding.
+        ProviderMessage: string
+        -- The scope of the validation finding, identifying the specific resource affected.
+        Scope: ValidationFindingScope
+    end
+
+    record ValidateCloudConnectorOutput
+        -- A list of validation findings for the cloud connector.
+        ValidationFindings: {ValidationFinding}
+        -- The token to use when requesting the next set of items.
+        NextToken: string
     end
 
     -- Specifies the inventory type and attribute for the aggregation execution.

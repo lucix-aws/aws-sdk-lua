@@ -55,6 +55,7 @@ local record Client
     listGlobalResolvers: function(Client, types.ListGlobalResolversInput, ? base_client.InvokeOptions): async.Operation<types.ListGlobalResolversOutput>
     listHostedZoneAssociations: function(Client, types.ListHostedZoneAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListHostedZoneAssociationsOutput>
     listManagedFirewallDomainLists: function(Client, types.ListManagedFirewallDomainListsInput, ? base_client.InvokeOptions): async.Operation<types.ListManagedFirewallDomainListsOutput>
+    listSharedDNSViews: function(Client, types.ListSharedDNSViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListSharedDNSViewsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
@@ -255,6 +256,10 @@ end
 
 function C:listManagedFirewallDomainLists(input: types.ListManagedFirewallDomainListsInput, options?: base_client.InvokeOptions): async.Operation<types.ListManagedFirewallDomainListsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListManagedFirewallDomainLists as schema.OperationSchema, input, options) as async.Operation<types.ListManagedFirewallDomainListsOutput>
+end
+
+function C:listSharedDNSViews(input: types.ListSharedDNSViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSharedDNSViewsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSharedDNSViews as schema.OperationSchema, input, options) as async.Operation<types.ListSharedDNSViewsOutput>
 end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>

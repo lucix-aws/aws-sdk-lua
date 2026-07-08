@@ -1691,7 +1691,7 @@ local record M
         maxResults: number
         -- A pagination token used for large sets of results that can't be returned in a single response.
         nextToken: string
-        -- Amazon Resource Name (ARN) of the DNS view.
+        -- The Amazon Resource Name (ARN) of the DNS view to list hosted zone associations for. This parameter is optional; if you omit it, all hosted zone associations in your Amazon Web Services account are returned.
         resourceArn: string
     end
 
@@ -1746,6 +1746,50 @@ local record M
         updatedAt: number
         -- The operational status of the private hosted zone association.
         status: string
+    end
+
+    record ListSharedDNSViewsInput
+        -- The maximum number of results to retrieve in a single call.
+        maxResults: number
+        -- A pagination token used for large sets of results that can't be returned in a single response.
+        nextToken: string
+    end
+
+    -- Summary information about a DNS view that has been shared with your Amazon Web Services account through Amazon Web Services RAM.
+    record SharedDNSViewSummary
+        -- The unique identifier of the DNS view.
+        id: string
+        -- The Amazon Resource Name (ARN) of the DNS view.
+        arn: string
+        -- The unique string that identifies the request and ensures idempotency.
+        clientToken: string
+        -- Whether DNSSEC validation is enabled for the DNS view.
+        dnssecValidation: string
+        -- Whether EDNS Client Subnet injection is enabled for the DNS view.
+        ednsClientSubnet: string
+        -- Whether firewall rules fail open when they cannot be evaluated.
+        firewallRulesFailOpen: string
+        -- The name of the DNS view.
+        name: string
+        -- A description of the DNS view.
+        description: string
+        -- The ID of the global resolver that the DNS view is associated with.
+        globalResolverId: string
+        -- The date and time when the DNS view was created.
+        createdAt: number
+        -- The date and time when the DNS view was last updated.
+        updatedAt: number
+        -- The current status of the DNS view.
+        status: string
+        -- The ID of the Amazon Web Services account that owns the DNS view and shared it with your Amazon Web Services account.
+        ownerAccountId: string
+    end
+
+    record ListSharedDNSViewsOutput
+        -- A pagination token used for large sets of results that can't be returned in a single response. Provide this token in the next call to get the results not returned in this call.
+        nextToken: string
+        -- An array of information about the DNS views shared with your Amazon Web Services account, including the Amazon Web Services account that owns each DNS view.
+        dnsViews: {SharedDNSViewSummary}
     end
 
     record ListTagsForResourceInput

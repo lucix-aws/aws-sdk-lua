@@ -87,6 +87,10 @@ M.ProductsList = schema.new({ type = "list", list_member = M.Product })
 
 M.ProductsV2List = schema.new({ type = "list", list_member = M.ProductV2 })
 
+M.Features = schema.new({ type = "map", map_key = prelude.String, map_value = M.FeatureDetail })
+
+M.StandardsProviders = schema.new({ type = "list", list_member = prelude.String })
+
 M.Standards = schema.new({ type = "list", list_member = M.Standard })
 
 M.StandardsControls = schema.new({ type = "list", list_member = M.StandardsControl })
@@ -127,6 +131,8 @@ M.ConfigurationPolicySummaryList = schema.new({ type = "list", list_member = M.C
 
 M.ConfigurationPolicyAssociationSummaryList = schema.new({ type = "list", list_member = M.ConfigurationPolicyAssociationSummary })
 
+M.CspmConnectorSummaryList = schema.new({ type = "list", list_member = M.CspmConnectorSummary })
+
 M.ConnectorSummaryList = schema.new({ type = "list", list_member = M.ConnectorSummary })
 
 M.ProductSubscriptionArnList = schema.new({ type = "list", list_member = prelude.String })
@@ -136,6 +142,8 @@ M.FindingAggregatorList = schema.new({ type = "list", list_member = M.FindingAgg
 M.InvitationList = schema.new({ type = "list", list_member = M.Invitation })
 
 M.AdminAccounts = schema.new({ type = "list", list_member = M.AdminAccount })
+
+M.SecurityControlsProviders = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityControlDefinitions = schema.new({ type = "list", list_member = M.SecurityControlDefinition })
 
@@ -158,6 +166,8 @@ M.IpFilterList = schema.new({ type = "list", list_member = M.IpFilter })
 M.KeywordFilterList = schema.new({ type = "list", list_member = M.KeywordFilter })
 
 M.BooleanFilterList = schema.new({ type = "list", list_member = M.BooleanFilter })
+
+M.HealthIssueList = schema.new({ type = "list", list_member = M.HealthIssue })
 
 M.AwsOrganizationScopeList = schema.new({ type = "list", list_member = M.AwsOrganizationScope })
 
@@ -195,6 +205,8 @@ M.VulnerabilityList = schema.new({ type = "list", list_member = M.Vulnerability 
 
 M.EnabledStandardIdentifierList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AzureRegionList = schema.new({ type = "list", list_member = prelude.String })
+
 M.CategoryList = schema.new({ type = "list", list_member = prelude.String })
 
 M.IntegrationTypeList = schema.new({ type = "list", list_member = prelude.String })
@@ -222,6 +234,8 @@ M.EnabledSecurityControlIdentifierList = schema.new({ type = "list", list_member
 M.DisabledSecurityControlIdentifierList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityControlCustomParametersList = schema.new({ type = "list", list_member = M.SecurityControlCustomParameter })
+
+M.ScopeValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.FindingsTrendsStringFilterList = schema.new({ type = "list", list_member = M.FindingsTrendsStringFilter })
 
@@ -2210,6 +2224,27 @@ M.AutomationRulesFindingFilters = schema.new({
             id = id.from(_N, "AutomationRulesFindingFilters", "AwsAccountName"),
             type = "list",
             name = "AwsAccountName",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        ResourceProvider = schema.new({
+            id = id.from(_N, "AutomationRulesFindingFilters", "ResourceProvider"),
+            type = "list",
+            name = "ResourceProvider",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        ResourceOwnerAccountId = schema.new({
+            id = id.from(_N, "AutomationRulesFindingFilters", "ResourceOwnerAccountId"),
+            type = "list",
+            name = "ResourceOwnerAccountId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        ResourceOwnerOrgId = schema.new({
+            id = id.from(_N, "AutomationRulesFindingFilters", "ResourceOwnerOrgId"),
+            type = "list",
+            name = "ResourceOwnerOrgId",
             target_id = prelude.Document.id,
             list_member = M.StringFilter,
         }),
@@ -22989,6 +23024,59 @@ M.ResourceDetails = schema.new({
             target_id = id.from(_N, "CodeRepositoryDetails"),
             target = M.CodeRepositoryDetails,
         }),
+        AzureResource = schema.new({
+            id = id.from(_N, "ResourceDetails", "AzureResource"),
+            type = "document",
+            name = "AzureResource",
+            target_id = prelude.Document.id,
+        }),
+    },
+})
+
+M.ResourceOwnerAccount = schema.new({
+    id = id.from(_N, "ResourceOwnerAccount"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "ResourceOwnerAccount", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceOwnerOrg = schema.new({
+    id = id.from(_N, "ResourceOwnerOrg"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "ResourceOwnerOrg", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceOwner = schema.new({
+    id = id.from(_N, "ResourceOwner"),
+    type = "structure",
+    members = {
+        Account = schema.new({
+            id = id.from(_N, "ResourceOwner", "Account"),
+            type = "structure",
+            name = "Account",
+            target_id = id.from(_N, "ResourceOwnerAccount"),
+            target = M.ResourceOwnerAccount,
+        }),
+        Org = schema.new({
+            id = id.from(_N, "ResourceOwner", "Org"),
+            type = "structure",
+            name = "Org",
+            target_id = id.from(_N, "ResourceOwnerOrg"),
+            target = M.ResourceOwnerOrg,
+        }),
     },
 })
 
@@ -23025,6 +23113,19 @@ M.Resource = schema.new({
             type = "string",
             name = "Region",
             target_id = prelude.String.id,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "Resource", "Provider"),
+            type = "string",
+            name = "Provider",
+            target_id = prelude.String.id,
+        }),
+        Owner = schema.new({
+            id = id.from(_N, "Resource", "Owner"),
+            type = "structure",
+            name = "Owner",
+            target_id = id.from(_N, "ResourceOwner"),
+            target = M.ResourceOwner,
         }),
         ResourceRole = schema.new({
             id = id.from(_N, "Resource", "ResourceRole"),
@@ -24612,6 +24713,27 @@ M.AwsSecurityFindingFilters = schema.new({
             target_id = prelude.Document.id,
             list_member = M.StringFilter,
         }),
+        ResourceOwnerAccountId = schema.new({
+            id = id.from(_N, "AwsSecurityFindingFilters", "ResourceOwnerAccountId"),
+            type = "list",
+            name = "ResourceOwnerAccountId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        ResourceOwnerOrgId = schema.new({
+            id = id.from(_N, "AwsSecurityFindingFilters", "ResourceOwnerOrgId"),
+            type = "list",
+            name = "ResourceOwnerOrgId",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
+        ResourceProvider = schema.new({
+            id = id.from(_N, "AwsSecurityFindingFilters", "ResourceProvider"),
+            type = "list",
+            name = "ResourceProvider",
+            target_id = prelude.Document.id,
+            list_member = M.StringFilter,
+        }),
     },
 })
 
@@ -24633,6 +24755,128 @@ M.AwsSecurityFindingIdentifier = schema.new({
             type = "string",
             name = "ProductArn",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AzureScopeConfiguration = schema.new({
+    id = id.from(_N, "AzureScopeConfiguration"),
+    type = "structure",
+    members = {
+        ScopeType = schema.new({
+            id = id.from(_N, "AzureScopeConfiguration", "ScopeType"),
+            type = "string",
+            name = "ScopeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScopeValues = schema.new({
+            id = id.from(_N, "AzureScopeConfiguration", "ScopeValues"),
+            type = "list",
+            name = "ScopeValues",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AzureDetail = schema.new({
+    id = id.from(_N, "AzureDetail"),
+    type = "structure",
+    members = {
+        AWSConfigConnectorArn = schema.new({
+            id = id.from(_N, "AzureDetail", "AWSConfigConnectorArn"),
+            type = "string",
+            name = "AWSConfigConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScopeConfiguration = schema.new({
+            id = id.from(_N, "AzureDetail", "ScopeConfiguration"),
+            type = "structure",
+            name = "ScopeConfiguration",
+            target_id = id.from(_N, "AzureScopeConfiguration"),
+            target = M.AzureScopeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AzureRegions = schema.new({
+            id = id.from(_N, "AzureDetail", "AzureRegions"),
+            type = "list",
+            name = "AzureRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AzureProviderConfiguration = schema.new({
+    id = id.from(_N, "AzureProviderConfiguration"),
+    type = "structure",
+    members = {
+        AWSConfigConnectorArn = schema.new({
+            id = id.from(_N, "AzureProviderConfiguration", "AWSConfigConnectorArn"),
+            type = "string",
+            name = "AWSConfigConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScopeConfiguration = schema.new({
+            id = id.from(_N, "AzureProviderConfiguration", "ScopeConfiguration"),
+            type = "structure",
+            name = "ScopeConfiguration",
+            target_id = id.from(_N, "AzureScopeConfiguration"),
+            target = M.AzureScopeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AzureRegions = schema.new({
+            id = id.from(_N, "AzureProviderConfiguration", "AzureRegions"),
+            type = "list",
+            name = "AzureRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AzureUpdateConfiguration = schema.new({
+    id = id.from(_N, "AzureUpdateConfiguration"),
+    type = "structure",
+    members = {
+        ScopeConfiguration = schema.new({
+            id = id.from(_N, "AzureUpdateConfiguration", "ScopeConfiguration"),
+            type = "structure",
+            name = "ScopeConfiguration",
+            target_id = id.from(_N, "AzureScopeConfiguration"),
+            target = M.AzureScopeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AzureRegions = schema.new({
+            id = id.from(_N, "AzureUpdateConfiguration", "AzureRegions"),
+            type = "list",
+            name = "AzureRegions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -24790,6 +25034,12 @@ M.StandardsSubscription = schema.new({
             name = "StandardsStatusReason",
             target_id = id.from(_N, "StandardsStatusReason"),
             target = M.StandardsStatusReason,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "StandardsSubscription", "Provider"),
+            type = "string",
+            name = "Provider",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -25239,6 +25489,12 @@ M.SecurityControl = schema.new({
             id = id.from(_N, "SecurityControl", "LastUpdateReason"),
             type = "string",
             name = "LastUpdateReason",
+            target_id = prelude.String.id,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "SecurityControl", "Provider"),
+            type = "string",
+            name = "Provider",
             target_id = prelude.String.id,
         }),
     },
@@ -26573,6 +26829,102 @@ M.ConfigurationPolicySummary = schema.new({
     },
 })
 
+M.JiraCloudDetail = schema.new({
+    id = id.from(_N, "JiraCloudDetail"),
+    type = "structure",
+    members = {
+        CloudId = schema.new({
+            id = id.from(_N, "JiraCloudDetail", "CloudId"),
+            type = "string",
+            name = "CloudId",
+            target_id = prelude.String.id,
+        }),
+        ProjectKey = schema.new({
+            id = id.from(_N, "JiraCloudDetail", "ProjectKey"),
+            type = "string",
+            name = "ProjectKey",
+            target_id = prelude.String.id,
+        }),
+        Domain = schema.new({
+            id = id.from(_N, "JiraCloudDetail", "Domain"),
+            type = "string",
+            name = "Domain",
+            target_id = prelude.String.id,
+        }),
+        AuthUrl = schema.new({
+            id = id.from(_N, "JiraCloudDetail", "AuthUrl"),
+            type = "string",
+            name = "AuthUrl",
+            target_id = prelude.String.id,
+        }),
+        AuthStatus = schema.new({
+            id = id.from(_N, "JiraCloudDetail", "AuthStatus"),
+            type = "string",
+            name = "AuthStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceNowDetail = schema.new({
+    id = id.from(_N, "ServiceNowDetail"),
+    type = "structure",
+    members = {
+        InstanceName = schema.new({
+            id = id.from(_N, "ServiceNowDetail", "InstanceName"),
+            type = "string",
+            name = "InstanceName",
+            target_id = prelude.String.id,
+        }),
+        SecretArn = schema.new({
+            id = id.from(_N, "ServiceNowDetail", "SecretArn"),
+            type = "string",
+            name = "SecretArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AuthStatus = schema.new({
+            id = id.from(_N, "ServiceNowDetail", "AuthStatus"),
+            type = "string",
+            name = "AuthStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProviderDetail = schema.new({
+    id = id.from(_N, "ProviderDetail"),
+    type = "union",
+    members = {
+        JiraCloud = schema.new({
+            id = id.from(_N, "ProviderDetail", "JiraCloud"),
+            type = "structure",
+            name = "JiraCloud",
+            target_id = id.from(_N, "JiraCloudDetail"),
+            target = M.JiraCloudDetail,
+        }),
+        ServiceNow = schema.new({
+            id = id.from(_N, "ProviderDetail", "ServiceNow"),
+            type = "structure",
+            name = "ServiceNow",
+            target_id = id.from(_N, "ServiceNowDetail"),
+            target = M.ServiceNowDetail,
+        }),
+        Azure = schema.new({
+            id = id.from(_N, "ProviderDetail", "Azure"),
+            type = "structure",
+            name = "Azure",
+            target_id = id.from(_N, "AzureDetail"),
+            target = M.AzureDetail,
+        }),
+    },
+})
+
 M.ProviderSummary = schema.new({
     id = id.from(_N, "ProviderSummary"),
     type = "structure",
@@ -26588,6 +26940,13 @@ M.ProviderSummary = schema.new({
             type = "string",
             name = "ConnectorStatus",
             target_id = prelude.String.id,
+        }),
+        ProviderConfiguration = schema.new({
+            id = id.from(_N, "ProviderSummary", "ProviderConfiguration"),
+            type = "union",
+            name = "ProviderConfiguration",
+            target_id = id.from(_N, "ProviderDetail"),
+            target = M.ProviderDetail,
         }),
     },
 })
@@ -26648,6 +27007,18 @@ M.ConnectorSummary = schema.new({
             direct_traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "ConnectorSummary", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatusReason = schema.new({
+            id = id.from(_N, "ConnectorSummary", "EnablementStatusReason"),
+            type = "string",
+            name = "EnablementStatusReason",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -27110,6 +27481,106 @@ M.CreateConfigurationPolicyOutput = schema.new({
     },
 })
 
+M.CspmProviderConfiguration = schema.new({
+    id = id.from(_N, "CspmProviderConfiguration"),
+    type = "union",
+    members = {
+        Azure = schema.new({
+            id = id.from(_N, "CspmProviderConfiguration", "Azure"),
+            type = "structure",
+            name = "Azure",
+            target_id = id.from(_N, "AzureProviderConfiguration"),
+            target = M.AzureProviderConfiguration,
+        }),
+    },
+})
+
+M.CreateConnectorInput = schema.new({
+    id = id.from(_N, "CreateConnectorRequest"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "Provider"),
+            type = "union",
+            name = "Provider",
+            target_id = id.from(_N, "CspmProviderConfiguration"),
+            target = M.CspmProviderConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateConnectorInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateConnectorOutput = schema.new({
+    id = id.from(_N, "CreateConnectorResponse"),
+    type = "structure",
+    members = {
+        ConnectorArn = schema.new({
+            id = id.from(_N, "CreateConnectorOutput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConnectorId = schema.new({
+            id = id.from(_N, "CreateConnectorOutput", "ConnectorId"),
+            type = "string",
+            name = "ConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConnectorStatus = schema.new({
+            id = id.from(_N, "CreateConnectorOutput", "ConnectorStatus"),
+            type = "string",
+            name = "ConnectorStatus",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "CreateConnectorOutput", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.JiraCloudProviderConfiguration = schema.new({
     id = id.from(_N, "JiraCloudProviderConfiguration"),
     type = "structure",
@@ -27165,6 +27636,13 @@ M.ProviderConfiguration = schema.new({
             name = "ServiceNow",
             target_id = id.from(_N, "ServiceNowProviderConfiguration"),
             target = M.ServiceNowProviderConfiguration,
+        }),
+        Azure = schema.new({
+            id = id.from(_N, "ProviderConfiguration", "Azure"),
+            type = "structure",
+            name = "Azure",
+            target_id = id.from(_N, "AzureProviderConfiguration"),
+            target = M.AzureProviderConfiguration,
         }),
     },
 })
@@ -27256,6 +27734,12 @@ M.CreateConnectorV2Output = schema.new({
             id = id.from(_N, "CreateConnectorV2Output", "ConnectorStatus"),
             type = "string",
             name = "ConnectorStatus",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "CreateConnectorV2Output", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
             target_id = prelude.String.id,
         }),
     },
@@ -27479,6 +27963,186 @@ M.CreateTicketV2Output = schema.new({
     },
 })
 
+M.CspmProviderDetail = schema.new({
+    id = id.from(_N, "CspmProviderDetail"),
+    type = "union",
+    members = {
+        Azure = schema.new({
+            id = id.from(_N, "CspmProviderDetail", "Azure"),
+            type = "structure",
+            name = "Azure",
+            target_id = id.from(_N, "AzureDetail"),
+            target = M.AzureDetail,
+        }),
+    },
+})
+
+M.CspmProviderSummary = schema.new({
+    id = id.from(_N, "CspmProviderSummary"),
+    type = "structure",
+    members = {
+        ProviderName = schema.new({
+            id = id.from(_N, "CspmProviderSummary", "ProviderName"),
+            type = "string",
+            name = "ProviderName",
+            target_id = prelude.String.id,
+        }),
+        ConnectorStatus = schema.new({
+            id = id.from(_N, "CspmProviderSummary", "ConnectorStatus"),
+            type = "string",
+            name = "ConnectorStatus",
+            target_id = prelude.String.id,
+        }),
+        ProviderConfiguration = schema.new({
+            id = id.from(_N, "CspmProviderSummary", "ProviderConfiguration"),
+            type = "union",
+            name = "ProviderConfiguration",
+            target_id = id.from(_N, "CspmProviderDetail"),
+            target = M.CspmProviderDetail,
+        }),
+    },
+})
+
+M.CspmConnectorSummary = schema.new({
+    id = id.from(_N, "CspmConnectorSummary"),
+    type = "structure",
+    members = {
+        ConnectorArn = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        ConnectorId = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "ConnectorId"),
+            type = "string",
+            name = "ConnectorId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        ProviderSummary = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "ProviderSummary"),
+            type = "structure",
+            name = "ProviderSummary",
+            target_id = id.from(_N, "CspmProviderSummary"),
+            target = M.CspmProviderSummary,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        CreatedBy = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "CreatedBy"),
+            type = "string",
+            name = "CreatedBy",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "CspmConnectorSummary", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HealthIssue = schema.new({
+    id = id.from(_N, "HealthIssue"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "HealthIssue", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "HealthIssue", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CspmHealthCheck = schema.new({
+    id = id.from(_N, "CspmHealthCheck"),
+    type = "structure",
+    members = {
+        ConnectorStatus = schema.new({
+            id = id.from(_N, "CspmHealthCheck", "ConnectorStatus"),
+            type = "string",
+            name = "ConnectorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "CspmHealthCheck", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        LastCheckedAt = schema.new({
+            id = id.from(_N, "CspmHealthCheck", "LastCheckedAt"),
+            type = "timestamp",
+            name = "LastCheckedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Issues = schema.new({
+            id = id.from(_N, "CspmHealthCheck", "Issues"),
+            type = "list",
+            name = "Issues",
+            target_id = prelude.Document.id,
+            list_member = M.HealthIssue,
+        }),
+    },
+})
+
+M.CspmProviderUpdateConfiguration = schema.new({
+    id = id.from(_N, "CspmProviderUpdateConfiguration"),
+    type = "union",
+    members = {
+        Azure = schema.new({
+            id = id.from(_N, "CspmProviderUpdateConfiguration", "Azure"),
+            type = "structure",
+            name = "Azure",
+            target_id = id.from(_N, "AzureUpdateConfiguration"),
+            target = M.AzureUpdateConfiguration,
+        }),
+    },
+})
+
 M.DeclineInvitationsInput = schema.new({
     id = id.from(_N, "DeclineInvitationsRequest"),
     type = "structure",
@@ -27609,6 +28273,36 @@ M.DeleteConfigurationPolicyOutput = schema.new({
     type = "structure",
 })
 
+M.DeleteConnectorInput = schema.new({
+    id = id.from(_N, "DeleteConnectorRequest"),
+    type = "structure",
+    members = {
+        ConnectorId = schema.new({
+            id = id.from(_N, "DeleteConnectorInput", "ConnectorId"),
+            type = "string",
+            name = "ConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteConnectorOutput = schema.new({
+    id = id.from(_N, "DeleteConnectorResponse"),
+    type = "structure",
+    members = {
+        EnablementStatus = schema.new({
+            id = id.from(_N, "DeleteConnectorOutput", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteConnectorV2Input = schema.new({
     id = id.from(_N, "DeleteConnectorV2Request"),
     type = "structure",
@@ -27629,6 +28323,14 @@ M.DeleteConnectorV2Input = schema.new({
 M.DeleteConnectorV2Output = schema.new({
     id = id.from(_N, "DeleteConnectorV2Response"),
     type = "structure",
+    members = {
+        EnablementStatus = schema.new({
+            id = id.from(_N, "DeleteConnectorV2Output", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.DeleteFindingAggregatorInput = schema.new({
@@ -28139,6 +28841,28 @@ M.DescribeSecurityHubV2Input = schema.new({
     type = "structure",
 })
 
+M.FeatureDetail = schema.new({
+    id = id.from(_N, "FeatureDetail"),
+    type = "structure",
+    members = {
+        FeatureStatus = schema.new({
+            id = id.from(_N, "FeatureDetail", "FeatureStatus"),
+            type = "string",
+            name = "FeatureStatus",
+            target_id = prelude.String.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "FeatureDetail", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.DescribeSecurityHubV2Output = schema.new({
     id = id.from(_N, "DescribeSecurityHubV2Response"),
     type = "structure",
@@ -28154,6 +28878,14 @@ M.DescribeSecurityHubV2Output = schema.new({
             type = "string",
             name = "SubscribedAt",
             target_id = prelude.String.id,
+        }),
+        Features = schema.new({
+            id = id.from(_N, "DescribeSecurityHubV2Output", "Features"),
+            type = "map",
+            name = "Features",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.FeatureDetail,
         }),
     },
 })
@@ -28178,6 +28910,16 @@ M.DescribeStandardsInput = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        Providers = schema.new({
+            id = id.from(_N, "DescribeStandardsInput", "Providers"),
+            type = "list",
+            name = "Providers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Providers" },
             },
         }),
     },
@@ -28229,6 +28971,12 @@ M.Standard = schema.new({
             type = "boolean",
             name = "EnabledByDefault",
             target_id = prelude.Boolean.id,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "Standard", "Provider"),
+            type = "string",
+            name = "Provider",
+            target_id = prelude.String.id,
         }),
         StandardsManagedBy = schema.new({
             id = id.from(_N, "Standard", "StandardsManagedBy"),
@@ -28445,6 +29193,28 @@ M.DisableSecurityHubOutput = schema.new({
     type = "structure",
 })
 
+M.DisableSecurityHubFeatureV2Input = schema.new({
+    id = id.from(_N, "DisableSecurityHubFeatureV2Request"),
+    type = "structure",
+    members = {
+        FeatureName = schema.new({
+            id = id.from(_N, "DisableSecurityHubFeatureV2Input", "FeatureName"),
+            type = "string",
+            name = "FeatureName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DisableSecurityHubFeatureV2Output = schema.new({
+    id = id.from(_N, "DisableSecurityHubFeatureV2Response"),
+    type = "structure",
+})
+
 M.DisableSecurityHubV2Input = schema.new({
     id = id.from(_N, "DisableSecurityHubV2Request"),
     type = "structure",
@@ -28596,6 +29366,28 @@ M.EnableSecurityHubInput = schema.new({
 
 M.EnableSecurityHubOutput = schema.new({
     id = id.from(_N, "EnableSecurityHubResponse"),
+    type = "structure",
+})
+
+M.EnableSecurityHubFeatureV2Input = schema.new({
+    id = id.from(_N, "EnableSecurityHubFeatureV2Request"),
+    type = "structure",
+    members = {
+        FeatureName = schema.new({
+            id = id.from(_N, "EnableSecurityHubFeatureV2Input", "FeatureName"),
+            type = "string",
+            name = "FeatureName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.EnableSecurityHubFeatureV2Output = schema.new({
+    id = id.from(_N, "EnableSecurityHubFeatureV2Response"),
     type = "structure",
 })
 
@@ -29050,6 +29842,118 @@ M.GetConfigurationPolicyAssociationOutput = schema.new({
     },
 })
 
+M.GetConnectorInput = schema.new({
+    id = id.from(_N, "GetConnectorRequest"),
+    type = "structure",
+    members = {
+        ConnectorId = schema.new({
+            id = id.from(_N, "GetConnectorInput", "ConnectorId"),
+            type = "string",
+            name = "ConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetConnectorOutput = schema.new({
+    id = id.from(_N, "GetConnectorResponse"),
+    type = "structure",
+    members = {
+        ConnectorArn = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "ConnectorArn"),
+            type = "string",
+            name = "ConnectorArn",
+            target_id = prelude.String.id,
+        }),
+        ConnectorId = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "ConnectorId"),
+            type = "string",
+            name = "ConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Health = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "Health"),
+            type = "structure",
+            name = "Health",
+            target_id = id.from(_N, "CspmHealthCheck"),
+            target = M.CspmHealthCheck,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProviderDetail = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "ProviderDetail"),
+            type = "union",
+            name = "ProviderDetail",
+            target_id = id.from(_N, "CspmProviderDetail"),
+            target = M.CspmProviderDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedBy = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "CreatedBy"),
+            type = "string",
+            name = "CreatedBy",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "GetConnectorOutput", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetConnectorV2Input = schema.new({
     id = id.from(_N, "GetConnectorV2Request"),
     type = "structure",
@@ -29099,94 +30003,12 @@ M.HealthCheck = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-    },
-})
-
-M.JiraCloudDetail = schema.new({
-    id = id.from(_N, "JiraCloudDetail"),
-    type = "structure",
-    members = {
-        CloudId = schema.new({
-            id = id.from(_N, "JiraCloudDetail", "CloudId"),
-            type = "string",
-            name = "CloudId",
-            target_id = prelude.String.id,
-        }),
-        ProjectKey = schema.new({
-            id = id.from(_N, "JiraCloudDetail", "ProjectKey"),
-            type = "string",
-            name = "ProjectKey",
-            target_id = prelude.String.id,
-        }),
-        Domain = schema.new({
-            id = id.from(_N, "JiraCloudDetail", "Domain"),
-            type = "string",
-            name = "Domain",
-            target_id = prelude.String.id,
-        }),
-        AuthUrl = schema.new({
-            id = id.from(_N, "JiraCloudDetail", "AuthUrl"),
-            type = "string",
-            name = "AuthUrl",
-            target_id = prelude.String.id,
-        }),
-        AuthStatus = schema.new({
-            id = id.from(_N, "JiraCloudDetail", "AuthStatus"),
-            type = "string",
-            name = "AuthStatus",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ServiceNowDetail = schema.new({
-    id = id.from(_N, "ServiceNowDetail"),
-    type = "structure",
-    members = {
-        InstanceName = schema.new({
-            id = id.from(_N, "ServiceNowDetail", "InstanceName"),
-            type = "string",
-            name = "InstanceName",
-            target_id = prelude.String.id,
-        }),
-        SecretArn = schema.new({
-            id = id.from(_N, "ServiceNowDetail", "SecretArn"),
-            type = "string",
-            name = "SecretArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        AuthStatus = schema.new({
-            id = id.from(_N, "ServiceNowDetail", "AuthStatus"),
-            type = "string",
-            name = "AuthStatus",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ProviderDetail = schema.new({
-    id = id.from(_N, "ProviderDetail"),
-    type = "union",
-    members = {
-        JiraCloud = schema.new({
-            id = id.from(_N, "ProviderDetail", "JiraCloud"),
-            type = "structure",
-            name = "JiraCloud",
-            target_id = id.from(_N, "JiraCloudDetail"),
-            target = M.JiraCloudDetail,
-        }),
-        ServiceNow = schema.new({
-            id = id.from(_N, "ProviderDetail", "ServiceNow"),
-            type = "structure",
-            name = "ServiceNow",
-            target_id = id.from(_N, "ServiceNowDetail"),
-            target = M.ServiceNowDetail,
+        Issues = schema.new({
+            id = id.from(_N, "HealthCheck", "Issues"),
+            type = "list",
+            name = "Issues",
+            target_id = prelude.Document.id,
+            list_member = M.HealthIssue,
         }),
     },
 })
@@ -29277,6 +30099,18 @@ M.GetConnectorV2Output = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "GetConnectorV2Output", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatusReason = schema.new({
+            id = id.from(_N, "GetConnectorV2Output", "EnablementStatusReason"),
+            type = "string",
+            name = "EnablementStatusReason",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -29302,6 +30136,13 @@ M.GetEnabledStandardsInput = schema.new({
             type = "integer",
             name = "MaxResults",
             target_id = prelude.Integer.id,
+        }),
+        Providers = schema.new({
+            id = id.from(_N, "GetEnabledStandardsInput", "Providers"),
+            type = "list",
+            name = "Providers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })
@@ -30637,6 +31478,12 @@ M.ResourceResult = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        AccountName = schema.new({
+            id = id.from(_N, "ResourceResult", "AccountName"),
+            type = "string",
+            name = "AccountName",
+            target_id = prelude.String.id,
+        }),
         Region = schema.new({
             id = id.from(_N, "ResourceResult", "Region"),
             type = "string",
@@ -30645,6 +31492,36 @@ M.ResourceResult = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ResourceProvider = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceProvider"),
+            type = "string",
+            name = "ResourceProvider",
+            target_id = prelude.String.id,
+        }),
+        ResourceOwnerAccountId = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceOwnerAccountId"),
+            type = "string",
+            name = "ResourceOwnerAccountId",
+            target_id = prelude.String.id,
+        }),
+        ResourceOwnerOrgId = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceOwnerOrgId"),
+            type = "string",
+            name = "ResourceOwnerOrgId",
+            target_id = prelude.String.id,
+        }),
+        ResourceCloudPartition = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceCloudPartition"),
+            type = "string",
+            name = "ResourceCloudPartition",
+            target_id = prelude.String.id,
+        }),
+        ResourceRegion = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceRegion"),
+            type = "string",
+            name = "ResourceRegion",
+            target_id = prelude.String.id,
         }),
         ResourceCategory = schema.new({
             id = id.from(_N, "ResourceResult", "ResourceCategory"),
@@ -30657,6 +31534,9 @@ M.ResourceResult = schema.new({
             type = "string",
             name = "ResourceType",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
         ResourceName = schema.new({
             id = id.from(_N, "ResourceResult", "ResourceName"),
@@ -30843,6 +31723,12 @@ M.SecurityControlDefinition = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.ParameterDefinition,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "SecurityControlDefinition", "Provider"),
+            type = "string",
+            name = "Provider",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -31134,6 +32020,81 @@ M.ListConfigurationPolicyAssociationsOutput = schema.new({
     },
 })
 
+M.ListConnectorsInput = schema.new({
+    id = id.from(_N, "ListConnectorsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        ProviderName = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "ProviderName"),
+            type = "string",
+            name = "ProviderName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ProviderName" },
+            },
+        }),
+        ConnectorStatus = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "ConnectorStatus"),
+            type = "string",
+            name = "ConnectorStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ConnectorStatus" },
+            },
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "ListConnectorsInput", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "EnablementStatus" },
+            },
+        }),
+    },
+})
+
+M.ListConnectorsOutput = schema.new({
+    id = id.from(_N, "ListConnectorsResponse"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Connectors = schema.new({
+            id = id.from(_N, "ListConnectorsOutput", "Connectors"),
+            type = "list",
+            name = "Connectors",
+            target_id = prelude.Document.id,
+            list_member = M.CspmConnectorSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListConnectorsV2Input = schema.new({
     id = id.from(_N, "ListConnectorsV2Request"),
     type = "structure",
@@ -31172,6 +32133,15 @@ M.ListConnectorsV2Input = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "ConnectorStatus" },
+            },
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "ListConnectorsV2Input", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "EnablementStatus" },
             },
         }),
     },
@@ -31480,6 +32450,16 @@ M.ListSecurityControlDefinitionsInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "MaxResults" },
             },
         }),
+        Providers = schema.new({
+            id = id.from(_N, "ListSecurityControlDefinitionsInput", "Providers"),
+            type = "list",
+            name = "Providers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Providers" },
+            },
+        }),
     },
 })
 
@@ -31703,6 +32683,13 @@ M.ProviderUpdateConfiguration = schema.new({
             name = "ServiceNow",
             target_id = id.from(_N, "ServiceNowUpdateConfiguration"),
             target = M.ServiceNowUpdateConfiguration,
+        }),
+        Azure = schema.new({
+            id = id.from(_N, "ProviderUpdateConfiguration", "Azure"),
+            type = "structure",
+            name = "Azure",
+            target_id = id.from(_N, "AzureUpdateConfiguration"),
+            target = M.AzureUpdateConfiguration,
         }),
     },
 })
@@ -32150,6 +33137,55 @@ M.UpdateConfigurationPolicyOutput = schema.new({
     },
 })
 
+M.UpdateConnectorInput = schema.new({
+    id = id.from(_N, "UpdateConnectorRequest"),
+    type = "structure",
+    members = {
+        ConnectorId = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "ConnectorId"),
+            type = "string",
+            name = "ConnectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Provider = schema.new({
+            id = id.from(_N, "UpdateConnectorInput", "Provider"),
+            type = "union",
+            name = "Provider",
+            target_id = id.from(_N, "CspmProviderUpdateConfiguration"),
+            target = M.CspmProviderUpdateConfiguration,
+        }),
+    },
+})
+
+M.UpdateConnectorOutput = schema.new({
+    id = id.from(_N, "UpdateConnectorResponse"),
+    type = "structure",
+    members = {
+        ConnectorStatus = schema.new({
+            id = id.from(_N, "UpdateConnectorOutput", "ConnectorStatus"),
+            type = "string",
+            name = "ConnectorStatus",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "UpdateConnectorOutput", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.UpdateConnectorV2Input = schema.new({
     id = id.from(_N, "UpdateConnectorV2Request"),
     type = "structure",
@@ -32183,6 +33219,20 @@ M.UpdateConnectorV2Input = schema.new({
 M.UpdateConnectorV2Output = schema.new({
     id = id.from(_N, "UpdateConnectorV2Response"),
     type = "structure",
+    members = {
+        ConnectorStatus = schema.new({
+            id = id.from(_N, "UpdateConnectorV2Output", "ConnectorStatus"),
+            type = "string",
+            name = "ConnectorStatus",
+            target_id = prelude.String.id,
+        }),
+        EnablementStatus = schema.new({
+            id = id.from(_N, "UpdateConnectorV2Output", "EnablementStatus"),
+            type = "string",
+            name = "EnablementStatus",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.UpdateFindingAggregatorInput = schema.new({
@@ -33475,6 +34525,18 @@ M.CreateConfigurationPolicy = schema.operation({
     },
 })
 
+M.CreateConnector = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "CreateConnector"),
+    input = M.CreateConnectorInput,
+    output = M.CreateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateConnectorV2 = schema.operation({
     id = id.from("com.amazonaws.securityhub", "CreateConnectorV2"),
     input = M.CreateConnectorV2Input,
@@ -33589,6 +34651,18 @@ M.DeleteConfigurationPolicy = schema.operation({
     output = M.DeleteConfigurationPolicyOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/configurationPolicy/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteConnector = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DeleteConnector"),
+    input = M.DeleteConnectorInput,
+    output = M.DeleteConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/connectors/{ConnectorId+}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -33787,6 +34861,18 @@ M.DisableSecurityHub = schema.operation({
     },
 })
 
+M.DisableSecurityHubFeatureV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "DisableSecurityHubFeatureV2"),
+    input = M.DisableSecurityHubFeatureV2Input,
+    output = M.DisableSecurityHubFeatureV2Output,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/hubv2/feature/{FeatureName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisableSecurityHubV2 = schema.operation({
     id = id.from("com.amazonaws.securityhub", "DisableSecurityHubV2"),
     input = M.DisableSecurityHubV2Input,
@@ -33871,6 +34957,18 @@ M.EnableSecurityHub = schema.operation({
     },
 })
 
+M.EnableSecurityHubFeatureV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "EnableSecurityHubFeatureV2"),
+    input = M.EnableSecurityHubFeatureV2Input,
+    output = M.EnableSecurityHubFeatureV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/hubv2/feature/{FeatureName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.EnableSecurityHubV2 = schema.operation({
     id = id.from("com.amazonaws.securityhub", "EnableSecurityHubV2"),
     input = M.EnableSecurityHubV2Input,
@@ -33949,6 +35047,18 @@ M.GetConfigurationPolicyAssociation = schema.operation({
     output = M.GetConfigurationPolicyAssociationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/configurationPolicyAssociation/get" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetConnector = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "GetConnector"),
+    input = M.GetConnectorInput,
+    output = M.GetConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectors/{ConnectorId+}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -34243,6 +35353,18 @@ M.ListConfigurationPolicyAssociations = schema.operation({
     },
 })
 
+M.ListConnectors = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListConnectors"),
+    input = M.ListConnectorsInput,
+    output = M.ListConnectorsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/connectors" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListConnectorsV2 = schema.operation({
     id = id.from("com.amazonaws.securityhub", "ListConnectorsV2"),
     input = M.ListConnectorsV2Input,
@@ -34453,6 +35575,18 @@ M.UpdateConfigurationPolicy = schema.operation({
     output = M.UpdateConfigurationPolicyOutput,
     traits = {
         [traits.HTTP] = { method = "PATCH", path = "/configurationPolicy/{Identifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateConnector = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "UpdateConnector"),
+    input = M.UpdateConnectorInput,
+    output = M.UpdateConnectorOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/connectors/{ConnectorId+}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

@@ -554,6 +554,24 @@ function M.pages_list_conformance_pack_compliance_scores(client, input)
     })
 end
 
+--- Returns a page iterator for listConnectors.
+function M.pages_list_connectors(client, input)
+    return paginator.pages(client, "listConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConnectorSummaries",
+    })
+end
+
+--- Returns an item iterator for listConnectors.
+function M.items_list_connectors(client, input)
+    return paginator.items(client, "listConnectors", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "ConnectorSummaries",
+    })
+end
+
 --- Returns a page iterator for listDiscoveredResources.
 function M.pages_list_discovered_resources(client, input)
     return paginator.pages(client, "listDiscoveredResources", input, {
