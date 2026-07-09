@@ -169,6 +169,8 @@ M.AllowedClientsList = schema.new({ type = "list", list_member = prelude.String 
 
 M.AllowedScopesType = schema.new({ type = "list", list_member = prelude.String })
 
+M.AdvertisedScopeMappingType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.CustomClaimValidationsType = schema.new({ type = "list", list_member = M.CustomClaimValidationType })
 
 M.McpSupportedVersions = schema.new({ type = "list", list_member = prelude.String })
@@ -1846,6 +1848,14 @@ M.CustomJWTAuthorizerConfiguration = schema.new({
             name = "allowedScopes",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        advertisedScopeMapping = schema.new({
+            id = id.from(_N, "CustomJWTAuthorizerConfiguration", "advertisedScopeMapping"),
+            type = "map",
+            name = "advertisedScopeMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
         customClaims = schema.new({
             id = id.from(_N, "CustomJWTAuthorizerConfiguration", "customClaims"),

@@ -2921,7 +2921,7 @@ local record M
 
     -- Defines the failure threshold that the deployment circuit breaker uses to monitor a deployment. The type and value together determine the number of task failures that are tolerated before the circuit breaker triggers. By default, the threshold configuration uses a type of BOUNDED_PERCENT with a value of 50.
     record ThresholdConfiguration
-        -- The integer used to calculate the failure threshold. When type is COUNT, this is the failure threshold itself. When type is a percentage type, this is the percentage that Amazon ECS multiplies by the latest service desired count to calculate the failure threshold.
+        -- Specifies the integer that Amazon ECS uses to calculate the failure threshold. When type is COUNT, this value is the failure threshold itself. When type is a percentage type, Amazon ECS multiplies this value by the latest service desired count to produce the failure threshold. The default is 50.
         value: number
     end
 
@@ -2931,9 +2931,9 @@ local record M
         enable: boolean
         -- Determines whether to configure Amazon ECS to roll back the service if a service deployment fails. If rollback is on, when a service deployment fails, the service is rolled back to the last deployment that completed successfully.
         rollback: boolean
-        -- Determines whether the deployment circuit breaker resets its failure count when a task reaches a healthy state. When set to true, a healthy task resets the failure count to 0; when false, it doesn't.
+        -- Specifies whether the deployment circuit breaker resets its failure count when a task reaches a healthy state. When set to true, a task that reaches a healthy state resets the failure count to 0. When set to false, Amazon ECS does not reset the failure count. The default is true.
         resetOnHealthyTask: boolean
-        -- The threshold configuration that controls when the deployment circuit breaker triggers.
+        -- The threshold configuration that controls when the deployment circuit breaker triggers. The type and value together determine how many task failures are tolerated before the circuit breaker activates.
         thresholdConfiguration: ThresholdConfiguration
     end
 
@@ -4376,6 +4376,18 @@ local record M
         logGroups: {ManagedLogGroup}
     end
 
+    -- The runtime platform that Amazon ECS applies to a service revision. This value overrides the runtime platform specified in the task definition. You can't set this value.
+    record RuntimePlatformOverride
+        -- The CPU architecture that tasks in this service revision run on. This value might differ from the architecture declared in the task definition—for example, when Amazon ECS detects an architecture mismatch during an Amazon ECS Express deployment and runs tasks on a different architecture. You can't set this value. Valid values: X86_64 - The x86 64-bit architecture. ARM64 - The 64-bit ARM architecture.
+        cpuArchitecture: string
+    end
+
+    -- Contains the runtime overrides that Amazon ECS automatically applies to a service revision when the effective runtime configuration differs from the task definition. This value is read-only.
+    record ServiceRevisionOverrides
+        -- The runtime platform override that Amazon ECS automatically applies to the service revision. You can't set this value.
+        runtimePlatform: RuntimePlatformOverride
+    end
+
     -- The resolved load balancer configuration for a service revision. This includes information about which target groups serve traffic and which listener rules direct traffic to them.
     record ServiceRevisionLoadBalancer
         -- The Amazon Resource Name (ARN) of the target group associated with the service revision.
@@ -4429,6 +4441,8 @@ local record M
         resolvedConfiguration: ResolvedConfiguration
         -- The resources created and managed by Amazon ECS when you create an Express service for Amazon ECS.
         ecsManagedResources: ECSManagedResources
+        -- The effective runtime overrides that Amazon ECS applies to this service revision. This value is present only when Amazon ECS detects a difference between the task definition and the actual runtime configuration.
+        overrides: ServiceRevisionOverrides
         -- The optional monitoring configuration for the service, which defines the resolution for the service-level CPUUtilization and MemoryUtilization Amazon CloudWatch metrics. When not specified, Amazon ECS uses the default resolution of 60 seconds.
         monitoring: MonitoringConfiguration
     end

@@ -13168,8 +13168,8 @@ local record M
         -- specified snapshot must be a snapshot that you previously created from the original
         -- root volume.
         -- If you want to restore the replacement root volume to the initial launch state,
-        -- or if you want to restore the replacement root volume from an AMI, omit this
-        -- parameter.
+        -- if you want to restore the replacement root volume from an AMI, or if you want to
+        -- replace the root volume with a specified volume, omit this parameter.
         SnapshotId: string
         -- Unique, case-sensitive identifier you provide to ensure the idempotency of the request.
         -- If you do not specify a client token, a randomly generated token is used for the request
@@ -13184,8 +13184,9 @@ local record M
         -- The ID of the AMI to use to restore the root volume. The specified AMI must have the
         -- same product code, billing information, architecture type, and virtualization type as
         -- that of the instance.
-        -- If you want to restore the replacement volume from a specific snapshot, or if you want
-        -- to restore it to its launch state, omit this parameter.
+        -- If you want to restore the replacement volume from a specific snapshot, if you want
+        -- to restore it to its launch state, or if you want to replace the root volume with a
+        -- specified volume, omit this parameter.
         ImageId: string
         -- Indicates whether to automatically delete the original root volume after the root volume
         -- replacement task completes. To delete the original root volume, specify true.
@@ -13207,6 +13208,13 @@ local record M
         -- Initialize Amazon EBS volumes in the Amazon EC2 User Guide.
         -- Valid range: 100 - 300 MiB/s
         VolumeInitializationRate: number
+        -- The ID of the volume to use as the replacement root volume. The specified volume must
+        -- be in the same Availability Zone as the instance, must be in the available
+        -- state, and must not be attached to an instance. If the original root volume is encrypted,
+        -- the specified volume must also be encrypted.
+        -- If you want to restore the replacement root volume from a specific snapshot, an AMI,
+        -- or to its launch state, omit this parameter.
+        VolumeId: string
     end
 
     enum ReplaceRootVolumeTaskState

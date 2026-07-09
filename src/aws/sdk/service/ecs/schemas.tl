@@ -11549,6 +11549,33 @@ M.ECSManagedResources = schema.new({
     },
 })
 
+M.RuntimePlatformOverride = schema.new({
+    id = id.from(_N, "RuntimePlatformOverride"),
+    type = "structure",
+    members = {
+        cpuArchitecture = schema.new({
+            id = id.from(_N, "RuntimePlatformOverride", "cpuArchitecture"),
+            type = "string",
+            name = "cpuArchitecture",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceRevisionOverrides = schema.new({
+    id = id.from(_N, "ServiceRevisionOverrides"),
+    type = "structure",
+    members = {
+        runtimePlatform = schema.new({
+            id = id.from(_N, "ServiceRevisionOverrides", "runtimePlatform"),
+            type = "structure",
+            name = "runtimePlatform",
+            target_id = id.from(_N, "RuntimePlatformOverride"),
+            target = M.RuntimePlatformOverride,
+        }),
+    },
+})
+
 M.ServiceRevisionLoadBalancer = schema.new({
     id = id.from(_N, "ServiceRevisionLoadBalancer"),
     type = "structure",
@@ -11719,6 +11746,13 @@ M.ServiceRevision = schema.new({
             name = "ecsManagedResources",
             target_id = id.from(_N, "ECSManagedResources"),
             target = M.ECSManagedResources,
+        }),
+        overrides = schema.new({
+            id = id.from(_N, "ServiceRevision", "overrides"),
+            type = "structure",
+            name = "overrides",
+            target_id = id.from(_N, "ServiceRevisionOverrides"),
+            target = M.ServiceRevisionOverrides,
         }),
         monitoring = schema.new({
             id = id.from(_N, "ServiceRevision", "monitoring"),

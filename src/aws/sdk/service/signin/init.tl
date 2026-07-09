@@ -19,13 +19,16 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     createOAuth2Token: function(Client, types.CreateOAuth2TokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenOutput>
+    createOAuth2TokenWithIAM: function(Client, types.CreateOAuth2TokenWithIAMInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithIAMOutput>
     deleteConsoleAuthorizationConfiguration: function(Client, types.DeleteConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>
     deleteResourcePermissionStatement: function(Client, types.DeleteResourcePermissionStatementInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePermissionStatementOutput>
     getConsoleAuthorizationConfiguration: function(Client, types.GetConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetConsoleAuthorizationConfigurationOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
+    introspectOAuth2TokenWithIAM: function(Client, types.IntrospectOAuth2TokenWithIAMInput, ? base_client.InvokeOptions): async.Operation<types.IntrospectOAuth2TokenWithIAMOutput>
     listResourcePermissionStatements: function(Client, types.ListResourcePermissionStatementsInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcePermissionStatementsOutput>
     putConsoleAuthorizationConfiguration: function(Client, types.PutConsoleAuthorizationConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutConsoleAuthorizationConfigurationOutput>
     putResourcePermissionStatement: function(Client, types.PutResourcePermissionStatementInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePermissionStatementOutput>
+    revokeOAuth2TokenWithIAM: function(Client, types.RevokeOAuth2TokenWithIAMInput, ? base_client.InvokeOptions): async.Operation<types.RevokeOAuth2TokenWithIAMOutput>
 end
 
 local record M
@@ -74,6 +77,10 @@ function C:createOAuth2Token(input: types.CreateOAuth2TokenInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOAuth2Token as schema.OperationSchema, input, options) as async.Operation<types.CreateOAuth2TokenOutput>
 end
 
+function C:createOAuth2TokenWithIAM(input: types.CreateOAuth2TokenWithIAMInput, options?: base_client.InvokeOptions): async.Operation<types.CreateOAuth2TokenWithIAMOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateOAuth2TokenWithIAM as schema.OperationSchema, input, options) as async.Operation<types.CreateOAuth2TokenWithIAMOutput>
+end
+
 function C:deleteConsoleAuthorizationConfiguration(input: types.DeleteConsoleAuthorizationConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteConsoleAuthorizationConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteConsoleAuthorizationConfigurationOutput>
 end
@@ -90,6 +97,10 @@ function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
+function C:introspectOAuth2TokenWithIAM(input: types.IntrospectOAuth2TokenWithIAMInput, options?: base_client.InvokeOptions): async.Operation<types.IntrospectOAuth2TokenWithIAMOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.IntrospectOAuth2TokenWithIAM as schema.OperationSchema, input, options) as async.Operation<types.IntrospectOAuth2TokenWithIAMOutput>
+end
+
 function C:listResourcePermissionStatements(input: types.ListResourcePermissionStatementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcePermissionStatementsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResourcePermissionStatements as schema.OperationSchema, input, options) as async.Operation<types.ListResourcePermissionStatementsOutput>
 end
@@ -100,6 +111,10 @@ end
 
 function C:putResourcePermissionStatement(input: types.PutResourcePermissionStatementInput, options?: base_client.InvokeOptions): async.Operation<types.PutResourcePermissionStatementOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutResourcePermissionStatement as schema.OperationSchema, input, options) as async.Operation<types.PutResourcePermissionStatementOutput>
+end
+
+function C:revokeOAuth2TokenWithIAM(input: types.RevokeOAuth2TokenWithIAMInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeOAuth2TokenWithIAMOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeOAuth2TokenWithIAM as schema.OperationSchema, input, options) as async.Operation<types.RevokeOAuth2TokenWithIAMOutput>
 end
 
 return M

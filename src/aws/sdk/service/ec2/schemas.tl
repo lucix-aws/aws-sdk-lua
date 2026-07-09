@@ -30103,6 +30103,12 @@ M.CreateReplaceRootVolumeTaskInput = schema.new({
             name = "VolumeInitializationRate",
             target_id = prelude.Long.id,
         }),
+        VolumeId = schema.new({
+            id = id.from(_N, "CreateReplaceRootVolumeTaskInput", "VolumeId"),
+            type = "string",
+            name = "VolumeId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

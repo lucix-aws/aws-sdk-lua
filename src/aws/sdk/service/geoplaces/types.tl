@@ -7,10 +7,26 @@ local record M
         Message: string
     end
 
+    enum AccessPointType
+        "Delivery"
+        "Emergency"
+        "Entrance"
+        "Loading"
+        "Other"
+        "Parking"
+        "Taxi"
+    end
+
     -- Position of the access point represented by longitude and latitude for a vehicle.
     record AccessPoint
         -- The position in World Geodetic System (WGS 84) format: [longitude, latitude].
         Position: {number}
+        -- The type of access point, indicating its intended use. Only applies to results of type place.
+        Type: string
+        -- Set to true for the primary access position when the place has more than one access point.
+        Primary: boolean
+        -- A short textual description of the access point, such as "North Entrance".
+        Label: string
     end
 
     -- Category of the Place returned.
@@ -196,6 +212,49 @@ local record M
         Street: {PhonemeTranscription}
     end
 
+    enum AddressTranslationComponent
+        "District"
+        "Locality"
+        "Region"
+        "SubRegion"
+    end
+
+    enum TranslationNameType
+        "Abbreviation"
+        "AreaCode"
+        "BaseName"
+        "Exonym"
+        "Shortened"
+        "Synonym"
+    end
+
+    -- A translation or alternative name for an address component.
+    record TranslationName
+        -- The translated or alternative name value.
+        Value: string
+        -- A BCP 47 compliant language code for the translation name.
+        Language: string
+        -- The type of translation name. Valid values are Abbreviation, AreaCode, BaseName, Exonym, Shortened, and Synonym.
+        Type: string
+        -- If true, indicates this is the primary name variant for the given language.
+        Primary: boolean
+        -- If true, indicates this name is a transliterated version rather than a native script translation.
+        Transliterated: boolean
+    end
+
+    enum AdminNamesPreference
+        "Alternative"
+        "Primary"
+    end
+
+    -- The official administrative names for an address component, returned when AddressNamesMode is set to Administrative.
+    record AdminNames
+        -- A list of translation names for the administrative address component, including name variants and translations in available languages.
+        Names: {TranslationName}
+        -- Indicates the preference level of the administrative name. Valid values are Primary and Alternative.
+        Preference: string
+    end
+
     enum AutocompleteAdditionalFeature
         "Core"
     end
@@ -211,6 +270,12 @@ local record M
     enum AutocompleteFilterPlaceType
         "Locality"
         "PostalCode"
+        "Street"
+        "Intersection"
+        "PointAddress"
+        "InterpolatedAddress"
+        "Country"
+        "Region"
     end
 
     -- Autocomplete structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.
@@ -231,6 +296,7 @@ local record M
     enum PostalCodeMode
         "MergeAllSpannedLocalities"
         "EnumerateSpannedLocalities"
+        "EnumerateSpannedDistricts"
     end
 
     record AutocompleteInput
@@ -242,7 +308,7 @@ local record M
         BiasPosition: {number}
         -- A structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.
         Filter: AutocompleteFilter
-        -- The PostalCodeMode affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value EnumerateSpannedLocalities, all cities in that postal code are returned.
+        -- The PostalCodeMode affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value EnumerateSpannedLocalities, all cities in that postal code are returned. If it's populated with the value EnumerateSpannedDistricts, all combinations of the postal code with the corresponding district and city names are returned.
         PostalCodeMode: string
         -- A list of optional additional parameters that can be requested for each result.
         AdditionalFeatures: {string}
@@ -367,6 +433,8 @@ local record M
         PoliticalView: string
         -- Indicates the starting and ending index of the place in the text query that match the found title.
         Highlights: AutocompleteHighlights
+        -- If true, indicates that the coordinates of the position and access points of the point address are estimated.
+        EstimatedPointAddress: boolean
     end
 
     record AutocompleteOutput
@@ -450,6 +518,16 @@ local record M
         Emails: {ContactDetails}
     end
 
+    -- A reference to a third-party supplier's identifier for a place, enabling correlation of places across external systems.
+    record CrossReference
+        -- The name of the third-party data supplier (for example, Yelp or TripAdvisor).
+        Source: string
+        -- The place identifier assigned by the third-party supplier.
+        SourcePlaceId: string
+        -- The list of place category identifiers this supplier reference relates to.
+        SourceCategories: {Category}
+    end
+
     -- List of Food types offered by this result.
     record FoodType
         -- Localized name of the food type.
@@ -467,6 +545,11 @@ local record M
         "Intersections"
     end
 
+    enum GeocodeAddressNamesMode
+        "Matched"
+        "Administrative"
+    end
+
     enum GeocodeFilterPlaceType
         "Locality"
         "PostalCode"
@@ -474,6 +557,10 @@ local record M
         "Street"
         "PointAddress"
         "InterpolatedAddress"
+        "SecondaryAddress"
+        "PointOfInterest"
+        "Country"
+        "Region"
     end
 
     -- Geocode structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.
@@ -529,6 +616,12 @@ local record M
         IntendedUse: string
         -- Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.
         Key: string
+        -- The PostalCodeMode affects how postal code results are returned. If a postal code spans multiple localities and this value is empty, partial district or locality information may be returned under a single postal code result entry. If it's populated with the value EnumerateSpannedLocalities, all cities in that postal code are returned. If it's populated with the value EnumerateSpannedDistricts, all combinations of the postal code with the corresponding district and city names are returned.
+        PostalCodeMode: string
+        -- Specifies which address components to include translations for. Translations include all name variants and alternative names for the requested fields in all available languages. Valid values are District, Locality, Region, and SubRegion.
+        AddressTranslations: {string}
+        -- Specifies how address names are returned. If not set, the service returns normalized (official) names by default. When set to Matched, address names in the response are based on the input query rather than official names. When set to Administrative, the service returns the official administrative names for address components. Administrative currently applies only to addresses in the United States.
+        AddressNamesMode: string
     end
 
     -- All Intersections that are near the provided address.
@@ -627,6 +720,8 @@ local record M
         Building: {ParsedQueryComponent}
         -- Parsed secondary address components from the provided query text. Coverage for ParsedQuery.Address.SecondaryAddressComponents is available in the following countries: AUS, AUT, BRA, CAN, ESP, FRA, GBR, HKG, IDN, IND, NZL, TUR, TWN, USA
         SecondaryAddressComponents: {ParsedQuerySecondaryAddressComponent}
+        -- Additional information extracted from the query that does not correspond to standard address components.
+        OtherComponents: {ParsedQueryComponent}
     end
 
     -- Parsed components in the provided QueryText.
@@ -697,6 +792,18 @@ local record M
         OffsetSeconds: number
     end
 
+    -- Translation details for the address, including alternative names and translations in available languages.
+    record TranslationDetails
+        -- A list of administrative names and translations for the locality address component.
+        Locality: {AdminNames}
+        -- A list of administrative names and translations for the region address component.
+        Region: {AdminNames}
+        -- A list of administrative names and translations for the district address component.
+        District: {AdminNames}
+        -- A list of administrative names and translations for the sub-region address component.
+        SubRegion: {AdminNames}
+    end
+
     -- The Geocoded result.
     record GeocodeResultItem
         -- The PlaceId of the place result.
@@ -737,6 +844,10 @@ local record M
         MainAddress: RelatedPlace
         -- All secondary addresses that are associated with a main address. A secondary address is one that includes secondary designators, such as a Suite or Unit Number, Building, or Floor information. Coverage for this functionality is available in the following countries: AUS, CAN, NZL, USA, PRI.
         SecondaryAddresses: {RelatedPlace}
+        -- All name translations and alternative names for the requested address fields in all available languages.
+        Translations: TranslationDetails
+        -- If true, indicates that the coordinates of the position and access points of the point address are estimated.
+        EstimatedPointAddress: boolean
     end
 
     record GeocodeOutput
@@ -752,6 +863,11 @@ local record M
         "Access"
         "Contact"
         "SecondaryAddresses"
+        "CrossReferences"
+    end
+
+    enum GetPlaceAddressNamesMode
+        "Administrative"
     end
 
     enum GetPlaceIntendedUse
@@ -772,6 +888,8 @@ local record M
         IntendedUse: string
         -- Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.
         Key: string
+        -- Specifies how address names are returned. When set to Administrative, the service returns the official administrative names for address components. Administrative currently applies only to addresses in the United States.
+        AddressNamesMode: string
     end
 
     -- Components of the opening hours object.
@@ -802,6 +920,10 @@ local record M
         Title: {PhonemeTranscription}
         -- How to pronounce the address.
         Address: AddressComponentPhonemes
+    end
+
+    enum PlaceAttribute
+        "DriveThrough"
     end
 
     record GetPlaceOutput
@@ -847,6 +969,12 @@ local record M
         MainAddress: RelatedPlace
         -- All secondary addresses that are associated with a main address. A secondary address is one that includes secondary designators, such as a Suite or Unit Number, Building, or Floor information. Not available in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers. Coverage for this functionality is available in the following countries: AUS, CAN, NZL, USA, PRI.
         SecondaryAddresses: {RelatedPlace}
+        -- A list of place attributes for the result, such as whether the business offers drive-through service.
+        PlaceAttributes: {string}
+        -- If true, indicates that the coordinates of the position and access points of the point address are estimated.
+        EstimatedPointAddress: boolean
+        -- The list of supplier references available for this place. Requires the CrossReferences additional feature to be enabled.
+        CrossReferences: {CrossReference}
     end
 
     enum ReverseGeocodeAdditionalFeature
@@ -855,12 +983,18 @@ local record M
         "Intersections"
     end
 
+    enum ReverseGeocodeAddressNamesMode
+        "Administrative"
+    end
+
     enum ReverseGeocodeFilterPlaceType
         "Locality"
         "Intersection"
         "Street"
         "PointAddress"
         "InterpolatedAddress"
+        "SecondaryAddress"
+        "PointOfInterest"
     end
 
     -- The included place types.
@@ -895,6 +1029,8 @@ local record M
         Key: string
         -- The heading in degrees from true north in a navigation context. The heading is measured as the angle clockwise from the North direction. Example: North is 0 degrees, East is 90 degrees, South is 180 degrees, and West is 270 degrees.
         Heading: number
+        -- Specifies how address names are returned. When set to Administrative, the service returns the official administrative names for address components. Administrative currently applies only to addresses in the United States.
+        AddressNamesMode: string
     end
 
     -- The returned location from the Reverse Geocode action.
@@ -929,6 +1065,10 @@ local record M
         PoliticalView: string
         -- All Intersections that are near the provided address. Not available in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
         Intersections: {Intersection}
+        -- The main address corresponding to a place of type Secondary Address.
+        MainAddress: RelatedPlace
+        -- If true, indicates that the coordinates of the position and access points of the point address are estimated.
+        EstimatedPointAddress: boolean
     end
 
     record ReverseGeocodeOutput
@@ -943,6 +1083,7 @@ local record M
         "Phonemes"
         "Access"
         "Contact"
+        "CrossReferences"
     end
 
     -- SearchNearby structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.
@@ -1031,6 +1172,10 @@ local record M
         PoliticalView: string
         -- How the various components of the result's address are pronounced in various languages.
         Phonemes: PhonemeDetails
+        -- A list of place attributes for the result, such as whether the business offers drive-through service.
+        PlaceAttributes: {string}
+        -- The list of supplier references available for this place. Requires the CrossReferences additional feature to be enabled.
+        CrossReferences: {CrossReference}
     end
 
     record SearchNearbyOutput
@@ -1047,6 +1192,7 @@ local record M
         "Phonemes"
         "Access"
         "Contact"
+        "CrossReferences"
     end
 
     -- SearchText structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.
@@ -1061,6 +1207,12 @@ local record M
     enum SearchTextIntendedUse
         "SingleUse"
         "Storage"
+    end
+
+    enum SearchTextTravelMode
+        "Car"
+        "Scooter"
+        "Truck"
     end
 
     record SearchTextInput
@@ -1084,6 +1236,8 @@ local record M
         IntendedUse: string
         -- If nextToken is returned, there are more results available. The value of nextToken is a unique pagination token for each page.
         NextToken: string
+        -- Indicates the mode of mobility used by the end user. This is used to improve the relevance of search results. Valid values are Car, Scooter, and Truck.
+        TravelMode: string
         -- Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.
         Key: string
     end
@@ -1114,7 +1268,7 @@ local record M
         BusinessChains: {BusinessChain}
         -- List of potential contact methods for the result/place.
         Contacts: Contacts
-        -- List of opening hours objects.
+        -- List of opening hours objects. Not available in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
         OpeningHours: {OpeningHours}
         -- Position of the access point in World Geodetic System (WGS 84) format: [longitude, latitude].
         AccessPoints: {AccessPoint}
@@ -1126,6 +1280,10 @@ local record M
         PoliticalView: string
         -- How the various components of the result's address are pronounced in various languages.
         Phonemes: PhonemeDetails
+        -- A list of place attributes for the result, such as whether the business offers drive-through service.
+        PlaceAttributes: {string}
+        -- The list of supplier references available for this place. Requires the CrossReferences additional feature to be enabled.
+        CrossReferences: {CrossReference}
     end
 
     record SearchTextOutput
@@ -1142,6 +1300,7 @@ local record M
         "TimeZone"
         "Phonemes"
         "Access"
+        "CrossReferences"
     end
 
     -- SuggestFilter structure which contains a set of inclusion/exclusion properties that results must possess in order to be returned as a result.
@@ -1155,6 +1314,12 @@ local record M
 
     enum SuggestIntendedUse
         "SingleUse"
+    end
+
+    enum SuggestTravelMode
+        "Car"
+        "Scooter"
+        "Truck"
     end
 
     record SuggestInput
@@ -1176,6 +1341,8 @@ local record M
         PoliticalView: string
         -- Indicates if the query results will be persisted in customer infrastructure. Defaults to SingleUse (not stored). Currently, Suggest does not support storage of results.
         IntendedUse: string
+        -- Indicates the mode of mobility used by the end user. This is used to improve the relevance of search results. Valid values are Car, Scooter, and Truck.
+        TravelMode: string
         -- Optional: The API key to be used for authorization. Either an API key or valid SigV4 signature must be provided when making a request.
         Key: string
     end
@@ -1236,6 +1403,10 @@ local record M
         PoliticalView: string
         -- How the various components of the result's address are pronounced in various languages. Not available in ap-southeast-1 and ap-southeast-5 regions for GrabMaps customers.
         Phonemes: PhonemeDetails
+        -- A list of place attributes for the result, such as whether the business offers drive-through service.
+        PlaceAttributes: {string}
+        -- The list of supplier references available for this place. Requires the CrossReferences additional feature to be enabled.
+        CrossReferences: {CrossReference}
     end
 
     enum QueryType

@@ -353,6 +353,69 @@ M.ValidationException = schema.new({
     },
 })
 
+M.CreateOAuth2TokenWithIAMInput = schema.new({
+    id = id.from(_N, "CreateOAuth2TokenWithIAMRequest"),
+    type = "structure",
+    members = {
+        grantType = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithIAMInput", "grantType"),
+            type = "string",
+            name = "grantType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "grant_type" },
+            },
+        }),
+        resource = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithIAMInput", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateOAuth2TokenWithIAMOutput = schema.new({
+    id = id.from(_N, "CreateOAuth2TokenWithIAMResponse"),
+    type = "structure",
+    members = {
+        accessToken = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithIAMOutput", "accessToken"),
+            type = "string",
+            name = "accessToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "access_token" },
+            },
+        }),
+        tokenType = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithIAMOutput", "tokenType"),
+            type = "string",
+            name = "tokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "token_type" },
+            },
+        }),
+        expiresIn = schema.new({
+            id = id.from(_N, "CreateOAuth2TokenWithIAMOutput", "expiresIn"),
+            type = "integer",
+            name = "expiresIn",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "expires_in" },
+            },
+        }),
+    },
+})
+
 M.DeleteConsoleAuthorizationConfigurationInput = schema.new({
     id = id.from(_N, "DeleteConsoleAuthorizationConfigurationInput"),
     type = "structure",
@@ -610,6 +673,165 @@ M.GetResourcePolicyOutput = schema.new({
     },
 })
 
+M.IntrospectOAuth2TokenWithIAMInput = schema.new({
+    id = id.from(_N, "IntrospectOAuth2TokenWithIAMRequest"),
+    type = "structure",
+    members = {
+        token = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMInput", "token"),
+            type = "string",
+            name = "token",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "token" },
+            },
+        }),
+        tokenTypeHint = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMInput", "tokenTypeHint"),
+            type = "string",
+            name = "tokenTypeHint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "token_type_hint" },
+            },
+        }),
+    },
+})
+
+M.IntrospectOAuth2TokenWithIAMOutput = schema.new({
+    id = id.from(_N, "IntrospectOAuth2TokenWithIAMResponse"),
+    type = "structure",
+    members = {
+        active = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "active"),
+            type = "boolean",
+            name = "active",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientId = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "clientId"),
+            type = "string",
+            name = "clientId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "client_id" },
+            },
+        }),
+        userId = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "userId"),
+            type = "string",
+            name = "userId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "user_id" },
+            },
+        }),
+        tokenType = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "tokenType"),
+            type = "string",
+            name = "tokenType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "token_type" },
+            },
+        }),
+        exp = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "exp"),
+            type = "long",
+            name = "exp",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "exp" },
+            },
+        }),
+        iat = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "iat"),
+            type = "long",
+            name = "iat",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "iat" },
+            },
+        }),
+        nbf = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "nbf"),
+            type = "long",
+            name = "nbf",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nbf" },
+            },
+        }),
+        sub = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "sub"),
+            type = "string",
+            name = "sub",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sub" },
+            },
+        }),
+        aud = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "aud"),
+            type = "string",
+            name = "aud",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "aud" },
+            },
+        }),
+        iss = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "iss"),
+            type = "string",
+            name = "iss",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "iss" },
+            },
+        }),
+        jti = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "jti"),
+            type = "string",
+            name = "jti",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "jti" },
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "account_id" },
+            },
+        }),
+        signinSession = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "signinSession"),
+            type = "string",
+            name = "signinSession",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "signin_session" },
+            },
+        }),
+        resource = schema.new({
+            id = id.from(_N, "IntrospectOAuth2TokenWithIAMOutput", "resource"),
+            type = "string",
+            name = "resource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "resource" },
+            },
+        }),
+    },
+})
+
 M.ListResourcePermissionStatementsInput = schema.new({
     id = id.from(_N, "ListResourcePermissionStatementsInput"),
     type = "structure",
@@ -825,6 +1047,28 @@ M.ServiceQuotaExceededException = schema.new({
     },
 })
 
+M.RevokeOAuth2TokenWithIAMInput = schema.new({
+    id = id.from(_N, "RevokeOAuth2TokenWithIAMRequest"),
+    type = "structure",
+    members = {
+        token = schema.new({
+            id = id.from(_N, "RevokeOAuth2TokenWithIAMInput", "token"),
+            type = "string",
+            name = "token",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "token" },
+            },
+        }),
+    },
+})
+
+M.RevokeOAuth2TokenWithIAMOutput = schema.new({
+    id = id.from(_N, "RevokeOAuth2TokenWithIAMResponse"),
+    type = "structure",
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -861,6 +1105,21 @@ M.CreateOAuth2Token = schema.operation({
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             IsControlPlane = { value = false },
+        },
+    },
+})
+
+M.CreateOAuth2TokenWithIAM = schema.operation({
+    id = id.from("com.amazonaws.signin", "CreateOAuth2TokenWithIAM"),
+    input = M.CreateOAuth2TokenWithIAMInput,
+    output = M.CreateOAuth2TokenWithIAMOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/token?x-amz-client-auth-method=iam" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsOAuthEndpoint = { value = true },
         },
     },
 })
@@ -925,6 +1184,21 @@ M.GetResourcePolicy = schema.operation({
     },
 })
 
+M.IntrospectOAuth2TokenWithIAM = schema.operation({
+    id = id.from("com.amazonaws.signin", "IntrospectOAuth2TokenWithIAM"),
+    input = M.IntrospectOAuth2TokenWithIAMInput,
+    output = M.IntrospectOAuth2TokenWithIAMOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/introspect?x-amz-client-auth-method=iam" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsOAuthEndpoint = { value = true },
+        },
+    },
+})
+
 M.ListResourcePermissionStatements = schema.operation({
     id = id.from("com.amazonaws.signin", "ListResourcePermissionStatements"),
     input = M.ListResourcePermissionStatementsInput,
@@ -966,6 +1240,21 @@ M.PutResourcePermissionStatement = schema.operation({
         },
         [traits.STATIC_CONTEXT_PARAMS] = {
             IsControlPlane = { value = true },
+        },
+    },
+})
+
+M.RevokeOAuth2TokenWithIAM = schema.operation({
+    id = id.from("com.amazonaws.signin", "RevokeOAuth2TokenWithIAM"),
+    input = M.RevokeOAuth2TokenWithIAMInput,
+    output = M.RevokeOAuth2TokenWithIAMOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/revoke?x-amz-client-auth-method=iam" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsOAuthEndpoint = { value = true },
         },
     },
 })

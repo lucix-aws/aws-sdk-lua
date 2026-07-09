@@ -2003,6 +2003,25 @@ M.CreateFuotaTaskOutput = schema.new({
     },
 })
 
+M.DefaultSessionParametersMulticast = schema.new({
+    id = id.from(_N, "DefaultSessionParametersMulticast"),
+    type = "structure",
+    members = {
+        DlDr = schema.new({
+            id = id.from(_N, "DefaultSessionParametersMulticast", "DlDr"),
+            type = "integer",
+            name = "DlDr",
+            target_id = prelude.Integer.id,
+        }),
+        DlFreq = schema.new({
+            id = id.from(_N, "DefaultSessionParametersMulticast", "DlFreq"),
+            type = "integer",
+            name = "DlFreq",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ParticipatingGatewaysMulticast = schema.new({
     id = id.from(_N, "ParticipatingGatewaysMulticast"),
     type = "structure",
@@ -2045,6 +2064,13 @@ M.LoRaWANMulticast = schema.new({
             name = "ParticipatingGateways",
             target_id = id.from(_N, "ParticipatingGatewaysMulticast"),
             target = M.ParticipatingGatewaysMulticast,
+        }),
+        DefaultSessionParameters = schema.new({
+            id = id.from(_N, "LoRaWANMulticast", "DefaultSessionParameters"),
+            type = "structure",
+            name = "DefaultSessionParameters",
+            target_id = id.from(_N, "DefaultSessionParametersMulticast"),
+            target = M.DefaultSessionParametersMulticast,
         }),
     },
 })
@@ -4802,6 +4828,13 @@ M.LoRaWANMulticastGet = schema.new({
             name = "ParticipatingGateways",
             target_id = id.from(_N, "ParticipatingGatewaysMulticast"),
             target = M.ParticipatingGatewaysMulticast,
+        }),
+        DefaultSessionParameters = schema.new({
+            id = id.from(_N, "LoRaWANMulticastGet", "DefaultSessionParameters"),
+            type = "structure",
+            name = "DefaultSessionParameters",
+            target_id = id.from(_N, "DefaultSessionParametersMulticast"),
+            target = M.DefaultSessionParametersMulticast,
         }),
     },
 })

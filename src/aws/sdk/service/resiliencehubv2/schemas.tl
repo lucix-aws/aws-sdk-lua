@@ -23,6 +23,8 @@ M.AssertionList = schema.new({ type = "list", list_member = M.Assertion })
 
 M.DependencySummaryList = schema.new({ type = "list", list_member = M.DependencySummary })
 
+M.AssessmentStatusList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AssessmentSummaryList = schema.new({ type = "list", list_member = M.AssessmentSummary })
 
 M.FindingsList = schema.new({ type = "list", list_member = M.FindingSummary })
@@ -32,6 +34,8 @@ M.InputSourceSummaryList = schema.new({ type = "list", list_member = M.InputSour
 M.PolicySummaryList = schema.new({ type = "list", list_member = M.PolicySummary })
 
 M.ReportGenerationResultList = schema.new({ type = "list", list_member = M.ReportGenerationResult })
+
+M.ResourceTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ServiceResourceList = schema.new({ type = "list", list_member = M.ServiceResource })
 
@@ -128,6 +132,12 @@ M.Achievability = schema.new({
             id = id.from(_N, "Achievability", "multiRegionRtoRpo"),
             type = "string",
             name = "multiRegionRtoRpo",
+            target_id = prelude.String.id,
+        }),
+        dataRecoveryTimeBetweenBackups = schema.new({
+            id = id.from(_N, "Achievability", "dataRecoveryTimeBetweenBackups"),
+            type = "string",
+            name = "dataRecoveryTimeBetweenBackups",
             target_id = prelude.String.id,
         }),
     },
@@ -1379,6 +1389,18 @@ M.DependencyDiscoveryConfig = schema.new({
             type = "timestamp",
             name = "updatedAt",
             target_id = prelude.Timestamp.id,
+        }),
+        eligibleResourceCount = schema.new({
+            id = id.from(_N, "DependencyDiscoveryConfig", "eligibleResourceCount"),
+            type = "integer",
+            name = "eligibleResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        message = schema.new({
+            id = id.from(_N, "DependencyDiscoveryConfig", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3539,6 +3561,52 @@ M.ListFailureModeAssessmentsInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "serviceArn" },
             },
         }),
+        assessmentStatuses = schema.new({
+            id = id.from(_N, "ListFailureModeAssessmentsInput", "assessmentStatuses"),
+            type = "list",
+            name = "assessmentStatuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "assessmentStatuses" },
+            },
+        }),
+        startedAfter = schema.new({
+            id = id.from(_N, "ListFailureModeAssessmentsInput", "startedAfter"),
+            type = "timestamp",
+            name = "startedAfter",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "startedAfter" },
+            },
+        }),
+        endedBefore = schema.new({
+            id = id.from(_N, "ListFailureModeAssessmentsInput", "endedBefore"),
+            type = "timestamp",
+            name = "endedBefore",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "endedBefore" },
+            },
+        }),
+        sortBy = schema.new({
+            id = id.from(_N, "ListFailureModeAssessmentsInput", "sortBy"),
+            type = "string",
+            name = "sortBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "sortBy" },
+            },
+        }),
+        sortOrder = schema.new({
+            id = id.from(_N, "ListFailureModeAssessmentsInput", "sortOrder"),
+            type = "string",
+            name = "sortOrder",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "sortOrder" },
+            },
+        }),
         maxResults = schema.new({
             id = id.from(_N, "ListFailureModeAssessmentsInput", "maxResults"),
             type = "integer",
@@ -3955,6 +4023,26 @@ M.ListResourcesInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "awsRegion" },
+            },
+        }),
+        resourceTypes = schema.new({
+            id = id.from(_N, "ListResourcesInput", "resourceTypes"),
+            type = "list",
+            name = "resourceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "resourceTypes" },
+            },
+        }),
+        billable = schema.new({
+            id = id.from(_N, "ListResourcesInput", "billable"),
+            type = "boolean",
+            name = "billable",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+                [traits.HTTP_QUERY] = { name = "billable" },
             },
         }),
         maxResults = schema.new({
@@ -5030,6 +5118,30 @@ M.ServiceTopologyEdgeSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        sourceRegion = schema.new({
+            id = id.from(_N, "ServiceTopologyEdgeSummary", "sourceRegion"),
+            type = "string",
+            name = "sourceRegion",
+            target_id = prelude.String.id,
+        }),
+        destinationRegion = schema.new({
+            id = id.from(_N, "ServiceTopologyEdgeSummary", "destinationRegion"),
+            type = "string",
+            name = "destinationRegion",
+            target_id = prelude.String.id,
+        }),
+        sourceAccount = schema.new({
+            id = id.from(_N, "ServiceTopologyEdgeSummary", "sourceAccount"),
+            type = "string",
+            name = "sourceAccount",
+            target_id = prelude.String.id,
+        }),
+        destinationAccount = schema.new({
+            id = id.from(_N, "ServiceTopologyEdgeSummary", "destinationAccount"),
+            type = "string",
+            name = "destinationAccount",
+            target_id = prelude.String.id,
         }),
         properties = schema.new({
             id = id.from(_N, "ServiceTopologyEdgeSummary", "properties"),

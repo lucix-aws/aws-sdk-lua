@@ -215,4 +215,130 @@ describe("endpoint rules", function()
         assert.are.equal("https://us-isob-east-1.signin.sc2shome.sgov.gov", result.url)
     end)
 
+    it("OAuth endpoint in us-east-1 (aws partition)", function()
+        local params = {
+            IsOAuthEndpoint = true,
+            Region = "us-east-1",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-east-1.oauth.signin.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingName = "signin",
+            signingRegion = "us-east-1",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("OAuth endpoint in us-west-2 (aws partition)", function()
+        local params = {
+            IsOAuthEndpoint = true,
+            Region = "us-west-2",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://us-west-2.oauth.signin.aws", result.url)
+        assert.is_not_nil(result.properties, "missing properties")
+        local expected_props = {
+            authSchemes = {
+            {
+            name = "sigv4",
+            signingName = "signin",
+            signingRegion = "us-west-2",
+        },
+        },
+        }
+        local function deep_eq(a, b)
+            if type(a) ~= type(b) then return false end
+            if type(a) ~= "table" then return a == b end
+            for k, v in pairs(a) do if not deep_eq(v, b[k]) then return false end end
+            for k, _ in pairs(b) do if a[k] == nil then return false end end
+            return true
+        end
+        assert.is_true(deep_eq(result.properties, expected_props), "properties mismatch")
+    end)
+
+    it("OAuth endpoint with FIPS returns an error (no FIPS variant exists)", function()
+        local params = {
+            IsOAuthEndpoint = true,
+            Region = "us-east-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.", err)
+    end)
+
+    it("OAuth endpoint with FIPS returns an error in us-west-2 (aws partition)", function()
+        local params = {
+            IsOAuthEndpoint = true,
+            Region = "us-west-2",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.", err)
+    end)
+
+    it("OAuth endpoint with FIPS returns an error in cn-north-1 (non-aws partition, error is partition-agnostic)", function()
+        local params = {
+            IsOAuthEndpoint = true,
+            Region = "cn-north-1",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.", err)
+    end)
+
+    it("OAuth endpoint with FIPS returns an error even with a custom SDK endpoint override", function()
+        local params = {
+            IsOAuthEndpoint = true,
+            Region = "us-east-1",
+            Endpoint = "https://custom.signin.example.com",
+            UseFIPS = true,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_nil(result, "expected error but got result")
+        assert.is_not_nil(err, "expected error but got nil")
+        assert.are.equal("FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.", err)
+    end)
+
+    it("OAuth operation with custom SDK endpoint override", function()
+        local params = {
+            IsOAuthEndpoint = true,
+            Region = "us-east-1",
+            Endpoint = "https://custom.signin.example.com",
+            UseFIPS = false,
+            UseDualStack = false,
+        }
+        local result, err = endpoint.resolve(ruleset, params)
+        assert.is_not_nil(result, "expected endpoint but got error: " .. tostring(err))
+        assert.are.equal("https://custom.signin.example.com", result.url)
+    end)
+
 end)

@@ -709,6 +709,12 @@ local record M
         Id: string
     end
 
+    -- The default session parameters for the multicast group.
+    record DefaultSessionParametersMulticast
+        DlDr: number
+        DlFreq: number
+    end
+
     enum DlClass
         "ClassB"
         "ClassC"
@@ -733,6 +739,8 @@ local record M
         RfRegion: string
         DlClass: string
         ParticipatingGateways: ParticipatingGatewaysMulticast
+        -- The default session parameters for the multicast group.
+        DefaultSessionParameters: DefaultSessionParametersMulticast
     end
 
     record CreateMulticastGroupInput
@@ -1904,6 +1912,8 @@ local record M
         NumberOfDevicesRequested: number
         NumberOfDevicesInGroup: number
         ParticipatingGateways: ParticipatingGatewaysMulticast
+        -- The default session parameters for the multicast group.
+        DefaultSessionParameters: DefaultSessionParametersMulticast
     end
 
     record GetMulticastGroupOutput

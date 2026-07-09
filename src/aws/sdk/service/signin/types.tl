@@ -30,9 +30,7 @@ local record M
     end
 
     -- AWS credentials structure containing temporary access credentials
-    -- The scoped-down, 15 minute duration AWS credentials.
-    -- Scoping down will be based on CLI policy (CLI team needs to create it).
-    -- Similar to cloud shell implementation.
+    -- Scoped, temporary AWS credentials with a 15-minute duration.
     record AccessToken
         -- AWS access key ID for temporary credentials
         accessKeyId: string
@@ -163,6 +161,26 @@ local record M
         message: string
     end
 
+    -- Input structure for CreateOAuth2TokenWithIAM operation
+    record CreateOAuth2TokenWithIAMInput
+        -- OAuth 2.0 grant type. Must be "client_credentials".
+        grantType: string
+        -- The OAuth resource for which the access token is requested.
+        -- Example: "aws-mcp.amazonaws.com".
+        resource: string
+    end
+
+    -- Output structure for CreateOAuth2TokenWithIAM operation
+    -- Contains the JWT access token, token type, and expiration per RFC 6749 §5.1.
+    record CreateOAuth2TokenWithIAMOutput
+        -- JWT access token containing principal identity, resource scope, and session metadata
+        accessToken: string
+        -- Always "Bearer" per OAuth 2.1 specification
+        tokenType: string
+        -- Token lifetime in seconds. Value is the minimum of session validity and 1 hour.
+        expiresIn: number
+    end
+
     -- Input for DeleteConsoleAuthorizationConfiguration operation
     record DeleteConsoleAuthorizationConfigurationInput
         -- Target account identifier
@@ -251,6 +269,63 @@ local record M
         signinResourceBasedPolicy: SigninResourceBasedPolicy
     end
 
+    -- Input structure for IntrospectOAuth2TokenWithIAM operation
+    -- RFC 7662 §2.1 introspection request. Contains the token to inspect and an
+    -- optional hint about the token's type.
+    record IntrospectOAuth2TokenWithIAMInput
+        -- The string value of the token to introspect.
+        -- May be either an access_token or a refresh_token issued by AWS Sign-In.
+        token: string
+        -- Optional hint about the type of the token submitted for introspection.
+        -- The server uses this hint to optimize lookup, but still falls back to
+        -- the other token type on miss. Allowed values: access_token, refresh_token.
+        tokenTypeHint: string
+    end
+
+    -- Output structure for IntrospectOAuth2TokenWithIAM operation
+    -- RFC 7662 §2.2 introspection response. Only `active` is required; all other
+    -- claims are omitted when the token is inactive.
+    record IntrospectOAuth2TokenWithIAMOutput
+        -- Indicates whether the token is currently active. `true` only when the
+        -- token is valid, has not expired, has not been revoked, and belongs to
+        -- the caller's account.
+        active: boolean
+        -- Client identifier for the OAuth 2.0 client that requested the token.
+        clientId: string
+        -- User identifier matching sts:GetCallerIdentity's `UserId` field for the
+        -- token's subject principal (e.g. "AIDAEXAMPLE" for an IAM user, or
+        -- "AROAEXAMPLE:session-name" for an assumed role).
+        userId: string
+        -- Indicates which kind of token was introspected.
+        -- One of "access_token" or "refresh_token".
+        tokenType: string
+        -- Token expiration time as a NumericDate (Unix epoch seconds).
+        exp: number
+        -- Token issuance time as a NumericDate (Unix epoch seconds).
+        iat: number
+        -- Token "not before" time as a NumericDate (Unix epoch seconds).
+        nbf: number
+        -- Subject of the token: the IAM principal ARN. For assumed-role sessions,
+        -- this is the session ARN (matches sts:GetCallerIdentity's `Arn` field),
+        -- e.g. arn:aws:sts::123456789012:assumed-role/MyRole/session-name.
+        sub: string
+        -- Audience of the token: the OAuth resource the token is scoped to
+        -- (for example, "aws-mcp.amazonaws.com"). Omitted for refresh tokens.
+        aud: string
+        -- Issuer of the token. Always "signin.amazonaws.com" for AWS Sign-In.
+        iss: string
+        -- Unique identifier for the token.
+        jti: string
+        -- 12-digit AWS account ID of the token's subject principal.
+        accountId: string
+        -- AWS Sign-In session ARN bound to the token, of the form
+        -- arn:aws:signin:{region}:{account}:session/{uuid}.
+        signinSession: string
+        -- The OAuth resource the token is scoped to during Human OAuth flow.
+        -- Only present for refresh token introspection.
+        resource: string
+    end
+
     -- Input for ListResourcePermissionStatements operation
     record ListResourcePermissionStatementsInput
         -- Maximum number of results to return
@@ -328,6 +403,20 @@ local record M
         -- Detailed message explaining which quota was exceeded
         -- Provides specific information about the limit and current usage
         message: string
+    end
+
+    -- Input structure for RevokeOAuth2TokenWithIAM operation
+    -- RFC 7009 §2.1 revocation request. Contains the refresh_token to revoke.
+    record RevokeOAuth2TokenWithIAMInput
+        -- The refresh_token to revoke. Must be a refresh_token issued by AWS
+        -- Sign-In (prefix "ASOR"); access_tokens are not accepted for revocation.
+        token: string
+    end
+
+    -- Output structure for RevokeOAuth2TokenWithIAM operation
+    -- RFC 7009 §2.2 revocation response. The endpoint returns 200 OK with an
+    -- empty body on success; there are no response fields.
+    record RevokeOAuth2TokenWithIAMOutput
     end
 
 end

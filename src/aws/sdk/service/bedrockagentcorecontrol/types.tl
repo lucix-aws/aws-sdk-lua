@@ -529,6 +529,8 @@ local record M
         allowedClients: {string}
         -- An array of scopes that are allowed to access the token.
         allowedScopes: {string}
+        -- A map that associates each scope in allowedScopes with a corresponding advertised scope value. The advertised scope appears in OAuth protected resource metadata and WWW-Authenticate response headers. Use this parameter when the scope that clients request from your identity provider differs from the scope in the validated token. Each key is a scope from allowedScopes that the service uses for token validation. Each value is the corresponding scope that the service advertises to clients. Scopes without a mapping entry appear unchanged to clients.
+        advertisedScopeMapping: {string : string}
         -- An array of objects that define a custom claim validation name, value, and operation
         customClaims: {CustomClaimValidationType}
         privateEndpoint: PrivateEndpoint
@@ -2975,7 +2977,7 @@ local record M
     record PassthroughTargetConfiguration
         -- The HTTPS endpoint that the gateway forwards requests to for this passthrough target.
         endpoint: string
-        -- The application protocol the passthrough target implements. Required for passthrough targets.
+        -- The application protocol that the passthrough target implements. This value is required for passthrough targets: MCP - The Model Context Protocol. A2A - The Agent-to-Agent protocol. INFERENCE - The protocol for routing requests to a large language model (LLM) provider. CUSTOM - A custom application protocol.
         protocolType: string
         -- The API schema configuration that defines the structure of the passthrough target's API.
         schema: HttpApiSchemaConfiguration
@@ -4733,8 +4735,7 @@ local record M
         indexedKeys: {IndexedKey}
         -- Configuration for streaming memory record data to external resources.
         streamDeliveryResources: StreamDeliveryResources
-        -- ARN of the resource managing this memory (e.g. a harness). When set, strategy
-        -- modifications and deletion are only allowed through the managing resource.
+        -- ARN of the resource managing this memory (e.g. a harness). When set, strategy modifications and deletion are only allowed through the managing resource.
         managedByResourceArn: string
     end
 

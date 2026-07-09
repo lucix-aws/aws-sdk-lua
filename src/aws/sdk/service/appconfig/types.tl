@@ -21,9 +21,9 @@ local record M
         ProtectionPeriodInMinutes: number
     end
 
-    -- Configuration settings for vended metrics.
+    -- The configuration settings for vended metrics in your AppConfig account.
     record VendedMetricsSettings
-        -- Whether vended metrics are enabled for the account.
+        -- Specifies whether vended metrics are enabled for the account.
         Enabled: boolean
     end
 
@@ -415,7 +415,7 @@ local record M
 
     -- The feature flag value configuration for a treatment, including the enabled state and attribute values.
     record FlagValue
-        -- Whether the feature flag is enabled for this treatment.
+        -- Specifies whether the feature flag is enabled for this treatment.
         Enabled: boolean
         -- The attribute values associated with this flag value.
         AttributeValues: {string : AttributeValue}
@@ -791,7 +791,7 @@ local record M
         -- configuration profile or from the environment during the specified interval. The default
         -- interval for ProtectionPeriodInMinutes is 60.
         DeletionProtection: DeletionProtectionSettings
-        -- Configuration for vended metrics in the account.
+        -- The configuration for vended metrics in the account.
         VendedMetrics: VendedMetricsSettings
     end
 
@@ -1837,7 +1837,7 @@ local record M
         VersionLabel: string
     end
 
-    -- Optional deployment parameters for an experiment run, including extension parameters and tags.
+    -- The deployment parameters for an experiment run, including dynamic extension parameters and tags.
     record DeploymentParameters
         -- A map of extension parameters for the deployment.
         DynamicExtensionParameters: {string : string}
@@ -1858,7 +1858,7 @@ local record M
         TreatmentOverrides: TreatmentOverrides
         -- The tags to assign to the experiment run.
         Tags: {string : string}
-        -- Optional deployment parameters including a KMS key for encryption.
+        -- The deployment parameters for the experiment run, including a KMS key identifier for encryption.
         DeploymentParameters: DeploymentParameters
     end
 
@@ -1968,7 +1968,7 @@ local record M
         Run: number
         -- The result of the experiment run, including an executive summary and reasons for or against launching.
         Result: ExperimentRunResult
-        -- Optional deployment parameters for the stop operation.
+        -- The deployment parameters for the stop operation.
         DeploymentParameters: DeploymentParameters
     end
 
@@ -2029,7 +2029,7 @@ local record M
         -- configuration profile or from the environment during the specified interval. The default
         -- interval for ProtectionPeriodInMinutes is 60.
         DeletionProtection: DeletionProtectionSettings
-        -- Configuration for vended metrics in the account.
+        -- The configuration for vended metrics in the account.
         VendedMetrics: VendedMetricsSettings
     end
 
@@ -2040,7 +2040,7 @@ local record M
         -- configuration profile or from the environment during the specified interval. The default
         -- interval for ProtectionPeriodInMinutes is 60.
         DeletionProtection: DeletionProtectionSettings
-        -- Configuration for vended metrics in the account.
+        -- The configuration for vended metrics in the account.
         VendedMetrics: VendedMetricsSettings
     end
 
@@ -2213,7 +2213,7 @@ local record M
         ApplicationIdentifier: string
         -- The experiment definition ID or name.
         ExperimentDefinitionIdentifier: string
-        -- An updated list of treatments.
+        -- The updated list of treatments to evaluate during the experiment. Each treatment defines a distinct variation compared to the control.
         Treatments: {TreatmentInput}
         -- An updated control treatment.
         Control: TreatmentInput
@@ -2274,9 +2274,9 @@ local record M
         Description: string
         -- The new exposure percentage. This value can only be increased from the current setting.
         ExposurePercentage: number
-        -- Updated treatment assignment overrides.
+        -- The updated treatment assignment overrides that assign specific entity IDs to treatments, bypassing random assignment.
         TreatmentOverrides: TreatmentOverrides
-        -- Updated deployment parameters.
+        -- The updated deployment parameters for the experiment run.
         DeploymentParameters: DeploymentParameters
     end
 

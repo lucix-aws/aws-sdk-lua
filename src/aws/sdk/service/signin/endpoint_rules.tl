@@ -35,6 +35,11 @@ return
             documentation = "Indicates if the operation targets the control plane endpoint",
             type = "boolean",
         },
+        IsOAuthEndpoint = {
+            required = false,
+            documentation = "Indicates if the operation targets the OAuth token endpoint",
+            type = "boolean",
+        },
     },
     rules = {
         {
@@ -160,6 +165,118 @@ return
                 },
             },
             type = "tree",
+        },
+        {
+            conditions = {
+                {
+                    fn = "isSet",
+                    argv = {
+                        {
+                            ref = "IsOAuthEndpoint",
+                        },
+                    },
+                },
+                {
+                    fn = "booleanEquals",
+                    argv = {
+                        {
+                            ref = "IsOAuthEndpoint",
+                        },
+                        true,
+                    },
+                },
+                {
+                    fn = "booleanEquals",
+                    argv = {
+                        {
+                            ref = "UseFIPS",
+                        },
+                        true,
+                    },
+                },
+            },
+            error = "FIPS endpoints are not supported for OAuth operations. Disable FIPS or use a non-OAuth operation.",
+            type = "error",
+        },
+        {
+            conditions = {
+                {
+                    fn = "isSet",
+                    argv = {
+                        {
+                            ref = "IsOAuthEndpoint",
+                        },
+                    },
+                },
+                {
+                    fn = "booleanEquals",
+                    argv = {
+                        {
+                            ref = "IsOAuthEndpoint",
+                        },
+                        true,
+                    },
+                },
+                {
+                    fn = "isSet",
+                    argv = {
+                        {
+                            ref = "Region",
+                        },
+                    },
+                },
+                {
+                    fn = "not",
+                    argv = {
+                        {
+                            fn = "isSet",
+                            argv = {
+                                {
+                                    ref = "Endpoint",
+                                },
+                            },
+                        },
+                    },
+                },
+                {
+                    fn = "aws.partition",
+                    argv = {
+                        {
+                            ref = "Region",
+                        },
+                    },
+                    assign = "PartitionResult",
+                },
+                {
+                    fn = "stringEquals",
+                    argv = {
+                        {
+                            fn = "getAttr",
+                            argv = {
+                                {
+                                    ref = "PartitionResult",
+                                },
+                                "name",
+                            },
+                        },
+                        "aws",
+                    },
+                },
+            },
+            endpoint = {
+                url = "https://{Region}.oauth.signin.aws",
+                properties = {
+                    authSchemes = {
+                        {
+                            name = "sigv4",
+                            signingName = "signin",
+                            signingRegion = "{Region}",
+                        },
+                    },
+                },
+                headers = {},
+            },
+            type = "endpoint",
         },
         {
             conditions = {

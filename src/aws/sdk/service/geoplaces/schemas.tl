@@ -19,6 +19,8 @@ M.ValidationExceptionFieldList = schema.new({ type = "list", list_member = M.Val
 
 M.GeocodeAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AddressTranslationComponentList = schema.new({ type = "list", list_member = prelude.String })
+
 M.GeocodeResultItemList = schema.new({ type = "list", list_member = M.GeocodeResultItem })
 
 M.GetPlaceAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
@@ -40,6 +42,10 @@ M.AccessPointList = schema.new({ type = "list", list_member = M.AccessPoint })
 M.AccessRestrictionList = schema.new({ type = "list", list_member = M.AccessRestriction })
 
 M.RelatedPlaceList = schema.new({ type = "list", list_member = M.RelatedPlace })
+
+M.PlaceAttributeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CrossReferenceList = schema.new({ type = "list", list_member = M.CrossReference })
 
 M.ReverseGeocodeAdditionalFeatureList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -93,6 +99,8 @@ M.HighlightList = schema.new({ type = "list", list_member = M.Highlight })
 
 M.ParsedQueryComponentList = schema.new({ type = "list", list_member = M.ParsedQueryComponent })
 
+M.AdminNamesList = schema.new({ type = "list", list_member = M.AdminNames })
+
 M.IntersectionHighlightsList = schema.new({ type = "list", list_member = M.HighlightList })
 
 M.ParsedQuerySecondaryAddressComponentList = schema.new({ type = "list", list_member = M.ParsedQuerySecondaryAddressComponent })
@@ -100,6 +108,8 @@ M.ParsedQuerySecondaryAddressComponentList = schema.new({ type = "list", list_me
 M.MatchScoreList = schema.new({ type = "list", list_member = prelude.Double })
 
 M.SecondaryAddressComponentMatchScoreList = schema.new({ type = "list", list_member = M.SecondaryAddressComponentMatchScore })
+
+M.TranslationNameList = schema.new({ type = "list", list_member = M.TranslationName })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -131,6 +141,24 @@ M.AccessPoint = schema.new({
             name = "Position",
             target_id = prelude.Document.id,
             list_member = prelude.Double,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "AccessPoint", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Primary = schema.new({
+            id = id.from(_N, "AccessPoint", "Primary"),
+            type = "boolean",
+            name = "Primary",
+            target_id = prelude.Boolean.id,
+        }),
+        Label = schema.new({
+            id = id.from(_N, "AccessPoint", "Label"),
+            type = "string",
+            name = "Label",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -672,6 +700,72 @@ M.AddressComponentPhonemes = schema.new({
     },
 })
 
+M.TranslationName = schema.new({
+    id = id.from(_N, "TranslationName"),
+    type = "structure",
+    members = {
+        Value = schema.new({
+            id = id.from(_N, "TranslationName", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Language = schema.new({
+            id = id.from(_N, "TranslationName", "Language"),
+            type = "string",
+            name = "Language",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "TranslationName", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Primary = schema.new({
+            id = id.from(_N, "TranslationName", "Primary"),
+            type = "boolean",
+            name = "Primary",
+            target_id = prelude.Boolean.id,
+        }),
+        Transliterated = schema.new({
+            id = id.from(_N, "TranslationName", "Transliterated"),
+            type = "boolean",
+            name = "Transliterated",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AdminNames = schema.new({
+    id = id.from(_N, "AdminNames"),
+    type = "structure",
+    members = {
+        Names = schema.new({
+            id = id.from(_N, "AdminNames", "Names"),
+            type = "list",
+            name = "Names",
+            target_id = prelude.Document.id,
+            list_member = M.TranslationName,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Preference = schema.new({
+            id = id.from(_N, "AdminNames", "Preference"),
+            type = "string",
+            name = "Preference",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FilterCircle = schema.new({
     id = id.from(_N, "FilterCircle"),
     type = "structure",
@@ -1093,6 +1187,12 @@ M.AutocompleteResultItem = schema.new({
             target_id = id.from(_N, "AutocompleteHighlights"),
             target = M.AutocompleteHighlights,
         }),
+        EstimatedPointAddress = schema.new({
+            id = id.from(_N, "AutocompleteResultItem", "EstimatedPointAddress"),
+            type = "boolean",
+            name = "EstimatedPointAddress",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -1331,6 +1431,38 @@ M.Contacts = schema.new({
     },
 })
 
+M.CrossReference = schema.new({
+    id = id.from(_N, "CrossReference"),
+    type = "structure",
+    members = {
+        Source = schema.new({
+            id = id.from(_N, "CrossReference", "Source"),
+            type = "string",
+            name = "Source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourcePlaceId = schema.new({
+            id = id.from(_N, "CrossReference", "SourcePlaceId"),
+            type = "string",
+            name = "SourcePlaceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceCategories = schema.new({
+            id = id.from(_N, "CrossReference", "SourceCategories"),
+            type = "list",
+            name = "SourceCategories",
+            target_id = prelude.Document.id,
+            list_member = M.Category,
+        }),
+    },
+})
+
 M.FoodType = schema.new({
     id = id.from(_N, "FoodType"),
     type = "structure",
@@ -1508,6 +1640,25 @@ M.GeocodeInput = schema.new({
             traits = {
                 [traits.HTTP_QUERY] = { name = "key" },
             },
+        }),
+        PostalCodeMode = schema.new({
+            id = id.from(_N, "GeocodeInput", "PostalCodeMode"),
+            type = "string",
+            name = "PostalCodeMode",
+            target_id = prelude.String.id,
+        }),
+        AddressTranslations = schema.new({
+            id = id.from(_N, "GeocodeInput", "AddressTranslations"),
+            type = "list",
+            name = "AddressTranslations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AddressNamesMode = schema.new({
+            id = id.from(_N, "GeocodeInput", "AddressNamesMode"),
+            type = "string",
+            name = "AddressNamesMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1839,6 +1990,13 @@ M.GeocodeParsedQueryAddressComponents = schema.new({
             target_id = prelude.Document.id,
             list_member = M.ParsedQuerySecondaryAddressComponent,
         }),
+        OtherComponents = schema.new({
+            id = id.from(_N, "GeocodeParsedQueryAddressComponents", "OtherComponents"),
+            type = "list",
+            name = "OtherComponents",
+            target_id = prelude.Document.id,
+            list_member = M.ParsedQueryComponent,
+        }),
     },
 })
 
@@ -1955,6 +2113,41 @@ M.TimeZone = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
             },
+        }),
+    },
+})
+
+M.TranslationDetails = schema.new({
+    id = id.from(_N, "TranslationDetails"),
+    type = "structure",
+    members = {
+        Locality = schema.new({
+            id = id.from(_N, "TranslationDetails", "Locality"),
+            type = "list",
+            name = "Locality",
+            target_id = prelude.Document.id,
+            list_member = M.AdminNames,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "TranslationDetails", "Region"),
+            type = "list",
+            name = "Region",
+            target_id = prelude.Document.id,
+            list_member = M.AdminNames,
+        }),
+        District = schema.new({
+            id = id.from(_N, "TranslationDetails", "District"),
+            type = "list",
+            name = "District",
+            target_id = prelude.Document.id,
+            list_member = M.AdminNames,
+        }),
+        SubRegion = schema.new({
+            id = id.from(_N, "TranslationDetails", "SubRegion"),
+            type = "list",
+            name = "SubRegion",
+            target_id = prelude.Document.id,
+            list_member = M.AdminNames,
         }),
     },
 })
@@ -2102,6 +2295,19 @@ M.GeocodeResultItem = schema.new({
             target_id = prelude.Document.id,
             list_member = M.RelatedPlace,
         }),
+        Translations = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "Translations"),
+            type = "structure",
+            name = "Translations",
+            target_id = id.from(_N, "TranslationDetails"),
+            target = M.TranslationDetails,
+        }),
+        EstimatedPointAddress = schema.new({
+            id = id.from(_N, "GeocodeResultItem", "EstimatedPointAddress"),
+            type = "boolean",
+            name = "EstimatedPointAddress",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -2187,6 +2393,15 @@ M.GetPlaceInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_QUERY] = { name = "key" },
+            },
+        }),
+        AddressNamesMode = schema.new({
+            id = id.from(_N, "GetPlaceInput", "AddressNamesMode"),
+            type = "string",
+            name = "AddressNamesMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "address-names-mode" },
             },
         }),
     },
@@ -2430,6 +2645,26 @@ M.GetPlaceOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.RelatedPlace,
         }),
+        PlaceAttributes = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "PlaceAttributes"),
+            type = "list",
+            name = "PlaceAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        EstimatedPointAddress = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "EstimatedPointAddress"),
+            type = "boolean",
+            name = "EstimatedPointAddress",
+            target_id = prelude.Boolean.id,
+        }),
+        CrossReferences = schema.new({
+            id = id.from(_N, "GetPlaceOutput", "CrossReferences"),
+            type = "list",
+            name = "CrossReferences",
+            target_id = prelude.Document.id,
+            list_member = M.CrossReference,
+        }),
     },
 })
 
@@ -2528,6 +2763,12 @@ M.ReverseGeocodeInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
             },
+        }),
+        AddressNamesMode = schema.new({
+            id = id.from(_N, "ReverseGeocodeInput", "AddressNamesMode"),
+            type = "string",
+            name = "AddressNamesMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2646,6 +2887,19 @@ M.ReverseGeocodeResultItem = schema.new({
             name = "Intersections",
             target_id = prelude.Document.id,
             list_member = M.Intersection,
+        }),
+        MainAddress = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "MainAddress"),
+            type = "structure",
+            name = "MainAddress",
+            target_id = id.from(_N, "RelatedPlace"),
+            target = M.RelatedPlace,
+        }),
+        EstimatedPointAddress = schema.new({
+            id = id.from(_N, "ReverseGeocodeResultItem", "EstimatedPointAddress"),
+            type = "boolean",
+            name = "EstimatedPointAddress",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -2955,6 +3209,20 @@ M.SearchNearbyResultItem = schema.new({
             target_id = id.from(_N, "PhonemeDetails"),
             target = M.PhonemeDetails,
         }),
+        PlaceAttributes = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "PlaceAttributes"),
+            type = "list",
+            name = "PlaceAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CrossReferences = schema.new({
+            id = id.from(_N, "SearchNearbyResultItem", "CrossReferences"),
+            type = "list",
+            name = "CrossReferences",
+            target_id = prelude.Document.id,
+            list_member = M.CrossReference,
+        }),
     },
 })
 
@@ -3084,6 +3352,12 @@ M.SearchTextInput = schema.new({
             id = id.from(_N, "SearchTextInput", "NextToken"),
             type = "string",
             name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        TravelMode = schema.new({
+            id = id.from(_N, "SearchTextInput", "TravelMode"),
+            type = "string",
+            name = "TravelMode",
             target_id = prelude.String.id,
         }),
         Key = schema.new({
@@ -3234,6 +3508,20 @@ M.SearchTextResultItem = schema.new({
             target_id = id.from(_N, "PhonemeDetails"),
             target = M.PhonemeDetails,
         }),
+        PlaceAttributes = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "PlaceAttributes"),
+            type = "list",
+            name = "PlaceAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CrossReferences = schema.new({
+            id = id.from(_N, "SearchTextResultItem", "CrossReferences"),
+            type = "list",
+            name = "CrossReferences",
+            target_id = prelude.Document.id,
+            list_member = M.CrossReference,
+        }),
     },
 })
 
@@ -3363,6 +3651,12 @@ M.SuggestInput = schema.new({
             id = id.from(_N, "SuggestInput", "IntendedUse"),
             type = "string",
             name = "IntendedUse",
+            target_id = prelude.String.id,
+        }),
+        TravelMode = schema.new({
+            id = id.from(_N, "SuggestInput", "TravelMode"),
+            type = "string",
+            name = "TravelMode",
             target_id = prelude.String.id,
         }),
         Key = schema.new({
@@ -3555,6 +3849,20 @@ M.SuggestPlaceResult = schema.new({
             name = "Phonemes",
             target_id = id.from(_N, "PhonemeDetails"),
             target = M.PhonemeDetails,
+        }),
+        PlaceAttributes = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "PlaceAttributes"),
+            type = "list",
+            name = "PlaceAttributes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CrossReferences = schema.new({
+            id = id.from(_N, "SuggestPlaceResult", "CrossReferences"),
+            type = "list",
+            name = "CrossReferences",
+            target_id = prelude.Document.id,
+            list_member = M.CrossReference,
         }),
     },
 })

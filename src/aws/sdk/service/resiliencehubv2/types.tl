@@ -20,6 +20,8 @@ local record M
         multiAzRtoRpo: string
         -- The achievability status of the multi-Region RTO and RPO targets for the service.
         multiRegionRtoRpo: string
+        -- The achievability status of the data recovery time between backups for the service.
+        dataRecoveryTimeBetweenBackups: string
     end
 
     enum ActorType
@@ -91,6 +93,10 @@ local record M
         "DESIGN_FILE_ACCESS_DENIED"
     end
 
+    enum AssessmentSortField
+        "STARTED_AT"
+    end
+
     enum AssessmentStatus
         "NOT_STARTED"
         "PENDING"
@@ -100,9 +106,15 @@ local record M
     end
 
     enum AssessmentStep
+        "TOPOLOGY_GENERATION"
+        "INPUT_VALIDATION"
+        "DESIGN_ANALYSIS"
         "TOPOLOGY_ENHANCEMENT"
         "SERVICE_FUNCTION_GENERATION"
+        "POLICY_VALIDATION"
         "RESILIENCE_ASSESSMENT"
+        "FAILURE_MODE_FINDINGS_CONSOLIDATION"
+        "FAILURE_MODE_FINDINGS_ENRICHMENT"
     end
 
     -- Contains summary information about a failure mode assessment.
@@ -469,6 +481,10 @@ local record M
         status: string
         -- The timestamp when dependency discovery was last updated.
         updatedAt: number
+        -- The count of resources eligible for dependency attribution.
+        eligibleResourceCount: number
+        -- A status message for dependency discovery, displayed during the initialization state.
+        message: string
     end
 
     enum PolicyValueSource
@@ -1131,8 +1147,23 @@ local record M
         nextToken: string
     end
 
+    enum SortOrder
+        "ASC"
+        "DESC"
+    end
+
     record ListFailureModeAssessmentsInput
         serviceArn: string
+        -- Specifies the assessment statuses to include in the results.
+        assessmentStatuses: {string}
+        -- Specifies that only assessments that started at or after this timestamp appear in the results.
+        startedAfter: number
+        -- Specifies that only assessments that ended at or before this timestamp appear in the results.
+        endedBefore: number
+        -- The field to use for sorting failure mode assessments.
+        sortBy: string
+        -- The sort order for results.
+        sortOrder: string
         maxResults: number
         nextToken: string
     end
@@ -1225,6 +1256,10 @@ local record M
         serviceFunctionId: string
         -- Filter resources by AWS Region.
         awsRegion: string
+        -- The CloudFormation resource types to include in the response.
+        resourceTypes: {string}
+        -- Specifies whether to filter non-billable resources. When true (the default), the operation returns only billable resources.
+        billable: boolean
         maxResults: number
         nextToken: string
     end
@@ -1567,6 +1602,14 @@ local record M
         sourceResourceIdentifier: string
         -- The identifier of the destination resource.
         destinationResourceIdentifier: string
+        -- The AWS Region of the source resource.
+        sourceRegion: string
+        -- The AWS Region of the destination resource.
+        destinationRegion: string
+        -- The AWS account ID of the source resource.
+        sourceAccount: string
+        -- The AWS account ID of the destination resource.
+        destinationAccount: string
         -- The properties of the topology edge.
         properties: {EdgePropertySummary}
     end
