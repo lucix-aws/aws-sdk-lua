@@ -160,6 +160,32 @@ M.MediaTailorPlaybackConfiguration = schema.new({
     },
 })
 
+M.PostRollConfiguration = schema.new({
+    id = id.from(_N, "PostRollConfiguration"),
+    type = "structure",
+    members = {
+        durationSeconds = schema.new({
+            id = id.from(_N, "PostRollConfiguration", "durationSeconds"),
+            type = "integer",
+            name = "durationSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "PostRollConfiguration", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+    },
+})
+
 M.AdConfiguration = schema.new({
     id = id.from(_N, "AdConfiguration"),
     type = "structure",
@@ -188,6 +214,13 @@ M.AdConfiguration = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        postRollConfiguration = schema.new({
+            id = id.from(_N, "AdConfiguration", "postRollConfiguration"),
+            type = "structure",
+            name = "postRollConfiguration",
+            target_id = id.from(_N, "PostRollConfiguration"),
+            target = M.PostRollConfiguration,
         }),
         tags = schema.new({
             id = id.from(_N, "AdConfiguration", "tags"),
@@ -228,6 +261,13 @@ M.AdConfigurationSummary = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        postRollConfiguration = schema.new({
+            id = id.from(_N, "AdConfigurationSummary", "postRollConfiguration"),
+            type = "structure",
+            name = "postRollConfiguration",
+            target_id = id.from(_N, "PostRollConfiguration"),
+            target = M.PostRollConfiguration,
         }),
         tags = schema.new({
             id = id.from(_N, "AdConfigurationSummary", "tags"),
@@ -1284,6 +1324,13 @@ M.CreateAdConfigurationInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        postRollConfiguration = schema.new({
+            id = id.from(_N, "CreateAdConfigurationInput", "postRollConfiguration"),
+            type = "structure",
+            name = "postRollConfiguration",
+            target_id = id.from(_N, "PostRollConfiguration"),
+            target = M.PostRollConfiguration,
         }),
         tags = schema.new({
             id = id.from(_N, "CreateAdConfigurationInput", "tags"),
@@ -3979,6 +4026,13 @@ M.UpdateAdConfigurationInput = schema.new({
             name = "mediaTailorPlaybackConfigurations",
             target_id = prelude.Document.id,
             list_member = M.MediaTailorPlaybackConfiguration,
+        }),
+        postRollConfiguration = schema.new({
+            id = id.from(_N, "UpdateAdConfigurationInput", "postRollConfiguration"),
+            type = "structure",
+            name = "postRollConfiguration",
+            target_id = id.from(_N, "PostRollConfiguration"),
+            target = M.PostRollConfiguration,
         }),
     },
 })

@@ -26,6 +26,10 @@ local record M
         Location: string
         -- The VPC configuration to use for the canary replica in this location. If not specified, the replica runs without VPC connectivity.
         VpcConfig: VpcConfigInput
+        -- The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary replica's
+        -- AWS Lambda function environment variables at rest. If you don't specify a value,
+        -- the service uses an AWS-managed key.
+        KmsKeyArn: string
     end
 
     enum EncryptionMode
@@ -417,6 +421,10 @@ local record M
         -- A structure that contains the configuration for canary artifacts, including
         -- the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.
         ArtifactConfig: ArtifactConfigOutput
+        -- The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's
+        -- AWS Lambda function environment variables at rest. If you don't specify a value,
+        -- the service uses an AWS-managed key.
+        KmsKeyArn: string
         -- Returns the dry run configurations for a canary.
         DryRunConfig: DryRunConfigOutput
     end
@@ -708,6 +716,10 @@ local record M
         -- A structure that contains the configuration for canary artifacts, including
         -- the encryption-at-rest settings for artifacts that the canary uploads to Amazon S3.
         ArtifactConfig: ArtifactConfigInput
+        -- The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's
+        -- AWS Lambda function environment variables at rest. If you don't specify a value,
+        -- the service uses an AWS-managed key.
+        KmsKeyArn: string
     end
 
     record CreateCanaryOutput
@@ -1259,6 +1271,12 @@ local record M
         -- A list of locations (Amazon Web Services Regions) to remove as replicas for the canary. You must specify at least one location to remove. All replicas can be removed in a single API
         -- call and you cannot remove the primary location.
         RemoveReplicaLocations: {string}
+        -- The Amazon Resource Name (ARN) of the customer-managed AWS Key Management Service (AWS KMS) key used to encrypt the canary's
+        -- AWS Lambda function environment variables at rest. If you don't specify a value,
+        -- the service uses an AWS-managed key. If you omit this parameter, the service retains
+        -- the existing value. To revert to the AWS-managed key, set this parameter to
+        -- an empty string.
+        KmsKeyArn: string
     end
 
     record UpdateCanaryOutput

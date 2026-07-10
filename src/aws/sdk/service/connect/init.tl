@@ -91,6 +91,7 @@ local record Client
     createWorkspacePage: function(Client, types.CreateWorkspacePageInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspacePageOutput>
     deactivateEvaluationForm: function(Client, types.DeactivateEvaluationFormInput, ? base_client.InvokeOptions): async.Operation<types.DeactivateEvaluationFormOutput>
     deleteAttachedFile: function(Client, types.DeleteAttachedFileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAttachedFileOutput>
+    deleteContactData: function(Client, types.DeleteContactDataInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactDataOutput>
     deleteContactEvaluation: function(Client, types.DeleteContactEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactEvaluationOutput>
     deleteContactFlow: function(Client, types.DeleteContactFlowInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactFlowOutput>
     deleteContactFlowModule: function(Client, types.DeleteContactFlowModuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteContactFlowModuleOutput>
@@ -729,6 +730,10 @@ end
 
 function C:deleteAttachedFile(input: types.DeleteAttachedFileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAttachedFileOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAttachedFile as schema.OperationSchema, input, options) as async.Operation<types.DeleteAttachedFileOutput>
+end
+
+function C:deleteContactData(input: types.DeleteContactDataInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteContactData as schema.OperationSchema, input, options) as async.Operation<types.DeleteContactDataOutput>
 end
 
 function C:deleteContactEvaluation(input: types.DeleteContactEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteContactEvaluationOutput>

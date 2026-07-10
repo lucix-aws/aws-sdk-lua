@@ -127,6 +127,8 @@ M.PersistentConnectionConfigs = schema.new({ type = "list", list_member = M.Pers
 
 M.VoiceEnhancementConfigs = schema.new({ type = "list", list_member = M.VoiceEnhancementConfig })
 
+M.ContactFields = schema.new({ type = "list", list_member = prelude.String })
+
 M.AliasConfigurationList = schema.new({ type = "list", list_member = M.AliasConfiguration })
 
 M.ParentHoursOfOperationIdList = schema.new({ type = "list", list_member = prelude.String })
@@ -11239,6 +11241,64 @@ M.DeleteAttachedFileInput = schema.new({
 
 M.DeleteAttachedFileOutput = schema.new({
     id = id.from(_N, "DeleteAttachedFileResponse"),
+    type = "structure",
+})
+
+M.ContactNotTerminatedException = schema.new({
+    id = id.from(_N, "ContactNotTerminatedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ContactNotTerminatedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteContactDataInput = schema.new({
+    id = id.from(_N, "DeleteContactDataRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DeleteContactDataInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactId = schema.new({
+            id = id.from(_N, "DeleteContactDataInput", "ContactId"),
+            type = "string",
+            name = "ContactId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ContactFields = schema.new({
+            id = id.from(_N, "DeleteContactDataInput", "ContactFields"),
+            type = "list",
+            name = "ContactFields",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteContactDataOutput = schema.new({
+    id = id.from(_N, "DeleteContactDataResponse"),
     type = "structure",
 })
 
@@ -42748,6 +42808,18 @@ M.DeleteAttachedFile = schema.operation({
     output = M.DeleteAttachedFileOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/attached-files/{InstanceId}/{FileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteContactData = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteContactData"),
+    input = M.DeleteContactDataInput,
+    output = M.DeleteContactDataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/delete/{InstanceId}/{ContactId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

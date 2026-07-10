@@ -4443,6 +4443,35 @@ local record M
     record DeleteAttachedFileOutput
     end
 
+    -- The contact has not been disconnected and is not in a terminated state. PII can be deleted
+    -- only from a contact that has been disconnected. This error is returned with an HTTP 409 status
+    -- code.
+    record ContactNotTerminatedException
+        Message: string
+    end
+
+    enum ContactField
+        "CUSTOMER_ENDPOINT"
+        "ADDITIONAL_EMAIL_RECIPIENTS"
+        "EMAIL_SUBJECT"
+    end
+
+    record DeleteContactDataInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the contact. PII can be deleted only from a contact that has been
+        -- disconnected (is in a terminated state).
+        ContactId: string
+        -- The categories of PII to redact from the contact. Valid values are
+        -- CUSTOMER_ENDPOINT, ADDITIONAL_EMAIL_RECIPIENTS, and
+        -- EMAIL_SUBJECT. ADDITIONAL_EMAIL_RECIPIENTS and EMAIL_SUBJECT
+        -- are supported only for contacts in the email channel.
+        ContactFields: {string}
+    end
+
+    record DeleteContactDataOutput
+    end
+
     record DeleteContactEvaluationInput
         -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string

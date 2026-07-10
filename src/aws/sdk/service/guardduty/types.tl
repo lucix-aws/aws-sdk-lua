@@ -1024,6 +1024,7 @@ local record M
         "LAMBDA_NETWORK_LOGS"
         "EKS_RUNTIME_MONITORING"
         "RUNTIME_MONITORING"
+        "AI_ANALYST"
     end
 
     -- Contains information about a GuardDuty feature. Specifying both EKS Runtime Monitoring (EKS_RUNTIME_MONITORING) and Runtime Monitoring (RUNTIME_MONITORING) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see Runtime Monitoring.
@@ -2360,6 +2361,7 @@ local record M
         "LAMBDA_NETWORK_LOGS"
         "EKS_RUNTIME_MONITORING"
         "RUNTIME_MONITORING"
+        "AI_ANALYST"
     end
 
     -- Contains information about a GuardDuty feature. Specifying both EKS Runtime Monitoring (EKS_RUNTIME_MONITORING) and Runtime Monitoring (RUNTIME_MONITORING) will cause an error. You can add only one of these two features because Runtime Monitoring already includes the threat detection for Amazon EKS resources. For more information, see Runtime Monitoring.

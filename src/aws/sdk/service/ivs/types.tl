@@ -2,6 +2,7 @@
 
 local record M
 
+    -- User does not have sufficient access to perform this action.
     record AccessDeniedException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -21,6 +22,14 @@ local record M
         playbackConfigurationArn: string
     end
 
+    -- Configuration for the post-roll ad break to use for this ad configuration.
+    record PostRollConfiguration
+        -- Duration of the post-roll ad break, in seconds.
+        durationSeconds: number
+        -- Whether the post-roll ad configuration is enabled.
+        enabled: boolean
+    end
+
     -- Object specifying a configuration for a server-side advertising insertion (which can be triggered with the operation).
     record AdConfiguration
         -- Ad configuration ARN.
@@ -29,6 +38,8 @@ local record M
         name: string
         -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
         mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
+        -- Configuration for the post-roll ad break to use for this ad configuration.
+        postRollConfiguration: PostRollConfiguration
         -- Tags attached to the resource. Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
         tags: {string : string}
     end
@@ -41,6 +52,8 @@ local record M
         name: string
         -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
         mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
+        -- Configuration for the post-roll ad break to use for this ad configuration.
+        postRollConfiguration: PostRollConfiguration
         -- Tags attached to the resource. Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
         tags: {string : string}
     end
@@ -165,6 +178,7 @@ local record M
         errors: {BatchError}
     end
 
+    -- The service is temporarily unavailable.
     record ServiceUnavailable
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -178,6 +192,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- The input fails to satisfy the constraints specified by an Amazon Web Services service.
     record ValidationException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -273,6 +288,7 @@ local record M
         errors: {BatchStartViewerSessionRevocationError}
     end
 
+    -- Your account is pending verification.
     record PendingVerification
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -286,6 +302,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Request was denied due to request throttling.
     record ThrottlingException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -299,6 +316,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Updating or deleting a resource can cause an inconsistent state.
     record ConflictException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -317,6 +335,8 @@ local record M
         name: string
         -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
         mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
+        -- Configuration for the post-roll ad break to use for this ad configuration. Default: disabled (enabled set to false, durationSeconds set to 15).
+        postRollConfiguration: PostRollConfiguration
         -- Array of 1-50 maps, each of the form string:string (key:value). See Best practices and strategies in Tagging Amazon Web Services Resources and Tag Editor for details, including restrictions that apply to tags and "Tag naming limits and requirements"; Amazon IVS has no service-specific constraints beyond what is documented there.
         tags: {string : string}
     end
@@ -325,6 +345,7 @@ local record M
         adConfiguration: AdConfiguration
     end
 
+    -- Unexpected error during processing of request.
     record InternalServerException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -338,6 +359,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Request references a resource which does not exist.
     record ResourceNotFoundException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -351,6 +373,7 @@ local record M
         exceptionMessage: string
     end
 
+    -- Request would cause a service quota to be exceeded.
     record ServiceQuotaExceededException
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -651,6 +674,7 @@ local record M
         recordingConfiguration: RecordingConfiguration
     end
 
+    -- The stream is offline for the given channel ARN.
     record ChannelNotBroadcasting
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -1108,6 +1132,7 @@ local record M
     record StopStreamOutput
     end
 
+    -- The stream is temporarily unavailable.
     record StreamUnavailable
         accessControlAllowOrigin: string
         accessControlExposeHeaders: string
@@ -1148,6 +1173,8 @@ local record M
         name: string
         -- List of integration configurations with MediaTailor resources. The first item in the list is the default playback configuration used for the ad configuration. To select a different configuration per viewing session, see Generate and Sign IVS Playback Tokens.
         mediaTailorPlaybackConfigurations: {MediaTailorPlaybackConfiguration}
+        -- Configuration for the post-roll ad break to use for this ad configuration.
+        postRollConfiguration: PostRollConfiguration
     end
 
     record UpdateAdConfigurationOutput

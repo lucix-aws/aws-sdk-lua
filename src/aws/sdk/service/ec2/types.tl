@@ -6977,6 +6977,10 @@ local record M
         -- If the value is $Latest, Amazon EC2 uses the latest version of the launch template.
         -- If the value is $Default, Amazon EC2 uses the default version of the launch template.
         Version: string
+        -- The base64-encoded user data for instances launched by the fleet. User data is limited
+        -- to 16 KB, in raw form, before it is base64-encoded.
+        -- Supported only for fleets of type instant.
+        LaunchTemplateSpecificationUserData: string
     end
 
     -- Describes a block device for an EBS volume.
@@ -7089,6 +7093,15 @@ local record M
         -- property is specified, the device is removed from the block device mapping regardless of
         -- the assigned value.
         NoDevice: string
+    end
+
+    -- Describes an IAM instance profile. Supported only for fleets of type
+    -- instant.
+    record FleetIamInstanceProfileSpecificationRequest
+        -- The Amazon Resource Name (ARN) of the instance profile.
+        Arn: string
+        -- The name of the instance profile.
+        Name: string
     end
 
     enum BareMetal
@@ -7496,6 +7509,36 @@ local record M
         RequireEncryptionInTransit: boolean
     end
 
+    enum FleetInstanceMetadataEndpointState
+        "disabled"
+        "enabled"
+    end
+
+    enum FleetHttpTokensState
+        "optional"
+        "required"
+    end
+
+    -- Describes the metadata options for the instances. Supported only for fleets of type
+    -- instant.
+    record FleetInstanceMetadataOptionsRequest
+        -- Indicates whether IMDSv2 is required.
+        -- optional - IMDSv2 is optional, which means that you can use either
+        -- IMDSv2 or IMDSv1.
+        -- required - IMDSv2 is required, which means that IMDSv1 is
+        -- disabled, and you must use IMDSv2.
+        HttpTokens: string
+        -- The desired HTTP PUT response hop limit for instance metadata requests. The larger the
+        -- number, the further instance metadata requests can travel.
+        -- Default: 1
+        -- Possible values: Integers from 1 to 64
+        HttpPutResponseHopLimit: number
+        -- Enables or disables the HTTP metadata endpoint on your instances.
+        -- enabled - The HTTP metadata endpoint is enabled.
+        -- disabled - The HTTP metadata endpoint is disabled.
+        HttpEndpoint: string
+    end
+
     -- Describes the placement of an instance.
     record Placement
         -- The ID of the Availability Zone of the instance.
@@ -7594,6 +7637,11 @@ local record M
         Priority: number
         -- The location where the instance launched, if applicable.
         Placement: Placement
+        -- The name of the key pair to use for the instances.
+        -- Supported only for fleets of type instant.
+        -- For more information, see Amazon EC2 key pairs
+        -- in the Amazon EC2 User Guide.
+        KeyName: string
         -- The block device mappings, which define the EBS volumes and instance store volumes to
         -- attach to the instance at launch.
         -- Supported only for fleets of type instant.
@@ -7601,6 +7649,16 @@ local record M
         -- for volumes on Amazon EC2 instances in the Amazon EC2 User
         -- Guide.
         BlockDeviceMappings: {FleetBlockDeviceMappingRequest}
+        -- The IAM instance profile to associate with the instances.
+        -- Supported only for fleets of type instant.
+        -- For more information, see IAM roles for Amazon EC2
+        -- in the Amazon EC2 User Guide.
+        IamInstanceProfile: FleetIamInstanceProfileSpecificationRequest
+        -- The metadata options for the instances.
+        -- Supported only for fleets of type instant.
+        -- For more information, see Configure the
+        -- instance metadata service in the Amazon EC2 User Guide.
+        MetadataOptions: FleetInstanceMetadataOptionsRequest
         -- The attributes for the instance types. When you specify instance attributes, Amazon EC2 will
         -- identify instance types with those attributes.
         -- If you specify InstanceRequirements, you can't specify
@@ -7965,10 +8023,12 @@ local record M
         -- The key-value pair for tagging the EC2 Fleet request on creation. For more information, see
         -- Tag your resources.
         -- If the fleet type is instant, specify a resource type of fleet
-        -- to tag the fleet or instance to tag the instances at launch.
+        -- to tag the fleet, instance to tag the instances at launch,
+        -- volume to tag the volumes at launch, or network-interface to
+        -- tag the network interfaces at launch.
         -- If the fleet type is maintain or request, specify a resource
         -- type of fleet to tag the fleet. You cannot specify a resource type of
-        -- instance. To tag instances at launch, specify the tags in a launch template.
+        -- instance, volume, or network-interface. To tag instances at launch, specify the tags in a launch template.
         TagSpecifications: {TagSpecification}
         -- Reserved.
         Context: string
@@ -8549,6 +8609,17 @@ local record M
         -- The value is windows for Windows instances in an EC2 Fleet. Otherwise, the value is
         -- blank.
         Platform: string
+        -- The ID of the Availability Zone in which the instance was launched. For example,
+        -- use2-az1.
+        -- Supported only for fleets of type instant.
+        AvailabilityZoneId: string
+        -- The name of the Availability Zone in which the instance was launched. For example,
+        -- us-east-2a.
+        -- Supported only for fleets of type instant.
+        AvailabilityZone: string
+        -- The ID of the subnet in which the instance was launched.
+        -- Supported only for fleets of type instant.
+        SubnetId: string
     end
 
     record CreateFleetOutput

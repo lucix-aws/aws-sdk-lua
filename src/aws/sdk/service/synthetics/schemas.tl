@@ -122,6 +122,12 @@ M.AddReplicaLocationInput = schema.new({
             target_id = id.from(_N, "VpcConfigInput"),
             target = M.VpcConfigInput,
         }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "AddReplicaLocationInput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -859,6 +865,12 @@ M.Canary = schema.new({
             target_id = id.from(_N, "ArtifactConfigOutput"),
             target = M.ArtifactConfigOutput,
         }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "Canary", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
         DryRunConfig = schema.new({
             id = id.from(_N, "Canary", "DryRunConfig"),
             type = "structure",
@@ -1293,6 +1305,12 @@ M.CreateCanaryInput = schema.new({
             name = "ArtifactConfig",
             target_id = id.from(_N, "ArtifactConfigInput"),
             target = M.ArtifactConfigInput,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "CreateCanaryInput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2417,6 +2435,12 @@ M.UpdateCanaryInput = schema.new({
             name = "RemoveReplicaLocations",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "UpdateCanaryInput", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })

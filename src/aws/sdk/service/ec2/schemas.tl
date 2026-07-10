@@ -16742,6 +16742,12 @@ M.FleetLaunchTemplateSpecificationRequest = schema.new({
             name = "Version",
             target_id = prelude.String.id,
         }),
+        LaunchTemplateSpecificationUserData = schema.new({
+            id = id.from(_N, "FleetLaunchTemplateSpecificationRequest", "LaunchTemplateSpecificationUserData"),
+            type = "string",
+            name = "LaunchTemplateSpecificationUserData",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -16827,6 +16833,25 @@ M.FleetBlockDeviceMappingRequest = schema.new({
             id = id.from(_N, "FleetBlockDeviceMappingRequest", "NoDevice"),
             type = "string",
             name = "NoDevice",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FleetIamInstanceProfileSpecificationRequest = schema.new({
+    id = id.from(_N, "FleetIamInstanceProfileSpecificationRequest"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "FleetIamInstanceProfileSpecificationRequest", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "FleetIamInstanceProfileSpecificationRequest", "Name"),
+            type = "string",
+            name = "Name",
             target_id = prelude.String.id,
         }),
     },
@@ -17226,6 +17251,31 @@ M.InstanceRequirementsRequest = schema.new({
     },
 })
 
+M.FleetInstanceMetadataOptionsRequest = schema.new({
+    id = id.from(_N, "FleetInstanceMetadataOptionsRequest"),
+    type = "structure",
+    members = {
+        HttpTokens = schema.new({
+            id = id.from(_N, "FleetInstanceMetadataOptionsRequest", "HttpTokens"),
+            type = "string",
+            name = "HttpTokens",
+            target_id = prelude.String.id,
+        }),
+        HttpPutResponseHopLimit = schema.new({
+            id = id.from(_N, "FleetInstanceMetadataOptionsRequest", "HttpPutResponseHopLimit"),
+            type = "integer",
+            name = "HttpPutResponseHopLimit",
+            target_id = prelude.Integer.id,
+        }),
+        HttpEndpoint = schema.new({
+            id = id.from(_N, "FleetInstanceMetadataOptionsRequest", "HttpEndpoint"),
+            type = "string",
+            name = "HttpEndpoint",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.Placement = schema.new({
     id = id.from(_N, "Placement"),
     type = "structure",
@@ -17380,6 +17430,12 @@ M.FleetLaunchTemplateOverridesRequest = schema.new({
             target_id = id.from(_N, "Placement"),
             target = M.Placement,
         }),
+        KeyName = schema.new({
+            id = id.from(_N, "FleetLaunchTemplateOverridesRequest", "KeyName"),
+            type = "string",
+            name = "KeyName",
+            target_id = prelude.String.id,
+        }),
         BlockDeviceMappings = schema.new({
             id = id.from(_N, "FleetLaunchTemplateOverridesRequest", "BlockDeviceMappings"),
             type = "list",
@@ -17389,6 +17445,20 @@ M.FleetLaunchTemplateOverridesRequest = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "BlockDeviceMapping" },
             },
+        }),
+        IamInstanceProfile = schema.new({
+            id = id.from(_N, "FleetLaunchTemplateOverridesRequest", "IamInstanceProfile"),
+            type = "structure",
+            name = "IamInstanceProfile",
+            target_id = id.from(_N, "FleetIamInstanceProfileSpecificationRequest"),
+            target = M.FleetIamInstanceProfileSpecificationRequest,
+        }),
+        MetadataOptions = schema.new({
+            id = id.from(_N, "FleetLaunchTemplateOverridesRequest", "MetadataOptions"),
+            type = "structure",
+            name = "MetadataOptions",
+            target_id = id.from(_N, "FleetInstanceMetadataOptionsRequest"),
+            target = M.FleetInstanceMetadataOptionsRequest,
         }),
         InstanceRequirements = schema.new({
             id = id.from(_N, "FleetLaunchTemplateOverridesRequest", "InstanceRequirements"),
@@ -18718,6 +18788,36 @@ M.CreateFleetInstance = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "platform" },
                 [traits.EC2_QUERY_NAME] = { name = "Platform" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "CreateFleetInstance", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZoneId" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZoneId" },
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "CreateFleetInstance", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZone" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZone" },
+            },
+        }),
+        SubnetId = schema.new({
+            id = id.from(_N, "CreateFleetInstance", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "subnetId" },
+                [traits.EC2_QUERY_NAME] = { name = "SubnetId" },
             },
         }),
     },
