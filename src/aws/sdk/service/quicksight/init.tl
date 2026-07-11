@@ -39,6 +39,7 @@ local record Client
     createGroupMembership: function(Client, types.CreateGroupMembershipInput, ? base_client.InvokeOptions): async.Operation<types.CreateGroupMembershipOutput>
     createIAMPolicyAssignment: function(Client, types.CreateIAMPolicyAssignmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateIAMPolicyAssignmentOutput>
     createIngestion: function(Client, types.CreateIngestionInput, ? base_client.InvokeOptions): async.Operation<types.CreateIngestionOutput>
+    createKnowledgeBase: function(Client, types.CreateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
     createNamespace: function(Client, types.CreateNamespaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
     createOAuthClientApplication: function(Client, types.CreateOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateOAuthClientApplicationOutput>
     createRefreshSchedule: function(Client, types.CreateRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.CreateRefreshScheduleOutput>
@@ -260,6 +261,7 @@ local record Client
     updateIdentityPropagationConfig: function(Client, types.UpdateIdentityPropagationConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIdentityPropagationConfigOutput>
     updateIpRestriction: function(Client, types.UpdateIpRestrictionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateIpRestrictionOutput>
     updateKeyRegistration: function(Client, types.UpdateKeyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKeyRegistrationOutput>
+    updateKnowledgeBase: function(Client, types.UpdateKnowledgeBaseInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseOutput>
     updateKnowledgeBasePermissions: function(Client, types.UpdateKnowledgeBasePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBasePermissionsOutput>
     updateOAuthClientApplication: function(Client, types.UpdateOAuthClientApplicationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOAuthClientApplicationOutput>
     updatePublicSharingSettings: function(Client, types.UpdatePublicSharingSettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePublicSharingSettingsOutput>
@@ -411,6 +413,10 @@ end
 
 function C:createIngestion(input: types.CreateIngestionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIngestionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIngestion as schema.OperationSchema, input, options) as async.Operation<types.CreateIngestionOutput>
+end
+
+function C:createKnowledgeBase(input: types.CreateKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.CreateKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.CreateKnowledgeBaseOutput>
 end
 
 function C:createNamespace(input: types.CreateNamespaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNamespaceOutput>
@@ -1295,6 +1301,10 @@ end
 
 function C:updateKeyRegistration(input: types.UpdateKeyRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKeyRegistrationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKeyRegistration as schema.OperationSchema, input, options) as async.Operation<types.UpdateKeyRegistrationOutput>
+end
+
+function C:updateKnowledgeBase(input: types.UpdateKnowledgeBaseInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBaseOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateKnowledgeBase as schema.OperationSchema, input, options) as async.Operation<types.UpdateKnowledgeBaseOutput>
 end
 
 function C:updateKnowledgeBasePermissions(input: types.UpdateKnowledgeBasePermissionsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateKnowledgeBasePermissionsOutput>

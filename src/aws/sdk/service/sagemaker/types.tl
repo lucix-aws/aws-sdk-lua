@@ -165,6 +165,38 @@ local record M
         "ml.g7e.24xlarge"
         "ml.g7e.48xlarge"
         "ml.p6-b300.48xlarge"
+        "ml.g4dn.xlarge"
+        "ml.g4dn.2xlarge"
+        "ml.g4dn.4xlarge"
+        "ml.g4dn.8xlarge"
+        "ml.g4dn.12xlarge"
+        "ml.g4dn.16xlarge"
+        "ml.c6g.medium"
+        "ml.c6g.large"
+        "ml.c6g.xlarge"
+        "ml.c6g.2xlarge"
+        "ml.c6g.4xlarge"
+        "ml.c6g.8xlarge"
+        "ml.c6g.12xlarge"
+        "ml.c6g.16xlarge"
+        "ml.c7g.medium"
+        "ml.c7g.large"
+        "ml.c7g.xlarge"
+        "ml.c7g.2xlarge"
+        "ml.c7g.4xlarge"
+        "ml.c7g.8xlarge"
+        "ml.c7g.12xlarge"
+        "ml.c7g.16xlarge"
+        "ml.c8g.medium"
+        "ml.c8g.large"
+        "ml.c8g.xlarge"
+        "ml.c8g.2xlarge"
+        "ml.c8g.4xlarge"
+        "ml.c8g.8xlarge"
+        "ml.c8g.12xlarge"
+        "ml.c8g.16xlarge"
+        "ml.c8g.24xlarge"
+        "ml.c8g.48xlarge"
     end
 
     -- Configuration of the resources used for the compute allocation definition.
@@ -4431,7 +4463,7 @@ local record M
         OverrideVpcConfig: VpcConfig
         -- The configuration object of the schedule that SageMaker uses to update the AMI.
         ScheduledUpdateConfig: ScheduledUpdateConfig
-        -- When configuring your HyperPod cluster, you can specify an image ID using one of the following options: HyperPodPublicAmiId: Use a HyperPod public AMI CustomAmiId: Use your custom AMI default: Use the default latest system image If you choose to use a custom AMI (CustomAmiId), ensure it meets the following requirements: Encryption: The custom AMI must be unencrypted. Ownership: The custom AMI must be owned by the same Amazon Web Services account that is creating the HyperPod cluster. Volume support: Only the primary AMI snapshot volume is supported; additional AMI volumes are not supported. When updating the instance group's AMI through the UpdateClusterSoftware operation, if an instance group uses a custom AMI, you must provide an ImageId or use the default as input. Note that if you don't specify an instance group in your UpdateClusterSoftware request, then all of the instance groups are patched with the specified image.
+        -- When configuring your HyperPod cluster, you can specify an image ID using one of the following options: HyperPodPublicAmiId: Use a HyperPod public AMI CustomAmiId: Use your custom AMI default: Use the default latest system image. For clusters with continuous scaling node provisioning mode, new instance groups inherit the AMI from the earliest existing instance group If you choose to use a custom AMI (CustomAmiId), ensure it meets the following requirements: Encryption: The custom AMI must be unencrypted. Ownership: The custom AMI must be owned by the same Amazon Web Services account that is creating the HyperPod cluster. Volume support: Only the primary AMI snapshot volume is supported; additional AMI volumes are not supported. When updating the instance group's AMI through the UpdateClusterSoftware operation, if an instance group uses a custom AMI, you must provide an ImageId or use the default as input. Note that if you don't specify an instance group in your UpdateClusterSoftware request, then all of the instance groups are patched with the specified image.
         ImageId: string
         -- The configuration for automatic OS security patching. If present, the system automatically applies PATCH AMI updates to this instance group.
         AutoPatchConfig: ClusterAutoPatchConfig

@@ -890,6 +890,39 @@ M.PropagateTags = schema.new({
     },
 })
 
+M.CapacityProviderLoggingConfig = schema.new({
+    id = id.from(_N, "CapacityProviderLoggingConfig"),
+    type = "structure",
+    members = {
+        SystemLogLevel = schema.new({
+            id = id.from(_N, "CapacityProviderLoggingConfig", "SystemLogLevel"),
+            type = "string",
+            name = "SystemLogLevel",
+            target_id = prelude.String.id,
+        }),
+        LogGroup = schema.new({
+            id = id.from(_N, "CapacityProviderLoggingConfig", "LogGroup"),
+            type = "string",
+            name = "LogGroup",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CapacityProviderTelemetryConfig = schema.new({
+    id = id.from(_N, "CapacityProviderTelemetryConfig"),
+    type = "structure",
+    members = {
+        LoggingConfig = schema.new({
+            id = id.from(_N, "CapacityProviderTelemetryConfig", "LoggingConfig"),
+            type = "structure",
+            name = "LoggingConfig",
+            target_id = id.from(_N, "CapacityProviderLoggingConfig"),
+            target = M.CapacityProviderLoggingConfig,
+        }),
+    },
+})
+
 M.CapacityProviderVpcConfig = schema.new({
     id = id.from(_N, "CapacityProviderVpcConfig"),
     type = "structure",
@@ -985,6 +1018,13 @@ M.CreateCapacityProviderInput = schema.new({
             target_id = id.from(_N, "PropagateTags"),
             target = M.PropagateTags,
         }),
+        TelemetryConfig = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "TelemetryConfig"),
+            type = "structure",
+            name = "TelemetryConfig",
+            target_id = id.from(_N, "CapacityProviderTelemetryConfig"),
+            target = M.CapacityProviderTelemetryConfig,
+        }),
     },
 })
 
@@ -1062,6 +1102,13 @@ M.CapacityProvider = schema.new({
             name = "PropagateTags",
             target_id = id.from(_N, "PropagateTags"),
             target = M.PropagateTags,
+        }),
+        TelemetryConfig = schema.new({
+            id = id.from(_N, "CapacityProvider", "TelemetryConfig"),
+            type = "structure",
+            name = "TelemetryConfig",
+            target_id = id.from(_N, "CapacityProviderTelemetryConfig"),
+            target = M.CapacityProviderTelemetryConfig,
         }),
     },
 })
@@ -1327,6 +1374,13 @@ M.UpdateCapacityProviderInput = schema.new({
             name = "PropagateTags",
             target_id = id.from(_N, "PropagateTags"),
             target = M.PropagateTags,
+        }),
+        TelemetryConfig = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderInput", "TelemetryConfig"),
+            type = "structure",
+            name = "TelemetryConfig",
+            target_id = id.from(_N, "CapacityProviderTelemetryConfig"),
+            target = M.CapacityProviderTelemetryConfig,
         }),
     },
 })
@@ -7603,15 +7657,6 @@ M.InvokeWithResponseStreamInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
-        InvocationType = schema.new({
-            id = id.from(_N, "InvokeWithResponseStreamInput", "InvocationType"),
-            type = "string",
-            name = "InvocationType",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_HEADER] = { name = "X-Amz-Invocation-Type" },
-            },
-        }),
         LogType = schema.new({
             id = id.from(_N, "InvokeWithResponseStreamInput", "LogType"),
             type = "string",
@@ -7655,6 +7700,15 @@ M.InvokeWithResponseStreamInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "X-Amz-Tenant-Id" },
+            },
+        }),
+        InvocationType = schema.new({
+            id = id.from(_N, "InvokeWithResponseStreamInput", "InvocationType"),
+            type = "string",
+            name = "InvocationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amz-Invocation-Type" },
             },
         }),
     },

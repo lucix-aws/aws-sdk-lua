@@ -2131,6 +2131,15 @@ M.CreateLicenseVersionInput = schema.new({
             name = "SourceVersion",
             target_id = prelude.String.id,
         }),
+        ResetUsage = schema.new({
+            id = id.from(_N, "CreateLicenseVersionInput", "ResetUsage"),
+            type = "boolean",
+            name = "ResetUsage",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 

@@ -31,6 +31,8 @@ M.MetricAlarms = schema.new({ type = "list", list_member = M.MetricAlarm })
 
 M.LogAlarms = schema.new({ type = "list", list_member = M.LogAlarm })
 
+M.AnomalyDetectorIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.AnomalyDetectorTypes = schema.new({ type = "list", list_member = prelude.String })
 
 M.AnomalyDetectors = schema.new({ type = "list", list_member = M.AnomalyDetector })
@@ -548,6 +550,12 @@ M.AnomalyDetector = schema.new({
     id = id.from(_N, "AnomalyDetector"),
     type = "structure",
     members = {
+        AnomalyDetectorId = schema.new({
+            id = id.from(_N, "AnomalyDetector", "AnomalyDetectorId"),
+            type = "string",
+            name = "AnomalyDetectorId",
+            target_id = prelude.String.id,
+        }),
         Namespace = schema.new({
             id = id.from(_N, "AnomalyDetector", "Namespace"),
             type = "string",
@@ -1131,6 +1139,12 @@ M.DeleteAnomalyDetectorInput = schema.new({
     id = id.from(_N, "DeleteAnomalyDetectorInput"),
     type = "structure",
     members = {
+        AnomalyDetectorId = schema.new({
+            id = id.from(_N, "DeleteAnomalyDetectorInput", "AnomalyDetectorId"),
+            type = "string",
+            name = "AnomalyDetectorId",
+            target_id = prelude.String.id,
+        }),
         Namespace = schema.new({
             id = id.from(_N, "DeleteAnomalyDetectorInput", "Namespace"),
             type = "string",
@@ -2149,6 +2163,13 @@ M.DescribeAnomalyDetectorsInput = schema.new({
     id = id.from(_N, "DescribeAnomalyDetectorsInput"),
     type = "structure",
     members = {
+        AnomalyDetectorIds = schema.new({
+            id = id.from(_N, "DescribeAnomalyDetectorsInput", "AnomalyDetectorIds"),
+            type = "list",
+            name = "AnomalyDetectorIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         NextToken = schema.new({
             id = id.from(_N, "DescribeAnomalyDetectorsInput", "NextToken"),
             type = "string",
@@ -4097,6 +4118,14 @@ M.PutAnomalyDetectorInput = schema.new({
 M.PutAnomalyDetectorOutput = schema.new({
     id = id.from(_N, "PutAnomalyDetectorOutput"),
     type = "structure",
+    members = {
+        AnomalyDetectorId = schema.new({
+            id = id.from(_N, "PutAnomalyDetectorOutput", "AnomalyDetectorId"),
+            type = "string",
+            name = "AnomalyDetectorId",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.PutCompositeAlarmInput = schema.new({

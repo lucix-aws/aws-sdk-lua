@@ -906,6 +906,8 @@ local record M
         ClientToken: string
         -- Current version of the license.
         SourceVersion: string
+        -- Specifies whether to reset the license usage for the new license version. If you don't specify a value, the license usage is not reset.
+        ResetUsage: boolean
     end
 
     record CreateLicenseVersionOutput

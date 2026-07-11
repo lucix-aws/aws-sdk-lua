@@ -3866,6 +3866,8 @@ local record M
         "DAYS_60"
         "DAYS_90"
         "DAYS_180"
+        "DAYS_3"
+        "DAYS_7"
     end
 
     enum EcrPullDateRescanMode
@@ -3880,6 +3882,8 @@ local record M
         "DAYS_14"
         "DAYS_60"
         "DAYS_90"
+        "DAYS_3"
+        "DAYS_7"
     end
 
     -- Details about the ECR automated re-scan duration setting for your environment.

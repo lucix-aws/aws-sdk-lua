@@ -393,6 +393,8 @@ M.PrincipalList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ColumnLevelPermissionRuleColumnNameList = schema.new({ type = "list", list_member = prelude.String })
 
+M.LinkedDataSourceIds = schema.new({ type = "list", list_member = prelude.String })
+
 M.ActionsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ColorList = schema.new({ type = "list", list_member = prelude.String })
@@ -800,6 +802,22 @@ M.BodySectionDynamicDimensionSortConfigurationList = schema.new({ type = "list",
 M.GeospatialGradientStepColorList = schema.new({ type = "list", list_member = M.GeospatialGradientStepColor })
 
 M.GeospatialCategoricalDataColorList = schema.new({ type = "list", list_member = M.GeospatialCategoricalDataColor })
+
+M.AccessControlConfiguration = schema.new({
+    id = id.from(_N, "AccessControlConfiguration"),
+    type = "structure",
+    members = {
+        isACLEnabled = schema.new({
+            id = id.from(_N, "AccessControlConfiguration", "isACLEnabled"),
+            type = "boolean",
+            name = "isACLEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+    },
+})
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -22376,6 +22394,42 @@ M.ExasolParameters = schema.new({
     },
 })
 
+M.FMKBParameters = schema.new({
+    id = id.from(_N, "FMKBParameters"),
+    type = "structure",
+    members = {
+        KnowledgeBaseArn = schema.new({
+            id = id.from(_N, "FMKBParameters", "KnowledgeBaseArn"),
+            type = "string",
+            name = "KnowledgeBaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LinkedDataSourceIds = schema.new({
+            id = id.from(_N, "FMKBParameters", "LinkedDataSourceIds"),
+            type = "list",
+            name = "LinkedDataSourceIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.GoogleDriveParameters = schema.new({
+    id = id.from(_N, "GoogleDriveParameters"),
+    type = "structure",
+    members = {
+        AuthType = schema.new({
+            id = id.from(_N, "GoogleDriveParameters", "AuthType"),
+            type = "string",
+            name = "AuthType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ImpalaParameters = schema.new({
     id = id.from(_N, "ImpalaParameters"),
     type = "structure",
@@ -22496,6 +22550,31 @@ M.MySqlParameters = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.OneDriveParameters = schema.new({
+    id = id.from(_N, "OneDriveParameters"),
+    type = "structure",
+    members = {
+        TenantId = schema.new({
+            id = id.from(_N, "OneDriveParameters", "TenantId"),
+            type = "string",
+            name = "TenantId",
+            target_id = prelude.String.id,
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "OneDriveParameters", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+        }),
+        AuthType = schema.new({
+            id = id.from(_N, "OneDriveParameters", "AuthType"),
+            type = "string",
+            name = "AuthType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -22842,6 +22921,40 @@ M.ServiceNowParameters = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.SharePointParameters = schema.new({
+    id = id.from(_N, "SharePointParameters"),
+    type = "structure",
+    members = {
+        SharePointDomain = schema.new({
+            id = id.from(_N, "SharePointParameters", "SharePointDomain"),
+            type = "string",
+            name = "SharePointDomain",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TenantId = schema.new({
+            id = id.from(_N, "SharePointParameters", "TenantId"),
+            type = "string",
+            name = "TenantId",
+            target_id = prelude.String.id,
+        }),
+        ClientId = schema.new({
+            id = id.from(_N, "SharePointParameters", "ClientId"),
+            type = "string",
+            name = "ClientId",
+            target_id = prelude.String.id,
+        }),
+        AuthType = schema.new({
+            id = id.from(_N, "SharePointParameters", "AuthType"),
+            type = "string",
+            name = "AuthType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -23462,6 +23575,34 @@ M.DataSourceParameters = schema.new({
             name = "QBusinessParameters",
             target_id = id.from(_N, "QBusinessParameters"),
             target = M.QBusinessParameters,
+        }),
+        SharePointParameters = schema.new({
+            id = id.from(_N, "DataSourceParameters", "SharePointParameters"),
+            type = "structure",
+            name = "SharePointParameters",
+            target_id = id.from(_N, "SharePointParameters"),
+            target = M.SharePointParameters,
+        }),
+        GoogleDriveParameters = schema.new({
+            id = id.from(_N, "DataSourceParameters", "GoogleDriveParameters"),
+            type = "structure",
+            name = "GoogleDriveParameters",
+            target_id = id.from(_N, "GoogleDriveParameters"),
+            target = M.GoogleDriveParameters,
+        }),
+        OneDriveParameters = schema.new({
+            id = id.from(_N, "DataSourceParameters", "OneDriveParameters"),
+            type = "structure",
+            name = "OneDriveParameters",
+            target_id = id.from(_N, "OneDriveParameters"),
+            target = M.OneDriveParameters,
+        }),
+        FMKBParameters = schema.new({
+            id = id.from(_N, "DataSourceParameters", "FMKBParameters"),
+            type = "structure",
+            name = "FMKBParameters",
+            target_id = id.from(_N, "FMKBParameters"),
+            target = M.FMKBParameters,
         }),
     },
 })
@@ -33390,6 +33531,243 @@ M.CreateIngestionOutput = schema.new({
     },
 })
 
+M.KbTemplateConfiguration = schema.new({
+    id = id.from(_N, "KbTemplateConfiguration"),
+    type = "structure",
+    members = {
+        template = schema.new({
+            id = id.from(_N, "KbTemplateConfiguration", "template"),
+            type = "document",
+            name = "template",
+            target_id = prelude.Document.id,
+        }),
+    },
+})
+
+M.KnowledgeBaseConfiguration = schema.new({
+    id = id.from(_N, "KnowledgeBaseConfiguration"),
+    type = "structure",
+    members = {
+        templateConfiguration = schema.new({
+            id = id.from(_N, "KnowledgeBaseConfiguration", "templateConfiguration"),
+            type = "structure",
+            name = "templateConfiguration",
+            target_id = id.from(_N, "KbTemplateConfiguration"),
+            target = M.KbTemplateConfiguration,
+        }),
+    },
+})
+
+M.ImageExtractionConfiguration = schema.new({
+    id = id.from(_N, "ImageExtractionConfiguration"),
+    type = "structure",
+    members = {
+        imageExtractionStatus = schema.new({
+            id = id.from(_N, "ImageExtractionConfiguration", "imageExtractionStatus"),
+            type = "string",
+            name = "imageExtractionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VideoExtractionConfiguration = schema.new({
+    id = id.from(_N, "VideoExtractionConfiguration"),
+    type = "structure",
+    members = {
+        videoExtractionStatus = schema.new({
+            id = id.from(_N, "VideoExtractionConfiguration", "videoExtractionStatus"),
+            type = "string",
+            name = "videoExtractionStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        videoExtractionType = schema.new({
+            id = id.from(_N, "VideoExtractionConfiguration", "videoExtractionType"),
+            type = "string",
+            name = "videoExtractionType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MediaExtractionConfiguration = schema.new({
+    id = id.from(_N, "MediaExtractionConfiguration"),
+    type = "structure",
+    members = {
+        imageExtractionConfiguration = schema.new({
+            id = id.from(_N, "MediaExtractionConfiguration", "imageExtractionConfiguration"),
+            type = "structure",
+            name = "imageExtractionConfiguration",
+            target_id = id.from(_N, "ImageExtractionConfiguration"),
+            target = M.ImageExtractionConfiguration,
+        }),
+        audioExtractionConfiguration = schema.new({
+            id = id.from(_N, "MediaExtractionConfiguration", "audioExtractionConfiguration"),
+            type = "structure",
+            name = "audioExtractionConfiguration",
+            target_id = id.from(_N, "AudioExtractionConfiguration"),
+            target = M.AudioExtractionConfiguration,
+        }),
+        videoExtractionConfiguration = schema.new({
+            id = id.from(_N, "MediaExtractionConfiguration", "videoExtractionConfiguration"),
+            type = "structure",
+            name = "videoExtractionConfiguration",
+            target_id = id.from(_N, "VideoExtractionConfiguration"),
+            target = M.VideoExtractionConfiguration,
+        }),
+    },
+})
+
+M.CreateKnowledgeBaseInput = schema.new({
+    id = id.from(_N, "CreateKnowledgeBaseRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        KnowledgeBaseId = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "KnowledgeBaseId"),
+            type = "string",
+            name = "KnowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataSourceArn = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "DataSourceArn"),
+            type = "string",
+            name = "DataSourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KnowledgeBaseConfiguration = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "KnowledgeBaseConfiguration"),
+            type = "structure",
+            name = "KnowledgeBaseConfiguration",
+            target_id = id.from(_N, "KnowledgeBaseConfiguration"),
+            target = M.KnowledgeBaseConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        MediaExtractionConfiguration = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "MediaExtractionConfiguration"),
+            type = "structure",
+            name = "MediaExtractionConfiguration",
+            target_id = id.from(_N, "MediaExtractionConfiguration"),
+            target = M.MediaExtractionConfiguration,
+        }),
+        AccessControlConfiguration = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "AccessControlConfiguration"),
+            type = "structure",
+            name = "AccessControlConfiguration",
+            target_id = id.from(_N, "AccessControlConfiguration"),
+            target = M.AccessControlConfiguration,
+        }),
+        PrimaryOwnerArn = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "PrimaryOwnerArn"),
+            type = "string",
+            name = "PrimaryOwnerArn",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+    },
+})
+
+M.CreateKnowledgeBaseOutput = schema.new({
+    id = id.from(_N, "CreateKnowledgeBaseResponse"),
+    type = "structure",
+    members = {
+        KnowledgeBaseArn = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseOutput", "KnowledgeBaseArn"),
+            type = "string",
+            name = "KnowledgeBaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KnowledgeBaseId = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseOutput", "KnowledgeBaseId"),
+            type = "string",
+            name = "KnowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreationStatus = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseOutput", "CreationStatus"),
+            type = "string",
+            name = "CreationStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateKnowledgeBaseOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.CreateNamespaceInput = schema.new({
     id = id.from(_N, "CreateNamespaceRequest"),
     type = "structure",
@@ -37099,6 +37477,18 @@ M.DataSource = schema.new({
             type = "string",
             name = "SecretArn",
             target_id = prelude.String.id,
+        }),
+        CredentialStatus = schema.new({
+            id = id.from(_N, "DataSource", "CredentialStatus"),
+            type = "string",
+            name = "CredentialStatus",
+            target_id = prelude.String.id,
+        }),
+        LastCredentialVerifiedAt = schema.new({
+            id = id.from(_N, "DataSource", "LastCredentialVerifiedAt"),
+            type = "timestamp",
+            name = "LastCredentialVerifiedAt",
+            target_id = prelude.Timestamp.id,
         }),
     },
 })
@@ -43099,108 +43489,6 @@ M.KnowledgeBaseIngestionSummary = schema.new({
     },
 })
 
-M.KbTemplateConfiguration = schema.new({
-    id = id.from(_N, "KbTemplateConfiguration"),
-    type = "structure",
-    members = {
-        template = schema.new({
-            id = id.from(_N, "KbTemplateConfiguration", "template"),
-            type = "document",
-            name = "template",
-            target_id = prelude.Document.id,
-        }),
-    },
-})
-
-M.KnowledgeBaseConfiguration = schema.new({
-    id = id.from(_N, "KnowledgeBaseConfiguration"),
-    type = "structure",
-    members = {
-        templateConfiguration = schema.new({
-            id = id.from(_N, "KnowledgeBaseConfiguration", "templateConfiguration"),
-            type = "structure",
-            name = "templateConfiguration",
-            target_id = id.from(_N, "KbTemplateConfiguration"),
-            target = M.KbTemplateConfiguration,
-        }),
-        eventEnabled = schema.new({
-            id = id.from(_N, "KnowledgeBaseConfiguration", "eventEnabled"),
-            type = "boolean",
-            name = "eventEnabled",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.DEFAULT] = { value = nil },
-            },
-        }),
-    },
-})
-
-M.ImageExtractionConfiguration = schema.new({
-    id = id.from(_N, "ImageExtractionConfiguration"),
-    type = "structure",
-    members = {
-        imageExtractionStatus = schema.new({
-            id = id.from(_N, "ImageExtractionConfiguration", "imageExtractionStatus"),
-            type = "string",
-            name = "imageExtractionStatus",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.VideoExtractionConfiguration = schema.new({
-    id = id.from(_N, "VideoExtractionConfiguration"),
-    type = "structure",
-    members = {
-        videoExtractionStatus = schema.new({
-            id = id.from(_N, "VideoExtractionConfiguration", "videoExtractionStatus"),
-            type = "string",
-            name = "videoExtractionStatus",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        videoExtractionType = schema.new({
-            id = id.from(_N, "VideoExtractionConfiguration", "videoExtractionType"),
-            type = "string",
-            name = "videoExtractionType",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.MediaExtractionConfiguration = schema.new({
-    id = id.from(_N, "MediaExtractionConfiguration"),
-    type = "structure",
-    members = {
-        imageExtractionConfiguration = schema.new({
-            id = id.from(_N, "MediaExtractionConfiguration", "imageExtractionConfiguration"),
-            type = "structure",
-            name = "imageExtractionConfiguration",
-            target_id = id.from(_N, "ImageExtractionConfiguration"),
-            target = M.ImageExtractionConfiguration,
-        }),
-        audioExtractionConfiguration = schema.new({
-            id = id.from(_N, "MediaExtractionConfiguration", "audioExtractionConfiguration"),
-            type = "structure",
-            name = "audioExtractionConfiguration",
-            target_id = id.from(_N, "AudioExtractionConfiguration"),
-            target = M.AudioExtractionConfiguration,
-        }),
-        videoExtractionConfiguration = schema.new({
-            id = id.from(_N, "MediaExtractionConfiguration", "videoExtractionConfiguration"),
-            type = "structure",
-            name = "videoExtractionConfiguration",
-            target_id = id.from(_N, "VideoExtractionConfiguration"),
-            target = M.VideoExtractionConfiguration,
-        }),
-    },
-})
-
 M.KnowledgeBase = schema.new({
     id = id.from(_N, "KnowledgeBase"),
     type = "structure",
@@ -43266,6 +43554,13 @@ M.KnowledgeBase = schema.new({
             name = "MediaExtractionConfiguration",
             target_id = id.from(_N, "MediaExtractionConfiguration"),
             target = M.MediaExtractionConfiguration,
+        }),
+        AccessControlConfiguration = schema.new({
+            id = id.from(_N, "KnowledgeBase", "AccessControlConfiguration"),
+            type = "structure",
+            name = "AccessControlConfiguration",
+            target_id = id.from(_N, "AccessControlConfiguration"),
+            target = M.AccessControlConfiguration,
         }),
         Type = schema.new({
             id = id.from(_N, "KnowledgeBase", "Type"),
@@ -56181,6 +56476,116 @@ M.UpdateKeyRegistrationOutput = schema.new({
     },
 })
 
+M.UpdateKnowledgeBaseInput = schema.new({
+    id = id.from(_N, "UpdateKnowledgeBaseRequest"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        KnowledgeBaseId = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "KnowledgeBaseId"),
+            type = "string",
+            name = "KnowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        KnowledgeBaseConfiguration = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "KnowledgeBaseConfiguration"),
+            type = "structure",
+            name = "KnowledgeBaseConfiguration",
+            target_id = id.from(_N, "KnowledgeBaseConfiguration"),
+            target = M.KnowledgeBaseConfiguration,
+        }),
+        MediaExtractionConfiguration = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "MediaExtractionConfiguration"),
+            type = "structure",
+            name = "MediaExtractionConfiguration",
+            target_id = id.from(_N, "MediaExtractionConfiguration"),
+            target = M.MediaExtractionConfiguration,
+        }),
+        IsEmailNotificationOptedForIngestionFailures = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "IsEmailNotificationOptedForIngestionFailures"),
+            type = "boolean",
+            name = "IsEmailNotificationOptedForIngestionFailures",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+            },
+        }),
+        AccessControlConfiguration = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseInput", "AccessControlConfiguration"),
+            type = "structure",
+            name = "AccessControlConfiguration",
+            target_id = id.from(_N, "AccessControlConfiguration"),
+            target = M.AccessControlConfiguration,
+        }),
+    },
+})
+
+M.UpdateKnowledgeBaseOutput = schema.new({
+    id = id.from(_N, "UpdateKnowledgeBaseResponse"),
+    type = "structure",
+    members = {
+        KnowledgeBaseArn = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseOutput", "KnowledgeBaseArn"),
+            type = "string",
+            name = "KnowledgeBaseArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KnowledgeBaseId = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseOutput", "KnowledgeBaseId"),
+            type = "string",
+            name = "KnowledgeBaseId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateKnowledgeBaseOutput", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = nil },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateKnowledgeBasePermissionsInput = schema.new({
     id = id.from(_N, "UpdateKnowledgeBasePermissionsRequest"),
     type = "structure",
@@ -58705,6 +59110,18 @@ M.CreateIngestion = schema.operation({
     output = M.CreateIngestionOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/data-sets/{DataSetId}/ingestions/{IngestionId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateKnowledgeBase"),
+    input = M.CreateKnowledgeBaseInput,
+    output = M.CreateKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/accounts/{AwsAccountId}/knowledge-bases" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -61357,6 +61774,18 @@ M.UpdateKeyRegistration = schema.operation({
     output = M.UpdateKeyRegistrationOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/key-registration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateKnowledgeBase = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateKnowledgeBase"),
+    input = M.UpdateKnowledgeBaseInput,
+    output = M.UpdateKnowledgeBaseOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/accounts/{AwsAccountId}/knowledge-bases/{KnowledgeBaseId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

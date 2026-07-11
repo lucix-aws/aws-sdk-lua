@@ -361,6 +361,11 @@ local record M
     -- If you have enabled unified cross-account observability, and this account is a
     -- monitoring account, the metric can be in the same account or a source account.
     record AnomalyDetector
+        -- The unique identifier of the anomaly detector.
+        -- The identifier does not restrict access to a specific anomaly detector in an IAM
+        -- policy. Permissions for anomaly detector operations apply to all anomaly detectors
+        -- in the account.
+        AnomalyDetectorId: string
         -- The namespace of the metric associated with the anomaly detection model.
         Namespace: string
         -- The name of the metric associated with the anomaly detection model.
@@ -636,6 +641,9 @@ local record M
     end
 
     record DeleteAnomalyDetectorInput
+        -- Specifies the unique identifier of the anomaly detector to delete. If you specify
+        -- this parameter, you do not need to specify a metric to identify the detector.
+        AnomalyDetectorId: string
         -- The namespace associated with the anomaly detection model to delete.
         Namespace: string
         -- The metric name associated with the anomaly detection model to delete.
@@ -1144,6 +1152,11 @@ local record M
     end
 
     record DescribeAnomalyDetectorsInput
+        -- Specifies the unique identifiers of the anomaly detectors to describe. You can specify
+        -- up to 50 identifiers. If you specify this parameter, you cannot also specify the
+        -- Namespace, MetricName, Dimensions, or
+        -- AnomalyDetectorTypes metric filters.
+        AnomalyDetectorIds: {string}
         -- Use the token returned by the previous operation to request the next page of
         -- results.
         NextToken: string
@@ -2307,6 +2320,8 @@ local record M
     end
 
     record PutAnomalyDetectorOutput
+        -- The unique identifier of the anomaly detector that you created or updated.
+        AnomalyDetectorId: string
     end
 
     record PutCompositeAlarmInput

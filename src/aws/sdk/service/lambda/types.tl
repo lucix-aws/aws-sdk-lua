@@ -316,6 +316,26 @@ local record M
         ExplicitTags: {string : string}
     end
 
+    enum SystemLogLevel
+        "DEBUG"
+        "INFO"
+        "WARN"
+    end
+
+    -- The capacity provider's Amazon CloudWatch Logs configuration settings.
+    record CapacityProviderLoggingConfig
+        -- Set this property to filter the system logs for your capacity provider that Lambda sends to CloudWatch. Lambda only sends system logs at the selected level of detail and lower, where DEBUG is the highest level and WARN is the lowest.
+        SystemLogLevel: string
+        -- The name of the Amazon CloudWatch log group the capacity provider sends logs to. By default, Lambda capacity providers send logs to a default log group named /aws/lambda/capacity-provider/<capacity provider name>. To use a different log group, enter an existing log group or enter a new log group name.
+        LogGroup: string
+    end
+
+    -- Configuration that specifies the telemetry collection for the capacity provider.
+    record CapacityProviderTelemetryConfig
+        -- The capacity provider's Amazon CloudWatch Logs configuration settings.
+        LoggingConfig: CapacityProviderLoggingConfig
+    end
+
     -- VPC configuration that specifies the network settings for compute instances managed by the capacity provider.
     record CapacityProviderVpcConfig
         -- A list of subnet IDs where the capacity provider launches compute instances.
@@ -341,6 +361,8 @@ local record M
         Tags: {string : string}
         -- The tag propagation configuration for the capacity provider. Specifies tags to apply to managed resources at launch.
         PropagateTags: PropagateTags
+        -- The telemetry configuration for the capacity provider. Specifies logging settings for managed resources.
+        TelemetryConfig: CapacityProviderTelemetryConfig
     end
 
     enum CapacityProviderState
@@ -369,6 +391,8 @@ local record M
         -- The date and time when the capacity provider was last modified.
         LastModified: string
         PropagateTags: PropagateTags
+        -- The telemetry configuration for the capacity provider, including logging settings.
+        TelemetryConfig: CapacityProviderTelemetryConfig
     end
 
     record CreateCapacityProviderOutput
@@ -455,6 +479,8 @@ local record M
         -- The updated scaling configuration for the capacity provider.
         CapacityProviderScalingConfig: CapacityProviderScalingConfig
         PropagateTags: PropagateTags
+        -- The updated telemetry configuration for the capacity provider.
+        TelemetryConfig: CapacityProviderTelemetryConfig
     end
 
     record UpdateCapacityProviderOutput
@@ -1562,12 +1588,6 @@ local record M
     enum LogFormat
         "JSON"
         "Text"
-    end
-
-    enum SystemLogLevel
-        "DEBUG"
-        "INFO"
-        "WARN"
     end
 
     -- The function's Amazon CloudWatch Logs configuration settings.
@@ -2755,8 +2775,6 @@ local record M
     record InvokeWithResponseStreamInput
         -- The name or ARN of the Lambda function. Name formats Function name – my-function. Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. Partial ARN – 123456789012:function:my-function. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
         FunctionName: string
-        -- Use one of the following options: RequestResponse (default) – Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API operation response includes the function response and additional data. DryRun – Validate parameter values and verify that the IAM user or role has permission to invoke the function.
-        InvocationType: string
         -- Set to Tail to include the execution log in the response. Applies to synchronously invoked functions only.
         LogType: string
         -- Up to 3,583 bytes of base64-encoded data about the invoking client to pass to the function in the context object.
@@ -2767,6 +2785,8 @@ local record M
         Payload: string
         -- The identifier of the tenant in a multi-tenant Lambda function.
         TenantId: string
+        -- Use one of the following options: RequestResponse (default) – Invoke the function synchronously. Keep the connection open until the function returns a response or times out. The API operation response includes the function response and additional data. DryRun – Validate parameter values and verify that the IAM user or role has permission to invoke the function.
+        InvocationType: string
     end
 
     -- A response confirming that the event stream is complete.

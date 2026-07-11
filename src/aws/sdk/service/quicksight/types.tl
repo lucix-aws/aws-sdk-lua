@@ -2,6 +2,12 @@
 
 local record M
 
+    -- The access control settings for a knowledge base. Use this structure to enable or disable document-level access control lists (ACLs) that filter query results based on the permissions from the source data connector.
+    record AccessControlConfiguration
+        -- Specifies whether ACLs are enabled for the knowledge base.
+        isACLEnabled: boolean
+    end
+
     -- You don't have access to this item. The provided credentials couldn't be
     -- validated. You might not be authorized to carry out the request. Make sure that your
     -- account is authorized to use the Amazon Quick Sight service, that your policies have the
@@ -8960,6 +8966,28 @@ local record M
         Port: number
     end
 
+    -- The connection parameters for a fully managed knowledge base data source. Provide these parameters in the DataSourceParameters object when you create or update a data source that uses a fully managed knowledge base.
+    record FMKBParameters
+        -- The Amazon Resource Name (ARN) of the Amazon Bedrock knowledge base.
+        KnowledgeBaseArn: string
+        -- The IDs of the linked data sources.
+        LinkedDataSourceIds: {string}
+    end
+
+    enum AuthType
+        "THREE_LEGGED_OAUTH"
+        "TWO_LEGGED_OAUTH"
+        "SERVICE_ACCOUNT"
+    end
+
+    -- The connection parameters for a Google Drive data source. Provide these parameters in the DataSourceParameters object when you create or update a data source that uses Google Drive.
+    record GoogleDriveParameters
+        -- The authentication type for the Google Drive data source. Valid values include:
+        -- SERVICE_ACCOUNT – Server-to-server authentication using a Google service account key.
+        -- THREE_LEGGED_OAUTH – Interactive OAuth that requires user consent.
+        AuthType: string
+    end
+
     -- The parameters that are required to connect to a Impala data source.
     record ImpalaParameters
         -- The host name of the Impala data source.
@@ -8996,6 +9024,18 @@ local record M
         Port: number
         -- Database.
         Database: string
+    end
+
+    -- The connection parameters for an OneDrive data source. Provide these parameters in the DataSourceParameters object when you create or update a data source that uses OneDrive.
+    record OneDriveParameters
+        -- The tenant ID for the OneDrive data source.
+        TenantId: string
+        -- The client ID for the OneDrive data source.
+        ClientId: string
+        -- The authentication type for the OneDrive data source. Valid values include:
+        -- TWO_LEGGED_OAUTH – Server-to-server authentication using client credentials that do not require user interaction.
+        -- THREE_LEGGED_OAUTH – Interactive OAuth that requires user consent.
+        AuthType: string
     end
 
     -- The parameters for Oracle.
@@ -9114,6 +9154,20 @@ local record M
     record ServiceNowParameters
         -- URL of the base site.
         SiteBaseUrl: string
+    end
+
+    -- The connection parameters for a SharePoint data source. Provide these parameters in the DataSourceParameters object when you create or update a data source that uses SharePoint.
+    record SharePointParameters
+        -- The SharePoint domain for the data source.
+        SharePointDomain: string
+        -- The tenant ID for the SharePoint data source.
+        TenantId: string
+        -- The client ID for the SharePoint data source.
+        ClientId: string
+        -- The authentication type for the SharePoint data source. Valid values include:
+        -- TWO_LEGGED_OAUTH – Server-to-server authentication using client credentials that do not require user interaction.
+        -- THREE_LEGGED_OAUTH – Interactive OAuth that requires user consent.
+        AuthType: string
     end
 
     enum AuthenticationType
@@ -9328,6 +9382,14 @@ local record M
         ConfluenceParameters: ConfluenceParameters
         -- The parameters for Amazon Q Business.
         QBusinessParameters: QBusinessParameters
+        -- The parameters for a SharePoint data source.
+        SharePointParameters: SharePointParameters
+        -- The parameters for a Google Drive data source.
+        GoogleDriveParameters: GoogleDriveParameters
+        -- The parameters for an OneDrive data source.
+        OneDriveParameters: OneDriveParameters
+        -- The parameters for a fully managed knowledge base data source.
+        FMKBParameters: FMKBParameters
     end
 
     -- Secure Socket Layer (SSL) properties that apply when Quick Sight connects to your
@@ -13344,6 +13406,101 @@ local record M
         Status: number
     end
 
+    -- The template configuration for a knowledge base.
+    record KbTemplateConfiguration
+        -- The template document that defines the knowledge base behavior.
+        template: any
+    end
+
+    -- The configuration settings for a knowledge base.
+    record KnowledgeBaseConfiguration
+        -- The template configuration for the knowledge base.
+        templateConfiguration: KbTemplateConfiguration
+    end
+
+    enum ImageExtractionStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    -- The configuration for image extraction from knowledge base documents.
+    record ImageExtractionConfiguration
+        -- The status of image extraction. Valid values are ENABLED and DISABLED.
+        imageExtractionStatus: string
+    end
+
+    enum VideoExtractionStatus
+        "ENABLED"
+        "DISABLED"
+    end
+
+    enum VideoExtractionType
+        "AUDIO_TRANSCRIPTION_ONLY"
+        "VISUAL_CONTENT_AND_AUDIO_TRANSCRIPTION"
+    end
+
+    -- The configuration for video extraction from knowledge base documents.
+    record VideoExtractionConfiguration
+        -- The status of video extraction. Valid values are ENABLED and DISABLED.
+        videoExtractionStatus: string
+        -- The type of video extraction to perform.
+        videoExtractionType: string
+    end
+
+    -- The configuration for media extraction from knowledge base documents.
+    record MediaExtractionConfiguration
+        -- The configuration for image extraction.
+        imageExtractionConfiguration: ImageExtractionConfiguration
+        -- The configuration for audio extraction.
+        audioExtractionConfiguration: AudioExtractionConfiguration
+        -- The configuration for video extraction.
+        videoExtractionConfiguration: VideoExtractionConfiguration
+    end
+
+    record CreateKnowledgeBaseInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The name of the knowledge base.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the data source for the knowledge base.
+        DataSourceArn: string
+        KnowledgeBaseConfiguration: KnowledgeBaseConfiguration
+        -- A description for the knowledge base. If you don't specify a description, the knowledge base is created without one.
+        Description: string
+        -- A list of resource permissions on the knowledge base. Each entry grants a specified Amazon QuickSight principal either owner or viewer access. If you don't specify permissions, only the primary owner (if provided) receives owner access.
+        Permissions: {ResourcePermission}
+        MediaExtractionConfiguration: MediaExtractionConfiguration
+        -- The access control configuration for the knowledge base. If you don't specify this parameter, document-level ACLs are disabled.
+        AccessControlConfiguration: AccessControlConfiguration
+        -- The Amazon Resource Name (ARN) of the primary owner for the knowledge base. The specified user is always granted owner access, regardless of what is specified in the Permissions field. If you don't specify a primary owner, the knowledge base is created without one.
+        PrimaryOwnerArn: string
+        -- The tags to assign to the knowledge base. If you don't specify tags, the knowledge base is created without tags.
+        Tags: {Tag}
+    end
+
+    enum DataSetStatus
+        "CREATING"
+        "UPDATING"
+        "ACTIVE"
+        "FAILED"
+        "DELETING"
+    end
+
+    record CreateKnowledgeBaseOutput
+        -- The Amazon Resource Name (ARN) of the knowledge base.
+        KnowledgeBaseArn: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The creation status of the knowledge base.
+        CreationStatus: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     enum IdentityStore
         "QUICKSIGHT"
     end
@@ -14571,6 +14728,12 @@ local record M
         Status: number
     end
 
+    enum CredentialStatus
+        "CONNECTED"
+        "AUTH_FAILED"
+        "NOT_VERIFIED"
+    end
+
     -- The custom permissions profile.
     record CustomPermissions
         -- The Amazon Resource Name (ARN) of the custom permissions profile.
@@ -14843,14 +15006,6 @@ local record M
         Value: string
     end
 
-    enum DataSetStatus
-        "CREATING"
-        "UPDATING"
-        "ACTIVE"
-        "FAILED"
-        "DELETING"
-    end
-
     -- Dataset summary.
     record DataSetSummary
         -- The Amazon Resource Name (ARN) of the dataset.
@@ -14938,6 +15093,13 @@ local record M
         ErrorInfo: DataSourceErrorInfo
         -- The Amazon Resource Name (ARN) of the secret associated with the data source in Amazon Secrets Manager.
         SecretArn: string
+        -- The credential verification status of the data source. Valid values include:
+        -- CONNECTED – Credential validation succeeded.
+        -- AUTH_FAILED – Credential validation failed.
+        -- NOT_VERIFIED – Credential validation has not been performed.
+        CredentialStatus: string
+        -- The time that the credentials were last verified.
+        LastCredentialVerifiedAt: number
     end
 
     enum DataSourceFilterAttribute
@@ -16938,59 +17100,6 @@ local record M
         EndTime: number
     end
 
-    -- The template configuration for a knowledge base.
-    record KbTemplateConfiguration
-        -- The template document that defines the knowledge base behavior.
-        template: any
-    end
-
-    -- The configuration settings for a knowledge base.
-    record KnowledgeBaseConfiguration
-        -- The template configuration for the knowledge base.
-        templateConfiguration: KbTemplateConfiguration
-        -- Indicates whether event notifications are enabled for the knowledge base.
-        eventEnabled: boolean
-    end
-
-    enum ImageExtractionStatus
-        "ENABLED"
-        "DISABLED"
-    end
-
-    -- The configuration for image extraction from knowledge base documents.
-    record ImageExtractionConfiguration
-        -- The status of image extraction. Valid values are ENABLED and DISABLED.
-        imageExtractionStatus: string
-    end
-
-    enum VideoExtractionStatus
-        "ENABLED"
-        "DISABLED"
-    end
-
-    enum VideoExtractionType
-        "AUDIO_TRANSCRIPTION_ONLY"
-        "VISUAL_CONTENT_AND_AUDIO_TRANSCRIPTION"
-    end
-
-    -- The configuration for video extraction from knowledge base documents.
-    record VideoExtractionConfiguration
-        -- The status of video extraction. Valid values are ENABLED and DISABLED.
-        videoExtractionStatus: string
-        -- The type of video extraction to perform.
-        videoExtractionType: string
-    end
-
-    -- The configuration for media extraction from knowledge base documents.
-    record MediaExtractionConfiguration
-        -- The configuration for image extraction.
-        imageExtractionConfiguration: ImageExtractionConfiguration
-        -- The configuration for audio extraction.
-        audioExtractionConfiguration: AudioExtractionConfiguration
-        -- The configuration for video extraction.
-        videoExtractionConfiguration: VideoExtractionConfiguration
-    end
-
     -- A knowledge base resource that provides data from connected sources for AI-powered experiences in Amazon QuickSight.
     record KnowledgeBase
         -- The Amazon Resource Name (ARN) of the knowledge base.
@@ -17007,6 +17116,8 @@ local record M
         KnowledgeBaseConfiguration: KnowledgeBaseConfiguration
         -- The media extraction configuration for the knowledge base.
         MediaExtractionConfiguration: MediaExtractionConfiguration
+        -- The access control configuration for the knowledge base.
+        AccessControlConfiguration: AccessControlConfiguration
         -- The type of the knowledge base.
         Type: string
         -- The date and time that the knowledge base was created.
@@ -17015,7 +17126,7 @@ local record M
         UpdatedAt: number
         -- The description of the knowledge base.
         Description: string
-        -- Indicates whether email notifications are enabled for ingestion failures.
+        -- Specifies whether email notifications are enabled for ingestion failures.
         IsEmailNotificationOptedForIngestionFailures: boolean
         -- A summary of the first completed ingestion for the knowledge base.
         FirstCompletedIngestionSummary: KnowledgeBaseIngestionSummary
@@ -18673,6 +18784,7 @@ local record M
         "DIRECT_QUICKSIGHT_SOLE_OWNER"
         "KNOWLEDGE_BASE_SIZE_BYTES"
         "PRIMARY_OWNER"
+        "DATASOURCE_ARN"
     end
 
     enum KnowledgeBaseSearchOperator
@@ -21517,6 +21629,34 @@ local record M
         SuccessfulKeyRegistration: {SuccessfulKeyRegistrationEntry}
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
+    end
+
+    record UpdateKnowledgeBaseInput
+        -- The ID of the Amazon Web Services account that contains the knowledge base.
+        AwsAccountId: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The name of the knowledge base. If you don't specify a name, the existing name is retained.
+        Name: string
+        -- A description for the knowledge base. If you don't specify a description, the existing description is retained.
+        Description: string
+        KnowledgeBaseConfiguration: KnowledgeBaseConfiguration
+        MediaExtractionConfiguration: MediaExtractionConfiguration
+        -- Specifies whether email notifications are enabled for ingestion failures.
+        IsEmailNotificationOptedForIngestionFailures: boolean
+        -- The access control configuration for the knowledge base. If you don't specify this parameter, the existing setting is retained.
+        AccessControlConfiguration: AccessControlConfiguration
+    end
+
+    record UpdateKnowledgeBaseOutput
+        -- The Amazon Resource Name (ARN) of the knowledge base.
+        KnowledgeBaseArn: string
+        -- The unique identifier for the knowledge base.
+        KnowledgeBaseId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
     end
 
     record UpdateKnowledgeBasePermissionsInput
