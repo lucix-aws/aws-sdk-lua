@@ -1630,6 +1630,18 @@ M.CreateElasticsearchDomainInput = schema.new({
             target_id = id.from(_N, "AutomatedSnapshotPauseRequestOptions"),
             target = M.AutomatedSnapshotPauseRequestOptions,
         }),
+        UseCase = schema.new({
+            id = id.from(_N, "CreateElasticsearchDomainInput", "UseCase"),
+            type = "string",
+            name = "UseCase",
+            target_id = prelude.String.id,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "CreateElasticsearchDomainInput", "EngineMode"),
+            type = "string",
+            name = "EngineMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2004,6 +2016,18 @@ M.ElasticsearchDomainStatus = schema.new({
             name = "AutomatedSnapshotPauseOptions",
             target_id = id.from(_N, "AutomatedSnapshotPauseOptions"),
             target = M.AutomatedSnapshotPauseOptions,
+        }),
+        UseCase = schema.new({
+            id = id.from(_N, "ElasticsearchDomainStatus", "UseCase"),
+            type = "string",
+            name = "UseCase",
+            target_id = prelude.String.id,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "ElasticsearchDomainStatus", "EngineMode"),
+            type = "string",
+            name = "EngineMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3244,6 +3268,32 @@ M.EncryptionAtRestOptionsStatus = schema.new({
     },
 })
 
+M.EngineModeStatus = schema.new({
+    id = id.from(_N, "EngineModeStatus"),
+    type = "structure",
+    members = {
+        Options = schema.new({
+            id = id.from(_N, "EngineModeStatus", "Options"),
+            type = "string",
+            name = "Options",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "EngineModeStatus", "Status"),
+            type = "structure",
+            name = "Status",
+            target_id = id.from(_N, "OptionStatus"),
+            target = M.OptionStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.LogPublishingOptionsStatus = schema.new({
     id = id.from(_N, "LogPublishingOptionsStatus"),
     type = "structure",
@@ -3309,6 +3359,32 @@ M.SnapshotOptionsStatus = schema.new({
         }),
         Status = schema.new({
             id = id.from(_N, "SnapshotOptionsStatus", "Status"),
+            type = "structure",
+            name = "Status",
+            target_id = id.from(_N, "OptionStatus"),
+            target = M.OptionStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UseCaseStatus = schema.new({
+    id = id.from(_N, "UseCaseStatus"),
+    type = "structure",
+    members = {
+        Options = schema.new({
+            id = id.from(_N, "UseCaseStatus", "Options"),
+            type = "string",
+            name = "Options",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UseCaseStatus", "Status"),
             type = "structure",
             name = "Status",
             target_id = id.from(_N, "OptionStatus"),
@@ -3476,6 +3552,20 @@ M.ElasticsearchDomainConfig = schema.new({
             name = "AutomatedSnapshotPauseOptions",
             target_id = id.from(_N, "AutomatedSnapshotPauseOptionsStatus"),
             target = M.AutomatedSnapshotPauseOptionsStatus,
+        }),
+        UseCase = schema.new({
+            id = id.from(_N, "ElasticsearchDomainConfig", "UseCase"),
+            type = "structure",
+            name = "UseCase",
+            target_id = id.from(_N, "UseCaseStatus"),
+            target = M.UseCaseStatus,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "ElasticsearchDomainConfig", "EngineMode"),
+            type = "structure",
+            name = "EngineMode",
+            target_id = id.from(_N, "EngineModeStatus"),
+            target = M.EngineModeStatus,
         }),
     },
 })
@@ -5331,6 +5421,18 @@ M.UpdateElasticsearchDomainConfigInput = schema.new({
             name = "AutomatedSnapshotPauseOptions",
             target_id = id.from(_N, "AutomatedSnapshotPauseRequestOptions"),
             target = M.AutomatedSnapshotPauseRequestOptions,
+        }),
+        UseCase = schema.new({
+            id = id.from(_N, "UpdateElasticsearchDomainConfigInput", "UseCase"),
+            type = "string",
+            name = "UseCase",
+            target_id = prelude.String.id,
+        }),
+        EngineMode = schema.new({
+            id = id.from(_N, "UpdateElasticsearchDomainConfigInput", "EngineMode"),
+            type = "string",
+            name = "EngineMode",
+            target_id = prelude.String.id,
         }),
     },
 })

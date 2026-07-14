@@ -22,7 +22,7 @@ local record M
 
     -- An array of key-value pairs to set for advanced control over Amazon Redshift Serverless.
     record ConfigParameter
-        -- The key of the parameter. The options are auto_mv, datestyle, enable_case_sensitive_identifier, enable_user_activity_logging, query_group, search_path, require_ssl, use_fips_ssl, and either wlm_json_configuration or query monitoring metrics that let you define performance boundaries. You can either specify individual query monitoring metrics (such as max_scan_row_count, max_query_execution_time) or use wlm_json_configuration to define query queues with rules, but not both. For more information about query monitoring rules and available metrics, see Query monitoring metrics for Amazon Redshift Serverless.
+        -- The key of the parameter. The options are auto_mv, datestyle, enable_case_sensitive_identifier, enable_user_activity_logging, query_group, search_path, require_ssl, use_fips_ssl, and either wlm_json_configuration or query monitoring metrics that let you define performance boundaries. You can either specify individual query monitoring metrics (such as max_scan_row_count, max_query_execution_time) or use wlm_json_configuration to define query queues with rules, but not both. If you're using wlm_json_configuration, the maximum size of parameterValue is 8000 characters. For more information about query monitoring rules and available metrics, see Query monitoring metrics for Amazon Redshift Serverless.
         parameterKey: string
         -- The value of the parameter to set.
         parameterValue: string
@@ -1418,6 +1418,8 @@ local record M
         namespaceName: string
         -- The name of the workgroup used to restore data.
         workgroupName: string
+        -- If true, maintain existing data sharing, zero-ETL and S3 event integrations when restoring. Otherwise, integrations will not be maintained after the restore operation. Integrations are only maintained when restored to the same serverless namespace. Default: true
+        maintainIntegration: boolean
     end
 
     record RestoreFromRecoveryPointOutput
@@ -1492,6 +1494,8 @@ local record M
         manageAdminPassword: boolean
         -- The ID of the Key Management Service (KMS) key used to encrypt and store the namespace's admin credentials secret.
         adminPasswordSecretKmsKeyId: string
+        -- If true, maintain existing data sharing, zero-ETL and S3 event integrations when restoring. Otherwise, integrations will not be maintained after the restore operation. Integrations are only maintained when restored to the same serverless namespace. Default: true
+        maintainIntegration: boolean
     end
 
     record RestoreFromSnapshotOutput

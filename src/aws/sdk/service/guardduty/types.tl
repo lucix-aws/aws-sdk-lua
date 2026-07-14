@@ -142,6 +142,7 @@ local record M
         "EKS_RUNTIME_MONITORING"
         "EC2_RUNTIME_MONITORING"
         "FARGATE_RUNTIME_MONITORING"
+        "AI_PROTECTION"
     end
 
     -- Contains information about the free trial period for a feature.
@@ -560,6 +561,8 @@ local record M
     record Observations
         -- The text that was unusual.
         Text: {string}
+        -- The numeric values that were unusual.
+        Number: {number}
     end
 
     enum ProfileSubtype
@@ -567,10 +570,13 @@ local record M
         "INFREQUENT"
         "UNSEEN"
         "RARE"
+        "COUNT"
+        "AVERAGE"
     end
 
     enum ProfileType
         "FREQUENCY"
+        "VOLUME"
     end
 
     -- Contains information about the unusual anomalies.
@@ -625,6 +631,72 @@ local record M
     record AutoscalingAutoScalingGroup
         -- A list of unique identifiers for the compromised Amazon EC2 instances that are part of the same Auto Scaling Group.
         Ec2InstanceUids: {string}
+    end
+
+    -- Contains information about a Bedrock guardrail associated with a finding.
+    record BedrockGuardrail
+        -- The ARN of the Bedrock guardrail.
+        Arn: string
+        -- The version of the Bedrock guardrail.
+        Version: string
+    end
+
+    enum ContentPolicyFilterAction
+        "BLOCKED"
+        "NONE"
+    end
+
+    enum ConfidenceLevel
+        "HIGH"
+        "MEDIUM"
+        "LOW"
+        "NONE"
+    end
+
+    enum ContentPolicyFilterType
+        "PROMPT_ATTACK"
+        "JAILBREAK"
+        "HATE"
+        "INSULTS"
+        "SEXUAL"
+        "VIOLENCE"
+        "MISCONDUCT"
+    end
+
+    -- Contains information about a content policy filter that matched during a guardrail evaluation.
+    record ContentPolicyFilter
+        -- The type of content that was filtered by the guardrail.
+        Type: string
+        -- The confidence level that the content matched the filter.
+        Confidence: string
+        -- The action taken by the guardrail filter.
+        Action: string
+    end
+
+    enum GuardrailAction
+        "GUARDRAIL_INTERVENED"
+        "NONE"
+    end
+
+    enum GuardrailSource
+        "INPUT"
+        "OUTPUT"
+    end
+
+    -- Contains information about the Bedrock guardrail that was involved in a finding.
+    record BedrockGuardrailDetails
+        -- The ARN of the Bedrock guardrail. This field is deprecated. Use the guardrails list instead.
+        GuardrailArn: string
+        -- The version of the Bedrock guardrail. This field is deprecated. Use the guardrails list instead.
+        GuardrailVersion: string
+        -- The list of Bedrock guardrails associated with the finding.
+        Guardrails: {BedrockGuardrail}
+        -- Indicates whether the guardrail intervened or not.
+        GuardrailAction: string
+        -- Indicates whether the guardrail was applied on the input or output of the model invocation.
+        GuardrailSource: string
+        -- The list of content policy filters that matched during the guardrail evaluation.
+        ContentPolicyFilters: {ContentPolicyFilter}
     end
 
     -- Contains information on the current bucket policies for the S3 bucket.
@@ -1024,6 +1096,7 @@ local record M
         "LAMBDA_NETWORK_LOGS"
         "EKS_RUNTIME_MONITORING"
         "RUNTIME_MONITORING"
+        "AI_PROTECTION"
         "AI_ANALYST"
     end
 
@@ -1814,6 +1887,7 @@ local record M
         "LAMBDA_NETWORK_LOGS"
         "EKS_RUNTIME_MONITORING"
         "RUNTIME_MONITORING"
+        "AI_PROTECTION"
     end
 
     -- A list of features which will be configured for the organization.
@@ -2361,6 +2435,7 @@ local record M
         "LAMBDA_NETWORK_LOGS"
         "EKS_RUNTIME_MONITORING"
         "RUNTIME_MONITORING"
+        "AI_PROTECTION"
         "AI_ANALYST"
     end
 
@@ -2785,6 +2860,12 @@ local record M
         Tags: {Tag}
     end
 
+    -- Contains information about the AI model involved in a finding.
+    record ModelDetail
+        -- The identifier of the AI model.
+        ModelId: string
+    end
+
     -- Contains information about the resource type RDSDBInstance involved in a GuardDuty finding.
     record RdsDbInstanceDetails
         -- The identifier associated to the database instance that was involved in the finding.
@@ -2835,12 +2916,21 @@ local record M
         Tags: {Tag}
     end
 
+    -- Contains information about the time range within the continuous backup in Amazon Web Services Backup that was scanned for a point-in-time recovery resource.
+    record ScanConfigurationContinuousScanDetails
+        -- The timestamp representing the start of the time range that was scanned.
+        StartTime: number
+        -- The timestamp representing the end of the time range that was scanned.
+        EndTime: number
+    end
+
     -- Contains details about the backup recovery point.
     record RecoveryPointDetails
         -- The Amazon Resource Name (ARN) of the recovery point.
         RecoveryPointArn: string
         -- The name of the backup vault containing the recovery point.
         BackupVaultName: string
+        ContinuousScanDetails: ScanConfigurationContinuousScanDetails
     end
 
     -- Contains information on the owner of the bucket.
@@ -2934,6 +3024,10 @@ local record M
         Ec2ImageDetails: Ec2ImageDetails
         -- Contains details about the backup recovery point that was scanned.
         RecoveryPointDetails: RecoveryPointDetails
+        -- Contains information about the Bedrock guardrail that was involved in a finding.
+        BedrockGuardrailDetails: BedrockGuardrailDetails
+        -- Contains information about the AI models involved in a finding.
+        ModelDetails: {ModelDetail}
     end
 
     -- Additional information about the generated finding.
@@ -3545,14 +3639,6 @@ local record M
         "S3_POINT_IN_TIME_RECOVERY"
     end
 
-    -- Contains information about the time range within the continuous backup in Amazon Web Services Backup that was scanned for a point-in-time recovery resource.
-    record ScanConfigurationContinuousScanDetails
-        -- The timestamp representing the start of the time range that was scanned.
-        StartTime: number
-        -- The timestamp representing the end of the time range that was scanned.
-        EndTime: number
-    end
-
     -- Contains information about the recovery point configuration used in the scan.
     record ScanConfigurationRecoveryPoint
         -- The name of the Amazon Web Services Backup vault that contains the recovery point for the scanned.
@@ -4023,6 +4109,7 @@ local record M
         "FARGATE_RUNTIME_MONITORING"
         "RDS_DBI_PROTECTION_PROVISIONED"
         "RDS_DBI_PROTECTION_SERVERLESS"
+        "AI_PROTECTION"
     end
 
     -- Contains information about the criteria used to query usage statistics.

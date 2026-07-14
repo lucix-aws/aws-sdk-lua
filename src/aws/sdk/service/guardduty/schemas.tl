@@ -155,6 +155,8 @@ M.NotMatches = schema.new({ type = "list", list_member = prelude.String })
 
 M.S3BucketDetails = schema.new({ type = "list", list_member = M.S3BucketDetail })
 
+M.ModelDetails = schema.new({ type = "list", list_member = M.ModelDetail })
+
 M.ItemDetailsList = schema.new({ type = "list", list_member = M.ItemDetails })
 
 M.MapEquals = schema.new({ type = "list", list_member = M.ScanConditionPair })
@@ -168,6 +170,10 @@ M.ProductCodes = schema.new({ type = "list", list_member = M.ProductCode })
 M.Tags = schema.new({ type = "list", list_member = M.Tag })
 
 M.VolumeMounts = schema.new({ type = "list", list_member = M.VolumeMount })
+
+M.BedrockGuardrails = schema.new({ type = "list", list_member = M.BedrockGuardrail })
+
+M.ContentPolicyFilters = schema.new({ type = "list", list_member = M.ContentPolicyFilter })
 
 M.ThreatIntelligenceDetails = schema.new({ type = "list", list_member = M.ThreatIntelligenceDetail })
 
@@ -262,6 +268,8 @@ M.Ec2InstanceUids = schema.new({ type = "list", list_member = prelude.String })
 M.ContainerUids = schema.new({ type = "list", list_member = prelude.String })
 
 M.ObservationTexts = schema.new({ type = "list", list_member = prelude.String })
+
+M.ObservationNumbers = schema.new({ type = "list", list_member = prelude.Long })
 
 M.AcceptAdministratorInvitationInput = schema.new({
     id = id.from(_N, "AcceptAdministratorInvitationRequest"),
@@ -2179,6 +2187,16 @@ M.Observations = schema.new({
                 [traits.JSON_NAME] = { name = "text" },
             },
         }),
+        Number = schema.new({
+            id = id.from(_N, "Observations", "Number"),
+            type = "list",
+            name = "Number",
+            target_id = prelude.Document.id,
+            list_member = prelude.Long,
+            traits = {
+                [traits.JSON_NAME] = { name = "number" },
+            },
+        }),
     },
 })
 
@@ -2335,6 +2353,128 @@ M.AutoscalingAutoScalingGroup = schema.new({
             list_member = prelude.String,
             traits = {
                 [traits.JSON_NAME] = { name = "ec2InstanceUids" },
+            },
+        }),
+    },
+})
+
+M.BedrockGuardrail = schema.new({
+    id = id.from(_N, "BedrockGuardrail"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "BedrockGuardrail", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "arn" },
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "BedrockGuardrail", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "version" },
+            },
+        }),
+    },
+})
+
+M.ContentPolicyFilter = schema.new({
+    id = id.from(_N, "ContentPolicyFilter"),
+    type = "structure",
+    members = {
+        Type = schema.new({
+            id = id.from(_N, "ContentPolicyFilter", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "type" },
+            },
+        }),
+        Confidence = schema.new({
+            id = id.from(_N, "ContentPolicyFilter", "Confidence"),
+            type = "string",
+            name = "Confidence",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "confidence" },
+            },
+        }),
+        Action = schema.new({
+            id = id.from(_N, "ContentPolicyFilter", "Action"),
+            type = "string",
+            name = "Action",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "action" },
+            },
+        }),
+    },
+})
+
+M.BedrockGuardrailDetails = schema.new({
+    id = id.from(_N, "BedrockGuardrailDetails"),
+    type = "structure",
+    members = {
+        GuardrailArn = schema.new({
+            id = id.from(_N, "BedrockGuardrailDetails", "GuardrailArn"),
+            type = "string",
+            name = "GuardrailArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "guardrailArn" },
+            },
+        }),
+        GuardrailVersion = schema.new({
+            id = id.from(_N, "BedrockGuardrailDetails", "GuardrailVersion"),
+            type = "string",
+            name = "GuardrailVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "guardrailVersion" },
+            },
+        }),
+        Guardrails = schema.new({
+            id = id.from(_N, "BedrockGuardrailDetails", "Guardrails"),
+            type = "list",
+            name = "Guardrails",
+            target_id = prelude.Document.id,
+            list_member = M.BedrockGuardrail,
+            traits = {
+                [traits.JSON_NAME] = { name = "guardrails" },
+            },
+        }),
+        GuardrailAction = schema.new({
+            id = id.from(_N, "BedrockGuardrailDetails", "GuardrailAction"),
+            type = "string",
+            name = "GuardrailAction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "guardrailAction" },
+            },
+        }),
+        GuardrailSource = schema.new({
+            id = id.from(_N, "BedrockGuardrailDetails", "GuardrailSource"),
+            type = "string",
+            name = "GuardrailSource",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "guardrailSource" },
+            },
+        }),
+        ContentPolicyFilters = schema.new({
+            id = id.from(_N, "BedrockGuardrailDetails", "ContentPolicyFilters"),
+            type = "list",
+            name = "ContentPolicyFilters",
+            target_id = prelude.Document.id,
+            list_member = M.ContentPolicyFilter,
+            traits = {
+                [traits.JSON_NAME] = { name = "contentPolicyFilters" },
             },
         }),
     },
@@ -8968,6 +9108,22 @@ M.LambdaDetails = schema.new({
     },
 })
 
+M.ModelDetail = schema.new({
+    id = id.from(_N, "ModelDetail"),
+    type = "structure",
+    members = {
+        ModelId = schema.new({
+            id = id.from(_N, "ModelDetail", "ModelId"),
+            type = "string",
+            name = "ModelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "modelId" },
+            },
+        }),
+    },
+})
+
 M.RdsDbInstanceDetails = schema.new({
     id = id.from(_N, "RdsDbInstanceDetails"),
     type = "structure",
@@ -9162,6 +9318,32 @@ M.RdsLimitlessDbDetails = schema.new({
     },
 })
 
+M.ScanConfigurationContinuousScanDetails = schema.new({
+    id = id.from(_N, "ScanConfigurationContinuousScanDetails"),
+    type = "structure",
+    members = {
+        StartTime = schema.new({
+            id = id.from(_N, "ScanConfigurationContinuousScanDetails", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "startTime" },
+            },
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "ScanConfigurationContinuousScanDetails", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "endTime" },
+            },
+        }),
+    },
+})
+
 M.RecoveryPointDetails = schema.new({
     id = id.from(_N, "RecoveryPointDetails"),
     type = "structure",
@@ -9182,6 +9364,16 @@ M.RecoveryPointDetails = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "backupVaultName" },
+            },
+        }),
+        ContinuousScanDetails = schema.new({
+            id = id.from(_N, "RecoveryPointDetails", "ContinuousScanDetails"),
+            type = "structure",
+            name = "ContinuousScanDetails",
+            target_id = id.from(_N, "ScanConfigurationContinuousScanDetails"),
+            target = M.ScanConfigurationContinuousScanDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "continuousScanDetails" },
             },
         }),
     },
@@ -9562,6 +9754,26 @@ M.Resource = schema.new({
             target = M.RecoveryPointDetails,
             traits = {
                 [traits.JSON_NAME] = { name = "recoveryPointDetails" },
+            },
+        }),
+        BedrockGuardrailDetails = schema.new({
+            id = id.from(_N, "Resource", "BedrockGuardrailDetails"),
+            type = "structure",
+            name = "BedrockGuardrailDetails",
+            target_id = id.from(_N, "BedrockGuardrailDetails"),
+            target = M.BedrockGuardrailDetails,
+            traits = {
+                [traits.JSON_NAME] = { name = "bedrockGuardrailDetails" },
+            },
+        }),
+        ModelDetails = schema.new({
+            id = id.from(_N, "Resource", "ModelDetails"),
+            type = "list",
+            name = "ModelDetails",
+            target_id = prelude.Document.id,
+            list_member = M.ModelDetail,
+            traits = {
+                [traits.JSON_NAME] = { name = "modelDetails" },
             },
         }),
     },
@@ -11758,32 +11970,6 @@ M.GetMalwareScanInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
-            },
-        }),
-    },
-})
-
-M.ScanConfigurationContinuousScanDetails = schema.new({
-    id = id.from(_N, "ScanConfigurationContinuousScanDetails"),
-    type = "structure",
-    members = {
-        StartTime = schema.new({
-            id = id.from(_N, "ScanConfigurationContinuousScanDetails", "StartTime"),
-            type = "timestamp",
-            name = "StartTime",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.JSON_NAME] = { name = "startTime" },
-            },
-        }),
-        EndTime = schema.new({
-            id = id.from(_N, "ScanConfigurationContinuousScanDetails", "EndTime"),
-            type = "timestamp",
-            name = "EndTime",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.JSON_NAME] = { name = "endTime" },
             },
         }),
     },

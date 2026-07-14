@@ -4263,6 +4263,12 @@ M.RestoreFromRecoveryPointInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        maintainIntegration = schema.new({
+            id = id.from(_N, "RestoreFromRecoveryPointInput", "maintainIntegration"),
+            type = "boolean",
+            name = "maintainIntegration",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -4510,6 +4516,12 @@ M.RestoreFromSnapshotInput = schema.new({
             type = "string",
             name = "adminPasswordSecretKmsKeyId",
             target_id = prelude.String.id,
+        }),
+        maintainIntegration = schema.new({
+            id = id.from(_N, "RestoreFromSnapshotInput", "maintainIntegration"),
+            type = "boolean",
+            name = "maintainIntegration",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

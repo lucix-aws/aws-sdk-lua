@@ -662,6 +662,11 @@ local record M
         KmsKeyId: string
     end
 
+    enum DomainEngineMode
+        "GENERAL"
+        "OPTIMIZED"
+    end
+
     enum LogType
         "INDEX_SLOW_LOGS"
         "SEARCH_SLOW_LOGS"
@@ -689,6 +694,13 @@ local record M
     record SnapshotOptions
         -- Specifies the time, in UTC format, when the service takes a daily automated snapshot of the specified Elasticsearch domain. Default value is 0 hours.
         AutomatedSnapshotStartHour: number
+    end
+
+    enum DomainUseCase
+        "SEARCH"
+        "VECTOR"
+        "OBSERVABILITY"
+        "MIXED"
     end
 
     -- Options to specify the subnets and security groups for VPC endpoint. For more information, see VPC Endpoints for Amazon Elasticsearch Service Domains.
@@ -742,6 +754,10 @@ local record M
         -- operational needs such as migrations or maintenance windows.
         -- Maximum suspension duration: 3 days.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseRequestOptions
+        -- The primary use case for the domain. For valid values, see DomainUseCase.
+        UseCase: string
+        -- The engine mode for the domain. For valid values and requirements, see DomainEngineMode.
+        EngineMode: string
     end
 
     enum PauseState
@@ -915,6 +931,10 @@ local record M
         DeploymentStrategyOptions: DeploymentStrategyOptions
         -- The current status of the Elasticsearch domain's automated snapshot pause options.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseOptions
+        -- The primary use case for the domain.
+        UseCase: string
+        -- The engine mode for the domain.
+        EngineMode: string
     end
 
     -- The result of a CreateElasticsearchDomain operation. Contains the status of the newly created Elasticsearch domain.
@@ -1427,6 +1447,14 @@ local record M
         Status: OptionStatus
     end
 
+    -- The status of the engine mode for the domain.
+    record EngineModeStatus
+        -- The engine mode configured for the domain.
+        Options: string
+        -- The current status of the engine mode for the domain.
+        Status: OptionStatus
+    end
+
     -- The configured log publishing options for the domain and their current status.
     record LogPublishingOptionsStatus
         -- The log publishing options configured for the Elasticsearch domain.
@@ -1448,6 +1476,14 @@ local record M
         -- Specifies the daily snapshot options specified for the Elasticsearch domain.
         Options: SnapshotOptions
         -- Specifies the status of a daily automated snapshot.
+        Status: OptionStatus
+    end
+
+    -- The status of the use case for the domain.
+    record UseCaseStatus
+        -- The use case configured for the domain.
+        Options: string
+        -- The current status of the use case for the domain.
         Status: OptionStatus
     end
 
@@ -1497,6 +1533,10 @@ local record M
         DeploymentStrategyOptions: DeploymentStrategyOptionsStatus
         -- Specifies AutomatedSnapshotPauseOptions for the domain.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseOptionsStatus
+        -- The use case configured for the domain.
+        UseCase: UseCaseStatus
+        -- The engine mode configured for the domain.
+        EngineMode: EngineModeStatus
     end
 
     -- The result of a DescribeElasticsearchDomainConfig request. Contains the configuration information of the requested domain.
@@ -2313,6 +2353,10 @@ local record M
         -- operational needs such as migrations or maintenance windows.
         -- Maximum suspension duration: 3 days.
         AutomatedSnapshotPauseOptions: AutomatedSnapshotPauseRequestOptions
+        -- The primary use case for the domain. For valid values, see DomainUseCase.
+        UseCase: string
+        -- The engine mode for the domain. For valid values and requirements, see DomainEngineMode.
+        EngineMode: string
     end
 
     record DryRunResults

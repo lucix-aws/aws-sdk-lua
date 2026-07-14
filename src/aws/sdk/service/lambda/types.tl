@@ -1658,6 +1658,9 @@ local record M
         "provided"
         "provided.al2"
         "provided.al2023"
+        "java8.al2023"
+        "java11.al2023"
+        "java17.al2023"
     end
 
     enum SnapStartApplyOn

@@ -1062,6 +1062,7 @@ local record M
         "ACTIVE"
         "UPDATING"
         "DELETING"
+        "EXPIRED"
     end
 
     -- Details about a location in a multi-location container fleet.
@@ -1079,6 +1080,8 @@ local record M
         -- host game sessions.
         -- UPDATING -- Updates to the container fleet is being updated. A
         -- deployment is in progress.
+        -- EXPIRED -- The container fleet has been expired. The fleet is
+        -- scaled down to zero instances and cannot host new game sessions.
         Status: string
         -- The current status of player gateway in this location for this container fleet. Note, even if a container fleet has PlayerGatewayMode configured as ENABLED, player gateway might not be available in a specific location. For more information about locations where player gateway is supported, see Amazon GameLift Servers service locations.
         -- Possible values include:
@@ -1127,6 +1130,7 @@ local record M
         "ACTIVE"
         "UPDATING"
         "DELETING"
+        "EXPIRED"
     end
 
     -- Describes an Amazon GameLift Servers managed container fleet.
@@ -1202,6 +1206,8 @@ local record M
         -- sessions.
         -- UPDATING -- Updates to the container fleet is being updated. A deployment is in
         -- progress.
+        -- EXPIRED -- The container fleet has been expired. The fleet is scaled down to zero
+        -- instances and cannot host new game sessions.
         Status: string
         -- Information about the most recent deployment for the container fleet.
         DeploymentDetails: DeploymentDetails
@@ -2347,6 +2353,7 @@ local record M
         "ERROR"
         "TERMINATED"
         "NOT_FOUND"
+        "EXPIRED"
     end
 
     enum FleetAction
@@ -2396,6 +2403,8 @@ local record M
         -- ACTIVE -- The fleet is now ready to host game sessions.
         -- ERROR -- An error occurred when downloading,
         -- validating, building, or activating the fleet.
+        -- EXPIRED -- The fleet has been expired. The fleet is scaled down to zero
+        -- instances and cannot host new game sessions.
         -- DELETING -- Hosts are responding to a delete fleet request.
         -- TERMINATED -- The fleet no longer exists.
         Status: string
@@ -4383,6 +4392,7 @@ local record M
         "GENERIC_EVENT"
         "FLEET_CREATED"
         "FLEET_DELETED"
+        "FLEET_EXPIRED"
         "FLEET_SCALING_EVENT"
         "FLEET_STATE_DOWNLOADING"
         "FLEET_STATE_VALIDATING"
@@ -4571,6 +4581,8 @@ local record M
         -- fleet's game session protection policy setting. Event messaging includes both
         -- the old and new policy setting.
         -- FLEET_DELETED -- A request to delete a fleet was initiated.
+        -- FLEET_EXPIRED -- The fleet has been expired. The fleet is scaled down to zero
+        -- instances and can no longer host game sessions.
         -- GENERIC_EVENT -- An unspecified event has occurred.
         EventCode: string
         -- Additional information related to the event.
