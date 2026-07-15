@@ -1508,6 +1508,12 @@ M.CreateLaunchConfigurationTemplateInput = schema.new({
             name = "launchIntoSourceInstance",
             target_id = prelude.Boolean.id,
         }),
+        recoveryMode = schema.new({
+            id = id.from(_N, "CreateLaunchConfigurationTemplateInput", "recoveryMode"),
+            type = "string",
+            name = "recoveryMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1583,6 +1589,12 @@ M.LaunchConfigurationTemplate = schema.new({
             type = "boolean",
             name = "launchIntoSourceInstance",
             target_id = prelude.Boolean.id,
+        }),
+        recoveryMode = schema.new({
+            id = id.from(_N, "LaunchConfigurationTemplate", "recoveryMode"),
+            type = "string",
+            name = "recoveryMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3658,6 +3670,12 @@ M.UpdateLaunchConfigurationTemplateInput = schema.new({
             name = "launchIntoSourceInstance",
             target_id = prelude.Boolean.id,
         }),
+        recoveryMode = schema.new({
+            id = id.from(_N, "UpdateLaunchConfigurationTemplateInput", "recoveryMode"),
+            type = "string",
+            name = "recoveryMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4801,6 +4819,12 @@ M.GetLaunchConfigurationOutput = schema.new({
             target_id = id.from(_N, "LaunchIntoInstanceProperties"),
             target = M.LaunchIntoInstanceProperties,
         }),
+        recoveryMode = schema.new({
+            id = id.from(_N, "GetLaunchConfigurationOutput", "recoveryMode"),
+            type = "string",
+            name = "recoveryMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5296,6 +5320,12 @@ M.UpdateLaunchConfigurationInput = schema.new({
             target_id = id.from(_N, "LaunchIntoInstanceProperties"),
             target = M.LaunchIntoInstanceProperties,
         }),
+        recoveryMode = schema.new({
+            id = id.from(_N, "UpdateLaunchConfigurationInput", "recoveryMode"),
+            type = "string",
+            name = "recoveryMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -5364,6 +5394,12 @@ M.UpdateLaunchConfigurationOutput = schema.new({
             name = "launchIntoInstanceProperties",
             target_id = id.from(_N, "LaunchIntoInstanceProperties"),
             target = M.LaunchIntoInstanceProperties,
+        }),
+        recoveryMode = schema.new({
+            id = id.from(_N, "UpdateLaunchConfigurationOutput", "recoveryMode"),
+            type = "string",
+            name = "recoveryMode",
+            target_id = prelude.String.id,
         }),
     },
 })

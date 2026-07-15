@@ -386,6 +386,8 @@ local record M
         PubliclyAccessible: boolean
         -- The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.
         SecurityGroups: {string}
+        -- The broker's storage size in GB.
+        StorageSize: number
         -- The broker's storage type.
         StorageType: string
         -- The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones. If you specify more than one subnet, the subnets must be in different Availability Zones. Amazon MQ will not be able to create VPC endpoints for your broker with multiple subnets in the same Availability Zone. A SINGLE_INSTANCE deployment requires one subnet (for example, the default subnet). An ACTIVE_STANDBY_MULTI_AZ Amazon MQ for ActiveMQ deployment requires two subnets. A CLUSTER_MULTI_AZ Amazon MQ for RabbitMQ deployment has no subnet requirements when deployed with public accessibility. Deployment without public accessibility requires at least one subnet. If you specify subnets in a shared VPC for a RabbitMQ broker, the associated VPC to which the specified subnets belong must be owned by your Amazon Web Services account. Amazon MQ will not be able to create VPC endpoints in VPCs that are not owned by your Amazon Web Services account.
@@ -664,10 +666,14 @@ local record M
         PendingLdapServerMetadata: LdapServerMetadataOutput
         -- The list of pending security groups to authorize connections to brokers.
         PendingSecurityGroups: {string}
+        -- The pending storage size in GB, to be applied on the next broker restart.
+        PendingStorageSize: number
         -- Enables connections from applications outside of the VPC that hosts the broker's subnets.
         PubliclyAccessible: boolean
         -- The list of rules (1 minimum, 125 maximum) that authorize connections to brokers.
         SecurityGroups: {string}
+        -- The broker's storage size in GB.
+        StorageSize: number
         -- The broker's storage type.
         StorageType: string
         -- The list of groups that define which subnets and IP ranges the broker can use from different Availability Zones.
@@ -950,6 +956,8 @@ local record M
         ResourceShareArns: {string}
         -- The list of security groups (1 minimum, 5 maximum) that authorizes connections to brokers.
         SecurityGroups: {string}
+        -- The broker's storage size in GB.
+        StorageSize: number
         -- Defines whether this broker is a part of a data replication pair.
         DataReplicationMode: string
     end
@@ -985,6 +993,8 @@ local record M
         PendingDataReplicationMetadata: DataReplicationMetadataOutput
         -- Describes whether this broker will be a part of a data replication pair after reboot.
         PendingDataReplicationMode: string
+        -- The broker's storage size in GB.
+        StorageSize: number
     end
 
     -- Updates the specified configuration.

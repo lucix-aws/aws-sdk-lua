@@ -1838,6 +1838,7 @@ local record M
         "FunctionError.TooManyExtensions"
         "FunctionError.InitResourceExhausted"
         "DisallowedByVpcEncryptionControl"
+        "DependencyError"
     end
 
     -- An Lambda layer.
@@ -1921,6 +1922,7 @@ local record M
         "FunctionError.InitResourceExhausted"
         "DisallowedByVpcEncryptionControl"
         "DrainingDurableExecutions"
+        "DependencyError"
     end
 
     -- The function's X-Ray tracing configuration.

@@ -4,12 +4,6 @@ return
 {
     version = "1.0",
     parameters = {
-        Region = {
-            builtIn = "AWS::Region",
-            required = false,
-            documentation = "The AWS region used to dispatch the request.",
-            type = "string",
-        },
         UseDualStack = {
             builtIn = "AWS::UseDualStack",
             required = true,
@@ -28,6 +22,12 @@ return
             builtIn = "SDK::Endpoint",
             required = false,
             documentation = "Override the endpoint used to send this request",
+            type = "string",
+        },
+        Region = {
+            builtIn = "AWS::Region",
+            required = false,
+            documentation = "The AWS region used to dispatch the request.",
             type = "string",
         },
     },
@@ -60,58 +60,7 @@ return
                     type = "error",
                 },
                 {
-                    conditions = {
-                        {
-                            fn = "booleanEquals",
-                            argv = {
-                                {
-                                    ref = "UseDualStack",
-                                },
-                                true,
-                            },
-                        },
-                    },
-                    error = "Invalid Configuration: Dualstack and custom endpoint are not supported",
-                    type = "error",
-                },
-                {
                     conditions = {},
-                    endpoint = {
-                        url = {
-                            ref = "Endpoint",
-                        },
-                        properties = {},
-                        headers = {},
-                    },
-                    type = "endpoint",
-                },
-            },
-            type = "tree",
-        },
-        {
-            conditions = {
-                {
-                    fn = "isSet",
-                    argv = {
-                        {
-                            ref = "Region",
-                        },
-                    },
-                },
-            },
-            rules = {
-                {
-                    conditions = {
-                        {
-                            fn = "aws.partition",
-                            argv = {
-                                {
-                                    ref = "Region",
-                                },
-                            },
-                            assign = "PartitionResult",
-                        },
-                    },
                     rules = {
                         {
                             conditions = {
@@ -119,259 +68,21 @@ return
                                     fn = "booleanEquals",
                                     argv = {
                                         {
-                                            ref = "UseFIPS",
-                                        },
-                                        true,
-                                    },
-                                },
-                                {
-                                    fn = "booleanEquals",
-                                    argv = {
-                                        {
                                             ref = "UseDualStack",
                                         },
                                         true,
                                     },
                                 },
                             },
-                            rules = {
-                                {
-                                    conditions = {
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                true,
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsFIPS",
-                                                    },
-                                                },
-                                            },
-                                        },
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                true,
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsDualStack",
-                                                    },
-                                                },
-                                            },
-                                        },
-                                    },
-                                    rules = {
-                                        {
-                                            conditions = {},
-                                            endpoint = {
-                                                url = "https://servicediscovery-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                    },
-                                    type = "tree",
-                                },
-                                {
-                                    conditions = {},
-                                    error = "FIPS and DualStack are enabled, but this partition does not support one or both",
-                                    type = "error",
-                                },
-                            },
-                            type = "tree",
-                        },
-                        {
-                            conditions = {
-                                {
-                                    fn = "booleanEquals",
-                                    argv = {
-                                        {
-                                            ref = "UseFIPS",
-                                        },
-                                        true,
-                                    },
-                                },
-                            },
-                            rules = {
-                                {
-                                    conditions = {
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsFIPS",
-                                                    },
-                                                },
-                                                true,
-                                            },
-                                        },
-                                    },
-                                    rules = {
-                                        {
-                                            conditions = {},
-                                            endpoint = {
-                                                url = "https://servicediscovery-fips.{Region}.{PartitionResult#dnsSuffix}",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                    },
-                                    type = "tree",
-                                },
-                                {
-                                    conditions = {},
-                                    error = "FIPS is enabled but this partition does not support FIPS",
-                                    type = "error",
-                                },
-                            },
-                            type = "tree",
-                        },
-                        {
-                            conditions = {
-                                {
-                                    fn = "booleanEquals",
-                                    argv = {
-                                        {
-                                            ref = "UseDualStack",
-                                        },
-                                        true,
-                                    },
-                                },
-                            },
-                            rules = {
-                                {
-                                    conditions = {
-                                        {
-                                            fn = "booleanEquals",
-                                            argv = {
-                                                true,
-                                                {
-                                                    fn = "getAttr",
-                                                    argv = {
-                                                        {
-                                                            ref = "PartitionResult",
-                                                        },
-                                                        "supportsDualStack",
-                                                    },
-                                                },
-                                            },
-                                        },
-                                    },
-                                    rules = {
-                                        {
-                                            conditions = {
-                                                {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        "aws",
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                    },
-                                                },
-                                            },
-                                            endpoint = {
-                                                url = "https://servicediscovery.{Region}.amazonaws.com",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                        {
-                                            conditions = {
-                                                {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        "aws-cn",
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                    },
-                                                },
-                                            },
-                                            endpoint = {
-                                                url = "https://servicediscovery.{Region}.amazonaws.com.cn",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                        {
-                                            conditions = {
-                                                {
-                                                    fn = "stringEquals",
-                                                    argv = {
-                                                        "aws-us-gov",
-                                                        {
-                                                            fn = "getAttr",
-                                                            argv = {
-                                                                {
-                                                                    ref = "PartitionResult",
-                                                                },
-                                                                "name",
-                                                            },
-                                                        },
-                                                    },
-                                                },
-                                            },
-                                            endpoint = {
-                                                url = "https://servicediscovery.{Region}.amazonaws.com",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                        {
-                                            conditions = {},
-                                            endpoint = {
-                                                url = "https://servicediscovery.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                properties = {},
-                                                headers = {},
-                                            },
-                                            type = "endpoint",
-                                        },
-                                    },
-                                    type = "tree",
-                                },
-                                {
-                                    conditions = {},
-                                    error = "DualStack is enabled but this partition does not support DualStack",
-                                    type = "error",
-                                },
-                            },
-                            type = "tree",
+                            error = "Invalid Configuration: Dualstack and custom endpoint are not supported",
+                            type = "error",
                         },
                         {
                             conditions = {},
                             endpoint = {
-                                url = "https://servicediscovery.{Region}.{PartitionResult#dnsSuffix}",
+                                url = {
+                                    ref = "Endpoint",
+                                },
                                 properties = {},
                                 headers = {},
                             },
@@ -385,8 +96,252 @@ return
         },
         {
             conditions = {},
-            error = "Invalid Configuration: Missing Region",
-            type = "error",
+            rules = {
+                {
+                    conditions = {
+                        {
+                            fn = "isSet",
+                            argv = {
+                                {
+                                    ref = "Region",
+                                },
+                            },
+                        },
+                    },
+                    rules = {
+                        {
+                            conditions = {
+                                {
+                                    fn = "aws.partition",
+                                    argv = {
+                                        {
+                                            ref = "Region",
+                                        },
+                                    },
+                                    assign = "PartitionResult",
+                                },
+                            },
+                            rules = {
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    rules = {
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        true,
+                                                        {
+                                                            fn = "getAttr",
+                                                            argv = {
+                                                                {
+                                                                    ref = "PartitionResult",
+                                                                },
+                                                                "supportsFIPS",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        true,
+                                                        {
+                                                            fn = "getAttr",
+                                                            argv = {
+                                                                {
+                                                                    ref = "PartitionResult",
+                                                                },
+                                                                "supportsDualStack",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                            rules = {
+                                                {
+                                                    conditions = {},
+                                                    endpoint = {
+                                                        url = "https://servicediscovery-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                            },
+                                            type = "tree",
+                                        },
+                                        {
+                                            conditions = {},
+                                            error = "FIPS and DualStack are enabled, but this partition does not support one or both",
+                                            type = "error",
+                                        },
+                                    },
+                                    type = "tree",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                    },
+                                    rules = {
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        {
+                                                            fn = "getAttr",
+                                                            argv = {
+                                                                {
+                                                                    ref = "PartitionResult",
+                                                                },
+                                                                "supportsFIPS",
+                                                            },
+                                                        },
+                                                        true,
+                                                    },
+                                                },
+                                            },
+                                            rules = {
+                                                {
+                                                    conditions = {},
+                                                    endpoint = {
+                                                        url = "https://servicediscovery-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                            },
+                                            type = "tree",
+                                        },
+                                        {
+                                            conditions = {},
+                                            error = "FIPS is enabled but this partition does not support FIPS",
+                                            type = "error",
+                                        },
+                                    },
+                                    type = "tree",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    rules = {
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        true,
+                                                        {
+                                                            fn = "getAttr",
+                                                            argv = {
+                                                                {
+                                                                    ref = "PartitionResult",
+                                                                },
+                                                                "supportsDualStack",
+                                                            },
+                                                        },
+                                                    },
+                                                },
+                                            },
+                                            rules = {
+                                                {
+                                                    conditions = {},
+                                                    endpoint = {
+                                                        url = "https://servicediscovery.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                            },
+                                            type = "tree",
+                                        },
+                                        {
+                                            conditions = {},
+                                            error = "DualStack is enabled but this partition does not support DualStack",
+                                            type = "error",
+                                        },
+                                    },
+                                    type = "tree",
+                                },
+                                {
+                                    conditions = {},
+                                    endpoint = {
+                                        url = "https://servicediscovery.{Region}.{PartitionResult#dnsSuffix}",
+                                        properties = {},
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                            },
+                            type = "tree",
+                        },
+                    },
+                    type = "tree",
+                },
+                {
+                    conditions = {},
+                    error = "Invalid Configuration: Missing Region",
+                    type = "error",
+                },
+            },
+            type = "tree",
         },
     },
 }

@@ -6686,6 +6686,10 @@ local record M
         RuleId: string
     end
 
+    enum RuleCapabilityTier
+        "GenerativeAI"
+    end
+
     -- Information about a rule.
     record Rule
         -- The name of the rule.
@@ -6696,6 +6700,9 @@ local record M
         RuleArn: string
         -- The event source to trigger the rule.
         TriggerEventSource: RuleTriggerEventSource
+        -- The list of capability tiers associated with the rule. Used for categorizing rules by capability (for example,
+        -- GenerativeAI).
+        RuleCapabilityTiers: {string}
         -- The conditions of the rule.
         Function: string
         -- A list of actions to be run when the rule is triggered.
@@ -8620,10 +8627,12 @@ local record M
         -- AGENT_HIERARCHY_LEVEL_THREE | AGENT_HIERARCHY_LEVEL_FOUR |
         -- AGENT_HIERARCHY_LEVEL_FIVE | ANSWERING_MACHINE_DETECTION_STATUS |
         -- BOT_ALIAS | BOT_ID | BOT_INTENT_NAME | BOT_LOCALE |
-        -- BOT_VERSION | CAMPAIGN | CAMPAIGN_DELIVERY_EVENT_TYPE |
+        -- BOT_VERSION | BROWSER_NAME | CAMPAIGN |
+        -- CAMPAIGN_DELIVERY_EVENT_TYPE |
         -- CAMPAIGN_EXCLUDED_EVENT_TYPE | CASE_STATUS | CASE_TEMPLATE_ARN |
         -- CHANNEL | contact/segmentAttributes/connect:Subtype |
-        -- contact/segmentAttributes/connect:ValidationTestType | DISCONNECT_REASON |
+        -- contact/segmentAttributes/connect:ValidationTestType | DEVICE_MODEL |
+        -- DEVICE_TYPE | DISCONNECT_REASON |
         -- EVALUATION_FORM | EVALUATION_QUESTION | EVALUATION_SECTION |
         -- EVALUATION_SOURCE | EVALUATOR_ID | FEATURE |
         -- FLOW_ACTION_ID | FLOW_TYPE | FLOWS_MODULE_RESOURCE_ID |
@@ -8635,7 +8644,8 @@ local record M
         -- Q_CONNECT_ENABLED | QUEUE | RESOURCE_PUBLISHED_TIMESTAMP |
         -- ROUTING_PROFILE | ROUTING_STEP_EXPRESSION | SESSION_ID |
         -- TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON |
-        -- TEST_CASE_EXECUTION_RESULT | TEST_CASE_EXECUTION_STATE
+        -- TEST_CASE_EXECUTION_RESULT | TEST_CASE_EXECUTION_STATE |
+        -- WEB_NOTIFICATION_TYPE
         -- The following filter keys correspond to Connect Customer resources and are used for authorizing requests.
         -- A GetMetricDataV2 request requires at least one of these filters:
         -- QUEUE, ROUTING_PROFILE, AGENT,
@@ -8680,10 +8690,11 @@ local record M
         -- AGENT_HIERARCHY_LEVEL_TWO | AGENT_HIERARCHY_LEVEL_THREE |
         -- AGENT_HIERARCHY_LEVEL_FOUR | AGENT_HIERARCHY_LEVEL_FIVE |
         -- ANSWERING_MACHINE_DETECTION_STATUS | BOT_ID | BOT_ALIAS |
-        -- BOT_VERSION | BOT_LOCALE | BOT_INTENT_NAME | CAMPAIGN |
-        -- CAMPAIGN_DELIVERY_EVENT_TYPE | CAMPAIGN_EXCLUDED_EVENT_TYPE |
+        -- BOT_VERSION | BOT_LOCALE | BOT_INTENT_NAME | BROWSER_NAME |
+        -- CAMPAIGN | CAMPAIGN_DELIVERY_EVENT_TYPE | CAMPAIGN_EXCLUDED_EVENT_TYPE |
         -- CAMPAIGN_EXECUTION_TIMESTAMP | CASE_TEMPLATE_ARN | CASE_STATUS |
-        -- CHANNEL | contact/segmentAttributes/connect:Subtype | DISCONNECT_REASON |
+        -- CHANNEL | contact/segmentAttributes/connect:Subtype | DEVICE_MODEL |
+        -- DEVICE_TYPE | DISCONNECT_REASON |
         -- EVALUATION_FORM | EVALUATION_SECTION | EVALUATION_QUESTION |
         -- EVALUATION_SOURCE | EVALUATOR_ID | FLOWS_RESOURCE_ID |
         -- FLOWS_MODULE_RESOURCE_ID | FLOW_ACTION_ID | FLOW_TYPE |
@@ -8693,7 +8704,7 @@ local record M
         -- PARENT_FLOWS_RESOURCE_ID | Q_CONNECT_ENABLED | QUEUE |
         -- RESOURCE_PUBLISHED_TIMESTAMP | ROUTING_PROFILE | ROUTING_STEP_EXPRESSION |
         -- SESSION_ID | TEST_CASE | TEST_CASE_EXECUTION_FAILURE_REASON |
-        -- TEST_CASE_INVOCATION_METHOD
+        -- TEST_CASE_INVOCATION_METHOD | WEB_NOTIFICATION_TYPE
         -- AI_AGENT_NAME_VERSION, AI_PROMPT_NAME_VERSION, and KNOWLEDGE_ARTICLE_NAME are valid groupings but not valid filters.
         -- API, SCHEDULE, and EVENT are the only valid filterValues for TEST_CASE_INVOCATION_METHOD.
         -- OBSERVE_EVENT, SEND_INSTRUCTION, ASSERT_DATA, and OVERRIDE_SYSTEM_BEHAVIOR are the only valid filterValues for
@@ -9228,10 +9239,12 @@ local record M
         -- UI name: Campaign
         -- contacts abandoned after X rate
         -- CAMPAIGN_INTERACTIONS
-        -- This metric is available only for outbound campaigns using the email delivery mode.
+        -- This metric is available only for outbound campaigns using the email, WhatsApp, and web notification
+        -- delivery modes.
         -- Unit: Count
         -- Valid metric filter key: CAMPAIGN_INTERACTION_EVENT_TYPE
-        -- Valid groupings and filters: Campaign
+        -- Valid groupings and filters: Browser Name, Campaign, Channel, contact/segmentAttributes/connect:Subtype,
+        -- Device Model, Device Type, Web Notification Type
         -- UI name: Campaign interactions
         -- CAMPAIGN_PROGRESS_RATE
         -- This metric is only available for outbound campaigns initiated using a customer segment. It is not available
@@ -9366,25 +9379,27 @@ local record M
         -- Unit: Count
         -- Valid metric filter key: ANSWERING_MACHINE_DETECTION_STATUS,
         -- CAMPAIGN_DELIVERY_EVENT_TYPE, DISCONNECT_REASON
-        -- Valid groupings and filters: Agent, Answering Machine Detection Status, Campaign, Campaign Delivery EventType, Channel,
-        -- contact/segmentAttributes/connect:Subtype, Disconnect Reason, Queue, Routing Profile
+        -- Valid groupings and filters: Agent, Answering Machine Detection Status, Browser Name, Campaign, Campaign Delivery EventType,
+        -- Channel, contact/segmentAttributes/connect:Subtype, Device Model, Device Type, Disconnect Reason, Queue, Routing
+        -- Profile, Web Notification Type
         -- UI name: Delivery attempts
-        -- Campaign Delivery EventType filter and grouping are only available for SMS and Email campaign delivery
-        -- modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and Disconnect Reason are only available
-        -- for agent assisted voice and automated voice delivery modes.
+        -- Campaign Delivery EventType filter and grouping are only available for SMS, Email, WhatsApp, and web
+        -- notification campaign delivery modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and
+        -- Disconnect Reason are only available for agent assisted voice and automated voice delivery modes.
         -- DELIVERY_ATTEMPT_DISPOSITION_RATE
         -- This metric is available only for outbound campaigns. Dispositions for the agent assisted voice and automated
         -- voice delivery modes are only available with answering machine detection enabled.
         -- Unit: Percent
         -- Valid metric filter key: ANSWERING_MACHINE_DETECTION_STATUS,
         -- CAMPAIGN_DELIVERY_EVENT_TYPE, DISCONNECT_REASON
-        -- Valid groupings and filters: Agent, Answering Machine Detection Status, Campaign, Channel,
-        -- contact/segmentAttributes/connect:Subtype, Disconnect Reason, Queue, Routing Profile
+        -- Valid groupings and filters: Agent, Answering Machine Detection Status, Browser Name, Campaign, Channel,
+        -- contact/segmentAttributes/connect:Subtype, Device Model, Device Type, Disconnect Reason, Queue, Routing Profile,
+        -- Web Notification Type
         -- UI name: Delivery attempt
         -- disposition rate
-        -- Campaign Delivery Event Type filter and grouping are only available for SMS and Email campaign delivery
-        -- modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and Disconnect Reason are only available
-        -- for agent assisted voice and automated voice delivery modes.
+        -- Campaign Delivery Event Type filter and grouping are only available for SMS, Email, WhatsApp, and web
+        -- notification campaign delivery modes. Agent, Queue, Routing Profile, Answering Machine Detection Status and
+        -- Disconnect Reason are only available for agent assisted voice and automated voice delivery modes.
         -- EVALUATIONS_PERFORMED
         -- Unit: Count
         -- Valid groupings and filters: Agent, Agent Hierarchy, Channel, Evaluation Form ID, Evaluation Source, Form Version, Queue,
@@ -11633,6 +11648,9 @@ local record M
         EventSourceName: string
         -- The publish status of the rule.
         PublishStatus: string
+        -- The list of capability tiers associated with the rule. Used for categorizing rules by capability (for example,
+        -- GenerativeAI).
+        RuleCapabilityTiers: {string}
         -- A list of ActionTypes associated with a rule.
         ActionSummaries: {ActionSummary}
         -- The timestamp for when the rule was created.
@@ -13356,6 +13374,67 @@ local record M
         NextToken: string
         -- The total number of routing profiles which matched your search query.
         ApproximateTotalCount: number
+    end
+
+    -- A list of conditions which would be applied together with an AND condition.
+    record RuleAttributeAndCondition
+        -- A list of tag conditions that need to be applied with AND condition.
+        TagConditions: {TagCondition}
+    end
+
+    -- An object that can be used to specify tag conditions inside the SearchFilter. This accepts an
+    -- OR of AND (List of List) input where:
+    -- The top level list specifies conditions that need to be applied with OR operator.
+    -- The inner list specifies conditions that need to be applied with AND operator.
+    record RuleAttributeFilter
+        -- A list of conditions which would be applied together with an OR condition.
+        OrConditions: {RuleAttributeAndCondition}
+        -- A list of conditions which would be applied together with an AND condition.
+        AndCondition: RuleAttributeAndCondition
+        TagCondition: TagCondition
+    end
+
+    -- Filters to be applied to search results.
+    record RulesSearchFilter
+        -- An object that can be used to specify tag conditions inside the SearchFilter.
+        AttributeFilter: RuleAttributeFilter
+    end
+
+    -- A summary of information about a rule, returned as part of the response to a SearchRules
+    -- operation.
+    record RuleSearchSummary
+        -- The name of the rule.
+        Name: string
+        -- A unique identifier for the rule.
+        RuleId: string
+        -- The Amazon Resource Name (ARN) of the rule.
+        RuleArn: string
+        -- The event source to trigger the rule.
+        TriggerEventSource: RuleTriggerEventSource
+        -- A list of ActionTypes associated with a rule.
+        ActionSummaries: {ActionSummary}
+        -- The list of capability tiers associated with the rule. Used for categorizing rules by capability (for example,
+        -- GenerativeAI).
+        RuleCapabilityTiers: {string}
+        -- The publish status of the rule.
+        PublishStatus: string
+        -- The timestamp for when the rule was created.
+        CreatedTime: number
+        -- The timestamp for when the rule was last updated.
+        LastUpdatedTime: number
+        -- The Amazon Resource Name (ARN) of the user who last updated the rule.
+        LastUpdatedBy: string
+        -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
+        Tags: {string : string}
+    end
+
+    record SearchRulesOutput
+        -- Information about the rules.
+        Rules: {RuleSearchSummary}
+        -- The total number of rules which matched your search query.
+        ApproximateTotalCount: number
+        -- If there are additional results, this is the token for the next set of results.
+        NextToken: string
     end
 
     -- Filters to be applied to search results.
@@ -16228,6 +16307,20 @@ local record M
         StringCondition: StringCondition
     end
 
+    -- The search criteria to be used to return rules.
+    record RulesSearchCriteria
+        -- A list of conditions which would be applied together with an OR condition.
+        OrConditions: {RulesSearchCriteria}
+        -- A list of conditions which would be applied together with an AND condition.
+        AndConditions: {RulesSearchCriteria}
+        -- A leaf node condition which can be used to specify a string condition.
+        -- The currently supported values for FieldName are Name,
+        -- PublishStatus, EventSourceName, RuleId,
+        -- IntegrationAssociationId, ActionSummaries, and
+        -- RuleCapabilityTiers.
+        StringCondition: StringCondition
+    end
+
     -- The search criteria to be used to return security profiles.
     -- The name field support "contains" queries with a minimum of 2 characters and maximum of 25
     -- characters. Any queries with character lengths outside of this range will throw invalid
@@ -16585,6 +16678,20 @@ local record M
         -- a minimum of 2 characters and a maximum of 25 characters. Any queries with character lengths
         -- outside of this range will throw invalid results.
         SearchCriteria: RoutingProfileSearchCriteria
+    end
+
+    record SearchRulesInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The maximum number of results to return per page.
+        MaxResults: number
+        -- The token for the next set of results. Use the value returned in the previous
+        -- response in the next request to retrieve the next set of results.
+        NextToken: string
+        -- The search criteria to be used to return rules.
+        SearchCriteria: RulesSearchCriteria
+        -- Filters to be applied to search results, such as tag-based filters.
+        SearchFilter: RulesSearchFilter
     end
 
     record SearchSecurityProfilesInput

@@ -357,6 +357,8 @@ M.TagsList = schema.new({ type = "list", list_member = M.TagSet })
 
 M.RoutingProfileList = schema.new({ type = "list", list_member = M.RoutingProfile })
 
+M.RuleSearchSummaryList = schema.new({ type = "list", list_member = M.RuleSearchSummary })
+
 M.SecurityProfilesSearchSummaryList = schema.new({ type = "list", list_member = M.SecurityProfileSearchSummary })
 
 M.TestCaseSearchSummaryList = schema.new({ type = "list", list_member = M.TestCase })
@@ -429,6 +431,8 @@ M.ReplicationStatusSummaryList = schema.new({ type = "list", list_member = M.Rep
 
 M.AssociatedQueueIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RuleCapabilityTiers = schema.new({ type = "list", list_member = prelude.String })
+
 M.Queues = schema.new({ type = "list", list_member = prelude.String })
 
 M.Channels = schema.new({ type = "list", list_member = prelude.String })
@@ -490,6 +494,8 @@ M.QueueSearchConditionList = schema.new({ type = "list", list_member = M.QueueSe
 M.QuickConnectSearchConditionList = schema.new({ type = "list", list_member = M.QuickConnectSearchCriteria })
 
 M.RoutingProfileSearchConditionList = schema.new({ type = "list", list_member = M.RoutingProfileSearchCriteria })
+
+M.RulesSearchConditionList = schema.new({ type = "list", list_member = M.RulesSearchCriteria })
 
 M.SecurityProfileSearchConditionList = schema.new({ type = "list", list_member = M.SecurityProfileSearchCriteria })
 
@@ -598,6 +604,8 @@ M.AiAgentSearchCriteriaList = schema.new({ type = "list", list_member = M.AiAgen
 M.ContactSearchSummarySegmentAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = M.ContactSearchSummarySegmentAttributeValue })
 
 M.ContactSearchSummaryAiAgentInfoList = schema.new({ type = "list", list_member = M.ContactSearchSummaryAiAgentInfo })
+
+M.RuleAttributeOrConditionList = schema.new({ type = "list", list_member = M.RuleAttributeAndCondition })
 
 M.AttributeOrConditionList = schema.new({ type = "list", list_member = M.AttributeAndCondition })
 
@@ -16473,6 +16481,13 @@ M.Rule = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        RuleCapabilityTiers = schema.new({
+            id = id.from(_N, "Rule", "RuleCapabilityTiers"),
+            type = "list",
+            name = "RuleCapabilityTiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         Function = schema.new({
             id = id.from(_N, "Rule", "Function"),
             type = "string",
@@ -26381,6 +26396,13 @@ M.RuleSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        RuleCapabilityTiers = schema.new({
+            id = id.from(_N, "RuleSummary", "RuleCapabilityTiers"),
+            type = "list",
+            name = "RuleCapabilityTiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         ActionSummaries = schema.new({
             id = id.from(_N, "RuleSummary", "ActionSummaries"),
             type = "list",
@@ -31022,6 +31044,196 @@ M.SearchRoutingProfilesOutput = schema.new({
             type = "long",
             name = "ApproximateTotalCount",
             target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.RuleAttributeAndCondition = schema.new({
+    id = id.from(_N, "RuleAttributeAndCondition"),
+    type = "structure",
+    members = {
+        TagConditions = schema.new({
+            id = id.from(_N, "RuleAttributeAndCondition", "TagConditions"),
+            type = "list",
+            name = "TagConditions",
+            target_id = prelude.Document.id,
+            list_member = M.TagCondition,
+        }),
+    },
+})
+
+M.RuleAttributeFilter = schema.new({
+    id = id.from(_N, "RuleAttributeFilter"),
+    type = "structure",
+    members = {
+        OrConditions = schema.new({
+            id = id.from(_N, "RuleAttributeFilter", "OrConditions"),
+            type = "list",
+            name = "OrConditions",
+            target_id = prelude.Document.id,
+            list_member = M.RuleAttributeAndCondition,
+        }),
+        AndCondition = schema.new({
+            id = id.from(_N, "RuleAttributeFilter", "AndCondition"),
+            type = "structure",
+            name = "AndCondition",
+            target_id = id.from(_N, "RuleAttributeAndCondition"),
+            target = M.RuleAttributeAndCondition,
+        }),
+        TagCondition = schema.new({
+            id = id.from(_N, "RuleAttributeFilter", "TagCondition"),
+            type = "structure",
+            name = "TagCondition",
+            target_id = id.from(_N, "TagCondition"),
+            target = M.TagCondition,
+        }),
+    },
+})
+
+M.RulesSearchFilter = schema.new({
+    id = id.from(_N, "RulesSearchFilter"),
+    type = "structure",
+    members = {
+        AttributeFilter = schema.new({
+            id = id.from(_N, "RulesSearchFilter", "AttributeFilter"),
+            type = "structure",
+            name = "AttributeFilter",
+            target_id = id.from(_N, "RuleAttributeFilter"),
+            target = M.RuleAttributeFilter,
+        }),
+    },
+})
+
+M.RuleSearchSummary = schema.new({
+    id = id.from(_N, "RuleSearchSummary"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleId = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "RuleId"),
+            type = "string",
+            name = "RuleId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleArn = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "RuleArn"),
+            type = "string",
+            name = "RuleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TriggerEventSource = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "TriggerEventSource"),
+            type = "structure",
+            name = "TriggerEventSource",
+            target_id = id.from(_N, "RuleTriggerEventSource"),
+            target = M.RuleTriggerEventSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ActionSummaries = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "ActionSummaries"),
+            type = "list",
+            name = "ActionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.ActionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RuleCapabilityTiers = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "RuleCapabilityTiers"),
+            type = "list",
+            name = "RuleCapabilityTiers",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        PublishStatus = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "PublishStatus"),
+            type = "string",
+            name = "PublishStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedTime = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "LastUpdatedTime"),
+            type = "timestamp",
+            name = "LastUpdatedTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedBy = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "LastUpdatedBy"),
+            type = "string",
+            name = "LastUpdatedBy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "RuleSearchSummary", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.SearchRulesOutput = schema.new({
+    id = id.from(_N, "SearchRulesResponse"),
+    type = "structure",
+    members = {
+        Rules = schema.new({
+            id = id.from(_N, "SearchRulesOutput", "Rules"),
+            type = "list",
+            name = "Rules",
+            target_id = prelude.Document.id,
+            list_member = M.RuleSearchSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApproximateTotalCount = schema.new({
+            id = id.from(_N, "SearchRulesOutput", "ApproximateTotalCount"),
+            type = "long",
+            name = "ApproximateTotalCount",
+            target_id = prelude.Long.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchRulesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -38746,6 +38958,34 @@ M.RoutingProfileSearchCriteria = schema.new({
     },
 })
 
+M.RulesSearchCriteria = schema.new({
+    id = id.from(_N, "RulesSearchCriteria"),
+    type = "structure",
+    members = {
+        OrConditions = schema.new({
+            id = id.from(_N, "RulesSearchCriteria", "OrConditions"),
+            type = "list",
+            name = "OrConditions",
+            target_id = prelude.Document.id,
+            list_member = M.RulesSearchCriteria,
+        }),
+        AndConditions = schema.new({
+            id = id.from(_N, "RulesSearchCriteria", "AndConditions"),
+            type = "list",
+            name = "AndConditions",
+            target_id = prelude.Document.id,
+            list_member = M.RulesSearchCriteria,
+        }),
+        StringCondition = schema.new({
+            id = id.from(_N, "RulesSearchCriteria", "StringCondition"),
+            type = "structure",
+            name = "StringCondition",
+            target_id = id.from(_N, "StringCondition"),
+            target = M.StringCondition,
+        }),
+    },
+})
+
 M.SecurityProfileSearchCriteria = schema.new({
     id = id.from(_N, "SecurityProfileSearchCriteria"),
     type = "structure",
@@ -39733,6 +39973,48 @@ M.SearchRoutingProfilesInput = schema.new({
             name = "SearchCriteria",
             target_id = id.from(_N, "RoutingProfileSearchCriteria"),
             target = M.RoutingProfileSearchCriteria,
+        }),
+    },
+})
+
+M.SearchRulesInput = schema.new({
+    id = id.from(_N, "SearchRulesRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "SearchRulesInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchRulesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchRulesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        SearchCriteria = schema.new({
+            id = id.from(_N, "SearchRulesInput", "SearchCriteria"),
+            type = "structure",
+            name = "SearchCriteria",
+            target_id = id.from(_N, "RulesSearchCriteria"),
+            target = M.RulesSearchCriteria,
+        }),
+        SearchFilter = schema.new({
+            id = id.from(_N, "SearchRulesInput", "SearchFilter"),
+            type = "structure",
+            name = "SearchFilter",
+            target_id = id.from(_N, "RulesSearchFilter"),
+            target = M.RulesSearchFilter,
         }),
     },
 })
@@ -45232,6 +45514,18 @@ M.SearchRoutingProfiles = schema.operation({
     output = M.SearchRoutingProfilesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/search-routing-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchRules = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchRules"),
+    input = M.SearchRulesInput,
+    output = M.SearchRulesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-rules" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

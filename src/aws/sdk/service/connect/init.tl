@@ -293,6 +293,7 @@ local record Client
     searchQuickConnects: function(Client, types.SearchQuickConnectsInput, ? base_client.InvokeOptions): async.Operation<types.SearchQuickConnectsOutput>
     searchResourceTags: function(Client, types.SearchResourceTagsInput, ? base_client.InvokeOptions): async.Operation<types.SearchResourceTagsOutput>
     searchRoutingProfiles: function(Client, types.SearchRoutingProfilesInput, ? base_client.InvokeOptions): async.Operation<types.SearchRoutingProfilesOutput>
+    searchRules: function(Client, types.SearchRulesInput, ? base_client.InvokeOptions): async.Operation<types.SearchRulesOutput>
     searchSecurityProfiles: function(Client, types.SearchSecurityProfilesInput, ? base_client.InvokeOptions): async.Operation<types.SearchSecurityProfilesOutput>
     searchTestCases: function(Client, types.SearchTestCasesInput, ? base_client.InvokeOptions): async.Operation<types.SearchTestCasesOutput>
     searchUserHierarchyGroups: function(Client, types.SearchUserHierarchyGroupsInput, ? base_client.InvokeOptions): async.Operation<types.SearchUserHierarchyGroupsOutput>
@@ -1538,6 +1539,10 @@ end
 
 function C:searchRoutingProfiles(input: types.SearchRoutingProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchRoutingProfilesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchRoutingProfiles as schema.OperationSchema, input, options) as async.Operation<types.SearchRoutingProfilesOutput>
+end
+
+function C:searchRules(input: types.SearchRulesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchRulesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchRules as schema.OperationSchema, input, options) as async.Operation<types.SearchRulesOutput>
 end
 
 function C:searchSecurityProfiles(input: types.SearchSecurityProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchSecurityProfilesOutput>

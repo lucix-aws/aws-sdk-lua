@@ -1643,6 +1643,79 @@ M.AggregatorV2 = schema.new({
     },
 })
 
+M.AIDetails = schema.new({
+    id = id.from(_N, "AIDetails"),
+    type = "structure",
+    members = {
+        HostResourceGuid = schema.new({
+            id = id.from(_N, "AIDetails", "HostResourceGuid"),
+            type = "string",
+            name = "HostResourceGuid",
+            target_id = prelude.String.id,
+        }),
+        HostResourceType = schema.new({
+            id = id.from(_N, "AIDetails", "HostResourceType"),
+            type = "string",
+            name = "HostResourceType",
+            target_id = prelude.String.id,
+        }),
+        CanonicalId = schema.new({
+            id = id.from(_N, "AIDetails", "CanonicalId"),
+            type = "string",
+            name = "CanonicalId",
+            target_id = prelude.String.id,
+        }),
+        SelfHostedAIModelResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedAIModelResourceCount"),
+            type = "integer",
+            name = "SelfHostedAIModelResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        SelfHostedAIAgentResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedAIAgentResourceCount"),
+            type = "integer",
+            name = "SelfHostedAIAgentResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        SelfHostedAIModelServingResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedAIModelServingResourceCount"),
+            type = "integer",
+            name = "SelfHostedAIModelServingResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        SelfHostedAIExternalEndpointResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedAIExternalEndpointResourceCount"),
+            type = "integer",
+            name = "SelfHostedAIExternalEndpointResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        SelfHostedAIDevelopmentResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedAIDevelopmentResourceCount"),
+            type = "integer",
+            name = "SelfHostedAIDevelopmentResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        SelfHostedAIAgentFrameworkResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedAIAgentFrameworkResourceCount"),
+            type = "integer",
+            name = "SelfHostedAIAgentFrameworkResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        SelfHostedAIAgentToolsAndIdentityResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedAIAgentToolsAndIdentityResourceCount"),
+            type = "integer",
+            name = "SelfHostedAIAgentToolsAndIdentityResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+        SelfHostedTotalAIResourceCount = schema.new({
+            id = id.from(_N, "AIDetails", "SelfHostedTotalAIResourceCount"),
+            type = "integer",
+            name = "SelfHostedTotalAIResourceCount",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.AssociatedStandard = schema.new({
     id = id.from(_N, "AssociatedStandard"),
     type = "structure",
@@ -31425,6 +31498,20 @@ M.ResourceFindingsSummary = schema.new({
     },
 })
 
+M.ResourceInfo = schema.new({
+    id = id.from(_N, "ResourceInfo"),
+    type = "structure",
+    members = {
+        AIDetails = schema.new({
+            id = id.from(_N, "ResourceInfo", "AIDetails"),
+            type = "structure",
+            name = "AIDetails",
+            target_id = id.from(_N, "AIDetails"),
+            target = M.AIDetails,
+        }),
+    },
+})
+
 M.ResourceTag = schema.new({
     id = id.from(_N, "ResourceTag"),
     type = "structure",
@@ -31581,6 +31668,25 @@ M.ResourceResult = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ResourceSubCategory = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceSubCategory"),
+            type = "string",
+            name = "ResourceSubCategory",
+            target_id = prelude.String.id,
+        }),
+        DiscoveryType = schema.new({
+            id = id.from(_N, "ResourceResult", "DiscoveryType"),
+            type = "string",
+            name = "DiscoveryType",
+            target_id = prelude.String.id,
+        }),
+        ResourceInfo = schema.new({
+            id = id.from(_N, "ResourceResult", "ResourceInfo"),
+            type = "structure",
+            name = "ResourceInfo",
+            target_id = id.from(_N, "ResourceInfo"),
+            target = M.ResourceInfo,
         }),
     },
 })

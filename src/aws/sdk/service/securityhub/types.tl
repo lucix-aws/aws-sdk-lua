@@ -479,6 +479,41 @@ local record M
         AggregatorV2Arn: string
     end
 
+    -- Contains information about self-hosted AI resources and their host resources. The fields that are present depend on the role of the resource.
+    -- On a self-hosted AI resource (a resource with a SelfHosted::AI:: resource type, such as SelfHosted::AI::Model or SelfHosted::AI::Agent), the HostResourceGuid and HostResourceType fields link the resource to its host. The CanonicalId field identifies what the resource is, enabling aggregation of identical resources across multiple hosts.
+    -- On a host resource (such as an Amazon EC2 instance), the SelfHostedAI*ResourceCount fields contain the count for each ResourceSubCategory and the total count of self-hosted AI resources detected on the host.
+    record AIDetails
+        -- The identifier of the host resource that hosts the self-hosted AI resource. Present only on self-hosted AI resources.
+        HostResourceGuid: string
+        -- The ResourceType of the host resource that hosts the self-hosted AI resource, such as AWS::EC2::Instance. Present only on self-hosted AI resources.
+        HostResourceType: string
+        -- The canonical identifier for the AI resource, independent of where it is deployed. Multiple occurrences of the same resource on different hosts share the same CanonicalId. For model resources, the value follows the format model/, such as model/pkg:huggingface/meta-llama/llama-3-8b. Present only on self-hosted AI resources.
+        CanonicalId: string
+        -- The number of self-hosted AI resources of ResourceSubCategory
+        -- Model detected on the host resource. Present only on host resources.
+        SelfHostedAIModelResourceCount: number
+        -- The number of self-hosted AI resources of ResourceSubCategory
+        -- Agent detected on the host resource. Present only on host resources.
+        SelfHostedAIAgentResourceCount: number
+        -- The number of self-hosted AI resources of ResourceSubCategory
+        -- ModelServing detected on the host resource. Present only on host resources.
+        SelfHostedAIModelServingResourceCount: number
+        -- The number of self-hosted AI resources of ResourceSubCategory
+        -- ExternalEndpoint detected on the host resource. Present only on host resources.
+        SelfHostedAIExternalEndpointResourceCount: number
+        -- The number of self-hosted AI resources of ResourceSubCategory
+        -- Development detected on the host resource. Present only on host resources.
+        SelfHostedAIDevelopmentResourceCount: number
+        -- The number of self-hosted AI resources of ResourceSubCategory
+        -- AgentFramework detected on the host resource. Present only on host resources.
+        SelfHostedAIAgentFrameworkResourceCount: number
+        -- The number of self-hosted AI resources of ResourceSubCategory
+        -- AgentToolsAndIdentity detected on the host resource. Present only on host resources.
+        SelfHostedAIAgentToolsAndIdentityResourceCount: number
+        -- The total number of all self-hosted AI resources detected on the host resource. Present only on host resources.
+        SelfHostedTotalAIResourceCount: number
+    end
+
     enum AllowedOperators
         "AND"
         "OR"
@@ -10891,7 +10926,7 @@ local record M
 
     -- The detailed Azure configuration for a connector.
     record AzureDetail
-        -- The ARN of the AWS Config connector used to establish the connection to Azure.
+        -- The ARN of the multi-cloud configuration connector used to establish the connection to Azure.
         AWSConfigConnectorArn: string
         -- The scope configuration that defines which Azure resources are monitored.
         ScopeConfiguration: AzureScopeConfiguration
@@ -10901,7 +10936,7 @@ local record M
 
     -- The configuration for connecting to an Azure environment.
     record AzureProviderConfiguration
-        -- The ARN of the AWS Config connector used to establish the connection to Azure.
+        -- The ARN of the multi-cloud configuration connector used to establish the connection to Azure.
         AWSConfigConnectorArn: string
         -- The scope configuration that defines which Azure resources are monitored.
         ScopeConfiguration: AzureScopeConfiguration
@@ -12947,6 +12982,11 @@ local record M
     record DisassociateMembersOutput
     end
 
+    enum DiscoveryType
+        "Managed"
+        "SelfHosted"
+    end
+
     record EnableImportFindingsForProductInput
         -- The ARN of the product to enable the integration for.
         ProductArn: string
@@ -13776,6 +13816,14 @@ local record M
         "FindingsSummary.Severities.Low"
         "FindingsSummary.Severities.Informational"
         "FindingsSummary.Severities.Unknown"
+        "ResourceInfo.AIDetails.SelfHostedAIModelResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIAgentResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIModelServingResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIExternalEndpointResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIDevelopmentResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIAgentFrameworkResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedAIAgentToolsAndIdentityResourceCount"
+        "ResourceInfo.AIDetails.SelfHostedTotalAIResourceCount"
     end
 
     -- Enables filtering of Amazon Web Services resources based on numerical values.
@@ -13801,6 +13849,11 @@ local record M
         "ResourceName"
         "FindingsSummary.FindingType"
         "FindingsSummary.ProductName"
+        "ResourceSubCategory"
+        "DiscoveryType"
+        "ResourceInfo.AIDetails.HostResourceGuid"
+        "ResourceInfo.AIDetails.HostResourceType"
+        "ResourceInfo.AIDetails.CanonicalId"
     end
 
     -- Enables filtering of Amazon Web Services resources based on string field values.
@@ -13823,6 +13876,10 @@ local record M
         "ResourceType"
         "ResourceName"
         "FindingsSummary.FindingType"
+        "ResourceSubCategory"
+        "DiscoveryType"
+        "ResourceInfo.AIDetails.HostResourceType"
+        "ResourceInfo.AIDetails.CanonicalId"
     end
 
     -- Defines the data boundary for a resources query. Scopes determine which organizational units or organizations to retrieve data from.
@@ -13935,6 +13992,26 @@ local record M
         "Other"
     end
 
+    -- Additional details about a resource that are specific to its category. For AI/ML resources and their host resources, this structure contains AIDetails.
+    record ResourceInfo
+        -- Details that are specific to self-hosted AI resources and their host resources.
+        AIDetails: AIDetails
+    end
+
+    enum ResourceSubCategory
+        "Model"
+        "ModelServing"
+        "Agent"
+        "AgentFramework"
+        "AgentToolsAndIdentity"
+        "SafetyAndGuardrail"
+        "KnowledgeAndData"
+        "OrchestrationAndPipeline"
+        "ExternalEndpoint"
+        "Development"
+        "Other"
+    end
+
     -- Represents tag information associated with Amazon Web Services resources.
     record ResourceTag
         -- The identifier or name of the tag.
@@ -13981,6 +14058,12 @@ local record M
         ResourceTags: {ResourceTag}
         -- The configuration details of a resource.
         ResourceConfig: any
+        -- The AI/ML sub-grouping of the resource. Present only when ResourceCategory is AI/ML.
+        ResourceSubCategory: string
+        -- Specifies how the resource was discovered. If the value is Managed, the resource is natively provided by a cloud service provider. If the value is SelfHosted, the resource is hosted on customer-managed infrastructure, such as a compute instance or container image.
+        DiscoveryType: string
+        -- Additional resource-type-specific details. For self-hosted AI resources and their host resources, contains an AIDetails structure.
+        ResourceInfo: ResourceInfo
     end
 
     record GetResourcesV2Output

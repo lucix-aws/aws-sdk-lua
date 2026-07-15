@@ -208,6 +208,8 @@ local record M
     record S3MonitoringConfiguration
         -- Amazon S3 destination URI for log publishing.
         logUri: string
+        -- The Amazon resource name (ARN) of the encryption key for logs.
+        encryptionKeyArn: string
     end
 
     -- Configuration setting for monitoring.
@@ -300,6 +302,8 @@ local record M
         tags: {string : string}
         -- The ID of the security configuration.
         securityConfigurationId: string
+        -- Indicates whether the virtual cluster has session support enabled.
+        sessionEnabled: boolean
     end
 
     record CreateVirtualClusterOutput
@@ -480,6 +484,8 @@ local record M
         tags: {string : string}
         -- The ID of the security configuration.
         securityConfigurationId: string
+        -- Indicates whether the virtual cluster has session support enabled.
+        sessionEnabled: boolean
     end
 
     record DescribeVirtualClusterOutput
@@ -517,6 +523,8 @@ local record M
         id: string
         -- The structure containing the session credentials.
         credentials: Credentials
+        -- The structure containing the session token being returned.
+        endpointCredentials: Credentials
         -- The date and time when the session token will expire.
         expiresAt: number
     end
@@ -708,6 +716,8 @@ local record M
         clientToken: string
         -- The tags of the managed endpoint.
         tags: {string : string}
+        -- The idle timeout in minutes for the managed endpoint session.
+        sessionIdleTimeoutInMinutes: number
     end
 
     -- This entity represents the endpoint that is managed by Amazon EMR on EKS.
@@ -737,6 +747,8 @@ local record M
         configurationOverrides: ConfigurationOverrides
         -- The server URL of the endpoint.
         serverUrl: string
+        -- The auth proxy URL of the endpoint.
+        authProxyUrl: string
         -- The date and time when the endpoint was created.
         createdAt: number
         -- The security group configuration of the endpoint.

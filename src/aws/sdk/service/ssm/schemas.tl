@@ -255,6 +255,8 @@ M.AutomationParameterMap = schema.new({ type = "map", map_key = prelude.String, 
 
 M.AssociationIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AutomationTargets = schema.new({ type = "list", list_member = M.Target })
+
 M.Runbooks = schema.new({ type = "list", list_member = M.Runbook })
 
 M.SessionManagerParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.SessionManagerParameterValueList })

@@ -1202,6 +1202,15 @@ M.CreateBrokerInput = schema.new({
                 [traits.JSON_NAME] = { name = "securityGroups" },
             },
         }),
+        StorageSize = schema.new({
+            id = id.from(_N, "CreateBrokerInput", "StorageSize"),
+            type = "integer",
+            name = "StorageSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "storageSize" },
+            },
+        }),
         StorageType = schema.new({
             id = id.from(_N, "CreateBrokerInput", "StorageType"),
             type = "string",
@@ -2269,6 +2278,15 @@ M.DescribeBrokerOutput = schema.new({
                 [traits.JSON_NAME] = { name = "pendingSecurityGroups" },
             },
         }),
+        PendingStorageSize = schema.new({
+            id = id.from(_N, "DescribeBrokerOutput", "PendingStorageSize"),
+            type = "integer",
+            name = "PendingStorageSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "pendingStorageSize" },
+            },
+        }),
         PubliclyAccessible = schema.new({
             id = id.from(_N, "DescribeBrokerOutput", "PubliclyAccessible"),
             type = "boolean",
@@ -2286,6 +2304,15 @@ M.DescribeBrokerOutput = schema.new({
             list_member = prelude.String,
             traits = {
                 [traits.JSON_NAME] = { name = "securityGroups" },
+            },
+        }),
+        StorageSize = schema.new({
+            id = id.from(_N, "DescribeBrokerOutput", "StorageSize"),
+            type = "integer",
+            name = "StorageSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "storageSize" },
             },
         }),
         StorageType = schema.new({
@@ -3386,6 +3413,15 @@ M.UpdateBrokerInput = schema.new({
                 [traits.JSON_NAME] = { name = "securityGroups" },
             },
         }),
+        StorageSize = schema.new({
+            id = id.from(_N, "UpdateBrokerInput", "StorageSize"),
+            type = "integer",
+            name = "StorageSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "storageSize" },
+            },
+        }),
         DataReplicationMode = schema.new({
             id = id.from(_N, "UpdateBrokerInput", "DataReplicationMode"),
             type = "string",
@@ -3543,6 +3579,15 @@ M.UpdateBrokerOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "pendingDataReplicationMode" },
+            },
+        }),
+        StorageSize = schema.new({
+            id = id.from(_N, "UpdateBrokerOutput", "StorageSize"),
+            type = "integer",
+            name = "StorageSize",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "storageSize" },
             },
         }),
     },

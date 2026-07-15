@@ -516,6 +516,12 @@ M.S3MonitoringConfiguration = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        encryptionKeyArn = schema.new({
+            id = id.from(_N, "S3MonitoringConfiguration", "encryptionKeyArn"),
+            type = "string",
+            name = "encryptionKeyArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -792,6 +798,12 @@ M.CreateVirtualClusterInput = schema.new({
             type = "string",
             name = "securityConfigurationId",
             target_id = prelude.String.id,
+        }),
+        sessionEnabled = schema.new({
+            id = id.from(_N, "CreateVirtualClusterInput", "sessionEnabled"),
+            type = "boolean",
+            name = "sessionEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1226,6 +1238,12 @@ M.VirtualCluster = schema.new({
             name = "securityConfigurationId",
             target_id = prelude.String.id,
         }),
+        sessionEnabled = schema.new({
+            id = id.from(_N, "VirtualCluster", "sessionEnabled"),
+            type = "boolean",
+            name = "sessionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -1336,6 +1354,13 @@ M.GetManagedEndpointSessionCredentialsOutput = schema.new({
             id = id.from(_N, "GetManagedEndpointSessionCredentialsOutput", "credentials"),
             type = "union",
             name = "credentials",
+            target_id = id.from(_N, "Credentials"),
+            target = M.Credentials,
+        }),
+        endpointCredentials = schema.new({
+            id = id.from(_N, "GetManagedEndpointSessionCredentialsOutput", "endpointCredentials"),
+            type = "union",
+            name = "endpointCredentials",
             target_id = id.from(_N, "Credentials"),
             target = M.Credentials,
         }),
@@ -2041,6 +2066,15 @@ M.CreateManagedEndpointInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        sessionIdleTimeoutInMinutes = schema.new({
+            id = id.from(_N, "CreateManagedEndpointInput", "sessionIdleTimeoutInMinutes"),
+            type = "integer",
+            name = "sessionIdleTimeoutInMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
     },
 })
 
@@ -2120,6 +2154,12 @@ M.Endpoint = schema.new({
             id = id.from(_N, "Endpoint", "serverUrl"),
             type = "string",
             name = "serverUrl",
+            target_id = prelude.String.id,
+        }),
+        authProxyUrl = schema.new({
+            id = id.from(_N, "Endpoint", "authProxyUrl"),
+            type = "string",
+            name = "authProxyUrl",
             target_id = prelude.String.id,
         }),
         createdAt = schema.new({

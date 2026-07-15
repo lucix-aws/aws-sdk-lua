@@ -604,6 +604,11 @@ local record M
         osByol: boolean
     end
 
+    enum RecoveryMode
+        "FAST"
+        "OPTIMAL"
+    end
+
     enum TargetInstanceTypeRightSizingMethod
         "NONE"
         "BASIC"
@@ -629,6 +634,8 @@ local record M
         postLaunchEnabled: boolean
         -- DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.
         launchIntoSourceInstance: boolean
+        -- Recovery mode.
+        recoveryMode: string
     end
 
     -- Account level Launch Configuration Template.
@@ -655,6 +662,8 @@ local record M
         postLaunchEnabled: boolean
         -- DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.
         launchIntoSourceInstance: boolean
+        -- Recovery mode.
+        recoveryMode: string
     end
 
     record CreateLaunchConfigurationTemplateOutput
@@ -1531,6 +1540,8 @@ local record M
         postLaunchEnabled: boolean
         -- DRS will set the 'launch into instance ID' of any source server when performing a drill, recovery or failback to the previous region or availability zone, using the instance ID of the source instance.
         launchIntoSourceInstance: boolean
+        -- Recovery mode.
+        recoveryMode: string
     end
 
     record UpdateLaunchConfigurationTemplateOutput
@@ -1879,6 +1890,8 @@ local record M
         postLaunchEnabled: boolean
         -- Launch into existing instance properties.
         launchIntoInstanceProperties: LaunchIntoInstanceProperties
+        -- Recovery mode.
+        recoveryMode: string
     end
 
     record GetReplicationConfigurationInput
@@ -2048,6 +2061,8 @@ local record M
         postLaunchEnabled: boolean
         -- Launch into existing instance properties.
         launchIntoInstanceProperties: LaunchIntoInstanceProperties
+        -- Recovery mode.
+        recoveryMode: string
     end
 
     record UpdateLaunchConfigurationOutput
@@ -2071,6 +2086,8 @@ local record M
         postLaunchEnabled: boolean
         -- Launch into existing instance properties.
         launchIntoInstanceProperties: LaunchIntoInstanceProperties
+        -- Recovery mode.
+        recoveryMode: string
     end
 
     record UpdateReplicationConfigurationInput

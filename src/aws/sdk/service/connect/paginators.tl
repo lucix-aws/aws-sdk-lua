@@ -1348,6 +1348,24 @@ function M.items_search_routing_profiles(client, input)
     })
 end
 
+--- Returns a page iterator for searchRules.
+function M.pages_search_rules(client, input)
+    return paginator.pages(client, "searchRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rules",
+    })
+end
+
+--- Returns an item iterator for searchRules.
+function M.items_search_rules(client, input)
+    return paginator.items(client, "searchRules", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Rules",
+    })
+end
+
 --- Returns a page iterator for searchSecurityProfiles.
 function M.pages_search_security_profiles(client, input)
     return paginator.pages(client, "searchSecurityProfiles", input, {
