@@ -4,6 +4,60 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listDataTransformationJobs.
+function M.pages_list_data_transformation_jobs(client, input)
+    return paginator.pages(client, "listDataTransformationJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listDataTransformationJobs.
+function M.items_list_data_transformation_jobs(client, input)
+    return paginator.items(client, "listDataTransformationJobs", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listDataTransformationProfileVersions.
+function M.pages_list_data_transformation_profile_versions(client, input)
+    return paginator.pages(client, "listDataTransformationProfileVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listDataTransformationProfileVersions.
+function M.items_list_data_transformation_profile_versions(client, input)
+    return paginator.items(client, "listDataTransformationProfileVersions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns a page iterator for listDataTransformationProfiles.
+function M.pages_list_data_transformation_profiles(client, input)
+    return paginator.pages(client, "listDataTransformationProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listDataTransformationProfiles.
+function M.items_list_data_transformation_profiles(client, input)
+    return paginator.items(client, "listDataTransformationProfiles", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 --- Returns a page iterator for listFHIRDatastores.
 function M.pages_list_f_h_i_r_datastores(client, input)
     return paginator.pages(client, "listFHIRDatastores", input, {

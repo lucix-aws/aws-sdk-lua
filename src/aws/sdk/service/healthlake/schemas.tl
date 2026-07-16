@@ -9,7 +9,17 @@ local _N = "com.amazonaws.healthlake"
 
 local M: {string:any} = {}
 
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
+
+M.ProfileMapping = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TransformationJobSummaryList = schema.new({ type = "list", list_member = M.TransformationJobSummary })
+
+M.DataTransformationProfileSummaryList = schema.new({ type = "list", list_member = M.DataTransformationProfileSummary })
+
+M.DataTransformationProfileVersionSummaryList = schema.new({ type = "list", list_member = M.DataTransformationProfileVersionSummary })
 
 M.DatastorePropertiesList = schema.new({ type = "list", list_member = M.DatastoreProperties })
 
@@ -20,6 +30,10 @@ M.ImportJobPropertiesList = schema.new({ type = "list", list_member = M.ImportJo
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DefaultProfiles = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataTransformationChatOptionsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.StringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -37,14 +51,65 @@ M.AccessDeniedException = schema.new({
     },
 })
 
-M.AnalyticsConfiguration = schema.new({
-    id = id.from(_N, "AnalyticsConfiguration"),
+M.InternalServerException = schema.new({
+    id = id.from(_N, "InternalServerException"),
     type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
     members = {
-        Status = schema.new({
-            id = id.from(_N, "AnalyticsConfiguration", "Status"),
+        Message = schema.new({
+            id = id.from(_N, "InternalServerException", "Message"),
             type = "string",
-            name = "Status",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ThrottlingException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ValidationException = schema.new({
+    id = id.from(_N, "ValidationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ValidationException", "Message"),
+            type = "string",
+            name = "Message",
             target_id = prelude.String.id,
         }),
     },
@@ -61,6 +126,1226 @@ M.ConflictException = schema.new({
             id = id.from(_N, "ConflictException", "Message"),
             type = "string",
             name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExistingVersionedProfileSource = schema.new({
+    id = id.from(_N, "ExistingVersionedProfileSource"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "ExistingVersionedProfileSource", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "ExistingVersionedProfileSource", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ProfileMappingSource = schema.new({
+    id = id.from(_N, "ProfileMappingSource"),
+    type = "structure",
+    members = {
+        ProfileMapping = schema.new({
+            id = id.from(_N, "ProfileMappingSource", "ProfileMapping"),
+            type = "map",
+            name = "ProfileMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SampleDataSource = schema.new({
+    id = id.from(_N, "SampleDataSource"),
+    type = "structure",
+    members = {
+        S3Uri = schema.new({
+            id = id.from(_N, "SampleDataSource", "S3Uri"),
+            type = "string",
+            name = "S3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StarterProfileSource = schema.new({
+    id = id.from(_N, "StarterProfileSource"),
+    type = "structure",
+    members = {
+        StarterProfileName = schema.new({
+            id = id.from(_N, "StarterProfileSource", "StarterProfileName"),
+            type = "string",
+            name = "StarterProfileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateDataTransformationProfileSource = schema.new({
+    id = id.from(_N, "CreateDataTransformationProfileSource"),
+    type = "union",
+    members = {
+        StarterProfile = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileSource", "StarterProfile"),
+            type = "structure",
+            name = "StarterProfile",
+            target_id = id.from(_N, "StarterProfileSource"),
+            target = M.StarterProfileSource,
+        }),
+        ExistingVersionedProfileId = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileSource", "ExistingVersionedProfileId"),
+            type = "structure",
+            name = "ExistingVersionedProfileId",
+            target_id = id.from(_N, "ExistingVersionedProfileSource"),
+            target = M.ExistingVersionedProfileSource,
+        }),
+        ProfileMapping = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileSource", "ProfileMapping"),
+            type = "structure",
+            name = "ProfileMapping",
+            target_id = id.from(_N, "ProfileMappingSource"),
+            target = M.ProfileMappingSource,
+        }),
+        SampleData = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileSource", "SampleData"),
+            type = "structure",
+            name = "SampleData",
+            target_id = id.from(_N, "SampleDataSource"),
+            target = M.SampleDataSource,
+        }),
+    },
+})
+
+M.CreateDataTransformationProfileInput = schema.new({
+    id = id.from(_N, "CreateDataTransformationProfileRequest"),
+    type = "structure",
+    members = {
+        SourceFormat = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileInput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Source = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileInput", "Source"),
+            type = "union",
+            name = "Source",
+            target_id = id.from(_N, "CreateDataTransformationProfileSource"),
+            target = M.CreateDataTransformationProfileSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileInput", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        ProfileDescription = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileInput", "ProfileDescription"),
+            type = "string",
+            name = "ProfileDescription",
+            target_id = prelude.String.id,
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileInput", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateDataTransformationProfileOutput = schema.new({
+    id = id.from(_N, "CreateDataTransformationProfileResponse"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileOutput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileOutput", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileOutput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetFormat = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileOutput", "TargetFormat"),
+            type = "string",
+            name = "TargetFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileOutput", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "CreateDataTransformationProfileOutput", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ServiceQuotaExceededException = schema.new({
+    id = id.from(_N, "ServiceQuotaExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ServiceQuotaExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteDataTransformationProfileInput = schema.new({
+    id = id.from(_N, "DeleteDataTransformationProfileRequest"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "DeleteDataTransformationProfileInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDataTransformationProfileOutput = schema.new({
+    id = id.from(_N, "DeleteDataTransformationProfileResponse"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "DeleteDataTransformationProfileOutput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "DeleteDataTransformationProfileOutput", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+        }),
+        DeletionTime = schema.new({
+            id = id.from(_N, "DeleteDataTransformationProfileOutput", "DeletionTime"),
+            type = "timestamp",
+            name = "DeletionTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDataTransformationProfileInput = schema.new({
+    id = id.from(_N, "GetDataTransformationProfileRequest"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ProfileVersion = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileInput", "ProfileVersion"),
+            type = "integer",
+            name = "ProfileVersion",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "version" },
+            },
+        }),
+    },
+})
+
+M.GetDataTransformationProfileOutput = schema.new({
+    id = id.from(_N, "GetDataTransformationProfileResponse"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetFormat = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "TargetFormat"),
+            type = "string",
+            name = "TargetFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileMapping = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "ProfileMapping"),
+            type = "map",
+            name = "ProfileMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+        }),
+        ProfileDescription = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "ProfileDescription"),
+            type = "string",
+            name = "ProfileDescription",
+            target_id = prelude.String.id,
+        }),
+        ChangeDescription = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "ChangeDescription"),
+            type = "string",
+            name = "ChangeDescription",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "GetDataTransformationProfileOutput", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListDataTransformationProfilesInput = schema.new({
+    id = id.from(_N, "ListDataTransformationProfilesRequest"),
+    type = "structure",
+    members = {
+        SourceFormat = schema.new({
+            id = id.from(_N, "ListDataTransformationProfilesInput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "sourceFormat" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDataTransformationProfilesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataTransformationProfilesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.DataTransformationProfileSummary = schema.new({
+    id = id.from(_N, "DataTransformationProfileSummary"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "DataTransformationProfileSummary", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "DataTransformationProfileSummary", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "DataTransformationProfileSummary", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetFormat = schema.new({
+            id = id.from(_N, "DataTransformationProfileSummary", "TargetFormat"),
+            type = "string",
+            name = "TargetFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "DataTransformationProfileSummary", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+        }),
+        ProfileDescription = schema.new({
+            id = id.from(_N, "DataTransformationProfileSummary", "ProfileDescription"),
+            type = "string",
+            name = "ProfileDescription",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "DataTransformationProfileSummary", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListDataTransformationProfilesOutput = schema.new({
+    id = id.from(_N, "ListDataTransformationProfilesResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListDataTransformationProfilesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.DataTransformationProfileSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataTransformationProfilesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDataTransformationProfileVersionsInput = schema.new({
+    id = id.from(_N, "ListDataTransformationProfileVersionsRequest"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "ListDataTransformationProfileVersionsInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDataTransformationProfileVersionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataTransformationProfileVersionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.DataTransformationProfileVersionSummary = schema.new({
+    id = id.from(_N, "DataTransformationProfileVersionSummary"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "DataTransformationProfileVersionSummary", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "DataTransformationProfileVersionSummary", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "DataTransformationProfileVersionSummary", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetFormat = schema.new({
+            id = id.from(_N, "DataTransformationProfileVersionSummary", "TargetFormat"),
+            type = "string",
+            name = "TargetFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "DataTransformationProfileVersionSummary", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+        }),
+        ChangeDescription = schema.new({
+            id = id.from(_N, "DataTransformationProfileVersionSummary", "ChangeDescription"),
+            type = "string",
+            name = "ChangeDescription",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "DataTransformationProfileVersionSummary", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListDataTransformationProfileVersionsOutput = schema.new({
+    id = id.from(_N, "ListDataTransformationProfileVersionsResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListDataTransformationProfileVersionsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.DataTransformationProfileVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataTransformationProfileVersionsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PublishDataTransformationProfileInput = schema.new({
+    id = id.from(_N, "PublishDataTransformationProfileRequest"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileInput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "sourceFormat" },
+            },
+        }),
+        FromExistingVersion = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileInput", "FromExistingVersion"),
+            type = "integer",
+            name = "FromExistingVersion",
+            target_id = prelude.Integer.id,
+        }),
+        ChangeDescription = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileInput", "ChangeDescription"),
+            type = "string",
+            name = "ChangeDescription",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PublishDataTransformationProfileOutput = schema.new({
+    id = id.from(_N, "PublishDataTransformationProfileResponse"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileOutput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileOutput", "Version"),
+            type = "integer",
+            name = "Version",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileOutput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetFormat = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileOutput", "TargetFormat"),
+            type = "string",
+            name = "TargetFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileOutput", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "PublishDataTransformationProfileOutput", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TransformationInputDataConfig = schema.new({
+    id = id.from(_N, "TransformationInputDataConfig"),
+    type = "structure",
+    members = {
+        S3Uri = schema.new({
+            id = id.from(_N, "TransformationInputDataConfig", "S3Uri"),
+            type = "string",
+            name = "S3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "TransformationInputDataConfig", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataTransformationS3Configuration = schema.new({
+    id = id.from(_N, "DataTransformationS3Configuration"),
+    type = "structure",
+    members = {
+        S3Uri = schema.new({
+            id = id.from(_N, "DataTransformationS3Configuration", "S3Uri"),
+            type = "string",
+            name = "S3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        KmsKeyId = schema.new({
+            id = id.from(_N, "DataTransformationS3Configuration", "KmsKeyId"),
+            type = "string",
+            name = "KmsKeyId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TransformationOutputDataConfig = schema.new({
+    id = id.from(_N, "TransformationOutputDataConfig"),
+    type = "structure",
+    members = {
+        S3Configuration = schema.new({
+            id = id.from(_N, "TransformationOutputDataConfig", "S3Configuration"),
+            type = "structure",
+            name = "S3Configuration",
+            target_id = id.from(_N, "DataTransformationS3Configuration"),
+            target = M.DataTransformationS3Configuration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartDataTransformationJobInput = schema.new({
+    id = id.from(_N, "StartDataTransformationJobRequest"),
+    type = "structure",
+    members = {
+        InputDataConfig = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "InputDataConfig"),
+            type = "structure",
+            name = "InputDataConfig",
+            target_id = id.from(_N, "TransformationInputDataConfig"),
+            target = M.TransformationInputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputDataConfig = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "OutputDataConfig"),
+            type = "structure",
+            name = "OutputDataConfig",
+            target_id = id.from(_N, "TransformationOutputDataConfig"),
+            target = M.TransformationOutputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataAccessRoleArn = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "DataAccessRoleArn"),
+            type = "string",
+            name = "DataAccessRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobName = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+        }),
+        ProfileId = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DriftDetectionEnabled = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "DriftDetectionEnabled"),
+            type = "boolean",
+            name = "DriftDetectionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ProvenanceEnabled = schema.new({
+            id = id.from(_N, "StartDataTransformationJobInput", "ProvenanceEnabled"),
+            type = "boolean",
+            name = "ProvenanceEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
+    },
+})
+
+M.StartDataTransformationJobOutput = schema.new({
+    id = id.from(_N, "StartDataTransformationJobResponse"),
+    type = "structure",
+    members = {
+        JobId = schema.new({
+            id = id.from(_N, "StartDataTransformationJobOutput", "JobId"),
+            type = "string",
+            name = "JobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobStatus = schema.new({
+            id = id.from(_N, "StartDataTransformationJobOutput", "JobStatus"),
+            type = "string",
+            name = "JobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateDataTransformationProfileInput = schema.new({
+    id = id.from(_N, "UpdateDataTransformationProfileRequest"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ProfileMapping = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileInput", "ProfileMapping"),
+            type = "map",
+            name = "ProfileMapping",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChangeDescription = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileInput", "ChangeDescription"),
+            type = "string",
+            name = "ChangeDescription",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateDataTransformationProfileOutput = schema.new({
+    id = id.from(_N, "UpdateDataTransformationProfileResponse"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileOutput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileOutput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetFormat = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileOutput", "TargetFormat"),
+            type = "string",
+            name = "TargetFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileOutput", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "UpdateDataTransformationProfileOutput", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentMessageOutOfContextException = schema.new({
+    id = id.from(_N, "AgentMessageOutOfContextException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "AgentMessageOutOfContextException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ConversationNotFoundException = schema.new({
+    id = id.from(_N, "ConversationNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ConversationNotFoundException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.NotImplementedOperationException = schema.new({
+    id = id.from(_N, "NotImplementedOperationException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "NotImplementedOperationException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UnauthorizedException = schema.new({
+    id = id.from(_N, "UnauthorizedException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "UnauthorizedException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UnsupportedMIMETypeException = schema.new({
+    id = id.from(_N, "UnsupportedMIMETypeException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "UnsupportedMIMETypeException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentInputMessage = schema.new({
+    id = id.from(_N, "AgentInputMessage"),
+    type = "structure",
+    members = {
+        Body = schema.new({
+            id = id.from(_N, "AgentInputMessage", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "AgentInputMessage", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateProfileWithAgentInput = schema.new({
+    id = id.from(_N, "UpdateProfileWithAgentRequest"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "UpdateProfileWithAgentInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "UpdateProfileWithAgentInput", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InputMessage = schema.new({
+            id = id.from(_N, "UpdateProfileWithAgentInput", "InputMessage"),
+            type = "structure",
+            name = "InputMessage",
+            target_id = id.from(_N, "AgentInputMessage"),
+            target = M.AgentInputMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConversationId = schema.new({
+            id = id.from(_N, "UpdateProfileWithAgentInput", "ConversationId"),
+            type = "string",
+            name = "ConversationId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AgentOutputMessage = schema.new({
+    id = id.from(_N, "AgentOutputMessage"),
+    type = "structure",
+    members = {
+        Body = schema.new({
+            id = id.from(_N, "AgentOutputMessage", "Body"),
+            type = "string",
+            name = "Body",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "AgentOutputMessage", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OptionsList = schema.new({
+            id = id.from(_N, "AgentOutputMessage", "OptionsList"),
+            type = "list",
+            name = "OptionsList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateProfileWithAgentOutput = schema.new({
+    id = id.from(_N, "UpdateProfileWithAgentResponse"),
+    type = "structure",
+    members = {
+        AgentResponse = schema.new({
+            id = id.from(_N, "UpdateProfileWithAgentOutput", "AgentResponse"),
+            type = "structure",
+            name = "AgentResponse",
+            target_id = id.from(_N, "AgentOutputMessage"),
+            target = M.AgentOutputMessage,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ConversationId = schema.new({
+            id = id.from(_N, "UpdateProfileWithAgentOutput", "ConversationId"),
+            type = "string",
+            name = "ConversationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnalyticsConfiguration = schema.new({
+    id = id.from(_N, "AnalyticsConfiguration"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "AnalyticsConfiguration", "Status"),
+            type = "string",
+            name = "Status",
             target_id = prelude.String.id,
         }),
     },
@@ -333,54 +1618,6 @@ M.CreateFHIRDatastoreOutput = schema.new({
     },
 })
 
-M.InternalServerException = schema.new({
-    id = id.from(_N, "InternalServerException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "InternalServerException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ThrottlingException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ValidationException = schema.new({
-    id = id.from(_N, "ValidationException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Message = schema.new({
-            id = id.from(_N, "ValidationException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.DatastoreFilter = schema.new({
     id = id.from(_N, "DatastoreFilter"),
     type = "structure",
@@ -603,18 +1840,197 @@ M.DeleteFHIRDatastoreOutput = schema.new({
     },
 })
 
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
+M.DescribeDataTransformationJobInput = schema.new({
+    id = id.from(_N, "DescribeDataTransformationJobRequest"),
     type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
     members = {
+        JobId = schema.new({
+            id = id.from(_N, "DescribeDataTransformationJobInput", "JobId"),
+            type = "string",
+            name = "JobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.TransformationJobProgressReport = schema.new({
+    id = id.from(_N, "TransformationJobProgressReport"),
+    type = "structure",
+    members = {
+        TotalFilesScanned = schema.new({
+            id = id.from(_N, "TransformationJobProgressReport", "TotalFilesScanned"),
+            type = "long",
+            name = "TotalFilesScanned",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TotalFilesConverted = schema.new({
+            id = id.from(_N, "TransformationJobProgressReport", "TotalFilesConverted"),
+            type = "long",
+            name = "TotalFilesConverted",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TotalFilesFailed = schema.new({
+            id = id.from(_N, "TransformationJobProgressReport", "TotalFilesFailed"),
+            type = "long",
+            name = "TotalFilesFailed",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TotalResourcesGenerated = schema.new({
+            id = id.from(_N, "TransformationJobProgressReport", "TotalResourcesGenerated"),
+            type = "long",
+            name = "TotalResourcesGenerated",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TransformationJobProperties = schema.new({
+    id = id.from(_N, "TransformationJobProperties"),
+    type = "structure",
+    members = {
+        JobId = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "JobId"),
+            type = "string",
+            name = "JobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobStatus = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "JobStatus"),
+            type = "string",
+            name = "JobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InputDataConfig = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "InputDataConfig"),
+            type = "structure",
+            name = "InputDataConfig",
+            target_id = id.from(_N, "TransformationInputDataConfig"),
+            target = M.TransformationInputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OutputDataConfig = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "OutputDataConfig"),
+            type = "structure",
+            name = "OutputDataConfig",
+            target_id = id.from(_N, "TransformationOutputDataConfig"),
+            target = M.TransformationOutputDataConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataAccessRoleArn = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "DataAccessRoleArn"),
+            type = "string",
+            name = "DataAccessRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubmitTime = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "SubmitTime"),
+            type = "timestamp",
+            name = "SubmitTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobName = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+        }),
+        ProfileId = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+        }),
+        ProfileName = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "ProfileName"),
+            type = "string",
+            name = "ProfileName",
+            target_id = prelude.String.id,
+        }),
+        ProfileVersion = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "ProfileVersion"),
+            type = "integer",
+            name = "ProfileVersion",
+            target_id = prelude.Integer.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        DriftDetectionEnabled = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "DriftDetectionEnabled"),
+            type = "boolean",
+            name = "DriftDetectionEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ProvenanceEnabled = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "ProvenanceEnabled"),
+            type = "boolean",
+            name = "ProvenanceEnabled",
+            target_id = prelude.Boolean.id,
+        }),
         Message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "Message"),
+            id = id.from(_N, "TransformationJobProperties", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
+        }),
+        JobProgressReport = schema.new({
+            id = id.from(_N, "TransformationJobProperties", "JobProgressReport"),
+            type = "structure",
+            name = "JobProgressReport",
+            target_id = id.from(_N, "TransformationJobProgressReport"),
+            target = M.TransformationJobProgressReport,
+        }),
+    },
+})
+
+M.DescribeDataTransformationJobOutput = schema.new({
+    id = id.from(_N, "DescribeDataTransformationJobResponse"),
+    type = "structure",
+    members = {
+        TransformationJobProperties = schema.new({
+            id = id.from(_N, "DescribeDataTransformationJobOutput", "TransformationJobProperties"),
+            type = "structure",
+            name = "TransformationJobProperties",
+            target_id = id.from(_N, "TransformationJobProperties"),
+            target = M.TransformationJobProperties,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -894,11 +2310,65 @@ M.JobProgressReport = schema.new({
             name = "TotalNumberOfFilesReadWithCustomerError",
             target_id = prelude.Long.id,
         }),
+        TotalNumberOfScannedNonFhirFiles = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalNumberOfScannedNonFhirFiles"),
+            type = "long",
+            name = "TotalNumberOfScannedNonFhirFiles",
+            target_id = prelude.Long.id,
+        }),
+        TotalSizeOfScannedNonFhirFilesInMB = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalSizeOfScannedNonFhirFilesInMB"),
+            type = "double",
+            name = "TotalSizeOfScannedNonFhirFilesInMB",
+            target_id = prelude.Double.id,
+        }),
+        TotalNumberOfImportedNonFhirFiles = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalNumberOfImportedNonFhirFiles"),
+            type = "long",
+            name = "TotalNumberOfImportedNonFhirFiles",
+            target_id = prelude.Long.id,
+        }),
+        TotalNumberOfNonFhirResourcesScanned = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalNumberOfNonFhirResourcesScanned"),
+            type = "long",
+            name = "TotalNumberOfNonFhirResourcesScanned",
+            target_id = prelude.Long.id,
+        }),
+        TotalNumberOfNonFhirResourcesImported = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalNumberOfNonFhirResourcesImported"),
+            type = "long",
+            name = "TotalNumberOfNonFhirResourcesImported",
+            target_id = prelude.Long.id,
+        }),
+        TotalNumberOfNonFhirResourcesWithCustomerError = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalNumberOfNonFhirResourcesWithCustomerError"),
+            type = "long",
+            name = "TotalNumberOfNonFhirResourcesWithCustomerError",
+            target_id = prelude.Long.id,
+        }),
+        TotalNumberOfNonFhirFilesReadWithCustomerError = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalNumberOfNonFhirFilesReadWithCustomerError"),
+            type = "long",
+            name = "TotalNumberOfNonFhirFilesReadWithCustomerError",
+            target_id = prelude.Long.id,
+        }),
         Throughput = schema.new({
             id = id.from(_N, "JobProgressReport", "Throughput"),
             type = "double",
             name = "Throughput",
             target_id = prelude.Double.id,
+        }),
+        TotalFilesConverted = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalFilesConverted"),
+            type = "long",
+            name = "TotalFilesConverted",
+            target_id = prelude.Long.id,
+        }),
+        TotalResourcesGenerated = schema.new({
+            id = id.from(_N, "JobProgressReport", "TotalResourcesGenerated"),
+            type = "long",
+            name = "TotalResourcesGenerated",
+            target_id = prelude.Long.id,
         }),
     },
 })
@@ -1013,6 +2483,158 @@ M.DescribeFHIRImportJobOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.FailedDependencyException = schema.new({
+    id = id.from(_N, "FailedDependencyException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "FailedDependencyException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDataTransformationJobsInput = schema.new({
+    id = id.from(_N, "ListDataTransformationJobsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        JobStatus = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsInput", "JobStatus"),
+            type = "string",
+            name = "JobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "jobStatus" },
+            },
+        }),
+        JobName = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsInput", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "jobName" },
+            },
+        }),
+        SubmittedAfter = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsInput", "SubmittedAfter"),
+            type = "timestamp",
+            name = "SubmittedAfter",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "submittedAfter" },
+            },
+        }),
+        SubmittedBefore = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsInput", "SubmittedBefore"),
+            type = "timestamp",
+            name = "SubmittedBefore",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "submittedBefore" },
+            },
+        }),
+    },
+})
+
+M.TransformationJobSummary = schema.new({
+    id = id.from(_N, "TransformationJobSummary"),
+    type = "structure",
+    members = {
+        JobId = schema.new({
+            id = id.from(_N, "TransformationJobSummary", "JobId"),
+            type = "string",
+            name = "JobId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobStatus = schema.new({
+            id = id.from(_N, "TransformationJobSummary", "JobStatus"),
+            type = "string",
+            name = "JobStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubmitTime = schema.new({
+            id = id.from(_N, "TransformationJobSummary", "SubmitTime"),
+            type = "timestamp",
+            name = "SubmitTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        JobName = schema.new({
+            id = id.from(_N, "TransformationJobSummary", "JobName"),
+            type = "string",
+            name = "JobName",
+            target_id = prelude.String.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "TransformationJobSummary", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        SourceFormat = schema.new({
+            id = id.from(_N, "TransformationJobSummary", "SourceFormat"),
+            type = "string",
+            name = "SourceFormat",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDataTransformationJobsOutput = schema.new({
+    id = id.from(_N, "ListDataTransformationJobsResponse"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.TransformationJobSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListDataTransformationJobsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1390,6 +3012,27 @@ M.StartFHIRImportJobInput = schema.new({
             name = "ValidationLevel",
             target_id = prelude.String.id,
         }),
+        ProfileId = schema.new({
+            id = id.from(_N, "StartFHIRImportJobInput", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+        }),
+        InputFormat = schema.new({
+            id = id.from(_N, "StartFHIRImportJobInput", "InputFormat"),
+            type = "string",
+            name = "InputFormat",
+            target_id = prelude.String.id,
+        }),
+        DriftDetectionEnabled = schema.new({
+            id = id.from(_N, "StartFHIRImportJobInput", "DriftDetectionEnabled"),
+            type = "boolean",
+            name = "DriftDetectionEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
     },
 })
 
@@ -1505,19 +3148,19 @@ M.UpdateFHIRDatastoreInput = schema.new({
             name = "DatastoreName",
             target_id = prelude.String.id,
         }),
-        NlpConfiguration = schema.new({
-            id = id.from(_N, "UpdateFHIRDatastoreInput", "NlpConfiguration"),
-            type = "structure",
-            name = "NlpConfiguration",
-            target_id = id.from(_N, "NlpConfiguration"),
-            target = M.NlpConfiguration,
-        }),
         AnalyticsConfiguration = schema.new({
             id = id.from(_N, "UpdateFHIRDatastoreInput", "AnalyticsConfiguration"),
             type = "structure",
             name = "AnalyticsConfiguration",
             target_id = id.from(_N, "AnalyticsConfiguration"),
             target = M.AnalyticsConfiguration,
+        }),
+        NlpConfiguration = schema.new({
+            id = id.from(_N, "UpdateFHIRDatastoreInput", "NlpConfiguration"),
+            type = "structure",
+            name = "NlpConfiguration",
+            target_id = id.from(_N, "NlpConfiguration"),
+            target = M.NlpConfiguration,
         }),
         ProfileConfiguration = schema.new({
             id = id.from(_N, "UpdateFHIRDatastoreInput", "ProfileConfiguration"),
@@ -1578,6 +3221,18 @@ M.Service = schema.service({
     },
 })
 
+M.CreateDataTransformationProfile = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "CreateDataTransformationProfile"),
+    input = M.CreateDataTransformationProfileInput,
+    output = M.CreateDataTransformationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-transformation-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateFHIRDatastore = schema.operation({
     id = id.from("com.amazonaws.healthlake", "CreateFHIRDatastore"),
     input = M.CreateFHIRDatastoreInput,
@@ -1589,11 +3244,35 @@ M.CreateFHIRDatastore = schema.operation({
     },
 })
 
+M.DeleteDataTransformationProfile = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "DeleteDataTransformationProfile"),
+    input = M.DeleteDataTransformationProfileInput,
+    output = M.DeleteDataTransformationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/data-transformation-profile/{ProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteFHIRDatastore = schema.operation({
     id = id.from("com.amazonaws.healthlake", "DeleteFHIRDatastore"),
     input = M.DeleteFHIRDatastoreInput,
     output = M.DeleteFHIRDatastoreOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeDataTransformationJob = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "DescribeDataTransformationJob"),
+    input = M.DescribeDataTransformationJobInput,
+    output = M.DescribeDataTransformationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-transformation-job/{JobId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -1627,6 +3306,54 @@ M.DescribeFHIRImportJob = schema.operation({
     input = M.DescribeFHIRImportJobInput,
     output = M.DescribeFHIRImportJobOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDataTransformationProfile = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "GetDataTransformationProfile"),
+    input = M.GetDataTransformationProfileInput,
+    output = M.GetDataTransformationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-transformation-profile/{ProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataTransformationJobs = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "ListDataTransformationJobs"),
+    input = M.ListDataTransformationJobsInput,
+    output = M.ListDataTransformationJobsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-transformation-jobs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataTransformationProfiles = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "ListDataTransformationProfiles"),
+    input = M.ListDataTransformationProfilesInput,
+    output = M.ListDataTransformationProfilesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-transformation-profile" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDataTransformationProfileVersions = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "ListDataTransformationProfileVersions"),
+    input = M.ListDataTransformationProfileVersionsInput,
+    output = M.ListDataTransformationProfileVersionsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/data-transformation-profile/{ProfileId}/versions" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -1677,6 +3404,30 @@ M.ListTagsForResource = schema.operation({
     },
 })
 
+M.PublishDataTransformationProfile = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "PublishDataTransformationProfile"),
+    input = M.PublishDataTransformationProfileInput,
+    output = M.PublishDataTransformationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-transformation-profile/{ProfileId}/publish" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartDataTransformationJob = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "StartDataTransformationJob"),
+    input = M.StartDataTransformationJobInput,
+    output = M.StartDataTransformationJobOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/data-transformation-job" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StartFHIRExportJob = schema.operation({
     id = id.from("com.amazonaws.healthlake", "StartFHIRExportJob"),
     input = M.StartFHIRExportJobInput,
@@ -1721,11 +3472,35 @@ M.UntagResource = schema.operation({
     },
 })
 
+M.UpdateDataTransformationProfile = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "UpdateDataTransformationProfile"),
+    input = M.UpdateDataTransformationProfileInput,
+    output = M.UpdateDataTransformationProfileOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/data-transformation-profile/{ProfileId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateFHIRDatastore = schema.operation({
     id = id.from("com.amazonaws.healthlake", "UpdateFHIRDatastore"),
     input = M.UpdateFHIRDatastoreInput,
     output = M.UpdateFHIRDatastoreOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProfileWithAgent = schema.operation({
+    id = id.from("com.amazonaws.healthlake", "UpdateProfileWithAgent"),
+    input = M.UpdateProfileWithAgentInput,
+    output = M.UpdateProfileWithAgentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/update-profile-with-agent" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

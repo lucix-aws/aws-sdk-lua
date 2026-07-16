@@ -3564,6 +3564,8 @@ local record M
         topP: number
         -- The topK set when calling the model.
         topK: number
+        -- Provider-specific parameters passed through to the Gemini model provider unchanged.
+        additionalParams: any
     end
 
     -- Configuration for a LiteLLM model provider, enabling connection to third-party model providers.

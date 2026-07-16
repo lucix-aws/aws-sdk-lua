@@ -1671,6 +1671,40 @@ M.SessionKeyMastercard = schema.new({
     },
 })
 
+M.SessionKeyUnionPay = schema.new({
+    id = id.from(_N, "SessionKeyUnionPay"),
+    type = "structure",
+    members = {
+        PrimaryAccountNumber = schema.new({
+            id = id.from(_N, "SessionKeyUnionPay", "PrimaryAccountNumber"),
+            type = "string",
+            name = "PrimaryAccountNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PanSequenceNumber = schema.new({
+            id = id.from(_N, "SessionKeyUnionPay", "PanSequenceNumber"),
+            type = "string",
+            name = "PanSequenceNumber",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationTransactionCounter = schema.new({
+            id = id.from(_N, "SessionKeyUnionPay", "ApplicationTransactionCounter"),
+            type = "string",
+            name = "ApplicationTransactionCounter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SessionKeyVisa = schema.new({
     id = id.from(_N, "SessionKeyVisa"),
     type = "structure",
@@ -1734,6 +1768,13 @@ M.SessionKeyDerivation = schema.new({
             name = "Visa",
             target_id = id.from(_N, "SessionKeyVisa"),
             target = M.SessionKeyVisa,
+        }),
+        UnionPay = schema.new({
+            id = id.from(_N, "SessionKeyDerivation", "UnionPay"),
+            type = "structure",
+            name = "UnionPay",
+            target_id = id.from(_N, "SessionKeyUnionPay"),
+            target = M.SessionKeyUnionPay,
         }),
     },
 })

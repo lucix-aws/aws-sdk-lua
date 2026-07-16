@@ -17827,6 +17827,12 @@ M.ModifyDBClusterInput = schema.new({
             name = "MasterUserAuthenticationType",
             target_id = prelude.String.id,
         }),
+        EngineLifecycleSupport = schema.new({
+            id = id.from(_N, "ModifyDBClusterInput", "EngineLifecycleSupport"),
+            type = "string",
+            name = "EngineLifecycleSupport",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -18537,6 +18543,12 @@ M.ModifyDBInstanceInput = schema.new({
             id = id.from(_N, "ModifyDBInstanceInput", "MasterUserAuthenticationType"),
             type = "string",
             name = "MasterUserAuthenticationType",
+            target_id = prelude.String.id,
+        }),
+        EngineLifecycleSupport = schema.new({
+            id = id.from(_N, "ModifyDBInstanceInput", "EngineLifecycleSupport"),
+            type = "string",
+            name = "EngineLifecycleSupport",
             target_id = prelude.String.id,
         }),
     },

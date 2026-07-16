@@ -609,6 +609,16 @@ local record M
         UnpredictableNumber: string
     end
 
+    -- Parameters to derive session key for a UnionPay payment card for Authorization Request Cryptogram (ARQC) generation and verification.
+    record SessionKeyUnionPay
+        -- The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.
+        PrimaryAccountNumber: string
+        -- A number that identifies and differentiates payment cards with the same Primary Account Number (PAN). If not used, enter 00.
+        PanSequenceNumber: string
+        -- The transaction counter that the terminal provides during transaction processing. This value is in hexadecimal format. For example, enter a decimal counter of 109 as 006D.
+        ApplicationTransactionCounter: string
+    end
+
     -- Parameters to derive session key for Visa payment card for ARQC verification.
     record SessionKeyVisa
         -- The Primary Account Number (PAN) of the cardholder. A PAN is a unique identifier for a payment credit or debit card and associates the card to a specific account holder.
@@ -629,6 +639,8 @@ local record M
         Amex: SessionKeyAmex
         -- Parameters to derive session key for a Visa payment cardfor ARQC verification.
         Visa: SessionKeyVisa
+        -- Parameters to derive session key for a UnionPay payment card for Authorization Request Cryptogram (ARQC) generation and verification.
+        UnionPay: SessionKeyUnionPay
     end
 
     record GenerateAuthRequestCryptogramInput
@@ -699,6 +711,7 @@ local record M
         "AMEX"
         "MASTERCARD_SESSION_KEY"
         "VISA"
+        "UNION_PAY"
     end
 
     -- Parameters to derive session key value using a MAC EMV algorithm.

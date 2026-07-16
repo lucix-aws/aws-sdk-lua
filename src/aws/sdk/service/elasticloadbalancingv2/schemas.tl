@@ -2141,6 +2141,12 @@ M.SourceIpConditionConfig = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        IpAddressType = schema.new({
+            id = id.from(_N, "SourceIpConditionConfig", "IpAddressType"),
+            type = "string",
+            name = "IpAddressType",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

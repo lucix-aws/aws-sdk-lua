@@ -1020,6 +1020,11 @@ local record M
         Values: {QueryStringKeyValuePair}
     end
 
+    enum SourceIpAddressTypeEnum
+        "ipv4"
+        "ipv6"
+    end
+
     -- Information about a source IP condition.
     -- You can use this condition to route based on the IP address of the source that connects to
     -- the load balancer. If a client is behind a proxy, this is the IP address of the proxy not the
@@ -1033,6 +1038,11 @@ local record M
         -- an HTTP header condition.
         -- The total number of values must be less than, or equal to five.
         Values: {string}
+        -- The IP address type for Network Load Balancers.
+        -- The valid values are:
+        -- ipv4 – IPv4 addresses only.
+        -- ipv6 – IPv6 addresses only.
+        IpAddressType: string
     end
 
     -- Information about a condition for a rule.

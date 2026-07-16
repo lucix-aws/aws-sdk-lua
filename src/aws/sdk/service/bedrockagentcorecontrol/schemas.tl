@@ -11436,6 +11436,12 @@ M.HarnessGeminiModelConfig = schema.new({
             name = "topK",
             target_id = prelude.Integer.id,
         }),
+        additionalParams = schema.new({
+            id = id.from(_N, "HarnessGeminiModelConfig", "additionalParams"),
+            type = "document",
+            name = "additionalParams",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 

@@ -18,20 +18,31 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createDataTransformationProfile: function(Client, types.CreateDataTransformationProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateDataTransformationProfileOutput>
     createFHIRDatastore: function(Client, types.CreateFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.CreateFHIRDatastoreOutput>
+    deleteDataTransformationProfile: function(Client, types.DeleteDataTransformationProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDataTransformationProfileOutput>
     deleteFHIRDatastore: function(Client, types.DeleteFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.DeleteFHIRDatastoreOutput>
+    describeDataTransformationJob: function(Client, types.DescribeDataTransformationJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDataTransformationJobOutput>
     describeFHIRDatastore: function(Client, types.DescribeFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFHIRDatastoreOutput>
     describeFHIRExportJob: function(Client, types.DescribeFHIRExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFHIRExportJobOutput>
     describeFHIRImportJob: function(Client, types.DescribeFHIRImportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeFHIRImportJobOutput>
+    getDataTransformationProfile: function(Client, types.GetDataTransformationProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetDataTransformationProfileOutput>
+    listDataTransformationJobs: function(Client, types.ListDataTransformationJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataTransformationJobsOutput>
+    listDataTransformationProfiles: function(Client, types.ListDataTransformationProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListDataTransformationProfilesOutput>
+    listDataTransformationProfileVersions: function(Client, types.ListDataTransformationProfileVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDataTransformationProfileVersionsOutput>
     listFHIRDatastores: function(Client, types.ListFHIRDatastoresInput, ? base_client.InvokeOptions): async.Operation<types.ListFHIRDatastoresOutput>
     listFHIRExportJobs: function(Client, types.ListFHIRExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListFHIRExportJobsOutput>
     listFHIRImportJobs: function(Client, types.ListFHIRImportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListFHIRImportJobsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    publishDataTransformationProfile: function(Client, types.PublishDataTransformationProfileInput, ? base_client.InvokeOptions): async.Operation<types.PublishDataTransformationProfileOutput>
+    startDataTransformationJob: function(Client, types.StartDataTransformationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartDataTransformationJobOutput>
     startFHIRExportJob: function(Client, types.StartFHIRExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFHIRExportJobOutput>
     startFHIRImportJob: function(Client, types.StartFHIRImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartFHIRImportJobOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateDataTransformationProfile: function(Client, types.UpdateDataTransformationProfileInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTransformationProfileOutput>
     updateFHIRDatastore: function(Client, types.UpdateFHIRDatastoreInput, ? base_client.InvokeOptions): async.Operation<types.UpdateFHIRDatastoreOutput>
+    updateProfileWithAgent: function(Client, types.UpdateProfileWithAgentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProfileWithAgentOutput>
 end
 
 local record M
@@ -76,12 +87,24 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:createDataTransformationProfile(input: types.CreateDataTransformationProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDataTransformationProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataTransformationProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateDataTransformationProfileOutput>
+end
+
 function C:createFHIRDatastore(input: types.CreateFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.CreateFHIRDatastoreOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.CreateFHIRDatastoreOutput>
 end
 
+function C:deleteDataTransformationProfile(input: types.DeleteDataTransformationProfileInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDataTransformationProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDataTransformationProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteDataTransformationProfileOutput>
+end
+
 function C:deleteFHIRDatastore(input: types.DeleteFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteFHIRDatastoreOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.DeleteFHIRDatastoreOutput>
+end
+
+function C:describeDataTransformationJob(input: types.DescribeDataTransformationJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDataTransformationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataTransformationJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeDataTransformationJobOutput>
 end
 
 function C:describeFHIRDatastore(input: types.DescribeFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFHIRDatastoreOutput>
@@ -94,6 +117,22 @@ end
 
 function C:describeFHIRImportJob(input: types.DescribeFHIRImportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeFHIRImportJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeFHIRImportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeFHIRImportJobOutput>
+end
+
+function C:getDataTransformationProfile(input: types.GetDataTransformationProfileInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataTransformationProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataTransformationProfile as schema.OperationSchema, input, options) as async.Operation<types.GetDataTransformationProfileOutput>
+end
+
+function C:listDataTransformationJobs(input: types.ListDataTransformationJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataTransformationJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataTransformationJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDataTransformationJobsOutput>
+end
+
+function C:listDataTransformationProfiles(input: types.ListDataTransformationProfilesInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataTransformationProfilesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataTransformationProfiles as schema.OperationSchema, input, options) as async.Operation<types.ListDataTransformationProfilesOutput>
+end
+
+function C:listDataTransformationProfileVersions(input: types.ListDataTransformationProfileVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDataTransformationProfileVersionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDataTransformationProfileVersions as schema.OperationSchema, input, options) as async.Operation<types.ListDataTransformationProfileVersionsOutput>
 end
 
 function C:listFHIRDatastores(input: types.ListFHIRDatastoresInput, options?: base_client.InvokeOptions): async.Operation<types.ListFHIRDatastoresOutput>
@@ -112,6 +151,14 @@ function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:publishDataTransformationProfile(input: types.PublishDataTransformationProfileInput, options?: base_client.InvokeOptions): async.Operation<types.PublishDataTransformationProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PublishDataTransformationProfile as schema.OperationSchema, input, options) as async.Operation<types.PublishDataTransformationProfileOutput>
+end
+
+function C:startDataTransformationJob(input: types.StartDataTransformationJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartDataTransformationJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartDataTransformationJob as schema.OperationSchema, input, options) as async.Operation<types.StartDataTransformationJobOutput>
+end
+
 function C:startFHIRExportJob(input: types.StartFHIRExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartFHIRExportJobOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFHIRExportJob as schema.OperationSchema, input, options) as async.Operation<types.StartFHIRExportJobOutput>
 end
@@ -128,8 +175,16 @@ function C:untagResource(input: types.UntagResourceInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
 end
 
+function C:updateDataTransformationProfile(input: types.UpdateDataTransformationProfileInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataTransformationProfileOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateDataTransformationProfile as schema.OperationSchema, input, options) as async.Operation<types.UpdateDataTransformationProfileOutput>
+end
+
 function C:updateFHIRDatastore(input: types.UpdateFHIRDatastoreInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateFHIRDatastoreOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateFHIRDatastore as schema.OperationSchema, input, options) as async.Operation<types.UpdateFHIRDatastoreOutput>
+end
+
+function C:updateProfileWithAgent(input: types.UpdateProfileWithAgentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProfileWithAgentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProfileWithAgent as schema.OperationSchema, input, options) as async.Operation<types.UpdateProfileWithAgentOutput>
 end
 
 return M

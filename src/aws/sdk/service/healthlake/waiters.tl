@@ -4,6 +4,52 @@ local waiter = require("smithy.waiter")
 
 local M = {}
 
+--- Wait until DataTransformationJobCompleted.
+function M.wait_until_data_transformation_job_completed(client, input, options)
+    return waiter.wait(client, "describeDataTransformationJob", input, {
+        min_delay = 30,
+        max_delay = 120,
+        acceptors = {
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "TransformationJobProperties.JobStatus",
+                        expected = "COMPLETED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "success",
+                matcher = {
+                    output = {
+                        path = "TransformationJobProperties.JobStatus",
+                        expected = "COMPLETED_WITH_ERRORS",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    output = {
+                        path = "TransformationJobProperties.JobStatus",
+                        expected = "FAILED",
+                        comparator = "stringEquals",
+                    },
+                },
+            },
+            {
+                state = "failure",
+                matcher = {
+                    errorType = "ResourceNotFoundException",
+                },
+            },
+        },
+    }, options)
+end
+
 --- Wait until FHIRDatastoreActive.
 function M.wait_until_f_h_i_r_datastore_active(client, input, options)
     return waiter.wait(client, "describeFHIRDatastore", input, {

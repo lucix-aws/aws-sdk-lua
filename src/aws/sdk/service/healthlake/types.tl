@@ -7,6 +7,425 @@ local record M
         Message: string
     end
 
+    -- An unknown internal error occurred in the service.
+    record InternalServerException
+        Message: string
+    end
+
+    -- The requested data store was not found.
+    record ResourceNotFoundException
+        Message: string
+    end
+
+    -- The user has exceeded their maximum number of allowed calls to the given API.
+    record ThrottlingException
+        Message: string
+    end
+
+    -- The user input parameter was invalid.
+    record ValidationException
+        Message: string
+    end
+
+    -- The data store is in a transition state and the user requested action cannot be performed.
+    record ConflictException
+        Message: string
+    end
+
+    -- Identifies an existing data transformation profile and version to clone when creating a new profile.
+    record ExistingVersionedProfileSource
+        -- The unique identifier of the existing profile to clone from.
+        ProfileId: string
+        -- The version number of the existing profile to clone from.
+        Version: number
+    end
+
+    -- Contains raw content to use as the source when creating a data transformation profile directly from a mapping.
+    record ProfileMappingSource
+        -- The content as a map of file paths to profile strings.
+        ProfileMapping: {string : string}
+    end
+
+    -- Identifies a sample data file in Amazon S3 to use as the source when creating a data transformation profile. Valid only when the source format is Comma-separated values (CSV).
+    record SampleDataSource
+        -- The Amazon S3 URI of the sample data file.
+        S3Uri: string
+    end
+
+    -- Identifies a built-in starter profile to use as the source when creating a data transformation profile. Valid only when the source format is Consolidated Clinical Document Architecture (C-CDA).
+    record StarterProfileSource
+        -- The name of the built-in starter profile.
+        StarterProfileName: string
+    end
+
+    -- The source for initial content when creating a data transformation profile. Specify exactly one variant: a built-in starter profile, an existing profile version to clone, raw profile content, or a sample data file.
+    record CreateDataTransformationProfileSource
+        -- Creates the profile from a built-in starter profile. Valid only when the source format is Consolidated Clinical Document Architecture (C-CDA).
+        StarterProfile: StarterProfileSource
+        -- Creates the profile by cloning an existing profile at a specific version.
+        ExistingVersionedProfileId: ExistingVersionedProfileSource
+        -- Creates the profile from raw profile content that you provide directly. Use this variant for continuous integration and continuous delivery (CI/CD) workflows.
+        ProfileMapping: ProfileMappingSource
+        -- Creates the profile from a sample data file stored in Amazon S3. Valid only when the source format is Comma-separated values (CSV).
+        SampleData: SampleDataSource
+    end
+
+    enum SourceFormat
+        "CCDA"
+        "CSV"
+    end
+
+    -- The request parameters for the CreateDataTransformationProfile operation.
+    record CreateDataTransformationProfileInput
+        -- The source data format that this profile converts from (Consolidated Clinical Document Architecture (C-CDA) or Comma-separated values (CSV)).
+        SourceFormat: string
+        -- The source for the initial profile content. Specify a built-in starter profile, an existing profile version to clone, raw profile content for CI/CD workflows, or a sample data file in Amazon S3.
+        Source: CreateDataTransformationProfileSource
+        -- The AWS Key Management Service (AWS KMS) key identifier used to encrypt the profile content at rest.
+        KmsKeyId: string
+        -- A human-readable description of the profile's purpose.
+        ProfileDescription: string
+        -- A name for the data transformation profile.
+        ProfileName: string
+        -- The tags to associate with the profile at creation time.
+        Tags: {string : string}
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.
+        ClientToken: string
+    end
+
+    enum TargetFormat
+        "FHIR_R4"
+    end
+
+    -- The response from the CreateDataTransformationProfile operation.
+    record CreateDataTransformationProfileOutput
+        -- The unique identifier of the created profile.
+        ProfileId: string
+        -- The version number of the newly created profile. The starting version is always 0, which indicates the profile is in DRAFT state.
+        Version: number
+        -- The source data format of the profile.
+        SourceFormat: string
+        -- The target output format. Always FHIR_R4.
+        TargetFormat: string
+        -- The name of the created profile.
+        ProfileName: string
+        -- The timestamp when the profile was last updated.
+        LastUpdatedAt: number
+    end
+
+    -- The request exceeds the service quota.
+    record ServiceQuotaExceededException
+        -- A message describing the error.
+        Message: string
+    end
+
+    -- The request parameters for the DeleteDataTransformationProfile operation.
+    record DeleteDataTransformationProfileInput
+        -- The unique identifier of the profile to delete.
+        ProfileId: string
+    end
+
+    -- The response from the DeleteDataTransformationProfile operation.
+    record DeleteDataTransformationProfileOutput
+        -- The unique identifier of the deleted profile.
+        ProfileId: string
+        -- The name of the deleted profile.
+        ProfileName: string
+        -- The timestamp when the profile was deleted.
+        DeletionTime: number
+    end
+
+    -- The request parameters for the GetDataTransformationProfile operation.
+    record GetDataTransformationProfileInput
+        -- The unique identifier of the profile to retrieve.
+        ProfileId: string
+        -- The version number to retrieve. Specify 0 to retrieve the DRAFT version. If you omit this parameter, the service returns the latest published version.
+        ProfileVersion: number
+    end
+
+    -- The response from the GetDataTransformationProfile operation.
+    record GetDataTransformationProfileOutput
+        -- The unique identifier of the profile.
+        ProfileId: string
+        -- The version number of the retrieved profile.
+        Version: number
+        -- The source data format of the profile.
+        SourceFormat: string
+        -- The target output format of the profile.
+        TargetFormat: string
+        -- The profile content as a map of file paths to content strings.
+        ProfileMapping: {string : string}
+        -- The name of the profile.
+        ProfileName: string
+        -- The description of the profile.
+        ProfileDescription: string
+        -- A description of what changed in this version.
+        ChangeDescription: string
+        -- The timestamp when this version was last updated.
+        LastUpdatedAt: number
+    end
+
+    -- The request parameters for the ListDataTransformationProfiles operation.
+    record ListDataTransformationProfilesInput
+        -- Filters the results by source data format.
+        SourceFormat: string
+        -- The maximum number of profiles to return per page. If you don't specify a value, the service returns up to 100 results.
+        MaxResults: number
+        -- The pagination token from a previous response. Pass this value to retrieve the next page of results.
+        NextToken: string
+    end
+
+    -- Contains summary information about a data transformation profile. To retrieve profile content, call GetDataTransformationProfile.
+    record DataTransformationProfileSummary
+        -- The unique identifier of the profile.
+        ProfileId: string
+        -- The latest version number of the profile.
+        Version: number
+        -- The source data format that this profile converts from.
+        SourceFormat: string
+        -- The target output format of the profile.
+        TargetFormat: string
+        -- The name of the profile.
+        ProfileName: string
+        -- A description of the profile's purpose.
+        ProfileDescription: string
+        -- The timestamp when the profile was last updated.
+        LastUpdatedAt: number
+    end
+
+    -- The response from the ListDataTransformationProfiles operation.
+    record ListDataTransformationProfilesOutput
+        -- The list of data transformation profile summaries.
+        Items: {DataTransformationProfileSummary}
+        -- The pagination token to use in the next request. If this value is null, there are no more results.
+        NextToken: string
+    end
+
+    -- The request parameters for the ListDataTransformationProfileVersions operation.
+    record ListDataTransformationProfileVersionsInput
+        -- The unique identifier of the profile whose versions to list.
+        ProfileId: string
+        -- The maximum number of profile versions to return per page. If you don't specify a value, the service returns up to 100 results.
+        MaxResults: number
+        -- The pagination token from a previous response. Pass this value to retrieve the next page of results.
+        NextToken: string
+    end
+
+    -- Contains summary information about a specific version of a data transformation profile. To retrieve profile content, call GetDataTransformationProfile.
+    record DataTransformationProfileVersionSummary
+        -- The unique identifier of the profile.
+        ProfileId: string
+        -- The version number.
+        Version: number
+        -- The source data format that this profile converts from.
+        SourceFormat: string
+        -- The target output format of the profile.
+        TargetFormat: string
+        -- The name of the profile.
+        ProfileName: string
+        -- A description of what changed in this version.
+        ChangeDescription: string
+        -- The timestamp when this version was last updated.
+        LastUpdatedAt: number
+    end
+
+    -- The response from the ListDataTransformationProfileVersions operation.
+    record ListDataTransformationProfileVersionsOutput
+        -- The list of data transformation profile version summaries.
+        Items: {DataTransformationProfileVersionSummary}
+        -- The pagination token to use in the next request. If this value is null, there are no more results.
+        NextToken: string
+    end
+
+    -- The request parameters for the PublishDataTransformationProfile operation.
+    record PublishDataTransformationProfileInput
+        -- The unique identifier of the profile to publish.
+        ProfileId: string
+        -- The source data format of the profile.
+        SourceFormat: string
+        -- The version number of a previously published version to republish as the new latest version. Use this parameter for rollback scenarios. If you omit this parameter, the service publishes the current DRAFT version.
+        FromExistingVersion: number
+        -- A description of what changed or why this version is being published.
+        ChangeDescription: string
+    end
+
+    -- The response from the PublishDataTransformationProfile operation.
+    record PublishDataTransformationProfileOutput
+        -- The unique identifier of the published profile.
+        ProfileId: string
+        -- The new version number that was created.
+        Version: number
+        -- The source data format of the profile.
+        SourceFormat: string
+        -- The target output format of the profile.
+        TargetFormat: string
+        -- The name of the published profile.
+        ProfileName: string
+        -- The timestamp when the profile was last updated.
+        LastUpdatedAt: number
+    end
+
+    -- The Amazon S3 location and source format configuration for input data in a transformation job.
+    record TransformationInputDataConfig
+        -- The Amazon S3 URI of the input data to transform.
+        S3Uri: string
+        -- The format of the source data files (C-CDA or CSV).
+        SourceFormat: string
+    end
+
+    -- The Amazon S3 output configuration for a data transformation job, including the output location and encryption settings.
+    record DataTransformationS3Configuration
+        -- The Amazon S3 URI where AWS HealthLake writes the converted output files.
+        S3Uri: string
+        -- The AWS Key Management Service (AWS KMS) key identifier used to encrypt the transformation job output written to Amazon S3.
+        KmsKeyId: string
+    end
+
+    -- The Amazon S3 output location and encryption configuration for a transformation job.
+    record TransformationOutputDataConfig
+        -- The Amazon S3 output location and AWS Key Management Service (AWS KMS) encryption configuration.
+        S3Configuration: DataTransformationS3Configuration
+    end
+
+    -- The request parameters for the StartDataTransformationJob operation.
+    record StartDataTransformationJobInput
+        -- The Amazon S3 location and format of the source files to transform.
+        InputDataConfig: TransformationInputDataConfig
+        -- The Amazon S3 output location and AWS Key Management Service (AWS KMS) encryption configuration.
+        OutputDataConfig: TransformationOutputDataConfig
+        -- The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that AWS HealthLake assumes to read from and write to the specified Amazon S3 locations.
+        DataAccessRoleArn: string
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.
+        ClientToken: string
+        -- A descriptive name for the data transformation job.
+        JobName: string
+        -- The unique identifier of the data transformation profile to use for conversion.
+        ProfileId: string
+        -- Specifies whether drift detection is enabled for this job. When enabled, AWS HealthLake writes a drift report to the output Amazon S3 location alongside the converted files.
+        DriftDetectionEnabled: boolean
+        -- Specifies whether FHIR R4 Provenance resource generation is enabled for this transformation job. When provenance is enabled, the service also generates related DocumentReference and Device resources. If you don't specify a value, the default is true. To disable provenance output, set this parameter to false.
+        ProvenanceEnabled: boolean
+    end
+
+    enum TransformationJobStatus
+        "SUBMITTED"
+        "QUEUED"
+        "IN_PROGRESS"
+        "COMPLETED"
+        "COMPLETED_WITH_ERRORS"
+        "FAILED"
+    end
+
+    -- The response from the StartDataTransformationJob operation.
+    record StartDataTransformationJobOutput
+        -- The unique identifier assigned to the data transformation job.
+        JobId: string
+        -- The initial status of the data transformation job.
+        JobStatus: string
+    end
+
+    -- The request parameters for the UpdateDataTransformationProfile operation.
+    record UpdateDataTransformationProfileInput
+        -- The unique identifier of the profile to update.
+        ProfileId: string
+        -- The new profile content for the DRAFT version. This is a full replacement of all profile files.
+        ProfileMapping: {string : string}
+        -- A description of what changed in this update.
+        ChangeDescription: string
+    end
+
+    -- The response from the UpdateDataTransformationProfile operation.
+    record UpdateDataTransformationProfileOutput
+        -- The unique identifier of the updated profile.
+        ProfileId: string
+        -- The source data format of the profile.
+        SourceFormat: string
+        -- The target output format of the profile.
+        TargetFormat: string
+        -- The name of the updated profile.
+        ProfileName: string
+        -- The timestamp when the profile was last updated.
+        LastUpdatedAt: number
+    end
+
+    -- The agent message does not fit within the current conversation context. Start a new conversation or provide a message that relates to the current profile customization session.
+    record AgentMessageOutOfContextException
+        Message: string
+    end
+
+    -- The specified conversation identifier does not exist. Verify the conversation ID or omit it to start a new conversation.
+    record ConversationNotFoundException
+        Message: string
+    end
+
+    -- The requested operation is not yet available. Check the service documentation for a list of supported operations.
+    record NotImplementedOperationException
+        Message: string
+    end
+
+    -- You are not authorized to make this request. Verify that your AWS credentials are valid and that you have the required permissions.
+    record UnauthorizedException
+        Message: string
+    end
+
+    -- The content type in your request is not supported. Use a supported content type for this operation.
+    record UnsupportedMIMETypeException
+        Message: string
+    end
+
+    enum AgentInputMessageType
+        "normal"
+        "confirmation_response"
+    end
+
+    -- Represents a message sent to the agent during chat-based profile customization.
+    record AgentInputMessage
+        -- The text of your message to the agent.
+        Body: string
+        -- The type of input message, which determines how the agent processes your request. Valid values: normal: A regular message to the agent. confirmation_response: A response to a confirmation request from the agent.
+        Type: string
+    end
+
+    -- The request parameters for the UpdateProfileWithAgent operation.
+    record UpdateProfileWithAgentInput
+        -- The unique identifier of the profile to update via the agent.
+        ProfileId: string
+        -- The source data format for the transformation.
+        SourceFormat: string
+        -- The message to send to the agent.
+        InputMessage: AgentInputMessage
+        -- The conversation identifier for multi-turn interactions. Omit to start a new conversation.
+        ConversationId: string
+    end
+
+    enum AgentOutputMessageType
+        "INITIAL_GREETING"
+        "normal"
+        "confirmation"
+        "complete"
+        "error"
+        "options"
+        "choices"
+    end
+
+    -- Represents a response message from the agent during chat-based profile customization.
+    record AgentOutputMessage
+        -- The text of the agent's response.
+        Body: string
+        -- The type of output message, which indicates how to interpret the agent's response.
+        Type: string
+        -- A list of selectable options presented when the response type is options.
+        OptionsList: {string}
+    end
+
+    -- The response from the UpdateProfileWithAgent operation.
+    record UpdateProfileWithAgentOutput
+        -- The response message from the agent.
+        AgentResponse: AgentOutputMessage
+        -- The conversation identifier to use for follow-up messages in this conversation.
+        ConversationId: string
+    end
+
     enum AnalyticsStatus
         "ENABLED"
         "ENABLING"
@@ -33,56 +452,26 @@ local record M
         "AWS_OWNED_KMS_KEY"
     end
 
-    -- The data store is in a transition state and the user requested action cannot be
-    -- performed.
-    record ConflictException
-        Message: string
-    end
-
     enum FHIRVersion
         "R4"
     end
 
     -- The identity provider configuration selected when the data store was created.
     record IdentityProviderConfiguration
-        -- The authorization strategy selected when the HealthLake data store is created.
-        -- HealthLake provides support for both SMART on FHIR V1 and V2 as described below.
-        -- SMART_ON_FHIR_V1 – Support for only SMART on FHIR V1, which
-        -- includes read (read/search) and write
-        -- (create/update/delete) permissions.
-        -- SMART_ON_FHIR – Support for both SMART on FHIR V1 and V2,
-        -- which includes create, read, update,
-        -- delete, and search permissions.
-        -- AWS_AUTH – The default HealthLake authorization
-        -- strategy; not affiliated with SMART on FHIR.
+        -- The authorization strategy selected when the HealthLake data store is created. HealthLake provides support for both SMART on FHIR V1 and V2 as described below. SMART_ON_FHIR_V1 – Support for only SMART on FHIR V1, which includes read (read/search) and write (create/update/delete) permissions. SMART_ON_FHIR – Support for both SMART on FHIR V1 and V2, which includes create, read, update, delete, and search permissions. AWS_AUTH – The default HealthLake authorization strategy; not affiliated with SMART on FHIR.
         AuthorizationStrategy: string
-        -- The parameter to enable SMART on FHIR fine-grained authorization for the data
-        -- store.
+        -- The parameter to enable SMART on FHIR fine-grained authorization for the data store.
         FineGrainedAuthorizationEnabled: boolean
-        -- The JSON metadata elements to use in your identity provider configuration. Required
-        -- elements are listed based on the launch specification of the SMART application. For more
-        -- information on all possible elements, see Metadata in SMART's App Launch specification.
-        -- authorization_endpoint: The URL to the OAuth2 authorization
-        -- endpoint.
-        -- grant_types_supported: An array of grant types that are supported at the
-        -- token endpoint. You must provide at least one grant type option. Valid options are
-        -- authorization_code and client_credentials.
-        -- token_endpoint: The URL to the OAuth2 token endpoint.
-        -- capabilities: An array of strings of the SMART capabilities that the
-        -- authorization server supports.
-        -- code_challenge_methods_supported: An array of strings of supported PKCE
-        -- code challenge methods. You must include the S256 method in the array of PKCE
-        -- code challenge methods.
+        -- The JSON metadata elements to use in your identity provider configuration. Required elements are listed based on the launch specification of the SMART application. For more information on all possible elements, see Metadata in SMART's App Launch specification. authorization_endpoint: The URL to the OAuth2 authorization endpoint. grant_types_supported: An array of grant types that are supported at the token endpoint. You must provide at least one grant type option. Valid options are authorization_code and client_credentials. token_endpoint: The URL to the OAuth2 token endpoint. capabilities: An array of strings of the SMART capabilities that the authorization server supports. code_challenge_methods_supported: An array of strings of supported PKCE code challenge methods. You must include the S256 method in the array of PKCE code challenge methods.
         Metadata: string
-        -- The Amazon Resource Name (ARN) of the Lambda function to use to decode the access token created by the
-        -- authorization server.
+        -- The Amazon Resource Name (ARN) of the Lambda function to use to decode the access token created by the authorization server.
         IdpLambdaArn: string
     end
 
     enum NlpStatus
         "ENABLED"
-        "DISABLED"
         "ENABLING"
+        "DISABLED"
         "DISABLING"
     end
 
@@ -108,26 +497,21 @@ local record M
         DefaultProfiles: {string}
     end
 
-    -- The customer-managed-key (CMK) used when creating a data store. If a customer-owned key
-    -- is not specified, an AWS-owned key is used for encryption.
+    -- The customer-managed-key (CMK) used when creating a data store. If a customer-owned key is not specified, an AWS-owned key is used for encryption.
     record KmsEncryptionConfig
         -- The type of customer-managed-key (CMK) used for encryption.
         CmkType: string
-        -- The Key Management Service (KMS) encryption key id/alias used to encrypt the data store contents at
-        -- rest.
+        -- The Key Management Service (KMS) encryption key id/alias used to encrypt the data store contents at rest.
         KmsKeyId: string
     end
 
-    -- The server-side encryption key configuration for a customer-provided encryption
-    -- key.
+    -- The server-side encryption key configuration for a customer-provided encryption key.
     record SseConfiguration
-        -- The Key Management Service (KMS) encryption configuration used to provide details for data
-        -- encryption.
+        -- The Key Management Service (KMS) encryption configuration used to provide details for data encryption.
         KmsEncryptionConfig: KmsEncryptionConfig
     end
 
-    -- A label consisting of a user-defined key and value. The form for tags is {"Key",
-    -- "Value"}
+    -- A label consisting of a user-defined key and value. The form for tags is {"Key", "Value"}
     record Tag
         -- The key portion of a tag. Tag keys are case sensitive.
         Key: string
@@ -138,14 +522,11 @@ local record M
     record CreateFHIRDatastoreInput
         -- The data store name (user-generated).
         DatastoreName: string
-        -- The FHIR release version supported by the data store. Current support is for version
-        -- R4.
+        -- The FHIR release version supported by the data store. Current support is for version R4.
         DatastoreTypeVersion: string
-        -- The server-side encryption key configuration for a customer-provided encryption key
-        -- specified for creating a data store.
+        -- The server-side encryption key configuration for a customer-provided encryption key specified for creating a data store.
         SseConfiguration: SseConfiguration
-        -- An optional parameter to preload (import) open source Synthea FHIR data upon creation of
-        -- the data store.
+        -- An optional parameter to preload (import) open source Synthea FHIR data upon creation of the data store.
         PreloadDataConfig: PreloadDataConfig
         -- An optional user-provided token to ensure API idempotency.
         ClientToken: string
@@ -182,32 +563,15 @@ local record M
         DatastoreEndpoint: string
     end
 
-    -- An unknown internal error occurred in the service.
-    record InternalServerException
-        Message: string
-    end
-
-    -- The user has exceeded their maximum number of allowed calls to the given API.
-    record ThrottlingException
-        Message: string
-    end
-
-    -- The user input parameter was invalid.
-    record ValidationException
-        Message: string
-    end
-
     -- The filters applied to a data store query.
     record DatastoreFilter
         -- Filter data store results by name.
         DatastoreName: string
         -- Filter data store results by status.
         DatastoreStatus: string
-        -- Filter to set cutoff dates for records. All data stores created before the specified
-        -- date are included in the results.
+        -- Filter to set cutoff dates for records. All data stores created before the specified date are included in the results.
         CreatedBefore: number
-        -- Filter to set cutoff dates for records. All data stores created after the specified date
-        -- are included in the results.
+        -- Filter to set cutoff dates for records. All data stores created after the specified date are included in the results.
         CreatedAfter: number
     end
 
@@ -216,8 +580,7 @@ local record M
         "NON_RETRYABLE_ERROR"
     end
 
-    -- The error information for CreateFHIRDatastore and
-    -- DeleteFHIRDatastore actions.
+    -- The error information for CreateFHIRDatastore and DeleteFHIRDatastore actions.
     record ErrorCause
         -- The error message text for ErrorCause.
         ErrorMessage: string
@@ -237,13 +600,11 @@ local record M
         DatastoreStatus: string
         -- The time the data store was created.
         CreatedAt: number
-        -- The FHIR release version supported by the data store. Current support is for version
-        -- R4.
+        -- The FHIR release version supported by the data store. Current support is for version R4.
         DatastoreTypeVersion: string
         -- The AWS endpoint for the data store.
         DatastoreEndpoint: string
-        -- The server-side encryption key configuration for a customer provided encryption
-        -- key.
+        -- The server-side encryption key configuration for a customer provided encryption key.
         SseConfiguration: SseConfiguration
         -- The preloaded Synthea data configuration for the data store.
         PreloadDataConfig: PreloadDataConfig
@@ -275,9 +636,62 @@ local record M
         DatastoreEndpoint: string
     end
 
-    -- The requested data store was not found.
-    record ResourceNotFoundException
+    -- The request parameters for the DescribeDataTransformationJob operation.
+    record DescribeDataTransformationJobInput
+        -- The unique identifier of the data transformation job to describe.
+        JobId: string
+    end
+
+    -- Contains progress metrics for a data transformation job, including counts of files scanned, converted, and failed.
+    record TransformationJobProgressReport
+        -- The total number of source files scanned by the job.
+        TotalFilesScanned: number
+        -- The total number of source files successfully converted.
+        TotalFilesConverted: number
+        -- The total number of source files that failed conversion.
+        TotalFilesFailed: number
+        -- The total number of FHIR R4 resources generated across all converted files.
+        TotalResourcesGenerated: number
+    end
+
+    -- Contains the properties of a data transformation job, including its status, configuration, and progress information. You retrieve this structure by calling DescribeDataTransformationJob.
+    record TransformationJobProperties
+        -- The unique identifier of the data transformation job.
+        JobId: string
+        -- The current status of the data transformation job.
+        JobStatus: string
+        -- The Amazon S3 location and format of the source files for this job.
+        InputDataConfig: TransformationInputDataConfig
+        -- The Amazon S3 location and encryption configuration for the converted output.
+        OutputDataConfig: TransformationOutputDataConfig
+        -- The Amazon Resource Name (ARN) of the AWS Identity and Access Management (IAM) role that grants AWS HealthLake access to the specified Amazon S3 locations. AWS HealthLake assumes this role to read input files and write output files.
+        DataAccessRoleArn: string
+        -- The timestamp when the job was submitted.
+        SubmitTime: number
+        -- The name of the data transformation job.
+        JobName: string
+        -- The unique identifier of the data transformation profile used for this job.
+        ProfileId: string
+        -- The name of the data transformation profile used for this job.
+        ProfileName: string
+        -- The version number of the data transformation profile used for this job.
+        ProfileVersion: number
+        -- The timestamp when the job completed or failed.
+        EndTime: number
+        -- Specifies whether drift detection is enabled for this job. When enabled, AWS HealthLake writes a drift report to the output Amazon S3 location alongside the converted files.
+        DriftDetectionEnabled: boolean
+        -- Specifies whether FHIR R4 Provenance resource generation is enabled for this transformation job. When provenance is enabled, the service also generates related DocumentReference and Device resources.
+        ProvenanceEnabled: boolean
+        -- An informational message about the job, such as an error description if the job failed.
         Message: string
+        -- The progress report for the data transformation job, including counts of files processed and resources generated.
+        JobProgressReport: TransformationJobProgressReport
+    end
+
+    -- The response from the DescribeDataTransformationJob operation.
+    record DescribeDataTransformationJobOutput
+        -- The properties of the data transformation job, including status, configuration, and progress information.
+        TransformationJobProperties: TransformationJobProperties
     end
 
     record DescribeFHIRDatastoreInput
@@ -310,11 +724,9 @@ local record M
         "CANCEL_FAILED"
     end
 
-    -- The configuration of the S3 bucket for either an import or export job. This includes
-    -- assigning access permissions.
+    -- The configuration of the S3 bucket for either an import or export job. This includes assigning access permissions.
     record S3Configuration
-        -- The S3Uri is the user-specified S3 location of the FHIR data to be
-        -- imported into AWS HealthLake.
+        -- The S3Uri is the user-specified S3 location of the FHIR data to be imported into AWS HealthLake.
         S3Uri: string
         -- The Key Management Service (KMS) key ID used to access the S3 bucket.
         KmsKeyId: string
@@ -362,8 +774,7 @@ local record M
 
     -- The import job input properties.
     record InputDataConfig
-        -- The S3Uri is the user-specified S3 location of the FHIR data to be
-        -- imported into AWS HealthLake.
+        -- The S3Uri is the user-specified S3 location of the FHIR data to be imported into AWS HealthLake.
         S3Uri: string
     end
 
@@ -381,11 +792,33 @@ local record M
         TotalNumberOfResourcesImported: number
         -- The number of resources that failed due to customer error.
         TotalNumberOfResourcesWithCustomerError: number
-        -- The number of files that failed to be read from the S3 input bucket due to customer
-        -- error.
+        -- The number of files that failed to be read from the S3 input bucket due to customer error.
         TotalNumberOfFilesReadWithCustomerError: number
+        -- The number of non-FHIR files scanned from the S3 input bucket.
+        TotalNumberOfScannedNonFhirFiles: number
+        -- The size (in MB) of non-FHIR files scanned from the S3 input bucket.
+        TotalSizeOfScannedNonFhirFilesInMB: number
+        -- The number of non-FHIR files imported.
+        TotalNumberOfImportedNonFhirFiles: number
+        -- The number of non-FHIR resources scanned from the S3 input bucket.
+        TotalNumberOfNonFhirResourcesScanned: number
+        -- The number of non-FHIR resources imported.
+        TotalNumberOfNonFhirResourcesImported: number
+        -- The number of non-FHIR resources that failed due to customer error.
+        TotalNumberOfNonFhirResourcesWithCustomerError: number
+        -- The number of non-FHIR files that failed to be read from the S3 input bucket due to customer error.
+        TotalNumberOfNonFhirFilesReadWithCustomerError: number
         -- The transaction rate the import job is processed at.
         Throughput: number
+        -- Number of CCDA files successfully transformed during the import's
+        -- transformation phase. Populated only for import jobs that use the
+        -- two-Step-Function (transformation + ingestion) flow; null for legacy
+        -- single-SF imports and for pure FHIR imports that skip transformation.
+        TotalFilesConverted: number
+        -- Number of FHIR resources produced by the transformation phase.
+        -- Populated only for import jobs that use the two-Step-Function flow;
+        -- null for legacy single-SF imports and for pure FHIR imports.
+        TotalResourcesGenerated: number
     end
 
     enum ValidationLevel
@@ -411,8 +844,7 @@ local record M
         -- The input data configuration supplied when the import job was created.
         InputDataConfig: InputDataConfig
         JobOutputDataConfig: OutputDataConfig
-        -- Displays the progress of the import job, including total resources scanned, total
-        -- resources imported, and total size of data imported.
+        -- Displays the progress of the import job, including total resources scanned, total resources imported, and total size of data imported.
         JobProgressReport: JobProgressReport
         -- The Amazon Resource Name (ARN) that grants AWS HealthLake access to the input data.
         DataAccessRoleArn: string
@@ -427,11 +859,56 @@ local record M
         ImportJobProperties: ImportJobProperties
     end
 
+    -- A dependent service failed to fulfill the request.
+    record FailedDependencyException
+        -- A message describing the error.
+        Message: string
+    end
+
+    -- The request parameters for the ListDataTransformationJobs operation.
+    record ListDataTransformationJobsInput
+        -- The maximum number of jobs to return per page. If you don't specify a value, the service returns up to 100 results.
+        MaxResults: number
+        -- The pagination token from a previous response. Pass this value to retrieve the next page of results.
+        NextToken: string
+        -- Filters the results to include only jobs with the specified status.
+        JobStatus: string
+        -- Filters the results to include only jobs with the specified name.
+        JobName: string
+        -- Filters the results to include only jobs submitted at or after this timestamp.
+        SubmittedAfter: number
+        -- Filters the results to include only jobs submitted at or before this timestamp.
+        SubmittedBefore: number
+    end
+
+    -- Contains summary information about a data transformation job. To retrieve full job details, call DescribeDataTransformationJob.
+    record TransformationJobSummary
+        -- The unique identifier of the job.
+        JobId: string
+        -- The current status of the job.
+        JobStatus: string
+        -- The timestamp when the job was submitted.
+        SubmitTime: number
+        -- The name of the job.
+        JobName: string
+        -- The timestamp when the job completed.
+        EndTime: number
+        -- The source data format for this job.
+        SourceFormat: string
+    end
+
+    -- The response from the ListDataTransformationJobs operation.
+    record ListDataTransformationJobsOutput
+        -- The list of data transformation job summaries.
+        Items: {TransformationJobSummary}
+        -- The pagination token to use in the next request. If this value is null, there are no more results.
+        NextToken: string
+    end
+
     record ListFHIRDatastoresInput
         -- List all filters associated with a FHIR data store request.
         Filter: DatastoreFilter
-        -- The token used to retrieve the next page of data stores when results are
-        -- paginated.
+        -- The token used to retrieve the next page of data stores when results are paginated.
         NextToken: string
         -- The maximum number of data stores returned on a page.
         MaxResults: number
@@ -449,8 +926,7 @@ local record M
         DatastoreId: string
         -- A pagination token used to identify the next page of results to return.
         NextToken: string
-        -- Limits the number of results returned for a ListFHIRExportJobs to a maximum quantity
-        -- specified by the user.
+        -- Limits the number of results returned for a ListFHIRExportJobs to a maximum quantity specified by the user.
         MaxResults: number
         -- Limits the response to the export job with the specified job name.
         JobName: string
@@ -474,8 +950,7 @@ local record M
         DatastoreId: string
         -- The pagination token used to identify the next page of results to return.
         NextToken: string
-        -- Limits the number of results returned for ListFHIRImportJobs to a maximum
-        -- quantity specified by the user.
+        -- Limits the number of results returned for ListFHIRImportJobs to a maximum quantity specified by the user.
         MaxResults: number
         -- Limits the response to the import job with the specified job name.
         JobName: string
@@ -540,6 +1015,9 @@ local record M
         ClientToken: string
         -- The validation level of the import job.
         ValidationLevel: string
+        ProfileId: string
+        InputFormat: string
+        DriftDetectionEnabled: boolean
     end
 
     record StartFHIRImportJobOutput
@@ -576,10 +1054,10 @@ local record M
         DatastoreId: string
         -- The data store name.
         DatastoreName: string
-        -- The natural language processing (NLP) configuration for the data store.
-        NlpConfiguration: NlpConfiguration
         -- The analytics configuration for the data store.
         AnalyticsConfiguration: AnalyticsConfiguration
+        -- The natural language processing (NLP) configuration for the data store.
+        NlpConfiguration: NlpConfiguration
         -- The profile configuration for the data store.
         ProfileConfiguration: ProfileConfiguration
         -- The identity provider configuration for the data store.
