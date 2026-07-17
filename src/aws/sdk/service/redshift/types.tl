@@ -1594,7 +1594,7 @@ local record M
         -- go to Working with
         -- Clusters in the Amazon Redshift Cluster Management Guide.
         -- Valid Values:
-        -- dc2.large | dc2.8xlarge| rg.xlarge | rg.4xlarge |
+        -- dc2.large | dc2.8xlarge | rg.large | rg.xlarge | rg.4xlarge | rg.12xlarge |
         -- ra3.large | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
         NodeType: string
         -- The user name associated with the admin user account for the cluster that is being
@@ -5875,7 +5875,7 @@ local record M
         -- Resizing Clusters in Amazon Redshift
         -- in the Amazon Redshift Cluster Management Guide.
         -- Valid Values:
-        -- dc2.large | dc2.8xlarge| rg.xlarge | rg.4xlarge |
+        -- dc2.large | dc2.8xlarge | rg.large | rg.xlarge | rg.4xlarge | rg.12xlarge |
         -- ra3.large | ra3.xlplus | ra3.4xlarge | ra3.16xlarge
         NodeType: string
         -- The new number of nodes of the cluster. If you specify a new number of nodes, you

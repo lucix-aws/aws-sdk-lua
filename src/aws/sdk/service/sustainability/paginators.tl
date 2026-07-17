@@ -40,4 +40,40 @@ function M.items_get_estimated_carbon_emissions_dimension_values(client, input)
     })
 end
 
+--- Returns a page iterator for getEstimatedWaterAllocation.
+function M.pages_get_estimated_water_allocation(client, input)
+    return paginator.pages(client, "getEstimatedWaterAllocation", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for getEstimatedWaterAllocation.
+function M.items_get_estimated_water_allocation(client, input)
+    return paginator.items(client, "getEstimatedWaterAllocation", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns a page iterator for getEstimatedWaterAllocationDimensionValues.
+function M.pages_get_estimated_water_allocation_dimension_values(client, input)
+    return paginator.pages(client, "getEstimatedWaterAllocationDimensionValues", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
+--- Returns an item iterator for getEstimatedWaterAllocationDimensionValues.
+function M.items_get_estimated_water_allocation_dimension_values(client, input)
+    return paginator.items(client, "getEstimatedWaterAllocationDimensionValues", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Results",
+    })
+end
+
 return M

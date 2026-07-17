@@ -7426,6 +7426,12 @@ M.GetRunTaskOutput = schema.new({
             target_id = id.from(_N, "ImageDetails"),
             target = M.ImageDetails,
         }),
+        uuid = schema.new({
+            id = id.from(_N, "GetRunTaskOutput", "uuid"),
+            type = "string",
+            name = "uuid",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -10519,6 +10525,12 @@ M.TaskListItem = schema.new({
             id = id.from(_N, "TaskListItem", "instanceType"),
             type = "string",
             name = "instanceType",
+            target_id = prelude.String.id,
+        }),
+        uuid = schema.new({
+            id = id.from(_N, "TaskListItem", "uuid"),
+            type = "string",
+            name = "uuid",
             target_id = prelude.String.id,
         }),
     },

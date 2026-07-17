@@ -755,14 +755,6 @@ local record M
         CancelStepsInfoList: {CancelStepsInfo}
     end
 
-    -- Describes the certificate authority used to establish an mTLS connection to the Spark Connect server when connecting directly over VPC peering.
-    record CertificateAuthority
-        -- The Amazon Resource Name (ARN) of the certificate authority in Amazon Web Services Private CA that issued the Spark Connect server certificate.
-        CertificateArn: string
-        -- The PEM-encoded root CA certificate data. Provide this certificate to your client's trust store when connecting directly to the Spark Connect server over VPC peering.
-        CertificateData: string
-    end
-
     -- Holds CloudWatch log configuration settings and metadata that specify settings like log files to monitor and where to send them.
     record CloudWatchLogConfiguration
         -- Specifies if CloudWatch logging is enabled.
@@ -3498,8 +3490,6 @@ local record M
         MonitoringConfiguration: SessionMonitoringConfiguration
         -- The idle timeout, in minutes. If the session is idle for this duration, Amazon EMR automatically terminates it.
         SessionIdleTimeoutInMinutes: number
-        -- The certificate authority used to establish an mTLS connection to the Spark Connect server when connecting directly over VPC peering.
-        CertificateAuthority: CertificateAuthority
         -- The Spark Connect server URL for the session. Use this URL with the Credentials returned by GetSessionEndpoint to connect directly to the session over VPC peering.
         ServerUrl: string
         -- The tags associated with the session.

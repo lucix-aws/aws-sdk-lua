@@ -2498,6 +2498,8 @@ local record M
         failureReason: string
         -- Details about the container image that this task uses.
         imageDetails: ImageDetails
+        -- The universally unique identifier (UUID) for the workflow task.
+        uuid: string
     end
 
     record GetS3AccessPolicyInput
@@ -3399,6 +3401,8 @@ local record M
         gpus: number
         -- The instance type for a task.
         instanceType: string
+        -- The universally unique identifier (UUID) for the workflow task.
+        uuid: string
     end
 
     record ListRunTasksOutput

@@ -23,9 +23,9 @@ local record M
         "SERVICE"
     end
 
-    -- Filters emission values by specific dimension values.
+    -- Filters environmental impact values by specific dimension values.
     record FilterExpression
-        -- Filters emission values by specific dimension values.
+        -- Filters environmental impact values by specific dimension values.
         Dimensions: {string : {string}}
     end
 
@@ -52,19 +52,19 @@ local record M
     end
 
     record GetEstimatedCarbonEmissionsInput
-        -- The date range for fetching estimated carbon emissions.
+        -- The date range for fetching estimated carbon emissions. The range must include the start date of a month for that month's data to be included in the response.
         TimePeriod: TimePeriod
         -- The dimensions available for grouping estimated carbon emissions.
         GroupBy: {string}
-        -- The criteria for filtering estimated carbon emissions.
+        -- The criteria for filtering estimated carbon emissions. To determine which dimensions are available to be filtered by, you can first call GetEstimatedCarbonEmissionsDimensionValues
         FilterBy: FilterExpression
         -- The emission types to include in the results. If absent, returns TOTAL_LBM_CARBON_EMISSIONS and TOTAL_MBM_CARBON_EMISSIONS emissions types.
         EmissionsTypes: {string}
-        -- The time granularity for the results. If absent, uses MONTHLY time granularity.
+        -- The time granularity for the results. If absent, uses MONTHLY time granularity. The smallest supported granularity for carbon emissions is MONTHLY. If requesting partial time periods, data will be returned based on the smallest supported granularity. For example, requesting 2025-04-01T00:00:00Z to 2026-04-01T00:00:00Z with YEARLY_CALENDAR granularity will return the last 9 months for 2025 and the first 3 months of 2026.
         Granularity: string
         -- Configuration for fiscal year calculations when using YEARLY_FISCAL or QUARTERLY_FISCAL granularity.
         GranularityConfiguration: GranularityConfiguration
-        -- The maximum number of results to return in a single call. Default is 40.
+        -- The maximum number of results to return in a single call. Default is 1000.
         MaxResults: number
         -- The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.
         NextToken: string
@@ -117,11 +117,11 @@ local record M
     end
 
     record GetEstimatedCarbonEmissionsDimensionValuesInput
-        -- The date range for fetching the dimension values.
+        -- The date range for fetching the dimension values. The range must include the start date of a month for that month's dimensions to be included in the response.
         TimePeriod: TimePeriod
         -- The dimensions available for grouping estimated carbon emissions.
         Dimensions: {string}
-        -- The maximum number of results to return in a single call. Default is 40.
+        -- The maximum number of results to return in a single call. Default is 1000.
         MaxResults: number
         -- The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.
         NextToken: string
@@ -137,6 +137,76 @@ local record M
 
     record GetEstimatedCarbonEmissionsDimensionValuesOutput
         -- The list of possible dimensions over which the emissions data is aggregated.
+        Results: {DimensionEntry}
+        -- The pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results.
+        NextToken: string
+    end
+
+    enum WaterAllocationType
+        "TOTAL_WATER_WITHDRAWALS"
+    end
+
+    record GetEstimatedWaterAllocationInput
+        -- The date range for fetching estimated water allocation. The range must include the start date of a year for that year's data to be included in the response.
+        TimePeriod: TimePeriod
+        -- The dimensions available for grouping estimated water allocation.
+        GroupBy: {string}
+        -- The criteria for filtering estimated water allocation. To determine which dimensions are available to be filtered by, you can first call GetEstimatedWaterAllocationDimensionValues
+        FilterBy: FilterExpression
+        -- The allocation types to include in the results. If absent, returns TOTAL_WATER_WITHDRAWALS allocation types.
+        AllocationTypes: {string}
+        -- The time granularity for the results. Only YEARLY_CALENDAR time granularity is currently supported for water allocation. Defaults to YEARLY_CALENDAR if absent. If requesting partial time periods, data will be returned based on the smallest supported granularity. For example, requesting 2025-04-01T00:00:00Z to 2026-04-01T00:00:00Z with YEARLY_CALENDAR will return all the data for 2026 only.
+        Granularity: string
+        -- The maximum number of results to return in a single call. Default is 1000.
+        MaxResults: number
+        -- The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.
+        NextToken: string
+    end
+
+    enum WaterAllocationUnit
+        "m3"
+    end
+
+    -- Represents a water allocation quantity with its value and unit of measurement.
+    record WaterAllocation
+        -- The numeric value of the allocation quantity.
+        Value: number
+        -- The unit of measurement for the allocation value.
+        Unit: string
+    end
+
+    -- Contains estimated water allocation data for a specific time period and dimension grouping.
+    record EstimatedWaterAllocation
+        -- The reporting period for water allocation values.
+        TimePeriod: TimePeriod
+        -- The dimensions used to group water allocation values.
+        DimensionsValues: {string : string}
+        -- The semantic version-formatted string that indicates the methodology version used to calculate the water allocation values. The AWS Sustainability service reflects the most recent model version for every month. You will not see two entries for the same month with different ModelVersion values.
+        ModelVersion: string
+        -- The allocation values for the requested water allocation types.
+        AllocationValues: {string : WaterAllocation}
+    end
+
+    record GetEstimatedWaterAllocationOutput
+        -- The result of the requested inputs.
+        Results: {EstimatedWaterAllocation}
+        -- The pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results.
+        NextToken: string
+    end
+
+    record GetEstimatedWaterAllocationDimensionValuesInput
+        -- The date range for fetching the dimension values. The range must include the start date of a year for that year's data to be included in the response.
+        TimePeriod: TimePeriod
+        -- The dimensions available for grouping estimated water allocation.
+        Dimensions: {string}
+        -- The maximum number of results to return in a single call. Default is 1000.
+        MaxResults: number
+        -- The pagination token specifying which page of results to return in the response. If no token is provided, the default page is the first page.
+        NextToken: string
+    end
+
+    record GetEstimatedWaterAllocationDimensionValuesOutput
+        -- The list of possible dimensions over which the allocation data is aggregated.
         Results: {DimensionEntry}
         -- The pagination token indicating there are additional pages available. You can use the token in a following request to fetch the next set of results.
         NextToken: string

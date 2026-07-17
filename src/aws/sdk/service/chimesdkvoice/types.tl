@@ -19,6 +19,7 @@ local record M
         "VoiceConnectorGroupAssociationsExist"
         "PhoneNumberAssociationsExist"
         "Gone"
+        "Validation"
     end
 
     -- You don't have the permissions needed to run this action.
@@ -188,6 +189,11 @@ local record M
         IsCaller: boolean
     end
 
+    enum CallDistributionType
+        "PriorityWeightedDistribution"
+        "LoadBalancedDistribution"
+    end
+
     enum CallingNameStatus
         "Unassigned"
         "UpdateInProgress"
@@ -284,7 +290,7 @@ local record M
         UpdatedTimestamp: number
         -- The Firm Order Commitment (FOC) date for phone number porting orders. This field is null
         -- if a phone number order is not a porting order.
-        FocDate: number
+        FocDate: string
     end
 
     record CreatePhoneNumberOrderOutput
@@ -577,6 +583,8 @@ local record M
         -- and branch voice systems. Additionally, enterprises migrating their contact center to
         -- Connect Customer can start with Connect telephony and IVR for immediate
         -- modernization ahead of agent migration.
+        -- This integration is a gated feature. Please reach out to your account team to
+        -- discuss this feature with a Connect Specialist.
         -- CONNECT_ANALYTICS_CONNECTOR - Enables enterprises to integrate
         -- Connect Customer with other voice systems for real-time and post-call analytics.
         -- They can use Connect Customer Contact Lens with their existing voice systems to
@@ -589,7 +597,7 @@ local record M
         -- migrating their contact center to Connect Customer can start with Contact Lens
         -- analytics and performance insights ahead of agent migration.
         IntegrationType: string
-        -- The type of network for the Voice Connector. Either IPv4 only or dual-stack (IPv4 and IPv6).
+        -- The type of network for the Voice Connector.
         NetworkType: string
     end
 
@@ -615,7 +623,7 @@ local record M
         VoiceConnectorArn: string
         -- The connectors for use with Connect Customer.
         IntegrationType: string
-        -- The type of network of the Voice Connector. Either IPv4 only or dual-stack (IPv4 and IPv6).
+        -- The type of network for the Voice Connector.
         NetworkType: string
     end
 
@@ -641,6 +649,7 @@ local record M
         Name: string
         -- Lists the Voice Connectors that inbound calls are routed to.
         VoiceConnectorItems: {VoiceConnectorItem}
+        CallDistributionType: string
     end
 
     -- The Amazon Chime SDK Voice Connector group configuration, including
@@ -660,6 +669,7 @@ local record M
         UpdatedTimestamp: number
         -- The ARN of the Voice Connector group.
         VoiceConnectorGroupArn: string
+        CallDistributionType: string
     end
 
     record CreateVoiceConnectorGroupOutput
@@ -976,6 +986,7 @@ local record M
         PhoneNumberId: string
         -- The phone number, in E.164 format.
         E164PhoneNumber: string
+        PhoneNumberArn: string
         -- The phone number's country. Format: ISO 3166-1 alpha-2.
         Country: string
         -- The phone number's type.
@@ -2055,6 +2066,7 @@ local record M
         -- The VoiceConnectorItems to associate with the Voice Connector
         -- group.
         VoiceConnectorItems: {VoiceConnectorItem}
+        CallDistributionType: string
     end
 
     record UpdateVoiceConnectorGroupOutput

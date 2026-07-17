@@ -20,6 +20,8 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     getEstimatedCarbonEmissions: function(Client, types.GetEstimatedCarbonEmissionsInput, ? base_client.InvokeOptions): async.Operation<types.GetEstimatedCarbonEmissionsOutput>
     getEstimatedCarbonEmissionsDimensionValues: function(Client, types.GetEstimatedCarbonEmissionsDimensionValuesInput, ? base_client.InvokeOptions): async.Operation<types.GetEstimatedCarbonEmissionsDimensionValuesOutput>
+    getEstimatedWaterAllocation: function(Client, types.GetEstimatedWaterAllocationInput, ? base_client.InvokeOptions): async.Operation<types.GetEstimatedWaterAllocationOutput>
+    getEstimatedWaterAllocationDimensionValues: function(Client, types.GetEstimatedWaterAllocationDimensionValuesInput, ? base_client.InvokeOptions): async.Operation<types.GetEstimatedWaterAllocationDimensionValuesOutput>
 end
 
 local record M
@@ -70,6 +72,14 @@ end
 
 function C:getEstimatedCarbonEmissionsDimensionValues(input: types.GetEstimatedCarbonEmissionsDimensionValuesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEstimatedCarbonEmissionsDimensionValuesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEstimatedCarbonEmissionsDimensionValues as schema.OperationSchema, input, options) as async.Operation<types.GetEstimatedCarbonEmissionsDimensionValuesOutput>
+end
+
+function C:getEstimatedWaterAllocation(input: types.GetEstimatedWaterAllocationInput, options?: base_client.InvokeOptions): async.Operation<types.GetEstimatedWaterAllocationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEstimatedWaterAllocation as schema.OperationSchema, input, options) as async.Operation<types.GetEstimatedWaterAllocationOutput>
+end
+
+function C:getEstimatedWaterAllocationDimensionValues(input: types.GetEstimatedWaterAllocationDimensionValuesInput, options?: base_client.InvokeOptions): async.Operation<types.GetEstimatedWaterAllocationDimensionValuesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEstimatedWaterAllocationDimensionValues as schema.OperationSchema, input, options) as async.Operation<types.GetEstimatedWaterAllocationDimensionValuesOutput>
 end
 
 return M

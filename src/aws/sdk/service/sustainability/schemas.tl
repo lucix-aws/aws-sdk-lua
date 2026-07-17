@@ -17,6 +17,10 @@ M.EstimatedCarbonEmissionsList = schema.new({ type = "list", list_member = M.Est
 
 M.DimensionEntryList = schema.new({ type = "list", list_member = M.DimensionEntry })
 
+M.WaterAllocationTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EstimatedWaterAllocationList = schema.new({ type = "list", list_member = M.EstimatedWaterAllocation })
+
 M.DimensionListMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DimensionValueList })
 
 M.DimensionValueList = schema.new({ type = "list", list_member = prelude.String })
@@ -24,6 +28,8 @@ M.DimensionValueList = schema.new({ type = "list", list_member = prelude.String 
 M.DimensionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.EmissionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Emissions })
+
+M.WaterAllocationMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.WaterAllocation })
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -421,6 +427,229 @@ M.GetEstimatedCarbonEmissionsDimensionValuesOutput = schema.new({
     },
 })
 
+M.GetEstimatedWaterAllocationInput = schema.new({
+    id = id.from(_N, "GetEstimatedWaterAllocationRequest"),
+    type = "structure",
+    members = {
+        TimePeriod = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationInput", "TimePeriod"),
+            type = "structure",
+            name = "TimePeriod",
+            target_id = id.from(_N, "TimePeriod"),
+            target = M.TimePeriod,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        GroupBy = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationInput", "GroupBy"),
+            type = "list",
+            name = "GroupBy",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        FilterBy = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationInput", "FilterBy"),
+            type = "structure",
+            name = "FilterBy",
+            target_id = id.from(_N, "FilterExpression"),
+            target = M.FilterExpression,
+        }),
+        AllocationTypes = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationInput", "AllocationTypes"),
+            type = "list",
+            name = "AllocationTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Granularity = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationInput", "Granularity"),
+            type = "string",
+            name = "Granularity",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "YEARLY_CALENDAR" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 1000 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.WaterAllocation = schema.new({
+    id = id.from(_N, "WaterAllocation"),
+    type = "structure",
+    members = {
+        Value = schema.new({
+            id = id.from(_N, "WaterAllocation", "Value"),
+            type = "double",
+            name = "Value",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Unit = schema.new({
+            id = id.from(_N, "WaterAllocation", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EstimatedWaterAllocation = schema.new({
+    id = id.from(_N, "EstimatedWaterAllocation"),
+    type = "structure",
+    members = {
+        TimePeriod = schema.new({
+            id = id.from(_N, "EstimatedWaterAllocation", "TimePeriod"),
+            type = "structure",
+            name = "TimePeriod",
+            target_id = id.from(_N, "TimePeriod"),
+            target = M.TimePeriod,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DimensionsValues = schema.new({
+            id = id.from(_N, "EstimatedWaterAllocation", "DimensionsValues"),
+            type = "map",
+            name = "DimensionsValues",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ModelVersion = schema.new({
+            id = id.from(_N, "EstimatedWaterAllocation", "ModelVersion"),
+            type = "string",
+            name = "ModelVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AllocationValues = schema.new({
+            id = id.from(_N, "EstimatedWaterAllocation", "AllocationValues"),
+            type = "map",
+            name = "AllocationValues",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.WaterAllocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetEstimatedWaterAllocationOutput = schema.new({
+    id = id.from(_N, "GetEstimatedWaterAllocationResponse"),
+    type = "structure",
+    members = {
+        Results = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationOutput", "Results"),
+            type = "list",
+            name = "Results",
+            target_id = prelude.Document.id,
+            list_member = M.EstimatedWaterAllocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetEstimatedWaterAllocationDimensionValuesInput = schema.new({
+    id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesRequest"),
+    type = "structure",
+    members = {
+        TimePeriod = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesInput", "TimePeriod"),
+            type = "structure",
+            name = "TimePeriod",
+            target_id = id.from(_N, "TimePeriod"),
+            target = M.TimePeriod,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesInput", "Dimensions"),
+            type = "list",
+            name = "Dimensions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 1000 },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetEstimatedWaterAllocationDimensionValuesOutput = schema.new({
+    id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesResponse"),
+    type = "structure",
+    members = {
+        Results = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesOutput", "Results"),
+            type = "list",
+            name = "Results",
+            target_id = prelude.Document.id,
+            list_member = M.DimensionEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetEstimatedWaterAllocationDimensionValuesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -466,6 +695,32 @@ M.GetEstimatedCarbonEmissionsDimensionValues = schema.operation({
     output = M.GetEstimatedCarbonEmissionsDimensionValuesOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v1/estimated-carbon-emissions-dimension-values" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEstimatedWaterAllocation = schema.operation({
+    id = id.from("com.amazonaws.sustainability", "GetEstimatedWaterAllocation"),
+    input = M.GetEstimatedWaterAllocationInput,
+    output = M.GetEstimatedWaterAllocationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/estimated-water-allocation" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4a" },
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetEstimatedWaterAllocationDimensionValues = schema.operation({
+    id = id.from("com.amazonaws.sustainability", "GetEstimatedWaterAllocationDimensionValues"),
+    input = M.GetEstimatedWaterAllocationDimensionValuesInput,
+    output = M.GetEstimatedWaterAllocationDimensionValuesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/estimated-water-allocation-dimension-values" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4a" },
             { scheme_id = "aws.auth#sigv4" },

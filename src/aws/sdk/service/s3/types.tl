@@ -1199,7 +1199,7 @@ local record M
     end
 
     record CreateBucketOutput
-        -- A forward slash followed by the name of the bucket.
+        -- A forward slash followed by the name of the bucket for all account regional namespace buckets and all global general purpose buckets created in us-east-1. For example, /amzn-s3-demo-bucket. For global general purpose buckets created in other Amazon Web Services Regions, the Location field is the global endpoint URL. For example, http://amzn-s3-demo-bucket.s3.amazonaws.com/.
         Location: string
         -- The Amazon Resource Name (ARN) of the S3 bucket. ARNs uniquely identify Amazon Web Services resources across all
         -- of Amazon Web Services.
@@ -2163,6 +2163,7 @@ local record M
         DeleteMarkerVersionId: string
     end
 
+    -- For information about using the Amazon S3 API—including error handling—see the Amazon S3 Developer Guide.
     -- Container for all error elements.
     record Error
         -- The error key.
@@ -3278,10 +3279,7 @@ local record M
         -- ISO 8601 format. The time is always midnight UTC.
         Date: number
         -- Indicates the number of days after creation when objects are transitioned to the specified storage
-        -- class. If the specified storage class is INTELLIGENT_TIERING, GLACIER_IR,
-        -- GLACIER, or DEEP_ARCHIVE, valid values are 0 or positive
-        -- integers. If the specified storage class is STANDARD_IA or ONEZONE_IA, valid
-        -- values are positive integers greater than 30. Be aware that some storage classes have a
+        -- class. The value can be 0 or any positive integer. Be aware that some storage classes have a
         -- minimum storage duration and that you're charged for transitioning objects before their minimum storage
         -- duration. For more information, see Constraints and considerations for transitions in the Amazon S3 User
         -- Guide.

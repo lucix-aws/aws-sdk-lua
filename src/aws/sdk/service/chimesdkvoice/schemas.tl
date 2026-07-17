@@ -731,12 +731,9 @@ M.PhoneNumberOrder = schema.new({
         }),
         FocDate = schema.new({
             id = id.from(_N, "PhoneNumberOrder", "FocDate"),
-            type = "timestamp",
+            type = "string",
             name = "FocDate",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
-            },
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1318,6 +1315,9 @@ M.CreateSipRuleInput = schema.new({
             name = "TargetApplications",
             target_id = prelude.Document.id,
             list_member = M.SipRuleTargetApplication,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -1554,7 +1554,7 @@ M.VoiceConnectorItem = schema.new({
             name = "Priority",
             target_id = prelude.Integer.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 1 },
             },
         }),
     },
@@ -1579,6 +1579,12 @@ M.CreateVoiceConnectorGroupInput = schema.new({
             name = "VoiceConnectorItems",
             target_id = prelude.Document.id,
             list_member = M.VoiceConnectorItem,
+        }),
+        CallDistributionType = schema.new({
+            id = id.from(_N, "CreateVoiceConnectorGroupInput", "CallDistributionType"),
+            type = "string",
+            name = "CallDistributionType",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1628,6 +1634,12 @@ M.VoiceConnectorGroup = schema.new({
             id = id.from(_N, "VoiceConnectorGroup", "VoiceConnectorGroupArn"),
             type = "string",
             name = "VoiceConnectorGroupArn",
+            target_id = prelude.String.id,
+        }),
+        CallDistributionType = schema.new({
+            id = id.from(_N, "VoiceConnectorGroup", "CallDistributionType"),
+            type = "string",
+            name = "CallDistributionType",
             target_id = prelude.String.id,
         }),
     },
@@ -2400,6 +2412,12 @@ M.PhoneNumber = schema.new({
             id = id.from(_N, "PhoneNumber", "E164PhoneNumber"),
             type = "string",
             name = "E164PhoneNumber",
+            target_id = prelude.String.id,
+        }),
+        PhoneNumberArn = schema.new({
+            id = id.from(_N, "PhoneNumber", "PhoneNumberArn"),
+            type = "string",
+            name = "PhoneNumberArn",
             target_id = prelude.String.id,
         }),
         Country = schema.new({
@@ -5238,6 +5256,9 @@ M.UpdateGlobalSettingsInput = schema.new({
             name = "VoiceConnector",
             target_id = id.from(_N, "VoiceConnectorSettings"),
             target = M.VoiceConnectorSettings,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -5598,6 +5619,12 @@ M.UpdateVoiceConnectorGroupInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        CallDistributionType = schema.new({
+            id = id.from(_N, "UpdateVoiceConnectorGroupInput", "CallDistributionType"),
+            type = "string",
+            name = "CallDistributionType",
+            target_id = prelude.String.id,
         }),
     },
 })

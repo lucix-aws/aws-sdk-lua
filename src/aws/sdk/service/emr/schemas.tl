@@ -1259,25 +1259,6 @@ M.CancelStepsOutput = schema.new({
     },
 })
 
-M.CertificateAuthority = schema.new({
-    id = id.from(_N, "CertificateAuthority"),
-    type = "structure",
-    members = {
-        CertificateArn = schema.new({
-            id = id.from(_N, "CertificateAuthority", "CertificateArn"),
-            type = "string",
-            name = "CertificateArn",
-            target_id = prelude.String.id,
-        }),
-        CertificateData = schema.new({
-            id = id.from(_N, "CertificateAuthority", "CertificateData"),
-            type = "string",
-            name = "CertificateData",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.CloudWatchLogConfiguration = schema.new({
     id = id.from(_N, "CloudWatchLogConfiguration"),
     type = "structure",
@@ -6830,13 +6811,6 @@ M.Session = schema.new({
             type = "long",
             name = "SessionIdleTimeoutInMinutes",
             target_id = prelude.Long.id,
-        }),
-        CertificateAuthority = schema.new({
-            id = id.from(_N, "Session", "CertificateAuthority"),
-            type = "structure",
-            name = "CertificateAuthority",
-            target_id = id.from(_N, "CertificateAuthority"),
-            target = M.CertificateAuthority,
         }),
         ServerUrl = schema.new({
             id = id.from(_N, "Session", "ServerUrl"),
