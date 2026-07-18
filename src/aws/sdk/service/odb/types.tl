@@ -67,6 +67,57 @@ local record M
         "DISABLED"
     end
 
+    enum AdminPasswordSource
+        "CUSTOMER_MANAGED_AWS_SECRET"
+        "API_REQUEST_PARAMETER"
+    end
+
+    enum ExternalIdType
+        "database_ocid"
+        "compartment_ocid"
+        "tenant_ocid"
+    end
+
+    -- The configuration of a customer-managed Amazon Web Services Secrets Manager secret used to supply a password.
+    record CustomerManagedAwsSecretConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role that OCI assumes to retrieve the secret value.
+        iamRoleArn: string
+        -- The identifier or ARN of the Amazon Web Services Secrets Manager secret that contains the password.
+        secretId: string
+        -- The type of Oracle Cloud Identifier (OCID) used as the external ID when assuming the IAM role.
+        externalIdType: string
+    end
+
+    -- The configuration of the admin password source. This is a union, so only one of the following members can be specified.
+    record AdminPasswordSourceConfiguration
+        -- The configuration for a customer-managed Amazon Web Services Secrets Manager secret used as the admin password source.
+        customerManagedAwsSecret: CustomerManagedAwsSecretConfiguration
+    end
+
+    -- The input configuration for a customer-managed Amazon Web Services Secrets Manager secret used to supply a password.
+    record CustomerManagedAwsSecretConfigurationInput
+        -- The identifier or ARN of the Amazon Web Services Secrets Manager secret that contains the password.
+        secretId: string
+        -- The Amazon Resource Name (ARN) of the Amazon Web Services Identity and Access Management (IAM) role that OCI assumes to retrieve the secret value.
+        iamRoleArn: string
+        -- The type of Oracle Cloud Identifier (OCID) used as the external ID when assuming the IAM role.
+        externalIdType: string
+    end
+
+    -- The input configuration for the admin password source. This is a union, so only one of the following members can be specified.
+    record AdminPasswordSourceConfigurationInput
+        -- The configuration for using a customer-managed Amazon Web Services Secrets Manager secret as the admin password source.
+        customerManagedAwsSecret: CustomerManagedAwsSecretConfigurationInput
+    end
+
+    -- A summary of the admin password source configuration for an Autonomous Database.
+    record AdminPasswordSourceSummary
+        -- The source of the admin password for the Autonomous Database.
+        adminPasswordSource: string
+        -- The configuration of the admin password source for the Autonomous Database.
+        adminPasswordSourceConfiguration: AdminPasswordSourceConfiguration
+    end
+
     enum SupportedAwsIntegration
         "KmsTde"
     end
@@ -220,12 +271,6 @@ local record M
         "AJD"
         "APEX"
         "LH"
-    end
-
-    enum ExternalIdType
-        "database_ocid"
-        "compartment_ocid"
-        "tenant_ocid"
     end
 
     -- The configuration of the Amazon Web Services Key Management Service (KMS) encryption key used for an Autonomous Database.
@@ -671,6 +716,8 @@ local record M
         nextLongTermBackupTimeStamp: number
         -- The date and time when the Autonomous Database was restored after deletion.
         timeUndeleted: number
+        -- The summary of the admin password source configuration for the Autonomous Database.
+        adminPasswordSourceSummary: AdminPasswordSourceSummary
     end
 
     enum AutonomousDatabaseBackupStatus
@@ -1067,6 +1114,8 @@ local record M
         nextLongTermBackupTimeStamp: number
         -- The date and time when the Autonomous Database was restored after deletion.
         timeUndeleted: number
+        -- The summary of the admin password source configuration for the Autonomous Database.
+        adminPasswordSourceSummary: AdminPasswordSourceSummary
     end
 
     -- A summary of a peer database of an Autonomous Database.
@@ -1281,6 +1330,10 @@ local record M
         encryptionKeyProvider: string
         -- The configuration of the encryption key to use for the Autonomous Database.
         encryptionKeyConfiguration: EncryptionKeyConfigurationInput
+        -- The source of the admin password for the Autonomous Database. When set to CUSTOMER_MANAGED_AWS_SECRET, the admin password is retrieved from an Amazon Web Services Secrets Manager secret.
+        adminPasswordSource: string
+        -- The configuration of the admin password source for the Autonomous Database.
+        adminPasswordSourceConfiguration: AdminPasswordSourceConfigurationInput
         -- A client-provided token to ensure the idempotency of the request.
         clientToken: string
         -- The list of resource tags to apply to the Autonomous Database. Each tag is a key-value pair with no predefined name, type, or namespace.
@@ -1298,6 +1351,17 @@ local record M
         statusReason: string
     end
 
+    enum WalletPasswordSource
+        "CUSTOMER_MANAGED_AWS_SECRET"
+        "API_REQUEST_PARAMETER"
+    end
+
+    -- The input configuration for the wallet password source. This is a union, so only one of the following members can be specified.
+    record WalletPasswordSourceConfigurationInput
+        -- The configuration for using a customer-managed Amazon Web Services Secrets Manager secret as the wallet password source.
+        customerManagedAwsSecret: CustomerManagedAwsSecretConfigurationInput
+    end
+
     enum WalletType
         "REGIONAL"
         "INSTANCE"
@@ -1310,6 +1374,10 @@ local record M
         walletType: string
         -- The password to encrypt the keys inside the wallet.
         password: string
+        -- The source of the password for encrypting the wallet. When set to CUSTOMER_MANAGED_AWS_SECRET, the password is retrieved from an Amazon Web Services Secrets Manager secret.
+        passwordSource: string
+        -- The configuration of the password source for the Autonomous Database wallet.
+        passwordSourceConfiguration: WalletPasswordSourceConfigurationInput
         -- A client-provided token to ensure the idempotency of the request.
         clientToken: string
     end
@@ -1360,6 +1428,20 @@ local record M
         autonomousDatabaseId: string
     end
 
+    -- The configuration of the wallet password source. This is a union, so only one of the following members can be specified.
+    record WalletPasswordSourceConfiguration
+        -- The configuration for a customer-managed Amazon Web Services Secrets Manager secret used as the wallet password source.
+        customerManagedAwsSecret: CustomerManagedAwsSecretConfiguration
+    end
+
+    -- A summary of the password source configuration for an Autonomous Database wallet.
+    record WalletPasswordSourceSummary
+        -- The source of the password for the Autonomous Database wallet.
+        passwordSource: string
+        -- The configuration of the password source for the Autonomous Database wallet.
+        passwordSourceConfiguration: WalletPasswordSourceConfiguration
+    end
+
     enum AutonomousDatabaseWalletStatus
         "ACTIVE"
         "UPDATING"
@@ -1371,6 +1453,8 @@ local record M
         status: string
         -- The date and time when the Autonomous Database wallet was last rotated.
         timeRotated: number
+        -- The summary of the password source configuration for the Autonomous Database wallet.
+        passwordSourceSummary: WalletPasswordSourceSummary
     end
 
     record GetAutonomousDatabaseWalletDetailsOutput
@@ -1613,6 +1697,10 @@ local record M
         encryptionKeyProvider: string
         -- The configuration of the encryption key to use for the Autonomous Database.
         encryptionKeyConfiguration: EncryptionKeyConfigurationInput
+        -- The source of the admin password for the Autonomous Database. When set to CUSTOMER_MANAGED_AWS_SECRET, the admin password is retrieved from an Amazon Web Services Secrets Manager secret.
+        adminPasswordSource: string
+        -- The configuration of the admin password source for the Autonomous Database.
+        adminPasswordSourceConfiguration: AdminPasswordSourceConfigurationInput
     end
 
     record UpdateAutonomousDatabaseOutput
@@ -3196,6 +3284,15 @@ local record M
 
     enum OciAwsIntegration
         "KmsTde"
+        "SecretsManager"
+    end
+
+    enum OciIamRoleStatus
+        "PROVISIONING"
+        "AVAILABLE"
+        "PROVISION_FAILED"
+        "TERMINATING"
+        "TERMINATE_FAILED"
     end
 
     -- Information about an Amazon Web Services Identity and Access Management (IAM) service role used for Autonomous Database integration with Oracle Cloud Infrastructure (OCI).
@@ -3204,6 +3301,10 @@ local record M
         iamRoleArn: string
         -- The Amazon Web Services integration configuration settings for the Amazon Web Services Identity and Access Management (IAM) service role.
         awsIntegration: string
+        -- The current lifecycle status of the IAM service role.
+        status: string
+        -- Additional information about the current status of the IAM service role, if applicable.
+        statusReason: string
     end
 
     -- Information about an Oracle Cloud Infrastructure (OCI) identity domain configuration.
@@ -3459,6 +3560,8 @@ local record M
     record InitializeServiceInput
         -- The Oracle Cloud Infrastructure (OCI) identity domain configuration for service initialization.
         ociIdentityDomain: boolean
+        -- Specifies whether to enable or disable the OCI service-account role for Amazon Web Services Secrets Manager integration with Autonomous Database.
+        autonomousDatabaseOciAwsSecretsManagerIntegration: string
     end
 
     record InitializeServiceOutput

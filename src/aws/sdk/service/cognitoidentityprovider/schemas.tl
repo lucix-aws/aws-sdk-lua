@@ -4352,6 +4352,12 @@ M.CreateUserImportJobInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        PasswordHashingAlgorithm = schema.new({
+            id = id.from(_N, "CreateUserImportJobInput", "PasswordHashingAlgorithm"),
+            type = "string",
+            name = "PasswordHashingAlgorithm",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -4444,6 +4450,12 @@ M.UserImportJobType = schema.new({
             id = id.from(_N, "UserImportJobType", "CompletionMessage"),
             type = "string",
             name = "CompletionMessage",
+            target_id = prelude.String.id,
+        }),
+        PasswordHashingAlgorithm = schema.new({
+            id = id.from(_N, "UserImportJobType", "PasswordHashingAlgorithm"),
+            type = "string",
+            name = "PasswordHashingAlgorithm",
             target_id = prelude.String.id,
         }),
     },
@@ -4857,6 +4869,58 @@ M.UserPoolPolicyType = schema.new({
     },
 })
 
+M.EumsSmsConfigurationType = schema.new({
+    id = id.from(_N, "EumsSmsConfigurationType"),
+    type = "structure",
+    members = {
+        CallerArn = schema.new({
+            id = id.from(_N, "EumsSmsConfigurationType", "CallerArn"),
+            type = "string",
+            name = "CallerArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExternalId = schema.new({
+            id = id.from(_N, "EumsSmsConfigurationType", "ExternalId"),
+            type = "string",
+            name = "ExternalId",
+            target_id = prelude.String.id,
+        }),
+        OriginationIdentity = schema.new({
+            id = id.from(_N, "EumsSmsConfigurationType", "OriginationIdentity"),
+            type = "string",
+            name = "OriginationIdentity",
+            target_id = prelude.String.id,
+        }),
+        ConfigurationSetName = schema.new({
+            id = id.from(_N, "EumsSmsConfigurationType", "ConfigurationSetName"),
+            type = "string",
+            name = "ConfigurationSetName",
+            target_id = prelude.String.id,
+        }),
+        InEntityId = schema.new({
+            id = id.from(_N, "EumsSmsConfigurationType", "InEntityId"),
+            type = "string",
+            name = "InEntityId",
+            target_id = prelude.String.id,
+        }),
+        InTemplateId = schema.new({
+            id = id.from(_N, "EumsSmsConfigurationType", "InTemplateId"),
+            type = "string",
+            name = "InTemplateId",
+            target_id = prelude.String.id,
+        }),
+        Region = schema.new({
+            id = id.from(_N, "EumsSmsConfigurationType", "Region"),
+            type = "string",
+            name = "Region",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SmsConfigurationType = schema.new({
     id = id.from(_N, "SmsConfigurationType"),
     type = "structure",
@@ -4867,7 +4931,7 @@ M.SmsConfigurationType = schema.new({
             name = "SnsCallerArn",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         ExternalId = schema.new({
@@ -4881,6 +4945,13 @@ M.SmsConfigurationType = schema.new({
             type = "string",
             name = "SnsRegion",
             target_id = prelude.String.id,
+        }),
+        EumsSms = schema.new({
+            id = id.from(_N, "SmsConfigurationType", "EumsSms"),
+            type = "structure",
+            name = "EumsSms",
+            target_id = id.from(_N, "EumsSmsConfigurationType"),
+            target = M.EumsSmsConfigurationType,
         }),
     },
 })

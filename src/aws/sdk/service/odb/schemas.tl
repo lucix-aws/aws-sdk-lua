@@ -286,6 +286,104 @@ M.ValidationException = schema.new({
     },
 })
 
+M.CustomerManagedAwsSecretConfiguration = schema.new({
+    id = id.from(_N, "CustomerManagedAwsSecretConfiguration"),
+    type = "structure",
+    members = {
+        iamRoleArn = schema.new({
+            id = id.from(_N, "CustomerManagedAwsSecretConfiguration", "iamRoleArn"),
+            type = "string",
+            name = "iamRoleArn",
+            target_id = prelude.String.id,
+        }),
+        secretId = schema.new({
+            id = id.from(_N, "CustomerManagedAwsSecretConfiguration", "secretId"),
+            type = "string",
+            name = "secretId",
+            target_id = prelude.String.id,
+        }),
+        externalIdType = schema.new({
+            id = id.from(_N, "CustomerManagedAwsSecretConfiguration", "externalIdType"),
+            type = "string",
+            name = "externalIdType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AdminPasswordSourceConfiguration = schema.new({
+    id = id.from(_N, "AdminPasswordSourceConfiguration"),
+    type = "union",
+    members = {
+        customerManagedAwsSecret = schema.new({
+            id = id.from(_N, "AdminPasswordSourceConfiguration", "customerManagedAwsSecret"),
+            type = "structure",
+            name = "customerManagedAwsSecret",
+            target_id = id.from(_N, "CustomerManagedAwsSecretConfiguration"),
+            target = M.CustomerManagedAwsSecretConfiguration,
+        }),
+    },
+})
+
+M.CustomerManagedAwsSecretConfigurationInput = schema.new({
+    id = id.from(_N, "CustomerManagedAwsSecretConfigurationInput"),
+    type = "structure",
+    members = {
+        secretId = schema.new({
+            id = id.from(_N, "CustomerManagedAwsSecretConfigurationInput", "secretId"),
+            type = "string",
+            name = "secretId",
+            target_id = prelude.String.id,
+        }),
+        iamRoleArn = schema.new({
+            id = id.from(_N, "CustomerManagedAwsSecretConfigurationInput", "iamRoleArn"),
+            type = "string",
+            name = "iamRoleArn",
+            target_id = prelude.String.id,
+        }),
+        externalIdType = schema.new({
+            id = id.from(_N, "CustomerManagedAwsSecretConfigurationInput", "externalIdType"),
+            type = "string",
+            name = "externalIdType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AdminPasswordSourceConfigurationInput = schema.new({
+    id = id.from(_N, "AdminPasswordSourceConfigurationInput"),
+    type = "union",
+    members = {
+        customerManagedAwsSecret = schema.new({
+            id = id.from(_N, "AdminPasswordSourceConfigurationInput", "customerManagedAwsSecret"),
+            type = "structure",
+            name = "customerManagedAwsSecret",
+            target_id = id.from(_N, "CustomerManagedAwsSecretConfigurationInput"),
+            target = M.CustomerManagedAwsSecretConfigurationInput,
+        }),
+    },
+})
+
+M.AdminPasswordSourceSummary = schema.new({
+    id = id.from(_N, "AdminPasswordSourceSummary"),
+    type = "structure",
+    members = {
+        adminPasswordSource = schema.new({
+            id = id.from(_N, "AdminPasswordSourceSummary", "adminPasswordSource"),
+            type = "string",
+            name = "adminPasswordSource",
+            target_id = prelude.String.id,
+        }),
+        adminPasswordSourceConfiguration = schema.new({
+            id = id.from(_N, "AdminPasswordSourceSummary", "adminPasswordSourceConfiguration"),
+            type = "union",
+            name = "adminPasswordSourceConfiguration",
+            target_id = id.from(_N, "AdminPasswordSourceConfiguration"),
+            target = M.AdminPasswordSourceConfiguration,
+        }),
+    },
+})
+
 M.AssociateIamRoleToResourceInput = schema.new({
     id = id.from(_N, "AssociateIamRoleToResourceInput"),
     type = "structure",
@@ -1660,6 +1758,13 @@ M.AutonomousDatabase = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        adminPasswordSourceSummary = schema.new({
+            id = id.from(_N, "AutonomousDatabase", "adminPasswordSourceSummary"),
+            type = "structure",
+            name = "adminPasswordSourceSummary",
+            target_id = id.from(_N, "AdminPasswordSourceSummary"),
+            target = M.AdminPasswordSourceSummary,
+        }),
     },
 })
 
@@ -2887,6 +2992,13 @@ M.AutonomousDatabaseSummary = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        adminPasswordSourceSummary = schema.new({
+            id = id.from(_N, "AutonomousDatabaseSummary", "adminPasswordSourceSummary"),
+            type = "structure",
+            name = "adminPasswordSourceSummary",
+            target_id = id.from(_N, "AdminPasswordSourceSummary"),
+            target = M.AdminPasswordSourceSummary,
+        }),
     },
 })
 
@@ -3463,6 +3575,19 @@ M.CreateAutonomousDatabaseInput = schema.new({
             target_id = id.from(_N, "EncryptionKeyConfigurationInput"),
             target = M.EncryptionKeyConfigurationInput,
         }),
+        adminPasswordSource = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "adminPasswordSource"),
+            type = "string",
+            name = "adminPasswordSource",
+            target_id = prelude.String.id,
+        }),
+        adminPasswordSourceConfiguration = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseInput", "adminPasswordSourceConfiguration"),
+            type = "union",
+            name = "adminPasswordSourceConfiguration",
+            target_id = id.from(_N, "AdminPasswordSourceConfigurationInput"),
+            target = M.AdminPasswordSourceConfigurationInput,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreateAutonomousDatabaseInput", "clientToken"),
             type = "string",
@@ -3517,6 +3642,20 @@ M.CreateAutonomousDatabaseOutput = schema.new({
     },
 })
 
+M.WalletPasswordSourceConfigurationInput = schema.new({
+    id = id.from(_N, "WalletPasswordSourceConfigurationInput"),
+    type = "union",
+    members = {
+        customerManagedAwsSecret = schema.new({
+            id = id.from(_N, "WalletPasswordSourceConfigurationInput", "customerManagedAwsSecret"),
+            type = "structure",
+            name = "customerManagedAwsSecret",
+            target_id = id.from(_N, "CustomerManagedAwsSecretConfigurationInput"),
+            target = M.CustomerManagedAwsSecretConfigurationInput,
+        }),
+    },
+})
+
 M.CreateAutonomousDatabaseWalletInput = schema.new({
     id = id.from(_N, "CreateAutonomousDatabaseWalletInput"),
     type = "structure",
@@ -3541,9 +3680,19 @@ M.CreateAutonomousDatabaseWalletInput = schema.new({
             type = "string",
             name = "password",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        passwordSource = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseWalletInput", "passwordSource"),
+            type = "string",
+            name = "passwordSource",
+            target_id = prelude.String.id,
+        }),
+        passwordSourceConfiguration = schema.new({
+            id = id.from(_N, "CreateAutonomousDatabaseWalletInput", "passwordSourceConfiguration"),
+            type = "union",
+            name = "passwordSourceConfiguration",
+            target_id = id.from(_N, "WalletPasswordSourceConfigurationInput"),
+            target = M.WalletPasswordSourceConfigurationInput,
         }),
         clientToken = schema.new({
             id = id.from(_N, "CreateAutonomousDatabaseWalletInput", "clientToken"),
@@ -3705,6 +3854,40 @@ M.GetAutonomousDatabaseWalletDetailsInput = schema.new({
     },
 })
 
+M.WalletPasswordSourceConfiguration = schema.new({
+    id = id.from(_N, "WalletPasswordSourceConfiguration"),
+    type = "union",
+    members = {
+        customerManagedAwsSecret = schema.new({
+            id = id.from(_N, "WalletPasswordSourceConfiguration", "customerManagedAwsSecret"),
+            type = "structure",
+            name = "customerManagedAwsSecret",
+            target_id = id.from(_N, "CustomerManagedAwsSecretConfiguration"),
+            target = M.CustomerManagedAwsSecretConfiguration,
+        }),
+    },
+})
+
+M.WalletPasswordSourceSummary = schema.new({
+    id = id.from(_N, "WalletPasswordSourceSummary"),
+    type = "structure",
+    members = {
+        passwordSource = schema.new({
+            id = id.from(_N, "WalletPasswordSourceSummary", "passwordSource"),
+            type = "string",
+            name = "passwordSource",
+            target_id = prelude.String.id,
+        }),
+        passwordSourceConfiguration = schema.new({
+            id = id.from(_N, "WalletPasswordSourceSummary", "passwordSourceConfiguration"),
+            type = "union",
+            name = "passwordSourceConfiguration",
+            target_id = id.from(_N, "WalletPasswordSourceConfiguration"),
+            target = M.WalletPasswordSourceConfiguration,
+        }),
+    },
+})
+
 M.AutonomousDatabaseWalletDetails = schema.new({
     id = id.from(_N, "AutonomousDatabaseWalletDetails"),
     type = "structure",
@@ -3723,6 +3906,13 @@ M.AutonomousDatabaseWalletDetails = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        passwordSourceSummary = schema.new({
+            id = id.from(_N, "AutonomousDatabaseWalletDetails", "passwordSourceSummary"),
+            type = "structure",
+            name = "passwordSourceSummary",
+            target_id = id.from(_N, "WalletPasswordSourceSummary"),
+            target = M.WalletPasswordSourceSummary,
         }),
     },
 })
@@ -4505,6 +4695,19 @@ M.UpdateAutonomousDatabaseInput = schema.new({
             name = "encryptionKeyConfiguration",
             target_id = id.from(_N, "EncryptionKeyConfigurationInput"),
             target = M.EncryptionKeyConfigurationInput,
+        }),
+        adminPasswordSource = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "adminPasswordSource"),
+            type = "string",
+            name = "adminPasswordSource",
+            target_id = prelude.String.id,
+        }),
+        adminPasswordSourceConfiguration = schema.new({
+            id = id.from(_N, "UpdateAutonomousDatabaseInput", "adminPasswordSourceConfiguration"),
+            type = "union",
+            name = "adminPasswordSourceConfiguration",
+            target_id = id.from(_N, "AdminPasswordSourceConfigurationInput"),
+            target = M.AdminPasswordSourceConfigurationInput,
         }),
     },
 })
@@ -9150,6 +9353,18 @@ M.OciIamRole = schema.new({
             name = "awsIntegration",
             target_id = prelude.String.id,
         }),
+        status = schema.new({
+            id = id.from(_N, "OciIamRole", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "OciIamRole", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -9831,6 +10046,12 @@ M.InitializeServiceInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = true },
             },
+        }),
+        autonomousDatabaseOciAwsSecretsManagerIntegration = schema.new({
+            id = id.from(_N, "InitializeServiceInput", "autonomousDatabaseOciAwsSecretsManagerIntegration"),
+            type = "string",
+            name = "autonomousDatabaseOciAwsSecretsManagerIntegration",
+            target_id = prelude.String.id,
         }),
     },
 })

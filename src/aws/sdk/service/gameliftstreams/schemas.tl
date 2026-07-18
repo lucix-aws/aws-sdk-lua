@@ -1630,6 +1630,12 @@ M.GetStreamSessionOutput = schema.new({
             target_id = id.from(_N, "ExportFilesMetadata"),
             target = M.ExportFilesMetadata,
         }),
+        RoleArn = schema.new({
+            id = id.from(_N, "GetStreamSessionOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1749,6 +1755,12 @@ M.StreamSessionSummary = schema.new({
             id = id.from(_N, "StreamSessionSummary", "Location"),
             type = "string",
             name = "Location",
+            target_id = prelude.String.id,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "StreamSessionSummary", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
             target_id = prelude.String.id,
         }),
     },
@@ -2002,6 +2014,12 @@ M.StartStreamSessionInput = schema.new({
             target_id = id.from(_N, "PerformanceStatsConfiguration"),
             target = M.PerformanceStatsConfiguration,
         }),
+        RoleArn = schema.new({
+            id = id.from(_N, "StartStreamSessionInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2139,6 +2157,12 @@ M.StartStreamSessionOutput = schema.new({
             name = "ExportFilesMetadata",
             target_id = id.from(_N, "ExportFilesMetadata"),
             target = M.ExportFilesMetadata,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "StartStreamSessionOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
         }),
     },
 })

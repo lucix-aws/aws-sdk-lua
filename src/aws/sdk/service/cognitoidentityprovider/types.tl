@@ -3213,6 +3213,13 @@ local record M
         message: string
     end
 
+    enum PasswordHashingAlgorithmType
+        "BCRYPT"
+        "SCRYPT"
+        "ARGON2ID"
+        "PBKDF2_SHA256"
+    end
+
     -- Represents the request to create the user import job.
     record CreateUserImportJobInput
         -- A friendly name for the user import job.
@@ -3222,6 +3229,11 @@ local record M
         -- You must specify an IAM role that has permission to log import-job results to
         -- Amazon CloudWatch Logs. This parameter is the ARN of that role.
         CloudWatchLogsRoleArn: string
+        -- The password hashing algorithm used to generate the hashes in the CSV file for this
+        -- import job.
+        -- Valid values: BCRYPT | SCRYPT | ARGON2ID |
+        -- PBKDF2_SHA256
+        PasswordHashingAlgorithm: string
     end
 
     enum UserImportJobStatusType
@@ -3281,6 +3293,11 @@ local record M
         FailedUsers: number
         -- The message returned when the user import job is completed.
         CompletionMessage: string
+        -- The password hashing algorithm used to generate the hashes in the CSV file for this
+        -- import job.
+        -- Valid values: BCRYPT | SCRYPT | ARGON2ID |
+        -- PBKDF2_SHA256
+        PasswordHashingAlgorithm: string
     end
 
     -- Represents the response from the server to the request to create the user import
@@ -3620,6 +3637,50 @@ local record M
         SignInPolicy: SignInPolicyType
     end
 
+    -- The configuration that Amazon Cognito uses to send SMS messages through Amazon Web Services End User
+    -- Messaging SMS. Provide this structure in the EumsSms member of
+    -- SmsConfigurationType to use Amazon Web Services End User Messaging SMS instead of
+    -- Amazon SNS.
+    record EumsSmsConfigurationType
+        -- The ARN of the IAM role that Amazon Cognito assumes to send SMS messages through Amazon Web Services
+        -- End User Messaging SMS. The role must grant permission to call the
+        -- sms-voice:SendTextMessage operation.
+        CallerArn: string
+        -- The external ID that Amazon Cognito includes when it assumes the CallerArn role.
+        -- Use this value as a condition in the role trust policy to prevent the confused deputy
+        -- problem.
+        ExternalId: string
+        -- The origination identity that Amazon Web Services End User Messaging SMS uses to send messages to your users. This value can be one of the following:
+        -- A phone number – A long code, toll-free number, or short code
+        -- that is assigned to your account.
+        -- A sender ID – An alphabetic name that identifies the message sender
+        -- in supported countries.
+        -- A phone pool – A group of phone numbers that Amazon Web Services End User
+        -- Messaging SMS selects from when it sends messages.
+        -- You can provide an E.164 phone number or the ARN of the phone number, sender ID, or
+        -- phone pool. Amazon Web Services End User Messaging SMS evaluates IAM authorization with the value
+        -- that you provide. If the permissions policy of your CallerArn role scopes
+        -- the sms-voice:SendTextMessage resource to a specific ARN, provide that same
+        -- ARN. If the formats do not match, requests fail with an
+        -- InvalidSmsRoleAccessPolicyException.
+        -- Depending on the destination country, you must provide an origination identity. For
+        -- country-specific requirements, see Supported
+        -- countries and regions for SMS messaging in the Amazon Web Services End User Messaging SMS
+        -- User Guide.
+        OriginationIdentity: string
+        -- The name of the Amazon Web Services End User Messaging SMS configuration set that Amazon Cognito
+        -- applies to messages, for logging and event destinations. If you omit this member,
+        -- Amazon Cognito sends messages without applying a configuration set.
+        ConfigurationSetName: string
+        -- The principal entity ID required by India's Distributed Ledger Technology (DLT) regulations for SMS messages.
+        InEntityId: string
+        -- The registered template ID for the message template required by India's DLT regulations for SMS messages.
+        InTemplateId: string
+        -- The Amazon Web Services Region of the Amazon Web Services End User Messaging SMS resources that Amazon Cognito uses to send messages. Amazon Web Services End User Messaging SMS must be available in your user pool's Region.
+        -- If you omit this parameter, Amazon Cognito uses the same Region as your user pool. You can also set this parameter to your user pool's Region explicitly. Amazon Cognito rejects any other value with an InvalidParameterException.
+        Region: string
+    end
+
     -- User pool configuration for delivery of SMS messages with Amazon Simple Notification Service. To send SMS
     -- messages with Amazon SNS in the Amazon Web Services Region that you want, the Amazon Cognito user pool uses an
     -- Identity and Access Management (IAM) role in your Amazon Web Services account.
@@ -3647,6 +3708,11 @@ local record M
         -- Amazon Cognito resources in the Asia Pacific (Seoul) Amazon Web Services Region must use your Amazon SNS
         -- configuration in the Asia Pacific (Tokyo) Region. For more information, see SMS message settings for Amazon Cognito user pools.
         SnsRegion: string
+        -- The configuration for sending SMS messages through Amazon Web Services End User Messaging SMS, as
+        -- an alternative to Amazon SNS. In a user pool, provide either the Amazon SNS configuration
+        -- (SnsCallerArn) or this configuration, but not both. In Amazon Web Services Regions
+        -- where Amazon SNS is not available, this configuration is required.
+        EumsSms: EumsSmsConfigurationType
     end
 
     -- The settings for updates to user attributes. These settings include the property AttributesRequireVerificationBeforeUpdate,
@@ -4641,14 +4707,22 @@ local record M
         -- this certificate for the subdomain of your custom domain.
         CertificateArn: string
         -- The security policy for the custom domain. Defines the minimum TLS version and cipher
-        -- suites that CloudFront uses when communicating with viewers (clients). Valid values are
+        -- suites that Amazon CloudFront supports when communicating with clients. For specific guidance,
+        -- see Supported protocols and ciphers between viewers and CloudFront. Valid values are
         -- as follows:
-        -- TLS_V1: Supports TLS 1.0 and later. Provides the broadest client
-        -- compatibility.
-        -- TLS_V1_2_2021: Supports TLS 1.2 and later with 2021 cipher
-        -- suites. Recommended minimum for most use cases.
-        -- TLS_V1_3_2025: Supports TLS 1.3 and later with 2025 cipher
-        -- suites. Provides the strongest security posture.
+        -- TLS_V1_3_2025 (strictest): A post-quantum-ready policy requiring TLS 1.3.
+        -- It provides the strongest security posture and is ideal for
+        -- workloads where all clients and browsers are updated to the latest
+        -- versions. Supported protocols and ciphers for TLSv1.3_2025.
+        -- TLS_V1_2_2021 (recommended): A post-quantum-ready policy which prefers TLS 1.3 but allows
+        -- fallback to TLS 1.2 to accommodate older clients. It
+        -- is the recommended minimum for typical commercial-grade consumer
+        -- applications. Supported protocols and ciphers for TLSv1.2_2021.
+        -- TLS_V1 (strongly discouraged): Permits fallback to TLS 1.0. It offers the broadest
+        -- compatibility, including support for legacy clients that are more than a
+        -- decade old. This compatibility comes at the expense of allowing TLS versions
+        -- and cryptographic algorithms that are no longer considered safe for
+        -- commercial use. Supported protocols and ciphers for TLSv1.
         SecurityPolicy: string
     end
 

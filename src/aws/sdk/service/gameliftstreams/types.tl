@@ -556,6 +556,7 @@ local record M
         "invalidSignalRequest"
         "placementTimeout"
         "applicationLogS3DestinationError"
+        "assumeRoleFailed"
         "applicationExit"
         "connectionTimeout"
         "reconnectionTimeout"
@@ -607,6 +608,8 @@ local record M
         ApplicationArn: string
         -- Provides details about the stream session's exported files.
         ExportFilesMetadata: ExportFilesMetadata
+        -- The ARN of the AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on behalf of your application during the stream session.
+        RoleArn: string
     end
 
     record ListStreamSessionsInput
@@ -644,6 +647,8 @@ local record M
         ExportFilesMetadata: ExportFilesMetadata
         -- The location where Amazon GameLift Streams hosts and streams your application. For example, us-east-1. For a complete list of locations that Amazon GameLift Streams supports, refer to Regions, quotas, and limitations in the Amazon GameLift Streams Developer Guide.
         Location: string
+        -- The ARN of the AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on behalf of your application during the stream session.
+        RoleArn: string
     end
 
     record ListStreamSessionsOutput
@@ -718,6 +723,8 @@ local record M
         AdditionalEnvironmentVariables: {string : string}
         -- Configuration settings for sharing the stream session's performance stats with the client
         PerformanceStatsConfiguration: PerformanceStatsConfiguration
+        -- The ARN of an AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on your behalf during the stream session. The role grants Amazon GameLift Streams permission to obtain temporary credentials for your application. The role's trust policy must allow the gameliftstreams.amazonaws.com service principal to assume it. The role name must start with GameLiftStreams-.
+        RoleArn: string
     end
 
     record StartStreamSessionOutput
@@ -763,6 +770,8 @@ local record M
         ApplicationArn: string
         -- Provides details about the stream session's exported files.
         ExportFilesMetadata: ExportFilesMetadata
+        -- The ARN of the AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on behalf of your application during the stream session.
+        RoleArn: string
     end
 
     record GetStreamGroupInput

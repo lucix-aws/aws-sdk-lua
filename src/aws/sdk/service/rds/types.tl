@@ -1169,6 +1169,14 @@ local record M
         message: string
     end
 
+    -- Contains information about an Amazon Web Services Identity and Access Management (IAM) role to associate with a DB cluster. You can specify this structure in the AssociatedRoles parameter of CreateDBCluster, RestoreDBClusterFromS3, RestoreDBClusterFromSnapshot, and RestoreDBClusterToPointInTime.
+    record DBClusterAssociatedRole
+        -- The Amazon Resource Name (ARN) of the IAM role to associate with the DB cluster.
+        RoleArn: string
+        -- The name of the feature associated with the IAM role. For information about supported feature names, see DBEngineVersion.
+        FeatureName: string
+    end
+
     enum ClusterScalabilityType
         "standard"
         "limitless"
@@ -1350,6 +1358,8 @@ local record M
         MasterUserAuthenticationType: string
         -- Specifies to create an Aurora DB Cluster with express configuration in seconds. Express configuration provides a cluster with a writer instance and feature specific values set to all other input parameters of this API. Valid for Cluster Type: Aurora DB clusters
         WithExpressConfiguration: boolean
+        -- A list of Amazon Web Services Identity and Access Management (IAM) roles to associate with the DB cluster. Each role grants the DB cluster permission to access other Amazon Web Services on your behalf. For each role, specify a role ARN and, optionally, the feature name (such as s3Import, s3Export, or Lambda). Valid for Cluster Type: Aurora DB clusters only
+        AssociatedRoles: {DBClusterAssociatedRole}
     end
 
     -- Describes an Amazon Web Services Identity and Access Management (IAM) role that is associated with a DB cluster.
@@ -6960,6 +6970,8 @@ local record M
         EngineLifecycleSupport: string
         -- Tags to assign to resources associated with the DB cluster. Valid Values: cluster-auto-backup - The DB cluster's automated backup.
         TagSpecifications: {TagSpecification}
+        -- A list of Amazon Web Services Identity and Access Management (IAM) roles to associate with the DB cluster when it's restored from Amazon S3. Each role grants the DB cluster permission to access other Amazon Web Services on your behalf. For each role, specify a role ARN and, optionally, the feature name (such as s3Import, s3Export, or Lambda).
+        AssociatedRoles: {DBClusterAssociatedRole}
     end
 
     record RestoreDBClusterFromS3Output
@@ -7056,6 +7068,8 @@ local record M
         EnableVPCNetworking: boolean
         -- Specifies that the restored DB cluster should use internet-based connectivity through an internet access gateway. This allows clients to connect to the cluster over the internet without requiring a VPC. This parameter must be used together with EnableVPCNetworking set to false. When both parameters are specified, IAM database authentication is required. You must also specify EnableIAMDatabaseAuthentication. Valid for Cluster Type: Aurora PostgreSQL clusters
         EnableInternetAccessGateway: boolean
+        -- A list of Amazon Web Services Identity and Access Management (IAM) roles to associate with the DB cluster when it's restored from a snapshot. Each role grants the DB cluster permission to access other Amazon Web Services on your behalf. For each role, specify a role ARN and, optionally, the feature name (such as s3Import, s3Export, or Lambda). Valid for Cluster Type: Aurora DB clusters only
+        AssociatedRoles: {DBClusterAssociatedRole}
     end
 
     record RestoreDBClusterFromSnapshotOutput
@@ -7141,6 +7155,8 @@ local record M
         EnableVPCNetworking: boolean
         -- Specifies that the restored DB cluster should use internet-based connectivity through an internet access gateway. This allows clients to connect to the cluster over the internet without requiring a VPC. This parameter must be used together with EnableVPCNetworking set to false. When both parameters are specified, IAM database authentication is required. You must also specify EnableIAMDatabaseAuthentication. Valid for Cluster Type: Aurora PostgreSQL clusters
         EnableInternetAccessGateway: boolean
+        -- A list of Amazon Web Services Identity and Access Management (IAM) roles to associate with the DB cluster when it's restored to a point in time. Each role grants the DB cluster permission to access other Amazon Web Services on your behalf. For each role, specify a role ARN and, optionally, the feature name (such as s3Import, s3Export, or Lambda). Valid for Cluster Type: Aurora DB clusters only
+        AssociatedRoles: {DBClusterAssociatedRole}
     end
 
     record RestoreDBClusterToPointInTimeOutput

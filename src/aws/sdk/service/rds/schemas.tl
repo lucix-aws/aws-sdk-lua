@@ -33,6 +33,8 @@ M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.Str
 
 M.TagSpecificationList = schema.new({ type = "list", list_member = M.TagSpecification })
 
+M.DBClusterAssociatedRoles = schema.new({ type = "list", list_member = M.DBClusterAssociatedRole })
+
 M.DBSecurityGroupNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ProcessorFeatureList = schema.new({ type = "list", list_member = M.ProcessorFeature })
@@ -3704,6 +3706,28 @@ M.InvalidCustomDBEngineVersionStateFault = schema.new({
     },
 })
 
+M.DBClusterAssociatedRole = schema.new({
+    id = id.from(_N, "DBClusterAssociatedRole"),
+    type = "structure",
+    members = {
+        RoleArn = schema.new({
+            id = id.from(_N, "DBClusterAssociatedRole", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FeatureName = schema.new({
+            id = id.from(_N, "DBClusterAssociatedRole", "FeatureName"),
+            type = "string",
+            name = "FeatureName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.RdsCustomClusterConfiguration = schema.new({
     id = id.from(_N, "RdsCustomClusterConfiguration"),
     type = "structure",
@@ -4188,6 +4212,13 @@ M.CreateDBClusterInput = schema.new({
             type = "boolean",
             name = "WithExpressConfiguration",
             target_id = prelude.Boolean.id,
+        }),
+        AssociatedRoles = schema.new({
+            id = id.from(_N, "CreateDBClusterInput", "AssociatedRoles"),
+            type = "list",
+            name = "AssociatedRoles",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.DBClusterAssociatedRole, traits = { [traits.XML_NAME] = { name = "DBClusterAssociatedRole" } } }),
         }),
     },
 })
@@ -20517,6 +20548,13 @@ M.RestoreDBClusterFromS3Input = schema.new({
             target_id = prelude.Document.id,
             list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
         }),
+        AssociatedRoles = schema.new({
+            id = id.from(_N, "RestoreDBClusterFromS3Input", "AssociatedRoles"),
+            type = "list",
+            name = "AssociatedRoles",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.DBClusterAssociatedRole, traits = { [traits.XML_NAME] = { name = "DBClusterAssociatedRole" } } }),
+        }),
     },
 })
 
@@ -20827,6 +20865,13 @@ M.RestoreDBClusterFromSnapshotInput = schema.new({
             name = "EnableInternetAccessGateway",
             target_id = prelude.Boolean.id,
         }),
+        AssociatedRoles = schema.new({
+            id = id.from(_N, "RestoreDBClusterFromSnapshotInput", "AssociatedRoles"),
+            type = "list",
+            name = "AssociatedRoles",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.DBClusterAssociatedRole, traits = { [traits.XML_NAME] = { name = "DBClusterAssociatedRole" } } }),
+        }),
     },
 })
 
@@ -21097,6 +21142,13 @@ M.RestoreDBClusterToPointInTimeInput = schema.new({
             type = "boolean",
             name = "EnableInternetAccessGateway",
             target_id = prelude.Boolean.id,
+        }),
+        AssociatedRoles = schema.new({
+            id = id.from(_N, "RestoreDBClusterToPointInTimeInput", "AssociatedRoles"),
+            type = "list",
+            name = "AssociatedRoles",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.DBClusterAssociatedRole, traits = { [traits.XML_NAME] = { name = "DBClusterAssociatedRole" } } }),
         }),
     },
 })
