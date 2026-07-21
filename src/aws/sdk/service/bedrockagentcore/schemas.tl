@@ -972,6 +972,24 @@ M.InvokeAgentRuntimeInput = schema.new({
                 [traits.HTTP_HEADER] = { name = "Mcp-Protocol-Version" },
             },
         }),
+        mcpMethod = schema.new({
+            id = id.from(_N, "InvokeAgentRuntimeInput", "mcpMethod"),
+            type = "string",
+            name = "mcpMethod",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Mcp-Method" },
+            },
+        }),
+        mcpName = schema.new({
+            id = id.from(_N, "InvokeAgentRuntimeInput", "mcpName"),
+            type = "string",
+            name = "mcpName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "Mcp-Name" },
+            },
+        }),
         runtimeUserId = schema.new({
             id = id.from(_N, "InvokeAgentRuntimeInput", "runtimeUserId"),
             type = "string",
@@ -8487,6 +8505,12 @@ M.HarnessGeminiModelConfig = schema.new({
             name = "topK",
             target_id = prelude.Integer.id,
         }),
+        additionalParams = schema.new({
+            id = id.from(_N, "HarnessGeminiModelConfig", "additionalParams"),
+            type = "document",
+            name = "additionalParams",
+            target_id = prelude.Document.id,
+        }),
     },
 })
 
@@ -9050,6 +9074,42 @@ M.InvokeHarnessInput = schema.new({
                 [traits.HTTP_HEADER] = { name = "X-Amzn-Bedrock-AgentCore-Runtime-User-Id" },
             },
         }),
+        traceParent = schema.new({
+            id = id.from(_N, "InvokeHarnessInput", "traceParent"),
+            type = "string",
+            name = "traceParent",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "traceparent" },
+            },
+        }),
+        traceState = schema.new({
+            id = id.from(_N, "InvokeHarnessInput", "traceState"),
+            type = "string",
+            name = "traceState",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "tracestate" },
+            },
+        }),
+        traceId = schema.new({
+            id = id.from(_N, "InvokeHarnessInput", "traceId"),
+            type = "string",
+            name = "traceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-Trace-Id" },
+            },
+        }),
+        baggage = schema.new({
+            id = id.from(_N, "InvokeHarnessInput", "baggage"),
+            type = "string",
+            name = "baggage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "baggage" },
+            },
+        }),
         messages = schema.new({
             id = id.from(_N, "InvokeHarnessInput", "messages"),
             type = "list",
@@ -9166,6 +9226,22 @@ M.HarnessToolResultBlockDelta = schema.new({
     },
 })
 
+M.HarnessToolResultMetadataBlockDelta = schema.new({
+    id = id.from(_N, "HarnessToolResultMetadataBlockDelta"),
+    type = "structure",
+    members = {
+        metadata = schema.new({
+            id = id.from(_N, "HarnessToolResultMetadataBlockDelta", "metadata"),
+            type = "string",
+            name = "metadata",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.HarnessToolUseBlockDelta = schema.new({
     id = id.from(_N, "HarnessToolUseBlockDelta"),
     type = "structure",
@@ -9212,6 +9288,13 @@ M.HarnessContentBlockDelta = schema.new({
             name = "reasoningContent",
             target_id = id.from(_N, "HarnessReasoningContentBlockDelta"),
             target = M.HarnessReasoningContentBlockDelta,
+        }),
+        toolResultMetadata = schema.new({
+            id = id.from(_N, "HarnessContentBlockDelta", "toolResultMetadata"),
+            type = "structure",
+            name = "toolResultMetadata",
+            target_id = id.from(_N, "HarnessToolResultMetadataBlockDelta"),
+            target = M.HarnessToolResultMetadataBlockDelta,
         }),
     },
 })

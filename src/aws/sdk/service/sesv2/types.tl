@@ -2398,6 +2398,24 @@ local record M
     record GetAccountInput
     end
 
+    enum PricingPlan
+        "NONE"
+        "ESSENTIALS"
+        "PRO"
+        "ENTERPRISE"
+    end
+
+    -- The pricing attributes that apply to your Amazon SES account, including the currently active
+    -- pricing plan and any scheduled change for the next billing cycle.
+    record PricingAttributes
+        -- The pricing plan that is currently active on your Amazon SES account.
+        CurrentPlan: string
+        -- The pricing plan that will become active at the start of the next billing cycle, if a
+        -- scheduled change has been requested. This field is empty when no scheduled change is
+        -- pending.
+        NextPlan: string
+    end
+
     -- An object that contains information about the per-day and per-second sending limits
     -- for your Amazon SES account in the current Amazon Web Services Region.
     record SendQuota
@@ -2502,6 +2520,9 @@ local record M
         Details: AccountDetails
         -- The VDM attributes that apply to your Amazon SES account.
         VdmAttributes: VdmAttributes
+        -- The pricing attributes that apply to your Amazon SES account, including the currently active
+        -- pricing plan and any scheduled change.
+        PricingAttributes: PricingAttributes
     end
 
     -- A request to retrieve a list of the blacklists that your dedicated IP addresses appear
@@ -4057,6 +4078,25 @@ local record M
     -- An HTTP 200 response if the request succeeds, or an error message if the request
     -- fails.
     record PutAccountDetailsOutput
+    end
+
+    -- A request to set the pricing plan for your Amazon SES account.
+    record PutAccountPricingAttributesInput
+        -- The pricing plan to apply to your Amazon SES account. Can be one of the following:
+        -- NONE – No pricing plan is applied; billing follows per-feature
+        -- pricing.
+        -- ESSENTIALS – Baseline Amazon SES capabilities and select premium
+        -- features.
+        -- PRO – Includes everything in ESSENTIALS, plus
+        -- additional premium features for growing senders.
+        -- ENTERPRISE – Includes everything in PRO, plus
+        -- features intended for large-scale senders.
+        Plan: string
+    end
+
+    -- An HTTP 200 response if the request succeeds, or an error response if the request
+    -- fails.
+    record PutAccountPricingAttributesOutput
     end
 
     -- A request to change the ability of your account to send email.

@@ -27727,6 +27727,30 @@ M.Capabilities = schema.new({
             name = "Scenario",
             target_id = prelude.String.id,
         }),
+        Trigger = schema.new({
+            id = id.from(_N, "Capabilities", "Trigger"),
+            type = "string",
+            name = "Trigger",
+            target_id = prelude.String.id,
+        }),
+        ScheduleTrigger = schema.new({
+            id = id.from(_N, "Capabilities", "ScheduleTrigger"),
+            type = "string",
+            name = "ScheduleTrigger",
+            target_id = prelude.String.id,
+        }),
+        InboundEmailTrigger = schema.new({
+            id = id.from(_N, "Capabilities", "InboundEmailTrigger"),
+            type = "string",
+            name = "InboundEmailTrigger",
+            target_id = prelude.String.id,
+        }),
+        QuickEventTrigger = schema.new({
+            id = id.from(_N, "Capabilities", "QuickEventTrigger"),
+            type = "string",
+            name = "QuickEventTrigger",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

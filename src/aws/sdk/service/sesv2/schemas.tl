@@ -3886,6 +3886,25 @@ M.GetAccountInput = schema.new({
     type = "structure",
 })
 
+M.PricingAttributes = schema.new({
+    id = id.from(_N, "PricingAttributes"),
+    type = "structure",
+    members = {
+        CurrentPlan = schema.new({
+            id = id.from(_N, "PricingAttributes", "CurrentPlan"),
+            type = "string",
+            name = "CurrentPlan",
+            target_id = prelude.String.id,
+        }),
+        NextPlan = schema.new({
+            id = id.from(_N, "PricingAttributes", "NextPlan"),
+            type = "string",
+            name = "NextPlan",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SendQuota = schema.new({
     id = id.from(_N, "SendQuota"),
     type = "structure",
@@ -4065,6 +4084,13 @@ M.GetAccountOutput = schema.new({
             name = "VdmAttributes",
             target_id = id.from(_N, "VdmAttributes"),
             target = M.VdmAttributes,
+        }),
+        PricingAttributes = schema.new({
+            id = id.from(_N, "GetAccountOutput", "PricingAttributes"),
+            type = "structure",
+            name = "PricingAttributes",
+            target_id = id.from(_N, "PricingAttributes"),
+            target = M.PricingAttributes,
         }),
     },
 })
@@ -7165,6 +7191,27 @@ M.PutAccountDetailsOutput = schema.new({
     type = "structure",
 })
 
+M.PutAccountPricingAttributesInput = schema.new({
+    id = id.from(_N, "PutAccountPricingAttributesRequest"),
+    type = "structure",
+    members = {
+        Plan = schema.new({
+            id = id.from(_N, "PutAccountPricingAttributesInput", "Plan"),
+            type = "string",
+            name = "Plan",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutAccountPricingAttributesOutput = schema.new({
+    id = id.from(_N, "PutAccountPricingAttributesResponse"),
+    type = "structure",
+})
+
 M.PutAccountSendingAttributesInput = schema.new({
     id = id.from(_N, "PutAccountSendingAttributesRequest"),
     type = "structure",
@@ -9478,6 +9525,18 @@ M.PutAccountDetails = schema.operation({
     output = M.PutAccountDetailsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v2/email/account/details" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutAccountPricingAttributes = schema.operation({
+    id = id.from("com.amazonaws.sesv2", "PutAccountPricingAttributes"),
+    input = M.PutAccountPricingAttributesInput,
+    output = M.PutAccountPricingAttributesOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v2/email/account/pricing-attributes" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

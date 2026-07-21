@@ -10237,6 +10237,12 @@ M.ConnectorSource = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        version = schema.new({
+            id = id.from(_N, "ConnectorSource", "version"),
+            type = "string",
+            name = "version",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

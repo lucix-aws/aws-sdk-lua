@@ -3127,6 +3127,8 @@ local record M
     record ConnectorSource
         -- The identifier for the connector integration (for example, bedrock-knowledge-bases).
         connectorId: string
+        -- The version of the connector to use (for example, 1.1.0). If you don't specify a version, the service uses the latest available version.
+        version: string
     end
 
     -- Configuration for a connector integration target. Connectors provide pre-built integrations with Amazon Web Services services and third-party tools.

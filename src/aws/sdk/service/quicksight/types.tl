@@ -9836,6 +9836,7 @@ local record M
         "REDSHIFT"
         "QBUSINESS"
         "ATHENA"
+        "GLUE_DATA_CATALOG"
     end
 
     -- The authorized targets that are associated with a service.
@@ -11034,6 +11035,14 @@ local record M
         Story: string
         -- The ability to perform Scenario-related actions.
         Scenario: string
+        -- The ability to manage trigger-related settings for flows and automations.
+        Trigger: string
+        -- The ability to create, view, edit, delete, and run schedule triggers for flows and automations.
+        ScheduleTrigger: string
+        -- The ability to create, view, edit, delete, and run inbound email triggers for flows and automations.
+        InboundEmailTrigger: string
+        -- The ability to create, view, edit, delete, and run Quick event triggers for flows and automations.
+        QuickEventTrigger: string
     end
 
     -- A filter that matches users by total capacity range in bytes.

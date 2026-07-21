@@ -307,7 +307,7 @@ local record M
         "POST"
     end
 
-    -- -- Function Configuration DataStructure
+    -- The configuration for an HTTP_REQUEST function. Specifies the HTTP method, URL, headers, body, timeout, and output expressions for the request. For more information, see HTTP_REQUEST in the MediaTailor User Guide.
     record HttpRequestConfiguration
         -- The expression language used to evaluate expressions in the function configuration. Set this to JSONata.
         Runtime: string
@@ -337,7 +337,7 @@ local record M
         TimeoutMilliseconds: number
     end
 
-    -- -- Define Mixin --
+    -- Defines reusable logic that MediaTailor executes at lifecycle hooks during ad insertion. The FunctionType determines the function's runtime behavior. For more information about functions, see Working with functions in the MediaTailor User Guide.
     record Function
         -- The identifier of the function.
         FunctionId: string
@@ -432,6 +432,28 @@ local record M
     record AdDecisionServerConfiguration
         -- The HTTP request configuration parameters for the ad decision server.
         HttpRequest: HttpRequest
+    end
+
+    -- The concurrency settings for ad decision server interactions during ad personalization.
+    record AdsPersonalizationConcurrency
+        -- The maximum number of simultaneous requests that MediaTailor makes to the ad decision server per manifest request. The default is 1.
+        MaxConcurrentAdsRequests: number
+        -- Enables parallel processing of ad decision server requests in VOD workflows when the ADS returns VAST responses. The default is false.
+        EnableVodVastParallelization: boolean
+    end
+
+    -- The timeout settings for ad decision server interactions during ad personalization.
+    record AdsPersonalizationTimeouts
+        -- The maximum time, in milliseconds, that MediaTailor waits for a single ad decision server response during live or VOD playback. The default is 3000.
+        AdsRequestTimeoutMilliseconds: number
+        -- The maximum total time, in milliseconds, that MediaTailor spends on ad decision server activity for live manifests, including making requests, waiting for responses, and following VAST wrapper redirects. The default is 10000.
+        LiveMaximumAdsPersonalizationTimeMilliseconds: number
+        -- The maximum total time, in milliseconds, that MediaTailor spends on ad decision server activity for VOD manifests, including making requests, waiting for responses, and following VAST wrapper redirects. The default is 10000.
+        VodMaximumAdsPersonalizationTimeMilliseconds: number
+        -- The maximum time, in milliseconds, that MediaTailor waits for a single ad decision server response during prefetch retrieval. If not set, the value of AdsRequestTimeoutMilliseconds is used.
+        PrefetchAdsRequestTimeoutMilliseconds: number
+        -- The maximum total time, in milliseconds, that MediaTailor spends on ad decision server activity during prefetch retrieval, including making requests, waiting for responses, and following VAST wrapper redirects.
+        PrefetchMaximumAdsPersonalizationTimeMilliseconds: number
     end
 
     enum FillPolicy
@@ -647,6 +669,10 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION and PRE_ADS_REQUEST. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
+        -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
+        AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
+        -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
+        AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
     end
 
     -- For single prefetch, describes how and when that MediaTailor places prefetched ads into upcoming ad breaks.
@@ -1759,6 +1785,10 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION and PRE_ADS_REQUEST. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
+        -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
+        AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
+        -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
+        AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
     end
 
     record GetPrefetchScheduleInput
@@ -1964,6 +1994,10 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION and PRE_ADS_REQUEST. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
+        -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
+        AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
+        -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
+        AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
     end
 
     record PutPlaybackConfigurationOutput
@@ -2017,6 +2051,10 @@ local record M
         AdDecisionServerConfiguration: AdDecisionServerConfiguration
         -- A map of lifecycle hook event names to function identifiers. The function mapping specifies which function MediaTailor executes at each lifecycle hook during ad insertion. Valid keys are PRE_SESSION_INITIALIZATION and PRE_ADS_REQUEST. For more information, see Functions lifecycle hooks in the MediaTailor User Guide.
         FunctionMapping: {string : string}
+        -- The timeout settings for ad decision server interactions. These settings control how long MediaTailor waits for ADS responses and the total time budget for ad personalization across live, VOD, and prefetch workflows.
+        AdsPersonalizationTimeouts: AdsPersonalizationTimeouts
+        -- The concurrency settings for ad decision server interactions. These settings control how many simultaneous ADS requests MediaTailor makes per manifest request.
+        AdsPersonalizationConcurrency: AdsPersonalizationConcurrency
     end
 
     record UpdateSourceLocationInput

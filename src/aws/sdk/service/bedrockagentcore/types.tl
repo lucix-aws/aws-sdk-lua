@@ -292,6 +292,10 @@ local record M
         runtimeSessionId: string
         -- The version of the MCP protocol being used.
         mcpProtocolVersion: string
+        -- The MCP method being invoked. For example, tools/call, resources/read, or prompts/get.
+        mcpMethod: string
+        -- The name of the MCP resource, tool, or prompt being accessed. The value depends on the method: tools/call – The tool name. resources/read – The resource URI. prompts/get – The prompt name.
+        mcpName: string
         -- The identifier of the runtime user.
         runtimeUserId: string
         -- The trace identifier for request tracking.
@@ -2692,6 +2696,8 @@ local record M
         topP: number
         -- The topK set when calling the model.
         topK: number
+        -- Provider-specific parameters passed through to the Gemini model provider unchanged.
+        additionalParams: any
     end
 
     -- Configuration for a LiteLLM model provider, enabling connection to third-party model providers.
@@ -2903,6 +2909,14 @@ local record M
         runtimeSessionId: string
         -- An identifier for the end user making the request. This value is passed through to the runtime container.
         runtimeUserId: string
+        -- W3C trace context parent header containing version, trace ID, parent span ID, and trace flags.
+        traceParent: string
+        -- W3C trace context state header for vendor-specific trace information.
+        traceState: string
+        -- Trace ID for maintaining observability through the operation.
+        traceId: string
+        -- W3C Baggage header for user-defined context propagation. Format: key1=value1,key2=value2
+        baggage: string
         -- The messages to send to the agent.
         messages: {HarnessMessage}
         -- The model configuration to use for this invocation. If specified, overrides the harness default.
@@ -2943,6 +2957,12 @@ local record M
         json: any
     end
 
+    -- Delta payload for a tool result metadata.
+    record HarnessToolResultMetadataBlockDelta
+        -- The partial JSON-string fragment of the tool result metadata.
+        metadata: string
+    end
+
     -- Delta payload for tool use input.
     record HarnessToolUseBlockDelta
         -- The partial JSON input for the tool call.
@@ -2959,6 +2979,8 @@ local record M
         toolResult: {HarnessToolResultBlockDelta}
         -- A reasoning content delta.
         reasoningContent: HarnessReasoningContentBlockDelta
+        -- A tool result metadata delta.
+        toolResultMetadata: HarnessToolResultMetadataBlockDelta
     end
 
     -- Event containing a delta update to a content block.

@@ -94,6 +94,7 @@ local record Client
     listTenants: function(Client, types.ListTenantsInput, ? base_client.InvokeOptions): async.Operation<types.ListTenantsOutput>
     putAccountDedicatedIpWarmupAttributes: function(Client, types.PutAccountDedicatedIpWarmupAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountDedicatedIpWarmupAttributesOutput>
     putAccountDetails: function(Client, types.PutAccountDetailsInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountDetailsOutput>
+    putAccountPricingAttributes: function(Client, types.PutAccountPricingAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountPricingAttributesOutput>
     putAccountSendingAttributes: function(Client, types.PutAccountSendingAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSendingAttributesOutput>
     putAccountSuppressionAttributes: function(Client, types.PutAccountSuppressionAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSuppressionAttributesOutput>
     putAccountVdmAttributes: function(Client, types.PutAccountVdmAttributesInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountVdmAttributesOutput>
@@ -475,6 +476,10 @@ end
 
 function C:putAccountDetails(input: types.PutAccountDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountDetailsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountDetails as schema.OperationSchema, input, options) as async.Operation<types.PutAccountDetailsOutput>
+end
+
+function C:putAccountPricingAttributes(input: types.PutAccountPricingAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountPricingAttributesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountPricingAttributes as schema.OperationSchema, input, options) as async.Operation<types.PutAccountPricingAttributesOutput>
 end
 
 function C:putAccountSendingAttributes(input: types.PutAccountSendingAttributesInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSendingAttributesOutput>

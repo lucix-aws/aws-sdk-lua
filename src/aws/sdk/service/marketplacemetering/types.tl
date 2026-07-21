@@ -38,6 +38,7 @@ local record M
         -- The CustomerIdentifier is obtained through the
         -- ResolveCustomer operation and represents an individual buyer in your
         -- application.
+        -- CustomerIdentifier is not supported for new SaaS product integrations. Use CustomerAWSAccountId to identify the buyer.
         CustomerIdentifier: string
         -- During the process of registering a product on Amazon Web Services Marketplace, dimensions are specified.
         -- These represent different units of value in your application.
@@ -298,6 +299,7 @@ local record M
         -- registration token through the browser. The registration token is resolved to obtain a
         -- CustomerIdentifier along with the CustomerAWSAccountId,
         -- ProductCode, and LicenseArn.
+        -- For new SaaS product integrations, the CustomerIdentifier field is not populated. Use CustomerAWSAccountId and LicenseArn for customer identification.
         RegistrationToken: string
     end
 
@@ -307,6 +309,7 @@ local record M
     record ResolveCustomerOutput
         -- The CustomerIdentifier is used to identify an individual customer in your
         -- application.
+        -- For new SaaS product integrations, this field is not populated. Use CustomerAWSAccountId and LicenseArn to identify customers instead.
         CustomerIdentifier: string
         -- The product code is returned to confirm that the buyer is registering for your
         -- product. Subsequent BatchMeterUsage calls should be made using this product

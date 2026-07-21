@@ -1081,6 +1081,62 @@ M.AdDecisionServerConfiguration = schema.new({
     },
 })
 
+M.AdsPersonalizationConcurrency = schema.new({
+    id = id.from(_N, "AdsPersonalizationConcurrency"),
+    type = "structure",
+    members = {
+        MaxConcurrentAdsRequests = schema.new({
+            id = id.from(_N, "AdsPersonalizationConcurrency", "MaxConcurrentAdsRequests"),
+            type = "integer",
+            name = "MaxConcurrentAdsRequests",
+            target_id = prelude.Integer.id,
+        }),
+        EnableVodVastParallelization = schema.new({
+            id = id.from(_N, "AdsPersonalizationConcurrency", "EnableVodVastParallelization"),
+            type = "boolean",
+            name = "EnableVodVastParallelization",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.AdsPersonalizationTimeouts = schema.new({
+    id = id.from(_N, "AdsPersonalizationTimeouts"),
+    type = "structure",
+    members = {
+        AdsRequestTimeoutMilliseconds = schema.new({
+            id = id.from(_N, "AdsPersonalizationTimeouts", "AdsRequestTimeoutMilliseconds"),
+            type = "integer",
+            name = "AdsRequestTimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        LiveMaximumAdsPersonalizationTimeMilliseconds = schema.new({
+            id = id.from(_N, "AdsPersonalizationTimeouts", "LiveMaximumAdsPersonalizationTimeMilliseconds"),
+            type = "integer",
+            name = "LiveMaximumAdsPersonalizationTimeMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        VodMaximumAdsPersonalizationTimeMilliseconds = schema.new({
+            id = id.from(_N, "AdsPersonalizationTimeouts", "VodMaximumAdsPersonalizationTimeMilliseconds"),
+            type = "integer",
+            name = "VodMaximumAdsPersonalizationTimeMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        PrefetchAdsRequestTimeoutMilliseconds = schema.new({
+            id = id.from(_N, "AdsPersonalizationTimeouts", "PrefetchAdsRequestTimeoutMilliseconds"),
+            type = "integer",
+            name = "PrefetchAdsRequestTimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+        PrefetchMaximumAdsPersonalizationTimeMilliseconds = schema.new({
+            id = id.from(_N, "AdsPersonalizationTimeouts", "PrefetchMaximumAdsPersonalizationTimeMilliseconds"),
+            type = "integer",
+            name = "PrefetchMaximumAdsPersonalizationTimeMilliseconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.AvailSuppression = schema.new({
     id = id.from(_N, "AvailSuppression"),
     type = "structure",
@@ -1501,6 +1557,20 @@ M.PlaybackConfiguration = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        AdsPersonalizationTimeouts = schema.new({
+            id = id.from(_N, "PlaybackConfiguration", "AdsPersonalizationTimeouts"),
+            type = "structure",
+            name = "AdsPersonalizationTimeouts",
+            target_id = id.from(_N, "AdsPersonalizationTimeouts"),
+            target = M.AdsPersonalizationTimeouts,
+        }),
+        AdsPersonalizationConcurrency = schema.new({
+            id = id.from(_N, "PlaybackConfiguration", "AdsPersonalizationConcurrency"),
+            type = "structure",
+            name = "AdsPersonalizationConcurrency",
+            target_id = id.from(_N, "AdsPersonalizationConcurrency"),
+            target = M.AdsPersonalizationConcurrency,
         }),
     },
 })
@@ -5120,6 +5190,20 @@ M.GetPlaybackConfigurationOutput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        AdsPersonalizationTimeouts = schema.new({
+            id = id.from(_N, "GetPlaybackConfigurationOutput", "AdsPersonalizationTimeouts"),
+            type = "structure",
+            name = "AdsPersonalizationTimeouts",
+            target_id = id.from(_N, "AdsPersonalizationTimeouts"),
+            target = M.AdsPersonalizationTimeouts,
+        }),
+        AdsPersonalizationConcurrency = schema.new({
+            id = id.from(_N, "GetPlaybackConfigurationOutput", "AdsPersonalizationConcurrency"),
+            type = "structure",
+            name = "AdsPersonalizationConcurrency",
+            target_id = id.from(_N, "AdsPersonalizationConcurrency"),
+            target = M.AdsPersonalizationConcurrency,
+        }),
     },
 })
 
@@ -5803,6 +5887,20 @@ M.PutPlaybackConfigurationInput = schema.new({
             map_key = prelude.String,
             map_value = prelude.String,
         }),
+        AdsPersonalizationTimeouts = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationInput", "AdsPersonalizationTimeouts"),
+            type = "structure",
+            name = "AdsPersonalizationTimeouts",
+            target_id = id.from(_N, "AdsPersonalizationTimeouts"),
+            target = M.AdsPersonalizationTimeouts,
+        }),
+        AdsPersonalizationConcurrency = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationInput", "AdsPersonalizationConcurrency"),
+            type = "structure",
+            name = "AdsPersonalizationConcurrency",
+            target_id = id.from(_N, "AdsPersonalizationConcurrency"),
+            target = M.AdsPersonalizationConcurrency,
+        }),
     },
 })
 
@@ -5981,6 +6079,20 @@ M.PutPlaybackConfigurationOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        AdsPersonalizationTimeouts = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationOutput", "AdsPersonalizationTimeouts"),
+            type = "structure",
+            name = "AdsPersonalizationTimeouts",
+            target_id = id.from(_N, "AdsPersonalizationTimeouts"),
+            target = M.AdsPersonalizationTimeouts,
+        }),
+        AdsPersonalizationConcurrency = schema.new({
+            id = id.from(_N, "PutPlaybackConfigurationOutput", "AdsPersonalizationConcurrency"),
+            type = "structure",
+            name = "AdsPersonalizationConcurrency",
+            target_id = id.from(_N, "AdsPersonalizationConcurrency"),
+            target = M.AdsPersonalizationConcurrency,
         }),
     },
 })
