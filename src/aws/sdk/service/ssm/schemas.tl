@@ -5467,6 +5467,12 @@ M.AutomationExecutionMetadata = schema.new({
             name = "FailureMessage",
             target_id = prelude.String.id,
         }),
+        WarningMessage = schema.new({
+            id = id.from(_N, "AutomationExecutionMetadata", "WarningMessage"),
+            type = "string",
+            name = "WarningMessage",
+            target_id = prelude.String.id,
+        }),
         TargetParameterName = schema.new({
             id = id.from(_N, "AutomationExecutionMetadata", "TargetParameterName"),
             type = "string",
@@ -5865,6 +5871,12 @@ M.StepExecution = schema.new({
             id = id.from(_N, "StepExecution", "FailureMessage"),
             type = "string",
             name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+        WarningMessage = schema.new({
+            id = id.from(_N, "StepExecution", "WarningMessage"),
+            type = "string",
+            name = "WarningMessage",
             target_id = prelude.String.id,
         }),
         FailureDetails = schema.new({
@@ -10094,6 +10106,12 @@ M.AutomationExecution = schema.new({
             id = id.from(_N, "AutomationExecution", "FailureMessage"),
             type = "string",
             name = "FailureMessage",
+            target_id = prelude.String.id,
+        }),
+        WarningMessage = schema.new({
+            id = id.from(_N, "AutomationExecution", "WarningMessage"),
+            type = "string",
+            name = "WarningMessage",
             target_id = prelude.String.id,
         }),
         Mode = schema.new({

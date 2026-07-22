@@ -41,6 +41,7 @@ local record Client
     createHsmClientCertificate: function(Client, types.CreateHsmClientCertificateInput, ? base_client.InvokeOptions): async.Operation<types.CreateHsmClientCertificateOutput>
     createHsmConfiguration: function(Client, types.CreateHsmConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateHsmConfigurationOutput>
     createIntegration: function(Client, types.CreateIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationOutput>
+    createQev2IdcApplication: function(Client, types.CreateQev2IdcApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateQev2IdcApplicationOutput>
     createRedshiftIdcApplication: function(Client, types.CreateRedshiftIdcApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateRedshiftIdcApplicationOutput>
     createScheduledAction: function(Client, types.CreateScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.CreateScheduledActionOutput>
     createSnapshotCopyGrant: function(Client, types.CreateSnapshotCopyGrantInput, ? base_client.InvokeOptions): async.Operation<types.CreateSnapshotCopyGrantOutput>
@@ -61,6 +62,7 @@ local record Client
     deleteHsmConfiguration: function(Client, types.DeleteHsmConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHsmConfigurationOutput>
     deleteIntegration: function(Client, types.DeleteIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntegrationOutput>
     deletePartner: function(Client, types.DeletePartnerInput, ? base_client.InvokeOptions): async.Operation<types.DeletePartnerOutput>
+    deleteQev2IdcApplication: function(Client, types.DeleteQev2IdcApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteQev2IdcApplicationOutput>
     deleteRedshiftIdcApplication: function(Client, types.DeleteRedshiftIdcApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRedshiftIdcApplicationOutput>
     deleteResourcePolicy: function(Client, types.DeleteResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteResourcePolicyOutput>
     deleteScheduledAction: function(Client, types.DeleteScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteScheduledActionOutput>
@@ -98,6 +100,7 @@ local record Client
     describeNodeConfigurationOptions: function(Client, types.DescribeNodeConfigurationOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNodeConfigurationOptionsOutput>
     describeOrderableClusterOptions: function(Client, types.DescribeOrderableClusterOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeOrderableClusterOptionsOutput>
     describePartners: function(Client, types.DescribePartnersInput, ? base_client.InvokeOptions): async.Operation<types.DescribePartnersOutput>
+    describeQev2IdcApplications: function(Client, types.DescribeQev2IdcApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQev2IdcApplicationsOutput>
     describeRedshiftIdcApplications: function(Client, types.DescribeRedshiftIdcApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeRedshiftIdcApplicationsOutput>
     describeReservedNodeExchangeStatus: function(Client, types.DescribeReservedNodeExchangeStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedNodeExchangeStatusOutput>
     describeReservedNodeOfferings: function(Client, types.DescribeReservedNodeOfferingsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeReservedNodeOfferingsOutput>
@@ -138,6 +141,7 @@ local record Client
     modifyEventSubscription: function(Client, types.ModifyEventSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyEventSubscriptionOutput>
     modifyIntegration: function(Client, types.ModifyIntegrationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIntegrationOutput>
     modifyLakehouseConfiguration: function(Client, types.ModifyLakehouseConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLakehouseConfigurationOutput>
+    modifyQev2IdcApplication: function(Client, types.ModifyQev2IdcApplicationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyQev2IdcApplicationOutput>
     modifyRedshiftIdcApplication: function(Client, types.ModifyRedshiftIdcApplicationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyRedshiftIdcApplicationOutput>
     modifyScheduledAction: function(Client, types.ModifyScheduledActionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyScheduledActionOutput>
     modifySnapshotCopyRetentionPeriod: function(Client, types.ModifySnapshotCopyRetentionPeriodInput, ? base_client.InvokeOptions): async.Operation<types.ModifySnapshotCopyRetentionPeriodOutput>
@@ -295,6 +299,10 @@ function C:createIntegration(input: types.CreateIntegrationInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntegration as schema.OperationSchema, input, options) as async.Operation<types.CreateIntegrationOutput>
 end
 
+function C:createQev2IdcApplication(input: types.CreateQev2IdcApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateQev2IdcApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateQev2IdcApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateQev2IdcApplicationOutput>
+end
+
 function C:createRedshiftIdcApplication(input: types.CreateRedshiftIdcApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateRedshiftIdcApplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateRedshiftIdcApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateRedshiftIdcApplicationOutput>
 end
@@ -373,6 +381,10 @@ end
 
 function C:deletePartner(input: types.DeletePartnerInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePartnerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePartner as schema.OperationSchema, input, options) as async.Operation<types.DeletePartnerOutput>
+end
+
+function C:deleteQev2IdcApplication(input: types.DeleteQev2IdcApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteQev2IdcApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteQev2IdcApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteQev2IdcApplicationOutput>
 end
 
 function C:deleteRedshiftIdcApplication(input: types.DeleteRedshiftIdcApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteRedshiftIdcApplicationOutput>
@@ -521,6 +533,10 @@ end
 
 function C:describePartners(input: types.DescribePartnersInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePartnersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePartners as schema.OperationSchema, input, options) as async.Operation<types.DescribePartnersOutput>
+end
+
+function C:describeQev2IdcApplications(input: types.DescribeQev2IdcApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeQev2IdcApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeQev2IdcApplications as schema.OperationSchema, input, options) as async.Operation<types.DescribeQev2IdcApplicationsOutput>
 end
 
 function C:describeRedshiftIdcApplications(input: types.DescribeRedshiftIdcApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeRedshiftIdcApplicationsOutput>
@@ -681,6 +697,10 @@ end
 
 function C:modifyLakehouseConfiguration(input: types.ModifyLakehouseConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyLakehouseConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyLakehouseConfiguration as schema.OperationSchema, input, options) as async.Operation<types.ModifyLakehouseConfigurationOutput>
+end
+
+function C:modifyQev2IdcApplication(input: types.ModifyQev2IdcApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyQev2IdcApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyQev2IdcApplication as schema.OperationSchema, input, options) as async.Operation<types.ModifyQev2IdcApplicationOutput>
 end
 
 function C:modifyRedshiftIdcApplication(input: types.ModifyRedshiftIdcApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyRedshiftIdcApplicationOutput>

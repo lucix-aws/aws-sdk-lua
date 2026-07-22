@@ -2384,6 +2384,44 @@ local record M
         message: string
     end
 
+    record CreateQev2IdcApplicationInput
+        -- The Amazon Resource Name (ARN) of the IAM Identity Center instance used to create the Amazon Redshift Query Editor (QEV2) managed application.
+        IdcInstanceArn: string
+        -- The name of the Amazon Redshift Query Editor (QEV2) application in IAM Identity Center.
+        Qev2IdcApplicationName: string
+        -- The display name for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application. It appears in the console.
+        IdcDisplayName: string
+        -- A list of tags to associate with the application. Tags are key-value pairs that you can use to organize and identify your resources.
+        Tags: {Tag}
+    end
+
+    -- Contains configuration and status information for an Amazon Redshift Query Editor (QEV2) application that is registered with IAM Identity Center.
+    record Qev2IdcApplication
+        -- The Amazon Resource Name (ARN) for the IAM Identity Center instance that the Amazon Redshift Query Editor (QEV2) application integrates with.
+        IdcInstanceArn: string
+        -- The name of the Amazon Redshift Query Editor (QEV2) application in IAM Identity Center.
+        Qev2IdcApplicationName: string
+        -- The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) application that integrates with IAM Identity Center.
+        Qev2IdcApplicationArn: string
+        -- The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) IAM Identity Center managed application.
+        IdcManagedApplicationArn: string
+        -- The onboarding status for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application.
+        IdcOnboardStatus: string
+        -- The display name for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application. It appears in the console.
+        IdcDisplayName: string
+        -- A list of tags associated with the application. Tags are key-value pairs that you can use to organize and identify your resources.
+        Tags: {Tag}
+    end
+
+    record CreateQev2IdcApplicationOutput
+        Qev2IdcApplication: Qev2IdcApplication
+    end
+
+    -- The Amazon Redshift Query Editor (QEV2) IAM Identity Center application already exists. Use a different application name or describe existing applications to find the ARN.
+    record Qev2IdcApplicationAlreadyExistsFault
+        message: string
+    end
+
     -- The Lake Formation scope.
     record LakeFormationQuery
         -- Determines whether the query scope is enabled or disabled.
@@ -3196,6 +3234,19 @@ local record M
         DatabaseName: string
         -- The name of the partner that is authorized to send data.
         PartnerName: string
+    end
+
+    record DeleteQev2IdcApplicationInput
+        -- The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application to delete.
+        Qev2IdcApplicationArn: string
+    end
+
+    record DeleteQev2IdcApplicationOutput
+    end
+
+    -- The specified Amazon Redshift Query Editor (QEV2) IAM Identity Center application doesn't exist. Verify that the application ARN is correct and that the application exists in this Region.
+    record Qev2IdcApplicationNotExistsFault
+        message: string
     end
 
     record DeleteRedshiftIdcApplicationInput
@@ -4645,6 +4696,32 @@ local record M
     record DescribePartnersOutput
         -- A list of partner integrations.
         PartnerIntegrationInfoList: {PartnerIntegrationInfo}
+    end
+
+    record DescribeQev2IdcApplicationsInput
+        -- The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) application that integrates with IAM Identity Center.
+        Qev2IdcApplicationArn: string
+        -- The maximum number of response records to return in each call. If the number of remaining response records
+        -- exceeds the specified MaxRecords value, a value is returned in a marker field of the response. You can retrieve
+        -- the next set of records by retrying the command with the returned marker value.
+        MaxRecords: number
+        -- A value that indicates the starting point for the next set of response records in a subsequent request. If a
+        -- value is returned in a response, you can retrieve the next set
+        -- of records by providing this returned marker value in the Marker parameter
+        -- and retrying the command. If the Marker field is empty, all response
+        -- records have been retrieved for the request.
+        Marker: string
+    end
+
+    record DescribeQev2IdcApplicationsOutput
+        -- The list of Amazon Redshift Query Editor (QEV2) IAM Identity Center applications.
+        Qev2IdcApplications: {Qev2IdcApplication}
+        -- A value that indicates the starting point for the next set of response records in a subsequent
+        -- request. If a value is returned in a response, you can retrieve the next set
+        -- of records by providing this returned marker value in the Marker parameter
+        -- and retrying the command. If the Marker field is empty, all response
+        -- records have been retrieved for the request.
+        Marker: string
     end
 
     record DescribeRedshiftIdcApplicationsInput
@@ -6331,6 +6408,17 @@ local record M
         LakehouseRegistrationStatus: string
         -- The Amazon Resource Name (ARN) of the Glue data catalog associated with the lakehouse configuration.
         CatalogArn: string
+    end
+
+    record ModifyQev2IdcApplicationInput
+        -- The Amazon Resource Name (ARN) for the Amazon Redshift Query Editor (QEV2) application that integrates with IAM Identity Center.
+        Qev2IdcApplicationArn: string
+        -- The display name for the Amazon Redshift Query Editor (QEV2) IAM Identity Center application. It appears in the console.
+        IdcDisplayName: string
+    end
+
+    record ModifyQev2IdcApplicationOutput
+        Qev2IdcApplication: Qev2IdcApplication
     end
 
     record ModifyRedshiftIdcApplicationInput

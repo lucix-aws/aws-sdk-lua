@@ -5829,14 +5829,6 @@ M.CodeSecurityIntegrationSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
-        tags = schema.new({
-            id = id.from(_N, "CodeSecurityIntegrationSummary", "tags"),
-            type = "map",
-            name = "tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
     },
 })
 
@@ -6000,14 +5992,6 @@ M.CodeSecurityScanConfigurationSummary = schema.new({
             name = "scopeSettings",
             target_id = id.from(_N, "ScopeSettings"),
             target = M.ScopeSettings,
-        }),
-        tags = schema.new({
-            id = id.from(_N, "CodeSecurityScanConfigurationSummary", "tags"),
-            type = "map",
-            name = "tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
         }),
     },
 })
@@ -10443,6 +10427,12 @@ M.GetCodeSecurityIntegrationOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        authorizationUrl = schema.new({
+            id = id.from(_N, "GetCodeSecurityIntegrationOutput", "authorizationUrl"),
+            type = "string",
+            name = "authorizationUrl",
+            target_id = prelude.String.id,
+        }),
         tags = schema.new({
             id = id.from(_N, "GetCodeSecurityIntegrationOutput", "tags"),
             type = "map",
@@ -10450,12 +10440,6 @@ M.GetCodeSecurityIntegrationOutput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
-        }),
-        authorizationUrl = schema.new({
-            id = id.from(_N, "GetCodeSecurityIntegrationOutput", "authorizationUrl"),
-            type = "string",
-            name = "authorizationUrl",
-            target_id = prelude.String.id,
         }),
     },
 })

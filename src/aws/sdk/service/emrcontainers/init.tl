@@ -25,6 +25,7 @@ local record Client
     createVirtualCluster: function(Client, types.CreateVirtualClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateVirtualClusterOutput>
     deleteJobTemplate: function(Client, types.DeleteJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteJobTemplateOutput>
     deleteManagedEndpoint: function(Client, types.DeleteManagedEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteManagedEndpointOutput>
+    deleteSecurityConfiguration: function(Client, types.DeleteSecurityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSecurityConfigurationOutput>
     deleteVirtualCluster: function(Client, types.DeleteVirtualClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVirtualClusterOutput>
     describeJobRun: function(Client, types.DescribeJobRunInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobRunOutput>
     describeJobTemplate: function(Client, types.DescribeJobTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DescribeJobTemplateOutput>
@@ -111,6 +112,10 @@ end
 
 function C:deleteManagedEndpoint(input: types.DeleteManagedEndpointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteManagedEndpointOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteManagedEndpoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteManagedEndpointOutput>
+end
+
+function C:deleteSecurityConfiguration(input: types.DeleteSecurityConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteSecurityConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSecurityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteSecurityConfigurationOutput>
 end
 
 function C:deleteVirtualCluster(input: types.DeleteVirtualClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVirtualClusterOutput>

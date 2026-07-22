@@ -31,10 +31,12 @@ local record Client
     listProcurementPortalPreferences: function(Client, types.ListProcurementPortalPreferencesInput, ? base_client.InvokeOptions): async.Operation<types.ListProcurementPortalPreferencesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putProcurementPortalPreference: function(Client, types.PutProcurementPortalPreferenceInput, ? base_client.InvokeOptions): async.Operation<types.PutProcurementPortalPreferenceOutput>
+    sendProcurementPortalValidation: function(Client, types.SendProcurementPortalValidationInput, ? base_client.InvokeOptions): async.Operation<types.SendProcurementPortalValidationOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateInvoiceUnit: function(Client, types.UpdateInvoiceUnitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInvoiceUnitOutput>
     updateProcurementPortalPreferenceStatus: function(Client, types.UpdateProcurementPortalPreferenceStatusInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
+    verifyProcurementPortalValidation: function(Client, types.VerifyProcurementPortalValidationInput, ? base_client.InvokeOptions): async.Operation<types.VerifyProcurementPortalValidationOutput>
 end
 
 local record M
@@ -131,6 +133,10 @@ function C:putProcurementPortalPreference(input: types.PutProcurementPortalPrefe
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutProcurementPortalPreference as schema.OperationSchema, input, options) as async.Operation<types.PutProcurementPortalPreferenceOutput>
 end
 
+function C:sendProcurementPortalValidation(input: types.SendProcurementPortalValidationInput, options?: base_client.InvokeOptions): async.Operation<types.SendProcurementPortalValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SendProcurementPortalValidation as schema.OperationSchema, input, options) as async.Operation<types.SendProcurementPortalValidationOutput>
+end
+
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.TagResource as schema.OperationSchema, input, options) as async.Operation<types.TagResourceOutput>
 end
@@ -145,6 +151,10 @@ end
 
 function C:updateProcurementPortalPreferenceStatus(input: types.UpdateProcurementPortalPreferenceStatusInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProcurementPortalPreferenceStatus as schema.OperationSchema, input, options) as async.Operation<types.UpdateProcurementPortalPreferenceStatusOutput>
+end
+
+function C:verifyProcurementPortalValidation(input: types.VerifyProcurementPortalValidationInput, options?: base_client.InvokeOptions): async.Operation<types.VerifyProcurementPortalValidationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.VerifyProcurementPortalValidation as schema.OperationSchema, input, options) as async.Operation<types.VerifyProcurementPortalValidationOutput>
 end
 
 return M

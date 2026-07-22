@@ -436,6 +436,24 @@ function M.items_describe_orderable_cluster_options(client, input)
     })
 end
 
+--- Returns a page iterator for describeQev2IdcApplications.
+function M.pages_describe_qev2_idc_applications(client, input)
+    return paginator.pages(client, "describeQev2IdcApplications", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Qev2IdcApplications",
+    })
+end
+
+--- Returns an item iterator for describeQev2IdcApplications.
+function M.items_describe_qev2_idc_applications(client, input)
+    return paginator.items(client, "describeQev2IdcApplications", input, {
+        input_token = "Marker",
+        output_token = "Marker",
+        items = "Qev2IdcApplications",
+    })
+end
+
 --- Returns a page iterator for describeRedshiftIdcApplications.
 function M.pages_describe_redshift_idc_applications(client, input)
     return paginator.pages(client, "describeRedshiftIdcApplications", input, {

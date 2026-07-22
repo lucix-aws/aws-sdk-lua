@@ -1072,6 +1072,10 @@ local record M
         -- Sets the default duration for hard deletion of data.
         -- Default: 90d
         hardDeleteDefaultDuration: Duration
+        -- Specifies the URL of the repository that InfluxDB downloads plugins from.
+        pluginRepositoryUrl: string
+        -- The Amazon Resource Name (ARN) of the Secrets Manager secret that holds your repository access token.
+        pluginRepositorySecretArn: string
     end
 
     -- All the customer-modifiable InfluxDB v3 Enterprise parameters in Timestream for InfluxDB.
@@ -1182,6 +1186,10 @@ local record M
         -- Sets the default duration for hard deletion of data.
         -- Default: 90d
         hardDeleteDefaultDuration: Duration
+        -- Specifies the URL of the repository that InfluxDB downloads plugins from.
+        pluginRepositoryUrl: string
+        -- The Amazon Resource Name (ARN) of the Secrets Manager secret that holds your repository access token.
+        pluginRepositorySecretArn: string
         -- Specifies number of instances in the DbCluster which can both ingest and query.
         ingestQueryInstances: number
         -- Specifies number of instances in the DbCluster which can only query.

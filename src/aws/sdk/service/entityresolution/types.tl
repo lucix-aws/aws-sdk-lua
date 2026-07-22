@@ -327,9 +327,9 @@ local record M
         "IMMEDIATE"
     end
 
-    -- Optional. An object that defines the incremental run type. This object contains only the incrementalRunType field, which appears as "Automatic" in the console. For workflows where resolutionType is ML_MATCHING or PROVIDER, incremental processing is not supported.
+    -- Optional. An object that defines the incremental run type. This object contains only the incrementalRunType field, which appears as "Automatic" in the console. For workflows where resolutionType is PROVIDER, incremental processing is not supported.
     record IncrementalRunConfig
-        -- The type of incremental run. The only valid value is IMMEDIATE. This appears as "Automatic" in the console. For workflows where resolutionType is ML_MATCHING or PROVIDER, incremental processing is not supported.
+        -- The type of incremental run. The only valid value is IMMEDIATE. This appears as "Automatic" in the console. For workflows where resolutionType is PROVIDER, incremental processing is not supported.
         incrementalRunType: string
     end
 
@@ -424,6 +424,8 @@ local record M
         ruleBasedProperties: RuleBasedProperties
         -- An object containing the rules for a matching workflow.
         ruleConditionProperties: RuleConditionProperties
+        -- Specifies whether real-time matching is enabled for the rule-based matching workflow. When you enable real-time matching, you can use the GenerateMatchId operation with the workflow.
+        enableRealTimeMatching: boolean
         -- The properties of the provider service.
         providerProperties: ProviderProperties
     end
@@ -439,7 +441,7 @@ local record M
         outputSourceConfig: {OutputSource}
         -- An object which defines the resolutionType and the ruleBasedProperties.
         resolutionTechniques: ResolutionTechniques
-        -- Optional. An object that defines the incremental run type. This object contains only the incrementalRunType field, which appears as "Automatic" in the console. For workflows where resolutionType is ML_MATCHING or PROVIDER, incremental processing is not supported.
+        -- Optional. An object that defines the incremental run type. This object contains only the incrementalRunType field, which appears as "Automatic" in the console. For workflows where resolutionType is PROVIDER, incremental processing is not supported.
         incrementalRunConfig: IncrementalRunConfig
         -- The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes this role to create resources on your behalf as part of workflow execution.
         roleArn: string
@@ -605,7 +607,7 @@ local record M
         workflowName: string
         -- The records to match.
         records: {Record}
-        -- The processing mode that determines how Match IDs are generated and results are saved. Each mode provides different levels of accuracy, response time, and completeness of results. If not specified, defaults to CONSISTENT. CONSISTENT: Performs immediate lookup and matching against all existing records, with results saved synchronously. Provides highest accuracy but slower response time. EVENTUAL (shown as Background in the console): Performs initial match ID lookup or generation immediately, with record updates processed asynchronously in the background. Offers faster initial response time, with complete matching results available later in S3. EVENTUAL_NO_LOOKUP (shown as Quick ID generation in the console): Generates new match IDs without checking existing matches, with updates processed asynchronously. Provides fastest response time but should only be used for records known to be unique.
+        -- The processing mode that determines how Match IDs are generated and results are saved. Each mode provides different levels of accuracy, response time, and completeness of results. If not specified, defaults to CONSISTENT. CONSISTENT: Performs immediate lookup and matching against all existing records, with results saved synchronously. Provides highest accuracy but slower response time. EVENTUAL (shown as Background in the console): Performs initial match ID lookup or generation immediately, with record updates processed asynchronously in the background. Offers faster initial response time, with complete matching results available later in S3. EVENTUAL_NO_LOOKUP (shown as Quick ID generation in the console): Generates new match IDs without checking existing matches, with updates processed asynchronously. Provides fastest response time but should only be used for records known to be unique. Advanced matching workflows don't support the processingType field.
         processingType: string
     end
 
@@ -1360,7 +1362,7 @@ local record M
         outputSourceConfig: {OutputSource}
         -- An object which defines the resolutionType and the ruleBasedProperties.
         resolutionTechniques: ResolutionTechniques
-        -- Optional. An object that defines the incremental run type. This object contains only the incrementalRunType field, which appears as "Automatic" in the console. For workflows where resolutionType is ML_MATCHING or PROVIDER, incremental processing is not supported.
+        -- Optional. An object that defines the incremental run type. This object contains only the incrementalRunType field, which appears as "Automatic" in the console. For workflows where resolutionType is PROVIDER, incremental processing is not supported.
         incrementalRunConfig: IncrementalRunConfig
         -- The Amazon Resource Name (ARN) of the IAM role. Entity Resolution assumes this role to create resources on your behalf as part of workflow execution.
         roleArn: string

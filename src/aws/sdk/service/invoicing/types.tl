@@ -520,6 +520,7 @@ local record M
 
     enum ProcurementPortalPreferenceStatus
         "PENDING_VERIFICATION"
+        "VALIDATED"
         "TEST_INITIALIZED"
         "TEST_INITIALIZATION_FAILED"
         "TEST_FAILED"
@@ -846,6 +847,18 @@ local record M
         ProcurementPortalPreferenceArn: string
     end
 
+    record SendProcurementPortalValidationInput
+        -- The Amazon Resource Name (ARN) of the procurement portal preference to validate.
+        ProcurementPortalPreferenceArn: string
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
+    end
+
+    record SendProcurementPortalValidationOutput
+        -- The Amazon Resource Name (ARN) of the procurement portal preference for which the validation request was sent.
+        ProcurementPortalPreferenceArn: string
+    end
+
     record TagResourceInput
         -- The Amazon Resource Name (ARN) of the tags.
         ResourceArn: string
@@ -901,6 +914,20 @@ local record M
 
     record UpdateProcurementPortalPreferenceStatusOutput
         -- The Amazon Resource Name (ARN) of the procurement portal preference with updated status.
+        ProcurementPortalPreferenceArn: string
+    end
+
+    record VerifyProcurementPortalValidationInput
+        -- The Amazon Resource Name (ARN) of the procurement portal preference to validate.
+        ProcurementPortalPreferenceArn: string
+        -- The validation code received from the procurement portal in response to a previous SendProcurementPortalValidation request.
+        Code: string
+        -- A unique, case-sensitive identifier that you provide to ensure idempotency of the request.
+        ClientToken: string
+    end
+
+    record VerifyProcurementPortalValidationOutput
+        -- The Amazon Resource Name (ARN) of the procurement portal preference for which validation was completed.
         ProcurementPortalPreferenceArn: string
     end
 

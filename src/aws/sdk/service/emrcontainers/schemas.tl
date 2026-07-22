@@ -43,6 +43,71 @@ M.EntryPointArguments = schema.new({ type = "list", list_member = prelude.String
 
 M.SensitivePropertiesMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.IAMConfiguration = schema.new({
+    id = id.from(_N, "IAMConfiguration"),
+    type = "structure",
+    members = {
+        systemRole = schema.new({
+            id = id.from(_N, "IAMConfiguration", "systemRole"),
+            type = "string",
+            name = "systemRole",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IdentityCenterConfiguration = schema.new({
+    id = id.from(_N, "IdentityCenterConfiguration"),
+    type = "structure",
+    members = {
+        enableIdentityCenter = schema.new({
+            id = id.from(_N, "IdentityCenterConfiguration", "enableIdentityCenter"),
+            type = "boolean",
+            name = "enableIdentityCenter",
+            target_id = prelude.Boolean.id,
+        }),
+        identityCenterApplicationAssignmentRequired = schema.new({
+            id = id.from(_N, "IdentityCenterConfiguration", "identityCenterApplicationAssignmentRequired"),
+            type = "boolean",
+            name = "identityCenterApplicationAssignmentRequired",
+            target_id = prelude.Boolean.id,
+        }),
+        identityCenterInstanceARN = schema.new({
+            id = id.from(_N, "IdentityCenterConfiguration", "identityCenterInstanceARN"),
+            type = "string",
+            name = "identityCenterInstanceARN",
+            target_id = prelude.String.id,
+        }),
+        emrIdentityCenterApplicationARN = schema.new({
+            id = id.from(_N, "IdentityCenterConfiguration", "emrIdentityCenterApplicationARN"),
+            type = "string",
+            name = "emrIdentityCenterApplicationARN",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AuthenticationConfiguration = schema.new({
+    id = id.from(_N, "AuthenticationConfiguration"),
+    type = "structure",
+    members = {
+        identityCenterConfiguration = schema.new({
+            id = id.from(_N, "AuthenticationConfiguration", "identityCenterConfiguration"),
+            type = "structure",
+            name = "identityCenterConfiguration",
+            target_id = id.from(_N, "IdentityCenterConfiguration"),
+            target = M.IdentityCenterConfiguration,
+        }),
+        iamConfiguration = schema.new({
+            id = id.from(_N, "AuthenticationConfiguration", "iamConfiguration"),
+            type = "structure",
+            name = "iamConfiguration",
+            target_id = id.from(_N, "IAMConfiguration"),
+            target = M.IAMConfiguration,
+        }),
+    },
+})
+
 M.TLSCertificateConfiguration = schema.new({
     id = id.from(_N, "TLSCertificateConfiguration"),
     type = "structure",
@@ -673,6 +738,13 @@ M.SecurityConfigurationData = schema.new({
             target_id = id.from(_N, "AuthorizationConfiguration"),
             target = M.AuthorizationConfiguration,
         }),
+        authenticationConfiguration = schema.new({
+            id = id.from(_N, "SecurityConfigurationData", "authenticationConfiguration"),
+            type = "structure",
+            name = "authenticationConfiguration",
+            target_id = id.from(_N, "AuthenticationConfiguration"),
+            target = M.AuthenticationConfiguration,
+        }),
     },
 })
 
@@ -920,6 +992,36 @@ M.DeleteManagedEndpointOutput = schema.new({
             id = id.from(_N, "DeleteManagedEndpointOutput", "virtualClusterId"),
             type = "string",
             name = "virtualClusterId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteSecurityConfigurationInput = schema.new({
+    id = id.from(_N, "DeleteSecurityConfigurationRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteSecurityConfigurationInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteSecurityConfigurationOutput = schema.new({
+    id = id.from(_N, "DeleteSecurityConfigurationResponse"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteSecurityConfigurationOutput", "id"),
+            type = "string",
+            name = "id",
             target_id = prelude.String.id,
         }),
     },
@@ -2805,6 +2907,18 @@ M.DeleteManagedEndpoint = schema.operation({
     output = M.DeleteManagedEndpointOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/virtualclusters/{virtualClusterId}/endpoints/{id}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteSecurityConfiguration = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "DeleteSecurityConfiguration"),
+    input = M.DeleteSecurityConfigurationInput,
+    output = M.DeleteSecurityConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/securityconfigurations/{id}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

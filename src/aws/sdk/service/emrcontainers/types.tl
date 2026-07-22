@@ -7,6 +7,32 @@ local record M
         "DISABLED"
     end
 
+    -- IAM configuration for the security configuration.
+    record IAMConfiguration
+        -- The ARN of the system role used by the security configuration.
+        systemRole: string
+    end
+
+    -- Identity Center related configuration for the security configuration.
+    record IdentityCenterConfiguration
+        -- Determines whether Identity Center is enabled for the security configuration.
+        enableIdentityCenter: boolean
+        -- Determines whether user assignment is required for the Identity Center application.
+        identityCenterApplicationAssignmentRequired: boolean
+        -- The ARN of the Identity Center instance.
+        identityCenterInstanceARN: string
+        -- The ARN of the EMR Identity Center application.
+        emrIdentityCenterApplicationARN: string
+    end
+
+    -- Authentication configuration for the security configuration.
+    record AuthenticationConfiguration
+        -- Identity Center configuration for authentication in the security configuration.
+        identityCenterConfiguration: IdentityCenterConfiguration
+        -- IAM configuration for authentication in the security configuration.
+        iamConfiguration: IAMConfiguration
+    end
+
     enum CertificateProviderType
         "PEM"
     end
@@ -267,6 +293,8 @@ local record M
     record SecurityConfigurationData
         -- Authorization-related configuration input for the security configuration.
         authorizationConfiguration: AuthorizationConfiguration
+        -- Authentication-related configuration input for the security configuration.
+        authenticationConfiguration: AuthenticationConfiguration
     end
 
     record CreateSecurityConfigurationInput
@@ -342,6 +370,16 @@ local record M
         id: string
         -- The output displays the ID of the endpoint's virtual cluster.
         virtualClusterId: string
+    end
+
+    record DeleteSecurityConfigurationInput
+        -- The ID of the security configuration to delete.
+        id: string
+    end
+
+    record DeleteSecurityConfigurationOutput
+        -- The ID of the security configuration that was deleted.
+        id: string
     end
 
     record DeleteVirtualClusterInput

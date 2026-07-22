@@ -2656,8 +2656,10 @@ local record M
         CurrentStepName: string
         -- The action of the step that is currently running.
         CurrentAction: string
-        -- The list of execution outputs as defined in the Automation runbook.
+        -- A message that describes a failure that occurred during the automation execution.
         FailureMessage: string
+        -- A message that describes a non-critical issue that occurred during the automation execution.
+        WarningMessage: string
         -- The list of execution outputs as defined in the Automation runbook.
         TargetParameterName: string
         -- The targets defined by the user when starting the automation.
@@ -2820,6 +2822,8 @@ local record M
         Response: string
         -- If a step failed, this message explains why the execution failed.
         FailureMessage: string
+        -- A message that describes a non-critical issue that occurred during the step execution. Present only if the step status includes a warning.
+        WarningMessage: string
         -- Information about the Automation failure.
         FailureDetails: FailureDetails
         -- The unique ID of a step execution.
@@ -5020,6 +5024,8 @@ local record M
         Outputs: {string : {string}}
         -- A message describing why an execution has failed, if the status is set to Failed.
         FailureMessage: string
+        -- A message that describes a non-critical issue that occurred during the automation execution.
+        WarningMessage: string
         -- The automation execution mode.
         Mode: string
         -- The AutomationExecutionId of the parent automation.

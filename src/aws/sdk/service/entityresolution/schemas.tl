@@ -1294,6 +1294,12 @@ M.ResolutionTechniques = schema.new({
             target_id = id.from(_N, "RuleConditionProperties"),
             target = M.RuleConditionProperties,
         }),
+        enableRealTimeMatching = schema.new({
+            id = id.from(_N, "ResolutionTechniques", "enableRealTimeMatching"),
+            type = "boolean",
+            name = "enableRealTimeMatching",
+            target_id = prelude.Boolean.id,
+        }),
         providerProperties = schema.new({
             id = id.from(_N, "ResolutionTechniques", "providerProperties"),
             type = "structure",

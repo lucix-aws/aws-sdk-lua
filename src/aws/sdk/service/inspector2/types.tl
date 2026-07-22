@@ -2567,8 +2567,6 @@ local record M
         createdOn: number
         -- The timestamp when the code security integration was last updated.
         lastUpdateOn: number
-        -- The tags associated with the code security integration.
-        tags: {string : string}
     end
 
     -- Configuration settings for continuous integration scans that run automatically when code
@@ -2644,8 +2642,6 @@ local record M
         -- ScopeSetting parameter is ALL the scan configuration applies
         -- to all existing and future projects imported into Amazon Inspector.
         scopeSettings: ScopeSettings
-        -- The tags associated with the scan configuration.
-        tags: {string : string}
     end
 
     -- Contains information on the code vulnerability identified in your Lambda
@@ -4439,12 +4435,12 @@ local record M
         createdOn: number
         -- The timestamp when the code security integration was last updated.
         lastUpdateOn: number
-        -- The tags associated with the code security integration.
-        tags: {string : string}
         -- The URL used to authorize the integration with the repository provider. This is only
         -- returned if reauthorization is required to fix a connection issue. Otherwise, it is
         -- null.
         authorizationUrl: string
+        -- The tags associated with the code security integration.
+        tags: {string : string}
     end
 
     record GetCodeSecurityScanInput

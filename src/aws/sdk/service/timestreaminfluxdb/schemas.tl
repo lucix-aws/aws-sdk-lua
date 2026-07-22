@@ -2864,6 +2864,18 @@ M.InfluxDBv3CoreParameters = schema.new({
             target_id = id.from(_N, "Duration"),
             target = M.Duration,
         }),
+        pluginRepositoryUrl = schema.new({
+            id = id.from(_N, "InfluxDBv3CoreParameters", "pluginRepositoryUrl"),
+            type = "string",
+            name = "pluginRepositoryUrl",
+            target_id = prelude.String.id,
+        }),
+        pluginRepositorySecretArn = schema.new({
+            id = id.from(_N, "InfluxDBv3CoreParameters", "pluginRepositorySecretArn"),
+            type = "string",
+            name = "pluginRepositorySecretArn",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -3118,6 +3130,18 @@ M.InfluxDBv3EnterpriseParameters = schema.new({
             name = "hardDeleteDefaultDuration",
             target_id = id.from(_N, "Duration"),
             target = M.Duration,
+        }),
+        pluginRepositoryUrl = schema.new({
+            id = id.from(_N, "InfluxDBv3EnterpriseParameters", "pluginRepositoryUrl"),
+            type = "string",
+            name = "pluginRepositoryUrl",
+            target_id = prelude.String.id,
+        }),
+        pluginRepositorySecretArn = schema.new({
+            id = id.from(_N, "InfluxDBv3EnterpriseParameters", "pluginRepositorySecretArn"),
+            type = "string",
+            name = "pluginRepositorySecretArn",
+            target_id = prelude.String.id,
         }),
         ingestQueryInstances = schema.new({
             id = id.from(_N, "InfluxDBv3EnterpriseParameters", "ingestQueryInstances"),

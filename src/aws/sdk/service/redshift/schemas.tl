@@ -125,6 +125,8 @@ M.OrderableClusterOptionsList = schema.new({ type = "list", list_member = M.Orde
 
 M.PartnerIntegrationInfoList = schema.new({ type = "list", list_member = M.PartnerIntegrationInfo })
 
+M.Qev2IdcApplicationList = schema.new({ type = "list", list_member = M.Qev2IdcApplication })
+
 M.RedshiftIdcApplicationList = schema.new({ type = "list", list_member = M.RedshiftIdcApplication })
 
 M.ReservedNodeExchangeStatusList = schema.new({ type = "list", list_member = M.ReservedNodeExchangeStatus })
@@ -5545,6 +5547,127 @@ M.IntegrationTargetNotFoundFault = schema.new({
     },
 })
 
+M.CreateQev2IdcApplicationInput = schema.new({
+    id = id.from(_N, "CreateQev2IdcApplicationMessage"),
+    type = "structure",
+    members = {
+        IdcInstanceArn = schema.new({
+            id = id.from(_N, "CreateQev2IdcApplicationInput", "IdcInstanceArn"),
+            type = "string",
+            name = "IdcInstanceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Qev2IdcApplicationName = schema.new({
+            id = id.from(_N, "CreateQev2IdcApplicationInput", "Qev2IdcApplicationName"),
+            type = "string",
+            name = "Qev2IdcApplicationName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdcDisplayName = schema.new({
+            id = id.from(_N, "CreateQev2IdcApplicationInput", "IdcDisplayName"),
+            type = "string",
+            name = "IdcDisplayName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateQev2IdcApplicationInput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
+        }),
+    },
+})
+
+M.Qev2IdcApplication = schema.new({
+    id = id.from(_N, "Qev2IdcApplication"),
+    type = "structure",
+    members = {
+        IdcInstanceArn = schema.new({
+            id = id.from(_N, "Qev2IdcApplication", "IdcInstanceArn"),
+            type = "string",
+            name = "IdcInstanceArn",
+            target_id = prelude.String.id,
+        }),
+        Qev2IdcApplicationName = schema.new({
+            id = id.from(_N, "Qev2IdcApplication", "Qev2IdcApplicationName"),
+            type = "string",
+            name = "Qev2IdcApplicationName",
+            target_id = prelude.String.id,
+        }),
+        Qev2IdcApplicationArn = schema.new({
+            id = id.from(_N, "Qev2IdcApplication", "Qev2IdcApplicationArn"),
+            type = "string",
+            name = "Qev2IdcApplicationArn",
+            target_id = prelude.String.id,
+        }),
+        IdcManagedApplicationArn = schema.new({
+            id = id.from(_N, "Qev2IdcApplication", "IdcManagedApplicationArn"),
+            type = "string",
+            name = "IdcManagedApplicationArn",
+            target_id = prelude.String.id,
+        }),
+        IdcOnboardStatus = schema.new({
+            id = id.from(_N, "Qev2IdcApplication", "IdcOnboardStatus"),
+            type = "string",
+            name = "IdcOnboardStatus",
+            target_id = prelude.String.id,
+        }),
+        IdcDisplayName = schema.new({
+            id = id.from(_N, "Qev2IdcApplication", "IdcDisplayName"),
+            type = "string",
+            name = "IdcDisplayName",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "Qev2IdcApplication", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "Tag" } } }),
+        }),
+    },
+})
+
+M.CreateQev2IdcApplicationOutput = schema.new({
+    id = id.from(_N, "CreateQev2IdcApplicationResult"),
+    type = "structure",
+    members = {
+        Qev2IdcApplication = schema.new({
+            id = id.from(_N, "CreateQev2IdcApplicationOutput", "Qev2IdcApplication"),
+            type = "structure",
+            name = "Qev2IdcApplication",
+            target_id = id.from(_N, "Qev2IdcApplication"),
+            target = M.Qev2IdcApplication,
+        }),
+    },
+})
+
+M.Qev2IdcApplicationAlreadyExistsFault = schema.new({
+    id = id.from(_N, "Qev2IdcApplicationAlreadyExistsFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "Qev2IdcApplicationAlreadyExistsFault", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.LakeFormationQuery = schema.new({
     id = id.from(_N, "LakeFormationQuery"),
     type = "structure",
@@ -7488,6 +7611,40 @@ M.DeletePartnerOutput = schema.new({
             id = id.from(_N, "DeletePartnerOutput", "PartnerName"),
             type = "string",
             name = "PartnerName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteQev2IdcApplicationInput = schema.new({
+    id = id.from(_N, "DeleteQev2IdcApplicationMessage"),
+    type = "structure",
+    members = {
+        Qev2IdcApplicationArn = schema.new({
+            id = id.from(_N, "DeleteQev2IdcApplicationInput", "Qev2IdcApplicationArn"),
+            type = "string",
+            name = "Qev2IdcApplicationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteQev2IdcApplicationOutput = prelude.Unit
+
+M.Qev2IdcApplicationNotExistsFault = schema.new({
+    id = id.from(_N, "Qev2IdcApplicationNotExistsFault"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "Qev2IdcApplicationNotExistsFault", "message"),
+            type = "string",
+            name = "message",
             target_id = prelude.String.id,
         }),
     },
@@ -9995,6 +10152,51 @@ M.DescribePartnersOutput = schema.new({
             name = "PartnerIntegrationInfoList",
             target_id = prelude.Document.id,
             list_member = schema.new({ type = "structure", target = M.PartnerIntegrationInfo, traits = { [traits.XML_NAME] = { name = "PartnerIntegrationInfo" } } }),
+        }),
+    },
+})
+
+M.DescribeQev2IdcApplicationsInput = schema.new({
+    id = id.from(_N, "DescribeQev2IdcApplicationsMessage"),
+    type = "structure",
+    members = {
+        Qev2IdcApplicationArn = schema.new({
+            id = id.from(_N, "DescribeQev2IdcApplicationsInput", "Qev2IdcApplicationArn"),
+            type = "string",
+            name = "Qev2IdcApplicationArn",
+            target_id = prelude.String.id,
+        }),
+        MaxRecords = schema.new({
+            id = id.from(_N, "DescribeQev2IdcApplicationsInput", "MaxRecords"),
+            type = "integer",
+            name = "MaxRecords",
+            target_id = prelude.Integer.id,
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "DescribeQev2IdcApplicationsInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeQev2IdcApplicationsOutput = schema.new({
+    id = id.from(_N, "DescribeQev2IdcApplicationsResult"),
+    type = "structure",
+    members = {
+        Qev2IdcApplications = schema.new({
+            id = id.from(_N, "DescribeQev2IdcApplicationsOutput", "Qev2IdcApplications"),
+            type = "list",
+            name = "Qev2IdcApplications",
+            target_id = prelude.Document.id,
+            list_member = M.Qev2IdcApplication,
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "DescribeQev2IdcApplicationsOutput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -13291,6 +13493,42 @@ M.ModifyLakehouseConfigurationOutput = schema.new({
     },
 })
 
+M.ModifyQev2IdcApplicationInput = schema.new({
+    id = id.from(_N, "ModifyQev2IdcApplicationMessage"),
+    type = "structure",
+    members = {
+        Qev2IdcApplicationArn = schema.new({
+            id = id.from(_N, "ModifyQev2IdcApplicationInput", "Qev2IdcApplicationArn"),
+            type = "string",
+            name = "Qev2IdcApplicationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IdcDisplayName = schema.new({
+            id = id.from(_N, "ModifyQev2IdcApplicationInput", "IdcDisplayName"),
+            type = "string",
+            name = "IdcDisplayName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ModifyQev2IdcApplicationOutput = schema.new({
+    id = id.from(_N, "ModifyQev2IdcApplicationResult"),
+    type = "structure",
+    members = {
+        Qev2IdcApplication = schema.new({
+            id = id.from(_N, "ModifyQev2IdcApplicationOutput", "Qev2IdcApplication"),
+            type = "structure",
+            name = "Qev2IdcApplication",
+            target_id = id.from(_N, "Qev2IdcApplication"),
+            target = M.Qev2IdcApplication,
+        }),
+    },
+})
+
 M.ModifyRedshiftIdcApplicationInput = schema.new({
     id = id.from(_N, "ModifyRedshiftIdcApplicationMessage"),
     type = "structure",
@@ -15036,6 +15274,17 @@ M.CreateIntegration = schema.operation({
     },
 })
 
+M.CreateQev2IdcApplication = schema.operation({
+    id = id.from("com.amazonaws.redshift", "CreateQev2IdcApplication"),
+    input = M.CreateQev2IdcApplicationInput,
+    output = M.CreateQev2IdcApplicationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateRedshiftIdcApplication = schema.operation({
     id = id.from("com.amazonaws.redshift", "CreateRedshiftIdcApplication"),
     input = M.CreateRedshiftIdcApplicationInput,
@@ -15249,6 +15498,17 @@ M.DeletePartner = schema.operation({
     id = id.from("com.amazonaws.redshift", "DeletePartner"),
     input = M.DeletePartnerInput,
     output = M.DeletePartnerOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteQev2IdcApplication = schema.operation({
+    id = id.from("com.amazonaws.redshift", "DeleteQev2IdcApplication"),
+    input = M.DeleteQev2IdcApplicationInput,
+    output = M.DeleteQev2IdcApplicationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -15656,6 +15916,17 @@ M.DescribePartners = schema.operation({
     id = id.from("com.amazonaws.redshift", "DescribePartners"),
     input = M.DescribePartnersInput,
     output = M.DescribePartnersOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeQev2IdcApplications = schema.operation({
+    id = id.from("com.amazonaws.redshift", "DescribeQev2IdcApplications"),
+    input = M.DescribeQev2IdcApplicationsInput,
+    output = M.DescribeQev2IdcApplicationsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -16096,6 +16367,17 @@ M.ModifyLakehouseConfiguration = schema.operation({
     id = id.from("com.amazonaws.redshift", "ModifyLakehouseConfiguration"),
     input = M.ModifyLakehouseConfigurationInput,
     output = M.ModifyLakehouseConfigurationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyQev2IdcApplication = schema.operation({
+    id = id.from("com.amazonaws.redshift", "ModifyQev2IdcApplication"),
+    input = M.ModifyQev2IdcApplicationInput,
+    output = M.ModifyQev2IdcApplicationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

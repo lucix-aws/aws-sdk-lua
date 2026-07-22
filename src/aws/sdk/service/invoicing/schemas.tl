@@ -2365,6 +2365,47 @@ M.PutProcurementPortalPreferenceOutput = schema.new({
     },
 })
 
+M.SendProcurementPortalValidationInput = schema.new({
+    id = id.from(_N, "SendProcurementPortalValidationRequest"),
+    type = "structure",
+    members = {
+        ProcurementPortalPreferenceArn = schema.new({
+            id = id.from(_N, "SendProcurementPortalValidationInput", "ProcurementPortalPreferenceArn"),
+            type = "string",
+            name = "ProcurementPortalPreferenceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "SendProcurementPortalValidationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.SendProcurementPortalValidationOutput = schema.new({
+    id = id.from(_N, "SendProcurementPortalValidationResponse"),
+    type = "structure",
+    members = {
+        ProcurementPortalPreferenceArn = schema.new({
+            id = id.from(_N, "SendProcurementPortalValidationOutput", "ProcurementPortalPreferenceArn"),
+            type = "string",
+            name = "ProcurementPortalPreferenceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
     type = "structure",
@@ -2552,6 +2593,56 @@ M.UpdateProcurementPortalPreferenceStatusOutput = schema.new({
     },
 })
 
+M.VerifyProcurementPortalValidationInput = schema.new({
+    id = id.from(_N, "VerifyProcurementPortalValidationRequest"),
+    type = "structure",
+    members = {
+        ProcurementPortalPreferenceArn = schema.new({
+            id = id.from(_N, "VerifyProcurementPortalValidationInput", "ProcurementPortalPreferenceArn"),
+            type = "string",
+            name = "ProcurementPortalPreferenceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Code = schema.new({
+            id = id.from(_N, "VerifyProcurementPortalValidationInput", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "VerifyProcurementPortalValidationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.VerifyProcurementPortalValidationOutput = schema.new({
+    id = id.from(_N, "VerifyProcurementPortalValidationResponse"),
+    type = "structure",
+    members = {
+        ProcurementPortalPreferenceArn = schema.new({
+            id = id.from(_N, "VerifyProcurementPortalValidationOutput", "ProcurementPortalPreferenceArn"),
+            type = "string",
+            name = "ProcurementPortalPreferenceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 -- Fix forward references for recursive schemas
 for _, _s in pairs(M) do
     local s = _s as {string:any}
@@ -2720,6 +2811,17 @@ M.PutProcurementPortalPreference = schema.operation({
     },
 })
 
+M.SendProcurementPortalValidation = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "SendProcurementPortalValidation"),
+    input = M.SendProcurementPortalValidationInput,
+    output = M.SendProcurementPortalValidationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.TagResource = schema.operation({
     id = id.from("com.amazonaws.invoicing", "TagResource"),
     input = M.TagResourceInput,
@@ -2757,6 +2859,17 @@ M.UpdateProcurementPortalPreferenceStatus = schema.operation({
     id = id.from("com.amazonaws.invoicing", "UpdateProcurementPortalPreferenceStatus"),
     input = M.UpdateProcurementPortalPreferenceStatusInput,
     output = M.UpdateProcurementPortalPreferenceStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.VerifyProcurementPortalValidation = schema.operation({
+    id = id.from("com.amazonaws.invoicing", "VerifyProcurementPortalValidation"),
+    input = M.VerifyProcurementPortalValidationInput,
+    output = M.VerifyProcurementPortalValidationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
