@@ -1219,6 +1219,8 @@ local record M
         "AWS_SES_EU_CENTRAL_2"
         "AWS_SES_AP_SOUTHEAST_5"
         "AWS_SES_CA_WEST_1"
+        "AWS_SES_US_GOV_EAST_1"
+        "AWS_SES_US_GOV_WEST_1"
     end
 
     enum DkimSigningKeyLength
@@ -1306,6 +1308,10 @@ local record M
         -- identity in US West (N. California) region using Deterministic Easy-DKIM (DEED).
         -- AWS_SES_US_WEST_2 – Configure DKIM for the identity by replicating from a parent
         -- identity in US West (Oregon) region using Deterministic Easy-DKIM (DEED).
+        -- AWS_SES_US_GOV_EAST_1 – Configure DKIM for the identity by replicating from a parent
+        -- identity in AWS GovCloud (US-East) region using Deterministic Easy-DKIM (DEED).
+        -- AWS_SES_US_GOV_WEST_1 – Configure DKIM for the identity by replicating from a parent
+        -- identity in AWS GovCloud (US-West) region using Deterministic Easy-DKIM (DEED).
         DomainSigningAttributesOrigin: string
     end
 
@@ -1458,6 +1464,10 @@ local record M
         -- (DEED).
         -- AWS_SES_US_WEST_2 – Indicates that DKIM was configured for the identity by
         -- replicating signing attributes from a parent identity in US West (Oregon) region using Deterministic Easy-DKIM (DEED).
+        -- AWS_SES_US_GOV_EAST_1 – Indicates that DKIM was configured for the identity by
+        -- replicating signing attributes from a parent identity in AWS GovCloud (US-East) region using Deterministic Easy-DKIM (DEED).
+        -- AWS_SES_US_GOV_WEST_1 – Indicates that DKIM was configured for the identity by
+        -- replicating signing attributes from a parent identity in AWS GovCloud (US-West) region using Deterministic Easy-DKIM (DEED).
         SigningAttributesOrigin: string
         -- [Easy DKIM] The key length of the future DKIM key pair to be generated. This can be
         -- changed at most once per day.

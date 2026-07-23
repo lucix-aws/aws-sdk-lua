@@ -33,6 +33,9 @@ local record Client
     getPartner: function(Client, types.GetPartnerInput, ? base_client.InvokeOptions): async.Operation<types.GetPartnerOutput>
     getProfileUpdateTask: function(Client, types.GetProfileUpdateTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileUpdateTaskOutput>
     getProfileVisibility: function(Client, types.GetProfileVisibilityInput, ? base_client.InvokeOptions): async.Operation<types.GetProfileVisibilityOutput>
+    getQualificationsAssociationDetails: function(Client, types.GetQualificationsAssociationDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetQualificationsAssociationDetailsOutput>
+    getQualificationsAssociationTask: function(Client, types.GetQualificationsAssociationTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetQualificationsAssociationTaskOutput>
+    getQualificationsDisassociationTask: function(Client, types.GetQualificationsDisassociationTaskInput, ? base_client.InvokeOptions): async.Operation<types.GetQualificationsDisassociationTaskOutput>
     getVerification: function(Client, types.GetVerificationInput, ? base_client.InvokeOptions): async.Operation<types.GetVerificationOutput>
     listConnectionInvitations: function(Client, types.ListConnectionInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionInvitationsOutput>
     listConnections: function(Client, types.ListConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConnectionsOutput>
@@ -43,6 +46,8 @@ local record Client
     rejectConnectionInvitation: function(Client, types.RejectConnectionInvitationInput, ? base_client.InvokeOptions): async.Operation<types.RejectConnectionInvitationOutput>
     sendEmailVerificationCode: function(Client, types.SendEmailVerificationCodeInput, ? base_client.InvokeOptions): async.Operation<types.SendEmailVerificationCodeOutput>
     startProfileUpdateTask: function(Client, types.StartProfileUpdateTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartProfileUpdateTaskOutput>
+    startQualificationsAssociationTask: function(Client, types.StartQualificationsAssociationTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartQualificationsAssociationTaskOutput>
+    startQualificationsDisassociationTask: function(Client, types.StartQualificationsDisassociationTaskInput, ? base_client.InvokeOptions): async.Operation<types.StartQualificationsDisassociationTaskOutput>
     startVerification: function(Client, types.StartVerificationInput, ? base_client.InvokeOptions): async.Operation<types.StartVerificationOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
@@ -151,6 +156,18 @@ function C:getProfileVisibility(input: types.GetProfileVisibilityInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetProfileVisibility as schema.OperationSchema, input, options) as async.Operation<types.GetProfileVisibilityOutput>
 end
 
+function C:getQualificationsAssociationDetails(input: types.GetQualificationsAssociationDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQualificationsAssociationDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQualificationsAssociationDetails as schema.OperationSchema, input, options) as async.Operation<types.GetQualificationsAssociationDetailsOutput>
+end
+
+function C:getQualificationsAssociationTask(input: types.GetQualificationsAssociationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetQualificationsAssociationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQualificationsAssociationTask as schema.OperationSchema, input, options) as async.Operation<types.GetQualificationsAssociationTaskOutput>
+end
+
+function C:getQualificationsDisassociationTask(input: types.GetQualificationsDisassociationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.GetQualificationsDisassociationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQualificationsDisassociationTask as schema.OperationSchema, input, options) as async.Operation<types.GetQualificationsDisassociationTaskOutput>
+end
+
 function C:getVerification(input: types.GetVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.GetVerificationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetVerification as schema.OperationSchema, input, options) as async.Operation<types.GetVerificationOutput>
 end
@@ -189,6 +206,14 @@ end
 
 function C:startProfileUpdateTask(input: types.StartProfileUpdateTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartProfileUpdateTaskOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartProfileUpdateTask as schema.OperationSchema, input, options) as async.Operation<types.StartProfileUpdateTaskOutput>
+end
+
+function C:startQualificationsAssociationTask(input: types.StartQualificationsAssociationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartQualificationsAssociationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQualificationsAssociationTask as schema.OperationSchema, input, options) as async.Operation<types.StartQualificationsAssociationTaskOutput>
+end
+
+function C:startQualificationsDisassociationTask(input: types.StartQualificationsDisassociationTaskInput, options?: base_client.InvokeOptions): async.Operation<types.StartQualificationsDisassociationTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQualificationsDisassociationTask as schema.OperationSchema, input, options) as async.Operation<types.StartQualificationsDisassociationTaskOutput>
 end
 
 function C:startVerification(input: types.StartVerificationInput, options?: base_client.InvokeOptions): async.Operation<types.StartVerificationOutput>

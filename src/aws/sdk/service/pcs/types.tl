@@ -51,6 +51,62 @@ local record M
         instanceType: string
     end
 
+    enum ScriptCachingPolicy
+        "CACHE_ONCE"
+        "REFRESH_ON_REBOOT"
+    end
+
+    enum ExecutionPolicy
+        "FIRST_BOOT_ONLY"
+        "EVERY_BOOT"
+    end
+
+    enum OnError
+        "TERMINATE"
+        "STOP_SEQUENCE"
+        "CONTINUE"
+    end
+
+    -- The source location and integrity information for a node lifecycle script.
+    record ScriptSource
+        -- The location of the script. Specify either an Amazon S3 URI in the format s3://bucket-name/key or an HTTPS URL.
+        scriptLocation: string
+        -- The Amazon S3 version ID of the script. Use this value to pin the script to a specific version in a versioned Amazon S3 bucket. This value is only valid when scriptLocation is an Amazon S3 URI.
+        s3VersionId: string
+        -- The SHA-256 checksum of the script content, as a 64-character hexadecimal string. This value is optional. When specified, PCS uses this value to verify the integrity of the downloaded script.
+        checksum: string
+    end
+
+    -- A script to run during a compute node lifecycle stage.
+    record NodeLifecycleScript
+        -- A unique name for the script. The name can be up to 64 characters long. Valid characters are letters, numbers, spaces, underscores (_), and hyphens (-). The first character must be a letter or a number.
+        name: string
+        -- The source location and integrity information for the script.
+        scriptSource: ScriptSource
+        -- The command-line arguments to pass to the script. You can specify up to 20 arguments, and each argument can be up to 256 characters long.
+        arguments: {string}
+        -- The behavior when the script fails. The default value is TERMINATE. Valid values: TERMINATE – Terminates the compute node. STOP_SEQUENCE – Stops running subsequent scripts in the sequence but doesn't terminate the compute node. CONTINUE – Ignores the error and continues running the next script.
+        onError: string
+        -- The policy that determines when the script runs. The default value is FIRST_BOOT_ONLY. Valid values: FIRST_BOOT_ONLY – Runs the script only the first time the compute node boots. EVERY_BOOT – Runs the script every time the compute node boots, including reboots.
+        executionPolicy: string
+    end
+
+    -- The stages of a compute node's lifecycle where you can configure scripts to run.
+    record NodeLifecycleStages
+        -- The scripts to run after PCS finishes setting up the compute node and before the Slurm daemon (slurmd) starts. Use this stage for tasks that must complete before the node accepts jobs, such as mounting shared storage, configuring networking, or installing software packages.
+        nodeBootstrapped: {NodeLifecycleScript}
+        -- The scripts to run after the Slurm daemon (slurmd) starts and the compute node registers with the Slurm controller. Use this stage for tasks that require Slurm to be running, such as running Slurm commands.
+        nodeReady: {NodeLifecycleScript}
+    end
+
+    -- The lifecycle actions to configure on a compute node group when you create it. Lifecycle actions define scripts that PCS runs on compute nodes at specific stages of their lifecycle.
+    record NodeLifecycleActionsRequest
+        -- The lifecycle stages where you configure scripts to run.
+        stages: NodeLifecycleStages
+        -- The caching policy for node lifecycle scripts. The default value is CACHE_ONCE. Valid values: CACHE_ONCE – Downloads each script once and reuses it on subsequent boots. REFRESH_ON_REBOOT – Downloads each script on every boot.
+        scriptCachingPolicy: string
+    end
+
     enum PurchaseOption
         "ONDEMAND"
         "SPOT"
@@ -115,6 +171,8 @@ local record M
         spotOptions: SpotOptions
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: ComputeNodeGroupSlurmConfigurationRequest
+        -- The lifecycle actions to run on compute nodes in the compute node group. Use lifecycle actions to run custom scripts at defined stages of a compute node's lifecycle, such as when a compute node finishes bootstrapping or becomes ready to accept jobs.
+        nodeLifecycleActions: NodeLifecycleActionsRequest
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
         clientToken: string
         -- 1 or more tags added to the resource. Each tag consists of a tag key and tag value. The tag value is optional and can be an empty string.
@@ -127,6 +185,14 @@ local record M
         code: string
         -- The detailed error information.
         message: string
+    end
+
+    -- The lifecycle actions configured on a compute node group. Lifecycle actions define scripts that PCS runs on compute nodes at specific stages of their lifecycle.
+    record NodeLifecycleActions
+        -- The lifecycle stages where you configure scripts to run.
+        stages: NodeLifecycleStages
+        -- The caching policy for node lifecycle scripts. The default value is CACHE_ONCE. Valid values: CACHE_ONCE – Downloads each script once and reuses it on subsequent boots. REFRESH_ON_REBOOT – Downloads each script on every boot.
+        scriptCachingPolicy: string
     end
 
     -- Specifies the boundaries of the compute node group auto scaling.
@@ -189,6 +255,8 @@ local record M
         instanceConfigs: {InstanceConfig}
         spotOptions: SpotOptions
         slurmConfiguration: ComputeNodeGroupSlurmConfiguration
+        -- The lifecycle actions to run on compute nodes in the compute node group. Use lifecycle actions to run custom scripts at defined stages of a compute node's lifecycle, such as when a compute node finishes bootstrapping or becomes ready to accept jobs.
+        nodeLifecycleActions: NodeLifecycleActions
         -- The list of errors that occurred during compute node group provisioning.
         errorInfo: {ErrorInfo}
     end
@@ -312,6 +380,14 @@ local record M
         nextToken: string
     end
 
+    -- The lifecycle actions to configure on a compute node group when you update it. Lifecycle actions define scripts that PCS runs on compute nodes at specific stages of their lifecycle.
+    record UpdateNodeLifecycleActionsRequest
+        -- The lifecycle stages where you configure scripts to run.
+        stages: NodeLifecycleStages
+        -- The caching policy for node lifecycle scripts. The default value is CACHE_ONCE. Valid values: CACHE_ONCE – Downloads each script once and reuses it on subsequent boots. REFRESH_ON_REBOOT – Downloads each script on every boot.
+        scriptCachingPolicy: string
+    end
+
     -- Additional options related to the Slurm scheduler.
     record UpdateComputeNodeGroupSlurmConfigurationRequest
         -- The time (in seconds) before an idle node is scaled down. If not specified, the cluster-level setting applies. This overrides the cluster-level scaleDownIdleTimeInSeconds setting. A value of -1 removes the override and applies the cluster-level setting to this compute node group. Requires Slurm version 25.11 or later.
@@ -339,6 +415,8 @@ local record M
         iamInstanceProfileArn: string
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: UpdateComputeNodeGroupSlurmConfigurationRequest
+        -- The lifecycle actions to run on compute nodes in the compute node group. Use lifecycle actions to run custom scripts at defined stages of a compute node's lifecycle, such as when a compute node finishes bootstrapping or becomes ready to accept jobs.
+        nodeLifecycleActions: UpdateNodeLifecycleActionsRequest
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request. Idempotency ensures that an API request completes only once. With an idempotent request, if the original request completes successfully, the subsequent retries with the same client token return the result from the original successful request and they have no additional effect. If you don't specify a client token, the CLI and SDK automatically generate 1 for you.
         clientToken: string
     end
@@ -468,7 +546,7 @@ local record M
 
     -- The cluster management and job scheduling software associated with the cluster.
     record Scheduler
-        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. You can upgrade this version using the UpdateCluster API action. For more information, see Upgrading the Slurm version on a cluster and Slurm versions in PCS in the PCS User Guide. Valid Values: 23.11 | 24.05 | 24.11 | 25.05 | 25.11
+        -- The version of the specified scheduling software that PCS uses to manage cluster scaling and job scheduling. You can update this version using the UpdateCluster API action. For more information, see Updating the scheduler version on a cluster and Slurm versions in PCS in the PCS User Guide. Valid Values: 23.11 | 24.05 | 24.11 | 25.05 | 25.11
         version: string
     end
 
@@ -782,11 +860,19 @@ local record M
         sharedSecret: string
         -- The list of endpoints available for interaction with the scheduler.
         endpoints: {Endpoint}
+        -- The name of the cluster that the compute node registered into.
+        clusterName: string
+        -- The ID of the compute node group that the compute node registered into.
+        computeNodeGroupId: string
+        -- The name of the compute node group that the compute node registered into.
+        computeNodeGroupName: string
+        -- The node lifecycle actions configured for the node group, including scripts to run when a compute node finishes bootstrapping or becomes ready to accept jobs.
+        nodeLifecycleActions: NodeLifecycleActions
     end
 
-    -- The scheduler configuration for updating a cluster. Use this to specify the Slurm version to upgrade to.
+    -- The scheduler configuration for updating a cluster. Use this to specify the scheduler version to update to.
     record UpdateSchedulerRequest
-        -- The Slurm version to upgrade the cluster to. You can only upgrade to a newer version. For more information about supported versions and upgrade paths, see Upgrading the Slurm version on a cluster in the PCS User Guide. Valid Values: 24.05 | 24.11 | 25.05 | 25.11
+        -- The scheduler version to update the cluster to. You can only update to a newer version. For more information about supported versions and update paths, see Updating the scheduler version on a cluster in the PCS User Guide. Valid Values: 24.05 | 24.11 | 25.05 | 25.11
         version: string
     end
 
@@ -827,7 +913,7 @@ local record M
         clientToken: string
         -- Additional options related to the Slurm scheduler.
         slurmConfiguration: UpdateClusterSlurmConfigurationRequest
-        -- The scheduler configuration to update for the cluster. Use this to upgrade the Slurm version. For more information, see Upgrading the Slurm version on a cluster in the PCS User Guide.
+        -- The scheduler configuration to update for the cluster. Use this to update the scheduler version. For more information, see Updating the scheduler version on a cluster in the PCS User Guide.
         scheduler: UpdateSchedulerRequest
     end
 

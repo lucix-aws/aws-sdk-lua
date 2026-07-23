@@ -117,6 +117,7 @@ local record M
         "INCOMPATIBLE_CONNECTION_PREFERENCES_REVISION"
         "ACCOUNT_ALREADY_VERIFIED"
         "VERIFICATION_ALREADY_IN_PROGRESS"
+        "INCOMPATIBLE_QUALIFICATIONS_ASSOCIATION_TASK_STATE"
     end
 
     -- The request could not be completed due to a conflict with the current state of the resource. This typically occurs when trying to create a resource that already exists or modify a resource that has been changed by another process.
@@ -141,6 +142,8 @@ local record M
         "CONNECTION_INVITATION_NOT_FOUND"
         "CONNECTION_NOT_FOUND"
         "VERIFICATION_NOT_FOUND"
+        "QUALIFICATIONS_ASSOCIATION_TASK_NOT_FOUND"
+        "QUALIFICATIONS_DISASSOCIATION_TASK_NOT_FOUND"
     end
 
     -- The specified resource could not be found. This may occur when referencing a resource that does not exist or has been deleted.
@@ -185,6 +188,12 @@ local record M
         "INVALID_ACCOUNT_STATE"
         "INCOMPATIBLE_DOMAIN"
         "INELIGIBLE_ACCOUNT_TIER"
+        "MISSING_ACTIVE_SUBSIDIARY_CONNECTION"
+        "INCOMPATIBLE_SUBSIDIARY_CONNECTION"
+        "INCOMPATIBLE_PRIMARY_PARTNER"
+        "QUALIFICATIONS_ASSOCIATION_LIMIT_EXCEEDED"
+        "QUALIFICATIONS_ASSOCIATION_NOT_FOUND"
+        "QUALIFICATIONS_ASSOCIATION_EXISTS"
     end
 
     -- Contains information about a business rule validation error that occurred during an operation.
@@ -269,6 +278,14 @@ local record M
     end
 
     record AssociateAwsTrainingCertificationEmailDomainOutput
+    end
+
+    -- Identifies a partner in a qualifications association group. Contains the partner's profile identifier and AWS account identifier. In requests, provide at least one of ProfileId or AccountId. In responses, both fields are populated.
+    record QualificationsAssociationPartner
+        -- The unique identifier for the partner profile, in the format pprofile-*. Required in requests if AccountId is not provided.
+        ProfileId: string
+        -- The 12-digit AWS account ID linked to the partner profile. Required in requests if ProfileId is not provided.
+        AccountId: string
     end
 
     -- Contains the business information required for verifying a company's legal status and registration details within AWS Partner Central.
@@ -991,6 +1008,97 @@ local record M
         ProfileId: string
     end
 
+    record GetQualificationsAssociationDetailsInput
+        -- The catalog in which to look up the qualifications association. Valid values: AWS, Sandbox.
+        Catalog: string
+        -- Your partner identifier. You can provide either a partner ID (for example, partner-abc123) or a partner ARN. You must own this identifier.
+        Identifier: string
+    end
+
+    enum QualificationsAssociationStatus
+        "ASSOCIATED"
+        "NOT_ASSOCIATED"
+    end
+
+    record GetQualificationsAssociationDetailsOutput
+        -- The catalog identifier echoed from the request.
+        Catalog: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies your partner resource.
+        Arn: string
+        -- Your unique partner identifier in the AWS Partner Network.
+        Id: string
+        -- The current qualifications association status. Valid values: ASSOCIATED (the partner is associated with a primary), NOT_ASSOCIATED (the partner has no active association).
+        Status: string
+        -- The primary partner's profile and account identifiers. This field is null when the status is NOT_ASSOCIATED.
+        PrimaryPartner: QualificationsAssociationPartner
+        -- The list of all partner profile and account identifiers currently associated under the primary partner. This field is null when the status is NOT_ASSOCIATED.
+        AssociatedPartners: {QualificationsAssociationPartner}
+        -- The timestamp when the qualifications association was last updated, in ISO 8601 format. This field is null when the status is NOT_ASSOCIATED.
+        UpdatedAt: number
+    end
+
+    record GetQualificationsAssociationTaskInput
+        -- The catalog in which to look up the qualifications association task. Valid values: AWS, Sandbox.
+        Catalog: string
+        -- Your partner identifier. You can provide either a partner ID (for example, partner-abc123) or a partner ARN. You must own this identifier.
+        Identifier: string
+    end
+
+    enum QualificationsAssociationTaskStatus
+        "IN_PROGRESS"
+        "SUCCEEDED"
+    end
+
+    record GetQualificationsAssociationTaskOutput
+        -- The catalog identifier echoed from the request.
+        Catalog: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies your partner resource.
+        Arn: string
+        -- Your unique partner identifier in the AWS Partner Network.
+        Id: string
+        -- The unique identifier of the qualifications association task, in the format pqatask-[a-z2-7]{13}.
+        TaskId: string
+        -- The current status of the qualifications association task. Valid values: IN_PROGRESS, SUCCEEDED.
+        Status: string
+        -- The primary partner's profile and account identifiers that the task is associating qualifications with.
+        PrimaryPartner: QualificationsAssociationPartner
+        -- The timestamp when the qualifications association task started, in ISO 8601 format.
+        StartedAt: number
+        -- The timestamp when the qualifications association task ended, in ISO 8601 format. This field is present only when the status is SUCCEEDED.
+        EndedAt: number
+    end
+
+    record GetQualificationsDisassociationTaskInput
+        -- The catalog in which to look up the qualifications disassociation task. Valid values: AWS, Sandbox.
+        Catalog: string
+        -- Your partner identifier. You can provide either a partner ID (for example, partner-abc123) or a partner ARN. You must own this identifier.
+        Identifier: string
+    end
+
+    enum QualificationsDisassociationTaskStatus
+        "IN_PROGRESS"
+        "SUCCEEDED"
+    end
+
+    record GetQualificationsDisassociationTaskOutput
+        -- The catalog identifier echoed from the request.
+        Catalog: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies your partner resource.
+        Arn: string
+        -- Your unique partner identifier in the AWS Partner Network.
+        Id: string
+        -- The unique identifier of the qualifications disassociation task, in the format pqdtask-[a-z2-7]{13}.
+        TaskId: string
+        -- The current status of the qualifications disassociation task. Valid values: IN_PROGRESS, SUCCEEDED.
+        Status: string
+        -- The primary partner's profile and account identifiers that the task is disassociating qualifications from.
+        AssociatedPartner: QualificationsAssociationPartner
+        -- The timestamp when the qualifications disassociation task started, in ISO 8601 format.
+        StartedAt: number
+        -- The timestamp when the qualifications disassociation task ended, in ISO 8601 format. This field is present only when the status is SUCCEEDED.
+        EndedAt: number
+    end
+
     enum VerificationType
         "BUSINESS_VERIFICATION"
         "REGISTRANT_VERIFICATION"
@@ -1154,6 +1262,62 @@ local record M
         EndedAt: number
         -- A list of error details if any errors occurred during the profile update task.
         ErrorDetailList: {ErrorDetail}
+    end
+
+    record StartQualificationsAssociationTaskInput
+        -- The catalog in which to perform the qualifications association. Valid values: AWS, Sandbox.
+        Catalog: string
+        -- Your partner identifier. You can provide either a partner ID (for example, partner-abc123) or a partner ARN. You must own this identifier.
+        Identifier: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+        -- The primary (acquiring) partner's profile and account identifier to associate qualifications with. You must provide at least one of ProfileId or AccountId. You cannot specify yourself as the primary partner.
+        PrimaryPartner: QualificationsAssociationPartner
+    end
+
+    record StartQualificationsAssociationTaskOutput
+        -- The catalog identifier echoed from the request.
+        Catalog: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies your partner resource.
+        Arn: string
+        -- Your unique partner identifier in the AWS Partner Network.
+        Id: string
+        -- The unique identifier of the started qualifications association task, in the format pqatask-[a-z2-7]{13}.
+        TaskId: string
+        -- The current status of the qualifications association task. The initial value is IN_PROGRESS.
+        Status: string
+        -- The resolved primary partner's profile and account identifiers, including both ProfileId and AccountId.
+        PrimaryPartner: QualificationsAssociationPartner
+        -- The timestamp when the qualifications association task started, in ISO 8601 format.
+        StartedAt: number
+    end
+
+    record StartQualificationsDisassociationTaskInput
+        -- The catalog in which to perform the qualifications disassociation. Valid values: AWS, Sandbox.
+        Catalog: string
+        -- Your partner identifier. You can provide either a partner ID (for example, partner-abc123) or a partner ARN. You must own this identifier.
+        Identifier: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+        -- The primary partner's profile and account identifier that you are currently associated with and will disassociate from. You must provide at least one of ProfileId or AccountId. The specified partner must match your current primary association.
+        AssociatedPartner: QualificationsAssociationPartner
+    end
+
+    record StartQualificationsDisassociationTaskOutput
+        -- The catalog identifier echoed from the request.
+        Catalog: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies your partner resource.
+        Arn: string
+        -- Your unique partner identifier in the AWS Partner Network.
+        Id: string
+        -- The unique identifier of the started qualifications disassociation task, in the format pqdtask-[a-z2-7]{13}.
+        TaskId: string
+        -- The current status of the qualifications disassociation task. The initial value is IN_PROGRESS.
+        Status: string
+        -- The resolved primary partner's profile and account identifiers that the task is disassociating qualifications from.
+        AssociatedPartner: QualificationsAssociationPartner
+        -- The timestamp when the qualifications disassociation task started, in ISO 8601 format.
+        StartedAt: number
     end
 
     record SendEmailVerificationCodeInput

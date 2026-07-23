@@ -43,6 +43,10 @@ M.CgroupCustomSettings = schema.new({ type = "list", list_member = M.CgroupCusto
 
 M.ErrorInfoList = schema.new({ type = "list", list_member = M.ErrorInfo })
 
+M.NodeLifecycleScriptList = schema.new({ type = "list", list_member = M.NodeLifecycleScript })
+
+M.NodeLifecycleScriptArguments = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -177,6 +181,132 @@ M.InstanceConfig = schema.new({
             type = "string",
             name = "instanceType",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ScriptSource = schema.new({
+    id = id.from(_N, "ScriptSource"),
+    type = "structure",
+    members = {
+        scriptLocation = schema.new({
+            id = id.from(_N, "ScriptSource", "scriptLocation"),
+            type = "string",
+            name = "scriptLocation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        s3VersionId = schema.new({
+            id = id.from(_N, "ScriptSource", "s3VersionId"),
+            type = "string",
+            name = "s3VersionId",
+            target_id = prelude.String.id,
+        }),
+        checksum = schema.new({
+            id = id.from(_N, "ScriptSource", "checksum"),
+            type = "string",
+            name = "checksum",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NodeLifecycleScript = schema.new({
+    id = id.from(_N, "NodeLifecycleScript"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "NodeLifecycleScript", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scriptSource = schema.new({
+            id = id.from(_N, "NodeLifecycleScript", "scriptSource"),
+            type = "structure",
+            name = "scriptSource",
+            target_id = id.from(_N, "ScriptSource"),
+            target = M.ScriptSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        arguments = schema.new({
+            id = id.from(_N, "NodeLifecycleScript", "arguments"),
+            type = "list",
+            name = "arguments",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        onError = schema.new({
+            id = id.from(_N, "NodeLifecycleScript", "onError"),
+            type = "string",
+            name = "onError",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "TERMINATE" },
+            },
+        }),
+        executionPolicy = schema.new({
+            id = id.from(_N, "NodeLifecycleScript", "executionPolicy"),
+            type = "string",
+            name = "executionPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "FIRST_BOOT_ONLY" },
+            },
+        }),
+    },
+})
+
+M.NodeLifecycleStages = schema.new({
+    id = id.from(_N, "NodeLifecycleStages"),
+    type = "structure",
+    members = {
+        nodeBootstrapped = schema.new({
+            id = id.from(_N, "NodeLifecycleStages", "nodeBootstrapped"),
+            type = "list",
+            name = "nodeBootstrapped",
+            target_id = prelude.Document.id,
+            list_member = M.NodeLifecycleScript,
+        }),
+        nodeReady = schema.new({
+            id = id.from(_N, "NodeLifecycleStages", "nodeReady"),
+            type = "list",
+            name = "nodeReady",
+            target_id = prelude.Document.id,
+            list_member = M.NodeLifecycleScript,
+        }),
+    },
+})
+
+M.NodeLifecycleActionsRequest = schema.new({
+    id = id.from(_N, "NodeLifecycleActionsRequest"),
+    type = "structure",
+    members = {
+        stages = schema.new({
+            id = id.from(_N, "NodeLifecycleActionsRequest", "stages"),
+            type = "structure",
+            name = "stages",
+            target_id = id.from(_N, "NodeLifecycleStages"),
+            target = M.NodeLifecycleStages,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scriptCachingPolicy = schema.new({
+            id = id.from(_N, "NodeLifecycleActionsRequest", "scriptCachingPolicy"),
+            type = "string",
+            name = "scriptCachingPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "CACHE_ONCE" },
+            },
         }),
     },
 })
@@ -363,6 +493,13 @@ M.CreateComputeNodeGroupInput = schema.new({
             target_id = id.from(_N, "ComputeNodeGroupSlurmConfigurationRequest"),
             target = M.ComputeNodeGroupSlurmConfigurationRequest,
         }),
+        nodeLifecycleActions = schema.new({
+            id = id.from(_N, "CreateComputeNodeGroupInput", "nodeLifecycleActions"),
+            type = "structure",
+            name = "nodeLifecycleActions",
+            target_id = id.from(_N, "NodeLifecycleActionsRequest"),
+            target = M.NodeLifecycleActionsRequest,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreateComputeNodeGroupInput", "clientToken"),
             type = "string",
@@ -398,6 +535,32 @@ M.ErrorInfo = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NodeLifecycleActions = schema.new({
+    id = id.from(_N, "NodeLifecycleActions"),
+    type = "structure",
+    members = {
+        stages = schema.new({
+            id = id.from(_N, "NodeLifecycleActions", "stages"),
+            type = "structure",
+            name = "stages",
+            target_id = id.from(_N, "NodeLifecycleStages"),
+            target = M.NodeLifecycleStages,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scriptCachingPolicy = schema.new({
+            id = id.from(_N, "NodeLifecycleActions", "scriptCachingPolicy"),
+            type = "string",
+            name = "scriptCachingPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "CACHE_ONCE" },
+            },
         }),
     },
 })
@@ -592,6 +755,13 @@ M.ComputeNodeGroup = schema.new({
             name = "slurmConfiguration",
             target_id = id.from(_N, "ComputeNodeGroupSlurmConfiguration"),
             target = M.ComputeNodeGroupSlurmConfiguration,
+        }),
+        nodeLifecycleActions = schema.new({
+            id = id.from(_N, "ComputeNodeGroup", "nodeLifecycleActions"),
+            type = "structure",
+            name = "nodeLifecycleActions",
+            target_id = id.from(_N, "NodeLifecycleActions"),
+            target = M.NodeLifecycleActions,
         }),
         errorInfo = schema.new({
             id = id.from(_N, "ComputeNodeGroup", "errorInfo"),
@@ -1011,6 +1181,32 @@ M.ListComputeNodeGroupsOutput = schema.new({
     },
 })
 
+M.UpdateNodeLifecycleActionsRequest = schema.new({
+    id = id.from(_N, "UpdateNodeLifecycleActionsRequest"),
+    type = "structure",
+    members = {
+        stages = schema.new({
+            id = id.from(_N, "UpdateNodeLifecycleActionsRequest", "stages"),
+            type = "structure",
+            name = "stages",
+            target_id = id.from(_N, "NodeLifecycleStages"),
+            target = M.NodeLifecycleStages,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        scriptCachingPolicy = schema.new({
+            id = id.from(_N, "UpdateNodeLifecycleActionsRequest", "scriptCachingPolicy"),
+            type = "string",
+            name = "scriptCachingPolicy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "CACHE_ONCE" },
+            },
+        }),
+    },
+})
+
 M.UpdateComputeNodeGroupSlurmConfigurationRequest = schema.new({
     id = id.from(_N, "UpdateComputeNodeGroupSlurmConfigurationRequest"),
     type = "structure",
@@ -1105,6 +1301,13 @@ M.UpdateComputeNodeGroupInput = schema.new({
             name = "slurmConfiguration",
             target_id = id.from(_N, "UpdateComputeNodeGroupSlurmConfigurationRequest"),
             target = M.UpdateComputeNodeGroupSlurmConfigurationRequest,
+        }),
+        nodeLifecycleActions = schema.new({
+            id = id.from(_N, "UpdateComputeNodeGroupInput", "nodeLifecycleActions"),
+            type = "structure",
+            name = "nodeLifecycleActions",
+            target_id = id.from(_N, "UpdateNodeLifecycleActionsRequest"),
+            target = M.UpdateNodeLifecycleActionsRequest,
         }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateComputeNodeGroupInput", "clientToken"),
@@ -2449,6 +2652,31 @@ M.RegisterComputeNodeGroupInstanceOutput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        clusterName = schema.new({
+            id = id.from(_N, "RegisterComputeNodeGroupInstanceOutput", "clusterName"),
+            type = "string",
+            name = "clusterName",
+            target_id = prelude.String.id,
+        }),
+        computeNodeGroupId = schema.new({
+            id = id.from(_N, "RegisterComputeNodeGroupInstanceOutput", "computeNodeGroupId"),
+            type = "string",
+            name = "computeNodeGroupId",
+            target_id = prelude.String.id,
+        }),
+        computeNodeGroupName = schema.new({
+            id = id.from(_N, "RegisterComputeNodeGroupInstanceOutput", "computeNodeGroupName"),
+            type = "string",
+            name = "computeNodeGroupName",
+            target_id = prelude.String.id,
+        }),
+        nodeLifecycleActions = schema.new({
+            id = id.from(_N, "RegisterComputeNodeGroupInstanceOutput", "nodeLifecycleActions"),
+            type = "structure",
+            name = "nodeLifecycleActions",
+            target_id = id.from(_N, "NodeLifecycleActions"),
+            target = M.NodeLifecycleActions,
         }),
     },
 })

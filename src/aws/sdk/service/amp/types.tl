@@ -197,10 +197,18 @@ local record M
         workspaceArn: string
     end
 
+    -- The configuration identifies the CloudWatch dataset used as a scraper destination.
+    record CloudWatchConfiguration
+        -- The Amazon Resource Name (ARN) of the CloudWatch dataset. To use the default dataset, specify arn:aws:cloudwatch:<region>:<account-id>:dataset/default.
+        datasetArn: string
+    end
+
     -- Where to send the metrics from a scraper.
     record Destination
         -- The Amazon Managed Service for Prometheus workspace to send metrics to.
         ampConfiguration: AmpConfiguration
+        -- The CloudWatch dataset to send metrics to.
+        cloudWatchConfiguration: CloudWatchConfiguration
     end
 
     -- Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.
@@ -251,7 +259,7 @@ local record M
         scrapeConfiguration: ScrapeConfiguration
         -- The Amazon EKS or Amazon Web Services cluster from which the scraper will collect metrics.
         source: Source
-        -- The Amazon Managed Service for Prometheus workspace to send metrics to.
+        -- The destination where the scraper sends the collected metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.
         destination: Destination
         -- Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.
         roleConfiguration: RoleConfiguration
@@ -335,7 +343,7 @@ local record M
         scrapeConfiguration: ScrapeConfiguration
         -- The Amazon EKS cluster from which the scraper collects metrics.
         source: Source
-        -- The Amazon Managed Service for Prometheus workspace the scraper sends metrics to.
+        -- The destination where the scraper sends metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.
         destination: Destination
         -- This structure displays information about the IAM roles used for cross-account scraping configuration.
         roleConfiguration: RoleConfiguration
@@ -379,7 +387,7 @@ local record M
         statusReason: string
         -- The Amazon EKS cluster from which the scraper collects metrics.
         source: Source
-        -- The Amazon Managed Service for Prometheus workspace the scraper sends metrics to.
+        -- The destination where the scraper sends metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.
         destination: Destination
         -- This structure displays information about the IAM roles used for cross-account scraping configuration.
         roleConfiguration: RoleConfiguration
@@ -489,7 +497,7 @@ local record M
         alias: string
         -- Contains the base-64 encoded YAML configuration for the scraper. For more information about configuring a scraper, see Using an Amazon Web Services managed collector in the Amazon Managed Service for Prometheus User Guide.
         scrapeConfiguration: ScrapeConfiguration
-        -- The new Amazon Managed Service for Prometheus workspace to send metrics to.
+        -- The new destination where the scraper sends metrics. Valid destinations are Amazon Managed Service for Prometheus workspaces and CloudWatch datasets.
         destination: Destination
         -- Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.
         roleConfiguration: RoleConfiguration

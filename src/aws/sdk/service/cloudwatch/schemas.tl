@@ -1554,6 +1554,9 @@ M.ScheduleConfiguration = schema.new({
             type = "long",
             name = "StartTimeOffset",
             target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
         EndTimeOffset = schema.new({
             id = id.from(_N, "ScheduleConfiguration", "EndTimeOffset"),

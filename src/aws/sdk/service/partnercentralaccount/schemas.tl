@@ -29,6 +29,8 @@ M.PartnerDomainList = schema.new({ type = "list", list_member = M.PartnerDomain 
 
 M.ErrorDetailList = schema.new({ type = "list", list_member = M.ErrorDetail })
 
+M.AssociatedPartnerList = schema.new({ type = "list", list_member = M.QualificationsAssociationPartner })
+
 M.IndustrySegmentList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LocalizedContentList = schema.new({ type = "list", list_member = M.LocalizedContent })
@@ -695,6 +697,25 @@ M.AssociateAwsTrainingCertificationEmailDomainInput = schema.new({
 M.AssociateAwsTrainingCertificationEmailDomainOutput = schema.new({
     id = id.from(_N, "AssociateAwsTrainingCertificationEmailDomainResponse"),
     type = "structure",
+})
+
+M.QualificationsAssociationPartner = schema.new({
+    id = id.from(_N, "QualificationsAssociationPartner"),
+    type = "structure",
+    members = {
+        ProfileId = schema.new({
+            id = id.from(_N, "QualificationsAssociationPartner", "ProfileId"),
+            type = "string",
+            name = "ProfileId",
+            target_id = prelude.String.id,
+        }),
+        AccountId = schema.new({
+            id = id.from(_N, "QualificationsAssociationPartner", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.BusinessVerificationDetails = schema.new({
@@ -3234,6 +3255,315 @@ M.GetProfileVisibilityOutput = schema.new({
     },
 })
 
+M.GetQualificationsAssociationDetailsInput = schema.new({
+    id = id.from(_N, "GetQualificationsAssociationDetailsRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetQualificationsAssociationDetailsOutput = schema.new({
+    id = id.from(_N, "GetQualificationsAssociationDetailsResponse"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsOutput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PrimaryPartner = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsOutput", "PrimaryPartner"),
+            type = "structure",
+            name = "PrimaryPartner",
+            target_id = id.from(_N, "QualificationsAssociationPartner"),
+            target = M.QualificationsAssociationPartner,
+        }),
+        AssociatedPartners = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsOutput", "AssociatedPartners"),
+            type = "list",
+            name = "AssociatedPartners",
+            target_id = prelude.Document.id,
+            list_member = M.QualificationsAssociationPartner,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationDetailsOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetQualificationsAssociationTaskInput = schema.new({
+    id = id.from(_N, "GetQualificationsAssociationTaskRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetQualificationsAssociationTaskOutput = schema.new({
+    id = id.from(_N, "GetQualificationsAssociationTaskResponse"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskId = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PrimaryPartner = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "PrimaryPartner"),
+            type = "structure",
+            name = "PrimaryPartner",
+            target_id = id.from(_N, "QualificationsAssociationPartner"),
+            target = M.QualificationsAssociationPartner,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndedAt = schema.new({
+            id = id.from(_N, "GetQualificationsAssociationTaskOutput", "EndedAt"),
+            type = "timestamp",
+            name = "EndedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
+M.GetQualificationsDisassociationTaskInput = schema.new({
+    id = id.from(_N, "GetQualificationsDisassociationTaskRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetQualificationsDisassociationTaskOutput = schema.new({
+    id = id.from(_N, "GetQualificationsDisassociationTaskResponse"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskId = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssociatedPartner = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "AssociatedPartner"),
+            type = "structure",
+            name = "AssociatedPartner",
+            target_id = id.from(_N, "QualificationsAssociationPartner"),
+            target = M.QualificationsAssociationPartner,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndedAt = schema.new({
+            id = id.from(_N, "GetQualificationsDisassociationTaskOutput", "EndedAt"),
+            type = "timestamp",
+            name = "EndedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.GetVerificationInput = schema.new({
     id = id.from(_N, "GetVerificationRequest"),
     type = "structure",
@@ -3809,6 +4139,244 @@ M.StartProfileUpdateTaskOutput = schema.new({
     },
 })
 
+M.StartQualificationsAssociationTaskInput = schema.new({
+    id = id.from(_N, "StartQualificationsAssociationTaskRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        PrimaryPartner = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskInput", "PrimaryPartner"),
+            type = "structure",
+            name = "PrimaryPartner",
+            target_id = id.from(_N, "QualificationsAssociationPartner"),
+            target = M.QualificationsAssociationPartner,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartQualificationsAssociationTaskOutput = schema.new({
+    id = id.from(_N, "StartQualificationsAssociationTaskResponse"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskOutput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskId = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskOutput", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PrimaryPartner = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskOutput", "PrimaryPartner"),
+            type = "structure",
+            name = "PrimaryPartner",
+            target_id = id.from(_N, "QualificationsAssociationPartner"),
+            target = M.QualificationsAssociationPartner,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "StartQualificationsAssociationTaskOutput", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartQualificationsDisassociationTaskInput = schema.new({
+    id = id.from(_N, "StartQualificationsDisassociationTaskRequest"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskInput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        AssociatedPartner = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskInput", "AssociatedPartner"),
+            type = "structure",
+            name = "AssociatedPartner",
+            target_id = id.from(_N, "QualificationsAssociationPartner"),
+            target = M.QualificationsAssociationPartner,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartQualificationsDisassociationTaskOutput = schema.new({
+    id = id.from(_N, "StartQualificationsDisassociationTaskResponse"),
+    type = "structure",
+    members = {
+        Catalog = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskOutput", "Catalog"),
+            type = "string",
+            name = "Catalog",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Arn = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskOutput", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskId = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskOutput", "TaskId"),
+            type = "string",
+            name = "TaskId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AssociatedPartner = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskOutput", "AssociatedPartner"),
+            type = "structure",
+            name = "AssociatedPartner",
+            target_id = id.from(_N, "QualificationsAssociationPartner"),
+            target = M.QualificationsAssociationPartner,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "StartQualificationsDisassociationTaskOutput", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.SendEmailVerificationCodeInput = schema.new({
     id = id.from(_N, "SendEmailVerificationCodeRequest"),
     type = "structure",
@@ -4203,6 +4771,39 @@ M.GetProfileVisibility = schema.operation({
     },
 })
 
+M.GetQualificationsAssociationDetails = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetQualificationsAssociationDetails"),
+    input = M.GetQualificationsAssociationDetailsInput,
+    output = M.GetQualificationsAssociationDetailsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQualificationsAssociationTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetQualificationsAssociationTask"),
+    input = M.GetQualificationsAssociationTaskInput,
+    output = M.GetQualificationsAssociationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetQualificationsDisassociationTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "GetQualificationsDisassociationTask"),
+    input = M.GetQualificationsDisassociationTaskInput,
+    output = M.GetQualificationsDisassociationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetVerification = schema.operation({
     id = id.from("com.amazonaws.partnercentralaccount", "GetVerification"),
     input = M.GetVerificationInput,
@@ -4306,6 +4907,28 @@ M.StartProfileUpdateTask = schema.operation({
     id = id.from("com.amazonaws.partnercentralaccount", "StartProfileUpdateTask"),
     input = M.StartProfileUpdateTaskInput,
     output = M.StartProfileUpdateTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQualificationsAssociationTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "StartQualificationsAssociationTask"),
+    input = M.StartQualificationsAssociationTaskInput,
+    output = M.StartQualificationsAssociationTaskOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartQualificationsDisassociationTask = schema.operation({
+    id = id.from("com.amazonaws.partnercentralaccount", "StartQualificationsDisassociationTask"),
+    input = M.StartQualificationsDisassociationTaskInput,
+    output = M.StartQualificationsDisassociationTaskOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

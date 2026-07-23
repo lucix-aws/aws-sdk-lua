@@ -2662,6 +2662,37 @@ M.UntagResourceOutput = schema.new({
     type = "structure",
 })
 
+M.ConflictException = schema.new({
+    id = id.from(_N, "ConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resourceId = schema.new({
+            id = id.from(_N, "ConflictException", "resourceId"),
+            type = "string",
+            name = "resourceId",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "ConflictException", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.StartPlanExecutionInput = schema.new({
     id = id.from(_N, "StartPlanExecutionRequest"),
     type = "structure",
@@ -2719,6 +2750,15 @@ M.StartPlanExecutionInput = schema.new({
             type = "string",
             name = "recoveryExecutionId",
             target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartPlanExecutionInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
         }),
     },
 })

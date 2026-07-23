@@ -621,6 +621,22 @@ M.AmpConfiguration = schema.new({
     },
 })
 
+M.CloudWatchConfiguration = schema.new({
+    id = id.from(_N, "CloudWatchConfiguration"),
+    type = "structure",
+    members = {
+        datasetArn = schema.new({
+            id = id.from(_N, "CloudWatchConfiguration", "datasetArn"),
+            type = "string",
+            name = "datasetArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Destination = schema.new({
     id = id.from(_N, "Destination"),
     type = "union",
@@ -631,6 +647,13 @@ M.Destination = schema.new({
             name = "ampConfiguration",
             target_id = id.from(_N, "AmpConfiguration"),
             target = M.AmpConfiguration,
+        }),
+        cloudWatchConfiguration = schema.new({
+            id = id.from(_N, "Destination", "cloudWatchConfiguration"),
+            type = "structure",
+            name = "cloudWatchConfiguration",
+            target_id = id.from(_N, "CloudWatchConfiguration"),
+            target = M.CloudWatchConfiguration,
         }),
     },
 })

@@ -1024,6 +1024,15 @@ local record M
     record UntagResourceOutput
     end
 
+    -- The client token was already used with different request parameters. A client token must map to the same parameters for every request. To retry this operation, provide a new client token.
+    record ConflictException
+        message: string
+        -- The identifier of the resource involved in the client token conflict.
+        resourceId: string
+        -- The type of the resource involved in the client token conflict.
+        resourceType: string
+    end
+
     record StartPlanExecutionInput
         -- The Amazon Resource Name (ARN) of the plan to execute.
         planArn: string
@@ -1039,6 +1048,8 @@ local record M
         latestVersion: string
         -- The execution identifier of the recovery execution that ran in the opposite region post-recovery is ran in. Required when starting a post-recovery execution.
         recoveryExecutionId: string
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request and returns the result of the original successful request. If you don't provide a client token, the service automatically generates one. For more information about idempotency, see Making retries safe with idempotent APIs.
+        clientToken: string
     end
 
     record StartPlanExecutionOutput

@@ -11338,6 +11338,33 @@ M.GetFilterOutput = schema.new({
                 [traits.JSON_NAME] = { name = "tags" },
             },
         }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetFilterOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "createdAt" },
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetFilterOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "updatedAt" },
+            },
+        }),
+        Version = schema.new({
+            id = id.from(_N, "GetFilterOutput", "Version"),
+            type = "long",
+            name = "Version",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "version" },
+            },
+        }),
     },
 })
 
