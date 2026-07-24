@@ -35,6 +35,8 @@ M.BrowserEnterprisePolicies = schema.new({ type = "list", list_member = M.Browse
 
 M.Certificates = schema.new({ type = "list", list_member = M.Certificate })
 
+M.ToolsFileSystemConfigurations = schema.new({ type = "list", list_member = M.ToolsFileSystemConfiguration })
+
 M.BrowserSessionSummaries = schema.new({ type = "list", list_member = M.BrowserSessionSummary })
 
 M.CodeInterpreterSessionSummaries = schema.new({ type = "list", list_member = M.CodeInterpreterSessionSummary })
@@ -2137,6 +2139,95 @@ M.BrowserExtension = schema.new({
     },
 })
 
+M.EfsConfiguration = schema.new({
+    id = id.from(_N, "EfsConfiguration"),
+    type = "structure",
+    members = {
+        accessPointArn = schema.new({
+            id = id.from(_N, "EfsConfiguration", "accessPointArn"),
+            type = "string",
+            name = "accessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "EfsConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileSystemArn = schema.new({
+            id = id.from(_N, "EfsConfiguration", "fileSystemArn"),
+            type = "string",
+            name = "fileSystemArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3FilesConfiguration = schema.new({
+    id = id.from(_N, "S3FilesConfiguration"),
+    type = "structure",
+    members = {
+        accessPointArn = schema.new({
+            id = id.from(_N, "S3FilesConfiguration", "accessPointArn"),
+            type = "string",
+            name = "accessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "S3FilesConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileSystemArn = schema.new({
+            id = id.from(_N, "S3FilesConfiguration", "fileSystemArn"),
+            type = "string",
+            name = "fileSystemArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ToolsFileSystemConfiguration = schema.new({
+    id = id.from(_N, "ToolsFileSystemConfiguration"),
+    type = "union",
+    members = {
+        s3FilesConfiguration = schema.new({
+            id = id.from(_N, "ToolsFileSystemConfiguration", "s3FilesConfiguration"),
+            type = "structure",
+            name = "s3FilesConfiguration",
+            target_id = id.from(_N, "S3FilesConfiguration"),
+            target = M.S3FilesConfiguration,
+        }),
+        efsConfiguration = schema.new({
+            id = id.from(_N, "ToolsFileSystemConfiguration", "efsConfiguration"),
+            type = "structure",
+            name = "efsConfiguration",
+            target_id = id.from(_N, "EfsConfiguration"),
+            target = M.EfsConfiguration,
+        }),
+    },
+})
+
 M.BrowserProfileConfiguration = schema.new({
     id = id.from(_N, "BrowserProfileConfiguration"),
     type = "structure",
@@ -2462,6 +2553,13 @@ M.GetBrowserSessionOutput = schema.new({
             name = "certificates",
             target_id = prelude.Document.id,
             list_member = M.Certificate,
+        }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "GetBrowserSessionOutput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
         }),
         sessionReplayArtifact = schema.new({
             id = id.from(_N, "GetBrowserSessionOutput", "sessionReplayArtifact"),
@@ -3278,6 +3376,13 @@ M.StartBrowserSessionInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Certificate,
         }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "StartBrowserSessionInput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "StartBrowserSessionInput", "clientToken"),
             type = "string",
@@ -3635,6 +3740,13 @@ M.GetCodeInterpreterSessionOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Certificate,
         }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "GetCodeInterpreterSessionOutput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
+        }),
     },
 })
 
@@ -3811,6 +3923,13 @@ M.StartCodeInterpreterSessionInput = schema.new({
             name = "certificates",
             target_id = prelude.Document.id,
             list_member = M.Certificate,
+        }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "StartCodeInterpreterSessionInput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
         }),
         clientToken = schema.new({
             id = id.from(_N, "StartCodeInterpreterSessionInput", "clientToken"),

@@ -643,6 +643,34 @@ local record M
         location: ResourceLocation
     end
 
+    -- The configuration for mounting an Amazon Elastic File System (Amazon EFS) access point that you own into a session.
+    record EfsConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Elastic File System (Amazon EFS) access point to mount.
+        accessPointArn: string
+        -- The absolute path within the session at which the access point is mounted, for example /mnt/efs. Each mount path must be unique across all file system configurations in the session.
+        mountPath: string
+        -- The Amazon Resource Name (ARN) of the Amazon Elastic File System (Amazon EFS) file system that owns the access point.
+        fileSystemArn: string
+    end
+
+    -- The configuration for mounting an Amazon Simple Storage Service (Amazon S3) Files access point that you own into a session.
+    record S3FilesConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Simple Storage Service (Amazon S3) Files access point to mount.
+        accessPointArn: string
+        -- The absolute path within the session at which the access point is mounted, for example /mnt/s3data. Each mount path must be unique across all file system configurations in the session.
+        mountPath: string
+        -- The Amazon Resource Name (ARN) of the Amazon Simple Storage Service (Amazon S3) Files file system that owns the access point.
+        fileSystemArn: string
+    end
+
+    -- Specifies a file system to mount into the session by providing exactly one of the following: s3FilesConfiguration - Mounts an Amazon Simple Storage Service (Amazon S3) Files access point. efsConfiguration - Mounts an Amazon Elastic File System (Amazon EFS) access point.
+    record ToolsFileSystemConfiguration
+        -- The configuration for mounting your own Amazon Simple Storage Service (Amazon S3) Files access point into the session.
+        s3FilesConfiguration: S3FilesConfiguration
+        -- The configuration for mounting your own Amazon Elastic File System (Amazon EFS) access point into the session.
+        efsConfiguration: EfsConfiguration
+    end
+
     -- The configuration for a browser profile in Amazon Bedrock AgentCore. A browser profile contains persistent browser data such as cookies and local storage that can be saved from one browser session and reused in subsequent sessions. Browser profiles enable continuity for tasks that require authentication, maintain user preferences, or depend on previously stored browser state.
     record BrowserProfileConfiguration
         -- The unique identifier of the browser profile. This identifier is used to reference the profile when starting new browser sessions or saving session data to the profile.
@@ -759,6 +787,8 @@ local record M
         proxyConfiguration: ProxyConfiguration
         -- The list of certificates installed in the browser session.
         certificates: {Certificate}
+        -- The file system configurations for the browser session. Each entry describes an access point and its mount path.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
         -- The artifact containing the session replay information.
         sessionReplayArtifact: string
         -- The time at which the browser session was last updated.
@@ -1033,6 +1063,8 @@ local record M
         enterprisePolicies: {BrowserEnterprisePolicy}
         -- A list of certificates to install in the browser session.
         certificates: {Certificate}
+        -- The file system configurations to mount into the browser session. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your session can then read and write your data. If you don't specify this field, no additional file systems are mounted.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request, but does not return an error. This parameter helps prevent the creation of duplicate sessions if there are temporary network issues.
         clientToken: string
     end
@@ -1130,6 +1162,8 @@ local record M
         status: string
         -- The list of certificates installed in the code interpreter session.
         certificates: {Certificate}
+        -- The file system configurations for the code interpreter session. Each entry describes an access point and its mount path.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
     end
 
     record ListCodeInterpreterSessionsInput
@@ -1179,6 +1213,8 @@ local record M
         sessionTimeoutSeconds: number
         -- A list of certificates to install in the code interpreter session.
         certificates: {Certificate}
+        -- The file system configurations to mount into the code interpreter session. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your session can then read and write your data. If you don't specify this field, no additional file systems are mounted.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
         -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request, but does not return an error. This parameter helps prevent the creation of duplicate sessions if there are temporary network issues.
         clientToken: string
     end

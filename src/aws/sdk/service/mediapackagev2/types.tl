@@ -172,6 +172,10 @@ local record M
         "INVALID_ARN"
         "SCTE_IN_MANIFESTS_INVALID_CONFIGURATION"
         "CUSTOM_AD_TYPES_INVALID_CONFIGURATION"
+        "ONLY_CMAF_INPUT_TYPE_ALLOW_OUTPUT_LOCKING_MODE"
+        "ONLY_NON_EPOCH_LOCKED_ALLOW_OUTPUT_TIMESTAMP_MODE"
+        "OUTPUT_TIMESTAMP_MODE_IMMUTABLE"
+        "NON_EPOCH_LOCKED_WITH_FORCE_ENDPOINT_ERROR_CONFIGURATION"
     end
 
     -- The input failed to meet the constraints specified by the AWS service.
@@ -260,6 +264,11 @@ local record M
         PublishMQCS: boolean
     end
 
+    enum OutputLockingMode
+        "EPOCH_LOCKED"
+        "NON_EPOCH_LOCKED"
+    end
+
     record CreateChannelInput
         -- The name that describes the channel group. The name is the primary identifier for the channel group, and must be unique for your account in the AWS Region.
         ChannelGroupName: string
@@ -275,6 +284,8 @@ local record M
         InputSwitchConfiguration: InputSwitchConfiguration
         -- The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF.
         OutputHeaderConfiguration: OutputHeaderConfiguration
+        -- The output locking mode for the channel. This setting is only valid when InputType is CMAF. This value is immutable after channel creation. If you don't specify a value, the default is EPOCH_LOCKED. The allowed values are: EPOCH_LOCKED - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time. This mode supports cross-region synchronization and failover. NON_EPOCH_LOCKED - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0. This mode does not support cross-region synchronization or failover.
+        OutputLockingMode: string
         -- A comma-separated list of tag key:value pairs that you define. For example: "Key1": "Value1", "Key2": "Value2"
         Tags: {string : string}
     end
@@ -311,6 +322,8 @@ local record M
         InputSwitchConfiguration: InputSwitchConfiguration
         -- The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF.
         OutputHeaderConfiguration: OutputHeaderConfiguration
+        -- The output locking mode configured for the channel. The allowed values are: EPOCH_LOCKED - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time. NON_EPOCH_LOCKED - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0.
+        OutputLockingMode: string
     end
 
     -- The request would cause a service quota to be exceeded.
@@ -361,6 +374,8 @@ local record M
         InputSwitchConfiguration: InputSwitchConfiguration
         -- The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF.
         OutputHeaderConfiguration: OutputHeaderConfiguration
+        -- The output locking mode configured for the channel. The allowed values are: EPOCH_LOCKED - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time. NON_EPOCH_LOCKED - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0.
+        OutputLockingMode: string
     end
 
     record ListChannelsInput
@@ -388,6 +403,8 @@ local record M
         Description: string
         -- The input type will be an immutable field which will be used to define whether the channel will allow CMAF ingest or HLS ingest. If unprovided, it will default to HLS to preserve current behavior. The allowed values are: HLS - The HLS streaming specification (which defines M3U8 manifests and TS segments). CMAF - The DASH-IF CMAF Ingest specification (which defines CMAF segments with optional DASH manifests).
         InputType: string
+        -- The output locking mode configured for the channel. The allowed values are: EPOCH_LOCKED - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time. NON_EPOCH_LOCKED - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0.
+        OutputLockingMode: string
     end
 
     record ListChannelsOutput
@@ -775,6 +792,11 @@ local record M
         SpekeKeyProvider: SpekeKeyProvider
     end
 
+    enum OutputTimestampMode
+        "PASSTHROUGH"
+        "REBASED_TO_CHANNEL_START"
+    end
+
     enum CustomAdType
         "PROGRAM"
         "CHAPTER"
@@ -836,6 +858,8 @@ local record M
         -- The SCTE configuration options in the segment settings.
         Scte: Scte
         Encryption: Encryption
+        -- The output timestamp mode for the origin endpoint's segments. This setting is only configurable on channels with OutputLockingMode set to NON_EPOCH_LOCKED. This value is immutable after endpoint creation. If you don't specify a value, the default is PASSTHROUGH. The allowed values are: PASSTHROUGH - Output PTS (Presentation Timestamp) values pass through unchanged from the input. REBASED_TO_CHANNEL_START - Output PTS is rebased relative to the channel start time.
+        OutputTimestampMode: string
     end
 
     enum UriSeparator
@@ -1361,6 +1385,8 @@ local record M
         InputSwitchConfiguration: InputSwitchConfiguration
         -- The settings for what common media server data (CMSD) headers AWS Elemental MediaPackage includes in responses to the CDN. This setting is valid only when InputType is CMAF.
         OutputHeaderConfiguration: OutputHeaderConfiguration
+        -- The output locking mode configured for the channel. This value is immutable after channel creation. The allowed values are: EPOCH_LOCKED - The channel uses epoch-locked behavior with deterministic sequence numbering and fixed segment boundaries aligned to epoch time. NON_EPOCH_LOCKED - The channel uses non-epoch-locked behavior with duration-based segment combining and monotonically increasing sequence numbers starting from 0.
+        OutputLockingMode: string
     end
 
     record CreateChannelGroupInput

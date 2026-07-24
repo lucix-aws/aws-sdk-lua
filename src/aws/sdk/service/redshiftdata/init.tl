@@ -27,6 +27,7 @@ local record Client
     getStatementResultV2: function(Client, types.GetStatementResultV2Input, ? base_client.InvokeOptions): async.Operation<types.GetStatementResultV2Output>
     listDatabases: function(Client, types.ListDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.ListDatabasesOutput>
     listSchemas: function(Client, types.ListSchemasInput, ? base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
+    listSessions: function(Client, types.ListSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
     listStatements: function(Client, types.ListStatementsInput, ? base_client.InvokeOptions): async.Operation<types.ListStatementsOutput>
     listTables: function(Client, types.ListTablesInput, ? base_client.InvokeOptions): async.Operation<types.ListTablesOutput>
 end
@@ -107,6 +108,10 @@ end
 
 function C:listSchemas(input: types.ListSchemasInput, options?: base_client.InvokeOptions): async.Operation<types.ListSchemasOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSchemas as schema.OperationSchema, input, options) as async.Operation<types.ListSchemasOutput>
+end
+
+function C:listSessions(input: types.ListSessionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListSessionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSessions as schema.OperationSchema, input, options) as async.Operation<types.ListSessionsOutput>
 end
 
 function C:listStatements(input: types.ListStatementsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStatementsOutput>

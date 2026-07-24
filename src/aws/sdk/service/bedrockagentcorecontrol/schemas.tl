@@ -35,6 +35,8 @@ M.BrowserEnterprisePolicies = schema.new({ type = "list", list_member = M.Browse
 
 M.Certificates = schema.new({ type = "list", list_member = M.Certificate })
 
+M.ToolsFileSystemConfigurations = schema.new({ type = "list", list_member = M.ToolsFileSystemConfiguration })
+
 M.CodeInterpreterSummaries = schema.new({ type = "list", list_member = M.CodeInterpreterSummary })
 
 M.ConfigurationBundleSummaryList = schema.new({ type = "list", list_member = M.ConfigurationBundleSummary })
@@ -4008,6 +4010,95 @@ M.BrowserEnterprisePolicy = schema.new({
     },
 })
 
+M.EfsConfiguration = schema.new({
+    id = id.from(_N, "EfsConfiguration"),
+    type = "structure",
+    members = {
+        accessPointArn = schema.new({
+            id = id.from(_N, "EfsConfiguration", "accessPointArn"),
+            type = "string",
+            name = "accessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "EfsConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileSystemArn = schema.new({
+            id = id.from(_N, "EfsConfiguration", "fileSystemArn"),
+            type = "string",
+            name = "fileSystemArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.S3FilesConfiguration = schema.new({
+    id = id.from(_N, "S3FilesConfiguration"),
+    type = "structure",
+    members = {
+        accessPointArn = schema.new({
+            id = id.from(_N, "S3FilesConfiguration", "accessPointArn"),
+            type = "string",
+            name = "accessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "S3FilesConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileSystemArn = schema.new({
+            id = id.from(_N, "S3FilesConfiguration", "fileSystemArn"),
+            type = "string",
+            name = "fileSystemArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ToolsFileSystemConfiguration = schema.new({
+    id = id.from(_N, "ToolsFileSystemConfiguration"),
+    type = "union",
+    members = {
+        s3FilesConfiguration = schema.new({
+            id = id.from(_N, "ToolsFileSystemConfiguration", "s3FilesConfiguration"),
+            type = "structure",
+            name = "s3FilesConfiguration",
+            target_id = id.from(_N, "S3FilesConfiguration"),
+            target = M.S3FilesConfiguration,
+        }),
+        efsConfiguration = schema.new({
+            id = id.from(_N, "ToolsFileSystemConfiguration", "efsConfiguration"),
+            type = "structure",
+            name = "efsConfiguration",
+            target_id = id.from(_N, "EfsConfiguration"),
+            target = M.EfsConfiguration,
+        }),
+    },
+})
+
 M.BrowserNetworkConfiguration = schema.new({
     id = id.from(_N, "BrowserNetworkConfiguration"),
     type = "structure",
@@ -4117,6 +4208,13 @@ M.CreateBrowserInput = schema.new({
             name = "certificates",
             target_id = prelude.Document.id,
             list_member = M.Certificate,
+        }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "CreateBrowserInput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
         }),
         clientToken = schema.new({
             id = id.from(_N, "CreateBrowserInput", "clientToken"),
@@ -4365,6 +4463,13 @@ M.GetBrowserOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Certificate,
         }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "GetBrowserOutput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
+        }),
         status = schema.new({
             id = id.from(_N, "GetBrowserOutput", "status"),
             type = "string",
@@ -4600,6 +4705,13 @@ M.CreateCodeInterpreterInput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.Certificate,
         }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "CreateCodeInterpreterInput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
+        }),
         clientToken = schema.new({
             id = id.from(_N, "CreateCodeInterpreterInput", "clientToken"),
             type = "string",
@@ -4817,6 +4929,13 @@ M.GetCodeInterpreterOutput = schema.new({
             name = "certificates",
             target_id = prelude.Document.id,
             list_member = M.Certificate,
+        }),
+        filesystemConfigurations = schema.new({
+            id = id.from(_N, "GetCodeInterpreterOutput", "filesystemConfigurations"),
+            type = "list",
+            name = "filesystemConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.ToolsFileSystemConfiguration,
         }),
         failureReason = schema.new({
             id = id.from(_N, "GetCodeInterpreterOutput", "failureReason"),

@@ -197,6 +197,52 @@ local record M
         "ml.c8g.16xlarge"
         "ml.c8g.24xlarge"
         "ml.c8g.48xlarge"
+        "ml.c6a.large"
+        "ml.c6a.xlarge"
+        "ml.c6a.2xlarge"
+        "ml.c6a.4xlarge"
+        "ml.c6a.8xlarge"
+        "ml.c6a.12xlarge"
+        "ml.c6a.16xlarge"
+        "ml.c6a.24xlarge"
+        "ml.c6a.32xlarge"
+        "ml.c6a.48xlarge"
+        "ml.m6a.large"
+        "ml.m6a.xlarge"
+        "ml.m6a.2xlarge"
+        "ml.m6a.4xlarge"
+        "ml.m6a.8xlarge"
+        "ml.m6a.12xlarge"
+        "ml.m6a.16xlarge"
+        "ml.m6a.24xlarge"
+        "ml.m6a.32xlarge"
+        "ml.m6a.48xlarge"
+        "ml.m6g.medium"
+        "ml.m6g.large"
+        "ml.m6g.xlarge"
+        "ml.m6g.2xlarge"
+        "ml.m6g.4xlarge"
+        "ml.m6g.8xlarge"
+        "ml.m6g.12xlarge"
+        "ml.m6g.16xlarge"
+        "ml.m7g.medium"
+        "ml.m7g.large"
+        "ml.m7g.xlarge"
+        "ml.m7g.2xlarge"
+        "ml.m7g.4xlarge"
+        "ml.m7g.8xlarge"
+        "ml.m7g.12xlarge"
+        "ml.m7g.16xlarge"
+        "ml.m8g.medium"
+        "ml.m8g.large"
+        "ml.m8g.xlarge"
+        "ml.m8g.2xlarge"
+        "ml.m8g.4xlarge"
+        "ml.m8g.8xlarge"
+        "ml.m8g.12xlarge"
+        "ml.m8g.16xlarge"
+        "ml.m8g.24xlarge"
+        "ml.m8g.48xlarge"
     end
 
     -- Configuration of the resources used for the compute allocation definition.
@@ -3957,7 +4003,7 @@ local record M
 
     -- The configuration for automatic patching of the instance group. When configured, the system automatically applies security patch AMI updates to the instance group.
     record ClusterAutoPatchConfig
-        -- The strategy for applying patches to instances in the group.
+        -- The strategy for applying patches to instances in the group. WhenIdle: Cordons all instances and patches each instance as it becomes idle (no running jobs). Each instance is uncordoned immediately after patching and becomes available for new jobs. If instances do not become idle, they remain on the previous AMI version. You can then use UpdateClusterSoftware with the desired ImageReleaseVersion to manually update the remaining instances. WhenAllIdle: Cordons all instances and waits for all to become idle before patching. All instances are uncordoned after patching completes. If not all instances become idle, no patching occurs and all instances remain on the previous AMI version.
         PatchingStrategy: string
         -- The schedule for automatic patching, including the next patch date.
         PatchSchedule: ClusterPatchSchedule
@@ -3973,7 +4019,7 @@ local record M
 
     -- The auto-patching configuration details for the instance group, including the patching strategy and schedule.
     record ClusterAutoPatchConfigDetails
-        -- The strategy used for applying patches to instances in the group.
+        -- The strategy used for applying patches to instances in the group. WhenIdle: Cordons all instances and patches each instance as it becomes idle (no running jobs). Each instance is uncordoned immediately after patching and becomes available for new jobs. If instances do not become idle, they remain on the previous AMI version. You can then use UpdateClusterSoftware with the desired ImageReleaseVersion to manually update the remaining instances. WhenAllIdle: Cordons all instances and waits for all to become idle before patching. All instances are uncordoned after patching completes. If not all instances become idle, no patching occurs and all instances remain on the previous AMI version.
         PatchingStrategy: string
         -- The currently active patch schedule that the system will execute.
         CurrentPatchSchedule: ClusterPatchScheduleDetails

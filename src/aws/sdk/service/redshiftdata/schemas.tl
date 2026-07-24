@@ -29,6 +29,8 @@ M.DatabaseList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SchemaList = schema.new({ type = "list", list_member = prelude.String })
 
+M.SessionList = schema.new({ type = "list", list_member = M.SessionData })
+
 M.StatementList = schema.new({ type = "list", list_member = M.StatementData })
 
 M.TableList = schema.new({ type = "list", list_member = M.TableMember })
@@ -62,6 +64,22 @@ M.ActiveStatementsExceededException = schema.new({
     members = {
         Message = schema.new({
             id = id.from(_N, "ActiveStatementsExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ActiveWaitingRequestsExceededException = schema.new({
+    id = id.from(_N, "ActiveWaitingRequestsExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Message = schema.new({
+            id = id.from(_N, "ActiveWaitingRequestsExceededException", "Message"),
             type = "string",
             name = "Message",
             target_id = prelude.String.id,
@@ -212,6 +230,18 @@ M.BatchExecuteStatementInput = schema.new({
             name = "SessionId",
             target_id = prelude.String.id,
         }),
+        ExecutionMode = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "ExecutionMode"),
+            type = "string",
+            name = "ExecutionMode",
+            target_id = prelude.String.id,
+        }),
+        WaitTimeSeconds = schema.new({
+            id = id.from(_N, "BatchExecuteStatementInput", "WaitTimeSeconds"),
+            type = "integer",
+            name = "WaitTimeSeconds",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -273,6 +303,24 @@ M.BatchExecuteStatementOutput = schema.new({
             type = "string",
             name = "SessionId",
             target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        RedshiftPid = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "RedshiftPid"),
+            type = "long",
+            name = "RedshiftPid",
+            target_id = prelude.Long.id,
+        }),
+        HasResultSet = schema.new({
+            id = id.from(_N, "BatchExecuteStatementOutput", "HasResultSet"),
+            type = "boolean",
+            name = "HasResultSet",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -523,6 +571,12 @@ M.DescribeStatementInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        WaitTimeSeconds = schema.new({
+            id = id.from(_N, "DescribeStatementInput", "WaitTimeSeconds"),
+            type = "integer",
+            name = "WaitTimeSeconds",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -764,6 +818,12 @@ M.DescribeStatementOutput = schema.new({
             name = "SessionId",
             target_id = prelude.String.id,
         }),
+        ExecutionMode = schema.new({
+            id = id.from(_N, "DescribeStatementOutput", "ExecutionMode"),
+            type = "string",
+            name = "ExecutionMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -983,6 +1043,12 @@ M.ExecuteStatementInput = schema.new({
             name = "SessionId",
             target_id = prelude.String.id,
         }),
+        WaitTimeSeconds = schema.new({
+            id = id.from(_N, "ExecuteStatementInput", "WaitTimeSeconds"),
+            type = "integer",
+            name = "WaitTimeSeconds",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -1044,6 +1110,24 @@ M.ExecuteStatementOutput = schema.new({
             type = "string",
             name = "SessionId",
             target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        RedshiftPid = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "RedshiftPid"),
+            type = "long",
+            name = "RedshiftPid",
+            target_id = prelude.Long.id,
+        }),
+        HasResultSet = schema.new({
+            id = id.from(_N, "ExecuteStatementOutput", "HasResultSet"),
+            type = "boolean",
+            name = "HasResultSet",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1123,6 +1207,12 @@ M.GetStatementResultInput = schema.new({
             name = "NextToken",
             target_id = prelude.String.id,
         }),
+        WaitTimeSeconds = schema.new({
+            id = id.from(_N, "GetStatementResultInput", "WaitTimeSeconds"),
+            type = "integer",
+            name = "WaitTimeSeconds",
+            target_id = prelude.Integer.id,
+        }),
     },
 })
 
@@ -1183,6 +1273,12 @@ M.GetStatementResultV2Input = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
+        }),
+        WaitTimeSeconds = schema.new({
+            id = id.from(_N, "GetStatementResultV2Input", "WaitTimeSeconds"),
+            type = "integer",
+            name = "WaitTimeSeconds",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -1387,6 +1483,169 @@ M.ListSchemasOutput = schema.new({
         }),
         NextToken = schema.new({
             id = id.from(_N, "ListSchemasOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSessionsInput = schema.new({
+    id = id.from(_N, "ListSessionsRequest"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "ListSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListSessionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        SessionId = schema.new({
+            id = id.from(_N, "ListSessionsInput", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListSessionsInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        RoleLevel = schema.new({
+            id = id.from(_N, "ListSessionsInput", "RoleLevel"),
+            type = "boolean",
+            name = "RoleLevel",
+            target_id = prelude.Boolean.id,
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "ListSessionsInput", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "ListSessionsInput", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "ListSessionsInput", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SessionData = schema.new({
+    id = id.from(_N, "SessionData"),
+    type = "structure",
+    members = {
+        SessionId = schema.new({
+            id = id.from(_N, "SessionData", "SessionId"),
+            type = "string",
+            name = "SessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SessionData", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "SessionData", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "SessionData", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        Database = schema.new({
+            id = id.from(_N, "SessionData", "Database"),
+            type = "string",
+            name = "Database",
+            target_id = prelude.String.id,
+        }),
+        DbUser = schema.new({
+            id = id.from(_N, "SessionData", "DbUser"),
+            type = "string",
+            name = "DbUser",
+            target_id = prelude.String.id,
+        }),
+        ClusterIdentifier = schema.new({
+            id = id.from(_N, "SessionData", "ClusterIdentifier"),
+            type = "string",
+            name = "ClusterIdentifier",
+            target_id = prelude.String.id,
+        }),
+        WorkgroupName = schema.new({
+            id = id.from(_N, "SessionData", "WorkgroupName"),
+            type = "string",
+            name = "WorkgroupName",
+            target_id = prelude.String.id,
+        }),
+        SessionAliveSeconds = schema.new({
+            id = id.from(_N, "SessionData", "SessionAliveSeconds"),
+            type = "integer",
+            name = "SessionAliveSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        SessionTtl = schema.new({
+            id = id.from(_N, "SessionData", "SessionTtl"),
+            type = "timestamp",
+            name = "SessionTtl",
+            target_id = prelude.Timestamp.id,
+        }),
+        CurrentStatementId = schema.new({
+            id = id.from(_N, "SessionData", "CurrentStatementId"),
+            type = "string",
+            name = "CurrentStatementId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListSessionsOutput = schema.new({
+    id = id.from(_N, "ListSessionsResponse"),
+    type = "structure",
+    members = {
+        Sessions = schema.new({
+            id = id.from(_N, "ListSessionsOutput", "Sessions"),
+            type = "list",
+            name = "Sessions",
+            target_id = prelude.Document.id,
+            list_member = M.SessionData,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListSessionsOutput", "NextToken"),
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
@@ -1794,6 +2053,17 @@ M.ListSchemas = schema.operation({
     id = id.from("com.amazonaws.redshiftdata", "ListSchemas"),
     input = M.ListSchemasInput,
     output = M.ListSchemasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListSessions = schema.operation({
+    id = id.from("com.amazonaws.redshiftdata", "ListSessions"),
+    input = M.ListSessionsInput,
+    output = M.ListSessionsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

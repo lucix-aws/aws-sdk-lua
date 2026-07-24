@@ -94,6 +94,24 @@ function M.items_list_schemas(client, input)
     })
 end
 
+--- Returns a page iterator for listSessions.
+function M.pages_list_sessions(client, input)
+    return paginator.pages(client, "listSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Sessions",
+    })
+end
+
+--- Returns an item iterator for listSessions.
+function M.items_list_sessions(client, input)
+    return paginator.items(client, "listSessions", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Sessions",
+    })
+end
+
 --- Returns a page iterator for listStatements.
 function M.pages_list_statements(client, input)
     return paginator.pages(client, "listStatements", input, {

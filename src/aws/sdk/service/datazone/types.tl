@@ -3832,9 +3832,29 @@ local record M
         message: string
     end
 
+    -- The Git metadata for a notebook sync operation in Amazon SageMaker Unified Studio. Contains information about the Git repository, branch, and commit associated with the notebook.
+    record GitMetadata
+        -- The identifier of the Git connection.
+        connectionId: string
+        -- The name of the Git repository.
+        repository: string
+        -- The name of the Git branch.
+        branch: string
+        -- The commit hash in the Git repository.
+        commitHash: string
+        -- The name of the file in the Git repository.
+        fileName: string
+        -- The timestamp of when the commit was made.
+        committedAt: number
+        -- The commit message associated with the Git commit.
+        commitMessage: string
+    end
+
     enum NotebookStatus
         "ACTIVE"
         "ARCHIVED"
+        "SYNC_IN_PROGRESS"
+        "SYNC_FAILED"
     end
 
     record CreateNotebookOutput
@@ -3876,6 +3896,8 @@ local record M
         environmentConfiguration: EnvironmentConfig
         -- The error details if the notebook creation failed.
         error: NotebookError
+        -- The Git metadata associated with the notebook.
+        gitMetadata: GitMetadata
     end
 
     enum UserDesignation
@@ -8255,6 +8277,8 @@ local record M
         environmentConfiguration: EnvironmentConfig
         -- The error details if the notebook is in a failed state.
         error: NotebookError
+        -- The Git metadata associated with the notebook.
+        gitMetadata: GitMetadata
     end
 
     record ListNotebooksInput
@@ -8367,6 +8391,8 @@ local record M
         environmentConfiguration: EnvironmentConfig
         -- The error details if the notebook is in a failed state.
         error: NotebookError
+        -- The Git metadata associated with the notebook.
+        gitMetadata: GitMetadata
     end
 
     enum FileFormat
@@ -9523,6 +9549,48 @@ local record M
         -- The timestamp of when the notebook import was started.
         createdAt: number
         -- The identifier of the user who started the notebook import.
+        createdBy: string
+    end
+
+    record StartNotebookSyncInput
+        -- The identifier of the Amazon SageMaker Unified Studio domain in which to sync the notebook.
+        domainIdentifier: string
+        -- The identifier of the project that will own the synced notebook.
+        owningProjectIdentifier: string
+        -- The source location of the notebook to sync. This specifies the Amazon Simple Storage Service URI of the notebook file.
+        sourceLocation: SourceLocation
+        -- The Git metadata for the notebook sync, including repository, branch, and commit information.
+        gitMetadata: GitMetadata
+        -- The identifier of an existing notebook to sync. If not specified, a new notebook is created.
+        notebookId: string
+        -- The name of the notebook. The name must be between 1 and 256 characters.
+        name: string
+        -- The description of the notebook.
+        description: string
+        -- A unique, case-sensitive identifier to ensure idempotency of the request. This field is automatically populated if not provided.
+        clientToken: string
+    end
+
+    record StartNotebookSyncOutput
+        -- The identifier of the synced notebook.
+        notebookId: string
+        -- The status of the notebook sync.
+        status: string
+        -- The identifier of the Amazon SageMaker Unified Studio domain.
+        domainId: string
+        -- The identifier of the project that owns the synced notebook.
+        owningProjectId: string
+        -- The source location from which the notebook was synced.
+        sourceLocation: SourceLocation
+        -- The Git metadata associated with the synced notebook.
+        gitMetadata: GitMetadata
+        -- The name of the synced notebook.
+        name: string
+        -- The description of the synced notebook.
+        description: string
+        -- The timestamp of when the notebook sync was started.
+        createdAt: number
+        -- The identifier of the user who started the notebook sync.
         createdBy: string
     end
 

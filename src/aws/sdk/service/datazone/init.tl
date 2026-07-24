@@ -182,6 +182,7 @@ local record Client
     startNotebookExport: function(Client, types.StartNotebookExportInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookExportOutput>
     startNotebookImport: function(Client, types.StartNotebookImportInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookImportOutput>
     startNotebookRun: function(Client, types.StartNotebookRunInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookRunOutput>
+    startNotebookSync: function(Client, types.StartNotebookSyncInput, ? base_client.InvokeOptions): async.Operation<types.StartNotebookSyncOutput>
     stopNotebookRun: function(Client, types.StopNotebookRunInput, ? base_client.InvokeOptions): async.Operation<types.StopNotebookRunOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
@@ -905,6 +906,10 @@ end
 
 function C:startNotebookRun(input: types.StartNotebookRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartNotebookRunOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNotebookRun as schema.OperationSchema, input, options) as async.Operation<types.StartNotebookRunOutput>
+end
+
+function C:startNotebookSync(input: types.StartNotebookSyncInput, options?: base_client.InvokeOptions): async.Operation<types.StartNotebookSyncOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartNotebookSync as schema.OperationSchema, input, options) as async.Operation<types.StartNotebookSyncOutput>
 end
 
 function C:stopNotebookRun(input: types.StopNotebookRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopNotebookRunOutput>

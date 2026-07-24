@@ -11026,6 +11026,16 @@ local record M
         SelfUpgradeUserRole: string
         -- The ability to perform Extension-related actions.
         Extension: string
+        -- The ability to use Amazon Quick through the browser extension for Chrome, Firefox, and Edge.
+        UseBrowserExtension: string
+        -- The ability to use Amazon Quick through the Microsoft Word add-in.
+        UseWordAddInExtension: string
+        -- The ability to use Amazon Quick through the Microsoft Outlook add-in.
+        UseOutlookAddInExtension: string
+        -- The ability to use Amazon Quick through the Microsoft Excel add-in.
+        UseExcelAddInExtension: string
+        -- The ability to use Amazon Quick through the Microsoft PowerPoint add-in.
+        UsePowerpointAddInExtension: string
         -- The ability to create, update, delete and view shared folders (both restricted and unrestricted), ability to add any asset to shared folders, and ability to share the folders.
         -- Note: This does not prevent inheriting access to assets that others share with them through folder membership.
         ManageSharedFolders: string

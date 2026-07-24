@@ -11121,6 +11121,67 @@ M.NotebookError = schema.new({
     },
 })
 
+M.GitMetadata = schema.new({
+    id = id.from(_N, "GitMetadata"),
+    type = "structure",
+    members = {
+        connectionId = schema.new({
+            id = id.from(_N, "GitMetadata", "connectionId"),
+            type = "string",
+            name = "connectionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        repository = schema.new({
+            id = id.from(_N, "GitMetadata", "repository"),
+            type = "string",
+            name = "repository",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        branch = schema.new({
+            id = id.from(_N, "GitMetadata", "branch"),
+            type = "string",
+            name = "branch",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        commitHash = schema.new({
+            id = id.from(_N, "GitMetadata", "commitHash"),
+            type = "string",
+            name = "commitHash",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fileName = schema.new({
+            id = id.from(_N, "GitMetadata", "fileName"),
+            type = "string",
+            name = "fileName",
+            target_id = prelude.String.id,
+        }),
+        committedAt = schema.new({
+            id = id.from(_N, "GitMetadata", "committedAt"),
+            type = "timestamp",
+            name = "committedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        commitMessage = schema.new({
+            id = id.from(_N, "GitMetadata", "commitMessage"),
+            type = "string",
+            name = "commitMessage",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateNotebookOutput = schema.new({
     id = id.from(_N, "CreateNotebookOutput"),
     type = "structure",
@@ -11263,6 +11324,13 @@ M.CreateNotebookOutput = schema.new({
             name = "error",
             target_id = id.from(_N, "NotebookError"),
             target = M.NotebookError,
+        }),
+        gitMetadata = schema.new({
+            id = id.from(_N, "CreateNotebookOutput", "gitMetadata"),
+            type = "structure",
+            name = "gitMetadata",
+            target_id = id.from(_N, "GitMetadata"),
+            target = M.GitMetadata,
         }),
     },
 })
@@ -26053,6 +26121,13 @@ M.GetNotebookOutput = schema.new({
             target_id = id.from(_N, "NotebookError"),
             target = M.NotebookError,
         }),
+        gitMetadata = schema.new({
+            id = id.from(_N, "GetNotebookOutput", "gitMetadata"),
+            type = "structure",
+            name = "gitMetadata",
+            target_id = id.from(_N, "GitMetadata"),
+            target = M.GitMetadata,
+        }),
     },
 })
 
@@ -26456,6 +26531,13 @@ M.UpdateNotebookOutput = schema.new({
             name = "error",
             target_id = id.from(_N, "NotebookError"),
             target = M.NotebookError,
+        }),
+        gitMetadata = schema.new({
+            id = id.from(_N, "UpdateNotebookOutput", "gitMetadata"),
+            type = "structure",
+            name = "gitMetadata",
+            target_id = id.from(_N, "GitMetadata"),
+            target = M.GitMetadata,
         }),
     },
 })
@@ -30118,6 +30200,145 @@ M.StartNotebookImportOutput = schema.new({
         }),
         createdBy = schema.new({
             id = id.from(_N, "StartNotebookImportOutput", "createdBy"),
+            type = "string",
+            name = "createdBy",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StartNotebookSyncInput = schema.new({
+    id = id.from(_N, "StartNotebookSyncInput"),
+    type = "structure",
+    members = {
+        domainIdentifier = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "domainIdentifier"),
+            type = "string",
+            name = "domainIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        owningProjectIdentifier = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "owningProjectIdentifier"),
+            type = "string",
+            name = "owningProjectIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sourceLocation = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "sourceLocation"),
+            type = "union",
+            name = "sourceLocation",
+            target_id = id.from(_N, "SourceLocation"),
+            target = M.SourceLocation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        gitMetadata = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "gitMetadata"),
+            type = "structure",
+            name = "gitMetadata",
+            target_id = id.from(_N, "GitMetadata"),
+            target = M.GitMetadata,
+        }),
+        notebookId = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "notebookId"),
+            type = "string",
+            name = "notebookId",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "StartNotebookSyncInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.StartNotebookSyncOutput = schema.new({
+    id = id.from(_N, "StartNotebookSyncOutput"),
+    type = "structure",
+    members = {
+        notebookId = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "notebookId"),
+            type = "string",
+            name = "notebookId",
+            target_id = prelude.String.id,
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        domainId = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "domainId"),
+            type = "string",
+            name = "domainId",
+            target_id = prelude.String.id,
+        }),
+        owningProjectId = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "owningProjectId"),
+            type = "string",
+            name = "owningProjectId",
+            target_id = prelude.String.id,
+        }),
+        sourceLocation = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "sourceLocation"),
+            type = "union",
+            name = "sourceLocation",
+            target_id = id.from(_N, "SourceLocation"),
+            target = M.SourceLocation,
+        }),
+        gitMetadata = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "gitMetadata"),
+            type = "structure",
+            name = "gitMetadata",
+            target_id = id.from(_N, "GitMetadata"),
+            target = M.GitMetadata,
+        }),
+        name = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        createdBy = schema.new({
+            id = id.from(_N, "StartNotebookSyncOutput", "createdBy"),
             type = "string",
             name = "createdBy",
             target_id = prelude.String.id,
@@ -35085,6 +35306,18 @@ M.StartNotebookRun = schema.operation({
     output = M.StartNotebookRunOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/notebook-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartNotebookSync = schema.operation({
+    id = id.from("com.amazonaws.datazone", "StartNotebookSync"),
+    input = M.StartNotebookSyncInput,
+    output = M.StartNotebookSyncOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/domains/{domainIdentifier}/notebook-syncs" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

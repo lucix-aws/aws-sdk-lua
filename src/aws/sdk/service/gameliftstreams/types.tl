@@ -495,6 +495,20 @@ local record M
         ApplicationArns: {string}
     end
 
+    -- Contains the width and height dimensions, in pixels, that define the resolution of the stream session's virtual monitor. The total number of pixels (width × height) must not exceed 2,073,600 (equivalent to 1920 × 1080).
+    record Resolution
+        -- The width of the stream session's virtual monitor, in pixels. The value must be an even number.
+        Width: number
+        -- The height of the stream session's virtual monitor, in pixels. The value must be an even number.
+        Height: number
+    end
+
+    -- The virtual monitor settings for a stream session, including the resolution. If not specified, the stream session uses the default resolution of 1920 × 1080.
+    record DisplayConfiguration
+        -- The resolution to apply to the stream session's virtual monitor. When specified, this value overrides the default resolution of 1920 × 1080.
+        Resolution: Resolution
+    end
+
     enum ExportFilesStatus
         "SUCCEEDED"
         "FAILED"
@@ -610,6 +624,8 @@ local record M
         ExportFilesMetadata: ExportFilesMetadata
         -- The ARN of the AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on behalf of your application during the stream session.
         RoleArn: string
+        -- The configuration for the stream session's virtual monitor.
+        DisplayConfiguration: DisplayConfiguration
     end
 
     record ListStreamSessionsInput
@@ -725,6 +741,8 @@ local record M
         PerformanceStatsConfiguration: PerformanceStatsConfiguration
         -- The ARN of an AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on your behalf during the stream session. The role grants Amazon GameLift Streams permission to obtain temporary credentials for your application. The role's trust policy must allow the gameliftstreams.amazonaws.com service principal to assume it. The role name must start with GameLiftStreams-.
         RoleArn: string
+        -- The configuration for the stream session's virtual monitor, including the resolution settings. If not specified, Amazon GameLift Streams uses the default resolution of 1920 × 1080.
+        DisplayConfiguration: DisplayConfiguration
     end
 
     record StartStreamSessionOutput
@@ -772,6 +790,8 @@ local record M
         ExportFilesMetadata: ExportFilesMetadata
         -- The ARN of the AWS Identity and Access Management (IAM) role that Amazon GameLift Streams assumes on behalf of your application during the stream session.
         RoleArn: string
+        -- The configuration for the stream session's virtual monitor.
+        DisplayConfiguration: DisplayConfiguration
     end
 
     record GetStreamGroupInput

@@ -546,6 +546,12 @@ M.CreateChannelInput = schema.new({
             target_id = id.from(_N, "OutputHeaderConfiguration"),
             target = M.OutputHeaderConfiguration,
         }),
+        OutputLockingMode = schema.new({
+            id = id.from(_N, "CreateChannelInput", "OutputLockingMode"),
+            type = "string",
+            name = "OutputLockingMode",
+            target_id = prelude.String.id,
+        }),
         Tags = schema.new({
             id = id.from(_N, "CreateChannelInput", "Tags"),
             type = "map",
@@ -674,6 +680,12 @@ M.CreateChannelOutput = schema.new({
             name = "OutputHeaderConfiguration",
             target_id = id.from(_N, "OutputHeaderConfiguration"),
             target = M.OutputHeaderConfiguration,
+        }),
+        OutputLockingMode = schema.new({
+            id = id.from(_N, "CreateChannelOutput", "OutputLockingMode"),
+            type = "string",
+            name = "OutputLockingMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -855,6 +867,12 @@ M.GetChannelOutput = schema.new({
             target_id = id.from(_N, "OutputHeaderConfiguration"),
             target = M.OutputHeaderConfiguration,
         }),
+        OutputLockingMode = schema.new({
+            id = id.from(_N, "GetChannelOutput", "OutputLockingMode"),
+            type = "string",
+            name = "OutputLockingMode",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -953,6 +971,12 @@ M.ChannelListConfiguration = schema.new({
             id = id.from(_N, "ChannelListConfiguration", "InputType"),
             type = "string",
             name = "InputType",
+            target_id = prelude.String.id,
+        }),
+        OutputLockingMode = schema.new({
+            id = id.from(_N, "ChannelListConfiguration", "OutputLockingMode"),
+            type = "string",
+            name = "OutputLockingMode",
             target_id = prelude.String.id,
         }),
     },
@@ -1837,6 +1861,12 @@ M.Segment = schema.new({
             name = "Encryption",
             target_id = id.from(_N, "Encryption"),
             target = M.Encryption,
+        }),
+        OutputTimestampMode = schema.new({
+            id = id.from(_N, "Segment", "OutputTimestampMode"),
+            type = "string",
+            name = "OutputTimestampMode",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3730,6 +3760,12 @@ M.UpdateChannelOutput = schema.new({
             name = "OutputHeaderConfiguration",
             target_id = id.from(_N, "OutputHeaderConfiguration"),
             target = M.OutputHeaderConfiguration,
+        }),
+        OutputLockingMode = schema.new({
+            id = id.from(_N, "UpdateChannelOutput", "OutputLockingMode"),
+            type = "string",
+            name = "OutputLockingMode",
+            target_id = prelude.String.id,
         }),
     },
 })

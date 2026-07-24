@@ -27703,6 +27703,36 @@ M.Capabilities = schema.new({
             name = "Extension",
             target_id = prelude.String.id,
         }),
+        UseBrowserExtension = schema.new({
+            id = id.from(_N, "Capabilities", "UseBrowserExtension"),
+            type = "string",
+            name = "UseBrowserExtension",
+            target_id = prelude.String.id,
+        }),
+        UseWordAddInExtension = schema.new({
+            id = id.from(_N, "Capabilities", "UseWordAddInExtension"),
+            type = "string",
+            name = "UseWordAddInExtension",
+            target_id = prelude.String.id,
+        }),
+        UseOutlookAddInExtension = schema.new({
+            id = id.from(_N, "Capabilities", "UseOutlookAddInExtension"),
+            type = "string",
+            name = "UseOutlookAddInExtension",
+            target_id = prelude.String.id,
+        }),
+        UseExcelAddInExtension = schema.new({
+            id = id.from(_N, "Capabilities", "UseExcelAddInExtension"),
+            type = "string",
+            name = "UseExcelAddInExtension",
+            target_id = prelude.String.id,
+        }),
+        UsePowerpointAddInExtension = schema.new({
+            id = id.from(_N, "Capabilities", "UsePowerpointAddInExtension"),
+            type = "string",
+            name = "UsePowerpointAddInExtension",
+            target_id = prelude.String.id,
+        }),
         ManageSharedFolders = schema.new({
             id = id.from(_N, "Capabilities", "ManageSharedFolders"),
             type = "string",

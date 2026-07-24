@@ -1176,6 +1176,34 @@ local record M
         location: ResourceLocation
     end
 
+    -- The configuration for mounting an Amazon Elastic File System (Amazon EFS) access point that you own into a session.
+    record EfsConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Elastic File System (Amazon EFS) access point to mount.
+        accessPointArn: string
+        -- The absolute path within the session at which the access point is mounted, for example /mnt/efs. Each mount path must be unique across all file system configurations in the session.
+        mountPath: string
+        -- The Amazon Resource Name (ARN) of the Amazon Elastic File System (Amazon EFS) file system that owns the access point.
+        fileSystemArn: string
+    end
+
+    -- The configuration for mounting an Amazon Simple Storage Service (Amazon S3) Files access point that you own into a session.
+    record S3FilesConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon Simple Storage Service (Amazon S3) Files access point to mount.
+        accessPointArn: string
+        -- The absolute path within the session at which the access point is mounted, for example /mnt/s3data. Each mount path must be unique across all file system configurations in the session.
+        mountPath: string
+        -- The Amazon Resource Name (ARN) of the Amazon Simple Storage Service (Amazon S3) Files file system that owns the access point.
+        fileSystemArn: string
+    end
+
+    -- Specifies a file system to mount into the session by providing exactly one of the following: s3FilesConfiguration - Mounts an Amazon Simple Storage Service (Amazon S3) Files access point. efsConfiguration - Mounts an Amazon Elastic File System (Amazon EFS) access point.
+    record ToolsFileSystemConfiguration
+        -- The configuration for mounting your own Amazon Simple Storage Service (Amazon S3) Files access point into the session.
+        s3FilesConfiguration: S3FilesConfiguration
+        -- The configuration for mounting your own Amazon Elastic File System (Amazon EFS) access point into the session.
+        efsConfiguration: EfsConfiguration
+    end
+
     enum BrowserNetworkMode
         "PUBLIC"
         "VPC"
@@ -1214,6 +1242,8 @@ local record M
         enterprisePolicies: {BrowserEnterprisePolicy}
         -- A list of certificates to install in the browser.
         certificates: {Certificate}
+        -- The file system configurations to mount into the browser. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your sessions can then access your data. If you don't specify this field, no file systems are mounted.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
         -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request but does not return an error.
         clientToken: string
         -- A map of tag keys and values to assign to the browser. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
@@ -1286,6 +1316,8 @@ local record M
         enterprisePolicies: {BrowserEnterprisePolicy}
         -- The list of certificates configured for the browser.
         certificates: {Certificate}
+        -- The file system configurations mounted into the browser. Each entry describes an access point and its mount path.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
         -- The current status of the browser.
         status: string
         -- The reason for failure if the browser is in a failed state.
@@ -1358,6 +1390,8 @@ local record M
         networkConfiguration: CodeInterpreterNetworkConfiguration
         -- A list of certificates to install in the code interpreter.
         certificates: {Certificate}
+        -- The file system configurations to mount into the code interpreter. Use these configurations to mount your own Amazon Simple Storage Service (Amazon S3) Files or Amazon Elastic File System (Amazon EFS) access points. Your sessions can then access your data. If you don't specify this field, no file systems are mounted.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
         -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, Amazon Bedrock AgentCore ignores the request but does not return an error.
         clientToken: string
         -- A map of tag keys and values to assign to the code interpreter. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
@@ -1421,6 +1455,8 @@ local record M
         status: string
         -- The list of certificates configured for the code interpreter.
         certificates: {Certificate}
+        -- The file system configurations mounted into the code interpreter. Each entry describes an access point and its mount path.
+        filesystemConfigurations: {ToolsFileSystemConfiguration}
         -- The reason for failure if the code interpreter is in a failed state.
         failureReason: string
         -- The timestamp when the code interpreter was created.

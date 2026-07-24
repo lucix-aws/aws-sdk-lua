@@ -10,8 +10,7 @@ local record M
     end
 
     record AssociateGatewayToServerInput
-        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
-        -- to return a list of gateways for your account and Amazon Web Services Region.
+        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.
         GatewayArn: string
         -- The Amazon Resource Name (ARN) of the server that hosts your virtual machines.
         ServerArn: string
@@ -36,11 +35,9 @@ local record M
         Message: string
     end
 
-    -- TPS has been limited to protect against intentional or unintentional
-    -- high request volumes.
+    -- TPS has been limited to protect against intentional or unintentional high request volumes.
     record ThrottlingException
-        -- Error: TPS has been limited to protect against intentional or unintentional
-        -- high request volumes.
+        -- Error: TPS has been limited to protect against intentional or unintentional high request volumes.
         ErrorCode: string
         Message: string
     end
@@ -53,49 +50,30 @@ local record M
     end
 
     record GetBandwidthRateLimitScheduleInput
-        -- The Amazon Resource Name (ARN) of the gateway. Use the
-        -- ListGateways
-        -- operation to return a list of gateways
-        -- for your account and Amazon Web Services Region.
+        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.
         GatewayArn: string
     end
 
-    -- Describes a bandwidth rate limit interval for a gateway. A bandwidth
-    -- rate limit schedule consists of one or more bandwidth rate limit intervals.
-    -- A bandwidth rate limit interval defines a period of time on one or more days
-    -- of the week, during which bandwidth rate limits are specified for uploading,
-    -- downloading, or both.
+    -- Describes a bandwidth rate limit interval for a gateway. A bandwidth rate limit schedule consists of one or more bandwidth rate limit intervals. A bandwidth rate limit interval defines a period of time on one or more days of the week, during which bandwidth rate limits are specified for uploading, downloading, or both.
     record BandwidthRateLimitInterval
-        -- The average upload rate limit component of the bandwidth rate limit
-        -- interval, in bits per second. This field does not appear in the response if
-        -- the upload rate limit is not set.
+        -- The average upload rate limit component of the bandwidth rate limit interval, in bits per second. This field does not appear in the response if the upload rate limit is not set.
         AverageUploadRateLimitInBitsPerSec: number
         -- The hour of the day to start the bandwidth rate limit interval.
         StartHourOfDay: number
         -- The hour of the day to end the bandwidth rate limit interval.
         EndHourOfDay: number
-        -- The minute of the hour to start the bandwidth rate limit interval. The
-        -- interval begins at the start of that minute. To begin an interval exactly at
-        -- the start of the hour, use the value 0.
+        -- The minute of the hour to start the bandwidth rate limit interval. The interval begins at the start of that minute. To begin an interval exactly at the start of the hour, use the value 0.
         StartMinuteOfHour: number
-        -- The minute of the hour to end the bandwidth rate limit interval.
-        -- The bandwidth rate limit interval ends at the end of the minute.
-        -- To end an interval at the end of an hour, use the value 59.
+        -- The minute of the hour to end the bandwidth rate limit interval. The bandwidth rate limit interval ends at the end of the minute. To end an interval at the end of an hour, use the value 59.
         EndMinuteOfHour: number
-        -- The days of the week component of the bandwidth rate limit interval,
-        -- represented as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 represents
-        -- Saturday.
+        -- The days of the week component of the bandwidth rate limit interval, represented as ordinal numbers from 0 to 6, where 0 represents Sunday and 6 represents Saturday.
         DaysOfWeek: {number}
     end
 
     record GetBandwidthRateLimitScheduleOutput
-        -- The Amazon Resource Name (ARN) of the gateway. Use the
-        -- ListGateways
-        -- operation to return a list of gateways
-        -- for your account and Amazon Web Services Region.
+        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.
         GatewayArn: string
-        -- An array containing bandwidth rate limit schedule intervals for a gateway.
-        -- When no bandwidth rate limit intervals have been scheduled, the array is empty.
+        -- An array containing bandwidth rate limit schedule intervals for a gateway. When no bandwidth rate limit intervals have been scheduled, the array is empty.
         BandwidthRateLimitIntervals: {BandwidthRateLimitInterval}
     end
 
@@ -107,21 +85,14 @@ local record M
     end
 
     record PutBandwidthRateLimitScheduleInput
-        -- The Amazon Resource Name (ARN) of the gateway. Use the
-        -- ListGateways
-        -- operation to return a list of gateways
-        -- for your account and Amazon Web Services Region.
+        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.
         GatewayArn: string
-        -- An array containing bandwidth rate limit schedule intervals for a gateway.
-        -- When no bandwidth rate limit intervals have been scheduled, the array is empty.
+        -- An array containing bandwidth rate limit schedule intervals for a gateway. When no bandwidth rate limit intervals have been scheduled, the array is empty.
         BandwidthRateLimitIntervals: {BandwidthRateLimitInterval}
     end
 
     record PutBandwidthRateLimitScheduleOutput
-        -- The Amazon Resource Name (ARN) of the gateway. Use the
-        -- ListGateways
-        -- operation to return a list of gateways
-        -- for your account and Amazon Web Services Region.
+        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.
         GatewayArn: string
     end
 
@@ -129,9 +100,7 @@ local record M
         "BACKUP_VM"
     end
 
-    -- A key-value pair you can use to manage, filter, and search for your resources. Allowed
-    -- characters include UTF-8 letters, numbers, and the following characters: + - = . _ :
-    -- /. Spaces are not allowed in tag values.
+    -- A key-value pair you can use to manage, filter, and search for your resources. Allowed characters include UTF-8 letters, numbers, and the following characters: + - = . _ : /. Spaces are not allowed in tag values.
     record Tag
         -- The key part of a tag's key-value pair. The key can't start with aws:.
         Key: string
@@ -180,29 +149,21 @@ local record M
         GatewayArn: string
     end
 
-    -- This is your gateway's weekly maintenance start time including the day and time of the week.
-    -- Note that values are in terms of the gateway's time zone. Can be weekly or monthly.
+    -- This is your gateway's weekly maintenance start time including the day and time of the week. Note that values are in terms of the gateway's time zone. Can be weekly or monthly.
     record MaintenanceStartTime
-        -- The day of the month component of the maintenance start time represented as an ordinal number from
-        -- 1 to 28, where 1 represents the first day of the month and 28 represents the last day of the month.
+        -- The day of the month component of the maintenance start time represented as an ordinal number from 1 to 28, where 1 represents the first day of the month and 28 represents the last day of the month.
         DayOfMonth: number
-        -- An ordinal number between 0 and 6 that represents the day of the week, where 0 represents Sunday
-        -- and 6 represents Saturday. The day of week is in the time zone of the gateway.
+        -- An ordinal number between 0 and 6 that represents the day of the week, where 0 represents Sunday and 6 represents Saturday. The day of week is in the time zone of the gateway.
         DayOfWeek: number
-        -- The hour component of the maintenance start time represented as hh,
-        -- where hh is the hour (0 to 23). The hour of the day is in the time zone of the gateway.
+        -- The hour component of the maintenance start time represented as hh, where hh is the hour (0 to 23). The hour of the day is in the time zone of the gateway.
         HourOfDay: number
-        -- The minute component of the maintenance start time represented as mm, where
-        -- mm is the minute (0 to 59). The minute of the hour is in the time zone of the gateway.
+        -- The minute component of the maintenance start time represented as mm, where mm is the minute (0 to 59). The minute of the hour is in the time zone of the gateway.
         MinuteOfHour: number
     end
 
     -- The details of gateway.
     record GatewayDetails
-        -- The Amazon Resource Name (ARN) of the
-        -- gateway. Use the ListGateways operation
-        -- to return a list of gateways for your account and
-        -- Amazon Web Services Region.
+        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.
         GatewayArn: string
         -- The display name of the gateway.
         GatewayDisplayName: string
@@ -210,17 +171,13 @@ local record M
         GatewayType: string
         -- The hypervisor ID of the gateway.
         HypervisorId: string
-        -- Details showing the last time Backup gateway communicated
-        -- with the cloud, in Unix format and UTC time.
+        -- Details showing the last time Backup gateway communicated with the cloud, in Unix format and UTC time.
         LastSeenTime: number
-        -- Returns your gateway's weekly maintenance start time including the day and time of the week.
-        -- Note that values are in terms of the gateway's time zone. Can be weekly or monthly.
+        -- Returns your gateway's weekly maintenance start time including the day and time of the week. Note that values are in terms of the gateway's time zone. Can be weekly or monthly.
         MaintenanceStartTime: MaintenanceStartTime
-        -- Details showing the next update availability time of the
-        -- gateway.
+        -- Details showing the next update availability time of the gateway.
         NextUpdateAvailabilityTime: number
-        -- The DNS name for the virtual private cloud (VPC) endpoint the gateway
-        -- uses to connect to the cloud for backup gateway.
+        -- The DNS name for the virtual private cloud (VPC) endpoint the gateway uses to connect to the cloud for backup gateway.
         VpcEndpoint: string
         -- Date after which this gateway will not receive software updates for new features and bug fixes.
         DeprecationDate: number
@@ -229,26 +186,20 @@ local record M
     end
 
     record GetGatewayOutput
-        -- By providing the ARN (Amazon Resource Name), this
-        -- API returns the gateway.
+        -- By providing the ARN (Amazon Resource Name), this API returns the gateway.
         Gateway: GatewayDetails
     end
 
     record ListGatewaysInput
         -- The maximum number of gateways to list.
         MaxResults: number
-        -- The next item following a partial list of returned resources. For example, if a request is
-        -- made to return MaxResults number of resources, NextToken allows you
-        -- to return more items in your list starting at the location pointed to by the next
-        -- token.
+        -- The next item following a partial list of returned resources. For example, if a request is made to return MaxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.
         NextToken: string
     end
 
-    -- A gateway is an Backup Gateway appliance that runs on the customer's network
-    -- to provide seamless connectivity to backup storage in the Amazon Web Services Cloud.
+    -- A gateway is an Backup Gateway appliance that runs on the customer's network to provide seamless connectivity to backup storage in the Amazon Web Services Cloud.
     record Gateway
-        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation
-        -- to return a list of gateways for your account and Amazon Web Services Region.
+        -- The Amazon Resource Name (ARN) of the gateway. Use the ListGateways operation to return a list of gateways for your account and Amazon Web Services Region.
         GatewayArn: string
         -- The display name of the gateway.
         GatewayDisplayName: string
@@ -256,24 +207,19 @@ local record M
         GatewayType: string
         -- The hypervisor ID of the gateway.
         HypervisorId: string
-        -- The last time Backup gateway communicated with the gateway, in Unix format and
-        -- UTC time.
+        -- The last time Backup gateway communicated with the gateway, in Unix format and UTC time.
         LastSeenTime: number
     end
 
     record ListGatewaysOutput
         -- A list of your gateways.
         Gateways: {Gateway}
-        -- The next item following a partial list of returned resources. For example, if a request is
-        -- made to return maxResults number of resources, NextToken allows you
-        -- to return more items in your list starting at the location pointed to by the next
-        -- token.
+        -- The next item following a partial list of returned resources. For example, if a request is made to return maxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.
         NextToken: string
     end
 
     record PutMaintenanceStartTimeInput
-        -- The Amazon Resource Name (ARN) for the gateway, used to specify its maintenance start
-        -- time.
+        -- The Amazon Resource Name (ARN) for the gateway, used to specify its maintenance start time.
         GatewayArn: string
         -- The hour of the day to start maintenance on a gateway.
         HourOfDay: number
@@ -281,22 +227,19 @@ local record M
         MinuteOfHour: number
         -- The day of the week to start maintenance on a gateway.
         DayOfWeek: number
-        -- The day of the month start maintenance on a gateway.
-        -- Valid values range from Sunday to Saturday.
+        -- The day of the month start maintenance on a gateway. Valid values range from Sunday to Saturday.
         DayOfMonth: number
     end
 
     record PutMaintenanceStartTimeOutput
-        -- The Amazon Resource Name (ARN) of a gateway for which you set the maintenance start
-        -- time.
+        -- The Amazon Resource Name (ARN) of a gateway for which you set the maintenance start time.
         GatewayArn: string
     end
 
     record TestHypervisorConfigurationInput
         -- The Amazon Resource Name (ARN) of the gateway to the hypervisor to test.
         GatewayArn: string
-        -- The server host of the hypervisor. This can be either an IP address or a fully-qualified
-        -- domain name (FQDN).
+        -- The server host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).
         Host: string
         -- The username for the hypervisor.
         Username: string
@@ -320,14 +263,12 @@ local record M
     end
 
     record UpdateGatewaySoftwareNowInput
-        -- The Amazon Resource Name (ARN) of the gateway
-        -- to be updated.
+        -- The Amazon Resource Name (ARN) of the gateway to be updated.
         GatewayArn: string
     end
 
     record UpdateGatewaySoftwareNowOutput
-        -- The Amazon Resource Name (ARN) of the gateway
-        -- you updated.
+        -- The Amazon Resource Name (ARN) of the gateway you updated.
         GatewayArn: string
     end
 
@@ -361,29 +302,21 @@ local record M
         "ERROR"
     end
 
-    -- These are the details of the specified hypervisor. A hypervisor is hardware,
-    -- software, or firmware that creates and manages virtual machines, and allocates
-    -- resources to them.
+    -- These are the details of the specified hypervisor. A hypervisor is hardware, software, or firmware that creates and manages virtual machines, and allocates resources to them.
     record HypervisorDetails
-        -- The server host of the hypervisor. This can be either an IP address or
-        -- a fully-qualified domain name (FQDN).
+        -- The server host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).
         Host: string
         -- The Amazon Resource Name (ARN) of the hypervisor.
         HypervisorArn: string
-        -- The Amazon Resource Name (ARN) of the KMS
-        -- used to encrypt the hypervisor.
+        -- The Amazon Resource Name (ARN) of the KMS used to encrypt the hypervisor.
         KmsKeyArn: string
         -- This is the name of the specified hypervisor.
         Name: string
-        -- The Amazon Resource Name (ARN) of the group of gateways within
-        -- the requested log.
+        -- The Amazon Resource Name (ARN) of the group of gateways within the requested log.
         LogGroupArn: string
-        -- This is the current state of the specified hypervisor.
-        -- The possible states are PENDING, ONLINE,
-        -- OFFLINE, or ERROR.
+        -- This is the current state of the specified hypervisor. The possible states are PENDING, ONLINE, OFFLINE, or ERROR.
         State: string
-        -- This is the time when the most recent successful sync
-        -- of metadata occurred.
+        -- This is the time when the most recent successful sync of metadata occurred.
         LastSuccessfulMetadataSyncTime: number
         -- This is the most recent status for the indicated metadata sync.
         LatestMetadataSyncStatusMessage: string
@@ -401,8 +334,7 @@ local record M
         HypervisorArn: string
     end
 
-    -- This displays the mapping of VMware tags to the
-    -- corresponding Amazon Web Services tags.
+    -- This displays the mapping of VMware tags to the corresponding Amazon Web Services tags.
     record VmwareToAwsTagMapping
         -- The is the category of VMware.
         VmwareCategory: string
@@ -417,8 +349,7 @@ local record M
     record GetHypervisorPropertyMappingsOutput
         -- The Amazon Resource Name (ARN) of the hypervisor.
         HypervisorArn: string
-        -- This is a display of the mappings of VMware tags to the
-        -- Amazon Web Services tags.
+        -- This is a display of the mappings of VMware tags to the Amazon Web Services tags.
         VmwareToAwsTagMappings: {VmwareToAwsTagMapping}
         -- The Amazon Resource Name (ARN) of the IAM role.
         IamRoleArn: string
@@ -427,8 +358,7 @@ local record M
     record PutHypervisorPropertyMappingsInput
         -- The Amazon Resource Name (ARN) of the hypervisor.
         HypervisorArn: string
-        -- This action requests the mappings of VMware tags to the
-        -- Amazon Web Services tags.
+        -- This action requests the mappings of VMware tags to the Amazon Web Services tags.
         VmwareToAwsTagMappings: {VmwareToAwsTagMapping}
         -- The Amazon Resource Name (ARN) of the IAM role.
         IamRoleArn: string
@@ -442,8 +372,7 @@ local record M
     record ImportHypervisorConfigurationInput
         -- The name of the hypervisor.
         Name: string
-        -- The server host of the hypervisor. This can be either an IP address or a fully-qualified
-        -- domain name (FQDN).
+        -- The server host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).
         Host: string
         -- The username for the hypervisor.
         Username: string
@@ -463,24 +392,17 @@ local record M
     record ListHypervisorsInput
         -- The maximum number of hypervisors to list.
         MaxResults: number
-        -- The next item following a partial list of returned resources. For example, if a request is
-        -- made to return maxResults number of resources, NextToken allows you
-        -- to return more items in your list starting at the location pointed to by the next
-        -- token.
+        -- The next item following a partial list of returned resources. For example, if a request is made to return maxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.
         NextToken: string
     end
 
-    -- Represents the hypervisor's permissions to which the gateway will connect.
-    -- A hypervisor is hardware, software, or firmware that creates and manages virtual machines,
-    -- and allocates resources to them.
+    -- Represents the hypervisor's permissions to which the gateway will connect. A hypervisor is hardware, software, or firmware that creates and manages virtual machines, and allocates resources to them.
     record Hypervisor
-        -- The server host of the hypervisor. This can be either an IP address or a fully-qualified
-        -- domain name (FQDN).
+        -- The server host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).
         Host: string
         -- The Amazon Resource Name (ARN) of the hypervisor.
         HypervisorArn: string
-        -- The Amazon Resource Name (ARN) of the Key Management Service used to encrypt the
-        -- hypervisor.
+        -- The Amazon Resource Name (ARN) of the Key Management Service used to encrypt the hypervisor.
         KmsKeyArn: string
         -- The name of the hypervisor.
         Name: string
@@ -489,13 +411,9 @@ local record M
     end
 
     record ListHypervisorsOutput
-        -- A list of your Hypervisor objects, ordered by their Amazon Resource Names
-        -- (ARNs).
+        -- A list of your Hypervisor objects, ordered by their Amazon Resource Names (ARNs).
         Hypervisors: {Hypervisor}
-        -- The next item following a partial list of returned resources. For example, if a request is
-        -- made to return maxResults number of resources, NextToken allows you
-        -- to return more items in your list starting at the location pointed to by the next
-        -- token.
+        -- The next item following a partial list of returned resources. For example, if a request is made to return maxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.
         NextToken: string
     end
 
@@ -512,8 +430,7 @@ local record M
     record UpdateHypervisorInput
         -- The Amazon Resource Name (ARN) of the hypervisor to update.
         HypervisorArn: string
-        -- The updated host of the hypervisor. This can be either an IP address or a fully-qualified
-        -- domain name (FQDN).
+        -- The updated host of the hypervisor. This can be either an IP address or a fully-qualified domain name (FQDN).
         Host: string
         -- The updated username for the hypervisor.
         Username: string
@@ -571,10 +488,7 @@ local record M
         ResourceArn: string
     end
 
-    -- A VMware tag is a tag attached to a specific virtual machine.
-    -- A tag
-    -- is a key-value pair you can use to manage, filter, and search for your resources.
-    -- The content of VMware tags can be matched to Amazon Web Services tags.
+    -- A VMware tag is a tag attached to a specific virtual machine. A tag is a key-value pair you can use to manage, filter, and search for your resources. The content of VMware tags can be matched to Amazon Web Services tags.
     record VmwareTag
         -- The is the category of VMware.
         VmwareCategory: string
@@ -594,19 +508,16 @@ local record M
         Name: string
         -- The path of the virtual machine.
         Path: string
-        -- The Amazon Resource Name (ARN) of the virtual machine. For example,
-        -- arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL.
+        -- The Amazon Resource Name (ARN) of the virtual machine. For example, arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL.
         ResourceArn: string
         -- The most recent date a virtual machine was backed up, in Unix format and UTC time.
         LastBackupDate: number
-        -- These are the details of the VMware tags associated with the specified
-        -- virtual machine.
+        -- These are the details of the VMware tags associated with the specified virtual machine.
         VmwareTags: {VmwareTag}
     end
 
     record GetVirtualMachineOutput
-        -- This object contains the basic attributes of VirtualMachine contained by the output of
-        -- GetVirtualMachine
+        -- This object contains the basic attributes of VirtualMachine contained by the output of GetVirtualMachine
         VirtualMachine: VirtualMachineDetails
     end
 
@@ -615,10 +526,7 @@ local record M
         HypervisorArn: string
         -- The maximum number of virtual machines to list.
         MaxResults: number
-        -- The next item following a partial list of returned resources. For example, if a request is
-        -- made to return maxResults number of resources, NextToken allows you
-        -- to return more items in your list starting at the location pointed to by the next
-        -- token.
+        -- The next item following a partial list of returned resources. For example, if a request is made to return maxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.
         NextToken: string
     end
 
@@ -632,21 +540,16 @@ local record M
         Name: string
         -- The path of the virtual machine.
         Path: string
-        -- The Amazon Resource Name (ARN) of the virtual machine. For example,
-        -- arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL.
+        -- The Amazon Resource Name (ARN) of the virtual machine. For example, arn:aws:backup-gateway:us-west-1:0000000000000:vm/vm-0000ABCDEFGIJKL.
         ResourceArn: string
         -- The most recent date a virtual machine was backed up, in Unix format and UTC time.
         LastBackupDate: number
     end
 
     record ListVirtualMachinesOutput
-        -- A list of your VirtualMachine objects, ordered by their Amazon Resource Names
-        -- (ARNs).
+        -- A list of your VirtualMachine objects, ordered by their Amazon Resource Names (ARNs).
         VirtualMachines: {VirtualMachine}
-        -- The next item following a partial list of returned resources. For example, if a request is
-        -- made to return maxResults number of resources, NextToken allows you
-        -- to return more items in your list starting at the location pointed to by the next
-        -- token.
+        -- The next item following a partial list of returned resources. For example, if a request is made to return maxResults number of resources, NextToken allows you to return more items in your list starting at the location pointed to by the next token.
         NextToken: string
     end
 

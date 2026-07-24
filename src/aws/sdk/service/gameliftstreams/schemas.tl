@@ -1389,6 +1389,45 @@ M.DisassociateApplicationsOutput = schema.new({
     },
 })
 
+M.Resolution = schema.new({
+    id = id.from(_N, "Resolution"),
+    type = "structure",
+    members = {
+        Width = schema.new({
+            id = id.from(_N, "Resolution", "Width"),
+            type = "integer",
+            name = "Width",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Height = schema.new({
+            id = id.from(_N, "Resolution", "Height"),
+            type = "integer",
+            name = "Height",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisplayConfiguration = schema.new({
+    id = id.from(_N, "DisplayConfiguration"),
+    type = "structure",
+    members = {
+        Resolution = schema.new({
+            id = id.from(_N, "DisplayConfiguration", "Resolution"),
+            type = "structure",
+            name = "Resolution",
+            target_id = id.from(_N, "Resolution"),
+            target = M.Resolution,
+        }),
+    },
+})
+
 M.ExportFilesMetadata = schema.new({
     id = id.from(_N, "ExportFilesMetadata"),
     type = "structure",
@@ -1635,6 +1674,13 @@ M.GetStreamSessionOutput = schema.new({
             type = "string",
             name = "RoleArn",
             target_id = prelude.String.id,
+        }),
+        DisplayConfiguration = schema.new({
+            id = id.from(_N, "GetStreamSessionOutput", "DisplayConfiguration"),
+            type = "structure",
+            name = "DisplayConfiguration",
+            target_id = id.from(_N, "DisplayConfiguration"),
+            target = M.DisplayConfiguration,
         }),
     },
 })
@@ -2020,6 +2066,13 @@ M.StartStreamSessionInput = schema.new({
             name = "RoleArn",
             target_id = prelude.String.id,
         }),
+        DisplayConfiguration = schema.new({
+            id = id.from(_N, "StartStreamSessionInput", "DisplayConfiguration"),
+            type = "structure",
+            name = "DisplayConfiguration",
+            target_id = id.from(_N, "DisplayConfiguration"),
+            target = M.DisplayConfiguration,
+        }),
     },
 })
 
@@ -2163,6 +2216,13 @@ M.StartStreamSessionOutput = schema.new({
             type = "string",
             name = "RoleArn",
             target_id = prelude.String.id,
+        }),
+        DisplayConfiguration = schema.new({
+            id = id.from(_N, "StartStreamSessionOutput", "DisplayConfiguration"),
+            type = "structure",
+            name = "DisplayConfiguration",
+            target_id = id.from(_N, "DisplayConfiguration"),
+            target = M.DisplayConfiguration,
         }),
     },
 })
