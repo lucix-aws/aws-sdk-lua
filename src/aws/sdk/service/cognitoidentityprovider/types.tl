@@ -932,6 +932,48 @@ local record M
         UserMFASettingList: {string}
     end
 
+    record AdminGetUserAuthFactorsInput
+        -- The ID of the user pool where you want to get information about the user's
+        -- authentication factors.
+        UserPoolId: string
+        -- The name of the user that you want to query or modify. The value of this parameter
+        -- is typically your user's username, but it can be any of their alias attributes. If
+        -- username isn't an alias attribute in your user pool, this value
+        -- must be the sub of a local user or the username of a user from a
+        -- third-party IdP.
+        Username: string
+    end
+
+    enum AuthFactorType
+        "PASSWORD"
+        "EMAIL_OTP"
+        "SMS_OTP"
+        "WEB_AUTHN"
+        "SOFTWARE_TOKEN"
+    end
+
+    record AdminGetUserAuthFactorsOutput
+        -- The name of the user who is eligible for the authentication factors in the
+        -- response.
+        Username: string
+        -- The challenge method that Amazon Cognito returns to the user in response to sign-in requests.
+        -- Users can prefer SMS message, email message, or TOTP MFA.
+        PreferredMfaSetting: string
+        -- The MFA options that are activated for the user. The possible values in this list are
+        -- SMS_MFA, EMAIL_OTP, and
+        -- SOFTWARE_TOKEN_MFA.
+        UserMFASettingList: {string}
+        -- The authentication types that are available to the user with USER_AUTH
+        -- sign-in, for example ["PASSWORD", "WEB_AUTHN"].
+        -- PASSWORD can only be used as a first authentication factor.
+        -- SOFTWARE_TOKEN can only be used as an MFA factor.
+        -- EMAIL_OTP, SMS_OTP, and WEB_AUTHN can be
+        -- used as either a first authentication factor or an MFA factor. WEB_AUTHN
+        -- is available as an MFA factor only when passkey MFA is enabled at the user pool
+        -- level.
+        ConfiguredUserAuthFactors: {string}
+    end
+
     -- Information that your application adds to authentication requests. Applies an endpoint
     -- ID to the analytics data that your user pool sends to Amazon Pinpoint.
     -- An endpoint ID uniquely identifies a mobile device, email address or phone number that
@@ -2345,13 +2387,6 @@ local record M
         "preferred_username"
     end
 
-    enum AuthFactorType
-        "PASSWORD"
-        "EMAIL_OTP"
-        "SMS_OTP"
-        "WEB_AUTHN"
-    end
-
     -- The settings for Amazon Pinpoint analytics configuration. With an analytics configuration,
     -- your application can collect user-activity metrics for user notifications with a Amazon Pinpoint
     -- campaign.
@@ -3624,6 +3659,8 @@ local record M
         -- The sign-in methods that a user pool supports as the first factor. You can permit
         -- users to start authentication with a standard username and password, or with other
         -- one-time password and hardware factors.
+        -- SOFTWARE_TOKEN is not currently supported as a first auth factor.
+        -- Do not include this value in AllowedFirstAuthFactors.
         AllowedFirstAuthFactors: {string}
     end
 
@@ -3873,6 +3910,14 @@ local record M
         -- doesn't automatically prompt users to set up MFA. Amazon Cognito generates MFA prompts in
         -- API responses and in managed login for users who have chosen and configured a preferred
         -- MFA factor.
+        -- The CreateUserPool operation supports only SMS MFA configuration. If you
+        -- set MfaConfiguration to either of these values, include an
+        -- SmsConfiguration in the same request:
+        -- ON – Requires MFA for all users
+        -- OPTIONAL – Makes MFA optional for each user
+        -- If you omit SmsConfiguration, the operation returns an
+        -- InvalidParameterException. To configure TOTP or email MFA, use the SetUserPoolMfaConfig operation. You can also use
+        -- SetUserPoolMfaConfig to add MFA factors later.
         MfaConfiguration: string
         -- The settings for updates to user attributes. These settings include the property AttributesRequireVerificationBeforeUpdate,
         -- a user-pool setting that tells Amazon Cognito how to handle changes to the value of your users' email address and phone number attributes. For
@@ -4755,6 +4800,12 @@ local record M
         -- of 1 indicates hosted UI (classic) and a version of 2
         -- indicates managed login.
         -- Managed login requires that your user pool be configured for any feature plan other than Lite.
+        -- A ManagedLoginVersion value of 2 does not activate managed
+        -- login pages for your app client. When you create an app client programmatically,
+        -- your app client has no branding style. To use managed login, create a branding style
+        -- using the CreateManagedLoginBranding operation. When you use the console, Amazon Cognito assigns
+        -- a default branding style automatically. When you use the API or an SDK, you must create a
+        -- branding style yourself.
         ManagedLoginVersion: number
         -- The configuration for a custom domain. Configures your domain with an Certificate Manager
         -- certificate in the us-east-1 Region.
@@ -5703,6 +5754,12 @@ local record M
         UserMFASettingList: {string}
         -- The authentication types that are available to the user with USER_AUTH
         -- sign-in, for example ["PASSWORD", "WEB_AUTHN"].
+        -- PASSWORD can only be used as a first authentication factor.
+        -- SOFTWARE_TOKEN can only be used as an MFA factor.
+        -- EMAIL_OTP, SMS_OTP, and WEB_AUTHN can be
+        -- used as either a first authentication factor or an MFA factor. WEB_AUTHN
+        -- is available as an MFA factor only when passkey MFA is enabled at the user pool
+        -- level.
         ConfiguredUserAuthFactors: {string}
     end
 

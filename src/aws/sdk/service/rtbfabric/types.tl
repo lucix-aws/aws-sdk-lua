@@ -1098,8 +1098,6 @@ local record M
         activeLinksCount: number
         -- The total count of links for the responder gateway.
         totalLinksCount: number
-        -- Deprecated. Use 'linksRequestedCount' instead.
-        inboundLinksCount: number
         -- The count of requested links waiting for the responder gateway to accept or reject.
         linksRequestedCount: number
         -- The type of gateway. Valid values are EXTERNAL or INTERNAL.

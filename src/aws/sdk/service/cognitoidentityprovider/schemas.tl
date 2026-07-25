@@ -23,6 +23,8 @@ M.MFAOptionListType = schema.new({ type = "list", list_member = M.MFAOptionType 
 
 M.UserMFASettingListType = schema.new({ type = "list", list_member = prelude.String })
 
+M.ConfiguredUserAuthFactorsListType = schema.new({ type = "list", list_member = prelude.String })
+
 M.AuthParametersType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ChallengeParametersType = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -74,8 +76,6 @@ M.OAuthFlowsType = schema.new({ type = "list", list_member = prelude.String })
 M.ScopeListType = schema.new({ type = "list", list_member = prelude.String })
 
 M.ListOfStringTypes = schema.new({ type = "list", list_member = prelude.String })
-
-M.ConfiguredUserAuthFactorsListType = schema.new({ type = "list", list_member = prelude.String })
 
 M.ProvidersListType = schema.new({ type = "list", list_member = M.ProviderDescription })
 
@@ -1622,6 +1622,67 @@ M.AdminGetUserOutput = schema.new({
             id = id.from(_N, "AdminGetUserOutput", "UserMFASettingList"),
             type = "list",
             name = "UserMFASettingList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AdminGetUserAuthFactorsInput = schema.new({
+    id = id.from(_N, "AdminGetUserAuthFactorsRequest"),
+    type = "structure",
+    members = {
+        UserPoolId = schema.new({
+            id = id.from(_N, "AdminGetUserAuthFactorsInput", "UserPoolId"),
+            type = "string",
+            name = "UserPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Username = schema.new({
+            id = id.from(_N, "AdminGetUserAuthFactorsInput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AdminGetUserAuthFactorsOutput = schema.new({
+    id = id.from(_N, "AdminGetUserAuthFactorsResponse"),
+    type = "structure",
+    members = {
+        Username = schema.new({
+            id = id.from(_N, "AdminGetUserAuthFactorsOutput", "Username"),
+            type = "string",
+            name = "Username",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PreferredMfaSetting = schema.new({
+            id = id.from(_N, "AdminGetUserAuthFactorsOutput", "PreferredMfaSetting"),
+            type = "string",
+            name = "PreferredMfaSetting",
+            target_id = prelude.String.id,
+        }),
+        UserMFASettingList = schema.new({
+            id = id.from(_N, "AdminGetUserAuthFactorsOutput", "UserMFASettingList"),
+            type = "list",
+            name = "UserMFASettingList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ConfiguredUserAuthFactors = schema.new({
+            id = id.from(_N, "AdminGetUserAuthFactorsOutput", "ConfiguredUserAuthFactors"),
+            type = "list",
+            name = "ConfiguredUserAuthFactors",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -11276,6 +11337,17 @@ M.AdminGetUser = schema.operation({
     id = id.from("com.amazonaws.cognitoidentityprovider", "AdminGetUser"),
     input = M.AdminGetUserInput,
     output = M.AdminGetUserOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.AdminGetUserAuthFactors = schema.operation({
+    id = id.from("com.amazonaws.cognitoidentityprovider", "AdminGetUserAuthFactors"),
+    input = M.AdminGetUserAuthFactorsInput,
+    output = M.AdminGetUserAuthFactorsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

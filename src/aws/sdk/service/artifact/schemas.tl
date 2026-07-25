@@ -21,6 +21,8 @@ M.InquiriesList = schema.new({ type = "list", list_member = M.InquirySummary })
 
 M.QueriesList = schema.new({ type = "list", list_member = M.QuerySummary })
 
+M.FeedbackReasonCodeList = schema.new({ type = "list", list_member = prelude.String })
+
 M.CustomerAgreementList = schema.new({ type = "list", list_member = M.CustomerAgreementSummary })
 
 M.ReportsList = schema.new({ type = "list", list_member = M.ReportSummary })
@@ -970,6 +972,85 @@ M.ListComplianceInquiryQueriesOutput = schema.new({
     },
 })
 
+M.PutComplianceInquiryFeedbackInput = schema.new({
+    id = id.from(_N, "PutComplianceInquiryFeedbackRequest"),
+    type = "structure",
+    members = {
+        complianceInquiryId = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackInput", "complianceInquiryId"),
+            type = "string",
+            name = "complianceInquiryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        queryIdentifier = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackInput", "queryIdentifier"),
+            type = "integer",
+            name = "queryIdentifier",
+            target_id = prelude.Integer.id,
+        }),
+        rating = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackInput", "rating"),
+            type = "string",
+            name = "rating",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        responseRevisionId = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackInput", "responseRevisionId"),
+            type = "integer",
+            name = "responseRevisionId",
+            target_id = prelude.Integer.id,
+        }),
+        reasonCodes = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackInput", "reasonCodes"),
+            type = "list",
+            name = "reasonCodes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        comment = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackInput", "comment"),
+            type = "string",
+            name = "comment",
+            target_id = prelude.String.id,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PutComplianceInquiryFeedbackOutput = schema.new({
+    id = id.from(_N, "PutComplianceInquiryFeedbackResponse"),
+    type = "structure",
+    members = {
+        submittedAt = schema.new({
+            id = id.from(_N, "PutComplianceInquiryFeedbackOutput", "submittedAt"),
+            type = "timestamp",
+            name = "submittedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListCustomerAgreementsInput = schema.new({
     id = id.from(_N, "ListCustomerAgreementsRequest"),
     type = "structure",
@@ -1878,6 +1959,18 @@ M.PutAccountSettings = schema.operation({
     output = M.PutAccountSettingsOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v1/account-settings/put" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutComplianceInquiryFeedback = schema.operation({
+    id = id.from("com.amazonaws.artifact", "PutComplianceInquiryFeedback"),
+    input = M.PutComplianceInquiryFeedbackInput,
+    output = M.PutComplianceInquiryFeedbackOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/compliance-inquiry/putFeedback" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

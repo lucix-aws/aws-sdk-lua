@@ -32,6 +32,7 @@ local record Client
     listReportVersions: function(Client, types.ListReportVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportVersionsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     putAccountSettings: function(Client, types.PutAccountSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
+    putComplianceInquiryFeedback: function(Client, types.PutComplianceInquiryFeedbackInput, ? base_client.InvokeOptions): async.Operation<types.PutComplianceInquiryFeedbackOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
 end
@@ -132,6 +133,10 @@ end
 
 function C:putAccountSettings(input: types.PutAccountSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutAccountSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutAccountSettings as schema.OperationSchema, input, options) as async.Operation<types.PutAccountSettingsOutput>
+end
+
+function C:putComplianceInquiryFeedback(input: types.PutComplianceInquiryFeedbackInput, options?: base_client.InvokeOptions): async.Operation<types.PutComplianceInquiryFeedbackOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutComplianceInquiryFeedback as schema.OperationSchema, input, options) as async.Operation<types.PutComplianceInquiryFeedbackOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

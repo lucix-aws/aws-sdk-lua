@@ -31,6 +31,7 @@ local record Client
     adminForgetDevice: function(Client, types.AdminForgetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.AdminForgetDeviceOutput>
     adminGetDevice: function(Client, types.AdminGetDeviceInput, ? base_client.InvokeOptions): async.Operation<types.AdminGetDeviceOutput>
     adminGetUser: function(Client, types.AdminGetUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminGetUserOutput>
+    adminGetUserAuthFactors: function(Client, types.AdminGetUserAuthFactorsInput, ? base_client.InvokeOptions): async.Operation<types.AdminGetUserAuthFactorsOutput>
     adminInitiateAuth: function(Client, types.AdminInitiateAuthInput, ? base_client.InvokeOptions): async.Operation<types.AdminInitiateAuthOutput>
     adminLinkProviderForUser: function(Client, types.AdminLinkProviderForUserInput, ? base_client.InvokeOptions): async.Operation<types.AdminLinkProviderForUserOutput>
     adminListDevices: function(Client, types.AdminListDevicesInput, ? base_client.InvokeOptions): async.Operation<types.AdminListDevicesOutput>
@@ -240,6 +241,10 @@ end
 
 function C:adminGetUser(input: types.AdminGetUserInput, options?: base_client.InvokeOptions): async.Operation<types.AdminGetUserOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminGetUser as schema.OperationSchema, input, options) as async.Operation<types.AdminGetUserOutput>
+end
+
+function C:adminGetUserAuthFactors(input: types.AdminGetUserAuthFactorsInput, options?: base_client.InvokeOptions): async.Operation<types.AdminGetUserAuthFactorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AdminGetUserAuthFactors as schema.OperationSchema, input, options) as async.Operation<types.AdminGetUserAuthFactorsOutput>
 end
 
 function C:adminInitiateAuth(input: types.AdminInitiateAuthInput, options?: base_client.InvokeOptions): async.Operation<types.AdminInitiateAuthOutput>

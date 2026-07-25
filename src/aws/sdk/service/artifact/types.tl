@@ -338,6 +338,39 @@ local record M
         nextToken: string
     end
 
+    enum FeedbackRating
+        "THUMBS_UP"
+        "THUMBS_DOWN"
+    end
+
+    enum FeedbackReasonCode
+        "OTHER"
+        "PARTIAL_RESPONSE"
+        "IRRELEVANT_RESPONSE"
+    end
+
+    record PutComplianceInquiryFeedbackInput
+        -- The unique identifier for the compliance inquiry.
+        complianceInquiryId: string
+        -- The sequential identifier of the query to provide feedback on.
+        queryIdentifier: number
+        -- The rating for the feedback. Valid values are THUMBS_UP and THUMBS_DOWN.
+        rating: string
+        -- The response revision ID. Use this value to prevent submitting feedback on a stale response.
+        responseRevisionId: number
+        -- The reason codes that describe why you rated the response. Valid values are OTHER, PARTIAL_RESPONSE, and IRRELEVANT_RESPONSE.
+        reasonCodes: {string}
+        -- An optional comment for the feedback.
+        comment: string
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request, but does not return an error.
+        clientToken: string
+    end
+
+    record PutComplianceInquiryFeedbackOutput
+        -- The timestamp when the feedback was submitted.
+        submittedAt: number
+    end
+
     record ListCustomerAgreementsInput
         -- Maximum number of resources to return in the paginated response.
         maxResults: number

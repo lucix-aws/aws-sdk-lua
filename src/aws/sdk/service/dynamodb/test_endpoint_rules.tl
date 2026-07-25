@@ -1780,9 +1780,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -1814,9 +1814,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -1849,9 +1849,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -1884,9 +1884,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -1919,9 +1919,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -1954,9 +1954,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -1989,9 +1989,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2020,9 +2020,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2093,9 +2093,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2124,9 +2124,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2155,9 +2155,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2186,9 +2186,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2267,9 +2267,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2301,9 +2301,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2331,9 +2331,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2404,9 +2404,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2438,9 +2438,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2473,9 +2473,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2508,9 +2508,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2543,9 +2543,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2578,9 +2578,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2613,9 +2613,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2644,9 +2644,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2717,9 +2717,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2748,9 +2748,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2779,9 +2779,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2810,9 +2810,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2891,9 +2891,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2925,9 +2925,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -2955,9 +2955,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3028,9 +3028,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3062,9 +3062,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3097,9 +3097,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3132,9 +3132,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3167,9 +3167,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3202,9 +3202,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3237,9 +3237,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3268,9 +3268,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3341,9 +3341,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3372,9 +3372,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3403,9 +3403,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3434,9 +3434,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3515,9 +3515,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3549,9 +3549,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
@@ -3579,9 +3579,9 @@ describe("endpoint rules", function()
         local expected_props = {
             authSchemes = {
             {
-            signingRegion = "us-east-1",
             name = "sigv4",
             signingName = "dynamodb",
+            signingRegion = "us-east-1",
         },
         },
         }
