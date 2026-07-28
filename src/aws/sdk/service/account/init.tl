@@ -27,6 +27,7 @@ local record Client
     getContactInformation: function(Client, types.GetContactInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetContactInformationOutput>
     getGovCloudAccountInformation: function(Client, types.GetGovCloudAccountInformationInput, ? base_client.InvokeOptions): async.Operation<types.GetGovCloudAccountInformationOutput>
     getPrimaryEmail: function(Client, types.GetPrimaryEmailInput, ? base_client.InvokeOptions): async.Operation<types.GetPrimaryEmailOutput>
+    getPrimaryEmailUpdateStatus: function(Client, types.GetPrimaryEmailUpdateStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetPrimaryEmailUpdateStatusOutput>
     getRegionOptStatus: function(Client, types.GetRegionOptStatusInput, ? base_client.InvokeOptions): async.Operation<types.GetRegionOptStatusOutput>
     listRegions: function(Client, types.ListRegionsInput, ? base_client.InvokeOptions): async.Operation<types.ListRegionsOutput>
     putAccountName: function(Client, types.PutAccountNameInput, ? base_client.InvokeOptions): async.Operation<types.PutAccountNameOutput>
@@ -111,6 +112,10 @@ end
 
 function C:getPrimaryEmail(input: types.GetPrimaryEmailInput, options?: base_client.InvokeOptions): async.Operation<types.GetPrimaryEmailOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrimaryEmail as schema.OperationSchema, input, options) as async.Operation<types.GetPrimaryEmailOutput>
+end
+
+function C:getPrimaryEmailUpdateStatus(input: types.GetPrimaryEmailUpdateStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetPrimaryEmailUpdateStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetPrimaryEmailUpdateStatus as schema.OperationSchema, input, options) as async.Operation<types.GetPrimaryEmailUpdateStatusOutput>
 end
 
 function C:getRegionOptStatus(input: types.GetRegionOptStatusInput, options?: base_client.InvokeOptions): async.Operation<types.GetRegionOptStatusOutput>

@@ -14,6 +14,8 @@ local record M
     enum PrimaryEmailUpdateStatus
         "PENDING"
         "ACCEPTED"
+        "COMPLETED"
+        "FAILED"
     end
 
     record AcceptPrimaryEmailUpdateOutput
@@ -254,6 +256,18 @@ local record M
     record GetPrimaryEmailOutput
         -- Retrieves the primary email address associated with the specified account.
         PrimaryEmail: string
+    end
+
+    record GetPrimaryEmailUpdateStatusInput
+        -- Specifies the 12-digit account ID number of the Amazon Web Services account that you want to access or modify with this operation. To use this parameter, the caller must be an identity in the organization's management account or a delegated administrator account. The specified account ID must be a member account in the same organization. The organization must have all features enabled, and the organization must have trusted access enabled for the Account Management service, and optionally a delegated admin account assigned. This operation can only be called from the management account or the delegated administrator account of an organization for a member account. The management account can't specify its own AccountId.
+        AccountId: string
+    end
+
+    record GetPrimaryEmailUpdateStatusOutput
+        -- The status of the most recent primary email update request.
+        Status: string
+        -- The date and time that the most recent primary email update status was last changed.
+        UpdatedAt: number
     end
 
     record StartPrimaryEmailUpdateInput

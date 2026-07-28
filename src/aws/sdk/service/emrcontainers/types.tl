@@ -7,29 +7,29 @@ local record M
         "DISABLED"
     end
 
-    -- IAM configuration for the security configuration.
+    -- Contains the IAM settings for a security configuration, including the system role used for authentication.
     record IAMConfiguration
-        -- The ARN of the system role used by the security configuration.
+        -- The Amazon Resource Name (ARN) of the system role used by the security configuration.
         systemRole: string
     end
 
-    -- Identity Center related configuration for the security configuration.
+    -- Contains the IAM Identity Center settings for a security configuration, including instance ARN, application assignment requirements, and application ARN.
     record IdentityCenterConfiguration
-        -- Determines whether Identity Center is enabled for the security configuration.
+        -- Specifies whether Identity Center is enabled for the security configuration.
         enableIdentityCenter: boolean
-        -- Determines whether user assignment is required for the Identity Center application.
+        -- Specifies whether user assignment is required for the Identity Center application.
         identityCenterApplicationAssignmentRequired: boolean
-        -- The ARN of the Identity Center instance.
+        -- The Amazon Resource Name (ARN) of the Identity Center instance.
         identityCenterInstanceARN: string
-        -- The ARN of the EMR Identity Center application.
+        -- The Amazon Resource Name (ARN) of the Amazon EMR Identity Center application.
         emrIdentityCenterApplicationARN: string
     end
 
-    -- Authentication configuration for the security configuration.
+    -- Contains the authentication settings for a security configuration, including Identity Center and IAM configuration options.
     record AuthenticationConfiguration
-        -- Identity Center configuration for authentication in the security configuration.
+        -- The IAM Identity Center configuration to use for authentication.
         identityCenterConfiguration: IdentityCenterConfiguration
-        -- IAM configuration for authentication in the security configuration.
+        -- The IAM configuration to use for authentication.
         iamConfiguration: IAMConfiguration
     end
 
@@ -234,7 +234,7 @@ local record M
     record S3MonitoringConfiguration
         -- Amazon S3 destination URI for log publishing.
         logUri: string
-        -- The Amazon resource name (ARN) of the encryption key for logs.
+        -- The Amazon Resource Name (ARN) of the encryption key for logs.
         encryptionKeyArn: string
     end
 
@@ -319,6 +319,21 @@ local record M
         arn: string
     end
 
+    -- The scheduler configuration for a virtual cluster on Amazon EMR on EKS. It controls how
+    -- many job runs can run concurrently and how many can wait in the queue. When not set, no
+    -- concurrency or queue limits are applied.
+    record SchedulerConfiguration
+        -- The maximum number of job runs that can be in the PENDING or
+        -- SUBMITTED state at any time for the virtual cluster. When the queue is full,
+        -- the service rejects StartJobRun requests with a ValidationException. If you omit
+        -- this field, the service applies no queue-depth limit.
+        maxInQueueJobRuns: number
+        -- The maximum number of job runs that can be in the RUNNING state at any time
+        -- for the virtual cluster. As running slots free up, queued job runs start automatically. If
+        -- you omit this field, the service applies no concurrency limit.
+        maxConcurrentJobRuns: number
+    end
+
     record CreateVirtualClusterInput
         -- The specified name of the virtual cluster.
         name: string
@@ -332,6 +347,9 @@ local record M
         securityConfigurationId: string
         -- Indicates whether the virtual cluster has session support enabled.
         sessionEnabled: boolean
+        -- The scheduler configuration (concurrency and queue limits) to apply to the virtual
+        -- cluster at creation time. When omitted, no limits are applied.
+        schedulerConfiguration: SchedulerConfiguration
     end
 
     record CreateVirtualClusterOutput
@@ -378,7 +396,7 @@ local record M
     end
 
     record DeleteSecurityConfigurationOutput
-        -- The ID of the security configuration that was deleted.
+        -- The ID of the deleted security configuration.
         id: string
     end
 
@@ -492,6 +510,17 @@ local record M
         id: string
     end
 
+    -- The current job-run counts for a virtual cluster, reflecting how much of the configured
+    -- scheduler capacity is in use.
+    record SchedulerStatus
+        -- The number of job runs currently waiting in the queue (PENDING or
+        -- SUBMITTED) for the virtual cluster.
+        currentInQueueJobRuns: number
+        -- The number of job runs currently in the RUNNING state for the virtual
+        -- cluster.
+        currentConcurrentJobRuns: number
+    end
+
     enum VirtualClusterState
         "RUNNING"
         "TERMINATING"
@@ -522,8 +551,13 @@ local record M
         tags: {string : string}
         -- The ID of the security configuration.
         securityConfigurationId: string
-        -- Indicates whether the virtual cluster has session support enabled.
+        -- Specifies whether the virtual cluster has session support enabled.
         sessionEnabled: boolean
+        -- The scheduler configuration (concurrency and queue limits) applied to the virtual
+        -- cluster. The service does not return this field when no scheduler limits are configured.
+        schedulerConfiguration: SchedulerConfiguration
+        -- The current in-queue and concurrent job-run counts for the virtual cluster.
+        schedulerStatus: SchedulerStatus
     end
 
     record DescribeVirtualClusterOutput
@@ -561,7 +595,7 @@ local record M
         id: string
         -- The structure containing the session credentials.
         credentials: Credentials
-        -- The structure containing the session token being returned.
+        -- The session credentials that the operation returns.
         endpointCredentials: Credentials
         -- The date and time when the session token will expire.
         expiresAt: number
@@ -705,6 +739,25 @@ local record M
     record UntagResourceOutput
     end
 
+    -- Contains the parameters for a request to update a virtual cluster on Amazon EMR on EKS.
+    record UpdateVirtualClusterInput
+        -- The ID of the virtual cluster to update.
+        id: string
+        -- The scheduler configuration to apply to the virtual cluster. The new configuration fully
+        -- replaces the existing one. If you omit a field, the corresponding limit is removed.
+        schedulerConfiguration: SchedulerConfiguration
+        -- A unique, case-sensitive identifier that you provide to ensure that the operation
+        -- completes no more than one time. If this token matches a previous request, the service
+        -- ignores the request, but does not return an error.
+        clientToken: string
+    end
+
+    -- Contains the virtual cluster returned after a successful update request.
+    record UpdateVirtualClusterOutput
+        -- The updated virtual cluster.
+        virtualCluster: VirtualCluster
+    end
+
     -- A configuration specification to be used when provisioning virtual clusters, which can
     -- include configurations for applications and software bundled with Amazon EMR on EKS. A
     -- configuration consists of a classification, properties, and optional nested configurations.
@@ -754,7 +807,7 @@ local record M
         clientToken: string
         -- The tags of the managed endpoint.
         tags: {string : string}
-        -- The idle timeout in minutes for the managed endpoint session.
+        -- The number of idle minutes before the managed endpoint session times out.
         sessionIdleTimeoutInMinutes: number
     end
 
@@ -785,7 +838,7 @@ local record M
         configurationOverrides: ConfigurationOverrides
         -- The server URL of the endpoint.
         serverUrl: string
-        -- The auth proxy URL of the endpoint.
+        -- The authentication proxy URL of the endpoint.
         authProxyUrl: string
         -- The date and time when the endpoint was created.
         createdAt: number

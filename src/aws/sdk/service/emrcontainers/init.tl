@@ -42,6 +42,7 @@ local record Client
     startJobRun: function(Client, types.StartJobRunInput, ? base_client.InvokeOptions): async.Operation<types.StartJobRunOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
+    updateVirtualCluster: function(Client, types.UpdateVirtualClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVirtualClusterOutput>
 end
 
 local record M
@@ -180,6 +181,10 @@ end
 
 function C:untagResource(input: types.UntagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UntagResource as schema.OperationSchema, input, options) as async.Operation<types.UntagResourceOutput>
+end
+
+function C:updateVirtualCluster(input: types.UpdateVirtualClusterInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateVirtualClusterOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateVirtualCluster as schema.OperationSchema, input, options) as async.Operation<types.UpdateVirtualClusterOutput>
 end
 
 return M

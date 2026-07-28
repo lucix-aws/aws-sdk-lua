@@ -429,6 +429,14 @@ local record M
         "FAILED"
     end
 
+    -- Contains the partner's headquarters location using International Organization for Standardization (ISO) 3166 country and subdivision codes.
+    record Headquarters
+        -- The ISO 3166-1 alpha-2 country code of the partner's headquarters. For example, US, BR, or DE.
+        CountryCode: string
+        -- The subdivision portion of the ISO 3166-2 code for the partner's headquarters (for example, SP from BR-SP, NSW from AU-NSW, or 13 from JP-13).
+        SubdivisionCode: string
+    end
+
     enum IndustrySegment
         "AGRICULTURE_MINING"
         "BIOTECHNOLOGY"
@@ -512,6 +520,8 @@ local record M
         TranslationSourceLocale: string
         -- The updated localized content for the partner profile.
         LocalizedContents: {LocalizedContent}
+        -- The ISO 3166 country and subdivision codes for the partner's headquarters location. If you omit this field, the service retains the existing headquarters value.
+        Headquarters: Headquarters
     end
 
     record CancelProfileUpdateTaskOutput
@@ -876,6 +886,8 @@ local record M
         TranslationSourceLocale: string
         -- A list of localized content versions for different languages and regions.
         LocalizedContents: {LocalizedContent}
+        -- The ISO 3166 country and subdivision codes for the partner's headquarters location. If no headquarters location is set, this field is not included in the response.
+        Headquarters: Headquarters
         -- The unique identifier of the partner profile.
         ProfileId: string
     end

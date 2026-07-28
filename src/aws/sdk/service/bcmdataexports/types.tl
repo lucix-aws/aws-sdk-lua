@@ -18,6 +18,7 @@ local record M
     enum CompressionOption
         "GZIP"
         "PARQUET"
+        "ZIP"
     end
 
     enum FormatOption
@@ -52,7 +53,7 @@ local record M
     record S3Destination
         -- The name of the Amazon S3 bucket used as the destination of a data export file.
         S3Bucket: string
-        -- The AWS Account ID that owns the S3 bucket used as the destination for the data export.
+        -- The Amazon Web Services account ID that owns the S3 bucket used as the destination for the data export.
         S3BucketOwner: string
         -- The S3 path prefix you want prepended to the name of your data export.
         S3Prefix: string
@@ -198,6 +199,7 @@ local record M
         "INSUFFICIENT_PERMISSION"
         "BILL_OWNER_CHANGED"
         "INTERNAL_FAILURE"
+        "DEPRECATED"
     end
 
     -- The status of the data export.

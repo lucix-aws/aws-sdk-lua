@@ -431,6 +431,25 @@ M.ListAudienceExportJobsOutput = schema.new({
     },
 })
 
+M.ThrottlingException = schema.new({
+    id = id.from(_N, "ThrottlingException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ThrottlingException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ValidationException = schema.new({
     id = id.from(_N, "ValidationException"),
     type = "structure",
@@ -1110,25 +1129,6 @@ M.StartAudienceGenerationJobOutput = schema.new({
             id = id.from(_N, "StartAudienceGenerationJobOutput", "audienceGenerationJobArn"),
             type = "string",
             name = "audienceGenerationJobArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ThrottlingException = schema.new({
-    id = id.from(_N, "ThrottlingException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ThrottlingException", "message"),
-            type = "string",
-            name = "message",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},

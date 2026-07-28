@@ -267,6 +267,8 @@ M.StaticFileList = schema.new({ type = "list", list_member = M.StaticFile })
 
 M.ErrorList = schema.new({ type = "list", list_member = prelude.String })
 
+M.DefaultCategoryEffectsMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.RowLevelPermissionTagRuleList = schema.new({ type = "list", list_member = M.RowLevelPermissionTagRule })
 
 M.RowLevelPermissionTagRuleConfigurationList = schema.new({ type = "list", list_member = M.RowLevelPermissionTagRuleConfiguration })
@@ -29320,6 +29322,21 @@ M.CreateColumnsOperation = schema.new({
     },
 })
 
+M.Governance = schema.new({
+    id = id.from(_N, "Governance"),
+    type = "structure",
+    members = {
+        DefaultCategoryEffects = schema.new({
+            id = id.from(_N, "Governance", "DefaultCategoryEffects"),
+            type = "map",
+            name = "DefaultCategoryEffects",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.CreateCustomPermissionsInput = schema.new({
     id = id.from(_N, "CreateCustomPermissionsRequest"),
     type = "structure",
@@ -29349,6 +29366,13 @@ M.CreateCustomPermissionsInput = schema.new({
             name = "Capabilities",
             target_id = id.from(_N, "Capabilities"),
             target = M.Capabilities,
+        }),
+        Governance = schema.new({
+            id = id.from(_N, "CreateCustomPermissionsInput", "Governance"),
+            type = "structure",
+            name = "Governance",
+            target_id = id.from(_N, "Governance"),
+            target = M.Governance,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateCustomPermissionsInput", "Tags"),
@@ -36772,6 +36796,13 @@ M.CustomPermissions = schema.new({
             name = "Capabilities",
             target_id = id.from(_N, "Capabilities"),
             target = M.Capabilities,
+        }),
+        Governance = schema.new({
+            id = id.from(_N, "CustomPermissions", "Governance"),
+            type = "structure",
+            name = "Governance",
+            target_id = id.from(_N, "Governance"),
+            target = M.Governance,
         }),
     },
 })
@@ -54827,6 +54858,13 @@ M.UpdateCustomPermissionsInput = schema.new({
             name = "Capabilities",
             target_id = id.from(_N, "Capabilities"),
             target = M.Capabilities,
+        }),
+        Governance = schema.new({
+            id = id.from(_N, "UpdateCustomPermissionsInput", "Governance"),
+            type = "structure",
+            name = "Governance",
+            target_id = id.from(_N, "Governance"),
+            target = M.Governance,
         }),
     },
 })

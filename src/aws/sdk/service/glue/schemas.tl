@@ -49,6 +49,10 @@ M.DataQualityResultIds = schema.new({ type = "list", list_member = prelude.Strin
 
 M.DataQualityResultsList = schema.new({ type = "list", list_member = M.DataQualityResult })
 
+M.DataQualityRulesetEvaluationRunIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DataQualityRulesetEvaluationRunsList = schema.new({ type = "list", list_member = M.DataQualityRulesetEvaluationRun })
+
 M.DevEndpointNames = schema.new({ type = "list", list_member = prelude.String })
 
 M.DevEndpointList = schema.new({ type = "list", list_member = M.DevEndpoint })
@@ -427,6 +431,8 @@ M.RuleMetricsMap = schema.new({ type = "map", map_key = prelude.String, map_valu
 
 M.Labels = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.EvaluatedDistributionsMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.DistributionData })
+
 M.ColumnImportanceList = schema.new({ type = "list", list_member = M.ColumnImportance })
 
 M.KeySchemaElementList = schema.new({ type = "list", list_member = M.KeySchemaElement })
@@ -516,6 +522,10 @@ M.FieldDefinitionMap = schema.new({ type = "map", map_key = prelude.String, map_
 M.NewRules = schema.new({ type = "list", list_member = prelude.String })
 
 M.ViewValidationList = schema.new({ type = "list", list_member = M.ViewValidation })
+
+M.BinEdges = schema.new({ type = "list", list_member = prelude.String })
+
+M.Count = schema.new({ type = "list", list_member = prelude.Integer })
 
 M.IcebergTableUpdateList = schema.new({ type = "list", list_member = M.IcebergTableUpdate })
 
@@ -3477,6 +3487,33 @@ M.DataQualityAggregatedMetrics = schema.new({
     },
 })
 
+M.DistributionData = schema.new({
+    id = id.from(_N, "DistributionData"),
+    type = "structure",
+    members = {
+        BinEdges = schema.new({
+            id = id.from(_N, "DistributionData", "BinEdges"),
+            type = "list",
+            name = "BinEdges",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Count = schema.new({
+            id = id.from(_N, "DistributionData", "Count"),
+            type = "list",
+            name = "Count",
+            target_id = prelude.Document.id,
+            list_member = prelude.Integer,
+        }),
+        DataType = schema.new({
+            id = id.from(_N, "DistributionData", "DataType"),
+            type = "string",
+            name = "DataType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DataQualityAnalyzerResult = schema.new({
     id = id.from(_N, "DataQualityAnalyzerResult"),
     type = "structure",
@@ -3506,6 +3543,14 @@ M.DataQualityAnalyzerResult = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.Double,
+        }),
+        EvaluatedDistributions = schema.new({
+            id = id.from(_N, "DataQualityAnalyzerResult", "EvaluatedDistributions"),
+            type = "map",
+            name = "EvaluatedDistributions",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.DistributionData,
         }),
     },
 })
@@ -3892,6 +3937,365 @@ M.BatchGetDataQualityResultOutput = schema.new({
             id = id.from(_N, "BatchGetDataQualityResultOutput", "ResultsNotFound"),
             type = "list",
             name = "ResultsNotFound",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.BatchGetDataQualityRulesetEvaluationRunInput = schema.new({
+    id = id.from(_N, "BatchGetDataQualityRulesetEvaluationRunRequest"),
+    type = "structure",
+    members = {
+        RunIds = schema.new({
+            id = id.from(_N, "BatchGetDataQualityRulesetEvaluationRunInput", "RunIds"),
+            type = "list",
+            name = "RunIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CatalogTableConfigOptions = schema.new({
+    id = id.from(_N, "CatalogTableConfigOptions"),
+    type = "structure",
+    members = {
+        DatabaseName = schema.new({
+            id = id.from(_N, "CatalogTableConfigOptions", "DatabaseName"),
+            type = "string",
+            name = "DatabaseName",
+            target_id = prelude.String.id,
+        }),
+        TableName = schema.new({
+            id = id.from(_N, "CatalogTableConfigOptions", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+        }),
+        S3Location = schema.new({
+            id = id.from(_N, "CatalogTableConfigOptions", "S3Location"),
+            type = "string",
+            name = "S3Location",
+            target_id = prelude.String.id,
+        }),
+        CatalogId = schema.new({
+            id = id.from(_N, "CatalogTableConfigOptions", "CatalogId"),
+            type = "string",
+            name = "CatalogId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DataQualityRuleResultsOptions = schema.new({
+    id = id.from(_N, "DataQualityRuleResultsOptions"),
+    type = "structure",
+    members = {
+        WriteDataQualityRuleResultsEnabled = schema.new({
+            id = id.from(_N, "DataQualityRuleResultsOptions", "WriteDataQualityRuleResultsEnabled"),
+            type = "boolean",
+            name = "WriteDataQualityRuleResultsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        CatalogTableConfig = schema.new({
+            id = id.from(_N, "DataQualityRuleResultsOptions", "CatalogTableConfig"),
+            type = "structure",
+            name = "CatalogTableConfig",
+            target_id = id.from(_N, "CatalogTableConfigOptions"),
+            target = M.CatalogTableConfigOptions,
+        }),
+    },
+})
+
+M.ObservationResultsOptions = schema.new({
+    id = id.from(_N, "ObservationResultsOptions"),
+    type = "structure",
+    members = {
+        WriteObservationResultsEnabled = schema.new({
+            id = id.from(_N, "ObservationResultsOptions", "WriteObservationResultsEnabled"),
+            type = "boolean",
+            name = "WriteObservationResultsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        CatalogTableConfig = schema.new({
+            id = id.from(_N, "ObservationResultsOptions", "CatalogTableConfig"),
+            type = "structure",
+            name = "CatalogTableConfig",
+            target_id = id.from(_N, "CatalogTableConfigOptions"),
+            target = M.CatalogTableConfigOptions,
+        }),
+    },
+})
+
+M.DistributionResultsOptions = schema.new({
+    id = id.from(_N, "DistributionResultsOptions"),
+    type = "structure",
+    members = {
+        WriteDistributionResultsEnabled = schema.new({
+            id = id.from(_N, "DistributionResultsOptions", "WriteDistributionResultsEnabled"),
+            type = "boolean",
+            name = "WriteDistributionResultsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        CatalogTableConfig = schema.new({
+            id = id.from(_N, "DistributionResultsOptions", "CatalogTableConfig"),
+            type = "structure",
+            name = "CatalogTableConfig",
+            target_id = id.from(_N, "CatalogTableConfigOptions"),
+            target = M.CatalogTableConfigOptions,
+        }),
+    },
+})
+
+M.ProfilingResultsOptions = schema.new({
+    id = id.from(_N, "ProfilingResultsOptions"),
+    type = "structure",
+    members = {
+        WriteProfilingResultsEnabled = schema.new({
+            id = id.from(_N, "ProfilingResultsOptions", "WriteProfilingResultsEnabled"),
+            type = "boolean",
+            name = "WriteProfilingResultsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        CatalogTableConfig = schema.new({
+            id = id.from(_N, "ProfilingResultsOptions", "CatalogTableConfig"),
+            type = "structure",
+            name = "CatalogTableConfig",
+            target_id = id.from(_N, "CatalogTableConfigOptions"),
+            target = M.CatalogTableConfigOptions,
+        }),
+        DistributionResults = schema.new({
+            id = id.from(_N, "ProfilingResultsOptions", "DistributionResults"),
+            type = "structure",
+            name = "DistributionResults",
+            target_id = id.from(_N, "DistributionResultsOptions"),
+            target = M.DistributionResultsOptions,
+        }),
+    },
+})
+
+M.RowLevelResultsOptions = schema.new({
+    id = id.from(_N, "RowLevelResultsOptions"),
+    type = "structure",
+    members = {
+        MaxRowsToWrite = schema.new({
+            id = id.from(_N, "RowLevelResultsOptions", "MaxRowsToWrite"),
+            type = "integer",
+            name = "MaxRowsToWrite",
+            target_id = prelude.Integer.id,
+        }),
+        ResultType = schema.new({
+            id = id.from(_N, "RowLevelResultsOptions", "ResultType"),
+            type = "string",
+            name = "ResultType",
+            target_id = prelude.String.id,
+        }),
+        CatalogTableConfig = schema.new({
+            id = id.from(_N, "RowLevelResultsOptions", "CatalogTableConfig"),
+            type = "structure",
+            name = "CatalogTableConfig",
+            target_id = id.from(_N, "CatalogTableConfigOptions"),
+            target = M.CatalogTableConfigOptions,
+        }),
+    },
+})
+
+M.DataQualityEvaluationRunAdditionalRunOptions = schema.new({
+    id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions"),
+    type = "structure",
+    members = {
+        CloudWatchMetricsEnabled = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "CloudWatchMetricsEnabled"),
+            type = "boolean",
+            name = "CloudWatchMetricsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
+        ResultsS3Prefix = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "ResultsS3Prefix"),
+            type = "string",
+            name = "ResultsS3Prefix",
+            target_id = prelude.String.id,
+        }),
+        CompositeRuleEvaluationMethod = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "CompositeRuleEvaluationMethod"),
+            type = "string",
+            name = "CompositeRuleEvaluationMethod",
+            target_id = prelude.String.id,
+        }),
+        CustomLogGroupPrefix = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "CustomLogGroupPrefix"),
+            type = "string",
+            name = "CustomLogGroupPrefix",
+            target_id = prelude.String.id,
+        }),
+        RowLevelResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "RowLevelResults"),
+            type = "structure",
+            name = "RowLevelResults",
+            target_id = id.from(_N, "RowLevelResultsOptions"),
+            target = M.RowLevelResultsOptions,
+        }),
+        ProfilingResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "ProfilingResults"),
+            type = "structure",
+            name = "ProfilingResults",
+            target_id = id.from(_N, "ProfilingResultsOptions"),
+            target = M.ProfilingResultsOptions,
+        }),
+        ObservationScope = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "ObservationScope"),
+            type = "string",
+            name = "ObservationScope",
+            target_id = prelude.String.id,
+        }),
+        ObservationMode = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "ObservationMode"),
+            type = "string",
+            name = "ObservationMode",
+            target_id = prelude.String.id,
+        }),
+        DataQualityRuleResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "DataQualityRuleResults"),
+            type = "structure",
+            name = "DataQualityRuleResults",
+            target_id = id.from(_N, "DataQualityRuleResultsOptions"),
+            target = M.DataQualityRuleResultsOptions,
+        }),
+        ObservationResults = schema.new({
+            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "ObservationResults"),
+            type = "structure",
+            name = "ObservationResults",
+            target_id = id.from(_N, "ObservationResultsOptions"),
+            target = M.ObservationResultsOptions,
+        }),
+    },
+})
+
+M.DataQualityRulesetEvaluationRun = schema.new({
+    id = id.from(_N, "DataQualityRulesetEvaluationRun"),
+    type = "structure",
+    members = {
+        RunId = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "RunId"),
+            type = "string",
+            name = "RunId",
+            target_id = prelude.String.id,
+        }),
+        DataSource = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "DataSource"),
+            type = "structure",
+            name = "DataSource",
+            target_id = id.from(_N, "DataSource"),
+            target = M.DataSource,
+        }),
+        Role = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "Role"),
+            type = "string",
+            name = "Role",
+            target_id = prelude.String.id,
+        }),
+        NumberOfWorkers = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "NumberOfWorkers"),
+            type = "integer",
+            name = "NumberOfWorkers",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+        AdditionalRunOptions = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "AdditionalRunOptions"),
+            type = "structure",
+            name = "AdditionalRunOptions",
+            target_id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions"),
+            target = M.DataQualityEvaluationRunAdditionalRunOptions,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        ErrorString = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "ErrorString"),
+            type = "string",
+            name = "ErrorString",
+            target_id = prelude.String.id,
+        }),
+        StartedOn = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "StartedOn"),
+            type = "timestamp",
+            name = "StartedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedOn = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "LastModifiedOn"),
+            type = "timestamp",
+            name = "LastModifiedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        CompletedOn = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "CompletedOn"),
+            type = "timestamp",
+            name = "CompletedOn",
+            target_id = prelude.Timestamp.id,
+        }),
+        ExecutionTime = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "ExecutionTime"),
+            type = "integer",
+            name = "ExecutionTime",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        RulesetNames = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "RulesetNames"),
+            type = "list",
+            name = "RulesetNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        ResultIds = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "ResultIds"),
+            type = "list",
+            name = "ResultIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AdditionalDataSources = schema.new({
+            id = id.from(_N, "DataQualityRulesetEvaluationRun", "AdditionalDataSources"),
+            type = "map",
+            name = "AdditionalDataSources",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.DataSource,
+        }),
+    },
+})
+
+M.BatchGetDataQualityRulesetEvaluationRunOutput = schema.new({
+    id = id.from(_N, "BatchGetDataQualityRulesetEvaluationRunResponse"),
+    type = "structure",
+    members = {
+        Runs = schema.new({
+            id = id.from(_N, "BatchGetDataQualityRulesetEvaluationRunOutput", "Runs"),
+            type = "list",
+            name = "Runs",
+            target_id = prelude.Document.id,
+            list_member = M.DataQualityRulesetEvaluationRun,
+        }),
+        RunsNotFound = schema.new({
+            id = id.from(_N, "BatchGetDataQualityRulesetEvaluationRunOutput", "RunsNotFound"),
+            type = "list",
+            name = "RunsNotFound",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -22014,6 +22418,19 @@ M.GetDataQualityRuleRecommendationRunInput = schema.new({
     },
 })
 
+M.DataQualityRuleRecommendationRunAdditionalRunOptions = schema.new({
+    id = id.from(_N, "DataQualityRuleRecommendationRunAdditionalRunOptions"),
+    type = "structure",
+    members = {
+        CustomLogGroupPrefix = schema.new({
+            id = id.from(_N, "DataQualityRuleRecommendationRunAdditionalRunOptions", "CustomLogGroupPrefix"),
+            type = "string",
+            name = "CustomLogGroupPrefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.GetDataQualityRuleRecommendationRunOutput = schema.new({
     id = id.from(_N, "GetDataQualityRuleRecommendationRunResponse"),
     type = "structure",
@@ -22106,6 +22523,13 @@ M.GetDataQualityRuleRecommendationRunOutput = schema.new({
             name = "DataQualitySecurityConfiguration",
             target_id = prelude.String.id,
         }),
+        AdditionalRunOptions = schema.new({
+            id = id.from(_N, "GetDataQualityRuleRecommendationRunOutput", "AdditionalRunOptions"),
+            type = "structure",
+            name = "AdditionalRunOptions",
+            target_id = id.from(_N, "DataQualityRuleRecommendationRunAdditionalRunOptions"),
+            target = M.DataQualityRuleRecommendationRunAdditionalRunOptions,
+        }),
     },
 })
 
@@ -22193,37 +22617,6 @@ M.GetDataQualityRulesetEvaluationRunInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
-        }),
-    },
-})
-
-M.DataQualityEvaluationRunAdditionalRunOptions = schema.new({
-    id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions"),
-    type = "structure",
-    members = {
-        CloudWatchMetricsEnabled = schema.new({
-            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "CloudWatchMetricsEnabled"),
-            type = "boolean",
-            name = "CloudWatchMetricsEnabled",
-            target_id = prelude.Boolean.id,
-        }),
-        ResultsS3Prefix = schema.new({
-            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "ResultsS3Prefix"),
-            type = "string",
-            name = "ResultsS3Prefix",
-            target_id = prelude.String.id,
-        }),
-        CompositeRuleEvaluationMethod = schema.new({
-            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "CompositeRuleEvaluationMethod"),
-            type = "string",
-            name = "CompositeRuleEvaluationMethod",
-            target_id = prelude.String.id,
-        }),
-        CustomLogGroupPrefix = schema.new({
-            id = id.from(_N, "DataQualityEvaluationRunAdditionalRunOptions", "CustomLogGroupPrefix"),
-            type = "string",
-            name = "CustomLogGroupPrefix",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -27694,6 +28087,14 @@ M.ListDataQualityRuleRecommendationRunsInput = schema.new({
             name = "MaxResults",
             target_id = prelude.Integer.id,
         }),
+        Tags = schema.new({
+            id = id.from(_N, "ListDataQualityRuleRecommendationRunsInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
     },
 })
 
@@ -27725,6 +28126,12 @@ M.DataQualityRuleRecommendationRunDescription = schema.new({
             name = "DataSource",
             target_id = id.from(_N, "DataSource"),
             target = M.DataSource,
+        }),
+        CreatedRulesetName = schema.new({
+            id = id.from(_N, "DataQualityRuleRecommendationRunDescription", "CreatedRulesetName"),
+            type = "string",
+            name = "CreatedRulesetName",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -28187,6 +28594,13 @@ M.StatisticSummary = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = 0 },
             },
+        }),
+        DistributionValue = schema.new({
+            id = id.from(_N, "StatisticSummary", "DistributionValue"),
+            type = "structure",
+            name = "DistributionValue",
+            target_id = id.from(_N, "DistributionData"),
+            target = M.DistributionData,
         }),
         EvaluationLevel = schema.new({
             id = id.from(_N, "StatisticSummary", "EvaluationLevel"),
@@ -31773,6 +32187,13 @@ M.StartDataQualityRuleRecommendationRunInput = schema.new({
             type = "string",
             name = "ClientToken",
             target_id = prelude.String.id,
+        }),
+        AdditionalRunOptions = schema.new({
+            id = id.from(_N, "StartDataQualityRuleRecommendationRunInput", "AdditionalRunOptions"),
+            type = "structure",
+            name = "AdditionalRunOptions",
+            target_id = id.from(_N, "DataQualityRuleRecommendationRunAdditionalRunOptions"),
+            target = M.DataQualityRuleRecommendationRunAdditionalRunOptions,
         }),
     },
 })
@@ -36798,6 +37219,17 @@ M.BatchGetDataQualityResult = schema.operation({
     id = id.from("com.amazonaws.glue", "BatchGetDataQualityResult"),
     input = M.BatchGetDataQualityResultInput,
     output = M.BatchGetDataQualityResultOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.BatchGetDataQualityRulesetEvaluationRun = schema.operation({
+    id = id.from("com.amazonaws.glue", "BatchGetDataQualityRulesetEvaluationRun"),
+    input = M.BatchGetDataQualityRulesetEvaluationRunInput,
+    output = M.BatchGetDataQualityRulesetEvaluationRunOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

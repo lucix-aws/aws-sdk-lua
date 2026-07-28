@@ -824,6 +824,25 @@ M.CreateSecurityConfigurationOutput = schema.new({
     },
 })
 
+M.SchedulerConfiguration = schema.new({
+    id = id.from(_N, "SchedulerConfiguration"),
+    type = "structure",
+    members = {
+        maxInQueueJobRuns = schema.new({
+            id = id.from(_N, "SchedulerConfiguration", "maxInQueueJobRuns"),
+            type = "integer",
+            name = "maxInQueueJobRuns",
+            target_id = prelude.Integer.id,
+        }),
+        maxConcurrentJobRuns = schema.new({
+            id = id.from(_N, "SchedulerConfiguration", "maxConcurrentJobRuns"),
+            type = "integer",
+            name = "maxConcurrentJobRuns",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.CreateVirtualClusterInput = schema.new({
     id = id.from(_N, "CreateVirtualClusterRequest"),
     type = "structure",
@@ -876,6 +895,13 @@ M.CreateVirtualClusterInput = schema.new({
             type = "boolean",
             name = "sessionEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        schedulerConfiguration = schema.new({
+            id = id.from(_N, "CreateVirtualClusterInput", "schedulerConfiguration"),
+            type = "structure",
+            name = "schedulerConfiguration",
+            target_id = id.from(_N, "SchedulerConfiguration"),
+            target = M.SchedulerConfiguration,
         }),
     },
 })
@@ -1282,6 +1308,31 @@ M.DescribeVirtualClusterInput = schema.new({
     },
 })
 
+M.SchedulerStatus = schema.new({
+    id = id.from(_N, "SchedulerStatus"),
+    type = "structure",
+    members = {
+        currentInQueueJobRuns = schema.new({
+            id = id.from(_N, "SchedulerStatus", "currentInQueueJobRuns"),
+            type = "integer",
+            name = "currentInQueueJobRuns",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        currentConcurrentJobRuns = schema.new({
+            id = id.from(_N, "SchedulerStatus", "currentConcurrentJobRuns"),
+            type = "integer",
+            name = "currentConcurrentJobRuns",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
 M.VirtualCluster = schema.new({
     id = id.from(_N, "VirtualCluster"),
     type = "structure",
@@ -1345,6 +1396,20 @@ M.VirtualCluster = schema.new({
             type = "boolean",
             name = "sessionEnabled",
             target_id = prelude.Boolean.id,
+        }),
+        schedulerConfiguration = schema.new({
+            id = id.from(_N, "VirtualCluster", "schedulerConfiguration"),
+            type = "structure",
+            name = "schedulerConfiguration",
+            target_id = id.from(_N, "SchedulerConfiguration"),
+            target = M.SchedulerConfiguration,
+        }),
+        schedulerStatus = schema.new({
+            id = id.from(_N, "VirtualCluster", "schedulerStatus"),
+            type = "structure",
+            name = "schedulerStatus",
+            target_id = id.from(_N, "SchedulerStatus"),
+            target = M.SchedulerStatus,
         }),
     },
 })
@@ -2012,6 +2077,54 @@ M.UntagResourceInput = schema.new({
 M.UntagResourceOutput = schema.new({
     id = id.from(_N, "UntagResourceResponse"),
     type = "structure",
+})
+
+M.UpdateVirtualClusterInput = schema.new({
+    id = id.from(_N, "UpdateVirtualClusterRequest"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "UpdateVirtualClusterInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        schedulerConfiguration = schema.new({
+            id = id.from(_N, "UpdateVirtualClusterInput", "schedulerConfiguration"),
+            type = "structure",
+            name = "schedulerConfiguration",
+            target_id = id.from(_N, "SchedulerConfiguration"),
+            target = M.SchedulerConfiguration,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateVirtualClusterInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateVirtualClusterOutput = schema.new({
+    id = id.from(_N, "UpdateVirtualClusterResponse"),
+    type = "structure",
+    members = {
+        virtualCluster = schema.new({
+            id = id.from(_N, "UpdateVirtualClusterOutput", "virtualCluster"),
+            type = "structure",
+            name = "virtualCluster",
+            target_id = id.from(_N, "VirtualCluster"),
+            target = M.VirtualCluster,
+        }),
+    },
 })
 
 M.Configuration = schema.new({
@@ -3111,6 +3224,18 @@ M.UntagResource = schema.operation({
     output = M.UntagResourceOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateVirtualCluster = schema.operation({
+    id = id.from("com.amazonaws.emrcontainers", "UpdateVirtualCluster"),
+    input = M.UpdateVirtualClusterInput,
+    output = M.UpdateVirtualClusterOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/virtualclusters/{id}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

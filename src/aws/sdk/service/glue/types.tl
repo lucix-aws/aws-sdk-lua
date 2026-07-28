@@ -1203,6 +1203,16 @@ local record M
         TotalRulesFailed: number
     end
 
+    -- The distribution data for a statistic.
+    record DistributionData
+        -- The bin edge values for the distribution.
+        BinEdges: {string}
+        -- The frequency count for each bin in the distribution.
+        Count: {number}
+        -- The data type of the column for the distribution.
+        DataType: string
+    end
+
     -- Describes the result of the evaluation of a data quality analyzer.
     record DataQualityAnalyzerResult
         -- The name of the data quality analyzer.
@@ -1213,6 +1223,8 @@ local record M
         EvaluationMessage: string
         -- A map of metrics associated with the evaluation of the analyzer.
         EvaluatedMetrics: {string : number}
+        -- A map of distribution metrics associated with the evaluation of the analyzer.
+        EvaluatedDistributions: {string : DistributionData}
     end
 
     -- The database and table in the Glue Data Catalog that is used for input or output data
@@ -1356,6 +1368,161 @@ local record M
         Results: {DataQualityResult}
         -- A list of result IDs for which results were not found.
         ResultsNotFound: {string}
+    end
+
+    record BatchGetDataQualityRulesetEvaluationRunInput
+        -- A list of unique run identifiers for the evaluation runs to retrieve.
+        RunIds: {string}
+    end
+
+    enum DQCompositeRuleEvaluationMethod
+        "COLUMN"
+        "ROW"
+    end
+
+    -- The configuration for a Glue Data Catalog table used to store data quality results.
+    record CatalogTableConfigOptions
+        -- The name of the database in the Glue Data Catalog.
+        DatabaseName: string
+        -- The name of the table in the Glue Data Catalog.
+        TableName: string
+        -- The Amazon S3 location for storing the results.
+        S3Location: string
+        -- A unique identifier for the Glue Data Catalog.
+        CatalogId: string
+    end
+
+    -- The configuration for writing data quality rule results.
+    record DataQualityRuleResultsOptions
+        -- Set to true to write data quality rule results.
+        WriteDataQualityRuleResultsEnabled: boolean
+        -- The Glue Data Catalog table configuration for storing the rule results.
+        CatalogTableConfig: CatalogTableConfigOptions
+    end
+
+    enum ObservationMode
+        "SCHEDULED"
+        "FIXED"
+    end
+
+    -- The configuration for writing observation results.
+    record ObservationResultsOptions
+        -- Set to true to write observation results.
+        WriteObservationResultsEnabled: boolean
+        -- The Glue Data Catalog table configuration for storing the observation results.
+        CatalogTableConfig: CatalogTableConfigOptions
+    end
+
+    enum ObservationConfiguration
+        "ALL"
+        "NONE"
+    end
+
+    -- The configuration for writing distribution results.
+    record DistributionResultsOptions
+        -- Set to true to write distribution results.
+        WriteDistributionResultsEnabled: boolean
+        -- The Glue Data Catalog table configuration for storing the distribution results.
+        CatalogTableConfig: CatalogTableConfigOptions
+    end
+
+    -- The configuration for writing profiling results.
+    record ProfilingResultsOptions
+        -- Set to true to write profiling results.
+        WriteProfilingResultsEnabled: boolean
+        -- The Glue Data Catalog table configuration for storing the profiling results.
+        CatalogTableConfig: CatalogTableConfigOptions
+        -- The configuration for writing distribution results.
+        DistributionResults: DistributionResultsOptions
+    end
+
+    enum ResultTypeEnum
+        "ALL"
+        "PASSED_ONLY"
+        "FAILED_ONLY"
+    end
+
+    -- The configuration for writing row-level evaluation results.
+    record RowLevelResultsOptions
+        -- The maximum number of rows to write in the results.
+        MaxRowsToWrite: number
+        -- The result type to include in the row-level results output.
+        ResultType: string
+        -- The Glue Data Catalog table configuration for storing the results.
+        CatalogTableConfig: CatalogTableConfigOptions
+    end
+
+    -- Additional run options you can specify for an evaluation run.
+    record DataQualityEvaluationRunAdditionalRunOptions
+        -- Whether or not to enable CloudWatch metrics.
+        CloudWatchMetricsEnabled: boolean
+        -- Prefix for Amazon S3 to store results.
+        ResultsS3Prefix: string
+        -- Set the evaluation method for composite rules in the ruleset to ROW/COLUMN
+        CompositeRuleEvaluationMethod: string
+        -- A custom prefix for the CloudWatch log group names. When specified, evaluation run logs are written to /error and /output instead of the default /aws-glue/data-quality/error and /aws-glue/data-quality/output log groups.
+        CustomLogGroupPrefix: string
+        -- The configuration for writing row-level evaluation results to a Glue Data Catalog table.
+        RowLevelResults: RowLevelResultsOptions
+        -- The configuration for writing profiling results to a Glue Data Catalog table.
+        ProfilingResults: ProfilingResultsOptions
+        -- The scope of the observation for the evaluation run. Specifies whether anomaly detection is enabled or disabled.
+        ObservationScope: string
+        -- The observation mode for the evaluation run. Specifies how anomaly detection bounds are calculated.
+        ObservationMode: string
+        -- The configuration for writing rule results to a Glue Data Catalog table.
+        DataQualityRuleResults: DataQualityRuleResultsOptions
+        -- The configuration for writing observation results to a Glue Data Catalog table.
+        ObservationResults: ObservationResultsOptions
+    end
+
+    enum TaskStatusType
+        "STARTING"
+        "RUNNING"
+        "STOPPING"
+        "STOPPED"
+        "SUCCEEDED"
+        "FAILED"
+        "TIMEOUT"
+    end
+
+    -- The details of a data quality ruleset evaluation run.
+    record DataQualityRulesetEvaluationRun
+        -- The unique run identifier associated with this run.
+        RunId: string
+        DataSource: DataSource
+        -- An IAM role supplied to encrypt the results of the run.
+        Role: string
+        -- The number of G.1X workers to be used in the run. The default is 5.
+        NumberOfWorkers: number
+        -- The timeout for a run in minutes. This is the maximum time that a run can consume resources before it is terminated and enters TIMEOUT status. The default is 2,880 minutes (48 hours).
+        Timeout: number
+        AdditionalRunOptions: DataQualityEvaluationRunAdditionalRunOptions
+        -- The status for this run.
+        Status: string
+        -- The error strings that are associated with the run.
+        ErrorString: string
+        -- The date and time when this run started.
+        StartedOn: number
+        -- A timestamp. The last point in time when this run was modified.
+        LastModifiedOn: number
+        -- The date and time when this run was completed.
+        CompletedOn: number
+        -- The amount of time (in seconds) that the run consumed resources.
+        ExecutionTime: number
+        -- A list of ruleset names for the run.
+        RulesetNames: {string}
+        -- A list of result IDs for the data quality results for the run.
+        ResultIds: {string}
+        -- A map of reference strings to additional data sources you can specify for an evaluation run.
+        AdditionalDataSources: {string : DataSource}
+    end
+
+    record BatchGetDataQualityRulesetEvaluationRunOutput
+        -- A list of evaluation run details for the requested run IDs.
+        Runs: {DataQualityRulesetEvaluationRun}
+        -- A list of run IDs that were not found.
+        RunsNotFound: {string}
     end
 
     record BatchGetDevEndpointsInput
@@ -4353,16 +4520,6 @@ local record M
         TransformId: string
         -- A unique identifier for the task run.
         TaskRunId: string
-    end
-
-    enum TaskStatusType
-        "STARTING"
-        "RUNNING"
-        "STOPPING"
-        "STOPPED"
-        "SUCCEEDED"
-        "FAILED"
-        "TIMEOUT"
     end
 
     record CancelMLTaskRunOutput
@@ -8577,6 +8734,12 @@ local record M
         RunId: string
     end
 
+    -- Additional run options you can specify for a recommendation run.
+    record DataQualityRuleRecommendationRunAdditionalRunOptions
+        -- A custom prefix for the CloudWatch log group names. When specified, recommendation run logs are written to /error and /output instead of the default /aws-glue/data-quality/error and /aws-glue/data-quality/output log groups.
+        CustomLogGroupPrefix: string
+    end
+
     -- The response for the Data Quality rule recommendation run.
     record GetDataQualityRuleRecommendationRunOutput
         -- The unique run identifier associated with this run.
@@ -8607,6 +8770,8 @@ local record M
         CreatedRulesetName: string
         -- The name of the security configuration created with the data quality encryption option.
         DataQualitySecurityConfiguration: string
+        -- Additional run options you can specify for a recommendation run.
+        AdditionalRunOptions: DataQualityRuleRecommendationRunAdditionalRunOptions
     end
 
     record GetDataQualityRulesetInput
@@ -8637,23 +8802,6 @@ local record M
     record GetDataQualityRulesetEvaluationRunInput
         -- The unique run identifier associated with this run.
         RunId: string
-    end
-
-    enum DQCompositeRuleEvaluationMethod
-        "COLUMN"
-        "ROW"
-    end
-
-    -- Additional run options you can specify for an evaluation run.
-    record DataQualityEvaluationRunAdditionalRunOptions
-        -- Whether or not to enable CloudWatch metrics.
-        CloudWatchMetricsEnabled: boolean
-        -- Prefix for Amazon S3 to store results.
-        ResultsS3Prefix: string
-        -- Set the evaluation method for composite rules in the ruleset to ROW/COLUMN
-        CompositeRuleEvaluationMethod: string
-        -- A custom prefix for the CloudWatch log group names. When specified, evaluation run logs are written to /error and /output instead of the default /aws-glue/data-quality/error and /aws-glue/data-quality/output log groups.
-        CustomLogGroupPrefix: string
     end
 
     record GetDataQualityRulesetEvaluationRunOutput
@@ -10825,6 +10973,8 @@ local record M
         NextToken: string
         -- The maximum number of results to return.
         MaxResults: number
+        -- A list of key-value pair tags to filter recommendation runs.
+        Tags: {string : string}
     end
 
     -- Describes the result of a data quality rule recommendation run.
@@ -10837,6 +10987,8 @@ local record M
         StartedOn: number
         -- The data source (Glue table) associated with the recommendation run.
         DataSource: DataSource
+        -- The name of the ruleset that was created by the recommendation run.
+        CreatedRulesetName: string
     end
 
     record ListDataQualityRuleRecommendationRunsOutput
@@ -11007,6 +11159,8 @@ local record M
         StatisticName: string
         -- The value of the statistic.
         DoubleValue: number
+        -- The distribution value for the statistic.
+        DistributionValue: DistributionData
         -- The evaluation level of the statistic. Possible values: Dataset, Column, Multicolumn.
         EvaluationLevel: string
         -- The list of columns referenced by the statistic.
@@ -12274,6 +12428,8 @@ local record M
         DataQualitySecurityConfiguration: string
         -- Used for idempotency and is recommended to be set to a random ID (such as a UUID) to avoid creating or starting multiple instances of the same resource.
         ClientToken: string
+        -- Additional run options you can specify for a recommendation run.
+        AdditionalRunOptions: DataQualityRuleRecommendationRunAdditionalRunOptions
     end
 
     record StartDataQualityRuleRecommendationRunOutput

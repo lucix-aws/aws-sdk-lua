@@ -3533,6 +3533,12 @@ M.Task = schema.new({
             target_id = id.from(_N, "LogLocation"),
             target = M.LogLocation,
         }),
+        taskHours = schema.new({
+            id = id.from(_N, "Task", "taskHours"),
+            type = "double",
+            name = "taskHours",
+            target_id = prelude.Double.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "Task", "createdAt"),
             type = "timestamp",
@@ -8796,6 +8802,12 @@ M.TaskSummary = schema.new({
             type = "string",
             name = "executionStatus",
             target_id = prelude.String.id,
+        }),
+        taskHours = schema.new({
+            id = id.from(_N, "TaskSummary", "taskHours"),
+            type = "double",
+            name = "taskHours",
+            target_id = prelude.Double.id,
         }),
         createdAt = schema.new({
             id = id.from(_N, "TaskSummary", "createdAt"),

@@ -119,6 +119,11 @@ local record M
         audienceExportJobs: {AudienceExportJobSummary}
     end
 
+    -- The request was denied due to request throttling.
+    record ThrottlingException
+        message: string
+    end
+
     -- The request parameters for this request are incorrect.
     record ValidationException
         message: string
@@ -193,6 +198,7 @@ local record M
     enum WorkerComputeType
         "CR.1X"
         "CR.4X"
+        "CR.8X"
     end
 
     -- Configuration information about the compute workers that perform the transform job.
@@ -332,11 +338,6 @@ local record M
     record StartAudienceGenerationJobOutput
         -- The Amazon Resource Name (ARN) of the audience generation job.
         audienceGenerationJobArn: string
-    end
-
-    -- The request was denied due to request throttling.
-    record ThrottlingException
-        message: string
     end
 
     record CreateAudienceModelInput

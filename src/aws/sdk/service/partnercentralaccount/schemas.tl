@@ -1160,6 +1160,31 @@ M.ErrorDetail = schema.new({
     },
 })
 
+M.Headquarters = schema.new({
+    id = id.from(_N, "Headquarters"),
+    type = "structure",
+    members = {
+        CountryCode = schema.new({
+            id = id.from(_N, "Headquarters", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubdivisionCode = schema.new({
+            id = id.from(_N, "Headquarters", "SubdivisionCode"),
+            type = "string",
+            name = "SubdivisionCode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.LocalizedContent = schema.new({
     id = id.from(_N, "LocalizedContent"),
     type = "structure",
@@ -1286,6 +1311,13 @@ M.TaskDetails = schema.new({
             name = "LocalizedContents",
             target_id = prelude.Document.id,
             list_member = M.LocalizedContent,
+        }),
+        Headquarters = schema.new({
+            id = id.from(_N, "TaskDetails", "Headquarters"),
+            type = "structure",
+            name = "Headquarters",
+            target_id = id.from(_N, "Headquarters"),
+            target = M.Headquarters,
         }),
     },
 })
@@ -2754,6 +2786,13 @@ M.PartnerProfile = schema.new({
             name = "LocalizedContents",
             target_id = prelude.Document.id,
             list_member = M.LocalizedContent,
+        }),
+        Headquarters = schema.new({
+            id = id.from(_N, "PartnerProfile", "Headquarters"),
+            type = "structure",
+            name = "Headquarters",
+            target_id = id.from(_N, "Headquarters"),
+            target = M.Headquarters,
         }),
         ProfileId = schema.new({
             id = id.from(_N, "PartnerProfile", "ProfileId"),

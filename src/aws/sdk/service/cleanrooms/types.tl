@@ -3494,6 +3494,7 @@ local record M
     enum WorkerComputeType
         "CR.1X"
         "CR.4X"
+        "CR.8X"
     end
 
     -- The configuration of the compute resources for workers running an analysis with the Clean Rooms SQL analytics engine.

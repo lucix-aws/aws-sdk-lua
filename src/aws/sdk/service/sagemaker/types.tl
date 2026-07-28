@@ -938,6 +938,30 @@ local record M
         "max"
     end
 
+    -- A LoRA adapter entry identified by a model package ARN.
+    record AIAdapterModelPackageEntry
+        -- A unique identifier for the adapter. This ID is used as the inference component name when the adapter is deployed. The ID must start and end with an alphanumeric character, can contain hyphens between alphanumeric characters, and can be up to 63 characters long.
+        AdapterId: string
+        -- The Amazon Resource Name (ARN) of the model package that contains the LoRA adapter artifacts.
+        ModelPackageArn: string
+    end
+
+    -- A LoRA adapter entry identified by an Amazon S3 URI.
+    record AIAdapterS3Entry
+        -- A unique identifier for the adapter. This ID is used as the inference component name when the adapter is deployed. The ID must start and end with an alphanumeric character, can contain hyphens between alphanumeric characters, and can be up to 63 characters long.
+        AdapterId: string
+        -- The Amazon S3 URI of the directory that contains the LoRA adapter artifacts in PEFT format.
+        S3Uri: string
+    end
+
+    -- The source of LoRA adapters for an AI recommendation job. This is a union type — specify exactly one of the members.
+    record AIAdapterSource
+        -- A list of LoRA adapters identified by their model package ARNs. Use this when your adapters were produced by a SageMaker AI fine-tuning workflow that registers model packages.
+        ModelPackageArns: {AIAdapterModelPackageEntry}
+        -- A list of LoRA adapters identified by their Amazon S3 URIs. Use this when your adapters are stored as raw artifacts in Amazon S3.
+        S3Uris: {AIAdapterS3Entry}
+    end
+
     -- An inference component to benchmark.
     record AIBenchmarkInferenceComponent
         -- The name or Amazon Resource Name (ARN) of the inference component.
@@ -1084,6 +1108,14 @@ local record M
         S3: AIModelSourceS3
     end
 
+    -- The per-recommendation LoRA adapter details. Contains both the model package ARNs and Amazon S3 URIs for each adapter, regardless of which form was originally supplied in the request. When the customer supplies only Amazon S3 URIs, Amazon SageMaker AI creates model packages on their behalf.
+    record AIRecommendationAdapterDetails
+        -- The list of LoRA adapters with their model package ARNs.
+        ModelPackageArns: {AIAdapterModelPackageEntry}
+        -- The list of LoRA adapters with their Amazon S3 URIs.
+        S3Uris: {AIAdapterS3Entry}
+    end
+
     enum AIRecommendationInstanceType
         "ml.g5.xlarge"
         "ml.g5.2xlarge"
@@ -1149,6 +1181,8 @@ local record M
         CopyCountPerInstance: number
         -- The environment variables for the deployment.
         EnvironmentVariables: {string : string}
+        -- The minimum host (CPU) memory, in MiB, to reserve per model copy when deploying the recommendation as an Inference Component. This value maps to the base Inference Component's ComputeResourceRequirements$MinMemoryRequiredInMb and is sized so that CopyCountPerInstance copies co-place within the instance's allocatable host memory.
+        MinCpuMemoryRequiredInMb: number
     end
 
     -- An expected performance metric for a recommendation.
@@ -1210,6 +1244,8 @@ local record M
         AIBenchmarkJobArn: string
         -- The expected performance metrics for this recommendation.
         ExpectedPerformance: {AIRecommendationPerformanceMetric}
+        -- The LoRA adapter details for this recommendation. This field contains both the model package ARNs and Amazon S3 URIs for each adapter, regardless of which form was originally supplied. This field is absent when the job was created without LoRA adapters.
+        AdapterDetails: AIRecommendationAdapterDetails
     end
 
     -- The compute resource specification for an AI recommendation job.
@@ -5375,6 +5411,8 @@ local record M
         OptimizeModel: boolean
         -- The compute resource specification for the recommendation job. You can specify up to 3 instance types to consider, and optionally provide capacity reservation configuration.
         ComputeSpec: AIRecommendationComputeSpec
+        -- The LoRA adapter source for the recommendation job. Specify either a list of model package ARNs or Amazon S3 URIs for your LoRA adapters. When this parameter is absent, the recommendation job runs without LoRA adapter support.
+        AdapterSource: AIAdapterSource
         -- The metadata that you apply to Amazon Web Services resources to help you categorize and organize them.
         Tags: {Tag}
     end
@@ -8933,6 +8971,12 @@ local record M
         "ml.g6.16xlarge"
         "ml.g6.24xlarge"
         "ml.g6.48xlarge"
+        "ml.g7e.2xlarge"
+        "ml.g7e.4xlarge"
+        "ml.g7e.8xlarge"
+        "ml.g7e.12xlarge"
+        "ml.g7e.24xlarge"
+        "ml.g7e.48xlarge"
         "ml.p5.4xlarge"
         "ml.p5en.48xlarge"
         "ml.g6e.xlarge"
@@ -9057,6 +9101,13 @@ local record M
         "ml.trn1.2xlarge"
         "ml.trn1.32xlarge"
         "ml.trn1n.32xlarge"
+        "ml.p6-b200.48xlarge"
+        "ml.g7e.2xlarge"
+        "ml.g7e.4xlarge"
+        "ml.g7e.8xlarge"
+        "ml.g7e.12xlarge"
+        "ml.g7e.24xlarge"
+        "ml.g7e.48xlarge"
     end
 
     -- The access configuration settings for the source ML model for an optimization job, where you can accept the model end-user license agreement (EULA).
@@ -9188,6 +9239,8 @@ local record M
         Tags: {Tag}
         -- A VPC in Amazon VPC that your optimized model has access to.
         VpcConfig: OptimizationVpcConfig
+        -- The Amazon Resource Name (ARN) of the training plan to use for this optimization job. When you use reserved capacity from a training plan, the optimization job runs on that reserved capacity instead of on-demand capacity. If you omit this field, the job uses on-demand capacity. Currently, you can specify at most one training plan. For more information about how to reserve GPU capacity for your optimization jobs using Amazon SageMaker Training Plans, see Reserve capacity with training plans.
+        TrainingPlanArns: {string}
     end
 
     record CreateOptimizationJobOutput
@@ -11115,6 +11168,8 @@ local record M
         RoleArn: string
         -- The compute resource specification for the recommendation job.
         ComputeSpec: AIRecommendationComputeSpec
+        -- The LoRA adapter source that was specified when the recommendation job was created. This field is absent when the job was created without LoRA adapters.
+        AdapterSource: AIAdapterSource
         -- A timestamp that indicates when the recommendation job was created.
         CreationTime: number
         -- A timestamp that indicates when the recommendation job started running.
@@ -13857,6 +13912,8 @@ local record M
         StoppingCondition: StoppingCondition
         -- A VPC in Amazon VPC that your optimized model has access to.
         VpcConfig: OptimizationVpcConfig
+        -- The Amazon Resource Name (ARN) of the training plan associated with this optimization job. This field appears only when you specified a training plan when you created the job. Optimization jobs that use on-demand capacity don't return this field.
+        TrainingPlanArns: {string}
     end
 
     record DescribePartnerAppInput

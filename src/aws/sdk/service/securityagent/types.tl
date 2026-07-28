@@ -1250,6 +1250,8 @@ local record M
         executionStatus: string
         -- The location of the task execution logs.
         logsLocation: LogLocation
+        -- The number of active work hours consumed by the task during execution.
+        taskHours: number
         -- The date and time the task was created, in UTC format.
         createdAt: number
         -- The date and time the task was last updated, in UTC format.
@@ -3011,6 +3013,8 @@ local record M
         riskType: string
         -- The current execution status of the task.
         executionStatus: string
+        -- The number of active work hours consumed by the task during execution.
+        taskHours: number
         -- The date and time the task was created, in UTC format.
         createdAt: number
         -- The date and time the task was last updated, in UTC format.

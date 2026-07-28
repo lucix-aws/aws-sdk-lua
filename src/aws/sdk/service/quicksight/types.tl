@@ -10573,6 +10573,7 @@ local record M
 
     enum CapabilityState
         "DENY"
+        "ALLOW"
     end
 
     -- A set of actions that correspond to Amazon Quick Sight permissions.
@@ -11687,6 +11688,16 @@ local record M
         Columns: {CalculatedColumn}
     end
 
+    enum DefaultCategoryEffect
+        "DENY_BY_DEFAULT"
+    end
+
+    -- Contains the governance configuration for a custom permissions profile. When governance controls are defined for a category, any capabilities in that category not explicitly set to ALLOW in Capabilities are denied. Even newly added capabilities in the category are implicitly disabled when Amazon Quick releases them.
+    record Governance
+        -- A map of DefaultCategoryEffects.
+        DefaultCategoryEffects: {string : string}
+    end
+
     record CreateCustomPermissionsInput
         -- The ID of the Amazon Web Services account that you want to create the custom permissions profile in.
         AwsAccountId: string
@@ -11694,6 +11705,8 @@ local record M
         CustomPermissionsName: string
         -- A set of actions to include in the custom permissions profile.
         Capabilities: Capabilities
+        -- The governance configuration for the custom permissions profile. When governance controls are defined for a category, any capabilities in that category not explicitly set to ALLOW in Capabilities are denied. Even newly added capabilities in the category are implicitly disabled when Amazon Quick releases them.
+        Governance: Governance
         -- The tags to associate with the custom permissions profile.
         Tags: {Tag}
     end
@@ -14761,6 +14774,8 @@ local record M
         CustomPermissionsName: string
         -- A set of actions in the custom permissions profile.
         Capabilities: Capabilities
+        -- The governance configuration for the custom permissions profile. When you enable governance for a category, Amazon Quick denies access to any current or new capability in that category unless you explicitly set that capability to ALLOW in Capabilities.
+        Governance: Governance
     end
 
     enum DashboardErrorType
@@ -21072,6 +21087,8 @@ local record M
         CustomPermissionsName: string
         -- A set of actions to include in the custom permissions profile.
         Capabilities: Capabilities
+        -- The governance configuration for the custom permissions profile. The UpdateCustomPermissions operation replaces all existing Capabilities and Governance values. If you omit this parameter, Amazon Quick removes governance from the profile and the existing custom permission behavior applies.
+        Governance: Governance
     end
 
     record UpdateCustomPermissionsOutput

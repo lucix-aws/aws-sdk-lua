@@ -28,6 +28,7 @@ local record Client
     batchGetCrawlers: function(Client, types.BatchGetCrawlersInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCrawlersOutput>
     batchGetCustomEntityTypes: function(Client, types.BatchGetCustomEntityTypesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetCustomEntityTypesOutput>
     batchGetDataQualityResult: function(Client, types.BatchGetDataQualityResultInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityResultOutput>
+    batchGetDataQualityRulesetEvaluationRun: function(Client, types.BatchGetDataQualityRulesetEvaluationRunInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityRulesetEvaluationRunOutput>
     batchGetDevEndpoints: function(Client, types.BatchGetDevEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetDevEndpointsOutput>
     batchGetIterableForms: function(Client, types.BatchGetIterableFormsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetIterableFormsOutput>
     batchGetJobs: function(Client, types.BatchGetJobsInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetJobsOutput>
@@ -396,6 +397,10 @@ end
 
 function C:batchGetDataQualityResult(input: types.BatchGetDataQualityResultInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityResultOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetDataQualityResult as schema.OperationSchema, input, options) as async.Operation<types.BatchGetDataQualityResultOutput>
+end
+
+function C:batchGetDataQualityRulesetEvaluationRun(input: types.BatchGetDataQualityRulesetEvaluationRunInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetDataQualityRulesetEvaluationRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchGetDataQualityRulesetEvaluationRun as schema.OperationSchema, input, options) as async.Operation<types.BatchGetDataQualityRulesetEvaluationRunOutput>
 end
 
 function C:batchGetDevEndpoints(input: types.BatchGetDevEndpointsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchGetDevEndpointsOutput>

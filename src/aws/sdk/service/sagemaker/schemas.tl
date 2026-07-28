@@ -93,6 +93,8 @@ M.OptimizationJobEnvironmentVariables = schema.new({ type = "map", map_key = pre
 
 M.OptimizationConfigs = schema.new({ type = "list", list_member = M.OptimizationConfig })
 
+M.OptimizationJobTrainingPlanArns = schema.new({ type = "list", list_member = prelude.String })
+
 M.ProcessingInputs = schema.new({ type = "list", list_member = M.ProcessingInput })
 
 M.ProcessingEnvironmentMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -400,6 +402,10 @@ M.ListTrialComponentKey256 = schema.new({ type = "list", list_member = prelude.S
 M.AIRecommendationConstraintList = schema.new({ type = "list", list_member = M.AIRecommendationConstraint })
 
 M.AIRecommendationInstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AIAdapterModelPackageEntryList = schema.new({ type = "list", list_member = M.AIAdapterModelPackageEntry })
+
+M.AIAdapterS3EntryList = schema.new({ type = "list", list_member = M.AIAdapterS3Entry })
 
 M.AIWorkloadInputDataConfigList = schema.new({ type = "list", list_member = M.AIWorkloadInputDataConfig })
 
@@ -1520,6 +1526,77 @@ M.AgentVersion = schema.new({
     },
 })
 
+M.AIAdapterModelPackageEntry = schema.new({
+    id = id.from(_N, "AIAdapterModelPackageEntry"),
+    type = "structure",
+    members = {
+        AdapterId = schema.new({
+            id = id.from(_N, "AIAdapterModelPackageEntry", "AdapterId"),
+            type = "string",
+            name = "AdapterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ModelPackageArn = schema.new({
+            id = id.from(_N, "AIAdapterModelPackageEntry", "ModelPackageArn"),
+            type = "string",
+            name = "ModelPackageArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AIAdapterS3Entry = schema.new({
+    id = id.from(_N, "AIAdapterS3Entry"),
+    type = "structure",
+    members = {
+        AdapterId = schema.new({
+            id = id.from(_N, "AIAdapterS3Entry", "AdapterId"),
+            type = "string",
+            name = "AdapterId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3Uri = schema.new({
+            id = id.from(_N, "AIAdapterS3Entry", "S3Uri"),
+            type = "string",
+            name = "S3Uri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AIAdapterSource = schema.new({
+    id = id.from(_N, "AIAdapterSource"),
+    type = "union",
+    members = {
+        ModelPackageArns = schema.new({
+            id = id.from(_N, "AIAdapterSource", "ModelPackageArns"),
+            type = "list",
+            name = "ModelPackageArns",
+            target_id = prelude.Document.id,
+            list_member = M.AIAdapterModelPackageEntry,
+        }),
+        S3Uris = schema.new({
+            id = id.from(_N, "AIAdapterSource", "S3Uris"),
+            type = "list",
+            name = "S3Uris",
+            target_id = prelude.Document.id,
+            list_member = M.AIAdapterS3Entry,
+        }),
+    },
+})
+
 M.AIBenchmarkInferenceComponent = schema.new({
     id = id.from(_N, "AIBenchmarkInferenceComponent"),
     type = "structure",
@@ -1892,6 +1969,33 @@ M.AIModelSource = schema.new({
     },
 })
 
+M.AIRecommendationAdapterDetails = schema.new({
+    id = id.from(_N, "AIRecommendationAdapterDetails"),
+    type = "structure",
+    members = {
+        ModelPackageArns = schema.new({
+            id = id.from(_N, "AIRecommendationAdapterDetails", "ModelPackageArns"),
+            type = "list",
+            name = "ModelPackageArns",
+            target_id = prelude.Document.id,
+            list_member = M.AIAdapterModelPackageEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        S3Uris = schema.new({
+            id = id.from(_N, "AIRecommendationAdapterDetails", "S3Uris"),
+            type = "list",
+            name = "S3Uris",
+            target_id = prelude.Document.id,
+            list_member = M.AIAdapterS3Entry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AIRecommendationDeploymentS3Channel = schema.new({
     id = id.from(_N, "AIRecommendationDeploymentS3Channel"),
     type = "structure",
@@ -1953,6 +2057,12 @@ M.AIRecommendationDeploymentConfiguration = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        MinCpuMemoryRequiredInMb = schema.new({
+            id = id.from(_N, "AIRecommendationDeploymentConfiguration", "MinCpuMemoryRequiredInMb"),
+            type = "integer",
+            name = "MinCpuMemoryRequiredInMb",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -2112,6 +2222,13 @@ M.AIRecommendation = schema.new({
             name = "ExpectedPerformance",
             target_id = prelude.Document.id,
             list_member = M.AIRecommendationPerformanceMetric,
+        }),
+        AdapterDetails = schema.new({
+            id = id.from(_N, "AIRecommendation", "AdapterDetails"),
+            type = "structure",
+            name = "AdapterDetails",
+            target_id = id.from(_N, "AIRecommendationAdapterDetails"),
+            target = M.AIRecommendationAdapterDetails,
         }),
     },
 })
@@ -11073,6 +11190,13 @@ M.CreateAIRecommendationJobInput = schema.new({
             name = "ComputeSpec",
             target_id = id.from(_N, "AIRecommendationComputeSpec"),
             target = M.AIRecommendationComputeSpec,
+        }),
+        AdapterSource = schema.new({
+            id = id.from(_N, "CreateAIRecommendationJobInput", "AdapterSource"),
+            type = "union",
+            name = "AdapterSource",
+            target_id = id.from(_N, "AIAdapterSource"),
+            target = M.AIAdapterSource,
         }),
         Tags = schema.new({
             id = id.from(_N, "CreateAIRecommendationJobInput", "Tags"),
@@ -20869,6 +20993,13 @@ M.CreateOptimizationJobInput = schema.new({
             target_id = id.from(_N, "OptimizationVpcConfig"),
             target = M.OptimizationVpcConfig,
         }),
+        TrainingPlanArns = schema.new({
+            id = id.from(_N, "CreateOptimizationJobInput", "TrainingPlanArns"),
+            type = "list",
+            name = "TrainingPlanArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -26213,6 +26344,13 @@ M.DescribeAIRecommendationJobOutput = schema.new({
             name = "ComputeSpec",
             target_id = id.from(_N, "AIRecommendationComputeSpec"),
             target = M.AIRecommendationComputeSpec,
+        }),
+        AdapterSource = schema.new({
+            id = id.from(_N, "DescribeAIRecommendationJobOutput", "AdapterSource"),
+            type = "union",
+            name = "AdapterSource",
+            target_id = id.from(_N, "AIAdapterSource"),
+            target = M.AIAdapterSource,
         }),
         CreationTime = schema.new({
             id = id.from(_N, "DescribeAIRecommendationJobOutput", "CreationTime"),
@@ -34459,6 +34597,13 @@ M.DescribeOptimizationJobOutput = schema.new({
             name = "VpcConfig",
             target_id = id.from(_N, "OptimizationVpcConfig"),
             target = M.OptimizationVpcConfig,
+        }),
+        TrainingPlanArns = schema.new({
+            id = id.from(_N, "DescribeOptimizationJobOutput", "TrainingPlanArns"),
+            type = "list",
+            name = "TrainingPlanArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
         }),
     },
 })

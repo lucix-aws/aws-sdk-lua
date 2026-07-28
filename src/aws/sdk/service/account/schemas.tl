@@ -731,6 +731,41 @@ M.GetPrimaryEmailOutput = schema.new({
     },
 })
 
+M.GetPrimaryEmailUpdateStatusInput = schema.new({
+    id = id.from(_N, "GetPrimaryEmailUpdateStatusRequest"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "GetPrimaryEmailUpdateStatusInput", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetPrimaryEmailUpdateStatusOutput = schema.new({
+    id = id.from(_N, "GetPrimaryEmailUpdateStatusResponse"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "GetPrimaryEmailUpdateStatusOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetPrimaryEmailUpdateStatusOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.StartPrimaryEmailUpdateInput = schema.new({
     id = id.from(_N, "StartPrimaryEmailUpdateRequest"),
     type = "structure",
@@ -1056,6 +1091,18 @@ M.GetPrimaryEmail = schema.operation({
     output = M.GetPrimaryEmailOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/getPrimaryEmail" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetPrimaryEmailUpdateStatus = schema.operation({
+    id = id.from("com.amazonaws.account", "GetPrimaryEmailUpdateStatus"),
+    input = M.GetPrimaryEmailUpdateStatusInput,
+    output = M.GetPrimaryEmailUpdateStatusOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/getPrimaryEmailUpdateStatus" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
