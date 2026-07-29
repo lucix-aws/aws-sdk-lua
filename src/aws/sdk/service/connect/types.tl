@@ -1028,7 +1028,7 @@ local record M
         -- The queues to associate with this routing profile.
         QueueConfigs: {RoutingProfileQueueConfig}
         -- The manual assignment queues to associate with this routing profile.
-        -- Note: Use this config for chat, email, and task contacts. It does not support voice contacts.
+        -- For voice contacts, manual assignment supports only agent-first callback contacts. Chat, email, and task contacts are fully supported.
         ManualAssignmentQueueConfigs: {RoutingProfileManualAssignmentQueueConfig}
     end
 
@@ -3298,7 +3298,7 @@ local record M
         -- can't pick or assign any contacts from this routing profile. The limit of 10 array members applies to the maximum
         -- number of RoutingProfileManualAssignmentQueueConfig objects that can be passed during a CreateRoutingProfile API
         -- request. It is different from the quota of 50 queues per routing profile per instance that is listed in Connect Customer service quotas.
-        -- Note: Use this config for chat, email, and task contacts. It does not support voice contacts.
+        -- For voice contacts, manual assignment supports only agent-first callback contacts. Chat, email, and task contacts are fully supported.
         ManualAssignmentQueueConfigs: {RoutingProfileManualAssignmentQueueConfig}
         -- The channels that agents can handle in the Contact Control Panel (CCP) for this routing profile.
         MediaConcurrencies: {MediaConcurrency}
@@ -3740,10 +3740,13 @@ local record M
         -- The description of the task template.
         Description: string
         -- The identifier of the flow that runs by default when a task is created by referencing this template.
+        -- Although this parameter is marked as optional, the request must contain either a ContactFlowId or a field of type QUICK_CONNECT.
         ContactFlowId: string
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
         -- Constraints that are applicable to the fields listed.
+        -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
+        -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.
         Constraints: TaskTemplateConstraints
         -- The default values for fields when a task is created by referencing this template.
         Defaults: TaskTemplateDefaults
@@ -3752,6 +3755,7 @@ local record M
         -- If a template is marked as INACTIVE, then a task that refers to this template cannot be created.
         Status: string
         -- Fields that are part of the template.
+        -- The request must contain exactly one field of type NAME. This field must also be listed in the RequiredFields array within the Constraints parameter.
         Fields: {TaskTemplateField}
         -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
         -- request. If not provided, the Amazon Web Services
@@ -9727,6 +9731,8 @@ local record M
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
         -- Constraints that are applicable to the fields listed.
+        -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
+        -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.
         Constraints: TaskTemplateConstraints
         -- The default values for fields when a task is created by referencing this template.
         Defaults: TaskTemplateDefaults
@@ -15736,18 +15742,23 @@ local record M
         -- The description of the task template.
         Description: string
         -- The identifier of the flow that runs by default when a task is created by referencing this template.
+        -- Although this parameter is marked as optional, the request must contain either a ContactFlowId or a field of type QUICK_CONNECT.
         ContactFlowId: string
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
         -- Constraints that are applicable to the fields listed.
+        -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
+        -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.
         Constraints: TaskTemplateConstraints
         -- The default values for fields when a task is created by referencing this template.
         Defaults: TaskTemplateDefaults
         -- Marks a template as ACTIVE or INACTIVE for a task to refer to it.
         -- Tasks can only be created from ACTIVE templates.
         -- If a template is marked as INACTIVE, then a task that refers to this template cannot be created.
+        -- Although this parameter is marked as optional, the service requires it when calling UpdateTaskTemplate.
         Status: string
         -- Fields that are part of the template.
+        -- The request must contain exactly one field of type NAME. This field must also be listed in the RequiredFields array within the Constraints parameter.
         Fields: {TaskTemplateField}
     end
 
@@ -15767,6 +15778,8 @@ local record M
         -- The ContactFlowId for the flow that will be run if this template is used to create a self-assigned task.
         SelfAssignFlowId: string
         -- Constraints that are applicable to the fields listed.
+        -- Although this parameter is marked as optional in the API model, the service requires it when calling CreateTaskTemplate or UpdateTaskTemplate.
+        -- The RequiredFields array must contain at least one element, and the field of type NAME must be included in RequiredFields.
         Constraints: TaskTemplateConstraints
         -- The default values for fields when a task is created by referencing this template.
         Defaults: TaskTemplateDefaults

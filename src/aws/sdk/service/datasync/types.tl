@@ -624,7 +624,11 @@ local record M
         Subdirectory: string
         -- The NameNode that manages the HDFS namespace. The NameNode performs operations such as
         -- opening, closing, and renaming files and directories. The NameNode contains the information to
-        -- map blocks of data to the DataNodes. You can use only one NameNode.
+        -- map blocks of data to the DataNodes.
+        -- The number of NameNodes you can specify depends on the task mode:
+        -- Enhanced mode – You can specify multiple NameNodes for HDFS High Availability (HA)
+        -- configurations.
+        -- Basic mode – You can specify only one NameNode.
         NameNodes: {HdfsNameNode}
         -- The size of data blocks to write into the HDFS cluster. The block size must be a multiple
         -- of 512 bytes. The default block size is 128 mebibytes (MiB).
@@ -1181,10 +1185,12 @@ local record M
         -- PREPARING steps of the task execution). This option is
         -- recommended.
         -- NONE - Ignores Atime.
+        -- The following applies only to Basic mode tasks:
         -- If Atime is set to BEST_EFFORT, Mtime must be set
         -- to PRESERVE.
         -- If Atime is set to NONE, Mtime must also be
         -- NONE.
+        -- Enhanced mode tasks support configuring Atime independently of Mtime.
         Atime: string
         -- Specifies whether to preserve metadata indicating the last time that a file was written
         -- to before the PREPARING step of your task execution. This option is required when
@@ -1192,10 +1198,12 @@ local record M
         -- PRESERVE (default) - Preserves original Mtime, which is
         -- recommended.
         -- NONE - Ignores Mtime.
+        -- The following applies only to Basic mode tasks:
         -- If Mtime is set to PRESERVE, Atime must be set to
         -- BEST_EFFORT.
         -- If Mtime is set to NONE, Atime must also be set
         -- to NONE.
+        -- Enhanced mode tasks don't support Mtime set to NONE.
         Mtime: string
         -- Specifies the POSIX user ID (UID) of the file's owner.
         -- INT_VALUE (default) - Preserves the integer value of UID and group ID
@@ -2909,7 +2917,11 @@ local record M
         Subdirectory: string
         -- The NameNode that manages the HDFS namespace. The NameNode performs operations such as
         -- opening, closing, and renaming files and directories. The NameNode contains the information to
-        -- map blocks of data to the DataNodes. You can use only one NameNode.
+        -- map blocks of data to the DataNodes.
+        -- The number of NameNodes you can specify depends on the task mode:
+        -- Enhanced mode – You can specify multiple NameNodes for HDFS High Availability (HA)
+        -- configurations.
+        -- Basic mode – You can specify only one NameNode.
         NameNodes: {HdfsNameNode}
         -- The size of the data blocks to write into the HDFS cluster.
         BlockSize: number

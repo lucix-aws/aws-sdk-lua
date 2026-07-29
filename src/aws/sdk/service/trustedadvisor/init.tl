@@ -27,6 +27,7 @@ local record Client
     listOrganizationRecommendations: function(Client, types.ListOrganizationRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListOrganizationRecommendationsOutput>
     listRecommendationResources: function(Client, types.ListRecommendationResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationResourcesOutput>
     listRecommendations: function(Client, types.ListRecommendationsInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
+    listRecommendationsForResource: function(Client, types.ListRecommendationsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListRecommendationsForResourceOutput>
     updateOrganizationRecommendationLifecycle: function(Client, types.UpdateOrganizationRecommendationLifecycleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateOrganizationRecommendationLifecycleOutput>
     updateRecommendationLifecycle: function(Client, types.UpdateRecommendationLifecycleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRecommendationLifecycleOutput>
 end
@@ -107,6 +108,10 @@ end
 
 function C:listRecommendations(input: types.ListRecommendationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendations as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsOutput>
+end
+
+function C:listRecommendationsForResource(input: types.ListRecommendationsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListRecommendationsForResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListRecommendationsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListRecommendationsForResourceOutput>
 end
 
 function C:updateOrganizationRecommendationLifecycle(input: types.UpdateOrganizationRecommendationLifecycleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateOrganizationRecommendationLifecycleOutput>

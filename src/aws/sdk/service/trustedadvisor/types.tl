@@ -136,6 +136,14 @@ local record M
         source: string
         -- The column headings for the metadata returned in the resource
         metadata: {string : string}
+        -- Indicates whether this check is supported by the ListRecommendationsForResource API.
+        resourceArnQueryable: boolean
+        -- The AWS resource types that this check evaluates (for example, AWS::EC2::Instance).
+        awsResourceTypes: {string}
+        -- The granularity level at which the check operates: resource, account, or account_region.
+        checkGranularity: string
+        -- The recommendation identifier associated with the check.
+        recommendationId: string
     end
 
     enum ExclusionStatus
@@ -573,6 +581,50 @@ local record M
         nextToken: string
         -- The list of Recommendations
         recommendationSummaries: {RecommendationSummary}
+    end
+
+    record ListRecommendationsForResourceInput
+        -- The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.
+        nextToken: string
+        -- The maximum number of results to return per page
+        maxResults: number
+        -- The ARN of the AWS resource to query recommendations for
+        awsResourceArn: string
+        -- The pillar that the recommendation belongs to
+        pillar: string
+        -- The current status of the Recommendation Resource
+        status: string
+        -- The AWS Trusted Advisor Check ARN that relates to the Recommendation
+        checkArn: string
+        -- The ISO 639-1 code for the language that you want your recommendations to appear in.
+        language: string
+    end
+
+    -- Summary of a Recommendation for a specific AWS Resource
+    record RecommendationForResourceSummary
+        -- The Check ARN
+        checkArn: string
+        -- The Recommendation ARN
+        recommendationArn: string
+        -- The AWS Resource ARN
+        awsResourceArn: string
+        -- The current status of the recommendation
+        status: string
+        -- When the recommendation was last updated
+        lastUpdatedAt: number
+        -- The exclusion status of the recommendation
+        exclusionStatus: string
+        -- Metadata associated with the recommendation
+        metadata: {string : string}
+        -- The Pillars that the Recommendation is optimizing
+        pillars: {string}
+    end
+
+    record ListRecommendationsForResourceOutput
+        -- The token for the next set of results. Use the value returned in the previous response in the next request to retrieve the next set of results.
+        nextToken: string
+        -- List of Trusted Advisor recommendations associated with the given AWS resource
+        recommendationForResourceSummaries: {RecommendationForResourceSummary}
     end
 
     enum UpdateRecommendationLifecycleStage

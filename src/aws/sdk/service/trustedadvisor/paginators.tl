@@ -112,4 +112,22 @@ function M.items_list_recommendations(client, input)
     })
 end
 
+--- Returns a page iterator for listRecommendationsForResource.
+function M.pages_list_recommendations_for_resource(client, input)
+    return paginator.pages(client, "listRecommendationsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendationForResourceSummaries",
+    })
+end
+
+--- Returns an item iterator for listRecommendationsForResource.
+function M.items_list_recommendations_for_resource(client, input)
+    return paginator.items(client, "listRecommendationsForResource", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "recommendationForResourceSummaries",
+    })
+end
+
 return M

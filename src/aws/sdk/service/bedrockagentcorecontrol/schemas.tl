@@ -159,6 +159,8 @@ M.FilterList = schema.new({ type = "list", list_member = M.Filter })
 
 M.ClusteringFrequencyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.AdditionalClaims = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.EntryPoints = schema.new({ type = "list", list_member = prelude.String })
 
 M.SecurityGroups = schema.new({ type = "list", list_member = prelude.String })
@@ -15801,6 +15803,72 @@ M.OnBehalfOfTokenExchangeConfigType = schema.new({
     },
 })
 
+M.KmsKeySourceType = schema.new({
+    id = id.from(_N, "KmsKeySourceType"),
+    type = "structure",
+    members = {
+        kmsKeyArn = schema.new({
+            id = id.from(_N, "KmsKeySourceType", "kmsKeyArn"),
+            type = "string",
+            name = "kmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PrivateKeySource = schema.new({
+    id = id.from(_N, "PrivateKeySource"),
+    type = "union",
+    members = {
+        kmsKeySource = schema.new({
+            id = id.from(_N, "PrivateKeySource", "kmsKeySource"),
+            type = "structure",
+            name = "kmsKeySource",
+            target_id = id.from(_N, "KmsKeySourceType"),
+            target = M.KmsKeySourceType,
+        }),
+    },
+})
+
+M.PrivateKeyJwtConfig = schema.new({
+    id = id.from(_N, "PrivateKeyJwtConfig"),
+    type = "structure",
+    members = {
+        privateKeySource = schema.new({
+            id = id.from(_N, "PrivateKeyJwtConfig", "privateKeySource"),
+            type = "union",
+            name = "privateKeySource",
+            target_id = id.from(_N, "PrivateKeySource"),
+            target = M.PrivateKeySource,
+        }),
+        signingAlgorithm = schema.new({
+            id = id.from(_N, "PrivateKeyJwtConfig", "signingAlgorithm"),
+            type = "string",
+            name = "signingAlgorithm",
+            target_id = prelude.String.id,
+        }),
+        additionalHeaderClaims = schema.new({
+            id = id.from(_N, "PrivateKeyJwtConfig", "additionalHeaderClaims"),
+            type = "map",
+            name = "additionalHeaderClaims",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        additionalPayloadClaims = schema.new({
+            id = id.from(_N, "PrivateKeyJwtConfig", "additionalPayloadClaims"),
+            type = "map",
+            name = "additionalPayloadClaims",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.CustomOauth2ProviderConfigInput = schema.new({
     id = id.from(_N, "CustomOauth2ProviderConfigInput"),
     type = "structure",
@@ -15858,6 +15926,13 @@ M.CustomOauth2ProviderConfigInput = schema.new({
             type = "string",
             name = "clientAuthenticationMethod",
             target_id = prelude.String.id,
+        }),
+        privateKeyJwtConfig = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigInput", "privateKeyJwtConfig"),
+            type = "structure",
+            name = "privateKeyJwtConfig",
+            target_id = id.from(_N, "PrivateKeyJwtConfig"),
+            target = M.PrivateKeyJwtConfig,
         }),
         privateEndpoint = schema.new({
             id = id.from(_N, "CustomOauth2ProviderConfigInput", "privateEndpoint"),
@@ -16322,6 +16397,19 @@ M.CustomOauth2ProviderConfigOutput = schema.new({
             name = "clientId",
             target_id = prelude.String.id,
         }),
+        onBehalfOfTokenExchangeConfig = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigOutput", "onBehalfOfTokenExchangeConfig"),
+            type = "structure",
+            name = "onBehalfOfTokenExchangeConfig",
+            target_id = id.from(_N, "OnBehalfOfTokenExchangeConfigType"),
+            target = M.OnBehalfOfTokenExchangeConfigType,
+        }),
+        clientAuthenticationMethod = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigOutput", "clientAuthenticationMethod"),
+            type = "string",
+            name = "clientAuthenticationMethod",
+            target_id = prelude.String.id,
+        }),
         privateEndpoint = schema.new({
             id = id.from(_N, "CustomOauth2ProviderConfigOutput", "privateEndpoint"),
             type = "union",
@@ -16336,18 +16424,12 @@ M.CustomOauth2ProviderConfigOutput = schema.new({
             target_id = prelude.Document.id,
             list_member = M.PrivateEndpointOverride,
         }),
-        onBehalfOfTokenExchangeConfig = schema.new({
-            id = id.from(_N, "CustomOauth2ProviderConfigOutput", "onBehalfOfTokenExchangeConfig"),
+        privateKeyJwtConfig = schema.new({
+            id = id.from(_N, "CustomOauth2ProviderConfigOutput", "privateKeyJwtConfig"),
             type = "structure",
-            name = "onBehalfOfTokenExchangeConfig",
-            target_id = id.from(_N, "OnBehalfOfTokenExchangeConfigType"),
-            target = M.OnBehalfOfTokenExchangeConfigType,
-        }),
-        clientAuthenticationMethod = schema.new({
-            id = id.from(_N, "CustomOauth2ProviderConfigOutput", "clientAuthenticationMethod"),
-            type = "string",
-            name = "clientAuthenticationMethod",
-            target_id = prelude.String.id,
+            name = "privateKeyJwtConfig",
+            target_id = id.from(_N, "PrivateKeyJwtConfig"),
+            target = M.PrivateKeyJwtConfig,
         }),
     },
 })
