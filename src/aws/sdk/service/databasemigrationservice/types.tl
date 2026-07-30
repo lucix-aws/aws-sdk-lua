@@ -190,11 +190,11 @@ local record M
         defaultErrorDetails: DefaultErrorDetails
     end
 
-    -- Provides information about a metadata model assessment exported to SQL.
+    -- The Amazon S3 location of the ZIP archive that contains the exported data definition language (DDL) scripts.
     record ExportSqlDetails
-        -- The Amazon S3 object key for the object containing the exported metadata model assessment.
+        -- The Amazon S3 URI of the object that contains the ZIP archive with exported DDL scripts.
         S3ObjectKey: string
-        -- The URL for the object containing the exported metadata model assessment.
+        -- The URL of the Amazon S3 object that contains the ZIP archive with exported DDL scripts.
         ObjectURL: string
     end
 
@@ -232,18 +232,28 @@ local record M
 
     -- Provides information about a schema conversion action.
     record SchemaConversionRequest
-        -- The schema conversion action status.
+        -- The schema conversion operation status. Possible values:
+        -- RECEIVED – The operation is received but not yet queued for processing.
+        -- IN_PROGRESS – The operation is queued or actively running.
+        -- SUCCESS – The operation completed successfully.
+        -- FAILED – The operation did not complete.
+        -- CANCELING – The operation is being canceled. The operation might still succeed or fail before cancellation takes effect.
+        -- CANCELED – The operation was canceled before completion.
         Status: string
         -- The identifier for the schema conversion action.
         RequestIdentifier: string
         -- The migration project ARN.
         MigrationProjectArn: string
         Error: ErrorDetails
+        -- The Amazon S3 location of the ZIP archive that contains the exported data definition language (DDL) scripts.
+        -- DMS populates this field only for the DescribeMetadataModelExportsAsScript operation.
         ExportSqlDetails: ExportSqlDetails
         Progress: Progress
     end
 
     record CancelMetadataModelConversionOutput
+        -- The metadata model conversion request.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Request: SchemaConversionRequest
     end
 
@@ -255,6 +265,8 @@ local record M
     end
 
     record CancelMetadataModelCreationOutput
+        -- The metadata model creation request.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Request: SchemaConversionRequest
     end
 
@@ -789,9 +801,12 @@ local record M
         DataProviderName: string
         -- A user-friendly description of the data provider.
         Description: string
-        -- The type of database engine for the data provider. Valid values include "aurora",
-        -- "aurora-postgresql", "mysql", "oracle", "postgres",
-        -- "sqlserver", redshift, mariadb, mongodb, db2, db2-zos, docdb, and sybase. A value of "aurora" represents Amazon Aurora MySQL-Compatible Edition.
+        -- The type of database engine for the data provider.
+        -- Valid values: aurora, aurora-postgresql, db2,
+        -- db2-zos, docdb, mariadb, mongodb,
+        -- mysql, oracle, postgres, redshift,
+        -- sqlserver, and sybase. A value of aurora represents
+        -- Amazon Aurora MySQL-Compatible Edition.
         Engine: string
         -- Indicates whether the data provider is virtual.
         Virtual: boolean
@@ -813,9 +828,12 @@ local record M
         -- A description can contain only ASCII letters, digits, and hyphens ('-'). Also, it can't
         -- end with a hyphen or contain two consecutive hyphens, and can only begin with a letter.
         Description: string
-        -- The type of database engine for the data provider. Valid values include "aurora",
-        -- "aurora-postgresql", "mysql", "oracle", "postgres",
-        -- "sqlserver", redshift, mariadb, mongodb, db2, db2-zos, docdb, and sybase. A value of "aurora" represents Amazon Aurora MySQL-Compatible Edition.
+        -- The type of database engine for the data provider.
+        -- Valid values: aurora, aurora-postgresql, db2,
+        -- db2-zos, docdb, mariadb, mongodb,
+        -- mysql, oracle, postgres, redshift,
+        -- sqlserver, and sybase. A value of aurora represents
+        -- Amazon Aurora MySQL-Compatible Edition.
         Engine: string
         -- Indicates whether the data provider is virtual.
         Virtual: boolean
@@ -858,9 +876,12 @@ local record M
         -- Default value is "none". Specify "none" to use document mode.
         -- Specify "one" to use table mode.
         NestingLevel: string
-        -- Specifies the document ID. Use this setting when NestingLevel is set to
-        -- "none".
-        -- Default value is "false".
+        -- Specifies whether the document ID is added to the target table. Use this setting when
+        -- NestingLevel is set to "none".
+        -- Set ExtractDocId to true when using
+        -- multi-document transactions
+        -- with CDC.
+        -- Default value is false.
         ExtractDocId: boolean
         -- Indicates the number of documents to preview to determine the document organization.
         -- Use this setting when NestingLevel is set to "one".
@@ -1355,8 +1376,11 @@ local record M
         -- Default value is "none". Specify "none" to use document mode.
         -- Specify "one" to use table mode.
         NestingLevel: string
-        -- Specifies the document ID. Use this setting when NestingLevel is set to
-        -- "none".
+        -- Specifies whether the document ID is added to the target table. Use this setting when
+        -- NestingLevel is set to "none".
+        -- Set ExtractDocId to "true" when using
+        -- multi-document transactions
+        -- with CDC.
         -- Default value is "false".
         ExtractDocId: string
         -- Indicates the number of documents to preview to determine the document organization.
@@ -1669,11 +1693,11 @@ local record M
         -- Example: retryInterval=6;
         RetryInterval: number
         -- For an Oracle source endpoint, the transparent data encryption (TDE) password required
-        -- by AWM DMS to access Oracle redo logs encrypted by TDE using Binary Reader. It is also the
+        -- by DMS to access Oracle redo logs encrypted by TDE using Binary Reader. It is also the
         -- TDE_Password
         -- part of the comma-separated value you
         -- set to the Password request parameter when you create the endpoint. The
-        -- SecurityDbEncryptian setting is related to this
+        -- SecurityDbEncryption setting is related to this
         -- SecurityDbEncryptionName setting. For more information, see Supported encryption methods for using Oracle as a source for
         -- DMS in the Database Migration Service User Guide.
         SecurityDbEncryption: string
@@ -3092,9 +3116,12 @@ local record M
         -- and must contain only ASCII letters, digits, and hyphens. They can't end with
         -- a hyphen, or contain two consecutive hyphens.
         InstanceProfileIdentifier: string
-        -- The settings in JSON format for migration rules. Migration rules make it possible for you to change
-        -- the object names according to the rules that you specify. For example, you can change an object name
-        -- to lowercase or uppercase, add or remove a prefix or suffix, or rename objects.
+        -- A JSON string that specifies the transformation rules for the migration project.
+        -- Transformation rules let you customize how DMS Schema Conversion converts your source
+        -- database objects, including renaming, adding prefixes or suffixes, and changing data types.
+        -- For the transformation rule format and examples, see Transformation rules in DMS
+        -- Schema Conversion.
+        -- Homogeneous data migrations do not support transformation rules.
         TransformationRules: string
         -- A user-friendly description of the migration project.
         Description: string
@@ -3132,9 +3159,12 @@ local record M
         InstanceProfileArn: string
         -- The name of the associated instance profile.
         InstanceProfileName: string
-        -- The settings in JSON format for migration rules. Migration rules make it possible for you to change
-        -- the object names according to the rules that you specify. For example, you can change an object name
-        -- to lowercase or uppercase, add or remove a prefix or suffix, or rename objects.
+        -- The transformation rules for the migration project in JSON format.
+        -- Transformation rules let you customize how DMS Schema Conversion converts your source
+        -- database objects, including renaming, adding prefixes or suffixes, and changing data types.
+        -- For the transformation rule format and examples, see Transformation rules in DMS
+        -- Schema Conversion.
+        -- Homogeneous data migrations do not support transformation rules.
         TransformationRules: string
         -- A user-friendly description of the migration project.
         Description: string
@@ -4217,7 +4247,10 @@ local record M
     record DescribeConversionConfigurationOutput
         -- The name or Amazon Resource Name (ARN) for the schema conversion project.
         MigrationProjectIdentifier: string
-        -- The configuration parameters for the schema conversion project.
+        -- A JSON string that contains the schema conversion settings for the migration project.
+        -- For the format and available settings, see
+        -- Specifying schema conversion
+        -- settings for migration projects.
         ConversionConfiguration: string
     end
 
@@ -4252,8 +4285,9 @@ local record M
     end
 
     record DescribeDataProvidersInput
-        -- Filters applied to the data providers described in the form of key-value pairs.
-        -- Valid filter names and values: data-provider-identifier, data provider arn or name
+        -- The filters to apply to the data providers.
+        -- The following filter names are supported:
+        -- data-provider-identifier – The data provider name or ARN.
         Filters: {Filter}
         -- The maximum number of records to include in the response. If more records exist than
         -- the specified MaxRecords value, DMS includes a pagination token
@@ -4575,9 +4609,12 @@ local record M
     end
 
     record DescribeExtensionPackAssociationsInput
-        -- The name or Amazon Resource Name (ARN) for the migration project.
+        -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- Filters applied to the extension pack associations described in the form of key-value pairs.
+        -- The filters to apply to the extension pack installation requests.
+        -- The following filter names are supported:
+        -- request-id – The request identifier.
+        -- status – The request status. Valid values: RECEIVED, IN_PROGRESS, SUCCESS, FAILED.
         Filters: {Filter}
         -- Specifies the unique pagination token that makes it possible to display the next page of results.
         -- If this parameter is specified, the response includes only records beyond the marker, up to the
@@ -4600,7 +4637,8 @@ local record M
         -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
         -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A paginated list of extension pack associations for the specified migration project.
+        -- A paginated list of extension pack installation requests.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Requests: {SchemaConversionRequest}
     end
 
@@ -4956,8 +4994,9 @@ local record M
     end
 
     record DescribeInstanceProfilesInput
-        -- Filters applied to the instance profiles described in the form of key-value pairs.
-        -- Valid filter names and values: instance-profile-identifier, instance profile arn or name
+        -- The filters to apply to the instance profiles.
+        -- The following filter names are supported:
+        -- instance-profile-identifier – The instance profile name or ARN.
         Filters: {Filter}
         -- The maximum number of records to include in the response. If more records exist than
         -- the specified MaxRecords value, DMS includes a pagination token
@@ -4990,7 +5029,11 @@ local record M
     end
 
     record DescribeMetadataModelInput
-        -- The JSON string that specifies which metadata model to retrieve. Only one selection rule with "rule-action": "explicit" can be provided. For more information, see Selection Rules in the DMS User Guide.
+        -- A JSON string that identifies the metadata model to retrieve. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts source or target selection rules depending on the Origin parameter. The server-name in the object locator must match the corresponding data provider.
+        -- Supports only explicit rule actions.
+        -- Exactly one rule is allowed.
         SelectionRules: string
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
@@ -5002,7 +5045,9 @@ local record M
     record MetadataModelReference
         -- The name of the metadata model.
         MetadataModelName: string
-        -- The JSON string representing metadata model location.
+        -- A JSON string that identifies this metadata model in the metadata tree. For the selection rule format, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- You can pass this value as the SelectionRules parameter to any operation that accepts selection rules, such as DescribeMetadataModel, StartMetadataModelConversion, and others.
         SelectionRules: string
     end
 
@@ -5018,9 +5063,12 @@ local record M
     end
 
     record DescribeMetadataModelAssessmentsInput
-        -- The name or Amazon Resource Name (ARN) of the migration project.
+        -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- Filters applied to the metadata model assessments described in the form of key-value pairs.
+        -- The filters to apply to the metadata model assessment requests.
+        -- The following filter names are supported:
+        -- request-id – The request identifier.
+        -- status – The request status. Valid values: RECEIVED, IN_PROGRESS, SUCCESS, FAILED.
         Filters: {Filter}
         -- Specifies the unique pagination token that makes it possible to display the next page of results.
         -- If this parameter is specified, the response includes only records beyond the marker, up to the
@@ -5043,12 +5091,17 @@ local record M
         -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
         -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A paginated list of metadata model assessments for the specified migration project.
+        -- A paginated list of metadata model assessment requests.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Requests: {SchemaConversionRequest}
     end
 
     record DescribeMetadataModelChildrenInput
-        -- The JSON string that specifies which metadata model's children to retrieve. Only one selection rule with "rule-action": "explicit" can be provided. For more information, see Selection Rules in the DMS User Guide.
+        -- A JSON string that identifies the metadata model whose children to retrieve. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts source or target selection rules depending on the Origin parameter. The server-name in the object locator must match the corresponding data provider.
+        -- Supports only explicit rule actions.
+        -- Exactly one rule is allowed.
         SelectionRules: string
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
@@ -5070,7 +5123,10 @@ local record M
     record DescribeMetadataModelConversionsInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- Filters applied to the metadata model conversions described in the form of key-value pairs.
+        -- The filters to apply to the metadata model conversion requests.
+        -- The following filter names are supported:
+        -- request-id – The request identifier.
+        -- status – The request status. Valid values: RECEIVED, IN_PROGRESS, SUCCESS, FAILED, CANCELING, CANCELED.
         Filters: {Filter}
         -- Specifies the unique pagination token that makes it possible to display the next page of results.
         -- If this parameter is specified, the response includes only records beyond the marker, up to the
@@ -5093,32 +5149,52 @@ local record M
         -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
         -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A paginated list of metadata model conversions.
+        -- A paginated list of metadata model conversion requests.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Requests: {SchemaConversionRequest}
     end
 
     record DescribeMetadataModelCreationsInput
-        -- Filters applied to the metadata model creation requests described in the form of key-value pairs. The supported filters are request-id and status.
+        -- The filters to apply to the metadata model creation requests.
+        -- The following filter names are supported:
+        -- request-id – The request identifier.
+        -- status – The request status. Valid values: RECEIVED, IN_PROGRESS, SUCCESS, FAILED, CANCELING, CANCELED.
         Filters: {Filter}
-        -- Specifies the unique pagination token that makes it possible to display the next page of metadata model creation requests. If Marker is returned by a previous response, there are more metadata model creation requests available.
+        -- Specifies the unique pagination token that makes it possible to display the next page of results.
+        -- If this parameter is specified, the response includes only records beyond the marker, up to the
+        -- value specified by MaxRecords.
+        -- If Marker is returned by a previous response, there are more results available.
+        -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
+        -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- The maximum number of metadata model creation requests to include in the response. If more requests exist than the specified MaxRecords value, a pagination token is provided in the response so that you can retrieve the remaining results.
+        -- The maximum number of records to include in the response. If more records exist than
+        -- the specified MaxRecords value, DMS includes a pagination token
+        -- in the response so that you can retrieve the remaining results.
         MaxRecords: number
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
     end
 
     record DescribeMetadataModelCreationsOutput
-        -- Specifies the unique pagination token that makes it possible to display the next page of metadata model creation requests. If Marker is returned, there are more metadata model creation requests available.
+        -- Specifies the unique pagination token that makes it possible to display the next page of results.
+        -- If this parameter is specified, the response includes only records beyond the marker, up to the
+        -- value specified by MaxRecords.
+        -- If Marker is returned by a previous response, there are more results available.
+        -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
+        -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A list of metadata model creation requests. The ExportSqlDetails field will never be populated for the DescribeMetadataModelCreations operation.
+        -- A paginated list of metadata model creation requests.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Requests: {SchemaConversionRequest}
     end
 
     record DescribeMetadataModelExportsAsScriptInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- Filters applied to the metadata model exports described in the form of key-value pairs.
+        -- The filters to apply to the metadata model export requests.
+        -- The following filter names are supported:
+        -- request-id – The request identifier.
+        -- status – The request status. Valid values: RECEIVED, IN_PROGRESS, SUCCESS, FAILED.
         Filters: {Filter}
         -- Specifies the unique pagination token that makes it possible to display the next page of results.
         -- If this parameter is specified, the response includes only records beyond the marker, up to the
@@ -5141,14 +5217,17 @@ local record M
         -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
         -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A paginated list of metadata model exports.
+        -- A paginated list of metadata model export requests.
         Requests: {SchemaConversionRequest}
     end
 
     record DescribeMetadataModelExportsToTargetInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- Filters applied to the metadata model exports described in the form of key-value pairs.
+        -- The filters to apply to the metadata model export requests.
+        -- The following filter names are supported:
+        -- request-id – The request identifier.
+        -- status – The request status. Valid values: RECEIVED, IN_PROGRESS, SUCCESS, FAILED.
         Filters: {Filter}
         -- Specifies the unique pagination token that makes it possible to display the next page of results.
         -- If this parameter is specified, the response includes only records beyond the marker, up to the
@@ -5171,14 +5250,18 @@ local record M
         -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
         -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A paginated list of metadata model exports.
+        -- A paginated list of metadata model export requests.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Requests: {SchemaConversionRequest}
     end
 
     record DescribeMetadataModelImportsInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- Filters applied to the metadata model imports described in the form of key-value pairs.
+        -- The filters to apply to the metadata model import requests.
+        -- The following filter names are supported:
+        -- request-id – The request identifier.
+        -- status – The request status. Valid values: RECEIVED, IN_PROGRESS, SUCCESS, FAILED.
         Filters: {Filter}
         -- Specifies the unique pagination token that makes it possible to display the next page of results.
         -- If this parameter is specified, the response includes only records beyond the marker, up to the
@@ -5187,7 +5270,9 @@ local record M
         -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
         -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A paginated list of metadata model imports.
+        -- The maximum number of records to include in the response. If more records exist than
+        -- the specified MaxRecords value, DMS includes a pagination token
+        -- in the response so that you can retrieve the remaining results.
         MaxRecords: number
     end
 
@@ -5199,16 +5284,19 @@ local record M
         -- The value of Marker is a unique pagination token for each page. To retrieve the next page,
         -- make the call again using the returned token and keeping all other arguments unchanged.
         Marker: string
-        -- A paginated list of metadata model imports.
+        -- A paginated list of metadata model import requests.
+        -- DMS never populates the ExportSqlDetails field for this operation.
         Requests: {SchemaConversionRequest}
     end
 
     record DescribeMigrationProjectsInput
-        -- Filters applied to the migration projects described in the form of key-value pairs.
-        -- Valid filter names and values:
-        -- instance-profile-identifier, instance profile arn or name
-        -- data-provider-identifier, data provider arn or name
-        -- migration-project-identifier, migration project arn or name
+        -- The filters to apply to the migration projects.
+        -- The following filter names are supported:
+        -- migration-project-identifier – The migration project name or ARN.
+        -- instance-profile-identifier – The instance profile name or ARN.
+        -- data-provider-identifier – The source or target data provider name or ARN.
+        -- source-data-provider-identifier – The source data provider name or ARN.
+        -- target-data-provider-identifier – The target data provider name or ARN.
         Filters: {Filter}
         -- The maximum number of records to include in the response. If more records exist than
         -- the specified MaxRecords value, DMS includes a pagination token
@@ -6201,7 +6289,10 @@ local record M
     record ExportMetadataModelAssessmentInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- A value that specifies the database objects to assess.
+        -- A JSON string that identifies the metadata models to export a conversion assessment report for. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts only source selection rules, where server-name in the object locator matches the source data provider.
+        -- Supports only explicit rule actions.
         SelectionRules: string
         -- The name of the assessment file to create in your Amazon S3 bucket.
         FileName: string
@@ -6227,7 +6318,12 @@ local record M
     record GetTargetSelectionRulesInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- The JSON string representing the source selection rules for conversion. Selection rules must contain only supported metadata model types. For more information, see Selection Rules in the DMS User Guide.
+        -- A JSON string that contains the source selection rules to convert into their target counterparts. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts only source selection rules, where server-name in the object locator matches the source data provider.
+        -- Supports only explicit rule actions.
+        -- Does not support category-name in the object locator.
+        -- Up to 10 rules are allowed.
         SelectionRules: string
     end
 
@@ -6288,7 +6384,13 @@ local record M
     record ModifyConversionConfigurationInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- The new conversion configuration.
+        -- A JSON string that contains the schema conversion settings to update.
+        -- For the format and available settings, see
+        -- Specifying schema conversion
+        -- settings for migration projects.
+        -- Usage:
+        -- Include only the sections and keys to change. The operation merges supplied
+        -- values with the existing configuration.
         ConversionConfiguration: string
     end
 
@@ -6334,9 +6436,12 @@ local record M
         DataProviderName: string
         -- A user-friendly description of the data provider.
         Description: string
-        -- The type of database engine for the data provider. Valid values include "aurora",
-        -- "aurora-postgresql", "mysql", "oracle", "postgres",
-        -- "sqlserver", redshift, mariadb, mongodb, db2, db2-zos, docdb, and sybase. A value of "aurora" represents Amazon Aurora MySQL-Compatible Edition.
+        -- The type of database engine for the data provider.
+        -- Valid values: aurora, aurora-postgresql, db2,
+        -- db2-zos, docdb, mariadb, mongodb,
+        -- mysql, oracle, postgres, redshift,
+        -- sqlserver, and sybase. A value of aurora represents
+        -- Amazon Aurora MySQL-Compatible Edition.
         Engine: string
         -- Indicates whether the data provider is virtual.
         Virtual: boolean
@@ -6579,9 +6684,12 @@ local record M
         TargetDataProviderDescriptors: {DataProviderDescriptorDefinition}
         -- The name or Amazon Resource Name (ARN) for the instance profile.
         InstanceProfileIdentifier: string
-        -- The settings in JSON format for migration rules. Migration rules make it possible for you to change
-        -- the object names according to the rules that you specify. For example, you can change an object name
-        -- to lowercase or uppercase, add or remove a prefix or suffix, or rename objects.
+        -- A JSON string that specifies the transformation rules for the migration project.
+        -- Transformation rules let you customize how DMS Schema Conversion converts your source
+        -- database objects, including renaming, adding prefixes or suffixes, and changing data types.
+        -- For the transformation rule format and examples, see Transformation rules in DMS
+        -- Schema Conversion.
+        -- Homogeneous data migrations do not support transformation rules.
         TransformationRules: string
         -- A user-friendly description of the migration project.
         Description: string
@@ -6909,107 +7017,135 @@ local record M
     end
 
     record StartExtensionPackAssociationOutput
-        -- The identifier for the request operation.
+        -- The identifier for the installation request.
         RequestIdentifier: string
     end
 
     record StartMetadataModelAssessmentInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- A value that specifies the database objects to assess.
+        -- A JSON string that identifies the metadata models to assess. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts only source selection rules, where server-name in the object locator matches the source data provider.
+        -- Supports explicit, include, and exclude rule actions.
         SelectionRules: string
     end
 
     record StartMetadataModelAssessmentOutput
-        -- The identifier for the assessment operation.
+        -- The identifier for the assessment request.
         RequestIdentifier: string
     end
 
     record StartMetadataModelConversionInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- A value that specifies the database objects to convert.
+        -- A JSON string that identifies the metadata models to convert. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts only source selection rules, where server-name in the object locator matches the source data provider.
+        -- Supports explicit, include, and exclude rule actions.
         SelectionRules: string
     end
 
     record StartMetadataModelConversionOutput
-        -- The identifier for the conversion operation.
+        -- The identifier for the conversion request.
         RequestIdentifier: string
     end
 
-    -- The properties of the statement for metadata model creation.
+    -- The properties of the SQL statement.
     record StatementProperties
         -- The SQL text of the statement.
         Definition: string
     end
 
-    -- The properties of metadata model in JSON format. This object is a Union. Only one member of this object can be specified or returned.
+    -- The properties of the metadata model.
     record MetadataModelProperties
-        -- The properties of the statement.
+        -- The properties of the SQL statement.
         StatementProperties: StatementProperties
     end
 
     record StartMetadataModelCreationInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- The JSON string that specifies the location where the metadata model will be created. Selection rules must specify a single schema. For more information, see Selection Rules in the DMS User Guide.
+        -- A JSON string that identifies the source schema for the metadata model. For the
+        -- selection rule format and examples, see Selection rules in DMS Schema
+        -- Conversion.
+        -- Usage:
+        -- Accepts only source selection rules, where server-name in the
+        -- object locator matches the source data provider.
+        -- Supports only explicit rule actions.
+        -- Exactly one rule is allowed.
         SelectionRules: string
-        -- The name of the metadata model.
+        -- The name for the metadata model to use in subsequent operations.
         MetadataModelName: string
-        -- The properties of metadata model in JSON format. This object is a Union. Only one member of this object can be specified or returned.
+        -- The properties of the metadata model.
         Properties: MetadataModelProperties
     end
 
     record StartMetadataModelCreationOutput
-        -- The identifier for the metadata model creation operation.
+        -- The identifier for the creation request.
         RequestIdentifier: string
     end
 
     record StartMetadataModelExportAsScriptInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- A value that specifies the database objects to export.
+        -- A JSON string that identifies the metadata models to export as a SQL script. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts source or target selection rules depending on the Origin parameter. The server-name in the object locator must match the corresponding data provider.
+        -- Supports explicit, include, and exclude rule actions.
         SelectionRules: string
-        -- Whether to export the metadata model from the source or the target.
+        -- Specifies the metadata tree to export from.
         Origin: string
-        -- The name of the model file to create in the Amazon S3 bucket.
+        -- The name for the exported file. When you omit this parameter, the service generates
+        -- a name from the data provider engine name and an export timestamp.
         FileName: string
     end
 
     record StartMetadataModelExportAsScriptOutput
-        -- The identifier for the export operation.
+        -- The identifier for the export request.
         RequestIdentifier: string
     end
 
     record StartMetadataModelExportToTargetInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- A value that specifies the database objects to export.
+        -- A JSON string that identifies the metadata models to export to the target database. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts only target selection rules, where server-name in the object locator matches the target data provider.
+        -- Supports explicit, include, and exclude rule actions.
         SelectionRules: string
-        -- Whether to overwrite the migration project extension pack. An extension pack is an add-on module
-        -- that emulates functions present in a source database that are required when converting objects
-        -- to the target database.
+        -- Specifies whether to overwrite the extension pack if one already exists on the
+        -- target database. The default value is true.
         OverwriteExtensionPack: boolean
     end
 
     record StartMetadataModelExportToTargetOutput
-        -- The identifier for the export operation.
+        -- The identifier for the export request.
         RequestIdentifier: string
     end
 
     record StartMetadataModelImportInput
         -- The migration project name or Amazon Resource Name (ARN).
         MigrationProjectIdentifier: string
-        -- A value that specifies the database objects to import.
+        -- A JSON string that identifies the metadata models to import from the data provider. For the selection rule format and examples, see Selection rules in DMS Schema Conversion.
+        -- Usage:
+        -- Accepts source or target selection rules depending on the Origin parameter. The server-name in the object locator must match the corresponding data provider.
+        -- Supports explicit, include, and exclude rule actions.
         SelectionRules: string
-        -- Whether to load metadata to the source or target database.
+        -- Specifies the metadata tree to import into.
+        -- You cannot import from a virtual target data provider.
         Origin: string
-        -- If true, DMS loads metadata for the specified objects from the source database.
+        -- Specifies whether to refresh the selected metadata models from the data
+        -- provider.
+        -- When true, the import reloads the selected metadata models with
+        -- current definitions and removes their existing subtree.
+        -- When false (default), the import loads the full subtree that has not
+        -- yet been loaded into the metadata tree.
         Refresh: boolean
     end
 
     record StartMetadataModelImportOutput
-        -- The identifier for the import operation.
+        -- The identifier for the import request.
         RequestIdentifier: string
     end
 

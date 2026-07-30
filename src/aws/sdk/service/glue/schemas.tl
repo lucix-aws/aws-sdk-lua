@@ -517,6 +517,8 @@ M.LocationMap = schema.new({ type = "map", map_key = prelude.String, map_value =
 
 M.AllowedValuesStringList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ConnectionStringToStringMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.FieldDefinitionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.FieldDefinition })
 
 M.NewRules = schema.new({ type = "list", list_member = prelude.String })
@@ -18300,6 +18302,65 @@ M.ComputeEnvironmentConfiguration = schema.new({
     },
 })
 
+M.BetweenConfiguration = schema.new({
+    id = id.from(_N, "BetweenConfiguration"),
+    type = "structure",
+    members = {
+        LowBoundKey = schema.new({
+            id = id.from(_N, "BetweenConfiguration", "LowBoundKey"),
+            type = "string",
+            name = "LowBoundKey",
+            target_id = prelude.String.id,
+        }),
+        HighBoundKey = schema.new({
+            id = id.from(_N, "BetweenConfiguration", "HighBoundKey"),
+            type = "string",
+            name = "HighBoundKey",
+            target_id = prelude.String.id,
+        }),
+        Template = schema.new({
+            id = id.from(_N, "BetweenConfiguration", "Template"),
+            type = "string",
+            name = "Template",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FilterOverrides = schema.new({
+    id = id.from(_N, "FilterOverrides"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "FilterOverrides", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+        }),
+        OperatorMappings = schema.new({
+            id = id.from(_N, "FilterOverrides", "OperatorMappings"),
+            type = "map",
+            name = "OperatorMappings",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        BetweenConfiguration = schema.new({
+            id = id.from(_N, "FilterOverrides", "BetweenConfiguration"),
+            type = "structure",
+            name = "BetweenConfiguration",
+            target_id = id.from(_N, "BetweenConfiguration"),
+            target = M.BetweenConfiguration,
+        }),
+        DateTimeFormat = schema.new({
+            id = id.from(_N, "FilterOverrides", "DateTimeFormat"),
+            type = "string",
+            name = "DateTimeFormat",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.FieldDefinition = schema.new({
     id = id.from(_N, "FieldDefinition"),
     type = "structure",
@@ -18321,6 +18382,121 @@ M.FieldDefinition = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        ResponseDateFormat = schema.new({
+            id = id.from(_N, "FieldDefinition", "ResponseDateFormat"),
+            type = "string",
+            name = "ResponseDateFormat",
+            target_id = prelude.String.id,
+        }),
+        IsPartitionable = schema.new({
+            id = id.from(_N, "FieldDefinition", "IsPartitionable"),
+            type = "boolean",
+            name = "IsPartitionable",
+            target_id = prelude.Boolean.id,
+        }),
+        IsNullable = schema.new({
+            id = id.from(_N, "FieldDefinition", "IsNullable"),
+            type = "boolean",
+            name = "IsNullable",
+            target_id = prelude.Boolean.id,
+        }),
+        IsQueryable = schema.new({
+            id = id.from(_N, "FieldDefinition", "IsQueryable"),
+            type = "boolean",
+            name = "IsQueryable",
+            target_id = prelude.Boolean.id,
+        }),
+        IsOrderable = schema.new({
+            id = id.from(_N, "FieldDefinition", "IsOrderable"),
+            type = "boolean",
+            name = "IsOrderable",
+            target_id = prelude.Boolean.id,
+        }),
+        FilterOverrides = schema.new({
+            id = id.from(_N, "FieldDefinition", "FilterOverrides"),
+            type = "structure",
+            name = "FilterOverrides",
+            target_id = id.from(_N, "FilterOverrides"),
+            target = M.FilterOverrides,
+        }),
+    },
+})
+
+M.FilterStringConfiguration = schema.new({
+    id = id.from(_N, "FilterStringConfiguration"),
+    type = "structure",
+    members = {
+        QueryParameterName = schema.new({
+            id = id.from(_N, "FilterStringConfiguration", "QueryParameterName"),
+            type = "string",
+            name = "QueryParameterName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        QuoteStringValues = schema.new({
+            id = id.from(_N, "FilterStringConfiguration", "QuoteStringValues"),
+            type = "boolean",
+            name = "QuoteStringValues",
+            target_id = prelude.Boolean.id,
+        }),
+        QuoteCharacter = schema.new({
+            id = id.from(_N, "FilterStringConfiguration", "QuoteCharacter"),
+            type = "string",
+            name = "QuoteCharacter",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FilterConfiguration = schema.new({
+    id = id.from(_N, "FilterConfiguration"),
+    type = "structure",
+    members = {
+        FilterMode = schema.new({
+            id = id.from(_N, "FilterConfiguration", "FilterMode"),
+            type = "string",
+            name = "FilterMode",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OperatorMappings = schema.new({
+            id = id.from(_N, "FilterConfiguration", "OperatorMappings"),
+            type = "map",
+            name = "OperatorMappings",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        DateTimeFormat = schema.new({
+            id = id.from(_N, "FilterConfiguration", "DateTimeFormat"),
+            type = "string",
+            name = "DateTimeFormat",
+            target_id = prelude.String.id,
+        }),
+        StripQuotes = schema.new({
+            id = id.from(_N, "FilterConfiguration", "StripQuotes"),
+            type = "boolean",
+            name = "StripQuotes",
+            target_id = prelude.Boolean.id,
+        }),
+        BetweenConfiguration = schema.new({
+            id = id.from(_N, "FilterConfiguration", "BetweenConfiguration"),
+            type = "structure",
+            name = "BetweenConfiguration",
+            target_id = id.from(_N, "BetweenConfiguration"),
+            target = M.BetweenConfiguration,
+        }),
+        FilterStringConfiguration = schema.new({
+            id = id.from(_N, "FilterConfiguration", "FilterStringConfiguration"),
+            type = "structure",
+            name = "FilterStringConfiguration",
+            target_id = id.from(_N, "FilterStringConfiguration"),
+            target = M.FilterStringConfiguration,
         }),
     },
 })
@@ -18504,6 +18680,12 @@ M.ConnectorProperty = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        Format = schema.new({
+            id = id.from(_N, "ConnectorProperty", "Format"),
+            type = "string",
+            name = "Format",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -18565,6 +18747,13 @@ M.SourceConfiguration = schema.new({
             name = "PaginationConfiguration",
             target_id = id.from(_N, "PaginationConfiguration"),
             target = M.PaginationConfiguration,
+        }),
+        FilterConfiguration = schema.new({
+            id = id.from(_N, "SourceConfiguration", "FilterConfiguration"),
+            type = "structure",
+            name = "FilterConfiguration",
+            target_id = id.from(_N, "FilterConfiguration"),
+            target = M.FilterConfiguration,
         }),
     },
 })

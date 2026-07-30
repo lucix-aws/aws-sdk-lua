@@ -193,6 +193,32 @@ local record M
         notificationLambdaArn: string
     end
 
+    -- The annotation format configuration for bulk import files.
+    record Annotation
+    end
+
+    enum ApplicationStatus
+        "CREATING"
+        "ACTIVE"
+        "DELETING"
+    end
+
+    -- Summary of an application for list operations
+    record ApplicationSummary
+        -- ARN of the application
+        arn: string
+        -- Unique identifier of the application
+        id: string
+        -- Name of the application
+        name: string
+        -- Current status of the application
+        status: string
+        -- Timestamp when the application was created
+        createdAt: number
+        -- Name of the workspace this application belongs to
+        workspaceName: string
+    end
+
     -- A filter used to match data bindings based on a specific asset. This filter identifies all
     -- computation models referencing a particular asset in their data bindings.
     record AssetBindingValueFilter
@@ -207,6 +233,9 @@ local record M
         "DOUBLE"
         "BOOLEAN"
         "STRUCT"
+        "VIDEO"
+        "ANNOTATION"
+        "JSON"
     end
 
     enum PropertyNotificationState
@@ -582,6 +611,7 @@ local record M
         -- The name of the asset model property.
         name: string
         -- The data type of the asset model property.
+        -- The VIDEO, ANNOTATION, and JSON data types aren't supported for asset model properties. These types are used only by time series that store data for datasets in a workspace.
         -- If you specify STRUCT, you must also specify dataTypeSpec to
         -- identify the type of the structure for this property.
         dataType: string
@@ -623,6 +653,7 @@ local record M
         -- The name of the property definition.
         name: string
         -- The data type of the property definition.
+        -- The VIDEO, ANNOTATION, and JSON data types aren't supported for asset model properties. These types are used only by time series that store data for datasets in a workspace.
         -- If you specify STRUCT, you must also specify dataTypeSpec to
         -- identify the type of the structure for this property.
         dataType: string
@@ -1112,6 +1143,18 @@ local record M
         description: string
     end
 
+    -- Contains information about a data segment entry to associate with a dataset.
+    record AssociateDataSegmentEntry
+        -- The ID of the source dataset that contains the data segment.
+        sourceDatasetId: string
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment to associate.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment to associate.
+        endTimestamp: TimeInNanos
+    end
+
     record AssociateTimeSeriesToAssetPropertyInput
         -- The alias that identifies the time series.
         alias: string
@@ -1133,6 +1176,52 @@ local record M
         "SSO"
     end
 
+    record BatchAssociateDataSegmentsToDatasetInput
+        -- The ID of the curated dataset to associate data segments with.
+        datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
+        -- The list of data segment entries to associate with the dataset.
+        associateDataSegmentEntries: {AssociateDataSegmentEntry}
+        -- A unique, case-sensitive identifier that you provide to ensure that the request is
+        -- idempotent. If you retry a request that completed successfully using the same client token,
+        -- the retry succeeds without performing any further actions.
+        clientToken: string
+    end
+
+    enum DataSegmentErrorCode
+        "INTERNAL_FAILURE"
+        "VALIDATION_ERROR"
+        "RESOURCE_NOT_FOUND"
+        "LIMIT_EXCEEDED"
+        "CONFLICTING_OPERATION"
+    end
+
+    -- Contains error information for a data segment association that failed.
+    record FailedDataSegmentAssociation
+        -- The ID of the source dataset.
+        sourceDatasetId: string
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment.
+        endTimestamp: TimeInNanos
+        -- The error code for the failed association.
+        errorCode: string
+        -- The error message for the failed association.
+        errorMessage: string
+    end
+
+    record BatchAssociateDataSegmentsToDatasetOutput
+        -- The ID of the dataset.
+        datasetId: string
+        -- The version of the dataset after association.
+        datasetVersion: string
+        -- A list of data segment associations that failed.
+        failedAssociations: {FailedDataSegmentAssociation}
+    end
+
     record BatchAssociateProjectAssetsInput
         -- The ID of the project to which to associate the assets.
         projectId: string
@@ -1145,6 +1234,102 @@ local record M
     record BatchAssociateProjectAssetsOutput
         -- A list of associated error information, if any.
         errors: {AssetErrorDetails}
+    end
+
+    -- Contains information about a data segment entry to delete.
+    record DeleteDataSegmentEntry
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment to delete.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment to delete.
+        endTimestamp: TimeInNanos
+    end
+
+    record BatchDeleteDatasetDataSegmentsInput
+        -- The ID of the session dataset from which to delete data segments.
+        datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
+        -- The list of data segment entries to delete.
+        deleteDataSegmentEntries: {DeleteDataSegmentEntry}
+        -- A unique, case-sensitive identifier that you provide to ensure that the request is
+        -- idempotent. If you retry a request that completed successfully using the same client token,
+        -- the retry succeeds without performing any further actions.
+        clientToken: string
+    end
+
+    -- Contains error information for a data segment deletion that failed.
+    record FailedDataSegmentDeletion
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment.
+        endTimestamp: TimeInNanos
+        -- The error code for the failed deletion.
+        errorCode: string
+        -- The error message for the failed deletion.
+        errorMessage: string
+    end
+
+    record BatchDeleteDatasetDataSegmentsOutput
+        -- The ID of the dataset.
+        datasetId: string
+        -- The version of the dataset after deletion.
+        datasetVersion: string
+        -- A list of data segment deletions that failed.
+        errors: {FailedDataSegmentDeletion}
+    end
+
+    -- Contains information about a data segment entry to disassociate from a dataset.
+    record DisassociateDataSegmentEntry
+        -- The ID of the source dataset that contains the data segment.
+        sourceDatasetId: string
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment to disassociate.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment to disassociate.
+        endTimestamp: TimeInNanos
+    end
+
+    record BatchDisassociateDataSegmentsFromDatasetInput
+        -- The ID of the curated dataset to disassociate data segments from.
+        datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
+        -- The list of data segment entries to disassociate from the dataset.
+        disassociateDataSegmentEntries: {DisassociateDataSegmentEntry}
+        -- A unique, case-sensitive identifier that you provide to ensure that the request is
+        -- idempotent. If you retry a request that completed successfully using the same client token,
+        -- the retry succeeds without performing any further actions.
+        clientToken: string
+    end
+
+    -- Contains error information for a data segment disassociation that failed.
+    record FailedDataSegmentDisassociation
+        -- The ID of the source dataset.
+        sourceDatasetId: string
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment.
+        endTimestamp: TimeInNanos
+        -- The error code for the failed disassociation.
+        errorCode: string
+        -- The error message for the failed disassociation.
+        errorMessage: string
+    end
+
+    record BatchDisassociateDataSegmentsFromDatasetOutput
+        -- The ID of the dataset.
+        datasetId: string
+        -- The version of the dataset after disassociation.
+        datasetVersion: string
+        -- A list of data segment disassociations that failed.
+        failedDisassociations: {FailedDataSegmentDisassociation}
     end
 
     record BatchDisassociateProjectAssetsInput
@@ -1536,6 +1721,81 @@ local record M
         errorEntries: {BatchPutAssetPropertyErrorEntry}
     end
 
+    record CancelEnrichmentJobInput
+        -- The name of the IoT SiteWise workspace containing the enrichment job to cancel.
+        workspaceName: string
+        -- The unique identifier of the enrichment job to cancel. This is the jobId returned by CreateEnrichmentJob.
+        jobId: string
+    end
+
+    enum EnrichmentJobStatus
+        "PENDING"
+        "RUNNING"
+        "COMPLETED"
+        "FAILED"
+        "TIMED_OUT"
+        "CANCELLED"
+    end
+
+    record CancelEnrichmentJobOutput
+        -- The unique identifier of the cancelled enrichment job.
+        jobId: string
+        -- The status of the enrichment job after cancellation. This will be CANCELLED, indicating the job
+        -- was successfully cancelled or was already in CANCELLED state (idempotent behavior).
+        status: string
+    end
+
+    -- Request structure for CancelPipelineExecution operation.
+    record CancelPipelineExecutionInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the pipeline.
+        pipelineName: string
+        -- The unique identifier of the pipeline execution.
+        pipelineExecutionId: string
+        -- A message describing why the pipeline execution is being cancelled.
+        reason: string
+    end
+
+    enum PipelineExecutionState
+        "NOT_STARTED"
+        "RUNNING"
+        "SUCCEEDED"
+        "FAILED"
+        "CANCELLING"
+        "CANCELLED"
+    end
+
+    -- Response structure for CancelPipelineExecution operation.
+    record CancelPipelineExecutionOutput
+        -- The current execution state of the pipeline. Can only be CANCELLING or CANCELLED.
+        state: string
+    end
+
+    record CancelQueryInput
+        -- The name of the workspace associated with the query.
+        workspaceName: string
+        -- The unique identifier for the query execution to cancel.
+        queryId: string
+    end
+
+    enum QueryStatus
+        "SUBMITTED"
+        "RUNNING"
+        "COMPLETED"
+        "FAILED"
+        "CANCELED"
+        "CANCELING"
+    end
+
+    -- Contains the response for the CancelQuery operation.
+    record CancelQueryOutput
+        -- The unique identifier for the cancelled query.
+        queryId: string
+        -- The current query status.
+        status: string
+    end
+
     record CreateAccessPolicyInput
         -- The identity for this access policy. Choose an IAM Identity Center user, an IAM Identity Center group, or an IAM user.
         accessPolicyIdentity: Identity
@@ -1557,6 +1817,34 @@ local record M
         -- The ARN of the access policy, which has the following format.
         -- arn:${Partition}:iotsitewise:${Region}:${Account}:access-policy/${AccessPolicyId}
         accessPolicyArn: string
+    end
+
+    record CreateApplicationInput
+        -- Unique client token for idempotent request handling
+        clientToken: string
+        -- Identity Center Instance ARN to create the application in
+        idcInstanceArn: string
+        -- Name of the workspace to associate with the underlying Application
+        workspaceName: string
+        -- Name of the application
+        name: string
+        -- Description of the application
+        description: string
+        -- A list of key-value pairs that contain metadata for the application.
+        tags: {string : string}
+    end
+
+    record CreateApplicationOutput
+        -- ARN of the application
+        arn: string
+        -- Unique identifier of the application
+        id: string
+        -- DNS subdomain for the application
+        dnsSubdomain: string
+        -- Name of the application
+        name: string
+        -- Current status of the application
+        status: string
     end
 
     record CreateAssetInput
@@ -1698,6 +1986,8 @@ local record M
         -- The path to the composite model listing the parent composite models.
         assetModelCompositeModelPath: {AssetModelCompositeModelPathSegment}
         assetModelStatus: AssetModelStatus
+        -- The ID of the asset model.
+        assetModelId: string
     end
 
     -- The precondition in one or more of the request-header fields evaluated to
@@ -1722,18 +2012,6 @@ local record M
         prefix: string
     end
 
-    -- The file in Amazon S3 where your data is saved.
-    record File
-        -- The name of the Amazon S3 bucket from which data is imported.
-        bucket: string
-        -- The key of the Amazon S3 object that contains your data. Each object has a key that is a unique
-        -- identifier. Each object has exactly one key.
-        key: string
-        -- The version ID to identify a specific version of the Amazon S3 object that contains your
-        -- data.
-        versionId: string
-    end
-
     enum ColumnName
         "ALIAS"
         "ASSET_ID"
@@ -1751,6 +2029,10 @@ local record M
         columnNames: {string}
     end
 
+    -- The MP4 video format configuration for bulk import files.
+    record Mp4
+    end
+
     -- A parquet file.
     record Parquet
     end
@@ -1761,6 +2043,28 @@ local record M
         csv: Csv
         -- The file is in parquet format.
         parquet: Parquet
+        -- The MP4 format configuration.
+        mp4: Mp4
+        -- The annotation format configuration.
+        annotation: Annotation
+    end
+
+    -- The file in Amazon S3 where your data is saved.
+    record File
+        -- The name of the Amazon S3 bucket from which data is imported.
+        bucket: string
+        -- The key of the Amazon S3 object that contains your data. Each object has a key that is a unique
+        -- identifier. Each object has exactly one key.
+        key: string
+        -- The version ID to identify a specific version of the Amazon S3 object that contains your
+        -- data.
+        versionId: string
+        -- The alias associated with the file's time series.
+        alias: string
+        -- The nanosecond-precision start time for the file data.
+        startTime: TimeInNanos
+        -- The file format of the data in S3.
+        fileFormat: FileFormat
     end
 
     -- Contains the configuration information of a job, such as the file format used to save data in Amazon S3.
@@ -1774,7 +2078,9 @@ local record M
         jobName: string
         -- The ARN of the IAM role that allows IoT SiteWise to read Amazon S3 data.
         jobRoleArn: string
-        -- The files in the specified Amazon S3 bucket that contain your data.
+        -- The files in the specified Amazon S3 bucket that contain your data. You can specify up to 100 files for each bulk import job. Each file supports the following size limits:
+        -- Parquet files – Up to 256 MiB.
+        -- Other file formats – Up to 5 GiB.
         files: {File}
         -- The Amazon S3 destination where errors associated with the job creation request are saved.
         errorReportLocation: ErrorReportLocation
@@ -1785,6 +2091,12 @@ local record M
         adaptiveIngestion: boolean
         -- If set to true, your data files is deleted from S3, after ingestion into IoT SiteWise storage.
         deleteFilesAfterImport: boolean
+        -- The ID of the session dataset to ingest data into. Specify this field, together with
+        -- workspaceName, to ingest data into a session dataset in a workspace.
+        datasetId: string
+        -- The name of the workspace that contains the session dataset. Specify this field together
+        -- with datasetId.
+        workspaceName: string
     end
 
     enum JobStatus
@@ -1883,6 +2195,20 @@ local record M
         dashboardArn: string
     end
 
+    -- Contains the session configuration for a session-type dataset.
+    record SessionConfig
+        -- The nanosecond-precision start time of the session.
+        sessionStartTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the session.
+        sessionEndTimestamp: TimeInNanos
+    end
+
+    -- Contains the configuration for a dataset.
+    record DatasetConfig
+        -- The session configuration for a session-type dataset.
+        session: SessionConfig
+    end
+
     -- The source details for the Kendra dataset source.
     record KendraSourceDetail
         -- The knowledgeBaseArn details for the Kendra dataset source.
@@ -1899,10 +2225,12 @@ local record M
 
     enum DatasetSourceFormat
         "KNOWLEDGE_BASE"
+        "TIMESERIES"
     end
 
     enum DatasetSourceType
         "KENDRA"
+        "SITEWISE"
     end
 
     -- The data source for the dataset.
@@ -1915,6 +2243,12 @@ local record M
         sourceDetail: SourceDetail
     end
 
+    enum DatasetTypeEnum
+        "SESSION"
+        "CURATED"
+        "EXTERNAL"
+    end
+
     record CreateDatasetInput
         -- The ID of the dataset.
         datasetId: string
@@ -1922,6 +2256,16 @@ local record M
         datasetName: string
         -- A description about the dataset, and its functionality.
         datasetDescription: string
+        -- The type of dataset: a session dataset, a curated dataset, or a connection to an external
+        -- datasource.
+        datasetType: string
+        -- The configuration for the dataset.
+        datasetConfig: DatasetConfig
+        -- The name of the workspace that contains the dataset. Required for session and curated
+        -- datasets. Omit this field for datasets that connect to an external datasource.
+        workspaceName: string
+        -- The metadata for the dataset, provided as key-value pairs.
+        metadata: {string : string}
         -- The data source for the dataset.
         datasetSource: DatasetSource
         -- A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.
@@ -1958,6 +2302,171 @@ local record M
         -- State is CREATING after a successfull call to this API, and any associated error message. The state is
         -- ACTIVE when ready to use.
         datasetStatus: DatasetStatus
+    end
+
+    -- Contains the location where error reports will be written on failure.
+    record ExportErrorReportLocation
+        -- The S3 URI prefix for the error report.
+        s3Uri: string
+    end
+
+    enum ExportDataType
+        "VIDEO"
+        "TELEMETRY"
+        "ANNOTATION"
+    end
+
+    -- Contains settings for trimming content to a specific time range.
+    record TrimSettings
+        -- The start time for the trim range.
+        startTime: TimeInNanos
+        -- The end time for the trim range. Must be greater than startTime.
+        endTime: TimeInNanos
+    end
+
+    -- A dataset to process.
+    record DatasetItem
+        -- The unique identifier for the dataset.
+        datasetId: string
+        -- The trim settings applied to all items in the dataset. When omitted, the full dataset time range is used.
+        trimSettings: TrimSettings
+        -- The optional subset of data types to export. If omitted, all data types are exported.
+        exportDataTypes: {string}
+    end
+
+    -- Contains the output format configuration for video processing.
+    record FormatSettings
+        -- The target frame rate for the output.
+        framesPerSecond: number
+        -- The target width of the output, in pixels.
+        widthInPixels: number
+        -- The target height of the output, in pixels.
+        heightInPixels: number
+    end
+
+    -- A single timeseries item to process. Exactly one of timeSeriesId or propertyAlias must be provided.
+    record TimeseriesItem
+        -- The unique identifier for the timeseries. Mutually exclusive with propertyAlias.
+        timeSeriesId: string
+        -- The customer-friendly alias for the timeseries. Mutually exclusive with timeSeriesId.
+        propertyAlias: string
+        -- The trim settings for the time range to export. Required for VIDEO and TELEMETRY data types; optional for ANNOTATION data types.
+        trimSettings: TrimSettings
+        -- The optional format settings for the output.
+        formatSettings: FormatSettings
+    end
+
+    -- Input source for processing. Specify exactly one option.
+    record ProcessingInput
+        -- List of individual timeseries items to process.
+        timeseries: {TimeseriesItem}
+        -- A dataset containing multiple items to process.
+        dataset: DatasetItem
+    end
+
+    -- Request to create a dataset export job.
+    record CreateDatasetExportJobInput
+        -- The name of the workspace in which to create the dataset export job.
+        workspaceName: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        -- The AWS SDKs and CLI populate this automatically.
+        clientToken: string
+        -- The S3 URI where output clips will be written.
+        destinationS3Uri: string
+        -- The processing input source.
+        input: ProcessingInput
+        -- The location where the error report will be written on failure.
+        errorReportLocation: ExportErrorReportLocation
+    end
+
+    -- Response for create dataset export job request.
+    record CreateDatasetExportJobOutput
+        -- The unique identifier for the dataset export job.
+        jobId: string
+        -- The name of the workspace in which the dataset export job was created.
+        workspaceName: string
+    end
+
+    -- Time range settings for extracting a specific window of video time-series data to process.
+    -- Trim settings define the time bounds for enrichment and must satisfy:
+    -- Start and end times must be within the dataset's time bounds
+    -- Trim settings retrieve fully contained data segments within the specified time range
+    -- endTime must be greater than startTime
+    -- Both times should represent valid data ranges in the dataset
+    -- Trim settings are required to:
+    -- Prevent accidentally analyzing unbounded datasets
+    -- Ensure predictable processing time and costs
+    -- Allow focused analysis on specific time periods of interest
+    record EnrichmentTrimSettings
+        -- Start time for the video analysis time range in nanoseconds since Unix epoch (TimeInNanos format).
+        -- Data segments at or after this time are included in the enrichment.
+        -- Must be within the dataset's time bounds.
+        -- Example (JavaScript): Date.parse('2024-01-01T00:00:00Z') * 1000000
+        -- Example (Python): int(datetime.timestamp() * 1e9)
+        startTime: TimeInNanos
+        -- End time for the video analysis time range in nanoseconds since Unix epoch (TimeInNanos format).
+        -- Data segments at or before this time are included in the enrichment.
+        -- Must be greater than startTime and within the dataset's time bounds.
+        endTime: TimeInNanos
+    end
+
+    -- Configuration for event detection enrichment on video time-series data.
+    -- Event detection generates embeddings from video data enabling natural language similarity search
+    -- on events. This allows customers to:
+    -- Query video events using semantic search after enrichment completes
+    -- Find relevant video segments through natural language queries
+    -- Search across video time-series data stored in IoT SiteWise
+    -- You must specify the dataset, exactly one time-series identifier (timeSeriesId OR propertyAlias),
+    -- and trim settings defining the video time window to process.
+    record EventDetection
+        -- The IoT SiteWise dataset ID containing the video time-series data to analyze.
+        -- Query IoT SiteWise to discover available datasets in your workspace.
+        datasetId: string
+        -- Unique system identifier for the video time series to analyze.
+        -- Specify either timeSeriesId or propertyAlias, but not both.
+        -- Use this when you have the system-generated time series identifier from IoT SiteWise.
+        timeSeriesId: string
+        -- Human-readable alias for the video time series to analyze (e.g., /camera/warehouse/zone-a).
+        -- Specify either propertyAlias or timeSeriesId, but not both.
+        -- Use this when you have configured friendly aliases in IoT SiteWise for better readability.
+        propertyAlias: string
+        -- Time range settings defining which portion of the video time-series data to process.
+        -- Required to ensure predictable processing time and prevent analyzing unbounded datasets.
+        -- Start and end times must be within the dataset's time bounds.
+        trimSettings: EnrichmentTrimSettings
+    end
+
+    -- Configuration for the enrichment job defining which analysis type to perform on video time-series data.
+    -- Currently supports event detection enrichment. Exactly one member must be specified.
+    record EnrichmentJobConfiguration
+        -- Event detection configuration that generates embeddings from video time-series data enabling
+        -- natural language similarity search on events. The service processes video data and creates
+        -- embeddings stored in IoT SiteWise for semantic querying.
+        eventDetection: EventDetection
+    end
+
+    record CreateEnrichmentJobInput
+        -- The name of the IoT SiteWise workspace containing the video data to analyze.
+        workspaceName: string
+        -- Configuration defining the type of enrichment analysis to perform and which video data to analyze.
+        -- Currently supports eventDetection for generating embeddings from video data for semantic search.
+        jobConfiguration: EnrichmentJobConfiguration
+        -- Optional unique token that makes the operation idempotent. If you submit the same request with the
+        -- same token within the idempotency window, the service returns the original job without creating a
+        -- duplicate. Use a UUID or timestamp-based token for each unique request.
+        clientToken: string
+    end
+
+    record CreateEnrichmentJobOutput
+        -- Unique identifier for the enrichment job. Use this ID with DescribeEnrichmentJob to monitor
+        -- progress or with CancelEnrichmentJob to cancel the job.
+        jobId: string
+        -- Initial status of the enrichment job, typically PENDING. The job will transition to RUNNING when
+        -- processing begins, then to a terminal state (COMPLETED, FAILED, TIMED_OUT, or CANCELLED).
+        -- Use DescribeEnrichmentJob to track status changes.
+        status: string
+        -- Timestamp when the enrichment job was created in ISO 8601 format.
+        createdAt: number
     end
 
     -- Contains details for a gateway that runs on IoT Greengrass. To create a gateway that runs on IoT Greengrass,
@@ -2045,6 +2554,79 @@ local record M
         -- The ARN of the gateway, which has the following format.
         -- arn:${Partition}:iotsitewise:${Region}:${Account}:gateway/${GatewayId}
         gatewayArn: string
+    end
+
+    -- A single compute node in a pipeline DAG. Each compute node references a task and can declare dependencies on other nodes.
+    record ComputeNode
+        -- The unique name for this compute node within the pipeline.
+        computeNodeName: string
+        -- The name of the task to execute for this compute node.
+        taskName: string
+        -- Environment variables specific to this compute node. These override pipeline-level environment variables with the same key.
+        environmentVariables: {string : string}
+        -- A list of compute node names that must complete successfully before this node can start.
+        dependsOn: {string}
+    end
+
+    -- Request structure for CreatePipeline operation.
+    record CreatePipelineInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the pipeline to create. Must be unique within the workspace.
+        pipelineName: string
+        -- A description of the pipeline.
+        description: string
+        -- Environment variables shared across all compute nodes in the pipeline. Individual compute nodes can override these values with their own environment variables.
+        environmentVariables: {string : string}
+        -- The list of compute nodes that form the pipeline DAG. Each compute node references a task and can declare dependencies on other nodes.
+        computations: {ComputeNode}
+        -- A list of key-value pairs that contain metadata for the pipeline. For more information, see Tagging your AWS IoT SiteWise resources in the AWS IoT SiteWise User Guide.
+        tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        -- If you retry a request that completed successfully using the same client token, the server returns the
+        -- cached result from the original successful request without performing the operation again.
+        clientToken: string
+    end
+
+    enum ResourceErrorCode
+        "VALIDATION_ERROR"
+        "INTERNAL_FAILURE"
+    end
+
+    -- Contains the details of a resource error.
+    record ResourceError
+        -- The error code.
+        code: string
+        -- The error message.
+        message: string
+    end
+
+    enum ResourceState
+        "CREATING"
+        "ACTIVE"
+        "UPDATING"
+        "DELETING"
+        "FAILED"
+    end
+
+    -- Contains information about the current status of a resource.
+    record ResourceStatus
+        -- Contains associated error information, if any.
+        error: ResourceError
+        -- The current status of the resource.
+        state: string
+    end
+
+    -- Response structure for CreatePipeline operation.
+    record CreatePipelineOutput
+        -- The name of the created pipeline.
+        pipelineName: string
+        -- The ARN of the created pipeline.
+        pipelineArn: string
+        -- The version of the newly created pipeline.
+        version: string
+        -- The current lifecycle status of the pipeline.
+        status: ResourceStatus
     end
 
     enum ImageFileType
@@ -2188,6 +2770,152 @@ local record M
         projectArn: string
     end
 
+    enum ProcessingType
+        "GENERIC_COMPUTE_PROCESSING"
+        "HARDWARE_ACCELERATED_PROCESSING"
+    end
+
+    enum ProcessingUnit
+        "UNITS_2"
+        "UNITS_4"
+        "UNITS_8"
+        "UNITS_12"
+        "UNITS_16"
+        "UNITS_24"
+        "UNITS_32"
+        "UNITS_36"
+        "UNITS_48"
+        "UNITS_60"
+        "UNITS_64"
+        "UNITS_72"
+        "UNITS_84"
+        "UNITS_96"
+    end
+
+    -- Configuration for a container task, including the container image, IAM role, and compute settings.
+    record ContainerTaskConfiguration
+        -- The Amazon ECR image URI for the task container.
+        ecrUri: string
+        -- The ARN of the IAM role that grants the containerized workload permissions to access AWS resources.
+        taskExecutionRole: string
+        -- The processing type for compute resources.
+        processingType: string
+        -- The processing unit allocation that determines the vCPU, memory, and GPU resources.
+        processingUnit: string
+        -- The command to execute in the container.
+        command: {string}
+        -- The timeout in seconds for task execution. Default: 3600 (1 hour).
+        timeoutSeconds: number
+        -- Environment variables passed to the container at runtime.
+        environmentVariables: {string : string}
+    end
+
+    -- The task execution configuration. Specify a containerTaskConfiguration for a custom container workload.
+    record TaskConfiguration
+        -- Configuration for running a custom container image on managed compute.
+        containerTaskConfiguration: ContainerTaskConfiguration
+    end
+
+    -- Request structure for CreateTask operation.
+    record CreateTaskInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the task to create. Must be unique within the workspace.
+        taskName: string
+        -- A description of the task.
+        description: string
+        -- The task execution configuration. Specify a containerTaskConfiguration for custom container workloads.
+        taskConfiguration: TaskConfiguration
+        -- A list of key-value pairs that contain metadata for the task. For more information, see Tagging your AWS IoT SiteWise resources in the AWS IoT SiteWise User Guide.
+        tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        -- If you retry a request that completed successfully using the same client token, the server returns the
+        -- cached result from the original successful request without performing the operation again.
+        clientToken: string
+    end
+
+    -- Response structure for CreateTask operation.
+    record CreateTaskOutput
+        -- The name of the created task.
+        taskName: string
+        -- The ARN of the created task.
+        taskArn: string
+        -- The version of the newly created task.
+        version: string
+        -- The current lifecycle status of the task.
+        status: ResourceStatus
+    end
+
+    enum EncryptionType
+        "SITEWISE_DEFAULT_ENCRYPTION"
+        "KMS_BASED_ENCRYPTION"
+    end
+
+    -- Contains the encryption configuration for a workspace.
+    record WorkspaceEncryptionConfiguration
+        -- The encryption scheme for the workspace. SITEWISE_DEFAULT_ENCRYPTION
+        -- encrypts data with the IoT SiteWise default key. KMS_BASED_ENCRYPTION encrypts data
+        -- with the customer managed KMS key identified by kmsKeyId.
+        encryptionType: string
+        -- The customer managed KMS key used when encryptionType is
+        -- KMS_BASED_ENCRYPTION. Accepts a key ID, key ARN, or key alias. Required for
+        -- KMS_BASED_ENCRYPTION; must be omitted for
+        -- SITEWISE_DEFAULT_ENCRYPTION. After a workspace's customer managed key
+        -- configuration becomes active, the key can't be changed.
+        kmsKeyId: string
+    end
+
+    record CreateWorkspaceInput
+        -- The name of the workspace to create.
+        workspaceName: string
+        -- A description for the workspace.
+        workspaceDescription: string
+        -- The encryption configuration for the workspace.
+        encryptionConfiguration: WorkspaceEncryptionConfiguration
+        -- A list of key-value pairs that contain metadata for the workspace. For more information,
+        -- see Tagging your IoT SiteWise
+        -- resources in the IoT SiteWise User Guide.
+        tags: {string : string}
+        -- A unique, case-sensitive identifier that you provide to ensure that the request is
+        -- idempotent. If you retry a request that completed successfully using the same client token,
+        -- the retry succeeds without performing any further actions.
+        clientToken: string
+    end
+
+    -- Contains the details of an error associated with a workspace.
+    record WorkspaceErrorDetails
+        -- The error code.
+        code: string
+        -- The error message.
+        message: string
+    end
+
+    enum WorkspaceState
+        "CREATING"
+        "ACTIVE"
+        "UPDATING"
+        "DELETING"
+        "FAILED"
+    end
+
+    -- Contains information about the current status of a workspace.
+    record WorkspaceStatus
+        -- The current state of the workspace.
+        state: string
+        -- Contains associated error information, if any.
+        error: WorkspaceErrorDetails
+    end
+
+    record CreateWorkspaceOutput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The ARN of the workspace.
+        workspaceArn: string
+        -- The status of the workspace, which is CREATING when the operation
+        -- returns.
+        workspaceStatus: WorkspaceStatus
+    end
+
     record DeleteAccessPolicyInput
         -- The ID of the access policy to be deleted.
         accessPolicyId: string
@@ -2196,6 +2924,16 @@ local record M
     end
 
     record DeleteAccessPolicyOutput
+    end
+
+    record DeleteApplicationInput
+        -- Name of the workspace to associate with the underlying Application
+        workspaceName: string
+        -- ID of the Application to delete
+        id: string
+    end
+
+    record DeleteApplicationOutput
     end
 
     record DeleteAssetInput
@@ -2207,6 +2945,8 @@ local record M
     end
 
     record DeleteAssetOutput
+        -- The ID of the asset.
+        assetId: string
         -- The status of the asset, which contains a state (DELETING after successfully
         -- calling this operation) and any error message.
         assetStatus: AssetStatus
@@ -2232,6 +2972,8 @@ local record M
     end
 
     record DeleteAssetModelOutput
+        -- The ID of the asset model.
+        assetModelId: string
         -- The status of the asset model, which contains a state (DELETING after
         -- successfully calling this operation) and any error message.
         assetModelStatus: AssetModelStatus
@@ -2259,6 +3001,8 @@ local record M
 
     record DeleteAssetModelCompositeModelOutput
         assetModelStatus: AssetModelStatus
+        -- The ID of the asset model.
+        assetModelId: string
     end
 
     record DeleteAssetModelInterfaceRelationshipInput
@@ -2310,6 +3054,8 @@ local record M
     record DeleteDatasetInput
         -- The ID of the dataset.
         datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
         -- A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.
         clientToken: string
     end
@@ -2326,6 +3072,20 @@ local record M
     end
 
     record DeleteGatewayOutput
+    end
+
+    -- Request structure for DeletePipeline operation.
+    record DeletePipelineInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the pipeline to delete.
+        pipelineName: string
+    end
+
+    -- Response structure for DeletePipeline operation.
+    record DeletePipelineOutput
+        -- The current lifecycle status of the pipeline.
+        status: ResourceStatus
     end
 
     record DeletePortalInput
@@ -2351,6 +3111,20 @@ local record M
     record DeleteProjectOutput
     end
 
+    -- Request structure for DeleteTask operation.
+    record DeleteTaskInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the task to delete.
+        taskName: string
+    end
+
+    -- Response structure for DeleteTask operation.
+    record DeleteTaskOutput
+        -- The current lifecycle status of the task.
+        status: ResourceStatus
+    end
+
     record DeleteTimeSeriesInput
         -- The alias that identifies the time series.
         alias: string
@@ -2362,9 +3136,25 @@ local record M
         propertyId: string
         -- A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.
         clientToken: string
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     record DeleteTimeSeriesOutput
+    end
+
+    record DeleteWorkspaceInput
+        -- The name of the workspace to delete.
+        workspaceName: string
+        -- A unique, case-sensitive identifier that you provide to ensure that the request is
+        -- idempotent. If you retry a request that completed successfully using the same client token,
+        -- the retry succeeds without performing any further actions.
+        clientToken: string
+    end
+
+    record DeleteWorkspaceOutput
+        -- The status of the workspace after the deletion request, which is DELETING when the operation returns.
+        workspaceStatus: WorkspaceStatus
     end
 
     record DescribeAccessPolicyInput
@@ -2411,6 +3201,36 @@ local record M
         executionTime: number
         -- The detailed resource this action resolves to.
         resolveTo: ResolveTo
+    end
+
+    record DescribeApplicationInput
+        -- Name of the workspace to associate with the underlying Application
+        workspaceName: string
+        -- ID of the Application
+        id: string
+    end
+
+    record DescribeApplicationOutput
+        -- ARN of the application
+        arn: string
+        -- Timestamp when the application was created
+        createdAt: number
+        -- DNS subdomain for the application
+        dnsSubdomain: string
+        -- Description of the application
+        description: string
+        -- Unique identifier of the application
+        id: string
+        -- Identity Center Application ARN associated with this application
+        idcApplicationArn: string
+        -- Name of the application
+        name: string
+        -- Current status of the application
+        status: string
+        -- Timestamp when the application was last updated
+        updatedAt: number
+        -- Name of the workspace this application belongs to
+        workspaceName: string
     end
 
     record DescribeAssetInput
@@ -2727,6 +3547,8 @@ local record M
     record DescribeBulkImportJobInput
         -- The ID of the job.
         jobId: string
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     record DescribeBulkImportJobOutput
@@ -2746,7 +3568,9 @@ local record M
         jobStatus: string
         -- The ARN of the IAM role that allows IoT SiteWise to read Amazon S3 data.
         jobRoleArn: string
-        -- The files in the specified Amazon S3 bucket that contain your data.
+        -- The files in the specified Amazon S3 bucket that contain your data. You can specify up to 100 files for each bulk import job. Each file supports the following size limits:
+        -- Parquet files – Up to 256 MiB.
+        -- Other file formats – Up to 5 GiB.
         files: {File}
         -- The Amazon S3 destination where errors associated with the job creation request are saved.
         errorReportLocation: ErrorReportLocation
@@ -2761,6 +3585,10 @@ local record M
         adaptiveIngestion: boolean
         -- If set to true, your data files is deleted from S3, after ingestion into IoT SiteWise storage.
         deleteFilesAfterImport: boolean
+        -- The ID of the dataset.
+        datasetId: string
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     record DescribeComputationModelInput
@@ -2821,6 +3649,30 @@ local record M
     record DescribeDatasetInput
         -- The ID of the dataset.
         datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
+        -- The version of the dataset.
+        datasetVersion: string
+    end
+
+    enum DatasetEnrichmentStatus
+        "FULLY_ENRICHED"
+        "PARTIALLY_ENRICHED"
+        "NOT_ENRICHED"
+    end
+
+    -- Contains enrichment status information for a specific data type in a dataset.
+    record DatasetEnrichmentEntry
+        -- The enrichment status of the data type in the dataset.
+        status: string
+        -- The date the data was last enriched, in Unix epoch time.
+        lastEnrichedAt: number
+    end
+
+    -- Contains the enrichment status information for a dataset across data types.
+    record DatasetEnrichment
+        -- The enrichment status for video data in the dataset.
+        video: DatasetEnrichmentEntry
     end
 
     record DescribeDatasetOutput
@@ -2833,6 +3685,15 @@ local record M
         datasetName: string
         -- A description about the dataset, and its functionality.
         datasetDescription: string
+        -- The type of dataset: a session dataset, a curated dataset, or a connection to an external
+        -- datasource.
+        datasetType: string
+        -- The configuration for the dataset.
+        datasetConfig: DatasetConfig
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
+        -- The metadata for the dataset.
+        metadata: {string : string}
         -- The data source for the dataset.
         datasetSource: DatasetSource
         -- The status of the dataset. This contains the state and any error messages.
@@ -2845,6 +3706,44 @@ local record M
         datasetLastUpdateDate: number
         -- The version of the dataset.
         datasetVersion: string
+        -- The enrichment status of the dataset.
+        enrichmentStatus: DatasetEnrichment
+    end
+
+    -- Request to describe a dataset export job.
+    record DescribeDatasetExportJobInput
+        -- The name of the workspace that contains the dataset export job.
+        workspaceName: string
+        -- The unique identifier for the dataset export job.
+        jobId: string
+    end
+
+    enum DatasetExportJobStatus
+        "SUBMITTED"
+        "RUNNING"
+        "COMPLETED"
+        "COMPLETED_WITH_ERRORS"
+        "FAILED"
+    end
+
+    -- Response for describe dataset export job request.
+    record DescribeDatasetExportJobOutput
+        -- The unique identifier for the dataset export job.
+        jobId: string
+        -- The name of the workspace that contains the dataset export job.
+        workspaceName: string
+        -- The current status of the dataset export job.
+        status: string
+        -- The timestamp when the job started processing.
+        startedAt: number
+        -- The timestamp when the job completed, or null if the job is still running.
+        completedAt: number
+        -- The S3 URI where output clips are written.
+        destinationS3Uri: string
+        -- The location where the error report will be written on failure.
+        errorReportLocation: ExportErrorReportLocation
+        -- The processing input that was provided in the CreateDatasetExportJob request.
+        input: ProcessingInput
     end
 
     record DescribeDefaultEncryptionConfigurationInput
@@ -2872,11 +3771,6 @@ local record M
         error: ConfigurationErrorDetails
     end
 
-    enum EncryptionType
-        "SITEWISE_DEFAULT_ENCRYPTION"
-        "KMS_BASED_ENCRYPTION"
-    end
-
     record DescribeDefaultEncryptionConfigurationOutput
         -- The type of encryption used for the encryption configuration.
         encryptionType: string
@@ -2887,6 +3781,49 @@ local record M
         -- ConfigurationState. If there's an error, it also contains the
         -- ErrorDetails.
         configurationStatus: ConfigurationStatus
+    end
+
+    record DescribeEnrichmentJobInput
+        -- The name of the IoT SiteWise workspace containing the enrichment job.
+        workspaceName: string
+        -- The unique identifier of the enrichment job to retrieve. This is the jobId returned by CreateEnrichmentJob.
+        jobId: string
+    end
+
+    enum JobType
+        "EVENT_DETECTION"
+    end
+
+    record DescribeEnrichmentJobOutput
+        -- The unique identifier of the enrichment job.
+        jobId: string
+        -- Current status of the enrichment job. Possible values:
+        -- PENDING: Job is waiting to start processing
+        -- RUNNING: Job is actively processing video data
+        -- COMPLETED: Job finished successfully; embeddings available in IoT SiteWise
+        -- FAILED: Job encountered an error; see failureMessage for details
+        -- TIMED_OUT: Job exceeded maximum processing time limit
+        -- CANCELLED: Job was cancelled by user request
+        status: string
+        -- The name of the IoT SiteWise workspace containing the job.
+        workspaceName: string
+        -- The type of enrichment job, derived from the job configuration. Currently EVENT_DETECTION is the only supported type.
+        jobType: string
+        -- The complete job configuration as originally submitted, including the analysis type and parameters.
+        -- For event detection jobs, this includes the dataset ID, time series identifier, and trim settings
+        -- defining the analysis time range.
+        jobConfiguration: EnrichmentJobConfiguration
+        -- Timestamp when the enrichment job was created in ISO 8601 format.
+        createdAt: number
+        -- Timestamp when the job status was last updated in ISO 8601 format. Useful for tracking recent activity.
+        updatedAt: number
+        -- Timestamp when the job completed successfully in ISO 8601 format. Only present if status is COMPLETED.
+        completedAt: number
+        -- Timestamp when the job was cancelled in ISO 8601 format. Only present if status is CANCELLED.
+        cancelledAt: number
+        -- Human-readable error message explaining why the job failed. Only present if status is FAILED.
+        -- Use this information to diagnose configuration issues, permission problems, or data processing errors.
+        failureMessage: string
     end
 
     record DescribeExecutionInput
@@ -3017,6 +3954,8 @@ local record M
     end
 
     record DescribeLoggingOptionsInput
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     enum LoggingLevel
@@ -3034,6 +3973,183 @@ local record M
     record DescribeLoggingOptionsOutput
         -- The current logging options.
         loggingOptions: LoggingOptions
+    end
+
+    -- Request structure for DescribePipeline operation.
+    record DescribePipelineInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the pipeline.
+        pipelineName: string
+        -- The version number of the pipeline to retrieve. If not specified, returns the latest version.
+        pipelineVersion: string
+    end
+
+    -- Response structure for DescribePipeline operation.
+    record DescribePipelineOutput
+        -- A unique name of the pipeline within the workspace.
+        pipelineName: string
+        -- The name of the workspace.
+        workspaceName: string
+        -- The description of the pipeline.
+        description: string
+        -- The ARN of the pipeline.
+        pipelineArn: string
+        -- The version of the pipeline.
+        version: string
+        -- The environment variables shared across all compute nodes in the pipeline.
+        environmentVariables: {string : string}
+        -- The list of compute nodes that form the pipeline DAG.
+        computations: {ComputeNode}
+        -- The current lifecycle status of the pipeline.
+        status: ResourceStatus
+        -- The time the pipeline was created, in Unix epoch time.
+        createdAt: number
+        -- The time the pipeline was last updated, in Unix epoch time.
+        updatedAt: number
+    end
+
+    -- Request structure for DescribePipelineExecution operation.
+    record DescribePipelineExecutionInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the pipeline.
+        pipelineName: string
+        -- The unique identifier of the pipeline execution.
+        pipelineExecutionId: string
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+        -- The maximum number of compute nodes to return per request. This is an upper bound; the actual number of results may be less. Default: 50.
+        maxResults: number
+    end
+
+    enum ComputeNodeExecutionState
+        "NOT_STARTED"
+        "QUEUED"
+        "RUNNING"
+        "SUCCEEDED"
+        "FAILED"
+    end
+
+    enum ComputeNodeErrorCode
+        "VALIDATION_ERROR"
+        "INTERNAL_FAILURE"
+        "EXECUTION_ERROR"
+        "TIMED_OUT"
+    end
+
+    enum DetailedPipelineErrorCode
+        "VALIDATION_ERROR"
+        "INTERNAL_FAILURE"
+        "EXECUTION_ERROR"
+        "TIMED_OUT"
+    end
+
+    -- Contains a detailed error entry for granular troubleshooting of pipeline failures.
+    record DetailedPipelineError
+        -- The error code.
+        code: string
+        -- The associated error message.
+        message: string
+    end
+
+    -- Additional information about a compute node that has failed.
+    record ComputeNodeExecutionStateDetails
+        -- Classification of the failure.
+        code: string
+        -- Human-readable description of why the compute node failed.
+        message: string
+        -- Detailed error entries to help diagnose the failure.
+        details: {DetailedPipelineError}
+    end
+
+    -- Current execution status of a compute node within a pipeline execution.
+    record ComputeNodeExecutionStatus
+        -- Current state of the compute node execution.
+        state: string
+        -- Additional information about the compute node's failure. Populated when the compute node has failed.
+        stateDetails: ComputeNodeExecutionStateDetails
+    end
+
+    -- Contains detailed execution information for a compute node within a pipeline execution.
+    record ComputeNodeExecutionDetails
+        -- The name of the compute node.
+        computeNodeName: string
+        -- The name of the task executed for this compute node.
+        taskName: string
+        -- The ARN of the task.
+        taskArn: string
+        -- The task version that executed for this compute node.
+        taskVersion: string
+        -- A list of compute node names that this node depends on.
+        dependsOn: {string}
+        -- The current execution status of the compute node.
+        status: ComputeNodeExecutionStatus
+        -- The time the compute node execution started, in Unix epoch time.
+        startTime: number
+        -- The time the compute node execution completed, in Unix epoch time.
+        endTime: number
+        -- The fully resolved environment variables used for this compute node execution.
+        executionEnvironmentVariables: {string : string}
+    end
+
+    -- Environment variables provided as input for a pipeline execution.
+    record ExecutionEnvironmentVariables
+        -- Global environment variables that apply to all compute nodes in the pipeline execution.
+        global: {string : string}
+        -- Per-compute-node environment variable overrides. Each entry maps a compute node name to its environment variable overrides.
+        computeNodes: {string : {string : string}}
+    end
+
+    enum PipelineErrorCode
+        "VALIDATION_ERROR"
+        "INTERNAL_FAILURE"
+        "EXECUTION_ERROR"
+        "TIMED_OUT"
+    end
+
+    -- Additional information about the current execution status. Populated when the execution has terminated.
+    record PipelineExecutionStateDetails
+        -- Classification of the failure. Present when the execution failed.
+        code: string
+        -- Human-readable description of the outcome. For a failed execution, this describes why it failed; for a cancelled execution, this is the reason you supplied when calling CancelPipelineExecution.
+        message: string
+        -- Per-step error entries to help diagnose a failed execution. Present when the execution failed.
+        details: {DetailedPipelineError}
+    end
+
+    -- Current execution status of a pipeline.
+    record PipelineExecutionStatus
+        -- Current state of the pipeline execution.
+        state: string
+        -- Additional information about the execution outcome. Populated when the execution has terminated (failed or cancelled).
+        stateDetails: PipelineExecutionStateDetails
+    end
+
+    -- Response structure for DescribePipelineExecution operation.
+    record DescribePipelineExecutionOutput
+        -- The unique identifier of the pipeline execution.
+        pipelineExecutionId: string
+        -- The name of the pipeline.
+        pipelineName: string
+        -- The name of the workspace.
+        workspaceName: string
+        -- The pipeline version this execution ran against.
+        pipelineVersion: string
+        -- The current execution status of the pipeline.
+        status: PipelineExecutionStatus
+        -- The time the pipeline execution started, in Unix epoch time.
+        startTime: number
+        -- The time the pipeline execution completed, in Unix epoch time.
+        endTime: number
+        -- The environment variables provided as input for the pipeline execution.
+        requestEnvironmentVariables: ExecutionEnvironmentVariables
+        -- Scheduling priority for the execution. When not specified, defaults to lowest priority.
+        executionPriority: number
+        -- A list of compute node execution details within this pipeline execution.
+        computeNodeExecutionDetails: {ComputeNodeExecutionDetails}
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
     end
 
     record DescribePortalInput
@@ -3114,6 +4230,79 @@ local record M
         projectCreationDate: number
         -- The date the project was last updated, in Unix epoch time.
         projectLastUpdateDate: number
+    end
+
+    record DescribeQueryInput
+        -- The name of the workspace associated with the query.
+        workspaceName: string
+        -- The unique identifier for the query execution.
+        queryId: string
+    end
+
+    -- Contains statistics about a completed query execution.
+    record QueryStatistics
+        -- The total number of rows returned by the query.
+        rowCount: number
+        -- The total number of bytes scanned during query execution.
+        bytesScanned: number
+        -- The total query execution time, in milliseconds.
+        executionTimeInMillis: number
+    end
+
+    -- Contains the response for the DescribeQuery operation.
+    record DescribeQueryOutput
+        -- The unique identifier for the query execution.
+        queryId: string
+        -- The current query status.
+        status: string
+        -- The date and time when the query was submitted, in Unix epoch time.
+        submittedAt: number
+        -- The date and time when the query reached a terminal state, in Unix epoch time. This field is present when the query status is COMPLETED, FAILED, or CANCELED.
+        completedAt: number
+        -- The query execution statistics. This field is present when the query status is COMPLETED.
+        statistics: QueryStatistics
+        -- A human-readable error description. This field is present when the query status is FAILED.
+        errorMessage: string
+    end
+
+    -- Input for the DescribeSearch operation.
+    record DescribeSearchInput
+        -- The name of the workspace the search belongs to.
+        workspaceName: string
+        -- The identifier of the search to describe.
+        searchId: string
+    end
+
+    enum SearchType
+        "DEEP"
+        "QUICK"
+    end
+
+    enum SearchStatus
+        "QUEUED"
+        "RUNNING"
+        "SUCCEEDED"
+        "FAILED"
+    end
+
+    -- Output of the DescribeSearch operation.
+    record DescribeSearchOutput
+        -- The unique identifier of the search.
+        searchId: string
+        -- The name of the workspace the search runs against.
+        workspaceName: string
+        -- The current status of the search.
+        status: string
+        -- The natural-language query that was submitted for the search.
+        queryStatement: string
+        -- The search strategy used for the search.
+        searchType: string
+        -- A human-readable explanation of the current status. Populated when the search has FAILED.
+        statusReason: string
+        -- The time at which the search was started.
+        startedAt: number
+        -- The group identifier associated with the search, if one was supplied on the request.
+        groupId: string
     end
 
     record DescribeStorageConfigurationInput
@@ -3202,6 +4391,38 @@ local record M
         disallowIngestNullNaN: boolean
     end
 
+    -- Request structure for DescribeTask operation.
+    record DescribeTaskInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the task.
+        taskName: string
+        -- The version number of the task to retrieve. If not specified, returns the latest version.
+        taskVersion: string
+    end
+
+    -- Response structure for DescribeTask operation.
+    record DescribeTaskOutput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the task.
+        taskName: string
+        -- The description of the task.
+        description: string
+        -- The ARN of the task.
+        taskArn: string
+        -- The version of the task.
+        version: string
+        -- The task execution configuration. Contains a containerTaskConfiguration for custom container workloads.
+        taskConfiguration: TaskConfiguration
+        -- The current lifecycle status of the task.
+        status: ResourceStatus
+        -- The time the task was created, in Unix epoch time.
+        createdAt: number
+        -- The time the task was last updated, in Unix epoch time.
+        updatedAt: number
+    end
+
     record DescribeTimeSeriesInput
         -- The alias that identifies the time series.
         alias: string
@@ -3211,6 +4432,8 @@ local record M
         -- The ID of the asset property. This can be either the actual ID in UUID format, or else externalId: followed by the external ID, if it has one.
         -- For more information, see Referencing objects with external IDs in the IoT SiteWise User Guide.
         propertyId: string
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     record DescribeTimeSeriesOutput
@@ -3238,6 +4461,39 @@ local record M
         -- The ARN of the time series, which has the following format.
         -- arn:${Partition}:iotsitewise:${Region}:${Account}:time-series/${TimeSeriesId}
         timeSeriesArn: string
+        -- The name of the workspace.
+        workspaceName: string
+    end
+
+    record DescribeWorkspaceInput
+        -- The name of the workspace.
+        workspaceName: string
+    end
+
+    -- Contains the encryption configuration information for a workspace.
+    record WorkspaceEncryptionConfigurationInfo
+        -- The type of encryption used for the workspace.
+        encryptionType: string
+        -- The key ARN of the KMS key used for KMS encryption if encryptionType
+        -- is KMS_BASED_ENCRYPTION.
+        kmsKeyArn: string
+    end
+
+    record DescribeWorkspaceOutput
+        -- The ARN of the workspace.
+        workspaceArn: string
+        -- The name of the workspace.
+        workspaceName: string
+        -- The description of the workspace.
+        workspaceDescription: string
+        -- The status of the workspace, which contains the state and any error message.
+        workspaceStatus: WorkspaceStatus
+        -- The encryption configuration information for the workspace.
+        encryptionConfiguration: WorkspaceEncryptionConfigurationInfo
+        -- The date the workspace was created, in Unix epoch time.
+        createdAt: number
+        -- The date the workspace was last updated, in Unix epoch time.
+        updatedAt: number
     end
 
     record DisassociateAssetsInput
@@ -3432,6 +4688,42 @@ local record M
         nextToken: string
     end
 
+    -- Request to retrieve video data for a specific time range. Exactly one of timeSeriesId or propertyAlias must be provided.
+    record GetCaptureDataInput
+        -- The name of the workspace that contains the capture source.
+        workspaceName: string
+        -- The start time for the video data range.
+        startTime: TimeInNanos
+        -- The end time for the video data range. Must be greater than startTime.
+        endTime: TimeInNanos
+        -- The time series ID that identifies the capture source. Mutually exclusive with propertyAlias.
+        timeSeriesId: string
+        -- The property alias that identifies the capture source. Mutually exclusive with timeSeriesId.
+        propertyAlias: string
+        -- The optional format settings for the output.
+        formatSettings: FormatSettings
+        -- The token from a previous response used to continue retrieving data.
+        nextToken: string
+    end
+
+    enum VideoDataType
+        "VIDEO-MP4"
+    end
+
+    -- Response containing the video data.
+    record GetCaptureDataOutput
+        -- The binary video data.
+        data: string
+        -- The actual start time of the returned data.
+        startTime: TimeInNanos
+        -- The actual end time of the returned data.
+        endTime: TimeInNanos
+        -- The type of the returned data.
+        dataType: string
+        -- The token used to retrieve the next chunk. Absent if no more data is available.
+        nextToken: string
+    end
+
     record GetInterpolatedAssetPropertyValuesInput
         -- The ID of the asset, in UUID format.
         assetId: string
@@ -3491,6 +4783,77 @@ local record M
         -- The requested interpolated values.
         interpolatedAssetPropertyValues: {InterpolatedAssetPropertyValue}
         -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+    end
+
+    record GetQueryResultsInput
+        -- The name of the workspace associated with the query.
+        workspaceName: string
+        -- The unique identifier for the query execution.
+        queryId: string
+        -- The maximum number of results to return for each paginated request.
+        maxResults: number
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+    end
+
+    -- Contains metadata about a column in the query results.
+    record ColumnInformation
+        -- The name of the column.
+        name: string
+    end
+
+    -- Contains the response for the GetQueryResults operation.
+    record GetQueryResultsOutput
+        -- A list of column metadata for the query results. Each entry contains the column name and data type. Present when the query status is COMPLETED.
+        columnInfo: {ColumnInformation}
+        -- The result rows. Each row is a list of string column values, positional to match the columnInfo order. Present when the query status is COMPLETED.
+        rows: {{string}}
+        -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+    end
+
+    -- Input for the GetSearchResults operation.
+    record GetSearchResultsInput
+        -- The identifier of the search whose results are retrieved.
+        searchId: string
+        -- The name of the workspace the search belongs to.
+        workspaceName: string
+        -- The maximum number of results to return in a single page. Valid range is 1 to 10,000; if
+        -- omitted, a service-defined default is used.
+        maxResults: number
+        -- The pagination token returned by a previous GetSearchResults call. Provide it to retrieve the
+        -- next page of results; omit it to retrieve the first page.
+        nextToken: string
+    end
+
+    -- A single matching segment of time-series data returned by a search.
+    record SearchResult
+        -- The identifier of the search that produced this result.
+        searchId: string
+        -- The name of the workspace the search ran against.
+        workspaceName: string
+        -- The identifier of the dataset that contains the matching data.
+        datasetId: string
+        -- The identifier of the time series that contains the matching data.
+        timeSeriesId: string
+        -- The start of the matching time-series segment, in nanoseconds since the Unix epoch.
+        startTimestamp: TimeInNanos
+        -- The end of the matching time-series segment, in nanoseconds since the Unix epoch.
+        endTimestamp: TimeInNanos
+        -- The timestamp of the most relevant point within the matching segment, in nanoseconds since the
+        -- Unix epoch.
+        topTimestamp: TimeInNanos
+        -- The relevance score of this result. Higher scores indicate a stronger match.
+        score: number
+    end
+
+    -- Output of the GetSearchResults operation.
+    record GetSearchResultsOutput
+        -- A page of search results, ordered by descending relevance score.
+        searchResults: {SearchResult}
+        -- The pagination token to use in a subsequent GetSearchResults call to retrieve the next page.
+        -- Absent when there are no more results.
         nextToken: string
     end
 
@@ -3652,6 +5015,20 @@ local record M
         actionSummaries: {ActionSummary}
         -- The token for the next set of results, or null if there are no additional results.
         nextToken: string
+    end
+
+    record ListApplicationsInput
+        -- Maximum number of results to return
+        maxResults: number
+        -- Next Page Token
+        nextToken: string
+    end
+
+    record ListApplicationsOutput
+        -- Next Page Token
+        nextToken: string
+        -- List of applications
+        applications: {ApplicationSummary}
     end
 
     record ListAssetModelCompositeModelsInput
@@ -3880,6 +5257,8 @@ local record M
         maxResults: number
         -- You can use a filter to select the bulk import jobs that you want to retrieve.
         filter: string
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     -- Contains the job summary information.
@@ -4096,9 +5475,143 @@ local record M
         nextToken: string
     end
 
+    record ListDatasetDataSegmentRelationshipsInput
+        -- The ID of the session dataset to list data segment relationships for.
+        datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
+        -- The maximum number of results to return for each paginated request. Default: 50.
+        maxResults: number
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+    end
+
+    -- Contains summary information about a data segment relationship between a source session
+    -- dataset that contains the data and a curated dataset that references it, including the time
+    -- series and timestamp range.
+    record DataSegmentRelationshipSummary
+        -- The ID of the curated dataset that references the data segment.
+        targetDatasetId: string
+        -- The ID of the source session dataset that contains the data segment.
+        sourceDatasetId: string
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment.
+        endTimestamp: TimeInNanos
+    end
+
+    record ListDatasetDataSegmentRelationshipsOutput
+        -- A list that summarizes each data segment relationship.
+        dataSegmentRelationshipSummaries: {DataSegmentRelationshipSummary}
+        -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+    end
+
+    record ListDatasetDataSegmentsInput
+        -- The ID of the dataset.
+        datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
+        -- The version of the dataset to list data segments for.
+        datasetVersion: string
+        -- The maximum number of results to return for each paginated request. Default: 50.
+        maxResults: number
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+    end
+
+    enum EnrichmentStatus
+        "ENRICHED"
+        "NOT_ENRICHED"
+    end
+
+    -- Contains enrichment status information for a data segment.
+    record DataSegmentEnrichment
+        -- The enrichment status of the data segment.
+        status: string
+        -- The date the data segment was last enriched, in Unix epoch time.
+        lastEnrichedAt: number
+    end
+
+    -- Contains summary information about a data segment, including its source dataset, time
+    -- series, timestamp range, and enrichment status.
+    record DataSegmentSummary
+        -- The ID of the source dataset that contains the data segment.
+        sourceDatasetId: string
+        -- The ID of the time series.
+        timeSeriesId: string
+        -- The nanosecond-precision start time of the data segment.
+        startTimestamp: TimeInNanos
+        -- The nanosecond-precision end time of the data segment.
+        endTimestamp: TimeInNanos
+        -- The alias of the time series.
+        alias: string
+        -- The data type of the time series.
+        dataType: string
+        -- The enrichment information for the data segment.
+        enrichment: DataSegmentEnrichment
+    end
+
+    record ListDatasetDataSegmentsOutput
+        -- A list that summarizes each data segment.
+        dataSegments: {DataSegmentSummary}
+        -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+    end
+
+    enum DatasetExportJobFilter
+        "ALL"
+        "SUBMITTED"
+        "RUNNING"
+        "COMPLETED"
+        "COMPLETED_WITH_ERRORS"
+        "FAILED"
+    end
+
+    -- Request to list dataset export jobs for a workspace.
+    record ListDatasetExportJobsInput
+        -- The name of the workspace whose dataset export jobs should be listed.
+        workspaceName: string
+        -- The optional filter that returns only jobs matching the given filter value. Defaults to ALL.
+        filter: string
+        -- The maximum number of results to return for each paginated request.
+        maxResults: number
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+    end
+
+    -- Contains summary information about a dataset export job.
+    record ExportJobSummary
+        -- The unique identifier for the dataset export job.
+        jobId: string
+        -- The current status of the dataset export job.
+        status: string
+        -- The timestamp when the job started processing.
+        startedAt: number
+        -- The timestamp when the job completed, or null if the job is still running.
+        completedAt: number
+        -- The S3 URI where output clips are written.
+        destinationS3Uri: string
+    end
+
+    -- Response for list dataset export jobs request.
+    record ListDatasetExportJobsOutput
+        -- A list of dataset export job summaries.
+        jobs: {ExportJobSummary}
+        -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+    end
+
     record ListDatasetsInput
         -- The type of data source for the dataset.
         sourceType: string
+        -- The name of the workspace to filter datasets by.
+        workspaceName: string
+        -- The type of dataset to filter by: a session dataset, a curated dataset, or a connection
+        -- to an external datasource.
+        datasetType: string
         -- The token for the next set of results, or null if there are no additional results.
         nextToken: string
         -- The maximum number of results to return for each paginated request.
@@ -4116,6 +5629,11 @@ local record M
         name: string
         -- A description about the dataset, and its functionality.
         description: string
+        -- The data source type of the dataset.
+        sourceType: string
+        -- The type of dataset: a session dataset, a curated dataset, or a connection to an external
+        -- datasource.
+        datasetType: string
         -- The dataset creation date, in Unix epoch time.
         creationDate: number
         -- The date the dataset was last updated, in Unix epoch time.
@@ -4123,12 +5641,92 @@ local record M
         -- The status of the dataset. This contains the state and any error messages. The state is
         -- ACTIVE when ready to use.
         status: DatasetStatus
+        -- The enrichment status of the dataset.
+        enrichmentStatus: DatasetEnrichment
     end
 
     record ListDatasetsOutput
         -- A list that summarizes the dataset response.
         datasetSummaries: {DatasetSummary}
         -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+        -- The name of the workspace.
+        workspaceName: string
+    end
+
+    record ListEnrichmentJobsInput
+        -- The name of the IoT SiteWise workspace to list enrichment jobs from.
+        workspaceName: string
+        -- Filter jobs by dataset ID. Returns only jobs analyzing data from the specified dataset.
+        datasetId: string
+        -- Filter by property alias (human-readable sensor name). Specify either propertyAlias or timeSeriesId,
+        -- but not both. Returns only jobs analyzing the specified property alias.
+        propertyAlias: string
+        -- Filter by time series ID (system identifier). Specify either timeSeriesId or propertyAlias, but not
+        -- both. Returns only jobs analyzing the specified time series.
+        timeSeriesId: string
+        -- Filter by job status. Returns only jobs in the specified status.
+        -- Use RUNNING to find active jobs, or FAILED to identify jobs requiring attention.
+        status: string
+        -- Filter by enrichment job type. Currently only EVENT_DETECTION is supported.
+        -- Use this filter to future-proof queries when additional job types are added.
+        jobType: string
+        -- The exclusive start of the date range for filtering jobs by creation time. Jobs created after this
+        -- timestamp are included. Use ISO 8601 format (e.g., 2024-01-01T00:00:00Z).
+        startDate: number
+        -- The inclusive end of the date range for filtering jobs by creation time. Jobs created on or before
+        -- this timestamp are included. Use ISO 8601 format (e.g., 2024-01-31T23:59:59Z).
+        endDate: number
+        -- Maximum number of jobs to return per page. Defaults to 50 if not specified.
+        -- Use smaller values for faster responses, larger values to reduce API calls.
+        maxResults: number
+        -- Pagination token from a previous ListEnrichmentJobs response. Include this token to retrieve the
+        -- next page of results. Omit for the first request.
+        nextToken: string
+    end
+
+    -- Summary information for an enrichment job returned by ListEnrichmentJobs. This lightweight
+    -- representation includes identifiers, status, and key metadata without the full job configuration.
+    -- Use DescribeEnrichmentJob to retrieve:
+    -- Complete job configuration (trim settings, full parameters)
+    -- Detailed timestamps (completedAt, cancelledAt)
+    -- Failure messages for failed jobs
+    -- The summary is optimized for display in lists and dashboards, providing enough information to
+    -- identify and filter jobs without the overhead of full configuration details.
+    record EnrichmentJobSummary
+        -- Unique identifier for the enrichment job.
+        jobId: string
+        -- Current status of the job: PENDING, RUNNING, COMPLETED, FAILED, TIMED_OUT, or CANCELLED.
+        -- Use this to quickly identify active jobs or jobs requiring attention.
+        status: string
+        -- The name of the IoT SiteWise workspace containing this job.
+        workspaceName: string
+        -- The type of enrichment job. Currently EVENT_DETECTION is the only supported type.
+        jobType: string
+        -- The dataset being enriched. Useful for filtering and identifying jobs without fetching the full
+        -- configuration. This allows you to quickly find all jobs related to a specific dataset.
+        datasetId: string
+        -- The property alias (human-readable sensor name) of the time series being enriched.
+        -- Present when the job was created using a propertyAlias. Use this to identify which sensor the job analyzes.
+        propertyAlias: string
+        -- The system identifier of the time series being enriched.
+        -- Present when the job was created using a timeSeriesId. Use this to identify which time series the job analyzes.
+        timeSeriesId: string
+        -- Timestamp when the job was created in ISO 8601 format.
+        createdAt: number
+        -- Timestamp of the last job status change in ISO 8601 format. Use this to track recent activity
+        -- and identify stale jobs. For active jobs, this shows the last time the job transitioned to a new status.
+        updatedAt: number
+    end
+
+    record ListEnrichmentJobsOutput
+        -- Array of job summaries matching the filter criteria, ordered by creation time descending (newest first).
+        -- Each summary includes key identifiers (jobId, datasetId, propertyAlias/timeSeriesId) and status
+        -- information without the full job configuration. Use DescribeEnrichmentJob to retrieve complete details.
+        jobs: {EnrichmentJobSummary}
+        -- Pagination token to retrieve the next page of results. If present, more jobs exist that match the
+        -- filter criteria. Include this token in a subsequent ListEnrichmentJobs request to retrieve the next
+        -- page. If absent, you have retrieved all matching jobs.
         nextToken: string
     end
 
@@ -4237,6 +5835,100 @@ local record M
         nextToken: string
     end
 
+    -- Request structure for ListPipelineExecutions operation.
+    record ListPipelineExecutionsInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the pipeline.
+        pipelineName: string
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+        -- The maximum number of results to return per request.
+        -- This is an upper bound; the actual number of results may be less. Default: 50.
+        maxResults: number
+        -- Filter by execution state.
+        -- If not specified, executions in all states are returned.
+        state: string
+        -- Inclusive lower bound on execution start time (ISO-8601).
+        -- Only executions with startTime >= startTimeAfter are returned.
+        -- Cannot be combined with endTimeAfter or endTimeBefore.
+        startTimeAfter: number
+        -- Exclusive upper bound on execution start time (ISO-8601).
+        -- Only executions with startTime < startTimeBefore are returned.
+        -- Cannot be combined with endTimeAfter or endTimeBefore.
+        startTimeBefore: number
+        -- Inclusive lower bound on execution end time (ISO-8601).
+        -- Only executions with endTime >= endTimeAfter are returned.
+        -- Cannot be combined with startTimeAfter or startTimeBefore.
+        -- Only matches executions in terminal states.
+        endTimeAfter: number
+        -- Exclusive upper bound on execution end time (ISO-8601).
+        -- Only executions with endTime < endTimeBefore are returned.
+        -- Cannot be combined with startTimeAfter or startTimeBefore.
+        -- Only matches executions in terminal states.
+        endTimeBefore: number
+    end
+
+    -- Contains summary information about a pipeline execution.
+    record PipelineExecutionSummary
+        -- The unique identifier of the pipeline execution.
+        pipelineExecutionId: string
+        -- The pipeline version this execution ran against.
+        pipelineVersion: string
+        -- The current execution status of the pipeline.
+        status: PipelineExecutionStatus
+        -- Scheduling priority for the execution. When not specified, defaults to lowest priority.
+        executionPriority: number
+        -- The time the pipeline execution started, in Unix epoch time.
+        startTime: number
+        -- The time the pipeline execution completed, in Unix epoch time.
+        endTime: number
+    end
+
+    -- Response structure for ListPipelineExecutions operation.
+    record ListPipelineExecutionsOutput
+        -- A list that summarizes each pipeline execution.
+        pipelineExecutionSummaries: {PipelineExecutionSummary}
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+    end
+
+    -- Request structure for ListPipelines operation.
+    record ListPipelinesInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+        -- The maximum number of results to return for each paginated request. Default: 50.
+        maxResults: number
+    end
+
+    -- Contains summary information about a pipeline.
+    record PipelineSummary
+        -- The name of the pipeline.
+        pipelineName: string
+        -- The description of the pipeline.
+        description: string
+        -- The ARN of the pipeline.
+        pipelineArn: string
+        -- The version of the pipeline.
+        version: string
+        -- The current lifecycle status of the pipeline.
+        status: ResourceStatus
+        -- The time the pipeline was created, in Unix epoch time.
+        createdAt: number
+        -- The time the pipeline was last updated, in Unix epoch time.
+        updatedAt: number
+    end
+
+    -- Response structure for ListPipelines operation.
+    record ListPipelinesOutput
+        -- A list that summarizes each pipeline in the workspace.
+        pipelineSummaries: {PipelineSummary}
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+    end
+
     record ListPortalsInput
         -- The token to be used for the next set of paginated results.
         nextToken: string
@@ -4325,6 +6017,94 @@ local record M
         nextToken: string
     end
 
+    record ListQueriesInput
+        -- The name of the workspace to list queries for.
+        workspaceName: string
+        -- An optional filter to return only queries with the specified status. The value must be one of the supported query statuses: SUBMITTED, RUNNING, COMPLETED, FAILED, CANCELED, or CANCELING.
+        filter: string
+        -- The maximum number of results to return for each paginated request.
+        maxResults: number
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+    end
+
+    -- Contains summary information about a query.
+    record QuerySummary
+        -- The unique identifier for the query execution.
+        queryId: string
+        -- The current query status.
+        status: string
+        -- The date and time when the query was submitted, in Unix epoch time.
+        submittedAt: number
+        -- The date and time when the query reached a terminal state, in Unix epoch time.
+        completedAt: number
+    end
+
+    -- Contains the response for the ListQueries operation.
+    record ListQueriesOutput
+        -- A list of query summaries for the workspace.
+        queries: {QuerySummary}
+        -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+    end
+
+    -- Optional filters for ListSearches. When multiple filters are set, a search must match all of them.
+    record ListSearchesFilters
+        -- Returns only searches whose status is one of the listed values.
+        statusFilter: {string}
+        -- Returns only searches started at or after this time.
+        startedAfter: number
+        -- Returns only searches started at or before this time.
+        startedBefore: number
+        -- Returns only searches whose groupId is one of the listed values.
+        groupIdFilter: {string}
+        -- Returns only searches whose searchType is one of the listed values.
+        searchTypeFilter: {string}
+    end
+
+    -- Input for the ListSearches operation.
+    record ListSearchesInput
+        -- The name of the workspace whose searches are listed.
+        workspaceName: string
+        -- The maximum number of searches to return in a single page. Valid range is 1 to 1,000; if
+        -- omitted, a service-defined default is used.
+        maxResults: number
+        -- The pagination token returned by a previous ListSearches call. Provide it to retrieve the next
+        -- page; omit it to retrieve the first page.
+        nextToken: string
+        -- Optional filters that restrict which searches are returned.
+        listSearchesFilters: ListSearchesFilters
+    end
+
+    -- A summary of a single search as returned by ListSearches.
+    record SearchSummary
+        -- The unique identifier of the search.
+        searchId: string
+        -- The name of the workspace the search runs against.
+        workspaceName: string
+        -- The current status of the search.
+        status: string
+        -- The natural-language query that was submitted for the search.
+        queryStatement: string
+        -- The search strategy used for the search.
+        searchType: string
+        -- A human-readable explanation of the current status. Populated when the search has FAILED.
+        statusReason: string
+        -- The time at which the search was started.
+        startedAt: number
+        -- The group identifier associated with the search, if one was supplied on the request.
+        groupId: string
+    end
+
+    -- Output of the ListSearches operation.
+    record ListSearchesOutput
+        -- A page of search summaries, most recently started first.
+        searchSummaries: {SearchSummary}
+        -- The pagination token to use in a subsequent ListSearches call to retrieve the next page. Absent
+        -- when there are no more searches.
+        nextToken: string
+    end
+
     record ListTagsForResourceInput
         -- The ARN of the resource.
         resourceArn: string
@@ -4340,6 +6120,42 @@ local record M
     -- You are not authorized.
     record UnauthorizedException
         message: string
+    end
+
+    -- Request structure for ListTasks operation.
+    record ListTasksInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+        -- The maximum number of results to return for each paginated request. Default: 50.
+        maxResults: number
+    end
+
+    -- Contains summary information about a task.
+    record TaskSummary
+        -- The name of the task.
+        taskName: string
+        -- The description of the task.
+        description: string
+        -- The ARN of the task.
+        taskArn: string
+        -- The version of the task.
+        version: string
+        -- The current lifecycle status of the task.
+        status: ResourceStatus
+        -- The time the task was created, in Unix epoch time.
+        createdAt: number
+        -- The time the task was last updated, in Unix epoch time.
+        updatedAt: number
+    end
+
+    -- Response structure for ListTasks operation.
+    record ListTasksOutput
+        -- A list that summarizes each task in the workspace.
+        taskSummaries: {TaskSummary}
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
     end
 
     enum ListTimeSeriesType
@@ -4364,6 +6180,8 @@ local record M
         -- DISASSOCIATED – The time series isn't associated with any asset
         -- property.
         timeSeriesType: string
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     -- Contains a summary of a time series (data stream).
@@ -4397,6 +6215,37 @@ local record M
     record ListTimeSeriesOutput
         -- One or more time series summaries to list.
         TimeSeriesSummaries: {TimeSeriesSummary}
+        -- The token for the next set of results, or null if there are no additional results.
+        nextToken: string
+        -- The name of the workspace.
+        workspaceName: string
+    end
+
+    record ListWorkspacesInput
+        -- The token to be used for the next set of paginated results.
+        nextToken: string
+        -- The maximum number of results to return for each paginated request. Default: 50.
+        maxResults: number
+    end
+
+    -- Contains summary information about a workspace, including its name, ARN, status, and
+    -- creation and update timestamps.
+    record WorkspaceSummary
+        -- The name of the workspace.
+        name: string
+        -- The ARN of the workspace.
+        arn: string
+        -- The status of the workspace.
+        status: WorkspaceStatus
+        -- The date the workspace was created, in Unix epoch time.
+        createdAt: number
+        -- The date the workspace was last updated, in Unix epoch time.
+        updatedAt: number
+    end
+
+    record ListWorkspacesOutput
+        -- A list that summarizes each workspace.
+        workspaceSummaries: {WorkspaceSummary}
         -- The token for the next set of results, or null if there are no additional results.
         nextToken: string
     end
@@ -4465,6 +6314,8 @@ local record M
     record PutLoggingOptionsInput
         -- The logging options to set.
         loggingOptions: LoggingOptions
+        -- The name of the workspace.
+        workspaceName: string
     end
 
     record PutLoggingOptionsOutput
@@ -4526,6 +6377,95 @@ local record M
         -- Describes the configuration for ingesting NULL and NaN data. By default the feature is
         -- allowed. The feature is disallowed if the value is true.
         disallowIngestNullNaN: boolean
+    end
+
+    -- Request structure for StartPipelineExecution operation.
+    record StartPipelineExecutionInput
+        -- The name of the workspace containing the pipeline.
+        workspaceName: string
+        -- The name of the pipeline to execute.
+        pipelineName: string
+        -- Runtime environment variable overrides for the execution. Includes global variables
+        -- that apply to all compute nodes and computeNodes for per-node overrides. These take the highest
+        -- priority in the environment variable hierarchy.
+        executionEnvironmentVariableOverrides: ExecutionEnvironmentVariables
+        -- Scheduling priority for the execution. Lower values indicate higher priority. Defaults to 2 when not specified.
+        executionPriority: number
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        -- If you retry a request that completed successfully using the same client token, the server returns the
+        -- cached result from the original successful request without performing the operation again.
+        clientToken: string
+    end
+
+    -- Response structure for StartPipelineExecution operation.
+    record StartPipelineExecutionOutput
+        -- The unique identifier of the created pipeline execution.
+        pipelineExecutionId: string
+    end
+
+    record StartQueryInput
+        -- A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.
+        clientToken: string
+        -- The name of the workspace to query.
+        workspaceName: string
+        -- The SQL query to execute against the workspace telemetry, annotations, data segment, and dataset data.
+        queryStatement: string
+    end
+
+    -- Contains the response for the StartQuery operation.
+    record StartQueryOutput
+        -- The unique identifier for the query execution.
+        queryId: string
+        -- The initial query status. The value is always SUBMITTED upon creation.
+        status: string
+    end
+
+    -- Contains a time interval with a start time and an end time. Use a time interval to restrict an operation, such as a search, to a specific time range.
+    record TimeInterval
+        -- The start of the time interval.
+        startTime: TimeInNanos
+        -- The end of the time interval.
+        endTime: TimeInNanos
+    end
+
+    -- Optional filters that restrict a search to a subset of the workspace's data.
+    record SearchFilters
+        -- Restricts the search to these time series.
+        timeSeriesIds: {string}
+        -- Restricts the search to these datasets.
+        datasetIds: {string}
+        -- Restricts the search to these time intervals.
+        timeIntervals: {TimeInterval}
+    end
+
+    -- Input for the StartSearch operation.
+    record StartSearchInput
+        -- The name of the workspace whose data is searched.
+        workspaceName: string
+        -- The natural-language query describing the data to search for.
+        queryStatement: string
+        -- A unique, case-sensitive identifier you provide to ensure the request is idempotent. Repeating
+        -- a StartSearch call with the same clientToken returns the original search rather than starting
+        -- a new one. If omitted, the SDK autogenerates one.
+        clientToken: string
+        -- The search strategy to use. Defaults to QUICK when omitted.
+        searchType: string
+        -- Optional filters that restrict the search to a subset of the workspace's data.
+        searchFilters: SearchFilters
+        -- An optional caller-supplied identifier used to group related searches together.
+        groupId: string
+    end
+
+    -- Output of the StartSearch operation.
+    record StartSearchOutput
+        -- The unique identifier assigned to the newly started search.
+        searchId: string
+        -- The name of the workspace the search runs against.
+        workspaceName: string
+        -- The initial status of the search. A newly started search is QUEUED.
+        status: string
+        -- The group identifier associated with the search, if one was supplied on the request.
+        groupId: string
     end
 
     record TagResourceInput
@@ -4591,6 +6531,8 @@ local record M
     end
 
     record UpdateAssetOutput
+        -- The ID of the asset.
+        assetId: string
         -- The status of the asset, which contains a state (UPDATING after successfully
         -- calling this operation) and any error message.
         assetStatus: AssetStatus
@@ -4642,6 +6584,8 @@ local record M
     end
 
     record UpdateAssetModelOutput
+        -- The ID of the asset model.
+        assetModelId: string
         -- The status of the asset model, which contains a state (UPDATING after
         -- successfully calling this operation) and any error message.
         assetModelStatus: AssetModelStatus
@@ -4684,6 +6628,8 @@ local record M
         -- The path to the composite model listing the parent composite models.
         assetModelCompositeModelPath: {AssetModelCompositeModelPathSegment}
         assetModelStatus: AssetModelStatus
+        -- The ID of the asset model.
+        assetModelId: string
     end
 
     record UpdateAssetPropertyInput
@@ -4743,10 +6689,16 @@ local record M
     record UpdateDatasetInput
         -- The ID of the dataset.
         datasetId: string
+        -- The name of the workspace that contains the dataset.
+        workspaceName: string
         -- The name of the dataset.
         datasetName: string
         -- A description about the dataset, and its functionality.
         datasetDescription: string
+        -- The updated configuration for the dataset.
+        datasetConfig: DatasetConfig
+        -- The updated metadata for the dataset.
+        metadata: {string : string}
         -- The data source for the dataset.
         datasetSource: DatasetSource
         -- A unique case-sensitive identifier that you can provide to ensure the idempotency of the request. Don't reuse this client token if a new idempotent request is required.
@@ -4800,6 +6752,28 @@ local record M
         -- After you update a capability configuration, its sync status is OUT_OF_SYNC
         -- until the gateway receives and applies or rejects the updated configuration.
         capabilitySyncStatus: string
+    end
+
+    -- Request structure for UpdatePipeline operation.
+    record UpdatePipelineInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the pipeline to update.
+        pipelineName: string
+        -- A new description for the pipeline.
+        description: string
+        -- Updated environment variables shared across all compute nodes.
+        environmentVariables: {string : string}
+        -- Updated list of compute nodes forming the pipeline DAG.
+        computations: {ComputeNode}
+    end
+
+    -- Response structure for UpdatePipeline operation.
+    record UpdatePipelineOutput
+        -- The new version of the pipeline created by this update.
+        version: string
+        -- The current lifecycle status of the pipeline.
+        status: ResourceStatus
     end
 
     -- Contains an image that is one of the following:
@@ -4857,6 +6831,47 @@ local record M
     end
 
     record UpdateProjectOutput
+    end
+
+    -- Request structure for UpdateTask operation.
+    record UpdateTaskInput
+        -- The name of the workspace.
+        workspaceName: string
+        -- The name of the task to update.
+        taskName: string
+        -- A new description for the task.
+        description: string
+        -- The updated task execution configuration.
+        taskConfiguration: TaskConfiguration
+    end
+
+    -- Response structure for UpdateTask operation.
+    record UpdateTaskOutput
+        -- The new version of the task created by this update.
+        version: string
+        -- The current lifecycle status of the task.
+        status: ResourceStatus
+    end
+
+    record UpdateWorkspaceInput
+        -- The name of the workspace to update.
+        workspaceName: string
+        -- A new description for the workspace.
+        workspaceDescription: string
+        -- The encryption configuration for the workspace. Omit this field to leave encryption
+        -- unchanged. After a customer managed key configuration becomes active, the key can't be
+        -- changed; supplying the same key is accepted.
+        encryptionConfiguration: WorkspaceEncryptionConfiguration
+        -- A unique, case-sensitive identifier that you provide to ensure that the request is
+        -- idempotent. If you retry a request that completed successfully using the same client token,
+        -- the retry succeeds without performing any further actions.
+        clientToken: string
+    end
+
+    record UpdateWorkspaceOutput
+        -- The status of the workspace after the update, which is UPDATING when the
+        -- operation returns.
+        workspaceStatus: WorkspaceStatus
     end
 
     -- Contains computation model data binding value information, which can be one of

@@ -7182,12 +7182,77 @@ local record M
         "UNION"
     end
 
+    -- Configuration that defines how BETWEEN range filter operations are translated into REST API request parameters.
+    record BetweenConfiguration
+        -- The parameter name used for the lower bound value in a BETWEEN filter operation.
+        LowBoundKey: string
+        -- The parameter name used for the upper bound value in a BETWEEN filter operation.
+        HighBoundKey: string
+        -- A template string for constructing the BETWEEN filter expression.
+        Template: string
+    end
+
+    -- Configuration that defines per-field overrides for filter behavior, allowing individual fields to customize how filter operations are applied.
+    record FilterOverrides
+        -- An override for the field name to use in filter expressions, if different from the schema field name.
+        FieldName: string
+        -- A map of logical filter operators to their field-specific API representations, overriding the global operator mappings. Supported operator keys are: EQUAL_TO, NOT_EQUAL_TO, LESS_THAN, GREATER_THAN, LESS_THAN_OR_EQUAL_TO, GREATER_THAN_OR_EQUAL_TO, CONTAINS, BETWEEN, AND, and OR.
+        OperatorMappings: {string : string}
+        -- Field-specific configuration for handling BETWEEN range filter operations.
+        BetweenConfiguration: BetweenConfiguration
+        -- The date and time format for filter expressions on this field, overriding the global DateTimeFormat. Accepts Java DateTimeFormatter patterns (for example, EEE, d MMM yyyy HH:mm:ss Z), EPOCH_SECONDS for Unix epoch seconds, or EPOCH_MILLIS for Unix epoch milliseconds.
+        DateTimeFormat: string
+    end
+
     -- Defines a field in an entity schema for REST connector data sources, specifying the field name and data type.
     record FieldDefinition
         -- The name of the field in the entity schema.
         Name: string
         -- The data type of the field.
         FieldDataType: string
+        -- The format pattern for parsing date values from API responses. Required when the API uses a non-ISO-8601 format. Accepts Java DateTimeFormatter patterns (for example, EEE, d MMM yyyy HH:mm:ss Z), EPOCH_SECONDS for Unix epoch seconds, or EPOCH_MILLIS for Unix epoch milliseconds.
+        ResponseDateFormat: string
+        -- Indicates whether this field can be used for partitioning queries to the data source.
+        IsPartitionable: boolean
+        -- Indicates whether this field can contain null values.
+        IsNullable: boolean
+        -- Indicates whether this field can be used in filter predicates when querying data.
+        IsQueryable: boolean
+        -- Indicates whether this field can be used for ordering results.
+        IsOrderable: boolean
+        -- Per-field overrides for filter behavior, allowing customization of how filters are applied to this specific field.
+        FilterOverrides: FilterOverrides
+    end
+
+    enum FilterMode
+        "QUERY_PARAMS"
+        "FILTER_STRING"
+    end
+
+    -- Configuration for constructing filter expression strings when using the FILTER_STRING filter mode.
+    record FilterStringConfiguration
+        -- The query parameter name used to send the constructed filter expression string in API requests.
+        QueryParameterName: string
+        -- Indicates whether string and date values should be wrapped with a quote character in the filter expression.
+        QuoteStringValues: boolean
+        -- The character used to quote values when QuoteStringValues is true. Defaults to double quotes if not specified.
+        QuoteCharacter: string
+    end
+
+    -- Configuration that defines how filter predicates are applied to REST API requests, supporting both query parameter and filter string strategies.
+    record FilterConfiguration
+        -- The strategy for applying filters to requests. Use QUERY_PARAMS to pass filters as individual query parameters, or FILTER_STRING to construct a single filter expression string.
+        FilterMode: string
+        -- A map of logical filter operators to their API-specific string representations. Supported operator keys are: EQUAL_TO, NOT_EQUAL_TO, LESS_THAN, GREATER_THAN, LESS_THAN_OR_EQUAL_TO, GREATER_THAN_OR_EQUAL_TO, CONTAINS, BETWEEN, AND, and OR.
+        OperatorMappings: {string : string}
+        -- The global date and time format for filter expressions. Accepts Java DateTimeFormatter patterns (for example, EEE, d MMM yyyy HH:mm:ss Z), EPOCH_SECONDS for Unix epoch seconds, or EPOCH_MILLIS for Unix epoch milliseconds. If not specified, values are passed as-is in ISO-8601 format.
+        DateTimeFormat: string
+        -- Indicates whether surrounding double quotes should be stripped from filter values before processing.
+        StripQuotes: boolean
+        -- Configuration for handling BETWEEN range filter operations.
+        BetweenConfiguration: BetweenConfiguration
+        -- Configuration for constructing filter expressions when FilterMode is set to FILTER_STRING.
+        FilterStringConfiguration: FilterStringConfiguration
     end
 
     -- Configuration that defines how to extract values from HTTP response content or headers for use in subsequent requests or parameter mapping.
@@ -7255,6 +7320,8 @@ local record M
         PropertyLocation: string
         -- The data type of this property
         PropertyType: string
+        -- A format template for the property value that defines how the value should be formatted before sending it in API requests. Use {value} as a placeholder for the actual property value (for example, SSWS {value}).
+        Format: string
     end
 
     -- Configuration that defines how to parse JSON responses from REST API calls, including paths to result data and error information.
@@ -7277,6 +7344,8 @@ local record M
         ResponseConfiguration: ResponseConfiguration
         -- Configuration for handling paginated responses from the REST API, supporting both cursor-based and offset-based pagination strategies.
         PaginationConfiguration: PaginationConfiguration
+        -- Configuration for applying filter pushdown to REST API requests, defining how filter predicates are translated into query parameters or filter strings.
+        FilterConfiguration: FilterConfiguration
     end
 
     -- Configuration that defines how to interact with a specific data entity through the REST API, including its access patterns and schema definition.

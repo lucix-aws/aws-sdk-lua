@@ -20,13 +20,20 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     associateAssets: function(Client, types.AssociateAssetsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAssetsOutput>
     associateTimeSeriesToAssetProperty: function(Client, types.AssociateTimeSeriesToAssetPropertyInput, ? base_client.InvokeOptions): async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
+    batchAssociateDataSegmentsToDataset: function(Client, types.BatchAssociateDataSegmentsToDatasetInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateDataSegmentsToDatasetOutput>
     batchAssociateProjectAssets: function(Client, types.BatchAssociateProjectAssetsInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateProjectAssetsOutput>
+    batchDeleteDatasetDataSegments: function(Client, types.BatchDeleteDatasetDataSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDeleteDatasetDataSegmentsOutput>
+    batchDisassociateDataSegmentsFromDataset: function(Client, types.BatchDisassociateDataSegmentsFromDatasetInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateDataSegmentsFromDatasetOutput>
     batchDisassociateProjectAssets: function(Client, types.BatchDisassociateProjectAssetsInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateProjectAssetsOutput>
     batchGetAssetPropertyAggregates: function(Client, types.BatchGetAssetPropertyAggregatesInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyAggregatesOutput>
     batchGetAssetPropertyValue: function(Client, types.BatchGetAssetPropertyValueInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyValueOutput>
     batchGetAssetPropertyValueHistory: function(Client, types.BatchGetAssetPropertyValueHistoryInput, ? base_client.InvokeOptions): async.Operation<types.BatchGetAssetPropertyValueHistoryOutput>
     batchPutAssetPropertyValue: function(Client, types.BatchPutAssetPropertyValueInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutAssetPropertyValueOutput>
+    cancelEnrichmentJob: function(Client, types.CancelEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.CancelEnrichmentJobOutput>
+    cancelPipelineExecution: function(Client, types.CancelPipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.CancelPipelineExecutionOutput>
+    cancelQuery: function(Client, types.CancelQueryInput, ? base_client.InvokeOptions): async.Operation<types.CancelQueryOutput>
     createAccessPolicy: function(Client, types.CreateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
+    createApplication: function(Client, types.CreateApplicationInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
     createAsset: function(Client, types.CreateAssetInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
     createAssetModel: function(Client, types.CreateAssetModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetModelOutput>
     createAssetModelCompositeModel: function(Client, types.CreateAssetModelCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateAssetModelCompositeModelOutput>
@@ -34,10 +41,16 @@ local record Client
     createComputationModel: function(Client, types.CreateComputationModelInput, ? base_client.InvokeOptions): async.Operation<types.CreateComputationModelOutput>
     createDashboard: function(Client, types.CreateDashboardInput, ? base_client.InvokeOptions): async.Operation<types.CreateDashboardOutput>
     createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
+    createDatasetExportJob: function(Client, types.CreateDatasetExportJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetExportJobOutput>
+    createEnrichmentJob: function(Client, types.CreateEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.CreateEnrichmentJobOutput>
     createGateway: function(Client, types.CreateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    createPipeline: function(Client, types.CreatePipelineInput, ? base_client.InvokeOptions): async.Operation<types.CreatePipelineOutput>
     createPortal: function(Client, types.CreatePortalInput, ? base_client.InvokeOptions): async.Operation<types.CreatePortalOutput>
     createProject: function(Client, types.CreateProjectInput, ? base_client.InvokeOptions): async.Operation<types.CreateProjectOutput>
+    createTask: function(Client, types.CreateTaskInput, ? base_client.InvokeOptions): async.Operation<types.CreateTaskOutput>
+    createWorkspace: function(Client, types.CreateWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.CreateWorkspaceOutput>
     deleteAccessPolicy: function(Client, types.DeleteAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccessPolicyOutput>
+    deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
     deleteAsset: function(Client, types.DeleteAssetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
     deleteAssetModel: function(Client, types.DeleteAssetModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetModelOutput>
     deleteAssetModelCompositeModel: function(Client, types.DeleteAssetModelCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssetModelCompositeModelOutput>
@@ -46,11 +59,15 @@ local record Client
     deleteDashboard: function(Client, types.DeleteDashboardInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDashboardOutput>
     deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
     deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    deletePipeline: function(Client, types.DeletePipelineInput, ? base_client.InvokeOptions): async.Operation<types.DeletePipelineOutput>
     deletePortal: function(Client, types.DeletePortalInput, ? base_client.InvokeOptions): async.Operation<types.DeletePortalOutput>
     deleteProject: function(Client, types.DeleteProjectInput, ? base_client.InvokeOptions): async.Operation<types.DeleteProjectOutput>
+    deleteTask: function(Client, types.DeleteTaskInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTaskOutput>
     deleteTimeSeries: function(Client, types.DeleteTimeSeriesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTimeSeriesOutput>
+    deleteWorkspace: function(Client, types.DeleteWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceOutput>
     describeAccessPolicy: function(Client, types.DescribeAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAccessPolicyOutput>
     describeAction: function(Client, types.DescribeActionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeActionOutput>
+    describeApplication: function(Client, types.DescribeApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
     describeAsset: function(Client, types.DescribeAssetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetOutput>
     describeAssetCompositeModel: function(Client, types.DescribeAssetCompositeModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetCompositeModelOutput>
     describeAssetModel: function(Client, types.DescribeAssetModelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAssetModelOutput>
@@ -62,15 +79,23 @@ local record Client
     describeComputationModelExecutionSummary: function(Client, types.DescribeComputationModelExecutionSummaryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeComputationModelExecutionSummaryOutput>
     describeDashboard: function(Client, types.DescribeDashboardInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDashboardOutput>
     describeDataset: function(Client, types.DescribeDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetOutput>
+    describeDatasetExportJob: function(Client, types.DescribeDatasetExportJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDatasetExportJobOutput>
     describeDefaultEncryptionConfiguration: function(Client, types.DescribeDefaultEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
+    describeEnrichmentJob: function(Client, types.DescribeEnrichmentJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeEnrichmentJobOutput>
     describeExecution: function(Client, types.DescribeExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
     describeGateway: function(Client, types.DescribeGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayOutput>
     describeGatewayCapabilityConfiguration: function(Client, types.DescribeGatewayCapabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeGatewayCapabilityConfigurationOutput>
     describeLoggingOptions: function(Client, types.DescribeLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeLoggingOptionsOutput>
+    describePipeline: function(Client, types.DescribePipelineInput, ? base_client.InvokeOptions): async.Operation<types.DescribePipelineOutput>
+    describePipelineExecution: function(Client, types.DescribePipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.DescribePipelineExecutionOutput>
     describePortal: function(Client, types.DescribePortalInput, ? base_client.InvokeOptions): async.Operation<types.DescribePortalOutput>
     describeProject: function(Client, types.DescribeProjectInput, ? base_client.InvokeOptions): async.Operation<types.DescribeProjectOutput>
+    describeQuery: function(Client, types.DescribeQueryInput, ? base_client.InvokeOptions): async.Operation<types.DescribeQueryOutput>
+    describeSearch: function(Client, types.DescribeSearchInput, ? base_client.InvokeOptions): async.Operation<types.DescribeSearchOutput>
     describeStorageConfiguration: function(Client, types.DescribeStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeStorageConfigurationOutput>
+    describeTask: function(Client, types.DescribeTaskInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTaskOutput>
     describeTimeSeries: function(Client, types.DescribeTimeSeriesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTimeSeriesOutput>
+    describeWorkspace: function(Client, types.DescribeWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceOutput>
     disassociateAssets: function(Client, types.DisassociateAssetsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAssetsOutput>
     disassociateTimeSeriesFromAssetProperty: function(Client, types.DisassociateTimeSeriesFromAssetPropertyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateTimeSeriesFromAssetPropertyOutput>
     executeAction: function(Client, types.ExecuteActionInput, ? base_client.InvokeOptions): async.Operation<types.ExecuteActionOutput>
@@ -78,10 +103,14 @@ local record Client
     getAssetPropertyAggregates: function(Client, types.GetAssetPropertyAggregatesInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetPropertyAggregatesOutput>
     getAssetPropertyValue: function(Client, types.GetAssetPropertyValueInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetPropertyValueOutput>
     getAssetPropertyValueHistory: function(Client, types.GetAssetPropertyValueHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetAssetPropertyValueHistoryOutput>
+    getCaptureData: function(Client, types.GetCaptureDataInput, ? base_client.InvokeOptions): async.Operation<types.GetCaptureDataOutput>
     getInterpolatedAssetPropertyValues: function(Client, types.GetInterpolatedAssetPropertyValuesInput, ? base_client.InvokeOptions): async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
+    getQueryResults: function(Client, types.GetQueryResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetQueryResultsOutput>
+    getSearchResults: function(Client, types.GetSearchResultsInput, ? base_client.InvokeOptions): async.Operation<types.GetSearchResultsOutput>
     invokeAssistant: function(Client, types.InvokeAssistantInput, ? base_client.InvokeOptions): async.Operation<types.InvokeAssistantOutput>
     listAccessPolicies: function(Client, types.ListAccessPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListAccessPoliciesOutput>
     listActions: function(Client, types.ListActionsInput, ? base_client.InvokeOptions): async.Operation<types.ListActionsOutput>
+    listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
     listAssetModelCompositeModels: function(Client, types.ListAssetModelCompositeModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetModelCompositeModelsOutput>
     listAssetModelProperties: function(Client, types.ListAssetModelPropertiesInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetModelPropertiesOutput>
     listAssetModels: function(Client, types.ListAssetModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListAssetModelsOutput>
@@ -95,19 +124,32 @@ local record Client
     listComputationModelResolveToResources: function(Client, types.ListComputationModelResolveToResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListComputationModelResolveToResourcesOutput>
     listComputationModels: function(Client, types.ListComputationModelsInput, ? base_client.InvokeOptions): async.Operation<types.ListComputationModelsOutput>
     listDashboards: function(Client, types.ListDashboardsInput, ? base_client.InvokeOptions): async.Operation<types.ListDashboardsOutput>
+    listDatasetDataSegmentRelationships: function(Client, types.ListDatasetDataSegmentRelationshipsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetDataSegmentRelationshipsOutput>
+    listDatasetDataSegments: function(Client, types.ListDatasetDataSegmentsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetDataSegmentsOutput>
+    listDatasetExportJobs: function(Client, types.ListDatasetExportJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetExportJobsOutput>
     listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
+    listEnrichmentJobs: function(Client, types.ListEnrichmentJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListEnrichmentJobsOutput>
     listExecutions: function(Client, types.ListExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
     listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
     listInterfaceRelationships: function(Client, types.ListInterfaceRelationshipsInput, ? base_client.InvokeOptions): async.Operation<types.ListInterfaceRelationshipsOutput>
+    listPipelineExecutions: function(Client, types.ListPipelineExecutionsInput, ? base_client.InvokeOptions): async.Operation<types.ListPipelineExecutionsOutput>
+    listPipelines: function(Client, types.ListPipelinesInput, ? base_client.InvokeOptions): async.Operation<types.ListPipelinesOutput>
     listPortals: function(Client, types.ListPortalsInput, ? base_client.InvokeOptions): async.Operation<types.ListPortalsOutput>
     listProjectAssets: function(Client, types.ListProjectAssetsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectAssetsOutput>
     listProjects: function(Client, types.ListProjectsInput, ? base_client.InvokeOptions): async.Operation<types.ListProjectsOutput>
+    listQueries: function(Client, types.ListQueriesInput, ? base_client.InvokeOptions): async.Operation<types.ListQueriesOutput>
+    listSearches: function(Client, types.ListSearchesInput, ? base_client.InvokeOptions): async.Operation<types.ListSearchesOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTasks: function(Client, types.ListTasksInput, ? base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
     listTimeSeries: function(Client, types.ListTimeSeriesInput, ? base_client.InvokeOptions): async.Operation<types.ListTimeSeriesOutput>
+    listWorkspaces: function(Client, types.ListWorkspacesInput, ? base_client.InvokeOptions): async.Operation<types.ListWorkspacesOutput>
     putAssetModelInterfaceRelationship: function(Client, types.PutAssetModelInterfaceRelationshipInput, ? base_client.InvokeOptions): async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
     putDefaultEncryptionConfiguration: function(Client, types.PutDefaultEncryptionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutDefaultEncryptionConfigurationOutput>
     putLoggingOptions: function(Client, types.PutLoggingOptionsInput, ? base_client.InvokeOptions): async.Operation<types.PutLoggingOptionsOutput>
     putStorageConfiguration: function(Client, types.PutStorageConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutStorageConfigurationOutput>
+    startPipelineExecution: function(Client, types.StartPipelineExecutionInput, ? base_client.InvokeOptions): async.Operation<types.StartPipelineExecutionOutput>
+    startQuery: function(Client, types.StartQueryInput, ? base_client.InvokeOptions): async.Operation<types.StartQueryOutput>
+    startSearch: function(Client, types.StartSearchInput, ? base_client.InvokeOptions): async.Operation<types.StartSearchOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAccessPolicy: function(Client, types.UpdateAccessPolicyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAccessPolicyOutput>
@@ -120,8 +162,11 @@ local record Client
     updateDataset: function(Client, types.UpdateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
     updateGateway: function(Client, types.UpdateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
     updateGatewayCapabilityConfiguration: function(Client, types.UpdateGatewayCapabilityConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
+    updatePipeline: function(Client, types.UpdatePipelineInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePipelineOutput>
     updatePortal: function(Client, types.UpdatePortalInput, ? base_client.InvokeOptions): async.Operation<types.UpdatePortalOutput>
     updateProject: function(Client, types.UpdateProjectInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
+    updateTask: function(Client, types.UpdateTaskInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTaskOutput>
+    updateWorkspace: function(Client, types.UpdateWorkspaceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceOutput>
 end
 
 local record M
@@ -174,8 +219,20 @@ function C:associateTimeSeriesToAssetProperty(input: types.AssociateTimeSeriesTo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateTimeSeriesToAssetProperty as schema.OperationSchema, input, options) as async.Operation<types.AssociateTimeSeriesToAssetPropertyOutput>
 end
 
+function C:batchAssociateDataSegmentsToDataset(input: types.BatchAssociateDataSegmentsToDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateDataSegmentsToDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateDataSegmentsToDataset as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateDataSegmentsToDatasetOutput>
+end
+
 function C:batchAssociateProjectAssets(input: types.BatchAssociateProjectAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchAssociateProjectAssetsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchAssociateProjectAssets as schema.OperationSchema, input, options) as async.Operation<types.BatchAssociateProjectAssetsOutput>
+end
+
+function C:batchDeleteDatasetDataSegments(input: types.BatchDeleteDatasetDataSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDeleteDatasetDataSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDeleteDatasetDataSegments as schema.OperationSchema, input, options) as async.Operation<types.BatchDeleteDatasetDataSegmentsOutput>
+end
+
+function C:batchDisassociateDataSegmentsFromDataset(input: types.BatchDisassociateDataSegmentsFromDatasetInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateDataSegmentsFromDatasetOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateDataSegmentsFromDataset as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateDataSegmentsFromDatasetOutput>
 end
 
 function C:batchDisassociateProjectAssets(input: types.BatchDisassociateProjectAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchDisassociateProjectAssetsOutput>
@@ -198,8 +255,24 @@ function C:batchPutAssetPropertyValue(input: types.BatchPutAssetPropertyValueInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutAssetPropertyValue as schema.OperationSchema, input, options) as async.Operation<types.BatchPutAssetPropertyValueOutput>
 end
 
+function C:cancelEnrichmentJob(input: types.CancelEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.CancelEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.CancelEnrichmentJobOutput>
+end
+
+function C:cancelPipelineExecution(input: types.CancelPipelineExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.CancelPipelineExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelPipelineExecution as schema.OperationSchema, input, options) as async.Operation<types.CancelPipelineExecutionOutput>
+end
+
+function C:cancelQuery(input: types.CancelQueryInput, options?: base_client.InvokeOptions): async.Operation<types.CancelQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelQuery as schema.OperationSchema, input, options) as async.Operation<types.CancelQueryOutput>
+end
+
 function C:createAccessPolicy(input: types.CreateAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAccessPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateAccessPolicyOutput>
+end
+
+function C:createApplication(input: types.CreateApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplication as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationOutput>
 end
 
 function C:createAsset(input: types.CreateAssetInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAssetOutput>
@@ -230,8 +303,20 @@ function C:createDataset(input: types.CreateDatasetInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDataset as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetOutput>
 end
 
+function C:createDatasetExportJob(input: types.CreateDatasetExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDatasetExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDatasetExportJob as schema.OperationSchema, input, options) as async.Operation<types.CreateDatasetExportJobOutput>
+end
+
+function C:createEnrichmentJob(input: types.CreateEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.CreateEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.CreateEnrichmentJobOutput>
+end
+
 function C:createGateway(input: types.CreateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayOutput>
+end
+
+function C:createPipeline(input: types.CreatePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreatePipeline as schema.OperationSchema, input, options) as async.Operation<types.CreatePipelineOutput>
 end
 
 function C:createPortal(input: types.CreatePortalInput, options?: base_client.InvokeOptions): async.Operation<types.CreatePortalOutput>
@@ -242,8 +327,20 @@ function C:createProject(input: types.CreateProjectInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateProject as schema.OperationSchema, input, options) as async.Operation<types.CreateProjectOutput>
 end
 
+function C:createTask(input: types.CreateTaskInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTask as schema.OperationSchema, input, options) as async.Operation<types.CreateTaskOutput>
+end
+
+function C:createWorkspace(input: types.CreateWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateWorkspace as schema.OperationSchema, input, options) as async.Operation<types.CreateWorkspaceOutput>
+end
+
 function C:deleteAccessPolicy(input: types.DeleteAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAccessPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteAccessPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteAccessPolicyOutput>
+end
+
+function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
 
 function C:deleteAsset(input: types.DeleteAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteAssetOutput>
@@ -278,6 +375,10 @@ function C:deleteGateway(input: types.DeleteGatewayInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayOutput>
 end
 
+function C:deletePipeline(input: types.DeletePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePipeline as schema.OperationSchema, input, options) as async.Operation<types.DeletePipelineOutput>
+end
+
 function C:deletePortal(input: types.DeletePortalInput, options?: base_client.InvokeOptions): async.Operation<types.DeletePortalOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeletePortal as schema.OperationSchema, input, options) as async.Operation<types.DeletePortalOutput>
 end
@@ -286,8 +387,16 @@ function C:deleteProject(input: types.DeleteProjectInput, options?: base_client.
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteProject as schema.OperationSchema, input, options) as async.Operation<types.DeleteProjectOutput>
 end
 
+function C:deleteTask(input: types.DeleteTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTask as schema.OperationSchema, input, options) as async.Operation<types.DeleteTaskOutput>
+end
+
 function C:deleteTimeSeries(input: types.DeleteTimeSeriesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTimeSeriesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTimeSeries as schema.OperationSchema, input, options) as async.Operation<types.DeleteTimeSeriesOutput>
+end
+
+function C:deleteWorkspace(input: types.DeleteWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteWorkspace as schema.OperationSchema, input, options) as async.Operation<types.DeleteWorkspaceOutput>
 end
 
 function C:describeAccessPolicy(input: types.DescribeAccessPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAccessPolicyOutput>
@@ -296,6 +405,10 @@ end
 
 function C:describeAction(input: types.DescribeActionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeActionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAction as schema.OperationSchema, input, options) as async.Operation<types.DescribeActionOutput>
+end
+
+function C:describeApplication(input: types.DescribeApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplication as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationOutput>
 end
 
 function C:describeAsset(input: types.DescribeAssetInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAssetOutput>
@@ -342,8 +455,16 @@ function C:describeDataset(input: types.DescribeDatasetInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDataset as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetOutput>
 end
 
+function C:describeDatasetExportJob(input: types.DescribeDatasetExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDatasetExportJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDatasetExportJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeDatasetExportJobOutput>
+end
+
 function C:describeDefaultEncryptionConfiguration(input: types.DescribeDefaultEncryptionConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeDefaultEncryptionConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeDefaultEncryptionConfigurationOutput>
+end
+
+function C:describeEnrichmentJob(input: types.DescribeEnrichmentJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeEnrichmentJobOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeEnrichmentJob as schema.OperationSchema, input, options) as async.Operation<types.DescribeEnrichmentJobOutput>
 end
 
 function C:describeExecution(input: types.DescribeExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeExecutionOutput>
@@ -362,6 +483,14 @@ function C:describeLoggingOptions(input: types.DescribeLoggingOptionsInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeLoggingOptions as schema.OperationSchema, input, options) as async.Operation<types.DescribeLoggingOptionsOutput>
 end
 
+function C:describePipeline(input: types.DescribePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePipeline as schema.OperationSchema, input, options) as async.Operation<types.DescribePipelineOutput>
+end
+
+function C:describePipelineExecution(input: types.DescribePipelineExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePipelineExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePipelineExecution as schema.OperationSchema, input, options) as async.Operation<types.DescribePipelineExecutionOutput>
+end
+
 function C:describePortal(input: types.DescribePortalInput, options?: base_client.InvokeOptions): async.Operation<types.DescribePortalOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribePortal as schema.OperationSchema, input, options) as async.Operation<types.DescribePortalOutput>
 end
@@ -370,12 +499,28 @@ function C:describeProject(input: types.DescribeProjectInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeProject as schema.OperationSchema, input, options) as async.Operation<types.DescribeProjectOutput>
 end
 
+function C:describeQuery(input: types.DescribeQueryInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeQuery as schema.OperationSchema, input, options) as async.Operation<types.DescribeQueryOutput>
+end
+
+function C:describeSearch(input: types.DescribeSearchInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeSearch as schema.OperationSchema, input, options) as async.Operation<types.DescribeSearchOutput>
+end
+
 function C:describeStorageConfiguration(input: types.DescribeStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeStorageConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DescribeStorageConfigurationOutput>
 end
 
+function C:describeTask(input: types.DescribeTaskInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTask as schema.OperationSchema, input, options) as async.Operation<types.DescribeTaskOutput>
+end
+
 function C:describeTimeSeries(input: types.DescribeTimeSeriesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTimeSeriesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTimeSeries as schema.OperationSchema, input, options) as async.Operation<types.DescribeTimeSeriesOutput>
+end
+
+function C:describeWorkspace(input: types.DescribeWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeWorkspace as schema.OperationSchema, input, options) as async.Operation<types.DescribeWorkspaceOutput>
 end
 
 function C:disassociateAssets(input: types.DisassociateAssetsInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateAssetsOutput>
@@ -406,8 +551,20 @@ function C:getAssetPropertyValueHistory(input: types.GetAssetPropertyValueHistor
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAssetPropertyValueHistory as schema.OperationSchema, input, options) as async.Operation<types.GetAssetPropertyValueHistoryOutput>
 end
 
+function C:getCaptureData(input: types.GetCaptureDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetCaptureDataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCaptureData as schema.OperationSchema, input, options) as async.Operation<types.GetCaptureDataOutput>
+end
+
 function C:getInterpolatedAssetPropertyValues(input: types.GetInterpolatedAssetPropertyValuesInput, options?: base_client.InvokeOptions): async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetInterpolatedAssetPropertyValues as schema.OperationSchema, input, options) as async.Operation<types.GetInterpolatedAssetPropertyValuesOutput>
+end
+
+function C:getQueryResults(input: types.GetQueryResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetQueryResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetQueryResults as schema.OperationSchema, input, options) as async.Operation<types.GetQueryResultsOutput>
+end
+
+function C:getSearchResults(input: types.GetSearchResultsInput, options?: base_client.InvokeOptions): async.Operation<types.GetSearchResultsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSearchResults as schema.OperationSchema, input, options) as async.Operation<types.GetSearchResultsOutput>
 end
 
 function C:invokeAssistant(input: types.InvokeAssistantInput, options?: base_client.InvokeOptions): async.Operation<types.InvokeAssistantOutput>
@@ -420,6 +577,10 @@ end
 
 function C:listActions(input: types.ListActionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListActionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListActions as schema.OperationSchema, input, options) as async.Operation<types.ListActionsOutput>
+end
+
+function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
 end
 
 function C:listAssetModelCompositeModels(input: types.ListAssetModelCompositeModelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAssetModelCompositeModelsOutput>
@@ -474,8 +635,24 @@ function C:listDashboards(input: types.ListDashboardsInput, options?: base_clien
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDashboards as schema.OperationSchema, input, options) as async.Operation<types.ListDashboardsOutput>
 end
 
+function C:listDatasetDataSegmentRelationships(input: types.ListDatasetDataSegmentRelationshipsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetDataSegmentRelationshipsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetDataSegmentRelationships as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetDataSegmentRelationshipsOutput>
+end
+
+function C:listDatasetDataSegments(input: types.ListDatasetDataSegmentsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetDataSegmentsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetDataSegments as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetDataSegmentsOutput>
+end
+
+function C:listDatasetExportJobs(input: types.ListDatasetExportJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetExportJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasetExportJobs as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetExportJobsOutput>
+end
+
 function C:listDatasets(input: types.ListDatasetsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDatasets as schema.OperationSchema, input, options) as async.Operation<types.ListDatasetsOutput>
+end
+
+function C:listEnrichmentJobs(input: types.ListEnrichmentJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnrichmentJobsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnrichmentJobs as schema.OperationSchema, input, options) as async.Operation<types.ListEnrichmentJobsOutput>
 end
 
 function C:listExecutions(input: types.ListExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListExecutionsOutput>
@@ -490,6 +667,14 @@ function C:listInterfaceRelationships(input: types.ListInterfaceRelationshipsInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListInterfaceRelationships as schema.OperationSchema, input, options) as async.Operation<types.ListInterfaceRelationshipsOutput>
 end
 
+function C:listPipelineExecutions(input: types.ListPipelineExecutionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPipelineExecutionsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPipelineExecutions as schema.OperationSchema, input, options) as async.Operation<types.ListPipelineExecutionsOutput>
+end
+
+function C:listPipelines(input: types.ListPipelinesInput, options?: base_client.InvokeOptions): async.Operation<types.ListPipelinesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPipelines as schema.OperationSchema, input, options) as async.Operation<types.ListPipelinesOutput>
+end
+
 function C:listPortals(input: types.ListPortalsInput, options?: base_client.InvokeOptions): async.Operation<types.ListPortalsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListPortals as schema.OperationSchema, input, options) as async.Operation<types.ListPortalsOutput>
 end
@@ -502,12 +687,28 @@ function C:listProjects(input: types.ListProjectsInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListProjects as schema.OperationSchema, input, options) as async.Operation<types.ListProjectsOutput>
 end
 
+function C:listQueries(input: types.ListQueriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListQueriesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListQueries as schema.OperationSchema, input, options) as async.Operation<types.ListQueriesOutput>
+end
+
+function C:listSearches(input: types.ListSearchesInput, options?: base_client.InvokeOptions): async.Operation<types.ListSearchesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListSearches as schema.OperationSchema, input, options) as async.Operation<types.ListSearchesOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:listTasks(input: types.ListTasksInput, options?: base_client.InvokeOptions): async.Operation<types.ListTasksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTasks as schema.OperationSchema, input, options) as async.Operation<types.ListTasksOutput>
+end
+
 function C:listTimeSeries(input: types.ListTimeSeriesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTimeSeriesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTimeSeries as schema.OperationSchema, input, options) as async.Operation<types.ListTimeSeriesOutput>
+end
+
+function C:listWorkspaces(input: types.ListWorkspacesInput, options?: base_client.InvokeOptions): async.Operation<types.ListWorkspacesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListWorkspaces as schema.OperationSchema, input, options) as async.Operation<types.ListWorkspacesOutput>
 end
 
 function C:putAssetModelInterfaceRelationship(input: types.PutAssetModelInterfaceRelationshipInput, options?: base_client.InvokeOptions): async.Operation<types.PutAssetModelInterfaceRelationshipOutput>
@@ -524,6 +725,18 @@ end
 
 function C:putStorageConfiguration(input: types.PutStorageConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutStorageConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutStorageConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutStorageConfigurationOutput>
+end
+
+function C:startPipelineExecution(input: types.StartPipelineExecutionInput, options?: base_client.InvokeOptions): async.Operation<types.StartPipelineExecutionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartPipelineExecution as schema.OperationSchema, input, options) as async.Operation<types.StartPipelineExecutionOutput>
+end
+
+function C:startQuery(input: types.StartQueryInput, options?: base_client.InvokeOptions): async.Operation<types.StartQueryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartQuery as schema.OperationSchema, input, options) as async.Operation<types.StartQueryOutput>
+end
+
+function C:startSearch(input: types.StartSearchInput, options?: base_client.InvokeOptions): async.Operation<types.StartSearchOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartSearch as schema.OperationSchema, input, options) as async.Operation<types.StartSearchOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -574,12 +787,24 @@ function C:updateGatewayCapabilityConfiguration(input: types.UpdateGatewayCapabi
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewayCapabilityConfiguration as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayCapabilityConfigurationOutput>
 end
 
+function C:updatePipeline(input: types.UpdatePipelineInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePipelineOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePipeline as schema.OperationSchema, input, options) as async.Operation<types.UpdatePipelineOutput>
+end
+
 function C:updatePortal(input: types.UpdatePortalInput, options?: base_client.InvokeOptions): async.Operation<types.UpdatePortalOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdatePortal as schema.OperationSchema, input, options) as async.Operation<types.UpdatePortalOutput>
 end
 
 function C:updateProject(input: types.UpdateProjectInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProjectOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProject as schema.OperationSchema, input, options) as async.Operation<types.UpdateProjectOutput>
+end
+
+function C:updateTask(input: types.UpdateTaskInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTaskOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTask as schema.OperationSchema, input, options) as async.Operation<types.UpdateTaskOutput>
+end
+
+function C:updateWorkspace(input: types.UpdateWorkspaceInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateWorkspaceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateWorkspace as schema.OperationSchema, input, options) as async.Operation<types.UpdateWorkspaceOutput>
 end
 
 return M

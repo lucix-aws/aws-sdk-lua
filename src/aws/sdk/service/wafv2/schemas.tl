@@ -103,6 +103,8 @@ M.AttributeValues = schema.new({ type = "list", list_member = prelude.String })
 
 M.TextTransformations = schema.new({ type = "list", list_member = M.TextTransformation })
 
+M.PreParseTextTransformations = schema.new({ type = "list", list_member = M.PreParseTextTransformation })
+
 M.CountryCodes = schema.new({ type = "list", list_member = prelude.String })
 
 M.ExcludedRules = schema.new({ type = "list", list_member = M.ExcludedRule })
@@ -707,6 +709,32 @@ M.FieldToMatch = schema.new({
     },
 })
 
+M.PreParseTextTransformation = schema.new({
+    id = id.from(_N, "PreParseTextTransformation"),
+    type = "structure",
+    members = {
+        Priority = schema.new({
+            id = id.from(_N, "PreParseTextTransformation", "Priority"),
+            type = "integer",
+            name = "Priority",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "PreParseTextTransformation", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.TextTransformation = schema.new({
     id = id.from(_N, "TextTransformation"),
     type = "structure",
@@ -765,6 +793,13 @@ M.ByteMatchStatement = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PreParseTextTransformations = schema.new({
+            id = id.from(_N, "ByteMatchStatement", "PreParseTextTransformations"),
+            type = "list",
+            name = "PreParseTextTransformations",
+            target_id = prelude.Document.id,
+            list_member = M.PreParseTextTransformation,
         }),
         PositionalConstraint = schema.new({
             id = id.from(_N, "ByteMatchStatement", "PositionalConstraint"),
@@ -1944,6 +1979,13 @@ M.RegexMatchStatement = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        PreParseTextTransformations = schema.new({
+            id = id.from(_N, "RegexMatchStatement", "PreParseTextTransformations"),
+            type = "list",
+            name = "PreParseTextTransformations",
+            target_id = prelude.Document.id,
+            list_member = M.PreParseTextTransformation,
+        }),
     },
 })
 
@@ -1979,6 +2021,13 @@ M.RegexPatternSetReferenceStatement = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PreParseTextTransformations = schema.new({
+            id = id.from(_N, "RegexPatternSetReferenceStatement", "PreParseTextTransformations"),
+            type = "list",
+            name = "PreParseTextTransformations",
+            target_id = prelude.Document.id,
+            list_member = M.PreParseTextTransformation,
         }),
     },
 })
@@ -2056,6 +2105,13 @@ M.SizeConstraintStatement = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        PreParseTextTransformations = schema.new({
+            id = id.from(_N, "SizeConstraintStatement", "PreParseTextTransformations"),
+            type = "list",
+            name = "PreParseTextTransformations",
+            target_id = prelude.Document.id,
+            list_member = M.PreParseTextTransformation,
+        }),
     },
 })
 
@@ -2082,6 +2138,13 @@ M.SqliMatchStatement = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PreParseTextTransformations = schema.new({
+            id = id.from(_N, "SqliMatchStatement", "PreParseTextTransformations"),
+            type = "list",
+            name = "PreParseTextTransformations",
+            target_id = prelude.Document.id,
+            list_member = M.PreParseTextTransformation,
         }),
         SensitivityLevel = schema.new({
             id = id.from(_N, "SqliMatchStatement", "SensitivityLevel"),
@@ -2115,6 +2178,13 @@ M.XssMatchStatement = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PreParseTextTransformations = schema.new({
+            id = id.from(_N, "XssMatchStatement", "PreParseTextTransformations"),
+            type = "list",
+            name = "PreParseTextTransformations",
+            target_id = prelude.Document.id,
+            list_member = M.PreParseTextTransformation,
         }),
     },
 })

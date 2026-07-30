@@ -2884,6 +2884,24 @@ function M.items_get_transit_gateway_policy_table_associations(client, input)
     })
 end
 
+--- Returns a page iterator for getTransitGatewayPolicyTableEntries.
+function M.pages_get_transit_gateway_policy_table_entries(client, input)
+    return paginator.pages(client, "getTransitGatewayPolicyTableEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPolicyTableEntries",
+    })
+end
+
+--- Returns an item iterator for getTransitGatewayPolicyTableEntries.
+function M.items_get_transit_gateway_policy_table_entries(client, input)
+    return paginator.items(client, "getTransitGatewayPolicyTableEntries", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TransitGatewayPolicyTableEntries",
+    })
+end
+
 --- Returns a page iterator for getTransitGatewayPrefixListReferences.
 function M.pages_get_transit_gateway_prefix_list_references(client, input)
     return paginator.pages(client, "getTransitGatewayPrefixListReferences", input, {

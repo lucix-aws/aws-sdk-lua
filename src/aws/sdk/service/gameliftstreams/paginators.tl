@@ -76,4 +76,22 @@ function M.items_list_stream_sessions_by_account(client, input)
     })
 end
 
+--- Returns a page iterator for listStreamUrls.
+function M.pages_list_stream_urls(client, input)
+    return paginator.pages(client, "listStreamUrls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
+--- Returns an item iterator for listStreamUrls.
+function M.items_list_stream_urls(client, input)
+    return paginator.items(client, "listStreamUrls", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Items",
+    })
+end
+
 return M

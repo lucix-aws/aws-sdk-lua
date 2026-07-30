@@ -599,6 +599,26 @@ local record M
         "CONTAINS_WORD"
     end
 
+    enum PreParseTextTransformationType
+        "NONE"
+        "URL_DECODE"
+        "URL_DECODE_UNI"
+        "COMBINE_DUPLICATE_QUERY_ARGS_BY_COMMA"
+        "REPLACE_SEMICOLONS_WITH_AMPERSANDS"
+    end
+
+    -- A pre-parse text transformation that normalizes the raw query string before WAF parses
+    -- it into individual query arguments. Pre-parse text transformations are only supported when
+    -- FieldToMatch is SingleQueryArgument or AllQueryArguments.
+    record PreParseTextTransformation
+        -- Sets the relative processing order for the pre-parse text transformations that you define.
+        -- WAF processes all transformations, from lowest priority value to highest,
+        -- before inspecting the transformed content.
+        Priority: number
+        -- The type of pre-parse text transformation to apply to the raw query string.
+        Type: string
+    end
+
     enum TextTransformationType
         "NONE"
         "COMPRESS_WHITE_SPACE"
@@ -621,6 +641,16 @@ local record M
         "BASE64_DECODE_EXT"
         "URL_DECODE_UNI"
         "UTF8_TO_UNICODE"
+        "REMOVE_WHITESPACE"
+        "TRIM"
+        "TRIM_LEFT"
+        "TRIM_RIGHT"
+        "REMOVE_COMMENTS_CHAR"
+        "UPPERCASE"
+        "CMD_LINE_WIN"
+        "CMD_LINE_UNIX"
+        "JS_DECODE_EXT"
+        "SHA256"
     end
 
     -- Text transformations eliminate some of the unusual formatting that attackers use in web
@@ -673,6 +703,11 @@ local record M
         FieldToMatch: FieldToMatch
         -- Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. Text transformations are used in rule match statements, to transform the FieldToMatch request component before inspecting it, and they're used in rate-based rule statements, to transform request components before using them as custom aggregation keys. If you specify one or more transformations to apply, WAF performs all transformations on the specified content, starting from the lowest priority setting, and then uses the transformed component contents.
         TextTransformations: {TextTransformation}
+        -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
+        -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
+        -- are only supported when FieldToMatch is SingleQueryArgument or
+        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        PreParseTextTransformations: {PreParseTextTransformation}
         -- The area within the portion of the web request that you want WAF to search for
         -- SearchString. Valid values include the following:
         -- CONTAINS
@@ -1317,7 +1352,7 @@ local record M
     -- A single regular expression. This is used in a RegexPatternSet and
     -- also in the configuration for the Amazon Web Services Managed Rules rule group AWSManagedRulesAntiDDoSRuleSet.
     record Regex
-        -- The string representing the regular expression.
+        -- The string representing the regular expression. WAF enforces a quota on the maximum number of characters in a regex pattern. For the current limit, see WAF quotas in the WAF Developer Guide.
         RegexString: string
     end
 
@@ -1820,12 +1855,17 @@ local record M
 
     -- A rule statement used to search web request components for a match against a single regular expression.
     record RegexMatchStatement
-        -- The string representing the regular expression.
+        -- The string representing the regular expression. WAF enforces a quota on the maximum number of characters in a regex pattern. For the current limit, see WAF quotas in the WAF Developer Guide.
         RegexString: string
         -- The part of the web request that you want WAF to inspect.
         FieldToMatch: FieldToMatch
         -- Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. Text transformations are used in rule match statements, to transform the FieldToMatch request component before inspecting it, and they're used in rate-based rule statements, to transform request components before using them as custom aggregation keys. If you specify one or more transformations to apply, WAF performs all transformations on the specified content, starting from the lowest priority setting, and then uses the transformed component contents.
         TextTransformations: {TextTransformation}
+        -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
+        -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
+        -- are only supported when FieldToMatch is SingleQueryArgument or
+        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        PreParseTextTransformations: {PreParseTextTransformation}
     end
 
     -- A rule statement used to search web request components for matches with regular expressions. To use this, create a RegexPatternSet that specifies the expressions that you want to detect, then use the ARN of that set in this statement. A web request matches the pattern set rule statement if the request component matches any of the patterns in the set. To create a regex pattern set, see CreateRegexPatternSet.
@@ -1838,6 +1878,11 @@ local record M
         FieldToMatch: FieldToMatch
         -- Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. Text transformations are used in rule match statements, to transform the FieldToMatch request component before inspecting it, and they're used in rate-based rule statements, to transform request components before using them as custom aggregation keys. If you specify one or more transformations to apply, WAF performs all transformations on the specified content, starting from the lowest priority setting, and then uses the transformed component contents.
         TextTransformations: {TextTransformation}
+        -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
+        -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
+        -- are only supported when FieldToMatch is SingleQueryArgument or
+        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        PreParseTextTransformations: {PreParseTextTransformation}
     end
 
     -- A rule statement used to run the rules that are defined in a RuleGroup. To use this, create a rule group with your rules, then provide the ARN of the rule group in this statement.
@@ -1876,6 +1921,11 @@ local record M
         Size: number
         -- Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. Text transformations are used in rule match statements, to transform the FieldToMatch request component before inspecting it, and they're used in rate-based rule statements, to transform request components before using them as custom aggregation keys. If you specify one or more transformations to apply, WAF performs all transformations on the specified content, starting from the lowest priority setting, and then uses the transformed component contents.
         TextTransformations: {TextTransformation}
+        -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
+        -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
+        -- are only supported when FieldToMatch is SingleQueryArgument or
+        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        PreParseTextTransformations: {PreParseTextTransformation}
     end
 
     enum SensitivityLevel
@@ -1889,6 +1939,11 @@ local record M
         FieldToMatch: FieldToMatch
         -- Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. Text transformations are used in rule match statements, to transform the FieldToMatch request component before inspecting it, and they're used in rate-based rule statements, to transform request components before using them as custom aggregation keys. If you specify one or more transformations to apply, WAF performs all transformations on the specified content, starting from the lowest priority setting, and then uses the transformed component contents.
         TextTransformations: {TextTransformation}
+        -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
+        -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
+        -- are only supported when FieldToMatch is SingleQueryArgument or
+        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        PreParseTextTransformations: {PreParseTextTransformation}
         -- The sensitivity that you want WAF to use to inspect for SQL injection attacks.
         -- HIGH detects more attacks, but might generate more false positives,
         -- especially if your web requests frequently contain unusual strings.
@@ -1908,6 +1963,11 @@ local record M
         FieldToMatch: FieldToMatch
         -- Text transformations eliminate some of the unusual formatting that attackers use in web requests in an effort to bypass detection. Text transformations are used in rule match statements, to transform the FieldToMatch request component before inspecting it, and they're used in rate-based rule statements, to transform request components before using them as custom aggregation keys. If you specify one or more transformations to apply, WAF performs all transformations on the specified content, starting from the lowest priority setting, and then uses the transformed component contents.
         TextTransformations: {TextTransformation}
+        -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
+        -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
+        -- are only supported when FieldToMatch is SingleQueryArgument or
+        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        PreParseTextTransformations: {PreParseTextTransformation}
     end
 
     -- Information for a single API key.
@@ -2071,6 +2131,7 @@ local record M
         "WALLET_ADDRESS"
         "PRICE_AMOUNT"
         "PAYMENT_NETWORK"
+        "PRE_PARSE_TEXT_TRANSFORMATION"
     end
 
     -- The operation failed because WAF didn't recognize a parameter in the request. For
@@ -5074,7 +5135,7 @@ local record M
         LockToken: string
     end
 
-    -- A web ACL defines a collection of rules to use to inspect and control web requests. Each rule has a statement that defines what to look for in web requests and an action that WAF applies to requests that match the statement. In the web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a web ACL can be a combination of the types Rule, RuleGroup, and managed rule group. You can associate a web ACL with one or more Amazon Web Services resources to protect. The resource types include Amazon CloudFront distribution, Amazon API Gateway REST API, Application Load Balancer, AppSync GraphQL API, Amazon Cognito user pool, App Runner service, Amplify application, and Amazon Web Services Verified Access instance.
+    -- A web ACL defines a collection of rules to use to inspect and control web requests. Each rule has a statement that defines what to look for in web requests and an action that WAF applies to requests that match the statement. In the web ACL, you assign a default action to take (allow, block) for any request that does not match any of the rules. The rules in a web ACL can be a combination of the types Rule, RuleGroup, and managed rule group. You can associate a web ACL with one or more Amazon Web Services resources to protect. The resource types include Amazon CloudFront distribution, Amazon API Gateway REST API, Application Load Balancer, AppSync GraphQL API, Amazon Cognito user pool, App Runner service, Amplify application, Amazon Web Services Verified Access instance, and Amazon Bedrock AgentCore Gateway.
     record WebACL
         -- The name of the web ACL. You cannot change the name of a web ACL after you create it.
         Name: string

@@ -165,6 +165,7 @@ local record Client
     createTransitGatewayMulticastDomain: function(Client, types.CreateTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayMulticastDomainOutput>
     createTransitGatewayPeeringAttachment: function(Client, types.CreateTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPeeringAttachmentOutput>
     createTransitGatewayPolicyTable: function(Client, types.CreateTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPolicyTableOutput>
+    createTransitGatewayPolicyTableEntry: function(Client, types.CreateTransitGatewayPolicyTableEntryInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPolicyTableEntryOutput>
     createTransitGatewayPrefixListReference: function(Client, types.CreateTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
     createTransitGatewayRoute: function(Client, types.CreateTransitGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteOutput>
     createTransitGatewayRouteTable: function(Client, types.CreateTransitGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayRouteTableOutput>
@@ -258,6 +259,7 @@ local record Client
     deleteTransitGatewayMulticastDomain: function(Client, types.DeleteTransitGatewayMulticastDomainInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayMulticastDomainOutput>
     deleteTransitGatewayPeeringAttachment: function(Client, types.DeleteTransitGatewayPeeringAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPeeringAttachmentOutput>
     deleteTransitGatewayPolicyTable: function(Client, types.DeleteTransitGatewayPolicyTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
+    deleteTransitGatewayPolicyTableEntry: function(Client, types.DeleteTransitGatewayPolicyTableEntryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableEntryOutput>
     deleteTransitGatewayPrefixListReference: function(Client, types.DeleteTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
     deleteTransitGatewayRoute: function(Client, types.DeleteTransitGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteOutput>
     deleteTransitGatewayRouteTable: function(Client, types.DeleteTransitGatewayRouteTableInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayRouteTableOutput>
@@ -683,6 +685,7 @@ local record Client
     modifyTrafficMirrorSession: function(Client, types.ModifyTrafficMirrorSessionInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTrafficMirrorSessionOutput>
     modifyTransitGateway: function(Client, types.ModifyTransitGatewayInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayOutput>
     modifyTransitGatewayMeteringPolicy: function(Client, types.ModifyTransitGatewayMeteringPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
+    modifyTransitGatewayPolicyTableEntry: function(Client, types.ModifyTransitGatewayPolicyTableEntryInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPolicyTableEntryOutput>
     modifyTransitGatewayPrefixListReference: function(Client, types.ModifyTransitGatewayPrefixListReferenceInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>
     modifyTransitGatewayVpcAttachment: function(Client, types.ModifyTransitGatewayVpcAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayVpcAttachmentOutput>
     modifyVerifiedAccessEndpoint: function(Client, types.ModifyVerifiedAccessEndpointInput, ? base_client.InvokeOptions): async.Operation<types.ModifyVerifiedAccessEndpointOutput>
@@ -1422,6 +1425,10 @@ function C:createTransitGatewayPolicyTable(input: types.CreateTransitGatewayPoli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPolicyTable as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPolicyTableOutput>
 end
 
+function C:createTransitGatewayPolicyTableEntry(input: types.CreateTransitGatewayPolicyTableEntryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPolicyTableEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPolicyTableEntry as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPolicyTableEntryOutput>
+end
+
 function C:createTransitGatewayPrefixListReference(input: types.CreateTransitGatewayPrefixListReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTransitGatewayPrefixListReference as schema.OperationSchema, input, options) as async.Operation<types.CreateTransitGatewayPrefixListReferenceOutput>
 end
@@ -1792,6 +1799,10 @@ end
 
 function C:deleteTransitGatewayPolicyTable(input: types.DeleteTransitGatewayPolicyTableInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayPolicyTable as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayPolicyTableOutput>
+end
+
+function C:deleteTransitGatewayPolicyTableEntry(input: types.DeleteTransitGatewayPolicyTableEntryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPolicyTableEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTransitGatewayPolicyTableEntry as schema.OperationSchema, input, options) as async.Operation<types.DeleteTransitGatewayPolicyTableEntryOutput>
 end
 
 function C:deleteTransitGatewayPrefixListReference(input: types.DeleteTransitGatewayPrefixListReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTransitGatewayPrefixListReferenceOutput>
@@ -3492,6 +3503,10 @@ end
 
 function C:modifyTransitGatewayMeteringPolicy(input: types.ModifyTransitGatewayMeteringPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayMeteringPolicy as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayMeteringPolicyOutput>
+end
+
+function C:modifyTransitGatewayPolicyTableEntry(input: types.ModifyTransitGatewayPolicyTableEntryInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPolicyTableEntryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyTransitGatewayPolicyTableEntry as schema.OperationSchema, input, options) as async.Operation<types.ModifyTransitGatewayPolicyTableEntryOutput>
 end
 
 function C:modifyTransitGatewayPrefixListReference(input: types.ModifyTransitGatewayPrefixListReferenceInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyTransitGatewayPrefixListReferenceOutput>

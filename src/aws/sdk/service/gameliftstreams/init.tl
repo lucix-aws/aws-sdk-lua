@@ -24,6 +24,7 @@ local record Client
     createStreamGroup: function(Client, types.CreateStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamGroupOutput>
     createStreamSessionAdminShell: function(Client, types.CreateStreamSessionAdminShellInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamSessionAdminShellOutput>
     createStreamSessionConnection: function(Client, types.CreateStreamSessionConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamSessionConnectionOutput>
+    createStreamUrl: function(Client, types.CreateStreamUrlInput, ? base_client.InvokeOptions): async.Operation<types.CreateStreamUrlOutput>
     deleteApplication: function(Client, types.DeleteApplicationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
     deleteStreamGroup: function(Client, types.DeleteStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteStreamGroupOutput>
     disassociateApplications: function(Client, types.DisassociateApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateApplicationsOutput>
@@ -31,12 +32,16 @@ local record Client
     getApplication: function(Client, types.GetApplicationInput, ? base_client.InvokeOptions): async.Operation<types.GetApplicationOutput>
     getStreamGroup: function(Client, types.GetStreamGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamGroupOutput>
     getStreamSession: function(Client, types.GetStreamSessionInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamSessionOutput>
+    getStreamUrl: function(Client, types.GetStreamUrlInput, ? base_client.InvokeOptions): async.Operation<types.GetStreamUrlOutput>
     listApplications: function(Client, types.ListApplicationsInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
+    listApplicationShaderCaches: function(Client, types.ListApplicationShaderCachesInput, ? base_client.InvokeOptions): async.Operation<types.ListApplicationShaderCachesOutput>
     listStreamGroups: function(Client, types.ListStreamGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamGroupsOutput>
     listStreamSessions: function(Client, types.ListStreamSessionsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamSessionsOutput>
     listStreamSessionsByAccount: function(Client, types.ListStreamSessionsByAccountInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamSessionsByAccountOutput>
+    listStreamUrls: function(Client, types.ListStreamUrlsInput, ? base_client.InvokeOptions): async.Operation<types.ListStreamUrlsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     removeStreamGroupLocations: function(Client, types.RemoveStreamGroupLocationsInput, ? base_client.InvokeOptions): async.Operation<types.RemoveStreamGroupLocationsOutput>
+    revokeStreamUrl: function(Client, types.RevokeStreamUrlInput, ? base_client.InvokeOptions): async.Operation<types.RevokeStreamUrlOutput>
     startStreamSession: function(Client, types.StartStreamSessionInput, ? base_client.InvokeOptions): async.Operation<types.StartStreamSessionOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     terminateStreamSession: function(Client, types.TerminateStreamSessionInput, ? base_client.InvokeOptions): async.Operation<types.TerminateStreamSessionOutput>
@@ -111,6 +116,10 @@ function C:createStreamSessionConnection(input: types.CreateStreamSessionConnect
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamSessionConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamSessionConnectionOutput>
 end
 
+function C:createStreamUrl(input: types.CreateStreamUrlInput, options?: base_client.InvokeOptions): async.Operation<types.CreateStreamUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateStreamUrl as schema.OperationSchema, input, options) as async.Operation<types.CreateStreamUrlOutput>
+end
+
 function C:deleteApplication(input: types.DeleteApplicationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplication as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationOutput>
 end
@@ -139,8 +148,16 @@ function C:getStreamSession(input: types.GetStreamSessionInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStreamSession as schema.OperationSchema, input, options) as async.Operation<types.GetStreamSessionOutput>
 end
 
+function C:getStreamUrl(input: types.GetStreamUrlInput, options?: base_client.InvokeOptions): async.Operation<types.GetStreamUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetStreamUrl as schema.OperationSchema, input, options) as async.Operation<types.GetStreamUrlOutput>
+end
+
 function C:listApplications(input: types.ListApplicationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplications as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationsOutput>
+end
+
+function C:listApplicationShaderCaches(input: types.ListApplicationShaderCachesInput, options?: base_client.InvokeOptions): async.Operation<types.ListApplicationShaderCachesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApplicationShaderCaches as schema.OperationSchema, input, options) as async.Operation<types.ListApplicationShaderCachesOutput>
 end
 
 function C:listStreamGroups(input: types.ListStreamGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamGroupsOutput>
@@ -155,12 +172,20 @@ function C:listStreamSessionsByAccount(input: types.ListStreamSessionsByAccountI
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamSessionsByAccount as schema.OperationSchema, input, options) as async.Operation<types.ListStreamSessionsByAccountOutput>
 end
 
+function C:listStreamUrls(input: types.ListStreamUrlsInput, options?: base_client.InvokeOptions): async.Operation<types.ListStreamUrlsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListStreamUrls as schema.OperationSchema, input, options) as async.Operation<types.ListStreamUrlsOutput>
+end
+
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
 function C:removeStreamGroupLocations(input: types.RemoveStreamGroupLocationsInput, options?: base_client.InvokeOptions): async.Operation<types.RemoveStreamGroupLocationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RemoveStreamGroupLocations as schema.OperationSchema, input, options) as async.Operation<types.RemoveStreamGroupLocationsOutput>
+end
+
+function C:revokeStreamUrl(input: types.RevokeStreamUrlInput, options?: base_client.InvokeOptions): async.Operation<types.RevokeStreamUrlOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RevokeStreamUrl as schema.OperationSchema, input, options) as async.Operation<types.RevokeStreamUrlOutput>
 end
 
 function C:startStreamSession(input: types.StartStreamSessionInput, options?: base_client.InvokeOptions): async.Operation<types.StartStreamSessionOutput>

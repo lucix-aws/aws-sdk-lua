@@ -15412,6 +15412,90 @@ local record M
         TransitGatewayPolicyTable: TransitGatewayPolicyTable
     end
 
+    -- A metadata key-value pair for a transit gateway policy rule.
+    record TransitGatewayRequestPolicyRuleMetaData
+        -- The key of the metadata pair for the policy rule.
+        MetaDataKey: string
+        -- The value of the metadata pair for the policy rule.
+        MetaDataValue: string
+    end
+
+    -- The matching criteria for a transit gateway policy table entry.
+    record TransitGatewayRequestPolicyRule
+        -- The source CIDR block for the policy rule.
+        SourceCidrBlock: string
+        -- The source port or port range for the policy rule. You can specify a port range only when Protocol is 6 (TCP) or 17 (UDP); for all other protocols, this value must be *.
+        SourcePortRange: string
+        -- The destination CIDR block for the policy rule.
+        DestinationCidrBlock: string
+        -- The destination port or port range for the policy rule. You can specify a port range only when Protocol is 6 (TCP) or 17 (UDP); for all other protocols, this value must be *.
+        DestinationPortRange: string
+        -- The protocol for the policy rule. Valid values are 1 (ICMP), 6 (TCP), 17 (UDP), 47 (GRE), or * for all protocols.
+        Protocol: string
+        -- The metadata key-value pair for the policy rule.
+        MetaData: TransitGatewayRequestPolicyRuleMetaData
+    end
+
+    record CreateTransitGatewayPolicyTableEntryInput
+        -- The ID of the transit gateway policy table.
+        TransitGatewayPolicyTableId: string
+        -- The rule number for the policy table entry. Lower rule numbers are evaluated first and take precedence.
+        PolicyRuleNumber: string
+        -- The matching criteria for the policy table entry.
+        PolicyRule: TransitGatewayRequestPolicyRule
+        -- The ID of the transit gateway route table to use for traffic matching this rule.
+        TargetRouteTableId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes the meta data tags associated with a transit gateway policy rule.
+    record TransitGatewayPolicyRuleMetaData
+        -- The key name for the transit gateway policy rule meta data tag.
+        MetaDataKey: string
+        -- The value of the key for the transit gateway policy rule meta data tag.
+        MetaDataValue: string
+    end
+
+    -- Describes a rule associated with a transit gateway policy.
+    record TransitGatewayPolicyRule
+        -- The source CIDR block for the transit gateway policy rule.
+        SourceCidrBlock: string
+        -- The source port or port range for the transit gateway policy rule.
+        SourcePortRange: string
+        -- The destination CIDR block for the transit gateway policy rule.
+        DestinationCidrBlock: string
+        -- The destination port or port range for the transit gateway policy rule.
+        DestinationPortRange: string
+        -- The protocol used by the transit gateway policy rule.
+        Protocol: string
+        -- The meta data tags used for the transit gateway policy rule.
+        MetaData: TransitGatewayPolicyRuleMetaData
+    end
+
+    enum TransitGatewayPolicyTableEntryState
+        "active"
+        "deleted"
+    end
+
+    -- Describes a transit gateway policy table entry
+    record TransitGatewayPolicyTableEntry
+        -- The rule number for the transit gateway policy table entry.
+        PolicyRuleNumber: string
+        -- The policy rule associated with the transit gateway policy table.
+        PolicyRule: TransitGatewayPolicyRule
+        -- The ID of the target route table.
+        TargetRouteTableId: string
+        -- The state of the transit gateway policy table entry.
+        State: string
+    end
+
+    record CreateTransitGatewayPolicyTableEntryOutput
+        TransitGatewayPolicyTableEntry: TransitGatewayPolicyTableEntry
+    end
+
     record CreateTransitGatewayPrefixListReferenceInput
         -- The ID of the transit gateway route table.
         TransitGatewayRouteTableId: string
@@ -15632,7 +15716,7 @@ local record M
         -- This option is set to enable by default. However, at the transit gateway level the default is set to disable.
         -- For more information about security group referencing, see Security group referencing in the Amazon Web Services Transit Gateways Guide.
         SecurityGroupReferencingSupport: string
-        -- Enable or disable IPv6 support. The default is disable.
+        -- Specifies whether IPv6 support is enabled for the attachment. When enabled, the transit gateway network interface receives an IPv6 address. When you enable route propagation, IPv6 VPC CIDRs propagate to the transit gateway route tables. When disabled, the network interface does not receive an IPv6 address, and IPv6 routes do not propagate. The setting does not filter IPv6 traffic. The default is disable.
         Ipv6Support: string
         -- Enable or disable support for appliance mode. If enabled, a traffic flow between a source and destination uses the same Availability Zone for the VPC attachment for the lifetime of that flow. The default is disable.
         ApplianceModeSupport: string
@@ -18701,6 +18785,21 @@ local record M
     record DeleteTransitGatewayPolicyTableOutput
         -- Provides details about the deleted transit gateway policy table.
         TransitGatewayPolicyTable: TransitGatewayPolicyTable
+    end
+
+    record DeleteTransitGatewayPolicyTableEntryInput
+        -- The ID of the transit gateway policy table.
+        TransitGatewayPolicyTableId: string
+        -- The rule number of the policy table entry to delete.
+        PolicyRuleNumber: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DeleteTransitGatewayPolicyTableEntryOutput
+        TransitGatewayPolicyTableEntry: TransitGatewayPolicyTableEntry
     end
 
     record DeleteTransitGatewayPrefixListReferenceInput
@@ -30382,6 +30481,8 @@ local record M
     record TransitGatewayAttachmentAssociation
         -- The ID of the route table for the transit gateway.
         TransitGatewayRouteTableId: string
+        -- The ID of the transit gateway policy table associated with the attachment.
+        TransitGatewayPolicyTableId: string
         -- The state of the association.
         State: string
     end
@@ -36140,7 +36241,16 @@ local record M
     record GetTransitGatewayPolicyTableEntriesInput
         -- The ID of the transit gateway policy table.
         TransitGatewayPolicyTableId: string
-        -- The filters associated with the transit gateway policy table.
+        -- One or more filters. The possible values are:
+        -- policy-rule-number - The rule number for the transit gateway policy table entry.
+        -- target-route-table-id - The ID of the target route table.
+        -- policy-rule.source-ip - The source CIDR block for the policy rule.
+        -- policy-rule.destination-ip - The destination CIDR block for the policy rule.
+        -- policy-rule.source-port - The source port or port range for the policy rule.
+        -- policy-rule.destination-port - The destination port or port range for the policy rule.
+        -- policy-rule.protocol - The protocol for the policy rule.
+        -- policy-rule.meta-data.key - The metadata key for the policy rule.
+        -- policy-rule.meta-data.value - The metadata value for the policy rule.
         Filters: {Filter}
         -- The maximum number of results to return with a single call.
         -- To retrieve the remaining results, make another call with the returned nextToken value.
@@ -36153,43 +36263,11 @@ local record M
         DryRun: boolean
     end
 
-    -- Describes the meta data tags associated with a transit gateway policy rule.
-    record TransitGatewayPolicyRuleMetaData
-        -- The key name for the transit gateway policy rule meta data tag.
-        MetaDataKey: string
-        -- The value of the key for the transit gateway policy rule meta data tag.
-        MetaDataValue: string
-    end
-
-    -- Describes a rule associated with a transit gateway policy.
-    record TransitGatewayPolicyRule
-        -- The source CIDR block for the transit gateway policy rule.
-        SourceCidrBlock: string
-        -- The port range for the transit gateway policy rule. Currently this is set to * (all).
-        SourcePortRange: string
-        -- The destination CIDR block for the transit gateway policy rule.
-        DestinationCidrBlock: string
-        -- The port range for the transit gateway policy rule. Currently this is set to * (all).
-        DestinationPortRange: string
-        -- The protocol used by the transit gateway policy rule.
-        Protocol: string
-        -- The meta data tags used for the transit gateway policy rule.
-        MetaData: TransitGatewayPolicyRuleMetaData
-    end
-
-    -- Describes a transit gateway policy table entry
-    record TransitGatewayPolicyTableEntry
-        -- The rule number for the transit gateway policy table entry.
-        PolicyRuleNumber: string
-        -- The policy rule associated with the transit gateway policy table.
-        PolicyRule: TransitGatewayPolicyRule
-        -- The ID of the target route table.
-        TargetRouteTableId: string
-    end
-
     record GetTransitGatewayPolicyTableEntriesOutput
         -- The entries for the transit gateway policy table.
         TransitGatewayPolicyTableEntries: {TransitGatewayPolicyTableEntry}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        NextToken: string
     end
 
     record GetTransitGatewayPrefixListReferencesInput
@@ -39063,6 +39141,25 @@ local record M
         TransitGatewayMeteringPolicy: TransitGatewayMeteringPolicy
     end
 
+    record ModifyTransitGatewayPolicyTableEntryInput
+        -- The ID of the transit gateway policy table.
+        TransitGatewayPolicyTableId: string
+        -- The rule number of the policy table entry to modify.
+        PolicyRuleNumber: string
+        -- The updated matching criteria for the policy table entry. Unspecified fields retain their current values.
+        PolicyRule: TransitGatewayRequestPolicyRule
+        -- The ID of the transit gateway route table to use for traffic matching this rule.
+        TargetRouteTableId: string
+        -- Checks whether you have the required permissions for the action, without actually making the request,
+        -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
+        -- Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ModifyTransitGatewayPolicyTableEntryOutput
+        TransitGatewayPolicyTableEntry: TransitGatewayPolicyTableEntry
+    end
+
     record ModifyTransitGatewayPrefixListReferenceInput
         -- The ID of the transit gateway route table.
         TransitGatewayRouteTableId: string
@@ -39091,7 +39188,7 @@ local record M
         -- This option is disabled by default.
         -- For more information about security group referencing, see Security group referencing in the Amazon Web Services Transit Gateways Guide.
         SecurityGroupReferencingSupport: string
-        -- Enable or disable IPv6 support. The default is enable.
+        -- Specifies whether IPv6 support is enabled for the attachment. When enabled, the transit gateway network interface receives an IPv6 address. When you enable route propagation, IPv6 VPC CIDRs propagate to the transit gateway route tables. When disabled, the network interface does not receive an IPv6 address, and IPv6 routes do not propagate. The setting does not filter IPv6 traffic.
         Ipv6Support: string
         -- Enable or disable support for appliance mode. If enabled, a traffic flow between a source and destination uses the same Availability Zone for the VPC attachment for the lifetime of that flow. The default is disable.
         ApplianceModeSupport: string

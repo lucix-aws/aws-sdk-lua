@@ -23,15 +23,19 @@ M.LocationConfigurations = schema.new({ type = "list", list_member = M.LocationC
 
 M.Identifiers = schema.new({ type = "list", list_member = prelude.String })
 
+M.LocationList = schema.new({ type = "list", list_member = prelude.String })
+
 M.GameLaunchArgList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EnvironmentVariables = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.StreamSessionSummaryList = schema.new({ type = "list", list_member = M.StreamSessionSummary })
 
-M.LocationsList = schema.new({ type = "list", list_member = prelude.String })
+M.ShaderCacheSummaryList = schema.new({ type = "list", list_member = M.ShaderCacheSummary })
 
-M.LocationList = schema.new({ type = "list", list_member = prelude.String })
+M.StreamUrlSummaryList = schema.new({ type = "list", list_member = M.StreamUrlSummary })
+
+M.LocationsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -1323,6 +1327,283 @@ M.CreateStreamSessionConnectionOutput = schema.new({
     },
 })
 
+M.Resolution = schema.new({
+    id = id.from(_N, "Resolution"),
+    type = "structure",
+    members = {
+        Width = schema.new({
+            id = id.from(_N, "Resolution", "Width"),
+            type = "integer",
+            name = "Width",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Height = schema.new({
+            id = id.from(_N, "Resolution", "Height"),
+            type = "integer",
+            name = "Height",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DisplayConfiguration = schema.new({
+    id = id.from(_N, "DisplayConfiguration"),
+    type = "structure",
+    members = {
+        Resolution = schema.new({
+            id = id.from(_N, "DisplayConfiguration", "Resolution"),
+            type = "structure",
+            name = "Resolution",
+            target_id = id.from(_N, "Resolution"),
+            target = M.Resolution,
+        }),
+    },
+})
+
+M.CreateStreamUrlInput = schema.new({
+    id = id.from(_N, "CreateStreamUrlInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ApplicationIdentifier = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "ApplicationIdentifier"),
+            type = "string",
+            name = "ApplicationIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UrlExpiresAfterMinutes = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "UrlExpiresAfterMinutes"),
+            type = "integer",
+            name = "UrlExpiresAfterMinutes",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        UsageLimit = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "UsageLimit"),
+            type = "integer",
+            name = "UsageLimit",
+            target_id = prelude.Integer.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SessionLengthSeconds = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "SessionLengthSeconds"),
+            type = "integer",
+            name = "SessionLengthSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        AdditionalLaunchArgs = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "AdditionalLaunchArgs"),
+            type = "list",
+            name = "AdditionalLaunchArgs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AdditionalEnvironmentVariables = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "AdditionalEnvironmentVariables"),
+            type = "map",
+            name = "AdditionalEnvironmentVariables",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        DisplayConfiguration = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "DisplayConfiguration"),
+            type = "structure",
+            name = "DisplayConfiguration",
+            target_id = id.from(_N, "DisplayConfiguration"),
+            target = M.DisplayConfiguration,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateStreamUrlInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateStreamUrlOutput = schema.new({
+    id = id.from(_N, "CreateStreamUrlOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamUrlId = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "StreamUrlId"),
+            type = "string",
+            name = "StreamUrlId",
+            target_id = prelude.String.id,
+        }),
+        StreamUrl = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "StreamUrl"),
+            type = "string",
+            name = "StreamUrl",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UsageLimit = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "UsageLimit"),
+            type = "integer",
+            name = "UsageLimit",
+            target_id = prelude.Integer.id,
+        }),
+        RemainingUses = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "RemainingUses"),
+            type = "integer",
+            name = "RemainingUses",
+            target_id = prelude.Integer.id,
+        }),
+        StreamGroupArn = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "StreamGroupArn"),
+            type = "string",
+            name = "StreamGroupArn",
+            target_id = prelude.String.id,
+        }),
+        ApplicationArn = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "ApplicationArn"),
+            type = "string",
+            name = "ApplicationArn",
+            target_id = prelude.String.id,
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SessionLengthSeconds = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "SessionLengthSeconds"),
+            type = "integer",
+            name = "SessionLengthSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        AdditionalLaunchArgs = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "AdditionalLaunchArgs"),
+            type = "list",
+            name = "AdditionalLaunchArgs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AdditionalEnvironmentVariables = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "AdditionalEnvironmentVariables"),
+            type = "map",
+            name = "AdditionalEnvironmentVariables",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        DisplayConfiguration = schema.new({
+            id = id.from(_N, "CreateStreamUrlOutput", "DisplayConfiguration"),
+            type = "structure",
+            name = "DisplayConfiguration",
+            target_id = id.from(_N, "DisplayConfiguration"),
+            target = M.DisplayConfiguration,
+        }),
+    },
+})
+
 M.DeleteStreamGroupInput = schema.new({
     id = id.from(_N, "DeleteStreamGroupInput"),
     type = "structure",
@@ -1385,45 +1666,6 @@ M.DisassociateApplicationsOutput = schema.new({
             name = "ApplicationArns",
             target_id = prelude.Document.id,
             list_member = prelude.String,
-        }),
-    },
-})
-
-M.Resolution = schema.new({
-    id = id.from(_N, "Resolution"),
-    type = "structure",
-    members = {
-        Width = schema.new({
-            id = id.from(_N, "Resolution", "Width"),
-            type = "integer",
-            name = "Width",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Height = schema.new({
-            id = id.from(_N, "Resolution", "Height"),
-            type = "integer",
-            name = "Height",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.DisplayConfiguration = schema.new({
-    id = id.from(_N, "DisplayConfiguration"),
-    type = "structure",
-    members = {
-        Resolution = schema.new({
-            id = id.from(_N, "DisplayConfiguration", "Resolution"),
-            type = "structure",
-            name = "Resolution",
-            target_id = id.from(_N, "Resolution"),
-            target = M.Resolution,
         }),
     },
 })
@@ -1685,50 +1927,24 @@ M.GetStreamSessionOutput = schema.new({
     },
 })
 
-M.ListStreamSessionsInput = schema.new({
-    id = id.from(_N, "ListStreamSessionsInput"),
+M.GetStreamUrlInput = schema.new({
+    id = id.from(_N, "GetStreamUrlInput"),
     type = "structure",
     members = {
-        Status = schema.new({
-            id = id.from(_N, "ListStreamSessionsInput", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Status" },
-            },
-        }),
-        ExportFilesStatus = schema.new({
-            id = id.from(_N, "ListStreamSessionsInput", "ExportFilesStatus"),
-            type = "string",
-            name = "ExportFilesStatus",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "ExportFilesStatus" },
-            },
-        }),
-        NextToken = schema.new({
-            id = id.from(_N, "ListStreamSessionsInput", "NextToken"),
-            type = "string",
-            name = "NextToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "NextToken" },
-            },
-        }),
-        MaxResults = schema.new({
-            id = id.from(_N, "ListStreamSessionsInput", "MaxResults"),
-            type = "integer",
-            name = "MaxResults",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "MaxResults" },
-            },
-        }),
         Identifier = schema.new({
-            id = id.from(_N, "ListStreamSessionsInput", "Identifier"),
+            id = id.from(_N, "GetStreamUrlInput", "Identifier"),
             type = "string",
             name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        StreamUrlIdentifier = schema.new({
+            id = id.from(_N, "GetStreamUrlInput", "StreamUrlIdentifier"),
+            type = "string",
+            name = "StreamUrlIdentifier",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
@@ -1808,6 +2024,276 @@ M.StreamSessionSummary = schema.new({
             type = "string",
             name = "RoleArn",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetStreamUrlOutput = schema.new({
+    id = id.from(_N, "GetStreamUrlOutput"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamUrlId = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "StreamUrlId"),
+            type = "string",
+            name = "StreamUrlId",
+            target_id = prelude.String.id,
+        }),
+        StreamUrl = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "StreamUrl"),
+            type = "string",
+            name = "StreamUrl",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UsageLimit = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "UsageLimit"),
+            type = "integer",
+            name = "UsageLimit",
+            target_id = prelude.Integer.id,
+        }),
+        RemainingUses = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "RemainingUses"),
+            type = "integer",
+            name = "RemainingUses",
+            target_id = prelude.Integer.id,
+        }),
+        StreamGroupArn = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "StreamGroupArn"),
+            type = "string",
+            name = "StreamGroupArn",
+            target_id = prelude.String.id,
+        }),
+        ApplicationArn = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "ApplicationArn"),
+            type = "string",
+            name = "ApplicationArn",
+            target_id = prelude.String.id,
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+        }),
+        Locations = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "Locations"),
+            type = "list",
+            name = "Locations",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        SessionLengthSeconds = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "SessionLengthSeconds"),
+            type = "integer",
+            name = "SessionLengthSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        AdditionalLaunchArgs = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "AdditionalLaunchArgs"),
+            type = "list",
+            name = "AdditionalLaunchArgs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        AdditionalEnvironmentVariables = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "AdditionalEnvironmentVariables"),
+            type = "map",
+            name = "AdditionalEnvironmentVariables",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        RoleArn = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "RoleArn"),
+            type = "string",
+            name = "RoleArn",
+            target_id = prelude.String.id,
+        }),
+        DisplayConfiguration = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "DisplayConfiguration"),
+            type = "structure",
+            name = "DisplayConfiguration",
+            target_id = id.from(_N, "DisplayConfiguration"),
+            target = M.DisplayConfiguration,
+        }),
+        StreamSessions = schema.new({
+            id = id.from(_N, "GetStreamUrlOutput", "StreamSessions"),
+            type = "list",
+            name = "StreamSessions",
+            target_id = prelude.Document.id,
+            list_member = M.StreamSessionSummary,
+        }),
+    },
+})
+
+M.ListApplicationShaderCachesInput = schema.new({
+    id = id.from(_N, "ListApplicationShaderCachesInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "ListApplicationShaderCachesInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ShaderCacheSummary = schema.new({
+    id = id.from(_N, "ShaderCacheSummary"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "ShaderCacheSummary", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ApplicationArn = schema.new({
+            id = id.from(_N, "ShaderCacheSummary", "ApplicationArn"),
+            type = "string",
+            name = "ApplicationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ShaderCacheSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "ShaderCacheSummary", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        StorageBytes = schema.new({
+            id = id.from(_N, "ShaderCacheSummary", "StorageBytes"),
+            type = "long",
+            name = "StorageBytes",
+            target_id = prelude.Long.id,
+        }),
+        AssociatedStreamGroups = schema.new({
+            id = id.from(_N, "ShaderCacheSummary", "AssociatedStreamGroups"),
+            type = "list",
+            name = "AssociatedStreamGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListApplicationShaderCachesOutput = schema.new({
+    id = id.from(_N, "ListApplicationShaderCachesOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListApplicationShaderCachesOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.ShaderCacheSummary,
+        }),
+    },
+})
+
+M.ListStreamSessionsInput = schema.new({
+    id = id.from(_N, "ListStreamSessionsInput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ListStreamSessionsInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Status" },
+            },
+        }),
+        ExportFilesStatus = schema.new({
+            id = id.from(_N, "ListStreamSessionsInput", "ExportFilesStatus"),
+            type = "string",
+            name = "ExportFilesStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ExportFilesStatus" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListStreamSessionsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListStreamSessionsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        Identifier = schema.new({
+            id = id.from(_N, "ListStreamSessionsInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
         }),
     },
 })
@@ -1895,6 +2381,157 @@ M.ListStreamSessionsByAccountOutput = schema.new({
     },
 })
 
+M.ListStreamUrlsInput = schema.new({
+    id = id.from(_N, "ListStreamUrlsInput"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ListStreamUrlsInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Status" },
+            },
+        }),
+        StreamGroupIdentifier = schema.new({
+            id = id.from(_N, "ListStreamUrlsInput", "StreamGroupIdentifier"),
+            type = "string",
+            name = "StreamGroupIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "StreamGroupIdentifier" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListStreamUrlsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListStreamUrlsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+    },
+})
+
+M.StreamUrlSummary = schema.new({
+    id = id.from(_N, "StreamUrlSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StreamUrlId = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "StreamUrlId"),
+            type = "string",
+            name = "StreamUrlId",
+            target_id = prelude.String.id,
+        }),
+        StreamUrl = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "StreamUrl"),
+            type = "string",
+            name = "StreamUrl",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        StatusReason = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "StatusReason"),
+            type = "string",
+            name = "StatusReason",
+            target_id = prelude.String.id,
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UsageLimit = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "UsageLimit"),
+            type = "integer",
+            name = "UsageLimit",
+            target_id = prelude.Integer.id,
+        }),
+        RemainingUses = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "RemainingUses"),
+            type = "integer",
+            name = "RemainingUses",
+            target_id = prelude.Integer.id,
+        }),
+        StreamGroupArn = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "StreamGroupArn"),
+            type = "string",
+            name = "StreamGroupArn",
+            target_id = prelude.String.id,
+        }),
+        ApplicationArn = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "ApplicationArn"),
+            type = "string",
+            name = "ApplicationArn",
+            target_id = prelude.String.id,
+        }),
+        SessionLengthSeconds = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "SessionLengthSeconds"),
+            type = "integer",
+            name = "SessionLengthSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "StreamUrlSummary", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListStreamUrlsOutput = schema.new({
+    id = id.from(_N, "ListStreamUrlsOutput"),
+    type = "structure",
+    members = {
+        Items = schema.new({
+            id = id.from(_N, "ListStreamUrlsOutput", "Items"),
+            type = "list",
+            name = "Items",
+            target_id = prelude.Document.id,
+            list_member = M.StreamUrlSummary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListStreamUrlsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListTagsForResourceInput = schema.new({
     id = id.from(_N, "ListTagsForResourceRequest"),
     type = "structure",
@@ -1956,6 +2593,41 @@ M.RemoveStreamGroupLocationsInput = schema.new({
 })
 
 M.RemoveStreamGroupLocationsOutput = prelude.Unit
+
+M.RevokeStreamUrlInput = schema.new({
+    id = id.from(_N, "RevokeStreamUrlInput"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "RevokeStreamUrlInput", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        StreamUrlIdentifier = schema.new({
+            id = id.from(_N, "RevokeStreamUrlInput", "StreamUrlIdentifier"),
+            type = "string",
+            name = "StreamUrlIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        RevocationMode = schema.new({
+            id = id.from(_N, "RevokeStreamUrlInput", "RevocationMode"),
+            type = "string",
+            name = "RevocationMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RevokeStreamUrlOutput = prelude.Unit
 
 M.StartStreamSessionInput = schema.new({
     id = id.from(_N, "StartStreamSessionInput"),
@@ -2752,6 +3424,18 @@ M.CreateStreamSessionConnection = schema.operation({
     },
 })
 
+M.CreateStreamUrl = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "CreateStreamUrl"),
+    input = M.CreateStreamUrlInput,
+    output = M.CreateStreamUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/streamurls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteApplication = schema.operation({
     id = id.from("com.amazonaws.gameliftstreams", "DeleteApplication"),
     input = M.DeleteApplicationInput,
@@ -2836,12 +3520,36 @@ M.GetStreamSession = schema.operation({
     },
 })
 
+M.GetStreamUrl = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "GetStreamUrl"),
+    input = M.GetStreamUrlInput,
+    output = M.GetStreamUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streamgroups/{Identifier}/streamurls/{StreamUrlIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListApplications = schema.operation({
     id = id.from("com.amazonaws.gameliftstreams", "ListApplications"),
     input = M.ListApplicationsInput,
     output = M.ListApplicationsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/applications" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListApplicationShaderCaches = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ListApplicationShaderCaches"),
+    input = M.ListApplicationShaderCachesInput,
+    output = M.ListApplicationShaderCachesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/applications/{Identifier}/shadercaches" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -2884,6 +3592,18 @@ M.ListStreamSessionsByAccount = schema.operation({
     },
 })
 
+M.ListStreamUrls = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "ListStreamUrls"),
+    input = M.ListStreamUrlsInput,
+    output = M.ListStreamUrlsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/streamurls" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListTagsForResource = schema.operation({
     id = id.from("com.amazonaws.gameliftstreams", "ListTagsForResource"),
     input = M.ListTagsForResourceInput,
@@ -2902,6 +3622,18 @@ M.RemoveStreamGroupLocations = schema.operation({
     output = M.RemoveStreamGroupLocationsOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/streamgroups/{Identifier}/locations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RevokeStreamUrl = schema.operation({
+    id = id.from("com.amazonaws.gameliftstreams", "RevokeStreamUrl"),
+    input = M.RevokeStreamUrlInput,
+    output = M.RevokeStreamUrlOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/streamgroups/{Identifier}/streamurls/{StreamUrlIdentifier}/revoke" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

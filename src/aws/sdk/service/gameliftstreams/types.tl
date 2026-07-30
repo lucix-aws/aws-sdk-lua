@@ -473,6 +473,109 @@ local record M
         SignalResponse: string
     end
 
+    -- Contains the width and height dimensions, in pixels, that define the resolution of the stream session's virtual monitor. The total number of pixels (width × height) must not exceed 2,073,600 (equivalent to 1920 × 1080).
+    record Resolution
+        -- The width of the stream session's virtual monitor, in pixels. The value must be an even number.
+        Width: number
+        -- The height of the stream session's virtual monitor, in pixels. The value must be an even number.
+        Height: number
+    end
+
+    -- The virtual monitor settings for a stream session, including the resolution. If not specified, the stream session uses the default resolution of 1920 × 1080.
+    record DisplayConfiguration
+        -- The resolution to apply to the stream session's virtual monitor. When specified, this value overrides the default resolution of 1920 × 1080.
+        Resolution: Resolution
+    end
+
+    enum Protocol
+        "WebRTC"
+    end
+
+    record CreateStreamUrlInput
+        -- An Amazon Resource Name (ARN) or ID that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4. Example ID: sg-1AB2C3De4. The stream session runs in this stream group.
+        Identifier: string
+        -- An Amazon Resource Name (ARN) or ID that uniquely identifies the application resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6. Example ID: a-9ZY8X7Wv6. This application must be associated with the stream group.
+        ApplicationIdentifier: string
+        -- The data transport protocol for the stream session. Amazon GameLift Streams supports WebRTC.
+        Protocol: string
+        -- The number of minutes after creation that the stream URL remains valid. After this period, the status of the stream URL changes to EXPIRED and it can no longer start stream sessions. The minimum is 1 minute. For the maximum, see Regions, quotas, and limitations in the Amazon GameLift Streams Developer Guide.
+        UrlExpiresAfterMinutes: number
+        -- The maximum number of times the stream URL can start a stream session. Each successful use reduces the remaining uses by one. The minimum is 1, and the default is 1. For the maximum, see Regions, quotas, and limitations in the Amazon GameLift Streams Developer Guide.
+        UsageLimit: number
+        -- A descriptive label for the stream URL.
+        Description: string
+        -- A list of locations, in order of preference, where Amazon GameLift Streams can place the stream session. Specify each location by its Amazon Web Services Region code, for example us-east-1. For a complete list of locations that Amazon GameLift Streams supports, refer to Regions, quotas, and limitations in the Amazon GameLift Streams Developer Guide.
+        Locations: {string}
+        -- The maximum length of time, in seconds, that a stream session started from this stream URL can run. Valid values are 1-86400 seconds (1 second to 24 hours). The default is 43200 seconds (12 hours).
+        SessionLengthSeconds: number
+        -- A list of CLI arguments that are sent to the streaming server when a stream session launches. You can use this to configure the application or stream session details. You can also provide custom arguments that Amazon GameLift Streams passes to your game client. AdditionalEnvironmentVariables and AdditionalLaunchArgs have similar purposes. AdditionalEnvironmentVariables passes data using environment variables; while AdditionalLaunchArgs passes data using command-line arguments.
+        AdditionalLaunchArgs: {string}
+        -- A set of options that you can use to control the stream session runtime environment, expressed as a set of key-value pairs. You can use this to configure the application or stream session details. You can also provide custom environment variables that Amazon GameLift Streams passes to your game client. If you want to debug your application with environment variables, we recommend that you do so in a local environment outside of Amazon GameLift Streams. For more information, refer to the Compatibility Guidance in the troubleshooting section of the Developer Guide. AdditionalEnvironmentVariables and AdditionalLaunchArgs have similar purposes. AdditionalEnvironmentVariables passes data using environment variables; while AdditionalLaunchArgs passes data using command-line arguments.
+        AdditionalEnvironmentVariables: {string : string}
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon GameLift Streams assumes during stream sessions started from this stream URL. For more information, see Provide AWS credentials to your streaming application in the Amazon GameLift Streams Developer Guide.
+        RoleArn: string
+        -- The display settings, such as resolution, for stream sessions started from this stream URL.
+        DisplayConfiguration: DisplayConfiguration
+        -- A unique, case-sensitive identifier that you provide to ensure this request is idempotent. If you retry a request with the same ClientToken, Amazon GameLift Streams returns the original response without performing the operation again.
+        ClientToken: string
+    end
+
+    enum StreamUrlStatus
+        "ACTIVE"
+        "EXPIRED"
+        "REVOKED"
+        "LIMIT_REACHED"
+    end
+
+    enum StreamUrlStatusReason
+        "userRevoked"
+        "revokedAndTerminatingSessions"
+        "revokedAndSessionsTerminated"
+        "streamGroupDeleted"
+        "applicationDeleted"
+    end
+
+    record CreateStreamUrlOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the stream URL across all Amazon Web Services Regions. Format is arn:aws:gameliftstreams:[AWS Region]:[AWS account]:streamurl/[stream group resource ID]/[stream URL resource ID].
+        Arn: string
+        -- The unique identifier for the stream URL resource, for example su-1AB2C3De4.
+        StreamUrlId: string
+        -- The shareable stream URL. Distribute this URL to end users so that they can start and play a stream session in a hosted web player. Treat the stream URL as a secret. Anyone who has it can start a stream session until the stream URL expires, is revoked, or reaches its usage limit.
+        StreamUrl: string
+        -- The current status of the stream URL. Possible statuses include the following: ACTIVE: The stream URL is valid and can start stream sessions. EXPIRED: The stream URL has passed its expiration time and can no longer start stream sessions. REVOKED: The stream URL was revoked and can no longer start stream sessions. LIMIT_REACHED: The stream URL has been used the maximum number of times and can no longer start stream sessions.
+        Status: string
+        -- Additional information about why the stream URL is in its current status. Amazon GameLift Streams populates this value when the status is REVOKED. Possible values include the following: userRevoked: You revoked the stream URL. revokedAndTerminatingSessions: You revoked the stream URL and Amazon GameLift Streams is ending its running stream sessions. revokedAndSessionsTerminated: You revoked the stream URL and its running stream sessions have ended. streamGroupDeleted: The stream group was deleted, which revoked the stream URL. applicationDeleted: The application was deleted, which revoked the stream URL.
+        StatusReason: string
+        -- The date and time when the stream URL expires and stops accepting new stream sessions. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        ExpiresAt: number
+        -- A timestamp that indicates when this resource was created. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        CreatedAt: number
+        -- The maximum number of times the stream URL can start a stream session.
+        UsageLimit: number
+        -- The number of times the stream URL can still be used to start a stream session.
+        RemainingUses: number
+        -- The stream group that runs the stream sessions. This value is an Amazon Resource Name (ARN) that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4.
+        StreamGroupArn: string
+        -- The application that runs in the stream sessions. This value is an Amazon Resource Name (ARN) that uniquely identifies the application resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6.
+        ApplicationArn: string
+        -- The data transport protocol used for stream sessions started from this stream URL.
+        Protocol: string
+        -- The list of locations, in order of preference, where Amazon GameLift Streams places the stream session. For a complete list of locations that Amazon GameLift Streams supports, refer to Regions, quotas, and limitations in the Amazon GameLift Streams Developer Guide.
+        Locations: {string}
+        -- The maximum length of time, in seconds, that a stream session started from this stream URL can run.
+        SessionLengthSeconds: number
+        -- The descriptive label for the stream URL.
+        Description: string
+        -- The command-line arguments passed to the application when a stream session starts.
+        AdditionalLaunchArgs: {string}
+        -- The environment variables made available to the application when a stream session starts.
+        AdditionalEnvironmentVariables: {string : string}
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon GameLift Streams assumes during stream sessions started from this stream URL. For more information, see Provide AWS credentials to your streaming application in the Amazon GameLift Streams Developer Guide.
+        RoleArn: string
+        -- The display settings, such as resolution, for stream sessions started from this stream URL.
+        DisplayConfiguration: DisplayConfiguration
+    end
+
     record DeleteStreamGroupInput
         -- An Amazon Resource Name (ARN) or ID that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4. Example ID: sg-1AB2C3De4.
         Identifier: string
@@ -493,20 +596,6 @@ local record M
         Arn: string
         -- A set of applications that are disassociated from this stream group. This value is a set of Amazon Resource Names (ARNs) that uniquely identify application resources. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6.
         ApplicationArns: {string}
-    end
-
-    -- Contains the width and height dimensions, in pixels, that define the resolution of the stream session's virtual monitor. The total number of pixels (width × height) must not exceed 2,073,600 (equivalent to 1920 × 1080).
-    record Resolution
-        -- The width of the stream session's virtual monitor, in pixels. The value must be an even number.
-        Width: number
-        -- The height of the stream session's virtual monitor, in pixels. The value must be an even number.
-        Height: number
-    end
-
-    -- The virtual monitor settings for a stream session, including the resolution. If not specified, the stream session uses the default resolution of 1920 × 1080.
-    record DisplayConfiguration
-        -- The resolution to apply to the stream session's virtual monitor. When specified, this value overrides the default resolution of 1920 × 1080.
-        Resolution: Resolution
     end
 
     enum ExportFilesStatus
@@ -548,10 +637,6 @@ local record M
     record PerformanceStatsConfiguration
         -- Performance stats for the session are streamed to the client when set to true. Defaults to false.
         SharedWithClient: boolean
-    end
-
-    enum Protocol
-        "WebRTC"
     end
 
     enum StreamSessionStatus
@@ -628,17 +713,11 @@ local record M
         DisplayConfiguration: DisplayConfiguration
     end
 
-    record ListStreamSessionsInput
-        -- Filter by the stream session status. You can specify one status in each request to retrieve only sessions that are currently in that status.
-        Status: string
-        -- Filter by the exported files status. You can specify one status in each request to retrieve only sessions that currently have that exported files status. Exported files can be in one of the following states: SUCCEEDED: The exported files are successfully stored in an S3 bucket. FAILED: The session ended but Amazon GameLift Streams couldn't collect and upload the files to S3. PENDING: Either the stream session is still in progress, or uploading the exported files to the S3 bucket is in progress.
-        ExportFilesStatus: string
-        -- The token that marks the start of the next set of results. Use this token when you retrieve results as sequential pages. To get the first page of results, omit a token value. To get the remaining pages, provide the token returned with the previous result set.
-        NextToken: string
-        -- The number of results to return. Use this parameter with NextToken to return results in sequential pages. Default value is 25.
-        MaxResults: number
-        -- The unique identifier of a Amazon GameLift Streams stream group to retrieve the stream session for. You can use either the stream group ID or the Amazon Resource Name (ARN).
+    record GetStreamUrlInput
+        -- An Amazon Resource Name (ARN) or ID that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4. Example ID: sg-1AB2C3De4. This is the stream group that owns the stream URL.
         Identifier: string
+        -- The unique identifier of the stream URL. Specify a stream URL ID or Amazon Resource Name (ARN). Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamurl/sg-1AB2C3De4/su-1AB2C3De4. Example ID: su-1AB2C3De4.
+        StreamUrlIdentifier: string
     end
 
     -- Describes an Amazon GameLift Streams stream session. To retrieve additional details for the stream session, call GetStreamSession.
@@ -667,6 +746,96 @@ local record M
         RoleArn: string
     end
 
+    record GetStreamUrlOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the stream URL across all Amazon Web Services Regions. Format is arn:aws:gameliftstreams:[AWS Region]:[AWS account]:streamurl/[stream group resource ID]/[stream URL resource ID].
+        Arn: string
+        -- The unique identifier for the stream URL resource, for example su-1AB2C3De4.
+        StreamUrlId: string
+        -- The shareable stream URL. Distribute this URL to end users so that they can start and play a stream session in a hosted web player. Treat the stream URL as a secret. Anyone who has it can start a stream session until the stream URL expires, is revoked, or reaches its usage limit.
+        StreamUrl: string
+        -- The current status of the stream URL. Possible statuses include the following: ACTIVE: The stream URL is valid and can start stream sessions. EXPIRED: The stream URL has passed its expiration time and can no longer start stream sessions. REVOKED: The stream URL was revoked and can no longer start stream sessions. LIMIT_REACHED: The stream URL has been used the maximum number of times and can no longer start stream sessions.
+        Status: string
+        -- Additional information about why the stream URL is in its current status. Amazon GameLift Streams populates this value when the status is REVOKED. Possible values include the following: userRevoked: You revoked the stream URL. revokedAndTerminatingSessions: You revoked the stream URL and Amazon GameLift Streams is ending its running stream sessions. revokedAndSessionsTerminated: You revoked the stream URL and its running stream sessions have ended. streamGroupDeleted: The stream group was deleted, which revoked the stream URL. applicationDeleted: The application was deleted, which revoked the stream URL.
+        StatusReason: string
+        -- The date and time when the stream URL expires and stops accepting new stream sessions. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        ExpiresAt: number
+        -- A timestamp that indicates when this resource was created. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        CreatedAt: number
+        -- The maximum number of times the stream URL can start a stream session.
+        UsageLimit: number
+        -- The number of times the stream URL can still be used to start a stream session.
+        RemainingUses: number
+        -- The stream group that runs the stream sessions. This value is an Amazon Resource Name (ARN) that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4.
+        StreamGroupArn: string
+        -- The application that runs in the stream sessions. This value is an Amazon Resource Name (ARN) that uniquely identifies the application resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6.
+        ApplicationArn: string
+        -- The data transport protocol used for stream sessions started from this stream URL.
+        Protocol: string
+        -- The list of locations, in order of preference, where Amazon GameLift Streams places the stream session. For a complete list of locations that Amazon GameLift Streams supports, refer to Regions, quotas, and limitations in the Amazon GameLift Streams Developer Guide.
+        Locations: {string}
+        -- The maximum length of time, in seconds, that a stream session started from this stream URL can run.
+        SessionLengthSeconds: number
+        -- The descriptive label for the stream URL.
+        Description: string
+        -- The command-line arguments passed to the application when a stream session starts.
+        AdditionalLaunchArgs: {string}
+        -- The environment variables made available to the application when a stream session starts.
+        AdditionalEnvironmentVariables: {string : string}
+        -- The Amazon Resource Name (ARN) of the IAM role that Amazon GameLift Streams assumes during stream sessions started from this stream URL. For more information, see Provide AWS credentials to your streaming application in the Amazon GameLift Streams Developer Guide.
+        RoleArn: string
+        -- The display settings, such as resolution, for stream sessions started from this stream URL.
+        DisplayConfiguration: DisplayConfiguration
+        -- A list of the stream sessions that have been started through this stream URL.
+        StreamSessions: {StreamSessionSummary}
+    end
+
+    record ListApplicationShaderCachesInput
+        -- An Amazon Resource Name (ARN) or ID that uniquely identifies the application resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6. Example ID: a-9ZY8X7Wv6.
+        Identifier: string
+    end
+
+    enum ShaderCacheStatus
+        "INITIALIZED"
+        "PROCESSING"
+        "READY"
+        "DELETING"
+        "ERROR"
+    end
+
+    -- Describes a shader cache associated with an Amazon GameLift Streams application.
+    record ShaderCacheSummary
+        -- A unique identifier for the shader cache, formatted as a 32-character hexadecimal string. Format is 1271e693c50b940e228582f1ccdd4e27.
+        Identifier: string
+        -- An Amazon Resource Name (ARN) that uniquely identifies the application resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6.
+        ApplicationArn: string
+        -- The current status of the shader cache. Possible statuses include the following: INITIALIZED: Amazon GameLift Streams received the request and is preparing the shader cache. PROCESSING: Amazon GameLift Streams is replicating the shader cache to the streaming locations in the associated stream groups. READY: The shader cache is replicated and available for use in stream sessions. DELETING: Amazon GameLift Streams is deleting the shader cache. ERROR: An error occurred during shader cache processing. Create a new shader cache to try again.
+        Status: string
+        -- A timestamp that indicates when this resource was last updated. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        LastUpdatedAt: number
+        -- The total storage used by all compiled shader files in this shader cache, in bytes.
+        StorageBytes: number
+        -- The stream groups compatible with this shader cache. Compatibility is based on GPU type and GPU driver version. For more information on shader cache compatibility, see Shader caches in the Amazon GameLift Streams Developer Guide. This value is a set of Amazon Resource Names (ARNs) that uniquely identify stream group resources. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4.
+        AssociatedStreamGroups: {string}
+    end
+
+    record ListApplicationShaderCachesOutput
+        -- A collection of shader cache metadata for the specified Amazon GameLift Streams application. Each item includes the shader cache status, associated stream groups, and storage size.
+        Items: {ShaderCacheSummary}
+    end
+
+    record ListStreamSessionsInput
+        -- Filter by the stream session status. You can specify one status in each request to retrieve only sessions that are currently in that status.
+        Status: string
+        -- Filter by the exported files status. You can specify one status in each request to retrieve only sessions that currently have that exported files status. Exported files can be in one of the following states: SUCCEEDED: The exported files are successfully stored in an S3 bucket. FAILED: The session ended but Amazon GameLift Streams couldn't collect and upload the files to S3. PENDING: Either the stream session is still in progress, or uploading the exported files to the S3 bucket is in progress.
+        ExportFilesStatus: string
+        -- The token that marks the start of the next set of results. Use this token when you retrieve results as sequential pages. To get the first page of results, omit a token value. To get the remaining pages, provide the token returned with the previous result set.
+        NextToken: string
+        -- The number of results to return. Use this parameter with NextToken to return results in sequential pages. Default value is 25.
+        MaxResults: number
+        -- The unique identifier of a Amazon GameLift Streams stream group to retrieve the stream session for. You can use either the stream group ID or the Amazon Resource Name (ARN).
+        Identifier: string
+    end
+
     record ListStreamSessionsOutput
         -- A collection of Amazon GameLift Streams stream sessions that are associated with a stream group and returned in response to a list request. Each item includes stream session metadata and status.
         Items: {StreamSessionSummary}
@@ -692,6 +861,54 @@ local record M
         NextToken: string
     end
 
+    record ListStreamUrlsInput
+        -- Filters the list to stream URLs with the specified status. ACTIVE: The stream URL is valid and can start stream sessions. EXPIRED: The stream URL has passed its expiration time and can no longer start stream sessions. REVOKED: The stream URL was revoked and can no longer start stream sessions. LIMIT_REACHED: The stream URL has been used the maximum number of times and can no longer start stream sessions.
+        Status: string
+        -- Filters the list to stream URLs that belong to the specified stream group. This value is an Amazon Resource Name (ARN) or ID that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4. Example ID: sg-1AB2C3De4.
+        StreamGroupIdentifier: string
+        -- The token that marks the start of the next set of results. Use this token when you retrieve results as sequential pages. To get the first page of results, omit a token value. To get the remaining pages, provide the token returned with the previous result set.
+        NextToken: string
+        -- The maximum number of results to return per page. Valid values are 1-100. The default is 25.
+        MaxResults: number
+    end
+
+    -- Describes a stream URL. This is a summary view that omits the full configuration, such as launch arguments and display settings. To retrieve the complete configuration, call GetStreamUrl.
+    record StreamUrlSummary
+        -- The Amazon Resource Name (ARN) that uniquely identifies the stream URL across all Amazon Web Services Regions. Format is arn:aws:gameliftstreams:[AWS Region]:[AWS account]:streamurl/[stream group resource ID]/[stream URL resource ID].
+        Arn: string
+        -- The unique identifier for the stream URL resource, for example su-1AB2C3De4.
+        StreamUrlId: string
+        -- The shareable stream URL. Distribute this URL to end users so that they can start and play a stream session in a hosted web player. Treat the stream URL as a secret. Anyone who has it can start a stream session until the stream URL expires, is revoked, or reaches its usage limit.
+        StreamUrl: string
+        -- The current status of the stream URL. Possible statuses include the following: ACTIVE: The stream URL is valid and can start stream sessions. EXPIRED: The stream URL has passed its expiration time and can no longer start stream sessions. REVOKED: The stream URL was revoked and can no longer start stream sessions. LIMIT_REACHED: The stream URL has been used the maximum number of times and can no longer start stream sessions.
+        Status: string
+        -- Additional information about why the stream URL is in its current status. Amazon GameLift Streams populates this value when the status is REVOKED. Possible values include the following: userRevoked: You revoked the stream URL. revokedAndTerminatingSessions: You revoked the stream URL and Amazon GameLift Streams is ending its running stream sessions. revokedAndSessionsTerminated: You revoked the stream URL and its running stream sessions have ended. streamGroupDeleted: The stream group was deleted, which revoked the stream URL. applicationDeleted: The application was deleted, which revoked the stream URL.
+        StatusReason: string
+        -- The date and time when the stream URL expires and stops accepting new stream sessions. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        ExpiresAt: number
+        -- A timestamp that indicates when this resource was created. Timestamps are expressed using in ISO8601 format, such as: 2022-12-27T22:29:40+00:00 (UTC).
+        CreatedAt: number
+        -- The maximum number of times the stream URL can start a stream session.
+        UsageLimit: number
+        -- The number of times the stream URL can still be used to start a stream session.
+        RemainingUses: number
+        -- The stream group that runs the stream sessions. This value is an Amazon Resource Name (ARN) that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4.
+        StreamGroupArn: string
+        -- The application that runs in the stream sessions. This value is an Amazon Resource Name (ARN) that uniquely identifies the application resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:application/a-9ZY8X7Wv6.
+        ApplicationArn: string
+        -- The maximum length of time, in seconds, that a stream session started from this stream URL can run.
+        SessionLengthSeconds: number
+        -- The descriptive label for the stream URL.
+        Description: string
+    end
+
+    record ListStreamUrlsOutput
+        -- A collection of stream URL summaries. Each summary includes the identity, status, and usage of the stream URL, but not its full configuration.
+        Items: {StreamUrlSummary}
+        -- A token that marks the start of the next sequential page of results. If an operation doesn't return a token, you've reached the end of the list.
+        NextToken: string
+    end
+
     record ListTagsForResourceInput
         -- The Amazon Resource Name (ARN) that you want to retrieve tags for. To get an Amazon GameLift Streams resource ARN, call a List or Get operation for the resource.
         ResourceArn: string
@@ -710,6 +927,23 @@ local record M
     end
 
     record RemoveStreamGroupLocationsOutput
+    end
+
+    enum RevocationMode
+        "REVOKE_URL"
+        "REVOKE_AND_TERMINATE_SESSIONS"
+    end
+
+    record RevokeStreamUrlInput
+        -- An Amazon Resource Name (ARN) or ID that uniquely identifies the stream group resource. Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamgroup/sg-1AB2C3De4. Example ID: sg-1AB2C3De4. This is the stream group that owns the stream URL.
+        Identifier: string
+        -- The unique identifier of the stream URL to revoke. Specify a stream URL ID or Amazon Resource Name (ARN). Example ARN: arn:aws:gameliftstreams:us-west-2:111122223333:streamurl/sg-1AB2C3De4/su-1AB2C3De4. Example ID: su-1AB2C3De4.
+        StreamUrlIdentifier: string
+        -- Controls what happens to running stream sessions when you revoke the stream URL. If you do not specify a value, the default is REVOKE_URL. Possible values include the following: REVOKE_URL: Stops the stream URL from starting new stream sessions. Running sessions continue until they end. REVOKE_AND_TERMINATE_SESSIONS: Stops new stream sessions and ends any running stream sessions.
+        RevocationMode: string
+    end
+
+    record RevokeStreamUrlOutput
     end
 
     record StartStreamSessionInput
