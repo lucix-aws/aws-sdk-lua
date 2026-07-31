@@ -281,6 +281,12 @@ local record M
         message: string
     end
 
+    enum AttachmentType
+        "user"
+        "group"
+        "role"
+    end
+
     record AttachRolePolicyInput
         -- The name (friendly name, not ARN) of the role to attach the policy to.
         -- This parameter allows (through its regex pattern) a string of characters consisting of upper and lowercase alphanumeric
@@ -4935,6 +4941,18 @@ local record M
         ContextKeyType: string
     end
 
+    -- Represents one level of an Organizations hierarchy—the organization root, an organizational
+    -- unit (OU), or an account—together with the service control policies (SCPs) that apply at
+    -- that level. Each element in the list represents one level of the hierarchy, ordered from
+    -- the organization root down to the account.
+    -- For more information about SCPs, see Service control
+    -- policies (SCPs) in the Organizations User Guide.
+    record OrderedOrganizationPolicyType
+        -- A list of SCP documents that apply at this level of the Organizations hierarchy. Each document
+        -- is specified as a string containing the complete, valid JSON text of an SCP.
+        ServiceControlPolicyInputList: {string}
+    end
+
     record SimulateCustomPolicyInput
         -- A list of policy documents to include in the simulation. Each document is specified as
         -- a string containing the complete, valid JSON text of an IAM policy. Do not include any
@@ -4972,6 +4990,15 @@ local record M
         -- The special characters tab (\u0009), line feed (\u000A), and
         -- carriage return (\u000D)
         PermissionsBoundaryPolicyInputList: {string}
+        -- An ordered list of service control policies (SCPs) to include in the simulation. Each
+        -- element represents one level of an Organizations hierarchy, from the organization root to the
+        -- account.
+        -- The simulator evaluates SCPs in the order that you provide, consistent with how Organizations
+        -- enforces SCPs. The first element must represent the organization root, and the last
+        -- element must represent the account. Any elements between them represent organizational
+        -- units (OUs) in descending order.
+        -- Use this parameter to simulate the effect of an SCP hierarchy without calling SimulatePrincipalPolicy.
+        OrderedOrganizationPolicyInputList: {OrderedOrganizationPolicyType}
         -- A list of names of API operations to evaluate in the simulation. Each operation is
         -- evaluated against each resource. Each operation must include the service identifier,
         -- such as iam:CreateUser. This operation does not support using wildcards (*)
@@ -5020,12 +5047,12 @@ local record M
         -- to represent the account with the 112233445566 ID, use the following ARN:
         -- arn:aws:iam::112233445566-ID:root.
         ResourceOwner: string
-        -- The ARN of the IAM user that you want to use as the simulated caller of the API
-        -- operations. CallerArn is required if you include a
+        -- The ARN of the IAM user, group, or role that you want to use as the simulated
+        -- caller of the API operations. CallerArn is required if you include a
         -- ResourcePolicy so that the policy's Principal element has
         -- a value to use in evaluating the policy.
-        -- You can specify only the ARN of an IAM user. You cannot specify the ARN of an
-        -- assumed role, federated user, or a service principal.
+        -- You cannot specify the ARN of an assumed role, federated user, or a service
+        -- principal.
         CallerArn: string
         -- A list of context keys and corresponding values for the simulation to use. Whenever a
         -- context key is evaluated in one of the simulated IAM permissions policies, the
@@ -5173,10 +5200,31 @@ local record M
     -- and
     -- SimulatePrincipalPolicy
     -- .
+    -- The simulator now returns a single EvaluationResult per action,
+    -- regardless of how many resource ARNs are provided. Previously, simulating one action
+    -- against N resources returned N evaluation results, each containing the same aggregate
+    -- decision. The top-level fields (EvalDecision,
+    -- MatchedStatements, MissingContextValues,
+    -- EvalDecisionDetails) now represent the
+    -- aggregate decision across all requested resources. The top-level
+    -- EvalDecision reflects the most restrictive decision across all resources
+    -- (for example, if any resource produces explicitDeny, the top-level
+    -- decision is explicitDeny).
+    -- To see the decision for each individual resource, use
+    -- ResourceSpecificResults. If your application parses evaluation results per
+    -- resource ARN, update your code to read per-resource decisions from
+    -- ResourceSpecificResults rather than from the top-level result.
     record EvaluationResult
         -- The name of the API operation tested on the indicated resource.
         EvalActionName: string
-        -- The ARN of the resource that the indicated API operation was tested on.
+        -- The ARN template for the simulated resource type (for example,
+        -- arn:${Partition}:s3:::${BucketName}/${KeyName}), or * if no
+        -- ARN format is defined for the action. This is not a specific customer-provided resource
+        -- ARN. To find the decision for a specific resource, use
+        -- ResourceSpecificResults.
+        -- If you previously relied on EvalResourceName to identify which specific
+        -- resource a result applies to, you must now use the EvalResourceName field
+        -- within individual entries in ResourceSpecificResults instead.
         EvalResourceName: string
         -- The result of the simulation.
         EvalDecision: string
@@ -5184,6 +5232,12 @@ local record M
         -- scenario. Remember that even if multiple statements allow the operation on the resource, if
         -- only one statement denies that operation, then the explicit deny overrides any allow. In
         -- addition, the deny statement is the only entry included in the result.
+        -- In the top-level result, this field contains the union of matched statements across all
+        -- requested resources. Only statements that contributed to the reported decision are
+        -- included. For per-resource matched statements, see
+        -- ResourceSpecificResults. This field doesn't include statements from
+        -- service control policies (SCPs). Only statements from identity-based and resource-based
+        -- policies appear here.
         MatchedStatements: {Statement}
         -- A list of context keys that are required by the included input policies but that were
         -- not provided by one of the input parameters. This list is used when the resource in a
@@ -5191,10 +5245,17 @@ local record M
         -- blank. If you include a list of resources, then any missing context values are instead
         -- included under the ResourceSpecificResults section. To discover the context
         -- keys used by a set of policies, you can call GetContextKeysForCustomPolicy or GetContextKeysForPrincipalPolicy.
+        -- In the top-level result, this field contains the deduplicated set of missing context
+        -- values across all requested resources. This field doesn't include context keys referenced
+        -- by service control policies (SCPs). Only context keys referenced by identity-based and
+        -- resource-based policies appear here.
         MissingContextValues: {string}
         -- A structure that details how Organizations and its service control policies affect the results of
         -- the simulation. Only applies if the simulated user's account is part of an
         -- organization.
+        -- For resources that don't support organization-level evaluation, this field is omitted
+        -- from the top-level result. For per-resource details, see
+        -- ResourceSpecificResults.
         OrganizationsDecisionDetail: OrganizationsDecisionDetail
         -- Contains information about the effect that a permissions boundary has on a policy
         -- simulation when the boundary is applied to an IAM entity.
@@ -5202,6 +5263,8 @@ local record M
         -- Additional details about the results of the cross-account evaluation decision. This
         -- parameter is populated for only cross-account simulations. It contains a brief summary of
         -- how each policy type contributes to the final evaluation decision.
+        -- In the top-level result, this map reports the most restrictive decision per policy
+        -- type across all requested resources.
         -- If the simulation evaluates policies within the same account and includes a resource
         -- ARN, then the parameter is present but the response is empty. If the simulation evaluates
         -- policies within the same account and specifies all resources (*), then the
@@ -5234,6 +5297,52 @@ local record M
         -- is present and contains the value to use for the Marker parameter in a subsequent
         -- pagination request.
         Marker: string
+    end
+
+    -- Identifies one or more inline policies that are embedded in IAM users, groups, or
+    -- roles, by the name of the policy together with the type and name of the entity that it is
+    -- attached to. Wildcard characters in the entity name can match multiple entities, so a
+    -- single identifier can select more than one attached inline policy.
+    record InlinePolicyIdentifierType
+        -- The name of the inline policy.
+        PolicyName: string
+        -- The type of IAM entity that the inline policy is attached to.
+        AttachmentType: string
+        -- The name of the IAM user, group, or role that the inline policy is attached to.
+        -- Wildcard characters are supported to match multiple entities: use at most one
+        -- * (matches any sequence of characters, including none), and any number of
+        -- ? (each matches exactly one character).
+        AttachmentName: string
+    end
+
+    enum PolicyIdentifierPolicyType
+        "inline"
+        "aws-managed"
+        "user-managed"
+        "permission-boundary"
+        "scp"
+        "rcp"
+    end
+
+    -- Identifies one or more policies as a union type. Specify exactly one of
+    -- PolicyType, PolicyArn, or
+    -- InlinePolicyIdentifier to identify policies by their type, by Amazon
+    -- Resource Name (ARN), or by the name of an inline policy and the entity it is attached
+    -- to.
+    record PolicyIdentifier
+        -- The policy type to identify. All policies of the specified type are matched.
+        PolicyType: string
+        -- The Amazon Resource Name (ARN) of an Amazon Web Services managed policy or a customer managed policy
+        -- that is attached to an IAM user, group, or role. Wildcard characters are supported in
+        -- the resource name portion of the ARN to match multiple managed policies: use at most one
+        -- * (matches any sequence of characters, including none), and any number of
+        -- ? (each matches exactly one character).
+        -- For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.
+        PolicyArn: string
+        -- An inline policy identifier consisting of a policy name and the entity it is attached
+        -- to. Wildcard characters (* and ?) in the entity name can match
+        -- multiple entities.
+        InlinePolicyIdentifier: InlinePolicyIdentifierType
     end
 
     record SimulatePrincipalPolicyInput
@@ -5279,6 +5388,19 @@ local record M
         -- The special characters tab (\u0009), line feed (\u000A), and
         -- carriage return (\u000D)
         PermissionsBoundaryPolicyInputList: {string}
+        -- A list of policies to exclude from the simulation. Use this parameter to test what
+        -- the simulation result would be if a policy were removed, without changing which
+        -- policies are actually attached to the principal identified by
+        -- PolicySourceArn.
+        -- Each entry is a PolicyIdentifier
+        -- that identifies one or more policies to exclude by policy type, by Amazon Resource Name
+        -- (ARN), or by the name of an inline policy and the entity it is attached to.
+        -- Syntactically invalid identifiers, such as malformed ARNs or wildcards in disallowed
+        -- positions, cause the request to fail with an InvalidInput error.
+        -- Syntactically valid identifiers that don't match any attached policy are ignored.
+        -- Resource control policies (RCPs) are not supported in this release; identifiers that
+        -- target RCPs are also ignored.
+        PolicyExclusionList: {PolicyIdentifier}
         -- A list of names of API operations to evaluate in the simulation. Each operation is
         -- evaluated for each resource. Each operation must include the service identifier, such as
         -- iam:CreateUser.
@@ -5320,19 +5442,20 @@ local record M
         -- resource-based policy and account that owns the resource is different from the account
         -- that owns the simulated calling user CallerArn.
         ResourceOwner: string
-        -- The ARN of the IAM user that you want to specify as the simulated caller of the API
-        -- operations. If you do not specify a CallerArn, it defaults to the ARN of
-        -- the user that you specify in PolicySourceArn, if you specified a user. If
-        -- you include both a PolicySourceArn (for example,
-        -- arn:aws:iam::123456789012:user/David) and a CallerArn (for
-        -- example, arn:aws:iam::123456789012:user/Bob), the result is that you
-        -- simulate calling the API operations as Bob, as if Bob had David's policies.
-        -- You can specify only the ARN of an IAM user. You cannot specify the ARN of an
-        -- assumed role, federated user, or a service principal.
+        -- The ARN of the IAM user, group, or role that you want to specify as the simulated
+        -- caller of the API operations. If you do not specify a CallerArn, it
+        -- defaults to the ARN of the user, group, or role that you specify in
+        -- PolicySourceArn. If you include both a PolicySourceArn
+        -- (for example, arn:aws:iam::123456789012:user/David) and a
+        -- CallerArn (for example,
+        -- arn:aws:iam::123456789012:user/Bob), the result is that you simulate
+        -- calling the API operations as Bob, as if Bob had David's policies.
+        -- You can specify the ARN of an IAM user, group, or role. You cannot specify the ARN
+        -- of an assumed role, federated user, or a service principal.
         -- CallerArn is required if you include a ResourcePolicy and
-        -- the PolicySourceArn is not the ARN for an IAM user. This is required so
-        -- that the resource-based policy's Principal element has a value to use in
-        -- evaluating the policy.
+        -- the PolicySourceArn is not the ARN for an IAM user, group, or role. This
+        -- is required so that the resource-based policy's Principal element has a
+        -- value to use in evaluating the policy.
         -- For more information about ARNs, see Amazon Resource Names (ARNs) in the Amazon Web Services General Reference.
         CallerArn: string
         -- A list of context keys and corresponding values for the simulation to use. Whenever a

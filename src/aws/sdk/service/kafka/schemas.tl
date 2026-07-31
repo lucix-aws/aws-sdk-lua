@@ -15,6 +15,8 @@ M.__listOfUnprocessedScramSecret = schema.new({ type = "list", list_member = M.U
 
 M.__mapOf__string = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.__listOfTopicConfiguration = schema.new({ type = "list", list_member = M.TopicConfiguration })
+
 M.__listOfKafkaCluster = schema.new({ type = "list", list_member = M.KafkaCluster })
 
 M.__listOfReplicationInfo = schema.new({ type = "list", list_member = M.ReplicationInfo })
@@ -26,6 +28,8 @@ M.__listOfReplicationInfoDescription = schema.new({ type = "list", list_member =
 M.__listOfTopicPartitionInfo = schema.new({ type = "list", list_member = M.TopicPartitionInfo })
 
 M.__listOfCompatibleKafkaVersion = schema.new({ type = "list", list_member = M.CompatibleKafkaVersion })
+
+M.__listOfChannelInfo = schema.new({ type = "list", list_member = M.ChannelInfo })
 
 M.__listOfClientVpcConnection = schema.new({ type = "list", list_member = M.ClientVpcConnection })
 
@@ -53,6 +57,8 @@ M.__listOfVpcConnection = schema.new({ type = "list", list_member = M.VpcConnect
 
 M.__listOfBrokerEBSVolumeInfo = schema.new({ type = "list", list_member = M.BrokerEBSVolumeInfo })
 
+M.__listOfDestinationTable = schema.new({ type = "list", list_member = M.DestinationTable })
+
 M.__listOfVpcConfig = schema.new({ type = "list", list_member = M.VpcConfig })
 
 M.__listOfClusterOperationStep = schema.new({ type = "list", list_member = M.ClusterOperationStep })
@@ -68,6 +74,8 @@ M.__listOfKafkaClusterSummary = schema.new({ type = "list", list_member = M.Kafk
 M.__listOfReplicationInfoSummary = schema.new({ type = "list", list_member = M.ReplicationInfoSummary })
 
 M.__listOf__double = schema.new({ type = "list", list_member = prelude.Double })
+
+M.__listOfPartitionSource = schema.new({ type = "list", list_member = M.PartitionSource })
 
 M.ProvisionedThroughput = schema.new({
     id = id.from(_N, "ProvisionedThroughput"),
@@ -125,6 +133,77 @@ M.BrokerEBSVolumeInfo = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.JSON_NAME] = { name = "volumeSizeGB" },
+            },
+        }),
+    },
+})
+
+M.ChannelInfo = schema.new({
+    id = id.from(_N, "ChannelInfo"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "ChannelInfo", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelArn" },
+            },
+        }),
+        ChannelName = schema.new({
+            id = id.from(_N, "ChannelInfo", "ChannelName"),
+            type = "string",
+            name = "ChannelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelName" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ChannelInfo", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "ChannelInfo", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "creationTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "creationTime" },
+            },
+        }),
+        DestinationType = schema.new({
+            id = id.from(_N, "ChannelInfo", "DestinationType"),
+            type = "string",
+            name = "DestinationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationType" },
+            },
+        }),
+        ClusterOperationArn = schema.new({
+            id = id.from(_N, "ChannelInfo", "ClusterOperationArn"),
+            type = "string",
+            name = "ClusterOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clusterOperationArn" },
             },
         }),
     },
@@ -2353,6 +2432,84 @@ M.Configuration = schema.new({
     },
 })
 
+M.PartitionSource = schema.new({
+    id = id.from(_N, "PartitionSource"),
+    type = "structure",
+    members = {
+        SourceName = schema.new({
+            id = id.from(_N, "PartitionSource", "SourceName"),
+            type = "string",
+            name = "SourceName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceName" },
+            },
+        }),
+    },
+})
+
+M.PartitionSpec = schema.new({
+    id = id.from(_N, "PartitionSpec"),
+    type = "structure",
+    members = {
+        PartitionStrategy = schema.new({
+            id = id.from(_N, "PartitionSpec", "PartitionStrategy"),
+            type = "string",
+            name = "PartitionStrategy",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "partitionStrategy" },
+            },
+        }),
+        SourceList = schema.new({
+            id = id.from(_N, "PartitionSpec", "SourceList"),
+            type = "list",
+            name = "SourceList",
+            target_id = prelude.Document.id,
+            list_member = M.PartitionSource,
+            traits = {
+                [traits.JSON_NAME] = { name = "sourceList" },
+            },
+        }),
+    },
+})
+
+M.DestinationTable = schema.new({
+    id = id.from(_N, "DestinationTable"),
+    type = "structure",
+    members = {
+        DestinationDatabaseName = schema.new({
+            id = id.from(_N, "DestinationTable", "DestinationDatabaseName"),
+            type = "string",
+            name = "DestinationDatabaseName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationDatabaseName" },
+            },
+        }),
+        DestinationTableName = schema.new({
+            id = id.from(_N, "DestinationTable", "DestinationTableName"),
+            type = "string",
+            name = "DestinationTableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "destinationTableName" },
+            },
+        }),
+        PartitionSpec = schema.new({
+            id = id.from(_N, "DestinationTable", "PartitionSpec"),
+            type = "structure",
+            name = "PartitionSpec",
+            target_id = id.from(_N, "PartitionSpec"),
+            target = M.PartitionSpec,
+            traits = {
+                [traits.JSON_NAME] = { name = "partitionSpec" },
+            },
+        }),
+    },
+})
+
 M.AmazonMskCluster = schema.new({
     id = id.from(_N, "AmazonMskCluster"),
     type = "structure",
@@ -3322,6 +3479,78 @@ M.ReplicatorSummary = schema.new({
     },
 })
 
+M.RecordConverter = schema.new({
+    id = id.from(_N, "RecordConverter"),
+    type = "structure",
+    members = {
+        ValueConverter = schema.new({
+            id = id.from(_N, "RecordConverter", "ValueConverter"),
+            type = "string",
+            name = "ValueConverter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "valueConverter" },
+            },
+        }),
+    },
+})
+
+M.RecordSchema = schema.new({
+    id = id.from(_N, "RecordSchema"),
+    type = "structure",
+    members = {
+        GsrArn = schema.new({
+            id = id.from(_N, "RecordSchema", "GsrArn"),
+            type = "string",
+            name = "GsrArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "gsrArn" },
+            },
+        }),
+    },
+})
+
+M.TopicConfiguration = schema.new({
+    id = id.from(_N, "TopicConfiguration"),
+    type = "structure",
+    members = {
+        RecordConverter = schema.new({
+            id = id.from(_N, "TopicConfiguration", "RecordConverter"),
+            type = "structure",
+            name = "RecordConverter",
+            target_id = id.from(_N, "RecordConverter"),
+            target = M.RecordConverter,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "recordConverter" },
+            },
+        }),
+        RecordSchema = schema.new({
+            id = id.from(_N, "TopicConfiguration", "RecordSchema"),
+            type = "structure",
+            name = "RecordSchema",
+            target_id = id.from(_N, "RecordSchema"),
+            target = M.RecordSchema,
+            traits = {
+                [traits.JSON_NAME] = { name = "recordSchema" },
+            },
+        }),
+        TopicArn = schema.new({
+            id = id.from(_N, "TopicConfiguration", "TopicArn"),
+            type = "string",
+            name = "TopicArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "topicArn" },
+            },
+        }),
+    },
+})
+
 M.TopicInfo = schema.new({
     id = id.from(_N, "TopicInfo"),
     type = "structure",
@@ -3824,6 +4053,93 @@ M.BatchDisassociateScramSecretOutput = schema.new({
     },
 })
 
+M.Catalog = schema.new({
+    id = id.from(_N, "Catalog"),
+    type = "structure",
+    members = {
+        CatalogArn = schema.new({
+            id = id.from(_N, "Catalog", "CatalogArn"),
+            type = "string",
+            name = "CatalogArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "catalogArn" },
+            },
+        }),
+        WarehouseLocation = schema.new({
+            id = id.from(_N, "Catalog", "WarehouseLocation"),
+            type = "string",
+            name = "WarehouseLocation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "warehouseLocation" },
+            },
+        }),
+    },
+})
+
+M.ChannelLoggingInfo = schema.new({
+    id = id.from(_N, "ChannelLoggingInfo"),
+    type = "structure",
+    members = {
+        CloudWatchLogs = schema.new({
+            id = id.from(_N, "ChannelLoggingInfo", "CloudWatchLogs"),
+            type = "structure",
+            name = "CloudWatchLogs",
+            target_id = id.from(_N, "CloudWatchLogs"),
+            target = M.CloudWatchLogs,
+            traits = {
+                [traits.JSON_NAME] = { name = "cloudWatchLogs" },
+            },
+        }),
+        Firehose = schema.new({
+            id = id.from(_N, "ChannelLoggingInfo", "Firehose"),
+            type = "structure",
+            name = "Firehose",
+            target_id = id.from(_N, "Firehose"),
+            target = M.Firehose,
+            traits = {
+                [traits.JSON_NAME] = { name = "firehose" },
+            },
+        }),
+        S3 = schema.new({
+            id = id.from(_N, "ChannelLoggingInfo", "S3"),
+            type = "structure",
+            name = "S3",
+            target_id = id.from(_N, "S3"),
+            target = M.S3,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3" },
+            },
+        }),
+    },
+})
+
+M.ChannelStateInfo = schema.new({
+    id = id.from(_N, "ChannelStateInfo"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ChannelStateInfo", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "code" },
+            },
+        }),
+        Message = schema.new({
+            id = id.from(_N, "ChannelStateInfo", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
 M.ClusterConnectivityException = schema.new({
     id = id.from(_N, "ClusterConnectivityException"),
     type = "structure",
@@ -4192,6 +4508,416 @@ M.ControllerMovedException = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "message" },
+            },
+        }),
+    },
+})
+
+M.EncryptionConfiguration = schema.new({
+    id = id.from(_N, "EncryptionConfiguration"),
+    type = "structure",
+    members = {
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "EncryptionConfiguration", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "kmsKeyArn" },
+            },
+        }),
+    },
+})
+
+M.DeadLetterQueueS3 = schema.new({
+    id = id.from(_N, "DeadLetterQueueS3"),
+    type = "structure",
+    members = {
+        BucketArn = schema.new({
+            id = id.from(_N, "DeadLetterQueueS3", "BucketArn"),
+            type = "string",
+            name = "BucketArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "bucketArn" },
+            },
+        }),
+        ErrorOutputPrefix = schema.new({
+            id = id.from(_N, "DeadLetterQueueS3", "ErrorOutputPrefix"),
+            type = "string",
+            name = "ErrorOutputPrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "errorOutputPrefix" },
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "DeadLetterQueueS3", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expectedBucketOwner" },
+            },
+        }),
+    },
+})
+
+M.SchemaEvolution = schema.new({
+    id = id.from(_N, "SchemaEvolution"),
+    type = "structure",
+    members = {
+        EnableSchemaEvolution = schema.new({
+            id = id.from(_N, "SchemaEvolution", "EnableSchemaEvolution"),
+            type = "boolean",
+            name = "EnableSchemaEvolution",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "enableSchemaEvolution" },
+            },
+        }),
+    },
+})
+
+M.TableCreation = schema.new({
+    id = id.from(_N, "TableCreation"),
+    type = "structure",
+    members = {
+        EnableTableCreation = schema.new({
+            id = id.from(_N, "TableCreation", "EnableTableCreation"),
+            type = "boolean",
+            name = "EnableTableCreation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "enableTableCreation" },
+            },
+        }),
+    },
+})
+
+M.IcebergDestinationConfiguration = schema.new({
+    id = id.from(_N, "IcebergDestinationConfiguration"),
+    type = "structure",
+    members = {
+        AppendOnly = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "AppendOnly"),
+            type = "boolean",
+            name = "AppendOnly",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "appendOnly" },
+            },
+        }),
+        Catalog = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "Catalog"),
+            type = "structure",
+            name = "Catalog",
+            target_id = id.from(_N, "Catalog"),
+            target = M.Catalog,
+            traits = {
+                [traits.JSON_NAME] = { name = "catalog" },
+            },
+        }),
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "dataFreshnessInSeconds" },
+            },
+        }),
+        DeadLetterQueueS3 = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "DeadLetterQueueS3"),
+            type = "structure",
+            name = "DeadLetterQueueS3",
+            target_id = id.from(_N, "DeadLetterQueueS3"),
+            target = M.DeadLetterQueueS3,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "deadLetterQueueS3" },
+            },
+        }),
+        DestinationTableList = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "DestinationTableList"),
+            type = "list",
+            name = "DestinationTableList",
+            target_id = prelude.Document.id,
+            list_member = M.DestinationTable,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationTableList" },
+            },
+        }),
+        SchemaEvolution = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "SchemaEvolution"),
+            type = "structure",
+            name = "SchemaEvolution",
+            target_id = id.from(_N, "SchemaEvolution"),
+            target = M.SchemaEvolution,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "schemaEvolution" },
+            },
+        }),
+        ServiceExecutionRoleArn = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "ServiceExecutionRoleArn"),
+            type = "string",
+            name = "ServiceExecutionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "serviceExecutionRoleArn" },
+            },
+        }),
+        TableCreation = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "TableCreation"),
+            type = "structure",
+            name = "TableCreation",
+            target_id = id.from(_N, "TableCreation"),
+            target = M.TableCreation,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "tableCreation" },
+            },
+        }),
+        CompressionType = schema.new({
+            id = id.from(_N, "IcebergDestinationConfiguration", "CompressionType"),
+            type = "string",
+            name = "CompressionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "compressionType" },
+            },
+        }),
+    },
+})
+
+M.S3Storage = schema.new({
+    id = id.from(_N, "S3Storage"),
+    type = "structure",
+    members = {
+        BucketArn = schema.new({
+            id = id.from(_N, "S3Storage", "BucketArn"),
+            type = "string",
+            name = "BucketArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "bucketArn" },
+            },
+        }),
+        CompressionType = schema.new({
+            id = id.from(_N, "S3Storage", "CompressionType"),
+            type = "string",
+            name = "CompressionType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "compressionType" },
+            },
+        }),
+        OutputPrefix = schema.new({
+            id = id.from(_N, "S3Storage", "OutputPrefix"),
+            type = "string",
+            name = "OutputPrefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "outputPrefix" },
+            },
+        }),
+        OutputKeyTemplate = schema.new({
+            id = id.from(_N, "S3Storage", "OutputKeyTemplate"),
+            type = "string",
+            name = "OutputKeyTemplate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "outputKeyTemplate" },
+            },
+        }),
+        StorageClass = schema.new({
+            id = id.from(_N, "S3Storage", "StorageClass"),
+            type = "string",
+            name = "StorageClass",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "storageClass" },
+            },
+        }),
+        ExpectedBucketOwner = schema.new({
+            id = id.from(_N, "S3Storage", "ExpectedBucketOwner"),
+            type = "string",
+            name = "ExpectedBucketOwner",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "expectedBucketOwner" },
+            },
+        }),
+    },
+})
+
+M.S3DestinationConfiguration = schema.new({
+    id = id.from(_N, "S3DestinationConfiguration"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3DestinationConfiguration", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "dataFreshnessInSeconds" },
+            },
+        }),
+        DeadLetterQueueS3 = schema.new({
+            id = id.from(_N, "S3DestinationConfiguration", "DeadLetterQueueS3"),
+            type = "structure",
+            name = "DeadLetterQueueS3",
+            target_id = id.from(_N, "DeadLetterQueueS3"),
+            target = M.DeadLetterQueueS3,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "deadLetterQueueS3" },
+            },
+        }),
+        ServiceExecutionRoleArn = schema.new({
+            id = id.from(_N, "S3DestinationConfiguration", "ServiceExecutionRoleArn"),
+            type = "string",
+            name = "ServiceExecutionRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "serviceExecutionRoleArn" },
+            },
+        }),
+        Storage = schema.new({
+            id = id.from(_N, "S3DestinationConfiguration", "Storage"),
+            type = "structure",
+            name = "Storage",
+            target_id = id.from(_N, "S3Storage"),
+            target = M.S3Storage,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "storage" },
+            },
+        }),
+    },
+})
+
+M.CreateChannelInput = schema.new({
+    id = id.from(_N, "CreateChannelRequest"),
+    type = "structure",
+    members = {
+        ChannelName = schema.new({
+            id = id.from(_N, "CreateChannelInput", "ChannelName"),
+            type = "string",
+            name = "ChannelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelName" },
+            },
+        }),
+        ClusterArn = schema.new({
+            id = id.from(_N, "CreateChannelInput", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionConfiguration" },
+            },
+        }),
+        IcebergDestinationConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "IcebergDestinationConfiguration"),
+            type = "structure",
+            name = "IcebergDestinationConfiguration",
+            target_id = id.from(_N, "IcebergDestinationConfiguration"),
+            target = M.IcebergDestinationConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "icebergDestinationConfiguration" },
+            },
+        }),
+        S3DestinationConfiguration = schema.new({
+            id = id.from(_N, "CreateChannelInput", "S3DestinationConfiguration"),
+            type = "structure",
+            name = "S3DestinationConfiguration",
+            target_id = id.from(_N, "S3DestinationConfiguration"),
+            target = M.S3DestinationConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3DestinationConfiguration" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateChannelInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
+            },
+        }),
+        TopicConfigurationList = schema.new({
+            id = id.from(_N, "CreateChannelInput", "TopicConfigurationList"),
+            type = "list",
+            name = "TopicConfigurationList",
+            target_id = prelude.Document.id,
+            list_member = M.TopicConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "topicConfigurationList" },
+            },
+        }),
+        LoggingInfo = schema.new({
+            id = id.from(_N, "CreateChannelInput", "LoggingInfo"),
+            type = "structure",
+            name = "LoggingInfo",
+            target_id = id.from(_N, "ChannelLoggingInfo"),
+            target = M.ChannelLoggingInfo,
+            traits = {
+                [traits.JSON_NAME] = { name = "loggingInfo" },
+            },
+        }),
+    },
+})
+
+M.CreateChannelOutput = schema.new({
+    id = id.from(_N, "CreateChannelResponse"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "CreateChannelOutput", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelArn" },
+            },
+        }),
+        ClusterOperationArn = schema.new({
+            id = id.from(_N, "CreateChannelOutput", "ClusterOperationArn"),
+            type = "string",
+            name = "ClusterOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clusterOperationArn" },
             },
         }),
     },
@@ -5403,6 +6129,59 @@ M.CreateVpcConnectionOutput = schema.new({
     },
 })
 
+M.DeleteChannelInput = schema.new({
+    id = id.from(_N, "DeleteChannelRequest"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "DeleteChannelInput", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ClusterArn = schema.new({
+            id = id.from(_N, "DeleteChannelInput", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteChannelOutput = schema.new({
+    id = id.from(_N, "DeleteChannelResponse"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "DeleteChannelOutput", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelArn" },
+            },
+        }),
+        ClusterOperationArn = schema.new({
+            id = id.from(_N, "DeleteChannelOutput", "ClusterOperationArn"),
+            type = "string",
+            name = "ClusterOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clusterOperationArn" },
+            },
+        }),
+    },
+})
+
 M.DeleteClusterInput = schema.new({
     id = id.from(_N, "DeleteClusterRequest"),
     type = "structure",
@@ -5667,6 +6446,176 @@ M.DeleteVpcConnectionOutput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.JSON_NAME] = { name = "state" },
+            },
+        }),
+    },
+})
+
+M.DescribeChannelInput = schema.new({
+    id = id.from(_N, "DescribeChannelRequest"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "DescribeChannelInput", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ClusterArn = schema.new({
+            id = id.from(_N, "DescribeChannelInput", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeChannelOutput = schema.new({
+    id = id.from(_N, "DescribeChannelResponse"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelArn" },
+            },
+        }),
+        ChannelName = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "ChannelName"),
+            type = "string",
+            name = "ChannelName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelName" },
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "EncryptionConfiguration"),
+            target = M.EncryptionConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "encryptionConfiguration" },
+            },
+        }),
+        IcebergDestinationConfiguration = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "IcebergDestinationConfiguration"),
+            type = "structure",
+            name = "IcebergDestinationConfiguration",
+            target_id = id.from(_N, "IcebergDestinationConfiguration"),
+            target = M.IcebergDestinationConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "icebergDestinationConfiguration" },
+            },
+        }),
+        S3DestinationConfiguration = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "S3DestinationConfiguration"),
+            type = "structure",
+            name = "S3DestinationConfiguration",
+            target_id = id.from(_N, "S3DestinationConfiguration"),
+            target = M.S3DestinationConfiguration,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3DestinationConfiguration" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "status" },
+            },
+        }),
+        DestinationType = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "DestinationType"),
+            type = "string",
+            name = "DestinationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "destinationType" },
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "creationTime" },
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "creationTime" },
+            },
+        }),
+        TopicConfigurationList = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "TopicConfigurationList"),
+            type = "list",
+            name = "TopicConfigurationList",
+            target_id = prelude.Document.id,
+            list_member = M.TopicConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "topicConfigurationList" },
+            },
+        }),
+        LoggingInfo = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "LoggingInfo"),
+            type = "structure",
+            name = "LoggingInfo",
+            target_id = id.from(_N, "ChannelLoggingInfo"),
+            target = M.ChannelLoggingInfo,
+            traits = {
+                [traits.JSON_NAME] = { name = "loggingInfo" },
+            },
+        }),
+        StateInfo = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "StateInfo"),
+            type = "structure",
+            name = "StateInfo",
+            target_id = id.from(_N, "ChannelStateInfo"),
+            target = M.ChannelStateInfo,
+            traits = {
+                [traits.JSON_NAME] = { name = "stateInfo" },
+            },
+        }),
+        ClusterOperationArn = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "ClusterOperationArn"),
+            type = "string",
+            name = "ClusterOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clusterOperationArn" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "DescribeChannelOutput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.JSON_NAME] = { name = "tags" },
             },
         }),
     },
@@ -6661,6 +7610,93 @@ M.GetCompatibleKafkaVersionsOutput = schema.new({
             list_member = M.CompatibleKafkaVersion,
             traits = {
                 [traits.JSON_NAME] = { name = "compatibleKafkaVersions" },
+            },
+        }),
+    },
+})
+
+M.IcebergDestinationUpdate = schema.new({
+    id = id.from(_N, "IcebergDestinationUpdate"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "IcebergDestinationUpdate", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "dataFreshnessInSeconds" },
+            },
+        }),
+    },
+})
+
+M.ListChannelsInput = schema.new({
+    id = id.from(_N, "ListChannelsRequest"),
+    type = "structure",
+    members = {
+        ClusterArn = schema.new({
+            id = id.from(_N, "ListChannelsInput", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListChannelsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListChannelsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        TopicNameFilter = schema.new({
+            id = id.from(_N, "ListChannelsInput", "TopicNameFilter"),
+            type = "string",
+            name = "TopicNameFilter",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "topicNameFilter" },
+            },
+        }),
+    },
+})
+
+M.ListChannelsOutput = schema.new({
+    id = id.from(_N, "ListChannelsResponse"),
+    type = "structure",
+    members = {
+        Channels = schema.new({
+            id = id.from(_N, "ListChannelsOutput", "Channels"),
+            type = "list",
+            name = "Channels",
+            target_id = prelude.Document.id,
+            list_member = M.ChannelInfo,
+            traits = {
+                [traits.JSON_NAME] = { name = "channels" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListChannelsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "nextToken" },
             },
         }),
     },
@@ -7864,6 +8900,96 @@ M.UpdateBrokerTypeOutput = schema.new({
     },
 })
 
+M.S3DestinationUpdate = schema.new({
+    id = id.from(_N, "S3DestinationUpdate"),
+    type = "structure",
+    members = {
+        DataFreshnessInSeconds = schema.new({
+            id = id.from(_N, "S3DestinationUpdate", "DataFreshnessInSeconds"),
+            type = "integer",
+            name = "DataFreshnessInSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "dataFreshnessInSeconds" },
+            },
+        }),
+    },
+})
+
+M.UpdateChannelInput = schema.new({
+    id = id.from(_N, "UpdateChannelRequest"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        ClusterArn = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "ClusterArn"),
+            type = "string",
+            name = "ClusterArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        IcebergDestinationUpdate = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "IcebergDestinationUpdate"),
+            type = "structure",
+            name = "IcebergDestinationUpdate",
+            target_id = id.from(_N, "IcebergDestinationUpdate"),
+            target = M.IcebergDestinationUpdate,
+            traits = {
+                [traits.JSON_NAME] = { name = "icebergDestinationUpdate" },
+            },
+        }),
+        S3DestinationUpdate = schema.new({
+            id = id.from(_N, "UpdateChannelInput", "S3DestinationUpdate"),
+            type = "structure",
+            name = "S3DestinationUpdate",
+            target_id = id.from(_N, "S3DestinationUpdate"),
+            target = M.S3DestinationUpdate,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3DestinationUpdate" },
+            },
+        }),
+    },
+})
+
+M.UpdateChannelOutput = schema.new({
+    id = id.from(_N, "UpdateChannelResponse"),
+    type = "structure",
+    members = {
+        ChannelArn = schema.new({
+            id = id.from(_N, "UpdateChannelOutput", "ChannelArn"),
+            type = "string",
+            name = "ChannelArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.JSON_NAME] = { name = "channelArn" },
+            },
+        }),
+        ClusterOperationArn = schema.new({
+            id = id.from(_N, "UpdateChannelOutput", "ClusterOperationArn"),
+            type = "string",
+            name = "ClusterOperationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "clusterOperationArn" },
+            },
+        }),
+    },
+})
+
 M.UpdateClusterConfigurationInput = schema.new({
     id = id.from(_N, "UpdateClusterConfigurationRequest"),
     type = "structure",
@@ -8734,6 +9860,18 @@ M.BatchDisassociateScramSecret = schema.operation({
     },
 })
 
+M.CreateChannel = schema.operation({
+    id = id.from("com.amazonaws.kafka", "CreateChannel"),
+    input = M.CreateChannelInput,
+    output = M.CreateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/clusters/{ClusterArn}/channels" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateCluster = schema.operation({
     id = id.from("com.amazonaws.kafka", "CreateCluster"),
     input = M.CreateClusterInput,
@@ -8806,6 +9944,18 @@ M.CreateVpcConnection = schema.operation({
     },
 })
 
+M.DeleteChannel = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DeleteChannel"),
+    input = M.DeleteChannelInput,
+    output = M.DeleteChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/v1/clusters/{ClusterArn}/channels/{ChannelArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteCluster = schema.operation({
     id = id.from("com.amazonaws.kafka", "DeleteCluster"),
     input = M.DeleteClusterInput,
@@ -8872,6 +10022,18 @@ M.DeleteVpcConnection = schema.operation({
     output = M.DeleteVpcConnectionOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/v1/vpc-connection/{Arn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeChannel = schema.operation({
+    id = id.from("com.amazonaws.kafka", "DescribeChannel"),
+    input = M.DescribeChannelInput,
+    output = M.DescribeChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/channels/{ChannelArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9028,6 +10190,18 @@ M.GetCompatibleKafkaVersions = schema.operation({
     output = M.GetCompatibleKafkaVersionsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/compatible-kafka-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListChannels = schema.operation({
+    id = id.from("com.amazonaws.kafka", "ListChannels"),
+    input = M.ListChannelsInput,
+    output = M.ListChannelsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v1/clusters/{ClusterArn}/channels" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -9292,6 +10466,18 @@ M.UpdateBrokerType = schema.operation({
     output = M.UpdateBrokerTypeOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/nodes/type" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateChannel = schema.operation({
+    id = id.from("com.amazonaws.kafka", "UpdateChannel"),
+    input = M.UpdateChannelInput,
+    output = M.UpdateChannelOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/v1/clusters/{ClusterArn}/channels/{ChannelArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

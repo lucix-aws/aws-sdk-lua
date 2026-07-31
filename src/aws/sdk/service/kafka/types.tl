@@ -20,6 +20,37 @@ local record M
         VolumeSizeGB: number
     end
 
+    enum ChannelDestinationType
+        "ICEBERG"
+        "S3"
+    end
+
+    enum ChannelStatus
+        "CREATING"
+        "ACTIVE"
+        "UPDATING"
+        "DELETING"
+        "FAILED"
+        "SUSPENDING"
+        "SUSPENDED"
+    end
+
+    -- Summary information about a channel returned by ListChannels.
+    record ChannelInfo
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
+        -- The name of the channel.
+        ChannelName: string
+        -- The current lifecycle state of the channel.
+        Status: string
+        -- The time when the channel was created.
+        CreationTime: number
+        -- The type of destination configured for the channel.
+        DestinationType: string
+        -- The Amazon Resource Name (ARN) of the in-flight cluster operation. Returned only while the channel is in CREATING, UPDATING, or DELETING.
+        ClusterOperationArn: string
+    end
+
     enum VpcConnectionState
         "CREATING"
         "AVAILABLE"
@@ -685,6 +716,34 @@ local record M
         State: string
     end
 
+    enum PartitionStrategy
+        "TIME_HOUR"
+    end
+
+    -- A source column used by an Apache Iceberg destination table's partition specification.
+    record PartitionSource
+        -- Source name.
+        SourceName: string
+    end
+
+    -- Partition specification for an Apache Iceberg destination table.
+    record PartitionSpec
+        -- The partitioning strategy applied to records written to the table.
+        PartitionStrategy: string
+        -- The source columns used by the partitioning strategy. For TIME_HOUR, must contain exactly one source column whose value is a timestamp.
+        SourceList: {PartitionSource}
+    end
+
+    -- Configuration of an Apache Iceberg destination table.
+    record DestinationTable
+        -- The name of the destination namespace (database) in the AWS Glue Data Catalog.
+        DestinationDatabaseName: string
+        -- The name of the destination Apache Iceberg table.
+        DestinationTableName: string
+        -- The partition specification for the destination table.
+        PartitionSpec: PartitionSpec
+    end
+
     -- Details of an Amazon MSK Cluster.
     record AmazonMskCluster
         -- The Amazon Resource Name (ARN) of an Amazon MSK cluster.
@@ -991,6 +1050,35 @@ local record M
         ReplicatorState: string
     end
 
+    enum ValueConverter
+        "BYTE_ARRAY"
+        "JSON"
+        "JSON_SCHEMA_GSR"
+        "STRING"
+    end
+
+    -- Configuration that controls how Apache Kafka record values are deserialized for the destination.
+    record RecordConverter
+        -- The deserialization format applied to Apache Kafka record values.
+        ValueConverter: string
+    end
+
+    -- Schema configuration that controls how Apache Kafka record values are validated.
+    record RecordSchema
+        -- The Amazon Resource Name (ARN) of the AWS Glue Schema Registry schema (not registry) used to validate records for the destination Apache Iceberg table.
+        GsrArn: string
+    end
+
+    -- Configuration of an Apache Kafka topic that feeds a channel.
+    record TopicConfiguration
+        -- Configuration that controls how Apache Kafka record values are deserialized for the destination.
+        RecordConverter: RecordConverter
+        -- The schema used to validate records when the value converter requires one (for example, JSON_SCHEMA_GSR).
+        RecordSchema: RecordSchema
+        -- The Amazon Resource Name (ARN) that uniquely identifies the topic.
+        TopicArn: string
+    end
+
     -- Includes identification info about the topic.
     record TopicInfo
         -- The Amazon Resource Name (ARN) of the topic.
@@ -1129,6 +1217,32 @@ local record M
         UnprocessedScramSecrets: {UnprocessedScramSecret}
     end
 
+    -- Configuration of the AWS Glue Data Catalog and S3 Tables warehouse used by the Apache Iceberg destination.
+    record Catalog
+        -- The Amazon Resource Name (ARN) of the federated AWS Glue Data Catalog that projects the S3 Tables bucket. If omitted, MSK derives the catalog ARN from warehouseLocation.
+        CatalogArn: string
+        -- The Amazon Resource Name (ARN) of the S3 Tables bucket that backs the Apache Iceberg warehouse.
+        WarehouseLocation: string
+    end
+
+    -- Configuration for the destinations to which the channel publishes operational logs.
+    record ChannelLoggingInfo
+        -- Details of the CloudWatch Logs destination for Channel logs.
+        CloudWatchLogs: CloudWatchLogs
+        -- Details of the Kinesis Data Firehose delivery stream that is the destination for Channel logs.
+        Firehose: Firehose
+        -- Details of the Amazon S3 destination for Channel logs.
+        S3: S3
+    end
+
+    -- Additional context for the current channel state, populated when the channel is in FAILED.
+    record ChannelStateInfo
+        -- A short, machine-readable code identifying the failure cause.
+        Code: string
+        -- A human-readable message describing the failure.
+        Message: string
+    end
+
     -- Returns information about an error.
     record ClusterConnectivityException
         -- The parameter that caused the error.
@@ -1221,6 +1335,129 @@ local record M
         InvalidParameter: string
         -- The description of the error.
         Message: string
+    end
+
+    -- The AWS KMS encryption configuration applied to data at rest.
+    record EncryptionConfiguration
+        -- The Amazon Resource Name (ARN) of the AWS KMS key used to encrypt the data.
+        KmsKeyArn: string
+    end
+
+    enum IcebergCompressionType
+        "ZSTD"
+        "SNAPPY"
+    end
+
+    -- Configuration of the Amazon S3 bucket where records that fail to deliver are stored.
+    record DeadLetterQueueS3
+        -- The Amazon Resource Name (ARN) of the dead-letter Amazon S3 bucket.
+        BucketArn: string
+        -- An optional prefix prepended to every dead-letter Amazon S3 object key.
+        ErrorOutputPrefix: string
+        -- Optional 12-digit AWS account ID expected to own the dead-letter Amazon S3 bucket.
+        ExpectedBucketOwner: string
+    end
+
+    -- Configuration controlling whether the Apache Iceberg destination table's schema is evolved as incoming records change.
+    record SchemaEvolution
+        -- Whether to allow MSK to evolve the destination table's schema. Must be false for the current release.
+        EnableSchemaEvolution: boolean
+    end
+
+    -- Configuration controlling whether MSK creates the destination Apache Iceberg table if it does not already exist.
+    record TableCreation
+        -- Whether MSK creates the destination table on the customer's behalf. Must be true for the current release.
+        EnableTableCreation: boolean
+    end
+
+    -- Configuration of an Apache Iceberg destination for a channel.
+    record IcebergDestinationConfiguration
+        -- Whether the destination is append-only. Must be true; updates and deletes are not supported.
+        AppendOnly: boolean
+        -- The AWS Glue Data Catalog and S3 Tables warehouse used by the destination.
+        Catalog: Catalog
+        -- The maximum time, in seconds, that records buffer in MSK before being flushed to the destination. Allowed range: 300 to 900. Default: 600.
+        DataFreshnessInSeconds: number
+        -- The Amazon S3 bucket and prefix where MSK writes records that fail to deliver.
+        DeadLetterQueueS3: DeadLetterQueueS3
+        -- The destination Iceberg tables. Currently exactly one table must be specified.
+        DestinationTableList: {DestinationTable}
+        -- Configuration controlling whether the destination table's schema is evolved to match incoming records.
+        SchemaEvolution: SchemaEvolution
+        -- The Amazon Resource Name (ARN) of the IAM role that MSK assumes to access the destination table, the AWS Glue Data Catalog, and the dead-letter Amazon S3 bucket.
+        ServiceExecutionRoleArn: string
+        -- Configuration controlling whether MSK creates the destination table if it does not already exist.
+        TableCreation: TableCreation
+        -- The compression codec for Iceberg table data files. Defaults to ZSTD.
+        CompressionType: string
+    end
+
+    enum S3CompressionType
+        "NONE"
+        "GZIP"
+        "ZSTD"
+    end
+
+    enum S3StorageClass
+        "STANDARD"
+        "INTELLIGENT_TIERING"
+        "GLACIER_IR"
+    end
+
+    -- Storage configuration for an Amazon S3 destination bucket.
+    record S3Storage
+        -- The Amazon Resource Name (ARN) of the destination Amazon S3 bucket.
+        BucketArn: string
+        -- The compression codec applied to delivered Amazon S3 objects.
+        CompressionType: string
+        -- An optional prefix prepended to every Amazon S3 object key written by the channel.
+        OutputPrefix: string
+        -- An optional template that controls the Amazon S3 object key for each delivered record. Supports the placeholders !{partition-id}, !{sequence-number}, and !{kafka-offset}.
+        OutputKeyTemplate: string
+        -- The Amazon S3 storage class for delivered objects.
+        StorageClass: string
+        -- Optional 12-digit AWS account ID expected to own the Amazon S3 bucket.
+        ExpectedBucketOwner: string
+    end
+
+    -- Configuration of an Amazon S3 destination for a channel.
+    record S3DestinationConfiguration
+        -- The maximum time, in seconds, that records buffer in MSK before being flushed to the destination. Allowed range: 300 to 900. Default: 600.
+        DataFreshnessInSeconds: number
+        -- The Amazon S3 bucket and prefix where MSK writes records that fail to deliver.
+        DeadLetterQueueS3: DeadLetterQueueS3
+        -- The Amazon Resource Name (ARN) of the IAM role that MSK assumes to write to the destination Amazon S3 bucket and the dead-letter bucket.
+        ServiceExecutionRoleArn: string
+        -- The Amazon S3 bucket, prefix, and storage class for delivered records.
+        Storage: S3Storage
+    end
+
+    -- Creates a Channel that streams records from an Amazon MSK Express cluster topic to Amazon S3 or Apache Iceberg.
+    record CreateChannelInput
+        -- The name of the channel. Must be unique within the cluster.
+        ChannelName: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies the cluster.
+        ClusterArn: string
+        -- The encryption configuration applied to the channel.
+        EncryptionConfiguration: EncryptionConfiguration
+        -- The Apache Iceberg destination for the channel. Mutually exclusive with s3DestinationConfiguration.
+        IcebergDestinationConfiguration: IcebergDestinationConfiguration
+        -- The Amazon S3 destination for the channel. Mutually exclusive with icebergDestinationConfiguration.
+        S3DestinationConfiguration: S3DestinationConfiguration
+        -- The tags attached to the channel.
+        Tags: {string : string}
+        -- The list of topic configurations for the channel. Currently exactly one topic must be specified.
+        TopicConfigurationList: {TopicConfiguration}
+        -- The destinations to which the channel publishes operational logs.
+        LoggingInfo: ChannelLoggingInfo
+    end
+
+    -- Returns the channel ARN and the cluster-operation ARN that tracks the asynchronous create.
+    record CreateChannelOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
+        -- The Amazon Resource Name (ARN) of the cluster operation.
+        ClusterOperationArn: string
     end
 
     record CreateClusterInput
@@ -1529,6 +1766,21 @@ local record M
         Tags: {string : string}
     end
 
+    record DeleteChannelInput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies the cluster.
+        ClusterArn: string
+    end
+
+    -- Returns the channel ARN and the cluster-operation ARN that tracks the asynchronous delete.
+    record DeleteChannelOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
+        -- The Amazon Resource Name (ARN) of the cluster operation.
+        ClusterOperationArn: string
+    end
+
     record DeleteClusterInput
         -- The Amazon Resource Name (ARN) that uniquely identifies the cluster.
         ClusterArn: string
@@ -1603,6 +1855,43 @@ local record M
         VpcConnectionArn: string
         -- The state of the VPC connection.
         State: string
+    end
+
+    record DescribeChannelInput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies the cluster.
+        ClusterArn: string
+    end
+
+    -- Contains the current configuration and state of a channel.
+    record DescribeChannelOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
+        -- The name of the channel.
+        ChannelName: string
+        -- The encryption configuration applied to the channel.
+        EncryptionConfiguration: EncryptionConfiguration
+        -- The Apache Iceberg destination for the channel, if configured.
+        IcebergDestinationConfiguration: IcebergDestinationConfiguration
+        -- The Amazon S3 destination for the channel, if configured.
+        S3DestinationConfiguration: S3DestinationConfiguration
+        -- The current lifecycle state of the channel.
+        Status: string
+        -- The type of destination configured for the channel.
+        DestinationType: string
+        -- The time when the channel was created.
+        CreationTime: number
+        -- The list of topic configurations for the channel.
+        TopicConfigurationList: {TopicConfiguration}
+        -- The destinations to which the channel publishes operational logs.
+        LoggingInfo: ChannelLoggingInfo
+        -- Additional context for the current channel state, populated when the channel is in FAILED.
+        StateInfo: ChannelStateInfo
+        -- The Amazon Resource Name (ARN) of the in-flight cluster operation. Returned only while the channel is in CREATING, UPDATING, or DELETING.
+        ClusterOperationArn: string
+        -- The tags attached to the channel.
+        Tags: {string : string}
     end
 
     record DescribeClusterInput
@@ -1856,6 +2145,31 @@ local record M
     record GetCompatibleKafkaVersionsOutput
         -- A list of CompatibleKafkaVersion objects.
         CompatibleKafkaVersions: {CompatibleKafkaVersion}
+    end
+
+    -- Update payload for an Apache Iceberg destination.
+    record IcebergDestinationUpdate
+        -- The maximum time, in seconds, that records buffer in MSK before being flushed to the destination. Allowed range: 300 to 900.
+        DataFreshnessInSeconds: number
+    end
+
+    record ListChannelsInput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the cluster.
+        ClusterArn: string
+        -- Maximum number of channels to return in a single response.
+        MaxResults: number
+        -- If the response of ListChannels is truncated, it returns a nextToken in the response. This nextToken should be sent in the subsequent request to ListChannels.
+        NextToken: string
+        -- Filters results to channels whose topic name matches the specified value.
+        TopicNameFilter: string
+    end
+
+    -- Returns the list of channels in the cluster.
+    record ListChannelsOutput
+        -- The list of channels in the cluster.
+        Channels: {ChannelInfo}
+        -- If the response from ListChannels is truncated, this token is included. Send it as the nextToken parameter on a subsequent ListChannels call to retrieve the next page.
+        NextToken: string
     end
 
     record ListClientVpcConnectionsInput
@@ -2200,6 +2514,32 @@ local record M
     record UpdateBrokerTypeOutput
         -- The Amazon Resource Name (ARN) of the cluster.
         ClusterArn: string
+        -- The Amazon Resource Name (ARN) of the cluster operation.
+        ClusterOperationArn: string
+    end
+
+    -- Update payload for an Amazon S3 destination.
+    record S3DestinationUpdate
+        -- The maximum time, in seconds, that records buffer in MSK before being flushed to the destination. Allowed range: 300 to 900.
+        DataFreshnessInSeconds: number
+    end
+
+    -- Updates an existing channel's destination configuration. You must update the same destination type the channel was created with; the destination type cannot be changed.
+    record UpdateChannelInput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
+        -- The Amazon Resource Name (ARN) that uniquely identifies the cluster.
+        ClusterArn: string
+        -- Updates fields on an Apache Iceberg destination. Use only when the channel was created with an Iceberg destination.
+        IcebergDestinationUpdate: IcebergDestinationUpdate
+        -- Updates fields on an Amazon S3 destination. Use only when the channel was created with an Amazon S3 destination.
+        S3DestinationUpdate: S3DestinationUpdate
+    end
+
+    -- Returns the channel ARN and the cluster-operation ARN that tracks the asynchronous update.
+    record UpdateChannelOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the channel.
+        ChannelArn: string
         -- The Amazon Resource Name (ARN) of the cluster operation.
         ClusterOperationArn: string
     end

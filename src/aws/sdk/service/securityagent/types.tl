@@ -442,6 +442,8 @@ local record M
         integrationId: string
         -- The provider-specific resource identifier for the repository.
         providerResourceId: string
+        -- An optional override for the repository branch.
+        branch: string
     end
 
     -- Represents a source code repository used for security analysis during a pentest.

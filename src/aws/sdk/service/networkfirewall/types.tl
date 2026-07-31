@@ -513,6 +513,7 @@ local record M
         "ACTIVE"
         "CREATING"
         "DELETING"
+        "UPDATING"
     end
 
     -- A key-value pair that defines a container attribute filter for a container monitoring configuration.

@@ -1488,6 +1488,12 @@ M.IntegratedRepository = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        branch = schema.new({
+            id = id.from(_N, "IntegratedRepository", "branch"),
+            type = "string",
+            name = "branch",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

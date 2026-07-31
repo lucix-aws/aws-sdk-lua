@@ -488,6 +488,135 @@ local record M
         CapacityProvider: CapacityProvider
     end
 
+    enum CodeSigningPolicy
+        "Warn"
+        "Enforce"
+    end
+
+    -- Code signing configuration policies specify the validation failure action for signature mismatch or expiry.
+    record CodeSigningPolicies
+        -- Code signing configuration policy for deployment validation failure. If you set the policy to Enforce, Lambda blocks the deployment request if signature validation checks fail. If you set the policy to Warn, Lambda allows the deployment and issues a new Amazon CloudWatch metric (SignatureValidationErrors) and also stores the warning in the CloudTrail log. Default value: Warn
+        UntrustedArtifactOnDeployment: string
+    end
+
+    record CreateCodeSigningConfigInput
+        -- Descriptive name for this code signing configuration.
+        Description: string
+        -- Signing profiles for this code signing configuration.
+        AllowedPublishers: AllowedPublishers
+        -- The code signing policies define the actions to take if the validation checks fail.
+        CodeSigningPolicies: CodeSigningPolicies
+        -- A list of tags to add to the code signing configuration.
+        Tags: {string : string}
+    end
+
+    -- Details about a Code signing configuration.
+    record CodeSigningConfig
+        -- Unique identifer for the Code signing configuration.
+        CodeSigningConfigId: string
+        -- The Amazon Resource Name (ARN) of the Code signing configuration.
+        CodeSigningConfigArn: string
+        -- Code signing configuration description.
+        Description: string
+        -- List of allowed publishers.
+        AllowedPublishers: AllowedPublishers
+        -- The code signing policy controls the validation failure action for signature mismatch or expiry.
+        CodeSigningPolicies: CodeSigningPolicies
+        -- The date and time that the Code signing configuration was last modified, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+        LastModified: string
+    end
+
+    record CreateCodeSigningConfigOutput
+        -- The code signing configuration.
+        CodeSigningConfig: CodeSigningConfig
+    end
+
+    record DeleteCodeSigningConfigInput
+        -- The The Amazon Resource Name (ARN) of the code signing configuration.
+        CodeSigningConfigArn: string
+    end
+
+    record DeleteCodeSigningConfigOutput
+    end
+
+    record GetCodeSigningConfigInput
+        -- The The Amazon Resource Name (ARN) of the code signing configuration.
+        CodeSigningConfigArn: string
+    end
+
+    record GetCodeSigningConfigOutput
+        -- The code signing configuration
+        CodeSigningConfig: CodeSigningConfig
+    end
+
+    record ListCodeSigningConfigsInput
+        -- Specify the pagination token that's returned by a previous request to retrieve the next page of results.
+        Marker: string
+        -- Maximum number of items to return.
+        MaxItems: number
+    end
+
+    record ListCodeSigningConfigsOutput
+        -- The pagination token that's included if more results are available.
+        NextMarker: string
+        -- The code signing configurations
+        CodeSigningConfigs: {CodeSigningConfig}
+    end
+
+    record ListFunctionsByCodeSigningConfigInput
+        -- The The Amazon Resource Name (ARN) of the code signing configuration.
+        CodeSigningConfigArn: string
+        -- Specify the pagination token that's returned by a previous request to retrieve the next page of results.
+        Marker: string
+        -- Maximum number of items to return.
+        MaxItems: number
+    end
+
+    record ListFunctionsByCodeSigningConfigOutput
+        -- The pagination token that's included if more results are available.
+        NextMarker: string
+        -- The function ARNs.
+        FunctionArns: {string}
+    end
+
+    record UpdateCodeSigningConfigInput
+        -- The The Amazon Resource Name (ARN) of the code signing configuration.
+        CodeSigningConfigArn: string
+        -- Descriptive name for this code signing configuration.
+        Description: string
+        -- Signing profiles for this code signing configuration.
+        AllowedPublishers: AllowedPublishers
+        -- The code signing policy.
+        CodeSigningPolicies: CodeSigningPolicies
+    end
+
+    record UpdateCodeSigningConfigOutput
+        -- The code signing configuration
+        CodeSigningConfig: CodeSigningConfig
+    end
+
+    record DeleteFunctionInput
+        -- The name or ARN of the Lambda function or version. Name formats Function name – my-function (name-only), my-function:1 (with version). Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. Partial ARN – 123456789012:function:my-function. You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        FunctionName: string
+        -- Specify a version to delete. You can't delete a version that an alias references.
+        Qualifier: string
+    end
+
+    record DeleteFunctionOutput
+        -- The HTTP status code returned by the operation.
+        StatusCode: number
+    end
+
+    record DeleteFunctionEventInvokeConfigInput
+        -- The name or ARN of the Lambda function, version, or alias. Name formats Function name - my-function (name-only), my-function:v1 (with alias). Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function. Partial ARN - 123456789012:function:my-function. You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
+        FunctionName: string
+        -- A version number or alias name.
+        Qualifier: string
+    end
+
+    record DeleteFunctionEventInvokeConfigOutput
+    end
+
     enum OperationAction
         "START"
         "SUCCEED"
@@ -723,133 +852,402 @@ local record M
         Message: string
     end
 
-    enum CodeSigningPolicy
-        "Warn"
-        "Enforce"
+    record GetDurableExecutionInput
+        -- The Amazon Resource Name (ARN) of the durable execution.
+        DurableExecutionArn: string
+        -- Specifies whether to include execution data such as input payload, result, and error information in the response. Set to false for a more compact response that includes only execution metadata. The default value is set to true.
+        IncludeExecutionData: boolean
     end
 
-    -- Code signing configuration policies specify the validation failure action for signature mismatch or expiry.
-    record CodeSigningPolicies
-        -- Code signing configuration policy for deployment validation failure. If you set the policy to Enforce, Lambda blocks the deployment request if signature validation checks fail. If you set the policy to Warn, Lambda allows the deployment and issues a new Amazon CloudWatch metric (SignatureValidationErrors) and also stores the warning in the CloudTrail log. Default value: Warn
-        UntrustedArtifactOnDeployment: string
+    -- Configuration settings for durable functions, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
+    record DurableConfig
+        -- The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
+        KMSKeyArn: string
+        -- The number of days to retain execution history after a durable execution completes. After this period, execution history is no longer available through the GetDurableExecutionHistory API.
+        RetentionPeriodInDays: number
+        -- The maximum time (in seconds) that a durable execution can run before timing out. This timeout applies to the entire durable execution, not individual function invocations.
+        ExecutionTimeout: number
     end
 
-    record CreateCodeSigningConfigInput
-        -- Descriptive name for this code signing configuration.
-        Description: string
-        -- Signing profiles for this code signing configuration.
-        AllowedPublishers: AllowedPublishers
-        -- The code signing policies define the actions to take if the validation checks fail.
-        CodeSigningPolicies: CodeSigningPolicies
-        -- A list of tags to add to the code signing configuration.
-        Tags: {string : string}
+    enum ExecutionStatus
+        "RUNNING"
+        "SUCCEEDED"
+        "FAILED"
+        "TIMED_OUT"
+        "STOPPED"
     end
 
-    -- Details about a Code signing configuration.
-    record CodeSigningConfig
-        -- Unique identifer for the Code signing configuration.
-        CodeSigningConfigId: string
-        -- The Amazon Resource Name (ARN) of the Code signing configuration.
-        CodeSigningConfigArn: string
-        -- Code signing configuration description.
-        Description: string
-        -- List of allowed publishers.
-        AllowedPublishers: AllowedPublishers
-        -- The code signing policy controls the validation failure action for signature mismatch or expiry.
-        CodeSigningPolicies: CodeSigningPolicies
-        -- The date and time that the Code signing configuration was last modified, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
-        LastModified: string
+    -- Contains trace headers for the Lambda durable execution.
+    record TraceHeader
+        -- The X-Ray trace header associated with the durable execution.
+        XAmznTraceId: string
     end
 
-    record CreateCodeSigningConfigOutput
-        -- The code signing configuration.
-        CodeSigningConfig: CodeSigningConfig
+    -- The response from the GetDurableExecution operation, containing detailed information about the durable execution.
+    record GetDurableExecutionOutput
+        -- The Amazon Resource Name (ARN) of the durable execution.
+        DurableExecutionArn: string
+        -- The name of the durable execution. This is either the name you provided when invoking the function, or a system-generated unique identifier if no name was provided.
+        DurableExecutionName: string
+        -- The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable execution.
+        FunctionArn: string
+        -- The JSON input payload that was provided when the durable execution was started. For asynchronous invocations, this is limited to 256 KB. For synchronous invocations, this can be up to 6 MB.
+        InputPayload: string
+        -- The JSON result returned by the durable execution if it completed successfully. This field is only present when the execution status is SUCCEEDED. The result is limited to 256 KB.
+        Result: string
+        -- Error information if the durable execution failed. This field is only present when the execution status is FAILED, TIMED_OUT, or STOPPED. The combined size of all error fields is limited to 256 KB.
+        Error: ErrorObject
+        -- The date and time when the durable execution started, in Unix timestamp format.
+        StartTimestamp: number
+        -- The current status of the durable execution. Valid values are RUNNING, SUCCEEDED, FAILED, TIMED_OUT, and STOPPED.
+        Status: string
+        -- The date and time when the durable execution ended, in Unix timestamp format. This field is only present if the execution has completed (status is SUCCEEDED, FAILED, TIMED_OUT, or STOPPED).
+        EndTimestamp: number
+        -- The version of the Lambda function that was invoked for this durable execution. This ensures that all replays during the execution use the same function version.
+        Version: string
+        -- The trace headers associated with the durable execution.
+        TraceHeader: TraceHeader
+        -- Indicates whether execution data is included in this response. Returns false when IncludeExecutionData is set to false in the request.
+        ExecutionDataIncluded: boolean
+        -- Configuration settings for the durable execution, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
+        DurableConfig: DurableConfig
     end
 
-    record DeleteCodeSigningConfigInput
-        -- The The Amazon Resource Name (ARN) of the code signing configuration.
-        CodeSigningConfigArn: string
-    end
-
-    record DeleteCodeSigningConfigOutput
-    end
-
-    record GetCodeSigningConfigInput
-        -- The The Amazon Resource Name (ARN) of the code signing configuration.
-        CodeSigningConfigArn: string
-    end
-
-    record GetCodeSigningConfigOutput
-        -- The code signing configuration
-        CodeSigningConfig: CodeSigningConfig
-    end
-
-    record ListCodeSigningConfigsInput
-        -- Specify the pagination token that's returned by a previous request to retrieve the next page of results.
+    record GetDurableExecutionHistoryInput
+        -- The Amazon Resource Name (ARN) of the durable execution.
+        DurableExecutionArn: string
+        -- Specifies whether to include execution data such as step results and callback payloads in the history events. Set to true to include data, or false to exclude it for a more compact response. The default is true.
+        IncludeExecutionData: boolean
+        -- The maximum number of history events to return per call. You can use Marker to retrieve additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses the default.
+        MaxItems: number
+        -- If NextMarker was returned from a previous request, use this value to retrieve the next page of results. Each pagination token expires after 24 hours.
         Marker: string
-        -- Maximum number of items to return.
+        -- When set to true, returns the history events in reverse chronological order (newest first). By default, events are returned in chronological order (oldest first).
+        ReverseOrder: boolean
+    end
+
+    -- Error information for an event.
+    record EventError
+        -- The error payload.
+        Payload: ErrorObject
+        -- Indicates if the error payload was truncated due to size limits.
+        Truncated: boolean
+    end
+
+    -- Contains details about a failed callback operation, including error information and the reason for failure.
+    record CallbackFailedDetails
+        -- An error object that contains details about the failure.
+        Error: EventError
+    end
+
+    -- Contains details about a callback operation that has started, including timing information and callback metadata.
+    record CallbackStartedDetails
+        -- The callback ID. Callback IDs are generated by the DurableContext when a durable function calls ctx.waitForCallback.
+        CallbackId: string
+        -- The heartbeat timeout value, in seconds.
+        HeartbeatTimeout: number
+        -- The timeout value, in seconds.
+        Timeout: number
+    end
+
+    -- Result information for an event.
+    record EventResult
+        -- The result payload.
+        Payload: string
+        -- Indicates if the error payload was truncated due to size limits.
+        Truncated: boolean
+    end
+
+    -- Contains details about a successfully completed callback operation, including the result data and completion timestamp.
+    record CallbackSucceededDetails
+        -- The response payload from the successful operation.
+        Result: EventResult
+    end
+
+    -- Contains details about a callback operation that timed out, including timeout duration and any partial results.
+    record CallbackTimedOutDetails
+        -- Details about the callback timeout.
+        Error: EventError
+    end
+
+    -- Contains details about a failed chained function invocation, including error information and failure reason.
+    record ChainedInvokeFailedDetails
+        -- Details about the chained invocation failure.
+        Error: EventError
+    end
+
+    -- Input information for an event.
+    record EventInput
+        -- The input payload.
+        Payload: string
+        -- Indicates if the error payload was truncated due to size limits.
+        Truncated: boolean
+    end
+
+    -- Contains details about a chained function invocation that has started execution, including start time and execution context.
+    record ChainedInvokeStartedDetails
+        -- The name or ARN of the Lambda function being invoked.
+        FunctionName: string
+        -- The tenant identifier for the chained invocation.
+        TenantId: string
+        -- The JSON input payload provided to the chained invocation.
+        Input: EventInput
+        -- The version of the function that was executed.
+        ExecutedVersion: string
+        -- The Amazon Resource Name (ARN) that identifies the durable execution.
+        DurableExecutionArn: string
+    end
+
+    -- Details about a chained invocation that was stopped.
+    record ChainedInvokeStoppedDetails
+        -- Details about why the chained invocation stopped.
+        Error: EventError
+    end
+
+    -- Details about a chained invocation that succeeded.
+    record ChainedInvokeSucceededDetails
+        -- The response payload from the successful operation.
+        Result: EventResult
+    end
+
+    -- Details about a chained invocation that timed out.
+    record ChainedInvokeTimedOutDetails
+        -- Details about the chained invocation timeout.
+        Error: EventError
+    end
+
+    -- Details about a context that failed.
+    record ContextFailedDetails
+        -- Details about the context failure.
+        Error: EventError
+    end
+
+    -- Details about a context that has started.
+    record ContextStartedDetails
+    end
+
+    -- Details about a context that succeeded.
+    record ContextSucceededDetails
+        -- The JSON response payload from the successful context.
+        Result: EventResult
+    end
+
+    enum EventType
+        "ExecutionStarted"
+        "ExecutionSucceeded"
+        "ExecutionFailed"
+        "ExecutionTimedOut"
+        "ExecutionStopped"
+        "ContextStarted"
+        "ContextSucceeded"
+        "ContextFailed"
+        "WaitStarted"
+        "WaitSucceeded"
+        "WaitCancelled"
+        "StepStarted"
+        "StepSucceeded"
+        "StepFailed"
+        "ChainedInvokeStarted"
+        "ChainedInvokeSucceeded"
+        "ChainedInvokeFailed"
+        "ChainedInvokeTimedOut"
+        "ChainedInvokeStopped"
+        "CallbackStarted"
+        "CallbackSucceeded"
+        "CallbackFailed"
+        "CallbackTimedOut"
+        "InvocationCompleted"
+    end
+
+    -- Details about a failed durable execution.
+    record ExecutionFailedDetails
+        -- Details about the execution failure.
+        Error: EventError
+    end
+
+    -- Details about a durable execution that started.
+    record ExecutionStartedDetails
+        -- The input payload provided for the durable execution.
+        Input: EventInput
+        -- The maximum amount of time that the durable execution is allowed to run, in seconds.
+        ExecutionTimeout: number
+    end
+
+    -- Details about a durable execution that stopped.
+    record ExecutionStoppedDetails
+        -- Details about why the execution stopped.
+        Error: EventError
+    end
+
+    -- Details about a durable execution that succeeded.
+    record ExecutionSucceededDetails
+        -- The response payload from the successful operation.
+        Result: EventResult
+    end
+
+    -- Details about a durable execution that timed out.
+    record ExecutionTimedOutDetails
+        -- Details about the execution timeout.
+        Error: EventError
+    end
+
+    -- Details about a function invocation that completed.
+    record InvocationCompletedDetails
+        -- The date and time when the invocation started, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+        StartTimestamp: number
+        -- The date and time when the invocation ended, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+        EndTimestamp: number
+        -- The request ID for the invocation.
+        RequestId: string
+        -- Details about the invocation failure.
+        Error: EventError
+    end
+
+    -- Information about retry attempts for an operation.
+    record RetryDetails
+        -- The current attempt number for this operation.
+        CurrentAttempt: number
+        -- The delay before the next retry attempt, in seconds.
+        NextAttemptDelaySeconds: number
+    end
+
+    -- Details about a step that failed.
+    record StepFailedDetails
+        -- Details about the step failure.
+        Error: EventError
+        -- Information about retry attempts for this step operation.
+        RetryDetails: RetryDetails
+    end
+
+    -- Details about a step that has started.
+    record StepStartedDetails
+    end
+
+    -- Details about a step that succeeded.
+    record StepSucceededDetails
+        -- The response payload from the successful operation.
+        Result: EventResult
+        -- Information about retry attempts for this step operation.
+        RetryDetails: RetryDetails
+    end
+
+    -- Details about a wait operation that was cancelled.
+    record WaitCancelledDetails
+        -- Details about why the wait operation was cancelled.
+        Error: EventError
+    end
+
+    -- Details about a wait operation that has started.
+    record WaitStartedDetails
+        -- The duration to wait, in seconds.
+        Duration: number
+        -- The date and time when the wait operation is scheduled to complete, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+        ScheduledEndTimestamp: number
+    end
+
+    -- Details about a wait operation that succeeded.
+    record WaitSucceededDetails
+        -- The wait duration, in seconds.
+        Duration: number
+    end
+
+    -- An event that occurred during the execution of a durable function.
+    record Event
+        -- The type of event that occurred.
+        EventType: string
+        -- The subtype of the event, providing additional categorization.
+        SubType: string
+        -- The unique identifier for this event. Event IDs increment sequentially.
+        EventId: number
+        -- The unique identifier for this operation.
+        Id: string
+        -- The customer-provided name for this operation.
+        Name: string
+        -- The date and time when this event occurred, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+        EventTimestamp: number
+        -- The unique identifier of the parent operation, if this operation is running within a child context.
+        ParentId: string
+        -- Details about an execution that started.
+        ExecutionStartedDetails: ExecutionStartedDetails
+        -- Details about an execution that succeeded.
+        ExecutionSucceededDetails: ExecutionSucceededDetails
+        -- Details about an execution that failed.
+        ExecutionFailedDetails: ExecutionFailedDetails
+        -- Details about an execution that timed out.
+        ExecutionTimedOutDetails: ExecutionTimedOutDetails
+        -- Details about an execution that was stopped.
+        ExecutionStoppedDetails: ExecutionStoppedDetails
+        -- Details about a context that started.
+        ContextStartedDetails: ContextStartedDetails
+        -- Details about a context that succeeded.
+        ContextSucceededDetails: ContextSucceededDetails
+        -- Details about a context that failed.
+        ContextFailedDetails: ContextFailedDetails
+        -- Details about a wait operation that started.
+        WaitStartedDetails: WaitStartedDetails
+        -- Details about a wait operation that succeeded.
+        WaitSucceededDetails: WaitSucceededDetails
+        -- Details about a wait operation that was cancelled.
+        WaitCancelledDetails: WaitCancelledDetails
+        -- Details about a step that started.
+        StepStartedDetails: StepStartedDetails
+        -- Details about a step that succeeded.
+        StepSucceededDetails: StepSucceededDetails
+        -- Details about a step that failed.
+        StepFailedDetails: StepFailedDetails
+        ChainedInvokeStartedDetails: ChainedInvokeStartedDetails
+        -- Details about a chained invocation that succeeded.
+        ChainedInvokeSucceededDetails: ChainedInvokeSucceededDetails
+        ChainedInvokeFailedDetails: ChainedInvokeFailedDetails
+        -- Details about a chained invocation that timed out.
+        ChainedInvokeTimedOutDetails: ChainedInvokeTimedOutDetails
+        -- Details about a chained invocation that was stopped.
+        ChainedInvokeStoppedDetails: ChainedInvokeStoppedDetails
+        CallbackStartedDetails: CallbackStartedDetails
+        CallbackSucceededDetails: CallbackSucceededDetails
+        CallbackFailedDetails: CallbackFailedDetails
+        CallbackTimedOutDetails: CallbackTimedOutDetails
+        -- Details about a function invocation that completed.
+        InvocationCompletedDetails: InvocationCompletedDetails
+    end
+
+    -- The response from the GetDurableExecutionHistory operation, containing the execution history and events.
+    record GetDurableExecutionHistoryOutput
+        -- An array of execution history events, ordered chronologically unless ReverseOrder is set to true. Each event represents a significant occurrence during the execution, such as step completion or callback resolution.
+        Events: {Event}
+        -- If present, indicates that more history events are available. Use this value as the Marker parameter in a subsequent request to retrieve the next page of results.
+        NextMarker: string
+    end
+
+    record GetDurableExecutionStateInput
+        -- The Amazon Resource Name (ARN) of the durable execution.
+        DurableExecutionArn: string
+        -- A checkpoint token that identifies the current state of the execution. This token is provided by the Lambda runtime and ensures that state retrieval is consistent with the current execution context.
+        CheckpointToken: string
+        -- If NextMarker was returned from a previous request, use this value to retrieve the next page of operations. Each pagination token expires after 24 hours.
+        Marker: string
+        -- The maximum number of operations to return per call. You can use Marker to retrieve additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses the default.
         MaxItems: number
     end
 
-    record ListCodeSigningConfigsOutput
-        -- The pagination token that's included if more results are available.
+    -- The response from the GetDurableExecutionState operation, containing the current execution state for replay.
+    record GetDurableExecutionStateOutput
+        -- An array of operations that represent the current state of the durable execution. Operations are ordered by their start sequence number in ascending order and include information needed for replay processing.
+        Operations: {Operation}
+        -- If present, indicates that more operations are available. Use this value as the Marker parameter in a subsequent request to retrieve the next page of results.
         NextMarker: string
-        -- The code signing configurations
-        CodeSigningConfigs: {CodeSigningConfig}
     end
 
-    record ListFunctionsByCodeSigningConfigInput
-        -- The The Amazon Resource Name (ARN) of the code signing configuration.
-        CodeSigningConfigArn: string
-        -- Specify the pagination token that's returned by a previous request to retrieve the next page of results.
-        Marker: string
-        -- Maximum number of items to return.
-        MaxItems: number
+    record StopDurableExecutionInput
+        -- The Amazon Resource Name (ARN) of the durable execution.
+        DurableExecutionArn: string
+        -- Optional error details explaining why the execution is being stopped.
+        Error: ErrorObject
     end
 
-    record ListFunctionsByCodeSigningConfigOutput
-        -- The pagination token that's included if more results are available.
-        NextMarker: string
-        -- The function ARNs.
-        FunctionArns: {string}
-    end
-
-    record UpdateCodeSigningConfigInput
-        -- The The Amazon Resource Name (ARN) of the code signing configuration.
-        CodeSigningConfigArn: string
-        -- Descriptive name for this code signing configuration.
-        Description: string
-        -- Signing profiles for this code signing configuration.
-        AllowedPublishers: AllowedPublishers
-        -- The code signing policy.
-        CodeSigningPolicies: CodeSigningPolicies
-    end
-
-    record UpdateCodeSigningConfigOutput
-        -- The code signing configuration
-        CodeSigningConfig: CodeSigningConfig
-    end
-
-    record DeleteFunctionInput
-        -- The name or ARN of the Lambda function or version. Name formats Function name – my-function (name-only), my-function:1 (with version). Function ARN – arn:aws:lambda:us-west-2:123456789012:function:my-function. Partial ARN – 123456789012:function:my-function. You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
-        FunctionName: string
-        -- Specify a version to delete. You can't delete a version that an alias references.
-        Qualifier: string
-    end
-
-    record DeleteFunctionOutput
-        -- The HTTP status code returned by the operation.
-        StatusCode: number
-    end
-
-    record DeleteFunctionEventInvokeConfigInput
-        -- The name or ARN of the Lambda function, version, or alias. Name formats Function name - my-function (name-only), my-function:v1 (with alias). Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function. Partial ARN - 123456789012:function:my-function. You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
-        FunctionName: string
-        -- A version number or alias name.
-        Qualifier: string
-    end
-
-    record DeleteFunctionEventInvokeConfigOutput
+    record StopDurableExecutionOutput
+        -- The timestamp when the execution was stopped (ISO 8601 format).
+        StopTimestamp: number
     end
 
     -- A destination for events that failed processing. For more information, see Adding a destination.
@@ -1531,7 +1929,7 @@ local record M
         S3Key: string
         -- For versioned objects, the version of the deployment package object to use.
         S3ObjectVersion: string
-        -- Specifies how the deployment package is stored. Use COPY (default) to upload a copy of your deployment package to Lambda. Use REFERENCE to have Lambda reference the deployment package from the specified Amazon S3 bucket.
+        -- Specifies how the deployment package is stored. Valid values: COPY (default) – Uploads a copy of your deployment package to Lambda. REFERENCE – Lambda references the deployment package from the specified Amazon S3 bucket.
         S3ObjectStorageMode: string
         -- URI of a container image in the Amazon ECR registry.
         ImageUri: string
@@ -1543,16 +1941,6 @@ local record M
     record DeadLetterConfig
         -- The Amazon Resource Name (ARN) of an Amazon SQS queue or Amazon SNS topic.
         TargetArn: string
-    end
-
-    -- Configuration settings for durable functions, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
-    record DurableConfig
-        -- The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
-        KMSKeyArn: string
-        -- The number of days to retain execution history after a durable execution completes. After this period, execution history is no longer available through the GetDurableExecutionHistory API.
-        RetentionPeriodInDays: number
-        -- The maximum time (in seconds) that a durable execution can run before timing out. This timeout applies to the entire durable execution, not individual function invocations.
-        ExecutionTimeout: number
     end
 
     -- A function's environment variable settings. You can use environment variables to adjust your function's behavior without updating code. An environment variable is a pair of strings that are stored in a function's version-specific configuration.
@@ -1658,6 +2046,8 @@ local record M
         "provided"
         "provided.al2"
         "provided.al2023"
+        "nodejs26.x"
+        "python3.15"
         "java8.al2023"
         "java11.al2023"
         "java17.al2023"
@@ -2122,11 +2512,11 @@ local record M
         Qualifier: string
     end
 
-    -- Details about an error related to retrieving a function's deployment package.
+    -- Contains details about an error that occurred when Lambda attempted to retrieve a function's deployment package.
     record FunctionCodeLocationError
-        -- The error code for the failed retrieval.
+        -- The error code that identifies why Lambda failed to retrieve the deployment package.
         ErrorCode: string
-        -- A description of the error.
+        -- The human-readable message that describes why Lambda failed to retrieve the deployment package.
         Message: string
     end
 
@@ -2829,6 +3219,53 @@ local record M
         ResponseStreamContentType: string
     end
 
+    record ListDurableExecutionsByFunctionInput
+        -- The name or ARN of the Lambda function. You can specify a function name, a partial ARN, or a full ARN.
+        FunctionName: string
+        -- The function version or alias. If not specified, lists executions for the $LATEST version.
+        Qualifier: string
+        -- Filter executions by name. Only executions with names that matches this string are returned.
+        DurableExecutionName: string
+        -- Filter executions by status. Valid values: RUNNING, SUCCEEDED, FAILED, TIMED_OUT, STOPPED.
+        Statuses: {string}
+        -- Filter executions that started after this timestamp (ISO 8601 format).
+        StartedAfter: number
+        -- Filter executions that started before this timestamp (ISO 8601 format).
+        StartedBefore: number
+        -- Set to true to return results in chronological order (oldest first). Default is false.
+        ReverseOrder: boolean
+        -- Pagination token from a previous request to continue retrieving results.
+        Marker: string
+        -- Maximum number of executions to return (1-1000). Default is 100.
+        MaxItems: number
+    end
+
+    -- Information about a durable execution.
+    record Execution
+        -- The Amazon Resource Name (ARN) of the durable execution, if this execution is a durable execution.
+        DurableExecutionArn: string
+        -- The unique name of the durable execution, if one was provided when the execution was started.
+        DurableExecutionName: string
+        -- The Amazon Resource Name (ARN) of the Lambda function.
+        FunctionArn: string
+        -- The current status of the durable execution.
+        Status: string
+        -- The date and time when the durable execution started, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+        StartTimestamp: number
+        -- The date and time when the durable execution ended, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
+        EndTimestamp: number
+        -- The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
+        KMSKeyArn: string
+    end
+
+    -- The response from the ListDurableExecutionsByFunction operation, containing a list of durable executions and pagination information.
+    record ListDurableExecutionsByFunctionOutput
+        -- List of durable execution summaries matching the filter criteria.
+        DurableExecutions: {Execution}
+        -- Pagination token for retrieving additional results. Present only if there are more results available.
+        NextMarker: string
+    end
+
     enum FunctionVersion
         "ALL"
     end
@@ -3009,7 +3446,7 @@ local record M
         S3Key: string
         -- For versioned objects, the version of the deployment package object to use.
         S3ObjectVersion: string
-        -- Specifies how the deployment package is stored. Use COPY (default) to upload a copy of your deployment package to Lambda. Use REFERENCE to have Lambda reference the deployment package from the specified Amazon S3 bucket.
+        -- Specifies how the deployment package is stored. Valid values: COPY (default) – Uploads a copy of your deployment package to Lambda. REFERENCE – Lambda references the deployment package from the specified Amazon S3 bucket.
         S3ObjectStorageMode: string
         -- URI of a container image in the Amazon ECR registry. Do not use for a function defined with a .zip file archive.
         ImageUri: string
@@ -3504,382 +3941,6 @@ local record M
         AccountUsage: AccountUsage
     end
 
-    record GetDurableExecutionInput
-        -- The Amazon Resource Name (ARN) of the durable execution.
-        DurableExecutionArn: string
-        -- Specifies whether to include execution data such as input payload, result, and error information in the response. Set to false for a more compact response that includes only execution metadata. The default value is set to true.
-        IncludeExecutionData: boolean
-    end
-
-    enum ExecutionStatus
-        "RUNNING"
-        "SUCCEEDED"
-        "FAILED"
-        "TIMED_OUT"
-        "STOPPED"
-    end
-
-    -- Contains trace headers for the Lambda durable execution.
-    record TraceHeader
-        -- The X-Ray trace header associated with the durable execution.
-        XAmznTraceId: string
-    end
-
-    -- The response from the GetDurableExecution operation, containing detailed information about the durable execution.
-    record GetDurableExecutionOutput
-        -- The Amazon Resource Name (ARN) of the durable execution.
-        DurableExecutionArn: string
-        -- The name of the durable execution. This is either the name you provided when invoking the function, or a system-generated unique identifier if no name was provided.
-        DurableExecutionName: string
-        -- The Amazon Resource Name (ARN) of the Lambda function that was invoked to start this durable execution.
-        FunctionArn: string
-        -- The JSON input payload that was provided when the durable execution was started. For asynchronous invocations, this is limited to 256 KB. For synchronous invocations, this can be up to 6 MB.
-        InputPayload: string
-        -- The JSON result returned by the durable execution if it completed successfully. This field is only present when the execution status is SUCCEEDED. The result is limited to 256 KB.
-        Result: string
-        -- Error information if the durable execution failed. This field is only present when the execution status is FAILED, TIMED_OUT, or STOPPED. The combined size of all error fields is limited to 256 KB.
-        Error: ErrorObject
-        -- The date and time when the durable execution started, in Unix timestamp format.
-        StartTimestamp: number
-        -- The current status of the durable execution. Valid values are RUNNING, SUCCEEDED, FAILED, TIMED_OUT, and STOPPED.
-        Status: string
-        -- The date and time when the durable execution ended, in Unix timestamp format. This field is only present if the execution has completed (status is SUCCEEDED, FAILED, TIMED_OUT, or STOPPED).
-        EndTimestamp: number
-        -- The version of the Lambda function that was invoked for this durable execution. This ensures that all replays during the execution use the same function version.
-        Version: string
-        -- The trace headers associated with the durable execution.
-        TraceHeader: TraceHeader
-        -- Indicates whether execution data is included in this response. Returns false when IncludeExecutionData is set to false in the request.
-        ExecutionDataIncluded: boolean
-        -- Configuration settings for the durable execution, including execution timeout, retention period for execution history, and an optional ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
-        DurableConfig: DurableConfig
-    end
-
-    record GetDurableExecutionHistoryInput
-        -- The Amazon Resource Name (ARN) of the durable execution.
-        DurableExecutionArn: string
-        -- Specifies whether to include execution data such as step results and callback payloads in the history events. Set to true to include data, or false to exclude it for a more compact response. The default is true.
-        IncludeExecutionData: boolean
-        -- The maximum number of history events to return per call. You can use Marker to retrieve additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses the default.
-        MaxItems: number
-        -- If NextMarker was returned from a previous request, use this value to retrieve the next page of results. Each pagination token expires after 24 hours.
-        Marker: string
-        -- When set to true, returns the history events in reverse chronological order (newest first). By default, events are returned in chronological order (oldest first).
-        ReverseOrder: boolean
-    end
-
-    -- Error information for an event.
-    record EventError
-        -- The error payload.
-        Payload: ErrorObject
-        -- Indicates if the error payload was truncated due to size limits.
-        Truncated: boolean
-    end
-
-    -- Contains details about a failed callback operation, including error information and the reason for failure.
-    record CallbackFailedDetails
-        -- An error object that contains details about the failure.
-        Error: EventError
-    end
-
-    -- Contains details about a callback operation that has started, including timing information and callback metadata.
-    record CallbackStartedDetails
-        -- The callback ID. Callback IDs are generated by the DurableContext when a durable function calls ctx.waitForCallback.
-        CallbackId: string
-        -- The heartbeat timeout value, in seconds.
-        HeartbeatTimeout: number
-        -- The timeout value, in seconds.
-        Timeout: number
-    end
-
-    -- Result information for an event.
-    record EventResult
-        -- The result payload.
-        Payload: string
-        -- Indicates if the error payload was truncated due to size limits.
-        Truncated: boolean
-    end
-
-    -- Contains details about a successfully completed callback operation, including the result data and completion timestamp.
-    record CallbackSucceededDetails
-        -- The response payload from the successful operation.
-        Result: EventResult
-    end
-
-    -- Contains details about a callback operation that timed out, including timeout duration and any partial results.
-    record CallbackTimedOutDetails
-        -- Details about the callback timeout.
-        Error: EventError
-    end
-
-    -- Contains details about a failed chained function invocation, including error information and failure reason.
-    record ChainedInvokeFailedDetails
-        -- Details about the chained invocation failure.
-        Error: EventError
-    end
-
-    -- Input information for an event.
-    record EventInput
-        -- The input payload.
-        Payload: string
-        -- Indicates if the error payload was truncated due to size limits.
-        Truncated: boolean
-    end
-
-    -- Contains details about a chained function invocation that has started execution, including start time and execution context.
-    record ChainedInvokeStartedDetails
-        -- The name or ARN of the Lambda function being invoked.
-        FunctionName: string
-        -- The tenant identifier for the chained invocation.
-        TenantId: string
-        -- The JSON input payload provided to the chained invocation.
-        Input: EventInput
-        -- The version of the function that was executed.
-        ExecutedVersion: string
-        -- The Amazon Resource Name (ARN) that identifies the durable execution.
-        DurableExecutionArn: string
-    end
-
-    -- Details about a chained invocation that was stopped.
-    record ChainedInvokeStoppedDetails
-        -- Details about why the chained invocation stopped.
-        Error: EventError
-    end
-
-    -- Details about a chained invocation that succeeded.
-    record ChainedInvokeSucceededDetails
-        -- The response payload from the successful operation.
-        Result: EventResult
-    end
-
-    -- Details about a chained invocation that timed out.
-    record ChainedInvokeTimedOutDetails
-        -- Details about the chained invocation timeout.
-        Error: EventError
-    end
-
-    -- Details about a context that failed.
-    record ContextFailedDetails
-        -- Details about the context failure.
-        Error: EventError
-    end
-
-    -- Details about a context that has started.
-    record ContextStartedDetails
-    end
-
-    -- Details about a context that succeeded.
-    record ContextSucceededDetails
-        -- The JSON response payload from the successful context.
-        Result: EventResult
-    end
-
-    enum EventType
-        "ExecutionStarted"
-        "ExecutionSucceeded"
-        "ExecutionFailed"
-        "ExecutionTimedOut"
-        "ExecutionStopped"
-        "ContextStarted"
-        "ContextSucceeded"
-        "ContextFailed"
-        "WaitStarted"
-        "WaitSucceeded"
-        "WaitCancelled"
-        "StepStarted"
-        "StepSucceeded"
-        "StepFailed"
-        "ChainedInvokeStarted"
-        "ChainedInvokeSucceeded"
-        "ChainedInvokeFailed"
-        "ChainedInvokeTimedOut"
-        "ChainedInvokeStopped"
-        "CallbackStarted"
-        "CallbackSucceeded"
-        "CallbackFailed"
-        "CallbackTimedOut"
-        "InvocationCompleted"
-    end
-
-    -- Details about a failed durable execution.
-    record ExecutionFailedDetails
-        -- Details about the execution failure.
-        Error: EventError
-    end
-
-    -- Details about a durable execution that started.
-    record ExecutionStartedDetails
-        -- The input payload provided for the durable execution.
-        Input: EventInput
-        -- The maximum amount of time that the durable execution is allowed to run, in seconds.
-        ExecutionTimeout: number
-    end
-
-    -- Details about a durable execution that stopped.
-    record ExecutionStoppedDetails
-        -- Details about why the execution stopped.
-        Error: EventError
-    end
-
-    -- Details about a durable execution that succeeded.
-    record ExecutionSucceededDetails
-        -- The response payload from the successful operation.
-        Result: EventResult
-    end
-
-    -- Details about a durable execution that timed out.
-    record ExecutionTimedOutDetails
-        -- Details about the execution timeout.
-        Error: EventError
-    end
-
-    -- Details about a function invocation that completed.
-    record InvocationCompletedDetails
-        -- The date and time when the invocation started, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
-        StartTimestamp: number
-        -- The date and time when the invocation ended, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
-        EndTimestamp: number
-        -- The request ID for the invocation.
-        RequestId: string
-        -- Details about the invocation failure.
-        Error: EventError
-    end
-
-    -- Information about retry attempts for an operation.
-    record RetryDetails
-        -- The current attempt number for this operation.
-        CurrentAttempt: number
-        -- The delay before the next retry attempt, in seconds.
-        NextAttemptDelaySeconds: number
-    end
-
-    -- Details about a step that failed.
-    record StepFailedDetails
-        -- Details about the step failure.
-        Error: EventError
-        -- Information about retry attempts for this step operation.
-        RetryDetails: RetryDetails
-    end
-
-    -- Details about a step that has started.
-    record StepStartedDetails
-    end
-
-    -- Details about a step that succeeded.
-    record StepSucceededDetails
-        -- The response payload from the successful operation.
-        Result: EventResult
-        -- Information about retry attempts for this step operation.
-        RetryDetails: RetryDetails
-    end
-
-    -- Details about a wait operation that was cancelled.
-    record WaitCancelledDetails
-        -- Details about why the wait operation was cancelled.
-        Error: EventError
-    end
-
-    -- Details about a wait operation that has started.
-    record WaitStartedDetails
-        -- The duration to wait, in seconds.
-        Duration: number
-        -- The date and time when the wait operation is scheduled to complete, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
-        ScheduledEndTimestamp: number
-    end
-
-    -- Details about a wait operation that succeeded.
-    record WaitSucceededDetails
-        -- The wait duration, in seconds.
-        Duration: number
-    end
-
-    -- An event that occurred during the execution of a durable function.
-    record Event
-        -- The type of event that occurred.
-        EventType: string
-        -- The subtype of the event, providing additional categorization.
-        SubType: string
-        -- The unique identifier for this event. Event IDs increment sequentially.
-        EventId: number
-        -- The unique identifier for this operation.
-        Id: string
-        -- The customer-provided name for this operation.
-        Name: string
-        -- The date and time when this event occurred, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
-        EventTimestamp: number
-        -- The unique identifier of the parent operation, if this operation is running within a child context.
-        ParentId: string
-        -- Details about an execution that started.
-        ExecutionStartedDetails: ExecutionStartedDetails
-        -- Details about an execution that succeeded.
-        ExecutionSucceededDetails: ExecutionSucceededDetails
-        -- Details about an execution that failed.
-        ExecutionFailedDetails: ExecutionFailedDetails
-        -- Details about an execution that timed out.
-        ExecutionTimedOutDetails: ExecutionTimedOutDetails
-        -- Details about an execution that was stopped.
-        ExecutionStoppedDetails: ExecutionStoppedDetails
-        -- Details about a context that started.
-        ContextStartedDetails: ContextStartedDetails
-        -- Details about a context that succeeded.
-        ContextSucceededDetails: ContextSucceededDetails
-        -- Details about a context that failed.
-        ContextFailedDetails: ContextFailedDetails
-        -- Details about a wait operation that started.
-        WaitStartedDetails: WaitStartedDetails
-        -- Details about a wait operation that succeeded.
-        WaitSucceededDetails: WaitSucceededDetails
-        -- Details about a wait operation that was cancelled.
-        WaitCancelledDetails: WaitCancelledDetails
-        -- Details about a step that started.
-        StepStartedDetails: StepStartedDetails
-        -- Details about a step that succeeded.
-        StepSucceededDetails: StepSucceededDetails
-        -- Details about a step that failed.
-        StepFailedDetails: StepFailedDetails
-        ChainedInvokeStartedDetails: ChainedInvokeStartedDetails
-        -- Details about a chained invocation that succeeded.
-        ChainedInvokeSucceededDetails: ChainedInvokeSucceededDetails
-        ChainedInvokeFailedDetails: ChainedInvokeFailedDetails
-        -- Details about a chained invocation that timed out.
-        ChainedInvokeTimedOutDetails: ChainedInvokeTimedOutDetails
-        -- Details about a chained invocation that was stopped.
-        ChainedInvokeStoppedDetails: ChainedInvokeStoppedDetails
-        CallbackStartedDetails: CallbackStartedDetails
-        CallbackSucceededDetails: CallbackSucceededDetails
-        CallbackFailedDetails: CallbackFailedDetails
-        CallbackTimedOutDetails: CallbackTimedOutDetails
-        -- Details about a function invocation that completed.
-        InvocationCompletedDetails: InvocationCompletedDetails
-    end
-
-    -- The response from the GetDurableExecutionHistory operation, containing the execution history and events.
-    record GetDurableExecutionHistoryOutput
-        -- An array of execution history events, ordered chronologically unless ReverseOrder is set to true. Each event represents a significant occurrence during the execution, such as step completion or callback resolution.
-        Events: {Event}
-        -- If present, indicates that more history events are available. Use this value as the Marker parameter in a subsequent request to retrieve the next page of results.
-        NextMarker: string
-    end
-
-    record GetDurableExecutionStateInput
-        -- The Amazon Resource Name (ARN) of the durable execution.
-        DurableExecutionArn: string
-        -- A checkpoint token that identifies the current state of the execution. This token is provided by the Lambda runtime and ensures that state retrieval is consistent with the current execution context.
-        CheckpointToken: string
-        -- If NextMarker was returned from a previous request, use this value to retrieve the next page of operations. Each pagination token expires after 24 hours.
-        Marker: string
-        -- The maximum number of operations to return per call. You can use Marker to retrieve additional pages of results. The default is 100 and the maximum allowed is 1000. A value of 0 uses the default.
-        MaxItems: number
-    end
-
-    -- The response from the GetDurableExecutionState operation, containing the current execution state for replay.
-    record GetDurableExecutionStateOutput
-        -- An array of operations that represent the current state of the durable execution. Operations are ordered by their start sequence number in ascending order and include information needed for replay processing.
-        Operations: {Operation}
-        -- If present, indicates that more operations are available. Use this value as the Marker parameter in a subsequent request to retrieve the next page of results.
-        NextMarker: string
-    end
-
     record GetFunctionEventInvokeConfigInput
         -- The name or ARN of the Lambda function, version, or alias. Name formats Function name - my-function (name-only), my-function:v1 (with alias). Function ARN - arn:aws:lambda:us-west-2:123456789012:function:my-function. Partial ARN - 123456789012:function:my-function. You can append a version number or alias to any of the formats. The length constraint applies only to the full ARN. If you specify only the function name, it is limited to 64 characters in length.
         FunctionName: string
@@ -3975,6 +4036,7 @@ local record M
         SigningProfileVersionArn: string
         -- The Amazon Resource Name (ARN) of a signing job.
         SigningJobArn: string
+        -- The resolved Amazon S3 object that contains the layer archive.
         ResolvedS3Object: ResolvedS3Object
     end
 
@@ -4067,6 +4129,7 @@ local record M
         S3Key: string
         -- For versioned objects, the version of the layer archive object to use.
         S3ObjectVersion: string
+        -- Specifies how the layer archive is stored. Valid values: COPY (default) – Uploads a copy of your layer archive to Lambda. REFERENCE – Lambda references the layer archive from the specified Amazon S3 bucket.
         S3ObjectStorageMode: string
         -- The base64-encoded contents of the layer archive. Amazon Web Services SDK and Amazon Web Services CLI clients handle the encoding for you.
         ZipFile: string
@@ -4120,53 +4183,6 @@ local record M
     end
 
     record RemoveLayerVersionPermissionOutput
-    end
-
-    record ListDurableExecutionsByFunctionInput
-        -- The name or ARN of the Lambda function. You can specify a function name, a partial ARN, or a full ARN.
-        FunctionName: string
-        -- The function version or alias. If not specified, lists executions for the $LATEST version.
-        Qualifier: string
-        -- Filter executions by name. Only executions with names that matches this string are returned.
-        DurableExecutionName: string
-        -- Filter executions by status. Valid values: RUNNING, SUCCEEDED, FAILED, TIMED_OUT, STOPPED.
-        Statuses: {string}
-        -- Filter executions that started after this timestamp (ISO 8601 format).
-        StartedAfter: number
-        -- Filter executions that started before this timestamp (ISO 8601 format).
-        StartedBefore: number
-        -- Set to true to return results in chronological order (oldest first). Default is false.
-        ReverseOrder: boolean
-        -- Pagination token from a previous request to continue retrieving results.
-        Marker: string
-        -- Maximum number of executions to return (1-1000). Default is 100.
-        MaxItems: number
-    end
-
-    -- Information about a durable execution.
-    record Execution
-        -- The Amazon Resource Name (ARN) of the durable execution, if this execution is a durable execution.
-        DurableExecutionArn: string
-        -- The unique name of the durable execution, if one was provided when the execution was started.
-        DurableExecutionName: string
-        -- The Amazon Resource Name (ARN) of the Lambda function.
-        FunctionArn: string
-        -- The current status of the durable execution.
-        Status: string
-        -- The date and time when the durable execution started, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
-        StartTimestamp: number
-        -- The date and time when the durable execution ended, in ISO-8601 format (YYYY-MM-DDThh:mm:ss.sTZD).
-        EndTimestamp: number
-        -- The ARN of the Key Management Service (KMS) customer managed key that is used to encrypt your durable execution's payload data, including input, output, and error payloads.
-        KMSKeyArn: string
-    end
-
-    -- The response from the ListDurableExecutionsByFunction operation, containing a list of durable executions and pagination information.
-    record ListDurableExecutionsByFunctionOutput
-        -- List of durable execution summaries matching the filter criteria.
-        DurableExecutions: {Execution}
-        -- Pagination token for retrieving additional results. Present only if there are more results available.
-        NextMarker: string
     end
 
     record ListFunctionEventInvokeConfigsInput
@@ -4343,18 +4359,6 @@ local record M
     end
 
     record SendDurableExecutionCallbackSuccessOutput
-    end
-
-    record StopDurableExecutionInput
-        -- The Amazon Resource Name (ARN) of the durable execution.
-        DurableExecutionArn: string
-        -- Optional error details explaining why the execution is being stopped.
-        Error: ErrorObject
-    end
-
-    record StopDurableExecutionOutput
-        -- The timestamp when the execution was stopped (ISO 8601 format).
-        StopTimestamp: number
     end
 
     record TagResourceInput

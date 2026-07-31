@@ -1108,7 +1108,7 @@ local record M
         S3: AIModelSourceS3
     end
 
-    -- The per-recommendation LoRA adapter details. Contains both the model package ARNs and Amazon S3 URIs for each adapter, regardless of which form was originally supplied in the request. When the customer supplies only Amazon S3 URIs, Amazon SageMaker AI creates model packages on their behalf.
+    -- The per-recommendation LoRA adapter details. Contains both the model package ARNs and Amazon S3 URIs for each adapter, regardless of which form was originally supplied in the request. When you supply only Amazon S3 URIs, Amazon SageMaker AI creates model packages on your behalf.
     record AIRecommendationAdapterDetails
         -- The list of LoRA adapters with their model package ARNs.
         ModelPackageArns: {AIAdapterModelPackageEntry}
@@ -1181,7 +1181,7 @@ local record M
         CopyCountPerInstance: number
         -- The environment variables for the deployment.
         EnvironmentVariables: {string : string}
-        -- The minimum host (CPU) memory, in MiB, to reserve per model copy when deploying the recommendation as an Inference Component. This value maps to the base Inference Component's ComputeResourceRequirements$MinMemoryRequiredInMb and is sized so that CopyCountPerInstance copies co-place within the instance's allocatable host memory.
+        -- The minimum host (CPU) memory, in MiB, to reserve for each model copy when deploying the recommendation as an Inference Component. This value maps to the Inference Component's ComputeResourceRequirements$MinMemoryRequiredInMb field.
         MinCpuMemoryRequiredInMb: number
     end
 
@@ -2100,6 +2100,12 @@ local record M
         "ml.r6id.24xlarge"
         "ml.r6id.32xlarge"
         "ml.p5.4xlarge"
+        "ml.g7.2xlarge"
+        "ml.g7.4xlarge"
+        "ml.g7.8xlarge"
+        "ml.g7.12xlarge"
+        "ml.g7.24xlarge"
+        "ml.g7.48xlarge"
         "ml.g7e.2xlarge"
         "ml.g7e.4xlarge"
         "ml.g7e.8xlarge"
@@ -9239,7 +9245,7 @@ local record M
         Tags: {Tag}
         -- A VPC in Amazon VPC that your optimized model has access to.
         VpcConfig: OptimizationVpcConfig
-        -- The Amazon Resource Name (ARN) of the training plan to use for this optimization job. When you use reserved capacity from a training plan, the optimization job runs on that reserved capacity instead of on-demand capacity. If you omit this field, the job uses on-demand capacity. Currently, you can specify at most one training plan. For more information about how to reserve GPU capacity for your optimization jobs using Amazon SageMaker Training Plans, see Reserve capacity with training plans.
+        -- The Amazon Resource Name (ARN) of the training plan to use for this optimization job. When you use reserved capacity from a training plan, the optimization job runs on that reserved capacity instead of on-demand capacity. If you omit this field, the job uses on-demand capacity. You can specify at most one training plan. For more information about how to reserve GPU capacity for your optimization jobs using Amazon SageMaker Training Plans, see Reserve capacity with training plans.
         TrainingPlanArns: {string}
     end
 
@@ -11168,7 +11174,7 @@ local record M
         RoleArn: string
         -- The compute resource specification for the recommendation job.
         ComputeSpec: AIRecommendationComputeSpec
-        -- The LoRA adapter source that was specified when the recommendation job was created. This field is absent when the job was created without LoRA adapters.
+        -- The LoRA adapter source that you specified when you created the recommendation job. This field is absent when you created the job without LoRA adapters.
         AdapterSource: AIAdapterSource
         -- A timestamp that indicates when the recommendation job was created.
         CreationTime: number

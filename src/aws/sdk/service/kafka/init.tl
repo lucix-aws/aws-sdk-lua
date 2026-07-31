@@ -20,18 +20,21 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     batchAssociateScramSecret: function(Client, types.BatchAssociateScramSecretInput, ? base_client.InvokeOptions): async.Operation<types.BatchAssociateScramSecretOutput>
     batchDisassociateScramSecret: function(Client, types.BatchDisassociateScramSecretInput, ? base_client.InvokeOptions): async.Operation<types.BatchDisassociateScramSecretOutput>
+    createChannel: function(Client, types.CreateChannelInput, ? base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
     createCluster: function(Client, types.CreateClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
     createClusterV2: function(Client, types.CreateClusterV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateClusterV2Output>
     createConfiguration: function(Client, types.CreateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationOutput>
     createReplicator: function(Client, types.CreateReplicatorInput, ? base_client.InvokeOptions): async.Operation<types.CreateReplicatorOutput>
     createTopic: function(Client, types.CreateTopicInput, ? base_client.InvokeOptions): async.Operation<types.CreateTopicOutput>
     createVpcConnection: function(Client, types.CreateVpcConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpcConnectionOutput>
+    deleteChannel: function(Client, types.DeleteChannelInput, ? base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
     deleteCluster: function(Client, types.DeleteClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
     deleteClusterPolicy: function(Client, types.DeleteClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClusterPolicyOutput>
     deleteConfiguration: function(Client, types.DeleteConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationOutput>
     deleteReplicator: function(Client, types.DeleteReplicatorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteReplicatorOutput>
     deleteTopic: function(Client, types.DeleteTopicInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicOutput>
     deleteVpcConnection: function(Client, types.DeleteVpcConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteVpcConnectionOutput>
+    describeChannel: function(Client, types.DescribeChannelInput, ? base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
     describeCluster: function(Client, types.DescribeClusterInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
     describeClusterOperation: function(Client, types.DescribeClusterOperationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationOutput>
     describeClusterOperationV2: function(Client, types.DescribeClusterOperationV2Input, ? base_client.InvokeOptions): async.Operation<types.DescribeClusterOperationV2Output>
@@ -45,6 +48,7 @@ local record Client
     getBootstrapBrokers: function(Client, types.GetBootstrapBrokersInput, ? base_client.InvokeOptions): async.Operation<types.GetBootstrapBrokersOutput>
     getClusterPolicy: function(Client, types.GetClusterPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetClusterPolicyOutput>
     getCompatibleKafkaVersions: function(Client, types.GetCompatibleKafkaVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetCompatibleKafkaVersionsOutput>
+    listChannels: function(Client, types.ListChannelsInput, ? base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
     listClientVpcConnections: function(Client, types.ListClientVpcConnectionsInput, ? base_client.InvokeOptions): async.Operation<types.ListClientVpcConnectionsOutput>
     listClusterOperations: function(Client, types.ListClusterOperationsInput, ? base_client.InvokeOptions): async.Operation<types.ListClusterOperationsOutput>
     listClusterOperationsV2: function(Client, types.ListClusterOperationsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListClusterOperationsV2Output>
@@ -67,6 +71,7 @@ local record Client
     updateBrokerCount: function(Client, types.UpdateBrokerCountInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrokerCountOutput>
     updateBrokerStorage: function(Client, types.UpdateBrokerStorageInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrokerStorageOutput>
     updateBrokerType: function(Client, types.UpdateBrokerTypeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateBrokerTypeOutput>
+    updateChannel: function(Client, types.UpdateChannelInput, ? base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
     updateClusterConfiguration: function(Client, types.UpdateClusterConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterConfigurationOutput>
     updateClusterKafkaVersion: function(Client, types.UpdateClusterKafkaVersionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateClusterKafkaVersionOutput>
     updateConfiguration: function(Client, types.UpdateConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationOutput>
@@ -129,6 +134,10 @@ function C:batchDisassociateScramSecret(input: types.BatchDisassociateScramSecre
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchDisassociateScramSecret as schema.OperationSchema, input, options) as async.Operation<types.BatchDisassociateScramSecretOutput>
 end
 
+function C:createChannel(input: types.CreateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.CreateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateChannel as schema.OperationSchema, input, options) as async.Operation<types.CreateChannelOutput>
+end
+
 function C:createCluster(input: types.CreateClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateClusterOutput>
 end
@@ -153,6 +162,10 @@ function C:createVpcConnection(input: types.CreateVpcConnectionInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpcConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateVpcConnectionOutput>
 end
 
+function C:deleteChannel(input: types.DeleteChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteChannel as schema.OperationSchema, input, options) as async.Operation<types.DeleteChannelOutput>
+end
+
 function C:deleteCluster(input: types.DeleteClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteClusterOutput>
 end
@@ -175,6 +188,10 @@ end
 
 function C:deleteVpcConnection(input: types.DeleteVpcConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteVpcConnectionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteVpcConnection as schema.OperationSchema, input, options) as async.Operation<types.DeleteVpcConnectionOutput>
+end
+
+function C:describeChannel(input: types.DescribeChannelInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeChannel as schema.OperationSchema, input, options) as async.Operation<types.DescribeChannelOutput>
 end
 
 function C:describeCluster(input: types.DescribeClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeClusterOutput>
@@ -227,6 +244,10 @@ end
 
 function C:getCompatibleKafkaVersions(input: types.GetCompatibleKafkaVersionsInput, options?: base_client.InvokeOptions): async.Operation<types.GetCompatibleKafkaVersionsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCompatibleKafkaVersions as schema.OperationSchema, input, options) as async.Operation<types.GetCompatibleKafkaVersionsOutput>
+end
+
+function C:listChannels(input: types.ListChannelsInput, options?: base_client.InvokeOptions): async.Operation<types.ListChannelsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListChannels as schema.OperationSchema, input, options) as async.Operation<types.ListChannelsOutput>
 end
 
 function C:listClientVpcConnections(input: types.ListClientVpcConnectionsInput, options?: base_client.InvokeOptions): async.Operation<types.ListClientVpcConnectionsOutput>
@@ -315,6 +336,10 @@ end
 
 function C:updateBrokerType(input: types.UpdateBrokerTypeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateBrokerTypeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateBrokerType as schema.OperationSchema, input, options) as async.Operation<types.UpdateBrokerTypeOutput>
+end
+
+function C:updateChannel(input: types.UpdateChannelInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateChannelOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateChannel as schema.OperationSchema, input, options) as async.Operation<types.UpdateChannelOutput>
 end
 
 function C:updateClusterConfiguration(input: types.UpdateClusterConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateClusterConfigurationOutput>

@@ -91,6 +91,8 @@ M.SSHPublicKeyListType = schema.new({ type = "list", list_member = M.SSHPublicKe
 
 M.virtualMFADeviceListType = schema.new({ type = "list", list_member = M.VirtualMFADevice })
 
+M.OrganizationPolicyListType = schema.new({ type = "list", list_member = M.OrderedOrganizationPolicyType })
+
 M.ActionNameListType = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourceNameListType = schema.new({ type = "list", list_member = prelude.String })
@@ -98,6 +100,8 @@ M.ResourceNameListType = schema.new({ type = "list", list_member = prelude.Strin
 M.ContextEntryListType = schema.new({ type = "list", list_member = M.ContextEntry })
 
 M.EvaluationResultsListType = schema.new({ type = "list", list_member = M.EvaluationResult })
+
+M.PolicyExclusionsListType = schema.new({ type = "list", list_member = M.PolicyIdentifier })
 
 M.tagKeyListType = schema.new({ type = "list", list_member = prelude.String })
 
@@ -8456,6 +8460,20 @@ M.ContextEntry = schema.new({
     },
 })
 
+M.OrderedOrganizationPolicyType = schema.new({
+    id = id.from(_N, "OrderedOrganizationPolicyType"),
+    type = "structure",
+    members = {
+        ServiceControlPolicyInputList = schema.new({
+            id = id.from(_N, "OrderedOrganizationPolicyType", "ServiceControlPolicyInputList"),
+            type = "list",
+            name = "ServiceControlPolicyInputList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.SimulateCustomPolicyInput = schema.new({
     id = id.from(_N, "SimulateCustomPolicyRequest"),
     type = "structure",
@@ -8476,6 +8494,13 @@ M.SimulateCustomPolicyInput = schema.new({
             name = "PermissionsBoundaryPolicyInputList",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        OrderedOrganizationPolicyInputList = schema.new({
+            id = id.from(_N, "SimulateCustomPolicyInput", "OrderedOrganizationPolicyInputList"),
+            type = "list",
+            name = "OrderedOrganizationPolicyInputList",
+            target_id = prelude.Document.id,
+            list_member = M.OrderedOrganizationPolicyType,
         }),
         ActionNames = schema.new({
             id = id.from(_N, "SimulateCustomPolicyInput", "ActionNames"),
@@ -8787,6 +8812,66 @@ M.SimulateCustomPolicyOutput = schema.new({
     },
 })
 
+M.InlinePolicyIdentifierType = schema.new({
+    id = id.from(_N, "InlinePolicyIdentifierType"),
+    type = "structure",
+    members = {
+        PolicyName = schema.new({
+            id = id.from(_N, "InlinePolicyIdentifierType", "PolicyName"),
+            type = "string",
+            name = "PolicyName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttachmentType = schema.new({
+            id = id.from(_N, "InlinePolicyIdentifierType", "AttachmentType"),
+            type = "string",
+            name = "AttachmentType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AttachmentName = schema.new({
+            id = id.from(_N, "InlinePolicyIdentifierType", "AttachmentName"),
+            type = "string",
+            name = "AttachmentName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PolicyIdentifier = schema.new({
+    id = id.from(_N, "PolicyIdentifier"),
+    type = "union",
+    members = {
+        PolicyType = schema.new({
+            id = id.from(_N, "PolicyIdentifier", "PolicyType"),
+            type = "string",
+            name = "PolicyType",
+            target_id = prelude.String.id,
+        }),
+        PolicyArn = schema.new({
+            id = id.from(_N, "PolicyIdentifier", "PolicyArn"),
+            type = "string",
+            name = "PolicyArn",
+            target_id = prelude.String.id,
+        }),
+        InlinePolicyIdentifier = schema.new({
+            id = id.from(_N, "PolicyIdentifier", "InlinePolicyIdentifier"),
+            type = "structure",
+            name = "InlinePolicyIdentifier",
+            target_id = id.from(_N, "InlinePolicyIdentifierType"),
+            target = M.InlinePolicyIdentifierType,
+        }),
+    },
+})
+
 M.SimulatePrincipalPolicyInput = schema.new({
     id = id.from(_N, "SimulatePrincipalPolicyRequest"),
     type = "structure",
@@ -8813,6 +8898,13 @@ M.SimulatePrincipalPolicyInput = schema.new({
             name = "PermissionsBoundaryPolicyInputList",
             target_id = prelude.Document.id,
             list_member = prelude.String,
+        }),
+        PolicyExclusionList = schema.new({
+            id = id.from(_N, "SimulatePrincipalPolicyInput", "PolicyExclusionList"),
+            type = "list",
+            name = "PolicyExclusionList",
+            target_id = prelude.Document.id,
+            list_member = M.PolicyIdentifier,
         }),
         ActionNames = schema.new({
             id = id.from(_N, "SimulatePrincipalPolicyInput", "ActionNames"),

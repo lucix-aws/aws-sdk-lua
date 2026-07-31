@@ -9,16 +9,6 @@ local _N = "com.amazonaws.lambda"
 
 local M: {string:any} = {}
 
-M.OperationUpdates = schema.new({ type = "list", list_member = M.OperationUpdate })
-
-M.Events = schema.new({ type = "list", list_member = M.Event })
-
-M.Operations = schema.new({ type = "list", list_member = M.Operation })
-
-M.ExecutionStatusList = schema.new({ type = "list", list_member = prelude.String })
-
-M.DurableExecutions = schema.new({ type = "list", list_member = M.Execution })
-
 M.FunctionEventInvokeConfigList = schema.new({ type = "list", list_member = M.FunctionEventInvokeConfig })
 
 M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
@@ -32,6 +22,12 @@ M.FunctionVersionsByCapacityProviderList = schema.new({ type = "list", list_memb
 M.CodeSigningConfigList = schema.new({ type = "list", list_member = M.CodeSigningConfig })
 
 M.FunctionArnList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OperationUpdates = schema.new({ type = "list", list_member = M.OperationUpdate })
+
+M.Events = schema.new({ type = "list", list_member = M.Event })
+
+M.Operations = schema.new({ type = "list", list_member = M.Operation })
 
 M.EventSourceMappingsList = schema.new({ type = "list", list_member = M.EventSourceMappingConfiguration })
 
@@ -54,6 +50,10 @@ M.ArchitecturesList = schema.new({ type = "list", list_member = prelude.String }
 M.LayersReferenceList = schema.new({ type = "list", list_member = M.Layer })
 
 M.ProvisionedConcurrencyConfigList = schema.new({ type = "list", list_member = M.ProvisionedConcurrencyConfigListItem })
+
+M.ExecutionStatusList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DurableExecutions = schema.new({ type = "list", list_member = M.Execution })
 
 M.FunctionUrlConfigList = schema.new({ type = "list", list_member = M.FunctionUrlConfig })
 
@@ -1402,6 +1402,415 @@ M.UpdateCapacityProviderOutput = schema.new({
     },
 })
 
+M.CodeSigningPolicies = schema.new({
+    id = id.from(_N, "CodeSigningPolicies"),
+    type = "structure",
+    members = {
+        UntrustedArtifactOnDeployment = schema.new({
+            id = id.from(_N, "CodeSigningPolicies", "UntrustedArtifactOnDeployment"),
+            type = "string",
+            name = "UntrustedArtifactOnDeployment",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateCodeSigningConfigInput = schema.new({
+    id = id.from(_N, "CreateCodeSigningConfigRequest"),
+    type = "structure",
+    members = {
+        Description = schema.new({
+            id = id.from(_N, "CreateCodeSigningConfigInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        AllowedPublishers = schema.new({
+            id = id.from(_N, "CreateCodeSigningConfigInput", "AllowedPublishers"),
+            type = "structure",
+            name = "AllowedPublishers",
+            target_id = id.from(_N, "AllowedPublishers"),
+            target = M.AllowedPublishers,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CodeSigningPolicies = schema.new({
+            id = id.from(_N, "CreateCodeSigningConfigInput", "CodeSigningPolicies"),
+            type = "structure",
+            name = "CodeSigningPolicies",
+            target_id = id.from(_N, "CodeSigningPolicies"),
+            target = M.CodeSigningPolicies,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateCodeSigningConfigInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CodeSigningConfig = schema.new({
+    id = id.from(_N, "CodeSigningConfig"),
+    type = "structure",
+    members = {
+        CodeSigningConfigId = schema.new({
+            id = id.from(_N, "CodeSigningConfig", "CodeSigningConfigId"),
+            type = "string",
+            name = "CodeSigningConfigId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CodeSigningConfigArn = schema.new({
+            id = id.from(_N, "CodeSigningConfig", "CodeSigningConfigArn"),
+            type = "string",
+            name = "CodeSigningConfigArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CodeSigningConfig", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        AllowedPublishers = schema.new({
+            id = id.from(_N, "CodeSigningConfig", "AllowedPublishers"),
+            type = "structure",
+            name = "AllowedPublishers",
+            target_id = id.from(_N, "AllowedPublishers"),
+            target = M.AllowedPublishers,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CodeSigningPolicies = schema.new({
+            id = id.from(_N, "CodeSigningConfig", "CodeSigningPolicies"),
+            type = "structure",
+            name = "CodeSigningPolicies",
+            target_id = id.from(_N, "CodeSigningPolicies"),
+            target = M.CodeSigningPolicies,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModified = schema.new({
+            id = id.from(_N, "CodeSigningConfig", "LastModified"),
+            type = "string",
+            name = "LastModified",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateCodeSigningConfigOutput = schema.new({
+    id = id.from(_N, "CreateCodeSigningConfigResponse"),
+    type = "structure",
+    members = {
+        CodeSigningConfig = schema.new({
+            id = id.from(_N, "CreateCodeSigningConfigOutput", "CodeSigningConfig"),
+            type = "structure",
+            name = "CodeSigningConfig",
+            target_id = id.from(_N, "CodeSigningConfig"),
+            target = M.CodeSigningConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCodeSigningConfigInput = schema.new({
+    id = id.from(_N, "DeleteCodeSigningConfigRequest"),
+    type = "structure",
+    members = {
+        CodeSigningConfigArn = schema.new({
+            id = id.from(_N, "DeleteCodeSigningConfigInput", "CodeSigningConfigArn"),
+            type = "string",
+            name = "CodeSigningConfigArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCodeSigningConfigOutput = schema.new({
+    id = id.from(_N, "DeleteCodeSigningConfigResponse"),
+    type = "structure",
+})
+
+M.GetCodeSigningConfigInput = schema.new({
+    id = id.from(_N, "GetCodeSigningConfigRequest"),
+    type = "structure",
+    members = {
+        CodeSigningConfigArn = schema.new({
+            id = id.from(_N, "GetCodeSigningConfigInput", "CodeSigningConfigArn"),
+            type = "string",
+            name = "CodeSigningConfigArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetCodeSigningConfigOutput = schema.new({
+    id = id.from(_N, "GetCodeSigningConfigResponse"),
+    type = "structure",
+    members = {
+        CodeSigningConfig = schema.new({
+            id = id.from(_N, "GetCodeSigningConfigOutput", "CodeSigningConfig"),
+            type = "structure",
+            name = "CodeSigningConfig",
+            target_id = id.from(_N, "CodeSigningConfig"),
+            target = M.CodeSigningConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListCodeSigningConfigsInput = schema.new({
+    id = id.from(_N, "ListCodeSigningConfigsRequest"),
+    type = "structure",
+    members = {
+        Marker = schema.new({
+            id = id.from(_N, "ListCodeSigningConfigsInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Marker" },
+            },
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "ListCodeSigningConfigsInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxItems" },
+            },
+        }),
+    },
+})
+
+M.ListCodeSigningConfigsOutput = schema.new({
+    id = id.from(_N, "ListCodeSigningConfigsResponse"),
+    type = "structure",
+    members = {
+        NextMarker = schema.new({
+            id = id.from(_N, "ListCodeSigningConfigsOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+        CodeSigningConfigs = schema.new({
+            id = id.from(_N, "ListCodeSigningConfigsOutput", "CodeSigningConfigs"),
+            type = "list",
+            name = "CodeSigningConfigs",
+            target_id = prelude.Document.id,
+            list_member = M.CodeSigningConfig,
+        }),
+    },
+})
+
+M.ListFunctionsByCodeSigningConfigInput = schema.new({
+    id = id.from(_N, "ListFunctionsByCodeSigningConfigRequest"),
+    type = "structure",
+    members = {
+        CodeSigningConfigArn = schema.new({
+            id = id.from(_N, "ListFunctionsByCodeSigningConfigInput", "CodeSigningConfigArn"),
+            type = "string",
+            name = "CodeSigningConfigArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "ListFunctionsByCodeSigningConfigInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Marker" },
+            },
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "ListFunctionsByCodeSigningConfigInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "MaxItems" },
+            },
+        }),
+    },
+})
+
+M.ListFunctionsByCodeSigningConfigOutput = schema.new({
+    id = id.from(_N, "ListFunctionsByCodeSigningConfigResponse"),
+    type = "structure",
+    members = {
+        NextMarker = schema.new({
+            id = id.from(_N, "ListFunctionsByCodeSigningConfigOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+        FunctionArns = schema.new({
+            id = id.from(_N, "ListFunctionsByCodeSigningConfigOutput", "FunctionArns"),
+            type = "list",
+            name = "FunctionArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.UpdateCodeSigningConfigInput = schema.new({
+    id = id.from(_N, "UpdateCodeSigningConfigRequest"),
+    type = "structure",
+    members = {
+        CodeSigningConfigArn = schema.new({
+            id = id.from(_N, "UpdateCodeSigningConfigInput", "CodeSigningConfigArn"),
+            type = "string",
+            name = "CodeSigningConfigArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateCodeSigningConfigInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        AllowedPublishers = schema.new({
+            id = id.from(_N, "UpdateCodeSigningConfigInput", "AllowedPublishers"),
+            type = "structure",
+            name = "AllowedPublishers",
+            target_id = id.from(_N, "AllowedPublishers"),
+            target = M.AllowedPublishers,
+        }),
+        CodeSigningPolicies = schema.new({
+            id = id.from(_N, "UpdateCodeSigningConfigInput", "CodeSigningPolicies"),
+            type = "structure",
+            name = "CodeSigningPolicies",
+            target_id = id.from(_N, "CodeSigningPolicies"),
+            target = M.CodeSigningPolicies,
+        }),
+    },
+})
+
+M.UpdateCodeSigningConfigOutput = schema.new({
+    id = id.from(_N, "UpdateCodeSigningConfigResponse"),
+    type = "structure",
+    members = {
+        CodeSigningConfig = schema.new({
+            id = id.from(_N, "UpdateCodeSigningConfigOutput", "CodeSigningConfig"),
+            type = "structure",
+            name = "CodeSigningConfig",
+            target_id = id.from(_N, "CodeSigningConfig"),
+            target = M.CodeSigningConfig,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFunctionInput = schema.new({
+    id = id.from(_N, "DeleteFunctionRequest"),
+    type = "structure",
+    members = {
+        FunctionName = schema.new({
+            id = id.from(_N, "DeleteFunctionInput", "FunctionName"),
+            type = "string",
+            name = "FunctionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Qualifier = schema.new({
+            id = id.from(_N, "DeleteFunctionInput", "Qualifier"),
+            type = "string",
+            name = "Qualifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Qualifier" },
+            },
+        }),
+    },
+})
+
+M.DeleteFunctionOutput = schema.new({
+    id = id.from(_N, "DeleteFunctionResponse"),
+    type = "structure",
+    members = {
+        StatusCode = schema.new({
+            id = id.from(_N, "DeleteFunctionOutput", "StatusCode"),
+            type = "integer",
+            name = "StatusCode",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteFunctionEventInvokeConfigInput = schema.new({
+    id = id.from(_N, "DeleteFunctionEventInvokeConfigRequest"),
+    type = "structure",
+    members = {
+        FunctionName = schema.new({
+            id = id.from(_N, "DeleteFunctionEventInvokeConfigInput", "FunctionName"),
+            type = "string",
+            name = "FunctionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Qualifier = schema.new({
+            id = id.from(_N, "DeleteFunctionEventInvokeConfigInput", "Qualifier"),
+            type = "string",
+            name = "Qualifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Qualifier" },
+            },
+        }),
+    },
+})
+
+M.DeleteFunctionEventInvokeConfigOutput = prelude.Unit
+
 M.CallbackOptions = schema.new({
     id = id.from(_N, "CallbackOptions"),
     type = "structure",
@@ -2035,414 +2444,1132 @@ M.KMSNotFoundException = schema.new({
     },
 })
 
-M.CodeSigningPolicies = schema.new({
-    id = id.from(_N, "CodeSigningPolicies"),
+M.GetDurableExecutionInput = schema.new({
+    id = id.from(_N, "GetDurableExecutionRequest"),
     type = "structure",
     members = {
-        UntrustedArtifactOnDeployment = schema.new({
-            id = id.from(_N, "CodeSigningPolicies", "UntrustedArtifactOnDeployment"),
+        DurableExecutionArn = schema.new({
+            id = id.from(_N, "GetDurableExecutionInput", "DurableExecutionArn"),
             type = "string",
-            name = "UntrustedArtifactOnDeployment",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.CreateCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "CreateCodeSigningConfigRequest"),
-    type = "structure",
-    members = {
-        Description = schema.new({
-            id = id.from(_N, "CreateCodeSigningConfigInput", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        AllowedPublishers = schema.new({
-            id = id.from(_N, "CreateCodeSigningConfigInput", "AllowedPublishers"),
-            type = "structure",
-            name = "AllowedPublishers",
-            target_id = id.from(_N, "AllowedPublishers"),
-            target = M.AllowedPublishers,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        CodeSigningPolicies = schema.new({
-            id = id.from(_N, "CreateCodeSigningConfigInput", "CodeSigningPolicies"),
-            type = "structure",
-            name = "CodeSigningPolicies",
-            target_id = id.from(_N, "CodeSigningPolicies"),
-            target = M.CodeSigningPolicies,
-        }),
-        Tags = schema.new({
-            id = id.from(_N, "CreateCodeSigningConfigInput", "Tags"),
-            type = "map",
-            name = "Tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
-    },
-})
-
-M.CodeSigningConfig = schema.new({
-    id = id.from(_N, "CodeSigningConfig"),
-    type = "structure",
-    members = {
-        CodeSigningConfigId = schema.new({
-            id = id.from(_N, "CodeSigningConfig", "CodeSigningConfigId"),
-            type = "string",
-            name = "CodeSigningConfigId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        CodeSigningConfigArn = schema.new({
-            id = id.from(_N, "CodeSigningConfig", "CodeSigningConfigArn"),
-            type = "string",
-            name = "CodeSigningConfigArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Description = schema.new({
-            id = id.from(_N, "CodeSigningConfig", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        AllowedPublishers = schema.new({
-            id = id.from(_N, "CodeSigningConfig", "AllowedPublishers"),
-            type = "structure",
-            name = "AllowedPublishers",
-            target_id = id.from(_N, "AllowedPublishers"),
-            target = M.AllowedPublishers,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        CodeSigningPolicies = schema.new({
-            id = id.from(_N, "CodeSigningConfig", "CodeSigningPolicies"),
-            type = "structure",
-            name = "CodeSigningPolicies",
-            target_id = id.from(_N, "CodeSigningPolicies"),
-            target = M.CodeSigningPolicies,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        LastModified = schema.new({
-            id = id.from(_N, "CodeSigningConfig", "LastModified"),
-            type = "string",
-            name = "LastModified",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CreateCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "CreateCodeSigningConfigResponse"),
-    type = "structure",
-    members = {
-        CodeSigningConfig = schema.new({
-            id = id.from(_N, "CreateCodeSigningConfigOutput", "CodeSigningConfig"),
-            type = "structure",
-            name = "CodeSigningConfig",
-            target_id = id.from(_N, "CodeSigningConfig"),
-            target = M.CodeSigningConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.DeleteCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "DeleteCodeSigningConfigRequest"),
-    type = "structure",
-    members = {
-        CodeSigningConfigArn = schema.new({
-            id = id.from(_N, "DeleteCodeSigningConfigInput", "CodeSigningConfigArn"),
-            type = "string",
-            name = "CodeSigningConfigArn",
+            name = "DurableExecutionArn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        IncludeExecutionData = schema.new({
+            id = id.from(_N, "GetDurableExecutionInput", "IncludeExecutionData"),
+            type = "boolean",
+            name = "IncludeExecutionData",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+                [traits.HTTP_QUERY] = { name = "IncludeExecutionData" },
+            },
+        }),
     },
 })
 
-M.DeleteCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "DeleteCodeSigningConfigResponse"),
-    type = "structure",
-})
-
-M.GetCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "GetCodeSigningConfigRequest"),
+M.DurableConfig = schema.new({
+    id = id.from(_N, "DurableConfig"),
     type = "structure",
     members = {
-        CodeSigningConfigArn = schema.new({
-            id = id.from(_N, "GetCodeSigningConfigInput", "CodeSigningConfigArn"),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "DurableConfig", "KMSKeyArn"),
             type = "string",
-            name = "CodeSigningConfigArn",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+        RetentionPeriodInDays = schema.new({
+            id = id.from(_N, "DurableConfig", "RetentionPeriodInDays"),
+            type = "integer",
+            name = "RetentionPeriodInDays",
+            target_id = prelude.Integer.id,
+        }),
+        ExecutionTimeout = schema.new({
+            id = id.from(_N, "DurableConfig", "ExecutionTimeout"),
+            type = "integer",
+            name = "ExecutionTimeout",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.TraceHeader = schema.new({
+    id = id.from(_N, "TraceHeader"),
+    type = "structure",
+    members = {
+        XAmznTraceId = schema.new({
+            id = id.from(_N, "TraceHeader", "XAmznTraceId"),
+            type = "string",
+            name = "XAmznTraceId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDurableExecutionOutput = schema.new({
+    id = id.from(_N, "GetDurableExecutionResponse"),
+    type = "structure",
+    members = {
+        DurableExecutionArn = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "DurableExecutionArn"),
+            type = "string",
+            name = "DurableExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DurableExecutionName = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "DurableExecutionName"),
+            type = "string",
+            name = "DurableExecutionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FunctionArn = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "FunctionArn"),
+            type = "string",
+            name = "FunctionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        InputPayload = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "InputPayload"),
+            type = "string",
+            name = "InputPayload",
+            target_id = prelude.String.id,
+        }),
+        Result = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "Result"),
+            type = "string",
+            name = "Result",
+            target_id = prelude.String.id,
+        }),
+        Error = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "ErrorObject"),
+            target = M.ErrorObject,
+        }),
+        StartTimestamp = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "StartTimestamp"),
+            type = "timestamp",
+            name = "StartTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTimestamp = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "EndTimestamp"),
+            type = "timestamp",
+            name = "EndTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        Version = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "Version"),
+            type = "string",
+            name = "Version",
+            target_id = prelude.String.id,
+        }),
+        TraceHeader = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "TraceHeader"),
+            type = "structure",
+            name = "TraceHeader",
+            target_id = id.from(_N, "TraceHeader"),
+            target = M.TraceHeader,
+        }),
+        ExecutionDataIncluded = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "ExecutionDataIncluded"),
+            type = "boolean",
+            name = "ExecutionDataIncluded",
+            target_id = prelude.Boolean.id,
+        }),
+        DurableConfig = schema.new({
+            id = id.from(_N, "GetDurableExecutionOutput", "DurableConfig"),
+            type = "structure",
+            name = "DurableConfig",
+            target_id = id.from(_N, "DurableConfig"),
+            target = M.DurableConfig,
+        }),
+    },
+})
+
+M.GetDurableExecutionHistoryInput = schema.new({
+    id = id.from(_N, "GetDurableExecutionHistoryRequest"),
+    type = "structure",
+    members = {
+        DurableExecutionArn = schema.new({
+            id = id.from(_N, "GetDurableExecutionHistoryInput", "DurableExecutionArn"),
+            type = "string",
+            name = "DurableExecutionArn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
         }),
-    },
-})
-
-M.GetCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "GetCodeSigningConfigResponse"),
-    type = "structure",
-    members = {
-        CodeSigningConfig = schema.new({
-            id = id.from(_N, "GetCodeSigningConfigOutput", "CodeSigningConfig"),
-            type = "structure",
-            name = "CodeSigningConfig",
-            target_id = id.from(_N, "CodeSigningConfig"),
-            target = M.CodeSigningConfig,
+        IncludeExecutionData = schema.new({
+            id = id.from(_N, "GetDurableExecutionHistoryInput", "IncludeExecutionData"),
+            type = "boolean",
+            name = "IncludeExecutionData",
+            target_id = prelude.Boolean.id,
             traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ListCodeSigningConfigsInput = schema.new({
-    id = id.from(_N, "ListCodeSigningConfigsRequest"),
-    type = "structure",
-    members = {
-        Marker = schema.new({
-            id = id.from(_N, "ListCodeSigningConfigsInput", "Marker"),
-            type = "string",
-            name = "Marker",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Marker" },
+                [traits.HTTP_QUERY] = { name = "IncludeExecutionData" },
             },
         }),
         MaxItems = schema.new({
-            id = id.from(_N, "ListCodeSigningConfigsInput", "MaxItems"),
+            id = id.from(_N, "GetDurableExecutionHistoryInput", "MaxItems"),
             type = "integer",
             name = "MaxItems",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "MaxItems" },
-            },
-        }),
-    },
-})
-
-M.ListCodeSigningConfigsOutput = schema.new({
-    id = id.from(_N, "ListCodeSigningConfigsResponse"),
-    type = "structure",
-    members = {
-        NextMarker = schema.new({
-            id = id.from(_N, "ListCodeSigningConfigsOutput", "NextMarker"),
-            type = "string",
-            name = "NextMarker",
-            target_id = prelude.String.id,
-        }),
-        CodeSigningConfigs = schema.new({
-            id = id.from(_N, "ListCodeSigningConfigsOutput", "CodeSigningConfigs"),
-            type = "list",
-            name = "CodeSigningConfigs",
-            target_id = prelude.Document.id,
-            list_member = M.CodeSigningConfig,
-        }),
-    },
-})
-
-M.ListFunctionsByCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "ListFunctionsByCodeSigningConfigRequest"),
-    type = "structure",
-    members = {
-        CodeSigningConfigArn = schema.new({
-            id = id.from(_N, "ListFunctionsByCodeSigningConfigInput", "CodeSigningConfigArn"),
-            type = "string",
-            name = "CodeSigningConfigArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Marker = schema.new({
-            id = id.from(_N, "ListFunctionsByCodeSigningConfigInput", "Marker"),
-            type = "string",
-            name = "Marker",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Marker" },
-            },
-        }),
-        MaxItems = schema.new({
-            id = id.from(_N, "ListFunctionsByCodeSigningConfigInput", "MaxItems"),
-            type = "integer",
-            name = "MaxItems",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "MaxItems" },
-            },
-        }),
-    },
-})
-
-M.ListFunctionsByCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "ListFunctionsByCodeSigningConfigResponse"),
-    type = "structure",
-    members = {
-        NextMarker = schema.new({
-            id = id.from(_N, "ListFunctionsByCodeSigningConfigOutput", "NextMarker"),
-            type = "string",
-            name = "NextMarker",
-            target_id = prelude.String.id,
-        }),
-        FunctionArns = schema.new({
-            id = id.from(_N, "ListFunctionsByCodeSigningConfigOutput", "FunctionArns"),
-            type = "list",
-            name = "FunctionArns",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-        }),
-    },
-})
-
-M.UpdateCodeSigningConfigInput = schema.new({
-    id = id.from(_N, "UpdateCodeSigningConfigRequest"),
-    type = "structure",
-    members = {
-        CodeSigningConfigArn = schema.new({
-            id = id.from(_N, "UpdateCodeSigningConfigInput", "CodeSigningConfigArn"),
-            type = "string",
-            name = "CodeSigningConfigArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Description = schema.new({
-            id = id.from(_N, "UpdateCodeSigningConfigInput", "Description"),
-            type = "string",
-            name = "Description",
-            target_id = prelude.String.id,
-        }),
-        AllowedPublishers = schema.new({
-            id = id.from(_N, "UpdateCodeSigningConfigInput", "AllowedPublishers"),
-            type = "structure",
-            name = "AllowedPublishers",
-            target_id = id.from(_N, "AllowedPublishers"),
-            target = M.AllowedPublishers,
-        }),
-        CodeSigningPolicies = schema.new({
-            id = id.from(_N, "UpdateCodeSigningConfigInput", "CodeSigningPolicies"),
-            type = "structure",
-            name = "CodeSigningPolicies",
-            target_id = id.from(_N, "CodeSigningPolicies"),
-            target = M.CodeSigningPolicies,
-        }),
-    },
-})
-
-M.UpdateCodeSigningConfigOutput = schema.new({
-    id = id.from(_N, "UpdateCodeSigningConfigResponse"),
-    type = "structure",
-    members = {
-        CodeSigningConfig = schema.new({
-            id = id.from(_N, "UpdateCodeSigningConfigOutput", "CodeSigningConfig"),
-            type = "structure",
-            name = "CodeSigningConfig",
-            target_id = id.from(_N, "CodeSigningConfig"),
-            target = M.CodeSigningConfig,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.DeleteFunctionInput = schema.new({
-    id = id.from(_N, "DeleteFunctionRequest"),
-    type = "structure",
-    members = {
-        FunctionName = schema.new({
-            id = id.from(_N, "DeleteFunctionInput", "FunctionName"),
-            type = "string",
-            name = "FunctionName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Qualifier = schema.new({
-            id = id.from(_N, "DeleteFunctionInput", "Qualifier"),
-            type = "string",
-            name = "Qualifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Qualifier" },
-            },
-        }),
-    },
-})
-
-M.DeleteFunctionOutput = schema.new({
-    id = id.from(_N, "DeleteFunctionResponse"),
-    type = "structure",
-    members = {
-        StatusCode = schema.new({
-            id = id.from(_N, "DeleteFunctionOutput", "StatusCode"),
-            type = "integer",
-            name = "StatusCode",
             target_id = prelude.Integer.id,
             traits = {
                 [traits.DEFAULT] = { value = 0 },
-                [traits.HTTP_RESPONSE_CODE] = {},
+                [traits.HTTP_QUERY] = { name = "MaxItems" },
+            },
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "GetDurableExecutionHistoryInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Marker" },
+            },
+        }),
+        ReverseOrder = schema.new({
+            id = id.from(_N, "GetDurableExecutionHistoryInput", "ReverseOrder"),
+            type = "boolean",
+            name = "ReverseOrder",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ReverseOrder" },
             },
         }),
     },
 })
 
-M.DeleteFunctionEventInvokeConfigInput = schema.new({
-    id = id.from(_N, "DeleteFunctionEventInvokeConfigRequest"),
+M.EventError = schema.new({
+    id = id.from(_N, "EventError"),
+    type = "structure",
+    members = {
+        Payload = schema.new({
+            id = id.from(_N, "EventError", "Payload"),
+            type = "structure",
+            name = "Payload",
+            target_id = id.from(_N, "ErrorObject"),
+            target = M.ErrorObject,
+        }),
+        Truncated = schema.new({
+            id = id.from(_N, "EventError", "Truncated"),
+            type = "boolean",
+            name = "Truncated",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CallbackFailedDetails = schema.new({
+    id = id.from(_N, "CallbackFailedDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "CallbackFailedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CallbackStartedDetails = schema.new({
+    id = id.from(_N, "CallbackStartedDetails"),
+    type = "structure",
+    members = {
+        CallbackId = schema.new({
+            id = id.from(_N, "CallbackStartedDetails", "CallbackId"),
+            type = "string",
+            name = "CallbackId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        HeartbeatTimeout = schema.new({
+            id = id.from(_N, "CallbackStartedDetails", "HeartbeatTimeout"),
+            type = "integer",
+            name = "HeartbeatTimeout",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "CallbackStartedDetails", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.EventResult = schema.new({
+    id = id.from(_N, "EventResult"),
+    type = "structure",
+    members = {
+        Payload = schema.new({
+            id = id.from(_N, "EventResult", "Payload"),
+            type = "string",
+            name = "Payload",
+            target_id = prelude.String.id,
+        }),
+        Truncated = schema.new({
+            id = id.from(_N, "EventResult", "Truncated"),
+            type = "boolean",
+            name = "Truncated",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.CallbackSucceededDetails = schema.new({
+    id = id.from(_N, "CallbackSucceededDetails"),
+    type = "structure",
+    members = {
+        Result = schema.new({
+            id = id.from(_N, "CallbackSucceededDetails", "Result"),
+            type = "structure",
+            name = "Result",
+            target_id = id.from(_N, "EventResult"),
+            target = M.EventResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CallbackTimedOutDetails = schema.new({
+    id = id.from(_N, "CallbackTimedOutDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "CallbackTimedOutDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChainedInvokeFailedDetails = schema.new({
+    id = id.from(_N, "ChainedInvokeFailedDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ChainedInvokeFailedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.EventInput = schema.new({
+    id = id.from(_N, "EventInput"),
+    type = "structure",
+    members = {
+        Payload = schema.new({
+            id = id.from(_N, "EventInput", "Payload"),
+            type = "string",
+            name = "Payload",
+            target_id = prelude.String.id,
+        }),
+        Truncated = schema.new({
+            id = id.from(_N, "EventInput", "Truncated"),
+            type = "boolean",
+            name = "Truncated",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ChainedInvokeStartedDetails = schema.new({
+    id = id.from(_N, "ChainedInvokeStartedDetails"),
     type = "structure",
     members = {
         FunctionName = schema.new({
-            id = id.from(_N, "DeleteFunctionEventInvokeConfigInput", "FunctionName"),
+            id = id.from(_N, "ChainedInvokeStartedDetails", "FunctionName"),
             type = "string",
             name = "FunctionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TenantId = schema.new({
+            id = id.from(_N, "ChainedInvokeStartedDetails", "TenantId"),
+            type = "string",
+            name = "TenantId",
+            target_id = prelude.String.id,
+        }),
+        Input = schema.new({
+            id = id.from(_N, "ChainedInvokeStartedDetails", "Input"),
+            type = "structure",
+            name = "Input",
+            target_id = id.from(_N, "EventInput"),
+            target = M.EventInput,
+        }),
+        ExecutedVersion = schema.new({
+            id = id.from(_N, "ChainedInvokeStartedDetails", "ExecutedVersion"),
+            type = "string",
+            name = "ExecutedVersion",
+            target_id = prelude.String.id,
+        }),
+        DurableExecutionArn = schema.new({
+            id = id.from(_N, "ChainedInvokeStartedDetails", "DurableExecutionArn"),
+            type = "string",
+            name = "DurableExecutionArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ChainedInvokeStoppedDetails = schema.new({
+    id = id.from(_N, "ChainedInvokeStoppedDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ChainedInvokeStoppedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChainedInvokeSucceededDetails = schema.new({
+    id = id.from(_N, "ChainedInvokeSucceededDetails"),
+    type = "structure",
+    members = {
+        Result = schema.new({
+            id = id.from(_N, "ChainedInvokeSucceededDetails", "Result"),
+            type = "structure",
+            name = "Result",
+            target_id = id.from(_N, "EventResult"),
+            target = M.EventResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ChainedInvokeTimedOutDetails = schema.new({
+    id = id.from(_N, "ChainedInvokeTimedOutDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ChainedInvokeTimedOutDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContextFailedDetails = schema.new({
+    id = id.from(_N, "ContextFailedDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ContextFailedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ContextStartedDetails = schema.new({
+    id = id.from(_N, "ContextStartedDetails"),
+    type = "structure",
+})
+
+M.ContextSucceededDetails = schema.new({
+    id = id.from(_N, "ContextSucceededDetails"),
+    type = "structure",
+    members = {
+        Result = schema.new({
+            id = id.from(_N, "ContextSucceededDetails", "Result"),
+            type = "structure",
+            name = "Result",
+            target_id = id.from(_N, "EventResult"),
+            target = M.EventResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecutionFailedDetails = schema.new({
+    id = id.from(_N, "ExecutionFailedDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ExecutionFailedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecutionStartedDetails = schema.new({
+    id = id.from(_N, "ExecutionStartedDetails"),
+    type = "structure",
+    members = {
+        Input = schema.new({
+            id = id.from(_N, "ExecutionStartedDetails", "Input"),
+            type = "structure",
+            name = "Input",
+            target_id = id.from(_N, "EventInput"),
+            target = M.EventInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExecutionTimeout = schema.new({
+            id = id.from(_N, "ExecutionStartedDetails", "ExecutionTimeout"),
+            type = "integer",
+            name = "ExecutionTimeout",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecutionStoppedDetails = schema.new({
+    id = id.from(_N, "ExecutionStoppedDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ExecutionStoppedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecutionSucceededDetails = schema.new({
+    id = id.from(_N, "ExecutionSucceededDetails"),
+    type = "structure",
+    members = {
+        Result = schema.new({
+            id = id.from(_N, "ExecutionSucceededDetails", "Result"),
+            type = "structure",
+            name = "Result",
+            target_id = id.from(_N, "EventResult"),
+            target = M.EventResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExecutionTimedOutDetails = schema.new({
+    id = id.from(_N, "ExecutionTimedOutDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "ExecutionTimedOutDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+        }),
+    },
+})
+
+M.InvocationCompletedDetails = schema.new({
+    id = id.from(_N, "InvocationCompletedDetails"),
+    type = "structure",
+    members = {
+        StartTimestamp = schema.new({
+            id = id.from(_N, "InvocationCompletedDetails", "StartTimestamp"),
+            type = "timestamp",
+            name = "StartTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTimestamp = schema.new({
+            id = id.from(_N, "InvocationCompletedDetails", "EndTimestamp"),
+            type = "timestamp",
+            name = "EndTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "InvocationCompletedDetails", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Error = schema.new({
+            id = id.from(_N, "InvocationCompletedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+        }),
+    },
+})
+
+M.RetryDetails = schema.new({
+    id = id.from(_N, "RetryDetails"),
+    type = "structure",
+    members = {
+        CurrentAttempt = schema.new({
+            id = id.from(_N, "RetryDetails", "CurrentAttempt"),
+            type = "integer",
+            name = "CurrentAttempt",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        NextAttemptDelaySeconds = schema.new({
+            id = id.from(_N, "RetryDetails", "NextAttemptDelaySeconds"),
+            type = "integer",
+            name = "NextAttemptDelaySeconds",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.StepFailedDetails = schema.new({
+    id = id.from(_N, "StepFailedDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "StepFailedDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RetryDetails = schema.new({
+            id = id.from(_N, "StepFailedDetails", "RetryDetails"),
+            type = "structure",
+            name = "RetryDetails",
+            target_id = id.from(_N, "RetryDetails"),
+            target = M.RetryDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StepStartedDetails = schema.new({
+    id = id.from(_N, "StepStartedDetails"),
+    type = "structure",
+})
+
+M.StepSucceededDetails = schema.new({
+    id = id.from(_N, "StepSucceededDetails"),
+    type = "structure",
+    members = {
+        Result = schema.new({
+            id = id.from(_N, "StepSucceededDetails", "Result"),
+            type = "structure",
+            name = "Result",
+            target_id = id.from(_N, "EventResult"),
+            target = M.EventResult,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RetryDetails = schema.new({
+            id = id.from(_N, "StepSucceededDetails", "RetryDetails"),
+            type = "structure",
+            name = "RetryDetails",
+            target_id = id.from(_N, "RetryDetails"),
+            target = M.RetryDetails,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WaitCancelledDetails = schema.new({
+    id = id.from(_N, "WaitCancelledDetails"),
+    type = "structure",
+    members = {
+        Error = schema.new({
+            id = id.from(_N, "WaitCancelledDetails", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "EventError"),
+            target = M.EventError,
+        }),
+    },
+})
+
+M.WaitStartedDetails = schema.new({
+    id = id.from(_N, "WaitStartedDetails"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "WaitStartedDetails", "Duration"),
+            type = "integer",
+            name = "Duration",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ScheduledEndTimestamp = schema.new({
+            id = id.from(_N, "WaitStartedDetails", "ScheduledEndTimestamp"),
+            type = "timestamp",
+            name = "ScheduledEndTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.WaitSucceededDetails = schema.new({
+    id = id.from(_N, "WaitSucceededDetails"),
+    type = "structure",
+    members = {
+        Duration = schema.new({
+            id = id.from(_N, "WaitSucceededDetails", "Duration"),
+            type = "integer",
+            name = "Duration",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.Event = schema.new({
+    id = id.from(_N, "Event"),
+    type = "structure",
+    members = {
+        EventType = schema.new({
+            id = id.from(_N, "Event", "EventType"),
+            type = "string",
+            name = "EventType",
+            target_id = prelude.String.id,
+        }),
+        SubType = schema.new({
+            id = id.from(_N, "Event", "SubType"),
+            type = "string",
+            name = "SubType",
+            target_id = prelude.String.id,
+        }),
+        EventId = schema.new({
+            id = id.from(_N, "Event", "EventId"),
+            type = "integer",
+            name = "EventId",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 1 },
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "Event", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "Event", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        EventTimestamp = schema.new({
+            id = id.from(_N, "Event", "EventTimestamp"),
+            type = "timestamp",
+            name = "EventTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        ParentId = schema.new({
+            id = id.from(_N, "Event", "ParentId"),
+            type = "string",
+            name = "ParentId",
+            target_id = prelude.String.id,
+        }),
+        ExecutionStartedDetails = schema.new({
+            id = id.from(_N, "Event", "ExecutionStartedDetails"),
+            type = "structure",
+            name = "ExecutionStartedDetails",
+            target_id = id.from(_N, "ExecutionStartedDetails"),
+            target = M.ExecutionStartedDetails,
+        }),
+        ExecutionSucceededDetails = schema.new({
+            id = id.from(_N, "Event", "ExecutionSucceededDetails"),
+            type = "structure",
+            name = "ExecutionSucceededDetails",
+            target_id = id.from(_N, "ExecutionSucceededDetails"),
+            target = M.ExecutionSucceededDetails,
+        }),
+        ExecutionFailedDetails = schema.new({
+            id = id.from(_N, "Event", "ExecutionFailedDetails"),
+            type = "structure",
+            name = "ExecutionFailedDetails",
+            target_id = id.from(_N, "ExecutionFailedDetails"),
+            target = M.ExecutionFailedDetails,
+        }),
+        ExecutionTimedOutDetails = schema.new({
+            id = id.from(_N, "Event", "ExecutionTimedOutDetails"),
+            type = "structure",
+            name = "ExecutionTimedOutDetails",
+            target_id = id.from(_N, "ExecutionTimedOutDetails"),
+            target = M.ExecutionTimedOutDetails,
+        }),
+        ExecutionStoppedDetails = schema.new({
+            id = id.from(_N, "Event", "ExecutionStoppedDetails"),
+            type = "structure",
+            name = "ExecutionStoppedDetails",
+            target_id = id.from(_N, "ExecutionStoppedDetails"),
+            target = M.ExecutionStoppedDetails,
+        }),
+        ContextStartedDetails = schema.new({
+            id = id.from(_N, "Event", "ContextStartedDetails"),
+            type = "structure",
+            name = "ContextStartedDetails",
+            target_id = id.from(_N, "ContextStartedDetails"),
+            target = M.ContextStartedDetails,
+        }),
+        ContextSucceededDetails = schema.new({
+            id = id.from(_N, "Event", "ContextSucceededDetails"),
+            type = "structure",
+            name = "ContextSucceededDetails",
+            target_id = id.from(_N, "ContextSucceededDetails"),
+            target = M.ContextSucceededDetails,
+        }),
+        ContextFailedDetails = schema.new({
+            id = id.from(_N, "Event", "ContextFailedDetails"),
+            type = "structure",
+            name = "ContextFailedDetails",
+            target_id = id.from(_N, "ContextFailedDetails"),
+            target = M.ContextFailedDetails,
+        }),
+        WaitStartedDetails = schema.new({
+            id = id.from(_N, "Event", "WaitStartedDetails"),
+            type = "structure",
+            name = "WaitStartedDetails",
+            target_id = id.from(_N, "WaitStartedDetails"),
+            target = M.WaitStartedDetails,
+        }),
+        WaitSucceededDetails = schema.new({
+            id = id.from(_N, "Event", "WaitSucceededDetails"),
+            type = "structure",
+            name = "WaitSucceededDetails",
+            target_id = id.from(_N, "WaitSucceededDetails"),
+            target = M.WaitSucceededDetails,
+        }),
+        WaitCancelledDetails = schema.new({
+            id = id.from(_N, "Event", "WaitCancelledDetails"),
+            type = "structure",
+            name = "WaitCancelledDetails",
+            target_id = id.from(_N, "WaitCancelledDetails"),
+            target = M.WaitCancelledDetails,
+        }),
+        StepStartedDetails = schema.new({
+            id = id.from(_N, "Event", "StepStartedDetails"),
+            type = "structure",
+            name = "StepStartedDetails",
+            target_id = id.from(_N, "StepStartedDetails"),
+            target = M.StepStartedDetails,
+        }),
+        StepSucceededDetails = schema.new({
+            id = id.from(_N, "Event", "StepSucceededDetails"),
+            type = "structure",
+            name = "StepSucceededDetails",
+            target_id = id.from(_N, "StepSucceededDetails"),
+            target = M.StepSucceededDetails,
+        }),
+        StepFailedDetails = schema.new({
+            id = id.from(_N, "Event", "StepFailedDetails"),
+            type = "structure",
+            name = "StepFailedDetails",
+            target_id = id.from(_N, "StepFailedDetails"),
+            target = M.StepFailedDetails,
+        }),
+        ChainedInvokeStartedDetails = schema.new({
+            id = id.from(_N, "Event", "ChainedInvokeStartedDetails"),
+            type = "structure",
+            name = "ChainedInvokeStartedDetails",
+            target_id = id.from(_N, "ChainedInvokeStartedDetails"),
+            target = M.ChainedInvokeStartedDetails,
+        }),
+        ChainedInvokeSucceededDetails = schema.new({
+            id = id.from(_N, "Event", "ChainedInvokeSucceededDetails"),
+            type = "structure",
+            name = "ChainedInvokeSucceededDetails",
+            target_id = id.from(_N, "ChainedInvokeSucceededDetails"),
+            target = M.ChainedInvokeSucceededDetails,
+        }),
+        ChainedInvokeFailedDetails = schema.new({
+            id = id.from(_N, "Event", "ChainedInvokeFailedDetails"),
+            type = "structure",
+            name = "ChainedInvokeFailedDetails",
+            target_id = id.from(_N, "ChainedInvokeFailedDetails"),
+            target = M.ChainedInvokeFailedDetails,
+        }),
+        ChainedInvokeTimedOutDetails = schema.new({
+            id = id.from(_N, "Event", "ChainedInvokeTimedOutDetails"),
+            type = "structure",
+            name = "ChainedInvokeTimedOutDetails",
+            target_id = id.from(_N, "ChainedInvokeTimedOutDetails"),
+            target = M.ChainedInvokeTimedOutDetails,
+        }),
+        ChainedInvokeStoppedDetails = schema.new({
+            id = id.from(_N, "Event", "ChainedInvokeStoppedDetails"),
+            type = "structure",
+            name = "ChainedInvokeStoppedDetails",
+            target_id = id.from(_N, "ChainedInvokeStoppedDetails"),
+            target = M.ChainedInvokeStoppedDetails,
+        }),
+        CallbackStartedDetails = schema.new({
+            id = id.from(_N, "Event", "CallbackStartedDetails"),
+            type = "structure",
+            name = "CallbackStartedDetails",
+            target_id = id.from(_N, "CallbackStartedDetails"),
+            target = M.CallbackStartedDetails,
+        }),
+        CallbackSucceededDetails = schema.new({
+            id = id.from(_N, "Event", "CallbackSucceededDetails"),
+            type = "structure",
+            name = "CallbackSucceededDetails",
+            target_id = id.from(_N, "CallbackSucceededDetails"),
+            target = M.CallbackSucceededDetails,
+        }),
+        CallbackFailedDetails = schema.new({
+            id = id.from(_N, "Event", "CallbackFailedDetails"),
+            type = "structure",
+            name = "CallbackFailedDetails",
+            target_id = id.from(_N, "CallbackFailedDetails"),
+            target = M.CallbackFailedDetails,
+        }),
+        CallbackTimedOutDetails = schema.new({
+            id = id.from(_N, "Event", "CallbackTimedOutDetails"),
+            type = "structure",
+            name = "CallbackTimedOutDetails",
+            target_id = id.from(_N, "CallbackTimedOutDetails"),
+            target = M.CallbackTimedOutDetails,
+        }),
+        InvocationCompletedDetails = schema.new({
+            id = id.from(_N, "Event", "InvocationCompletedDetails"),
+            type = "structure",
+            name = "InvocationCompletedDetails",
+            target_id = id.from(_N, "InvocationCompletedDetails"),
+            target = M.InvocationCompletedDetails,
+        }),
+    },
+})
+
+M.GetDurableExecutionHistoryOutput = schema.new({
+    id = id.from(_N, "GetDurableExecutionHistoryResponse"),
+    type = "structure",
+    members = {
+        Events = schema.new({
+            id = id.from(_N, "GetDurableExecutionHistoryOutput", "Events"),
+            type = "list",
+            name = "Events",
+            target_id = prelude.Document.id,
+            list_member = M.Event,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "GetDurableExecutionHistoryOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDurableExecutionStateInput = schema.new({
+    id = id.from(_N, "GetDurableExecutionStateRequest"),
+    type = "structure",
+    members = {
+        DurableExecutionArn = schema.new({
+            id = id.from(_N, "GetDurableExecutionStateInput", "DurableExecutionArn"),
+            type = "string",
+            name = "DurableExecutionArn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
                 [traits.HTTP_LABEL] = {},
             },
         }),
-        Qualifier = schema.new({
-            id = id.from(_N, "DeleteFunctionEventInvokeConfigInput", "Qualifier"),
+        CheckpointToken = schema.new({
+            id = id.from(_N, "GetDurableExecutionStateInput", "CheckpointToken"),
             type = "string",
-            name = "Qualifier",
+            name = "CheckpointToken",
             target_id = prelude.String.id,
             traits = {
-                [traits.HTTP_QUERY] = { name = "Qualifier" },
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "CheckpointToken" },
+            },
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "GetDurableExecutionStateInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Marker" },
+            },
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "GetDurableExecutionStateInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_QUERY] = { name = "MaxItems" },
             },
         }),
     },
 })
 
-M.DeleteFunctionEventInvokeConfigOutput = prelude.Unit
+M.GetDurableExecutionStateOutput = schema.new({
+    id = id.from(_N, "GetDurableExecutionStateResponse"),
+    type = "structure",
+    members = {
+        Operations = schema.new({
+            id = id.from(_N, "GetDurableExecutionStateOutput", "Operations"),
+            type = "list",
+            name = "Operations",
+            target_id = prelude.Document.id,
+            list_member = M.Operation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "GetDurableExecutionStateOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopDurableExecutionInput = schema.new({
+    id = id.from(_N, "StopDurableExecutionRequest"),
+    type = "structure",
+    members = {
+        DurableExecutionArn = schema.new({
+            id = id.from(_N, "StopDurableExecutionInput", "DurableExecutionArn"),
+            type = "string",
+            name = "DurableExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Error = schema.new({
+            id = id.from(_N, "StopDurableExecutionInput", "Error"),
+            type = "structure",
+            name = "Error",
+            target_id = id.from(_N, "ErrorObject"),
+            target = M.ErrorObject,
+            traits = {
+                [traits.HTTP_PAYLOAD] = {},
+            },
+        }),
+    },
+})
+
+M.StopDurableExecutionOutput = schema.new({
+    id = id.from(_N, "StopDurableExecutionResponse"),
+    type = "structure",
+    members = {
+        StopTimestamp = schema.new({
+            id = id.from(_N, "StopDurableExecutionOutput", "StopTimestamp"),
+            type = "timestamp",
+            name = "StopTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
 
 M.OnFailure = schema.new({
     id = id.from(_N, "OnFailure"),
@@ -4417,31 +5544,6 @@ M.DeadLetterConfig = schema.new({
             type = "string",
             name = "TargetArn",
             target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.DurableConfig = schema.new({
-    id = id.from(_N, "DurableConfig"),
-    type = "structure",
-    members = {
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "DurableConfig", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-        RetentionPeriodInDays = schema.new({
-            id = id.from(_N, "DurableConfig", "RetentionPeriodInDays"),
-            type = "integer",
-            name = "RetentionPeriodInDays",
-            target_id = prelude.Integer.id,
-        }),
-        ExecutionTimeout = schema.new({
-            id = id.from(_N, "DurableConfig", "ExecutionTimeout"),
-            type = "integer",
-            name = "ExecutionTimeout",
-            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -7825,6 +8927,181 @@ M.InvokeWithResponseStreamOutput = schema.new({
     },
 })
 
+M.ListDurableExecutionsByFunctionInput = schema.new({
+    id = id.from(_N, "ListDurableExecutionsByFunctionRequest"),
+    type = "structure",
+    members = {
+        FunctionName = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "FunctionName"),
+            type = "string",
+            name = "FunctionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Qualifier = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "Qualifier"),
+            type = "string",
+            name = "Qualifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Qualifier" },
+            },
+        }),
+        DurableExecutionName = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "DurableExecutionName"),
+            type = "string",
+            name = "DurableExecutionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "DurableExecutionName" },
+            },
+        }),
+        Statuses = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "Statuses"),
+            type = "list",
+            name = "Statuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Statuses" },
+            },
+        }),
+        StartedAfter = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "StartedAfter"),
+            type = "timestamp",
+            name = "StartedAfter",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "StartedAfter" },
+            },
+        }),
+        StartedBefore = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "StartedBefore"),
+            type = "timestamp",
+            name = "StartedBefore",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "StartedBefore" },
+            },
+        }),
+        ReverseOrder = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "ReverseOrder"),
+            type = "boolean",
+            name = "ReverseOrder",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "ReverseOrder" },
+            },
+        }),
+        Marker = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "Marker"),
+            type = "string",
+            name = "Marker",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "Marker" },
+            },
+        }),
+        MaxItems = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "MaxItems"),
+            type = "integer",
+            name = "MaxItems",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_QUERY] = { name = "MaxItems" },
+            },
+        }),
+    },
+})
+
+M.Execution = schema.new({
+    id = id.from(_N, "Execution"),
+    type = "structure",
+    members = {
+        DurableExecutionArn = schema.new({
+            id = id.from(_N, "Execution", "DurableExecutionArn"),
+            type = "string",
+            name = "DurableExecutionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DurableExecutionName = schema.new({
+            id = id.from(_N, "Execution", "DurableExecutionName"),
+            type = "string",
+            name = "DurableExecutionName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FunctionArn = schema.new({
+            id = id.from(_N, "Execution", "FunctionArn"),
+            type = "string",
+            name = "FunctionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "Execution", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartTimestamp = schema.new({
+            id = id.from(_N, "Execution", "StartTimestamp"),
+            type = "timestamp",
+            name = "StartTimestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EndTimestamp = schema.new({
+            id = id.from(_N, "Execution", "EndTimestamp"),
+            type = "timestamp",
+            name = "EndTimestamp",
+            target_id = prelude.Timestamp.id,
+        }),
+        KMSKeyArn = schema.new({
+            id = id.from(_N, "Execution", "KMSKeyArn"),
+            type = "string",
+            name = "KMSKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDurableExecutionsByFunctionOutput = schema.new({
+    id = id.from(_N, "ListDurableExecutionsByFunctionResponse"),
+    type = "structure",
+    members = {
+        DurableExecutions = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionOutput", "DurableExecutions"),
+            type = "list",
+            name = "DurableExecutions",
+            target_id = prelude.Document.id,
+            list_member = M.Execution,
+        }),
+        NextMarker = schema.new({
+            id = id.from(_N, "ListDurableExecutionsByFunctionOutput", "NextMarker"),
+            type = "string",
+            name = "NextMarker",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListFunctionsInput = schema.new({
     id = id.from(_N, "ListFunctionsRequest"),
     type = "structure",
@@ -9987,1065 +11264,6 @@ M.GetAccountSettingsOutput = schema.new({
     },
 })
 
-M.GetDurableExecutionInput = schema.new({
-    id = id.from(_N, "GetDurableExecutionRequest"),
-    type = "structure",
-    members = {
-        DurableExecutionArn = schema.new({
-            id = id.from(_N, "GetDurableExecutionInput", "DurableExecutionArn"),
-            type = "string",
-            name = "DurableExecutionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        IncludeExecutionData = schema.new({
-            id = id.from(_N, "GetDurableExecutionInput", "IncludeExecutionData"),
-            type = "boolean",
-            name = "IncludeExecutionData",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.DEFAULT] = { value = true },
-                [traits.HTTP_QUERY] = { name = "IncludeExecutionData" },
-            },
-        }),
-    },
-})
-
-M.TraceHeader = schema.new({
-    id = id.from(_N, "TraceHeader"),
-    type = "structure",
-    members = {
-        XAmznTraceId = schema.new({
-            id = id.from(_N, "TraceHeader", "XAmznTraceId"),
-            type = "string",
-            name = "XAmznTraceId",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.GetDurableExecutionOutput = schema.new({
-    id = id.from(_N, "GetDurableExecutionResponse"),
-    type = "structure",
-    members = {
-        DurableExecutionArn = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "DurableExecutionArn"),
-            type = "string",
-            name = "DurableExecutionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        DurableExecutionName = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "DurableExecutionName"),
-            type = "string",
-            name = "DurableExecutionName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        FunctionArn = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "FunctionArn"),
-            type = "string",
-            name = "FunctionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        InputPayload = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "InputPayload"),
-            type = "string",
-            name = "InputPayload",
-            target_id = prelude.String.id,
-        }),
-        Result = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "Result"),
-            type = "string",
-            name = "Result",
-            target_id = prelude.String.id,
-        }),
-        Error = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "ErrorObject"),
-            target = M.ErrorObject,
-        }),
-        StartTimestamp = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "StartTimestamp"),
-            type = "timestamp",
-            name = "StartTimestamp",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Status = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        EndTimestamp = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "EndTimestamp"),
-            type = "timestamp",
-            name = "EndTimestamp",
-            target_id = prelude.Timestamp.id,
-        }),
-        Version = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "Version"),
-            type = "string",
-            name = "Version",
-            target_id = prelude.String.id,
-        }),
-        TraceHeader = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "TraceHeader"),
-            type = "structure",
-            name = "TraceHeader",
-            target_id = id.from(_N, "TraceHeader"),
-            target = M.TraceHeader,
-        }),
-        ExecutionDataIncluded = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "ExecutionDataIncluded"),
-            type = "boolean",
-            name = "ExecutionDataIncluded",
-            target_id = prelude.Boolean.id,
-        }),
-        DurableConfig = schema.new({
-            id = id.from(_N, "GetDurableExecutionOutput", "DurableConfig"),
-            type = "structure",
-            name = "DurableConfig",
-            target_id = id.from(_N, "DurableConfig"),
-            target = M.DurableConfig,
-        }),
-    },
-})
-
-M.GetDurableExecutionHistoryInput = schema.new({
-    id = id.from(_N, "GetDurableExecutionHistoryRequest"),
-    type = "structure",
-    members = {
-        DurableExecutionArn = schema.new({
-            id = id.from(_N, "GetDurableExecutionHistoryInput", "DurableExecutionArn"),
-            type = "string",
-            name = "DurableExecutionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        IncludeExecutionData = schema.new({
-            id = id.from(_N, "GetDurableExecutionHistoryInput", "IncludeExecutionData"),
-            type = "boolean",
-            name = "IncludeExecutionData",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "IncludeExecutionData" },
-            },
-        }),
-        MaxItems = schema.new({
-            id = id.from(_N, "GetDurableExecutionHistoryInput", "MaxItems"),
-            type = "integer",
-            name = "MaxItems",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-                [traits.HTTP_QUERY] = { name = "MaxItems" },
-            },
-        }),
-        Marker = schema.new({
-            id = id.from(_N, "GetDurableExecutionHistoryInput", "Marker"),
-            type = "string",
-            name = "Marker",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Marker" },
-            },
-        }),
-        ReverseOrder = schema.new({
-            id = id.from(_N, "GetDurableExecutionHistoryInput", "ReverseOrder"),
-            type = "boolean",
-            name = "ReverseOrder",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "ReverseOrder" },
-            },
-        }),
-    },
-})
-
-M.EventError = schema.new({
-    id = id.from(_N, "EventError"),
-    type = "structure",
-    members = {
-        Payload = schema.new({
-            id = id.from(_N, "EventError", "Payload"),
-            type = "structure",
-            name = "Payload",
-            target_id = id.from(_N, "ErrorObject"),
-            target = M.ErrorObject,
-        }),
-        Truncated = schema.new({
-            id = id.from(_N, "EventError", "Truncated"),
-            type = "boolean",
-            name = "Truncated",
-            target_id = prelude.Boolean.id,
-        }),
-    },
-})
-
-M.CallbackFailedDetails = schema.new({
-    id = id.from(_N, "CallbackFailedDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "CallbackFailedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CallbackStartedDetails = schema.new({
-    id = id.from(_N, "CallbackStartedDetails"),
-    type = "structure",
-    members = {
-        CallbackId = schema.new({
-            id = id.from(_N, "CallbackStartedDetails", "CallbackId"),
-            type = "string",
-            name = "CallbackId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        HeartbeatTimeout = schema.new({
-            id = id.from(_N, "CallbackStartedDetails", "HeartbeatTimeout"),
-            type = "integer",
-            name = "HeartbeatTimeout",
-            target_id = prelude.Integer.id,
-        }),
-        Timeout = schema.new({
-            id = id.from(_N, "CallbackStartedDetails", "Timeout"),
-            type = "integer",
-            name = "Timeout",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.EventResult = schema.new({
-    id = id.from(_N, "EventResult"),
-    type = "structure",
-    members = {
-        Payload = schema.new({
-            id = id.from(_N, "EventResult", "Payload"),
-            type = "string",
-            name = "Payload",
-            target_id = prelude.String.id,
-        }),
-        Truncated = schema.new({
-            id = id.from(_N, "EventResult", "Truncated"),
-            type = "boolean",
-            name = "Truncated",
-            target_id = prelude.Boolean.id,
-        }),
-    },
-})
-
-M.CallbackSucceededDetails = schema.new({
-    id = id.from(_N, "CallbackSucceededDetails"),
-    type = "structure",
-    members = {
-        Result = schema.new({
-            id = id.from(_N, "CallbackSucceededDetails", "Result"),
-            type = "structure",
-            name = "Result",
-            target_id = id.from(_N, "EventResult"),
-            target = M.EventResult,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.CallbackTimedOutDetails = schema.new({
-    id = id.from(_N, "CallbackTimedOutDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "CallbackTimedOutDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ChainedInvokeFailedDetails = schema.new({
-    id = id.from(_N, "ChainedInvokeFailedDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "ChainedInvokeFailedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.EventInput = schema.new({
-    id = id.from(_N, "EventInput"),
-    type = "structure",
-    members = {
-        Payload = schema.new({
-            id = id.from(_N, "EventInput", "Payload"),
-            type = "string",
-            name = "Payload",
-            target_id = prelude.String.id,
-        }),
-        Truncated = schema.new({
-            id = id.from(_N, "EventInput", "Truncated"),
-            type = "boolean",
-            name = "Truncated",
-            target_id = prelude.Boolean.id,
-        }),
-    },
-})
-
-M.ChainedInvokeStartedDetails = schema.new({
-    id = id.from(_N, "ChainedInvokeStartedDetails"),
-    type = "structure",
-    members = {
-        FunctionName = schema.new({
-            id = id.from(_N, "ChainedInvokeStartedDetails", "FunctionName"),
-            type = "string",
-            name = "FunctionName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        TenantId = schema.new({
-            id = id.from(_N, "ChainedInvokeStartedDetails", "TenantId"),
-            type = "string",
-            name = "TenantId",
-            target_id = prelude.String.id,
-        }),
-        Input = schema.new({
-            id = id.from(_N, "ChainedInvokeStartedDetails", "Input"),
-            type = "structure",
-            name = "Input",
-            target_id = id.from(_N, "EventInput"),
-            target = M.EventInput,
-        }),
-        ExecutedVersion = schema.new({
-            id = id.from(_N, "ChainedInvokeStartedDetails", "ExecutedVersion"),
-            type = "string",
-            name = "ExecutedVersion",
-            target_id = prelude.String.id,
-        }),
-        DurableExecutionArn = schema.new({
-            id = id.from(_N, "ChainedInvokeStartedDetails", "DurableExecutionArn"),
-            type = "string",
-            name = "DurableExecutionArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ChainedInvokeStoppedDetails = schema.new({
-    id = id.from(_N, "ChainedInvokeStoppedDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "ChainedInvokeStoppedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ChainedInvokeSucceededDetails = schema.new({
-    id = id.from(_N, "ChainedInvokeSucceededDetails"),
-    type = "structure",
-    members = {
-        Result = schema.new({
-            id = id.from(_N, "ChainedInvokeSucceededDetails", "Result"),
-            type = "structure",
-            name = "Result",
-            target_id = id.from(_N, "EventResult"),
-            target = M.EventResult,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ChainedInvokeTimedOutDetails = schema.new({
-    id = id.from(_N, "ChainedInvokeTimedOutDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "ChainedInvokeTimedOutDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ContextFailedDetails = schema.new({
-    id = id.from(_N, "ContextFailedDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "ContextFailedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ContextStartedDetails = schema.new({
-    id = id.from(_N, "ContextStartedDetails"),
-    type = "structure",
-})
-
-M.ContextSucceededDetails = schema.new({
-    id = id.from(_N, "ContextSucceededDetails"),
-    type = "structure",
-    members = {
-        Result = schema.new({
-            id = id.from(_N, "ContextSucceededDetails", "Result"),
-            type = "structure",
-            name = "Result",
-            target_id = id.from(_N, "EventResult"),
-            target = M.EventResult,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ExecutionFailedDetails = schema.new({
-    id = id.from(_N, "ExecutionFailedDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "ExecutionFailedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ExecutionStartedDetails = schema.new({
-    id = id.from(_N, "ExecutionStartedDetails"),
-    type = "structure",
-    members = {
-        Input = schema.new({
-            id = id.from(_N, "ExecutionStartedDetails", "Input"),
-            type = "structure",
-            name = "Input",
-            target_id = id.from(_N, "EventInput"),
-            target = M.EventInput,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ExecutionTimeout = schema.new({
-            id = id.from(_N, "ExecutionStartedDetails", "ExecutionTimeout"),
-            type = "integer",
-            name = "ExecutionTimeout",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ExecutionStoppedDetails = schema.new({
-    id = id.from(_N, "ExecutionStoppedDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "ExecutionStoppedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ExecutionSucceededDetails = schema.new({
-    id = id.from(_N, "ExecutionSucceededDetails"),
-    type = "structure",
-    members = {
-        Result = schema.new({
-            id = id.from(_N, "ExecutionSucceededDetails", "Result"),
-            type = "structure",
-            name = "Result",
-            target_id = id.from(_N, "EventResult"),
-            target = M.EventResult,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.ExecutionTimedOutDetails = schema.new({
-    id = id.from(_N, "ExecutionTimedOutDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "ExecutionTimedOutDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-        }),
-    },
-})
-
-M.InvocationCompletedDetails = schema.new({
-    id = id.from(_N, "InvocationCompletedDetails"),
-    type = "structure",
-    members = {
-        StartTimestamp = schema.new({
-            id = id.from(_N, "InvocationCompletedDetails", "StartTimestamp"),
-            type = "timestamp",
-            name = "StartTimestamp",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        EndTimestamp = schema.new({
-            id = id.from(_N, "InvocationCompletedDetails", "EndTimestamp"),
-            type = "timestamp",
-            name = "EndTimestamp",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RequestId = schema.new({
-            id = id.from(_N, "InvocationCompletedDetails", "RequestId"),
-            type = "string",
-            name = "RequestId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Error = schema.new({
-            id = id.from(_N, "InvocationCompletedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-        }),
-    },
-})
-
-M.RetryDetails = schema.new({
-    id = id.from(_N, "RetryDetails"),
-    type = "structure",
-    members = {
-        CurrentAttempt = schema.new({
-            id = id.from(_N, "RetryDetails", "CurrentAttempt"),
-            type = "integer",
-            name = "CurrentAttempt",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-            },
-        }),
-        NextAttemptDelaySeconds = schema.new({
-            id = id.from(_N, "RetryDetails", "NextAttemptDelaySeconds"),
-            type = "integer",
-            name = "NextAttemptDelaySeconds",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.StepFailedDetails = schema.new({
-    id = id.from(_N, "StepFailedDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "StepFailedDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RetryDetails = schema.new({
-            id = id.from(_N, "StepFailedDetails", "RetryDetails"),
-            type = "structure",
-            name = "RetryDetails",
-            target_id = id.from(_N, "RetryDetails"),
-            target = M.RetryDetails,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.StepStartedDetails = schema.new({
-    id = id.from(_N, "StepStartedDetails"),
-    type = "structure",
-})
-
-M.StepSucceededDetails = schema.new({
-    id = id.from(_N, "StepSucceededDetails"),
-    type = "structure",
-    members = {
-        Result = schema.new({
-            id = id.from(_N, "StepSucceededDetails", "Result"),
-            type = "structure",
-            name = "Result",
-            target_id = id.from(_N, "EventResult"),
-            target = M.EventResult,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        RetryDetails = schema.new({
-            id = id.from(_N, "StepSucceededDetails", "RetryDetails"),
-            type = "structure",
-            name = "RetryDetails",
-            target_id = id.from(_N, "RetryDetails"),
-            target = M.RetryDetails,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.WaitCancelledDetails = schema.new({
-    id = id.from(_N, "WaitCancelledDetails"),
-    type = "structure",
-    members = {
-        Error = schema.new({
-            id = id.from(_N, "WaitCancelledDetails", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "EventError"),
-            target = M.EventError,
-        }),
-    },
-})
-
-M.WaitStartedDetails = schema.new({
-    id = id.from(_N, "WaitStartedDetails"),
-    type = "structure",
-    members = {
-        Duration = schema.new({
-            id = id.from(_N, "WaitStartedDetails", "Duration"),
-            type = "integer",
-            name = "Duration",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        ScheduledEndTimestamp = schema.new({
-            id = id.from(_N, "WaitStartedDetails", "ScheduledEndTimestamp"),
-            type = "timestamp",
-            name = "ScheduledEndTimestamp",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
-})
-
-M.WaitSucceededDetails = schema.new({
-    id = id.from(_N, "WaitSucceededDetails"),
-    type = "structure",
-    members = {
-        Duration = schema.new({
-            id = id.from(_N, "WaitSucceededDetails", "Duration"),
-            type = "integer",
-            name = "Duration",
-            target_id = prelude.Integer.id,
-        }),
-    },
-})
-
-M.Event = schema.new({
-    id = id.from(_N, "Event"),
-    type = "structure",
-    members = {
-        EventType = schema.new({
-            id = id.from(_N, "Event", "EventType"),
-            type = "string",
-            name = "EventType",
-            target_id = prelude.String.id,
-        }),
-        SubType = schema.new({
-            id = id.from(_N, "Event", "SubType"),
-            type = "string",
-            name = "SubType",
-            target_id = prelude.String.id,
-        }),
-        EventId = schema.new({
-            id = id.from(_N, "Event", "EventId"),
-            type = "integer",
-            name = "EventId",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 1 },
-            },
-        }),
-        Id = schema.new({
-            id = id.from(_N, "Event", "Id"),
-            type = "string",
-            name = "Id",
-            target_id = prelude.String.id,
-        }),
-        Name = schema.new({
-            id = id.from(_N, "Event", "Name"),
-            type = "string",
-            name = "Name",
-            target_id = prelude.String.id,
-        }),
-        EventTimestamp = schema.new({
-            id = id.from(_N, "Event", "EventTimestamp"),
-            type = "timestamp",
-            name = "EventTimestamp",
-            target_id = prelude.Timestamp.id,
-        }),
-        ParentId = schema.new({
-            id = id.from(_N, "Event", "ParentId"),
-            type = "string",
-            name = "ParentId",
-            target_id = prelude.String.id,
-        }),
-        ExecutionStartedDetails = schema.new({
-            id = id.from(_N, "Event", "ExecutionStartedDetails"),
-            type = "structure",
-            name = "ExecutionStartedDetails",
-            target_id = id.from(_N, "ExecutionStartedDetails"),
-            target = M.ExecutionStartedDetails,
-        }),
-        ExecutionSucceededDetails = schema.new({
-            id = id.from(_N, "Event", "ExecutionSucceededDetails"),
-            type = "structure",
-            name = "ExecutionSucceededDetails",
-            target_id = id.from(_N, "ExecutionSucceededDetails"),
-            target = M.ExecutionSucceededDetails,
-        }),
-        ExecutionFailedDetails = schema.new({
-            id = id.from(_N, "Event", "ExecutionFailedDetails"),
-            type = "structure",
-            name = "ExecutionFailedDetails",
-            target_id = id.from(_N, "ExecutionFailedDetails"),
-            target = M.ExecutionFailedDetails,
-        }),
-        ExecutionTimedOutDetails = schema.new({
-            id = id.from(_N, "Event", "ExecutionTimedOutDetails"),
-            type = "structure",
-            name = "ExecutionTimedOutDetails",
-            target_id = id.from(_N, "ExecutionTimedOutDetails"),
-            target = M.ExecutionTimedOutDetails,
-        }),
-        ExecutionStoppedDetails = schema.new({
-            id = id.from(_N, "Event", "ExecutionStoppedDetails"),
-            type = "structure",
-            name = "ExecutionStoppedDetails",
-            target_id = id.from(_N, "ExecutionStoppedDetails"),
-            target = M.ExecutionStoppedDetails,
-        }),
-        ContextStartedDetails = schema.new({
-            id = id.from(_N, "Event", "ContextStartedDetails"),
-            type = "structure",
-            name = "ContextStartedDetails",
-            target_id = id.from(_N, "ContextStartedDetails"),
-            target = M.ContextStartedDetails,
-        }),
-        ContextSucceededDetails = schema.new({
-            id = id.from(_N, "Event", "ContextSucceededDetails"),
-            type = "structure",
-            name = "ContextSucceededDetails",
-            target_id = id.from(_N, "ContextSucceededDetails"),
-            target = M.ContextSucceededDetails,
-        }),
-        ContextFailedDetails = schema.new({
-            id = id.from(_N, "Event", "ContextFailedDetails"),
-            type = "structure",
-            name = "ContextFailedDetails",
-            target_id = id.from(_N, "ContextFailedDetails"),
-            target = M.ContextFailedDetails,
-        }),
-        WaitStartedDetails = schema.new({
-            id = id.from(_N, "Event", "WaitStartedDetails"),
-            type = "structure",
-            name = "WaitStartedDetails",
-            target_id = id.from(_N, "WaitStartedDetails"),
-            target = M.WaitStartedDetails,
-        }),
-        WaitSucceededDetails = schema.new({
-            id = id.from(_N, "Event", "WaitSucceededDetails"),
-            type = "structure",
-            name = "WaitSucceededDetails",
-            target_id = id.from(_N, "WaitSucceededDetails"),
-            target = M.WaitSucceededDetails,
-        }),
-        WaitCancelledDetails = schema.new({
-            id = id.from(_N, "Event", "WaitCancelledDetails"),
-            type = "structure",
-            name = "WaitCancelledDetails",
-            target_id = id.from(_N, "WaitCancelledDetails"),
-            target = M.WaitCancelledDetails,
-        }),
-        StepStartedDetails = schema.new({
-            id = id.from(_N, "Event", "StepStartedDetails"),
-            type = "structure",
-            name = "StepStartedDetails",
-            target_id = id.from(_N, "StepStartedDetails"),
-            target = M.StepStartedDetails,
-        }),
-        StepSucceededDetails = schema.new({
-            id = id.from(_N, "Event", "StepSucceededDetails"),
-            type = "structure",
-            name = "StepSucceededDetails",
-            target_id = id.from(_N, "StepSucceededDetails"),
-            target = M.StepSucceededDetails,
-        }),
-        StepFailedDetails = schema.new({
-            id = id.from(_N, "Event", "StepFailedDetails"),
-            type = "structure",
-            name = "StepFailedDetails",
-            target_id = id.from(_N, "StepFailedDetails"),
-            target = M.StepFailedDetails,
-        }),
-        ChainedInvokeStartedDetails = schema.new({
-            id = id.from(_N, "Event", "ChainedInvokeStartedDetails"),
-            type = "structure",
-            name = "ChainedInvokeStartedDetails",
-            target_id = id.from(_N, "ChainedInvokeStartedDetails"),
-            target = M.ChainedInvokeStartedDetails,
-        }),
-        ChainedInvokeSucceededDetails = schema.new({
-            id = id.from(_N, "Event", "ChainedInvokeSucceededDetails"),
-            type = "structure",
-            name = "ChainedInvokeSucceededDetails",
-            target_id = id.from(_N, "ChainedInvokeSucceededDetails"),
-            target = M.ChainedInvokeSucceededDetails,
-        }),
-        ChainedInvokeFailedDetails = schema.new({
-            id = id.from(_N, "Event", "ChainedInvokeFailedDetails"),
-            type = "structure",
-            name = "ChainedInvokeFailedDetails",
-            target_id = id.from(_N, "ChainedInvokeFailedDetails"),
-            target = M.ChainedInvokeFailedDetails,
-        }),
-        ChainedInvokeTimedOutDetails = schema.new({
-            id = id.from(_N, "Event", "ChainedInvokeTimedOutDetails"),
-            type = "structure",
-            name = "ChainedInvokeTimedOutDetails",
-            target_id = id.from(_N, "ChainedInvokeTimedOutDetails"),
-            target = M.ChainedInvokeTimedOutDetails,
-        }),
-        ChainedInvokeStoppedDetails = schema.new({
-            id = id.from(_N, "Event", "ChainedInvokeStoppedDetails"),
-            type = "structure",
-            name = "ChainedInvokeStoppedDetails",
-            target_id = id.from(_N, "ChainedInvokeStoppedDetails"),
-            target = M.ChainedInvokeStoppedDetails,
-        }),
-        CallbackStartedDetails = schema.new({
-            id = id.from(_N, "Event", "CallbackStartedDetails"),
-            type = "structure",
-            name = "CallbackStartedDetails",
-            target_id = id.from(_N, "CallbackStartedDetails"),
-            target = M.CallbackStartedDetails,
-        }),
-        CallbackSucceededDetails = schema.new({
-            id = id.from(_N, "Event", "CallbackSucceededDetails"),
-            type = "structure",
-            name = "CallbackSucceededDetails",
-            target_id = id.from(_N, "CallbackSucceededDetails"),
-            target = M.CallbackSucceededDetails,
-        }),
-        CallbackFailedDetails = schema.new({
-            id = id.from(_N, "Event", "CallbackFailedDetails"),
-            type = "structure",
-            name = "CallbackFailedDetails",
-            target_id = id.from(_N, "CallbackFailedDetails"),
-            target = M.CallbackFailedDetails,
-        }),
-        CallbackTimedOutDetails = schema.new({
-            id = id.from(_N, "Event", "CallbackTimedOutDetails"),
-            type = "structure",
-            name = "CallbackTimedOutDetails",
-            target_id = id.from(_N, "CallbackTimedOutDetails"),
-            target = M.CallbackTimedOutDetails,
-        }),
-        InvocationCompletedDetails = schema.new({
-            id = id.from(_N, "Event", "InvocationCompletedDetails"),
-            type = "structure",
-            name = "InvocationCompletedDetails",
-            target_id = id.from(_N, "InvocationCompletedDetails"),
-            target = M.InvocationCompletedDetails,
-        }),
-    },
-})
-
-M.GetDurableExecutionHistoryOutput = schema.new({
-    id = id.from(_N, "GetDurableExecutionHistoryResponse"),
-    type = "structure",
-    members = {
-        Events = schema.new({
-            id = id.from(_N, "GetDurableExecutionHistoryOutput", "Events"),
-            type = "list",
-            name = "Events",
-            target_id = prelude.Document.id,
-            list_member = M.Event,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        NextMarker = schema.new({
-            id = id.from(_N, "GetDurableExecutionHistoryOutput", "NextMarker"),
-            type = "string",
-            name = "NextMarker",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.GetDurableExecutionStateInput = schema.new({
-    id = id.from(_N, "GetDurableExecutionStateRequest"),
-    type = "structure",
-    members = {
-        DurableExecutionArn = schema.new({
-            id = id.from(_N, "GetDurableExecutionStateInput", "DurableExecutionArn"),
-            type = "string",
-            name = "DurableExecutionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        CheckpointToken = schema.new({
-            id = id.from(_N, "GetDurableExecutionStateInput", "CheckpointToken"),
-            type = "string",
-            name = "CheckpointToken",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_QUERY] = { name = "CheckpointToken" },
-            },
-        }),
-        Marker = schema.new({
-            id = id.from(_N, "GetDurableExecutionStateInput", "Marker"),
-            type = "string",
-            name = "Marker",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Marker" },
-            },
-        }),
-        MaxItems = schema.new({
-            id = id.from(_N, "GetDurableExecutionStateInput", "MaxItems"),
-            type = "integer",
-            name = "MaxItems",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-                [traits.HTTP_QUERY] = { name = "MaxItems" },
-            },
-        }),
-    },
-})
-
-M.GetDurableExecutionStateOutput = schema.new({
-    id = id.from(_N, "GetDurableExecutionStateResponse"),
-    type = "structure",
-    members = {
-        Operations = schema.new({
-            id = id.from(_N, "GetDurableExecutionStateOutput", "Operations"),
-            type = "list",
-            name = "Operations",
-            target_id = prelude.Document.id,
-            list_member = M.Operation,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        NextMarker = schema.new({
-            id = id.from(_N, "GetDurableExecutionStateOutput", "NextMarker"),
-            type = "string",
-            name = "NextMarker",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.GetFunctionEventInvokeConfigInput = schema.new({
     id = id.from(_N, "GetFunctionEventInvokeConfigRequest"),
     type = "structure",
@@ -11835,181 +12053,6 @@ M.RemoveLayerVersionPermissionInput = schema.new({
 
 M.RemoveLayerVersionPermissionOutput = prelude.Unit
 
-M.ListDurableExecutionsByFunctionInput = schema.new({
-    id = id.from(_N, "ListDurableExecutionsByFunctionRequest"),
-    type = "structure",
-    members = {
-        FunctionName = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "FunctionName"),
-            type = "string",
-            name = "FunctionName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Qualifier = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "Qualifier"),
-            type = "string",
-            name = "Qualifier",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Qualifier" },
-            },
-        }),
-        DurableExecutionName = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "DurableExecutionName"),
-            type = "string",
-            name = "DurableExecutionName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "DurableExecutionName" },
-            },
-        }),
-        Statuses = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "Statuses"),
-            type = "list",
-            name = "Statuses",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Statuses" },
-            },
-        }),
-        StartedAfter = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "StartedAfter"),
-            type = "timestamp",
-            name = "StartedAfter",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "StartedAfter" },
-            },
-        }),
-        StartedBefore = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "StartedBefore"),
-            type = "timestamp",
-            name = "StartedBefore",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "StartedBefore" },
-            },
-        }),
-        ReverseOrder = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "ReverseOrder"),
-            type = "boolean",
-            name = "ReverseOrder",
-            target_id = prelude.Boolean.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "ReverseOrder" },
-            },
-        }),
-        Marker = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "Marker"),
-            type = "string",
-            name = "Marker",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.HTTP_QUERY] = { name = "Marker" },
-            },
-        }),
-        MaxItems = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionInput", "MaxItems"),
-            type = "integer",
-            name = "MaxItems",
-            target_id = prelude.Integer.id,
-            traits = {
-                [traits.DEFAULT] = { value = 0 },
-                [traits.HTTP_QUERY] = { name = "MaxItems" },
-            },
-        }),
-    },
-})
-
-M.Execution = schema.new({
-    id = id.from(_N, "Execution"),
-    type = "structure",
-    members = {
-        DurableExecutionArn = schema.new({
-            id = id.from(_N, "Execution", "DurableExecutionArn"),
-            type = "string",
-            name = "DurableExecutionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        DurableExecutionName = schema.new({
-            id = id.from(_N, "Execution", "DurableExecutionName"),
-            type = "string",
-            name = "DurableExecutionName",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        FunctionArn = schema.new({
-            id = id.from(_N, "Execution", "FunctionArn"),
-            type = "string",
-            name = "FunctionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        Status = schema.new({
-            id = id.from(_N, "Execution", "Status"),
-            type = "string",
-            name = "Status",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        StartTimestamp = schema.new({
-            id = id.from(_N, "Execution", "StartTimestamp"),
-            type = "timestamp",
-            name = "StartTimestamp",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        EndTimestamp = schema.new({
-            id = id.from(_N, "Execution", "EndTimestamp"),
-            type = "timestamp",
-            name = "EndTimestamp",
-            target_id = prelude.Timestamp.id,
-        }),
-        KMSKeyArn = schema.new({
-            id = id.from(_N, "Execution", "KMSKeyArn"),
-            type = "string",
-            name = "KMSKeyArn",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ListDurableExecutionsByFunctionOutput = schema.new({
-    id = id.from(_N, "ListDurableExecutionsByFunctionResponse"),
-    type = "structure",
-    members = {
-        DurableExecutions = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionOutput", "DurableExecutions"),
-            type = "list",
-            name = "DurableExecutions",
-            target_id = prelude.Document.id,
-            list_member = M.Execution,
-        }),
-        NextMarker = schema.new({
-            id = id.from(_N, "ListDurableExecutionsByFunctionOutput", "NextMarker"),
-            type = "string",
-            name = "NextMarker",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.ListFunctionEventInvokeConfigsInput = schema.new({
     id = id.from(_N, "ListFunctionEventInvokeConfigsRequest"),
     type = "structure",
@@ -12570,49 +12613,6 @@ M.SendDurableExecutionCallbackSuccessInput = schema.new({
 M.SendDurableExecutionCallbackSuccessOutput = schema.new({
     id = id.from(_N, "SendDurableExecutionCallbackSuccessResponse"),
     type = "structure",
-})
-
-M.StopDurableExecutionInput = schema.new({
-    id = id.from(_N, "StopDurableExecutionRequest"),
-    type = "structure",
-    members = {
-        DurableExecutionArn = schema.new({
-            id = id.from(_N, "StopDurableExecutionInput", "DurableExecutionArn"),
-            type = "string",
-            name = "DurableExecutionArn",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-                [traits.HTTP_LABEL] = {},
-            },
-        }),
-        Error = schema.new({
-            id = id.from(_N, "StopDurableExecutionInput", "Error"),
-            type = "structure",
-            name = "Error",
-            target_id = id.from(_N, "ErrorObject"),
-            target = M.ErrorObject,
-            traits = {
-                [traits.HTTP_PAYLOAD] = {},
-            },
-        }),
-    },
-})
-
-M.StopDurableExecutionOutput = schema.new({
-    id = id.from(_N, "StopDurableExecutionResponse"),
-    type = "structure",
-    members = {
-        StopTimestamp = schema.new({
-            id = id.from(_N, "StopDurableExecutionOutput", "StopTimestamp"),
-            type = "timestamp",
-            name = "StopTimestamp",
-            target_id = prelude.Timestamp.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-    },
 })
 
 M.TagResourceInput = schema.new({

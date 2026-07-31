@@ -7027,6 +7027,60 @@ M.BedrockEvaluatorModelConfig = schema.new({
     },
 })
 
+M.ReasoningConfiguration = schema.new({
+    id = id.from(_N, "ReasoningConfiguration"),
+    type = "structure",
+    members = {
+        effort = schema.new({
+            id = id.from(_N, "ReasoningConfiguration", "effort"),
+            type = "string",
+            name = "effort",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.OpenResponsesEvaluatorModelConfig = schema.new({
+    id = id.from(_N, "OpenResponsesEvaluatorModelConfig"),
+    type = "structure",
+    members = {
+        modelId = schema.new({
+            id = id.from(_N, "OpenResponsesEvaluatorModelConfig", "modelId"),
+            type = "string",
+            name = "modelId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        maxOutputTokens = schema.new({
+            id = id.from(_N, "OpenResponsesEvaluatorModelConfig", "maxOutputTokens"),
+            type = "integer",
+            name = "maxOutputTokens",
+            target_id = prelude.Integer.id,
+        }),
+        temperature = schema.new({
+            id = id.from(_N, "OpenResponsesEvaluatorModelConfig", "temperature"),
+            type = "float",
+            name = "temperature",
+            target_id = prelude.Float.id,
+        }),
+        topP = schema.new({
+            id = id.from(_N, "OpenResponsesEvaluatorModelConfig", "topP"),
+            type = "float",
+            name = "topP",
+            target_id = prelude.Float.id,
+        }),
+        reasoning = schema.new({
+            id = id.from(_N, "OpenResponsesEvaluatorModelConfig", "reasoning"),
+            type = "structure",
+            name = "reasoning",
+            target_id = id.from(_N, "ReasoningConfiguration"),
+            target = M.ReasoningConfiguration,
+        }),
+    },
+})
+
 M.EvaluatorModelConfig = schema.new({
     id = id.from(_N, "EvaluatorModelConfig"),
     type = "union",
@@ -7037,6 +7091,13 @@ M.EvaluatorModelConfig = schema.new({
             name = "bedrockEvaluatorModelConfig",
             target_id = id.from(_N, "BedrockEvaluatorModelConfig"),
             target = M.BedrockEvaluatorModelConfig,
+        }),
+        responsesEvaluatorModelConfig = schema.new({
+            id = id.from(_N, "EvaluatorModelConfig", "responsesEvaluatorModelConfig"),
+            type = "structure",
+            name = "responsesEvaluatorModelConfig",
+            target_id = id.from(_N, "OpenResponsesEvaluatorModelConfig"),
+            target = M.OpenResponsesEvaluatorModelConfig,
         }),
     },
 })

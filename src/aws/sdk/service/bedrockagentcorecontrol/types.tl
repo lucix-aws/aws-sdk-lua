@@ -2055,10 +2055,32 @@ local record M
         additionalModelRequestFields: any
     end
 
+    -- The reasoning configuration that controls how a reasoning model allocates effort during evaluation.
+    record ReasoningConfiguration
+        -- The level of reasoning effort the model applies when generating a response. For supported values, see the model provider's documentation.
+        effort: string
+    end
+
+    -- The configuration for using models served through the OpenResponses API in evaluator assessments, including model selection and inference parameters.
+    record OpenResponsesEvaluatorModelConfig
+        -- The identifier of the model to use for evaluation.
+        modelId: string
+        -- The maximum number of tokens to generate in the model response, including visible output and reasoning tokens.
+        maxOutputTokens: number
+        -- The temperature value that controls randomness in the model's responses. Lower values produce more deterministic outputs.
+        temperature: number
+        -- The top-p sampling parameter that controls the diversity of the model's responses by limiting the cumulative probability of token choices.
+        topP: number
+        -- The reasoning configuration for reasoning models. Non-reasoning models ignore this configuration.
+        reasoning: ReasoningConfiguration
+    end
+
     -- The model configuration that specifies which foundation model to use for evaluation and how to configure it.
     record EvaluatorModelConfig
         -- The Amazon Bedrock model configuration for evaluation.
         bedrockEvaluatorModelConfig: BedrockEvaluatorModelConfig
+        -- The OpenResponses model configuration for evaluation.
+        responsesEvaluatorModelConfig: OpenResponsesEvaluatorModelConfig
     end
 
     -- The definition of a categorical rating scale option that provides a named category with its description for evaluation scoring.
