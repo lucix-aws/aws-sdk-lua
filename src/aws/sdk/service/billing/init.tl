@@ -26,8 +26,11 @@ local record Client
     getBillingView: function(Client, types.GetBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.GetBillingViewOutput>
     getCreditAllocationHistory: function(Client, types.GetCreditAllocationHistoryInput, ? base_client.InvokeOptions): async.Operation<types.GetCreditAllocationHistoryOutput>
     getCredits: function(Client, types.GetCreditsInput, ? base_client.InvokeOptions): async.Operation<types.GetCreditsOutput>
+    getEnterpriseSupportChargeSummary: function(Client, types.GetEnterpriseSupportChargeSummaryInput, ? base_client.InvokeOptions): async.Operation<types.GetEnterpriseSupportChargeSummaryOutput>
+    getEnterpriseSupportContractDetails: function(Client, types.GetEnterpriseSupportContractDetailsInput, ? base_client.InvokeOptions): async.Operation<types.GetEnterpriseSupportContractDetailsOutput>
     getResourcePolicy: function(Client, types.GetResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     listBillingViews: function(Client, types.ListBillingViewsInput, ? base_client.InvokeOptions): async.Operation<types.ListBillingViewsOutput>
+    listEnterpriseSupportLinkedAccountCharges: function(Client, types.ListEnterpriseSupportLinkedAccountChargesInput, ? base_client.InvokeOptions): async.Operation<types.ListEnterpriseSupportLinkedAccountChargesOutput>
     listSourceViewsForBillingView: function(Client, types.ListSourceViewsForBillingViewInput, ? base_client.InvokeOptions): async.Operation<types.ListSourceViewsForBillingViewOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     redeemCredits: function(Client, types.RedeemCreditsInput, ? base_client.InvokeOptions): async.Operation<types.RedeemCreditsOutput>
@@ -111,12 +114,24 @@ function C:getCredits(input: types.GetCreditsInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCredits as schema.OperationSchema, input, options) as async.Operation<types.GetCreditsOutput>
 end
 
+function C:getEnterpriseSupportChargeSummary(input: types.GetEnterpriseSupportChargeSummaryInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnterpriseSupportChargeSummaryOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnterpriseSupportChargeSummary as schema.OperationSchema, input, options) as async.Operation<types.GetEnterpriseSupportChargeSummaryOutput>
+end
+
+function C:getEnterpriseSupportContractDetails(input: types.GetEnterpriseSupportContractDetailsInput, options?: base_client.InvokeOptions): async.Operation<types.GetEnterpriseSupportContractDetailsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetEnterpriseSupportContractDetails as schema.OperationSchema, input, options) as async.Operation<types.GetEnterpriseSupportContractDetailsOutput>
+end
+
 function C:getResourcePolicy(input: types.GetResourcePolicyInput, options?: base_client.InvokeOptions): async.Operation<types.GetResourcePolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetResourcePolicy as schema.OperationSchema, input, options) as async.Operation<types.GetResourcePolicyOutput>
 end
 
 function C:listBillingViews(input: types.ListBillingViewsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBillingViewsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBillingViews as schema.OperationSchema, input, options) as async.Operation<types.ListBillingViewsOutput>
+end
+
+function C:listEnterpriseSupportLinkedAccountCharges(input: types.ListEnterpriseSupportLinkedAccountChargesInput, options?: base_client.InvokeOptions): async.Operation<types.ListEnterpriseSupportLinkedAccountChargesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEnterpriseSupportLinkedAccountCharges as schema.OperationSchema, input, options) as async.Operation<types.ListEnterpriseSupportLinkedAccountChargesOutput>
 end
 
 function C:listSourceViewsForBillingView(input: types.ListSourceViewsForBillingViewInput, options?: base_client.InvokeOptions): async.Operation<types.ListSourceViewsForBillingViewOutput>

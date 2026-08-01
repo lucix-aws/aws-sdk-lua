@@ -692,6 +692,8 @@ local record M
     record ColumnIdentifier
         -- The data set that the column belongs to.
         DataSetIdentifier: string
+        -- The topic that the column belongs to.
+        TopicIdentifier: string
         -- The name of the column.
         ColumnName: string
     end
@@ -1029,6 +1031,8 @@ local record M
         Errors: {AnalysisError}
         -- The ARNs of the datasets of the analysis.
         DataSetArns: {string}
+        -- The ARNs of the topics associated with the analysis.
+        TopicArns: {string}
         -- The ARN of the theme of the analysis.
         ThemeArn: string
         -- The time that the analysis was created.
@@ -1182,6 +1186,8 @@ local record M
     record CalculatedField
         -- The data set that is used in this calculated field.
         DataSetIdentifier: string
+        -- The topic that is used in this calculated field.
+        TopicIdentifier: string
         -- The name of the calculated field.
         Name: string
         -- The expression of the calculated field.
@@ -2247,6 +2253,32 @@ local record M
         "DISABLED"
     end
 
+    -- The configuration for a customizable message displayed on a visual. Supports parameter substitution in text fields.
+    record VisualMessageConfiguration
+        -- Specifies whether the custom message is displayed on the visual. When set to true, the custom message appears in place of the default message. When set to false or omitted, the default message is displayed.
+        Enabled: boolean
+        -- The title text of the message that is displayed on the visual.
+        Title: string
+        -- Specifies whether the title of the message is displayed.
+        TitleVisibility: string
+        -- The description text of the message that is displayed on the visual.
+        Description: string
+        -- Specifies whether the description of the message is displayed.
+        DescriptionVisibility: string
+        -- The display text of the hyperlink that is shown in the message.
+        LinkText: string
+        -- The destination URL of the hyperlink that is shown in the message. Only valid http, https, and mailto URLs are supported.
+        LinkUrl: string
+        -- Specifies whether the hyperlink in the message is displayed.
+        LinkVisibility: string
+    end
+
+    -- The messages that are displayed on a visual under specific conditions, such as when the visual returns no data.
+    record VisualMessages
+        -- The message that is displayed on a visual when there is no data to display.
+        NoDataMessage: VisualMessageConfiguration
+    end
+
     enum DayOfTheWeek
         "SUNDAY"
         "MONDAY"
@@ -2269,6 +2301,8 @@ local record M
         ExcludedDataSetArns: {string}
         -- A list of visual custom actions for the analysis.
         CustomActionDefaults: VisualCustomActionDefaults
+        -- The configuration options for the messages that are displayed on visuals in the analysis.
+        VisualMessages: VisualMessages
     end
 
     -- Defines different defaults to the users or groups based on mapping.
@@ -4627,8 +4661,10 @@ local record M
         ChartConfiguration: CustomContentConfiguration
         -- The list of custom actions that are configured for a visual.
         Actions: {VisualCustomAction}
-        -- The dataset that is used to create the custom content visual. You can't create a visual without a dataset.
+        -- The dataset that is used to create the custom content visual. You can't create a visual without a dataset or a topic.
         DataSetIdentifier: string
+        -- The topic that is used in the custom content visual. You can't create a visual without a dataset or a topic.
+        TopicIdentifier: string
         -- The alt text for the visual.
         VisualContentAltText: string
     end
@@ -4638,8 +4674,10 @@ local record M
     record EmptyVisual
         -- The unique identifier of a visual. This identifier must be unique within the context of a dashboard, template, or analysis. Two dashboards, analyses, or templates can have visuals with the same identifiers.
         VisualId: string
-        -- The data set that is used in the empty visual. Every visual requires a dataset to render.
+        -- The data set that is used in the empty visual. Every visual requires a dataset or a topic to render.
         DataSetIdentifier: string
+        -- The topic that is used in the empty visual. Every visual requires a dataset or a topic to render.
+        TopicIdentifier: string
         -- The list of custom actions that are configured for a visual.
         Actions: {VisualCustomAction}
     end
@@ -5709,6 +5747,8 @@ local record M
         Actions: {VisualCustomAction}
         -- The dataset that is used in the insight visual.
         DataSetIdentifier: string
+        -- The topic that is used in the insight visual.
+        TopicIdentifier: string
         -- The alt text for the visual.
         VisualContentAltText: string
     end
@@ -6191,8 +6231,10 @@ local record M
         Subtitle: VisualSubtitleLabelOptions
         -- The configuration settings of the visual.
         ChartConfiguration: GeospatialLayerMapConfiguration
-        -- The dataset that is used to create the layer map visual. You can't create a visual without a dataset.
+        -- The dataset that is used to create the layer map visual. You can't create a visual without a dataset or a topic.
         DataSetIdentifier: string
+        -- The topic that is used in the layer map visual. You can't create a visual without a dataset or a topic.
+        TopicIdentifier: string
         -- The alt text for the visual.
         VisualContentAltText: string
     end
@@ -8065,11 +8107,22 @@ local record M
         Layouts: {Layout}
     end
 
+    -- A topic.
+    record TopicIdentifierDeclaration
+        -- The identifier of the topic, typically the topic's name.
+        Identifier: string
+        -- The Amazon Resource Name (ARN) of the topic.
+        TopicArn: string
+    end
+
     -- The definition of an analysis.
     record AnalysisDefinition
         -- An array of dataset identifier declarations. This mapping allows the usage of dataset identifiers instead
         -- of dataset ARNs throughout analysis sub-structures.
         DataSetIdentifierDeclarations: {DataSetIdentifierDeclaration}
+        -- An array of topic identifier declarations. This mapping allows the usage of topic identifiers instead
+        -- of topic ARNs throughout analysis sub-structures.
+        TopicIdentifierDeclarations: {TopicIdentifierDeclaration}
         -- An array of sheet definitions for an analysis. Each SheetDefinition provides detailed information about
         -- a sheet within this analysis.
         Sheets: {SheetDefinition}
@@ -8136,10 +8189,20 @@ local record M
         DataSetArn: string
     end
 
+    -- Topic reference.
+    record TopicReference
+        -- Topic placeholder.
+        TopicPlaceholder: string
+        -- Topic Amazon Resource Name (ARN).
+        TopicArn: string
+    end
+
     -- The source template of an analysis.
     record AnalysisSourceTemplate
         -- The dataset references of the source template of an analysis.
         DataSetReferences: {DataSetReference}
+        -- The topic references of the source template of an analysis.
+        TopicReferences: {TopicReference}
         -- The Amazon Resource Name (ARN) of the source template of an analysis.
         Arn: string
     end
@@ -9942,6 +10005,7 @@ local record M
         "ENFORCED_VALUE_FILTER"
         "CONDITIONAL_VALUE_FILTER"
         "NAMED_VALUE_FILTER"
+        "DASHBOARD_DEFAULT_FILTER"
     end
 
     enum TopicIRFilterType
@@ -10655,6 +10719,48 @@ local record M
         UseAgentWebSearch: string
         -- The ability to use knowledge bases to specify content from external applications.
         KnowledgeBase: string
+        CreateAndUpdateKnowledgeBases: string
+        ShareKnowledgeBases: string
+        SharePointKnowledgeBase: string
+        CreateAndUpdateSharePointKnowledgeBase: string
+        ShareSharePointKnowledgeBase: string
+        UseSharePointKnowledgeBase: string
+        GoogleDriveKnowledgeBase: string
+        CreateAndUpdateGoogleDriveKnowledgeBase: string
+        ShareGoogleDriveKnowledgeBase: string
+        UseGoogleDriveKnowledgeBase: string
+        WebCrawlerKnowledgeBase: string
+        CreateAndUpdateWebCrawlerKnowledgeBase: string
+        ShareWebCrawlerKnowledgeBase: string
+        UseWebCrawlerKnowledgeBase: string
+        S3KnowledgeBase: string
+        CreateAndUpdateS3KnowledgeBase: string
+        ShareS3KnowledgeBase: string
+        UseS3KnowledgeBase: string
+        ConfluenceKnowledgeBase: string
+        CreateAndUpdateConfluenceKnowledgeBase: string
+        ShareConfluenceKnowledgeBase: string
+        UseConfluenceKnowledgeBase: string
+        OneDriveKnowledgeBase: string
+        CreateAndUpdateOneDriveKnowledgeBase: string
+        ShareOneDriveKnowledgeBase: string
+        UseOneDriveKnowledgeBase: string
+        QBusinessKnowledgeBase: string
+        CreateAndUpdateQBusinessKnowledgeBase: string
+        ShareQBusinessKnowledgeBase: string
+        UseQBusinessKnowledgeBase: string
+        BedrockManagedKnowledgeBase: string
+        CreateAndUpdateBedrockManagedKnowledgeBase: string
+        ShareBedrockManagedKnowledgeBase: string
+        UseBedrockManagedKnowledgeBase: string
+        BoxKnowledgeBase: string
+        CreateAndUpdateBoxKnowledgeBase: string
+        ShareBoxKnowledgeBase: string
+        UseBoxKnowledgeBase: string
+        IDCKnowledgeBase: string
+        CreateAndUpdateIDCKnowledgeBase: string
+        ShareIDCKnowledgeBase: string
+        UseIDCKnowledgeBase: string
         -- The ability to perform actions in external services through Action connectors. Actions allow users to interact with third-party systems.
         Action: string
         -- The ability to perform actions using REST API connection connectors.
@@ -11608,7 +11714,7 @@ local record M
         -- To specify no permissions, omit Permissions.
         Permissions: {ResourcePermission}
         -- A source entity to use for the analysis that you're creating. This metadata structure
-        -- contains details that describe a source template and one or more datasets.
+        -- contains details that describe a source template and one or more datasets or topics.
         -- Either a SourceEntity or a Definition must be provided in
         -- order for the request to be valid.
         SourceEntity: AnalysisSourceEntity
@@ -11848,6 +11954,9 @@ local record M
         -- An array of dataset identifier declarations. With
         -- this mapping,you can use dataset identifiers instead of dataset Amazon Resource Names (ARNs) throughout the dashboard's sub-structures.
         DataSetIdentifierDeclarations: {DataSetIdentifierDeclaration}
+        -- An array of topic identifier declarations. With
+        -- this mapping, you can use topic identifiers instead of topic Amazon Resource Names (ARNs) throughout the dashboard's sub-structures.
+        TopicIdentifierDeclarations: {TopicIdentifierDeclaration}
         -- An array of sheet definitions for a dashboard.
         Sheets: {SheetDefinition}
         -- An array of tooltip sheet definitions for a dashboard.
@@ -11882,6 +11991,8 @@ local record M
     record DashboardSourceTemplate
         -- Dataset references.
         DataSetReferences: {DataSetReference}
+        -- The topic references for the source template of a dashboard.
+        TopicReferences: {TopicReference}
         -- The Amazon Resource Name (ARN) of the resource.
         Arn: string
     end
@@ -11921,7 +12032,9 @@ local record M
         -- Amazon Quick Sight-supported Amazon Web Services Region.
         -- Use the DataSetReferences entity within SourceTemplate to
         -- list the replacement datasets for the placeholders listed in the original. The schema in
-        -- each dataset must match its placeholder.
+        -- each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
         -- Either a SourceEntity or a Definition must be provided in
         -- order for the request to be valid.
         SourceEntity: DashboardSourceEntity
@@ -13768,10 +13881,22 @@ local record M
         ColumnGroupSchemaList: {ColumnGroupSchema}
     end
 
+    -- The configuration of a topic.
+    record TopicConfiguration
+        -- The placeholder for the topic configuration.
+        Placeholder: string
+        -- Topic schema.
+        DataSetSchema: DataSetSchema
+        -- The list of column group schemas in the topic configuration.
+        ColumnGroupSchemaList: {ColumnGroupSchema}
+    end
+
     -- The detailed definition of a template.
     record TemplateVersionDefinition
         -- An array of dataset configurations. These configurations define the required columns for each dataset used within a template.
         DataSetConfigurations: {DataSetConfiguration}
+        -- An array of topic configurations. These configurations define the required columns for each topic used within a template.
+        TopicConfigurations: {TopicConfiguration}
         -- An array of sheet definitions for a template.
         Sheets: {SheetDefinition}
         -- An array of tooltip sheet definitions for a template.
@@ -13804,6 +13929,9 @@ local record M
         -- A structure containing information about the dataset references used as placeholders
         -- in the template.
         DataSetReferences: {DataSetReference}
+        -- A structure containing information about the topic references used as placeholders
+        -- in the template.
+        TopicReferences: {TopicReference}
     end
 
     -- The source template of the template.
@@ -13839,7 +13967,9 @@ local record M
         -- ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region.
         -- Use the DataSetReferences entity within SourceTemplate or
         -- SourceAnalysis to list the replacement datasets for the placeholders listed
-        -- in the original. The schema in each dataset must match its placeholder.
+        -- in the original. The schema in each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
         -- Either a SourceEntity or a Definition must be provided in
         -- order for the request to be valid.
         SourceEntity: TemplateSourceEntity
@@ -14326,6 +14456,12 @@ local record M
         CollectiveConstant: CollectiveConstant
     end
 
+    enum NullFilterType
+        "ALL_VALUES"
+        "NON_NULLS_ONLY"
+        "NULLS_ONLY"
+    end
+
     -- A structure that represents a category filter.
     record TopicCategoryFilter
         -- The category filter function. Valid values for this structure are EXACT and CONTAINS.
@@ -14336,6 +14472,8 @@ local record M
         Constant: TopicCategoryFilterConstant
         -- A Boolean value that indicates if the filter is inverse.
         Inverse: boolean
+        -- The null filter that is applied to the category filter.
+        NullFilter: string
     end
 
     -- A structure that represents a range constant.
@@ -14362,6 +14500,8 @@ local record M
         Inclusive: boolean
         -- The constant used in a date range filter.
         Constant: TopicRangeFilterConstant
+        -- The null filter that is applied to the date range filter.
+        NullFilter: string
     end
 
     enum NamedFilterType
@@ -14379,12 +14519,6 @@ local record M
         ConstantType: string
         -- The value of the singular filter constant.
         SingularConstant: string
-    end
-
-    enum NullFilterType
-        "ALL_VALUES"
-        "NON_NULLS_ONLY"
-        "NULLS_ONLY"
     end
 
     -- The structure that represents a null filter.
@@ -14422,6 +14556,10 @@ local record M
         -- VAR,
         -- and VARP.
         Aggregation: string
+        -- A Boolean value that indicates if the filter is inverse.
+        Inverse: boolean
+        -- The null filter that is applied to the numeric equality filter.
+        NullFilter: string
     end
 
     -- A filter that filters topics based on the value of a numeric field. The filter includes only topics whose numeric field value falls within the specified range.
@@ -14441,6 +14579,10 @@ local record M
         -- VAR,
         -- and VARP.
         Aggregation: string
+        -- A Boolean value that indicates if the filter is inverse.
+        Inverse: boolean
+        -- The null filter that is applied to the numeric range filter.
+        NullFilter: string
     end
 
     enum TopicRelativeDateFilterFunction
@@ -14460,6 +14602,8 @@ local record M
         -- The constant used in a
         -- relative date filter.
         Constant: TopicSingularFilterConstant
+        -- The null filter that is applied to the relative date filter.
+        NullFilter: string
     end
 
     -- A structure that represents a filter used to select items for a topic.
@@ -14551,6 +14695,12 @@ local record M
         PropertyUsage: string
         -- The definition of a metric.
         Metric: NamedEntityDefinitionMetric
+        -- The rank order of the named entity definition.
+        RankOrder: number
+        -- The presentation order of the named entity definition.
+        PresentationOrder: number
+        -- A Boolean value that indicates whether the named entity definition is hidden.
+        IsHidden: boolean
     end
 
     -- A structure that represents a semantic entity type.
@@ -14561,6 +14711,15 @@ local record M
         SubTypeName: string
         -- The semantic entity type parameters.
         TypeParameters: {string : string}
+    end
+
+    -- A structure that represents a sort for a named entity.
+    record NamedEntitySort
+        -- The name of the field that is used for the sort.
+        FieldName: string
+        -- The direction of the sort. Valid values are ASCENDING and
+        -- DESCENDING.
+        Direction: string
     end
 
     -- A structure that represents a named entity.
@@ -14576,6 +14735,12 @@ local record M
         SemanticEntityType: SemanticEntityType
         -- The definition of a named entity.
         Definition: {NamedEntityDefinition}
+        -- The sort configuration of the named entity.
+        Sort: {NamedEntitySort}
+        -- The rank order of the named entity.
+        RankOrder: number
+        -- The presentation order of the named entity.
+        PresentationOrder: number
     end
 
     -- A structure that represents a dataset.
@@ -14702,6 +14867,69 @@ local record M
         RequestId: string
     end
 
+    -- A structure that represents an endpoint of a data set relation of a topic.
+    record TopicV2DataSetRelationEndpoint
+        -- The Amazon Resource Name (ARN) of the data set at this endpoint of the relation.
+        DataSetArn: string
+        -- The names of the columns that are used in the data set relation.
+        ColumnNames: {string}
+    end
+
+    -- A structure that represents a relation between two data sets of a topic.
+    record TopicV2DataSetRelation
+        -- The left endpoint of the data set relation.
+        Left: TopicV2DataSetRelationEndpoint
+        -- The right endpoint of the data set relation.
+        Right: TopicV2DataSetRelationEndpoint
+    end
+
+    -- A structure that represents a data set reference of a topic.
+    record TopicV2DataSetReference
+        -- The Amazon Resource Name (ARN) of the data set.
+        DataSetArn: string
+        -- The name of the data set.
+        DataSetName: string
+    end
+
+    -- The definition of a topic.
+    record TopicV2Details
+        -- The name of the topic.
+        Name: string
+        -- The description of the topic.
+        Description: string
+        -- The data sets that the topic is associated with.
+        DataSets: {TopicV2DataSetReference}
+        -- The relations between the data sets that the topic is associated with.
+        DataSetRelations: {TopicV2DataSetRelation}
+    end
+
+    record CreateTopicV2Input
+        -- The ID of the Amazon Web Services account that you want to create a topic in.
+        AwsAccountId: string
+        -- The ID for the topic that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The definition of a topic to create.
+        Topic: TopicV2Details
+        -- Contains a map of the key-value pairs for the resource tag or tags that are assigned to
+        -- the topic.
+        Tags: {Tag}
+        -- The Amazon Resource Names (ARNs) of the folders that you want the topic to reside
+        -- in.
+        FolderArns: {string}
+        CustomInstructions: CustomInstructions
+    end
+
+    record CreateTopicV2Output
+        -- The Amazon Resource Name (ARN) of the topic.
+        Arn: string
+        -- The ID for the topic that you want to create. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     record CreateVPCConnectionInput
         -- The Amazon Web Services account ID of the account where you want to create a new VPC
         -- connection.
@@ -14815,9 +15043,12 @@ local record M
         Arn: string
         -- Source entity ARN.
         SourceEntityArn: string
-        -- The Amazon Resource Numbers (ARNs) for the datasets that are associated with this
+        -- The Amazon Resource Names (ARNs) for the datasets that are associated with this
         -- version of the dashboard.
         DataSetArns: {string}
+        -- The Amazon Resource Names (ARNs) for the topics that are associated with this
+        -- version of the dashboard.
+        TopicArns: {string}
         -- Description.
         Description: string
         -- The ARN of the theme associated with a version of the dashboard.
@@ -15770,6 +16001,25 @@ local record M
         Status: number
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
+    end
+
+    record DeleteTopicV2Input
+        -- The ID of the Amazon Web Services account that contains the topic that you want to
+        -- delete.
+        AwsAccountId: string
+        -- The ID of the topic that you want to delete. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+    end
+
+    record DeleteTopicV2Output
+        -- The Amazon Resource Name (ARN) of the topic.
+        Arn: string
+        -- The ID of the topic that you want to delete. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
     end
 
     record DeleteUserInput
@@ -17559,6 +17809,10 @@ local record M
         -- template should be bound to new datasets matching the same schema described through this
         -- API operation.
         DataSetConfigurations: {DataSetConfiguration}
+        -- Schema of the topic identified by the placeholder. Any dashboard created from this
+        -- template should be bound to new topics matching the same schema described through this
+        -- API operation.
+        TopicConfigurations: {TopicConfiguration}
         -- The description of the template.
         Description: string
         -- The Amazon Resource Name (ARN) of an analysis or template that was used to create this
@@ -17849,6 +18103,27 @@ local record M
         RequestId: string
     end
 
+    record DescribeTopicPermissionsV2Input
+        -- The ID of the Amazon Web Services account that contains the topic that you want
+        -- described.
+        AwsAccountId: string
+        -- The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+    end
+
+    record DescribeTopicPermissionsV2Output
+        -- The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The Amazon Resource Name (ARN) of the topic.
+        TopicArn: string
+        -- A list of resource permissions that are configured to the topic.
+        Permissions: {ResourcePermission}
+        -- The HTTP status of the request.
+        Status: number
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     record DescribeTopicRefreshInput
         -- The ID of the Amazon Web Services account that contains the topic whose refresh you want
         -- to describe.
@@ -17906,6 +18181,28 @@ local record M
         DatasetArn: string
         -- The definition of a refresh schedule.
         RefreshSchedule: TopicRefreshSchedule
+        -- The HTTP status of the request.
+        Status: number
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
+    record DescribeTopicV2Input
+        -- The ID of the Amazon Web Services account that contains the topic that you want to
+        -- describe.
+        AwsAccountId: string
+        -- The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+    end
+
+    record DescribeTopicV2Output
+        -- The Amazon Resource Name (ARN) of the topic.
+        Arn: string
+        -- The ID of the topic that you want to describe. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The definition of a topic.
+        Topic: TopicV2Details
+        CustomInstructions: CustomInstructions
         -- The HTTP status of the request.
         Status: number
         -- The Amazon Web Services request ID for this operation.
@@ -19861,6 +20158,37 @@ local record M
         Status: number
     end
 
+    record ListTopicsV2Input
+        -- The ID of the Amazon Web Services account that contains the topics that you want to
+        -- list.
+        AwsAccountId: string
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The maximum number of results to be returned per request.
+        MaxResults: number
+    end
+
+    -- A summary of the topic.
+    record TopicV2Summary
+        -- The Amazon Resource Name (ARN) of the topic.
+        Arn: string
+        -- The ID of the topic. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The name of the topic.
+        Name: string
+    end
+
+    record ListTopicsV2Output
+        -- A list of topic summaries.
+        TopicSummaryList: {TopicV2Summary}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
+    end
+
     record ListUserGroupsInput
         -- The Amazon Quick Sight user name that you want to list group memberships for.
         UserName: string
@@ -20553,6 +20881,29 @@ local record M
         RequestId: string
     end
 
+    record SearchTopicsV2Input
+        -- The ID of the Amazon Web Services account that contains the topic that you want to
+        -- search.
+        AwsAccountId: string
+        -- The filters that you want to use to search for the topic.
+        Filters: {TopicSearchFilter}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The maximum number of results to be returned per request.
+        MaxResults: number
+    end
+
+    record SearchTopicsV2Output
+        -- A list of topic summaries that is returned by the search topic request.
+        TopicSummaryList: {TopicV2Summary}
+        -- The token for the next set of results, or null if there are no more results.
+        NextToken: string
+        -- The HTTP status of the request.
+        Status: number
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     record StartAssetBundleExportJobInput
         -- The ID of the Amazon Web Services account to export assets from.
         AwsAccountId: string
@@ -20963,7 +21314,7 @@ local record M
         -- any parameter type, and some parameters might accept multiple values.
         Parameters: Parameters
         -- A source entity to use for the analysis that you're updating. This metadata structure
-        -- contains details that describe a source template and one or more datasets.
+        -- contains details that describe a source template and one or more datasets or topics.
         SourceEntity: AnalysisSourceEntity
         -- The Amazon Resource Name (ARN) for the theme to apply to the analysis that you're
         -- creating. To see the theme in the Amazon Quick Sight console, make sure that you have access to
@@ -21120,7 +21471,9 @@ local record M
         -- Amazon Quick Sight-supported Amazon Web Services Region.
         -- Use the DataSetReferences entity within SourceTemplate to
         -- list the replacement datasets for the placeholders listed in the original. The schema in
-        -- each dataset must match its placeholder.
+        -- each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
         SourceEntity: DashboardSourceEntity
         -- A structure that contains the parameters of the dashboard. These are parameter
         -- overrides for a dashboard. A dashboard can have any type of parameters, and some
@@ -21983,7 +22336,9 @@ local record M
         -- ARN can contain any Amazon Web Services account and any Quick Sight-supported Amazon Web Services Region;.
         -- Use the DataSetReferences entity within SourceTemplate or
         -- SourceAnalysis to list the replacement datasets for the placeholders listed
-        -- in the original. The schema in each dataset must match its placeholder.
+        -- in the original. The schema in each dataset must match its placeholder. Use the TopicReferences
+        -- entity to list the replacement topics for the topic placeholders listed in the original.
+        -- The schema in each topic must match its placeholder.
         SourceEntity: TemplateSourceEntity
         -- A description of the current template version that is being updated. Every time you call
         -- UpdateTemplate, you create a new version of the template. Each version
@@ -22188,6 +22543,31 @@ local record M
         RequestId: string
     end
 
+    record UpdateTopicPermissionsV2Input
+        -- The ID of the Amazon Web Services account that contains the topic that you want to update
+        -- the permissions for.
+        AwsAccountId: string
+        -- The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The resource permissions that you want to grant to the topic.
+        GrantPermissions: {ResourcePermission}
+        -- The resource permissions that you want to revoke from the topic.
+        RevokePermissions: {ResourcePermission}
+    end
+
+    record UpdateTopicPermissionsV2Output
+        -- The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The Amazon Resource Name (ARN) of the topic.
+        TopicArn: string
+        -- A list of resource permissions on the topic.
+        Permissions: {ResourcePermission}
+        -- The HTTP status of the request.
+        Status: number
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+    end
+
     record UpdateTopicRefreshScheduleInput
         -- The ID of the Amazon Web Services account that contains the topic whose refresh schedule
         -- you want to update.
@@ -22211,6 +22591,35 @@ local record M
         Status: number
         -- The Amazon Web Services request ID for this operation.
         RequestId: string
+    end
+
+    enum TopicV2PublishOption
+        "DRAFT"
+        "PUBLISH"
+    end
+
+    record UpdateTopicV2Input
+        -- The ID of the Amazon Web Services account that contains the topic that you want to
+        -- update.
+        AwsAccountId: string
+        -- The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The definition of the topic that you want to update.
+        Topic: TopicV2Details
+        CustomInstructions: CustomInstructions
+        -- The publish option for the topic that you want to update.
+        PublishOption: string
+    end
+
+    record UpdateTopicV2Output
+        -- The Amazon Resource Name (ARN) of the topic.
+        Arn: string
+        -- The ID of the topic that you want to modify. This ID is unique per Amazon Web Services Region for each Amazon Web Services account.
+        TopicId: string
+        -- The Amazon Web Services request ID for this operation.
+        RequestId: string
+        -- The HTTP status of the request.
+        Status: number
     end
 
     record UpdateUserInput

@@ -7,6 +7,11 @@ local record M
         message: string
     end
 
+    enum AccountTargeting
+        "SINGLE_ACCOUNT"
+        "MULTI_ACCOUNT"
+    end
+
     enum AchievabilityStatus
         "ACHIEVABLE"
         "NOT_ACHIEVABLE"
@@ -343,6 +348,7 @@ local record M
 
     enum ReportType
         "FAILURE_MODE"
+        "TESTING"
     end
 
     record CreateReportInput
@@ -396,6 +402,8 @@ local record M
         serviceArn: string
         -- Present for FAILURE_MODE reports.
         assessmentId: string
+        testRunId: string
+        testTemplateArn: string
         -- The timestamp when the report was created.
         createdAt: number
         -- Present when status is SUCCEEDED or FAILED.
@@ -458,7 +466,7 @@ local record M
         -- The systems to associate with the service.
         associatedSystems: {AssociatedSystem}
         policyArn: string
-        -- The AWS Regions where the service operates.
+        -- The Regions where the service operates.
         regions: {string}
         -- The permission model for the service.
         permissionModel: PermissionModel
@@ -577,7 +585,7 @@ local record M
         -- The systems associated with the service.
         associatedSystems: {AssociatedSystem}
         policyArn: string
-        -- The AWS Regions where the service operates.
+        -- The Regions where the service operates.
         regions: {string}
         -- The permission model for the service.
         permissionModel: PermissionModel
@@ -713,6 +721,87 @@ local record M
         system: System
     end
 
+    -- Configuration for test execution logging destinations.
+    record LoggingConfiguration
+        -- The name of the S3 bucket for log delivery.
+        s3BucketName: string
+        -- The ARN of the CloudWatch Logs log group for log delivery.
+        cloudWatchLogGroupArn: string
+        -- The version of the log schema.
+        logSchemaVersion: string
+    end
+
+    enum StopConditionSource
+        "aws:cloudwatch:alarm"
+        "none"
+    end
+
+    -- A CloudWatch alarm that automatically stops a test run if it breaches its threshold.
+    record StopCondition
+        -- The source of the stop condition.
+        source: string
+        -- The value of the stop condition, such as the ARN of the CloudWatch alarm.
+        value: string
+    end
+
+    record CreateTestInput
+        -- The ARN of the service to create the test for.
+        serviceArn: string
+        -- The ARN of the test template to configure.
+        testTemplateArn: string
+        -- The logging configuration for the test.
+        loggingConfiguration: LoggingConfiguration
+        -- The stop conditions for the test.
+        stopConditions: {StopCondition}
+        -- The name of the IAM execution role to use when running the test.
+        roleName: string
+        -- The parameter values for the test.
+        parameters: {string : {string}}
+    end
+
+    -- Represents a fault action that a test runs, along with the resource type it targets.
+    record TestAction
+        -- The identifier of the fault action.
+        actionId: string
+        -- A description of the fault action.
+        description: string
+        -- The resource type that the action targets.
+        resourceType: string
+    end
+
+    -- Represents a test created for a service by configuring a test template.
+    record Test
+        -- The unique identifier of the test.
+        testId: string
+        -- The ARN of the test template the test was created from.
+        testTemplateArn: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+        -- The name of the test.
+        name: string
+        -- The fault actions the test runs.
+        actions: {TestAction}
+        -- The logging configuration for the test.
+        loggingConfiguration: LoggingConfiguration
+        -- The stop conditions for the test.
+        stopConditions: {StopCondition}
+        -- The name of the IAM execution role used to run the test.
+        roleName: string
+        -- The parameter values configured for the test.
+        parameters: {string : {string}}
+        -- The total number of runs of the test.
+        totalTestRuns: number
+        -- The number of successful runs of the test.
+        successfulTestRuns: number
+        -- The timestamp when the test was created.
+        creationTime: number
+    end
+
+    record CreateTestOutput
+        -- The created test.
+        test: Test
+    end
+
     record CreateUserJourneyInput
         systemArn: string
         name: string
@@ -813,6 +902,50 @@ local record M
         systemArn: string
     end
 
+    record DeleteTestInput
+        -- The identifier of the test to delete.
+        testId: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+    end
+
+    record DeleteTestOutput
+        -- The identifier of the deleted test.
+        testId: string
+    end
+
+    -- Identifies an observability alarm by its ARN.
+    record ObservabilityAlarmInput
+        -- The ARN of the CloudWatch alarm.
+        alarmArn: string
+    end
+
+    -- Identifies a success criteria alarm by its ARN.
+    record SuccessCriteriaAlarmInput
+        -- The ARN of the CloudWatch alarm.
+        alarmArn: string
+    end
+
+    -- Identifies a monitoring source to add to or remove from a test. Exactly one member is set.
+    record TestSourceInput
+        -- A success criteria alarm that determines whether the test passes or fails.
+        successCriteriaAlarm: SuccessCriteriaAlarmInput
+        -- An observability alarm included for visibility only.
+        observabilityAlarm: ObservabilityAlarmInput
+    end
+
+    record DeleteTestSourcesInput
+        -- The identifier of the test to remove sources from.
+        testId: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+        -- The monitoring sources to remove.
+        testSources: {TestSourceInput}
+    end
+
+    record DeleteTestSourcesOutput
+    end
+
     record DeleteUserJourneyInput
         systemArn: string
         -- The identifier of the user journey to delete.
@@ -903,6 +1036,14 @@ local record M
         accountId: string
         -- The user name of the actor.
         userName: string
+    end
+
+    -- Details about an AWS Fault Injection Service (AWS FIS) experiment run as part of a test run.
+    record ExperimentDetails
+        -- The ARN of the AWS FIS experiment.
+        experimentArn: string
+        -- Additional details about the experiment.
+        details: string
     end
 
     enum FailureCategory
@@ -1037,6 +1178,154 @@ local record M
     record GetSystemOutput
         -- The requested system.
         system: System
+    end
+
+    record GetTestInput
+        -- The identifier of the test to retrieve.
+        testId: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+    end
+
+    record GetTestOutput
+        -- The requested test.
+        test: Test
+    end
+
+    record GetTestRunInput
+        -- The identifier of the test run to retrieve.
+        testRunId: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+    end
+
+    -- A snapshot of the resilience policy captured onto a test run from the service when the run was started.
+    record TestRunPolicySnapshot
+        -- The ARN of the policy.
+        policyArn: string
+        -- The name of the policy.
+        name: string
+        -- The availability SLO targets.
+        availabilitySlo: AvailabilitySlo
+        -- The multi-AZ resilience targets.
+        multiAz: MultiAzTargets
+        -- The multi-Region resilience targets.
+        multiRegion: MultiRegionTargets
+        -- The data recovery targets.
+        dataRecovery: DataRecoveryTargets
+    end
+
+    -- A snapshot of the report configuration captured onto a test run from the service when the run was started.
+    record TestRunReportConfiguration
+        -- The output destinations for generated reports.
+        reportOutput: {ReportOutputConfiguration}
+    end
+
+    enum TestRunStatus
+        "INITIALIZING"
+        "RUNNING"
+        "STOPPING"
+        "PASSED"
+        "FAILED"
+        "STOPPED"
+        "ERROR"
+    end
+
+    -- Represents a single run of a test. Configuration is snapshotted from the test and service at the time the run is started.
+    record TestRun
+        -- The unique identifier of the test run.
+        testRunId: string
+        -- The identifier of the test that was run.
+        testId: string
+        -- The current status of the test run.
+        status: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+        -- The timestamp when the test run started.
+        startedAt: number
+        -- The timestamp when the test run ended.
+        endedAt: number
+        -- The AWS Fault Injection Service (AWS FIS) experiments run as part of the test run.
+        experiments: {ExperimentDetails}
+        -- The number of events recorded for the test run. Use ListTestRunEvents to retrieve the details.
+        eventCount: number
+        -- The parameter values used for the test run.
+        parameters: {string : {string}}
+        -- A human-readable reason for test run failure. Only present when the status is FAILED or ERROR.
+        errorMessage: string
+        -- The stop conditions snapshotted from the test when the run was started.
+        stopConditions: {StopCondition}
+        -- The logging configuration snapshotted from the test when the run was started.
+        loggingConfiguration: LoggingConfiguration
+        -- The IAM execution role name snapshotted from the test when the run was started.
+        roleName: string
+        -- The ARN of the test template snapshotted from the test when the run was started.
+        testTemplateArn: string
+        -- The report configuration snapshotted from the service when the run was started.
+        reportConfiguration: TestRunReportConfiguration
+        -- The resilience policy snapshotted from the service when the run was started.
+        policy: TestRunPolicySnapshot
+        -- The report generation result for the test run. Present after report generation completes or fails.
+        reportOutput: ReportGenerationResult
+        -- The ARN of the ARC Region switch plan associated with the test run.
+        regionSwitchPlanArn: string
+        -- The identifier of the ARC Region switch execution detected during the test run.
+        regionSwitchExecutionId: string
+        -- The permission model snapshotted from the service when the run was started.
+        permissionModel: PermissionModel
+        -- The Regions snapshotted from the service when the run was started.
+        regions: {string}
+        -- Indicates whether this test run targets a single account or multiple accounts.
+        accountTargeting: string
+    end
+
+    record GetTestRunOutput
+        -- The requested test run.
+        testRun: TestRun
+    end
+
+    record GetTestTemplateInput
+        -- The ARN of the test template to retrieve.
+        testTemplateArn: string
+    end
+
+    enum ParameterType
+        "STRING"
+        "STRING_LIST"
+        "INTEGER"
+    end
+
+    -- Describes a parameter accepted by a test template.
+    record TestTemplateParameter
+        -- The name of the parameter.
+        name: string
+        -- A description of the parameter.
+        description: string
+        -- Indicates whether the parameter is required.
+        required: boolean
+        -- The default value of the parameter.
+        defaultValue: string
+        -- The maximum number of values the parameter accepts.
+        maxValues: number
+    end
+
+    -- A pre-configured, AWS recommended test that defines which resilience capability to validate, the fault actions it runs, and the parameters it accepts.
+    record TestTemplate
+        -- The ARN of the test template.
+        testTemplateArn: string
+        -- The name of the test template.
+        name: string
+        -- A description of the test template.
+        description: string
+        -- The parameters the test template accepts.
+        parameters: {TestTemplateParameter}
+        -- The fault actions the test template runs.
+        actions: {TestAction}
+    end
+
+    record GetTestTemplateOutput
+        -- The requested test template.
+        testTemplate: TestTemplate
     end
 
     record GetUserJourneyInput
@@ -1240,6 +1529,7 @@ local record M
         serviceArn: string
         -- Filter reports by type.
         reportType: string
+        testRunId: string
         maxResults: number
         nextToken: string
     end
@@ -1247,6 +1537,31 @@ local record M
     record ListReportsOutput
         -- The list of report generation results.
         reportGenerationResults: {ReportGenerationResult}
+        nextToken: string
+    end
+
+    record ListResolvedTestRunTargetResourcesInput
+        -- The identifier of the test run to list resolved target resources for.
+        testRunId: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+        maxResults: number
+        nextToken: string
+    end
+
+    -- A single AWS resource that AWS Fault Injection Service (AWS FIS) resolved as a target during a test run.
+    record ResolvedTargetResource
+        -- The AWS FIS resource type the target belongs to, such as aws:ec2:instance, aws:ecs:task, or aws:eks:pod.
+        resourceType: string
+        -- The name of the target in the AWS FIS experiment template.
+        targetName: string
+        -- The raw target information map as returned by AWS FIS.
+        targetInformation: {string : string}
+    end
+
+    record ListResolvedTestRunTargetResourcesOutput
+        -- The list of resolved target resources.
+        resolvedTargetResources: {ResolvedTargetResource}
         nextToken: string
     end
 
@@ -1559,7 +1874,7 @@ local record M
         name: string
         -- The systems associated with the service.
         associatedSystems: {AssociatedSystem}
-        -- The AWS Regions where the service operates.
+        -- The Regions where the service operates.
         regions: {string}
         policyArn: string
         -- The current assessment status of the service.
@@ -1834,6 +2149,239 @@ local record M
         tags: {string : string}
     end
 
+    record ListTestRunEventsInput
+        -- The identifier of the test run to list events for.
+        testRunId: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+        -- Return events at or after this timestamp.
+        startedAt: number
+        -- Return events at or before this timestamp.
+        endedAt: number
+        maxResults: number
+        nextToken: string
+    end
+
+    -- A single event in a test run's timeline.
+    record TestRunEvent
+        -- The unique identifier of the event.
+        eventId: string
+        -- The type of the event, such as action_started, action_completed, or rto_recovery_detected.
+        eventType: string
+        -- A human-readable description of what happened.
+        message: string
+        -- The timestamp when the event occurred.
+        timestamp: number
+        -- Machine-parseable key-value attributes for the event.
+        attributes: {string : string}
+    end
+
+    record ListTestRunEventsOutput
+        -- The list of test run events.
+        events: {TestRunEvent}
+        nextToken: string
+    end
+
+    record ListTestRunsInput
+        -- The ARN of the service to list test runs for.
+        serviceArn: string
+        -- Filter test runs by test identifier.
+        testId: string
+        maxResults: number
+        nextToken: string
+    end
+
+    -- Contains summary information about a test run.
+    record TestRunSummary
+        -- The unique identifier of the test run.
+        testRunId: string
+        -- The current status of the test run.
+        status: string
+        -- The timestamp when the test run started.
+        startedAt: number
+        -- The timestamp when the test run ended.
+        endedAt: number
+        -- The ARN of the test template the test run was based on.
+        testTemplateArn: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+        -- A human-readable reason for test run failure. Only present when the status is FAILED or ERROR.
+        errorMessage: string
+        -- Indicates whether this test run targets a single account or multiple accounts.
+        accountTargeting: string
+    end
+
+    record ListTestRunsOutput
+        -- The list of test run summaries.
+        testRuns: {TestRunSummary}
+        nextToken: string
+    end
+
+    enum TestRunSourceType
+        "SUCCESS_CRITERIA"
+        "OBSERVABILITY"
+    end
+
+    record ListTestRunSourcesInput
+        -- The identifier of the test run to list sources for.
+        testRunId: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+        maxResults: number
+        nextToken: string
+    end
+
+    -- Summary information about an observability alarm snapshot captured for a test run.
+    record TestRunObservabilityAlarmSummary
+        -- The ARN of the CloudWatch alarm.
+        alarmArn: string
+        -- The name of the CloudWatch alarm.
+        alarmName: string
+        -- The Region of the CloudWatch alarm.
+        region: string
+        -- The account ID that owns the CloudWatch alarm.
+        accountId: string
+    end
+
+    enum TestSourceOutcome
+        "PASSED"
+        "FAILED"
+        "ERROR"
+    end
+
+    -- Summary information about a success criteria alarm snapshot captured for a test run.
+    record TestRunSuccessCriteriaAlarmSummary
+        -- The ARN of the CloudWatch alarm.
+        alarmArn: string
+        -- The name of the CloudWatch alarm.
+        alarmName: string
+        -- The Region of the CloudWatch alarm.
+        region: string
+        -- The account ID that owns the CloudWatch alarm.
+        accountId: string
+        -- The evaluation outcome of the source. Absent while the source has not yet been evaluated; set to the terminal outcome afterwards.
+        outcome: string
+        -- A human-readable reason for the outcome.
+        outcomeReason: string
+    end
+
+    -- A monitoring-source snapshot captured for a test run. Exactly one member is set.
+    record TestRunSourceSummary
+        -- A success criteria alarm snapshot captured for the test run.
+        successCriteriaAlarm: TestRunSuccessCriteriaAlarmSummary
+        -- An observability alarm snapshot captured for the test run.
+        observabilityAlarm: TestRunObservabilityAlarmSummary
+    end
+
+    record ListTestRunSourcesOutput
+        -- The list of monitoring source snapshots.
+        testRunSources: {TestRunSourceSummary}
+        nextToken: string
+    end
+
+    record ListTestsInput
+        -- The ARN of the service to list tests for.
+        serviceArn: string
+        maxResults: number
+        nextToken: string
+    end
+
+    -- Contains summary information about a test.
+    record TestSummary
+        -- The unique identifier of the test.
+        testId: string
+        -- The ARN of the test template the test was created from.
+        testTemplateArn: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+        -- The total number of runs of the test.
+        totalTestRuns: number
+        -- The number of successful runs of the test.
+        successfulTestRuns: number
+        -- The timestamp when the test was created.
+        creationTime: number
+    end
+
+    record ListTestsOutput
+        -- The list of test summaries.
+        tests: {TestSummary}
+        nextToken: string
+    end
+
+    enum TestSourceType
+        "SUCCESS_CRITERIA"
+        "OBSERVABILITY"
+    end
+
+    record ListTestSourcesInput
+        -- The identifier of the test to list sources for.
+        testId: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+        maxResults: number
+        nextToken: string
+    end
+
+    -- Summary information about a configured observability alarm.
+    record ObservabilityAlarmSummary
+        -- The ARN of the CloudWatch alarm.
+        alarmArn: string
+        -- The name of the CloudWatch alarm.
+        alarmName: string
+        -- The Region of the CloudWatch alarm.
+        region: string
+        -- The account ID that owns the CloudWatch alarm.
+        accountId: string
+        -- The timestamp when the source was configured.
+        createdAt: number
+    end
+
+    -- Summary information about a configured success criteria alarm.
+    record SuccessCriteriaAlarmSummary
+        -- The ARN of the CloudWatch alarm.
+        alarmArn: string
+        -- The name of the CloudWatch alarm.
+        alarmName: string
+        -- The Region of the CloudWatch alarm.
+        region: string
+        -- The account ID that owns the CloudWatch alarm.
+        accountId: string
+        -- The timestamp when the source was configured.
+        createdAt: number
+    end
+
+    -- A configured monitoring source returned by ListTestSources. Exactly one member is set.
+    record TestSourceSummary
+        -- A configured success criteria alarm.
+        successCriteriaAlarm: SuccessCriteriaAlarmSummary
+        -- A configured observability alarm.
+        observabilityAlarm: ObservabilityAlarmSummary
+    end
+
+    record ListTestSourcesOutput
+        -- The list of configured monitoring sources.
+        testSources: {TestSourceSummary}
+        nextToken: string
+    end
+
+    record ListTestTemplatesInput
+    end
+
+    -- Contains summary information about a test template.
+    record TestTemplateSummary
+        -- The ARN of the test template.
+        testTemplateArn: string
+        -- The name of the test template.
+        name: string
+        -- A description of the test template.
+        description: string
+    end
+
+    record ListTestTemplatesOutput
+        -- The list of test template summaries.
+        testTemplates: {TestTemplateSummary}
+    end
+
     record ListUserJourneysInput
         systemArn: string
         maxResults: number
@@ -1857,6 +2405,18 @@ local record M
         nextToken: string
     end
 
+    record PutTestSourcesInput
+        -- The identifier of the test to add sources to.
+        testId: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+        -- The monitoring sources to add or update.
+        testSources: {TestSourceInput}
+    end
+
+    record PutTestSourcesOutput
+    end
+
     record StartFailureModeAssessmentInput
         serviceArn: string
         clientToken: string
@@ -1870,6 +2430,36 @@ local record M
         assessmentStatus: string
         -- The timestamp when the assessment started.
         startedAt: number
+    end
+
+    record StartTestRunInput
+        -- The identifier of the test to run.
+        testId: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+    end
+
+    record StartTestRunOutput
+        -- The identifier of the started test run.
+        testRunId: string
+        -- The status of the started test run.
+        status: string
+        -- The ARNs of the AWS Fault Injection Service (AWS FIS) experiments started for the run.
+        experimentArns: {string}
+    end
+
+    record StopTestRunInput
+        -- The identifier of the test run to stop.
+        testRunId: string
+        -- The ARN of the service the test run belongs to.
+        serviceArn: string
+    end
+
+    record StopTestRunOutput
+        -- The identifier of the stopped test run.
+        testRunId: string
+        -- The status of the test run.
+        status: string
     end
 
     record TagResourceInput
@@ -2006,6 +2596,26 @@ local record M
     record UpdateSystemOutput
         -- The updated system.
         system: System
+    end
+
+    record UpdateTestInput
+        -- The identifier of the test to update.
+        testId: string
+        -- The ARN of the service the test belongs to.
+        serviceArn: string
+        -- The updated logging configuration for the test.
+        loggingConfiguration: LoggingConfiguration
+        -- The updated stop conditions for the test.
+        stopConditions: {StopCondition}
+        -- The updated IAM execution role name.
+        roleName: string
+        -- The updated parameter values for the test.
+        parameters: {string : {string}}
+    end
+
+    record UpdateTestOutput
+        -- The updated test.
+        test: Test
     end
 
     record UpdateUserJourneyInput

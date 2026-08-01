@@ -5546,6 +5546,40 @@ M.ConnectionCredentials = schema.new({
     },
 })
 
+M.GitPropertiesInput = schema.new({
+    id = id.from(_N, "GitPropertiesInput"),
+    type = "structure",
+    members = {
+        codeConnectionArn = schema.new({
+            id = id.from(_N, "GitPropertiesInput", "codeConnectionArn"),
+            type = "string",
+            name = "codeConnectionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        repositoryId = schema.new({
+            id = id.from(_N, "GitPropertiesInput", "repositoryId"),
+            type = "string",
+            name = "repositoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultBranch = schema.new({
+            id = id.from(_N, "GitPropertiesInput", "defaultBranch"),
+            type = "string",
+            name = "defaultBranch",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.PhysicalConnectionRequirements = schema.new({
     id = id.from(_N, "PhysicalConnectionRequirements"),
     type = "structure",
@@ -6367,6 +6401,59 @@ M.ConnectionPropertiesInput = schema.new({
             target_id = id.from(_N, "VpcPropertiesInput"),
             target = M.VpcPropertiesInput,
         }),
+        gitProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesInput", "gitProperties"),
+            type = "structure",
+            name = "gitProperties",
+            target_id = id.from(_N, "GitPropertiesInput"),
+            target = M.GitPropertiesInput,
+        }),
+    },
+})
+
+M.GitPropertiesOutput = schema.new({
+    id = id.from(_N, "GitPropertiesOutput"),
+    type = "structure",
+    members = {
+        codeConnectionArn = schema.new({
+            id = id.from(_N, "GitPropertiesOutput", "codeConnectionArn"),
+            type = "string",
+            name = "codeConnectionArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        repositoryId = schema.new({
+            id = id.from(_N, "GitPropertiesOutput", "repositoryId"),
+            type = "string",
+            name = "repositoryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultBranch = schema.new({
+            id = id.from(_N, "GitPropertiesOutput", "defaultBranch"),
+            type = "string",
+            name = "defaultBranch",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GitPropertiesOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "GitPropertiesOutput", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7027,6 +7114,32 @@ M.ConnectionPropertiesOutput = schema.new({
             target_id = id.from(_N, "VpcPropertiesOutput"),
             target = M.VpcPropertiesOutput,
         }),
+        gitProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesOutput", "gitProperties"),
+            type = "structure",
+            name = "gitProperties",
+            target_id = id.from(_N, "GitPropertiesOutput"),
+            target = M.GitPropertiesOutput,
+        }),
+    },
+})
+
+M.GitPropertiesPatch = schema.new({
+    id = id.from(_N, "GitPropertiesPatch"),
+    type = "structure",
+    members = {
+        codeConnectionArn = schema.new({
+            id = id.from(_N, "GitPropertiesPatch", "codeConnectionArn"),
+            type = "string",
+            name = "codeConnectionArn",
+            target_id = prelude.String.id,
+        }),
+        defaultBranch = schema.new({
+            id = id.from(_N, "GitPropertiesPatch", "defaultBranch"),
+            type = "string",
+            name = "defaultBranch",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -7401,6 +7514,13 @@ M.ConnectionPropertiesPatch = schema.new({
             name = "vpcProperties",
             target_id = id.from(_N, "VpcPropertiesPatch"),
             target = M.VpcPropertiesPatch,
+        }),
+        gitProperties = schema.new({
+            id = id.from(_N, "ConnectionPropertiesPatch", "gitProperties"),
+            type = "structure",
+            name = "gitProperties",
+            target_id = id.from(_N, "GitPropertiesPatch"),
+            target = M.GitPropertiesPatch,
         }),
     },
 })

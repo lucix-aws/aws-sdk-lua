@@ -21,8 +21,18 @@ local record M
         callbackMetadata: string
     end
 
+    -- A named set of graphics-compositing templates used by the crop feature, specified in the templateGroups array of a CroppingConfig.
+    record TemplateGroup
+        -- A name for the template group.
+        name: string
+        -- An array of Amazon S3 URIs that point to the graphics-compositing templates for this group. You can specify 1 or 2 URIs. Each URI must be in the form s3://bucket-name/key. Elemental Inference reads these templates using the IAM role that you specify in accessRoleArn.
+        templateUris: {string}
+    end
+
     -- A type of OutputConfig, used when the output in a feed is for the crop feature.
     record CroppingConfig
+        -- An array of template groups for the crop output. Each template group provides the graphics-compositing templates that Elemental Inference applies to the cropped video. You can specify from 1 to 4 template groups.
+        templateGroups: {TemplateGroup}
     end
 
     enum TranscriptionLanguage
@@ -178,6 +188,8 @@ local record M
     record CreateFeedInput
         -- A user-friendly name for this feed.
         name: string
+        -- The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. For example, the smart crop feature uses this role to read graphics-compositing templates from your Amazon S3 bucket. You specify one access role for each feed.
+        accessRoleArn: string
         -- An array of outputs for this feed. Each output represents a specific Elemental Inference feature. For example, there is one output type for the smart crop feature. You must specify at least one output, but you can later add outputs using AssociateFeed, or add, modify, and delete outputs using UpdateFeed.
         outputs: {CreateOutput}
         -- Optional tags. You can also add tags later, using TagResource.
@@ -434,6 +446,8 @@ local record M
     record UpdateFeedInput
         -- Required. You can specify the existing name (to leave it unchanged) or a new name.
         name: string
+        -- The ARN of an IAM role that Elemental Inference assumes to access resources in your account on your behalf. You can specify the existing role (to leave it unchanged) or a new role. You specify one access role for each feed.
+        accessRoleArn: string
         -- The ID of the feed to update.
         id: string
         -- Required. You can specify the existing array of outputs (to leave outputs unchanged) or you can specify a new array.

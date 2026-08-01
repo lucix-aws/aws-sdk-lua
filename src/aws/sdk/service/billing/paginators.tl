@@ -40,6 +40,24 @@ function M.items_list_billing_views(client, input)
     })
 end
 
+--- Returns a page iterator for listEnterpriseSupportLinkedAccountCharges.
+function M.pages_list_enterprise_support_linked_account_charges(client, input)
+    return paginator.pages(client, "listEnterpriseSupportLinkedAccountCharges", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "linkedAccount",
+    })
+end
+
+--- Returns an item iterator for listEnterpriseSupportLinkedAccountCharges.
+function M.items_list_enterprise_support_linked_account_charges(client, input)
+    return paginator.items(client, "listEnterpriseSupportLinkedAccountCharges", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "linkedAccount",
+    })
+end
+
 --- Returns a page iterator for listSourceViewsForBillingView.
 function M.pages_list_source_views_for_billing_view(client, input)
     return paginator.pages(client, "listSourceViewsForBillingView", input, {

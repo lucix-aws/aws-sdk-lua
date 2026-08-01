@@ -27,6 +27,10 @@ M.GetOutputList = schema.new({ type = "list", list_member = M.GetOutput })
 
 M.UpdateOutputList = schema.new({ type = "list", list_member = M.UpdateOutput })
 
+M.TemplateGroupList = schema.new({ type = "list", list_member = M.TemplateGroup })
+
+M.TemplateUriList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
     type = "structure",
@@ -84,9 +88,44 @@ M.ClippingConfig = schema.new({
     },
 })
 
+M.TemplateGroup = schema.new({
+    id = id.from(_N, "TemplateGroup"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "TemplateGroup", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        templateUris = schema.new({
+            id = id.from(_N, "TemplateGroup", "templateUris"),
+            type = "list",
+            name = "templateUris",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CroppingConfig = schema.new({
     id = id.from(_N, "CroppingConfig"),
     type = "structure",
+    members = {
+        templateGroups = schema.new({
+            id = id.from(_N, "CroppingConfig", "templateGroups"),
+            type = "list",
+            name = "templateGroups",
+            target_id = prelude.Document.id,
+            list_member = M.TemplateGroup,
+        }),
+    },
 })
 
 M.SubtitlingConfig = schema.new({
@@ -496,6 +535,12 @@ M.CreateFeedInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        accessRoleArn = schema.new({
+            id = id.from(_N, "CreateFeedInput", "accessRoleArn"),
+            type = "string",
+            name = "accessRoleArn",
+            target_id = prelude.String.id,
         }),
         outputs = schema.new({
             id = id.from(_N, "CreateFeedInput", "outputs"),
@@ -1390,6 +1435,12 @@ M.UpdateFeedInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        accessRoleArn = schema.new({
+            id = id.from(_N, "UpdateFeedInput", "accessRoleArn"),
+            type = "string",
+            name = "accessRoleArn",
+            target_id = prelude.String.id,
         }),
         id = schema.new({
             id = id.from(_N, "UpdateFeedInput", "id"),

@@ -53,6 +53,10 @@ local record M
         VolumeName: string
         -- The status of the additional storage volume. Valid Values: ACTIVE | CREATING | DELETING | MODIFYING | NOT-IN-USE | STORAGE-OPTIMIZATION | VOLUME-FULL
         StorageVolumeStatus: string
+        -- The status of an in-progress storage operation on the additional storage volume. This field appears only while a storage operation is in progress. It isn't present when no storage operation is active. Possible values: Initializing - The volume is initializing from a snapshot, such as during a snapshot restore, point-in-time restore, read replica creation, or blue/green deployment. Performance can be lower than provisioned until initialization completes. Optimizing - The volume is optimizing following a storage scaling or modification operation.
+        StorageOperationStatus: string
+        -- The percentage of the in-progress storage operation on the additional storage volume that has completed, from 0 to 100. This field appears only while a storage operation is in progress. It isn't present when no storage operation is active.
+        StorageOperationPercentProgress: number
         -- The amount of storage allocated for the additional storage volume, in gibibytes (GiB). The minimum is 20 GiB. The maximum is 65,536 GiB (64 TiB).
         AllocatedStorage: number
         -- The number of I/O operations per second (IOPS) provisioned for the additional storage volume.
@@ -2354,6 +2358,10 @@ local record M
         AdditionalStorageVolumes: {AdditionalStorageVolumeOutput}
         -- The detailed status information for storage volumes associated with the DB instance. This information helps identify which specific volume is causing the instance to be in a storage-full state.
         StorageVolumeStatus: string
+        -- The status of an in-progress storage operation on the DB instance. This field appears only while a storage operation is in progress. It isn't present when no storage operation is active. Possible values: Initializing - The volume is initializing from a snapshot, such as during a snapshot restore, point-in-time restore, read replica creation, or blue/green deployment. Performance can be lower than provisioned until initialization completes. Optimizing - The volume is optimizing following a storage scaling or modification operation.
+        StorageOperationStatus: string
+        -- The percentage of the in-progress storage operation on the DB instance that has completed, from 0 to 100. This field appears only while a storage operation is in progress. It isn't present when no storage operation is active.
+        StorageOperationPercentProgress: number
     end
 
     record CreateDBInstanceOutput

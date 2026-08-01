@@ -19,6 +19,12 @@ M.RegionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ResourceList = schema.new({ type = "list", list_member = prelude.String })
 
+M.StopConditionList = schema.new({ type = "list", list_member = M.StopCondition })
+
+M.TestParameters = schema.new({ type = "map", map_key = prelude.String, map_value = M.StringList })
+
+M.TestSourceInputList = schema.new({ type = "list", list_member = M.TestSourceInput })
+
 M.AssertionList = schema.new({ type = "list", list_member = M.Assertion })
 
 M.DependencySummaryList = schema.new({ type = "list", list_member = M.DependencySummary })
@@ -34,6 +40,8 @@ M.InputSourceSummaryList = schema.new({ type = "list", list_member = M.InputSour
 M.PolicySummaryList = schema.new({ type = "list", list_member = M.PolicySummary })
 
 M.ReportGenerationResultList = schema.new({ type = "list", list_member = M.ReportGenerationResult })
+
+M.ResolvedTargetResourceList = schema.new({ type = "list", list_member = M.ResolvedTargetResource })
 
 M.ResourceTypeFilterList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -55,7 +63,21 @@ M.SystemEventList = schema.new({ type = "list", list_member = M.SystemEvent })
 
 M.SystemSummaryList = schema.new({ type = "list", list_member = M.SystemSummary })
 
+M.TestRunEventList = schema.new({ type = "list", list_member = M.TestRunEvent })
+
+M.TestRunSummaryList = schema.new({ type = "list", list_member = M.TestRunSummary })
+
+M.TestRunSourceSummaryList = schema.new({ type = "list", list_member = M.TestRunSourceSummary })
+
+M.TestSummaryList = schema.new({ type = "list", list_member = M.TestSummary })
+
+M.TestSourceSummaryList = schema.new({ type = "list", list_member = M.TestSourceSummary })
+
+M.TestTemplateSummaryList = schema.new({ type = "list", list_member = M.TestTemplateSummary })
+
 M.UserJourneySummaryList = schema.new({ type = "list", list_member = M.UserJourneySummary })
+
+M.ExperimentArnList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -65,6 +87,10 @@ M.CrossAccountRoleList = schema.new({ type = "list", list_member = M.CrossAccoun
 
 M.ReportOutputConfigurationList = schema.new({ type = "list", list_member = M.ReportOutputConfiguration })
 
+M.StringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TestActionList = schema.new({ type = "list", list_member = M.TestAction })
+
 M.FunctionsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.InfrastructureAndCodeRecommendationsList = schema.new({ type = "list", list_member = M.InfrastructureAndCodeRecommendation })
@@ -73,11 +99,19 @@ M.ObservabilityRecommendationsList = schema.new({ type = "list", list_member = M
 
 M.TestingRecommendationsList = schema.new({ type = "list", list_member = M.TestingRecommendation })
 
+M.ExperimentDetailsList = schema.new({ type = "list", list_member = M.ExperimentDetails })
+
+M.TestTemplateParameterList = schema.new({ type = "list", list_member = M.TestTemplateParameter })
+
 M.EksNamespaceList = schema.new({ type = "list", list_member = prelude.String })
 
 M.UserJourneyIdList = schema.new({ type = "list", list_member = prelude.String })
 
+M.ResolvedTargetInformation = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.EdgePropertyList = schema.new({ type = "list", list_member = M.EdgePropertySummary })
+
+M.TestRunEventAttributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.TagValueList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -1121,6 +1155,18 @@ M.ReportGenerationResult = schema.new({
             name = "assessmentId",
             target_id = prelude.String.id,
         }),
+        testRunId = schema.new({
+            id = id.from(_N, "ReportGenerationResult", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+        }),
+        testTemplateArn = schema.new({
+            id = id.from(_N, "ReportGenerationResult", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+        }),
         createdAt = schema.new({
             id = id.from(_N, "ReportGenerationResult", "createdAt"),
             type = "timestamp",
@@ -2111,6 +2157,262 @@ M.CreateSystemOutput = schema.new({
     },
 })
 
+M.LoggingConfiguration = schema.new({
+    id = id.from(_N, "LoggingConfiguration"),
+    type = "structure",
+    members = {
+        s3BucketName = schema.new({
+            id = id.from(_N, "LoggingConfiguration", "s3BucketName"),
+            type = "string",
+            name = "s3BucketName",
+            target_id = prelude.String.id,
+        }),
+        cloudWatchLogGroupArn = schema.new({
+            id = id.from(_N, "LoggingConfiguration", "cloudWatchLogGroupArn"),
+            type = "string",
+            name = "cloudWatchLogGroupArn",
+            target_id = prelude.String.id,
+        }),
+        logSchemaVersion = schema.new({
+            id = id.from(_N, "LoggingConfiguration", "logSchemaVersion"),
+            type = "string",
+            name = "logSchemaVersion",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.StopCondition = schema.new({
+    id = id.from(_N, "StopCondition"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "StopCondition", "source"),
+            type = "string",
+            name = "source",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        value = schema.new({
+            id = id.from(_N, "StopCondition", "value"),
+            type = "string",
+            name = "value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateTestInput = schema.new({
+    id = id.from(_N, "CreateTestRequest"),
+    type = "structure",
+    members = {
+        serviceArn = schema.new({
+            id = id.from(_N, "CreateTestInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        testTemplateArn = schema.new({
+            id = id.from(_N, "CreateTestInput", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        loggingConfiguration = schema.new({
+            id = id.from(_N, "CreateTestInput", "loggingConfiguration"),
+            type = "structure",
+            name = "loggingConfiguration",
+            target_id = id.from(_N, "LoggingConfiguration"),
+            target = M.LoggingConfiguration,
+        }),
+        stopConditions = schema.new({
+            id = id.from(_N, "CreateTestInput", "stopConditions"),
+            type = "list",
+            name = "stopConditions",
+            target_id = prelude.Document.id,
+            list_member = M.StopCondition,
+        }),
+        roleName = schema.new({
+            id = id.from(_N, "CreateTestInput", "roleName"),
+            type = "string",
+            name = "roleName",
+            target_id = prelude.String.id,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "CreateTestInput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+    },
+})
+
+M.TestAction = schema.new({
+    id = id.from(_N, "TestAction"),
+    type = "structure",
+    members = {
+        actionId = schema.new({
+            id = id.from(_N, "TestAction", "actionId"),
+            type = "string",
+            name = "actionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "TestAction", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "TestAction", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Test = schema.new({
+    id = id.from(_N, "Test"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "Test", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        testTemplateArn = schema.new({
+            id = id.from(_N, "Test", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "Test", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "Test", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        actions = schema.new({
+            id = id.from(_N, "Test", "actions"),
+            type = "list",
+            name = "actions",
+            target_id = prelude.Document.id,
+            list_member = M.TestAction,
+        }),
+        loggingConfiguration = schema.new({
+            id = id.from(_N, "Test", "loggingConfiguration"),
+            type = "structure",
+            name = "loggingConfiguration",
+            target_id = id.from(_N, "LoggingConfiguration"),
+            target = M.LoggingConfiguration,
+        }),
+        stopConditions = schema.new({
+            id = id.from(_N, "Test", "stopConditions"),
+            type = "list",
+            name = "stopConditions",
+            target_id = prelude.Document.id,
+            list_member = M.StopCondition,
+        }),
+        roleName = schema.new({
+            id = id.from(_N, "Test", "roleName"),
+            type = "string",
+            name = "roleName",
+            target_id = prelude.String.id,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "Test", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+        totalTestRuns = schema.new({
+            id = id.from(_N, "Test", "totalTestRuns"),
+            type = "integer",
+            name = "totalTestRuns",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        successfulTestRuns = schema.new({
+            id = id.from(_N, "Test", "successfulTestRuns"),
+            type = "integer",
+            name = "successfulTestRuns",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "Test", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateTestOutput = schema.new({
+    id = id.from(_N, "CreateTestResponse"),
+    type = "structure",
+    members = {
+        test = schema.new({
+            id = id.from(_N, "CreateTestOutput", "test"),
+            type = "structure",
+            name = "test",
+            target_id = id.from(_N, "Test"),
+            target = M.Test,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateUserJourneyInput = schema.new({
     id = id.from(_N, "CreateUserJourneyRequest"),
     type = "structure",
@@ -2506,6 +2808,140 @@ M.DeleteSystemOutput = schema.new({
     },
 })
 
+M.DeleteTestInput = schema.new({
+    id = id.from(_N, "DeleteTestRequest"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "DeleteTestInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "DeleteTestInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTestOutput = schema.new({
+    id = id.from(_N, "DeleteTestResponse"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "DeleteTestOutput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ObservabilityAlarmInput = schema.new({
+    id = id.from(_N, "ObservabilityAlarmInput"),
+    type = "structure",
+    members = {
+        alarmArn = schema.new({
+            id = id.from(_N, "ObservabilityAlarmInput", "alarmArn"),
+            type = "string",
+            name = "alarmArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SuccessCriteriaAlarmInput = schema.new({
+    id = id.from(_N, "SuccessCriteriaAlarmInput"),
+    type = "structure",
+    members = {
+        alarmArn = schema.new({
+            id = id.from(_N, "SuccessCriteriaAlarmInput", "alarmArn"),
+            type = "string",
+            name = "alarmArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TestSourceInput = schema.new({
+    id = id.from(_N, "TestSourceInput"),
+    type = "union",
+    members = {
+        successCriteriaAlarm = schema.new({
+            id = id.from(_N, "TestSourceInput", "successCriteriaAlarm"),
+            type = "structure",
+            name = "successCriteriaAlarm",
+            target_id = id.from(_N, "SuccessCriteriaAlarmInput"),
+            target = M.SuccessCriteriaAlarmInput,
+        }),
+        observabilityAlarm = schema.new({
+            id = id.from(_N, "TestSourceInput", "observabilityAlarm"),
+            type = "structure",
+            name = "observabilityAlarm",
+            target_id = id.from(_N, "ObservabilityAlarmInput"),
+            target = M.ObservabilityAlarmInput,
+        }),
+    },
+})
+
+M.DeleteTestSourcesInput = schema.new({
+    id = id.from(_N, "DeleteTestSourcesRequest"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "DeleteTestSourcesInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "DeleteTestSourcesInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        testSources = schema.new({
+            id = id.from(_N, "DeleteTestSourcesInput", "testSources"),
+            type = "list",
+            name = "testSources",
+            target_id = prelude.Document.id,
+            list_member = M.TestSourceInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTestSourcesOutput = schema.new({
+    id = id.from(_N, "DeleteTestSourcesResponse"),
+    type = "structure",
+})
+
 M.DeleteUserJourneyInput = schema.new({
     id = id.from(_N, "DeleteUserJourneyRequest"),
     type = "structure",
@@ -2769,6 +3205,28 @@ M.EventActor = schema.new({
             id = id.from(_N, "EventActor", "userName"),
             type = "string",
             name = "userName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ExperimentDetails = schema.new({
+    id = id.from(_N, "ExperimentDetails"),
+    type = "structure",
+    members = {
+        experimentArn = schema.new({
+            id = id.from(_N, "ExperimentDetails", "experimentArn"),
+            type = "string",
+            name = "experimentArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        details = schema.new({
+            id = id.from(_N, "ExperimentDetails", "details"),
+            type = "string",
+            name = "details",
             target_id = prelude.String.id,
         }),
     },
@@ -3108,6 +3566,453 @@ M.GetSystemOutput = schema.new({
             name = "system",
             target_id = id.from(_N, "System"),
             target = M.System,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTestInput = schema.new({
+    id = id.from(_N, "GetTestRequest"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "GetTestInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "testId" },
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "GetTestInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+    },
+})
+
+M.GetTestOutput = schema.new({
+    id = id.from(_N, "GetTestResponse"),
+    type = "structure",
+    members = {
+        test = schema.new({
+            id = id.from(_N, "GetTestOutput", "test"),
+            type = "structure",
+            name = "test",
+            target_id = id.from(_N, "Test"),
+            target = M.Test,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTestRunInput = schema.new({
+    id = id.from(_N, "GetTestRunRequest"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "GetTestRunInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "testRunId" },
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "GetTestRunInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+    },
+})
+
+M.TestRunPolicySnapshot = schema.new({
+    id = id.from(_N, "TestRunPolicySnapshot"),
+    type = "structure",
+    members = {
+        policyArn = schema.new({
+            id = id.from(_N, "TestRunPolicySnapshot", "policyArn"),
+            type = "string",
+            name = "policyArn",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "TestRunPolicySnapshot", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        availabilitySlo = schema.new({
+            id = id.from(_N, "TestRunPolicySnapshot", "availabilitySlo"),
+            type = "structure",
+            name = "availabilitySlo",
+            target_id = id.from(_N, "AvailabilitySlo"),
+            target = M.AvailabilitySlo,
+        }),
+        multiAz = schema.new({
+            id = id.from(_N, "TestRunPolicySnapshot", "multiAz"),
+            type = "structure",
+            name = "multiAz",
+            target_id = id.from(_N, "MultiAzTargets"),
+            target = M.MultiAzTargets,
+        }),
+        multiRegion = schema.new({
+            id = id.from(_N, "TestRunPolicySnapshot", "multiRegion"),
+            type = "structure",
+            name = "multiRegion",
+            target_id = id.from(_N, "MultiRegionTargets"),
+            target = M.MultiRegionTargets,
+        }),
+        dataRecovery = schema.new({
+            id = id.from(_N, "TestRunPolicySnapshot", "dataRecovery"),
+            type = "structure",
+            name = "dataRecovery",
+            target_id = id.from(_N, "DataRecoveryTargets"),
+            target = M.DataRecoveryTargets,
+        }),
+    },
+})
+
+M.TestRunReportConfiguration = schema.new({
+    id = id.from(_N, "TestRunReportConfiguration"),
+    type = "structure",
+    members = {
+        reportOutput = schema.new({
+            id = id.from(_N, "TestRunReportConfiguration", "reportOutput"),
+            type = "list",
+            name = "reportOutput",
+            target_id = prelude.Document.id,
+            list_member = M.ReportOutputConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TestRun = schema.new({
+    id = id.from(_N, "TestRun"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "TestRun", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        testId = schema.new({
+            id = id.from(_N, "TestRun", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "TestRun", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "TestRun", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "TestRun", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endedAt = schema.new({
+            id = id.from(_N, "TestRun", "endedAt"),
+            type = "timestamp",
+            name = "endedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        experiments = schema.new({
+            id = id.from(_N, "TestRun", "experiments"),
+            type = "list",
+            name = "experiments",
+            target_id = prelude.Document.id,
+            list_member = M.ExperimentDetails,
+        }),
+        eventCount = schema.new({
+            id = id.from(_N, "TestRun", "eventCount"),
+            type = "integer",
+            name = "eventCount",
+            target_id = prelude.Integer.id,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "TestRun", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "TestRun", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+        stopConditions = schema.new({
+            id = id.from(_N, "TestRun", "stopConditions"),
+            type = "list",
+            name = "stopConditions",
+            target_id = prelude.Document.id,
+            list_member = M.StopCondition,
+        }),
+        loggingConfiguration = schema.new({
+            id = id.from(_N, "TestRun", "loggingConfiguration"),
+            type = "structure",
+            name = "loggingConfiguration",
+            target_id = id.from(_N, "LoggingConfiguration"),
+            target = M.LoggingConfiguration,
+        }),
+        roleName = schema.new({
+            id = id.from(_N, "TestRun", "roleName"),
+            type = "string",
+            name = "roleName",
+            target_id = prelude.String.id,
+        }),
+        testTemplateArn = schema.new({
+            id = id.from(_N, "TestRun", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        reportConfiguration = schema.new({
+            id = id.from(_N, "TestRun", "reportConfiguration"),
+            type = "structure",
+            name = "reportConfiguration",
+            target_id = id.from(_N, "TestRunReportConfiguration"),
+            target = M.TestRunReportConfiguration,
+        }),
+        policy = schema.new({
+            id = id.from(_N, "TestRun", "policy"),
+            type = "structure",
+            name = "policy",
+            target_id = id.from(_N, "TestRunPolicySnapshot"),
+            target = M.TestRunPolicySnapshot,
+        }),
+        reportOutput = schema.new({
+            id = id.from(_N, "TestRun", "reportOutput"),
+            type = "structure",
+            name = "reportOutput",
+            target_id = id.from(_N, "ReportGenerationResult"),
+            target = M.ReportGenerationResult,
+        }),
+        regionSwitchPlanArn = schema.new({
+            id = id.from(_N, "TestRun", "regionSwitchPlanArn"),
+            type = "string",
+            name = "regionSwitchPlanArn",
+            target_id = prelude.String.id,
+        }),
+        regionSwitchExecutionId = schema.new({
+            id = id.from(_N, "TestRun", "regionSwitchExecutionId"),
+            type = "string",
+            name = "regionSwitchExecutionId",
+            target_id = prelude.String.id,
+        }),
+        permissionModel = schema.new({
+            id = id.from(_N, "TestRun", "permissionModel"),
+            type = "structure",
+            name = "permissionModel",
+            target_id = id.from(_N, "PermissionModel"),
+            target = M.PermissionModel,
+        }),
+        regions = schema.new({
+            id = id.from(_N, "TestRun", "regions"),
+            type = "list",
+            name = "regions",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        accountTargeting = schema.new({
+            id = id.from(_N, "TestRun", "accountTargeting"),
+            type = "string",
+            name = "accountTargeting",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetTestRunOutput = schema.new({
+    id = id.from(_N, "GetTestRunResponse"),
+    type = "structure",
+    members = {
+        testRun = schema.new({
+            id = id.from(_N, "GetTestRunOutput", "testRun"),
+            type = "structure",
+            name = "testRun",
+            target_id = id.from(_N, "TestRun"),
+            target = M.TestRun,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetTestTemplateInput = schema.new({
+    id = id.from(_N, "GetTestTemplateRequest"),
+    type = "structure",
+    members = {
+        testTemplateArn = schema.new({
+            id = id.from(_N, "GetTestTemplateInput", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "testTemplateArn" },
+            },
+        }),
+    },
+})
+
+M.TestTemplateParameter = schema.new({
+    id = id.from(_N, "TestTemplateParameter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "TestTemplateParameter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "TestTemplateParameter", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "TestTemplateParameter", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        required = schema.new({
+            id = id.from(_N, "TestTemplateParameter", "required"),
+            type = "boolean",
+            name = "required",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        defaultValue = schema.new({
+            id = id.from(_N, "TestTemplateParameter", "defaultValue"),
+            type = "string",
+            name = "defaultValue",
+            target_id = prelude.String.id,
+        }),
+        maxValues = schema.new({
+            id = id.from(_N, "TestTemplateParameter", "maxValues"),
+            type = "integer",
+            name = "maxValues",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.TestTemplate = schema.new({
+    id = id.from(_N, "TestTemplate"),
+    type = "structure",
+    members = {
+        testTemplateArn = schema.new({
+            id = id.from(_N, "TestTemplate", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "TestTemplate", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "TestTemplate", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "TestTemplate", "parameters"),
+            type = "list",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            list_member = M.TestTemplateParameter,
+        }),
+        actions = schema.new({
+            id = id.from(_N, "TestTemplate", "actions"),
+            type = "list",
+            name = "actions",
+            target_id = prelude.Document.id,
+            list_member = M.TestAction,
+        }),
+    },
+})
+
+M.GetTestTemplateOutput = schema.new({
+    id = id.from(_N, "GetTestTemplateResponse"),
+    type = "structure",
+    members = {
+        testTemplate = schema.new({
+            id = id.from(_N, "GetTestTemplateOutput", "testTemplate"),
+            type = "structure",
+            name = "testTemplate",
+            target_id = id.from(_N, "TestTemplate"),
+            target = M.TestTemplate,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3948,6 +4853,15 @@ M.ListReportsInput = schema.new({
                 [traits.HTTP_QUERY] = { name = "reportType" },
             },
         }),
+        testRunId = schema.new({
+            id = id.from(_N, "ListReportsInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "testRunId" },
+            },
+        }),
         maxResults = schema.new({
             id = id.from(_N, "ListReportsInput", "maxResults"),
             type = "integer",
@@ -3986,6 +4900,111 @@ M.ListReportsOutput = schema.new({
         }),
         nextToken = schema.new({
             id = id.from(_N, "ListReportsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListResolvedTestRunTargetResourcesInput = schema.new({
+    id = id.from(_N, "ListResolvedTestRunTargetResourcesRequest"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "ListResolvedTestRunTargetResourcesInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "ListResolvedTestRunTargetResourcesInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListResolvedTestRunTargetResourcesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResolvedTestRunTargetResourcesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ResolvedTargetResource = schema.new({
+    id = id.from(_N, "ResolvedTargetResource"),
+    type = "structure",
+    members = {
+        resourceType = schema.new({
+            id = id.from(_N, "ResolvedTargetResource", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetName = schema.new({
+            id = id.from(_N, "ResolvedTargetResource", "targetName"),
+            type = "string",
+            name = "targetName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        targetInformation = schema.new({
+            id = id.from(_N, "ResolvedTargetResource", "targetInformation"),
+            type = "map",
+            name = "targetInformation",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListResolvedTestRunTargetResourcesOutput = schema.new({
+    id = id.from(_N, "ListResolvedTestRunTargetResourcesResponse"),
+    type = "structure",
+    members = {
+        resolvedTargetResources = schema.new({
+            id = id.from(_N, "ListResolvedTestRunTargetResourcesOutput", "resolvedTargetResources"),
+            type = "list",
+            name = "resolvedTargetResources",
+            target_id = prelude.Document.id,
+            list_member = M.ResolvedTargetResource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListResolvedTestRunTargetResourcesOutput", "nextToken"),
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
@@ -5828,6 +6847,849 @@ M.ListTagsForResourceOutput = schema.new({
     },
 })
 
+M.ListTestRunEventsInput = schema.new({
+    id = id.from(_N, "ListTestRunEventsRequest"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "ListTestRunEventsInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "ListTestRunEventsInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "ListTestRunEventsInput", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "startedAt" },
+            },
+        }),
+        endedAt = schema.new({
+            id = id.from(_N, "ListTestRunEventsInput", "endedAt"),
+            type = "timestamp",
+            name = "endedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "endedAt" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTestRunEventsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunEventsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.TestRunEvent = schema.new({
+    id = id.from(_N, "TestRunEvent"),
+    type = "structure",
+    members = {
+        eventId = schema.new({
+            id = id.from(_N, "TestRunEvent", "eventId"),
+            type = "string",
+            name = "eventId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventType = schema.new({
+            id = id.from(_N, "TestRunEvent", "eventType"),
+            type = "string",
+            name = "eventType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "TestRunEvent", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        timestamp = schema.new({
+            id = id.from(_N, "TestRunEvent", "timestamp"),
+            type = "timestamp",
+            name = "timestamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        attributes = schema.new({
+            id = id.from(_N, "TestRunEvent", "attributes"),
+            type = "map",
+            name = "attributes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ListTestRunEventsOutput = schema.new({
+    id = id.from(_N, "ListTestRunEventsResponse"),
+    type = "structure",
+    members = {
+        events = schema.new({
+            id = id.from(_N, "ListTestRunEventsOutput", "events"),
+            type = "list",
+            name = "events",
+            target_id = prelude.Document.id,
+            list_member = M.TestRunEvent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunEventsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestRunsInput = schema.new({
+    id = id.from(_N, "ListTestRunsRequest"),
+    type = "structure",
+    members = {
+        serviceArn = schema.new({
+            id = id.from(_N, "ListTestRunsInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        testId = schema.new({
+            id = id.from(_N, "ListTestRunsInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "testId" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTestRunsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.TestRunSummary = schema.new({
+    id = id.from(_N, "TestRunSummary"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "TestRunSummary", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "TestRunSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startedAt = schema.new({
+            id = id.from(_N, "TestRunSummary", "startedAt"),
+            type = "timestamp",
+            name = "startedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endedAt = schema.new({
+            id = id.from(_N, "TestRunSummary", "endedAt"),
+            type = "timestamp",
+            name = "endedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        testTemplateArn = schema.new({
+            id = id.from(_N, "TestRunSummary", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "TestRunSummary", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+        }),
+        errorMessage = schema.new({
+            id = id.from(_N, "TestRunSummary", "errorMessage"),
+            type = "string",
+            name = "errorMessage",
+            target_id = prelude.String.id,
+        }),
+        accountTargeting = schema.new({
+            id = id.from(_N, "TestRunSummary", "accountTargeting"),
+            type = "string",
+            name = "accountTargeting",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestRunsOutput = schema.new({
+    id = id.from(_N, "ListTestRunsResponse"),
+    type = "structure",
+    members = {
+        testRuns = schema.new({
+            id = id.from(_N, "ListTestRunsOutput", "testRuns"),
+            type = "list",
+            name = "testRuns",
+            target_id = prelude.Document.id,
+            list_member = M.TestRunSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestRunSourcesInput = schema.new({
+    id = id.from(_N, "ListTestRunSourcesRequest"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "ListTestRunSourcesInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "ListTestRunSourcesInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "ListTestRunSourcesInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "type" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTestRunSourcesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunSourcesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.TestRunObservabilityAlarmSummary = schema.new({
+    id = id.from(_N, "TestRunObservabilityAlarmSummary"),
+    type = "structure",
+    members = {
+        alarmArn = schema.new({
+            id = id.from(_N, "TestRunObservabilityAlarmSummary", "alarmArn"),
+            type = "string",
+            name = "alarmArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        alarmName = schema.new({
+            id = id.from(_N, "TestRunObservabilityAlarmSummary", "alarmName"),
+            type = "string",
+            name = "alarmName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "TestRunObservabilityAlarmSummary", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "TestRunObservabilityAlarmSummary", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TestRunSuccessCriteriaAlarmSummary = schema.new({
+    id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary"),
+    type = "structure",
+    members = {
+        alarmArn = schema.new({
+            id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary", "alarmArn"),
+            type = "string",
+            name = "alarmArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        alarmName = schema.new({
+            id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary", "alarmName"),
+            type = "string",
+            name = "alarmName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        outcome = schema.new({
+            id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary", "outcome"),
+            type = "string",
+            name = "outcome",
+            target_id = prelude.String.id,
+        }),
+        outcomeReason = schema.new({
+            id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary", "outcomeReason"),
+            type = "string",
+            name = "outcomeReason",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TestRunSourceSummary = schema.new({
+    id = id.from(_N, "TestRunSourceSummary"),
+    type = "union",
+    members = {
+        successCriteriaAlarm = schema.new({
+            id = id.from(_N, "TestRunSourceSummary", "successCriteriaAlarm"),
+            type = "structure",
+            name = "successCriteriaAlarm",
+            target_id = id.from(_N, "TestRunSuccessCriteriaAlarmSummary"),
+            target = M.TestRunSuccessCriteriaAlarmSummary,
+        }),
+        observabilityAlarm = schema.new({
+            id = id.from(_N, "TestRunSourceSummary", "observabilityAlarm"),
+            type = "structure",
+            name = "observabilityAlarm",
+            target_id = id.from(_N, "TestRunObservabilityAlarmSummary"),
+            target = M.TestRunObservabilityAlarmSummary,
+        }),
+    },
+})
+
+M.ListTestRunSourcesOutput = schema.new({
+    id = id.from(_N, "ListTestRunSourcesResponse"),
+    type = "structure",
+    members = {
+        testRunSources = schema.new({
+            id = id.from(_N, "ListTestRunSourcesOutput", "testRunSources"),
+            type = "list",
+            name = "testRunSources",
+            target_id = prelude.Document.id,
+            list_member = M.TestRunSourceSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestRunSourcesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestsInput = schema.new({
+    id = id.from(_N, "ListTestsRequest"),
+    type = "structure",
+    members = {
+        serviceArn = schema.new({
+            id = id.from(_N, "ListTestsInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTestsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.TestSummary = schema.new({
+    id = id.from(_N, "TestSummary"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "TestSummary", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        testTemplateArn = schema.new({
+            id = id.from(_N, "TestSummary", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "TestSummary", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        totalTestRuns = schema.new({
+            id = id.from(_N, "TestSummary", "totalTestRuns"),
+            type = "integer",
+            name = "totalTestRuns",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        successfulTestRuns = schema.new({
+            id = id.from(_N, "TestSummary", "successfulTestRuns"),
+            type = "integer",
+            name = "successfulTestRuns",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        creationTime = schema.new({
+            id = id.from(_N, "TestSummary", "creationTime"),
+            type = "timestamp",
+            name = "creationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTestsOutput = schema.new({
+    id = id.from(_N, "ListTestsResponse"),
+    type = "structure",
+    members = {
+        tests = schema.new({
+            id = id.from(_N, "ListTestsOutput", "tests"),
+            type = "list",
+            name = "tests",
+            target_id = prelude.Document.id,
+            list_member = M.TestSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestSourcesInput = schema.new({
+    id = id.from(_N, "ListTestSourcesRequest"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "ListTestSourcesInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "ListTestSourcesInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_QUERY] = { name = "serviceArn" },
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "ListTestSourcesInput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "type" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListTestSourcesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestSourcesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ObservabilityAlarmSummary = schema.new({
+    id = id.from(_N, "ObservabilityAlarmSummary"),
+    type = "structure",
+    members = {
+        alarmArn = schema.new({
+            id = id.from(_N, "ObservabilityAlarmSummary", "alarmArn"),
+            type = "string",
+            name = "alarmArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        alarmName = schema.new({
+            id = id.from(_N, "ObservabilityAlarmSummary", "alarmName"),
+            type = "string",
+            name = "alarmName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "ObservabilityAlarmSummary", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "ObservabilityAlarmSummary", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "ObservabilityAlarmSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.SuccessCriteriaAlarmSummary = schema.new({
+    id = id.from(_N, "SuccessCriteriaAlarmSummary"),
+    type = "structure",
+    members = {
+        alarmArn = schema.new({
+            id = id.from(_N, "SuccessCriteriaAlarmSummary", "alarmArn"),
+            type = "string",
+            name = "alarmArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        alarmName = schema.new({
+            id = id.from(_N, "SuccessCriteriaAlarmSummary", "alarmName"),
+            type = "string",
+            name = "alarmName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        region = schema.new({
+            id = id.from(_N, "SuccessCriteriaAlarmSummary", "region"),
+            type = "string",
+            name = "region",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        accountId = schema.new({
+            id = id.from(_N, "SuccessCriteriaAlarmSummary", "accountId"),
+            type = "string",
+            name = "accountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "SuccessCriteriaAlarmSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.TestSourceSummary = schema.new({
+    id = id.from(_N, "TestSourceSummary"),
+    type = "union",
+    members = {
+        successCriteriaAlarm = schema.new({
+            id = id.from(_N, "TestSourceSummary", "successCriteriaAlarm"),
+            type = "structure",
+            name = "successCriteriaAlarm",
+            target_id = id.from(_N, "SuccessCriteriaAlarmSummary"),
+            target = M.SuccessCriteriaAlarmSummary,
+        }),
+        observabilityAlarm = schema.new({
+            id = id.from(_N, "TestSourceSummary", "observabilityAlarm"),
+            type = "structure",
+            name = "observabilityAlarm",
+            target_id = id.from(_N, "ObservabilityAlarmSummary"),
+            target = M.ObservabilityAlarmSummary,
+        }),
+    },
+})
+
+M.ListTestSourcesOutput = schema.new({
+    id = id.from(_N, "ListTestSourcesResponse"),
+    type = "structure",
+    members = {
+        testSources = schema.new({
+            id = id.from(_N, "ListTestSourcesOutput", "testSources"),
+            type = "list",
+            name = "testSources",
+            target_id = prelude.Document.id,
+            list_member = M.TestSourceSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListTestSourcesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTestTemplatesInput = schema.new({
+    id = id.from(_N, "ListTestTemplatesRequest"),
+    type = "structure",
+})
+
+M.TestTemplateSummary = schema.new({
+    id = id.from(_N, "TestTemplateSummary"),
+    type = "structure",
+    members = {
+        testTemplateArn = schema.new({
+            id = id.from(_N, "TestTemplateSummary", "testTemplateArn"),
+            type = "string",
+            name = "testTemplateArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "TestTemplateSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "TestTemplateSummary", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListTestTemplatesOutput = schema.new({
+    id = id.from(_N, "ListTestTemplatesResponse"),
+    type = "structure",
+    members = {
+        testTemplates = schema.new({
+            id = id.from(_N, "ListTestTemplatesOutput", "testTemplates"),
+            type = "list",
+            name = "testTemplates",
+            target_id = prelude.Document.id,
+            list_member = M.TestTemplateSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListUserJourneysInput = schema.new({
     id = id.from(_N, "ListUserJourneysRequest"),
     type = "structure",
@@ -5924,6 +7786,46 @@ M.ListUserJourneysOutput = schema.new({
     },
 })
 
+M.PutTestSourcesInput = schema.new({
+    id = id.from(_N, "PutTestSourcesRequest"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "PutTestSourcesInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "PutTestSourcesInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        testSources = schema.new({
+            id = id.from(_N, "PutTestSourcesInput", "testSources"),
+            type = "list",
+            name = "testSources",
+            target_id = prelude.Document.id,
+            list_member = M.TestSourceInput,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.PutTestSourcesOutput = schema.new({
+    id = id.from(_N, "PutTestSourcesResponse"),
+    type = "structure",
+})
+
 M.StartFailureModeAssessmentInput = schema.new({
     id = id.from(_N, "StartFailureModeAssessmentRequest"),
     type = "structure",
@@ -5976,6 +7878,116 @@ M.StartFailureModeAssessmentOutput = schema.new({
             type = "timestamp",
             name = "startedAt",
             target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.StartTestRunInput = schema.new({
+    id = id.from(_N, "StartTestRunRequest"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "StartTestRunInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "StartTestRunInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartTestRunOutput = schema.new({
+    id = id.from(_N, "StartTestRunResponse"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "StartTestRunOutput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "StartTestRunOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        experimentArns = schema.new({
+            id = id.from(_N, "StartTestRunOutput", "experimentArns"),
+            type = "list",
+            name = "experimentArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopTestRunInput = schema.new({
+    id = id.from(_N, "StopTestRunRequest"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "StopTestRunInput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "StopTestRunInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StopTestRunOutput = schema.new({
+    id = id.from(_N, "StopTestRunResponse"),
+    type = "structure",
+    members = {
+        testRunId = schema.new({
+            id = id.from(_N, "StopTestRunOutput", "testRunId"),
+            type = "string",
+            name = "testRunId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "StopTestRunOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -6500,6 +8512,76 @@ M.UpdateSystemOutput = schema.new({
     },
 })
 
+M.UpdateTestInput = schema.new({
+    id = id.from(_N, "UpdateTestRequest"),
+    type = "structure",
+    members = {
+        testId = schema.new({
+            id = id.from(_N, "UpdateTestInput", "testId"),
+            type = "string",
+            name = "testId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        serviceArn = schema.new({
+            id = id.from(_N, "UpdateTestInput", "serviceArn"),
+            type = "string",
+            name = "serviceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        loggingConfiguration = schema.new({
+            id = id.from(_N, "UpdateTestInput", "loggingConfiguration"),
+            type = "structure",
+            name = "loggingConfiguration",
+            target_id = id.from(_N, "LoggingConfiguration"),
+            target = M.LoggingConfiguration,
+        }),
+        stopConditions = schema.new({
+            id = id.from(_N, "UpdateTestInput", "stopConditions"),
+            type = "list",
+            name = "stopConditions",
+            target_id = prelude.Document.id,
+            list_member = M.StopCondition,
+        }),
+        roleName = schema.new({
+            id = id.from(_N, "UpdateTestInput", "roleName"),
+            type = "string",
+            name = "roleName",
+            target_id = prelude.String.id,
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "UpdateTestInput", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = schema.new({ type = "list", list_member = prelude.String }),
+        }),
+    },
+})
+
+M.UpdateTestOutput = schema.new({
+    id = id.from(_N, "UpdateTestResponse"),
+    type = "structure",
+    members = {
+        test = schema.new({
+            id = id.from(_N, "UpdateTestOutput", "test"),
+            type = "structure",
+            name = "test",
+            target_id = id.from(_N, "Test"),
+            target = M.Test,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateUserJourneyInput = schema.new({
     id = id.from(_N, "UpdateUserJourneyRequest"),
     type = "structure",
@@ -6681,6 +8763,18 @@ M.CreateSystem = schema.operation({
     },
 })
 
+M.CreateTest = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "CreateTest"),
+    input = M.CreateTestInput,
+    output = M.CreateTestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/create-test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateUserJourney = schema.operation({
     id = id.from("com.amazonaws.resiliencehubv2", "CreateUserJourney"),
     input = M.CreateUserJourneyInput,
@@ -6777,6 +8871,30 @@ M.DeleteSystem = schema.operation({
     },
 })
 
+M.DeleteTest = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "DeleteTest"),
+    input = M.DeleteTestInput,
+    output = M.DeleteTestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/delete-test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTestSources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "DeleteTestSources"),
+    input = M.DeleteTestSourcesInput,
+    output = M.DeleteTestSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/delete-test-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteUserJourney = schema.operation({
     id = id.from("com.amazonaws.resiliencehubv2", "DeleteUserJourney"),
     input = M.DeleteUserJourneyInput,
@@ -6831,6 +8949,42 @@ M.GetSystem = schema.operation({
     output = M.GetSystemOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v2/get-system" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTest = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "GetTest"),
+    input = M.GetTestInput,
+    output = M.GetTestOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/get-test" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTestRun = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "GetTestRun"),
+    input = M.GetTestRunInput,
+    output = M.GetTestRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/get-test-run" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetTestTemplate = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "GetTestTemplate"),
+    input = M.GetTestTemplateInput,
+    output = M.GetTestTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/get-test-template" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -6957,6 +9111,18 @@ M.ListReports = schema.operation({
     },
 })
 
+M.ListResolvedTestRunTargetResources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListResolvedTestRunTargetResources"),
+    input = M.ListResolvedTestRunTargetResourcesInput,
+    output = M.ListResolvedTestRunTargetResourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/test-runs/{testRunId}/resolved-target-resources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListResources = schema.operation({
     id = id.from("com.amazonaws.resiliencehubv2", "ListResources"),
     input = M.ListResourcesInput,
@@ -7053,6 +9219,78 @@ M.ListTagsForResource = schema.operation({
     },
 })
 
+M.ListTestRunEvents = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTestRunEvents"),
+    input = M.ListTestRunEventsInput,
+    output = M.ListTestRunEventsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/test-runs/{testRunId}/events" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestRuns = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTestRuns"),
+    input = M.ListTestRunsInput,
+    output = M.ListTestRunsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/list-test-runs" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestRunSources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTestRunSources"),
+    input = M.ListTestRunSourcesInput,
+    output = M.ListTestRunSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/test-runs/{testRunId}/sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTests = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTests"),
+    input = M.ListTestsInput,
+    output = M.ListTestsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/list-tests" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestSources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTestSources"),
+    input = M.ListTestSourcesInput,
+    output = M.ListTestSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/tests/{testId}/sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListTestTemplates = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "ListTestTemplates"),
+    input = M.ListTestTemplatesInput,
+    output = M.ListTestTemplatesOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/v2/list-test-templates" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListUserJourneys = schema.operation({
     id = id.from("com.amazonaws.resiliencehubv2", "ListUserJourneys"),
     input = M.ListUserJourneysInput,
@@ -7065,12 +9303,48 @@ M.ListUserJourneys = schema.operation({
     },
 })
 
+M.PutTestSources = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "PutTestSources"),
+    input = M.PutTestSourcesInput,
+    output = M.PutTestSourcesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/put-test-sources" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.StartFailureModeAssessment = schema.operation({
     id = id.from("com.amazonaws.resiliencehubv2", "StartFailureModeAssessment"),
     input = M.StartFailureModeAssessmentInput,
     output = M.StartFailureModeAssessmentOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v2/start-failure-mode-assessment" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartTestRun = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "StartTestRun"),
+    input = M.StartTestRunInput,
+    output = M.StartTestRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/start-test-run" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StopTestRun = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "StopTestRun"),
+    input = M.StopTestRunInput,
+    output = M.StopTestRunOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/stop-test-run" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -7179,6 +9453,18 @@ M.UpdateSystem = schema.operation({
     output = M.UpdateSystemOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/v2/update-system" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTest = schema.operation({
+    id = id.from("com.amazonaws.resiliencehubv2", "UpdateTest"),
+    input = M.UpdateTestInput,
+    output = M.UpdateTestOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v2/update-test" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

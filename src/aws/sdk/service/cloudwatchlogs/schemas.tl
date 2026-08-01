@@ -1761,9 +1761,12 @@ M.CreateLookupTableInput = schema.new({
             type = "string",
             name = "tableBody",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        queryId = schema.new({
+            id = id.from(_N, "CreateLookupTableInput", "queryId"),
+            type = "string",
+            name = "queryId",
+            target_id = prelude.String.id,
         }),
         kmsKeyId = schema.new({
             id = id.from(_N, "CreateLookupTableInput", "kmsKeyId"),
@@ -1797,6 +1800,51 @@ M.CreateLookupTableOutput = schema.new({
             type = "long",
             name = "createdAt",
             target_id = prelude.Long.id,
+        }),
+    },
+})
+
+M.LookupTableConfiguration = schema.new({
+    id = id.from(_N, "LookupTableConfiguration"),
+    type = "structure",
+    members = {
+        tableName = schema.new({
+            id = id.from(_N, "LookupTableConfiguration", "tableName"),
+            type = "string",
+            name = "tableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        roleArn = schema.new({
+            id = id.from(_N, "LookupTableConfiguration", "roleArn"),
+            type = "string",
+            name = "roleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "LookupTableConfiguration", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "LookupTableConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "LookupTableConfiguration", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
         }),
     },
 })
@@ -1848,9 +1896,13 @@ M.DestinationConfiguration = schema.new({
             name = "s3Configuration",
             target_id = id.from(_N, "S3Configuration"),
             target = M.S3Configuration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        lookupTableConfiguration = schema.new({
+            id = id.from(_N, "DestinationConfiguration", "lookupTableConfiguration"),
+            type = "structure",
+            name = "lookupTableConfiguration",
+            target_id = id.from(_N, "LookupTableConfiguration"),
+            target = M.LookupTableConfiguration,
         }),
     },
 })
@@ -9873,9 +9925,12 @@ M.UpdateLookupTableInput = schema.new({
             type = "string",
             name = "tableBody",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        }),
+        queryId = schema.new({
+            id = id.from(_N, "UpdateLookupTableInput", "queryId"),
+            type = "string",
+            name = "queryId",
+            target_id = prelude.String.id,
         }),
         kmsKeyId = schema.new({
             id = id.from(_N, "UpdateLookupTableInput", "kmsKeyId"),

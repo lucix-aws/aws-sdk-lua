@@ -501,7 +501,8 @@ local record M
         "CAPACITY_CONSTRAINED"
     end
 
-    -- High-level information about a container association, returned by the ListContainerAssociations operation. You can use this information to retrieve the full details of a container association using DescribeContainerAssociation.
+    -- The metadata for a container association returned by ListContainerAssociations. Contains the ARN
+    -- and name that you use to identify the container association in other operations.
     record ContainerAssociationSummary
         -- The Amazon Resource Name (ARN) of the container association.
         Arn: string
@@ -516,19 +517,23 @@ local record M
         "UPDATING"
     end
 
-    -- A key-value pair that defines a container attribute filter for a container monitoring configuration.
+    -- A key-value filter pair used in container association monitoring configurations to narrow which containers
+    -- are tracked.
     record ContainerAttribute
-        -- The key of the container attribute to filter on.
+        -- The attribute key to filter on.
         Key: string
-        -- The value of the container attribute to filter on.
+        -- The attribute value to match.
         Value: string
     end
 
-    -- Defines a container cluster to monitor, along with optional attribute filters that narrow the scope of monitored containers within the cluster.
+    -- Contains the monitoring configuration for a single cluster in a container association. Specifies the cluster
+    -- ARN and optional attribute filters to narrow which containers are tracked.
     record ContainerMonitoringConfiguration
-        -- The Amazon Resource Name (ARN) of the container cluster to monitor.
+        -- The ARN of the Amazon ECS or Amazon EKS cluster to monitor. The cluster must be in the same Region and account as
+        -- the container association.
         ClusterArn: string
-        -- A list of key-value pairs that filter which containers within the cluster are monitored. Only containers that match the specified attributes are included.
+        -- Key-value pairs that filter which containers are tracked. For Amazon EKS, you can filter by namespace and
+        -- Kubernetes labels. For Amazon ECS, you can filter by container instance attributes (EC2 launch type only).
         AttributeFilters: {ContainerAttribute}
     end
 
@@ -542,9 +547,12 @@ local record M
         ContainerAssociationName: string
         -- A description of the container association.
         Description: string
-        -- The type of container orchestration platform for the clusters in this association. Valid values are ECS and EKS. You can't change the type after creation.
+        -- The type of containers to monitor. You can't change the container type after creation. Valid values:
+        -- ECS - Amazon Elastic Container Service
+        -- EKS - Amazon Elastic Kubernetes Service
         Type: string
-        -- The list of container monitoring configurations that define which clusters and container attributes to monitor.
+        -- The monitoring configurations for the container association. Each configuration specifies an Amazon ECS or Amazon EKS cluster
+        -- to monitor and optional attribute filters to narrow which containers are tracked.
         ContainerMonitoringConfigurations: {ContainerMonitoringConfiguration}
         -- The key:value pairs to associate with the resource.
         Tags: {Tag}
@@ -557,15 +565,22 @@ local record M
         ContainerAssociationArn: string
         -- A description of the container association.
         Description: string
-        -- The type of container orchestration platform. Either ECS or EKS.
+        -- The container type. Valid values:
+        -- ECS - Amazon Elastic Container Service
+        -- EKS - Amazon Elastic Kubernetes Service
         Type: string
-        -- The container monitoring configurations for this container association.
+        -- The monitoring configurations for the container association.
         ContainerMonitoringConfigurations: {ContainerMonitoringConfiguration}
-        -- The current status of the container association.
+        -- The current status of the container association. For a new container association, the status is CREATING.
         Status: string
-        -- The key:value pairs associated with the resource.
+        -- The key:value pairs to associate with the resource.
         Tags: {Tag}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association. The token marks the state of the container association resource at the time of the request. To make an update to the container association, provide the token in your request. Network Firewall uses the token to ensure that the container association hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the container association again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token.
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association.
+        -- The token marks the state of the container association resource at the time of the request.
+        -- To make changes to the container association, you provide the token in your request. Network Firewall uses the token to ensure
+        -- that the container association hasn't changed since you last retrieved it. If it has changed, the operation fails with an
+        -- InvalidTokenException. If this happens, retrieve the container association again to get a current copy of it
+        -- with a current token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
     end
 
@@ -836,6 +851,7 @@ local record M
     end
 
     -- Configuration settings for the handling of the stateful rule groups in a firewall policy.
+    -- Updating any setting in StatefulEngineOptions may require a restart of the stateful engine in order to apply the changes. When this occurs, existing connections will be treated according to your stream exception policy configuration.
     record StatefulEngineOptions
         -- Indicates how to manage the order of stateful rule evaluation for the policy. STRICT_ORDER is the
         -- recommended option, but DEFAULT_ACTION_ORDER is the default option. With STRICT_ORDER,
@@ -968,6 +984,10 @@ local record M
         -- aws:drop_established
         -- aws:alert_strict
         -- aws:alert_established
+        -- aws:drop_established_app_layer
+        -- aws:alert_established_app_layer
+        -- aws:drop_established_app_layer_to_server
+        -- aws:alert_established_app_layer_to_server
         -- For more information, see
         -- Strict evaluation order in the Network Firewall Developer Guide.
         StatefulDefaultActions: {string}
@@ -1982,9 +2002,11 @@ local record M
     end
 
     record DeleteContainerAssociationInput
-        -- The descriptive name of the container association. You must specify the ARN or the name, and you can specify both.
+        -- The descriptive name of the container association.
+        -- You must specify the ARN or the name, and you can specify both.
         ContainerAssociationName: string
-        -- The Amazon Resource Name (ARN) of the container association. You must specify the ARN or the name, and you can specify both.
+        -- The Amazon Resource Name (ARN) of the container association.
+        -- You must specify the ARN or the name, and you can specify both.
         ContainerAssociationArn: string
     end
 
@@ -1993,7 +2015,7 @@ local record M
         ContainerAssociationName: string
         -- The Amazon Resource Name (ARN) of the container association.
         ContainerAssociationArn: string
-        -- The current status of the container association.
+        -- The current status of the container association. After deletion is initiated, the status is DELETING.
         Status: string
     end
 
@@ -2175,9 +2197,11 @@ local record M
     end
 
     record DescribeContainerAssociationInput
-        -- The descriptive name of the container association. You must specify the ARN or the name, and you can specify both.
+        -- The descriptive name of the container association.
+        -- You must specify the ARN or the name, and you can specify both.
         ContainerAssociationName: string
-        -- The Amazon Resource Name (ARN) of the container association. You must specify the ARN or the name, and you can specify both.
+        -- The Amazon Resource Name (ARN) of the container association.
+        -- You must specify the ARN or the name, and you can specify both.
         ContainerAssociationArn: string
     end
 
@@ -2188,19 +2212,26 @@ local record M
         ContainerAssociationArn: string
         -- A description of the container association.
         Description: string
-        -- The type of container orchestration platform. Either ECS or EKS.
+        -- The container type. Valid values:
+        -- ECS - Amazon Elastic Container Service
+        -- EKS - Amazon Elastic Kubernetes Service
         Type: string
-        -- The container monitoring configurations for this container association.
+        -- The monitoring configurations for the container association.
         ContainerMonitoringConfigurations: {ContainerMonitoringConfiguration}
         -- The current status of the container association.
         Status: string
-        -- The number of CIDR blocks that have been resolved from the monitored containers for this container association.
+        -- The number of CIDR blocks resolved from the monitored containers.
         ResolvedCidrCount: number
-        -- The last time that the container association was updated or resolved new container IP addresses.
+        -- The most recent time that Network Firewall updated the container association.
         LastUpdatedTime: number
-        -- The key:value pairs associated with the resource.
+        -- The key:value pairs to associate with the resource.
         Tags: {Tag}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association. The token marks the state of the container association resource at the time of the request.
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association.
+        -- The token marks the state of the container association resource at the time of the request.
+        -- To make changes to the container association, you provide the token in your request. Network Firewall uses the token to ensure
+        -- that the container association hasn't changed since you last retrieved it. If it has changed, the operation fails with an
+        -- InvalidTokenException. If this happens, retrieve the container association again to get a current copy of it
+        -- with a current token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
     end
 
@@ -2902,16 +2933,22 @@ local record M
     end
 
     record ListContainerAssociationsInput
-        -- The maximum number of objects that you want Network Firewall to return for this request. If more objects are available, in the response, Network Firewall provides a NextToken value that you can use in a subsequent call to get the next batch of objects.
+        -- The maximum number of objects that you want Network Firewall to return for this request. If more
+        -- objects are available, in the response, Network Firewall provides a
+        -- NextToken value that you can use in a subsequent call to get the next batch of objects.
         MaxResults: number
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
         NextToken: string
     end
 
     record ListContainerAssociationsOutput
-        -- The container association metadata objects.
+        -- The container association metadata objects for the account and Region.
         ContainerAssociations: {ContainerAssociationSummary}
-        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
+        -- When you request a list of objects with a MaxResults setting, if the number of objects that are still available
+        -- for retrieval exceeds the maximum you requested, Network Firewall returns a NextToken
+        -- value in the response. To retrieve the next batch of objects, use the token returned from the prior request in your next request.
         NextToken: string
     end
 
@@ -3459,19 +3496,30 @@ local record M
     end
 
     record UpdateContainerAssociationInput
-        -- The descriptive name of the container association. You must specify the ARN or the name, and you can specify both.
+        -- The descriptive name of the container association.
+        -- You must specify the ARN or the name, and you can specify both.
         ContainerAssociationName: string
-        -- The Amazon Resource Name (ARN) of the container association. You must specify the ARN or the name, and you can specify both.
+        -- The Amazon Resource Name (ARN) of the container association.
+        -- You must specify the ARN or the name, and you can specify both.
         ContainerAssociationArn: string
-        -- A description of the container association.
+        -- A description of the container association. When omitted, the existing description remains unchanged.
+        -- To clear the description, pass an empty string.
         Description: string
-        -- The type of container orchestration platform. This must match the type specified when the container association was created.
+        -- The container type. This value must match the existing type and can't be changed. Valid values:
+        -- ECS - Amazon Elastic Container Service
+        -- EKS - Amazon Elastic Kubernetes Service
         Type: string
-        -- The updated list of container monitoring configurations that define which clusters and container attributes to monitor.
+        -- The updated monitoring configurations for the container association. Each configuration specifies an Amazon ECS or Amazon EKS cluster
+        -- to monitor and optional attribute filters.
         ContainerMonitoringConfigurations: {ContainerMonitoringConfiguration}
-        -- The key:value pairs associated with the resource.
+        -- The key:value pairs to associate with the resource.
         Tags: {Tag}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association. The token marks the state of the container association resource at the time of the request. To make an update to the container association, provide the token in your request. Network Firewall uses the token to ensure that the container association hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the container association again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token.
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association.
+        -- The token marks the state of the container association resource at the time of the request.
+        -- To make changes to the container association, you provide the token in your request. Network Firewall uses the token to ensure
+        -- that the container association hasn't changed since you last retrieved it. If it has changed, the operation fails with an
+        -- InvalidTokenException. If this happens, retrieve the container association again to get a current copy of it
+        -- with a current token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
     end
 
@@ -3482,15 +3530,22 @@ local record M
         ContainerAssociationArn: string
         -- A description of the container association.
         Description: string
-        -- The type of container orchestration platform. Either ECS or EKS.
+        -- The container type. Valid values:
+        -- ECS - Amazon Elastic Container Service
+        -- EKS - Amazon Elastic Kubernetes Service
         Type: string
-        -- The container monitoring configurations for this container association.
+        -- The monitoring configurations for the container association.
         ContainerMonitoringConfigurations: {ContainerMonitoringConfiguration}
         -- The current status of the container association.
         Status: string
-        -- The key:value pairs associated with the resource.
+        -- The key:value pairs to associate with the resource.
         Tags: {Tag}
-        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association. The token marks the state of the container association resource at the time of the request.
+        -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the container association.
+        -- The token marks the state of the container association resource at the time of the request.
+        -- To make changes to the container association, you provide the token in your request. Network Firewall uses the token to ensure
+        -- that the container association hasn't changed since you last retrieved it. If it has changed, the operation fails with an
+        -- InvalidTokenException. If this happens, retrieve the container association again to get a current copy of it
+        -- with a current token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
     end
 

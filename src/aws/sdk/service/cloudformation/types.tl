@@ -566,17 +566,19 @@ local record M
     enum DriftIgnoredReason
         "MANAGED_BY_AWS"
         "WRITE_ONLY_PROPERTY"
+        "SENSITIVE_PROPERTY"
     end
 
     -- The ResourceDriftIgnoredAttribute data type.
     record ResourceDriftIgnoredAttribute
         -- Path of the resource attribute for which drift was ignored.
         Path: string
-        -- Reason why drift was ignored for the attribute, can have 2 possible values:
-        -- WRITE_ONLY_PROPERTY - Property is not included in read response for the
+        -- Reason why drift was ignored for the attribute, can have 3 possible values:
+        -- WRITE_ONLY_PROPERTY – Property is not included in read response for the
         -- resource’s live state.
-        -- MANAGED_BY_AWS - Property is managed by an Amazon Web Services service and is expected to be
+        -- MANAGED_BY_AWS – Property is managed by an Amazon Web Services service and is expected to be
         -- dynamically modified.
+        -- SENSITIVE_PROPERTY – Property has a sensitive value, such as an Amazon Web Services Secrets Manager value.
         Reason: string
     end
 

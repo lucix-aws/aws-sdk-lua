@@ -19,6 +19,8 @@ M.ScraperFilters = schema.new({ type = "map", map_key = prelude.String, map_valu
 
 M.ScraperSummaryList = schema.new({ type = "list", list_member = M.ScraperSummary })
 
+M.ExporterList = schema.new({ type = "list", list_member = M.ExporterConfiguration })
+
 M.WorkspaceSummaryList = schema.new({ type = "list", list_member = M.WorkspaceSummary })
 
 M.ScraperComponents = schema.new({ type = "list", list_member = M.ScraperComponent })
@@ -658,6 +660,36 @@ M.Destination = schema.new({
     },
 })
 
+M.OpenSearchExporterConfiguration = schema.new({
+    id = id.from(_N, "OpenSearchExporterConfiguration"),
+    type = "structure",
+    members = {
+        domainArn = schema.new({
+            id = id.from(_N, "OpenSearchExporterConfiguration", "domainArn"),
+            type = "string",
+            name = "domainArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ExporterConfiguration = schema.new({
+    id = id.from(_N, "ExporterConfiguration"),
+    type = "union",
+    members = {
+        openSearchConfiguration = schema.new({
+            id = id.from(_N, "ExporterConfiguration", "openSearchConfiguration"),
+            type = "structure",
+            name = "openSearchConfiguration",
+            target_id = id.from(_N, "OpenSearchExporterConfiguration"),
+            target = M.OpenSearchExporterConfiguration,
+        }),
+    },
+})
+
 M.RoleConfiguration = schema.new({
     id = id.from(_N, "RoleConfiguration"),
     type = "structure",
@@ -834,6 +866,13 @@ M.CreateScraperInput = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+        exporters = schema.new({
+            id = id.from(_N, "CreateScraperInput", "exporters"),
+            type = "list",
+            name = "exporters",
+            target_id = prelude.Document.id,
+            list_member = M.ExporterConfiguration,
         }),
     },
 })
@@ -1083,6 +1122,13 @@ M.ScraperDescription = schema.new({
             target_id = id.from(_N, "RoleConfiguration"),
             target = M.RoleConfiguration,
         }),
+        exporters = schema.new({
+            id = id.from(_N, "ScraperDescription", "exporters"),
+            type = "list",
+            name = "exporters",
+            target_id = prelude.Document.id,
+            list_member = M.ExporterConfiguration,
+        }),
     },
 })
 
@@ -1244,6 +1290,13 @@ M.ScraperSummary = schema.new({
             name = "roleConfiguration",
             target_id = id.from(_N, "RoleConfiguration"),
             target = M.RoleConfiguration,
+        }),
+        exporters = schema.new({
+            id = id.from(_N, "ScraperSummary", "exporters"),
+            type = "list",
+            name = "exporters",
+            target_id = prelude.Document.id,
+            list_member = M.ExporterConfiguration,
         }),
     },
 })
@@ -1562,6 +1615,13 @@ M.UpdateScraperInput = schema.new({
             traits = {
                 [traits.IDEMPOTENCY_TOKEN] = {},
             },
+        }),
+        exporters = schema.new({
+            id = id.from(_N, "UpdateScraperInput", "exporters"),
+            type = "list",
+            name = "exporters",
+            target_id = prelude.Document.id,
+            list_member = M.ExporterConfiguration,
         }),
     },
 })

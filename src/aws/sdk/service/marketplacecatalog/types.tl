@@ -606,6 +606,17 @@ local record M
         WildCardValue: string
     end
 
+    enum OfferCreatedBySourceString
+        "Seller"
+        "AwsMarketplace"
+    end
+
+    -- Allows filtering on the CreatedBySource of an offer.
+    record OfferCreatedBySourceFilter
+        -- Allows filtering on the CreatedBySource of an offer with list input.
+        ValueList: {string}
+    end
+
     -- Allows filtering on the entity id of an offer.
     record OfferEntityIdFilter
         -- Allows filtering on entity id of an offer with list input.
@@ -679,6 +690,22 @@ local record M
         ValueList: {string}
     end
 
+    -- Allows filtering on the TargetAgreementId of an offer.
+    record OfferTargetAgreementIdFilter
+        -- Allows filtering on the TargetAgreementId of an offer with list input.
+        ValueList: {string}
+    end
+
+    enum OfferTargetAgreementIntentString
+        "Renew"
+    end
+
+    -- Allows filtering on the TargetAgreementIntent of an offer.
+    record OfferTargetAgreementIntentFilter
+        -- Allows filtering on the TargetAgreementIntent of an offer with list input.
+        ValueList: {string}
+    end
+
     enum OfferTargetingString
         "BuyerAccounts"
         "ParticipatingPrograms"
@@ -718,6 +745,12 @@ local record M
         LastModifiedDate: OfferLastModifiedDateFilter
         -- Allows filtering on the OfferSetId of an offer.
         OfferSetId: OfferSetIdFilter
+        -- Allows filtering on the TargetAgreementId of an offer.
+        TargetAgreementId: OfferTargetAgreementIdFilter
+        -- Allows filtering on the TargetAgreementIntent of an offer.
+        TargetAgreementIntent: OfferTargetAgreementIntentFilter
+        -- Allows filtering on the CreatedBySource of an offer.
+        CreatedBySource: OfferCreatedBySourceFilter
     end
 
     -- Allows filtering on the AssociatedOfferIds of an offer set.
@@ -1117,6 +1150,9 @@ local record M
         "Targeting"
         "LastModifiedDate"
         "OfferSetId"
+        "TargetAgreementId"
+        "TargetAgreementIntent"
+        "CreatedBySource"
     end
 
     -- Allows to sort offers.
@@ -1288,6 +1324,12 @@ local record M
         Targeting: {string}
         -- The offer set ID of the offer.
         OfferSetId: string
+        -- The target agreement ID of the offer.
+        TargetAgreementId: string
+        -- The target agreement intent of the offer.
+        TargetAgreementIntent: string
+        -- The creation source of the offer.
+        CreatedBySource: string
     end
 
     -- Summarized information about a Resale Authorization.

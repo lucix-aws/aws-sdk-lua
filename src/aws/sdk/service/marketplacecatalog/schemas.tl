@@ -67,6 +67,12 @@ M.OfferTargetingFilterValueList = schema.new({ type = "list", list_member = prel
 
 M.OfferSetIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
+M.OfferTargetAgreementIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferTargetAgreementIntentFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.OfferCreatedBySourceFilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
 M.ContainerProductEntityIdFilterValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.ContainerProductTitleFilterValueList = schema.new({ type = "list", list_member = prelude.String })
@@ -1408,6 +1414,20 @@ M.OfferBuyerAccountsFilter = schema.new({
     },
 })
 
+M.OfferCreatedBySourceFilter = schema.new({
+    id = id.from(_N, "OfferCreatedBySourceFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "OfferCreatedBySourceFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.OfferEntityIdFilter = schema.new({
     id = id.from(_N, "OfferEntityIdFilter"),
     type = "structure",
@@ -1564,6 +1584,34 @@ M.OfferStateFilter = schema.new({
     },
 })
 
+M.OfferTargetAgreementIdFilter = schema.new({
+    id = id.from(_N, "OfferTargetAgreementIdFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "OfferTargetAgreementIdFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.OfferTargetAgreementIntentFilter = schema.new({
+    id = id.from(_N, "OfferTargetAgreementIntentFilter"),
+    type = "structure",
+    members = {
+        ValueList = schema.new({
+            id = id.from(_N, "OfferTargetAgreementIntentFilter", "ValueList"),
+            type = "list",
+            name = "ValueList",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
 M.OfferTargetingFilter = schema.new({
     id = id.from(_N, "OfferTargetingFilter"),
     type = "structure",
@@ -1658,6 +1706,27 @@ M.OfferFilters = schema.new({
             name = "OfferSetId",
             target_id = id.from(_N, "OfferSetIdFilter"),
             target = M.OfferSetIdFilter,
+        }),
+        TargetAgreementId = schema.new({
+            id = id.from(_N, "OfferFilters", "TargetAgreementId"),
+            type = "structure",
+            name = "TargetAgreementId",
+            target_id = id.from(_N, "OfferTargetAgreementIdFilter"),
+            target = M.OfferTargetAgreementIdFilter,
+        }),
+        TargetAgreementIntent = schema.new({
+            id = id.from(_N, "OfferFilters", "TargetAgreementIntent"),
+            type = "structure",
+            name = "TargetAgreementIntent",
+            target_id = id.from(_N, "OfferTargetAgreementIntentFilter"),
+            target = M.OfferTargetAgreementIntentFilter,
+        }),
+        CreatedBySource = schema.new({
+            id = id.from(_N, "OfferFilters", "CreatedBySource"),
+            type = "structure",
+            name = "CreatedBySource",
+            target_id = id.from(_N, "OfferCreatedBySourceFilter"),
+            target = M.OfferCreatedBySourceFilter,
         }),
     },
 })
@@ -2867,6 +2936,24 @@ M.OfferSummary = schema.new({
             id = id.from(_N, "OfferSummary", "OfferSetId"),
             type = "string",
             name = "OfferSetId",
+            target_id = prelude.String.id,
+        }),
+        TargetAgreementId = schema.new({
+            id = id.from(_N, "OfferSummary", "TargetAgreementId"),
+            type = "string",
+            name = "TargetAgreementId",
+            target_id = prelude.String.id,
+        }),
+        TargetAgreementIntent = schema.new({
+            id = id.from(_N, "OfferSummary", "TargetAgreementIntent"),
+            type = "string",
+            name = "TargetAgreementIntent",
+            target_id = prelude.String.id,
+        }),
+        CreatedBySource = schema.new({
+            id = id.from(_N, "OfferSummary", "CreatedBySource"),
+            type = "string",
+            name = "CreatedBySource",
             target_id = prelude.String.id,
         }),
     },

@@ -26,6 +26,7 @@ local record Client
     createServiceFunction: function(Client, types.CreateServiceFunctionInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceFunctionOutput>
     createServiceFunctionResources: function(Client, types.CreateServiceFunctionResourcesInput, ? base_client.InvokeOptions): async.Operation<types.CreateServiceFunctionResourcesOutput>
     createSystem: function(Client, types.CreateSystemInput, ? base_client.InvokeOptions): async.Operation<types.CreateSystemOutput>
+    createTest: function(Client, types.CreateTestInput, ? base_client.InvokeOptions): async.Operation<types.CreateTestOutput>
     createUserJourney: function(Client, types.CreateUserJourneyInput, ? base_client.InvokeOptions): async.Operation<types.CreateUserJourneyOutput>
     deleteAssertion: function(Client, types.DeleteAssertionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAssertionOutput>
     deleteInputSource: function(Client, types.DeleteInputSourceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInputSourceOutput>
@@ -34,11 +35,16 @@ local record Client
     deleteServiceFunction: function(Client, types.DeleteServiceFunctionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceFunctionOutput>
     deleteServiceFunctionResources: function(Client, types.DeleteServiceFunctionResourcesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteServiceFunctionResourcesOutput>
     deleteSystem: function(Client, types.DeleteSystemInput, ? base_client.InvokeOptions): async.Operation<types.DeleteSystemOutput>
+    deleteTest: function(Client, types.DeleteTestInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTestOutput>
+    deleteTestSources: function(Client, types.DeleteTestSourcesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTestSourcesOutput>
     deleteUserJourney: function(Client, types.DeleteUserJourneyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserJourneyOutput>
     getFailureModeFinding: function(Client, types.GetFailureModeFindingInput, ? base_client.InvokeOptions): async.Operation<types.GetFailureModeFindingOutput>
     getPolicy: function(Client, types.GetPolicyInput, ? base_client.InvokeOptions): async.Operation<types.GetPolicyOutput>
     getService: function(Client, types.GetServiceInput, ? base_client.InvokeOptions): async.Operation<types.GetServiceOutput>
     getSystem: function(Client, types.GetSystemInput, ? base_client.InvokeOptions): async.Operation<types.GetSystemOutput>
+    getTest: function(Client, types.GetTestInput, ? base_client.InvokeOptions): async.Operation<types.GetTestOutput>
+    getTestRun: function(Client, types.GetTestRunInput, ? base_client.InvokeOptions): async.Operation<types.GetTestRunOutput>
+    getTestTemplate: function(Client, types.GetTestTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetTestTemplateOutput>
     getUserJourney: function(Client, types.GetUserJourneyInput, ? base_client.InvokeOptions): async.Operation<types.GetUserJourneyOutput>
     importApp: function(Client, types.ImportAppInput, ? base_client.InvokeOptions): async.Operation<types.ImportAppOutput>
     importPolicy: function(Client, types.ImportPolicyInput, ? base_client.InvokeOptions): async.Operation<types.ImportPolicyOutput>
@@ -49,6 +55,7 @@ local record Client
     listInputSources: function(Client, types.ListInputSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListInputSourcesOutput>
     listPolicies: function(Client, types.ListPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.ListPoliciesOutput>
     listReports: function(Client, types.ListReportsInput, ? base_client.InvokeOptions): async.Operation<types.ListReportsOutput>
+    listResolvedTestRunTargetResources: function(Client, types.ListResolvedTestRunTargetResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResolvedTestRunTargetResourcesOutput>
     listResources: function(Client, types.ListResourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
     listServiceEvents: function(Client, types.ListServiceEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceEventsOutput>
     listServiceFunctions: function(Client, types.ListServiceFunctionsInput, ? base_client.InvokeOptions): async.Operation<types.ListServiceFunctionsOutput>
@@ -57,8 +64,17 @@ local record Client
     listSystemEvents: function(Client, types.ListSystemEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListSystemEventsOutput>
     listSystems: function(Client, types.ListSystemsInput, ? base_client.InvokeOptions): async.Operation<types.ListSystemsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    listTestRunEvents: function(Client, types.ListTestRunEventsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunEventsOutput>
+    listTestRuns: function(Client, types.ListTestRunsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunsOutput>
+    listTestRunSources: function(Client, types.ListTestRunSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListTestRunSourcesOutput>
+    listTests: function(Client, types.ListTestsInput, ? base_client.InvokeOptions): async.Operation<types.ListTestsOutput>
+    listTestSources: function(Client, types.ListTestSourcesInput, ? base_client.InvokeOptions): async.Operation<types.ListTestSourcesOutput>
+    listTestTemplates: function(Client, types.ListTestTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListTestTemplatesOutput>
     listUserJourneys: function(Client, types.ListUserJourneysInput, ? base_client.InvokeOptions): async.Operation<types.ListUserJourneysOutput>
+    putTestSources: function(Client, types.PutTestSourcesInput, ? base_client.InvokeOptions): async.Operation<types.PutTestSourcesOutput>
     startFailureModeAssessment: function(Client, types.StartFailureModeAssessmentInput, ? base_client.InvokeOptions): async.Operation<types.StartFailureModeAssessmentOutput>
+    startTestRun: function(Client, types.StartTestRunInput, ? base_client.InvokeOptions): async.Operation<types.StartTestRunOutput>
+    stopTestRun: function(Client, types.StopTestRunInput, ? base_client.InvokeOptions): async.Operation<types.StopTestRunOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateAssertion: function(Client, types.UpdateAssertionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAssertionOutput>
@@ -68,6 +84,7 @@ local record Client
     updateService: function(Client, types.UpdateServiceInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceOutput>
     updateServiceFunction: function(Client, types.UpdateServiceFunctionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateServiceFunctionOutput>
     updateSystem: function(Client, types.UpdateSystemInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSystemOutput>
+    updateTest: function(Client, types.UpdateTestInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTestOutput>
     updateUserJourney: function(Client, types.UpdateUserJourneyInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserJourneyOutput>
 end
 
@@ -145,6 +162,10 @@ function C:createSystem(input: types.CreateSystemInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateSystem as schema.OperationSchema, input, options) as async.Operation<types.CreateSystemOutput>
 end
 
+function C:createTest(input: types.CreateTestInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTest as schema.OperationSchema, input, options) as async.Operation<types.CreateTestOutput>
+end
+
 function C:createUserJourney(input: types.CreateUserJourneyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateUserJourneyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateUserJourney as schema.OperationSchema, input, options) as async.Operation<types.CreateUserJourneyOutput>
 end
@@ -177,6 +198,14 @@ function C:deleteSystem(input: types.DeleteSystemInput, options?: base_client.In
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteSystem as schema.OperationSchema, input, options) as async.Operation<types.DeleteSystemOutput>
 end
 
+function C:deleteTest(input: types.DeleteTestInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTest as schema.OperationSchema, input, options) as async.Operation<types.DeleteTestOutput>
+end
+
+function C:deleteTestSources(input: types.DeleteTestSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTestSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTestSources as schema.OperationSchema, input, options) as async.Operation<types.DeleteTestSourcesOutput>
+end
+
 function C:deleteUserJourney(input: types.DeleteUserJourneyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserJourneyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteUserJourney as schema.OperationSchema, input, options) as async.Operation<types.DeleteUserJourneyOutput>
 end
@@ -195,6 +224,18 @@ end
 
 function C:getSystem(input: types.GetSystemInput, options?: base_client.InvokeOptions): async.Operation<types.GetSystemOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSystem as schema.OperationSchema, input, options) as async.Operation<types.GetSystemOutput>
+end
+
+function C:getTest(input: types.GetTestInput, options?: base_client.InvokeOptions): async.Operation<types.GetTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTest as schema.OperationSchema, input, options) as async.Operation<types.GetTestOutput>
+end
+
+function C:getTestRun(input: types.GetTestRunInput, options?: base_client.InvokeOptions): async.Operation<types.GetTestRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTestRun as schema.OperationSchema, input, options) as async.Operation<types.GetTestRunOutput>
+end
+
+function C:getTestTemplate(input: types.GetTestTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetTestTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTestTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetTestTemplateOutput>
 end
 
 function C:getUserJourney(input: types.GetUserJourneyInput, options?: base_client.InvokeOptions): async.Operation<types.GetUserJourneyOutput>
@@ -237,6 +278,10 @@ function C:listReports(input: types.ListReportsInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListReports as schema.OperationSchema, input, options) as async.Operation<types.ListReportsOutput>
 end
 
+function C:listResolvedTestRunTargetResources(input: types.ListResolvedTestRunTargetResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResolvedTestRunTargetResourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResolvedTestRunTargetResources as schema.OperationSchema, input, options) as async.Operation<types.ListResolvedTestRunTargetResourcesOutput>
+end
+
 function C:listResources(input: types.ListResourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListResourcesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListResources as schema.OperationSchema, input, options) as async.Operation<types.ListResourcesOutput>
 end
@@ -269,12 +314,48 @@ function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
 end
 
+function C:listTestRunEvents(input: types.ListTestRunEventsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunEventsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRunEvents as schema.OperationSchema, input, options) as async.Operation<types.ListTestRunEventsOutput>
+end
+
+function C:listTestRuns(input: types.ListTestRunsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRuns as schema.OperationSchema, input, options) as async.Operation<types.ListTestRunsOutput>
+end
+
+function C:listTestRunSources(input: types.ListTestRunSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestRunSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestRunSources as schema.OperationSchema, input, options) as async.Operation<types.ListTestRunSourcesOutput>
+end
+
+function C:listTests(input: types.ListTestsInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTests as schema.OperationSchema, input, options) as async.Operation<types.ListTestsOutput>
+end
+
+function C:listTestSources(input: types.ListTestSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestSources as schema.OperationSchema, input, options) as async.Operation<types.ListTestSourcesOutput>
+end
+
+function C:listTestTemplates(input: types.ListTestTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListTestTemplatesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTestTemplates as schema.OperationSchema, input, options) as async.Operation<types.ListTestTemplatesOutput>
+end
+
 function C:listUserJourneys(input: types.ListUserJourneysInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserJourneysOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserJourneys as schema.OperationSchema, input, options) as async.Operation<types.ListUserJourneysOutput>
 end
 
+function C:putTestSources(input: types.PutTestSourcesInput, options?: base_client.InvokeOptions): async.Operation<types.PutTestSourcesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutTestSources as schema.OperationSchema, input, options) as async.Operation<types.PutTestSourcesOutput>
+end
+
 function C:startFailureModeAssessment(input: types.StartFailureModeAssessmentInput, options?: base_client.InvokeOptions): async.Operation<types.StartFailureModeAssessmentOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartFailureModeAssessment as schema.OperationSchema, input, options) as async.Operation<types.StartFailureModeAssessmentOutput>
+end
+
+function C:startTestRun(input: types.StartTestRunInput, options?: base_client.InvokeOptions): async.Operation<types.StartTestRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartTestRun as schema.OperationSchema, input, options) as async.Operation<types.StartTestRunOutput>
+end
+
+function C:stopTestRun(input: types.StopTestRunInput, options?: base_client.InvokeOptions): async.Operation<types.StopTestRunOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StopTestRun as schema.OperationSchema, input, options) as async.Operation<types.StopTestRunOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -311,6 +392,10 @@ end
 
 function C:updateSystem(input: types.UpdateSystemInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateSystemOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateSystem as schema.OperationSchema, input, options) as async.Operation<types.UpdateSystemOutput>
+end
+
+function C:updateTest(input: types.UpdateTestInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTestOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTest as schema.OperationSchema, input, options) as async.Operation<types.UpdateTestOutput>
 end
 
 function C:updateUserJourney(input: types.UpdateUserJourneyInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserJourneyOutput>

@@ -1810,6 +1810,16 @@ local record M
         expiration: number
     end
 
+    -- Contains the Git connection properties that you specify when creating a Git connection.
+    record GitPropertiesInput
+        -- The ARN of the CodeConnections connection used to connect to the Git repository.
+        codeConnectionArn: string
+        -- The ID of the Git repository. This is the owner and repository name, for example, owner/repo-name.
+        repositoryId: string
+        -- The default branch of the Git repository.
+        defaultBranch: string
+    end
+
     enum GlueConnectionType
         "SNOWFLAKE"
         "BIGQUERY"
@@ -2181,6 +2191,8 @@ local record M
         lakehouseProperties: LakehousePropertiesInput
         -- The VPC properties of a connection.
         vpcProperties: VpcPropertiesInput
+        -- The Git properties of a connection.
+        gitProperties: GitPropertiesInput
     end
 
     enum ConnectionStatus
@@ -2192,6 +2204,20 @@ local record M
         "UPDATING"
         "UPDATE_FAILED"
         "DELETED"
+    end
+
+    -- The properties of a Git connection returned by get and list operations, including connection status and any error details.
+    record GitPropertiesOutput
+        -- The ARN of the CodeConnections connection used to connect to the Git repository.
+        codeConnectionArn: string
+        -- The ID of the Git repository. This is the owner and repository name, for example, owner/repo-name.
+        repositoryId: string
+        -- The default branch of the Git repository.
+        defaultBranch: string
+        -- The status of the Git connection.
+        status: string
+        -- The error message that describes why the Git connection failed. This member is populated when the connection status is CREATE_FAILED or UPDATE_FAILED.
+        errorMessage: string
     end
 
     -- The properties of the Amazon Web Services Glue connection.
@@ -2432,6 +2458,16 @@ local record M
         lakehouseProperties: LakehousePropertiesOutput
         -- The VPC properties of a connection.
         vpcProperties: VpcPropertiesOutput
+        -- The Git properties of a connection.
+        gitProperties: GitPropertiesOutput
+    end
+
+    -- The properties used to update an existing Git connection, such as the CodeConnections ARN or the default branch.
+    record GitPropertiesPatch
+        -- The ARN of the CodeConnections connection used to connect to the Git repository.
+        codeConnectionArn: string
+        -- The default branch of the Git repository.
+        defaultBranch: string
     end
 
     -- The Amazon Web Services Glue connection patch.
@@ -2568,6 +2604,8 @@ local record M
         lakehouseProperties: LakehousePropertiesPatch
         -- The VPC properties of a connection properties patch.
         vpcProperties: VpcPropertiesPatch
+        -- The Git properties of a connection properties patch.
+        gitProperties: GitPropertiesPatch
     end
 
     enum ConnectionScope
@@ -2599,6 +2637,7 @@ local record M
         "AMAZON_Q"
         "MLFLOW"
         "VPC"
+        "GIT"
     end
 
     -- The Amazon Web Services Glue connection.

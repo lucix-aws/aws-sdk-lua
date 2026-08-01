@@ -3149,6 +3149,65 @@ M.SearchResultBlock = schema.new({
     },
 })
 
+M.ToolReference = schema.new({
+    id = id.from(_N, "ToolReference"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "ToolReference", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        name = schema.new({
+            id = id.from(_N, "ToolReference", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        serverName = schema.new({
+            id = id.from(_N, "ToolReference", "serverName"),
+            type = "string",
+            name = "serverName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ToolAdditionBlock = schema.new({
+    id = id.from(_N, "ToolAdditionBlock"),
+    type = "structure",
+    members = {
+        tool = schema.new({
+            id = id.from(_N, "ToolAdditionBlock", "tool"),
+            type = "structure",
+            name = "tool",
+            target_id = id.from(_N, "ToolReference"),
+            target = M.ToolReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ToolRemovalBlock = schema.new({
+    id = id.from(_N, "ToolRemovalBlock"),
+    type = "structure",
+    members = {
+        tool = schema.new({
+            id = id.from(_N, "ToolRemovalBlock", "tool"),
+            type = "structure",
+            name = "tool",
+            target_id = id.from(_N, "ToolReference"),
+            target = M.ToolReference,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.VideoSource = schema.new({
     id = id.from(_N, "VideoSource"),
     type = "union",
@@ -3407,6 +3466,20 @@ M.ContentBlock = schema.new({
             target_id = id.from(_N, "SearchResultBlock"),
             target = M.SearchResultBlock,
         }),
+        toolAddition = schema.new({
+            id = id.from(_N, "ContentBlock", "toolAddition"),
+            type = "structure",
+            name = "toolAddition",
+            target_id = id.from(_N, "ToolAdditionBlock"),
+            target = M.ToolAdditionBlock,
+        }),
+        toolRemoval = schema.new({
+            id = id.from(_N, "ContentBlock", "toolRemoval"),
+            type = "structure",
+            name = "toolRemoval",
+            target_id = id.from(_N, "ToolRemovalBlock"),
+            target = M.ToolRemovalBlock,
+        }),
     },
 })
 
@@ -3514,6 +3587,12 @@ M.OutputConfig = schema.new({
             name = "textFormat",
             target_id = id.from(_N, "OutputFormat"),
             target = M.OutputFormat,
+        }),
+        effort = schema.new({
+            id = id.from(_N, "OutputConfig", "effort"),
+            type = "string",
+            name = "effort",
+            target_id = prelude.String.id,
         }),
     },
 })

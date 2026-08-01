@@ -552,6 +552,24 @@ function M.pages_list_topics(client, input)
     })
 end
 
+--- Returns a page iterator for listTopicsV2.
+function M.pages_list_topics_v2(client, input)
+    return paginator.pages(client, "listTopicsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TopicSummaryList",
+    })
+end
+
+--- Returns an item iterator for listTopicsV2.
+function M.items_list_topics_v2(client, input)
+    return paginator.items(client, "listTopicsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TopicSummaryList",
+    })
+end
+
 --- Returns a page iterator for listUserGroups.
 function M.pages_list_user_groups(client, input)
     return paginator.pages(client, "listUserGroups", input, {
@@ -770,6 +788,24 @@ end
 --- Returns an item iterator for searchTopics.
 function M.items_search_topics(client, input)
     return paginator.items(client, "searchTopics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TopicSummaryList",
+    })
+end
+
+--- Returns a page iterator for searchTopicsV2.
+function M.pages_search_topics_v2(client, input)
+    return paginator.pages(client, "searchTopicsV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "TopicSummaryList",
+    })
+end
+
+--- Returns an item iterator for searchTopicsV2.
+function M.items_search_topics_v2(client, input)
+    return paginator.items(client, "searchTopicsV2", input, {
         input_token = "NextToken",
         output_token = "NextToken",
         items = "TopicSummaryList",

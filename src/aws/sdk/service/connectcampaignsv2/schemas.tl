@@ -47,11 +47,56 @@ M.DailyHours = schema.new({ type = "map", map_key = prelude.String, map_value = 
 
 M.RestrictedPeriodList = schema.new({ type = "list", list_member = M.RestrictedPeriod })
 
+M.PacingStrategyList = schema.new({ type = "list", list_member = M.PacingStrategy })
+
 M.AgentActions = schema.new({ type = "list", list_member = prelude.String })
 
 M.TimeRangeList = schema.new({ type = "list", list_member = M.TimeRange })
 
 M.Attributes = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.AbandonmentRatePacingConfig = schema.new({
+    id = id.from(_N, "AbandonmentRatePacingConfig"),
+    type = "structure",
+    members = {
+        targetRate = schema.new({
+            id = id.from(_N, "AbandonmentRatePacingConfig", "targetRate"),
+            type = "double",
+            name = "targetRate",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectionStartPoint = schema.new({
+            id = id.from(_N, "AbandonmentRatePacingConfig", "connectionStartPoint"),
+            type = "string",
+            name = "connectionStartPoint",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        connectionThresholdSeconds = schema.new({
+            id = id.from(_N, "AbandonmentRatePacingConfig", "connectionThresholdSeconds"),
+            type = "integer",
+            name = "connectionThresholdSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        evaluationWindow = schema.new({
+            id = id.from(_N, "AbandonmentRatePacingConfig", "evaluationWindow"),
+            type = "string",
+            name = "evaluationWindow",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
 
 M.AccessDeniedException = schema.new({
     id = id.from(_N, "AccessDeniedException"),
@@ -324,6 +369,20 @@ M.TelephonyOutboundConfig = schema.new({
     },
 })
 
+M.PacingStrategy = schema.new({
+    id = id.from(_N, "PacingStrategy"),
+    type = "union",
+    members = {
+        abandonmentRate = schema.new({
+            id = id.from(_N, "PacingStrategy", "abandonmentRate"),
+            type = "structure",
+            name = "abandonmentRate",
+            target_id = id.from(_N, "AbandonmentRatePacingConfig"),
+            target = M.AbandonmentRatePacingConfig,
+        }),
+    },
+})
+
 M.PredictiveConfig = schema.new({
     id = id.from(_N, "PredictiveConfig"),
     type = "structure",
@@ -336,6 +395,13 @@ M.PredictiveConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        pacingStrategies = schema.new({
+            id = id.from(_N, "PredictiveConfig", "pacingStrategies"),
+            type = "list",
+            name = "pacingStrategies",
+            target_id = prelude.Document.id,
+            list_member = M.PacingStrategy,
         }),
     },
 })

@@ -111,6 +111,7 @@ local record M
     enum AWSServiceName
         "AWS"
         "EC2"
+        "EKS"
         "ELASTICACHE"
         "ELB"
         "RDS"

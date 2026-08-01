@@ -340,6 +340,18 @@ M.AdditionalStorageVolumeOutput = schema.new({
             name = "StorageVolumeStatus",
             target_id = prelude.String.id,
         }),
+        StorageOperationStatus = schema.new({
+            id = id.from(_N, "AdditionalStorageVolumeOutput", "StorageOperationStatus"),
+            type = "string",
+            name = "StorageOperationStatus",
+            target_id = prelude.String.id,
+        }),
+        StorageOperationPercentProgress = schema.new({
+            id = id.from(_N, "AdditionalStorageVolumeOutput", "StorageOperationPercentProgress"),
+            type = "integer",
+            name = "StorageOperationPercentProgress",
+            target_id = prelude.Integer.id,
+        }),
         AllocatedStorage = schema.new({
             id = id.from(_N, "AdditionalStorageVolumeOutput", "AllocatedStorage"),
             type = "integer",
@@ -7104,6 +7116,18 @@ M.DBInstance = schema.new({
             type = "string",
             name = "StorageVolumeStatus",
             target_id = prelude.String.id,
+        }),
+        StorageOperationStatus = schema.new({
+            id = id.from(_N, "DBInstance", "StorageOperationStatus"),
+            type = "string",
+            name = "StorageOperationStatus",
+            target_id = prelude.String.id,
+        }),
+        StorageOperationPercentProgress = schema.new({
+            id = id.from(_N, "DBInstance", "StorageOperationPercentProgress"),
+            type = "integer",
+            name = "StorageOperationPercentProgress",
+            target_id = prelude.Integer.id,
         }),
     },
 })

@@ -130,6 +130,24 @@ function M.items_list_reports(client, input)
     })
 end
 
+--- Returns a page iterator for listResolvedTestRunTargetResources.
+function M.pages_list_resolved_test_run_target_resources(client, input)
+    return paginator.pages(client, "listResolvedTestRunTargetResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "resolvedTargetResources",
+    })
+end
+
+--- Returns an item iterator for listResolvedTestRunTargetResources.
+function M.items_list_resolved_test_run_target_resources(client, input)
+    return paginator.items(client, "listResolvedTestRunTargetResources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "resolvedTargetResources",
+    })
+end
+
 --- Returns a page iterator for listResources.
 function M.pages_list_resources(client, input)
     return paginator.pages(client, "listResources", input, {
@@ -253,6 +271,96 @@ function M.items_list_systems(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "systemSummaries",
+    })
+end
+
+--- Returns a page iterator for listTestRunEvents.
+function M.pages_list_test_run_events(client, input)
+    return paginator.pages(client, "listTestRunEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "events",
+    })
+end
+
+--- Returns an item iterator for listTestRunEvents.
+function M.items_list_test_run_events(client, input)
+    return paginator.items(client, "listTestRunEvents", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "events",
+    })
+end
+
+--- Returns a page iterator for listTestRunSources.
+function M.pages_list_test_run_sources(client, input)
+    return paginator.pages(client, "listTestRunSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testRunSources",
+    })
+end
+
+--- Returns an item iterator for listTestRunSources.
+function M.items_list_test_run_sources(client, input)
+    return paginator.items(client, "listTestRunSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testRunSources",
+    })
+end
+
+--- Returns a page iterator for listTestRuns.
+function M.pages_list_test_runs(client, input)
+    return paginator.pages(client, "listTestRuns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testRuns",
+    })
+end
+
+--- Returns an item iterator for listTestRuns.
+function M.items_list_test_runs(client, input)
+    return paginator.items(client, "listTestRuns", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testRuns",
+    })
+end
+
+--- Returns a page iterator for listTestSources.
+function M.pages_list_test_sources(client, input)
+    return paginator.pages(client, "listTestSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testSources",
+    })
+end
+
+--- Returns an item iterator for listTestSources.
+function M.items_list_test_sources(client, input)
+    return paginator.items(client, "listTestSources", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "testSources",
+    })
+end
+
+--- Returns a page iterator for listTests.
+function M.pages_list_tests(client, input)
+    return paginator.pages(client, "listTests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tests",
+    })
+end
+
+--- Returns an item iterator for listTests.
+function M.items_list_tests(client, input)
+    return paginator.items(client, "listTests", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "tests",
     })
 end
 

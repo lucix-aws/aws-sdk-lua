@@ -2,6 +2,23 @@
 
 local record M
 
+    enum ConnectionStartPoint
+        "CONNECTED_TO_SYSTEM"
+        "GREETING_START"
+        "GREETING_END"
+    end
+
+    -- Configuration for abandonment-rate-based dialer throttling.
+    record AbandonmentRatePacingConfig
+        targetRate: number
+        -- Event from which connectionThresholdSeconds is measured.
+        connectionStartPoint: string
+        -- Seconds after connectionStartPoint before a contact counts as abandoned.
+        connectionThresholdSeconds: number
+        -- Rolling window over which abandonmentRate is computed.
+        evaluationWindow: string
+    end
+
     -- You do not have sufficient access to perform this action.
     record AccessDeniedException
         message: string
@@ -75,9 +92,16 @@ local record M
         ringTimeout: number
     end
 
+    -- Pacing constraint the dialer may enforce.
+    record PacingStrategy
+        abandonmentRate: AbandonmentRatePacingConfig
+    end
+
     -- Predictive config
     record PredictiveConfig
         bandwidthAllocation: number
+        -- Pacing strategies the dialer enforces simultaneously.
+        pacingStrategies: {PacingStrategy}
     end
 
     -- Timeout Config for preview contacts.

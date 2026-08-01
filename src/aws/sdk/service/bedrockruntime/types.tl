@@ -1257,6 +1257,26 @@ local record M
         citations: CitationsConfig
     end
 
+    -- A reference to a tool in the tool configuration. Used with ToolAdditionBlock and ToolRemovalBlock to identify which tool to add or remove mid-conversation.
+    record ToolReference
+        -- The name of the tool. Must match the name of a tool declared in the top-level tool configuration.
+        name: string
+        -- The name of the MCP server that provides the tool. Required when referencing an MCP tool.
+        serverName: string
+    end
+
+    -- A content block for adding a tool to the available tool set mid-conversation. Each block references a single tool via its tool field. Use within a system role message to make a tool available without re-sending the full tool configuration.
+    record ToolAdditionBlock
+        -- A reference to the tool to add to the available tool set.
+        tool: ToolReference
+    end
+
+    -- A content block for removing a tool from the available tool set mid-conversation. Each block references a single tool via its tool field. Use within a system role message to remove a tool without re-sending the full tool configuration.
+    record ToolRemovalBlock
+        -- A reference to the tool to remove from the available tool set.
+        tool: ToolReference
+    end
+
     enum VideoFormat
         "mkv"
         "mov"
@@ -1356,6 +1376,8 @@ local record M
         citationsContent: CitationsContentBlock
         -- Search result to include in the message.
         searchResult: SearchResultBlock
+        toolAddition: ToolAdditionBlock
+        toolRemoval: ToolRemovalBlock
     end
 
     enum ConversationRole
@@ -1402,6 +1424,8 @@ local record M
     record OutputConfig
         -- Structured output parameters to control the model's text response.
         textFormat: OutputFormat
+        -- The effort level for the model to use when generating a response. Higher effort levels allow the model to spend more time reasoning before responding. Supported values are low, medium, high, xhigh, and max. When extended thinking is disabled, the effort level is capped at high. Use effort high or below, or enable thinking to use higher effort levels.
+        effort: string
     end
 
     enum PerformanceConfigLatency

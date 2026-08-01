@@ -760,7 +760,14 @@ local record M
         description: string
         -- The CSV content of the lookup table. The first row must be a header row with column
         -- names. The content must use UTF-8 encoding and not exceed 10 MB.
+        -- You must specify either tableBody or queryId, but not
+        -- both.
         tableBody: string
+        -- The ID of a completed CloudWatch Logs query whose results populate
+        -- the lookup table.
+        -- You must specify either tableBody or queryId, but not
+        -- both.
+        queryId: string
         -- The ARN of the KMS key to use to encrypt the lookup table data. If you
         -- don't specify a key, the data is encrypted with an Amazon Web Services-owned key.
         kmsKeyId: string
@@ -776,6 +783,25 @@ local record M
         -- The time when the lookup table was created, expressed as the number of milliseconds
         -- after Jan 1, 1970 00:00:00 UTC.
         createdAt: number
+    end
+
+    -- Configuration for a lookup table destination. Use it to automatically refresh a lookup
+    -- table with query results on a schedule.
+    record LookupTableConfiguration
+        -- The name of the lookup table to create or update with query results. The name can
+        -- contain only alphanumeric characters and underscores.
+        tableName: string
+        -- The ARN of the IAM role that grants permissions to create or update the lookup table
+        -- with query results.
+        roleArn: string
+        -- A description of the lookup table.
+        description: string
+        -- The ARN of the KMS key to use to encrypt the lookup table data. If you
+        -- don't specify a key, the data is encrypted with an Amazon Web Services-owned key.
+        kmsKeyId: string
+        -- Key-value pairs to associate with the lookup table for resource management and cost
+        -- allocation. The service applies tags only during initial table creation.
+        tags: {string : string}
     end
 
     -- Configuration for Amazon S3 destination where scheduled query results are delivered.
@@ -797,6 +823,10 @@ local record M
     record DestinationConfiguration
         -- Configuration for delivering query results to Amazon S3.
         s3Configuration: S3Configuration
+        -- Configuration for delivering query results to a lookup table. The query results
+        -- automatically populate or refresh the specified lookup table on each scheduled
+        -- execution.
+        lookupTableConfiguration: LookupTableConfiguration
     end
 
     enum QueryLanguage
@@ -839,8 +869,9 @@ local record M
         -- Together with startTimeOffset, this determines the time window relative to the
         -- execution time over which the query runs.
         endTimeOffset: number
-        -- Configuration for where to deliver query results. Currently supports Amazon S3 destinations for
-        -- storing query output.
+        -- Configuration for where to deliver query results. Supports Amazon S3 destinations for storing
+        -- query output and lookup table destinations for automatically refreshing lookup tables with
+        -- query results. You can configure one or both destination types.
         destinationConfiguration: DestinationConfiguration
         -- The start time for the scheduled query in Unix epoch format. The query will not execute
         -- before this time.
@@ -3010,6 +3041,7 @@ local record M
 
     enum ScheduledQueryDestinationType
         "S3"
+        "LOOKUP_TABLE"
     end
 
     -- Information about a destination where scheduled query results are processed, including
@@ -3064,7 +3096,7 @@ local record M
         -- The current storage tier for the account.
         storageTier: string
         -- The time when the storage tier policy was last updated, expressed as the number of
-        -- milliseconds after Jan 1, 1970 00:00:00 UTC.
+        -- milliseconds after January 1, 1970 00:00:00 UTC.
         lastUpdatedTime: number
     end
 
@@ -4496,16 +4528,17 @@ local record M
     end
 
     record PutStorageTierPolicyInput
-        -- The storage tier to set for the account. Valid values are STANDARD and
-        -- INTELLIGENT_TIERING.
+        -- The storage tier to set for the account. Use INTELLIGENT_TIERING to
+        -- automatically optimize storage costs by moving log data to the appropriate tier based on
+        -- access frequency.
         storageTier: string
     end
 
     record PutStorageTierPolicyOutput
-        -- The storage tier that was set.
+        -- The storage tier for the account.
         storageTier: string
         -- The time when the storage tier policy was last updated, expressed as the number of
-        -- milliseconds after Jan 1, 1970 00:00:00 UTC.
+        -- milliseconds after January 1, 1970 00:00:00 UTC.
         lastUpdatedTime: number
     end
 
@@ -4554,7 +4587,8 @@ local record M
         -- @aws.region = "us-east-1". Maximum length: 2000 characters.
         fieldSelectionCriteria: string
         -- A list of system fields to include in the log events sent to the subscription destination.
-        -- Valid values are @aws.account and @aws.region. These fields provide
+        -- Valid values are @aws.account, @aws.region, and
+        -- @source.log. These fields provide
         -- source information for centralized log data in the forwarded payload.
         emitSystemFields: {string}
     end
@@ -4937,7 +4971,14 @@ local record M
         description: string
         -- The new CSV content to replace the existing data. The first row must be a header row
         -- with column names. The content must use UTF-8 encoding and not exceed 10 MB.
+        -- You must specify either tableBody or queryId, but not
+        -- both.
         tableBody: string
+        -- The ID of a completed CloudWatch Logs query whose results replace
+        -- the lookup table content.
+        -- You must specify either tableBody or queryId, but not
+        -- both.
+        queryId: string
         -- The ARN of the KMS key to use to encrypt the lookup table data. You can
         -- use this parameter to add, update, or remove the KMS key. To remove the KMS key and use an
         -- Amazon Web Services-owned key instead, specify an empty string.

@@ -2691,6 +2691,15 @@ M.StartStreamTranscriptionInput = schema.new({
                 [traits.HTTP_HEADER] = { name = "x-amzn-transcribe-session-resume-window" },
             },
         }),
+        TranscriptFormat = schema.new({
+            id = id.from(_N, "StartStreamTranscriptionInput", "TranscriptFormat"),
+            type = "string",
+            name = "TranscriptFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-transcribe-transcript-format" },
+            },
+        }),
     },
 })
 
@@ -3008,6 +3017,15 @@ M.StartStreamTranscriptionOutput = schema.new({
             target_id = prelude.Integer.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "x-amzn-transcribe-session-resume-window" },
+            },
+        }),
+        TranscriptFormat = schema.new({
+            id = id.from(_N, "StartStreamTranscriptionOutput", "TranscriptFormat"),
+            type = "string",
+            name = "TranscriptFormat",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "x-amzn-transcribe-transcript-format" },
             },
         }),
     },

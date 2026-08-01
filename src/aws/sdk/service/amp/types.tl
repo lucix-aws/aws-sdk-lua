@@ -211,6 +211,18 @@ local record M
         cloudWatchConfiguration: CloudWatchConfiguration
     end
 
+    -- The configuration for exporting metrics to an Amazon OpenSearch Service domain.
+    record OpenSearchExporterConfiguration
+        -- The Amazon Resource Name (ARN) of the Amazon OpenSearch Service domain.
+        domainArn: string
+    end
+
+    -- Contains the configuration for an exporter managed by the scraper.
+    record ExporterConfiguration
+        -- The configuration that the scraper uses to export metrics to an Amazon OpenSearch Service domain.
+        openSearchConfiguration: OpenSearchExporterConfiguration
+    end
+
     -- Use this structure to enable cross-account access, so that you can use a target account to access Prometheus metrics from source accounts.
     record RoleConfiguration
         -- The Amazon Resource Name (ARN) of the role used in the source account to enable cross-account scraping. For information about the contents of this policy, see Cross-account setup.
@@ -267,6 +279,8 @@ local record M
         clientToken: string
         -- (Optional) The list of tag keys and values to associate with the scraper.
         tags: {string : string}
+        -- The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the scraper is created without an exporter configuration.
+        exporters: {ExporterConfiguration}
     end
 
     enum ScraperStatusCode
@@ -347,6 +361,8 @@ local record M
         destination: Destination
         -- This structure displays information about the IAM roles used for cross-account scraping configuration.
         roleConfiguration: RoleConfiguration
+        -- The exporter configurations for the scraper, if configured. The list contains at most one configuration for an Amazon OpenSearch Service domain.
+        exporters: {ExporterConfiguration}
     end
 
     -- Represents the output of a DescribeScraper operation.
@@ -391,6 +407,8 @@ local record M
         destination: Destination
         -- This structure displays information about the IAM roles used for cross-account scraping configuration.
         roleConfiguration: RoleConfiguration
+        -- The exporter configurations for the scraper, if configured. The list contains at most one configuration for an Amazon OpenSearch Service domain.
+        exporters: {ExporterConfiguration}
     end
 
     -- Represents the output of a ListScrapers operation.
@@ -503,6 +521,8 @@ local record M
         roleConfiguration: RoleConfiguration
         -- A unique identifier that you can provide to ensure the idempotency of the request. Case-sensitive.
         clientToken: string
+        -- The exporter configurations for the scraper. You can configure at most one Amazon OpenSearch Service domain. If you don't specify a value, the existing exporter configuration remains unchanged.
+        exporters: {ExporterConfiguration}
     end
 
     record UpdateScraperOutput

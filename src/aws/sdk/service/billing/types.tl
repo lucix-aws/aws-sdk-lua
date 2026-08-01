@@ -15,6 +15,16 @@ local record M
         activeBeforeInclusive: number
     end
 
+    -- An additional charge applied to an Enterprise Support contract.
+    record AdditionalCharge
+        -- A description of the additional charge.
+        description: string
+        -- The charge amount.
+        amount: string
+        -- The type of additional charge.
+        chargeType: string
+    end
+
     -- A monetary amount with a currency code. Used throughout the Billing API to represent credit balances, allocations, and adjustments.
     record Amount
         -- The ISO 4217 currency code for the amount (for example, USD).
@@ -471,6 +481,140 @@ local record M
         credits: {CreditData}
     end
 
+    -- The request structure for GetEnterpriseSupportChargeSummary.
+    record GetEnterpriseSupportChargeSummaryInput
+        -- The billing month in YYYY-MM format. This must be a month in the past.
+        billingMonth: string
+    end
+
+    -- A tier within an Enterprise Support pricing plan.
+    record PricingPlanTier
+        -- The minimum spend threshold for this tier.
+        tierMinimum: string
+        -- The maximum spend threshold for this tier.
+        tierMaximum: string
+        -- The base charge for this tier.
+        baseCharge: string
+        -- The additional percentage applied to aggregate charges in this tier.
+        additionalPercentageOfAggregateCharges: string
+        -- The adjustment applied to aggregate charges.
+        aggregateChargesAdjustment: string
+        -- Whether the tier charges are calculated incrementally.
+        incremental: boolean
+        -- The increment amount for incremental tier calculations.
+        increment: string
+        -- The charge per increment.
+        incrementCharge: string
+    end
+
+    -- A pricing plan for Enterprise Support billing.
+    record PricingPlan
+        -- The unique identifier for the pricing plan.
+        pricingPlanId: string
+        -- The name of the pricing plan.
+        name: string
+        -- A description of the pricing plan.
+        description: string
+        -- The start date of the pricing plan.
+        startDate: number
+        -- The end date of the pricing plan.
+        endDate: number
+        -- The discount percentage applied by this pricing plan.
+        planDiscountPercent: string
+        -- Whether the discount applies to the minimum Support charge.
+        discountAppliesToMinimumCharge: boolean
+        -- The minimum Support charge amount for this pricing plan.
+        minimumCharge: string
+        -- Whether the pricing plan uses tiered pricing.
+        tiered: string
+        -- The pricing tiers within this plan.
+        tiers: {PricingPlanTier}
+    end
+
+    -- The response structure for GetEnterpriseSupportChargeSummary.
+    record GetEnterpriseSupportChargeSummaryOutput
+        -- The payer account ID that is authorized to view Enterprise Support data for all accounts in its Support profile.
+        payerAccountId: string
+        -- The billing month in YYYY-MM format. This must be a month in the past.
+        billingMonth: string
+        -- The start date of the billing period.
+        billingPeriodStartDate: number
+        -- The end date of the billing period.
+        billingPeriodEndDate: number
+        -- When true, the Support charge amount is estimated. When false, the Support charge amount is finalized.
+        isEstimated: boolean
+        -- The date the bill was generated.
+        billDate: number
+        -- The Support charge amount for the account.
+        supportCharge: string
+        -- The total Support charge amount for all accounts in the Support profile.
+        totalSupportCharge: string
+        -- The support discount amount.
+        supportDiscount: string
+        -- The total Support-eligible Spend from all accounts in the Support profile. This includes eligible spend from usage of Amazon Web Services, Reserved Instances, and Savings Plans.
+        totalSupportEligibleSpend: string
+        -- The total Support-eligible spend from usage of Amazon Web Services from all accounts in the Support profile.
+        totalSupportEligibleUsageSpend: string
+        -- The total Support-eligible Reserved Instance spend from all accounts in the Support profile.
+        totalSupportEligibleReservedInstanceSpend: string
+        -- The total Support-eligible Savings Plan spend from all accounts in the Support profile.
+        totalSupportEligibleSavingsPlanSpend: string
+        -- The percentage applied to the total Support-eligible spend to calculate the total Support charge across all accounts in the Support profile.
+        supportChargePercentage: string
+        -- The effective pricing plan used for the support charge calculation.
+        supportEffectivePricingPlan: PricingPlan
+    end
+
+    -- The request structure for GetEnterpriseSupportContractDetails.
+    record GetEnterpriseSupportContractDetailsInput
+        -- The billing month in YYYY-MM format. This must be a month in the past.
+        billingMonth: string
+    end
+
+    -- An account that is charged all or a portion of the total Support charge and the percentage of the charge allocated to it.
+    record ChargeAccount
+        -- The account ID.
+        accountId: string
+        -- The percentage of the total Support charge allocated to this account. This is 0.0 when supportAllocationMethod = Proportional.
+        chargePercentage: string
+    end
+
+    -- An account that is covered by the Enterprise Support contract.
+    record ContractAccount
+        -- The account ID.
+        accountId: string
+        -- When true, Support charges are calculated on charges before private discounts. When false, they are calculated after private discounts.
+        isGdn: boolean
+    end
+
+    -- The response structure for GetEnterpriseSupportContractDetails.
+    record GetEnterpriseSupportContractDetailsOutput
+        -- When true, the Enterprise Support contract is active. When false, the Enterprise Support Contract is inactive.
+        isContractActive: boolean
+        -- The method used to distribute the total Support charge amount across each account in the Support profile. Valid values: Proportional, Fixed_Percentage. Proportional means support charges are distributed to each account in proportion to its eligible Spend. Fixed_Percentage means support charges are distributed across accounts according to pre-configured percentages from the contract.
+        supportAllocationMethod: string
+        -- When supportReservedInstanceTreatmentMethod = AmortizedCustom, only amortized fees for Reserved Instances purchased on or after this date are included in the calculation. This field is Null for all other treatment methods.
+        supportReservedInstanceAmortizationStartDate: number
+        -- The method used to include Reserved Instance (RI) fees in the Enterprise Support charge calculation. Valid values: None (RI fees excluded from Support-eligible spend), Upfront (full upfront RI fees included in month of purchase), Amortized (RI fees spread over commitment term for RIs purchased on or after Support subscription start date), AmortizedCustom (same as Amortized but only for RIs purchased on or after a specified custom start date), AmortizedAll (RI fees amortized for all active RIs including those purchased before Support subscription started).
+        supportReservedInstanceTreatmentMethod: string
+        -- This is applicable when supportSavingsPlansTreatmentMethod = Amortized and is Null for all other methods. It shows the start date from which Savings Plan fees are included in Support Eligible Spend.
+        supportSavingsPlansAmortizationStartDate: number
+        -- The method used to include Savings Plans fees in Enterprise Support charge calculations. Valid values: None (Savings Plan fees excluded from Support-eligible spend), Upfront (full upfront Savings Plan fees included in month of purchase), Amortized (Savings Plan fees spread over commitment term for Savings Plans purchased on or after Support subscription start date), AmortizedCustom (same as Amortized but only for Savings Plans purchased on or after a specified custom start date), AmortizedAll (Savings Plan fees amortized for all active Savings Plans including those purchased before Support subscription started).
+        supportSavingsPlansTreatmentMethod: string
+        -- The start date for accounts subscribed or unsubscribed to Support billing during the billing month.
+        supportProrateStartDate: number
+        -- The list of accounts covered by the Enterprise Support contract.
+        contractPayerAccountIds: {ContractAccount}
+        -- The list of payer accounts and their charge allocation percentages.
+        chargedPayerAccountIds: {ChargeAccount}
+        -- Any Additional support charges applied to the contract.
+        additionalSupportCharge: {AdditionalCharge}
+        -- Any Additional support-eligible usage spend charges.
+        additionalSupportEligibleUsageSpend: {AdditionalCharge}
+        -- The pricing plans associated with this Enterprise Support contract.
+        pricingPlans: {PricingPlan}
+    end
+
     record GetResourcePolicyInput
         -- The Amazon Resource Name (ARN) of the billing view resource to which the policy is attached to.
         resourceArn: string
@@ -536,6 +680,70 @@ local record M
         -- A list of BillingViewListElement retrieved.
         billingViews: {BillingViewListElement}
         -- The pagination token to use on subsequent calls to list billing views.
+        nextToken: string
+    end
+
+    -- The request structure for ListEnterpriseSupportLinkedAccountCharges.
+    record ListEnterpriseSupportLinkedAccountChargesInput
+        -- The billing month in YYYY-MM format. This must be a month in the past.
+        billingMonth: string
+        -- An optional linked account ID to filter results to a specific account.
+        accountId: string
+        -- The maximum number of results to return per page.
+        maxResults: number
+        -- The pagination token for the next page of results.
+        nextToken: string
+    end
+
+    -- A time period for Enterprise Support billing.
+    record EnterpriseSupportTimePeriod
+        -- The begin date of the time period.
+        beginDate: number
+        -- The end date of the time period.
+        endDate: number
+    end
+
+    -- Service-level usage details by account.
+    record ServiceLevelAccountUsage
+        -- The service code for which to return Support-eligible spend data.
+        serviceCode: string
+        -- The total support-eligible spend for the service.
+        totalSupportEligibleSpend: string
+    end
+
+    -- Enterprise Support charges for a linked account.
+    record LinkedAccountCharge
+        -- The linked account ID.
+        accountId: string
+        -- The payer account ID that is authorized to view Enterprise Support data for all accounts in its Support profile.
+        payerAccountId: string
+        -- The type of account.
+        accountType: string
+        -- The number of billable seconds in the billing period based on when the account was subscribed to Enterprise Support.
+        billableSeconds: number
+        -- The total number of seconds in the billing period.
+        totalSeconds: number
+        -- The total support-eligible spend for this account.
+        totalSupportEligibleSpend: string
+        -- The prorated total support-eligible spend based on when the account was subscribed to Enterprise Support.
+        proratedTotalSupportEligibleSpend: string
+        -- The time periods during which this account was linked.
+        linkedTimePeriods: {EnterpriseSupportTimePeriod}
+        -- The subscription time periods for this account.
+        subscriptionTimePeriods: {EnterpriseSupportTimePeriod}
+        -- The total support-eligible Reserved Instance spend for this account.
+        totalSupportEligibleReservedInstanceSpend: string
+        -- The total support-eligible Savings Plan spend for this account.
+        totalSupportEligibleSavingsPlanSpend: string
+        -- The support-eligible spend broken down by service.
+        supportEligibleSpendByService: {ServiceLevelAccountUsage}
+    end
+
+    -- The response structure for ListEnterpriseSupportLinkedAccountCharges.
+    record ListEnterpriseSupportLinkedAccountChargesOutput
+        -- The list of Enterprise Support charges per linked account.
+        linkedAccount: {LinkedAccountCharge}
+        -- The pagination token for the next page of results.
         nextToken: string
     end
 

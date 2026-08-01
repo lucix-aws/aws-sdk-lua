@@ -171,6 +171,8 @@ M.TopicReviewedAnswers = schema.new({ type = "list", list_member = M.TopicReview
 
 M.TopicSummaries = schema.new({ type = "list", list_member = M.TopicSummary })
 
+M.TopicV2Summaries = schema.new({ type = "list", list_member = M.TopicV2Summary })
+
 M.UserList = schema.new({ type = "list", list_member = M.User })
 
 M.UserIndexCapacityFilters = schema.new({ type = "list", list_member = M.UserIndexCapacityFilter })
@@ -251,6 +253,8 @@ M.DateTimeParameterList = schema.new({ type = "list", list_member = M.DateTimePa
 
 M.DataSetIdentifierDeclarationList = schema.new({ type = "list", list_member = M.DataSetIdentifierDeclaration })
 
+M.TopicIdentifierDeclarationList = schema.new({ type = "list", list_member = M.TopicIdentifierDeclaration })
+
 M.SheetDefinitionList = schema.new({ type = "list", list_member = M.SheetDefinition })
 
 M.TooltipSheetDefinitionList = schema.new({ type = "list", list_member = M.TooltipSheetDefinition })
@@ -289,7 +293,13 @@ M.IdentityNameList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataSetConfigurationList = schema.new({ type = "list", list_member = M.DataSetConfiguration })
 
+M.TopicConfigurationList = schema.new({ type = "list", list_member = M.TopicConfiguration })
+
 M.Datasets = schema.new({ type = "list", list_member = M.DatasetMetadata })
+
+M.TopicV2DataSetReferences = schema.new({ type = "list", list_member = M.TopicV2DataSetReference })
+
+M.TopicV2DataSetRelationList = schema.new({ type = "list", list_member = M.TopicV2DataSetRelation })
 
 M.ActionIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -298,6 +308,8 @@ M.AgentSpacesList = schema.new({ type = "list", list_member = prelude.String })
 M.AgentActionConnectorsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataSetArnsList = schema.new({ type = "list", list_member = prelude.String })
+
+M.TopicArnsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SheetList = schema.new({ type = "list", list_member = M.Sheet })
 
@@ -384,6 +396,8 @@ M.SnapshotAnonymousUserList = schema.new({ type = "list", list_member = M.Snapsh
 M.ActionList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DataSetReferenceList = schema.new({ type = "list", list_member = M.DataSetReference })
+
+M.TopicReferenceList = schema.new({ type = "list", list_member = M.TopicReference })
 
 M.TransformOperationList = schema.new({ type = "list", list_member = M.TransformOperation })
 
@@ -543,6 +557,8 @@ M.SharedColumnSemanticMetadataList = schema.new({ type = "list", list_member = M
 
 M.ColumnSchemaList = schema.new({ type = "list", list_member = M.ColumnSchema })
 
+M.TopicV2DataSetRelationColumnNames = schema.new({ type = "list", list_member = prelude.String })
+
 M.AssetBundlePrincipalList = schema.new({ type = "list", list_member = prelude.String })
 
 M.OperandList = schema.new({ type = "list", list_member = M.Identifier })
@@ -580,6 +596,8 @@ M.AuthorSpecifiedAggregations = schema.new({ type = "list", list_member = prelud
 M.CellValueSynonyms = schema.new({ type = "list", list_member = M.CellValueSynonym })
 
 M.NamedEntityDefinitions = schema.new({ type = "list", list_member = M.NamedEntityDefinition })
+
+M.NamedEntitySortList = schema.new({ type = "list", list_member = M.NamedEntitySort })
 
 M.SnapshotFileSheetSelectionList = schema.new({ type = "list", list_member = M.SnapshotFileSheetSelection })
 
@@ -2175,8 +2193,14 @@ M.ColumnIdentifier = schema.new({
             name = "DataSetIdentifier",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        TopicIdentifier = schema.new({
+            id = id.from(_N, "ColumnIdentifier", "TopicIdentifier"),
+            type = "string",
+            name = "TopicIdentifier",
+            target_id = prelude.String.id,
         }),
         ColumnName = schema.new({
             id = id.from(_N, "ColumnIdentifier", "ColumnName"),
@@ -2920,6 +2944,13 @@ M.Analysis = schema.new({
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
+        TopicArns = schema.new({
+            id = id.from(_N, "Analysis", "TopicArns"),
+            type = "list",
+            name = "TopicArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         ThemeArn = schema.new({
             id = id.from(_N, "Analysis", "ThemeArn"),
             type = "string",
@@ -3225,8 +3256,14 @@ M.CalculatedField = schema.new({
             name = "DataSetIdentifier",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        TopicIdentifier = schema.new({
+            id = id.from(_N, "CalculatedField", "TopicIdentifier"),
+            type = "string",
+            name = "TopicIdentifier",
+            target_id = prelude.String.id,
         }),
         Name = schema.new({
             id = id.from(_N, "CalculatedField", "Name"),
@@ -5597,6 +5634,78 @@ M.VisualCustomActionDefaults = schema.new({
     },
 })
 
+M.VisualMessageConfiguration = schema.new({
+    id = id.from(_N, "VisualMessageConfiguration"),
+    type = "structure",
+    members = {
+        Enabled = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "Enabled"),
+            type = "boolean",
+            name = "Enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        Title = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "Title"),
+            type = "string",
+            name = "Title",
+            target_id = prelude.String.id,
+        }),
+        TitleVisibility = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "TitleVisibility"),
+            type = "string",
+            name = "TitleVisibility",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        DescriptionVisibility = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "DescriptionVisibility"),
+            type = "string",
+            name = "DescriptionVisibility",
+            target_id = prelude.String.id,
+        }),
+        LinkText = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "LinkText"),
+            type = "string",
+            name = "LinkText",
+            target_id = prelude.String.id,
+        }),
+        LinkUrl = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "LinkUrl"),
+            type = "string",
+            name = "LinkUrl",
+            target_id = prelude.String.id,
+        }),
+        LinkVisibility = schema.new({
+            id = id.from(_N, "VisualMessageConfiguration", "LinkVisibility"),
+            type = "string",
+            name = "LinkVisibility",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VisualMessages = schema.new({
+    id = id.from(_N, "VisualMessages"),
+    type = "structure",
+    members = {
+        NoDataMessage = schema.new({
+            id = id.from(_N, "VisualMessages", "NoDataMessage"),
+            type = "structure",
+            name = "NoDataMessage",
+            target_id = id.from(_N, "VisualMessageConfiguration"),
+            target = M.VisualMessageConfiguration,
+        }),
+    },
+})
+
 M.AssetOptions = schema.new({
     id = id.from(_N, "AssetOptions"),
     type = "structure",
@@ -5632,6 +5741,13 @@ M.AssetOptions = schema.new({
             name = "CustomActionDefaults",
             target_id = id.from(_N, "VisualCustomActionDefaults"),
             target = M.VisualCustomActionDefaults,
+        }),
+        VisualMessages = schema.new({
+            id = id.from(_N, "AssetOptions", "VisualMessages"),
+            type = "structure",
+            name = "VisualMessages",
+            target_id = id.from(_N, "VisualMessages"),
+            target = M.VisualMessages,
         }),
     },
 })
@@ -11608,8 +11724,14 @@ M.CustomContentVisual = schema.new({
             name = "DataSetIdentifier",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        TopicIdentifier = schema.new({
+            id = id.from(_N, "CustomContentVisual", "TopicIdentifier"),
+            type = "string",
+            name = "TopicIdentifier",
+            target_id = prelude.String.id,
         }),
         VisualContentAltText = schema.new({
             id = id.from(_N, "CustomContentVisual", "VisualContentAltText"),
@@ -11639,8 +11761,14 @@ M.EmptyVisual = schema.new({
             name = "DataSetIdentifier",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        TopicIdentifier = schema.new({
+            id = id.from(_N, "EmptyVisual", "TopicIdentifier"),
+            type = "string",
+            name = "TopicIdentifier",
+            target_id = prelude.String.id,
         }),
         Actions = schema.new({
             id = id.from(_N, "EmptyVisual", "Actions"),
@@ -14321,8 +14449,14 @@ M.InsightVisual = schema.new({
             name = "DataSetIdentifier",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        TopicIdentifier = schema.new({
+            id = id.from(_N, "InsightVisual", "TopicIdentifier"),
+            type = "string",
+            name = "TopicIdentifier",
+            target_id = prelude.String.id,
         }),
         VisualContentAltText = schema.new({
             id = id.from(_N, "InsightVisual", "VisualContentAltText"),
@@ -15610,8 +15744,14 @@ M.LayerMapVisual = schema.new({
             name = "DataSetIdentifier",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
+        }),
+        TopicIdentifier = schema.new({
+            id = id.from(_N, "LayerMapVisual", "TopicIdentifier"),
+            type = "string",
+            name = "TopicIdentifier",
+            target_id = prelude.String.id,
         }),
         VisualContentAltText = schema.new({
             id = id.from(_N, "LayerMapVisual", "VisualContentAltText"),
@@ -20363,6 +20503,31 @@ M.TooltipSheetDefinition = schema.new({
     },
 })
 
+M.TopicIdentifierDeclaration = schema.new({
+    id = id.from(_N, "TopicIdentifierDeclaration"),
+    type = "structure",
+    members = {
+        Identifier = schema.new({
+            id = id.from(_N, "TopicIdentifierDeclaration", "Identifier"),
+            type = "string",
+            name = "Identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TopicArn = schema.new({
+            id = id.from(_N, "TopicIdentifierDeclaration", "TopicArn"),
+            type = "string",
+            name = "TopicArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AnalysisDefinition = schema.new({
     id = id.from(_N, "AnalysisDefinition"),
     type = "structure",
@@ -20376,6 +20541,13 @@ M.AnalysisDefinition = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        TopicIdentifierDeclarations = schema.new({
+            id = id.from(_N, "AnalysisDefinition", "TopicIdentifierDeclarations"),
+            type = "list",
+            name = "TopicIdentifierDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicIdentifierDeclaration,
         }),
         Sheets = schema.new({
             id = id.from(_N, "AnalysisDefinition", "Sheets"),
@@ -20500,6 +20672,31 @@ M.DataSetReference = schema.new({
     },
 })
 
+M.TopicReference = schema.new({
+    id = id.from(_N, "TopicReference"),
+    type = "structure",
+    members = {
+        TopicPlaceholder = schema.new({
+            id = id.from(_N, "TopicReference", "TopicPlaceholder"),
+            type = "string",
+            name = "TopicPlaceholder",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TopicArn = schema.new({
+            id = id.from(_N, "TopicReference", "TopicArn"),
+            type = "string",
+            name = "TopicArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.AnalysisSourceTemplate = schema.new({
     id = id.from(_N, "AnalysisSourceTemplate"),
     type = "structure",
@@ -20513,6 +20710,13 @@ M.AnalysisSourceTemplate = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        TopicReferences = schema.new({
+            id = id.from(_N, "AnalysisSourceTemplate", "TopicReferences"),
+            type = "list",
+            name = "TopicReferences",
+            target_id = prelude.Document.id,
+            list_member = M.TopicReference,
         }),
         Arn = schema.new({
             id = id.from(_N, "AnalysisSourceTemplate", "Arn"),
@@ -26589,6 +26793,258 @@ M.Capabilities = schema.new({
             name = "KnowledgeBase",
             target_id = prelude.String.id,
         }),
+        CreateAndUpdateKnowledgeBases = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateKnowledgeBases"),
+            type = "string",
+            name = "CreateAndUpdateKnowledgeBases",
+            target_id = prelude.String.id,
+        }),
+        ShareKnowledgeBases = schema.new({
+            id = id.from(_N, "Capabilities", "ShareKnowledgeBases"),
+            type = "string",
+            name = "ShareKnowledgeBases",
+            target_id = prelude.String.id,
+        }),
+        SharePointKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "SharePointKnowledgeBase"),
+            type = "string",
+            name = "SharePointKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateSharePointKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateSharePointKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateSharePointKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareSharePointKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareSharePointKnowledgeBase"),
+            type = "string",
+            name = "ShareSharePointKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseSharePointKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseSharePointKnowledgeBase"),
+            type = "string",
+            name = "UseSharePointKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        GoogleDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "GoogleDriveKnowledgeBase"),
+            type = "string",
+            name = "GoogleDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateGoogleDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateGoogleDriveKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateGoogleDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareGoogleDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareGoogleDriveKnowledgeBase"),
+            type = "string",
+            name = "ShareGoogleDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseGoogleDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseGoogleDriveKnowledgeBase"),
+            type = "string",
+            name = "UseGoogleDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        WebCrawlerKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "WebCrawlerKnowledgeBase"),
+            type = "string",
+            name = "WebCrawlerKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateWebCrawlerKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateWebCrawlerKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateWebCrawlerKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareWebCrawlerKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareWebCrawlerKnowledgeBase"),
+            type = "string",
+            name = "ShareWebCrawlerKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseWebCrawlerKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseWebCrawlerKnowledgeBase"),
+            type = "string",
+            name = "UseWebCrawlerKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        S3KnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "S3KnowledgeBase"),
+            type = "string",
+            name = "S3KnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateS3KnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateS3KnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateS3KnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareS3KnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareS3KnowledgeBase"),
+            type = "string",
+            name = "ShareS3KnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseS3KnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseS3KnowledgeBase"),
+            type = "string",
+            name = "UseS3KnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ConfluenceKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ConfluenceKnowledgeBase"),
+            type = "string",
+            name = "ConfluenceKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateConfluenceKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateConfluenceKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateConfluenceKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareConfluenceKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareConfluenceKnowledgeBase"),
+            type = "string",
+            name = "ShareConfluenceKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseConfluenceKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseConfluenceKnowledgeBase"),
+            type = "string",
+            name = "UseConfluenceKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        OneDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "OneDriveKnowledgeBase"),
+            type = "string",
+            name = "OneDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateOneDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateOneDriveKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateOneDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareOneDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareOneDriveKnowledgeBase"),
+            type = "string",
+            name = "ShareOneDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseOneDriveKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseOneDriveKnowledgeBase"),
+            type = "string",
+            name = "UseOneDriveKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        QBusinessKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "QBusinessKnowledgeBase"),
+            type = "string",
+            name = "QBusinessKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateQBusinessKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateQBusinessKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateQBusinessKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareQBusinessKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareQBusinessKnowledgeBase"),
+            type = "string",
+            name = "ShareQBusinessKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseQBusinessKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseQBusinessKnowledgeBase"),
+            type = "string",
+            name = "UseQBusinessKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        BedrockManagedKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "BedrockManagedKnowledgeBase"),
+            type = "string",
+            name = "BedrockManagedKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateBedrockManagedKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateBedrockManagedKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateBedrockManagedKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareBedrockManagedKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareBedrockManagedKnowledgeBase"),
+            type = "string",
+            name = "ShareBedrockManagedKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseBedrockManagedKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseBedrockManagedKnowledgeBase"),
+            type = "string",
+            name = "UseBedrockManagedKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        BoxKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "BoxKnowledgeBase"),
+            type = "string",
+            name = "BoxKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateBoxKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateBoxKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateBoxKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareBoxKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareBoxKnowledgeBase"),
+            type = "string",
+            name = "ShareBoxKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseBoxKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseBoxKnowledgeBase"),
+            type = "string",
+            name = "UseBoxKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        IDCKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "IDCKnowledgeBase"),
+            type = "string",
+            name = "IDCKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        CreateAndUpdateIDCKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "CreateAndUpdateIDCKnowledgeBase"),
+            type = "string",
+            name = "CreateAndUpdateIDCKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        ShareIDCKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "ShareIDCKnowledgeBase"),
+            type = "string",
+            name = "ShareIDCKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
+        UseIDCKnowledgeBase = schema.new({
+            id = id.from(_N, "Capabilities", "UseIDCKnowledgeBase"),
+            type = "string",
+            name = "UseIDCKnowledgeBase",
+            target_id = prelude.String.id,
+        }),
         Action = schema.new({
             id = id.from(_N, "Capabilities", "Action"),
             type = "string",
@@ -29721,6 +30177,13 @@ M.DashboardVersionDefinition = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        TopicIdentifierDeclarations = schema.new({
+            id = id.from(_N, "DashboardVersionDefinition", "TopicIdentifierDeclarations"),
+            type = "list",
+            name = "TopicIdentifierDeclarations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicIdentifierDeclaration,
+        }),
         Sheets = schema.new({
             id = id.from(_N, "DashboardVersionDefinition", "Sheets"),
             type = "list",
@@ -29814,6 +30277,13 @@ M.DashboardSourceTemplate = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        TopicReferences = schema.new({
+            id = id.from(_N, "DashboardSourceTemplate", "TopicReferences"),
+            type = "list",
+            name = "TopicReferences",
+            target_id = prelude.Document.id,
+            list_member = M.TopicReference,
         }),
         Arn = schema.new({
             id = id.from(_N, "DashboardSourceTemplate", "Arn"),
@@ -34438,6 +34908,33 @@ M.DataSetConfiguration = schema.new({
     },
 })
 
+M.TopicConfiguration = schema.new({
+    id = id.from(_N, "TopicConfiguration"),
+    type = "structure",
+    members = {
+        Placeholder = schema.new({
+            id = id.from(_N, "TopicConfiguration", "Placeholder"),
+            type = "string",
+            name = "Placeholder",
+            target_id = prelude.String.id,
+        }),
+        DataSetSchema = schema.new({
+            id = id.from(_N, "TopicConfiguration", "DataSetSchema"),
+            type = "structure",
+            name = "DataSetSchema",
+            target_id = id.from(_N, "DataSetSchema"),
+            target = M.DataSetSchema,
+        }),
+        ColumnGroupSchemaList = schema.new({
+            id = id.from(_N, "TopicConfiguration", "ColumnGroupSchemaList"),
+            type = "list",
+            name = "ColumnGroupSchemaList",
+            target_id = prelude.Document.id,
+            list_member = M.ColumnGroupSchema,
+        }),
+    },
+})
+
 M.TemplateVersionDefinition = schema.new({
     id = id.from(_N, "TemplateVersionDefinition"),
     type = "structure",
@@ -34451,6 +34948,13 @@ M.TemplateVersionDefinition = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        TopicConfigurations = schema.new({
+            id = id.from(_N, "TemplateVersionDefinition", "TopicConfigurations"),
+            type = "list",
+            name = "TopicConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicConfiguration,
         }),
         Sheets = schema.new({
             id = id.from(_N, "TemplateVersionDefinition", "Sheets"),
@@ -34547,6 +35051,13 @@ M.TemplateSourceAnalysis = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        TopicReferences = schema.new({
+            id = id.from(_N, "TemplateSourceAnalysis", "TopicReferences"),
+            type = "list",
+            name = "TopicReferences",
+            target_id = prelude.Document.id,
+            list_member = M.TopicReference,
         }),
     },
 })
@@ -35897,6 +36408,12 @@ M.TopicCategoryFilter = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        NullFilter = schema.new({
+            id = id.from(_N, "TopicCategoryFilter", "NullFilter"),
+            type = "string",
+            name = "NullFilter",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -35958,6 +36475,12 @@ M.TopicDateRangeFilter = schema.new({
             name = "Constant",
             target_id = id.from(_N, "TopicRangeFilterConstant"),
             target = M.TopicRangeFilterConstant,
+        }),
+        NullFilter = schema.new({
+            id = id.from(_N, "TopicDateRangeFilter", "NullFilter"),
+            type = "string",
+            name = "NullFilter",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -36027,6 +36550,21 @@ M.TopicNumericEqualityFilter = schema.new({
             name = "Aggregation",
             target_id = prelude.String.id,
         }),
+        Inverse = schema.new({
+            id = id.from(_N, "TopicNumericEqualityFilter", "Inverse"),
+            type = "boolean",
+            name = "Inverse",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        NullFilter = schema.new({
+            id = id.from(_N, "TopicNumericEqualityFilter", "NullFilter"),
+            type = "string",
+            name = "NullFilter",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -36056,6 +36594,21 @@ M.TopicNumericRangeFilter = schema.new({
             name = "Aggregation",
             target_id = prelude.String.id,
         }),
+        Inverse = schema.new({
+            id = id.from(_N, "TopicNumericRangeFilter", "Inverse"),
+            type = "boolean",
+            name = "Inverse",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        NullFilter = schema.new({
+            id = id.from(_N, "TopicNumericRangeFilter", "NullFilter"),
+            type = "string",
+            name = "NullFilter",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -36081,6 +36634,12 @@ M.TopicRelativeDateFilter = schema.new({
             name = "Constant",
             target_id = id.from(_N, "TopicSingularFilterConstant"),
             target = M.TopicSingularFilterConstant,
+        }),
+        NullFilter = schema.new({
+            id = id.from(_N, "TopicRelativeDateFilter", "NullFilter"),
+            type = "string",
+            name = "NullFilter",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -36233,6 +36792,24 @@ M.NamedEntityDefinition = schema.new({
             target_id = id.from(_N, "NamedEntityDefinitionMetric"),
             target = M.NamedEntityDefinitionMetric,
         }),
+        RankOrder = schema.new({
+            id = id.from(_N, "NamedEntityDefinition", "RankOrder"),
+            type = "integer",
+            name = "RankOrder",
+            target_id = prelude.Integer.id,
+        }),
+        PresentationOrder = schema.new({
+            id = id.from(_N, "NamedEntityDefinition", "PresentationOrder"),
+            type = "integer",
+            name = "PresentationOrder",
+            target_id = prelude.Integer.id,
+        }),
+        IsHidden = schema.new({
+            id = id.from(_N, "NamedEntityDefinition", "IsHidden"),
+            type = "boolean",
+            name = "IsHidden",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -36259,6 +36836,31 @@ M.SemanticEntityType = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = prelude.String,
+        }),
+    },
+})
+
+M.NamedEntitySort = schema.new({
+    id = id.from(_N, "NamedEntitySort"),
+    type = "structure",
+    members = {
+        FieldName = schema.new({
+            id = id.from(_N, "NamedEntitySort", "FieldName"),
+            type = "string",
+            name = "FieldName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Direction = schema.new({
+            id = id.from(_N, "NamedEntitySort", "Direction"),
+            type = "string",
+            name = "Direction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -36302,6 +36904,25 @@ M.TopicNamedEntity = schema.new({
             name = "Definition",
             target_id = prelude.Document.id,
             list_member = M.NamedEntityDefinition,
+        }),
+        Sort = schema.new({
+            id = id.from(_N, "TopicNamedEntity", "Sort"),
+            type = "list",
+            name = "Sort",
+            target_id = prelude.Document.id,
+            list_member = M.NamedEntitySort,
+        }),
+        RankOrder = schema.new({
+            id = id.from(_N, "TopicNamedEntity", "RankOrder"),
+            type = "integer",
+            name = "RankOrder",
+            target_id = prelude.Integer.id,
+        }),
+        PresentationOrder = schema.new({
+            id = id.from(_N, "TopicNamedEntity", "PresentationOrder"),
+            type = "integer",
+            name = "PresentationOrder",
+            target_id = prelude.Integer.id,
         }),
     },
 })
@@ -36649,6 +37270,209 @@ M.CreateTopicRefreshScheduleOutput = schema.new({
     },
 })
 
+M.TopicV2DataSetRelationEndpoint = schema.new({
+    id = id.from(_N, "TopicV2DataSetRelationEndpoint"),
+    type = "structure",
+    members = {
+        DataSetArn = schema.new({
+            id = id.from(_N, "TopicV2DataSetRelationEndpoint", "DataSetArn"),
+            type = "string",
+            name = "DataSetArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ColumnNames = schema.new({
+            id = id.from(_N, "TopicV2DataSetRelationEndpoint", "ColumnNames"),
+            type = "list",
+            name = "ColumnNames",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TopicV2DataSetRelation = schema.new({
+    id = id.from(_N, "TopicV2DataSetRelation"),
+    type = "structure",
+    members = {
+        Left = schema.new({
+            id = id.from(_N, "TopicV2DataSetRelation", "Left"),
+            type = "structure",
+            name = "Left",
+            target_id = id.from(_N, "TopicV2DataSetRelationEndpoint"),
+            target = M.TopicV2DataSetRelationEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Right = schema.new({
+            id = id.from(_N, "TopicV2DataSetRelation", "Right"),
+            type = "structure",
+            name = "Right",
+            target_id = id.from(_N, "TopicV2DataSetRelationEndpoint"),
+            target = M.TopicV2DataSetRelationEndpoint,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.TopicV2DataSetReference = schema.new({
+    id = id.from(_N, "TopicV2DataSetReference"),
+    type = "structure",
+    members = {
+        DataSetArn = schema.new({
+            id = id.from(_N, "TopicV2DataSetReference", "DataSetArn"),
+            type = "string",
+            name = "DataSetArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DataSetName = schema.new({
+            id = id.from(_N, "TopicV2DataSetReference", "DataSetName"),
+            type = "string",
+            name = "DataSetName",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.TopicV2Details = schema.new({
+    id = id.from(_N, "TopicV2Details"),
+    type = "structure",
+    members = {
+        Name = schema.new({
+            id = id.from(_N, "TopicV2Details", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "TopicV2Details", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        DataSets = schema.new({
+            id = id.from(_N, "TopicV2Details", "DataSets"),
+            type = "list",
+            name = "DataSets",
+            target_id = prelude.Document.id,
+            list_member = M.TopicV2DataSetReference,
+        }),
+        DataSetRelations = schema.new({
+            id = id.from(_N, "TopicV2Details", "DataSetRelations"),
+            type = "list",
+            name = "DataSetRelations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicV2DataSetRelation,
+        }),
+    },
+})
+
+M.CreateTopicV2Input = schema.new({
+    id = id.from(_N, "CreateTopicV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "CreateTopicV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "CreateTopicV2Input", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Topic = schema.new({
+            id = id.from(_N, "CreateTopicV2Input", "Topic"),
+            type = "structure",
+            name = "Topic",
+            target_id = id.from(_N, "TopicV2Details"),
+            target = M.TopicV2Details,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateTopicV2Input", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = M.Tag,
+        }),
+        FolderArns = schema.new({
+            id = id.from(_N, "CreateTopicV2Input", "FolderArns"),
+            type = "list",
+            name = "FolderArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        CustomInstructions = schema.new({
+            id = id.from(_N, "CreateTopicV2Input", "CustomInstructions"),
+            type = "structure",
+            name = "CustomInstructions",
+            target_id = id.from(_N, "CustomInstructions"),
+            target = M.CustomInstructions,
+        }),
+    },
+})
+
+M.CreateTopicV2Output = schema.new({
+    id = id.from(_N, "CreateTopicV2Response"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "CreateTopicV2Output", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "CreateTopicV2Output", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "CreateTopicV2Output", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateTopicV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.CreateVPCConnectionInput = schema.new({
     id = id.from(_N, "CreateVPCConnectionRequest"),
     type = "structure",
@@ -36878,6 +37702,13 @@ M.DashboardVersion = schema.new({
             id = id.from(_N, "DashboardVersion", "DataSetArns"),
             type = "list",
             name = "DataSetArns",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        TopicArns = schema.new({
+            id = id.from(_N, "DashboardVersion", "TopicArns"),
+            type = "list",
+            name = "TopicArns",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -39688,6 +40519,68 @@ M.DeleteTopicRefreshScheduleOutput = schema.new({
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DeleteTopicV2Input = schema.new({
+    id = id.from(_N, "DeleteTopicV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DeleteTopicV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "DeleteTopicV2Input", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteTopicV2Output = schema.new({
+    id = id.from(_N, "DeleteTopicV2Response"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DeleteTopicV2Output", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "DeleteTopicV2Output", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DeleteTopicV2Output", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DeleteTopicV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
         }),
     },
 })
@@ -44816,6 +45709,13 @@ M.TemplateVersion = schema.new({
             target_id = prelude.Document.id,
             list_member = M.DataSetConfiguration,
         }),
+        TopicConfigurations = schema.new({
+            id = id.from(_N, "TemplateVersion", "TopicConfigurations"),
+            type = "list",
+            name = "TopicConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.TopicConfiguration,
+        }),
         Description = schema.new({
             id = id.from(_N, "TemplateVersion", "Description"),
             type = "string",
@@ -45642,6 +46542,75 @@ M.DescribeTopicPermissionsOutput = schema.new({
     },
 })
 
+M.DescribeTopicPermissionsV2Input = schema.new({
+    id = id.from(_N, "DescribeTopicPermissionsV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeTopicPermissionsV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "DescribeTopicPermissionsV2Input", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeTopicPermissionsV2Output = schema.new({
+    id = id.from(_N, "DescribeTopicPermissionsV2Response"),
+    type = "structure",
+    members = {
+        TopicId = schema.new({
+            id = id.from(_N, "DescribeTopicPermissionsV2Output", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+        }),
+        TopicArn = schema.new({
+            id = id.from(_N, "DescribeTopicPermissionsV2Output", "TopicArn"),
+            type = "string",
+            name = "TopicArn",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "DescribeTopicPermissionsV2Output", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeTopicPermissionsV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeTopicPermissionsV2Output", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DescribeTopicRefreshInput = schema.new({
     id = id.from(_N, "DescribeTopicRefreshRequest"),
     type = "structure",
@@ -45812,6 +46781,82 @@ M.DescribeTopicRefreshScheduleOutput = schema.new({
         }),
         RequestId = schema.new({
             id = id.from(_N, "DescribeTopicRefreshScheduleOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DescribeTopicV2Input = schema.new({
+    id = id.from(_N, "DescribeTopicV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "DescribeTopicV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "DescribeTopicV2Input", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeTopicV2Output = schema.new({
+    id = id.from(_N, "DescribeTopicV2Response"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "DescribeTopicV2Output", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "DescribeTopicV2Output", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+        }),
+        Topic = schema.new({
+            id = id.from(_N, "DescribeTopicV2Output", "Topic"),
+            type = "structure",
+            name = "Topic",
+            target_id = id.from(_N, "TopicV2Details"),
+            target = M.TopicV2Details,
+        }),
+        CustomInstructions = schema.new({
+            id = id.from(_N, "DescribeTopicV2Output", "CustomInstructions"),
+            type = "structure",
+            name = "CustomInstructions",
+            target_id = id.from(_N, "CustomInstructions"),
+            target = M.CustomInstructions,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeTopicV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "DescribeTopicV2Output", "RequestId"),
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
@@ -51269,6 +52314,102 @@ M.ListTopicsOutput = schema.new({
     },
 })
 
+M.ListTopicsV2Input = schema.new({
+    id = id.from(_N, "ListTopicsV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "ListTopicsV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTopicsV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "next-token" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListTopicsV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "max-results" },
+            },
+        }),
+    },
+})
+
+M.TopicV2Summary = schema.new({
+    id = id.from(_N, "TopicV2Summary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "TopicV2Summary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "TopicV2Summary", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "TopicV2Summary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListTopicsV2Output = schema.new({
+    id = id.from(_N, "ListTopicsV2Response"),
+    type = "structure",
+    members = {
+        TopicSummaryList = schema.new({
+            id = id.from(_N, "ListTopicsV2Output", "TopicSummaryList"),
+            type = "list",
+            name = "TopicSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.TopicV2Summary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListTopicsV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "ListTopicsV2Output", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListTopicsV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+    },
+})
+
 M.ListUserGroupsInput = schema.new({
     id = id.from(_N, "ListUserGroupsRequest"),
     type = "structure",
@@ -53193,6 +54334,81 @@ M.SearchTopicsOutput = schema.new({
         }),
         RequestId = schema.new({
             id = id.from(_N, "SearchTopicsOutput", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchTopicsV2Input = schema.new({
+    id = id.from(_N, "SearchTopicsV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "SearchTopicsV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "SearchTopicsV2Input", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.TopicSearchFilter,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchTopicsV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchTopicsV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.SearchTopicsV2Output = schema.new({
+    id = id.from(_N, "SearchTopicsV2Response"),
+    type = "structure",
+    members = {
+        TopicSummaryList = schema.new({
+            id = id.from(_N, "SearchTopicsV2Output", "TopicSummaryList"),
+            type = "list",
+            name = "TopicSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.TopicV2Summary,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchTopicsV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "SearchTopicsV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "SearchTopicsV2Output", "RequestId"),
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
@@ -58309,6 +59525,89 @@ M.UpdateTopicPermissionsOutput = schema.new({
     },
 })
 
+M.UpdateTopicPermissionsV2Input = schema.new({
+    id = id.from(_N, "UpdateTopicPermissionsV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Input", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        GrantPermissions = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Input", "GrantPermissions"),
+            type = "list",
+            name = "GrantPermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        RevokePermissions = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Input", "RevokePermissions"),
+            type = "list",
+            name = "RevokePermissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+    },
+})
+
+M.UpdateTopicPermissionsV2Output = schema.new({
+    id = id.from(_N, "UpdateTopicPermissionsV2Response"),
+    type = "structure",
+    members = {
+        TopicId = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Output", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+        }),
+        TopicArn = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Output", "TopicArn"),
+            type = "string",
+            name = "TopicArn",
+            target_id = prelude.String.id,
+        }),
+        Permissions = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Output", "Permissions"),
+            type = "list",
+            name = "Permissions",
+            target_id = prelude.Document.id,
+            list_member = M.ResourcePermission,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateTopicPermissionsV2Output", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.UpdateTopicRefreshScheduleInput = schema.new({
     id = id.from(_N, "UpdateTopicRefreshScheduleRequest"),
     type = "structure",
@@ -58393,6 +59692,91 @@ M.UpdateTopicRefreshScheduleOutput = schema.new({
             type = "string",
             name = "RequestId",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateTopicV2Input = schema.new({
+    id = id.from(_N, "UpdateTopicV2Request"),
+    type = "structure",
+    members = {
+        AwsAccountId = schema.new({
+            id = id.from(_N, "UpdateTopicV2Input", "AwsAccountId"),
+            type = "string",
+            name = "AwsAccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "UpdateTopicV2Input", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Topic = schema.new({
+            id = id.from(_N, "UpdateTopicV2Input", "Topic"),
+            type = "structure",
+            name = "Topic",
+            target_id = id.from(_N, "TopicV2Details"),
+            target = M.TopicV2Details,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CustomInstructions = schema.new({
+            id = id.from(_N, "UpdateTopicV2Input", "CustomInstructions"),
+            type = "structure",
+            name = "CustomInstructions",
+            target_id = id.from(_N, "CustomInstructions"),
+            target = M.CustomInstructions,
+        }),
+        PublishOption = schema.new({
+            id = id.from(_N, "UpdateTopicV2Input", "PublishOption"),
+            type = "string",
+            name = "PublishOption",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateTopicV2Output = schema.new({
+    id = id.from(_N, "UpdateTopicV2Response"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "UpdateTopicV2Output", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+        }),
+        TopicId = schema.new({
+            id = id.from(_N, "UpdateTopicV2Output", "TopicId"),
+            type = "string",
+            name = "TopicId",
+            target_id = prelude.String.id,
+        }),
+        RequestId = schema.new({
+            id = id.from(_N, "UpdateTopicV2Output", "RequestId"),
+            type = "string",
+            name = "RequestId",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "UpdateTopicV2Output", "Status"),
+            type = "integer",
+            name = "Status",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+                [traits.HTTP_RESPONSE_CODE] = {},
+            },
         }),
     },
 })
@@ -59352,6 +60736,18 @@ M.CreateTopicRefreshSchedule = schema.operation({
     },
 })
 
+M.CreateTopicV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "CreateTopicV2"),
+    input = M.CreateTopicV2Input,
+    output = M.CreateTopicV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/topicsV2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateVPCConnection = schema.operation({
     id = id.from("com.amazonaws.quicksight", "CreateVPCConnection"),
     input = M.CreateVPCConnectionInput,
@@ -59766,6 +61162,18 @@ M.DeleteTopicRefreshSchedule = schema.operation({
     output = M.DeleteTopicRefreshScheduleOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteTopicV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DeleteTopicV2"),
+    input = M.DeleteTopicV2Input,
+    output = M.DeleteTopicV2Output,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/accounts/{AwsAccountId}/topicsV2/{TopicId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -60540,6 +61948,18 @@ M.DescribeTopicPermissions = schema.operation({
     },
 })
 
+M.DescribeTopicPermissionsV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTopicPermissionsV2"),
+    input = M.DescribeTopicPermissionsV2Input,
+    output = M.DescribeTopicPermissionsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topicsV2/{TopicId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DescribeTopicRefresh = schema.operation({
     id = id.from("com.amazonaws.quicksight", "DescribeTopicRefresh"),
     input = M.DescribeTopicRefreshInput,
@@ -60558,6 +61978,18 @@ M.DescribeTopicRefreshSchedule = schema.operation({
     output = M.DescribeTopicRefreshScheduleOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeTopicV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "DescribeTopicV2"),
+    input = M.DescribeTopicV2Input,
+    output = M.DescribeTopicV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topicsV2/{TopicId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -61152,6 +62584,18 @@ M.ListTopics = schema.operation({
     },
 })
 
+M.ListTopicsV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "ListTopicsV2"),
+    input = M.ListTopicsV2Input,
+    output = M.ListTopicsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/accounts/{AwsAccountId}/topicsV2" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListUserGroups = schema.operation({
     id = id.from("com.amazonaws.quicksight", "ListUserGroups"),
     input = M.ListUserGroupsInput,
@@ -61386,6 +62830,18 @@ M.SearchTopics = schema.operation({
     output = M.SearchTopicsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/topics" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchTopicsV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "SearchTopicsV2"),
+    input = M.SearchTopicsV2Input,
+    output = M.SearchTopicsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/accounts/{AwsAccountId}/search/topicsV2" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -62136,12 +63592,36 @@ M.UpdateTopicPermissions = schema.operation({
     },
 })
 
+M.UpdateTopicPermissionsV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTopicPermissionsV2"),
+    input = M.UpdateTopicPermissionsV2Input,
+    output = M.UpdateTopicPermissionsV2Output,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/topicsV2/{TopicId}/permissions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateTopicRefreshSchedule = schema.operation({
     id = id.from("com.amazonaws.quicksight", "UpdateTopicRefreshSchedule"),
     input = M.UpdateTopicRefreshScheduleInput,
     output = M.UpdateTopicRefreshScheduleOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/topics/{TopicId}/schedules/{DatasetId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateTopicV2 = schema.operation({
+    id = id.from("com.amazonaws.quicksight", "UpdateTopicV2"),
+    input = M.UpdateTopicV2Input,
+    output = M.UpdateTopicV2Output,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/accounts/{AwsAccountId}/topicsV2/{TopicId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

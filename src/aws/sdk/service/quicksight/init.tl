@@ -51,6 +51,7 @@ local record Client
     createThemeAlias: function(Client, types.CreateThemeAliasInput, ? base_client.InvokeOptions): async.Operation<types.CreateThemeAliasOutput>
     createTopic: function(Client, types.CreateTopicInput, ? base_client.InvokeOptions): async.Operation<types.CreateTopicOutput>
     createTopicRefreshSchedule: function(Client, types.CreateTopicRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.CreateTopicRefreshScheduleOutput>
+    createTopicV2: function(Client, types.CreateTopicV2Input, ? base_client.InvokeOptions): async.Operation<types.CreateTopicV2Output>
     createVPCConnection: function(Client, types.CreateVPCConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVPCConnectionOutput>
     deleteAccountCustomization: function(Client, types.DeleteAccountCustomizationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountCustomizationOutput>
     deleteAccountCustomPermission: function(Client, types.DeleteAccountCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteAccountCustomPermissionOutput>
@@ -86,6 +87,7 @@ local record Client
     deleteThemeAlias: function(Client, types.DeleteThemeAliasInput, ? base_client.InvokeOptions): async.Operation<types.DeleteThemeAliasOutput>
     deleteTopic: function(Client, types.DeleteTopicInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicOutput>
     deleteTopicRefreshSchedule: function(Client, types.DeleteTopicRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicRefreshScheduleOutput>
+    deleteTopicV2: function(Client, types.DeleteTopicV2Input, ? base_client.InvokeOptions): async.Operation<types.DeleteTopicV2Output>
     deleteUser: function(Client, types.DeleteUserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
     deleteUserByPrincipalId: function(Client, types.DeleteUserByPrincipalIdInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserByPrincipalIdOutput>
     deleteUserCustomPermission: function(Client, types.DeleteUserCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteUserCustomPermissionOutput>
@@ -150,8 +152,10 @@ local record Client
     describeThemePermissions: function(Client, types.DescribeThemePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeThemePermissionsOutput>
     describeTopic: function(Client, types.DescribeTopicInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicOutput>
     describeTopicPermissions: function(Client, types.DescribeTopicPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicPermissionsOutput>
+    describeTopicPermissionsV2: function(Client, types.DescribeTopicPermissionsV2Input, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicPermissionsV2Output>
     describeTopicRefresh: function(Client, types.DescribeTopicRefreshInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicRefreshOutput>
     describeTopicRefreshSchedule: function(Client, types.DescribeTopicRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicRefreshScheduleOutput>
+    describeTopicV2: function(Client, types.DescribeTopicV2Input, ? base_client.InvokeOptions): async.Operation<types.DescribeTopicV2Output>
     describeUser: function(Client, types.DescribeUserInput, ? base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
     describeVPCConnection: function(Client, types.DescribeVPCConnectionInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVPCConnectionOutput>
     generateEmbedUrlForAnonymousUser: function(Client, types.GenerateEmbedUrlForAnonymousUserInput, ? base_client.InvokeOptions): async.Operation<types.GenerateEmbedUrlForAnonymousUserOutput>
@@ -201,6 +205,7 @@ local record Client
     listTopicRefreshSchedules: function(Client, types.ListTopicRefreshSchedulesInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicRefreshSchedulesOutput>
     listTopicReviewedAnswers: function(Client, types.ListTopicReviewedAnswersInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicReviewedAnswersOutput>
     listTopics: function(Client, types.ListTopicsInput, ? base_client.InvokeOptions): async.Operation<types.ListTopicsOutput>
+    listTopicsV2: function(Client, types.ListTopicsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListTopicsV2Output>
     listUserGroups: function(Client, types.ListUserGroupsInput, ? base_client.InvokeOptions): async.Operation<types.ListUserGroupsOutput>
     listUsers: function(Client, types.ListUsersInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersOutput>
     listUsersIndexCapacity: function(Client, types.ListUsersIndexCapacityInput, ? base_client.InvokeOptions): async.Operation<types.ListUsersIndexCapacityOutput>
@@ -221,6 +226,7 @@ local record Client
     searchKnowledgeBases: function(Client, types.SearchKnowledgeBasesInput, ? base_client.InvokeOptions): async.Operation<types.SearchKnowledgeBasesOutput>
     searchSpaces: function(Client, types.SearchSpacesInput, ? base_client.InvokeOptions): async.Operation<types.SearchSpacesOutput>
     searchTopics: function(Client, types.SearchTopicsInput, ? base_client.InvokeOptions): async.Operation<types.SearchTopicsOutput>
+    searchTopicsV2: function(Client, types.SearchTopicsV2Input, ? base_client.InvokeOptions): async.Operation<types.SearchTopicsV2Output>
     startAssetBundleExportJob: function(Client, types.StartAssetBundleExportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAssetBundleExportJobOutput>
     startAssetBundleImportJob: function(Client, types.StartAssetBundleImportJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAssetBundleImportJobOutput>
     startAutomationJob: function(Client, types.StartAutomationJobInput, ? base_client.InvokeOptions): async.Operation<types.StartAutomationJobOutput>
@@ -283,7 +289,9 @@ local record Client
     updateThemePermissions: function(Client, types.UpdateThemePermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateThemePermissionsOutput>
     updateTopic: function(Client, types.UpdateTopicInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTopicOutput>
     updateTopicPermissions: function(Client, types.UpdateTopicPermissionsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTopicPermissionsOutput>
+    updateTopicPermissionsV2: function(Client, types.UpdateTopicPermissionsV2Input, ? base_client.InvokeOptions): async.Operation<types.UpdateTopicPermissionsV2Output>
     updateTopicRefreshSchedule: function(Client, types.UpdateTopicRefreshScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTopicRefreshScheduleOutput>
+    updateTopicV2: function(Client, types.UpdateTopicV2Input, ? base_client.InvokeOptions): async.Operation<types.UpdateTopicV2Output>
     updateUser: function(Client, types.UpdateUserInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>
     updateUserCustomPermission: function(Client, types.UpdateUserCustomPermissionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateUserCustomPermissionOutput>
     updateVPCConnection: function(Client, types.UpdateVPCConnectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateVPCConnectionOutput>
@@ -463,6 +471,10 @@ function C:createTopicRefreshSchedule(input: types.CreateTopicRefreshScheduleInp
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTopicRefreshSchedule as schema.OperationSchema, input, options) as async.Operation<types.CreateTopicRefreshScheduleOutput>
 end
 
+function C:createTopicV2(input: types.CreateTopicV2Input, options?: base_client.InvokeOptions): async.Operation<types.CreateTopicV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTopicV2 as schema.OperationSchema, input, options) as async.Operation<types.CreateTopicV2Output>
+end
+
 function C:createVPCConnection(input: types.CreateVPCConnectionInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVPCConnectionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVPCConnection as schema.OperationSchema, input, options) as async.Operation<types.CreateVPCConnectionOutput>
 end
@@ -601,6 +613,10 @@ end
 
 function C:deleteTopicRefreshSchedule(input: types.DeleteTopicRefreshScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTopicRefreshScheduleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTopicRefreshSchedule as schema.OperationSchema, input, options) as async.Operation<types.DeleteTopicRefreshScheduleOutput>
+end
+
+function C:deleteTopicV2(input: types.DeleteTopicV2Input, options?: base_client.InvokeOptions): async.Operation<types.DeleteTopicV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTopicV2 as schema.OperationSchema, input, options) as async.Operation<types.DeleteTopicV2Output>
 end
 
 function C:deleteUser(input: types.DeleteUserInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteUserOutput>
@@ -859,12 +875,20 @@ function C:describeTopicPermissions(input: types.DescribeTopicPermissionsInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopicPermissions as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicPermissionsOutput>
 end
 
+function C:describeTopicPermissionsV2(input: types.DescribeTopicPermissionsV2Input, options?: base_client.InvokeOptions): async.Operation<types.DescribeTopicPermissionsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopicPermissionsV2 as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicPermissionsV2Output>
+end
+
 function C:describeTopicRefresh(input: types.DescribeTopicRefreshInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTopicRefreshOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopicRefresh as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicRefreshOutput>
 end
 
 function C:describeTopicRefreshSchedule(input: types.DescribeTopicRefreshScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeTopicRefreshScheduleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopicRefreshSchedule as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicRefreshScheduleOutput>
+end
+
+function C:describeTopicV2(input: types.DescribeTopicV2Input, options?: base_client.InvokeOptions): async.Operation<types.DescribeTopicV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeTopicV2 as schema.OperationSchema, input, options) as async.Operation<types.DescribeTopicV2Output>
 end
 
 function C:describeUser(input: types.DescribeUserInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeUserOutput>
@@ -1063,6 +1087,10 @@ function C:listTopics(input: types.ListTopicsInput, options?: base_client.Invoke
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTopics as schema.OperationSchema, input, options) as async.Operation<types.ListTopicsOutput>
 end
 
+function C:listTopicsV2(input: types.ListTopicsV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListTopicsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTopicsV2 as schema.OperationSchema, input, options) as async.Operation<types.ListTopicsV2Output>
+end
+
 function C:listUserGroups(input: types.ListUserGroupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListUserGroupsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListUserGroups as schema.OperationSchema, input, options) as async.Operation<types.ListUserGroupsOutput>
 end
@@ -1141,6 +1169,10 @@ end
 
 function C:searchTopics(input: types.SearchTopicsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchTopicsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchTopics as schema.OperationSchema, input, options) as async.Operation<types.SearchTopicsOutput>
+end
+
+function C:searchTopicsV2(input: types.SearchTopicsV2Input, options?: base_client.InvokeOptions): async.Operation<types.SearchTopicsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchTopicsV2 as schema.OperationSchema, input, options) as async.Operation<types.SearchTopicsV2Output>
 end
 
 function C:startAssetBundleExportJob(input: types.StartAssetBundleExportJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartAssetBundleExportJobOutput>
@@ -1391,8 +1423,16 @@ function C:updateTopicPermissions(input: types.UpdateTopicPermissionsInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTopicPermissions as schema.OperationSchema, input, options) as async.Operation<types.UpdateTopicPermissionsOutput>
 end
 
+function C:updateTopicPermissionsV2(input: types.UpdateTopicPermissionsV2Input, options?: base_client.InvokeOptions): async.Operation<types.UpdateTopicPermissionsV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTopicPermissionsV2 as schema.OperationSchema, input, options) as async.Operation<types.UpdateTopicPermissionsV2Output>
+end
+
 function C:updateTopicRefreshSchedule(input: types.UpdateTopicRefreshScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateTopicRefreshScheduleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTopicRefreshSchedule as schema.OperationSchema, input, options) as async.Operation<types.UpdateTopicRefreshScheduleOutput>
+end
+
+function C:updateTopicV2(input: types.UpdateTopicV2Input, options?: base_client.InvokeOptions): async.Operation<types.UpdateTopicV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateTopicV2 as schema.OperationSchema, input, options) as async.Operation<types.UpdateTopicV2Output>
 end
 
 function C:updateUser(input: types.UpdateUserInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateUserOutput>

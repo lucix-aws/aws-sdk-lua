@@ -300,8 +300,11 @@ local record M
         Message: string
     end
 
-    -- Your client has exceeded one of the Amazon Transcribe limits. This is typically the audio length
-    -- limit. Break your audio stream into smaller chunks and try your request again.
+    -- Your client has exceeded one of the Amazon Transcribe limits, typically the concurrent stream
+    -- service quota. This error can also occur if a stream exceeds the maximum session duration. In rare
+    -- cases, this error can also occur if you increase your number of concurrent streams too quickly.
+    -- Reduce your number of concurrent streams and try your request again using an exponential backoff
+    -- strategy.
     record LimitExceededException
         Message: string
     end
@@ -719,6 +722,9 @@ local record M
         "pcm"
         "ogg-opus"
         "flac"
+        "g711-alaw"
+        "g711-ulaw"
+        "g729"
     end
 
     -- Contains entities identified as personal health information (PHI) in your
@@ -1392,6 +1398,11 @@ local record M
         ContentIdentificationType: string
     end
 
+    enum TranscriptFormat
+        "spoken"
+        "written"
+    end
+
     record StartStreamTranscriptionInput
         -- Specify the language code that represents the language spoken in your audio.
         -- If you're unsure of the language spoken in your audio, consider using
@@ -1580,6 +1591,15 @@ local record M
         -- For example, if your stream starts at 1 PM and you specify a SessionResumeWindow of 30 minutes,
         -- you can reconnect to the session as many times as you want until 1:30 PM.
         SessionResumeWindow: number
+        -- Specify how numbers, dates, and other alphanumeric entities are rendered in your
+        -- transcription results.
+        -- WRITTEN renders these entities in their standard written form
+        -- (for example, $50, 10:30 AM, and 101).
+        -- SPOKEN renders these entities as words, exactly as they were
+        -- spoken (for example, fifty dollars, ten thirty a m, and
+        -- one oh one).
+        -- If you don't specify a value, Amazon Transcribe uses WRITTEN by default.
+        TranscriptFormat: string
     end
 
     -- The Transcript associated with a
@@ -1617,8 +1637,11 @@ local record M
         -- A client error occurred when the stream was created. Check the parameters of the request
         -- and try your request again.
         BadRequestException: BadRequestException
-        -- Your client has exceeded one of the Amazon Transcribe limits. This is typically the audio length
-        -- limit. Break your audio stream into smaller chunks and try your request again.
+        -- Your client has exceeded one of the Amazon Transcribe limits, typically the concurrent stream
+        -- service quota. This error can also occur if a stream exceeds the maximum session duration. In rare
+        -- cases, this error can also occur if you increase your number of concurrent streams too quickly.
+        -- Reduce your number of concurrent streams and try your request again using an exponential backoff
+        -- strategy.
         LimitExceededException: LimitExceededException
         -- A problem occurred while processing the audio. Amazon Transcribe terminated
         -- processing.
@@ -1684,6 +1707,8 @@ local record M
         VocabularyFilterNames: string
         -- Provides the session resume window, in minutes, that you specified in your request.
         SessionResumeWindow: number
+        -- Provides the transcript format that you specified in your request.
+        TranscriptFormat: string
     end
 
 end
