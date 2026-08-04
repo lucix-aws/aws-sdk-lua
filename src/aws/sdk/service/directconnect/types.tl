@@ -847,6 +847,20 @@ local record M
         virtualInterface: VirtualInterface
     end
 
+    enum AsPathType
+        "seq"
+        "set"
+    end
+
+    -- A segment of an autonomous system (AS) path.
+    record AsPathSegment
+        -- The type of the AS path segment.
+        -- The valid values are seq (an ordered AS_SEQUENCE) and set (an unordered AS_SET).
+        pathType: string
+        -- The autonomous system (AS) numbers in the segment.
+        path: {number}
+    end
+
     record AssociateConnectionWithLagInput
         -- The ID of the connection.
         connectionId: string
@@ -2846,6 +2860,71 @@ local record M
         connectionId: string
         -- The MAC Security (MACsec) security keys no longer associated with the connection.
         macSecKeys: {MacSecKey}
+    end
+
+    enum RouteDirection
+        "accepted"
+        "advertised"
+    end
+
+    -- The filters used to limit the routes returned by ListVirtualInterfaceRoutes.
+    record RouteFilters
+        -- The direction of the routes to return.
+        -- The valid values are accepted (routes received from the customer network) and advertised (routes advertised to the customer network).
+        routeDirection: string
+        -- The address family of the routes to return.
+        -- The valid values are ipv4 and ipv6.
+        addressFamily: string
+        -- The CIDRs (prefixes) used to filter the routes. You can specify up to 10 CIDRs.
+        cidrs: {string}
+        -- The autonomous system (AS) numbers used to filter the routes by their AS path.
+        asPath: {number}
+        -- The BGP communities used to filter the routes.
+        communities: {string}
+    end
+
+    record ListVirtualInterfaceRoutesInput
+        -- The ID of the virtual interface.
+        virtualInterfaceId: string
+        -- The filters to apply to the routes returned.
+        filters: RouteFilters
+        -- The maximum number of results to return with a single call.
+        -- To retrieve the remaining results, make another call with the returned nextToken value.
+        -- If MaxResults is given a value larger than 100, only 100 results are
+        -- returned.
+        maxResults: number
+        -- The token for the next page of results.
+        nextToken: string
+    end
+
+    -- Information about a route for a virtual interface.
+    record Route
+        -- The CIDR (prefix) of the route.
+        cidr: string
+        -- The direction of the route.
+        -- The valid values are accepted (received from the customer network) and advertised (advertised to the customer network).
+        routeDirection: string
+        -- The address family of the route.
+        -- The valid values are ipv4 and ipv6.
+        addressFamily: string
+        -- The autonomous system (AS) path of the route.
+        asPath: {AsPathSegment}
+        -- The BGP communities associated with the route.
+        communities: {string}
+        -- The Direct Connect endpoint that terminates the logical connection. This device might be
+        -- different than the device that terminates the physical connection.
+        awsLogicalDeviceId: string
+        -- The time when the route was installed. The value is displayed in UTC format.
+        routeInstalledAt: number
+    end
+
+    record ListVirtualInterfaceRoutesOutput
+        -- The ID of the virtual interface.
+        virtualInterfaceId: string
+        -- The routes for the virtual interface.
+        routes: {Route}
+        -- The token to use to retrieve the next page of results. This value is null when there are no more results to return.
+        nextToken: string
     end
 
     record ListVirtualInterfaceTestHistoryInput

@@ -73,6 +73,24 @@ M.AssumeRoleForPodIdentityInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        eksNodeName = schema.new({
+            id = id.from(_N, "AssumeRoleForPodIdentityInput", "eksNodeName"),
+            type = "string",
+            name = "eksNodeName",
+            target_id = prelude.String.id,
+        }),
+        instanceId = schema.new({
+            id = id.from(_N, "AssumeRoleForPodIdentityInput", "instanceId"),
+            type = "string",
+            name = "instanceId",
+            target_id = prelude.String.id,
+        }),
+        zone = schema.new({
+            id = id.from(_N, "AssumeRoleForPodIdentityInput", "zone"),
+            type = "string",
+            name = "zone",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

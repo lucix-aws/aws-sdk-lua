@@ -2699,6 +2699,7 @@ local record M
         "INTELLIGENT_TIERING"
         "GLACIER"
         "DEEP_ARCHIVE"
+        "GLACIER_IR"
     end
 
     -- Settings associated with S3 destination
@@ -3856,6 +3857,8 @@ local record M
 
     -- These settings relate to your QuickTime MOV output container.
     record MovSettings
+        -- Specify this setting only when your output will be consumed by a downstream repackaging workflow that is sensitive to very small duration differences between video and audio. For this situation, choose Match video duration. In all other cases, keep the default value, Default codec duration. When you choose Match video duration, MediaConvert pads the output audio streams with silence or trims them to ensure that the total duration of each audio stream is at least as long as the total duration of the video stream. After padding or trimming, the audio stream duration is no more than one frame longer than the video stream. MediaConvert applies audio padding or trimming only to the end of the last segment of the output. For unsegmented outputs, MediaConvert adds padding only to the end of the file. When you keep the default value, any minor discrepancies between audio and video duration will depend on your output audio codec.
+        AudioDuration: string
         -- When enabled, include 'clap' atom if appropriate for the video output settings.
         ClapAtom: string
         -- When enabled, file composition times will start at zero, composition times in the 'ctts' (composition time to sample) box for B-frames will be negative, and a 'cslg' (composition shift least greatest) box will be included per 14496-1 amendment 1. This improves compatibility with Apple players and tools.
@@ -6591,6 +6594,8 @@ local record M
         ColorPrimaries: string
         -- Content light level information (CTA-861.3). Describes the light level characteristics of the content.
         ContentLightLevel: ContentLightLevel
+        -- The field order of interlaced video, which indicates whether the top or bottom field is displayed first. Use this to select the correct deinterlacing behavior. One of "TopFieldFirst" or "BottomFieldFirst". This field is present only for interlaced video; it is omitted for progressive video and when the field order is not indicated by the source.
+        FieldOrder: string
         -- The height in pixels as coded by the codec. This represents the actual encoded video height as specified in the video stream headers.
         Height: number
         -- The codec level or tier that specifies the maximum processing requirements and capabilities. Levels define constraints such as maximum bit rate, frame rate, and resolution.
@@ -6687,6 +6692,8 @@ local record M
 
     -- The container of your media file. This information helps you understand the overall structure and details of your media, including format, duration, and track layout.
     record Container
+        -- The overall bit rate of your media file, in bits per second. This is derived from the file size and duration as (file size in bytes * 8) / duration in seconds.
+        BitRate: number
         -- The total duration of your media file, in seconds.
         Duration: number
         -- The format of your media file. For example: MP4, QuickTime (MOV), Matroska (MKV), WebM, MXF, Wave, AVI, MPEG-TS, MPEG-PS, or MP3. Note that this will be blank if your media file has a format that the MediaConvert Probe operation does not recognize.

@@ -331,6 +331,8 @@ local record M
         -- A FAILED status indicates a non-recoverable state, and a ERROR status indicates an issue that you can fix.
         -- Depending on the error, it can take as many as 15 minutes to populate this field. For more information about the causes for failiure or errors and solutions available for this field, see Troubleshooting firewall endpoint failures in the Network Firewall Developer Guide.
         StatusMessage: string
+        -- The DNS name that resolves to the firewall endpoint in the subnet. This is populated for proxy mode firewalls, where clients direct traffic to the firewall's proxy using this name.
+        DnsName: string
     end
 
     -- The status of the firewall endpoint defined by a VpcEndpointAssociation.
@@ -602,6 +604,40 @@ local record M
         Type: string
     end
 
+    -- A NAT gateway that a proxy mode firewall uses to proxy traffic. This is used in CreateFirewall when NoSourcePreservation is TRUE.
+    record NatGatewayMapping
+        -- A unique identifier for the NAT gateway to use with proxy resources.
+        NatGatewayId: string
+    end
+
+    enum ListenerPropertyType
+        "HTTP"
+        "HTTPS"
+    end
+
+    -- Open port for taking HTTP or HTTPS traffic.
+    record ListenerProperty
+        -- Port for processing traffic.
+        Port: number
+        -- Selection of HTTP or HTTPS traffic.
+        Type: string
+    end
+
+    -- The listener configuration for a proxy mode firewall. This specifies the ports and protocols on which the firewall's proxy listens for traffic.
+    record ProxySettings
+        -- Listener properties for HTTP and HTTPS traffic.
+        ListenerProperties: {ListenerProperty}
+    end
+
+    -- The VPC and subnets for a proxy mode firewall endpoint. This is used in CreateFirewall when NoSourcePreservation is TRUE, to specify where Network Firewall creates the firewall endpoint.
+    -- This differs from VpcEndpointAssociation, which defines additional secondary endpoints for a firewall in other VPCs.
+    record VpcEndpoint
+        -- The unique identifier of the VPC where Network Firewall creates the proxy mode firewall endpoint.
+        VpcId: string
+        -- The subnets in which Network Firewall creates the firewall endpoint for a proxy mode firewall. Each subnet must belong to a different Availability Zone in the VPC.
+        SubnetMappings: {SubnetMapping}
+    end
+
     record CreateFirewallInput
         -- The descriptive name of the firewall. You can't change the name of a firewall after you create it.
         FirewallName: string
@@ -645,6 +681,18 @@ local record M
         -- Optional. A setting indicating whether the firewall is protected against changes to its Availability Zone configuration. When set to TRUE, you cannot add or remove Availability Zones without first disabling this protection using UpdateAvailabilityZoneChangeProtection.
         -- Default value: FALSE
         AvailabilityZoneChangeProtection: boolean
+        -- The NAT gateways that the firewall uses to proxy traffic when NoSourcePreservation is TRUE. Network Firewall attaches the firewall to each NAT gateway that you specify, so that egress traffic is proxied through the NAT gateway.
+        NatGatewayMappings: {NatGatewayMapping}
+        -- The listener configuration for a proxy mode firewall, used when NoSourcePreservation is TRUE. This specifies the ports and protocols on which the firewall's proxy listens for traffic.
+        ProxySettings: ProxySettings
+        -- Optional. Indicates whether the firewall operates in proxy mode, in which the source IP address of the traffic is not preserved. When set to TRUE, the firewall proxies traffic through a NAT gateway and the traffic reaching the destination uses the NAT gateway's IP address as the source.
+        -- When you set this to TRUE, you must specify NatGatewayMappings and VpcEndpoint instead of a top-level VpcId and SubnetMappings.
+        -- You can't change this setting after you create the firewall.
+        -- Default value: FALSE
+        NoSourcePreservation: boolean
+        -- The VPC and subnets for the firewall endpoint, used when NoSourcePreservation is TRUE. Network Firewall creates the firewall endpoint in the subnets that you specify here.
+        -- For proxy mode firewalls, provide the firewall's VPC and endpoint subnets through this parameter instead of the top-level VpcId and SubnetMappings.
+        VpcEndpoint: VpcEndpoint
     end
 
     -- A firewall defines the behavior of a firewall, the main VPC where the firewall is used, the Availability Zones where the firewall can be used, and one subnet to use for a firewall endpoint within each of the Availability Zones. The Availability Zones are defined implicitly in the subnet specifications.
@@ -699,6 +747,14 @@ local record M
         AvailabilityZoneMappings: {AvailabilityZoneMapping}
         -- A setting indicating whether the firewall is protected against changes to its Availability Zone configuration. When set to TRUE, you must first disable this protection before adding or removing Availability Zones.
         AvailabilityZoneChangeProtection: boolean
+        -- The NAT gateways that the firewall uses to proxy traffic. This is set for proxy mode firewalls, where NoSourcePreservation is TRUE.
+        NatGatewayMappings: {NatGatewayMapping}
+        -- The listener configuration for the firewall's proxy. This is set for proxy mode firewalls, where NoSourcePreservation is TRUE.
+        ProxySettings: ProxySettings
+        -- Indicates whether the firewall operates in proxy mode, in which the source IP address of the traffic is not preserved. When this value is TRUE, the firewall proxies traffic through a NAT gateway and uses the NAT gateway's IP address as the source for traffic reaching the destination.
+        NoSourcePreservation: boolean
+        -- The VPC and subnets for the firewall endpoint. This is set for proxy mode firewalls, where NoSourcePreservation is TRUE.
+        VpcEndpoint: VpcEndpoint
     end
 
     enum FirewallStatusValue
@@ -726,6 +782,27 @@ local record M
         UpdateToken: string
     end
 
+    enum NatGatewayAttachmentStatus
+        "CREATING"
+        "READY"
+        "UPDATING"
+        "FAILED"
+        "DELETING"
+    end
+
+    -- The definition and status of the attachment between a proxy mode firewall and a NAT gateway that proxies its traffic.
+    record NatGatewayAttachment
+        -- A unique identifier for the NAT gateway to use with proxy resources.
+        NatGatewayId: string
+        -- The current status of the NAT gateway attachment.
+        -- When this value is READY, the attachment is available to proxy traffic. Otherwise, this value reflects its state, for example CREATING or DELETING.
+        Status: string
+        -- If Network Firewall encounters an issue with the NAT gateway attachment, it populates this with an explanation of the problem.
+        StatusMessage: string
+        -- The DNS name that resolves to the firewall's proxy for traffic sent through this NAT gateway attachment.
+        DnsName: string
+    end
+
     -- The status of the firewall endpoint and firewall policy configuration for a single VPC subnet.
     -- This is part of the FirewallStatus.
     -- For each VPC subnet that you associate with a firewall, Network Firewall does the
@@ -746,6 +823,8 @@ local record M
         -- you add a subnet or modify the associated firewall policy, Network Firewall synchronizes the
         -- rules in the endpoint, so it can properly filter network traffic.
         Config: {string : PerObjectStatus}
+        -- The status of the NAT gateway attachments for a proxy mode firewall in the Availability Zone. This reflects the attachment of the firewall to each NAT gateway that proxies its traffic.
+        NatGatewayAttachments: {NatGatewayAttachment}
     end
 
     -- Contains information about the synchronization state of a transit gateway attachment, including its current status and any error messages. Network Firewall uses this to track the state of your transit gateway configuration changes.
@@ -1069,11 +1148,6 @@ local record M
         FirewallPolicyResponse: FirewallPolicyResponse
     end
 
-    enum ListenerPropertyType
-        "HTTP"
-        "HTTPS"
-    end
-
     -- This data type is used specifically for the CreateProxy and
     -- UpdateProxy APIs.
     -- Open port for taking HTTP or HTTPS traffic.
@@ -1116,14 +1190,6 @@ local record M
         TlsInterceptProperties: TlsInterceptPropertiesRequest
         -- The key:value pairs to associate with the resource.
         Tags: {Tag}
-    end
-
-    -- Open port for taking HTTP or HTTPS traffic.
-    record ListenerProperty
-        -- Port for processing traffic.
-        Port: number
-        -- Selection of HTTP or HTTPS traffic.
-        Type: string
     end
 
     enum ProxyModifyState
@@ -3921,6 +3987,34 @@ local record M
         -- A token used for optimistic locking. Network Firewall returns a token to your requests that access the proxy rule group. The token marks the state of the proxy rule group resource at the time of the request.
         -- To make changes to the proxy rule group, you provide the token in your request. Network Firewall uses the token to ensure that the proxy rule group hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the proxy rule group again to get a current copy of it with a current token. Reapply your changes as needed, then try the operation again using the new token.
         UpdateToken: string
+    end
+
+    record UpdateProxySettingsInput
+        -- The Amazon Resource Name (ARN) of the firewall.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallArn: string
+        -- The descriptive name of the firewall. You can't change the name of a firewall after you create it.
+        -- You must specify the ARN or the name, and you can specify both.
+        FirewallName: string
+        -- An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request.
+        -- To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.
+        -- To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token.
+        UpdateToken: string
+        -- The proxy listener configuration to set on the firewall. This specifies the ports and protocols on which the firewall's proxy listens for traffic.
+        ProxySettings: ProxySettings
+    end
+
+    record UpdateProxySettingsOutput
+        -- The Amazon Resource Name (ARN) of the firewall.
+        FirewallArn: string
+        -- The descriptive name of the firewall. You can't change the name of a firewall after you create it.
+        FirewallName: string
+        -- An optional token that you can use for optimistic locking. Network Firewall returns a token to your requests that access the firewall. The token marks the state of the firewall resource at the time of the request.
+        -- To make an unconditional change to the firewall, omit the token in your update request. Without the token, Network Firewall performs your updates regardless of whether the firewall has changed since you last retrieved it.
+        -- To make a conditional change to the firewall, provide the token in your update request. Network Firewall uses the token to ensure that the firewall hasn't changed since you last retrieved it. If it has changed, the operation fails with an InvalidTokenException. If this happens, retrieve the firewall again to get a current copy of it with a new token. Reapply your changes as needed, then try the operation again using the new token.
+        UpdateToken: string
+        -- The updated proxy listener configuration on the firewall.
+        ProxySettings: ProxySettings
     end
 
     record UpdateRuleGroupInput

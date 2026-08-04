@@ -75,12 +75,17 @@ local record M
         "SKIP"
     end
 
+    enum EncryptionScope
+        "ENCRYPTED_SOURCE_ONLY"
+        "NEW_DESTINATION_LOG_GROUPS"
+    end
+
     enum EncryptionStrategy
         "CUSTOMER_MANAGED"
         "AWS_OWNED"
     end
 
-    -- Configuration for encrypting centralized log groups. This configuration is only applied to destination log groups for which the corresponding source log groups are encrypted using Customer Managed KMS Keys.
+    -- Configuration for encrypting centralized destination log groups. By default, this configuration applies only to destination log groups whose corresponding source log groups are encrypted using customer managed KMS keys. To encrypt all destination log groups created by the rule, set EncryptionScope to NEW_DESTINATION_LOG_GROUPS.
     record LogsEncryptionConfiguration
         -- Configuration that determines the encryption strategy of the destination log groups. CUSTOMER_MANAGED uses the configured KmsKeyArn to encrypt newly created destination log groups.
         EncryptionStrategy: string
@@ -88,6 +93,8 @@ local record M
         KmsKeyArn: string
         -- Conflict resolution strategy for centralization if the encryption strategy is set to CUSTOMER_MANAGED and the destination log group is encrypted with an AWS_OWNED KMS Key. ALLOW lets centralization go through while SKIP prevents centralization into the destination log group.
         EncryptionConflictResolutionStrategy: string
+        -- Determines which newly created destination log groups are encrypted with the configured KmsKeyArn when EncryptionStrategy is CUSTOMER_MANAGED. If you set this to ENCRYPTED_SOURCE_ONLY (the default), only destination log groups whose source log group is encrypted with a customer managed KMS key use the configured KmsKeyArn. Destination log groups derived from Amazon Web Services owned encrypted source log groups remain Amazon Web Services owned encrypted. If you set this to NEW_DESTINATION_LOG_GROUPS, every new destination log group created by this rule uses the configured KmsKeyArn, regardless of the source log group's encryption posture. This field is not valid when EncryptionStrategy is AWS_OWNED.
+        EncryptionScope: string
     end
 
     -- Configuration for centralization destination log groups, including encryption and backup settings.
@@ -388,9 +395,9 @@ local record M
         "ALB_HEALTH_CHECK_LOGS"
     end
 
-    -- Configuration parameters for Amazon Bedrock AgentCore logging, including logType settings.
+    -- The configuration parameters for log delivery, including logType settings. Applies to resource types that support configurable log delivery, such as Amazon Bedrock Knowledge Bases and Elastic Load Balancing Application Load Balancers.
     record LogDeliveryParameters
-        -- The type of log that the source is sending.
+        -- The types of logs to collect from the resource.
         LogTypes: {string}
     end
 
@@ -493,10 +500,12 @@ local record M
         ELBLoadBalancerLoggingParameters: ELBLoadBalancerLoggingParameters
         -- Configuration parameters specific to WAF logging when WAF is the resource type.
         WAFLoggingParameters: WAFLoggingParameters
-        -- Configuration parameters specific to Amazon Bedrock AgentCore logging when Amazon Bedrock AgentCore is the resource type.
+        -- The configuration parameters for log delivery when the resource type supports configurable log types, such as Amazon Bedrock Knowledge Bases or Elastic Load Balancing Application Load Balancers.
         LogDeliveryParameters: LogDeliveryParameters
         -- Configuration parameters specific to MSK monitoring when MSK is the resource type.
         MskMonitoringParameters: MskMonitoringParameters
+        -- The Amazon Resource Name (ARN) of the customer-managed Amazon Web Services KMS key used to encrypt the log groups created during telemetry rule remediation.
+        KmsKeyArn: string
     end
 
     enum ResourceType
@@ -541,7 +550,7 @@ local record M
 
     -- Defines how telemetry should be configured for specific Amazon Web Services resources.
     record TelemetryRule
-        -- The type of Amazon Web Services resource to configure telemetry for (e.g., "AWS::EC2::VPC", "AWS::EKS::Cluster", "AWS::WAFv2::WebACL").
+        -- The type of Amazon Web Services resource to configure telemetry for (for example, AWS::EC2::VPC, AWS::EKS::Cluster, AWS::ElasticLoadBalancingV2::LoadBalancer, or AWS::Bedrock::KnowledgeBase).
         ResourceType: string
         -- The type of telemetry to collect (Logs, Metrics, or Traces).
         TelemetryType: string

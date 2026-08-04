@@ -99,6 +99,7 @@ local record Client
     updateProxyRule: function(Client, types.UpdateProxyRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyRuleOutput>
     updateProxyRuleGroupPriorities: function(Client, types.UpdateProxyRuleGroupPrioritiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyRuleGroupPrioritiesOutput>
     updateProxyRulePriorities: function(Client, types.UpdateProxyRulePrioritiesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxyRulePrioritiesOutput>
+    updateProxySettings: function(Client, types.UpdateProxySettingsInput, ? base_client.InvokeOptions): async.Operation<types.UpdateProxySettingsOutput>
     updateRuleGroup: function(Client, types.UpdateRuleGroupInput, ? base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>
     updateSubnetChangeProtection: function(Client, types.UpdateSubnetChangeProtectionInput, ? base_client.InvokeOptions): async.Operation<types.UpdateSubnetChangeProtectionOutput>
     updateTLSInspectionConfiguration: function(Client, types.UpdateTLSInspectionConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateTLSInspectionConfigurationOutput>
@@ -468,6 +469,10 @@ end
 
 function C:updateProxyRulePriorities(input: types.UpdateProxyRulePrioritiesInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProxyRulePrioritiesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProxyRulePriorities as schema.OperationSchema, input, options) as async.Operation<types.UpdateProxyRulePrioritiesOutput>
+end
+
+function C:updateProxySettings(input: types.UpdateProxySettingsInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateProxySettingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateProxySettings as schema.OperationSchema, input, options) as async.Operation<types.UpdateProxySettingsOutput>
 end
 
 function C:updateRuleGroup(input: types.UpdateRuleGroupInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateRuleGroupOutput>

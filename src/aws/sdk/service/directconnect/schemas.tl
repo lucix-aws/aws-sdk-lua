@@ -43,17 +43,27 @@ M.VirtualGatewayList = schema.new({ type = "list", list_member = M.VirtualGatewa
 
 M.VirtualInterfaceList = schema.new({ type = "list", list_member = M.VirtualInterface })
 
+M.RouteList = schema.new({ type = "list", list_member = M.Route })
+
 M.BGPPeerIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.VirtualInterfaceTestHistoryList = schema.new({ type = "list", list_member = M.VirtualInterfaceTestHistory })
 
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
+M.RouteFilterCidrStringList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AsPathList = schema.new({ type = "list", list_member = prelude.Long })
+
+M.CommunityList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AvailablePortSpeeds = schema.new({ type = "list", list_member = prelude.String })
 
 M.ProviderList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AvailableMacSecPortSpeeds = schema.new({ type = "list", list_member = prelude.String })
+
+M.AsPathSegmentList = schema.new({ type = "list", list_member = M.AsPathSegment })
 
 M.RouteFilterPrefix = schema.new({
     id = id.from(_N, "RouteFilterPrefix"),
@@ -1866,6 +1876,26 @@ M.AllocateTransitVirtualInterfaceOutput = schema.new({
             name = "virtualInterface",
             target_id = id.from(_N, "VirtualInterface"),
             target = M.VirtualInterface,
+        }),
+    },
+})
+
+M.AsPathSegment = schema.new({
+    id = id.from(_N, "AsPathSegment"),
+    type = "structure",
+    members = {
+        pathType = schema.new({
+            id = id.from(_N, "AsPathSegment", "pathType"),
+            type = "string",
+            name = "pathType",
+            target_id = prelude.String.id,
+        }),
+        path = schema.new({
+            id = id.from(_N, "AsPathSegment", "path"),
+            type = "list",
+            name = "path",
+            target_id = prelude.Document.id,
+            list_member = prelude.Long,
         }),
     },
 })
@@ -6524,6 +6554,155 @@ M.DisassociateMacSecKeyOutput = schema.new({
     },
 })
 
+M.RouteFilters = schema.new({
+    id = id.from(_N, "RouteFilters"),
+    type = "structure",
+    members = {
+        routeDirection = schema.new({
+            id = id.from(_N, "RouteFilters", "routeDirection"),
+            type = "string",
+            name = "routeDirection",
+            target_id = prelude.String.id,
+        }),
+        addressFamily = schema.new({
+            id = id.from(_N, "RouteFilters", "addressFamily"),
+            type = "string",
+            name = "addressFamily",
+            target_id = prelude.String.id,
+        }),
+        cidrs = schema.new({
+            id = id.from(_N, "RouteFilters", "cidrs"),
+            type = "list",
+            name = "cidrs",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        asPath = schema.new({
+            id = id.from(_N, "RouteFilters", "asPath"),
+            type = "list",
+            name = "asPath",
+            target_id = prelude.Document.id,
+            list_member = prelude.Long,
+        }),
+        communities = schema.new({
+            id = id.from(_N, "RouteFilters", "communities"),
+            type = "list",
+            name = "communities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.ListVirtualInterfaceRoutesInput = schema.new({
+    id = id.from(_N, "ListVirtualInterfaceRoutesRequest"),
+    type = "structure",
+    members = {
+        virtualInterfaceId = schema.new({
+            id = id.from(_N, "ListVirtualInterfaceRoutesInput", "virtualInterfaceId"),
+            type = "string",
+            name = "virtualInterfaceId",
+            target_id = prelude.String.id,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "ListVirtualInterfaceRoutesInput", "filters"),
+            type = "structure",
+            name = "filters",
+            target_id = id.from(_N, "RouteFilters"),
+            target = M.RouteFilters,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListVirtualInterfaceRoutesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListVirtualInterfaceRoutesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.Route = schema.new({
+    id = id.from(_N, "Route"),
+    type = "structure",
+    members = {
+        cidr = schema.new({
+            id = id.from(_N, "Route", "cidr"),
+            type = "string",
+            name = "cidr",
+            target_id = prelude.String.id,
+        }),
+        routeDirection = schema.new({
+            id = id.from(_N, "Route", "routeDirection"),
+            type = "string",
+            name = "routeDirection",
+            target_id = prelude.String.id,
+        }),
+        addressFamily = schema.new({
+            id = id.from(_N, "Route", "addressFamily"),
+            type = "string",
+            name = "addressFamily",
+            target_id = prelude.String.id,
+        }),
+        asPath = schema.new({
+            id = id.from(_N, "Route", "asPath"),
+            type = "list",
+            name = "asPath",
+            target_id = prelude.Document.id,
+            list_member = M.AsPathSegment,
+        }),
+        communities = schema.new({
+            id = id.from(_N, "Route", "communities"),
+            type = "list",
+            name = "communities",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        awsLogicalDeviceId = schema.new({
+            id = id.from(_N, "Route", "awsLogicalDeviceId"),
+            type = "string",
+            name = "awsLogicalDeviceId",
+            target_id = prelude.String.id,
+        }),
+        routeInstalledAt = schema.new({
+            id = id.from(_N, "Route", "routeInstalledAt"),
+            type = "timestamp",
+            name = "routeInstalledAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListVirtualInterfaceRoutesOutput = schema.new({
+    id = id.from(_N, "ListVirtualInterfaceRoutesResponse"),
+    type = "structure",
+    members = {
+        virtualInterfaceId = schema.new({
+            id = id.from(_N, "ListVirtualInterfaceRoutesOutput", "virtualInterfaceId"),
+            type = "string",
+            name = "virtualInterfaceId",
+            target_id = prelude.String.id,
+        }),
+        routes = schema.new({
+            id = id.from(_N, "ListVirtualInterfaceRoutesOutput", "routes"),
+            type = "list",
+            name = "routes",
+            target_id = prelude.Document.id,
+            list_member = M.Route,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListVirtualInterfaceRoutesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListVirtualInterfaceTestHistoryInput = schema.new({
     id = id.from(_N, "ListVirtualInterfaceTestHistoryRequest"),
     type = "structure",
@@ -8058,6 +8237,17 @@ M.DisassociateMacSecKey = schema.operation({
     id = id.from("com.amazonaws.directconnect", "DisassociateMacSecKey"),
     input = M.DisassociateMacSecKeyInput,
     output = M.DisassociateMacSecKeyOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListVirtualInterfaceRoutes = schema.operation({
+    id = id.from("com.amazonaws.directconnect", "ListVirtualInterfaceRoutes"),
+    input = M.ListVirtualInterfaceRoutesInput,
+    output = M.ListVirtualInterfaceRoutesOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

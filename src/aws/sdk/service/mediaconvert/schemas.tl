@@ -8464,6 +8464,15 @@ M.MovSettings = schema.new({
     id = id.from(_N, "MovSettings"),
     type = "structure",
     members = {
+        AudioDuration = schema.new({
+            id = id.from(_N, "MovSettings", "AudioDuration"),
+            type = "string",
+            name = "AudioDuration",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "audioDuration" },
+            },
+        }),
         ClapAtom = schema.new({
             id = id.from(_N, "MovSettings", "ClapAtom"),
             type = "string",
@@ -14025,6 +14034,15 @@ M.CodecMetadata = schema.new({
                 [traits.JSON_NAME] = { name = "contentLightLevel" },
             },
         }),
+        FieldOrder = schema.new({
+            id = id.from(_N, "CodecMetadata", "FieldOrder"),
+            type = "string",
+            name = "FieldOrder",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "fieldOrder" },
+            },
+        }),
         Height = schema.new({
             id = id.from(_N, "CodecMetadata", "Height"),
             type = "integer",
@@ -14410,6 +14428,15 @@ M.Container = schema.new({
     id = id.from(_N, "Container"),
     type = "structure",
     members = {
+        BitRate = schema.new({
+            id = id.from(_N, "Container", "BitRate"),
+            type = "long",
+            name = "BitRate",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.JSON_NAME] = { name = "bitRate" },
+            },
+        }),
         Duration = schema.new({
             id = id.from(_N, "Container", "Duration"),
             type = "double",

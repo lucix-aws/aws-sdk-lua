@@ -251,6 +251,12 @@ M.LogsEncryptionConfiguration = schema.new({
             name = "EncryptionConflictResolutionStrategy",
             target_id = prelude.String.id,
         }),
+        EncryptionScope = schema.new({
+            id = id.from(_N, "LogsEncryptionConfiguration", "EncryptionScope"),
+            type = "string",
+            name = "EncryptionScope",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1255,6 +1261,12 @@ M.TelemetryDestinationConfiguration = schema.new({
             name = "MskMonitoringParameters",
             target_id = id.from(_N, "MskMonitoringParameters"),
             target = M.MskMonitoringParameters,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "TelemetryDestinationConfiguration", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
         }),
     },
 })

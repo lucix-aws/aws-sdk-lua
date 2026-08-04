@@ -15,11 +15,17 @@ M.RequestTagMap = schema.new({ type = "map", map_key = prelude.String, map_value
 
 M.TagKeys = schema.new({ type = "list", list_member = prelude.String })
 
-M.DbClusterSummaryList = schema.new({ type = "list", list_member = M.DbClusterSummary })
+M.DbBackupSummaryList = schema.new({ type = "list", list_member = M.DbBackupSummary })
 
 M.VpcSubnetIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.VpcSecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.DbBackupConfigurationInputList = schema.new({ type = "list", list_member = M.DbBackupConfiguration })
+
+M.DbClusterSummaryList = schema.new({ type = "list", list_member = M.DbClusterSummary })
+
+M.DbBackupConfigurationOutputList = schema.new({ type = "list", list_member = M.DbBackupConfigurationOutput })
 
 M.DbInstanceForClusterSummaryList = schema.new({ type = "list", list_member = M.DbInstanceForClusterSummary })
 
@@ -83,6 +89,70 @@ M.ConflictException = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.CreateDbBackupInput = schema.new({
+    id = id.from(_N, "CreateDbBackupInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateDbBackupInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dbResourceId = schema.new({
+            id = id.from(_N, "CreateDbBackupInput", "dbResourceId"),
+            type = "string",
+            name = "dbResourceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retentionDays = schema.new({
+            id = id.from(_N, "CreateDbBackupInput", "retentionDays"),
+            type = "integer",
+            name = "retentionDays",
+            target_id = prelude.Integer.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateDbBackupInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.ClusterConfiguration = schema.new({
+    id = id.from(_N, "ClusterConfiguration"),
+    type = "structure",
+    members = {
+        ingestQueryInstances = schema.new({
+            id = id.from(_N, "ClusterConfiguration", "ingestQueryInstances"),
+            type = "integer",
+            name = "ingestQueryInstances",
+            target_id = prelude.Integer.id,
+        }),
+        queryOnlyInstances = schema.new({
+            id = id.from(_N, "ClusterConfiguration", "queryOnlyInstances"),
+            type = "integer",
+            name = "queryOnlyInstances",
+            target_id = prelude.Integer.id,
+        }),
+        dedicatedCompactor = schema.new({
+            id = id.from(_N, "ClusterConfiguration", "dedicatedCompactor"),
+            type = "boolean",
+            name = "dedicatedCompactor",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -154,160 +224,173 @@ M.MaintenanceSchedule = schema.new({
     },
 })
 
-M.CreateDbClusterInput = schema.new({
-    id = id.from(_N, "CreateDbClusterInput"),
+M.CreateDbBackupOutput = schema.new({
+    id = id.from(_N, "CreateDbBackupOutput"),
     type = "structure",
     members = {
+        id = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
         name = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "name"),
+            id = id.from(_N, "CreateDbBackupOutput", "name"),
             type = "string",
             name = "name",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
-        username = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "username"),
+        arn = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "arn"),
             type = "string",
-            name = "username",
-            target_id = prelude.String.id,
-        }),
-        password = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "password"),
-            type = "string",
-            name = "password",
-            target_id = prelude.String.id,
-        }),
-        organization = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "organization"),
-            type = "string",
-            name = "organization",
-            target_id = prelude.String.id,
-        }),
-        bucket = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "bucket"),
-            type = "string",
-            name = "bucket",
-            target_id = prelude.String.id,
-        }),
-        port = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "port"),
-            type = "integer",
-            name = "port",
-            target_id = prelude.Integer.id,
-        }),
-        dbParameterGroupIdentifier = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "dbParameterGroupIdentifier"),
-            type = "string",
-            name = "dbParameterGroupIdentifier",
-            target_id = prelude.String.id,
-        }),
-        dbInstanceType = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "dbInstanceType"),
-            type = "string",
-            name = "dbInstanceType",
+            name = "arn",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
         }),
-        dbStorageType = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "dbStorageType"),
+        status = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "status"),
             type = "string",
-            name = "dbStorageType",
+            name = "status",
             target_id = prelude.String.id,
         }),
-        allocatedStorage = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "allocatedStorage"),
-            type = "integer",
-            name = "allocatedStorage",
-            target_id = prelude.Integer.id,
+        createdAt = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
-        networkType = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "networkType"),
+        expiresAfter = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "expiresAfter"),
             type = "string",
-            name = "networkType",
+            name = "expiresAfter",
             target_id = prelude.String.id,
         }),
-        publiclyAccessible = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "publiclyAccessible"),
-            type = "boolean",
-            name = "publiclyAccessible",
-            target_id = prelude.Boolean.id,
+        dbResourceId = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "dbResourceId"),
+            type = "string",
+            name = "dbResourceId",
+            target_id = prelude.String.id,
         }),
-        vpcSubnetIds = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "vpcSubnetIds"),
-            type = "list",
-            name = "vpcSubnetIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        type = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
         }),
-        vpcSecurityGroupIds = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "vpcSecurityGroupIds"),
-            type = "list",
-            name = "vpcSecurityGroupIds",
-            target_id = prelude.Document.id,
-            list_member = prelude.String,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+        engineType = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "engineType"),
+            type = "string",
+            name = "engineType",
+            target_id = prelude.String.id,
         }),
         deploymentType = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "deploymentType"),
+            id = id.from(_N, "CreateDbBackupOutput", "deploymentType"),
             type = "string",
             name = "deploymentType",
             target_id = prelude.String.id,
         }),
-        failoverMode = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "failoverMode"),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "kmsKeyId"),
             type = "string",
-            name = "failoverMode",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        clusterConfiguration = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "clusterConfiguration"),
+            type = "structure",
+            name = "clusterConfiguration",
+            target_id = id.from(_N, "ClusterConfiguration"),
+            target = M.ClusterConfiguration,
+        }),
+        dbParameterGroupId = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "dbParameterGroupId"),
+            type = "string",
+            name = "dbParameterGroupId",
+            target_id = prelude.String.id,
+        }),
+        dbInstanceType = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "dbInstanceType"),
+            type = "string",
+            name = "dbInstanceType",
             target_id = prelude.String.id,
         }),
         logDeliveryConfiguration = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "logDeliveryConfiguration"),
+            id = id.from(_N, "CreateDbBackupOutput", "logDeliveryConfiguration"),
             type = "structure",
             name = "logDeliveryConfiguration",
             target_id = id.from(_N, "LogDeliveryConfiguration"),
             target = M.LogDeliveryConfiguration,
         }),
+        failoverMode = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "failoverMode"),
+            type = "string",
+            name = "failoverMode",
+            target_id = prelude.String.id,
+        }),
+        dbStorageType = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "dbStorageType"),
+            type = "string",
+            name = "dbStorageType",
+            target_id = prelude.String.id,
+        }),
+        allocatedStorage = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "allocatedStorage"),
+            type = "integer",
+            name = "allocatedStorage",
+            target_id = prelude.Integer.id,
+        }),
+        vpcSubnetIds = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "vpcSubnetIds"),
+            type = "list",
+            name = "vpcSubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vpcSecurityGroupIds = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "vpcSecurityGroupIds"),
+            type = "list",
+            name = "vpcSecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        publiclyAccessible = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "publiclyAccessible"),
+            type = "boolean",
+            name = "publiclyAccessible",
+            target_id = prelude.Boolean.id,
+        }),
+        port = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        networkType = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "networkType"),
+            type = "string",
+            name = "networkType",
+            target_id = prelude.String.id,
+        }),
+        influxAuthParametersSecretArn = schema.new({
+            id = id.from(_N, "CreateDbBackupOutput", "influxAuthParametersSecretArn"),
+            type = "string",
+            name = "influxAuthParametersSecretArn",
+            target_id = prelude.String.id,
+        }),
         maintenanceSchedule = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "maintenanceSchedule"),
+            id = id.from(_N, "CreateDbBackupOutput", "maintenanceSchedule"),
             type = "structure",
             name = "maintenanceSchedule",
             target_id = id.from(_N, "MaintenanceSchedule"),
             target = M.MaintenanceSchedule,
-        }),
-        tags = schema.new({
-            id = id.from(_N, "CreateDbClusterInput", "tags"),
-            type = "map",
-            name = "tags",
-            target_id = prelude.Document.id,
-            map_key = prelude.String,
-            map_value = prelude.String,
-        }),
-    },
-})
-
-M.CreateDbClusterOutput = schema.new({
-    id = id.from(_N, "CreateDbClusterOutput"),
-    type = "structure",
-    members = {
-        dbClusterId = schema.new({
-            id = id.from(_N, "CreateDbClusterOutput", "dbClusterId"),
-            type = "string",
-            name = "dbClusterId",
-            target_id = prelude.String.id,
-        }),
-        dbClusterStatus = schema.new({
-            id = id.from(_N, "CreateDbClusterOutput", "dbClusterStatus"),
-            type = "string",
-            name = "dbClusterStatus",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -443,6 +526,871 @@ M.ValidationException = schema.new({
     },
 })
 
+M.DeleteDbBackupInput = schema.new({
+    id = id.from(_N, "DeleteDbBackupInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "DeleteDbBackupInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteDbBackupOutput = schema.new({
+    id = id.from(_N, "DeleteDbBackupOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        expiresAfter = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "expiresAfter"),
+            type = "string",
+            name = "expiresAfter",
+            target_id = prelude.String.id,
+        }),
+        dbResourceId = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "dbResourceId"),
+            type = "string",
+            name = "dbResourceId",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        engineType = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "engineType"),
+            type = "string",
+            name = "engineType",
+            target_id = prelude.String.id,
+        }),
+        deploymentType = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "deploymentType"),
+            type = "string",
+            name = "deploymentType",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        clusterConfiguration = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "clusterConfiguration"),
+            type = "structure",
+            name = "clusterConfiguration",
+            target_id = id.from(_N, "ClusterConfiguration"),
+            target = M.ClusterConfiguration,
+        }),
+        dbParameterGroupId = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "dbParameterGroupId"),
+            type = "string",
+            name = "dbParameterGroupId",
+            target_id = prelude.String.id,
+        }),
+        dbInstanceType = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "dbInstanceType"),
+            type = "string",
+            name = "dbInstanceType",
+            target_id = prelude.String.id,
+        }),
+        logDeliveryConfiguration = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "logDeliveryConfiguration"),
+            type = "structure",
+            name = "logDeliveryConfiguration",
+            target_id = id.from(_N, "LogDeliveryConfiguration"),
+            target = M.LogDeliveryConfiguration,
+        }),
+        failoverMode = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "failoverMode"),
+            type = "string",
+            name = "failoverMode",
+            target_id = prelude.String.id,
+        }),
+        dbStorageType = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "dbStorageType"),
+            type = "string",
+            name = "dbStorageType",
+            target_id = prelude.String.id,
+        }),
+        allocatedStorage = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "allocatedStorage"),
+            type = "integer",
+            name = "allocatedStorage",
+            target_id = prelude.Integer.id,
+        }),
+        vpcSubnetIds = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "vpcSubnetIds"),
+            type = "list",
+            name = "vpcSubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vpcSecurityGroupIds = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "vpcSecurityGroupIds"),
+            type = "list",
+            name = "vpcSecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        publiclyAccessible = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "publiclyAccessible"),
+            type = "boolean",
+            name = "publiclyAccessible",
+            target_id = prelude.Boolean.id,
+        }),
+        port = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        networkType = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "networkType"),
+            type = "string",
+            name = "networkType",
+            target_id = prelude.String.id,
+        }),
+        influxAuthParametersSecretArn = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "influxAuthParametersSecretArn"),
+            type = "string",
+            name = "influxAuthParametersSecretArn",
+            target_id = prelude.String.id,
+        }),
+        maintenanceSchedule = schema.new({
+            id = id.from(_N, "DeleteDbBackupOutput", "maintenanceSchedule"),
+            type = "structure",
+            name = "maintenanceSchedule",
+            target_id = id.from(_N, "MaintenanceSchedule"),
+            target = M.MaintenanceSchedule,
+        }),
+    },
+})
+
+M.GetDbBackupInput = schema.new({
+    id = id.from(_N, "GetDbBackupInput"),
+    type = "structure",
+    members = {
+        identifier = schema.new({
+            id = id.from(_N, "GetDbBackupInput", "identifier"),
+            type = "string",
+            name = "identifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetDbBackupOutput = schema.new({
+    id = id.from(_N, "GetDbBackupOutput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        expiresAfter = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "expiresAfter"),
+            type = "string",
+            name = "expiresAfter",
+            target_id = prelude.String.id,
+        }),
+        dbResourceId = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "dbResourceId"),
+            type = "string",
+            name = "dbResourceId",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        engineType = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "engineType"),
+            type = "string",
+            name = "engineType",
+            target_id = prelude.String.id,
+        }),
+        deploymentType = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "deploymentType"),
+            type = "string",
+            name = "deploymentType",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        clusterConfiguration = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "clusterConfiguration"),
+            type = "structure",
+            name = "clusterConfiguration",
+            target_id = id.from(_N, "ClusterConfiguration"),
+            target = M.ClusterConfiguration,
+        }),
+        dbParameterGroupId = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "dbParameterGroupId"),
+            type = "string",
+            name = "dbParameterGroupId",
+            target_id = prelude.String.id,
+        }),
+        dbInstanceType = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "dbInstanceType"),
+            type = "string",
+            name = "dbInstanceType",
+            target_id = prelude.String.id,
+        }),
+        logDeliveryConfiguration = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "logDeliveryConfiguration"),
+            type = "structure",
+            name = "logDeliveryConfiguration",
+            target_id = id.from(_N, "LogDeliveryConfiguration"),
+            target = M.LogDeliveryConfiguration,
+        }),
+        failoverMode = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "failoverMode"),
+            type = "string",
+            name = "failoverMode",
+            target_id = prelude.String.id,
+        }),
+        dbStorageType = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "dbStorageType"),
+            type = "string",
+            name = "dbStorageType",
+            target_id = prelude.String.id,
+        }),
+        allocatedStorage = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "allocatedStorage"),
+            type = "integer",
+            name = "allocatedStorage",
+            target_id = prelude.Integer.id,
+        }),
+        vpcSubnetIds = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "vpcSubnetIds"),
+            type = "list",
+            name = "vpcSubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vpcSecurityGroupIds = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "vpcSecurityGroupIds"),
+            type = "list",
+            name = "vpcSecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        publiclyAccessible = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "publiclyAccessible"),
+            type = "boolean",
+            name = "publiclyAccessible",
+            target_id = prelude.Boolean.id,
+        }),
+        port = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        networkType = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "networkType"),
+            type = "string",
+            name = "networkType",
+            target_id = prelude.String.id,
+        }),
+        influxAuthParametersSecretArn = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "influxAuthParametersSecretArn"),
+            type = "string",
+            name = "influxAuthParametersSecretArn",
+            target_id = prelude.String.id,
+        }),
+        maintenanceSchedule = schema.new({
+            id = id.from(_N, "GetDbBackupOutput", "maintenanceSchedule"),
+            type = "structure",
+            name = "maintenanceSchedule",
+            target_id = id.from(_N, "MaintenanceSchedule"),
+            target = M.MaintenanceSchedule,
+        }),
+    },
+})
+
+M.ListDbBackupsInput = schema.new({
+    id = id.from(_N, "ListDbBackupsInput"),
+    type = "structure",
+    members = {
+        dbResourceId = schema.new({
+            id = id.from(_N, "ListDbBackupsInput", "dbResourceId"),
+            type = "string",
+            name = "dbResourceId",
+            target_id = prelude.String.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDbBackupsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListDbBackupsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.DbBackupSummary = schema.new({
+    id = id.from(_N, "DbBackupSummary"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "DbBackupSummary", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "DbBackupSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        arn = schema.new({
+            id = id.from(_N, "DbBackupSummary", "arn"),
+            type = "string",
+            name = "arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DbBackupSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "DbBackupSummary", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        expiresAfter = schema.new({
+            id = id.from(_N, "DbBackupSummary", "expiresAfter"),
+            type = "string",
+            name = "expiresAfter",
+            target_id = prelude.String.id,
+        }),
+        dbResourceId = schema.new({
+            id = id.from(_N, "DbBackupSummary", "dbResourceId"),
+            type = "string",
+            name = "dbResourceId",
+            target_id = prelude.String.id,
+        }),
+        type = schema.new({
+            id = id.from(_N, "DbBackupSummary", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        engineType = schema.new({
+            id = id.from(_N, "DbBackupSummary", "engineType"),
+            type = "string",
+            name = "engineType",
+            target_id = prelude.String.id,
+        }),
+        deploymentType = schema.new({
+            id = id.from(_N, "DbBackupSummary", "deploymentType"),
+            type = "string",
+            name = "deploymentType",
+            target_id = prelude.String.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "DbBackupSummary", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListDbBackupsOutput = schema.new({
+    id = id.from(_N, "ListDbBackupsOutput"),
+    type = "structure",
+    members = {
+        items = schema.new({
+            id = id.from(_N, "ListDbBackupsOutput", "items"),
+            type = "list",
+            name = "items",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListDbBackupsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DbBackupConfiguration = schema.new({
+    id = id.from(_N, "DbBackupConfiguration"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "DbBackupConfiguration", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        retentionDays = schema.new({
+            id = id.from(_N, "DbBackupConfiguration", "retentionDays"),
+            type = "integer",
+            name = "retentionDays",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        enabled = schema.new({
+            id = id.from(_N, "DbBackupConfiguration", "enabled"),
+            type = "boolean",
+            name = "enabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        customSchedule = schema.new({
+            id = id.from(_N, "DbBackupConfiguration", "customSchedule"),
+            type = "string",
+            name = "customSchedule",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RestoreFromDbBackupInput = schema.new({
+    id = id.from(_N, "RestoreFromDbBackupInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dbBackupId = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "dbBackupId"),
+            type = "string",
+            name = "dbBackupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        restoreToTime = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "restoreToTime"),
+            type = "timestamp",
+            name = "restoreToTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        restoreMode = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "restoreMode"),
+            type = "string",
+            name = "restoreMode",
+            target_id = prelude.String.id,
+        }),
+        vpcSubnetIds = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "vpcSubnetIds"),
+            type = "list",
+            name = "vpcSubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        vpcSecurityGroupIds = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "vpcSecurityGroupIds"),
+            type = "list",
+            name = "vpcSecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        publiclyAccessible = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "publiclyAccessible"),
+            type = "boolean",
+            name = "publiclyAccessible",
+            target_id = prelude.Boolean.id,
+        }),
+        logDeliveryConfiguration = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "logDeliveryConfiguration"),
+            type = "structure",
+            name = "logDeliveryConfiguration",
+            target_id = id.from(_N, "LogDeliveryConfiguration"),
+            target = M.LogDeliveryConfiguration,
+        }),
+        maintenanceSchedule = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "maintenanceSchedule"),
+            type = "structure",
+            name = "maintenanceSchedule",
+            target_id = id.from(_N, "MaintenanceSchedule"),
+            target = M.MaintenanceSchedule,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        port = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        networkType = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "networkType"),
+            type = "string",
+            name = "networkType",
+            target_id = prelude.String.id,
+        }),
+        deploymentType = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "deploymentType"),
+            type = "string",
+            name = "deploymentType",
+            target_id = prelude.String.id,
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfiguration,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupInput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RestoreFromDbBackupOutput = schema.new({
+    id = id.from(_N, "RestoreFromDbBackupOutput"),
+    type = "structure",
+    members = {
+        restoredDbResourceId = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupOutput", "restoredDbResourceId"),
+            type = "string",
+            name = "restoredDbResourceId",
+            target_id = prelude.String.id,
+        }),
+        restoreStatus = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupOutput", "restoreStatus"),
+            type = "string",
+            name = "restoreStatus",
+            target_id = prelude.String.id,
+        }),
+        resourceType = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupOutput", "resourceType"),
+            type = "string",
+            name = "resourceType",
+            target_id = prelude.String.id,
+        }),
+        engineType = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupOutput", "engineType"),
+            type = "string",
+            name = "engineType",
+            target_id = prelude.String.id,
+        }),
+        deploymentType = schema.new({
+            id = id.from(_N, "RestoreFromDbBackupOutput", "deploymentType"),
+            type = "string",
+            name = "deploymentType",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateDbClusterInput = schema.new({
+    id = id.from(_N, "CreateDbClusterInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        username = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "username"),
+            type = "string",
+            name = "username",
+            target_id = prelude.String.id,
+        }),
+        password = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "password"),
+            type = "string",
+            name = "password",
+            target_id = prelude.String.id,
+        }),
+        organization = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "organization"),
+            type = "string",
+            name = "organization",
+            target_id = prelude.String.id,
+        }),
+        bucket = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+        }),
+        port = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "port"),
+            type = "integer",
+            name = "port",
+            target_id = prelude.Integer.id,
+        }),
+        dbParameterGroupIdentifier = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "dbParameterGroupIdentifier"),
+            type = "string",
+            name = "dbParameterGroupIdentifier",
+            target_id = prelude.String.id,
+        }),
+        dbInstanceType = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "dbInstanceType"),
+            type = "string",
+            name = "dbInstanceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        dbStorageType = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "dbStorageType"),
+            type = "string",
+            name = "dbStorageType",
+            target_id = prelude.String.id,
+        }),
+        allocatedStorage = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "allocatedStorage"),
+            type = "integer",
+            name = "allocatedStorage",
+            target_id = prelude.Integer.id,
+        }),
+        networkType = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "networkType"),
+            type = "string",
+            name = "networkType",
+            target_id = prelude.String.id,
+        }),
+        publiclyAccessible = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "publiclyAccessible"),
+            type = "boolean",
+            name = "publiclyAccessible",
+            target_id = prelude.Boolean.id,
+        }),
+        vpcSubnetIds = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "vpcSubnetIds"),
+            type = "list",
+            name = "vpcSubnetIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vpcSecurityGroupIds = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "vpcSecurityGroupIds"),
+            type = "list",
+            name = "vpcSecurityGroupIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        deploymentType = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "deploymentType"),
+            type = "string",
+            name = "deploymentType",
+            target_id = prelude.String.id,
+        }),
+        failoverMode = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "failoverMode"),
+            type = "string",
+            name = "failoverMode",
+            target_id = prelude.String.id,
+        }),
+        logDeliveryConfiguration = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "logDeliveryConfiguration"),
+            type = "structure",
+            name = "logDeliveryConfiguration",
+            target_id = id.from(_N, "LogDeliveryConfiguration"),
+            target = M.LogDeliveryConfiguration,
+        }),
+        maintenanceSchedule = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "maintenanceSchedule"),
+            type = "structure",
+            name = "maintenanceSchedule",
+            target_id = id.from(_N, "MaintenanceSchedule"),
+            target = M.MaintenanceSchedule,
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfiguration,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateDbClusterInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateDbClusterOutput = schema.new({
+    id = id.from(_N, "CreateDbClusterOutput"),
+    type = "structure",
+    members = {
+        dbClusterId = schema.new({
+            id = id.from(_N, "CreateDbClusterOutput", "dbClusterId"),
+            type = "string",
+            name = "dbClusterId",
+            target_id = prelude.String.id,
+        }),
+        dbClusterStatus = schema.new({
+            id = id.from(_N, "CreateDbClusterOutput", "dbClusterStatus"),
+            type = "string",
+            name = "dbClusterStatus",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.DeleteDbClusterInput = schema.new({
     id = id.from(_N, "DeleteDbClusterInput"),
     type = "structure",
@@ -455,6 +1403,12 @@ M.DeleteDbClusterInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        retainAutomatedBackups = schema.new({
+            id = id.from(_N, "DeleteDbClusterInput", "retainAutomatedBackups"),
+            type = "boolean",
+            name = "retainAutomatedBackups",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -488,27 +1442,51 @@ M.GetDbClusterInput = schema.new({
     },
 })
 
-M.ClusterConfiguration = schema.new({
-    id = id.from(_N, "ClusterConfiguration"),
+M.DbBackupConfigurationOutput = schema.new({
+    id = id.from(_N, "DbBackupConfigurationOutput"),
     type = "structure",
     members = {
-        ingestQueryInstances = schema.new({
-            id = id.from(_N, "ClusterConfiguration", "ingestQueryInstances"),
-            type = "integer",
-            name = "ingestQueryInstances",
-            target_id = prelude.Integer.id,
+        type = schema.new({
+            id = id.from(_N, "DbBackupConfigurationOutput", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
-        queryOnlyInstances = schema.new({
-            id = id.from(_N, "ClusterConfiguration", "queryOnlyInstances"),
+        retentionDays = schema.new({
+            id = id.from(_N, "DbBackupConfigurationOutput", "retentionDays"),
             type = "integer",
-            name = "queryOnlyInstances",
+            name = "retentionDays",
             target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
-        dedicatedCompactor = schema.new({
-            id = id.from(_N, "ClusterConfiguration", "dedicatedCompactor"),
+        enabled = schema.new({
+            id = id.from(_N, "DbBackupConfigurationOutput", "enabled"),
             type = "boolean",
-            name = "dedicatedCompactor",
+            name = "enabled",
             target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        customSchedule = schema.new({
+            id = id.from(_N, "DbBackupConfigurationOutput", "customSchedule"),
+            type = "string",
+            name = "customSchedule",
+            target_id = prelude.String.id,
+        }),
+        nextAutomatedBackupTime = schema.new({
+            id = id.from(_N, "DbBackupConfigurationOutput", "nextAutomatedBackupTime"),
+            type = "timestamp",
+            name = "nextAutomatedBackupTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
         }),
     },
 })
@@ -680,6 +1658,19 @@ M.GetDbClusterOutput = schema.new({
             name = "clusterConfiguration",
             target_id = id.from(_N, "ClusterConfiguration"),
             target = M.ClusterConfiguration,
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "GetDbClusterOutput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfigurationOutput,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "GetDbClusterOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1053,6 +2044,13 @@ M.UpdateDbClusterInput = schema.new({
             target_id = id.from(_N, "MaintenanceSchedule"),
             target = M.MaintenanceSchedule,
         }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "UpdateDbClusterInput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfiguration,
+        }),
     },
 })
 
@@ -1206,6 +2204,19 @@ M.CreateDbInstanceInput = schema.new({
             id = id.from(_N, "CreateDbInstanceInput", "networkType"),
             type = "string",
             name = "networkType",
+            target_id = prelude.String.id,
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "CreateDbInstanceInput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfiguration,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "CreateDbInstanceInput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
             target_id = prelude.String.id,
         }),
     },
@@ -1388,6 +2399,19 @@ M.CreateDbInstanceOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "CreateDbInstanceOutput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfigurationOutput,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "CreateDbInstanceOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1403,6 +2427,12 @@ M.DeleteDbInstanceInput = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        retainAutomatedBackups = schema.new({
+            id = id.from(_N, "DeleteDbInstanceInput", "retainAutomatedBackups"),
+            type = "boolean",
+            name = "retainAutomatedBackups",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1583,6 +2613,19 @@ M.DeleteDbInstanceOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "DeleteDbInstanceOutput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfigurationOutput,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "DeleteDbInstanceOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -1779,6 +2822,19 @@ M.GetDbInstanceOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "GetDbInstanceOutput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfigurationOutput,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "GetDbInstanceOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -2100,6 +3156,19 @@ M.RebootDbInstanceOutput = schema.new({
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
         }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "RebootDbInstanceOutput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfigurationOutput,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "RebootDbInstanceOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2165,6 +3234,13 @@ M.UpdateDbInstanceInput = schema.new({
             name = "maintenanceSchedule",
             target_id = id.from(_N, "MaintenanceSchedule"),
             target = M.MaintenanceSchedule,
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "UpdateDbInstanceInput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfiguration,
         }),
     },
 })
@@ -2345,6 +3421,19 @@ M.UpdateDbInstanceOutput = schema.new({
             traits = {
                 [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
             },
+        }),
+        dbBackupConfigurations = schema.new({
+            id = id.from(_N, "UpdateDbInstanceOutput", "dbBackupConfigurations"),
+            type = "list",
+            name = "dbBackupConfigurations",
+            target_id = prelude.Document.id,
+            list_member = M.DbBackupConfigurationOutput,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "UpdateDbInstanceOutput", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -3609,6 +4698,17 @@ M.Service = schema.service({
     },
 })
 
+M.CreateDbBackup = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "CreateDbBackup"),
+    input = M.CreateDbBackupInput,
+    output = M.CreateDbBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateDbCluster = schema.operation({
     id = id.from("com.amazonaws.timestreaminfluxdb", "CreateDbCluster"),
     input = M.CreateDbClusterInput,
@@ -3642,6 +4742,17 @@ M.CreateDbParameterGroup = schema.operation({
     },
 })
 
+M.DeleteDbBackup = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "DeleteDbBackup"),
+    input = M.DeleteDbBackupInput,
+    output = M.DeleteDbBackupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteDbCluster = schema.operation({
     id = id.from("com.amazonaws.timestreaminfluxdb", "DeleteDbCluster"),
     input = M.DeleteDbClusterInput,
@@ -3657,6 +4768,17 @@ M.DeleteDbInstance = schema.operation({
     id = id.from("com.amazonaws.timestreaminfluxdb", "DeleteDbInstance"),
     input = M.DeleteDbInstanceInput,
     output = M.DeleteDbInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetDbBackup = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "GetDbBackup"),
+    input = M.GetDbBackupInput,
+    output = M.GetDbBackupOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -3690,6 +4812,17 @@ M.GetDbParameterGroup = schema.operation({
     id = id.from("com.amazonaws.timestreaminfluxdb", "GetDbParameterGroup"),
     input = M.GetDbParameterGroupInput,
     output = M.GetDbParameterGroupOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListDbBackups = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "ListDbBackups"),
+    input = M.ListDbBackupsInput,
+    output = M.ListDbBackupsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -3767,6 +4900,17 @@ M.RebootDbInstance = schema.operation({
     id = id.from("com.amazonaws.timestreaminfluxdb", "RebootDbInstance"),
     input = M.RebootDbInstanceInput,
     output = M.RebootDbInstanceOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.RestoreFromDbBackup = schema.operation({
+    id = id.from("com.amazonaws.timestreaminfluxdb", "RestoreFromDbBackup"),
+    input = M.RestoreFromDbBackupInput,
+    output = M.RestoreFromDbBackupOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

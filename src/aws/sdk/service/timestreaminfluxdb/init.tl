@@ -18,14 +18,18 @@ local sdk_defaults = require("aws.sdk.runtime.sdk_defaults")
 local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
+    createDbBackup: function(Client, types.CreateDbBackupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDbBackupOutput>
     createDbCluster: function(Client, types.CreateDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.CreateDbClusterOutput>
     createDbInstance: function(Client, types.CreateDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateDbInstanceOutput>
     createDbParameterGroup: function(Client, types.CreateDbParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.CreateDbParameterGroupOutput>
+    deleteDbBackup: function(Client, types.DeleteDbBackupInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDbBackupOutput>
     deleteDbCluster: function(Client, types.DeleteDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDbClusterOutput>
     deleteDbInstance: function(Client, types.DeleteDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDbInstanceOutput>
+    getDbBackup: function(Client, types.GetDbBackupInput, ? base_client.InvokeOptions): async.Operation<types.GetDbBackupOutput>
     getDbCluster: function(Client, types.GetDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.GetDbClusterOutput>
     getDbInstance: function(Client, types.GetDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.GetDbInstanceOutput>
     getDbParameterGroup: function(Client, types.GetDbParameterGroupInput, ? base_client.InvokeOptions): async.Operation<types.GetDbParameterGroupOutput>
+    listDbBackups: function(Client, types.ListDbBackupsInput, ? base_client.InvokeOptions): async.Operation<types.ListDbBackupsOutput>
     listDbClusters: function(Client, types.ListDbClustersInput, ? base_client.InvokeOptions): async.Operation<types.ListDbClustersOutput>
     listDbInstances: function(Client, types.ListDbInstancesInput, ? base_client.InvokeOptions): async.Operation<types.ListDbInstancesOutput>
     listDbInstancesForCluster: function(Client, types.ListDbInstancesForClusterInput, ? base_client.InvokeOptions): async.Operation<types.ListDbInstancesForClusterOutput>
@@ -33,6 +37,7 @@ local record Client
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     rebootDbCluster: function(Client, types.RebootDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.RebootDbClusterOutput>
     rebootDbInstance: function(Client, types.RebootDbInstanceInput, ? base_client.InvokeOptions): async.Operation<types.RebootDbInstanceOutput>
+    restoreFromDbBackup: function(Client, types.RestoreFromDbBackupInput, ? base_client.InvokeOptions): async.Operation<types.RestoreFromDbBackupOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateDbCluster: function(Client, types.UpdateDbClusterInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDbClusterOutput>
@@ -81,6 +86,10 @@ function M.new(cfg?: base_client.ClientConfig): Client
     return self
 end
 
+function C:createDbBackup(input: types.CreateDbBackupInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDbBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDbBackup as schema.OperationSchema, input, options) as async.Operation<types.CreateDbBackupOutput>
+end
+
 function C:createDbCluster(input: types.CreateDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateDbClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDbCluster as schema.OperationSchema, input, options) as async.Operation<types.CreateDbClusterOutput>
 end
@@ -93,12 +102,20 @@ function C:createDbParameterGroup(input: types.CreateDbParameterGroupInput, opti
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateDbParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.CreateDbParameterGroupOutput>
 end
 
+function C:deleteDbBackup(input: types.DeleteDbBackupInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDbBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDbBackup as schema.OperationSchema, input, options) as async.Operation<types.DeleteDbBackupOutput>
+end
+
 function C:deleteDbCluster(input: types.DeleteDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDbClusterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDbCluster as schema.OperationSchema, input, options) as async.Operation<types.DeleteDbClusterOutput>
 end
 
 function C:deleteDbInstance(input: types.DeleteDbInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteDbInstanceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteDbInstance as schema.OperationSchema, input, options) as async.Operation<types.DeleteDbInstanceOutput>
+end
+
+function C:getDbBackup(input: types.GetDbBackupInput, options?: base_client.InvokeOptions): async.Operation<types.GetDbBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDbBackup as schema.OperationSchema, input, options) as async.Operation<types.GetDbBackupOutput>
 end
 
 function C:getDbCluster(input: types.GetDbClusterInput, options?: base_client.InvokeOptions): async.Operation<types.GetDbClusterOutput>
@@ -111,6 +128,10 @@ end
 
 function C:getDbParameterGroup(input: types.GetDbParameterGroupInput, options?: base_client.InvokeOptions): async.Operation<types.GetDbParameterGroupOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDbParameterGroup as schema.OperationSchema, input, options) as async.Operation<types.GetDbParameterGroupOutput>
+end
+
+function C:listDbBackups(input: types.ListDbBackupsInput, options?: base_client.InvokeOptions): async.Operation<types.ListDbBackupsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListDbBackups as schema.OperationSchema, input, options) as async.Operation<types.ListDbBackupsOutput>
 end
 
 function C:listDbClusters(input: types.ListDbClustersInput, options?: base_client.InvokeOptions): async.Operation<types.ListDbClustersOutput>
@@ -139,6 +160,10 @@ end
 
 function C:rebootDbInstance(input: types.RebootDbInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.RebootDbInstanceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RebootDbInstance as schema.OperationSchema, input, options) as async.Operation<types.RebootDbInstanceOutput>
+end
+
+function C:restoreFromDbBackup(input: types.RestoreFromDbBackupInput, options?: base_client.InvokeOptions): async.Operation<types.RestoreFromDbBackupOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.RestoreFromDbBackup as schema.OperationSchema, input, options) as async.Operation<types.RestoreFromDbBackupOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

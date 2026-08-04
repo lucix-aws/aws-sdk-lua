@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listDbBackups.
+function M.pages_list_db_backups(client, input)
+    return paginator.pages(client, "listDbBackups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
+--- Returns an item iterator for listDbBackups.
+function M.items_list_db_backups(client, input)
+    return paginator.items(client, "listDbBackups", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "items",
+    })
+end
+
 --- Returns a page iterator for listDbClusters.
 function M.pages_list_db_clusters(client, input)
     return paginator.pages(client, "listDbClusters", input, {

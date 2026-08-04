@@ -21,6 +21,8 @@ M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.EnabledAnalysisTypes = schema.new({ type = "list", list_member = prelude.String })
 
+M.NatGatewayMappingsList = schema.new({ type = "list", list_member = M.NatGatewayMapping })
+
 M.ListenerPropertiesRequest = schema.new({ type = "list", list_member = M.ListenerPropertyRequest })
 
 M.ResourceNameList = schema.new({ type = "list", list_member = prelude.String })
@@ -73,6 +75,8 @@ M.ProxyRulePriorityList = schema.new({ type = "list", list_member = M.ProxyRuleP
 
 M.ProxyConfigRuleGroupSet = schema.new({ type = "list", list_member = M.ProxyConfigRuleGroup })
 
+M.ListenerProperties = schema.new({ type = "list", list_member = M.ListenerProperty })
+
 M.SyncStates = schema.new({ type = "map", map_key = prelude.String, map_value = M.SyncState })
 
 M.StatelessRuleGroupReferences = schema.new({ type = "list", list_member = M.StatelessRuleGroupReference })
@@ -84,8 +88,6 @@ M.CustomActions = schema.new({ type = "list", list_member = M.CustomAction })
 M.StatefulRuleGroupReferences = schema.new({ type = "list", list_member = M.StatefulRuleGroupReference })
 
 M.StatefulActions = schema.new({ type = "list", list_member = prelude.String })
-
-M.ListenerProperties = schema.new({ type = "list", list_member = M.ListenerProperty })
 
 M.ProxyRuleList = schema.new({ type = "list", list_member = M.ProxyRule })
 
@@ -120,6 +122,8 @@ M.ProtocolStrings = schema.new({ type = "list", list_member = prelude.String })
 M.ProxyConditionValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.SyncStateConfig = schema.new({ type = "map", map_key = prelude.String, map_value = M.PerObjectStatus })
+
+M.NatGatewayAttachmentsList = schema.new({ type = "list", list_member = M.NatGatewayAttachment })
 
 M.IPSetMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.IPSetMetadata })
 
@@ -770,6 +774,12 @@ M.Attachment = schema.new({
             name = "StatusMessage",
             target_id = prelude.String.id,
         }),
+        DnsName = schema.new({
+            id = id.from(_N, "Attachment", "DnsName"),
+            type = "string",
+            name = "DnsName",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -1330,6 +1340,84 @@ M.EncryptionConfiguration = schema.new({
     },
 })
 
+M.NatGatewayMapping = schema.new({
+    id = id.from(_N, "NatGatewayMapping"),
+    type = "structure",
+    members = {
+        NatGatewayId = schema.new({
+            id = id.from(_N, "NatGatewayMapping", "NatGatewayId"),
+            type = "string",
+            name = "NatGatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListenerProperty = schema.new({
+    id = id.from(_N, "ListenerProperty"),
+    type = "structure",
+    members = {
+        Port = schema.new({
+            id = id.from(_N, "ListenerProperty", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ListenerProperty", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ProxySettings = schema.new({
+    id = id.from(_N, "ProxySettings"),
+    type = "structure",
+    members = {
+        ListenerProperties = schema.new({
+            id = id.from(_N, "ProxySettings", "ListenerProperties"),
+            type = "list",
+            name = "ListenerProperties",
+            target_id = prelude.Document.id,
+            list_member = M.ListenerProperty,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VpcEndpoint = schema.new({
+    id = id.from(_N, "VpcEndpoint"),
+    type = "structure",
+    members = {
+        VpcId = schema.new({
+            id = id.from(_N, "VpcEndpoint", "VpcId"),
+            type = "string",
+            name = "VpcId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SubnetMappings = schema.new({
+            id = id.from(_N, "VpcEndpoint", "SubnetMappings"),
+            type = "list",
+            name = "SubnetMappings",
+            target_id = prelude.Document.id,
+            list_member = M.SubnetMapping,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateFirewallInput = schema.new({
     id = id.from(_N, "CreateFirewallRequest"),
     type = "structure",
@@ -1440,6 +1528,36 @@ M.CreateFirewallInput = schema.new({
             traits = {
                 [traits.DEFAULT] = { value = false },
             },
+        }),
+        NatGatewayMappings = schema.new({
+            id = id.from(_N, "CreateFirewallInput", "NatGatewayMappings"),
+            type = "list",
+            name = "NatGatewayMappings",
+            target_id = prelude.Document.id,
+            list_member = M.NatGatewayMapping,
+        }),
+        ProxySettings = schema.new({
+            id = id.from(_N, "CreateFirewallInput", "ProxySettings"),
+            type = "structure",
+            name = "ProxySettings",
+            target_id = id.from(_N, "ProxySettings"),
+            target = M.ProxySettings,
+        }),
+        NoSourcePreservation = schema.new({
+            id = id.from(_N, "CreateFirewallInput", "NoSourcePreservation"),
+            type = "boolean",
+            name = "NoSourcePreservation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        VpcEndpoint = schema.new({
+            id = id.from(_N, "CreateFirewallInput", "VpcEndpoint"),
+            type = "structure",
+            name = "VpcEndpoint",
+            target_id = id.from(_N, "VpcEndpoint"),
+            target = M.VpcEndpoint,
         }),
     },
 })
@@ -1585,6 +1703,36 @@ M.Firewall = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        NatGatewayMappings = schema.new({
+            id = id.from(_N, "Firewall", "NatGatewayMappings"),
+            type = "list",
+            name = "NatGatewayMappings",
+            target_id = prelude.Document.id,
+            list_member = M.NatGatewayMapping,
+        }),
+        ProxySettings = schema.new({
+            id = id.from(_N, "Firewall", "ProxySettings"),
+            type = "structure",
+            name = "ProxySettings",
+            target_id = id.from(_N, "ProxySettings"),
+            target = M.ProxySettings,
+        }),
+        NoSourcePreservation = schema.new({
+            id = id.from(_N, "Firewall", "NoSourcePreservation"),
+            type = "boolean",
+            name = "NoSourcePreservation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        VpcEndpoint = schema.new({
+            id = id.from(_N, "Firewall", "VpcEndpoint"),
+            type = "structure",
+            name = "VpcEndpoint",
+            target_id = id.from(_N, "VpcEndpoint"),
+            target = M.VpcEndpoint,
+        }),
     },
 })
 
@@ -1602,6 +1750,43 @@ M.PerObjectStatus = schema.new({
             id = id.from(_N, "PerObjectStatus", "UpdateToken"),
             type = "string",
             name = "UpdateToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.NatGatewayAttachment = schema.new({
+    id = id.from(_N, "NatGatewayAttachment"),
+    type = "structure",
+    members = {
+        NatGatewayId = schema.new({
+            id = id.from(_N, "NatGatewayAttachment", "NatGatewayId"),
+            type = "string",
+            name = "NatGatewayId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "NatGatewayAttachment", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "NatGatewayAttachment", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+        DnsName = schema.new({
+            id = id.from(_N, "NatGatewayAttachment", "DnsName"),
+            type = "string",
+            name = "DnsName",
             target_id = prelude.String.id,
         }),
     },
@@ -1625,6 +1810,13 @@ M.SyncState = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.PerObjectStatus,
+        }),
+        NatGatewayAttachments = schema.new({
+            id = id.from(_N, "SyncState", "NatGatewayAttachments"),
+            type = "list",
+            name = "NatGatewayAttachments",
+            target_id = prelude.Document.id,
+            list_member = M.NatGatewayAttachment,
         }),
     },
 })
@@ -2245,25 +2437,6 @@ M.CreateProxyInput = schema.new({
             name = "Tags",
             target_id = prelude.Document.id,
             list_member = M.Tag,
-        }),
-    },
-})
-
-M.ListenerProperty = schema.new({
-    id = id.from(_N, "ListenerProperty"),
-    type = "structure",
-    members = {
-        Port = schema.new({
-            id = id.from(_N, "ListenerProperty", "Port"),
-            type = "integer",
-            name = "Port",
-            target_id = prelude.Integer.id,
-        }),
-        Type = schema.new({
-            id = id.from(_N, "ListenerProperty", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -8297,6 +8470,70 @@ M.UpdateProxyRulePrioritiesOutput = schema.new({
     },
 })
 
+M.UpdateProxySettingsInput = schema.new({
+    id = id.from(_N, "UpdateProxySettingsRequest"),
+    type = "structure",
+    members = {
+        FirewallArn = schema.new({
+            id = id.from(_N, "UpdateProxySettingsInput", "FirewallArn"),
+            type = "string",
+            name = "FirewallArn",
+            target_id = prelude.String.id,
+        }),
+        FirewallName = schema.new({
+            id = id.from(_N, "UpdateProxySettingsInput", "FirewallName"),
+            type = "string",
+            name = "FirewallName",
+            target_id = prelude.String.id,
+        }),
+        UpdateToken = schema.new({
+            id = id.from(_N, "UpdateProxySettingsInput", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+        }),
+        ProxySettings = schema.new({
+            id = id.from(_N, "UpdateProxySettingsInput", "ProxySettings"),
+            type = "structure",
+            name = "ProxySettings",
+            target_id = id.from(_N, "ProxySettings"),
+            target = M.ProxySettings,
+        }),
+    },
+})
+
+M.UpdateProxySettingsOutput = schema.new({
+    id = id.from(_N, "UpdateProxySettingsResponse"),
+    type = "structure",
+    members = {
+        FirewallArn = schema.new({
+            id = id.from(_N, "UpdateProxySettingsOutput", "FirewallArn"),
+            type = "string",
+            name = "FirewallArn",
+            target_id = prelude.String.id,
+        }),
+        FirewallName = schema.new({
+            id = id.from(_N, "UpdateProxySettingsOutput", "FirewallName"),
+            type = "string",
+            name = "FirewallName",
+            target_id = prelude.String.id,
+        }),
+        UpdateToken = schema.new({
+            id = id.from(_N, "UpdateProxySettingsOutput", "UpdateToken"),
+            type = "string",
+            name = "UpdateToken",
+            target_id = prelude.String.id,
+        }),
+        ProxySettings = schema.new({
+            id = id.from(_N, "UpdateProxySettingsOutput", "ProxySettings"),
+            type = "structure",
+            name = "ProxySettings",
+            target_id = id.from(_N, "ProxySettings"),
+            target = M.ProxySettings,
+        }),
+    },
+})
+
 M.UpdateRuleGroupInput = schema.new({
     id = id.from(_N, "UpdateRuleGroupRequest"),
     type = "structure",
@@ -9470,6 +9707,17 @@ M.UpdateProxyRulePriorities = schema.operation({
     id = id.from("com.amazonaws.networkfirewall", "UpdateProxyRulePriorities"),
     input = M.UpdateProxyRulePrioritiesInput,
     output = M.UpdateProxyRulePrioritiesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateProxySettings = schema.operation({
+    id = id.from("com.amazonaws.networkfirewall", "UpdateProxySettings"),
+    input = M.UpdateProxySettingsInput,
+    output = M.UpdateProxySettingsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -16,6 +16,27 @@ local record M
         resourceType: string
     end
 
+    record CreateDbBackupInput
+        -- The name of the backup. Must be unique within the account and region.
+        name: string
+        -- The id of the DB instance or DB cluster to back up.
+        dbResourceId: string
+        -- The number of days to retain the backup. Valid values are 1 to 3650.
+        retentionDays: number
+        -- A list of key-value pairs to associate with the backup.
+        tags: {string : string}
+    end
+
+    -- Configuration for node modes in the DbCluster.
+    record ClusterConfiguration
+        -- The number of instances in the DbCluster which can both ingest and query.
+        ingestQueryInstances: number
+        -- The number of instances in the DbCluster which can only query.
+        queryOnlyInstances: number
+        -- Indicates if the compactor instance is a standalone instance or not.
+        dedicatedCompactor: boolean
+    end
+
     enum DbInstanceType
         "db.influx.medium"
         "db.influx.large"
@@ -34,8 +55,16 @@ local record M
         "InfluxIOIncludedT3"
     end
 
-    enum ClusterDeploymentType
+    enum ResourceDeploymentType
+        "SINGLE_AZ"
+        "WITH_MULTIAZ_STANDBY"
         "MULTI_NODE_READ_REPLICAS"
+    end
+
+    enum EngineType
+        "INFLUXDB_V2"
+        "INFLUXDB_V3_CORE"
+        "INFLUXDB_V3_ENTERPRISE"
     end
 
     enum FailoverMode
@@ -68,6 +97,348 @@ local record M
     enum NetworkType
         "IPV4"
         "DUAL"
+    end
+
+    enum DbBackupStatus
+        "IN_PROGRESS"
+        "COMPLETED"
+        "FAILED"
+        "DELETING"
+        "DELETED"
+    end
+
+    enum DbBackupType
+        "HOURLY"
+        "DAILY"
+        "WEEKLY"
+        "MONTHLY"
+        "CUSTOM_SCHEDULE"
+        "ON_DEMAND"
+        "CONTINUOUS"
+    end
+
+    record CreateDbBackupOutput
+        -- Service-generated unique identifier of the backup.
+        id: string
+        -- The customer-provided name of the backup.
+        name: string
+        -- The Amazon Resource Name (ARN) of the backup.
+        arn: string
+        -- The current status of the backup.
+        status: string
+        -- The time when the backup was created.
+        createdAt: number
+        -- The date after which the backup will be automatically deleted.
+        expiresAfter: string
+        -- The identifier of the DB resource that the backup was created from.
+        dbResourceId: string
+        -- The engine type of the resource that the backup was created from.
+        engineType: string
+        -- The deployment type of the resource that the backup was created from.
+        deploymentType: string
+        -- The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
+        kmsKeyId: string
+        -- The cluster configuration of the resource at the time of backup.
+        clusterConfiguration: ClusterConfiguration
+        -- The identifier of the DB parameter group associated with the backup.
+        dbParameterGroupId: string
+        -- The DB instance type of the resource at the time of backup.
+        dbInstanceType: string
+        -- The log delivery configuration of the resource at the time of backup.
+        logDeliveryConfiguration: LogDeliveryConfiguration
+        -- The failover mode of the resource at the time of backup.
+        failoverMode: string
+        -- The storage type of the resource at the time of backup.
+        dbStorageType: string
+        -- The allocated storage of the resource at the time of backup, in GiB.
+        allocatedStorage: number
+        -- The VPC subnet IDs associated with the resource at the time of backup.
+        vpcSubnetIds: {string}
+        -- The VPC security group IDs associated with the resource at the time of backup.
+        vpcSecurityGroupIds: {string}
+        -- Indicates whether the resource was publicly accessible at the time of backup.
+        publiclyAccessible: boolean
+        -- The port number of the resource at the time of backup.
+        port: number
+        -- The network type of the resource at the time of backup.
+        networkType: string
+        -- The ARN of the Secrets Manager secret containing the InfluxDB auth parameters.
+        influxAuthParametersSecretArn: string
+        -- The maintenance schedule of the resource at the time of backup.
+        maintenanceSchedule: MaintenanceSchedule
+    end
+
+    -- The request processing has failed because of an unknown error, exception or failure.
+    record InternalServerException
+        message: string
+    end
+
+    -- The requested resource was not found or does not exist.
+    record ResourceNotFoundException
+        message: string
+        -- The identifier for the Timestream for InfluxDB resource associated with the request.
+        resourceId: string
+        -- The type of Timestream for InfluxDB resource associated with the request.
+        resourceType: string
+    end
+
+    -- The request exceeds the service quota.
+    record ServiceQuotaExceededException
+        message: string
+    end
+
+    -- The request was denied due to request throttling.
+    record ThrottlingException
+        message: string
+        -- The number of seconds the caller should wait before retrying.
+        retryAfterSeconds: number
+    end
+
+    enum ValidationExceptionReason
+        "FIELD_VALIDATION_FAILED"
+        "OTHER"
+    end
+
+    -- The input fails to satisfy the constraints specified by Timestream for InfluxDB.
+    record ValidationException
+        message: string
+        -- The reason that validation failed.
+        reason: string
+    end
+
+    record DeleteDbBackupInput
+        -- The identifier of the backup to delete.
+        identifier: string
+    end
+
+    record DeleteDbBackupOutput
+        -- Service-generated unique identifier of the deleted backup.
+        id: string
+        -- The customer-provided name of the deleted backup.
+        name: string
+        -- The Amazon Resource Name (ARN) of the deleted backup.
+        arn: string
+        -- The current status of the backup.
+        status: string
+        -- The time when the backup was created.
+        createdAt: number
+        -- The date after which the backup was set to be automatically deleted.
+        expiresAfter: string
+        -- The identifier of the DB resource that the backup was created from.
+        dbResourceId: string
+        -- The engine type of the resource that the backup was created from.
+        engineType: string
+        -- The deployment type of the resource that the backup was created from.
+        deploymentType: string
+        -- The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
+        kmsKeyId: string
+        -- The cluster configuration of the resource at the time of backup.
+        clusterConfiguration: ClusterConfiguration
+        -- The identifier of the DB parameter group associated with the backup.
+        dbParameterGroupId: string
+        -- The DB instance type of the resource at the time of backup.
+        dbInstanceType: string
+        -- The log delivery configuration of the resource at the time of backup.
+        logDeliveryConfiguration: LogDeliveryConfiguration
+        -- The failover mode of the resource at the time of backup.
+        failoverMode: string
+        -- The storage type of the resource at the time of backup.
+        dbStorageType: string
+        -- The allocated storage of the resource at the time of backup, in GiB.
+        allocatedStorage: number
+        -- The VPC subnet IDs associated with the resource at the time of backup.
+        vpcSubnetIds: {string}
+        -- The VPC security group IDs associated with the resource at the time of backup.
+        vpcSecurityGroupIds: {string}
+        -- Indicates whether the resource was publicly accessible at the time of backup.
+        publiclyAccessible: boolean
+        -- The port number of the resource at the time of backup.
+        port: number
+        -- The network type of the resource at the time of backup.
+        networkType: string
+        -- The ARN of the Secrets Manager secret containing the InfluxDB auth parameters.
+        influxAuthParametersSecretArn: string
+        -- The maintenance schedule of the resource at the time of backup.
+        maintenanceSchedule: MaintenanceSchedule
+    end
+
+    record GetDbBackupInput
+        -- The identifier of the backup to retrieve information for.
+        identifier: string
+    end
+
+    record GetDbBackupOutput
+        -- Service-generated unique identifier of the backup.
+        id: string
+        -- The customer-provided name of the backup.
+        name: string
+        -- The Amazon Resource Name (ARN) of the backup.
+        arn: string
+        -- The current status of the backup.
+        status: string
+        -- The time when the backup was created.
+        createdAt: number
+        -- The date after which the backup will be automatically deleted.
+        expiresAfter: string
+        -- The identifier of the DB resource that the backup was created from.
+        dbResourceId: string
+        -- The engine type of the resource that the backup was created from.
+        engineType: string
+        -- The deployment type of the resource that the backup was created from.
+        deploymentType: string
+        -- The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
+        kmsKeyId: string
+        -- The cluster configuration of the resource at the time of backup.
+        clusterConfiguration: ClusterConfiguration
+        -- The identifier of the DB parameter group associated with the backup.
+        dbParameterGroupId: string
+        -- The DB instance type of the resource at the time of backup.
+        dbInstanceType: string
+        -- The log delivery configuration of the resource at the time of backup.
+        logDeliveryConfiguration: LogDeliveryConfiguration
+        -- The failover mode of the resource at the time of backup.
+        failoverMode: string
+        -- The storage type of the resource at the time of backup.
+        dbStorageType: string
+        -- The allocated storage of the resource at the time of backup, in GiB.
+        allocatedStorage: number
+        -- The VPC subnet IDs associated with the resource at the time of backup.
+        vpcSubnetIds: {string}
+        -- The VPC security group IDs associated with the resource at the time of backup.
+        vpcSecurityGroupIds: {string}
+        -- Indicates whether the resource was publicly accessible at the time of backup.
+        publiclyAccessible: boolean
+        -- The port number of the resource at the time of backup.
+        port: number
+        -- The network type of the resource at the time of backup.
+        networkType: string
+        -- The ARN of the Secrets Manager secret containing the InfluxDB auth parameters.
+        influxAuthParametersSecretArn: string
+        -- The maintenance schedule of the resource at the time of backup.
+        maintenanceSchedule: MaintenanceSchedule
+    end
+
+    record ListDbBackupsInput
+        -- The identifier of the DB instance or DB cluster to list backups for. If not specified, returns all backups in the account and region.
+        dbResourceId: string
+        -- The pagination token. To resume pagination, provide the nextToken value as an argument of a subsequent API invocation.
+        nextToken: string
+        -- The maximum number of items to return in the output. If the total number of items available is more than the value specified, a nextToken is provided in the output. To resume pagination, provide the nextToken value as an argument of a subsequent API invocation.
+        maxResults: number
+    end
+
+    -- Contains a summary of a Timestream for InfluxDB backup.
+    record DbBackupSummary
+        -- Service-generated unique identifier of the backup.
+        id: string
+        -- The customer-provided name of the backup.
+        name: string
+        -- The Amazon Resource Name (ARN) of the backup.
+        arn: string
+        -- The status of the backup. Valid values are IN_PROGRESS, COMPLETED, FAILED, DELETING, and DELETED.
+        status: string
+        -- The time when the backup was created.
+        createdAt: number
+        -- The date after which the backup will be automatically deleted.
+        expiresAfter: string
+        -- The identifier of the DB resource that the backup was created from.
+        dbResourceId: string
+        -- The engine type of the resource that the backup was created from.
+        engineType: string
+        -- The deployment type of the resource that the backup was created from.
+        deploymentType: string
+        -- The Amazon Web Services KMS key ARN used for encryption of the resource at the time of backup.
+        kmsKeyId: string
+    end
+
+    record ListDbBackupsOutput
+        -- A list of Timestream for InfluxDB backup summaries.
+        items: {DbBackupSummary}
+        -- Token from a previous call of the operation. When this value is provided, the service returns results from where the previous response left off.
+        nextToken: string
+    end
+
+    enum AutomatedDbBackupType
+        "HOURLY"
+        "DAILY"
+        "WEEKLY"
+        "MONTHLY"
+        "CUSTOM_SCHEDULE"
+        "CONTINUOUS"
+    end
+
+    -- Specifies the configuration for an automated backup schedule.
+    record DbBackupConfiguration
+        -- The number of days to retain automated backups. Valid values are 1 to 365.
+        retentionDays: number
+        -- Specifies whether this backup configuration is enabled.
+        enabled: boolean
+        -- A custom cron schedule expression for the backup. Required when type is CUSTOM_SCHEDULE.
+        customSchedule: string
+    end
+
+    enum RestoreMode
+        "NEW_RESOURCE"
+        "REPLACE_EXISTING"
+    end
+
+    record RestoreFromDbBackupInput
+        -- The name of the new resource to create from the restore. If restoring to an existing resource, the name must match the existing resource name.
+        name: string
+        -- The identifier of the backup to restore from.
+        dbBackupId: string
+        -- The point in time to restore to, for continuous backups. Must be within the backup's retention window.
+        restoreToTime: number
+        -- Specifies whether to restore to a new resource or replace the existing resource. Valid values are NEW_RESOURCE (default) and REPLACE_EXISTING.
+        restoreMode: string
+        -- A list of VPC subnet IDs for the restored resource. If not specified, the restored resource uses the same subnets as the backup.
+        vpcSubnetIds: {string}
+        -- A list of VPC security group IDs for the restored resource. If not specified, the restored resource uses the same security groups as the backup.
+        vpcSecurityGroupIds: {string}
+        -- Specifies whether the restored resource is publicly accessible.
+        publiclyAccessible: boolean
+        -- Configuration for sending InfluxDB engine logs to the specified S3 bucket for the restored resource.
+        logDeliveryConfiguration: LogDeliveryConfiguration
+        -- The maintenance schedule for the restored resource.
+        maintenanceSchedule: MaintenanceSchedule
+        -- A list of key-value pairs to associate with the restored resource.
+        tags: {string : string}
+        -- The port number on which the restored InfluxDB resource accepts connections.
+        port: number
+        -- Specifies the network type of the restored resource. Valid values are IPV4 and DUAL.
+        networkType: string
+        -- Specifies the deployment type of the restored resource. Valid values are SINGLE_AZ, WITH_MULTIAZ_STANDBY, and MULTI_NODE_READ_REPLICAS.
+        deploymentType: string
+        -- A list of backup configurations to apply to the restored resource.
+        dbBackupConfigurations: {DbBackupConfiguration}
+        -- The Amazon Web Services KMS key identifier to use for encryption of the restored resource. Can be a key ID, key ARN, alias name, or alias ARN.
+        kmsKeyId: string
+    end
+
+    enum ResourceType
+        "DB_INSTANCE"
+        "DB_CLUSTER"
+    end
+
+    enum RestoreStatus
+        "RESTORING"
+    end
+
+    record RestoreFromDbBackupOutput
+        -- The identifier of the restored DB resource.
+        restoredDbResourceId: string
+        -- The status of the restore operation.
+        restoreStatus: string
+        -- The type of the restored resource. Valid values are DB_INSTANCE and DB_CLUSTER.
+        resourceType: string
+        -- The engine type of the restored resource.
+        engineType: string
+        -- The deployment type of the restored resource.
+        deploymentType: string
+    end
+
+    enum ClusterDeploymentType
+        "MULTI_NODE_READ_REPLICAS"
     end
 
     record CreateDbClusterInput
@@ -116,6 +487,10 @@ local record M
         logDeliveryConfiguration: LogDeliveryConfiguration
         -- Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.
         maintenanceSchedule: MaintenanceSchedule
+        -- A list of backup configurations to enable automated backups for the DB cluster.
+        dbBackupConfigurations: {DbBackupConfiguration}
+        -- The Amazon Web Services KMS key identifier to use for encryption of the DB cluster. Can be a key ID, key ARN, alias name, or alias ARN.
+        kmsKeyId: string
         -- A list of key-value pairs to associate with the DB instance.
         tags: {string : string}
     end
@@ -132,6 +507,8 @@ local record M
         "REBOOTING"
         "REBOOT_FAILED"
         "PARTIALLY_AVAILABLE"
+        "RESTORING"
+        "RESTORE_FAILED"
     end
 
     record CreateDbClusterOutput
@@ -141,47 +518,11 @@ local record M
         dbClusterStatus: string
     end
 
-    -- The request processing has failed because of an unknown error, exception or failure.
-    record InternalServerException
-        message: string
-    end
-
-    -- The requested resource was not found or does not exist.
-    record ResourceNotFoundException
-        message: string
-        -- The identifier for the Timestream for InfluxDB resource associated with the request.
-        resourceId: string
-        -- The type of Timestream for InfluxDB resource associated with the request.
-        resourceType: string
-    end
-
-    -- The request exceeds the service quota.
-    record ServiceQuotaExceededException
-        message: string
-    end
-
-    -- The request was denied due to request throttling.
-    record ThrottlingException
-        message: string
-        -- The number of seconds the caller should wait before retrying.
-        retryAfterSeconds: number
-    end
-
-    enum ValidationExceptionReason
-        "FIELD_VALIDATION_FAILED"
-        "OTHER"
-    end
-
-    -- The input fails to satisfy the constraints specified by Timestream for InfluxDB.
-    record ValidationException
-        message: string
-        -- The reason that validation failed.
-        reason: string
-    end
-
     record DeleteDbClusterInput
         -- Service-generated unique identifier of the DB cluster.
         dbClusterId: string
+        -- Specifies whether to retain automated backups after the DB cluster is deleted. If set to true, automated backups are not deleted and can be restored later.
+        retainAutomatedBackups: boolean
     end
 
     record DeleteDbClusterOutput
@@ -194,20 +535,16 @@ local record M
         dbClusterId: string
     end
 
-    -- Configuration for node modes in the DbCluster.
-    record ClusterConfiguration
-        -- The number of instances in the DbCluster which can both ingest and query.
-        ingestQueryInstances: number
-        -- The number of instances in the DbCluster which can only query.
-        queryOnlyInstances: number
-        -- Indicates if the compactor instance is a standalone instance or not.
-        dedicatedCompactor: boolean
-    end
-
-    enum EngineType
-        "INFLUXDB_V2"
-        "INFLUXDB_V3_CORE"
-        "INFLUXDB_V3_ENTERPRISE"
+    -- Contains the configuration and status for an automated backup schedule.
+    record DbBackupConfigurationOutput
+        -- The number of days automated backups are retained.
+        retentionDays: number
+        -- Indicates whether this backup configuration is enabled.
+        enabled: boolean
+        -- The custom cron schedule expression for the backup, if applicable.
+        customSchedule: string
+        -- The next scheduled time for an automated backup to be taken.
+        nextAutomatedBackupTime: number
     end
 
     record GetDbClusterOutput
@@ -259,6 +596,10 @@ local record M
         failoverMode: string
         -- Configuration for node modes in the DbCluster.
         clusterConfiguration: ClusterConfiguration
+        -- The backup configurations for the DB cluster.
+        dbBackupConfigurations: {DbBackupConfigurationOutput}
+        -- The Amazon Web Services KMS key ARN used for encryption of the DB cluster.
+        kmsKeyId: string
     end
 
     record ListDbClustersInput
@@ -343,6 +684,8 @@ local record M
         "MAINTENANCE"
         "REBOOTING"
         "REBOOT_FAILED"
+        "RESTORING"
+        "RESTORE_FAILED"
     end
 
     -- Contains a summary of a DB instance belonging to a DB cluster.
@@ -410,6 +753,8 @@ local record M
         failoverMode: string
         -- Specifies the maintenance schedule for the DB cluster, including the preferred maintenance window and timezone.
         maintenanceSchedule: MaintenanceSchedule
+        -- A list of backup configurations to update for the DB cluster.
+        dbBackupConfigurations: {DbBackupConfiguration}
     end
 
     record UpdateDbClusterOutput
@@ -464,6 +809,10 @@ local record M
         port: number
         -- Specifies whether the networkType of the Timestream for InfluxDB instance is IPV4, which can communicate over IPv4 protocol only, or DUAL, which can communicate over both IPv4 and IPv6 protocols.
         networkType: string
+        -- A list of backup configurations to enable automated backups for the DB instance.
+        dbBackupConfigurations: {DbBackupConfiguration}
+        -- The Amazon Web Services KMS key identifier to use for encryption of the DB instance. Can be a key ID, key ARN, alias name, or alias ARN.
+        kmsKeyId: string
     end
 
     record CreateDbInstanceOutput
@@ -517,11 +866,17 @@ local record M
         lastMaintenanceTime: number
         -- The timestamp of the next scheduled maintenance operation on the DB instance.
         nextMaintenanceTime: number
+        -- The backup configurations for the DB instance.
+        dbBackupConfigurations: {DbBackupConfigurationOutput}
+        -- The Amazon Web Services KMS key ARN used for encryption of the DB instance.
+        kmsKeyId: string
     end
 
     record DeleteDbInstanceInput
         -- The id of the DB instance.
         identifier: string
+        -- Specifies whether to retain automated backups after the DB instance is deleted. If set to true, automated backups are not deleted and can be restored later.
+        retainAutomatedBackups: boolean
     end
 
     record DeleteDbInstanceOutput
@@ -575,6 +930,10 @@ local record M
         lastMaintenanceTime: number
         -- The timestamp of the next scheduled maintenance operation on the DB instance.
         nextMaintenanceTime: number
+        -- The backup configurations that were associated with the deleted DB instance.
+        dbBackupConfigurations: {DbBackupConfigurationOutput}
+        -- The Amazon Web Services KMS key ARN that was used for encryption of the deleted DB instance.
+        kmsKeyId: string
     end
 
     record GetDbInstanceInput
@@ -633,6 +992,10 @@ local record M
         lastMaintenanceTime: number
         -- The timestamp of the next scheduled maintenance operation on the DB instance.
         nextMaintenanceTime: number
+        -- The backup configurations for the DB instance.
+        dbBackupConfigurations: {DbBackupConfigurationOutput}
+        -- The Amazon Web Services KMS key ARN used for encryption of the DB instance.
+        kmsKeyId: string
     end
 
     record ListDbInstancesInput
@@ -733,6 +1096,10 @@ local record M
         lastMaintenanceTime: number
         -- The timestamp of the next scheduled maintenance operation on the DB instance.
         nextMaintenanceTime: number
+        -- The backup configurations for the DB instance.
+        dbBackupConfigurations: {DbBackupConfigurationOutput}
+        -- The Amazon Web Services KMS key ARN used for encryption of the DB instance.
+        kmsKeyId: string
     end
 
     record UpdateDbInstanceInput
@@ -758,6 +1125,8 @@ local record M
         allocatedStorage: number
         -- Specifies the maintenance schedule for the DB instance, including the preferred maintenance window and timezone.
         maintenanceSchedule: MaintenanceSchedule
+        -- A list of backup configurations to update for the DB instance.
+        dbBackupConfigurations: {DbBackupConfiguration}
     end
 
     record UpdateDbInstanceOutput
@@ -812,6 +1181,10 @@ local record M
         lastMaintenanceTime: number
         -- The timestamp of the next scheduled maintenance operation on the DB instance.
         nextMaintenanceTime: number
+        -- The backup configurations for the DB instance.
+        dbBackupConfigurations: {DbBackupConfigurationOutput}
+        -- The Amazon Web Services KMS key ARN used for encryption of the DB instance.
+        kmsKeyId: string
     end
 
     enum DurationType
@@ -891,7 +1264,7 @@ local record M
         -- Initial bytes of memory allocated for a query.
         -- Default: 0
         queryInitialMemoryBytes: number
-        -- Maximum number of queries allowed in execution queue. When queue limit is reached, new queries are rejected. Setting to 0 allows an unlimited number of queries in the queue.
+        -- Maximum total bytes of memory allowed for all running queries. When this limit is reached, new queries are rejected. Setting to 0 allows unlimited memory usage.
         -- Default: 0
         queryMaxMemoryBytes: number
         -- Maximum bytes of memory allowed for a single query. Must be greater or equal to queryInitialMemoryBytes.

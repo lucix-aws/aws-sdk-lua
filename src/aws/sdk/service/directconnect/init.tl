@@ -71,6 +71,7 @@ local record Client
     describeVirtualInterfaces: function(Client, types.DescribeVirtualInterfacesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeVirtualInterfacesOutput>
     disassociateConnectionFromLag: function(Client, types.DisassociateConnectionFromLagInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateConnectionFromLagOutput>
     disassociateMacSecKey: function(Client, types.DisassociateMacSecKeyInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateMacSecKeyOutput>
+    listVirtualInterfaceRoutes: function(Client, types.ListVirtualInterfaceRoutesInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceRoutesOutput>
     listVirtualInterfaceTestHistory: function(Client, types.ListVirtualInterfaceTestHistoryInput, ? base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceTestHistoryOutput>
     startBgpFailoverTest: function(Client, types.StartBgpFailoverTestInput, ? base_client.InvokeOptions): async.Operation<types.StartBgpFailoverTestOutput>
     stopBgpFailoverTest: function(Client, types.StopBgpFailoverTestInput, ? base_client.InvokeOptions): async.Operation<types.StopBgpFailoverTestOutput>
@@ -335,6 +336,10 @@ end
 
 function C:disassociateMacSecKey(input: types.DisassociateMacSecKeyInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateMacSecKeyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateMacSecKey as schema.OperationSchema, input, options) as async.Operation<types.DisassociateMacSecKeyOutput>
+end
+
+function C:listVirtualInterfaceRoutes(input: types.ListVirtualInterfaceRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListVirtualInterfaceRoutes as schema.OperationSchema, input, options) as async.Operation<types.ListVirtualInterfaceRoutesOutput>
 end
 
 function C:listVirtualInterfaceTestHistory(input: types.ListVirtualInterfaceTestHistoryInput, options?: base_client.InvokeOptions): async.Operation<types.ListVirtualInterfaceTestHistoryOutput>

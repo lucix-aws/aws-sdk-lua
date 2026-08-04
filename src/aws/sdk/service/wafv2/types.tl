@@ -706,7 +706,7 @@ local record M
         -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
         -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
         -- are only supported when FieldToMatch is SingleQueryArgument or
-        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        -- AllQueryArguments. You can specify up to 10 pre-parse text transformations per rule statement.
         PreParseTextTransformations: {PreParseTextTransformation}
         -- The area within the portion of the web request that you want WAF to search for
         -- SearchString. Valid values include the following:
@@ -1864,7 +1864,7 @@ local record M
         -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
         -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
         -- are only supported when FieldToMatch is SingleQueryArgument or
-        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        -- AllQueryArguments. You can specify up to 10 pre-parse text transformations per rule statement.
         PreParseTextTransformations: {PreParseTextTransformation}
     end
 
@@ -1881,7 +1881,7 @@ local record M
         -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
         -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
         -- are only supported when FieldToMatch is SingleQueryArgument or
-        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        -- AllQueryArguments. You can specify up to 10 pre-parse text transformations per rule statement.
         PreParseTextTransformations: {PreParseTextTransformation}
     end
 
@@ -1924,7 +1924,7 @@ local record M
         -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
         -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
         -- are only supported when FieldToMatch is SingleQueryArgument or
-        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        -- AllQueryArguments. You can specify up to 10 pre-parse text transformations per rule statement.
         PreParseTextTransformations: {PreParseTextTransformation}
     end
 
@@ -1942,7 +1942,7 @@ local record M
         -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
         -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
         -- are only supported when FieldToMatch is SingleQueryArgument or
-        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        -- AllQueryArguments. You can specify up to 10 pre-parse text transformations per rule statement.
         PreParseTextTransformations: {PreParseTextTransformation}
         -- The sensitivity that you want WAF to use to inspect for SQL injection attacks.
         -- HIGH detects more attacks, but might generate more false positives,
@@ -1966,7 +1966,7 @@ local record M
         -- Pre-parse text transformations normalize the raw query string before WAF parses it into individual
         -- query arguments. They are applied before the standard text transformations. Pre-parse text transformations
         -- are only supported when FieldToMatch is SingleQueryArgument or
-        -- AllQueryArguments. You can specify up to 3 pre-parse text transformations per rule statement.
+        -- AllQueryArguments. You can specify up to 10 pre-parse text transformations per rule statement.
         PreParseTextTransformations: {PreParseTextTransformation}
     end
 
