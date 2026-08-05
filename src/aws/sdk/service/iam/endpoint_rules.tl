@@ -154,6 +154,106 @@ return
                                                 {
                                                     ref = "UseDualStack",
                                                 },
+                                                false,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam.amazonaws.com",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.amazonaws.com",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
                                                 true,
                                             },
                                         },
@@ -295,6 +395,56 @@ return
                                                 {
                                                     ref = "UseFIPS",
                                                 },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.api.amazonwebservices.com.cn",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "cn-north-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-cn",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
                                                 false,
                                             },
                                         },
@@ -310,6 +460,56 @@ return
                                     },
                                     endpoint = {
                                         url = "https://iam.cn-north-1.amazonaws.com.cn",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "cn-north-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-cn",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.amazonaws.com.cn",
                                         properties = {
                                             authSchemes = {
                                                 {
@@ -636,6 +836,106 @@ return
                                                         "name",
                                                     },
                                                 },
+                                                "aws-iso",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam.api.aws.ic.gov",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-iso-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-iso",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.api.aws.ic.gov",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-iso-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
                                                 "aws-iso-b",
                                             },
                                         },
@@ -736,6 +1036,106 @@ return
                                                         "name",
                                                     },
                                                 },
+                                                "aws-iso-b",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam.api.aws.scloud",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-isob-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-iso-b",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.api.aws.scloud",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-isob-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
                                                 "aws-iso-e",
                                             },
                                         },
@@ -760,6 +1160,156 @@ return
                                     },
                                     endpoint = {
                                         url = "https://iam.eu-isoe-west-1.cloud.adc-e.uk",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "eu-isoe-west-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-iso-e",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.cloud.adc-e.uk",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "eu-isoe-west-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-iso-e",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam.api.cloud-aws.adc-e.uk",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "eu-isoe-west-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-iso-e",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.api.cloud-aws.adc-e.uk",
                                         properties = {
                                             authSchemes = {
                                                 {
@@ -836,6 +1386,156 @@ return
                                                         "name",
                                                     },
                                                 },
+                                                "aws-iso-f",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.csp.hci.ic.gov",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-isof-south-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-iso-f",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam.api.aws.hci.ic.gov",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-isof-south-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-iso-f",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.api.aws.hci.ic.gov",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "us-isof-south-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
                                                 "aws-eusc",
                                             },
                                         },
@@ -860,6 +1560,156 @@ return
                                     },
                                     endpoint = {
                                         url = "https://iam.eusc-de-east-1.amazonaws.eu",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "eusc-de-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-eusc",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.amazonaws.eu",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "eusc-de-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-eusc",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                false,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam.global.api.amazonwebservices.eu",
+                                        properties = {
+                                            authSchemes = {
+                                                {
+                                                    name = "sigv4",
+                                                    signingRegion = "eusc-de-east-1",
+                                                },
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "stringEquals",
+                                            argv = {
+                                                {
+                                                    fn = "getAttr",
+                                                    argv = {
+                                                        {
+                                                            ref = "PartitionResult",
+                                                        },
+                                                        "name",
+                                                    },
+                                                },
+                                                "aws-eusc",
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseFIPS",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "UseDualStack",
+                                                },
+                                                true,
+                                            },
+                                        },
+                                    },
+                                    endpoint = {
+                                        url = "https://iam-fips.api.amazonwebservices.eu",
                                         properties = {
                                             authSchemes = {
                                                 {
@@ -931,7 +1781,7 @@ return
                                                 {
                                                     conditions = {},
                                                     endpoint = {
-                                                        url = "https://iam-fips.{PartitionResult#dualStackDnsSuffix}",
+                                                        url = "https://iam-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
                                                         properties = {
                                                             authSchemes = {
                                                                 {
@@ -999,7 +1849,7 @@ return
                                                 {
                                                     conditions = {},
                                                     endpoint = {
-                                                        url = "https://iam-fips.{PartitionResult#dnsSuffix}",
+                                                        url = "https://iam-fips.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dnsSuffix}",
                                                         properties = {
                                                             authSchemes = {
                                                                 {
@@ -1067,7 +1917,7 @@ return
                                                 {
                                                     conditions = {},
                                                     endpoint = {
-                                                        url = "https://iam.{PartitionResult#dualStackDnsSuffix}",
+                                                        url = "https://iam.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dualStackDnsSuffix}",
                                                         properties = {
                                                             authSchemes = {
                                                                 {
@@ -1094,7 +1944,7 @@ return
                                 {
                                     conditions = {},
                                     endpoint = {
-                                        url = "https://iam.{PartitionResult#dnsSuffix}",
+                                        url = "https://iam.{PartitionResult#implicitGlobalRegion}.{PartitionResult#dnsSuffix}",
                                         properties = {
                                             authSchemes = {
                                                 {

@@ -45,6 +45,14 @@ M.IpList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NatGatewayAddressList = schema.new({ type = "list", list_member = M.NatGatewayAddress })
 
+M.CustomKeyValuePairRequestSet = schema.new({ type = "list", list_member = M.CustomTagKeyValueRequestPair })
+
+M.InstanceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SuccessfulAssociationResponseSet = schema.new({ type = "list", list_member = M.SuccessfulAssociationResponseObject })
+
+M.UnsuccessfulAssociationResponseSet = schema.new({ type = "list", list_member = M.UnsuccessfulAssociationResponseObject })
+
 M.AllocationIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.TransitGatewaySubnetIdList = schema.new({ type = "list", list_member = prelude.String })
@@ -76,6 +84,8 @@ M.CancelledSpotInstanceRequestList = schema.new({ type = "list", list_member = M
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
 M.VolumeList = schema.new({ type = "list", list_member = M.Volume })
+
+M.HealthCheckPathRequestList = schema.new({ type = "list", list_member = M.HealthCheckPathRequestObject })
 
 M.ReservationFleetInstanceSpecificationList = schema.new({ type = "list", list_member = M.ReservationFleetInstanceSpecification })
 
@@ -198,6 +208,12 @@ M.AddressSet = schema.new({ type = "list", list_member = M.AddressAttribute })
 M.AddressTransferList = schema.new({ type = "list", list_member = M.AddressTransfer })
 
 M.IdFormatList = schema.new({ type = "list", list_member = M.IdFormat })
+
+M.ApplicationStatusCheckIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.ApplicationStatusCheckAssociationSet = schema.new({ type = "list", list_member = M.ApplicationStatusCheckAssociationObject })
+
+M.ApplicationStatusCheckResponseSet = schema.new({ type = "list", list_member = M.ApplicationStatusCheckResponseObject })
 
 M.ZoneNameStringList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -763,6 +779,10 @@ M.VpnGatewayIdStringList = schema.new({ type = "list", list_member = prelude.Str
 
 M.VpnGatewayList = schema.new({ type = "list", list_member = M.VpnGateway })
 
+M.SuccessfulSuppressionResponseSet = schema.new({ type = "list", list_member = M.SuccessfulSuppressionResponseObject })
+
+M.UnsuccessfulSuppressionResponseSet = schema.new({ type = "list", list_member = M.UnsuccessfulSuppressionResponseObject })
+
 M.AvailabilityZoneStringList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AvailabilityZoneIdStringList = schema.new({ type = "list", list_member = prelude.String })
@@ -1009,13 +1029,15 @@ M.SubnetAssociationList = schema.new({ type = "list", list_member = M.SubnetAsso
 
 M.AsnAssociationSet = schema.new({ type = "list", list_member = M.AsnAssociation })
 
-M.InstanceIdList = schema.new({ type = "list", list_member = prelude.String })
-
 M.DedicatedHostIdList = schema.new({ type = "list", list_member = prelude.String })
 
 M.InstanceEventWindowTimeRangeList = schema.new({ type = "list", list_member = M.InstanceEventWindowTimeRange })
 
 M.VerifiedAccessTrustProviderCondensedList = schema.new({ type = "list", list_member = M.VerifiedAccessTrustProviderCondensed })
+
+M.HealthCheckPathResponseList = schema.new({ type = "list", list_member = M.HealthCheckPathResponseObject })
+
+M.CustomKeyValuePairResponseSet = schema.new({ type = "list", list_member = M.CustomTagKeyValueResponsePair })
 
 M.CapacityAllocations = schema.new({ type = "list", list_member = M.CapacityAllocation })
 
@@ -1123,6 +1145,8 @@ M.VpcAttachmentList = schema.new({ type = "list", list_member = M.VpcAttachment 
 
 M.InstanceTagKeySet = schema.new({ type = "list", list_member = prelude.String })
 
+M.InstanceApplicationStatusSet = schema.new({ type = "list", list_member = M.InstanceApplicationStatus })
+
 M.LoadPermissionList = schema.new({ type = "list", list_member = M.LoadPermission })
 
 M.OccurrenceDayRequestSet = schema.new({ type = "list", list_member = prelude.Integer })
@@ -1214,6 +1238,8 @@ M.PrefixListIdList = schema.new({ type = "list", list_member = M.PrefixListId })
 M.InstanceCountList = schema.new({ type = "list", list_member = M.InstanceCount })
 
 M.PriceScheduleList = schema.new({ type = "list", list_member = M.PriceSchedule })
+
+M.HealthCheckPathDestinationRequestSet = schema.new({ type = "list", list_member = M.HealthCheckPathDestinationRequestObject })
 
 M.FleetLaunchTemplateOverridesListRequest = schema.new({ type = "list", list_member = M.FleetLaunchTemplateOverridesRequest })
 
@@ -1367,6 +1393,8 @@ M.LicenseList = schema.new({ type = "list", list_member = M.LicenseConfiguration
 
 M.InstanceSecondaryInterfaceList = schema.new({ type = "list", list_member = M.InstanceSecondaryInterface })
 
+M.HealthCheckPathDestinationResponseList = schema.new({ type = "list", list_member = M.HealthCheckPathDestinationResponseObject })
+
 M.CapacityAllocationMetadataList = schema.new({ type = "list", list_member = M.CapacityAllocationMetadataEntry })
 
 M.DhcpConfigurationValueList = schema.new({ type = "list", list_member = M.AttributeValue })
@@ -1472,6 +1500,8 @@ M.Phase1DHGroupNumbersList = schema.new({ type = "list", list_member = M.Phase1D
 M.Phase2DHGroupNumbersList = schema.new({ type = "list", list_member = M.Phase2DHGroupNumbersListValue })
 
 M.IKEVersionsList = schema.new({ type = "list", list_member = M.IKEVersionsListValue })
+
+M.ApplicationStatusDetailSet = schema.new({ type = "list", list_member = M.ApplicationStatusDetail })
 
 M.FleetLaunchTemplateOverridesList = schema.new({ type = "list", list_member = M.FleetLaunchTemplateOverrides })
 
@@ -7086,6 +7116,189 @@ M.AssociateAddressOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "associationId" },
                 [traits.EC2_QUERY_NAME] = { name = "AssociationId" },
+            },
+        }),
+    },
+})
+
+M.CustomTagKeyValueRequestPair = schema.new({
+    id = id.from(_N, "CustomTagKeyValueRequestPair"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "CustomTagKeyValueRequestPair", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+        }),
+        Value = schema.new({
+            id = id.from(_N, "CustomTagKeyValueRequestPair", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AssociateApplicationStatusCheckInput = schema.new({
+    id = id.from(_N, "AssociateApplicationStatusCheckRequest"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "AssociateApplicationStatusCheckInput", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetTagAssociations = schema.new({
+            id = id.from(_N, "AssociateApplicationStatusCheckInput", "TargetTagAssociations"),
+            type = "list",
+            name = "TargetTagAssociations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.CustomTagKeyValueRequestPair, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TargetTagAssociation" },
+            },
+        }),
+        InstanceIds = schema.new({
+            id = id.from(_N, "AssociateApplicationStatusCheckInput", "InstanceIds"),
+            type = "list",
+            name = "InstanceIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "InstanceId" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "AssociateApplicationStatusCheckInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "AssociateApplicationStatusCheckInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.SuccessfulAssociationResponseObject = schema.new({
+    id = id.from(_N, "SuccessfulAssociationResponseObject"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "SuccessfulAssociationResponseObject", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheckId" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheckId" },
+            },
+        }),
+        AssociationType = schema.new({
+            id = id.from(_N, "SuccessfulAssociationResponseObject", "AssociationType"),
+            type = "string",
+            name = "AssociationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "associationType" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociationType" },
+            },
+        }),
+        AssociationValue = schema.new({
+            id = id.from(_N, "SuccessfulAssociationResponseObject", "AssociationValue"),
+            type = "string",
+            name = "AssociationValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "associationValue" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociationValue" },
+            },
+        }),
+    },
+})
+
+M.UnsuccessfulAssociationResponseObject = schema.new({
+    id = id.from(_N, "UnsuccessfulAssociationResponseObject"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "UnsuccessfulAssociationResponseObject", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheckId" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheckId" },
+            },
+        }),
+        AssociationType = schema.new({
+            id = id.from(_N, "UnsuccessfulAssociationResponseObject", "AssociationType"),
+            type = "string",
+            name = "AssociationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "associationType" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociationType" },
+            },
+        }),
+        AssociationValue = schema.new({
+            id = id.from(_N, "UnsuccessfulAssociationResponseObject", "AssociationValue"),
+            type = "string",
+            name = "AssociationValue",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "associationValue" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociationValue" },
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "UnsuccessfulAssociationResponseObject", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "reason" },
+                [traits.EC2_QUERY_NAME] = { name = "Reason" },
+            },
+        }),
+    },
+})
+
+M.AssociateApplicationStatusCheckOutput = schema.new({
+    id = id.from(_N, "AssociateApplicationStatusCheckResult"),
+    type = "structure",
+    members = {
+        SuccessfulResults = schema.new({
+            id = id.from(_N, "AssociateApplicationStatusCheckOutput", "SuccessfulResults"),
+            type = "list",
+            name = "SuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.SuccessfulAssociationResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "successfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "SuccessfulResultSet" },
+            },
+        }),
+        UnsuccessfulResults = schema.new({
+            id = id.from(_N, "AssociateApplicationStatusCheckOutput", "UnsuccessfulResults"),
+            type = "list",
+            name = "UnsuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.UnsuccessfulAssociationResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "unsuccessfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "UnsuccessfulResultSet" },
             },
         }),
     },
@@ -13029,6 +13242,542 @@ M.CopyVolumesOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "volumeSet" },
                 [traits.EC2_QUERY_NAME] = { name = "VolumeSet" },
+            },
+        }),
+    },
+})
+
+M.HealthCheckPathDestinationRequestObject = schema.new({
+    id = id.from(_N, "HealthCheckPathDestinationRequestObject"),
+    type = "structure",
+    members = {
+        SubnetId = schema.new({
+            id = id.from(_N, "HealthCheckPathDestinationRequestObject", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+        }),
+        SecurityGroupId = schema.new({
+            id = id.from(_N, "HealthCheckPathDestinationRequestObject", "SecurityGroupId"),
+            type = "string",
+            name = "SecurityGroupId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HealthCheckPathSourceRequestObject = schema.new({
+    id = id.from(_N, "HealthCheckPathSourceRequestObject"),
+    type = "structure",
+    members = {
+        SubnetId = schema.new({
+            id = id.from(_N, "HealthCheckPathSourceRequestObject", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+        }),
+        SecurityGroupId = schema.new({
+            id = id.from(_N, "HealthCheckPathSourceRequestObject", "SecurityGroupId"),
+            type = "string",
+            name = "SecurityGroupId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.HealthCheckPathRequestObject = schema.new({
+    id = id.from(_N, "HealthCheckPathRequestObject"),
+    type = "structure",
+    members = {
+        Source = schema.new({
+            id = id.from(_N, "HealthCheckPathRequestObject", "Source"),
+            type = "structure",
+            name = "Source",
+            target_id = id.from(_N, "HealthCheckPathSourceRequestObject"),
+            target = M.HealthCheckPathSourceRequestObject,
+        }),
+        Destinations = schema.new({
+            id = id.from(_N, "HealthCheckPathRequestObject", "Destinations"),
+            type = "list",
+            name = "Destinations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.HealthCheckPathDestinationRequestObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Destination" },
+            },
+        }),
+    },
+})
+
+M.CreateApplicationStatusCheckInput = schema.new({
+    id = id.from(_N, "CreateApplicationStatusCheckRequest"),
+    type = "structure",
+    members = {
+        HealthCheckPaths = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "HealthCheckPaths"),
+            type = "list",
+            name = "HealthCheckPaths",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.HealthCheckPathRequestObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "HealthCheckPath" },
+            },
+        }),
+        Aggregation = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "Aggregation"),
+            type = "string",
+            name = "Aggregation",
+            target_id = prelude.String.id,
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Port = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Path = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+        }),
+        DeviceIndex = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "DeviceIndex"),
+            type = "integer",
+            name = "DeviceIndex",
+            target_id = prelude.Integer.id,
+        }),
+        IpVersion = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "IpVersion"),
+            type = "string",
+            name = "IpVersion",
+            target_id = prelude.String.id,
+        }),
+        IpScope = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "IpScope"),
+            type = "string",
+            name = "IpScope",
+            target_id = prelude.String.id,
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+        FailureThreshold = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "FailureThreshold"),
+            type = "integer",
+            name = "FailureThreshold",
+            target_id = prelude.Integer.id,
+        }),
+        SuccessThreshold = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "SuccessThreshold"),
+            type = "integer",
+            name = "SuccessThreshold",
+            target_id = prelude.Integer.id,
+        }),
+        StatusCodeMatcher = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "StatusCodeMatcher"),
+            type = "string",
+            name = "StatusCodeMatcher",
+            target_id = prelude.String.id,
+        }),
+        InitializationGracePeriodSeconds = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "InitializationGracePeriodSeconds"),
+            type = "integer",
+            name = "InitializationGracePeriodSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagSpecification" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.HealthCheckPathDestinationResponseObject = schema.new({
+    id = id.from(_N, "HealthCheckPathDestinationResponseObject"),
+    type = "structure",
+    members = {
+        SubnetId = schema.new({
+            id = id.from(_N, "HealthCheckPathDestinationResponseObject", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "subnetId" },
+                [traits.EC2_QUERY_NAME] = { name = "SubnetId" },
+            },
+        }),
+        SecurityGroupId = schema.new({
+            id = id.from(_N, "HealthCheckPathDestinationResponseObject", "SecurityGroupId"),
+            type = "string",
+            name = "SecurityGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "securityGroupId" },
+                [traits.EC2_QUERY_NAME] = { name = "SecurityGroupId" },
+            },
+        }),
+    },
+})
+
+M.HealthCheckPathSourceResponseObject = schema.new({
+    id = id.from(_N, "HealthCheckPathSourceResponseObject"),
+    type = "structure",
+    members = {
+        SubnetId = schema.new({
+            id = id.from(_N, "HealthCheckPathSourceResponseObject", "SubnetId"),
+            type = "string",
+            name = "SubnetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "subnetId" },
+                [traits.EC2_QUERY_NAME] = { name = "SubnetId" },
+            },
+        }),
+        SecurityGroupId = schema.new({
+            id = id.from(_N, "HealthCheckPathSourceResponseObject", "SecurityGroupId"),
+            type = "string",
+            name = "SecurityGroupId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "securityGroupId" },
+                [traits.EC2_QUERY_NAME] = { name = "SecurityGroupId" },
+            },
+        }),
+    },
+})
+
+M.HealthCheckPathResponseObject = schema.new({
+    id = id.from(_N, "HealthCheckPathResponseObject"),
+    type = "structure",
+    members = {
+        Source = schema.new({
+            id = id.from(_N, "HealthCheckPathResponseObject", "Source"),
+            type = "structure",
+            name = "Source",
+            target_id = id.from(_N, "HealthCheckPathSourceResponseObject"),
+            target = M.HealthCheckPathSourceResponseObject,
+            traits = {
+                [traits.XML_NAME] = { name = "source" },
+                [traits.EC2_QUERY_NAME] = { name = "Source" },
+            },
+        }),
+        Destinations = schema.new({
+            id = id.from(_N, "HealthCheckPathResponseObject", "Destinations"),
+            type = "list",
+            name = "Destinations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.HealthCheckPathDestinationResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "destinationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "DestinationSet" },
+            },
+        }),
+    },
+})
+
+M.CustomTagKeyValueResponsePair = schema.new({
+    id = id.from(_N, "CustomTagKeyValueResponsePair"),
+    type = "structure",
+    members = {
+        Key = schema.new({
+            id = id.from(_N, "CustomTagKeyValueResponsePair", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "key" },
+                [traits.EC2_QUERY_NAME] = { name = "Key" },
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "CustomTagKeyValueResponsePair", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "value" },
+                [traits.EC2_QUERY_NAME] = { name = "Value" },
+            },
+        }),
+    },
+})
+
+M.ApplicationStatusCheckResponseObject = schema.new({
+    id = id.from(_N, "ApplicationStatusCheckResponseObject"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheckId" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheckId" },
+            },
+        }),
+        Aggregation = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "Aggregation"),
+            type = "string",
+            name = "Aggregation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "aggregation" },
+                [traits.EC2_QUERY_NAME] = { name = "Aggregation" },
+            },
+        }),
+        HealthCheckPaths = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "HealthCheckPaths"),
+            type = "list",
+            name = "HealthCheckPaths",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.HealthCheckPathResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "healthCheckPathSet" },
+                [traits.EC2_QUERY_NAME] = { name = "HealthCheckPathSet" },
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "protocol" },
+                [traits.EC2_QUERY_NAME] = { name = "Protocol" },
+            },
+        }),
+        Port = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "port" },
+                [traits.EC2_QUERY_NAME] = { name = "Port" },
+            },
+        }),
+        Path = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "path" },
+                [traits.EC2_QUERY_NAME] = { name = "Path" },
+            },
+        }),
+        DeviceIndex = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "DeviceIndex"),
+            type = "integer",
+            name = "DeviceIndex",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "deviceIndex" },
+                [traits.EC2_QUERY_NAME] = { name = "DeviceIndex" },
+            },
+        }),
+        IpVersion = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "IpVersion"),
+            type = "string",
+            name = "IpVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipVersion" },
+                [traits.EC2_QUERY_NAME] = { name = "IpVersion" },
+            },
+        }),
+        IpScope = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "IpScope"),
+            type = "string",
+            name = "IpScope",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipScope" },
+                [traits.EC2_QUERY_NAME] = { name = "IpScope" },
+            },
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "interval" },
+                [traits.EC2_QUERY_NAME] = { name = "Interval" },
+            },
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "timeout" },
+                [traits.EC2_QUERY_NAME] = { name = "Timeout" },
+            },
+        }),
+        FailureThreshold = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "FailureThreshold"),
+            type = "integer",
+            name = "FailureThreshold",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "failureThreshold" },
+                [traits.EC2_QUERY_NAME] = { name = "FailureThreshold" },
+            },
+        }),
+        SuccessThreshold = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "SuccessThreshold"),
+            type = "integer",
+            name = "SuccessThreshold",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "successThreshold" },
+                [traits.EC2_QUERY_NAME] = { name = "SuccessThreshold" },
+            },
+        }),
+        StatusCodeMatcher = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "StatusCodeMatcher"),
+            type = "string",
+            name = "StatusCodeMatcher",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "statusCodeMatcher" },
+                [traits.EC2_QUERY_NAME] = { name = "StatusCodeMatcher" },
+            },
+        }),
+        InitializationGracePeriodSeconds = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "InitializationGracePeriodSeconds"),
+            type = "integer",
+            name = "InitializationGracePeriodSeconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "initializationGracePeriodSeconds" },
+                [traits.EC2_QUERY_NAME] = { name = "InitializationGracePeriodSeconds" },
+            },
+        }),
+        LastUpdatedAt = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "LastUpdatedAt"),
+            type = "timestamp",
+            name = "LastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "lastUpdatedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "LastUpdatedAt" },
+            },
+        }),
+        TargetTagAssociations = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "TargetTagAssociations"),
+            type = "list",
+            name = "TargetTagAssociations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.CustomTagKeyValueResponsePair, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "targetTagAssociationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TargetTagAssociationSet" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "creationTime" },
+                [traits.EC2_QUERY_NAME] = { name = "CreationTime" },
+            },
+        }),
+        ModifyTime = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "ModifyTime"),
+            type = "timestamp",
+            name = "ModifyTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "modifyTime" },
+                [traits.EC2_QUERY_NAME] = { name = "ModifyTime" },
+            },
+        }),
+        DeletionTime = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckResponseObject", "DeletionTime"),
+            type = "timestamp",
+            name = "DeletionTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "deletionTime" },
+                [traits.EC2_QUERY_NAME] = { name = "DeletionTime" },
+            },
+        }),
+    },
+})
+
+M.CreateApplicationStatusCheckOutput = schema.new({
+    id = id.from(_N, "CreateApplicationStatusCheckResult"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheck = schema.new({
+            id = id.from(_N, "CreateApplicationStatusCheckOutput", "ApplicationStatusCheck"),
+            type = "structure",
+            name = "ApplicationStatusCheck",
+            target_id = id.from(_N, "ApplicationStatusCheckResponseObject"),
+            target = M.ApplicationStatusCheckResponseObject,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheck" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheck" },
             },
         }),
     },
@@ -31762,9 +32511,6 @@ M.CreateSecondaryNetworkInput = schema.new({
             type = "string",
             name = "Ipv4CidrBlock",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         NetworkType = schema.new({
             id = id.from(_N, "CreateSecondaryNetworkInput", "NetworkType"),
@@ -41878,6 +42624,55 @@ M.CreateVpnGatewayOutput = schema.new({
     },
 })
 
+M.DeleteApplicationStatusCheckInput = schema.new({
+    id = id.from(_N, "DeleteApplicationStatusCheckRequest"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "DeleteApplicationStatusCheckInput", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "DeleteApplicationStatusCheckInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DeleteApplicationStatusCheckInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DeleteApplicationStatusCheckOutput = schema.new({
+    id = id.from(_N, "DeleteApplicationStatusCheckResult"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheck = schema.new({
+            id = id.from(_N, "DeleteApplicationStatusCheckOutput", "ApplicationStatusCheck"),
+            type = "structure",
+            name = "ApplicationStatusCheck",
+            target_id = id.from(_N, "ApplicationStatusCheckResponseObject"),
+            target = M.ApplicationStatusCheckResponseObject,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheck" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheck" },
+            },
+        }),
+    },
+})
+
 M.DeleteCapacityManagerDataExportInput = schema.new({
     id = id.from(_N, "DeleteCapacityManagerDataExportRequest"),
     type = "structure",
@@ -47112,6 +47907,539 @@ M.DescribeAggregateIdFormatOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "statusSet" },
                 [traits.EC2_QUERY_NAME] = { name = "StatusSet" },
+            },
+        }),
+    },
+})
+
+M.DescribeApplicationStatusInput = schema.new({
+    id = id.from(_N, "DescribeApplicationStatusRequest"),
+    type = "structure",
+    members = {
+        InstanceIds = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusInput", "InstanceIds"),
+            type = "list",
+            name = "InstanceIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "InstanceId" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ApplicationStatusReason = schema.new({
+    id = id.from(_N, "ApplicationStatusReason"),
+    type = "structure",
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "ApplicationStatusReason", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "code" },
+                [traits.EC2_QUERY_NAME] = { name = "Code" },
+            },
+        }),
+        StatusCode = schema.new({
+            id = id.from(_N, "ApplicationStatusReason", "StatusCode"),
+            type = "integer",
+            name = "StatusCode",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "statusCode" },
+                [traits.EC2_QUERY_NAME] = { name = "StatusCode" },
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "ApplicationStatusReason", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "protocol" },
+                [traits.EC2_QUERY_NAME] = { name = "Protocol" },
+            },
+        }),
+    },
+})
+
+M.ApplicationStatusDetail = schema.new({
+    id = id.from(_N, "ApplicationStatusDetail"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "ApplicationStatusDetail", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheckId" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheckId" },
+            },
+        }),
+        CheckUpdateTime = schema.new({
+            id = id.from(_N, "ApplicationStatusDetail", "CheckUpdateTime"),
+            type = "timestamp",
+            name = "CheckUpdateTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "checkUpdateTime" },
+                [traits.EC2_QUERY_NAME] = { name = "CheckUpdateTime" },
+            },
+        }),
+        Aggregation = schema.new({
+            id = id.from(_N, "ApplicationStatusDetail", "Aggregation"),
+            type = "string",
+            name = "Aggregation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "aggregation" },
+                [traits.EC2_QUERY_NAME] = { name = "Aggregation" },
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ApplicationStatusDetail", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "status" },
+                [traits.EC2_QUERY_NAME] = { name = "Status" },
+            },
+        }),
+        StatusTimeStamp = schema.new({
+            id = id.from(_N, "ApplicationStatusDetail", "StatusTimeStamp"),
+            type = "timestamp",
+            name = "StatusTimeStamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "statusTimeStamp" },
+                [traits.EC2_QUERY_NAME] = { name = "StatusTimeStamp" },
+            },
+        }),
+        StatusSince = schema.new({
+            id = id.from(_N, "ApplicationStatusDetail", "StatusSince"),
+            type = "timestamp",
+            name = "StatusSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "statusSince" },
+                [traits.EC2_QUERY_NAME] = { name = "StatusSince" },
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "ApplicationStatusDetail", "Reason"),
+            type = "structure",
+            name = "Reason",
+            target_id = id.from(_N, "ApplicationStatusReason"),
+            target = M.ApplicationStatusReason,
+            traits = {
+                [traits.XML_NAME] = { name = "reason" },
+                [traits.EC2_QUERY_NAME] = { name = "Reason" },
+            },
+        }),
+    },
+})
+
+M.ApplicationStatus = schema.new({
+    id = id.from(_N, "ApplicationStatus"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ApplicationStatus", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "status" },
+                [traits.EC2_QUERY_NAME] = { name = "Status" },
+            },
+        }),
+        StatusTimeStamp = schema.new({
+            id = id.from(_N, "ApplicationStatus", "StatusTimeStamp"),
+            type = "timestamp",
+            name = "StatusTimeStamp",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "statusTimeStamp" },
+                [traits.EC2_QUERY_NAME] = { name = "StatusTimeStamp" },
+            },
+        }),
+        StatusSince = schema.new({
+            id = id.from(_N, "ApplicationStatus", "StatusSince"),
+            type = "timestamp",
+            name = "StatusSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "statusSince" },
+                [traits.EC2_QUERY_NAME] = { name = "StatusSince" },
+            },
+        }),
+        ResumeAt = schema.new({
+            id = id.from(_N, "ApplicationStatus", "ResumeAt"),
+            type = "timestamp",
+            name = "ResumeAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resumeAt" },
+                [traits.EC2_QUERY_NAME] = { name = "ResumeAt" },
+            },
+        }),
+        Details = schema.new({
+            id = id.from(_N, "ApplicationStatus", "Details"),
+            type = "list",
+            name = "Details",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ApplicationStatusDetail, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "detailSet" },
+                [traits.EC2_QUERY_NAME] = { name = "DetailSet" },
+            },
+        }),
+    },
+})
+
+M.InstanceApplicationStatus = schema.new({
+    id = id.from(_N, "InstanceApplicationStatus"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "InstanceApplicationStatus", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceId" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceId" },
+            },
+        }),
+        AvailabilityZone = schema.new({
+            id = id.from(_N, "InstanceApplicationStatus", "AvailabilityZone"),
+            type = "string",
+            name = "AvailabilityZone",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZone" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZone" },
+            },
+        }),
+        AvailabilityZoneId = schema.new({
+            id = id.from(_N, "InstanceApplicationStatus", "AvailabilityZoneId"),
+            type = "string",
+            name = "AvailabilityZoneId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "availabilityZoneId" },
+                [traits.EC2_QUERY_NAME] = { name = "AvailabilityZoneId" },
+            },
+        }),
+        ApplicationStatus = schema.new({
+            id = id.from(_N, "InstanceApplicationStatus", "ApplicationStatus"),
+            type = "structure",
+            name = "ApplicationStatus",
+            target_id = id.from(_N, "ApplicationStatus"),
+            target = M.ApplicationStatus,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatus" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatus" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "InstanceApplicationStatus", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+    },
+})
+
+M.ApplicationStatusesResponseType = schema.new({
+    id = id.from(_N, "ApplicationStatusesResponseType"),
+    type = "structure",
+    members = {
+        Instances = schema.new({
+            id = id.from(_N, "ApplicationStatusesResponseType", "Instances"),
+            type = "list",
+            name = "Instances",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.InstanceApplicationStatus, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "instanceSet" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceSet" },
+            },
+        }),
+    },
+})
+
+M.DescribeApplicationStatusOutput = schema.new({
+    id = id.from(_N, "DescribeApplicationStatusResult"),
+    type = "structure",
+    members = {
+        ApplicationStatuses = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusOutput", "ApplicationStatuses"),
+            type = "structure",
+            name = "ApplicationStatuses",
+            target_id = id.from(_N, "ApplicationStatusesResponseType"),
+            target = M.ApplicationStatusesResponseType,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusesResponseType" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusesResponseType" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.DescribeApplicationStatusCheckAssociationsInput = schema.new({
+    id = id.from(_N, "DescribeApplicationStatusCheckAssociationsRequest"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckIds = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsInput", "ApplicationStatusCheckIds"),
+            type = "list",
+            name = "ApplicationStatusCheckIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ApplicationStatusCheckId" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ApplicationStatusCheckAssociationObject = schema.new({
+    id = id.from(_N, "ApplicationStatusCheckAssociationObject"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckAssociationObject", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheckId" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheckId" },
+            },
+        }),
+        AssociationType = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckAssociationObject", "AssociationType"),
+            type = "string",
+            name = "AssociationType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "associationType" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociationType" },
+            },
+        }),
+        Key = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckAssociationObject", "Key"),
+            type = "string",
+            name = "Key",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "key" },
+                [traits.EC2_QUERY_NAME] = { name = "Key" },
+            },
+        }),
+        Value = schema.new({
+            id = id.from(_N, "ApplicationStatusCheckAssociationObject", "Value"),
+            type = "string",
+            name = "Value",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "value" },
+                [traits.EC2_QUERY_NAME] = { name = "Value" },
+            },
+        }),
+    },
+})
+
+M.DescribeApplicationStatusCheckAssociationsOutput = schema.new({
+    id = id.from(_N, "DescribeApplicationStatusCheckAssociationsResult"),
+    type = "structure",
+    members = {
+        Associations = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsOutput", "Associations"),
+            type = "list",
+            name = "Associations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ApplicationStatusCheckAssociationObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "associationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "AssociationSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusCheckAssociationsOutput", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+    },
+})
+
+M.DescribeApplicationStatusChecksInput = schema.new({
+    id = id.from(_N, "DescribeApplicationStatusChecksRequest"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckIds = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksInput", "ApplicationStatusCheckIds"),
+            type = "list",
+            name = "ApplicationStatusCheckIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ApplicationStatusCheckId" },
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        IncludeAll = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksInput", "IncludeAll"),
+            type = "boolean",
+            name = "IncludeAll",
+            target_id = prelude.Boolean.id,
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DescribeApplicationStatusChecksOutput = schema.new({
+    id = id.from(_N, "DescribeApplicationStatusChecksResult"),
+    type = "structure",
+    members = {
+        ApplicationStatusChecks = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksOutput", "ApplicationStatusChecks"),
+            type = "list",
+            name = "ApplicationStatusChecks",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.ApplicationStatusCheckResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheckSet" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheckSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeApplicationStatusChecksOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
             },
         }),
     },
@@ -60799,6 +62127,33 @@ M.DescribeInstanceStatusInput = schema.new({
     },
 })
 
+M.ApplicationStatusSummary = schema.new({
+    id = id.from(_N, "ApplicationStatusSummary"),
+    type = "structure",
+    members = {
+        Status = schema.new({
+            id = id.from(_N, "ApplicationStatusSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "status" },
+                [traits.EC2_QUERY_NAME] = { name = "Status" },
+            },
+        }),
+        ImpairedSince = schema.new({
+            id = id.from(_N, "ApplicationStatusSummary", "ImpairedSince"),
+            type = "timestamp",
+            name = "ImpairedSince",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "impairedSince" },
+                [traits.EC2_QUERY_NAME] = { name = "ImpairedSince" },
+            },
+        }),
+    },
+})
+
 M.EbsStatusDetails = schema.new({
     id = id.from(_N, "EbsStatusDetails"),
     type = "structure",
@@ -61104,6 +62459,17 @@ M.InstanceStatus = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "attachedEbsStatus" },
                 [traits.EC2_QUERY_NAME] = { name = "AttachedEbsStatus" },
+            },
+        }),
+        ApplicationStatus = schema.new({
+            id = id.from(_N, "InstanceStatus", "ApplicationStatus"),
+            type = "structure",
+            name = "ApplicationStatus",
+            target_id = id.from(_N, "ApplicationStatusSummary"),
+            target = M.ApplicationStatusSummary,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatus" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatus" },
             },
         }),
     },
@@ -78954,6 +80320,151 @@ M.DisableAllowedImagesSettingsOutput = schema.new({
     },
 })
 
+M.DisableApplicationStatusCheckSuppressionInput = schema.new({
+    id = id.from(_N, "DisableApplicationStatusCheckSuppressionRequest"),
+    type = "structure",
+    members = {
+        InstanceIds = schema.new({
+            id = id.from(_N, "DisableApplicationStatusCheckSuppressionInput", "InstanceIds"),
+            type = "list",
+            name = "InstanceIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "InstanceId" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "DisableApplicationStatusCheckSuppressionInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DisableApplicationStatusCheckSuppressionInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.SuccessfulSuppressionResponseObject = schema.new({
+    id = id.from(_N, "SuccessfulSuppressionResponseObject"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "SuccessfulSuppressionResponseObject", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceId" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceId" },
+            },
+        }),
+        SuppressAt = schema.new({
+            id = id.from(_N, "SuccessfulSuppressionResponseObject", "SuppressAt"),
+            type = "timestamp",
+            name = "SuppressAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "suppressAt" },
+                [traits.EC2_QUERY_NAME] = { name = "SuppressAt" },
+            },
+        }),
+        ResumeAt = schema.new({
+            id = id.from(_N, "SuccessfulSuppressionResponseObject", "ResumeAt"),
+            type = "timestamp",
+            name = "ResumeAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resumeAt" },
+                [traits.EC2_QUERY_NAME] = { name = "ResumeAt" },
+            },
+        }),
+    },
+})
+
+M.UnsuccessfulSuppressionResponseObject = schema.new({
+    id = id.from(_N, "UnsuccessfulSuppressionResponseObject"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "UnsuccessfulSuppressionResponseObject", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "instanceId" },
+                [traits.EC2_QUERY_NAME] = { name = "InstanceId" },
+            },
+        }),
+        SuppressAt = schema.new({
+            id = id.from(_N, "UnsuccessfulSuppressionResponseObject", "SuppressAt"),
+            type = "timestamp",
+            name = "SuppressAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "suppressAt" },
+                [traits.EC2_QUERY_NAME] = { name = "SuppressAt" },
+            },
+        }),
+        ResumeAt = schema.new({
+            id = id.from(_N, "UnsuccessfulSuppressionResponseObject", "ResumeAt"),
+            type = "timestamp",
+            name = "ResumeAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resumeAt" },
+                [traits.EC2_QUERY_NAME] = { name = "ResumeAt" },
+            },
+        }),
+        Reason = schema.new({
+            id = id.from(_N, "UnsuccessfulSuppressionResponseObject", "Reason"),
+            type = "string",
+            name = "Reason",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "reason" },
+                [traits.EC2_QUERY_NAME] = { name = "Reason" },
+            },
+        }),
+    },
+})
+
+M.DisableApplicationStatusCheckSuppressionOutput = schema.new({
+    id = id.from(_N, "DisableApplicationStatusCheckSuppressionResult"),
+    type = "structure",
+    members = {
+        SuccessfulResults = schema.new({
+            id = id.from(_N, "DisableApplicationStatusCheckSuppressionOutput", "SuccessfulResults"),
+            type = "list",
+            name = "SuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.SuccessfulSuppressionResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "successfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "SuccessfulResultSet" },
+            },
+        }),
+        UnsuccessfulResults = schema.new({
+            id = id.from(_N, "DisableApplicationStatusCheckSuppressionOutput", "UnsuccessfulResults"),
+            type = "list",
+            name = "UnsuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.UnsuccessfulSuppressionResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "unsuccessfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "UnsuccessfulResultSet" },
+            },
+        }),
+    },
+})
+
 M.DisableAwsNetworkPerformanceMetricSubscriptionInput = schema.new({
     id = id.from(_N, "DisableAwsNetworkPerformanceMetricSubscriptionRequest"),
     type = "structure",
@@ -80187,6 +81698,86 @@ M.DisassociateAddressInput = schema.new({
 
 M.DisassociateAddressOutput = prelude.Unit
 
+M.DisassociateApplicationStatusCheckInput = schema.new({
+    id = id.from(_N, "DisassociateApplicationStatusCheckRequest"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "DisassociateApplicationStatusCheckInput", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TargetTagAssociations = schema.new({
+            id = id.from(_N, "DisassociateApplicationStatusCheckInput", "TargetTagAssociations"),
+            type = "list",
+            name = "TargetTagAssociations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.CustomTagKeyValueRequestPair, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TargetTagAssociation" },
+            },
+        }),
+        InstanceIds = schema.new({
+            id = id.from(_N, "DisassociateApplicationStatusCheckInput", "InstanceIds"),
+            type = "list",
+            name = "InstanceIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "InstanceId" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "DisassociateApplicationStatusCheckInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "DisassociateApplicationStatusCheckInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.DisassociateApplicationStatusCheckOutput = schema.new({
+    id = id.from(_N, "DisassociateApplicationStatusCheckResult"),
+    type = "structure",
+    members = {
+        SuccessfulResults = schema.new({
+            id = id.from(_N, "DisassociateApplicationStatusCheckOutput", "SuccessfulResults"),
+            type = "list",
+            name = "SuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.SuccessfulAssociationResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "successfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "SuccessfulResultSet" },
+            },
+        }),
+        UnsuccessfulResults = schema.new({
+            id = id.from(_N, "DisassociateApplicationStatusCheckOutput", "UnsuccessfulResults"),
+            type = "list",
+            name = "UnsuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.UnsuccessfulAssociationResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "unsuccessfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "UnsuccessfulResultSet" },
+            },
+        }),
+    },
+})
+
 M.DisassociateCapacityReservationBillingOwnerInput = schema.new({
     id = id.from(_N, "DisassociateCapacityReservationBillingOwnerRequest"),
     type = "structure",
@@ -81147,6 +82738,73 @@ M.EnableAllowedImagesSettingsOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "allowedImagesSettingsState" },
                 [traits.EC2_QUERY_NAME] = { name = "AllowedImagesSettingsState" },
+            },
+        }),
+    },
+})
+
+M.EnableApplicationStatusCheckSuppressionInput = schema.new({
+    id = id.from(_N, "EnableApplicationStatusCheckSuppressionRequest"),
+    type = "structure",
+    members = {
+        InstanceIds = schema.new({
+            id = id.from(_N, "EnableApplicationStatusCheckSuppressionInput", "InstanceIds"),
+            type = "list",
+            name = "InstanceIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "InstanceId" },
+            },
+        }),
+        DurationSeconds = schema.new({
+            id = id.from(_N, "EnableApplicationStatusCheckSuppressionInput", "DurationSeconds"),
+            type = "integer",
+            name = "DurationSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "EnableApplicationStatusCheckSuppressionInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "EnableApplicationStatusCheckSuppressionInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.EnableApplicationStatusCheckSuppressionOutput = schema.new({
+    id = id.from(_N, "EnableApplicationStatusCheckSuppressionResult"),
+    type = "structure",
+    members = {
+        SuccessfulResults = schema.new({
+            id = id.from(_N, "EnableApplicationStatusCheckSuppressionOutput", "SuccessfulResults"),
+            type = "list",
+            name = "SuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.SuccessfulSuppressionResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "successfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "SuccessfulResultSet" },
+            },
+        }),
+        UnsuccessfulResults = schema.new({
+            id = id.from(_N, "EnableApplicationStatusCheckSuppressionOutput", "UnsuccessfulResults"),
+            type = "list",
+            name = "UnsuccessfulResults",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.UnsuccessfulSuppressionResponseObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "unsuccessfulResultSet" },
+                [traits.EC2_QUERY_NAME] = { name = "UnsuccessfulResultSet" },
             },
         }),
     },
@@ -92810,6 +94468,143 @@ M.ModifyAddressAttributeOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "address" },
                 [traits.EC2_QUERY_NAME] = { name = "Address" },
+            },
+        }),
+    },
+})
+
+M.ModifyApplicationStatusCheckInput = schema.new({
+    id = id.from(_N, "ModifyApplicationStatusCheckRequest"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheckId = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "ApplicationStatusCheckId"),
+            type = "string",
+            name = "ApplicationStatusCheckId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Aggregation = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "Aggregation"),
+            type = "string",
+            name = "Aggregation",
+            target_id = prelude.String.id,
+        }),
+        HealthCheckPaths = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "HealthCheckPaths"),
+            type = "list",
+            name = "HealthCheckPaths",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.HealthCheckPathRequestObject, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "HealthCheckPath" },
+            },
+        }),
+        Protocol = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "Protocol"),
+            type = "string",
+            name = "Protocol",
+            target_id = prelude.String.id,
+        }),
+        Port = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "Port"),
+            type = "integer",
+            name = "Port",
+            target_id = prelude.Integer.id,
+        }),
+        Path = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "Path"),
+            type = "string",
+            name = "Path",
+            target_id = prelude.String.id,
+        }),
+        DeviceIndex = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "DeviceIndex"),
+            type = "integer",
+            name = "DeviceIndex",
+            target_id = prelude.Integer.id,
+        }),
+        IpVersion = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "IpVersion"),
+            type = "string",
+            name = "IpVersion",
+            target_id = prelude.String.id,
+        }),
+        IpScope = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "IpScope"),
+            type = "string",
+            name = "IpScope",
+            target_id = prelude.String.id,
+        }),
+        Interval = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "Interval"),
+            type = "integer",
+            name = "Interval",
+            target_id = prelude.Integer.id,
+        }),
+        Timeout = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "Timeout"),
+            type = "integer",
+            name = "Timeout",
+            target_id = prelude.Integer.id,
+        }),
+        FailureThreshold = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "FailureThreshold"),
+            type = "integer",
+            name = "FailureThreshold",
+            target_id = prelude.Integer.id,
+        }),
+        SuccessThreshold = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "SuccessThreshold"),
+            type = "integer",
+            name = "SuccessThreshold",
+            target_id = prelude.Integer.id,
+        }),
+        StatusCodeMatcher = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "StatusCodeMatcher"),
+            type = "string",
+            name = "StatusCodeMatcher",
+            target_id = prelude.String.id,
+        }),
+        InitializationGracePeriodSeconds = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "InitializationGracePeriodSeconds"),
+            type = "integer",
+            name = "InitializationGracePeriodSeconds",
+            target_id = prelude.Integer.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+    },
+})
+
+M.ModifyApplicationStatusCheckOutput = schema.new({
+    id = id.from(_N, "ModifyApplicationStatusCheckResult"),
+    type = "structure",
+    members = {
+        ApplicationStatusCheck = schema.new({
+            id = id.from(_N, "ModifyApplicationStatusCheckOutput", "ApplicationStatusCheck"),
+            type = "structure",
+            name = "ApplicationStatusCheck",
+            target_id = id.from(_N, "ApplicationStatusCheckResponseObject"),
+            target = M.ApplicationStatusCheckResponseObject,
+            traits = {
+                [traits.XML_NAME] = { name = "applicationStatusCheck" },
+                [traits.EC2_QUERY_NAME] = { name = "ApplicationStatusCheck" },
             },
         }),
     },
@@ -106866,6 +108661,17 @@ M.AssociateAddress = schema.operation({
     },
 })
 
+M.AssociateApplicationStatusCheck = schema.operation({
+    id = id.from("com.amazonaws.ec2", "AssociateApplicationStatusCheck"),
+    input = M.AssociateApplicationStatusCheckInput,
+    output = M.AssociateApplicationStatusCheckOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.AssociateCapacityReservationBillingOwner = schema.operation({
     id = id.from("com.amazonaws.ec2", "AssociateCapacityReservationBillingOwner"),
     input = M.AssociateCapacityReservationBillingOwnerInput,
@@ -107354,6 +109160,17 @@ M.CopyVolumes = schema.operation({
     id = id.from("com.amazonaws.ec2", "CopyVolumes"),
     input = M.CopyVolumesInput,
     output = M.CopyVolumesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateApplicationStatusCheck = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateApplicationStatusCheck"),
+    input = M.CreateApplicationStatusCheckInput,
+    output = M.CreateApplicationStatusCheckOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -108520,6 +110337,17 @@ M.CreateVpnGateway = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateVpnGateway"),
     input = M.CreateVpnGatewayInput,
     output = M.CreateVpnGatewayOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteApplicationStatusCheck = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DeleteApplicationStatusCheck"),
+    input = M.DeleteApplicationStatusCheckInput,
+    output = M.DeleteApplicationStatusCheckOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -109708,6 +111536,39 @@ M.DescribeAggregateIdFormat = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeAggregateIdFormat"),
     input = M.DescribeAggregateIdFormatInput,
     output = M.DescribeAggregateIdFormatOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationStatus = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeApplicationStatus"),
+    input = M.DescribeApplicationStatusInput,
+    output = M.DescribeApplicationStatusOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationStatusCheckAssociations = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeApplicationStatusCheckAssociations"),
+    input = M.DescribeApplicationStatusCheckAssociationsInput,
+    output = M.DescribeApplicationStatusCheckAssociationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeApplicationStatusChecks = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeApplicationStatusChecks"),
+    input = M.DescribeApplicationStatusChecksInput,
+    output = M.DescribeApplicationStatusChecksOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -111816,6 +113677,17 @@ M.DisableAllowedImagesSettings = schema.operation({
     },
 })
 
+M.DisableApplicationStatusCheckSuppression = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DisableApplicationStatusCheckSuppression"),
+    input = M.DisableApplicationStatusCheckSuppressionInput,
+    output = M.DisableApplicationStatusCheckSuppressionOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisableAwsNetworkPerformanceMetricSubscription = schema.operation({
     id = id.from("com.amazonaws.ec2", "DisableAwsNetworkPerformanceMetricSubscription"),
     input = M.DisableAwsNetworkPerformanceMetricSubscriptionInput,
@@ -112036,6 +113908,17 @@ M.DisassociateAddress = schema.operation({
     },
 })
 
+M.DisassociateApplicationStatusCheck = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DisassociateApplicationStatusCheck"),
+    input = M.DisassociateApplicationStatusCheckInput,
+    output = M.DisassociateApplicationStatusCheckOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DisassociateCapacityReservationBillingOwner = schema.operation({
     id = id.from("com.amazonaws.ec2", "DisassociateCapacityReservationBillingOwner"),
     input = M.DisassociateCapacityReservationBillingOwnerInput,
@@ -112238,6 +114121,17 @@ M.EnableAllowedImagesSettings = schema.operation({
     id = id.from("com.amazonaws.ec2", "EnableAllowedImagesSettings"),
     input = M.EnableAllowedImagesSettingsInput,
     output = M.EnableAllowedImagesSettingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.EnableApplicationStatusCheckSuppression = schema.operation({
+    id = id.from("com.amazonaws.ec2", "EnableApplicationStatusCheckSuppression"),
+    input = M.EnableApplicationStatusCheckSuppressionInput,
+    output = M.EnableApplicationStatusCheckSuppressionOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -113426,6 +115320,17 @@ M.ModifyAddressAttribute = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyAddressAttribute"),
     input = M.ModifyAddressAttributeInput,
     output = M.ModifyAddressAttributeOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyApplicationStatusCheck = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyApplicationStatusCheck"),
+    input = M.ModifyApplicationStatusCheckInput,
+    output = M.ModifyApplicationStatusCheckOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

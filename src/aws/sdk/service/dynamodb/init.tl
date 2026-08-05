@@ -62,6 +62,7 @@ local record Client
     restoreTableFromBackup: function(Client, types.RestoreTableFromBackupInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableFromBackupOutput>
     restoreTableToPointInTime: function(Client, types.RestoreTableToPointInTimeInput, ? base_client.InvokeOptions): async.Operation<types.RestoreTableToPointInTimeOutput>
     scan: function(Client, types.ScanInput, ? base_client.InvokeOptions): async.Operation<types.ScanOutput>
+    searchVectors: function(Client, types.SearchVectorsInput, ? base_client.InvokeOptions): async.Operation<types.SearchVectorsOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     transactGetItems: function(Client, types.TransactGetItemsInput, ? base_client.InvokeOptions): async.Operation<types.TransactGetItemsOutput>
     transactWriteItems: function(Client, types.TransactWriteItemsInput, ? base_client.InvokeOptions): async.Operation<types.TransactWriteItemsOutput>
@@ -293,6 +294,10 @@ end
 
 function C:scan(input: types.ScanInput, options?: base_client.InvokeOptions): async.Operation<types.ScanOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.Scan as schema.OperationSchema, input, options) as async.Operation<types.ScanOutput>
+end
+
+function C:searchVectors(input: types.SearchVectorsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchVectorsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchVectors as schema.OperationSchema, input, options) as async.Operation<types.SearchVectorsOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

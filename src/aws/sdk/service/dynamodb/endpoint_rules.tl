@@ -52,6 +52,11 @@ return
             documentation = "ResourceArnList containing list of resource arns",
             type = "stringArray",
         },
+        IsSearchOperation = {
+            required = false,
+            documentation = "Set to true for SearchVectors to route to the Search FQDN",
+            type = "boolean",
+        },
     },
     rules = {
         {
@@ -80,6 +85,15 @@ return
                         },
                     },
                     assign = "PartitionResult",
+                },
+                {
+                    fn = "parseURL",
+                    argv = {
+                        {
+                            ref = "Endpoint",
+                        },
+                    },
+                    assign = "parsedEndpoint",
                 },
             },
             rules = {
@@ -119,9 +133,36 @@ return
                             fn = "stringEquals",
                             argv = {
                                 {
-                                    ref = "Endpoint",
+                                    fn = "getAttr",
+                                    argv = {
+                                        {
+                                            ref = "parsedEndpoint",
+                                        },
+                                        "authority",
+                                    },
                                 },
-                                "https://dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                "dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                            },
+                        },
+                    },
+                    error = "Endpoint override is not supported for dual-stack endpoints. Please enable dual-stack functionality by enabling the configuration. For more details, see: https://docs.aws.amazon.com/sdkref/latest/guide/feature-endpoints.html",
+                    type = "error",
+                },
+                {
+                    conditions = {
+                        {
+                            fn = "stringEquals",
+                            argv = {
+                                {
+                                    fn = "getAttr",
+                                    argv = {
+                                        {
+                                            ref = "parsedEndpoint",
+                                        },
+                                        "authority",
+                                    },
+                                },
+                                "search-dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
                             },
                         },
                     },
@@ -269,9 +310,9 @@ return
                                         properties = {
                                             authSchemes = {
                                                 {
+                                                    signingRegion = "us-east-1",
                                                     name = "sigv4",
                                                     signingName = "dynamodb",
-                                                    signingRegion = "us-east-1",
                                                 },
                                             },
                                         },
@@ -366,6 +407,33 @@ return
                                                 },
                                             },
                                             type = "tree",
+                                        },
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "isSet",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                        true,
+                                                    },
+                                                },
+                                            },
+                                            endpoint = {
+                                                url = "https://search-dynamodb-fips.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                properties = {},
+                                                headers = {},
+                                            },
+                                            type = "endpoint",
                                         },
                                         {
                                             conditions = {},
@@ -468,6 +536,33 @@ return
                                                     type = "tree",
                                                 },
                                                 {
+                                                    conditions = {
+                                                        {
+                                                            fn = "isSet",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "booleanEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                                true,
+                                                            },
+                                                        },
+                                                    },
+                                                    endpoint = {
+                                                        url = "https://search-dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                                        properties = {},
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
+                                                {
                                                     conditions = {},
                                                     endpoint = {
                                                         url = "https://dynamodb.{Region}.{PartitionResult#dnsSuffix}",
@@ -507,6 +602,33 @@ return
                                                 },
                                             },
                                             type = "tree",
+                                        },
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "isSet",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                        true,
+                                                    },
+                                                },
+                                            },
+                                            endpoint = {
+                                                url = "https://search-dynamodb-fips.{Region}.{PartitionResult#dnsSuffix}",
+                                                properties = {},
+                                                headers = {},
+                                            },
+                                            type = "endpoint",
                                         },
                                         {
                                             conditions = {},
@@ -691,16 +813,53 @@ return
                                                     },
                                                 },
                                             },
-                                            endpoint = {
-                                                url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                properties = {
-                                                    metricValues = {
-                                                        "O",
+                                            rules = {
+                                                {
+                                                    conditions = {
+                                                        {
+                                                            fn = "isSet",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "booleanEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                                true,
+                                                            },
+                                                        },
                                                     },
+                                                    endpoint = {
+                                                        url = "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {
+                                                            metricValues = {
+                                                                "O",
+                                                            },
+                                                        },
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
                                                 },
-                                                headers = {},
+                                                {
+                                                    conditions = {},
+                                                    endpoint = {
+                                                        url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {
+                                                            metricValues = {
+                                                                "O",
+                                                            },
+                                                        },
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
                                             },
-                                            type = "endpoint",
+                                            type = "tree",
                                         },
                                         {
                                             conditions = {
@@ -843,16 +1002,53 @@ return
                                                     },
                                                 },
                                             },
-                                            endpoint = {
-                                                url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
-                                                properties = {
-                                                    metricValues = {
-                                                        "O",
+                                            rules = {
+                                                {
+                                                    conditions = {
+                                                        {
+                                                            fn = "isSet",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                            },
+                                                        },
+                                                        {
+                                                            fn = "booleanEquals",
+                                                            argv = {
+                                                                {
+                                                                    ref = "IsSearchOperation",
+                                                                },
+                                                                true,
+                                                            },
+                                                        },
                                                     },
+                                                    endpoint = {
+                                                        url = "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {
+                                                            metricValues = {
+                                                                "O",
+                                                            },
+                                                        },
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
                                                 },
-                                                headers = {},
+                                                {
+                                                    conditions = {},
+                                                    endpoint = {
+                                                        url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                        properties = {
+                                                            metricValues = {
+                                                                "O",
+                                                            },
+                                                        },
+                                                        headers = {},
+                                                    },
+                                                    type = "endpoint",
+                                                },
                                             },
-                                            type = "endpoint",
+                                            type = "tree",
                                         },
                                         {
                                             conditions = {
@@ -930,6 +1126,37 @@ return
                                                         },
                                                     },
                                                     rules = {
+                                                        {
+                                                            conditions = {
+                                                                {
+                                                                    fn = "isSet",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "IsSearchOperation",
+                                                                        },
+                                                                    },
+                                                                },
+                                                                {
+                                                                    fn = "booleanEquals",
+                                                                    argv = {
+                                                                        {
+                                                                            ref = "IsSearchOperation",
+                                                                        },
+                                                                        true,
+                                                                    },
+                                                                },
+                                                            },
+                                                            endpoint = {
+                                                                url = "https://{AccountId}.search-ddb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                                properties = {
+                                                                    metricValues = {
+                                                                        "O",
+                                                                    },
+                                                                },
+                                                                headers = {},
+                                                            },
+                                                            type = "endpoint",
+                                                        },
                                                         {
                                                             conditions = {},
                                                             endpoint = {
@@ -1035,6 +1262,33 @@ return
                                                 },
                                             },
                                             type = "tree",
+                                        },
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "isSet",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                        true,
+                                                    },
+                                                },
+                                            },
+                                            endpoint = {
+                                                url = "https://search-dynamodb.{Region}.{PartitionResult#dualStackDnsSuffix}",
+                                                properties = {},
+                                                headers = {},
+                                            },
+                                            type = "endpoint",
                                         },
                                         {
                                             conditions = {},
@@ -1187,16 +1441,53 @@ return
                                     },
                                 },
                             },
-                            endpoint = {
-                                url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dnsSuffix}",
-                                properties = {
-                                    metricValues = {
-                                        "O",
+                            rules = {
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "isSet",
+                                            argv = {
+                                                {
+                                                    ref = "IsSearchOperation",
+                                                },
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "IsSearchOperation",
+                                                },
+                                                true,
+                                            },
+                                        },
                                     },
+                                    endpoint = {
+                                        url = "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                        properties = {
+                                            metricValues = {
+                                                "O",
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
                                 },
-                                headers = {},
+                                {
+                                    conditions = {},
+                                    endpoint = {
+                                        url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                        properties = {
+                                            metricValues = {
+                                                "O",
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
                             },
-                            type = "endpoint",
+                            type = "tree",
                         },
                         {
                             conditions = {
@@ -1339,16 +1630,53 @@ return
                                     },
                                 },
                             },
-                            endpoint = {
-                                url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dnsSuffix}",
-                                properties = {
-                                    metricValues = {
-                                        "O",
+                            rules = {
+                                {
+                                    conditions = {
+                                        {
+                                            fn = "isSet",
+                                            argv = {
+                                                {
+                                                    ref = "IsSearchOperation",
+                                                },
+                                            },
+                                        },
+                                        {
+                                            fn = "booleanEquals",
+                                            argv = {
+                                                {
+                                                    ref = "IsSearchOperation",
+                                                },
+                                                true,
+                                            },
+                                        },
                                     },
+                                    endpoint = {
+                                        url = "https://{ParsedArn#accountId}.search-ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                        properties = {
+                                            metricValues = {
+                                                "O",
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
                                 },
-                                headers = {},
+                                {
+                                    conditions = {},
+                                    endpoint = {
+                                        url = "https://{ParsedArn#accountId}.ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                        properties = {
+                                            metricValues = {
+                                                "O",
+                                            },
+                                        },
+                                        headers = {},
+                                    },
+                                    type = "endpoint",
+                                },
                             },
-                            type = "endpoint",
+                            type = "tree",
                         },
                         {
                             conditions = {
@@ -1426,6 +1754,37 @@ return
                                         },
                                     },
                                     rules = {
+                                        {
+                                            conditions = {
+                                                {
+                                                    fn = "isSet",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                    },
+                                                },
+                                                {
+                                                    fn = "booleanEquals",
+                                                    argv = {
+                                                        {
+                                                            ref = "IsSearchOperation",
+                                                        },
+                                                        true,
+                                                    },
+                                                },
+                                            },
+                                            endpoint = {
+                                                url = "https://{AccountId}.search-ddb.{Region}.{PartitionResult#dnsSuffix}",
+                                                properties = {
+                                                    metricValues = {
+                                                        "O",
+                                                    },
+                                                },
+                                                headers = {},
+                                            },
+                                            type = "endpoint",
+                                        },
                                         {
                                             conditions = {},
                                             endpoint = {
@@ -1531,6 +1890,33 @@ return
                                 },
                             },
                             type = "tree",
+                        },
+                        {
+                            conditions = {
+                                {
+                                    fn = "isSet",
+                                    argv = {
+                                        {
+                                            ref = "IsSearchOperation",
+                                        },
+                                    },
+                                },
+                                {
+                                    fn = "booleanEquals",
+                                    argv = {
+                                        {
+                                            ref = "IsSearchOperation",
+                                        },
+                                        true,
+                                    },
+                                },
+                            },
+                            endpoint = {
+                                url = "https://search-dynamodb.{Region}.{PartitionResult#dnsSuffix}",
+                                properties = {},
+                                headers = {},
+                            },
+                            type = "endpoint",
                         },
                         {
                             conditions = {},

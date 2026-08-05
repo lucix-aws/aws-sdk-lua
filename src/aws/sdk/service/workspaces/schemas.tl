@@ -1191,6 +1191,12 @@ M.ClientProperties = schema.new({
             name = "LogUploadEnabled",
             target_id = prelude.String.id,
         }),
+        ClientExperiencePolicy = schema.new({
+            id = id.from(_N, "ClientProperties", "ClientExperiencePolicy"),
+            type = "string",
+            name = "ClientExperiencePolicy",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

@@ -2699,6 +2699,12 @@ M.DescribeInstanceOutput = schema.new({
             target_id = id.from(_N, "EncryptionConfigurationDetails"),
             target = M.EncryptionConfigurationDetails,
         }),
+        PermissionSetsEnabled = schema.new({
+            id = id.from(_N, "DescribeInstanceOutput", "PermissionSetsEnabled"),
+            type = "boolean",
+            name = "PermissionSetsEnabled",
+            target_id = prelude.Boolean.id,
+        }),
     },
 })
 
@@ -4845,6 +4851,12 @@ M.UpdateInstanceInput = schema.new({
             name = "EncryptionConfiguration",
             target_id = id.from(_N, "EncryptionConfiguration"),
             target = M.EncryptionConfiguration,
+        }),
+        PermissionSetsEnabled = schema.new({
+            id = id.from(_N, "UpdateInstanceInput", "PermissionSetsEnabled"),
+            type = "boolean",
+            name = "PermissionSetsEnabled",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

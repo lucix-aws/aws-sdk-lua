@@ -3585,6 +3585,28 @@ local record M
         ec2InstanceTags: {ResourceMapFilter}
         -- The Amazon Web Services Lambda function tags used as resource filter criteria.
         lambdaFunctionTags: {ResourceMapFilter}
+        -- The cloud providers used as resource filter criteria.
+        cloudProvider: {ResourceStringFilter}
+        -- The cloud provider account IDs used as resource filter criteria.
+        cloudProviderAccountId: {ResourceStringFilter}
+        -- The cloud provider organization IDs used as resource filter criteria.
+        cloudProviderOrgId: {ResourceStringFilter}
+        -- The cloud provider regions used as resource filter criteria.
+        cloudProviderRegion: {ResourceStringFilter}
+        -- The cloud VM instance tags used as resource filter criteria.
+        cloudVmInstanceTags: {ResourceMapFilter}
+        -- The cloud container image tags used as resource filter criteria.
+        cloudContainerImageTags: {ResourceStringFilter}
+        -- The cloud container repository names used as resource filter criteria.
+        cloudContainerRepositoryName: {ResourceStringFilter}
+        -- The cloud container registry names used as resource filter criteria.
+        cloudContainerRegistryName: {ResourceStringFilter}
+        -- The cloud serverless function names used as resource filter criteria.
+        cloudServerlessFunctionName: {ResourceStringFilter}
+        -- The cloud serverless function runtimes used as resource filter criteria.
+        cloudServerlessFunctionRuntime: {ResourceStringFilter}
+        -- The cloud serverless function tags used as resource filter criteria.
+        cloudServerlessFunctionTags: {ResourceMapFilter}
     end
 
     record CreateSbomExportInput

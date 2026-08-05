@@ -1002,12 +1002,16 @@ local record M
         Project: EngagementCustomerProjectDetails
     end
 
-    enum MarketSegment
-        "Enterprise"
-        "Large"
-        "Medium"
-        "Small"
-        "Micro"
+    -- The address information for a lead customer, including city, state or region, postal code, and country code.
+    record LeadAddress
+        -- The city of the lead customer's address.
+        City: string
+        -- The postal code of the lead customer's address.
+        PostalCode: string
+        -- The state or region of the lead customer's address.
+        StateOrRegion: string
+        -- The country code of the lead customer's address.
+        CountryCode: string
     end
 
     -- Contains detailed information about the customer associated with the lead, including company details, industry classification, and AWS maturity level. This information helps qualify and categorize the lead for appropriate engagement strategies.
@@ -1018,7 +1022,8 @@ local record M
         CompanyName: string
         -- The website URL of the lead customer's company. This provides additional context about the customer organization and helps verify company legitimacy and size.
         WebsiteUrl: string
-        Address: AddressSummary
+        -- The address information for the lead customer.
+        Address: LeadAddress
         -- Indicates the customer's level of experience and adoption with AWS services. This assessment helps determine the appropriate engagement approach and solution complexity.
         AwsMaturity: string
         -- Specifies the market segment classification of the lead customer, such as enterprise, mid-market, or small business. This segmentation helps in targeting appropriate solutions and engagement strategies.
@@ -1117,6 +1122,10 @@ local record M
 
     -- Contains the prospecting data that AWS sources. This includes task execution details, customer account information, and insights that AI generates from the prospecting analysis.
     record ProspectingResultAws
+        -- Contains details about the prospected customer account, including geographic, industry, and segment classifications.
+        Customer: ProspectingResultCustomer
+        -- Insights that AI generates from the prospecting analysis. These insights include engagement scores and solution fit assessments for the prospected customer.
+        Insights: ProspectingInsights
         -- The timestamp when the prospecting result context was created. The format is ISO 8601 (UTC).
         StartTime: number
         -- The timestamp when the prospecting task completed processing. The format is ISO 8601 (UTC).
@@ -1127,10 +1136,6 @@ local record M
         TaskArn: string
         -- The name that the user provides for the prospecting task that generates this result.
         TaskName: string
-        -- Contains details about the prospected customer account, including geographic, industry, and segment classifications.
-        Customer: ProspectingResultCustomer
-        -- Insights that AI generates from the prospecting analysis. These insights include engagement scores and solution fit assessments for the prospected customer.
-        Insights: ProspectingInsights
     end
 
     -- Contains the results of an autonomous prospecting job. This includes data and insights that AWS provides about a prospected customer account.
@@ -1698,6 +1703,22 @@ local record M
         Identifier: string
     end
 
+    -- A subset of prospecting result data visible to invitation receivers. It includes customer account details and AI-generated insights.
+    record InvitationProspectingResultAws
+        -- The prospected customer account details, including geographic classification, industry segmentation, company size, and program eligibility.
+        Customer: ProspectingResultCustomer
+        -- The AI-generated insights from the prospecting analysis, including marketplace engagement scoring, solution fit assessments, and solution categorization.
+        Insights: ProspectingInsights
+    end
+
+    -- Contains enrichment data for engagement invitations. You can view propensity scores, program eligibility, and lead readiness insights directly in the invitation, before you take action on the invitation.
+    record EnrichmentContext
+        -- The customer account data and propensity insights for the prospected account. It includes geographic, industry, and segment classifications, along with engagement and solution scoring.
+        ProspectingResultAws: InvitationProspectingResultAws
+        -- The AI-generated lead readiness score for this lead. Use this score to assess lead quality and prioritize engagement efforts.
+        LeadInsights: LeadInsights
+    end
+
     -- The EngagementMemberSummary provides a snapshot of essential information about participants in an AWS Partner Central Engagement. This compact data structure encapsulates key details of each member, facilitating efficient collaboration and management within the Engagement.
     record EngagementMemberSummary
         -- The official name of the member's company or organization.
@@ -1753,6 +1774,8 @@ local record M
         EngagementDescription: string
         -- A list of active members currently part of the Engagement. This array contains a maximum of 10 members, each represented by an object with the following properties. CompanyName: The name of the member's company. WebsiteUrl: The website URL of the member's company.
         ExistingMembers: {EngagementMemberSummary}
+        -- The enrichment data for the engagement associated with this invitation. You can view propensity scores, program eligibility, and lead readiness assessments before taking action on the invitation.
+        EnrichmentContext: EnrichmentContext
     end
 
     enum ParticipantType

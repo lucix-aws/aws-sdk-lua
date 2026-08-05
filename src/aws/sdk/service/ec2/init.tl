@@ -36,6 +36,7 @@ local record Client
     assignPrivateIpAddresses: function(Client, types.AssignPrivateIpAddressesInput, ? base_client.InvokeOptions): async.Operation<types.AssignPrivateIpAddressesOutput>
     assignPrivateNatGatewayAddress: function(Client, types.AssignPrivateNatGatewayAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssignPrivateNatGatewayAddressOutput>
     associateAddress: function(Client, types.AssociateAddressInput, ? base_client.InvokeOptions): async.Operation<types.AssociateAddressOutput>
+    associateApplicationStatusCheck: function(Client, types.AssociateApplicationStatusCheckInput, ? base_client.InvokeOptions): async.Operation<types.AssociateApplicationStatusCheckOutput>
     associateCapacityReservationBillingOwner: function(Client, types.AssociateCapacityReservationBillingOwnerInput, ? base_client.InvokeOptions): async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
     associateClientVpnTargetNetwork: function(Client, types.AssociateClientVpnTargetNetworkInput, ? base_client.InvokeOptions): async.Operation<types.AssociateClientVpnTargetNetworkOutput>
     associateDhcpOptions: function(Client, types.AssociateDhcpOptionsInput, ? base_client.InvokeOptions): async.Operation<types.AssociateDhcpOptionsOutput>
@@ -81,6 +82,7 @@ local record Client
     copyImage: function(Client, types.CopyImageInput, ? base_client.InvokeOptions): async.Operation<types.CopyImageOutput>
     copySnapshot: function(Client, types.CopySnapshotInput, ? base_client.InvokeOptions): async.Operation<types.CopySnapshotOutput>
     copyVolumes: function(Client, types.CopyVolumesInput, ? base_client.InvokeOptions): async.Operation<types.CopyVolumesOutput>
+    createApplicationStatusCheck: function(Client, types.CreateApplicationStatusCheckInput, ? base_client.InvokeOptions): async.Operation<types.CreateApplicationStatusCheckOutput>
     createCapacityManagerDataExport: function(Client, types.CreateCapacityManagerDataExportInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityManagerDataExportOutput>
     createCapacityReservation: function(Client, types.CreateCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationOutput>
     createCapacityReservationBySplitting: function(Client, types.CreateCapacityReservationBySplittingInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityReservationBySplittingOutput>
@@ -187,6 +189,7 @@ local record Client
     createVpnConnection: function(Client, types.CreateVpnConnectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpnConnectionOutput>
     createVpnConnectionRoute: function(Client, types.CreateVpnConnectionRouteInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpnConnectionRouteOutput>
     createVpnGateway: function(Client, types.CreateVpnGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateVpnGatewayOutput>
+    deleteApplicationStatusCheck: function(Client, types.DeleteApplicationStatusCheckInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApplicationStatusCheckOutput>
     deleteCapacityManagerDataExport: function(Client, types.DeleteCapacityManagerDataExportInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityManagerDataExportOutput>
     deleteCarrierGateway: function(Client, types.DeleteCarrierGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCarrierGatewayOutput>
     deleteClientVpnEndpoint: function(Client, types.DeleteClientVpnEndpointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteClientVpnEndpointOutput>
@@ -295,6 +298,9 @@ local record Client
     describeAddressesAttribute: function(Client, types.DescribeAddressesAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressesAttributeOutput>
     describeAddressTransfers: function(Client, types.DescribeAddressTransfersInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAddressTransfersOutput>
     describeAggregateIdFormat: function(Client, types.DescribeAggregateIdFormatInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAggregateIdFormatOutput>
+    describeApplicationStatus: function(Client, types.DescribeApplicationStatusInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationStatusOutput>
+    describeApplicationStatusCheckAssociations: function(Client, types.DescribeApplicationStatusCheckAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationStatusCheckAssociationsOutput>
+    describeApplicationStatusChecks: function(Client, types.DescribeApplicationStatusChecksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeApplicationStatusChecksOutput>
     describeAvailabilityZones: function(Client, types.DescribeAvailabilityZonesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityZonesOutput>
     describeAwsNetworkPerformanceMetricSubscriptions: function(Client, types.DescribeAwsNetworkPerformanceMetricSubscriptionsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeAwsNetworkPerformanceMetricSubscriptionsOutput>
     describeBundleTasks: function(Client, types.DescribeBundleTasksInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBundleTasksOutput>
@@ -486,6 +492,7 @@ local record Client
     detachVpnGateway: function(Client, types.DetachVpnGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DetachVpnGatewayOutput>
     disableAddressTransfer: function(Client, types.DisableAddressTransferInput, ? base_client.InvokeOptions): async.Operation<types.DisableAddressTransferOutput>
     disableAllowedImagesSettings: function(Client, types.DisableAllowedImagesSettingsInput, ? base_client.InvokeOptions): async.Operation<types.DisableAllowedImagesSettingsOutput>
+    disableApplicationStatusCheckSuppression: function(Client, types.DisableApplicationStatusCheckSuppressionInput, ? base_client.InvokeOptions): async.Operation<types.DisableApplicationStatusCheckSuppressionOutput>
     disableAwsNetworkPerformanceMetricSubscription: function(Client, types.DisableAwsNetworkPerformanceMetricSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
     disableCapacityManager: function(Client, types.DisableCapacityManagerInput, ? base_client.InvokeOptions): async.Operation<types.DisableCapacityManagerOutput>
     disableEbsEncryptionByDefault: function(Client, types.DisableEbsEncryptionByDefaultInput, ? base_client.InvokeOptions): async.Operation<types.DisableEbsEncryptionByDefaultOutput>
@@ -506,6 +513,7 @@ local record Client
     disableVpcClassicLink: function(Client, types.DisableVpcClassicLinkInput, ? base_client.InvokeOptions): async.Operation<types.DisableVpcClassicLinkOutput>
     disableVpcClassicLinkDnsSupport: function(Client, types.DisableVpcClassicLinkDnsSupportInput, ? base_client.InvokeOptions): async.Operation<types.DisableVpcClassicLinkDnsSupportOutput>
     disassociateAddress: function(Client, types.DisassociateAddressInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateAddressOutput>
+    disassociateApplicationStatusCheck: function(Client, types.DisassociateApplicationStatusCheckInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateApplicationStatusCheckOutput>
     disassociateCapacityReservationBillingOwner: function(Client, types.DisassociateCapacityReservationBillingOwnerInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
     disassociateClientVpnTargetNetwork: function(Client, types.DisassociateClientVpnTargetNetworkInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateClientVpnTargetNetworkOutput>
     disassociateEnclaveCertificateIamRole: function(Client, types.DisassociateEnclaveCertificateIamRoleInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateEnclaveCertificateIamRoleOutput>
@@ -525,6 +533,7 @@ local record Client
     disassociateVpcCidrBlock: function(Client, types.DisassociateVpcCidrBlockInput, ? base_client.InvokeOptions): async.Operation<types.DisassociateVpcCidrBlockOutput>
     enableAddressTransfer: function(Client, types.EnableAddressTransferInput, ? base_client.InvokeOptions): async.Operation<types.EnableAddressTransferOutput>
     enableAllowedImagesSettings: function(Client, types.EnableAllowedImagesSettingsInput, ? base_client.InvokeOptions): async.Operation<types.EnableAllowedImagesSettingsOutput>
+    enableApplicationStatusCheckSuppression: function(Client, types.EnableApplicationStatusCheckSuppressionInput, ? base_client.InvokeOptions): async.Operation<types.EnableApplicationStatusCheckSuppressionOutput>
     enableAwsNetworkPerformanceMetricSubscription: function(Client, types.EnableAwsNetworkPerformanceMetricSubscriptionInput, ? base_client.InvokeOptions): async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
     enableCapacityManager: function(Client, types.EnableCapacityManagerInput, ? base_client.InvokeOptions): async.Operation<types.EnableCapacityManagerOutput>
     enableEbsEncryptionByDefault: function(Client, types.EnableEbsEncryptionByDefaultInput, ? base_client.InvokeOptions): async.Operation<types.EnableEbsEncryptionByDefaultOutput>
@@ -633,6 +642,7 @@ local record Client
     lockSnapshot: function(Client, types.LockSnapshotInput, ? base_client.InvokeOptions): async.Operation<types.LockSnapshotOutput>
     modifyAccountVpcEncryptionControl: function(Client, types.ModifyAccountVpcEncryptionControlInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAccountVpcEncryptionControlOutput>
     modifyAddressAttribute: function(Client, types.ModifyAddressAttributeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAddressAttributeOutput>
+    modifyApplicationStatusCheck: function(Client, types.ModifyApplicationStatusCheckInput, ? base_client.InvokeOptions): async.Operation<types.ModifyApplicationStatusCheckOutput>
     modifyAvailabilityZoneGroup: function(Client, types.ModifyAvailabilityZoneGroupInput, ? base_client.InvokeOptions): async.Operation<types.ModifyAvailabilityZoneGroupOutput>
     modifyCapacityReservation: function(Client, types.ModifyCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationOutput>
     modifyCapacityReservationFleet: function(Client, types.ModifyCapacityReservationFleetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyCapacityReservationFleetOutput>
@@ -909,6 +919,10 @@ function C:associateAddress(input: types.AssociateAddressInput, options?: base_c
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateAddress as schema.OperationSchema, input, options) as async.Operation<types.AssociateAddressOutput>
 end
 
+function C:associateApplicationStatusCheck(input: types.AssociateApplicationStatusCheckInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateApplicationStatusCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateApplicationStatusCheck as schema.OperationSchema, input, options) as async.Operation<types.AssociateApplicationStatusCheckOutput>
+end
+
 function C:associateCapacityReservationBillingOwner(input: types.AssociateCapacityReservationBillingOwnerInput, options?: base_client.InvokeOptions): async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AssociateCapacityReservationBillingOwner as schema.OperationSchema, input, options) as async.Operation<types.AssociateCapacityReservationBillingOwnerOutput>
 end
@@ -1087,6 +1101,10 @@ end
 
 function C:copyVolumes(input: types.CopyVolumesInput, options?: base_client.InvokeOptions): async.Operation<types.CopyVolumesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CopyVolumes as schema.OperationSchema, input, options) as async.Operation<types.CopyVolumesOutput>
+end
+
+function C:createApplicationStatusCheck(input: types.CreateApplicationStatusCheckInput, options?: base_client.InvokeOptions): async.Operation<types.CreateApplicationStatusCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateApplicationStatusCheck as schema.OperationSchema, input, options) as async.Operation<types.CreateApplicationStatusCheckOutput>
 end
 
 function C:createCapacityManagerDataExport(input: types.CreateCapacityManagerDataExportInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityManagerDataExportOutput>
@@ -1511,6 +1529,10 @@ end
 
 function C:createVpnGateway(input: types.CreateVpnGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateVpnGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateVpnGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateVpnGatewayOutput>
+end
+
+function C:deleteApplicationStatusCheck(input: types.DeleteApplicationStatusCheckInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteApplicationStatusCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteApplicationStatusCheck as schema.OperationSchema, input, options) as async.Operation<types.DeleteApplicationStatusCheckOutput>
 end
 
 function C:deleteCapacityManagerDataExport(input: types.DeleteCapacityManagerDataExportInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapacityManagerDataExportOutput>
@@ -1943,6 +1965,18 @@ end
 
 function C:describeAggregateIdFormat(input: types.DescribeAggregateIdFormatInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAggregateIdFormatOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeAggregateIdFormat as schema.OperationSchema, input, options) as async.Operation<types.DescribeAggregateIdFormatOutput>
+end
+
+function C:describeApplicationStatus(input: types.DescribeApplicationStatusInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationStatusOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationStatus as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationStatusOutput>
+end
+
+function C:describeApplicationStatusCheckAssociations(input: types.DescribeApplicationStatusCheckAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationStatusCheckAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationStatusCheckAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationStatusCheckAssociationsOutput>
+end
+
+function C:describeApplicationStatusChecks(input: types.DescribeApplicationStatusChecksInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeApplicationStatusChecksOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeApplicationStatusChecks as schema.OperationSchema, input, options) as async.Operation<types.DescribeApplicationStatusChecksOutput>
 end
 
 function C:describeAvailabilityZones(input: types.DescribeAvailabilityZonesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeAvailabilityZonesOutput>
@@ -2709,6 +2743,10 @@ function C:disableAllowedImagesSettings(input: types.DisableAllowedImagesSetting
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAllowedImagesSettings as schema.OperationSchema, input, options) as async.Operation<types.DisableAllowedImagesSettingsOutput>
 end
 
+function C:disableApplicationStatusCheckSuppression(input: types.DisableApplicationStatusCheckSuppressionInput, options?: base_client.InvokeOptions): async.Operation<types.DisableApplicationStatusCheckSuppressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableApplicationStatusCheckSuppression as schema.OperationSchema, input, options) as async.Operation<types.DisableApplicationStatusCheckSuppressionOutput>
+end
+
 function C:disableAwsNetworkPerformanceMetricSubscription(input: types.DisableAwsNetworkPerformanceMetricSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisableAwsNetworkPerformanceMetricSubscription as schema.OperationSchema, input, options) as async.Operation<types.DisableAwsNetworkPerformanceMetricSubscriptionOutput>
 end
@@ -2789,6 +2827,10 @@ function C:disassociateAddress(input: types.DisassociateAddressInput, options?: 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateAddress as schema.OperationSchema, input, options) as async.Operation<types.DisassociateAddressOutput>
 end
 
+function C:disassociateApplicationStatusCheck(input: types.DisassociateApplicationStatusCheckInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateApplicationStatusCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateApplicationStatusCheck as schema.OperationSchema, input, options) as async.Operation<types.DisassociateApplicationStatusCheckOutput>
+end
+
 function C:disassociateCapacityReservationBillingOwner(input: types.DisassociateCapacityReservationBillingOwnerInput, options?: base_client.InvokeOptions): async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisassociateCapacityReservationBillingOwner as schema.OperationSchema, input, options) as async.Operation<types.DisassociateCapacityReservationBillingOwnerOutput>
 end
@@ -2863,6 +2905,10 @@ end
 
 function C:enableAllowedImagesSettings(input: types.EnableAllowedImagesSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAllowedImagesSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableAllowedImagesSettings as schema.OperationSchema, input, options) as async.Operation<types.EnableAllowedImagesSettingsOutput>
+end
+
+function C:enableApplicationStatusCheckSuppression(input: types.EnableApplicationStatusCheckSuppressionInput, options?: base_client.InvokeOptions): async.Operation<types.EnableApplicationStatusCheckSuppressionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableApplicationStatusCheckSuppression as schema.OperationSchema, input, options) as async.Operation<types.EnableApplicationStatusCheckSuppressionOutput>
 end
 
 function C:enableAwsNetworkPerformanceMetricSubscription(input: types.EnableAwsNetworkPerformanceMetricSubscriptionInput, options?: base_client.InvokeOptions): async.Operation<types.EnableAwsNetworkPerformanceMetricSubscriptionOutput>
@@ -3295,6 +3341,10 @@ end
 
 function C:modifyAddressAttribute(input: types.ModifyAddressAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyAddressAttributeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyAddressAttribute as schema.OperationSchema, input, options) as async.Operation<types.ModifyAddressAttributeOutput>
+end
+
+function C:modifyApplicationStatusCheck(input: types.ModifyApplicationStatusCheckInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyApplicationStatusCheckOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyApplicationStatusCheck as schema.OperationSchema, input, options) as async.Operation<types.ModifyApplicationStatusCheckOutput>
 end
 
 function C:modifyAvailabilityZoneGroup(input: types.ModifyAvailabilityZoneGroupInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyAvailabilityZoneGroupOutput>

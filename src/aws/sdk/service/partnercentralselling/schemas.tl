@@ -129,13 +129,13 @@ M.SenderContactList = schema.new({ type = "list", list_member = M.SenderContact 
 
 M.ReceiverResponsibilityList = schema.new({ type = "list", list_member = prelude.String })
 
+M.EligibleProgramsList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AmountMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AwsProductsList = schema.new({ type = "list", list_member = M.AwsProductDetails })
 
 M.RecommendationAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
-
-M.EligibleProgramsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AwsProductOptimizationsList = schema.new({ type = "list", list_member = M.AwsProductOptimization })
 
@@ -1331,6 +1331,37 @@ M.CustomerProjectsContext = schema.new({
     },
 })
 
+M.LeadAddress = schema.new({
+    id = id.from(_N, "LeadAddress"),
+    type = "structure",
+    members = {
+        City = schema.new({
+            id = id.from(_N, "LeadAddress", "City"),
+            type = "string",
+            name = "City",
+            target_id = prelude.String.id,
+        }),
+        PostalCode = schema.new({
+            id = id.from(_N, "LeadAddress", "PostalCode"),
+            type = "string",
+            name = "PostalCode",
+            target_id = prelude.String.id,
+        }),
+        StateOrRegion = schema.new({
+            id = id.from(_N, "LeadAddress", "StateOrRegion"),
+            type = "string",
+            name = "StateOrRegion",
+            target_id = prelude.String.id,
+        }),
+        CountryCode = schema.new({
+            id = id.from(_N, "LeadAddress", "CountryCode"),
+            type = "string",
+            name = "CountryCode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.LeadCustomer = schema.new({
     id = id.from(_N, "LeadCustomer"),
     type = "structure",
@@ -1360,11 +1391,8 @@ M.LeadCustomer = schema.new({
             id = id.from(_N, "LeadCustomer", "Address"),
             type = "structure",
             name = "Address",
-            target_id = id.from(_N, "AddressSummary"),
-            target = M.AddressSummary,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
+            target_id = id.from(_N, "LeadAddress"),
+            target = M.LeadAddress,
         }),
         AwsMaturity = schema.new({
             id = id.from(_N, "LeadCustomer", "AwsMaturity"),
@@ -1453,7 +1481,7 @@ M.LeadInteraction = schema.new({
             name = "SourceType",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         SourceId = schema.new({
@@ -1462,7 +1490,7 @@ M.LeadInteraction = schema.new({
             name = "SourceId",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         SourceName = schema.new({
@@ -1471,7 +1499,7 @@ M.LeadInteraction = schema.new({
             name = "SourceName",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         Usecase = schema.new({
@@ -1495,7 +1523,7 @@ M.LeadInteraction = schema.new({
             name = "CustomerAction",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         BusinessProblem = schema.new({
@@ -1669,6 +1697,20 @@ M.ProspectingResultAws = schema.new({
     id = id.from(_N, "ProspectingResultAws"),
     type = "structure",
     members = {
+        Customer = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "Customer"),
+            type = "structure",
+            name = "Customer",
+            target_id = id.from(_N, "ProspectingResultCustomer"),
+            target = M.ProspectingResultCustomer,
+        }),
+        Insights = schema.new({
+            id = id.from(_N, "ProspectingResultAws", "Insights"),
+            type = "structure",
+            name = "Insights",
+            target_id = id.from(_N, "ProspectingInsights"),
+            target = M.ProspectingInsights,
+        }),
         StartTime = schema.new({
             id = id.from(_N, "ProspectingResultAws", "StartTime"),
             type = "timestamp",
@@ -1704,20 +1746,6 @@ M.ProspectingResultAws = schema.new({
             type = "string",
             name = "TaskName",
             target_id = prelude.String.id,
-        }),
-        Customer = schema.new({
-            id = id.from(_N, "ProspectingResultAws", "Customer"),
-            type = "structure",
-            name = "Customer",
-            target_id = id.from(_N, "ProspectingResultCustomer"),
-            target = M.ProspectingResultCustomer,
-        }),
-        Insights = schema.new({
-            id = id.from(_N, "ProspectingResultAws", "Insights"),
-            type = "structure",
-            name = "Insights",
-            target_id = id.from(_N, "ProspectingInsights"),
-            target = M.ProspectingInsights,
         }),
     },
 })
@@ -1925,18 +1953,12 @@ M.CreateEngagementInput = schema.new({
             type = "string",
             name = "Title",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         Description = schema.new({
             id = id.from(_N, "CreateEngagementInput", "Description"),
             type = "string",
             name = "Description",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         Contexts = schema.new({
             id = id.from(_N, "CreateEngagementInput", "Contexts"),
@@ -2983,7 +3005,7 @@ M.LeadInvitationCustomer = schema.new({
             name = "CountryCode",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         AwsMaturity = schema.new({
@@ -3011,7 +3033,7 @@ M.LeadInvitationInteraction = schema.new({
             name = "SourceType",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         SourceId = schema.new({
@@ -3020,7 +3042,7 @@ M.LeadInvitationInteraction = schema.new({
             name = "SourceId",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         SourceName = schema.new({
@@ -3029,7 +3051,7 @@ M.LeadInvitationInteraction = schema.new({
             name = "SourceName",
             target_id = prelude.String.id,
             traits = {
-                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = "" },
             },
         }),
         Usecase = schema.new({
@@ -3371,6 +3393,48 @@ M.GetEngagementInvitationInput = schema.new({
     },
 })
 
+M.InvitationProspectingResultAws = schema.new({
+    id = id.from(_N, "InvitationProspectingResultAws"),
+    type = "structure",
+    members = {
+        Customer = schema.new({
+            id = id.from(_N, "InvitationProspectingResultAws", "Customer"),
+            type = "structure",
+            name = "Customer",
+            target_id = id.from(_N, "ProspectingResultCustomer"),
+            target = M.ProspectingResultCustomer,
+        }),
+        Insights = schema.new({
+            id = id.from(_N, "InvitationProspectingResultAws", "Insights"),
+            type = "structure",
+            name = "Insights",
+            target_id = id.from(_N, "ProspectingInsights"),
+            target = M.ProspectingInsights,
+        }),
+    },
+})
+
+M.EnrichmentContext = schema.new({
+    id = id.from(_N, "EnrichmentContext"),
+    type = "structure",
+    members = {
+        ProspectingResultAws = schema.new({
+            id = id.from(_N, "EnrichmentContext", "ProspectingResultAws"),
+            type = "structure",
+            name = "ProspectingResultAws",
+            target_id = id.from(_N, "InvitationProspectingResultAws"),
+            target = M.InvitationProspectingResultAws,
+        }),
+        LeadInsights = schema.new({
+            id = id.from(_N, "EnrichmentContext", "LeadInsights"),
+            type = "structure",
+            name = "LeadInsights",
+            target_id = id.from(_N, "LeadInsights"),
+            target = M.LeadInsights,
+        }),
+    },
+})
+
 M.EngagementMemberSummary = schema.new({
     id = id.from(_N, "EngagementMemberSummary"),
     type = "structure",
@@ -3510,6 +3574,13 @@ M.GetEngagementInvitationOutput = schema.new({
             name = "ExistingMembers",
             target_id = prelude.Document.id,
             list_member = M.EngagementMemberSummary,
+        }),
+        EnrichmentContext = schema.new({
+            id = id.from(_N, "GetEngagementInvitationOutput", "EnrichmentContext"),
+            type = "structure",
+            name = "EnrichmentContext",
+            target_id = id.from(_N, "EnrichmentContext"),
+            target = M.EnrichmentContext,
         }),
     },
 })

@@ -193,6 +193,7 @@ local record M
         "vpn-concentrator"
         "ipam-pool-allocation"
         "capacity-reservation-cancellation-quote"
+        "application-status-check"
     end
 
     -- Describes a tag.
@@ -1554,6 +1555,11 @@ local record M
         "host"
     end
 
+    enum AggregationStatusEnum
+        "included"
+        "excluded"
+    end
+
     record AllocateAddressInput
         -- The network (vpc).
         Domain: string
@@ -1998,6 +2004,58 @@ local record M
     record AssociateAddressOutput
         -- The ID that represents the association of the Elastic IP address with an instance.
         AssociationId: string
+    end
+
+    -- Describes a tag key-value pair for an application status check association request.
+    record CustomTagKeyValueRequestPair
+        -- The key of the tag.
+        Key: string
+        -- The value of the tag.
+        Value: string
+    end
+
+    record AssociateApplicationStatusCheckInput
+        -- The ID of the application status check to associate.
+        ApplicationStatusCheckId: string
+        -- The tags to associate the application status check with. Each tag is a key-value pair. When you associate tags, the application status check automatically monitors all instances that have the specified tags.
+        TargetTagAssociations: {CustomTagKeyValueRequestPair}
+        -- The IDs of the instances to associate with the application status check.
+        InstanceIds: {string}
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes a successful application status check association.
+    record SuccessfulAssociationResponseObject
+        -- The ID of the application status check.
+        ApplicationStatusCheckId: string
+        -- The type of association. Valid values: EC2TAG and INSTANCE_ID.
+        AssociationType: string
+        -- The association value. For EC2TAG, the value is formatted as key=value. For INSTANCE_ID, the value is the instance ID.
+        AssociationValue: string
+    end
+
+    -- Describes an unsuccessful application status check association.
+    record UnsuccessfulAssociationResponseObject
+        -- The ID of the application status check.
+        ApplicationStatusCheckId: string
+        -- The type of association. Valid values: EC2TAG and INSTANCE_ID.
+        AssociationType: string
+        -- The association value. For EC2TAG, the value is formatted as key=value. For INSTANCE_ID, the value is the instance ID.
+        AssociationValue: string
+        -- The reason the association failed.
+        Reason: string
+    end
+
+    record AssociateApplicationStatusCheckOutput
+        -- The associations that were successfully created.
+        SuccessfulResults: {SuccessfulAssociationResponseObject}
+        -- The associations that failed to be created.
+        UnsuccessfulResults: {UnsuccessfulAssociationResponseObject}
     end
 
     record AssociateCapacityReservationBillingOwnerInput
@@ -4195,6 +4253,166 @@ local record M
     record CopyVolumesOutput
         -- Information about the volume copy.
         Volumes: {Volume}
+    end
+
+    -- Describes a destination for a health check path in a request. Destinations can be in a different Availability Zone than the source (cross-AZ) or in a Local Zone (AZ to Local Zone), enabling remote health validation of your application.
+    record HealthCheckPathDestinationRequestObject
+        -- The ID of the subnet for the destination.
+        SubnetId: string
+        -- The ID of the security group for the destination.
+        SecurityGroupId: string
+    end
+
+    -- Describes the source for a health check path in a request. The source defines the subnet and security group where a health check elastic network interface (ENI) is created to originate health check traffic.
+    record HealthCheckPathSourceRequestObject
+        -- The ID of the subnet for the source.
+        SubnetId: string
+        -- The ID of the security group for the source.
+        SecurityGroupId: string
+    end
+
+    -- Describes a health check path for an application status check request.
+    record HealthCheckPathRequestObject
+        -- The source for the health check path.
+        Source: HealthCheckPathSourceRequestObject
+        -- The destinations for the health check path.
+        Destinations: {HealthCheckPathDestinationRequestObject}
+    end
+
+    enum IpScopeEnum
+        "private"
+    end
+
+    enum IpVersionEnum
+        "ipv4"
+        "ipv6"
+    end
+
+    enum NetworkProtocolEnum
+        "http"
+        "https"
+    end
+
+    record CreateApplicationStatusCheckInput
+        -- The health check paths to use for the application status check. Health check paths define the network path from a source subnet to one or more destination subnets for cross-Availability Zone or Availability Zone to Local Zone health checking. If omitted, health checks are performed in the same subnet as the instance.
+        HealthCheckPaths: {HealthCheckPathRequestObject}
+        -- The aggregation setting for the application status check. When set to included, the result of this check contributes to the instance-level application status reported by DescribeApplicationStatus. When set to excluded, the check runs independently and does not affect the instance-level status. Valid values: included | excluded.
+        Aggregation: string
+        -- The protocol to use for the health check. Valid values: http | https.
+        Protocol: string
+        -- The port to use for the health check. Valid values: 1 to 65535.
+        Port: number
+        -- The URL path to use for the health check HTTP request (for example, /health or /status).
+        Path: string
+        -- The index of the network device to use for the health check. The value must be greater than or equal to 0.
+        DeviceIndex: number
+        -- The IP version to use for the health check. Valid values: ipv4 and ipv6.
+        IpVersion: string
+        -- The IP scope to use for the health check. Valid value: private.
+        IpScope: string
+        -- The interval, in seconds, between health checks. Valid value: 60.
+        Interval: number
+        -- The amount of time, in seconds, to wait for a health check response before considering it failed. Valid values: 1 to 30. The value must be less than Interval.
+        Timeout: number
+        -- The number of consecutive failed health checks before the application status is considered impaired. The value must be greater than 0.
+        FailureThreshold: number
+        -- The number of consecutive successful health checks before the application status is considered healthy. The value must be greater than 0.
+        SuccessThreshold: number
+        -- The HTTP status codes that indicate a successful health check response. Specify a comma-separated list of individual status codes or ranges, for example, 200,202,300-399. For a range, the first value must be less than the second value. Maximum length: 64 characters. Default: 200.
+        StatusCodeMatcher: string
+        -- The number of seconds to wait before starting health checks after an instance is launched. Valid values: 1 to 600.
+        InitializationGracePeriodSeconds: number
+        -- The tags to apply to the application status check.
+        TagSpecifications: {TagSpecification}
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes a destination for a health check path.
+    record HealthCheckPathDestinationResponseObject
+        -- The ID of the subnet for the destination.
+        SubnetId: string
+        -- The ID of the security group for the destination.
+        SecurityGroupId: string
+    end
+
+    -- Describes the source for a health check path.
+    record HealthCheckPathSourceResponseObject
+        -- The ID of the subnet for the source.
+        SubnetId: string
+        -- The ID of the security group for the source.
+        SecurityGroupId: string
+    end
+
+    -- Describes a health check path for an application status check.
+    record HealthCheckPathResponseObject
+        -- The source for the health check path.
+        Source: HealthCheckPathSourceResponseObject
+        -- The destinations for the health check path.
+        Destinations: {HealthCheckPathDestinationResponseObject}
+    end
+
+    -- Describes a tag key-value pair for an application status check association.
+    record CustomTagKeyValueResponsePair
+        -- The key of the tag.
+        Key: string
+        -- The value of the tag.
+        Value: string
+    end
+
+    -- Describes an application status check.
+    record ApplicationStatusCheckResponseObject
+        -- The ID of the application status check.
+        ApplicationStatusCheckId: string
+        -- The aggregation setting for the application status check. When set to included, the result of this check contributes to the instance-level application status. When set to excluded, the check runs independently and does not affect the instance-level status.
+        Aggregation: string
+        -- The health check paths for the application status check.
+        HealthCheckPaths: {HealthCheckPathResponseObject}
+        -- The protocol used for the health check.
+        Protocol: string
+        -- The port used for the health check.
+        Port: number
+        -- The URL path used for the health check HTTP request.
+        Path: string
+        -- The index of the network device used for the health check. The value is greater than or equal to 0.
+        DeviceIndex: number
+        -- The IP version used for the health check.
+        IpVersion: string
+        -- The IP scope used for the health check.
+        IpScope: string
+        -- The interval, in seconds, between health checks. Valid value: 60.
+        Interval: number
+        -- The amount of time, in seconds, to wait for a health check response. Valid values: 1 to 30.
+        Timeout: number
+        -- The number of consecutive failed health checks before the application status is considered impaired. The value must be greater than 0.
+        FailureThreshold: number
+        -- The number of consecutive successful health checks before the application status is considered healthy. The value must be greater than 0.
+        SuccessThreshold: number
+        -- The comma-separated list of individual HTTP status codes or ranges that indicate a successful health check response.
+        StatusCodeMatcher: string
+        -- The number of seconds to wait before starting health checks after an instance is launched. Valid values: 1 to 600.
+        InitializationGracePeriodSeconds: number
+        -- The date and time when the application status check was last updated.
+        LastUpdatedAt: number
+        -- The tags associated with the application status check. Instances with these tags are automatically monitored by this check.
+        TargetTagAssociations: {CustomTagKeyValueResponsePair}
+        -- The tags assigned to the application status check.
+        Tags: {Tag}
+        -- The date and time when the application status check was created.
+        CreationTime: number
+        -- The date and time when the application status check was last modified.
+        ModifyTime: number
+        -- The date and time when the application status check was deleted.
+        DeletionTime: number
+    end
+
+    record CreateApplicationStatusCheckOutput
+        -- Information about the application status check.
+        ApplicationStatusCheck: ApplicationStatusCheckResponseObject
     end
 
     enum OutputFormat
@@ -8899,7 +9117,7 @@ local record M
         LogGroupName: string
         -- The IDs of the resources to monitor. For example, if the resource type is
         -- VPC, specify the IDs of the VPCs.
-        -- Constraints: Maximum of 25 for transit gateway resource types. Maximum of 1000 for the
+        -- Constraints: Maximum of 25 for transit gateway resource types. Maximum of 300 for the
         -- other resource types.
         ResourceIds: {string}
         -- The type of resource to monitor.
@@ -17581,6 +17799,22 @@ local record M
         VpnGateway: VpnGateway
     end
 
+    record DeleteApplicationStatusCheckInput
+        -- The ID of the application status check to delete.
+        ApplicationStatusCheckId: string
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DeleteApplicationStatusCheckOutput
+        -- Information about the deleted application status check.
+        ApplicationStatusCheck: ApplicationStatusCheckResponseObject
+    end
+
     record DeleteCapacityManagerDataExportInput
         -- The unique identifier of the data export configuration to delete.
         CapacityManagerDataExportId: string
@@ -19515,6 +19749,208 @@ local record M
         Statuses: {IdFormat}
     end
 
+    record DescribeApplicationStatusInput
+        -- The IDs of the instances for which to describe application status.
+        InstanceIds: {string}
+        -- The filters.
+        -- availability-zone-id – The ID of the Availability Zone.
+        -- status – The instance-level application status. For valid values and their meanings, see ApplicationStatus.
+        Filters: {Filter}
+        -- The maximum number of items to return for this request.
+        -- To get the next page of items, make another request with the token returned in the output.
+        -- For more information, see Pagination.
+        MaxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        NextToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes the reason for an application status check result.
+    record ApplicationStatusReason
+        -- The reason code for the application status check result. Possible values:
+        -- ResponseCodeMatched – The HTTP status code returned by the health check matched the configured StatusCodeMatcher.
+        -- ResponseCodeMismatch – The HTTP status code returned by the health check did not match the configured StatusCodeMatcher.
+        -- ConnectionTimeout – The connection to the target timed out.
+        -- ResponseTimeout – The health check timed out while waiting for a response from the target.
+        -- ConnectionRefused – The target refused the health check connection.
+        -- ConnectionReset – The target reset the health check connection before returning a response.
+        -- Current health check results use the values in the preceding list. Legacy results that do not contain structured reason metadata can instead contain a producer error type, such as Http Status Code or HttpConnectTimeoutException.
+        -- For ResponseCodeMatched and ResponseCodeMismatch, the statusCode field contains the returned HTTP status code. The protocol field contains the protocol used for the health check.
+        Code: string
+        -- The HTTP status code returned by the health check.
+        StatusCode: number
+        -- The protocol used for the health check. Possible values: HTTP and HTTPS.
+        Protocol: string
+    end
+
+    enum ApplicationStatusCheckEnum
+        "passed"
+        "failed"
+        "initializing"
+        "insufficient-data"
+        "not-applicable"
+    end
+
+    -- Describes the details of an application status check for an instance.
+    record ApplicationStatusDetail
+        -- The ID of the application status check.
+        ApplicationStatusCheckId: string
+        -- The date and time when the check was last updated.
+        CheckUpdateTime: number
+        -- The aggregation setting for the application status check. When set to included, the result of this check contributes to the instance-level application status. When set to excluded, the check runs independently and does not affect the instance-level status.
+        Aggregation: string
+        -- The status of the individual application status check. Possible values:
+        -- passed – The check reached its success threshold.
+        -- failed – The check reached its failure threshold.
+        -- initializing – The check is initializing or has not reached a success or failure threshold.
+        -- insufficient-data – The check does not have enough data to determine a result.
+        -- not-applicable – The check does not apply to the instance.
+        -- This value reflects the check result and is not affected by aggregation or suppression.
+        Status: string
+        -- The date and time of the last status update for this check.
+        StatusTimeStamp: number
+        -- The date and time when the current status started for this check.
+        StatusSince: number
+        -- The reason for the current status.
+        Reason: ApplicationStatusReason
+    end
+
+    enum ApplicationStatusEnum
+        "ok"
+        "impaired"
+        "initializing"
+        "insufficient-data"
+        "not-applicable"
+        "suppressed"
+    end
+
+    -- Describes the application-level health status for an instance.
+    record ApplicationStatus
+        -- The current instance-level application status. This status is derived from application status checks with Aggregation set to included. Possible values:
+        -- ok – All included checks passed.
+        -- impaired – At least one included check failed.
+        -- initializing – At least one included check is initializing, and no included check is impaired.
+        -- insufficient-data – At least one included check has insufficient data, and no included check is impaired or initializing.
+        -- not-applicable – No checks with Aggregation set to included apply to the instance.
+        -- suppressed – Application status reporting is suppressed for the instance.
+        -- Checks with Aggregation set to excluded do not affect this value.
+        Status: string
+        -- The date and time of the last status update.
+        StatusTimeStamp: number
+        -- The date and time when the current status started.
+        StatusSince: number
+        -- The date and time when application status reporting resumes after suppression.
+        ResumeAt: number
+        -- Details about the application status checks for the instance.
+        Details: {ApplicationStatusDetail}
+    end
+
+    -- Describes the application status for an instance.
+    record InstanceApplicationStatus
+        -- The ID of the instance.
+        InstanceId: string
+        -- The Availability Zone of the instance.
+        AvailabilityZone: string
+        -- The ID of the Availability Zone of the instance.
+        AvailabilityZoneId: string
+        -- The application status for the instance.
+        ApplicationStatus: ApplicationStatus
+        -- The tags assigned to the instance.
+        Tags: {Tag}
+    end
+
+    -- Describes the application statuses for instances.
+    record ApplicationStatusesResponseType
+        -- The application status information for the instances.
+        Instances: {InstanceApplicationStatus}
+    end
+
+    record DescribeApplicationStatusOutput
+        -- The application statuses for the specified instances.
+        ApplicationStatuses: ApplicationStatusesResponseType
+        -- The token to include in another request to get the next page of items. This value is null when there
+        -- are no more items to return.
+        NextToken: string
+    end
+
+    record DescribeApplicationStatusCheckAssociationsInput
+        -- The IDs of the application status checks for which to describe associations.
+        ApplicationStatusCheckIds: {string}
+        -- The filters to use to limit the results.
+        -- association-type – The type of association. Valid values: tag and instance-id.
+        Filters: {Filter}
+        -- The maximum number of items to return for this request.
+        -- To get the next page of items, make another request with the token returned in the output.
+        -- For more information, see Pagination.
+        MaxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        NextToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    enum AssociationTypeEnum
+        "tag"
+        "instance-id"
+    end
+
+    -- Information about an application status check association. Each item in the associationSet of a DescribeApplicationStatusCheckAssociations response is of this type.
+    record ApplicationStatusCheckAssociationObject
+        -- The ID of the application status check.
+        ApplicationStatusCheckId: string
+        -- The type of target that the application status check is associated with. Possible values:
+        -- tag – The check applies to current and future instances with a matching tag key-value pair.
+        -- instance-id – The check applies to a specific instance.
+        AssociationType: string
+        -- The key for the association. This value is present only for tag-based associations, where it contains the tag key. For instance-based associations, this value is absent.
+        Key: string
+        -- The value for the association target. For tag-based associations, this is the tag value. For instance-based associations, this is the instance ID (for example, i-0123456789abcdef0).
+        Value: string
+    end
+
+    record DescribeApplicationStatusCheckAssociationsOutput
+        -- The associations for the specified application status checks.
+        Associations: {ApplicationStatusCheckAssociationObject}
+        -- The token to include in another request to get the next page of items. This value is null when there
+        -- are no more items to return.
+        NextToken: string
+        -- The tags associated with the application status checks.
+        Tags: {Tag}
+    end
+
+    record DescribeApplicationStatusChecksInput
+        -- The IDs of the application status checks to describe.
+        ApplicationStatusCheckIds: {string}
+        -- The filters.
+        -- aggregation – The aggregation setting. Valid values: included and excluded.
+        Filters: {Filter}
+        -- The maximum number of items to return for this request.
+        -- To get the next page of items, make another request with the token returned in the output.
+        -- For more information, see Pagination.
+        MaxResults: number
+        -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
+        NextToken: string
+        -- Specifies whether to include recently deleted application status checks that remain available during the deletion grace period. If you omit this parameter or set it to false, the response includes only active checks.
+        IncludeAll: boolean
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DescribeApplicationStatusChecksOutput
+        -- Information about the application status checks.
+        ApplicationStatusChecks: {ApplicationStatusCheckResponseObject}
+        -- The token to include in another request to get the next page of items. This value is null when there
+        -- are no more items to return.
+        NextToken: string
+    end
+
     record DescribeAvailabilityZonesInput
         -- The names of the Availability Zones, Local Zones, and Wavelength Zones.
         ZoneNames: {string}
@@ -20448,7 +20884,7 @@ local record M
         MaxResults: number
         -- The Capacity Reservation IDs.
         -- Default: Describes all your Capacity Reservations.
-        -- Constraints: Maximum 100 explicitly specified Capacity Reservation IDs.
+        -- Constraints: Maximum 10 explicitly specified Capacity Reservation IDs.
         CapacityReservationIds: {string}
         -- The filters.
         -- availability-zone - The name of the Availability Zone (for
@@ -25072,11 +25508,30 @@ local record M
         -- attached-ebs-status.status - The status of the attached EBS volume
         -- for the instance (ok | impaired | initializing |
         -- insufficient-data | not-applicable).
+        -- application-status.status - The application status of the instance
+        -- (ok | impaired | initializing |
+        -- insufficient-data | not-applicable).
         Filters: {Filter}
         -- When true, includes the health status for all instances. When
         -- false, includes the health status for running instances only.
         -- Default: false
         IncludeAllInstances: boolean
+    end
+
+    enum SummaryStatus
+        "ok"
+        "impaired"
+        "insufficient-data"
+        "not-applicable"
+        "initializing"
+    end
+
+    -- Provides a summary of the application-level health status for an instance.
+    record ApplicationStatusSummary
+        -- The current status.
+        Status: string
+        -- The date and time when the application status became impaired.
+        ImpairedSince: number
     end
 
     enum StatusName
@@ -25098,14 +25553,6 @@ local record M
         Name: string
         -- The result of the attached EBS status check.
         Status: string
-    end
-
-    enum SummaryStatus
-        "ok"
-        "impaired"
-        "insufficient-data"
-        "not-applicable"
-        "initializing"
     end
 
     -- Provides a summary of the attached EBS volume status for an instance.
@@ -25162,7 +25609,8 @@ local record M
         Status: string
     end
 
-    -- Describes the status of an instance.
+    -- Describes the status of an instance, including system status, instance status,
+    -- attached EBS status, and application status.
     record InstanceStatus
         -- The Availability Zone of the instance.
         AvailabilityZone: string
@@ -25188,6 +25636,8 @@ local record M
         -- Reports impaired functionality that stems from an attached Amazon EBS volume that is
         -- unreachable and unable to complete I/O operations.
         AttachedEbsStatus: EbsStatusSummary
+        -- Reports impaired functionality that stems from issues with applications running on the instance.
+        ApplicationStatus: ApplicationStatusSummary
     end
 
     record DescribeInstanceStatusOutput
@@ -32316,6 +32766,46 @@ local record M
         AllowedImagesSettingsState: string
     end
 
+    record DisableApplicationStatusCheckSuppressionInput
+        -- The IDs of the instances for which to disable application status check suppression.
+        InstanceIds: {string}
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    -- Describes a successful application status check suppression.
+    record SuccessfulSuppressionResponseObject
+        -- The ID of the instance.
+        InstanceId: string
+        -- The date and time when suppression started.
+        SuppressAt: number
+        -- The date and time when suppression ends and health checks resume.
+        ResumeAt: number
+    end
+
+    -- Describes an unsuccessful application status check suppression.
+    record UnsuccessfulSuppressionResponseObject
+        -- The ID of the instance.
+        InstanceId: string
+        -- The date and time when suppression was attempted.
+        SuppressAt: number
+        -- The date and time when health checks would have resumed.
+        ResumeAt: number
+        -- The reason the suppression failed.
+        Reason: string
+    end
+
+    record DisableApplicationStatusCheckSuppressionOutput
+        -- The instances for which suppression was successfully disabled.
+        SuccessfulResults: {SuccessfulSuppressionResponseObject}
+        -- The instances for which suppression failed to be disabled.
+        UnsuccessfulResults: {UnsuccessfulSuppressionResponseObject}
+    end
+
     record DisableAwsNetworkPerformanceMetricSubscriptionInput
         -- The source Region or Availability Zone that the metric subscription is disabled for. For example, us-east-1.
         Source: string
@@ -32750,6 +33240,28 @@ local record M
     record DisassociateAddressOutput
     end
 
+    record DisassociateApplicationStatusCheckInput
+        -- The ID of the application status check to disassociate.
+        ApplicationStatusCheckId: string
+        -- The tags to disassociate from the application status check. Specify the same key-value pairs that were used during association.
+        TargetTagAssociations: {CustomTagKeyValueRequestPair}
+        -- The IDs of the instances to disassociate from the application status check.
+        InstanceIds: {string}
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record DisassociateApplicationStatusCheckOutput
+        -- The associations that were successfully removed.
+        SuccessfulResults: {SuccessfulAssociationResponseObject}
+        -- The associations that failed to be removed.
+        UnsuccessfulResults: {UnsuccessfulAssociationResponseObject}
+    end
+
     record DisassociateCapacityReservationBillingOwnerInput
         -- Checks whether you have the required permissions for the action, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
         DryRun: boolean
@@ -33054,6 +33566,26 @@ local record M
         -- Returns enabled or audit-mode if the request succeeds;
         -- otherwise, it returns an error.
         AllowedImagesSettingsState: string
+    end
+
+    record EnableApplicationStatusCheckSuppressionInput
+        -- The IDs of the instances for which to suppress application status checks.
+        InstanceIds: {string}
+        -- The duration, in seconds, for which to suppress application status checks. If omitted, the application status check is suppressed indefinitely until you call DisableApplicationStatusCheckSuppression.
+        DurationSeconds: number
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record EnableApplicationStatusCheckSuppressionOutput
+        -- The instances for which suppression was successfully enabled.
+        SuccessfulResults: {SuccessfulSuppressionResponseObject}
+        -- The instances for which suppression failed to be enabled.
+        UnsuccessfulResults: {UnsuccessfulSuppressionResponseObject}
     end
 
     record EnableAwsNetworkPerformanceMetricSubscriptionInput
@@ -37220,6 +37752,50 @@ local record M
     record ModifyAddressAttributeOutput
         -- Information about the Elastic IP address.
         Address: AddressAttribute
+    end
+
+    record ModifyApplicationStatusCheckInput
+        -- The ID of the application status check to modify.
+        ApplicationStatusCheckId: string
+        -- The aggregation setting for the application status check. When set to included, the result of this check contributes to the instance-level application status reported by DescribeApplicationStatus. When set to excluded, the check runs independently and does not affect the instance-level status. Valid values: included | excluded.
+        Aggregation: string
+        -- The health check paths to use for the application status check.
+        HealthCheckPaths: {HealthCheckPathRequestObject}
+        -- The protocol to use for the health check. Valid values: http | https.
+        Protocol: string
+        -- The port to use for the health check. Valid values: 1 to 65535.
+        Port: number
+        -- The URL path to use for the health check HTTP request (for example, /health or /status).
+        Path: string
+        -- The index of the network device to use for the health check. The value must be greater than or equal to 0.
+        DeviceIndex: number
+        -- The IP version to use for the health check. Valid values: ipv4 and ipv6.
+        IpVersion: string
+        -- The IP scope to use for the health check. Valid value: private.
+        IpScope: string
+        -- The interval, in seconds, between health checks. Valid value: 60.
+        Interval: number
+        -- The amount of time, in seconds, to wait for a health check response before considering it failed. Valid values: 1 to 30. The value must be less than Interval.
+        Timeout: number
+        -- The number of consecutive failed health checks before the application status is considered impaired. The value must be greater than 0.
+        FailureThreshold: number
+        -- The number of consecutive successful health checks before the application status is considered healthy. The value must be greater than 0.
+        SuccessThreshold: number
+        -- The HTTP status codes that indicate a successful health check response. Specify a comma-separated list of individual status codes or ranges, for example, 200,202,300-399. For a range, the first value must be less than the second value. Maximum length: 64 characters.
+        StatusCodeMatcher: string
+        -- The number of seconds to wait before starting health checks after an instance is launched. Valid values: 1 to 600.
+        InitializationGracePeriodSeconds: number
+        -- Unique, case-sensitive identifier that you provide to ensure the idempotency of the request. For more information, see Ensuring idempotency.
+        ClientToken: string
+        -- Checks whether you have the required permissions for the operation, without actually making the
+        -- request, and provides an error response. If you have the required permissions, the error response is
+        -- DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+    end
+
+    record ModifyApplicationStatusCheckOutput
+        -- Information about the modified application status check.
+        ApplicationStatusCheck: ApplicationStatusCheckResponseObject
     end
 
     enum ModifyAvailabilityZoneOptInStatus

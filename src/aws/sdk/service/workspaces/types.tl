@@ -556,6 +556,11 @@ local record M
         -- When enabled, the log files will be sent to WorkSpaces automatically and will be applied to all
         -- users in the specified directory.
         LogUploadEnabled: string
+        -- The client experience policy that determines which client experience the user sees.
+        -- Administrators can set this policy to control the client experience for users in a directory.
+        -- Valid values include FORCE_CLASSIC, FORCE_UI_2026,
+        -- and USER_CHOICE.
+        ClientExperiencePolicy: string
     end
 
     -- Information about the Amazon WorkSpaces client.

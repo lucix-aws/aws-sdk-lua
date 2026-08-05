@@ -452,6 +452,56 @@ local record M
         AttributeName: string
     end
 
+    enum VectorDistanceFunction
+        "COSINE"
+        "DOT_PRODUCT"
+        "EUCLIDEAN"
+    end
+
+    enum SearchSchemaElementType
+        "HASH"
+        "INLINE_FILTER"
+    end
+
+    -- An element in the search schema of a vector index.
+    record SearchSchemaElement
+        -- The name of the attribute.
+        AttributeName: string
+        -- The role of the attribute in the search schema. Valid values:
+        -- HASH - A partition key that partitions the vector index for
+        -- independent scaling. When specified, you must provide this attribute's value
+        -- in the SearchConditionExpression.
+        -- INLINE_FILTER - An attribute projected into the vector index
+        -- for filtering at the storage layer during search. Inline filters are
+        -- optional in the SearchConditionExpression.
+        SearchSchemaElementType: string
+    end
+
+    -- The definition of a vector attribute for a vector index.
+    record VectorAttributeDefinition
+        -- The name of the vector attribute.
+        AttributeName: string
+    end
+
+    -- Contains the configuration of a vector index as it existed at the time a backup
+    -- was created.
+    record VectorIndexInfo
+        -- The name of the vector index.
+        IndexName: string
+        -- The vector attribute configuration for the index.
+        VectorAttribute: VectorAttributeDefinition
+        -- The search schema that defines partition key and inline filter attributes for
+        -- the vector index.
+        SearchSchema: {SearchSchemaElement}
+        -- Specifies attributes that are copied (projected) from the table into the vector
+        -- index.
+        Projection: Projection
+        -- The number of dimensions in each vector.
+        Dimensions: number
+        -- The distance function used to calculate similarity between vectors.
+        DistanceFunction: string
+    end
+
     -- Contains the details of the features enabled on the table when the backup was created.
     -- For example, LSIs, GSIs, streams, TTL.
     record SourceTableFeatureDetails
@@ -469,6 +519,10 @@ local record M
         -- The description of the server-side encryption status on the table when the backup was
         -- created.
         SSEDescription: SSEDescription
+        -- The vector index properties for the table at the time the backup was created,
+        -- including the index name, vector attribute, dimensions, distance function, search
+        -- schema, and projection.
+        VectorIndexes: {VectorIndexInfo}
     end
 
     -- Contains the description of the backup created for the table.
@@ -555,6 +609,18 @@ local record M
         CapacityUnits: number
     end
 
+    -- The consumed capacity for vector index operations, including vector search request bytes
+    -- and vector write request bytes.
+    record VectorCapacity
+        -- The number of vector search request bytes consumed by a
+        -- SearchVectors operation.
+        VectorSearchRequestBytes: number
+        -- The number of vector write request bytes consumed when writing to a vector index.
+        -- Reported for write operations that modify attributes indexed by a vector
+        -- index.
+        VectorWriteRequestBytes: number
+    end
+
     -- The capacity units consumed by an operation. The data returned includes the total
     -- provisioned throughput consumed, along with statistics for the table and any indexes
     -- involved in the operation. ConsumedCapacity is only returned if the request
@@ -578,6 +644,10 @@ local record M
         -- The amount of throughput consumed on each global index affected by the
         -- operation.
         GlobalSecondaryIndexes: {string : Capacity}
+        -- The amount of throughput consumed on each vector index affected by the operation.
+        -- Each entry contains VectorWriteRequestBytes (for write operations) or
+        -- VectorSearchRequestBytes (for search operations).
+        VectorIndexes: {string : VectorCapacity}
     end
 
     enum BatchStatementErrorCodeEnum
@@ -1267,6 +1337,27 @@ local record M
         Value: string
     end
 
+    -- Contains the configuration settings for a vector index, including the index name,
+    -- vector attribute, dimensions, distance function, search schema, and
+    -- projection.
+    record VectorIndex
+        -- The name of the vector index.
+        IndexName: string
+        -- The vector attribute configuration for the index.
+        VectorAttribute: VectorAttributeDefinition
+        -- The search schema that defines partition key and inline filter attributes for
+        -- the vector index.
+        SearchSchema: {SearchSchemaElement}
+        -- Specifies attributes that are copied (projected) from the table into the vector
+        -- index.
+        Projection: Projection
+        -- The number of dimensions in each vector.
+        Dimensions: number
+        -- The distance function used to calculate similarity between vectors. Valid values:
+        -- COSINE, EUCLIDEAN, DOT_PRODUCT.
+        DistanceFunction: string
+    end
+
     -- Represents the input of a CreateTable operation.
     record CreateTableInput
         -- An array of attributes that describe the key schema for the table and indexes.
@@ -1434,6 +1525,27 @@ local record M
         -- this parameter is required and the only supported value is ENABLED. For same-account global tables,
         -- this parameter is set to ENABLED_WITH_OVERRIDES.
         GlobalTableSettingsReplicationMode: string
+        -- One or more vector indexes to be created on the table. Each vector index enables
+        -- similarity search on a vector attribute. Each element in the list consists of:
+        -- IndexName - The name of the vector index. Must be unique
+        -- within the table.
+        -- VectorAttribute - The attribute that contains vector
+        -- embeddings. If multiple vector indexes reference the same attribute, they
+        -- must all use the same number of dimensions.
+        -- Dimensions - The number of dimensions in each vector.
+        -- DistanceFunction - The distance function used to calculate
+        -- similarity. Valid values: COSINE, EUCLIDEAN,
+        -- DOT_PRODUCT.
+        -- Projection - Specifies attributes that are copied (projected)
+        -- from the table into the vector index. The total number of projected
+        -- non-key attributes is shared across the vector attribute (counts as 1)
+        -- and INLINE_FILTER search schema elements (each counts as 1).
+        -- HASH search schema elements do not count toward this
+        -- limit.
+        -- SearchSchema - (Optional) Defines the partition key
+        -- (HASH) and inline filter (INLINE_FILTER) attributes
+        -- for the vector index.
+        VectorIndexes: {VectorIndex}
     end
 
     -- Represents the provisioned throughput settings for the table, consisting of read and
@@ -1453,9 +1565,15 @@ local record M
         -- effort than strongly consistent reads, so a setting of 50 ReadCapacityUnits
         -- per second provides 100 eventually consistent ReadCapacityUnits per
         -- second.
+        -- For a table or global secondary index that uses on-demand capacity mode
+        -- (PAY_PER_REQUEST), this value is 0, because on-demand mode
+        -- does not use provisioned throughput.
         ReadCapacityUnits: number
         -- The maximum number of writes consumed per second before DynamoDB returns a
         -- ThrottlingException.
+        -- For a table or global secondary index that uses on-demand capacity mode
+        -- (PAY_PER_REQUEST), this value is 0, because on-demand mode
+        -- does not use provisioned throughput.
         WriteCapacityUnits: number
     end
 
@@ -1588,6 +1706,44 @@ local record M
         RestoreInProgress: boolean
     end
 
+    -- Contains the current state and configuration of a vector index, including its
+    -- status, size, item count, and the settings specified when the index was
+    -- created.
+    record VectorIndexDescription
+        -- The name of the vector index.
+        IndexName: string
+        -- The search schema that defines partition key and inline filter attributes for
+        -- the vector index.
+        SearchSchema: {SearchSchemaElement}
+        -- Specifies attributes that are copied (projected) from the table into the vector
+        -- index.
+        Projection: Projection
+        -- The vector attribute configuration for the index.
+        VectorAttribute: VectorAttributeDefinition
+        -- The number of dimensions in each vector.
+        Dimensions: number
+        -- The distance function used to calculate similarity between vectors.
+        DistanceFunction: string
+        -- The current state of the vector index:
+        -- CREATING - The index is being created.
+        -- ACTIVE - The index is ready for use.
+        -- DELETING - The index is being deleted.
+        IndexStatus: string
+        -- Specifies whether the index is currently backfilling. During backfill,
+        -- SearchVectors operations might return incomplete results.
+        Backfilling: boolean
+        -- The total size of the vector index, in bytes. Amazon DynamoDB updates this value
+        -- approximately every six hours. Recent changes might not be reflected in this
+        -- value.
+        IndexSizeBytes: number
+        -- The number of items indexed in the vector index. Amazon DynamoDB updates this
+        -- value approximately every six hours. Recent changes might not be reflected in
+        -- this value.
+        ItemCount: number
+        -- The Amazon Resource Name (ARN) that uniquely identifies the vector index.
+        IndexArn: string
+    end
+
     -- Represents the properties of a table.
     record TableDescription
         -- An array of AttributeDefinition objects. Each of these objects describes
@@ -1646,7 +1802,8 @@ local record M
         ItemCount: number
         -- The Amazon Resource Name (ARN) that uniquely identifies the table.
         TableArn: string
-        -- Unique identifier for the table for which the backup was created.
+        -- A unique identifier for the table, in UUID format, generated by DynamoDB when the
+        -- table is created.
         TableId: string
         -- Contains the details for the read/write capacity mode.
         BillingModeSummary: BillingModeSummary
@@ -1803,6 +1960,34 @@ local record M
         -- see
         -- Consistency modes in DynamoDB developer guide.
         MultiRegionConsistency: string
+        -- The vector indexes, if any, on the table. Each element is composed of:
+        -- IndexName - The name of the vector index.
+        -- IndexStatus - The current status of the vector index:
+        -- CREATING, ACTIVE, or
+        -- DELETING.
+        -- Backfilling - Specifies whether the index is currently
+        -- backfilling. During backfill, SearchVectors operations might
+        -- return incomplete results.
+        -- VectorAttribute - The attribute that contains vector
+        -- embeddings.
+        -- Dimensions - The number of dimensions in each
+        -- vector.
+        -- DistanceFunction - The distance function used to calculate
+        -- similarity (COSINE, EUCLIDEAN, or
+        -- DOT_PRODUCT).
+        -- SearchSchema - The partition key and inline filter
+        -- attributes for the vector index.
+        -- Projection - Specifies attributes that are copied
+        -- (projected) from the table into the vector index.
+        -- IndexArn - The Amazon Resource Name (ARN) that uniquely
+        -- identifies the index.
+        -- IndexSizeBytes - The total size of the vector index, in
+        -- bytes. Amazon DynamoDB updates this value approximately every six hours.
+        -- Recent changes might not be reflected in this value.
+        -- ItemCount - The number of items indexed in the vector
+        -- index. Amazon DynamoDB updates this value approximately every six hours.
+        -- Recent changes might not be reflected in this value.
+        VectorIndexes: {VectorIndexDescription}
     end
 
     -- Represents the output of a CreateTable operation.
@@ -1821,6 +2006,27 @@ local record M
     record ResourceInUseException
         -- The resource which is being attempted to be changed is in use.
         message: string
+    end
+
+    -- A new vector index to be added to a table.
+    record CreateVectorIndexAction
+        -- The name of the vector index. Must be unique within the table.
+        IndexName: string
+        -- The attribute that contains vector embeddings. If multiple vector indexes
+        -- reference the same attribute, they must all use the same number of
+        -- dimensions.
+        VectorAttribute: VectorAttributeDefinition
+        -- The partition key and inline filter attribute definitions for the vector
+        -- index.
+        SearchSchema: {SearchSchemaElement}
+        -- Specifies attributes that are copied (projected) from the table into the vector
+        -- index.
+        Projection: Projection
+        -- The number of dimensions in each vector.
+        Dimensions: number
+        -- The distance function used to calculate similarity. Valid values:
+        -- COSINE, EUCLIDEAN, DOT_PRODUCT.
+        DistanceFunction: string
     end
 
     -- Processing options for the CSV file being imported.
@@ -1924,6 +2130,12 @@ local record M
     record DeleteTableOutput
         -- Represents the properties of a table.
         TableDescription: TableDescription
+    end
+
+    -- A vector index to be removed from a table.
+    record DeleteVectorIndexAction
+        -- The name of the vector index to delete.
+        IndexName: string
     end
 
     record DescribeBackupInput
@@ -2050,6 +2262,13 @@ local record M
         -- The view type that was chosen for the export. Valid values are
         -- NEW_AND_OLD_IMAGES and NEW_IMAGES. The default value is
         -- NEW_AND_OLD_IMAGES.
+        -- NEW_AND_OLD_IMAGES exports both the new and old images of each changed
+        -- item, while NEW_IMAGES exports only the new (latest) image. The view type
+        -- you choose determines the structure of each item in the output for
+        -- insert, update, and delete operations. For
+        -- details and examples of how each view type shapes the export output, see DynamoDB table
+        -- export output format in the Amazon DynamoDB Developer
+        -- Guide.
         ExportViewType: string
     end
 
@@ -2269,6 +2488,9 @@ local record M
         -- The Global Secondary Indexes (GSI) of the table to be created as part of the import
         -- operation.
         GlobalSecondaryIndexes: {GlobalSecondaryIndex}
+        -- The vector indexes of the table to be created as part of the import
+        -- operation.
+        VectorIndexes: {VectorIndex}
     end
 
     -- Represents the properties of the table being imported into.
@@ -2838,8 +3060,7 @@ local record M
         InputFormat: string
         -- The time at which this import task began.
         StartTime: number
-        -- The time at which this import task ended. (Does this include the successful complete
-        -- creation of the table it was imported to?)
+        -- The time at which this import task ended.
         EndTime: number
     end
 
@@ -2960,6 +3181,11 @@ local record M
         OnDemandThroughputOverride: OnDemandThroughput
         -- The new server-side encryption settings for the restored table.
         SSESpecificationOverride: SSESpecification
+        -- The vector indexes for the restored table. If not specified, all vector indexes
+        -- from the backup are restored. The indexes provided must match existing vector
+        -- indexes from the backup. You can choose to exclude some or all of the vector
+        -- indexes at the time of restore.
+        VectorIndexOverride: {VectorIndex}
     end
 
     record RestoreTableFromBackupOutput
@@ -2996,6 +3222,11 @@ local record M
         -- List of global secondary indexes for the restored table. The indexes provided should
         -- match existing secondary indexes. You can choose to exclude some or all of the indexes
         -- at the time of restore.
+        -- The WarmThroughput setting is not supported on global secondary indexes
+        -- when you use RestoreTableToPointInTime. Although WarmThroughput
+        -- appears in the shared index definition, including it in a
+        -- GlobalSecondaryIndexOverride entry causes the request to fail with a
+        -- validation error.
         GlobalSecondaryIndexOverride: {GlobalSecondaryIndex}
         -- List of local secondary indexes for the restored table. The indexes provided should
         -- match existing secondary indexes. You can choose to exclude some or all of the indexes
@@ -3006,6 +3237,11 @@ local record M
         OnDemandThroughputOverride: OnDemandThroughput
         -- The new server-side encryption settings for the restored table.
         SSESpecificationOverride: SSESpecification
+        -- The vector indexes for the restored table. If not specified, all vector indexes
+        -- from the source table are restored. The indexes provided must match existing
+        -- vector indexes from the source table. You can choose to exclude some or all of
+        -- the vector indexes at the time of restore.
+        VectorIndexOverride: {VectorIndex}
     end
 
     record RestoreTableToPointInTimeOutput
@@ -3329,6 +3565,14 @@ local record M
         Delete: DeleteReplicationGroupMemberAction
     end
 
+    -- A vector index to be added to or removed from a table.
+    record VectorIndexUpdate
+        -- The configuration for creating a new vector index on the table.
+        Create: CreateVectorIndexAction
+        -- The configuration for deleting an existing vector index from the table.
+        Delete: DeleteVectorIndexAction
+    end
+
     -- Represents the input of an UpdateTable operation.
     record UpdateTableInput
         -- An array of attributes that describe the key schema for the table and indexes. If you
@@ -3417,6 +3661,13 @@ local record M
         -- DISABLED: Remove settings replication on a regional table. Settings replication needs
         -- to be defined to ENABLED again in order to create a Multi-Account Global Table using this table.
         GlobalTableSettingsReplicationMode: string
+        -- A list of vector indexes to be added to or removed from the table. You can add or
+        -- remove one vector index for each UpdateTable operation.
+        -- To add a vector index, specify IndexName,
+        -- VectorAttribute, Dimensions,
+        -- DistanceFunction, and Projection. To remove a vector
+        -- index, specify only the IndexName.
+        VectorIndexUpdates: {VectorIndexUpdate}
     end
 
     -- Represents the output of an UpdateTable operation.
@@ -3980,6 +4231,17 @@ local record M
         Item: {string : AttributeValue}
     end
 
+    -- A single result from a SearchVectors operation.
+    record SearchResultItem
+        -- A map of attribute names to AttributeValue objects, representing the
+        -- projected attributes of the item returned by the vector search.
+        Item: {string : AttributeValue}
+        -- The similarity score for this item relative to the search vector. The
+        -- interpretation depends on the distance function configured for the vector
+        -- index.
+        Score: number
+    end
+
     -- Represents a set of primary keys and, for each key, the attributes to retrieve from
     -- the table.
     -- For each primary key, you must provide all of the key attributes.
@@ -4065,6 +4327,17 @@ local record M
         ConsumedCapacity: {ConsumedCapacity}
     end
 
+    record SearchVectorsOutput
+        -- The capacity units consumed by the SearchVectors operation. Contains
+        -- VectorSearchRequestBytes, which represents the vector search capacity
+        -- consumed.
+        ConsumedCapacity: VectorCapacity
+        -- A list of items returned by the vector similarity search, sorted by similarity
+        -- with the most similar item first. Each item contains the projected attributes and
+        -- a similarity score.
+        SearchResults: {SearchResultItem}
+    end
+
     record TransactGetItemsOutput
         -- If the ReturnConsumedCapacity value was TOTAL, this
         -- is an array of ConsumedCapacity objects, one for each table addressed by
@@ -4116,7 +4389,10 @@ local record M
     -- DynamoDB lists the cancellation reasons on the
     -- CancellationReasons property. Transaction cancellation reasons are ordered in the order of requested
     -- items, if an item has no error it will have None code and
-    -- Null message.
+    -- Null message. The None code is returned as the literal
+    -- string "None", not a null or absent value; the message field is omitted
+    -- entirely for an item that has no error. This is important to note when using an SDK
+    -- that surfaces the code as an optional or nullable type.
     -- Cancellation reason codes and possible error messages:
     -- No Errors:
     -- Code: None
@@ -4443,6 +4719,9 @@ local record M
         -- The capacity units consumed by the entire TransactWriteItems operation.
         -- The values of the list are ordered according to the ordering of the
         -- TransactItems request parameter.
+        -- If the table has vector indexes, each element also includes a
+        -- VectorIndexes field with VectorWriteRequestBytes consumed
+        -- for each affected vector index.
         ConsumedCapacity: {ConsumedCapacity}
         -- A list of tables that were processed by TransactWriteItems and, for each
         -- table, information about any item collections that were affected by individual
@@ -4526,6 +4805,41 @@ local record M
         ReturnValuesOnConditionCheckFailure: string
     end
 
+    record SearchVectorsInput
+        -- The name or Amazon Resource Name (ARN) of the table containing the vector index.
+        TableName: string
+        -- The name of the vector index to search. The index must be in the
+        -- ACTIVE state.
+        IndexName: string
+        ReturnConsumedCapacity: string
+        -- One or more substitution tokens for attribute names in an expression. Use the
+        -- # character in an expression to dereference an attribute name.
+        ExpressionAttributeNames: {string : string}
+        -- One or more values that can be substituted in an expression. Use the
+        -- : character in an expression to dereference an attribute value.
+        ExpressionAttributeValues: {string : AttributeValue}
+        -- A string that identifies one or more attributes to retrieve from the index.
+        -- Separate attribute names with commas. If not specified, the operation returns all
+        -- attributes projected into the vector index.
+        -- Only attributes projected into the vector index can be retrieved.
+        ProjectionExpression: string
+        -- The search vector to compare against the indexed vectors. Each element is a 32-bit
+        -- IEEE-754 floating point number, provided in DynamoDB list format.
+        -- The number of dimensions must match the number of dimensions configured for the
+        -- vector index.
+        SearchVector: {AttributeValue}
+        -- A condition expression used to filter the vector search results. The expression can
+        -- reference attributes defined in the vector index search schema, including
+        -- HASH and INLINE_FILTER key elements.
+        -- Only the equality operator (=) is supported for HASH
+        -- attributes. Comparison and range operators are supported for
+        -- INLINE_FILTER attributes. Only top-level attributes from the search
+        -- schema can be referenced.
+        SearchConditionExpression: string
+        -- The number of most similar results to return.
+        TopK: number
+    end
+
     -- Represents a request to perform an UpdateItem operation.
     record Update
         -- The primary key of the item to be updated. Each element consists of an attribute name
@@ -4574,6 +4888,9 @@ local record M
         -- only returned if the ReturnConsumedCapacity parameter was specified. For
         -- more information, see Provisioned capacity mode in the Amazon DynamoDB Developer
         -- Guide.
+        -- If the table has vector indexes, the response includes a
+        -- VectorIndexes field with VectorWriteRequestBytes consumed
+        -- for each affected vector index.
         ConsumedCapacity: ConsumedCapacity
         -- Information about item collections, if any, that were affected by the
         -- DeleteItem operation. ItemCollectionMetrics is only
@@ -4626,6 +4943,9 @@ local record M
         -- returned if the ReturnConsumedCapacity parameter was specified. For more
         -- information, see Capacity unity consumption for write operations in the Amazon
         -- DynamoDB Developer Guide.
+        -- If the table has vector indexes, the response includes a
+        -- VectorIndexes field with VectorWriteRequestBytes consumed
+        -- for each affected vector index.
         ConsumedCapacity: ConsumedCapacity
         -- Information about item collections, if any, that were affected by the
         -- PutItem operation. ItemCollectionMetrics is only returned
@@ -4735,6 +5055,9 @@ local record M
         -- only returned if the ReturnConsumedCapacity parameter was specified. For
         -- more information, see Capacity unity consumption for write operations in the Amazon
         -- DynamoDB Developer Guide.
+        -- If the table has vector indexes, the response includes a
+        -- VectorIndexes field with VectorWriteRequestBytes consumed
+        -- for each affected vector index.
         ConsumedCapacity: ConsumedCapacity
         -- Information about item collections, if any, that were affected by the
         -- UpdateItem operation. ItemCollectionMetrics is only
@@ -5134,6 +5457,15 @@ local record M
         -- If you specify any attributes that are part of an index key, then the data types for
         -- those attributes must match those of the schema in the table's attribute
         -- definition.
+        -- If the table has vector indexes, the following validations apply to write
+        -- operations. A violation of any of these constraints results in a
+        -- ValidationException:
+        -- The vector attribute must be a list of numbers with dimensions matching the
+        -- index configuration.
+        -- Vector values must fit in 32-bit IEEE-754 floating point format
+        -- (f32).
+        -- Partition key and inline filter attributes defined in the search schema
+        -- must have data types matching the index schema definition.
         -- Empty String and Binary attribute values are allowed. Attribute values of type String
         -- and Binary must have a length greater than zero if the attribute is used as a key
         -- attribute for a table or index.
@@ -5515,6 +5847,9 @@ local record M
         -- TableName - The table that consumed the provisioned
         -- throughput.
         -- CapacityUnits - The total number of capacity units consumed.
+        -- If the table has vector indexes, each element also includes a
+        -- VectorIndexes field with VectorWriteRequestBytes consumed
+        -- for each affected vector index.
         ConsumedCapacity: {ConsumedCapacity}
     end
 

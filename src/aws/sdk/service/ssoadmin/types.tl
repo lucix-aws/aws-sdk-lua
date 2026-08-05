@@ -973,6 +973,8 @@ local record M
         StatusReason: string
         -- Contains the encryption configuration for your IAM Identity Center instance, including the encryption status, KMS key type, and KMS key ARN.
         EncryptionConfigurationDetails: EncryptionConfigurationDetails
+        -- Indicates whether permission sets are enabled for this Identity Center instance.
+        PermissionSetsEnabled: boolean
     end
 
     record DescribeInstanceAccessControlAttributeConfigurationInput
@@ -1702,6 +1704,8 @@ local record M
         InstanceArn: string
         -- Specifies the encryption configuration for your IAM Identity Center instance. You can use this to configure customer managed KMS keys or Amazon Web Services owned KMS keys for encrypting your instance data.
         EncryptionConfiguration: EncryptionConfiguration
+        -- Enables permission sets for this Identity Center instance. The only accepted value is true . After permission sets are enabled, they cannot be disabled. You can't set EncryptionConfiguration and PermissionSetsEnabled in the same request. To configure both, make two separate UpdateInstance calls. These calls can be made in parallel.
+        PermissionSetsEnabled: boolean
     end
 
     record UpdateInstanceOutput

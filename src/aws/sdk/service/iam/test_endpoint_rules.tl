@@ -167,7 +167,7 @@ describe("endpoint rules", function()
             authSchemes = {
             {
             name = "sigv4",
-            signingRegion = "cn-northwest-1",
+            signingRegion = "cn-north-1",
         },
         },
         }
@@ -195,7 +195,7 @@ describe("endpoint rules", function()
             authSchemes = {
             {
             name = "sigv4",
-            signingRegion = "cn-northwest-1",
+            signingRegion = "cn-north-1",
         },
         },
         }

@@ -37,6 +37,8 @@ M.GlobalSecondaryIndexList = schema.new({ type = "list", list_member = M.GlobalS
 
 M.TagList = schema.new({ type = "list", list_member = M.Tag })
 
+M.VectorIndexList = schema.new({ type = "list", list_member = M.VectorIndex })
+
 M.Key = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
 
 M.ExpectedAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.ExpectedAttributeValue })
@@ -85,6 +87,10 @@ M.KeyConditions = schema.new({ type = "map", map_key = prelude.String, map_value
 
 M.FilterConditionMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Condition })
 
+M.SearchVectorList = schema.new({ type = "list", list_member = M.AttributeValue })
+
+M.SearchResultList = schema.new({ type = "list", list_member = M.SearchResultItem })
+
 M.TransactGetItemList = schema.new({ type = "list", list_member = M.TransactGetItem })
 
 M.TransactWriteItemList = schema.new({ type = "list", list_member = M.TransactWriteItem })
@@ -105,6 +111,8 @@ M.ReplicationGroupUpdateList = schema.new({ type = "list", list_member = M.Repli
 
 M.GlobalTableWitnessGroupUpdateList = schema.new({ type = "list", list_member = M.GlobalTableWitnessGroupUpdate })
 
+M.VectorIndexUpdateList = schema.new({ type = "list", list_member = M.VectorIndexUpdate })
+
 M.GlobalSecondaryIndexAutoScalingUpdateList = schema.new({ type = "list", list_member = M.GlobalSecondaryIndexAutoScalingUpdate })
 
 M.ReplicaAutoScalingUpdateList = schema.new({ type = "list", list_member = M.ReplicaAutoScalingUpdate })
@@ -121,7 +129,11 @@ M.GlobalSecondaryIndexDescriptionList = schema.new({ type = "list", list_member 
 
 M.GlobalTableWitnessDescriptionList = schema.new({ type = "list", list_member = M.GlobalTableWitnessDescription })
 
+M.VectorIndexDescriptionList = schema.new({ type = "list", list_member = M.VectorIndexDescription })
+
 M.SecondaryIndexesCapacityMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.Capacity })
+
+M.VectorIndexesCapacityMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.VectorCapacity })
 
 M.ItemCollectionKeyAttributeMap = schema.new({ type = "map", map_key = prelude.String, map_value = M.AttributeValue })
 
@@ -131,9 +143,13 @@ M.ReplicaAutoScalingDescriptionList = schema.new({ type = "list", list_member = 
 
 M.KeyList = schema.new({ type = "list", list_member = M.Key })
 
+M.SearchSchema = schema.new({ type = "list", list_member = M.SearchSchemaElement })
+
 M.LocalSecondaryIndexes = schema.new({ type = "list", list_member = M.LocalSecondaryIndexInfo })
 
 M.GlobalSecondaryIndexes = schema.new({ type = "list", list_member = M.GlobalSecondaryIndexInfo })
+
+M.VectorIndexes = schema.new({ type = "list", list_member = M.VectorIndexInfo })
 
 M.StringSetAttributeValue = schema.new({ type = "list", list_member = prelude.String })
 
@@ -780,6 +796,93 @@ M.TimeToLiveDescription = schema.new({
     },
 })
 
+M.SearchSchemaElement = schema.new({
+    id = id.from(_N, "SearchSchemaElement"),
+    type = "structure",
+    members = {
+        AttributeName = schema.new({
+            id = id.from(_N, "SearchSchemaElement", "AttributeName"),
+            type = "string",
+            name = "AttributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SearchSchemaElementType = schema.new({
+            id = id.from(_N, "SearchSchemaElement", "SearchSchemaElementType"),
+            type = "string",
+            name = "SearchSchemaElementType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VectorAttributeDefinition = schema.new({
+    id = id.from(_N, "VectorAttributeDefinition"),
+    type = "structure",
+    members = {
+        AttributeName = schema.new({
+            id = id.from(_N, "VectorAttributeDefinition", "AttributeName"),
+            type = "string",
+            name = "AttributeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.VectorIndexInfo = schema.new({
+    id = id.from(_N, "VectorIndexInfo"),
+    type = "structure",
+    members = {
+        IndexName = schema.new({
+            id = id.from(_N, "VectorIndexInfo", "IndexName"),
+            type = "string",
+            name = "IndexName",
+            target_id = prelude.String.id,
+        }),
+        VectorAttribute = schema.new({
+            id = id.from(_N, "VectorIndexInfo", "VectorAttribute"),
+            type = "structure",
+            name = "VectorAttribute",
+            target_id = id.from(_N, "VectorAttributeDefinition"),
+            target = M.VectorAttributeDefinition,
+        }),
+        SearchSchema = schema.new({
+            id = id.from(_N, "VectorIndexInfo", "SearchSchema"),
+            type = "list",
+            name = "SearchSchema",
+            target_id = prelude.Document.id,
+            list_member = M.SearchSchemaElement,
+        }),
+        Projection = schema.new({
+            id = id.from(_N, "VectorIndexInfo", "Projection"),
+            type = "structure",
+            name = "Projection",
+            target_id = id.from(_N, "Projection"),
+            target = M.Projection,
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "VectorIndexInfo", "Dimensions"),
+            type = "long",
+            name = "Dimensions",
+            target_id = prelude.Long.id,
+        }),
+        DistanceFunction = schema.new({
+            id = id.from(_N, "VectorIndexInfo", "DistanceFunction"),
+            type = "string",
+            name = "DistanceFunction",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.SourceTableFeatureDetails = schema.new({
     id = id.from(_N, "SourceTableFeatureDetails"),
     type = "structure",
@@ -818,6 +921,13 @@ M.SourceTableFeatureDetails = schema.new({
             name = "SSEDescription",
             target_id = id.from(_N, "SSEDescription"),
             target = M.SSEDescription,
+        }),
+        VectorIndexes = schema.new({
+            id = id.from(_N, "SourceTableFeatureDetails", "VectorIndexes"),
+            type = "list",
+            name = "VectorIndexes",
+            target_id = prelude.Document.id,
+            list_member = M.VectorIndexInfo,
         }),
     },
 })
@@ -974,6 +1084,25 @@ M.Capacity = schema.new({
     },
 })
 
+M.VectorCapacity = schema.new({
+    id = id.from(_N, "VectorCapacity"),
+    type = "structure",
+    members = {
+        VectorSearchRequestBytes = schema.new({
+            id = id.from(_N, "VectorCapacity", "VectorSearchRequestBytes"),
+            type = "double",
+            name = "VectorSearchRequestBytes",
+            target_id = prelude.Double.id,
+        }),
+        VectorWriteRequestBytes = schema.new({
+            id = id.from(_N, "VectorCapacity", "VectorWriteRequestBytes"),
+            type = "double",
+            name = "VectorWriteRequestBytes",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
 M.ConsumedCapacity = schema.new({
     id = id.from(_N, "ConsumedCapacity"),
     type = "structure",
@@ -1024,6 +1153,14 @@ M.ConsumedCapacity = schema.new({
             target_id = prelude.Document.id,
             map_key = prelude.String,
             map_value = M.Capacity,
+        }),
+        VectorIndexes = schema.new({
+            id = id.from(_N, "ConsumedCapacity", "VectorIndexes"),
+            type = "map",
+            name = "VectorIndexes",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.VectorCapacity,
         }),
     },
 })
@@ -2059,6 +2196,67 @@ M.Tag = schema.new({
     },
 })
 
+M.VectorIndex = schema.new({
+    id = id.from(_N, "VectorIndex"),
+    type = "structure",
+    members = {
+        IndexName = schema.new({
+            id = id.from(_N, "VectorIndex", "IndexName"),
+            type = "string",
+            name = "IndexName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VectorAttribute = schema.new({
+            id = id.from(_N, "VectorIndex", "VectorAttribute"),
+            type = "structure",
+            name = "VectorAttribute",
+            target_id = id.from(_N, "VectorAttributeDefinition"),
+            target = M.VectorAttributeDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SearchSchema = schema.new({
+            id = id.from(_N, "VectorIndex", "SearchSchema"),
+            type = "list",
+            name = "SearchSchema",
+            target_id = prelude.Document.id,
+            list_member = M.SearchSchemaElement,
+        }),
+        Projection = schema.new({
+            id = id.from(_N, "VectorIndex", "Projection"),
+            type = "structure",
+            name = "Projection",
+            target_id = id.from(_N, "Projection"),
+            target = M.Projection,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "VectorIndex", "Dimensions"),
+            type = "long",
+            name = "Dimensions",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DistanceFunction = schema.new({
+            id = id.from(_N, "VectorIndex", "DistanceFunction"),
+            type = "string",
+            name = "DistanceFunction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateTableInput = schema.new({
     id = id.from(_N, "CreateTableInput"),
     type = "structure",
@@ -2177,6 +2375,13 @@ M.CreateTableInput = schema.new({
             type = "string",
             name = "GlobalTableSettingsReplicationMode",
             target_id = prelude.String.id,
+        }),
+        VectorIndexes = schema.new({
+            id = id.from(_N, "CreateTableInput", "VectorIndexes"),
+            type = "list",
+            name = "VectorIndexes",
+            target_id = prelude.Document.id,
+            list_member = M.VectorIndex,
         }),
     },
 })
@@ -2397,6 +2602,82 @@ M.RestoreSummary = schema.new({
     },
 })
 
+M.VectorIndexDescription = schema.new({
+    id = id.from(_N, "VectorIndexDescription"),
+    type = "structure",
+    members = {
+        IndexName = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "IndexName"),
+            type = "string",
+            name = "IndexName",
+            target_id = prelude.String.id,
+        }),
+        SearchSchema = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "SearchSchema"),
+            type = "list",
+            name = "SearchSchema",
+            target_id = prelude.Document.id,
+            list_member = M.SearchSchemaElement,
+        }),
+        Projection = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "Projection"),
+            type = "structure",
+            name = "Projection",
+            target_id = id.from(_N, "Projection"),
+            target = M.Projection,
+        }),
+        VectorAttribute = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "VectorAttribute"),
+            type = "structure",
+            name = "VectorAttribute",
+            target_id = id.from(_N, "VectorAttributeDefinition"),
+            target = M.VectorAttributeDefinition,
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "Dimensions"),
+            type = "long",
+            name = "Dimensions",
+            target_id = prelude.Long.id,
+        }),
+        DistanceFunction = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "DistanceFunction"),
+            type = "string",
+            name = "DistanceFunction",
+            target_id = prelude.String.id,
+        }),
+        IndexStatus = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "IndexStatus"),
+            type = "string",
+            name = "IndexStatus",
+            target_id = prelude.String.id,
+        }),
+        Backfilling = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "Backfilling"),
+            type = "boolean",
+            name = "Backfilling",
+            target_id = prelude.Boolean.id,
+        }),
+        IndexSizeBytes = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "IndexSizeBytes"),
+            type = "long",
+            name = "IndexSizeBytes",
+            target_id = prelude.Long.id,
+        }),
+        ItemCount = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "ItemCount"),
+            type = "long",
+            name = "ItemCount",
+            target_id = prelude.Long.id,
+        }),
+        IndexArn = schema.new({
+            id = id.from(_N, "VectorIndexDescription", "IndexArn"),
+            type = "string",
+            name = "IndexArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.TableDescription = schema.new({
     id = id.from(_N, "TableDescription"),
     type = "structure",
@@ -2584,6 +2865,13 @@ M.TableDescription = schema.new({
             name = "MultiRegionConsistency",
             target_id = prelude.String.id,
         }),
+        VectorIndexes = schema.new({
+            id = id.from(_N, "TableDescription", "VectorIndexes"),
+            type = "list",
+            name = "VectorIndexes",
+            target_id = prelude.Document.id,
+            list_member = M.VectorIndexDescription,
+        }),
     },
 })
 
@@ -2613,6 +2901,67 @@ M.ResourceInUseException = schema.new({
             type = "string",
             name = "message",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CreateVectorIndexAction = schema.new({
+    id = id.from(_N, "CreateVectorIndexAction"),
+    type = "structure",
+    members = {
+        IndexName = schema.new({
+            id = id.from(_N, "CreateVectorIndexAction", "IndexName"),
+            type = "string",
+            name = "IndexName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        VectorAttribute = schema.new({
+            id = id.from(_N, "CreateVectorIndexAction", "VectorAttribute"),
+            type = "structure",
+            name = "VectorAttribute",
+            target_id = id.from(_N, "VectorAttributeDefinition"),
+            target = M.VectorAttributeDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SearchSchema = schema.new({
+            id = id.from(_N, "CreateVectorIndexAction", "SearchSchema"),
+            type = "list",
+            name = "SearchSchema",
+            target_id = prelude.Document.id,
+            list_member = M.SearchSchemaElement,
+        }),
+        Projection = schema.new({
+            id = id.from(_N, "CreateVectorIndexAction", "Projection"),
+            type = "structure",
+            name = "Projection",
+            target_id = id.from(_N, "Projection"),
+            target = M.Projection,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Dimensions = schema.new({
+            id = id.from(_N, "CreateVectorIndexAction", "Dimensions"),
+            type = "long",
+            name = "Dimensions",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DistanceFunction = schema.new({
+            id = id.from(_N, "CreateVectorIndexAction", "DistanceFunction"),
+            type = "string",
+            name = "DistanceFunction",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -2824,6 +3173,22 @@ M.DeleteTableOutput = schema.new({
             name = "TableDescription",
             target_id = id.from(_N, "TableDescription"),
             target = M.TableDescription,
+        }),
+    },
+})
+
+M.DeleteVectorIndexAction = schema.new({
+    id = id.from(_N, "DeleteVectorIndexAction"),
+    type = "structure",
+    members = {
+        IndexName = schema.new({
+            id = id.from(_N, "DeleteVectorIndexAction", "IndexName"),
+            type = "string",
+            name = "IndexName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -3556,6 +3921,13 @@ M.TableCreationParameters = schema.new({
             name = "GlobalSecondaryIndexes",
             target_id = prelude.Document.id,
             list_member = M.GlobalSecondaryIndex,
+        }),
+        VectorIndexes = schema.new({
+            id = id.from(_N, "TableCreationParameters", "VectorIndexes"),
+            type = "list",
+            name = "VectorIndexes",
+            target_id = prelude.Document.id,
+            list_member = M.VectorIndex,
         }),
     },
 })
@@ -5023,6 +5395,13 @@ M.RestoreTableFromBackupInput = schema.new({
             target_id = id.from(_N, "SSESpecification"),
             target = M.SSESpecification,
         }),
+        VectorIndexOverride = schema.new({
+            id = id.from(_N, "RestoreTableFromBackupInput", "VectorIndexOverride"),
+            type = "list",
+            name = "VectorIndexOverride",
+            target_id = prelude.Document.id,
+            list_member = M.VectorIndex,
+        }),
     },
 })
 
@@ -5149,6 +5528,13 @@ M.RestoreTableToPointInTimeInput = schema.new({
             name = "SSESpecificationOverride",
             target_id = id.from(_N, "SSESpecification"),
             target = M.SSESpecification,
+        }),
+        VectorIndexOverride = schema.new({
+            id = id.from(_N, "RestoreTableToPointInTimeInput", "VectorIndexOverride"),
+            type = "list",
+            name = "VectorIndexOverride",
+            target_id = prelude.Document.id,
+            list_member = M.VectorIndex,
         }),
     },
 })
@@ -5871,6 +6257,27 @@ M.ReplicationGroupUpdate = schema.new({
     },
 })
 
+M.VectorIndexUpdate = schema.new({
+    id = id.from(_N, "VectorIndexUpdate"),
+    type = "structure",
+    members = {
+        Create = schema.new({
+            id = id.from(_N, "VectorIndexUpdate", "Create"),
+            type = "structure",
+            name = "Create",
+            target_id = id.from(_N, "CreateVectorIndexAction"),
+            target = M.CreateVectorIndexAction,
+        }),
+        Delete = schema.new({
+            id = id.from(_N, "VectorIndexUpdate", "Delete"),
+            type = "structure",
+            name = "Delete",
+            target_id = id.from(_N, "DeleteVectorIndexAction"),
+            target = M.DeleteVectorIndexAction,
+        }),
+    },
+})
+
 M.UpdateTableInput = schema.new({
     id = id.from(_N, "UpdateTableInput"),
     type = "structure",
@@ -5976,6 +6383,13 @@ M.UpdateTableInput = schema.new({
             type = "string",
             name = "GlobalTableSettingsReplicationMode",
             target_id = prelude.String.id,
+        }),
+        VectorIndexUpdates = schema.new({
+            id = id.from(_N, "UpdateTableInput", "VectorIndexUpdates"),
+            type = "list",
+            name = "VectorIndexUpdates",
+            target_id = prelude.Document.id,
+            list_member = M.VectorIndexUpdate,
         }),
     },
 })
@@ -6687,6 +7101,30 @@ M.PutRequest = schema.new({
     },
 })
 
+M.SearchResultItem = schema.new({
+    id = id.from(_N, "SearchResultItem"),
+    type = "structure",
+    members = {
+        Item = schema.new({
+            id = id.from(_N, "SearchResultItem", "Item"),
+            type = "map",
+            name = "Item",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AttributeValue,
+        }),
+        Score = schema.new({
+            id = id.from(_N, "SearchResultItem", "Score"),
+            type = "double",
+            name = "Score",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
 M.KeysAndAttributes = schema.new({
     id = id.from(_N, "KeysAndAttributes"),
     type = "structure",
@@ -6820,6 +7258,27 @@ M.ExecuteTransactionOutput = schema.new({
             name = "ConsumedCapacity",
             target_id = prelude.Document.id,
             list_member = M.ConsumedCapacity,
+        }),
+    },
+})
+
+M.SearchVectorsOutput = schema.new({
+    id = id.from(_N, "SearchVectorsOutput"),
+    type = "structure",
+    members = {
+        ConsumedCapacity = schema.new({
+            id = id.from(_N, "SearchVectorsOutput", "ConsumedCapacity"),
+            type = "structure",
+            name = "ConsumedCapacity",
+            target_id = id.from(_N, "VectorCapacity"),
+            target = M.VectorCapacity,
+        }),
+        SearchResults = schema.new({
+            id = id.from(_N, "SearchVectorsOutput", "SearchResults"),
+            type = "list",
+            name = "SearchResults",
+            target_id = prelude.Document.id,
+            list_member = M.SearchResultItem,
         }),
     },
 })
@@ -7134,6 +7593,84 @@ M.Put = schema.new({
             type = "string",
             name = "ReturnValuesOnConditionCheckFailure",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.SearchVectorsInput = schema.new({
+    id = id.from(_N, "SearchVectorsInput"),
+    type = "structure",
+    members = {
+        TableName = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "TableName"),
+            type = "string",
+            name = "TableName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        IndexName = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "IndexName"),
+            type = "string",
+            name = "IndexName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ReturnConsumedCapacity = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "ReturnConsumedCapacity"),
+            type = "string",
+            name = "ReturnConsumedCapacity",
+            target_id = prelude.String.id,
+        }),
+        ExpressionAttributeNames = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "ExpressionAttributeNames"),
+            type = "map",
+            name = "ExpressionAttributeNames",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        ExpressionAttributeValues = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "ExpressionAttributeValues"),
+            type = "map",
+            name = "ExpressionAttributeValues",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = M.AttributeValue,
+        }),
+        ProjectionExpression = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "ProjectionExpression"),
+            type = "string",
+            name = "ProjectionExpression",
+            target_id = prelude.String.id,
+        }),
+        SearchVector = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "SearchVector"),
+            type = "list",
+            name = "SearchVector",
+            target_id = prelude.Document.id,
+            list_member = M.AttributeValue,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SearchConditionExpression = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "SearchConditionExpression"),
+            type = "string",
+            name = "SearchConditionExpression",
+            target_id = prelude.String.id,
+        }),
+        TopK = schema.new({
+            id = id.from(_N, "SearchVectorsInput", "TopK"),
+            type = "integer",
+            name = "TopK",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -8771,6 +9308,23 @@ M.Scan = schema.operation({
         },
         [traits.CONTEXT_PARAMS] = {
             ResourceArn = "TableName",
+        },
+    },
+})
+
+M.SearchVectors = schema.operation({
+    id = id.from("com.amazonaws.dynamodb", "SearchVectors"),
+    input = M.SearchVectorsInput,
+    output = M.SearchVectorsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+        [traits.CONTEXT_PARAMS] = {
+            ResourceArn = "TableName",
+        },
+        [traits.STATIC_CONTEXT_PARAMS] = {
+            IsSearchOperation = { value = true },
         },
     },
 })
