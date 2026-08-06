@@ -145,6 +145,7 @@ local record Client
     getDatabase: function(Client, types.GetDatabaseInput, ? base_client.InvokeOptions): async.Operation<types.GetDatabaseOutput>
     getDatabases: function(Client, types.GetDatabasesInput, ? base_client.InvokeOptions): async.Operation<types.GetDatabasesOutput>
     getDataCatalogEncryptionSettings: function(Client, types.GetDataCatalogEncryptionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCatalogEncryptionSettingsOutput>
+    getDataCatalogExportConfiguration: function(Client, types.GetDataCatalogExportConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetDataCatalogExportConfigurationOutput>
     getDataflowGraph: function(Client, types.GetDataflowGraphInput, ? base_client.InvokeOptions): async.Operation<types.GetDataflowGraphOutput>
     getDataQualityModel: function(Client, types.GetDataQualityModelInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityModelOutput>
     getDataQualityModelResult: function(Client, types.GetDataQualityModelResultInput, ? base_client.InvokeOptions): async.Operation<types.GetDataQualityModelResultOutput>
@@ -244,6 +245,7 @@ local record Client
     putAssetType: function(Client, types.PutAssetTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutAssetTypeOutput>
     putAttachment: function(Client, types.PutAttachmentInput, ? base_client.InvokeOptions): async.Operation<types.PutAttachmentOutput>
     putDataCatalogEncryptionSettings: function(Client, types.PutDataCatalogEncryptionSettingsInput, ? base_client.InvokeOptions): async.Operation<types.PutDataCatalogEncryptionSettingsOutput>
+    putDataCatalogExportConfiguration: function(Client, types.PutDataCatalogExportConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.PutDataCatalogExportConfigurationOutput>
     putDataQualityProfileAnnotation: function(Client, types.PutDataQualityProfileAnnotationInput, ? base_client.InvokeOptions): async.Operation<types.PutDataQualityProfileAnnotationOutput>
     putFormType: function(Client, types.PutFormTypeInput, ? base_client.InvokeOptions): async.Operation<types.PutFormTypeOutput>
     putResourcePolicy: function(Client, types.PutResourcePolicyInput, ? base_client.InvokeOptions): async.Operation<types.PutResourcePolicyOutput>
@@ -867,6 +869,10 @@ function C:getDataCatalogEncryptionSettings(input: types.GetDataCatalogEncryptio
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataCatalogEncryptionSettings as schema.OperationSchema, input, options) as async.Operation<types.GetDataCatalogEncryptionSettingsOutput>
 end
 
+function C:getDataCatalogExportConfiguration(input: types.GetDataCatalogExportConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataCatalogExportConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataCatalogExportConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetDataCatalogExportConfigurationOutput>
+end
+
 function C:getDataflowGraph(input: types.GetDataflowGraphInput, options?: base_client.InvokeOptions): async.Operation<types.GetDataflowGraphOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetDataflowGraph as schema.OperationSchema, input, options) as async.Operation<types.GetDataflowGraphOutput>
 end
@@ -1261,6 +1267,10 @@ end
 
 function C:putDataCatalogEncryptionSettings(input: types.PutDataCatalogEncryptionSettingsInput, options?: base_client.InvokeOptions): async.Operation<types.PutDataCatalogEncryptionSettingsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDataCatalogEncryptionSettings as schema.OperationSchema, input, options) as async.Operation<types.PutDataCatalogEncryptionSettingsOutput>
+end
+
+function C:putDataCatalogExportConfiguration(input: types.PutDataCatalogExportConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.PutDataCatalogExportConfigurationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PutDataCatalogExportConfiguration as schema.OperationSchema, input, options) as async.Operation<types.PutDataCatalogExportConfigurationOutput>
 end
 
 function C:putDataQualityProfileAnnotation(input: types.PutDataQualityProfileAnnotationInput, options?: base_client.InvokeOptions): async.Operation<types.PutDataQualityProfileAnnotationOutput>

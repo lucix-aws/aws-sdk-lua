@@ -8693,6 +8693,45 @@ local record M
         DataCatalogEncryptionSettings: DataCatalogEncryptionSettings
     end
 
+    record GetDataCatalogExportConfigurationInput
+    end
+
+    -- The encryption configuration for exported data catalog metadata.
+    record ExportEncryptionConfiguration
+        -- The server-side encryption algorithm used for the exported data. Valid values are AES256 and aws:kms.
+        SseAlgorithm: string
+        -- The ARN of the KMS key used to encrypt the exported data.
+        KmsKeyArn: string
+    end
+
+    enum ExportSetting
+        "ENABLED"
+        "DISABLED"
+    end
+
+    enum ExportStatus
+        "ENABLING"
+        "ENABLED"
+        "DISABLING"
+        "DISABLED"
+        "FAILED"
+    end
+
+    record GetDataCatalogExportConfigurationOutput
+        -- The export setting for the data catalog. Valid values are ENABLED and DISABLED.
+        ExportSetting: string
+        -- The current status of the export. Valid values are ENABLING, ENABLED, DISABLING, DISABLED, and FAILED.
+        Status: string
+        -- The encryption configuration for the exported data.
+        EncryptionConfiguration: ExportEncryptionConfiguration
+        -- The ARN of the S3 Tables bucket where catalog metadata is exported.
+        S3TableBucketArn: string
+        -- The timestamp at which the export configuration was created.
+        CreatedAt: number
+        -- The timestamp at which the export configuration was last updated.
+        UpdatedAt: number
+    end
+
     record GetDataflowGraphInput
         -- The Python script to transform.
         PythonScript: string
@@ -11857,6 +11896,22 @@ local record M
     end
 
     record PutDataCatalogEncryptionSettingsOutput
+    end
+
+    record PutDataCatalogExportConfigurationInput
+        -- The export setting for the data catalog. Specify ENABLED to start exporting catalog metadata to S3 Tables, or DISABLED to stop exporting. This field is required.
+        ExportSetting: string
+        -- The encryption configuration for the exported data. If not specified, the default encryption settings are used.
+        EncryptionConfiguration: ExportEncryptionConfiguration
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the request.
+        ClientToken: string
+    end
+
+    record PutDataCatalogExportConfigurationOutput
+        -- The export setting for the data catalog.
+        ExportSetting: string
+        -- The encryption configuration for the exported data.
+        EncryptionConfiguration: ExportEncryptionConfiguration
     end
 
     record PutDataQualityProfileAnnotationInput

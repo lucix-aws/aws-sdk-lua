@@ -151,6 +151,9 @@ local record M
         "SHA256WITHRSA"
         "SHA384WITHRSA"
         "SHA512WITHRSA"
+        "SHA256WITHRSA_PSS"
+        "SHA384WITHRSA_PSS"
+        "SHA512WITHRSA_PSS"
         "SM3WITHSM2"
         "ML_DSA_44"
         "ML_DSA_65"
@@ -161,7 +164,7 @@ local record M
     record CertificateAuthorityConfiguration
         -- Type of the public key algorithm and size, in bits, of the key pair that your CA creates when it issues a certificate. When you create a subordinate CA, you must use a key algorithm supported by the parent CA.
         KeyAlgorithm: string
-        -- Name of the algorithm your private CA uses to sign certificate requests. This parameter should not be confused with the SigningAlgorithm parameter used to sign certificates when they are issued.
+        -- Name of the algorithm your private CA uses to sign certificate requests. This parameter should not be confused with the SigningAlgorithm parameter of the IssueCertificate API action, which is used to sign certificates when they are issued.
         SigningAlgorithm: string
         -- Structure that contains X.500 distinguished name information for your private CA.
         Subject: ASN1Subject
@@ -182,7 +185,7 @@ local record M
 
     -- Contains configuration information for the default behavior of the CRL Distribution Point (CDP) extension in certificates issued by your CA. This extension contains a link to download the CRL, so you can check whether a certificate has been revoked. To choose whether you want this extension omitted or not in certificates issued by your CA, you can set the OmitExtension parameter.
     record CrlDistributionPointExtensionConfiguration
-        -- Configures whether the CRL Distribution Point extension should be populated with the default URL to the CRL. If set to true, then the CDP extension will not be present in any certificates issued by that CA unless otherwise specified through CSR or API passthrough. Only set this if you have another way to distribute the CRL Distribution Points ffor certificates issued by your CA, such as the Matter Distributed Compliance Ledger This configuration cannot be enabled with a custom CNAME set.
+        -- Configures whether the CRL Distribution Point extension should be populated with the default URL to the CRL. If set to true, then the CDP extension will not be present in any certificates issued by that CA unless otherwise specified through CSR or API passthrough. Only set this if you have another way to distribute the CRL Distribution Points for certificates issued by your CA, such as the Matter Distributed Compliance Ledger This configuration cannot be enabled with a custom CNAME set.
         OmitExtension: boolean
     end
 

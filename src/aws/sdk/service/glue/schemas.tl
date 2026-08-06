@@ -22298,6 +22298,74 @@ M.GetDataCatalogEncryptionSettingsOutput = schema.new({
     },
 })
 
+M.GetDataCatalogExportConfigurationInput = schema.new({
+    id = id.from(_N, "GetDataCatalogExportConfigurationInput"),
+    type = "structure",
+})
+
+M.ExportEncryptionConfiguration = schema.new({
+    id = id.from(_N, "ExportEncryptionConfiguration"),
+    type = "structure",
+    members = {
+        SseAlgorithm = schema.new({
+            id = id.from(_N, "ExportEncryptionConfiguration", "SseAlgorithm"),
+            type = "string",
+            name = "SseAlgorithm",
+            target_id = prelude.String.id,
+        }),
+        KmsKeyArn = schema.new({
+            id = id.from(_N, "ExportEncryptionConfiguration", "KmsKeyArn"),
+            type = "string",
+            name = "KmsKeyArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetDataCatalogExportConfigurationOutput = schema.new({
+    id = id.from(_N, "GetDataCatalogExportConfigurationOutput"),
+    type = "structure",
+    members = {
+        ExportSetting = schema.new({
+            id = id.from(_N, "GetDataCatalogExportConfigurationOutput", "ExportSetting"),
+            type = "string",
+            name = "ExportSetting",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "GetDataCatalogExportConfigurationOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "GetDataCatalogExportConfigurationOutput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "ExportEncryptionConfiguration"),
+            target = M.ExportEncryptionConfiguration,
+        }),
+        S3TableBucketArn = schema.new({
+            id = id.from(_N, "GetDataCatalogExportConfigurationOutput", "S3TableBucketArn"),
+            type = "string",
+            name = "S3TableBucketArn",
+            target_id = prelude.String.id,
+        }),
+        CreatedAt = schema.new({
+            id = id.from(_N, "GetDataCatalogExportConfigurationOutput", "CreatedAt"),
+            type = "timestamp",
+            name = "CreatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+        UpdatedAt = schema.new({
+            id = id.from(_N, "GetDataCatalogExportConfigurationOutput", "UpdatedAt"),
+            type = "timestamp",
+            name = "UpdatedAt",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
 M.GetDataflowGraphInput = schema.new({
     id = id.from(_N, "GetDataflowGraphRequest"),
     type = "structure",
@@ -30667,6 +30735,58 @@ M.PutDataCatalogEncryptionSettingsOutput = schema.new({
     type = "structure",
 })
 
+M.PutDataCatalogExportConfigurationInput = schema.new({
+    id = id.from(_N, "PutDataCatalogExportConfigurationInput"),
+    type = "structure",
+    members = {
+        ExportSetting = schema.new({
+            id = id.from(_N, "PutDataCatalogExportConfigurationInput", "ExportSetting"),
+            type = "string",
+            name = "ExportSetting",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "PutDataCatalogExportConfigurationInput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "ExportEncryptionConfiguration"),
+            target = M.ExportEncryptionConfiguration,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "PutDataCatalogExportConfigurationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.PutDataCatalogExportConfigurationOutput = schema.new({
+    id = id.from(_N, "PutDataCatalogExportConfigurationOutput"),
+    type = "structure",
+    members = {
+        ExportSetting = schema.new({
+            id = id.from(_N, "PutDataCatalogExportConfigurationOutput", "ExportSetting"),
+            type = "string",
+            name = "ExportSetting",
+            target_id = prelude.String.id,
+        }),
+        EncryptionConfiguration = schema.new({
+            id = id.from(_N, "PutDataCatalogExportConfigurationOutput", "EncryptionConfiguration"),
+            type = "structure",
+            name = "EncryptionConfiguration",
+            target_id = id.from(_N, "ExportEncryptionConfiguration"),
+            target = M.ExportEncryptionConfiguration,
+        }),
+    },
+})
+
 M.PutDataQualityProfileAnnotationInput = schema.new({
     id = id.from(_N, "PutDataQualityProfileAnnotationRequest"),
     type = "structure",
@@ -38714,6 +38834,18 @@ M.GetDataCatalogEncryptionSettings = schema.operation({
     },
 })
 
+M.GetDataCatalogExportConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "GetDataCatalogExportConfiguration"),
+    input = M.GetDataCatalogExportConfigurationInput,
+    output = M.GetDataCatalogExportConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/get-data-catalog-export-configuration" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetDataflowGraph = schema.operation({
     id = id.from("com.amazonaws.glue", "GetDataflowGraph"),
     input = M.GetDataflowGraphInput,
@@ -39808,6 +39940,18 @@ M.PutDataCatalogEncryptionSettings = schema.operation({
     input = M.PutDataCatalogEncryptionSettingsInput,
     output = M.PutDataCatalogEncryptionSettingsOutput,
     traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.PutDataCatalogExportConfiguration = schema.operation({
+    id = id.from("com.amazonaws.glue", "PutDataCatalogExportConfiguration"),
+    input = M.PutDataCatalogExportConfigurationInput,
+    output = M.PutDataCatalogExportConfigurationOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/put-data-catalog-export-configuration" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

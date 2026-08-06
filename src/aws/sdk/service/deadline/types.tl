@@ -700,8 +700,8 @@ local record M
         attachments: Attachments
     end
 
-    -- The job attachment settings. These are the Amazon S3 bucket name and the Amazon S3 prefix.
-    record JobAttachmentSettings
+    -- The job attachment settings returned to workers for a job. These are the Amazon S3 bucket name and the Amazon S3 prefix.
+    record JobDetailsJobAttachmentSettings
         -- The Amazon S3 bucket name.
         s3BucketName: string
         -- The root prefix.
@@ -754,7 +754,7 @@ local record M
         -- The job ID.
         jobId: string
         -- The job attachment settings.
-        jobAttachmentSettings: JobAttachmentSettings
+        jobAttachmentSettings: JobDetailsJobAttachmentSettings
         -- The user name and group that the job uses when run.
         jobRunAsUser: JobRunAsUser
         -- The log group name.
@@ -2246,6 +2246,14 @@ local record M
         "NONE"
         "STOP_SCHEDULING_AND_COMPLETE_TASKS"
         "STOP_SCHEDULING_AND_CANCEL_TASKS"
+    end
+
+    -- The job attachment settings. These are the Amazon S3 bucket name and the Amazon S3 prefix.
+    record JobAttachmentSettings
+        -- The Amazon S3 bucket name.
+        s3BucketName: string
+        -- The root prefix.
+        rootPrefix: string
     end
 
     -- Configuration for priority balanced scheduling. Workers are distributed evenly across all jobs at the highest priority level.
@@ -4538,6 +4546,7 @@ local record M
     enum UsageType
         "COMPUTE"
         "LICENSE"
+        "PERSISTENT_VOLUME"
     end
 
     -- A list of statistics for a session.

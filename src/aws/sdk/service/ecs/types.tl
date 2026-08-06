@@ -837,6 +837,7 @@ local record M
         "CONTAINER_RUNTIME"
         "ACCELERATED_COMPUTE"
         "DAEMON"
+        "AGENT_CONNECTIVITY"
     end
 
     -- An object representing the result of a container instance health status check.
@@ -4689,6 +4690,7 @@ local record M
         "ServiceSchedulerInitiated"
         "SpotInterruption"
         "TerminationNotice"
+        "InfrastructureHealth"
     end
 
     -- Details on a task in a cluster.

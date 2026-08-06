@@ -219,6 +219,8 @@ M.EnabledConnectors = schema.new({ type = "list", list_member = prelude.String }
 
 M.ConnectorConfigurations = schema.new({ type = "list", list_member = M.ConnectorConfiguration })
 
+M.HttpConnectorParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.InferenceOperationConfigurations = schema.new({ type = "list", list_member = M.InferenceOperationConfiguration })
 
 M.HarnessAwsSkillPaths = schema.new({ type = "list", list_member = prelude.String })
@@ -9968,6 +9970,47 @@ M.RuntimeTargetConfiguration = schema.new({
     },
 })
 
+M.HttpConnectorSource = schema.new({
+    id = id.from(_N, "HttpConnectorSource"),
+    type = "structure",
+    members = {
+        connectorId = schema.new({
+            id = id.from(_N, "HttpConnectorSource", "connectorId"),
+            type = "string",
+            name = "connectorId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.HttpConnectorTargetConfiguration = schema.new({
+    id = id.from(_N, "HttpConnectorTargetConfiguration"),
+    type = "structure",
+    members = {
+        source = schema.new({
+            id = id.from(_N, "HttpConnectorTargetConfiguration", "source"),
+            type = "structure",
+            name = "source",
+            target_id = id.from(_N, "HttpConnectorSource"),
+            target = M.HttpConnectorSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        parameters = schema.new({
+            id = id.from(_N, "HttpConnectorTargetConfiguration", "parameters"),
+            type = "map",
+            name = "parameters",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
 M.StickinessConfiguration = schema.new({
     id = id.from(_N, "StickinessConfiguration"),
     type = "structure",
@@ -10046,6 +10089,13 @@ M.HttpTargetConfiguration = schema.new({
             name = "passthrough",
             target_id = id.from(_N, "PassthroughTargetConfiguration"),
             target = M.PassthroughTargetConfiguration,
+        }),
+        connector = schema.new({
+            id = id.from(_N, "HttpTargetConfiguration", "connector"),
+            type = "structure",
+            name = "connector",
+            target_id = id.from(_N, "HttpConnectorTargetConfiguration"),
+            target = M.HttpConnectorTargetConfiguration,
         }),
     },
 })

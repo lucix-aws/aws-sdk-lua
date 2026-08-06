@@ -3016,6 +3016,20 @@ local record M
         schema: HttpApiSchemaConfiguration
     end
 
+    -- The source identifying the HTTP connector integration.
+    record HttpConnectorSource
+        -- The identifier for the HTTP connector integration.
+        connectorId: string
+    end
+
+    -- The configuration for an HTTP connector target. Use this configuration when you want to route HTTP requests through a managed connector.
+    record HttpConnectorTargetConfiguration
+        -- The source configuration identifying which HTTP connector to use.
+        source: HttpConnectorSource
+        -- The resource parameters for this connector (for example, memoryId). The service validates these parameters against the request path at runtime.
+        parameters: {string : string}
+    end
+
     enum PassthroughProtocolType
         "MCP"
         "A2A"
@@ -3049,6 +3063,8 @@ local record M
         agentcoreRuntime: RuntimeTargetConfiguration
         -- The passthrough configuration for the HTTP target. A passthrough target forwards requests directly to an external HTTP endpoint.
         passthrough: PassthroughTargetConfiguration
+        -- The connector-based configuration for the HTTP target. Use this configuration when you want to route HTTP requests through a managed connector.
+        connector: HttpConnectorTargetConfiguration
     end
 
     -- The source identifying the inference connector.
@@ -3320,6 +3336,7 @@ local record M
         "AGENTCORE_RUNTIME"
         "PASSTHROUGH"
         "PROVIDER"
+        "HTTP_CONNECTOR"
     end
 
     -- Contains summary information about a gateway target. A target represents an endpoint that the gateway can connect to.

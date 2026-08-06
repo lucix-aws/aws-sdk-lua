@@ -2210,12 +2210,12 @@ M.JobAttachmentDetailsEntity = schema.new({
     },
 })
 
-M.JobAttachmentSettings = schema.new({
-    id = id.from(_N, "JobAttachmentSettings"),
+M.JobDetailsJobAttachmentSettings = schema.new({
+    id = id.from(_N, "JobDetailsJobAttachmentSettings"),
     type = "structure",
     members = {
         s3BucketName = schema.new({
-            id = id.from(_N, "JobAttachmentSettings", "s3BucketName"),
+            id = id.from(_N, "JobDetailsJobAttachmentSettings", "s3BucketName"),
             type = "string",
             name = "s3BucketName",
             target_id = prelude.String.id,
@@ -2224,7 +2224,7 @@ M.JobAttachmentSettings = schema.new({
             },
         }),
         rootPrefix = schema.new({
-            id = id.from(_N, "JobAttachmentSettings", "rootPrefix"),
+            id = id.from(_N, "JobDetailsJobAttachmentSettings", "rootPrefix"),
             type = "string",
             name = "rootPrefix",
             target_id = prelude.String.id,
@@ -2366,8 +2366,8 @@ M.JobDetailsEntity = schema.new({
             id = id.from(_N, "JobDetailsEntity", "jobAttachmentSettings"),
             type = "structure",
             name = "jobAttachmentSettings",
-            target_id = id.from(_N, "JobAttachmentSettings"),
-            target = M.JobAttachmentSettings,
+            target_id = id.from(_N, "JobDetailsJobAttachmentSettings"),
+            target = M.JobDetailsJobAttachmentSettings,
         }),
         jobRunAsUser = schema.new({
             id = id.from(_N, "JobDetailsEntity", "jobRunAsUser"),
@@ -6877,6 +6877,31 @@ M.CreateMonitorOutput = schema.new({
             id = id.from(_N, "CreateMonitorOutput", "identityCenterApplicationArn"),
             type = "string",
             name = "identityCenterApplicationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.JobAttachmentSettings = schema.new({
+    id = id.from(_N, "JobAttachmentSettings"),
+    type = "structure",
+    members = {
+        s3BucketName = schema.new({
+            id = id.from(_N, "JobAttachmentSettings", "s3BucketName"),
+            type = "string",
+            name = "s3BucketName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        rootPrefix = schema.new({
+            id = id.from(_N, "JobAttachmentSettings", "rootPrefix"),
+            type = "string",
+            name = "rootPrefix",
             target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
