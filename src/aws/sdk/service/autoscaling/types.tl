@@ -344,7 +344,7 @@ local record M
         -- If launches fail in an Availability Zone, the following strategies are available. The default is balanced-best-effort.
         -- balanced-only - If launches fail in an Availability Zone, Auto Scaling will continue to attempt to launch in the unhealthy zone to preserve a balanced distribution.
         -- balanced-best-effort - If launches fail in an Availability Zone, Auto Scaling will attempt to launch in another healthy Availability Zone instead.
-        -- reservations-then-balanced - Auto Scaling will first attempt to launch into your Capacity Reservations, and then balance any remaining capacity across the healthy Availability Zones.
+        -- reservations-then-balanced - Auto Scaling will first attempt to launch into your Capacity Reservations, and then balance any remaining capacity across healthy Availability Zones.
         CapacityDistributionStrategy: string
     end
 
@@ -1033,6 +1033,14 @@ local record M
         InstancesDistribution: InstancesDistribution
     end
 
+    -- Describes the entity that manages an Auto Scaling group.
+    record Operator
+        -- The service principal that is authorized to manage the Auto Scaling group. When an operator is
+        -- specified, only the designated operator service principal can make mutating changes to
+        -- the Auto Scaling group.
+        Principal: string
+    end
+
     -- Describes a tag for an Auto Scaling group.
     record Tag
         -- The name of the Auto Scaling group.
@@ -1254,6 +1262,11 @@ local record M
         -- in the Amazon EC2 Auto Scaling User Guide.
         -- Instances in a Retained state will continue to incur standard EC2 charges until terminated.
         InstanceLifecyclePolicy: InstanceLifecyclePolicy
+        -- The entity that manages the Auto Scaling group. If you specify this parameter, Amazon EC2 Auto Scaling
+        -- passes the operator identity to EC2 for instance launches and only allows the
+        -- designated operator to make changes to the Auto Scaling group. All mutating API calls from
+        -- non-operator callers are rejected with an AccessDenied exception.
+        Operator: Operator
     end
 
     record CreateAutoScalingGroupOutput
@@ -1959,6 +1972,9 @@ local record M
         CapacityReservationSpecification: CapacityReservationSpecification
         -- The instance lifecycle policy for the Auto Scaling group.
         InstanceLifecyclePolicy: InstanceLifecyclePolicy
+        -- The entity that manages the Auto Scaling group, if applicable. When set, only the designated
+        -- operator can make changes to the group configuration.
+        Operator: Operator
     end
 
     record DescribeAutoScalingGroupsOutput

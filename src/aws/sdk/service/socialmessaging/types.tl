@@ -183,6 +183,27 @@ local record M
         message: string
     end
 
+    record CreateWhatsAppDatasetInput
+        -- The ID of the WhatsApp Business Account to create a dataset for, formatted as waba-01234567890123456789012345678901.
+        id: string
+    end
+
+    record CreateWhatsAppDatasetOutput
+        -- The Meta-generated dataset ID, a numeric string of 10 to 20 digits.
+        datasetId: string
+    end
+
+    -- The request processing has failed because of an unknown error, exception, or
+    -- failure.
+    record InternalServiceException
+        message: string
+    end
+
+    -- The resource was not found.
+    record ResourceNotFoundException
+        message: string
+    end
+
     enum MetaFlowCategory
         "SIGN_UP"
         "SIGN_IN"
@@ -215,17 +236,6 @@ local record M
         flowId: string
         -- A list of validation errors returned by Meta, if any. Validation errors must be resolved before the Flow can be published.
         validationErrors: {string}
-    end
-
-    -- The request processing has failed because of an unknown error, exception, or
-    -- failure.
-    record InternalServiceException
-        message: string
-    end
-
-    -- The resource was not found.
-    record ResourceNotFoundException
-        message: string
     end
 
     record CreateWhatsAppMessageTemplateInput
@@ -434,6 +444,8 @@ local record M
         eventDestinations: {WhatsAppBusinessAccountEventDestination}
         -- The onboarding status for the Marketing Messages API. This value is fetched from Meta and indicates whether the WhatsApp Business Account is onboarded for Meta's Marketing Messages API.
         marketingMessagesOnboardingStatus: string
+        -- The Meta Conversions API dataset ID associated with this WhatsApp Business Account. This value is a numeric string of 10 to 20 digits. This field is not present when no dataset has been created for this account.
+        datasetId: string
         -- The phone numbers associated with the Linked WhatsApp Business Account.
         phoneNumbers: {WhatsAppPhoneNumberSummary}
     end
@@ -649,6 +661,8 @@ local record M
         eventDestinations: {WhatsAppBusinessAccountEventDestination}
         -- The onboarding status for the Marketing Messages API. This value is fetched from Meta and indicates whether the WhatsApp Business Account is onboarded for Meta's Marketing Messages API.
         marketingMessagesOnboardingStatus: string
+        -- The Meta Conversions API dataset ID associated with this WhatsApp Business Account. This value is a numeric string of 10 to 20 digits. This field is not present when no dataset has been created for this account.
+        datasetId: string
     end
 
     record ListLinkedWhatsAppBusinessAccountsOutput
@@ -812,6 +826,20 @@ local record M
     end
 
     record PutWhatsAppBusinessAccountEventDestinationsOutput
+    end
+
+    record SendWhatsAppConversionEventInput
+        -- The ID of the WhatsApp Business Account associated with the dataset, formatted as waba-01234567890123456789012345678901.
+        id: string
+        -- The Meta-generated dataset ID to send the event to.
+        datasetId: string
+        -- The raw Meta Conversions API event payload as a JSON blob. See Meta's server event parameters for the supported format.
+        eventData: string
+    end
+
+    record SendWhatsAppConversionEventOutput
+        -- The unique identifier for the conversion event request.
+        requestId: string
     end
 
     record UpdateWhatsAppFlowInput

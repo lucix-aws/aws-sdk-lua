@@ -40,6 +40,24 @@ function M.items_list_agent_runtime_versions(client, input)
     })
 end
 
+--- Returns a page iterator for listAgentRuntimeVersionsByCapacityProvider.
+function M.pages_list_agent_runtime_versions_by_capacity_provider(client, input)
+    return paginator.pages(client, "listAgentRuntimeVersionsByCapacityProvider", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "agentRuntimes",
+    })
+end
+
+--- Returns an item iterator for listAgentRuntimeVersionsByCapacityProvider.
+function M.items_list_agent_runtime_versions_by_capacity_provider(client, input)
+    return paginator.items(client, "listAgentRuntimeVersionsByCapacityProvider", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "agentRuntimes",
+    })
+end
+
 --- Returns a page iterator for listAgentRuntimes.
 function M.pages_list_agent_runtimes(client, input)
     return paginator.pages(client, "listAgentRuntimes", input, {
@@ -109,6 +127,24 @@ function M.items_list_browsers(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "browserSummaries",
+    })
+end
+
+--- Returns a page iterator for listCapacityProviders.
+function M.pages_list_capacity_providers(client, input)
+    return paginator.pages(client, "listCapacityProviders", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "capacityProviders",
+    })
+end
+
+--- Returns an item iterator for listCapacityProviders.
+function M.items_list_capacity_providers(client, input)
+    return paginator.items(client, "listCapacityProviders", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "capacityProviders",
     })
 end
 
@@ -235,6 +271,24 @@ function M.items_list_evaluators(client, input)
         input_token = "nextToken",
         output_token = "nextToken",
         items = "evaluators",
+    })
+end
+
+--- Returns a page iterator for listGatewayRateLimits.
+function M.pages_list_gateway_rate_limits(client, input)
+    return paginator.pages(client, "listGatewayRateLimits", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "rateLimits",
+    })
+end
+
+--- Returns an item iterator for listGatewayRateLimits.
+function M.items_list_gateway_rate_limits(client, input)
+    return paginator.items(client, "listGatewayRateLimits", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "rateLimits",
     })
 end
 

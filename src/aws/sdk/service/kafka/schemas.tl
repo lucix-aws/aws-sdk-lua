@@ -885,6 +885,43 @@ M.S3 = schema.new({
     },
 })
 
+M.AuthorizerLogs = schema.new({
+    id = id.from(_N, "AuthorizerLogs"),
+    type = "structure",
+    members = {
+        CloudWatchLogs = schema.new({
+            id = id.from(_N, "AuthorizerLogs", "CloudWatchLogs"),
+            type = "structure",
+            name = "CloudWatchLogs",
+            target_id = id.from(_N, "CloudWatchLogs"),
+            target = M.CloudWatchLogs,
+            traits = {
+                [traits.JSON_NAME] = { name = "cloudWatchLogs" },
+            },
+        }),
+        Firehose = schema.new({
+            id = id.from(_N, "AuthorizerLogs", "Firehose"),
+            type = "structure",
+            name = "Firehose",
+            target_id = id.from(_N, "Firehose"),
+            target = M.Firehose,
+            traits = {
+                [traits.JSON_NAME] = { name = "firehose" },
+            },
+        }),
+        S3 = schema.new({
+            id = id.from(_N, "AuthorizerLogs", "S3"),
+            type = "structure",
+            name = "S3",
+            target_id = id.from(_N, "S3"),
+            target = M.S3,
+            traits = {
+                [traits.JSON_NAME] = { name = "s3" },
+            },
+        }),
+    },
+})
+
 M.BrokerLogs = schema.new({
     id = id.from(_N, "BrokerLogs"),
     type = "structure",
@@ -926,6 +963,16 @@ M.LoggingInfo = schema.new({
     id = id.from(_N, "LoggingInfo"),
     type = "structure",
     members = {
+        AuthorizerLogs = schema.new({
+            id = id.from(_N, "LoggingInfo", "AuthorizerLogs"),
+            type = "structure",
+            name = "AuthorizerLogs",
+            target_id = id.from(_N, "AuthorizerLogs"),
+            target = M.AuthorizerLogs,
+            traits = {
+                [traits.JSON_NAME] = { name = "authorizerLogs" },
+            },
+        }),
         BrokerLogs = schema.new({
             id = id.from(_N, "LoggingInfo", "BrokerLogs"),
             type = "structure",

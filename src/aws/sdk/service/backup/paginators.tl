@@ -4,6 +4,60 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listBackupAccessPoints.
+function M.pages_list_backup_access_points(client, input)
+    return paginator.pages(client, "listBackupAccessPoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupAccessPoints",
+    })
+end
+
+--- Returns an item iterator for listBackupAccessPoints.
+function M.items_list_backup_access_points(client, input)
+    return paginator.items(client, "listBackupAccessPoints", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupAccessPoints",
+    })
+end
+
+--- Returns a page iterator for listBackupAccessPointsByRecoveryPoint.
+function M.pages_list_backup_access_points_by_recovery_point(client, input)
+    return paginator.pages(client, "listBackupAccessPointsByRecoveryPoint", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupAccessPoints",
+    })
+end
+
+--- Returns an item iterator for listBackupAccessPointsByRecoveryPoint.
+function M.items_list_backup_access_points_by_recovery_point(client, input)
+    return paginator.items(client, "listBackupAccessPointsByRecoveryPoint", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupAccessPoints",
+    })
+end
+
+--- Returns a page iterator for listBackupAccessPointsByResource.
+function M.pages_list_backup_access_points_by_resource(client, input)
+    return paginator.pages(client, "listBackupAccessPointsByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupAccessPoints",
+    })
+end
+
+--- Returns an item iterator for listBackupAccessPointsByResource.
+function M.items_list_backup_access_points_by_resource(client, input)
+    return paginator.items(client, "listBackupAccessPointsByResource", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "BackupAccessPoints",
+    })
+end
+
 --- Returns a page iterator for listBackupJobSummaries.
 function M.pages_list_backup_job_summaries(client, input)
     return paginator.pages(client, "listBackupJobSummaries", input, {

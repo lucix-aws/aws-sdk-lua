@@ -2,6 +2,16 @@
 
 local record M
 
+    enum AccessPointStatus
+        "AVAILABLE"
+        "CREATING"
+        "DELETING"
+        "DISASSOCIATED"
+        "DISASSOCIATING"
+        "EXPIRED"
+        "FAILED"
+    end
+
     -- The backup options for each resource type.
     record AdvancedBackupSetting
         -- Specifies an object containing resource type and backup options. The only supported
@@ -109,6 +119,40 @@ local record M
         Message: string
         Type: string
         Context: string
+    end
+
+    -- Contains metadata about a backup access point.
+    record ListAccessPointsMember
+        -- The Amazon Resource Name (ARN) that uniquely identifies the backup access point.
+        AccessPointArn: string
+        -- Metadata for the backup access point. After the backup access point reaches the AVAILABLE
+        -- status, this map contains S3AccessPointArn and S3AccessPointAlias, which you use with
+        -- standard Amazon S3 read APIs to access the backup data. For continuous recovery points, this map also
+        -- contains AccessPointInTime (in format 2021-11-27T03:30:27Z). The access point
+        -- provides access to the content present in the backup at that specific time.
+        AccessPointMetadata: {string : string}
+        -- The Amazon Resource Name (ARN) of the backup vault that contains the recovery point.
+        BackupVaultArn: string
+        -- The name of the backup vault that contains the recovery point.
+        BackupVaultName: string
+        -- The date and time that the backup access point was created, in Unix format and Coordinated Universal Time
+        -- (UTC). The value of CreationTime is accurate to milliseconds. For example, the value
+        -- 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
+        CreationTime: number
+        -- The name of the backup access point.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the recovery point that the backup access point provides access to.
+        RecoveryPointArn: string
+        -- The Amazon Resource Name (ARN) of the resource that was backed up, such as an Amazon S3 bucket.
+        ResourceArn: string
+        -- The type of Amazon Web Services resource associated with the recovery point. For example, S3 for
+        -- Amazon Simple Storage Service.
+        ResourceType: string
+        -- The current status of the backup access point.
+        Status: string
+        -- A message that provides additional detail about the status of the backup access point, such as the reason a
+        -- creation or deletion attempt failed.
+        StatusMessage: string
     end
 
     -- Contains information about the backup plan and rule that Backup used to
@@ -773,6 +817,12 @@ local record M
         "EKS_RESTORE_OBJECT_FAILED"
         "EKS_RESTORE_OBJECT_SKIPPED"
         "EKS_BACKUP_OBJECT_FAILED"
+        "ACCESS_POINT_AVAILABLE"
+        "ACCESS_POINT_CREATION_FAILED"
+        "ACCESS_POINT_DELETED"
+        "ACCESS_POINT_DELETION_FAILED"
+        "ACCESS_POINT_EXPIRED"
+        "ACCESS_POINT_DISASSOCIATED"
     end
 
     enum EncryptionKeyType
@@ -824,7 +874,8 @@ local record M
         -- without the risk of running the operation twice. This parameter is optional.
         -- If used, this parameter must contain 1 to 50 alphanumeric or '-_.' characters.
         CreatorRequestId: string
-        -- The number of recovery points that are stored in a backup vault.
+        -- The number of recovery points that are stored in a backup vault. Recovery point count
+        -- value displayed in the console can be an approximation.
         NumberOfRecoveryPoints: number
         -- A Boolean value that indicates whether Backup Vault Lock applies to the
         -- selected backup vault. If true, Vault Lock prevents delete and update
@@ -1096,6 +1147,48 @@ local record M
         EndTime: number
     end
 
+    record CreateBackupAccessPointInput
+        -- Metadata for the backup access point. For continuous (point-in-time) recovery points, you must include an
+        -- AccessPointInTime timestamp (in format 2021-11-27T03:30:27Z). The access point
+        -- provides access to the content present in the backup at that specific time. You can specify any time
+        -- within the continuous backup's retention period, up to the latest restorable time. For snapshot recovery
+        -- points, do not include AccessPointInTime.
+        AccessPointMetadata: {string : string}
+        -- An optional resource-based policy, in JSON format, to apply to the underlying Amazon S3 access
+        -- point. The policy controls how backup data can be accessed through the access point. If you do not specify
+        -- a policy, access is governed by the caller's IAM permissions. For more information, see Configuring IAM policies
+        -- for using access points in the Amazon S3 User Guide.
+        AccessPointPolicy: string
+        -- The name of the backup access point. This name is shared with the Amazon S3 access point namespace.
+        -- It must be unique within your account and Region and cannot conflict with an existing Amazon S3 access
+        -- point. For more information about access point naming, see Access points naming rules, restrictions, and limitations in the Amazon S3 User
+        -- Guide.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the recovery point for which to create the backup access point. The
+        -- recovery point must be an Amazon S3 recovery point in the AVAILABLE, STOPPED,
+        -- or COMPLETED state.
+        RecoveryPointArn: string
+        -- The tags to assign to the backup access point.
+        Tags: {string : string}
+    end
+
+    record CreateBackupAccessPointOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the created backup access point.
+        AccessPointArn: string
+        -- The current status of the backup access point. A newly created backup access point begins in the
+        -- CREATING state and becomes usable when it reaches AVAILABLE.
+        Status: string
+    end
+
+    -- A limit in the request has been exceeded; for example, a maximum number of items allowed
+    -- in a request.
+    record LimitExceededException
+        Code: string
+        Message: string
+        Type: string
+        Context: string
+    end
+
     record CreateBackupPlanInput
         -- The body of a backup plan. Includes a BackupPlanName and one or
         -- more sets of Rules.
@@ -1126,15 +1219,6 @@ local record M
         -- The settings for a resource type. This option is only
         -- available for Windows Volume Shadow Copy Service (VSS) backup jobs.
         AdvancedBackupSettings: {AdvancedBackupSetting}
-    end
-
-    -- A limit in the request has been exceeded; for example, a maximum number of items allowed
-    -- in a request.
-    record LimitExceededException
-        Code: string
-        Message: string
-        Type: string
-        Context: string
     end
 
     record CreateBackupSelectionInput
@@ -1771,6 +1855,14 @@ local record M
         CreationTime: number
     end
 
+    record DeleteBackupAccessPointInput
+        -- The Amazon Resource Name (ARN) of the backup access point to delete.
+        AccessPointArn: string
+    end
+
+    record DeleteBackupAccessPointOutput
+    end
+
     record DeleteBackupPlanInput
         -- Uniquely identifies a backup plan.
         BackupPlanId: string
@@ -1898,6 +1990,44 @@ local record M
     end
 
     record DeleteTieringConfigurationOutput
+    end
+
+    record DescribeBackupAccessPointInput
+        -- The Amazon Resource Name (ARN) of the backup access point to describe.
+        AccessPointArn: string
+    end
+
+    record DescribeBackupAccessPointOutput
+        -- The Amazon Resource Name (ARN) that uniquely identifies the backup access point.
+        AccessPointArn: string
+        -- Metadata for the backup access point. After the backup access point reaches the AVAILABLE
+        -- status, this map contains S3AccessPointArn and S3AccessPointAlias, which you use with
+        -- standard Amazon S3 read APIs to access the backup data. For continuous recovery points, this map also
+        -- contains AccessPointInTime (in format 2021-11-27T03:30:27Z). The access point
+        -- provides access to the content present in the backup at that specific time.
+        AccessPointMetadata: {string : string}
+        -- The Amazon Resource Name (ARN) of the backup vault that contains the recovery point.
+        BackupVaultArn: string
+        -- The name of the backup vault that contains the recovery point.
+        BackupVaultName: string
+        -- The date and time that the backup access point was created, in Unix format and Coordinated Universal Time
+        -- (UTC). The value of CreationTime is accurate to milliseconds. For example, the value
+        -- 1516925490.087 represents Friday, January 26, 2018 12:11:30.087 AM.
+        CreationTime: number
+        -- The name of the backup access point.
+        Name: string
+        -- The Amazon Resource Name (ARN) of the recovery point that the backup access point provides access to.
+        RecoveryPointArn: string
+        -- The Amazon Resource Name (ARN) of the resource that was backed up, such as an Amazon S3 bucket.
+        ResourceArn: string
+        -- The type of Amazon Web Services resource associated with the recovery point. For example, S3 for
+        -- Amazon Simple Storage Service.
+        ResourceType: string
+        -- The current status of the backup access point.
+        Status: string
+        -- A message that provides additional detail about the status of the backup access point, such as the reason a
+        -- creation or deletion attempt failed.
+        StatusMessage: string
     end
 
     -- A dependent Amazon Web Services service or resource returned an error to the Backup service, and the action cannot be completed.
@@ -3326,6 +3456,67 @@ local record M
         TieringConfiguration: TieringConfiguration
     end
 
+    record ListBackupAccessPointsInput
+        -- The maximum number of items to be returned.
+        MaxResults: number
+        -- The next item following a partial list of returned items. For example, if a request is made to return
+        -- MaxResults number of items, NextToken allows you to return more items in your list
+        -- starting at the location pointed to by the next token.
+        NextToken: string
+    end
+
+    record ListBackupAccessPointsOutput
+        -- A list of backup access points, each containing metadata such as its name, ARN, status, and associated
+        -- recovery point.
+        BackupAccessPoints: {ListAccessPointsMember}
+        -- The next item following a partial list of returned items. For example, if a request is made to return
+        -- MaxResults number of items, NextToken allows you to return more items in your list
+        -- starting at the location pointed to by the next token.
+        NextToken: string
+    end
+
+    record ListBackupAccessPointsByRecoveryPointInput
+        -- The maximum number of items to be returned.
+        MaxResults: number
+        -- The next item following a partial list of returned items. For example, if a request is made to return
+        -- MaxResults number of items, NextToken allows you to return more items in your list
+        -- starting at the location pointed to by the next token.
+        NextToken: string
+        -- The Amazon Resource Name (ARN) of the recovery point whose backup access points you want to list.
+        RecoveryPointArn: string
+    end
+
+    record ListBackupAccessPointsByRecoveryPointOutput
+        -- A list of backup access points, each containing metadata such as its name, ARN, status, and associated
+        -- recovery point.
+        BackupAccessPoints: {ListAccessPointsMember}
+        -- The next item following a partial list of returned items. For example, if a request is made to return
+        -- MaxResults number of items, NextToken allows you to return more items in your list
+        -- starting at the location pointed to by the next token.
+        NextToken: string
+    end
+
+    record ListBackupAccessPointsByResourceInput
+        -- The maximum number of items to be returned.
+        MaxResults: number
+        -- The next item following a partial list of returned items. For example, if a request is made to return
+        -- MaxResults number of items, NextToken allows you to return more items in your list
+        -- starting at the location pointed to by the next token.
+        NextToken: string
+        -- The Amazon Resource Name (ARN) of the resource whose backup access points you want to list.
+        ResourceArn: string
+    end
+
+    record ListBackupAccessPointsByResourceOutput
+        -- A list of backup access points, each containing metadata such as its name, ARN, status, and associated
+        -- recovery point.
+        BackupAccessPoints: {ListAccessPointsMember}
+        -- The next item following a partial list of returned items. For example, if a request is made to return
+        -- MaxResults number of items, NextToken allows you to return more items in your list
+        -- starting at the location pointed to by the next token.
+        NextToken: string
+    end
+
     record ListBackupJobsInput
         -- The next item following a partial list of returned items. For example, if a request is
         -- made to return MaxResults number of items, NextToken allows you
@@ -4219,7 +4410,8 @@ local record M
         -- set to TRUE, the response will contain recovery points associated
         -- with the selected resources that are managed by Backup.
         -- If this is set to FALSE, the response will contain all
-        -- recovery points associated with the selected resource.
+        -- recovery points associated with the selected resource, except for EBS
+        -- snapshots copied within the same Region and account.
         -- Type: Boolean
         ManagedByAWSBackupOnly: boolean
     end

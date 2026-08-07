@@ -845,6 +845,31 @@ M.LegalTerm = schema.new({
     },
 })
 
+M.NetPaymentTerm = schema.new({
+    id = id.from(_N, "NetPaymentTerm"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "NetPaymentTerm", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        id = schema.new({
+            id = id.from(_N, "NetPaymentTerm", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+        }),
+        paymentDuePeriod = schema.new({
+            id = id.from(_N, "NetPaymentTerm", "paymentDuePeriod"),
+            type = "string",
+            name = "paymentDuePeriod",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ScheduleItem = schema.new({
     id = id.from(_N, "ScheduleItem"),
     type = "structure",
@@ -1230,6 +1255,13 @@ M.AcceptedTerm = schema.new({
             name = "variablePaymentTerm",
             target_id = id.from(_N, "VariablePaymentTerm"),
             target = M.VariablePaymentTerm,
+        }),
+        netPaymentTerm = schema.new({
+            id = id.from(_N, "AcceptedTerm", "netPaymentTerm"),
+            type = "structure",
+            name = "netPaymentTerm",
+            target_id = id.from(_N, "NetPaymentTerm"),
+            target = M.NetPaymentTerm,
         }),
     },
 })

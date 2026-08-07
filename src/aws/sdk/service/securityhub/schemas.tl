@@ -139,6 +139,12 @@ M.ProductSubscriptionArnList = schema.new({ type = "list", list_member = prelude
 
 M.FindingAggregatorList = schema.new({ type = "list", list_member = M.FindingAggregator })
 
+M.FreeTrialAccountIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.FreeTrialStatusValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AccountFreeTrialStatusList = schema.new({ type = "list", list_member = M.AccountFreeTrialStatus })
+
 M.InvitationList = schema.new({ type = "list", list_member = M.Invitation })
 
 M.AdminAccounts = schema.new({ type = "list", list_member = M.AdminAccount })
@@ -222,6 +228,8 @@ M.ResourceFindingsSummaryList = schema.new({ type = "list", list_member = M.Reso
 M.ResourceTagList = schema.new({ type = "list", list_member = M.ResourceTag })
 
 M.AutomationRulesActionTypeListV2 = schema.new({ type = "list", list_member = M.AutomationRulesActionTypeObjectV2 })
+
+M.FreeTrialStatusList = schema.new({ type = "list", list_member = M.FreeTrialStatus })
 
 M.StatusReasonsList = schema.new({ type = "list", list_member = M.StatusReason })
 
@@ -857,6 +865,96 @@ M.AccountDetails = schema.new({
             type = "string",
             name = "Email",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FreeTrialStatus = schema.new({
+    id = id.from(_N, "FreeTrialStatus"),
+    type = "structure",
+    members = {
+        FeatureType = schema.new({
+            id = id.from(_N, "FreeTrialStatus", "FeatureType"),
+            type = "string",
+            name = "FeatureType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "FreeTrialStatus", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StartedAt = schema.new({
+            id = id.from(_N, "FreeTrialStatus", "StartedAt"),
+            type = "timestamp",
+            name = "StartedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ExpiresAt = schema.new({
+            id = id.from(_N, "FreeTrialStatus", "ExpiresAt"),
+            type = "timestamp",
+            name = "ExpiresAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AccountFreeTrialStatus = schema.new({
+    id = id.from(_N, "AccountFreeTrialStatus"),
+    type = "structure",
+    members = {
+        AccountId = schema.new({
+            id = id.from(_N, "AccountFreeTrialStatus", "AccountId"),
+            type = "string",
+            name = "AccountId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EvaluatedAt = schema.new({
+            id = id.from(_N, "AccountFreeTrialStatus", "EvaluatedAt"),
+            type = "timestamp",
+            name = "EvaluatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FreeTrialStatuses = schema.new({
+            id = id.from(_N, "AccountFreeTrialStatus", "FreeTrialStatuses"),
+            type = "list",
+            name = "FreeTrialStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.FreeTrialStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -32366,6 +32464,62 @@ M.ListFindingAggregatorsOutput = schema.new({
     },
 })
 
+M.ListFreeTrialStatusesV2Input = schema.new({
+    id = id.from(_N, "ListFreeTrialStatusesV2Request"),
+    type = "structure",
+    members = {
+        AccountIds = schema.new({
+            id = id.from(_N, "ListFreeTrialStatusesV2Input", "AccountIds"),
+            type = "list",
+            name = "AccountIds",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        Statuses = schema.new({
+            id = id.from(_N, "ListFreeTrialStatusesV2Input", "Statuses"),
+            type = "list",
+            name = "Statuses",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListFreeTrialStatusesV2Input", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFreeTrialStatusesV2Input", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListFreeTrialStatusesV2Output = schema.new({
+    id = id.from(_N, "ListFreeTrialStatusesV2Response"),
+    type = "structure",
+    members = {
+        AccountFreeTrialStatuses = schema.new({
+            id = id.from(_N, "ListFreeTrialStatusesV2Output", "AccountFreeTrialStatuses"),
+            type = "list",
+            name = "AccountFreeTrialStatuses",
+            target_id = prelude.Document.id,
+            list_member = M.AccountFreeTrialStatus,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListFreeTrialStatusesV2Output", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListInvitationsInput = schema.new({
     id = id.from(_N, "ListInvitationsRequest"),
     type = "structure",
@@ -35501,6 +35655,18 @@ M.ListFindingAggregators = schema.operation({
     output = M.ListFindingAggregatorsOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/findingAggregator/list" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListFreeTrialStatusesV2 = schema.operation({
+    id = id.from("com.amazonaws.securityhub", "ListFreeTrialStatusesV2"),
+    input = M.ListFreeTrialStatusesV2Input,
+    output = M.ListFreeTrialStatusesV2Output,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/freetrial/statusv2/list" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

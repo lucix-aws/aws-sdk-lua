@@ -36579,6 +36579,9 @@ local record M
         MaxResults: number
         -- The token returned from a previous paginated request. Pagination continues from the end of the items returned by the previous request.
         NextToken: string
+        -- Specify true so that the response returns scores that include Local Zones. Otherwise, the response ignores Local Zones.
+        -- When you request regional scores, Local Zone capacity counts toward its parent Region.
+        IncludeLocalZones: boolean
     end
 
     -- The Spot placement score for this Region or Availability Zone. The score is calculated

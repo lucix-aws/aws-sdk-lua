@@ -1518,6 +1518,22 @@ M.MixedInstancesPolicy = schema.new({
     },
 })
 
+M.Operator = schema.new({
+    id = id.from(_N, "Operator"),
+    type = "structure",
+    members = {
+        Principal = schema.new({
+            id = id.from(_N, "Operator", "Principal"),
+            type = "string",
+            name = "Principal",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.Tag = schema.new({
     id = id.from(_N, "Tag"),
     type = "structure",
@@ -1795,6 +1811,13 @@ M.CreateAutoScalingGroupInput = schema.new({
             name = "InstanceLifecyclePolicy",
             target_id = id.from(_N, "InstanceLifecyclePolicy"),
             target = M.InstanceLifecyclePolicy,
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "CreateAutoScalingGroupInput", "Operator"),
+            type = "structure",
+            name = "Operator",
+            target_id = id.from(_N, "Operator"),
+            target = M.Operator,
         }),
     },
 })
@@ -2915,6 +2938,13 @@ M.AutoScalingGroup = schema.new({
             name = "InstanceLifecyclePolicy",
             target_id = id.from(_N, "InstanceLifecyclePolicy"),
             target = M.InstanceLifecyclePolicy,
+        }),
+        Operator = schema.new({
+            id = id.from(_N, "AutoScalingGroup", "Operator"),
+            type = "structure",
+            name = "Operator",
+            target_id = id.from(_N, "Operator"),
+            target = M.Operator,
         }),
     },
 })

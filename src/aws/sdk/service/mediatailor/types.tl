@@ -282,10 +282,26 @@ local record M
         RunCondition: string
         -- The identifier of the child function to execute in this step.
         FunctionId: string
+        -- An optional alternate name for the function within the executor. If omitted, MediaTailor uses the function identifier.
+        Alias: string
     end
 
     enum RuntimeType
         "JSONATA"
+    end
+
+    -- The configuration for a CONCURRENT_EXECUTOR function. A CONCURRENT_EXECUTOR runs a set of child functions in parallel, up to a maximum concurrency, and combines their output when all functions complete. For more information about functions, see Working with functions in the MediaTailor User Guide.
+    record ConcurrentExecutorConfiguration
+        -- The expression language used to evaluate expressions in the function configuration. Set this to JSONata.
+        Runtime: string
+        -- A map of output bindings that controls which bindings the executor commits to the session state after all child functions complete. Each key is a namespaced output path, and each value is an expression that MediaTailor evaluates against the combined results of the child functions.
+        Output: {string : string}
+        -- The list of child functions that MediaTailor runs in parallel. Each entry specifies a child function to execute and an optional run condition expression that controls whether the function runs.
+        FunctionList: {FunctionRef}
+        -- The maximum time, in milliseconds, for all child functions to complete. This timeout covers every function in the list, including any HTTP calls the child functions make. If the executor exceeds this timeout, MediaTailor discards all output from the executor and proceeds with default behavior.
+        TimeoutMilliseconds: number
+        -- The maximum number of child functions that MediaTailor runs simultaneously. When the list contains more functions than MaxConcurrency, MediaTailor starts additional functions as running ones complete, so that no more than MaxConcurrency functions run at the same time.
+        MaxConcurrency: number
     end
 
     -- The configuration for a CUSTOM_OUTPUT function. MediaTailor evaluates the output expressions against the current session state and commits the results as output bindings. CUSTOM_OUTPUT functions do not make external calls. For more information, see CUSTOM_OUTPUT in the MediaTailor User Guide.
@@ -299,6 +315,7 @@ local record M
     enum FunctionType
         "HTTP_REQUEST"
         "CUSTOM_OUTPUT"
+        "CONCURRENT_EXECUTOR"
         "SEQUENTIAL_EXECUTOR"
     end
 
@@ -349,6 +366,8 @@ local record M
         HttpRequestConfiguration: HttpRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function.
         CustomOutputConfiguration: CustomOutputConfiguration
+        -- The configuration for a CONCURRENT_EXECUTOR function.
+        ConcurrentExecutorConfiguration: ConcurrentExecutorConfiguration
         -- The configuration for a SEQUENTIAL_EXECUTOR function.
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The tags assigned to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
@@ -1669,6 +1688,8 @@ local record M
         HttpRequestConfiguration: HttpRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function.
         CustomOutputConfiguration: CustomOutputConfiguration
+        -- The configuration for a CONCURRENT_EXECUTOR function.
+        ConcurrentExecutorConfiguration: ConcurrentExecutorConfiguration
         -- The configuration for a SEQUENTIAL_EXECUTOR function.
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The tags assigned to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
@@ -1703,6 +1724,8 @@ local record M
         HttpRequestConfiguration: HttpRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function. Specifies the runtime and output expressions. Required when FunctionType is CUSTOM_OUTPUT.
         CustomOutputConfiguration: CustomOutputConfiguration
+        -- The configuration for a CONCURRENT_EXECUTOR function. Specifies the list of child functions to run in parallel, the maximum concurrency, an optional output block, and a timeout. Required when FunctionType is CONCURRENT_EXECUTOR.
+        ConcurrentExecutorConfiguration: ConcurrentExecutorConfiguration
         -- The configuration for a SEQUENTIAL_EXECUTOR function. Specifies the ordered list of child functions to execute, an optional output block, and a timeout. Required when FunctionType is SEQUENTIAL_EXECUTOR.
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The tags to assign to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.
@@ -1721,6 +1744,8 @@ local record M
         HttpRequestConfiguration: HttpRequestConfiguration
         -- The configuration for a CUSTOM_OUTPUT function.
         CustomOutputConfiguration: CustomOutputConfiguration
+        -- The configuration for a CONCURRENT_EXECUTOR function.
+        ConcurrentExecutorConfiguration: ConcurrentExecutorConfiguration
         -- The configuration for a SEQUENTIAL_EXECUTOR function.
         SequentialExecutorConfiguration: SequentialExecutorConfiguration
         -- The tags assigned to the function. Tags are key-value pairs that you can associate with Amazon resources to help with organization, access control, and cost tracking. For more information, see Tagging AWS Elemental MediaTailor Resources.

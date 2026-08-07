@@ -22943,6 +22943,12 @@ M.ServerlessJobConfig = schema.new({
             name = "EvaluatorArn",
             target_id = prelude.String.id,
         }),
+        SequenceLength = schema.new({
+            id = id.from(_N, "ServerlessJobConfig", "SequenceLength"),
+            type = "string",
+            name = "SequenceLength",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

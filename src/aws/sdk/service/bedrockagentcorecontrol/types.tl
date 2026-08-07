@@ -546,6 +546,20 @@ local record M
         customJWTAuthorizer: CustomJWTAuthorizerConfiguration
     end
 
+    -- Configuration for customer-managed compute capacity for the AgentCore Runtime. A capacity provider runs the AgentCore Runtime on the Instances compute type, using Amazon Web Services managed compute in your account.
+    record CapacityProviderConfiguration
+        -- The Amazon Resource Name (ARN) of the capacity provider to use for the AgentCore Runtime.
+        capacityProviderArn: string
+    end
+
+    -- Configuration for a capacity provider volume mounted into the AgentCore Runtime. This references a persistent volume by its logical name, as defined in the capacity provider's list of volumes.
+    record CapacityProviderVolumeConfiguration
+        -- The logical name of the capacity provider volume to mount. This name must match a volume that is defined in the capacity provider's list of volumes.
+        volumeName: string
+        -- The mount path for the capacity provider volume inside the AgentCore Runtime. The path must be under /mnt with exactly one subdirectory level (for example, /mnt/data).
+        mountPath: string
+    end
+
     -- Configuration for an Amazon EFS access point filesystem mounted into the AgentCore Runtime. EFS access points provide shared file storage accessible from your AgentCore Runtime sessions.
     record EfsAccessPointConfiguration
         -- The ARN of the EFS access point to mount into the AgentCore Runtime.
@@ -576,6 +590,8 @@ local record M
         s3FilesAccessPoint: S3FilesAccessPointConfiguration
         -- Configuration for an Amazon EFS access point to mount into the AgentCore Runtime.
         efsAccessPoint: EfsAccessPointConfiguration
+        -- Configuration for a capacity provider volume to mount into the AgentCore Runtime. This mounts a persistent volume that is defined on the capacity provider, referenced by its logical name.
+        capacityProviderVolume: CapacityProviderVolumeConfiguration
     end
 
     -- LifecycleConfiguration lets you manage the lifecycle of runtime sessions and resources in AgentCore Runtime. This configuration helps optimize resource utilization by automatically cleaning up idle sessions and preventing long-running instances from consuming resources indefinitely.
@@ -652,6 +668,8 @@ local record M
         environmentVariables: {string : string}
         -- The filesystem configurations to mount into the AgentCore Runtime. Use filesystem configurations to provide persistent storage to your AgentCore Runtime sessions.
         filesystemConfigurations: {FilesystemConfiguration}
+        -- The capacity provider configuration for the AgentCore Runtime. Use a capacity provider to run the AgentCore Runtime on the Instances compute type, which provisions Amazon Web Services managed compute in your account.
+        capacityProviderConfiguration: CapacityProviderConfiguration
         -- A map of tag keys and values to assign to the agent runtime. Tags enable you to categorize your resources in different ways, for example, by purpose, owner, or environment.
         tags: {string : string}
     end
@@ -689,6 +707,8 @@ local record M
     record DeleteAgentRuntimeInput
         -- The unique identifier of the AgentCore Runtime to delete.
         agentRuntimeId: string
+        -- The version of the AgentCore Runtime to delete. When you provide this value, only that version is deleted. When you omit it, the entire AgentCore Runtime and all of its versions are deleted.
+        agentRuntimeVersion: string
         -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the service ignores the request but does not return an error.
         clientToken: string
     end
@@ -698,6 +718,8 @@ local record M
         status: string
         -- The unique identifier of the AgentCore Runtime.
         agentRuntimeId: string
+        -- The version of the AgentCore Runtime that was deleted. This value is present only when you delete a single version.
+        agentRuntimeVersion: string
     end
 
     record GetAgentRuntimeInput
@@ -753,6 +775,8 @@ local record M
         metadataConfiguration: RuntimeMetadataConfiguration
         -- The filesystem configurations mounted into the AgentCore Runtime.
         filesystemConfigurations: {FilesystemConfiguration}
+        -- The capacity provider configuration for the AgentCore Runtime.
+        capacityProviderConfiguration: CapacityProviderConfiguration
     end
 
     record ListAgentRuntimesInput
@@ -827,6 +851,8 @@ local record M
         environmentVariables: {string : string}
         -- The updated filesystem configurations to mount into the AgentCore Runtime.
         filesystemConfigurations: {FilesystemConfiguration}
+        -- The updated capacity provider configuration for the AgentCore Runtime.
+        capacityProviderConfiguration: CapacityProviderConfiguration
         -- A unique, case-sensitive identifier to ensure idempotency of the request.
         clientToken: string
     end
@@ -845,6 +871,16 @@ local record M
         -- The timestamp when the AgentCore Runtime was last updated.
         lastUpdatedAt: number
         -- The current status of the updated AgentCore Runtime.
+        status: string
+    end
+
+    -- Summary information about an agent runtime version associated with a capacity provider. This is returned by ListAgentRuntimeVersionsByCapacityProvider.
+    record AgentRuntimeVersionSummary
+        -- The Amazon Resource Name (ARN) of the agent runtime.
+        agentRuntimeArn: string
+        -- The version of the agent runtime.
+        agentRuntimeVersion: string
+        -- The current status of the agent runtime version.
         status: string
     end
 
@@ -1363,6 +1399,369 @@ local record M
         browserSummaries: {BrowserSummary}
         -- A token to retrieve the next page of results.
         nextToken: string
+    end
+
+    enum CapacityReservationPreference
+        "capacity-reservations-only"
+        "open"
+        "none"
+    end
+
+    -- Information about the target Capacity Reservation or Capacity Reservation group for the instances.
+    record CapacityReservationTarget
+        -- The ID of the Capacity Reservation in which to run the instances.
+        capacityReservationId: string
+        -- The Amazon Resource Name (ARN) of the Capacity Reservation resource group in which to run the instances.
+        capacityReservationResourceGroupArn: string
+    end
+
+    -- The Capacity Reservation targeting option for the instances.
+    record CapacityReservationSpecification
+        -- The Capacity Reservation preference for the instances.
+        capacityReservationPreference: string
+        -- The target Capacity Reservation or Capacity Reservation group for the instances.
+        capacityReservationTarget: CapacityReservationTarget
+    end
+
+    enum EbsVolumeType
+        "standard"
+        "io1"
+        "io2"
+        "gp2"
+        "sc1"
+        "st1"
+        "gp3"
+    end
+
+    -- The shared Amazon EBS performance and encryption properties for a volume. These properties are common across the different volume configurations for a capacity provider.
+    record EphemeralEBSVolumeConfiguration
+        -- The Amazon EBS volume type. If you do not specify a type, the default is gp3.
+        volumeType: string
+        -- The number of IOPS to provision. For gp3, io1, and io2 volumes, this is the number of IOPS provisioned for the volume. For gp2 volumes, this sets the baseline IOPS performance. It also controls the rate at which the volume accumulates I/O credits for bursting. Supported values: gp3, 3,000–80,000; io1, 100–64,000; io2, 100–256,000.
+        iops: number
+        -- The throughput to provision, in MiB/s. Valid only for gp3 volumes. Valid range: 125–2,000 MiB/s.
+        throughput: number
+        -- Specifies whether to encrypt the volume. Encrypted volumes can be attached only to instances that support Amazon EBS encryption. If you create a volume from a snapshot, you cannot specify an encryption value.
+        encrypted: boolean
+        -- The identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS key to use for Amazon EBS encryption.
+        kmsKeyId: string
+        -- The ID of the snapshot.
+        snapshotId: string
+        -- The size of the volume, in GiB. You must specify either a snapshot ID or a volume size. Supported sizes: gp2, 1–16,384; gp3, 1–65,536; io1, 4–16,384; io2, 4–65,536.
+        volumeSize: number
+        -- The rate at which the volume is initialized after creation, in MiB/s. Supported only for volumes created from snapshots. Valid range: 100–300 MiB/s.
+        volumeInitializationRate: number
+        -- The index of the Amazon EBS card. Applies to instances with multiple Amazon EBS cards.
+        ebsCardIndex: number
+    end
+
+    -- A block device mapping for an instance store (ephemeral) volume.
+    record EphemeralBlockDeviceMapping
+        -- The device name, for example /dev/sdh or xvdh.
+        deviceName: string
+        -- The virtual device name (ephemeralN). Instance store volumes are numbered starting from 0. The number of available instance store volumes depends on the instance type. After you connect to the instance, you must mount the volume.
+        virtualName: string
+        ebs: EphemeralEBSVolumeConfiguration
+    end
+
+    -- The requirements for Amazon EC2 instance types in a capacity provider.
+    record InstanceRequirements
+        -- The list of allowed instance types. You can specify up to 30 instance types.
+        allowedInstanceTypes: {string}
+    end
+
+    -- A license configuration to associate with the instances.
+    record LicenseSpecification
+        -- The Amazon Resource Name (ARN) of the license configuration.
+        licenseConfigurationArn: string
+    end
+
+    enum Monitoring
+        "BASIC"
+        "DETAILED"
+    end
+
+    enum OperatingSystem
+        "LINUX_X86_64"
+        "LINUX_ARM64"
+    end
+
+    -- The parameters for launching Amazon EC2 instances in a capacity provider.
+    record LaunchParameters
+        -- The operating system and CPU architecture for the instances.
+        operatingSystem: string
+        -- The requirements that determine which instance types can be launched.
+        instanceRequirements: InstanceRequirements
+        -- The block device mappings for instance store (ephemeral) volumes. You can specify up to five mappings.
+        ephemeralVolumes: {EphemeralBlockDeviceMapping}
+        -- The monitoring level for the instances.
+        monitoring: string
+        -- The license configurations to associate with the instances. You can specify up to five configurations.
+        licenseSpecifications: {LicenseSpecification}
+        -- The Capacity Reservation targeting option for the instances.
+        capacityReservationSpecification: CapacityReservationSpecification
+        -- The name of the SSH key pair to configure on the instances for SSH connectivity.
+        sshKeyName: string
+        -- The Amazon Resource Name (ARN) of the IAM instance profile to associate with launched instances. If provided, this overrides the default instance profile.
+        instanceProfileArn: string
+        -- The tags to propagate to all Amazon EC2 resources (instances, volumes, and network interfaces) that the capacity provider creates.
+        propagatedTags: {string : string}
+    end
+
+    -- The source of the launch template configuration for a capacity provider. The launchParameters member specifies the operating system, instance requirements, and other settings used to launch instances.
+    record LaunchTemplateSource
+        -- The parameters that AgentCore uses to create the launch template.
+        launchParameters: LaunchParameters
+    end
+
+    -- The configuration that manages the lifecycle of instances in a capacity provider, including idle timeout and maximum lifetime.
+    record InstanceLifecycleConfiguration
+        -- The number of seconds an instance can remain idle before it is stopped. An instance is considered idle when all of its agents are idle. The default is 900 seconds (15 minutes).
+        idleInstanceTimeout: number
+        -- The maximum lifetime of an instance, in seconds. When an instance reaches this limit, the service terminates it regardless of activity. The default is 28800 seconds (8 hours). The maximum is 1209600 seconds (14 days).
+        maxLifetime: number
+    end
+
+    -- The configuration for the root volume of a capacity provider instance. Specify the amount of free space to guarantee on the root volume. The device name and delete-on-termination settings are fixed and cannot be changed.
+    record RootVolumeConfiguration
+        -- The Amazon EBS volume type. If you do not specify a type, the default is gp3.
+        volumeType: string
+        -- The number of IOPS to provision. For gp3, io1, and io2 volumes, this is the number of IOPS provisioned for the volume. For gp2 volumes, this sets the baseline IOPS performance. It also controls the rate at which the volume accumulates I/O credits for bursting. Supported values: gp3, 3,000–80,000; io1, 100–64,000; io2, 100–256,000.
+        iops: number
+        -- The throughput to provision, in MiB/s. Valid only for gp3 volumes. Valid range: 125–2,000 MiB/s.
+        throughput: number
+        -- Specifies whether to encrypt the volume. Encrypted volumes can be attached only to instances that support Amazon EBS encryption. If you create a volume from a snapshot, you cannot specify an encryption value.
+        encrypted: boolean
+        -- The identifier (key ID, key alias, key ARN, or alias ARN) of the customer managed KMS key to use for Amazon EBS encryption.
+        kmsKeyId: string
+        -- The free space guaranteed on the root volume, in GiB. AgentCore adds the operating system overhead on top of this value. The default is 8 GiB.
+        freeSpaceGiB: number
+    end
+
+    -- The configuration for an Amazon EBS-backed persistent volume. The service creates persistent volumes when a session first launches, and the volumes survive instance termination. The volumes persist until you delete the session.
+    record EbsVolumeConfiguration
+        -- The logical name of the volume. Use this name to reference the volume when you mount it into an agent runtime.
+        name: string
+        -- The size of the volume, in GiB.
+        sizeGiB: number
+        -- The Amazon EBS volume type. If you do not specify a type, the default is gp3.
+        volumeType: string
+        -- The number of IOPS to provision. Valid only for gp3, io1, and io2 volumes.
+        iops: number
+        -- The throughput, in MiB/s. Valid only for gp3 volumes.
+        throughput: number
+        -- Specifies whether to encrypt the volume. If true, the service encrypts the volume with the KMS key that you specify in kmsKeyId, or the default KMS key for Amazon EBS if you do not specify one. The default is true.
+        encrypted: boolean
+        -- The identifier of the KMS key to use for encryption.
+        kmsKeyId: string
+        -- An optional Amazon EBS snapshot ID. If provided, the volume is initialized from this snapshot the first time it is created. On subsequent restarts, the existing volume is used and the snapshot is ignored.
+        snapshotId: string
+    end
+
+    -- The configuration for a persistent volume attached to a capacity provider. This structure defines the storage backing for the persistent volumes used by agents that run on capacity provider instances.
+    record VolumeConfiguration
+        -- The configuration for an Amazon EBS-backed persistent volume.
+        ebsConfiguration: EbsVolumeConfiguration
+    end
+
+    -- The VPC configuration for launching Amazon EC2 instances.
+    record VpcConfiguration
+        -- The IDs of the subnets in which to launch instances. You must specify at least one subnet.
+        subnets: {string}
+        -- The IDs of the security groups to associate with the instances. You must specify at least one security group.
+        securityGroups: {string}
+    end
+
+    -- The configuration for Amazon EC2-based compute, including the launch template source, networking, storage volumes, and instance lifecycle settings.
+    record Ec2Configuration
+        -- The source of the launch template configuration that defines how instances are launched.
+        launchTemplateSource: LaunchTemplateSource
+        -- The VPC configuration for launching instances, including subnets and security groups.
+        vpcConfiguration: VpcConfiguration
+        -- The named persistent Amazon EBS volumes for the capacity provider. A capacity provider can define up to five volumes.
+        volumes: {VolumeConfiguration}
+        -- The lifecycle configuration for instances in the capacity provider.
+        lifecycleConfiguration: InstanceLifecycleConfiguration
+        -- The configuration for the instance root volume. Specify the amount of free space to guarantee and, optionally, the Amazon EBS performance and encryption settings. The device name and delete-on-termination behavior are not configurable.
+        rootVolume: RootVolumeConfiguration
+    end
+
+    -- The compute configuration for a capacity provider. This structure defines the type and settings of the compute resources used to launch instances.
+    record ComputeConfiguration
+        -- The Amazon EC2 compute configuration for the capacity provider.
+        ec2Configuration: Ec2Configuration
+    end
+
+    -- The permissions configuration for a capacity provider. This specifies the IAM role that AgentCore uses to manage the Amazon EC2 instances for the capacity provider on your behalf.
+    record PermissionsConfiguration
+        -- The Amazon Resource Name (ARN) of the IAM role that AgentCore assumes to manage the capacity provider, including launching, tagging, and terminating instances and their network interfaces. We recommend scoping this role to the minimum permissions that your workloads require.
+        capacityProviderOperatorRoleArn: string
+    end
+
+    record CreateCapacityProviderInput
+        -- The name of the capacity provider. The name must be unique within your account.
+        name: string
+        -- An optional description of the capacity provider. If you don't specify a description, the service creates the capacity provider without one.
+        description: string
+        -- The permissions configuration for the capacity provider. This specifies the IAM role that AgentCore uses to manage the Amazon EC2 instances on your behalf.
+        permissionsConfiguration: PermissionsConfiguration
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+        -- A map of tag keys and values to associate with the capacity provider. If you don't specify tags, the capacity provider is created with no tags.
+        tags: {string : string}
+        -- The compute configuration for the capacity provider. This defines the Amazon EC2 compute resources used to launch instances: the operating system, allowed instance types, networking, and storage.
+        computeConfiguration: ComputeConfiguration
+    end
+
+    enum CapacityProviderStatus
+        "CREATING"
+        "CREATE_FAILED"
+        "UPDATING"
+        "UPDATE_FAILED"
+        "READY"
+        "DELETING"
+        "DELETE_FAILED"
+    end
+
+    record CreateCapacityProviderOutput
+        -- The unique identifier of the created capacity provider.
+        capacityProviderId: string
+        -- The Amazon Resource Name (ARN) of the capacity provider.
+        capacityProviderArn: string
+        -- The name of the capacity provider.
+        name: string
+        -- The current status of the capacity provider. For possible values, see CapacityProviderStatus.
+        status: string
+    end
+
+    -- The operation failed because of a conflicting request. Retry the request.
+    record RetryableConflictException
+        message: string
+    end
+
+    record DeleteCapacityProviderInput
+        -- The unique identifier of the capacity provider to delete.
+        capacityProviderId: string
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    record DeleteCapacityProviderOutput
+        -- The unique identifier of the deleted capacity provider.
+        capacityProviderId: string
+        -- The current status of the capacity provider. For possible values, see CapacityProviderStatus.
+        status: string
+    end
+
+    record GetCapacityProviderInput
+        -- The unique identifier of the capacity provider.
+        capacityProviderId: string
+    end
+
+    enum CapacityProviderStatusCode
+        "VALIDATION_ERROR"
+        "QUOTA_EXCEEDED"
+        "THROTTLED"
+        "INTERNAL_SERVER_EXCEPTION"
+    end
+
+    record GetCapacityProviderOutput
+        -- The unique identifier of the capacity provider.
+        capacityProviderId: string
+        -- The Amazon Resource Name (ARN) of the capacity provider.
+        capacityProviderArn: string
+        -- The name of the capacity provider.
+        name: string
+        -- The current status of the capacity provider. For possible values, see CapacityProviderStatus.
+        status: string
+        -- The description of the capacity provider, if one was provided.
+        description: string
+        -- A reason code for a capacity provider that is not in the READY state. Use this code for programmatic error handling.
+        statusCode: string
+        -- A human-readable message that describes why the capacity provider is not in the READY state. Because these messages can change, use statusCode for programmatic error handling.
+        statusReason: string
+        -- The permissions configuration for the capacity provider.
+        permissionsConfiguration: PermissionsConfiguration
+        -- The compute configuration for the capacity provider.
+        computeConfiguration: ComputeConfiguration
+        -- The timestamp when the capacity provider was created.
+        createdAt: number
+        -- The timestamp when the capacity provider was last updated.
+        lastUpdatedAt: number
+    end
+
+    record ListAgentRuntimeVersionsByCapacityProviderInput
+        -- The unique identifier of the capacity provider.
+        capacityProviderId: string
+        -- The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results.
+        maxResults: number
+        -- If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results.
+        nextToken: string
+    end
+
+    record ListAgentRuntimeVersionsByCapacityProviderOutput
+        -- The list of agent runtime versions that are associated with the capacity provider.
+        agentRuntimes: {AgentRuntimeVersionSummary}
+        -- If the total number of results is greater than the maxResults value provided in the request, use this token when making another request in the nextToken field to return the next batch of results.
+        nextToken: string
+    end
+
+    record ListCapacityProvidersInput
+        -- The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results.
+        maxResults: number
+        -- If the total number of results is greater than the maxResults value provided in the request, enter the token returned in the nextToken field in the response in this field to return the next batch of results.
+        nextToken: string
+    end
+
+    -- A summary of a capacity provider, as returned by ListCapacityProviders. Each summary includes the capacity provider identifier, Amazon Resource Name (ARN), name, status, and last-updated timestamp.
+    record CapacityProviderSummary
+        -- The unique identifier of the capacity provider.
+        capacityProviderId: string
+        -- The Amazon Resource Name (ARN) of the capacity provider.
+        capacityProviderArn: string
+        -- The name of the capacity provider.
+        name: string
+        -- The current status of the capacity provider. For possible values, see CapacityProviderStatus.
+        status: string
+        -- The timestamp when the capacity provider was last updated.
+        lastUpdatedAt: number
+    end
+
+    record ListCapacityProvidersOutput
+        -- The list of capacity provider summaries.
+        capacityProviders: {CapacityProviderSummary}
+        -- If the total number of results is greater than the maxResults value provided in the request, use this token when making another request in the nextToken field to return the next batch of results.
+        nextToken: string
+    end
+
+    -- Wrapper for updating an optional Description field with PATCH semantics. When present in an update request, the description is replaced with optionalValue. When absent, the description is left unchanged. To unset the description, include the wrapper with optionalValue not specified.
+    record UpdatedDescription
+        -- Represents an optional value that is used to update the human-readable description of the resource. If not specified, it will clear the current description of the resource.
+        optionalValue: string
+    end
+
+    record UpdateCapacityProviderInput
+        -- The unique identifier of the capacity provider to update.
+        capacityProviderId: string
+        -- The updated description of the capacity provider.
+        description: UpdatedDescription
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+    end
+
+    record UpdateCapacityProviderOutput
+        -- The unique identifier of the capacity provider.
+        capacityProviderId: string
+        -- The Amazon Resource Name (ARN) of the capacity provider.
+        capacityProviderArn: string
+        -- The name of the capacity provider.
+        name: string
+        -- The current status of the capacity provider. For possible values, see CapacityProviderStatus.
+        status: string
+        -- The timestamp when the capacity provider was created.
+        createdAt: number
+        -- The timestamp when the capacity provider was last updated.
+        lastUpdatedAt: number
     end
 
     enum CodeInterpreterNetworkMode
@@ -2291,6 +2690,189 @@ local record M
         updatedAt: number
         -- The status of the evaluator update operation.
         status: string
+    end
+
+    enum Period
+        "second"
+        "minute"
+    end
+
+    -- Rate configuration for a metric (requests or tokens)
+    record RateConfig
+        -- The rate value for the limit. For request limits, this is the number of requests allowed per period. For token limits, this is the number of tokens allowed per period. For connection limits, this is the number of concurrent connections allowed.
+        rate: number
+        period: string
+    end
+
+    -- A single rule entry within a limit, mapping dimension values to rate configurations
+    record LimitEntry
+        -- Map of dimension name to dimension value, matching the parent limit's dimensionKeys.
+        -- Keys must exactly match the dimensionKeys. Values may be "*" as a wildcard.
+        -- "*" may only appear at trailing positions (based on dimensionKeys ordering).
+        dimensions: {string : string}
+        -- Request rate limits (RPS or RPM). Limited to 1 entry for now.
+        requests: {RateConfig}
+        -- Token rate limits (TPM). Limited to 1 entry for now. — P1
+        tokens: {RateConfig}
+        -- Connection rate limits (per second only). Limited to 1 entry for now. — P2
+        connections: {RateConfig}
+    end
+
+    -- A limit definition within a BatchPut request (rateLimitId used for upsert matching)
+    record BatchPutLimitEntry
+        -- Optional — if provided, used for upsert matching against existing limits.
+        rateLimitId: string
+        -- Optional human-readable description for this limit.
+        description: string
+        dimensionKeys: {string}
+        entries: {LimitEntry}
+    end
+
+    record BatchPutGatewayRateLimitsInput
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+        -- Complete set of rate limits for this gateway. Replaces all existing limits atomically.
+        rateLimits: {BatchPutLimitEntry}
+    end
+
+    enum GatewayRateLimitStatus
+        "CREATING"
+        "ACTIVE"
+        "UPDATING"
+        "DELETING"
+    end
+
+    -- Shared fields for GatewayRateLimit responses
+    record GatewayRateLimitDetail
+        rateLimitId: string
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- Optional human-readable description for this limit.
+        description: string
+        dimensionKeys: {string}
+        entries: {LimitEntry}
+        status: string
+        -- The timestamp when the rate limit was created.
+        createdAt: number
+        -- The timestamp when the rate limit was last updated.
+        updatedAt: number
+    end
+
+    record BatchPutGatewayRateLimitsOutput
+        -- The resulting set of rate limits after the batch operation.
+        rateLimits: {GatewayRateLimitDetail}
+    end
+
+    record CreateGatewayRateLimitInput
+        -- The unique identifier of the gateway to create the rate limit for.
+        gatewayIdentifier: string
+        -- A unique, case-sensitive identifier to ensure that the API request completes no more than one time. If you don't specify this field, a value is randomly generated for you. If this token matches a previous request, the service ignores the request, but doesn't return an error. For more information, see Ensuring idempotency.
+        clientToken: string
+        -- Optional customer-defined limit ID. If not provided, system generates one.
+        rateLimitId: string
+        -- Optional human-readable description for this limit.
+        description: string
+        -- Ordered list of dimension names defining the scope of this limit.
+        -- Unique per gateway — no two limits can share the same dimensionKeys.
+        dimensionKeys: {string}
+        -- Rule entries mapping dimension values to rate configurations.
+        entries: {LimitEntry}
+    end
+
+    -- Shared fields for GatewayRateLimit responses
+    record CreateGatewayRateLimitOutput
+        rateLimitId: string
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- Optional human-readable description for this limit.
+        description: string
+        dimensionKeys: {string}
+        entries: {LimitEntry}
+        status: string
+        -- The timestamp when the rate limit was created.
+        createdAt: number
+        -- The timestamp when the rate limit was last updated.
+        updatedAt: number
+    end
+
+    record DeleteGatewayRateLimitInput
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- The unique identifier of the rate limit to delete.
+        rateLimitId: string
+    end
+
+    record DeleteGatewayRateLimitOutput
+        rateLimitId: string
+        status: string
+    end
+
+    record GetGatewayRateLimitInput
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- The unique identifier of the rate limit to retrieve.
+        rateLimitId: string
+    end
+
+    -- Shared fields for GatewayRateLimit responses
+    record GetGatewayRateLimitOutput
+        rateLimitId: string
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- Optional human-readable description for this limit.
+        description: string
+        dimensionKeys: {string}
+        entries: {LimitEntry}
+        status: string
+        -- The timestamp when the rate limit was created.
+        createdAt: number
+        -- The timestamp when the rate limit was last updated.
+        updatedAt: number
+    end
+
+    record ListGatewayRateLimitsInput
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- The maximum number of results to return in the response. If the total number of results is greater than this value, use the token returned in the response in the nextToken field when making another request to return the next batch of results.
+        maxResults: number
+        -- The token to use to retrieve the next page of results. Use the value returned in a previous ListGatewayRateLimits response.
+        nextToken: string
+    end
+
+    record ListGatewayRateLimitsOutput
+        -- The list of rate limits for the gateway.
+        rateLimits: {GatewayRateLimitDetail}
+        -- The token for the next page of results. If this value is absent, there are no more results to retrieve.
+        nextToken: string
+    end
+
+    record UpdateGatewayRateLimitInput
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- The unique identifier of the rate limit to update.
+        rateLimitId: string
+        -- Optional human-readable description for this limit.
+        description: string
+        -- Updated rule entries. key and dimensionKeys are immutable and cannot be changed.
+        entries: {LimitEntry}
+    end
+
+    -- Shared fields for GatewayRateLimit responses
+    record UpdateGatewayRateLimitOutput
+        rateLimitId: string
+        -- The unique identifier of the gateway.
+        gatewayIdentifier: string
+        -- Optional human-readable description for this limit.
+        description: string
+        dimensionKeys: {string}
+        entries: {LimitEntry}
+        status: string
+        -- The timestamp when the rate limit was created.
+        createdAt: number
+        -- The timestamp when the rate limit was last updated.
+        updatedAt: number
     end
 
     enum AuthorizerType
@@ -6519,12 +7101,6 @@ local record M
         policyEngines: {PolicyEngineSummary}
         -- A pagination token that can be used in subsequent ListPolicyEngineSummaries calls to retrieve additional results. This token is only present when there are more results available.
         nextToken: string
-    end
-
-    -- Wrapper for updating an optional Description field with PATCH semantics. When present in an update request, the description is replaced with optionalValue. When absent, the description is left unchanged. To unset the description, include the wrapper with optionalValue not specified.
-    record UpdatedDescription
-        -- Represents an optional value that is used to update the human-readable description of the resource. If not specified, it will clear the current description of the resource.
-        optionalValue: string
     end
 
     record UpdatePolicyEngineInput

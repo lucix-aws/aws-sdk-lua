@@ -1728,6 +1728,12 @@ local record M
         "ml.g7e.12xlarge"
         "ml.g7e.24xlarge"
         "ml.g7e.48xlarge"
+        "ml.g7.2xlarge"
+        "ml.g7.4xlarge"
+        "ml.g7.8xlarge"
+        "ml.g7.12xlarge"
+        "ml.g7.24xlarge"
+        "ml.g7.48xlarge"
     end
 
     -- Defines an instance group for heterogeneous cluster training. When requesting a training job using the CreateTrainingJob API, you can configure multiple instance groups .
@@ -6115,6 +6121,12 @@ local record M
         "ml.g7e.12xlarge"
         "ml.g7e.24xlarge"
         "ml.g7e.48xlarge"
+        "ml.g7.2xlarge"
+        "ml.g7.4xlarge"
+        "ml.g7.8xlarge"
+        "ml.g7.12xlarge"
+        "ml.g7.24xlarge"
+        "ml.g7.48xlarge"
     end
 
     -- Configuration for the cluster used to run model monitoring jobs.
@@ -9953,6 +9965,8 @@ local record M
         EvaluationType: string
         -- The evaluator Amazon Resource Name (ARN) used as reward function or reward prompt.
         EvaluatorArn: string
+        -- The maximum sequence length, in tokens, that the customization job supports. SageMaker uses this value to select a training configuration for the base model that you specify. The parameter supports the following values: 1K 2K 4K 8K 16K 32K 64K 128K If you don't specify a value, SageMaker selects a training configuration based on the other values that you specify. The selection is not restricted to a particular sequence length.
+        SequenceLength: string
     end
 
     -- Contains information about attribute-based access control (ABAC) for a training job. The session chaining configuration uses Amazon Security Token Service (STS) for your training job to request temporary, limited-privilege credentials to tenants. For more information, see Attribute-based access control (ABAC) for multi-tenancy training.

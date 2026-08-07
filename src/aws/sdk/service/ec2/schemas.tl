@@ -32511,6 +32511,9 @@ M.CreateSecondaryNetworkInput = schema.new({
             type = "string",
             name = "Ipv4CidrBlock",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
         NetworkType = schema.new({
             id = id.from(_N, "CreateSecondaryNetworkInput", "NetworkType"),
@@ -91158,6 +91161,12 @@ M.GetSpotPlacementScoresInput = schema.new({
             type = "string",
             name = "NextToken",
             target_id = prelude.String.id,
+        }),
+        IncludeLocalZones = schema.new({
+            id = id.from(_N, "GetSpotPlacementScoresInput", "IncludeLocalZones"),
+            type = "boolean",
+            name = "IncludeLocalZones",
+            target_id = prelude.Boolean.id,
         }),
     },
 })

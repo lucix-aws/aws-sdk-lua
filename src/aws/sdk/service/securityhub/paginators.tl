@@ -346,6 +346,24 @@ function M.items_list_finding_aggregators(client, input)
     })
 end
 
+--- Returns a page iterator for listFreeTrialStatusesV2.
+function M.pages_list_free_trial_statuses_v2(client, input)
+    return paginator.pages(client, "listFreeTrialStatusesV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AccountFreeTrialStatuses",
+    })
+end
+
+--- Returns an item iterator for listFreeTrialStatusesV2.
+function M.items_list_free_trial_statuses_v2(client, input)
+    return paginator.items(client, "listFreeTrialStatusesV2", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "AccountFreeTrialStatuses",
+    })
+end
+
 --- Returns a page iterator for listInvitations.
 function M.pages_list_invitations(client, input)
     return paginator.pages(client, "listInvitations", input, {

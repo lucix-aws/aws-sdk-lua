@@ -396,6 +396,14 @@ local record M
         documents: {DocumentItem}
     end
 
+    -- Defines the net payment due period for the agreement, specifying when payment is due after an invoice is issued.
+    record NetPaymentTerm
+        -- The unique identifier for the term.
+        id: string
+        -- The duration after an invoice is issued within which the payment is due. The duration is represented in the ISO 8601 format (for example, P30D for 30 days or P60D for 60 days).
+        paymentDuePeriod: string
+    end
+
     -- An individual installment of the payment that includes the date and amount of the charge.
     record ScheduleItem
         -- The date that the customer would pay the price defined in this payment schedule term. Invoices are generated on the date provided.
@@ -527,6 +535,8 @@ local record M
         fixedUpfrontPricingTerm: FixedUpfrontPricingTerm
         -- Defines a payment model where sellers can submit variable payment requests up to a maximum charge amount, with configurable approval strategies and expiration timelines.
         variablePaymentTerm: VariablePaymentTerm
+        -- Defines the net payment due period for the agreement, specifying when payment is due after an invoice is issued.
+        netPaymentTerm: NetPaymentTerm
     end
 
     -- The details of the party accepting the agreement terms. This is commonly the buyer for PurchaseAgreement.

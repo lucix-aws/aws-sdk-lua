@@ -68,6 +68,43 @@ local record M
         Email: string
     end
 
+    enum FreeTrialType
+        "SECURITY_HUB_V2"
+        "SECURITY_HUB_V2_MULTI_CLOUD_AZURE"
+    end
+
+    enum FreeTrialStatusValue
+        "ACTIVE"
+        "INACTIVE"
+    end
+
+    -- The free trial period for a Security Hub feature, and whether the trial is currently active.
+    record FreeTrialStatus
+        -- The feature that the free trial period applies to. Valid values:
+        -- SECURITY_HUB_V2 specifies Security Hub.
+        -- SECURITY_HUB_V2_MULTI_CLOUD_AZURE specifies Security Hub coverage for Microsoft Azure resources.
+        FeatureType: string
+        -- Whether the free trial period is currently active. Valid values:
+        -- ACTIVE specifies that the free trial period is ongoing.
+        -- INACTIVE specifies that the free trial period has ended, or that it never started.
+        -- To determine whether a trial has expired, compare ExpiresAt to the current time.
+        Status: string
+        -- The date and time at which the free trial period began.
+        StartedAt: number
+        -- The date and time at which the free trial period ends.
+        ExpiresAt: number
+    end
+
+    -- The free trial status of each Security Hub feature for an account.
+    record AccountFreeTrialStatus
+        -- The Amazon Web Services account identifier that the free trial statuses apply to.
+        AccountId: string
+        -- The date and time at which Security Hub evaluated the free trial statuses for this account. Every status in FreeTrialStatuses reflects this point in time.
+        EvaluatedAt: number
+        -- An array of free trial statuses, one for each feature that has a free trial period for the account. The array is empty if the account has no free trial to report.
+        FreeTrialStatuses: {FreeTrialStatus}
+    end
+
     -- Provided if CallerType is domain. It provides information
     -- about the DNS domain that issued the API call.
     record AwsApiCallActionDomainDetails
@@ -14319,6 +14356,26 @@ local record M
         FindingAggregators: {FindingAggregator}
         -- If there are more results, this is the token to provide in the next call to ListFindingAggregators.
         -- This operation currently only returns a single result.
+        NextToken: string
+    end
+
+    record ListFreeTrialStatusesV2Input
+        -- The Amazon Web Services account identifiers to list free trial status for. You can specify accounts other than your own only if you are a delegated Security Hub administrator.
+        AccountIds: {string}
+        -- The free trial statuses to filter the results by. Valid values:
+        -- ACTIVE returns only features with an ongoing free trial period.
+        -- INACTIVE returns only features whose free trial period has ended, or that never started.
+        Statuses: {string}
+        -- The maximum number of results to return. If you don't specify a value, Security Hub returns up to 100 results.
+        MaxResults: number
+        -- The pagination token to request the next page of results.
+        NextToken: string
+    end
+
+    record ListFreeTrialStatusesV2Output
+        -- An array of free trial statuses, one for each account in scope.
+        AccountFreeTrialStatuses: {AccountFreeTrialStatus}
+        -- The pagination token to use to request the next page of results. If there are no additional results, this value is null.
         NextToken: string
     end
 

@@ -28,6 +28,7 @@ local record Client
     createPaymentSession: function(Client, types.CreatePaymentSessionInput, ? base_client.InvokeOptions): async.Operation<types.CreatePaymentSessionOutput>
     deleteABTest: function(Client, types.DeleteABTestInput, ? base_client.InvokeOptions): async.Operation<types.DeleteABTestOutput>
     deleteBatchEvaluation: function(Client, types.DeleteBatchEvaluationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBatchEvaluationOutput>
+    deleteCapacityProviderSession: function(Client, types.DeleteCapacityProviderSessionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityProviderSessionOutput>
     deleteEvent: function(Client, types.DeleteEventInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEventOutput>
     deleteMemoryRecord: function(Client, types.DeleteMemoryRecordInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMemoryRecordOutput>
     deletePaymentInstrument: function(Client, types.DeletePaymentInstrumentInput, ? base_client.InvokeOptions): async.Operation<types.DeletePaymentInstrumentOutput>
@@ -165,6 +166,10 @@ end
 
 function C:deleteBatchEvaluation(input: types.DeleteBatchEvaluationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBatchEvaluationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBatchEvaluation as schema.OperationSchema, input, options) as async.Operation<types.DeleteBatchEvaluationOutput>
+end
+
+function C:deleteCapacityProviderSession(input: types.DeleteCapacityProviderSessionInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapacityProviderSessionOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCapacityProviderSession as schema.OperationSchema, input, options) as async.Operation<types.DeleteCapacityProviderSessionOutput>
 end
 
 function C:deleteEvent(input: types.DeleteEventInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteEventOutput>

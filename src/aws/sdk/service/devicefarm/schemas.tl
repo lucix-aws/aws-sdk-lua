@@ -91,6 +91,8 @@ M.MaxSlotMap = schema.new({ type = "map", map_key = prelude.String, map_value = 
 
 M.TestParameters = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.InsightsTypes = schema.new({ type = "list", list_member = prelude.String })
+
 M.UniqueProblems = schema.new({ type = "list", list_member = M.UniqueProblem })
 
 M.IosPaths = schema.new({ type = "list", list_member = prelude.String })
@@ -2370,6 +2372,13 @@ M.ScheduleRunConfiguration = schema.new({
             name = "executionRoleArn",
             target_id = prelude.String.id,
         }),
+        insightsTypes = schema.new({
+            id = id.from(_N, "ScheduleRunConfiguration", "insightsTypes"),
+            type = "list",
+            name = "insightsTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
     },
 })
 
@@ -2576,6 +2585,113 @@ M.GetJobInput = schema.new({
     },
 })
 
+M.TestReportMetrics = schema.new({
+    id = id.from(_N, "TestReportMetrics"),
+    type = "structure",
+    members = {
+        testsTotal = schema.new({
+            id = id.from(_N, "TestReportMetrics", "testsTotal"),
+            type = "integer",
+            name = "testsTotal",
+            target_id = prelude.Integer.id,
+        }),
+        testsPassed = schema.new({
+            id = id.from(_N, "TestReportMetrics", "testsPassed"),
+            type = "integer",
+            name = "testsPassed",
+            target_id = prelude.Integer.id,
+        }),
+        testsFailed = schema.new({
+            id = id.from(_N, "TestReportMetrics", "testsFailed"),
+            type = "integer",
+            name = "testsFailed",
+            target_id = prelude.Integer.id,
+        }),
+        testsSkipped = schema.new({
+            id = id.from(_N, "TestReportMetrics", "testsSkipped"),
+            type = "integer",
+            name = "testsSkipped",
+            target_id = prelude.Integer.id,
+        }),
+        testsErrored = schema.new({
+            id = id.from(_N, "TestReportMetrics", "testsErrored"),
+            type = "integer",
+            name = "testsErrored",
+            target_id = prelude.Integer.id,
+        }),
+        testsOther = schema.new({
+            id = id.from(_N, "TestReportMetrics", "testsOther"),
+            type = "integer",
+            name = "testsOther",
+            target_id = prelude.Integer.id,
+        }),
+        testsPassedPercentage = schema.new({
+            id = id.from(_N, "TestReportMetrics", "testsPassedPercentage"),
+            type = "double",
+            name = "testsPassedPercentage",
+            target_id = prelude.Double.id,
+        }),
+        totalTestExecutionDurationSeconds = schema.new({
+            id = id.from(_N, "TestReportMetrics", "totalTestExecutionDurationSeconds"),
+            type = "double",
+            name = "totalTestExecutionDurationSeconds",
+            target_id = prelude.Double.id,
+        }),
+        medianTestExecutionDurationSeconds = schema.new({
+            id = id.from(_N, "TestReportMetrics", "medianTestExecutionDurationSeconds"),
+            type = "double",
+            name = "medianTestExecutionDurationSeconds",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.TestReport = schema.new({
+    id = id.from(_N, "TestReport"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "TestReport", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        metrics = schema.new({
+            id = id.from(_N, "TestReport", "metrics"),
+            type = "structure",
+            name = "metrics",
+            target_id = id.from(_N, "TestReportMetrics"),
+            target = M.TestReportMetrics,
+        }),
+        testDetailsUrl = schema.new({
+            id = id.from(_N, "TestReport", "testDetailsUrl"),
+            type = "string",
+            name = "testDetailsUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.JobInsights = schema.new({
+    id = id.from(_N, "JobInsights"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "JobInsights", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        testReport = schema.new({
+            id = id.from(_N, "JobInsights", "testReport"),
+            type = "structure",
+            name = "testReport",
+            target_id = id.from(_N, "TestReport"),
+            target = M.TestReport,
+        }),
+    },
+})
+
 M.Job = schema.new({
     id = id.from(_N, "Job"),
     type = "structure",
@@ -2672,6 +2788,13 @@ M.Job = schema.new({
             type = "boolean",
             name = "videoCapture",
             target_id = prelude.Boolean.id,
+        }),
+        insights = schema.new({
+            id = id.from(_N, "Job", "insights"),
+            type = "structure",
+            name = "insights",
+            target_id = id.from(_N, "JobInsights"),
+            target = M.JobInsights,
         }),
     },
 })
@@ -3024,6 +3147,119 @@ M.DeviceSelectionResult = schema.new({
     },
 })
 
+M.JobReportMetrics = schema.new({
+    id = id.from(_N, "JobReportMetrics"),
+    type = "structure",
+    members = {
+        jobsTotal = schema.new({
+            id = id.from(_N, "JobReportMetrics", "jobsTotal"),
+            type = "integer",
+            name = "jobsTotal",
+            target_id = prelude.Integer.id,
+        }),
+        jobsPassed = schema.new({
+            id = id.from(_N, "JobReportMetrics", "jobsPassed"),
+            type = "integer",
+            name = "jobsPassed",
+            target_id = prelude.Integer.id,
+        }),
+        jobsFailed = schema.new({
+            id = id.from(_N, "JobReportMetrics", "jobsFailed"),
+            type = "integer",
+            name = "jobsFailed",
+            target_id = prelude.Integer.id,
+        }),
+        jobsSkipped = schema.new({
+            id = id.from(_N, "JobReportMetrics", "jobsSkipped"),
+            type = "integer",
+            name = "jobsSkipped",
+            target_id = prelude.Integer.id,
+        }),
+        jobsErrored = schema.new({
+            id = id.from(_N, "JobReportMetrics", "jobsErrored"),
+            type = "integer",
+            name = "jobsErrored",
+            target_id = prelude.Integer.id,
+        }),
+        jobsStopped = schema.new({
+            id = id.from(_N, "JobReportMetrics", "jobsStopped"),
+            type = "integer",
+            name = "jobsStopped",
+            target_id = prelude.Integer.id,
+        }),
+        jobsPassedPercentage = schema.new({
+            id = id.from(_N, "JobReportMetrics", "jobsPassedPercentage"),
+            type = "double",
+            name = "jobsPassedPercentage",
+            target_id = prelude.Double.id,
+        }),
+        totalJobExecutionDurationSeconds = schema.new({
+            id = id.from(_N, "JobReportMetrics", "totalJobExecutionDurationSeconds"),
+            type = "double",
+            name = "totalJobExecutionDurationSeconds",
+            target_id = prelude.Double.id,
+        }),
+        averageJobExecutionDurationSeconds = schema.new({
+            id = id.from(_N, "JobReportMetrics", "averageJobExecutionDurationSeconds"),
+            type = "double",
+            name = "averageJobExecutionDurationSeconds",
+            target_id = prelude.Double.id,
+        }),
+        medianJobExecutionDurationSeconds = schema.new({
+            id = id.from(_N, "JobReportMetrics", "medianJobExecutionDurationSeconds"),
+            type = "double",
+            name = "medianJobExecutionDurationSeconds",
+            target_id = prelude.Double.id,
+        }),
+    },
+})
+
+M.JobReport = schema.new({
+    id = id.from(_N, "JobReport"),
+    type = "structure",
+    members = {
+        message = schema.new({
+            id = id.from(_N, "JobReport", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+        metrics = schema.new({
+            id = id.from(_N, "JobReport", "metrics"),
+            type = "structure",
+            name = "metrics",
+            target_id = id.from(_N, "JobReportMetrics"),
+            target = M.JobReportMetrics,
+        }),
+        jobDetailsUrl = schema.new({
+            id = id.from(_N, "JobReport", "jobDetailsUrl"),
+            type = "string",
+            name = "jobDetailsUrl",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.RunInsights = schema.new({
+    id = id.from(_N, "RunInsights"),
+    type = "structure",
+    members = {
+        status = schema.new({
+            id = id.from(_N, "RunInsights", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+        }),
+        jobReport = schema.new({
+            id = id.from(_N, "RunInsights", "jobReport"),
+            type = "structure",
+            name = "jobReport",
+            target_id = id.from(_N, "JobReport"),
+            target = M.JobReport,
+        }),
+    },
+})
+
 M.Run = schema.new({
     id = id.from(_N, "Run"),
     type = "structure",
@@ -3247,6 +3483,20 @@ M.Run = schema.new({
             name = "environmentVariables",
             target_id = prelude.Document.id,
             list_member = M.EnvironmentVariable,
+        }),
+        insightsTypes = schema.new({
+            id = id.from(_N, "Run", "insightsTypes"),
+            type = "list",
+            name = "insightsTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        insights = schema.new({
+            id = id.from(_N, "Run", "insights"),
+            type = "structure",
+            name = "insights",
+            target_id = id.from(_N, "RunInsights"),
+            target = M.RunInsights,
         }),
     },
 })

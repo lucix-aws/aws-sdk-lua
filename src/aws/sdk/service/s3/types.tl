@@ -353,6 +353,7 @@ local record M
     enum ServerSideEncryption
         "AES256"
         "aws:fsx"
+        "aws:backup"
         "aws:kms"
         "aws:kms:dsse"
     end
@@ -502,6 +503,8 @@ local record M
         "EXPRESS_ONEZONE"
         "FSX_OPENZFS"
         "FSX_ONTAP"
+        "AWS_BACKUP_WARM"
+        "AWS_BACKUP_LOW_COST_WARM"
     end
 
     enum TaggingDirective
@@ -6146,6 +6149,8 @@ local record M
         "EXPRESS_ONEZONE"
         "FSX_OPENZFS"
         "FSX_ONTAP"
+        "AWS_BACKUP_WARM"
+        "AWS_BACKUP_LOW_COST_WARM"
     end
 
     -- An object consists of data and its descriptive metadata.

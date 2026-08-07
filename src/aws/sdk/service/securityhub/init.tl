@@ -110,6 +110,7 @@ local record Client
     listConnectorsV2: function(Client, types.ListConnectorsV2Input, ? base_client.InvokeOptions): async.Operation<types.ListConnectorsV2Output>
     listEnabledProductsForImport: function(Client, types.ListEnabledProductsForImportInput, ? base_client.InvokeOptions): async.Operation<types.ListEnabledProductsForImportOutput>
     listFindingAggregators: function(Client, types.ListFindingAggregatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListFindingAggregatorsOutput>
+    listFreeTrialStatusesV2: function(Client, types.ListFreeTrialStatusesV2Input, ? base_client.InvokeOptions): async.Operation<types.ListFreeTrialStatusesV2Output>
     listInvitations: function(Client, types.ListInvitationsInput, ? base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>
     listMembers: function(Client, types.ListMembersInput, ? base_client.InvokeOptions): async.Operation<types.ListMembersOutput>
     listOrganizationAdminAccounts: function(Client, types.ListOrganizationAdminAccountsInput, ? base_client.InvokeOptions): async.Operation<types.ListOrganizationAdminAccountsOutput>
@@ -544,6 +545,10 @@ end
 
 function C:listFindingAggregators(input: types.ListFindingAggregatorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListFindingAggregatorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFindingAggregators as schema.OperationSchema, input, options) as async.Operation<types.ListFindingAggregatorsOutput>
+end
+
+function C:listFreeTrialStatusesV2(input: types.ListFreeTrialStatusesV2Input, options?: base_client.InvokeOptions): async.Operation<types.ListFreeTrialStatusesV2Output>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListFreeTrialStatusesV2 as schema.OperationSchema, input, options) as async.Operation<types.ListFreeTrialStatusesV2Output>
 end
 
 function C:listInvitations(input: types.ListInvitationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListInvitationsOutput>

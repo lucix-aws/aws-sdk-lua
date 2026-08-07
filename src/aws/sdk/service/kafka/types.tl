@@ -295,6 +295,16 @@ local record M
         Prefix: string
     end
 
+    -- The authorizer logs configuration for this MSK cluster.
+    record AuthorizerLogs
+        -- Details of the CloudWatch Logs destination for authorizer logs.
+        CloudWatchLogs: CloudWatchLogs
+        -- Details of the Kinesis Data Firehose delivery stream that is the destination for authorizer logs.
+        Firehose: Firehose
+        -- Details of the Amazon S3 destination for authorizer logs.
+        S3: S3
+    end
+
     record BrokerLogs
         CloudWatchLogs: CloudWatchLogs
         Firehose: Firehose
@@ -302,6 +312,8 @@ local record M
     end
 
     record LoggingInfo
+        -- You can configure your MSK cluster to send authorizer logs to different destination types.
+        AuthorizerLogs: AuthorizerLogs
         BrokerLogs: BrokerLogs
     end
 

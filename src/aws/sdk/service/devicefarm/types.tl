@@ -1118,6 +1118,10 @@ local record M
         devicePool: DevicePool
     end
 
+    enum InsightsType
+        "TEST_REPORT"
+    end
+
     -- Represents a latitude and longitude pair, expressed in geographic coordinate system degrees (for
     -- example, 47.6204, -122.3491).
     -- Elevation is currently not supported.
@@ -1174,6 +1178,11 @@ local record M
         environmentVariables: {EnvironmentVariable}
         -- An IAM role to be assumed by the test host for the run.
         executionRoleArn: string
+        -- The types of insights to generate for a run. Specify one or more values to opt in to
+        -- insights generation when scheduling a run.
+        -- Insights are currently supported for custom mode runs with Instrumentation, Appium Java TestNG,
+        -- and XCTest UI test types.
+        insightsTypes: {string}
     end
 
     enum TestType
@@ -1311,6 +1320,54 @@ local record M
         arn: string
     end
 
+    enum ReportStatus
+        "PENDING"
+        "RUNNING"
+        "COMPLETED"
+        "SKIPPED"
+        "ERRORED"
+    end
+
+    -- Contains aggregated metrics across all tests in a job.
+    record TestReportMetrics
+        -- The total number of tests in the job.
+        testsTotal: number
+        -- The number of tests that passed.
+        testsPassed: number
+        -- The number of tests that failed.
+        testsFailed: number
+        -- The number of tests that were skipped.
+        testsSkipped: number
+        -- The number of tests that errored.
+        testsErrored: number
+        -- The number of tests with other result types.
+        testsOther: number
+        -- The percentage of tests that passed.
+        testsPassedPercentage: number
+        -- The total execution duration of all tests in the job, in seconds.
+        totalTestExecutionDurationSeconds: number
+        -- The median execution duration of tests in the job, in seconds.
+        medianTestExecutionDurationSeconds: number
+    end
+
+    -- Contains aggregated test-level metrics for a job.
+    record TestReport
+        -- A message associated with the test report.
+        message: string
+        -- The aggregated test-level metrics for the job.
+        metrics: TestReportMetrics
+        -- A URL to the detailed test results.
+        testDetailsUrl: string
+    end
+
+    -- Contains insights for a job, including report status, and test-level aggregated metrics such as per test execution time and median test execution time.
+    record JobInsights
+        -- The status of the insights report for the job.
+        status: string
+        -- The test-level aggregated report for the job.
+        testReport: TestReport
+    end
+
     -- Represents a device.
     record Job
         -- The job's ARN.
@@ -1359,6 +1416,8 @@ local record M
         videoEndpoint: string
         -- This value is set to true if video capture is enabled. Otherwise, it is set to false.
         videoCapture: boolean
+        -- The insights for the job, including the report status and test-level metrics. This field contains data only if you specified insightsTypes when you scheduled the run.
+        insights: JobInsights
     end
 
     -- Represents the result of a get job request.
@@ -1591,6 +1650,48 @@ local record M
         maxDevices: number
     end
 
+    -- Contains aggregated metrics across all jobs in a run.
+    record JobReportMetrics
+        -- The total number of jobs in the run.
+        jobsTotal: number
+        -- The number of jobs that passed.
+        jobsPassed: number
+        -- The number of jobs that failed.
+        jobsFailed: number
+        -- The number of jobs that were skipped.
+        jobsSkipped: number
+        -- The number of jobs that errored.
+        jobsErrored: number
+        -- The number of jobs that were stopped.
+        jobsStopped: number
+        -- The percentage of jobs that passed.
+        jobsPassedPercentage: number
+        -- The total execution duration of all jobs in the run, in seconds.
+        totalJobExecutionDurationSeconds: number
+        -- The average execution duration of jobs in the run, in seconds.
+        averageJobExecutionDurationSeconds: number
+        -- The median execution duration of jobs in the run, in seconds.
+        medianJobExecutionDurationSeconds: number
+    end
+
+    -- Contains aggregated job-level metrics for a run.
+    record JobReport
+        -- A message associated with the job report.
+        message: string
+        -- The aggregated job-level metrics for the run.
+        metrics: JobReportMetrics
+        -- A URL to the detailed job results.
+        jobDetailsUrl: string
+    end
+
+    -- Contains insights for a run, including report status, and job-level aggregated metrics such as per job execution time and median job execution time.
+    record RunInsights
+        -- The status of the insights report for the run.
+        status: string
+        -- The job-level aggregated report for the run.
+        jobReport: JobReport
+    end
+
     enum ExecutionResultCode
         "PARSING_FAILED"
         "VPC_ENDPOINT_SETUP_FAILED"
@@ -1700,6 +1801,10 @@ local record M
         executionRoleArn: string
         -- Environment variables associated with the run.
         environmentVariables: {EnvironmentVariable}
+        -- The types of insights requested for the run.
+        insightsTypes: {string}
+        -- The insights for the run, including the report status and job-level metrics. This field contains data only if you specified insightsTypes when you scheduled the run.
+        insights: RunInsights
     end
 
     -- Represents the result of a get run request.

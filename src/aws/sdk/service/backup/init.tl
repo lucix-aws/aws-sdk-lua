@@ -20,6 +20,7 @@ local record Client
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     associateBackupVaultMpaApprovalTeam: function(Client, types.AssociateBackupVaultMpaApprovalTeamInput, ? base_client.InvokeOptions): async.Operation<types.AssociateBackupVaultMpaApprovalTeamOutput>
     cancelLegalHold: function(Client, types.CancelLegalHoldInput, ? base_client.InvokeOptions): async.Operation<types.CancelLegalHoldOutput>
+    createBackupAccessPoint: function(Client, types.CreateBackupAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupAccessPointOutput>
     createBackupPlan: function(Client, types.CreateBackupPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupPlanOutput>
     createBackupSelection: function(Client, types.CreateBackupSelectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupSelectionOutput>
     createBackupVault: function(Client, types.CreateBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.CreateBackupVaultOutput>
@@ -31,6 +32,7 @@ local record Client
     createRestoreTestingPlan: function(Client, types.CreateRestoreTestingPlanInput, ? base_client.InvokeOptions): async.Operation<types.CreateRestoreTestingPlanOutput>
     createRestoreTestingSelection: function(Client, types.CreateRestoreTestingSelectionInput, ? base_client.InvokeOptions): async.Operation<types.CreateRestoreTestingSelectionOutput>
     createTieringConfiguration: function(Client, types.CreateTieringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.CreateTieringConfigurationOutput>
+    deleteBackupAccessPoint: function(Client, types.DeleteBackupAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupAccessPointOutput>
     deleteBackupPlan: function(Client, types.DeleteBackupPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupPlanOutput>
     deleteBackupSelection: function(Client, types.DeleteBackupSelectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupSelectionOutput>
     deleteBackupVault: function(Client, types.DeleteBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBackupVaultOutput>
@@ -43,6 +45,7 @@ local record Client
     deleteRestoreTestingPlan: function(Client, types.DeleteRestoreTestingPlanInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRestoreTestingPlanOutput>
     deleteRestoreTestingSelection: function(Client, types.DeleteRestoreTestingSelectionInput, ? base_client.InvokeOptions): async.Operation<types.DeleteRestoreTestingSelectionOutput>
     deleteTieringConfiguration: function(Client, types.DeleteTieringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteTieringConfigurationOutput>
+    describeBackupAccessPoint: function(Client, types.DescribeBackupAccessPointInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupAccessPointOutput>
     describeBackupJob: function(Client, types.DescribeBackupJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupJobOutput>
     describeBackupVault: function(Client, types.DescribeBackupVaultInput, ? base_client.InvokeOptions): async.Operation<types.DescribeBackupVaultOutput>
     describeCopyJob: function(Client, types.DescribeCopyJobInput, ? base_client.InvokeOptions): async.Operation<types.DescribeCopyJobOutput>
@@ -75,6 +78,9 @@ local record Client
     getRestoreTestingSelection: function(Client, types.GetRestoreTestingSelectionInput, ? base_client.InvokeOptions): async.Operation<types.GetRestoreTestingSelectionOutput>
     getSupportedResourceTypes: function(Client, types.GetSupportedResourceTypesInput, ? base_client.InvokeOptions): async.Operation<types.GetSupportedResourceTypesOutput>
     getTieringConfiguration: function(Client, types.GetTieringConfigurationInput, ? base_client.InvokeOptions): async.Operation<types.GetTieringConfigurationOutput>
+    listBackupAccessPoints: function(Client, types.ListBackupAccessPointsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupAccessPointsOutput>
+    listBackupAccessPointsByRecoveryPoint: function(Client, types.ListBackupAccessPointsByRecoveryPointInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupAccessPointsByRecoveryPointOutput>
+    listBackupAccessPointsByResource: function(Client, types.ListBackupAccessPointsByResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupAccessPointsByResourceOutput>
     listBackupJobs: function(Client, types.ListBackupJobsInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupJobsOutput>
     listBackupJobSummaries: function(Client, types.ListBackupJobSummariesInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupJobSummariesOutput>
     listBackupPlans: function(Client, types.ListBackupPlansInput, ? base_client.InvokeOptions): async.Operation<types.ListBackupPlansOutput>
@@ -179,6 +185,10 @@ function C:cancelLegalHold(input: types.CancelLegalHoldInput, options?: base_cli
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CancelLegalHold as schema.OperationSchema, input, options) as async.Operation<types.CancelLegalHoldOutput>
 end
 
+function C:createBackupAccessPoint(input: types.CreateBackupAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackupAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackupAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.CreateBackupAccessPointOutput>
+end
+
 function C:createBackupPlan(input: types.CreateBackupPlanInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBackupPlanOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBackupPlan as schema.OperationSchema, input, options) as async.Operation<types.CreateBackupPlanOutput>
 end
@@ -221,6 +231,10 @@ end
 
 function C:createTieringConfiguration(input: types.CreateTieringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateTieringConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateTieringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.CreateTieringConfigurationOutput>
+end
+
+function C:deleteBackupAccessPoint(input: types.DeleteBackupAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBackupAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.DeleteBackupAccessPointOutput>
 end
 
 function C:deleteBackupPlan(input: types.DeleteBackupPlanInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteBackupPlanOutput>
@@ -269,6 +283,10 @@ end
 
 function C:deleteTieringConfiguration(input: types.DeleteTieringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteTieringConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteTieringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.DeleteTieringConfigurationOutput>
+end
+
+function C:describeBackupAccessPoint(input: types.DescribeBackupAccessPointInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBackupAccessPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeBackupAccessPoint as schema.OperationSchema, input, options) as async.Operation<types.DescribeBackupAccessPointOutput>
 end
 
 function C:describeBackupJob(input: types.DescribeBackupJobInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeBackupJobOutput>
@@ -397,6 +415,18 @@ end
 
 function C:getTieringConfiguration(input: types.GetTieringConfigurationInput, options?: base_client.InvokeOptions): async.Operation<types.GetTieringConfigurationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetTieringConfiguration as schema.OperationSchema, input, options) as async.Operation<types.GetTieringConfigurationOutput>
+end
+
+function C:listBackupAccessPoints(input: types.ListBackupAccessPointsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupAccessPointsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupAccessPoints as schema.OperationSchema, input, options) as async.Operation<types.ListBackupAccessPointsOutput>
+end
+
+function C:listBackupAccessPointsByRecoveryPoint(input: types.ListBackupAccessPointsByRecoveryPointInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupAccessPointsByRecoveryPointOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupAccessPointsByRecoveryPoint as schema.OperationSchema, input, options) as async.Operation<types.ListBackupAccessPointsByRecoveryPointOutput>
+end
+
+function C:listBackupAccessPointsByResource(input: types.ListBackupAccessPointsByResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupAccessPointsByResourceOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBackupAccessPointsByResource as schema.OperationSchema, input, options) as async.Operation<types.ListBackupAccessPointsByResourceOutput>
 end
 
 function C:listBackupJobs(input: types.ListBackupJobsInput, options?: base_client.InvokeOptions): async.Operation<types.ListBackupJobsOutput>

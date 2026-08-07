@@ -31,9 +31,9 @@ M.SellerEngagementList = schema.new({ type = "list", list_member = M.SellerEngag
 
 M.UseCaseList = schema.new({ type = "list", list_member = M.UseCaseEntry })
 
-M.PurchaseOptionBadgeList = schema.new({ type = "list", list_member = M.PurchaseOptionBadge })
-
 M.OfferAssociatedEntityList = schema.new({ type = "list", list_member = M.OfferAssociatedEntity })
+
+M.PurchaseOptionBadgeList = schema.new({ type = "list", list_member = M.PurchaseOptionBadge })
 
 M.OfferSetAssociatedEntityList = schema.new({ type = "list", list_member = M.OfferSetAssociatedEntity })
 
@@ -1245,15 +1245,6 @@ M.GetOfferOutput = schema.new({
             name = "offerName",
             target_id = prelude.String.id,
         }),
-        agreementProposalId = schema.new({
-            id = id.from(_N, "GetOfferOutput", "agreementProposalId"),
-            type = "string",
-            name = "agreementProposalId",
-            target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
         expirationTime = schema.new({
             id = id.from(_N, "GetOfferOutput", "expirationTime"),
             type = "timestamp",
@@ -1272,6 +1263,25 @@ M.GetOfferOutput = schema.new({
             name = "sellerOfRecord",
             target_id = id.from(_N, "SellerInformation"),
             target = M.SellerInformation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        associatedEntities = schema.new({
+            id = id.from(_N, "GetOfferOutput", "associatedEntities"),
+            type = "list",
+            name = "associatedEntities",
+            target_id = prelude.Document.id,
+            list_member = M.OfferAssociatedEntity,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agreementProposalId = schema.new({
+            id = id.from(_N, "GetOfferOutput", "agreementProposalId"),
+            type = "string",
+            name = "agreementProposalId",
+            target_id = prelude.String.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1298,16 +1308,6 @@ M.GetOfferOutput = schema.new({
             name = "badges",
             target_id = prelude.Document.id,
             list_member = M.PurchaseOptionBadge,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        associatedEntities = schema.new({
-            id = id.from(_N, "GetOfferOutput", "associatedEntities"),
-            type = "list",
-            name = "associatedEntities",
-            target_id = prelude.Document.id,
-            list_member = M.OfferAssociatedEntity,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -1927,6 +1927,40 @@ M.LegalTerm = schema.new({
     },
 })
 
+M.NetPaymentTerm = schema.new({
+    id = id.from(_N, "NetPaymentTerm"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "NetPaymentTerm", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        type = schema.new({
+            id = id.from(_N, "NetPaymentTerm", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        paymentDuePeriod = schema.new({
+            id = id.from(_N, "NetPaymentTerm", "paymentDuePeriod"),
+            type = "string",
+            name = "paymentDuePeriod",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ScheduleItem = schema.new({
     id = id.from(_N, "ScheduleItem"),
     type = "structure",
@@ -2342,6 +2376,13 @@ M.OfferTerm = schema.new({
             target_id = id.from(_N, "VariablePaymentTerm"),
             target = M.VariablePaymentTerm,
         }),
+        netPaymentTerm = schema.new({
+            id = id.from(_N, "OfferTerm", "netPaymentTerm"),
+            type = "structure",
+            name = "netPaymentTerm",
+            target_id = id.from(_N, "NetPaymentTerm"),
+            target = M.NetPaymentTerm,
+        }),
     },
 })
 
@@ -2415,6 +2456,16 @@ M.GetProductOutput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        manufacturer = schema.new({
+            id = id.from(_N, "GetProductOutput", "manufacturer"),
+            type = "structure",
+            name = "manufacturer",
+            target_id = id.from(_N, "SellerInformation"),
+            target = M.SellerInformation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
         deployedOnAws = schema.new({
             id = id.from(_N, "GetProductOutput", "deployedOnAws"),
             type = "string",
@@ -2438,16 +2489,6 @@ M.GetProductOutput = schema.new({
             type = "string",
             name = "longDescription",
             target_id = prelude.String.id,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        manufacturer = schema.new({
-            id = id.from(_N, "GetProductOutput", "manufacturer"),
-            type = "structure",
-            name = "manufacturer",
-            target_id = id.from(_N, "SellerInformation"),
-            target = M.SellerInformation,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -3853,6 +3894,16 @@ M.ListingSummary = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        fulfillmentOptionSummaries = schema.new({
+            id = id.from(_N, "ListingSummary", "fulfillmentOptionSummaries"),
+            type = "list",
+            name = "fulfillmentOptionSummaries",
+            target_id = prelude.Document.id,
+            list_member = M.FulfillmentOptionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
         catalog = schema.new({
             id = id.from(_N, "ListingSummary", "catalog"),
             type = "string",
@@ -3886,16 +3937,6 @@ M.ListingSummary = schema.new({
             name = "categories",
             target_id = prelude.Document.id,
             list_member = M.Category,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
-        }),
-        fulfillmentOptionSummaries = schema.new({
-            id = id.from(_N, "ListingSummary", "fulfillmentOptionSummaries"),
-            type = "list",
-            name = "fulfillmentOptionSummaries",
-            target_id = prelude.Document.id,
-            list_member = M.FulfillmentOptionSummary,
             traits = {
                 [traits.REQUIRED] = {},
             },

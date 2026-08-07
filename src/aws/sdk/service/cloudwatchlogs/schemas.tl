@@ -41,6 +41,8 @@ M.ExportTasks = schema.new({ type = "list", list_member = M.ExportTask })
 
 M.DescribeFieldIndexesLogGroupIdentifiers = schema.new({ type = "list", list_member = prelude.String })
 
+M.IndexCategories = schema.new({ type = "list", list_member = prelude.String })
+
 M.FieldIndexes = schema.new({ type = "list", list_member = M.FieldIndex })
 
 M.ImportStatusList = schema.new({ type = "list", list_member = prelude.String })
@@ -3281,6 +3283,13 @@ M.DescribeFieldIndexesInput = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        indexCategories = schema.new({
+            id = id.from(_N, "DescribeFieldIndexesInput", "indexCategories"),
+            type = "list",
+            name = "indexCategories",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
         nextToken = schema.new({
             id = id.from(_N, "DescribeFieldIndexesInput", "nextToken"),
             type = "string",
@@ -3328,6 +3337,12 @@ M.FieldIndex = schema.new({
             id = id.from(_N, "FieldIndex", "type"),
             type = "string",
             name = "type",
+            target_id = prelude.String.id,
+        }),
+        indexCategory = schema.new({
+            id = id.from(_N, "FieldIndex", "indexCategory"),
+            type = "string",
+            name = "indexCategory",
             target_id = prelude.String.id,
         }),
     },

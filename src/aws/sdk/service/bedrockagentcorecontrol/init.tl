@@ -19,17 +19,20 @@ local record Client
     config: base_client.ClientConfig
     invokeOperation: function(Client, schema.ServiceSchema, schema.OperationSchema, {string:any}, base_client.InvokeOptions): async.Operation<any>
     addDatasetExamples: function(Client, types.AddDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.AddDatasetExamplesOutput>
+    batchPutGatewayRateLimits: function(Client, types.BatchPutGatewayRateLimitsInput, ? base_client.InvokeOptions): async.Operation<types.BatchPutGatewayRateLimitsOutput>
     createAgentRuntime: function(Client, types.CreateAgentRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentRuntimeOutput>
     createAgentRuntimeEndpoint: function(Client, types.CreateAgentRuntimeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.CreateAgentRuntimeEndpointOutput>
     createApiKeyCredentialProvider: function(Client, types.CreateApiKeyCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateApiKeyCredentialProviderOutput>
     createBrowser: function(Client, types.CreateBrowserInput, ? base_client.InvokeOptions): async.Operation<types.CreateBrowserOutput>
     createBrowserProfile: function(Client, types.CreateBrowserProfileInput, ? base_client.InvokeOptions): async.Operation<types.CreateBrowserProfileOutput>
+    createCapacityProvider: function(Client, types.CreateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>
     createCodeInterpreter: function(Client, types.CreateCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.CreateCodeInterpreterOutput>
     createConfigurationBundle: function(Client, types.CreateConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.CreateConfigurationBundleOutput>
     createDataset: function(Client, types.CreateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetOutput>
     createDatasetVersion: function(Client, types.CreateDatasetVersionInput, ? base_client.InvokeOptions): async.Operation<types.CreateDatasetVersionOutput>
     createEvaluator: function(Client, types.CreateEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.CreateEvaluatorOutput>
     createGateway: function(Client, types.CreateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
+    createGatewayRateLimit: function(Client, types.CreateGatewayRateLimitInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayRateLimitOutput>
     createGatewayRule: function(Client, types.CreateGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayRuleOutput>
     createGatewayTarget: function(Client, types.CreateGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateGatewayTargetOutput>
     createHarness: function(Client, types.CreateHarnessInput, ? base_client.InvokeOptions): async.Operation<types.CreateHarnessOutput>
@@ -50,12 +53,14 @@ local record Client
     deleteApiKeyCredentialProvider: function(Client, types.DeleteApiKeyCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteApiKeyCredentialProviderOutput>
     deleteBrowser: function(Client, types.DeleteBrowserInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrowserOutput>
     deleteBrowserProfile: function(Client, types.DeleteBrowserProfileInput, ? base_client.InvokeOptions): async.Operation<types.DeleteBrowserProfileOutput>
+    deleteCapacityProvider: function(Client, types.DeleteCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCapacityProviderOutput>
     deleteCodeInterpreter: function(Client, types.DeleteCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.DeleteCodeInterpreterOutput>
     deleteConfigurationBundle: function(Client, types.DeleteConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteConfigurationBundleOutput>
     deleteDataset: function(Client, types.DeleteDatasetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetOutput>
     deleteDatasetExamples: function(Client, types.DeleteDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.DeleteDatasetExamplesOutput>
     deleteEvaluator: function(Client, types.DeleteEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.DeleteEvaluatorOutput>
     deleteGateway: function(Client, types.DeleteGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
+    deleteGatewayRateLimit: function(Client, types.DeleteGatewayRateLimitInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayRateLimitOutput>
     deleteGatewayRule: function(Client, types.DeleteGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayRuleOutput>
     deleteGatewayTarget: function(Client, types.DeleteGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteGatewayTargetOutput>
     deleteHarness: function(Client, types.DeleteHarnessInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHarnessOutput>
@@ -77,12 +82,14 @@ local record Client
     getApiKeyCredentialProvider: function(Client, types.GetApiKeyCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetApiKeyCredentialProviderOutput>
     getBrowser: function(Client, types.GetBrowserInput, ? base_client.InvokeOptions): async.Operation<types.GetBrowserOutput>
     getBrowserProfile: function(Client, types.GetBrowserProfileInput, ? base_client.InvokeOptions): async.Operation<types.GetBrowserProfileOutput>
+    getCapacityProvider: function(Client, types.GetCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.GetCapacityProviderOutput>
     getCodeInterpreter: function(Client, types.GetCodeInterpreterInput, ? base_client.InvokeOptions): async.Operation<types.GetCodeInterpreterOutput>
     getConfigurationBundle: function(Client, types.GetConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleOutput>
     getConfigurationBundleVersion: function(Client, types.GetConfigurationBundleVersionInput, ? base_client.InvokeOptions): async.Operation<types.GetConfigurationBundleVersionOutput>
     getDataset: function(Client, types.GetDatasetInput, ? base_client.InvokeOptions): async.Operation<types.GetDatasetOutput>
     getEvaluator: function(Client, types.GetEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.GetEvaluatorOutput>
     getGateway: function(Client, types.GetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayOutput>
+    getGatewayRateLimit: function(Client, types.GetGatewayRateLimitInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayRateLimitOutput>
     getGatewayRule: function(Client, types.GetGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayRuleOutput>
     getGatewayTarget: function(Client, types.GetGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.GetGatewayTargetOutput>
     getHarness: function(Client, types.GetHarnessInput, ? base_client.InvokeOptions): async.Operation<types.GetHarnessOutput>
@@ -107,9 +114,11 @@ local record Client
     listAgentRuntimeEndpoints: function(Client, types.ListAgentRuntimeEndpointsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentRuntimeEndpointsOutput>
     listAgentRuntimes: function(Client, types.ListAgentRuntimesInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentRuntimesOutput>
     listAgentRuntimeVersions: function(Client, types.ListAgentRuntimeVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentRuntimeVersionsOutput>
+    listAgentRuntimeVersionsByCapacityProvider: function(Client, types.ListAgentRuntimeVersionsByCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.ListAgentRuntimeVersionsByCapacityProviderOutput>
     listApiKeyCredentialProviders: function(Client, types.ListApiKeyCredentialProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListApiKeyCredentialProvidersOutput>
     listBrowserProfiles: function(Client, types.ListBrowserProfilesInput, ? base_client.InvokeOptions): async.Operation<types.ListBrowserProfilesOutput>
     listBrowsers: function(Client, types.ListBrowsersInput, ? base_client.InvokeOptions): async.Operation<types.ListBrowsersOutput>
+    listCapacityProviders: function(Client, types.ListCapacityProvidersInput, ? base_client.InvokeOptions): async.Operation<types.ListCapacityProvidersOutput>
     listCodeInterpreters: function(Client, types.ListCodeInterpretersInput, ? base_client.InvokeOptions): async.Operation<types.ListCodeInterpretersOutput>
     listConfigurationBundles: function(Client, types.ListConfigurationBundlesInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationBundlesOutput>
     listConfigurationBundleVersions: function(Client, types.ListConfigurationBundleVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListConfigurationBundleVersionsOutput>
@@ -117,6 +126,7 @@ local record Client
     listDatasets: function(Client, types.ListDatasetsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetsOutput>
     listDatasetVersions: function(Client, types.ListDatasetVersionsInput, ? base_client.InvokeOptions): async.Operation<types.ListDatasetVersionsOutput>
     listEvaluators: function(Client, types.ListEvaluatorsInput, ? base_client.InvokeOptions): async.Operation<types.ListEvaluatorsOutput>
+    listGatewayRateLimits: function(Client, types.ListGatewayRateLimitsInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayRateLimitsOutput>
     listGatewayRules: function(Client, types.ListGatewayRulesInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayRulesOutput>
     listGateways: function(Client, types.ListGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewaysOutput>
     listGatewayTargets: function(Client, types.ListGatewayTargetsInput, ? base_client.InvokeOptions): async.Operation<types.ListGatewayTargetsOutput>
@@ -150,11 +160,13 @@ local record Client
     updateAgentRuntime: function(Client, types.UpdateAgentRuntimeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentRuntimeOutput>
     updateAgentRuntimeEndpoint: function(Client, types.UpdateAgentRuntimeEndpointInput, ? base_client.InvokeOptions): async.Operation<types.UpdateAgentRuntimeEndpointOutput>
     updateApiKeyCredentialProvider: function(Client, types.UpdateApiKeyCredentialProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateApiKeyCredentialProviderOutput>
+    updateCapacityProvider: function(Client, types.UpdateCapacityProviderInput, ? base_client.InvokeOptions): async.Operation<types.UpdateCapacityProviderOutput>
     updateConfigurationBundle: function(Client, types.UpdateConfigurationBundleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateConfigurationBundleOutput>
     updateDataset: function(Client, types.UpdateDatasetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetOutput>
     updateDatasetExamples: function(Client, types.UpdateDatasetExamplesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDatasetExamplesOutput>
     updateEvaluator: function(Client, types.UpdateEvaluatorInput, ? base_client.InvokeOptions): async.Operation<types.UpdateEvaluatorOutput>
     updateGateway: function(Client, types.UpdateGatewayInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
+    updateGatewayRateLimit: function(Client, types.UpdateGatewayRateLimitInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayRateLimitOutput>
     updateGatewayRule: function(Client, types.UpdateGatewayRuleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayRuleOutput>
     updateGatewayTarget: function(Client, types.UpdateGatewayTargetInput, ? base_client.InvokeOptions): async.Operation<types.UpdateGatewayTargetOutput>
     updateHarness: function(Client, types.UpdateHarnessInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHarnessOutput>
@@ -219,6 +231,10 @@ function C:addDatasetExamples(input: types.AddDatasetExamplesInput, options?: ba
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AddDatasetExamples as schema.OperationSchema, input, options) as async.Operation<types.AddDatasetExamplesOutput>
 end
 
+function C:batchPutGatewayRateLimits(input: types.BatchPutGatewayRateLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchPutGatewayRateLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchPutGatewayRateLimits as schema.OperationSchema, input, options) as async.Operation<types.BatchPutGatewayRateLimitsOutput>
+end
+
 function C:createAgentRuntime(input: types.CreateAgentRuntimeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateAgentRuntimeOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateAgentRuntime as schema.OperationSchema, input, options) as async.Operation<types.CreateAgentRuntimeOutput>
 end
@@ -237,6 +253,10 @@ end
 
 function C:createBrowserProfile(input: types.CreateBrowserProfileInput, options?: base_client.InvokeOptions): async.Operation<types.CreateBrowserProfileOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateBrowserProfile as schema.OperationSchema, input, options) as async.Operation<types.CreateBrowserProfileOutput>
+end
+
+function C:createCapacityProvider(input: types.CreateCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.CreateCapacityProviderOutput>
 end
 
 function C:createCodeInterpreter(input: types.CreateCodeInterpreterInput, options?: base_client.InvokeOptions): async.Operation<types.CreateCodeInterpreterOutput>
@@ -261,6 +281,10 @@ end
 
 function C:createGateway(input: types.CreateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGateway as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayOutput>
+end
+
+function C:createGatewayRateLimit(input: types.CreateGatewayRateLimitInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayRateLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateGatewayRateLimit as schema.OperationSchema, input, options) as async.Operation<types.CreateGatewayRateLimitOutput>
 end
 
 function C:createGatewayRule(input: types.CreateGatewayRuleInput, options?: base_client.InvokeOptions): async.Operation<types.CreateGatewayRuleOutput>
@@ -343,6 +367,10 @@ function C:deleteBrowserProfile(input: types.DeleteBrowserProfileInput, options?
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteBrowserProfile as schema.OperationSchema, input, options) as async.Operation<types.DeleteBrowserProfileOutput>
 end
 
+function C:deleteCapacityProvider(input: types.DeleteCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.DeleteCapacityProviderOutput>
+end
+
 function C:deleteCodeInterpreter(input: types.DeleteCodeInterpreterInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteCodeInterpreterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteCodeInterpreter as schema.OperationSchema, input, options) as async.Operation<types.DeleteCodeInterpreterOutput>
 end
@@ -365,6 +393,10 @@ end
 
 function C:deleteGateway(input: types.DeleteGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGateway as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayOutput>
+end
+
+function C:deleteGatewayRateLimit(input: types.DeleteGatewayRateLimitInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayRateLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteGatewayRateLimit as schema.OperationSchema, input, options) as async.Operation<types.DeleteGatewayRateLimitOutput>
 end
 
 function C:deleteGatewayRule(input: types.DeleteGatewayRuleInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteGatewayRuleOutput>
@@ -451,6 +483,10 @@ function C:getBrowserProfile(input: types.GetBrowserProfileInput, options?: base
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetBrowserProfile as schema.OperationSchema, input, options) as async.Operation<types.GetBrowserProfileOutput>
 end
 
+function C:getCapacityProvider(input: types.GetCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.GetCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.GetCapacityProviderOutput>
+end
+
 function C:getCodeInterpreter(input: types.GetCodeInterpreterInput, options?: base_client.InvokeOptions): async.Operation<types.GetCodeInterpreterOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetCodeInterpreter as schema.OperationSchema, input, options) as async.Operation<types.GetCodeInterpreterOutput>
 end
@@ -473,6 +509,10 @@ end
 
 function C:getGateway(input: types.GetGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.GetGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGateway as schema.OperationSchema, input, options) as async.Operation<types.GetGatewayOutput>
+end
+
+function C:getGatewayRateLimit(input: types.GetGatewayRateLimitInput, options?: base_client.InvokeOptions): async.Operation<types.GetGatewayRateLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetGatewayRateLimit as schema.OperationSchema, input, options) as async.Operation<types.GetGatewayRateLimitOutput>
 end
 
 function C:getGatewayRule(input: types.GetGatewayRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetGatewayRuleOutput>
@@ -571,6 +611,10 @@ function C:listAgentRuntimeVersions(input: types.ListAgentRuntimeVersionsInput, 
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentRuntimeVersions as schema.OperationSchema, input, options) as async.Operation<types.ListAgentRuntimeVersionsOutput>
 end
 
+function C:listAgentRuntimeVersionsByCapacityProvider(input: types.ListAgentRuntimeVersionsByCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.ListAgentRuntimeVersionsByCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAgentRuntimeVersionsByCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.ListAgentRuntimeVersionsByCapacityProviderOutput>
+end
+
 function C:listApiKeyCredentialProviders(input: types.ListApiKeyCredentialProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListApiKeyCredentialProvidersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListApiKeyCredentialProviders as schema.OperationSchema, input, options) as async.Operation<types.ListApiKeyCredentialProvidersOutput>
 end
@@ -581,6 +625,10 @@ end
 
 function C:listBrowsers(input: types.ListBrowsersInput, options?: base_client.InvokeOptions): async.Operation<types.ListBrowsersOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListBrowsers as schema.OperationSchema, input, options) as async.Operation<types.ListBrowsersOutput>
+end
+
+function C:listCapacityProviders(input: types.ListCapacityProvidersInput, options?: base_client.InvokeOptions): async.Operation<types.ListCapacityProvidersOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListCapacityProviders as schema.OperationSchema, input, options) as async.Operation<types.ListCapacityProvidersOutput>
 end
 
 function C:listCodeInterpreters(input: types.ListCodeInterpretersInput, options?: base_client.InvokeOptions): async.Operation<types.ListCodeInterpretersOutput>
@@ -609,6 +657,10 @@ end
 
 function C:listEvaluators(input: types.ListEvaluatorsInput, options?: base_client.InvokeOptions): async.Operation<types.ListEvaluatorsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListEvaluators as schema.OperationSchema, input, options) as async.Operation<types.ListEvaluatorsOutput>
+end
+
+function C:listGatewayRateLimits(input: types.ListGatewayRateLimitsInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewayRateLimitsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListGatewayRateLimits as schema.OperationSchema, input, options) as async.Operation<types.ListGatewayRateLimitsOutput>
 end
 
 function C:listGatewayRules(input: types.ListGatewayRulesInput, options?: base_client.InvokeOptions): async.Operation<types.ListGatewayRulesOutput>
@@ -743,6 +795,10 @@ function C:updateApiKeyCredentialProvider(input: types.UpdateApiKeyCredentialPro
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateApiKeyCredentialProvider as schema.OperationSchema, input, options) as async.Operation<types.UpdateApiKeyCredentialProviderOutput>
 end
 
+function C:updateCapacityProvider(input: types.UpdateCapacityProviderInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateCapacityProviderOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateCapacityProvider as schema.OperationSchema, input, options) as async.Operation<types.UpdateCapacityProviderOutput>
+end
+
 function C:updateConfigurationBundle(input: types.UpdateConfigurationBundleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateConfigurationBundleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateConfigurationBundle as schema.OperationSchema, input, options) as async.Operation<types.UpdateConfigurationBundleOutput>
 end
@@ -761,6 +817,10 @@ end
 
 function C:updateGateway(input: types.UpdateGatewayInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGateway as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayOutput>
+end
+
+function C:updateGatewayRateLimit(input: types.UpdateGatewayRateLimitInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayRateLimitOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateGatewayRateLimit as schema.OperationSchema, input, options) as async.Operation<types.UpdateGatewayRateLimitOutput>
 end
 
 function C:updateGatewayRule(input: types.UpdateGatewayRuleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateGatewayRuleOutput>

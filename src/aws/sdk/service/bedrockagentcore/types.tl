@@ -1135,6 +1135,31 @@ local record M
         updatedAt: number
     end
 
+    record DeleteCapacityProviderSessionInput
+        -- The unique identifier of the capacity provider associated with the session.
+        capacityProviderId: string
+        -- The unique identifier of the capacity provider session to delete.
+        sessionId: string
+    end
+
+    enum CapacityProviderSessionStatus
+        "Provisioning"
+        "Deprovisioning"
+        "Active"
+        "Deleting"
+        "Deleted"
+        "Stopped"
+    end
+
+    record DeleteCapacityProviderSessionOutput
+        -- The Amazon Resource Name (ARN) of the capacity provider associated with the deleted session.
+        capacityProviderArn: string
+        -- The unique identifier of the deleted capacity provider session.
+        sessionId: string
+        -- The current status of the capacity provider session. When the status is Deleting, the session is being deleted and is not available. When the status is Deleted, the session is no longer available.
+        status: string
+    end
+
     record GetCodeInterpreterSessionInput
         -- The unique identifier of the code interpreter associated with the session.
         codeInterpreterIdentifier: string

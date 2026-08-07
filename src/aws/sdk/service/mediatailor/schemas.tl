@@ -707,6 +707,67 @@ M.FunctionRef = schema.new({
             name = "FunctionId",
             target_id = prelude.String.id,
         }),
+        Alias = schema.new({
+            id = id.from(_N, "FunctionRef", "Alias"),
+            type = "string",
+            name = "Alias",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ConcurrentExecutorConfiguration = schema.new({
+    id = id.from(_N, "ConcurrentExecutorConfiguration"),
+    type = "structure",
+    members = {
+        Runtime = schema.new({
+            id = id.from(_N, "ConcurrentExecutorConfiguration", "Runtime"),
+            type = "string",
+            name = "Runtime",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Output = schema.new({
+            id = id.from(_N, "ConcurrentExecutorConfiguration", "Output"),
+            type = "map",
+            name = "Output",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        FunctionList = schema.new({
+            id = id.from(_N, "ConcurrentExecutorConfiguration", "FunctionList"),
+            type = "list",
+            name = "FunctionList",
+            target_id = prelude.Document.id,
+            list_member = M.FunctionRef,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TimeoutMilliseconds = schema.new({
+            id = id.from(_N, "ConcurrentExecutorConfiguration", "TimeoutMilliseconds"),
+            type = "integer",
+            name = "TimeoutMilliseconds",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxConcurrency = schema.new({
+            id = id.from(_N, "ConcurrentExecutorConfiguration", "MaxConcurrency"),
+            type = "integer",
+            name = "MaxConcurrency",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
     },
 })
 
@@ -883,6 +944,13 @@ M.Function = schema.new({
             name = "CustomOutputConfiguration",
             target_id = id.from(_N, "CustomOutputConfiguration"),
             target = M.CustomOutputConfiguration,
+        }),
+        ConcurrentExecutorConfiguration = schema.new({
+            id = id.from(_N, "Function", "ConcurrentExecutorConfiguration"),
+            type = "structure",
+            name = "ConcurrentExecutorConfiguration",
+            target_id = id.from(_N, "ConcurrentExecutorConfiguration"),
+            target = M.ConcurrentExecutorConfiguration,
         }),
         SequentialExecutorConfiguration = schema.new({
             id = id.from(_N, "Function", "SequentialExecutorConfiguration"),
@@ -4792,6 +4860,13 @@ M.GetFunctionOutput = schema.new({
             target_id = id.from(_N, "CustomOutputConfiguration"),
             target = M.CustomOutputConfiguration,
         }),
+        ConcurrentExecutorConfiguration = schema.new({
+            id = id.from(_N, "GetFunctionOutput", "ConcurrentExecutorConfiguration"),
+            type = "structure",
+            name = "ConcurrentExecutorConfiguration",
+            target_id = id.from(_N, "ConcurrentExecutorConfiguration"),
+            target = M.ConcurrentExecutorConfiguration,
+        }),
         SequentialExecutorConfiguration = schema.new({
             id = id.from(_N, "GetFunctionOutput", "SequentialExecutorConfiguration"),
             type = "structure",
@@ -4907,6 +4982,13 @@ M.PutFunctionInput = schema.new({
             target_id = id.from(_N, "CustomOutputConfiguration"),
             target = M.CustomOutputConfiguration,
         }),
+        ConcurrentExecutorConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionInput", "ConcurrentExecutorConfiguration"),
+            type = "structure",
+            name = "ConcurrentExecutorConfiguration",
+            target_id = id.from(_N, "ConcurrentExecutorConfiguration"),
+            target = M.ConcurrentExecutorConfiguration,
+        }),
         SequentialExecutorConfiguration = schema.new({
             id = id.from(_N, "PutFunctionInput", "SequentialExecutorConfiguration"),
             type = "structure",
@@ -4969,6 +5051,13 @@ M.PutFunctionOutput = schema.new({
             name = "CustomOutputConfiguration",
             target_id = id.from(_N, "CustomOutputConfiguration"),
             target = M.CustomOutputConfiguration,
+        }),
+        ConcurrentExecutorConfiguration = schema.new({
+            id = id.from(_N, "PutFunctionOutput", "ConcurrentExecutorConfiguration"),
+            type = "structure",
+            name = "ConcurrentExecutorConfiguration",
+            target_id = id.from(_N, "ConcurrentExecutorConfiguration"),
+            target = M.ConcurrentExecutorConfiguration,
         }),
         SequentialExecutorConfiguration = schema.new({
             id = id.from(_N, "PutFunctionOutput", "SequentialExecutorConfiguration"),

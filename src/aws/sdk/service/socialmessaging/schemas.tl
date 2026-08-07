@@ -515,6 +515,70 @@ M.ValidationException = schema.new({
     },
 })
 
+M.CreateWhatsAppDatasetInput = schema.new({
+    id = id.from(_N, "CreateWhatsAppDatasetInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "CreateWhatsAppDatasetInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateWhatsAppDatasetOutput = schema.new({
+    id = id.from(_N, "CreateWhatsAppDatasetOutput"),
+    type = "structure",
+    members = {
+        datasetId = schema.new({
+            id = id.from(_N, "CreateWhatsAppDatasetOutput", "datasetId"),
+            type = "string",
+            name = "datasetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.InternalServiceException = schema.new({
+    id = id.from(_N, "InternalServiceException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "InternalServiceException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ResourceNotFoundException = schema.new({
+    id = id.from(_N, "ResourceNotFoundException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ResourceNotFoundException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateWhatsAppFlowInput = schema.new({
     id = id.from(_N, "CreateWhatsAppFlowInput"),
     type = "structure",
@@ -584,38 +648,6 @@ M.CreateWhatsAppFlowOutput = schema.new({
             name = "validationErrors",
             target_id = prelude.Document.id,
             list_member = prelude.String,
-        }),
-    },
-})
-
-M.InternalServiceException = schema.new({
-    id = id.from(_N, "InternalServiceException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "server" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "InternalServiceException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
-M.ResourceNotFoundException = schema.new({
-    id = id.from(_N, "ResourceNotFoundException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        message = schema.new({
-            id = id.from(_N, "ResourceNotFoundException", "message"),
-            type = "string",
-            name = "message",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -1261,6 +1293,12 @@ M.LinkedWhatsAppBusinessAccount = schema.new({
             id = id.from(_N, "LinkedWhatsAppBusinessAccount", "marketingMessagesOnboardingStatus"),
             type = "string",
             name = "marketingMessagesOnboardingStatus",
+            target_id = prelude.String.id,
+        }),
+        datasetId = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccount", "datasetId"),
+            type = "string",
+            name = "datasetId",
             target_id = prelude.String.id,
         }),
         phoneNumbers = schema.new({
@@ -1963,6 +2001,12 @@ M.LinkedWhatsAppBusinessAccountSummary = schema.new({
             name = "marketingMessagesOnboardingStatus",
             target_id = prelude.String.id,
         }),
+        datasetId = schema.new({
+            id = id.from(_N, "LinkedWhatsAppBusinessAccountSummary", "datasetId"),
+            type = "string",
+            name = "datasetId",
+            target_id = prelude.String.id,
+        }),
     },
 })
 
@@ -2492,6 +2536,56 @@ M.PutWhatsAppBusinessAccountEventDestinationsOutput = schema.new({
     type = "structure",
 })
 
+M.SendWhatsAppConversionEventInput = schema.new({
+    id = id.from(_N, "SendWhatsAppConversionEventInput"),
+    type = "structure",
+    members = {
+        id = schema.new({
+            id = id.from(_N, "SendWhatsAppConversionEventInput", "id"),
+            type = "string",
+            name = "id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        datasetId = schema.new({
+            id = id.from(_N, "SendWhatsAppConversionEventInput", "datasetId"),
+            type = "string",
+            name = "datasetId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        eventData = schema.new({
+            id = id.from(_N, "SendWhatsAppConversionEventInput", "eventData"),
+            type = "blob",
+            name = "eventData",
+            target_id = prelude.Blob.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SendWhatsAppConversionEventOutput = schema.new({
+    id = id.from(_N, "SendWhatsAppConversionEventOutput"),
+    type = "structure",
+    members = {
+        requestId = schema.new({
+            id = id.from(_N, "SendWhatsAppConversionEventOutput", "requestId"),
+            type = "string",
+            name = "requestId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.UpdateWhatsAppFlowInput = schema.new({
     id = id.from(_N, "UpdateWhatsAppFlowInput"),
     type = "structure",
@@ -2888,6 +2982,18 @@ M.AssociateWhatsAppBusinessAccount = schema.operation({
     },
 })
 
+M.CreateWhatsAppDataset = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "CreateWhatsAppDataset"),
+    input = M.CreateWhatsAppDatasetInput,
+    output = M.CreateWhatsAppDatasetOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/waba/dataset" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateWhatsAppFlow = schema.operation({
     id = id.from("com.amazonaws.socialmessaging", "CreateWhatsAppFlow"),
     input = M.CreateWhatsAppFlowInput,
@@ -3170,6 +3276,18 @@ M.PutWhatsAppBusinessAccountEventDestinations = schema.operation({
     output = M.PutWhatsAppBusinessAccountEventDestinationsOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/v1/whatsapp/waba/eventdestinations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SendWhatsAppConversionEvent = schema.operation({
+    id = id.from("com.amazonaws.socialmessaging", "SendWhatsAppConversionEvent"),
+    input = M.SendWhatsAppConversionEventInput,
+    output = M.SendWhatsAppConversionEventOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/whatsapp/waba/dataset/events" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

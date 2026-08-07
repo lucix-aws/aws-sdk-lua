@@ -9,6 +9,10 @@ local _N = "com.amazonaws.backup"
 
 local M: {string:any} = {}
 
+M.AccessPointMetadataMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
 M.Tags = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.AdvancedBackupSettings = schema.new({ type = "list", list_member = M.AdvancedBackupSetting })
@@ -38,6 +42,8 @@ M.BackupVaultEvents = schema.new({ type = "list", list_member = prelude.String }
 M.Metadata = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
 M.ResourceTypes = schema.new({ type = "list", list_member = prelude.String })
+
+M.BackupAccessPoints = schema.new({ type = "list", list_member = M.ListAccessPointsMember })
 
 M.BackupJobsList = schema.new({ type = "list", list_member = M.BackupJob })
 
@@ -427,6 +433,108 @@ M.ServiceUnavailableException = schema.new({
             id = id.from(_N, "ServiceUnavailableException", "Context"),
             type = "string",
             name = "Context",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListAccessPointsMember = schema.new({
+    id = id.from(_N, "ListAccessPointsMember"),
+    type = "structure",
+    members = {
+        AccessPointArn = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "AccessPointArn"),
+            type = "string",
+            name = "AccessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AccessPointMetadata = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "AccessPointMetadata"),
+            type = "map",
+            name = "AccessPointMetadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        BackupVaultArn = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "BackupVaultArn"),
+            type = "string",
+            name = "BackupVaultArn",
+            target_id = prelude.String.id,
+        }),
+        BackupVaultName = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "BackupVaultName"),
+            type = "string",
+            name = "BackupVaultName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecoveryPointArn = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "RecoveryPointArn"),
+            type = "string",
+            name = "RecoveryPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "ListAccessPointsMember", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
             target_id = prelude.String.id,
         }),
     },
@@ -1898,6 +2006,112 @@ M.CopyJobSummary = schema.new({
     },
 })
 
+M.CreateBackupAccessPointInput = schema.new({
+    id = id.from(_N, "CreateBackupAccessPointRequest"),
+    type = "structure",
+    members = {
+        AccessPointMetadata = schema.new({
+            id = id.from(_N, "CreateBackupAccessPointInput", "AccessPointMetadata"),
+            type = "map",
+            name = "AccessPointMetadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        AccessPointPolicy = schema.new({
+            id = id.from(_N, "CreateBackupAccessPointInput", "AccessPointPolicy"),
+            type = "string",
+            name = "AccessPointPolicy",
+            target_id = prelude.String.id,
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateBackupAccessPointInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecoveryPointArn = schema.new({
+            id = id.from(_N, "CreateBackupAccessPointInput", "RecoveryPointArn"),
+            type = "string",
+            name = "RecoveryPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateBackupAccessPointInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateBackupAccessPointOutput = schema.new({
+    id = id.from(_N, "CreateBackupAccessPointResponse"),
+    type = "structure",
+    members = {
+        AccessPointArn = schema.new({
+            id = id.from(_N, "CreateBackupAccessPointOutput", "AccessPointArn"),
+            type = "string",
+            name = "AccessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateBackupAccessPointOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LimitExceededException = schema.new({
+    id = id.from(_N, "LimitExceededException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        Code = schema.new({
+            id = id.from(_N, "LimitExceededException", "Code"),
+            type = "string",
+            name = "Code",
+            target_id = prelude.String.id,
+        }),
+        Message = schema.new({
+            id = id.from(_N, "LimitExceededException", "Message"),
+            type = "string",
+            name = "Message",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "LimitExceededException", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+        Context = schema.new({
+            id = id.from(_N, "LimitExceededException", "Context"),
+            type = "string",
+            name = "Context",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.CreateBackupPlanInput = schema.new({
     id = id.from(_N, "CreateBackupPlanInput"),
     type = "structure",
@@ -1966,40 +2180,6 @@ M.CreateBackupPlanOutput = schema.new({
             name = "AdvancedBackupSettings",
             target_id = prelude.Document.id,
             list_member = M.AdvancedBackupSetting,
-        }),
-    },
-})
-
-M.LimitExceededException = schema.new({
-    id = id.from(_N, "LimitExceededException"),
-    type = "structure",
-    traits = {
-        [traits.ERROR] = { value = "client" },
-    },
-    members = {
-        Code = schema.new({
-            id = id.from(_N, "LimitExceededException", "Code"),
-            type = "string",
-            name = "Code",
-            target_id = prelude.String.id,
-        }),
-        Message = schema.new({
-            id = id.from(_N, "LimitExceededException", "Message"),
-            type = "string",
-            name = "Message",
-            target_id = prelude.String.id,
-        }),
-        Type = schema.new({
-            id = id.from(_N, "LimitExceededException", "Type"),
-            type = "string",
-            name = "Type",
-            target_id = prelude.String.id,
-        }),
-        Context = schema.new({
-            id = id.from(_N, "LimitExceededException", "Context"),
-            type = "string",
-            name = "Context",
-            target_id = prelude.String.id,
         }),
     },
 })
@@ -3185,6 +3365,25 @@ M.CreateTieringConfigurationOutput = schema.new({
     },
 })
 
+M.DeleteBackupAccessPointInput = schema.new({
+    id = id.from(_N, "DeleteBackupAccessPointInput"),
+    type = "structure",
+    members = {
+        AccessPointArn = schema.new({
+            id = id.from(_N, "DeleteBackupAccessPointInput", "AccessPointArn"),
+            type = "string",
+            name = "AccessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteBackupAccessPointOutput = prelude.Unit
+
 M.DeleteBackupPlanInput = schema.new({
     id = id.from(_N, "DeleteBackupPlanInput"),
     type = "structure",
@@ -3473,6 +3672,122 @@ M.DeleteTieringConfigurationInput = schema.new({
 M.DeleteTieringConfigurationOutput = schema.new({
     id = id.from(_N, "DeleteTieringConfigurationOutput"),
     type = "structure",
+})
+
+M.DescribeBackupAccessPointInput = schema.new({
+    id = id.from(_N, "DescribeBackupAccessPointInput"),
+    type = "structure",
+    members = {
+        AccessPointArn = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointInput", "AccessPointArn"),
+            type = "string",
+            name = "AccessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DescribeBackupAccessPointOutput = schema.new({
+    id = id.from(_N, "DescribeBackupAccessPointResponse"),
+    type = "structure",
+    members = {
+        AccessPointArn = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "AccessPointArn"),
+            type = "string",
+            name = "AccessPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        AccessPointMetadata = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "AccessPointMetadata"),
+            type = "map",
+            name = "AccessPointMetadata",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        BackupVaultArn = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "BackupVaultArn"),
+            type = "string",
+            name = "BackupVaultArn",
+            target_id = prelude.String.id,
+        }),
+        BackupVaultName = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "BackupVaultName"),
+            type = "string",
+            name = "BackupVaultName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        CreationTime = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "CreationTime"),
+            type = "timestamp",
+            name = "CreationTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RecoveryPointArn = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "RecoveryPointArn"),
+            type = "string",
+            name = "RecoveryPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceType = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "ResourceType"),
+            type = "string",
+            name = "ResourceType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        StatusMessage = schema.new({
+            id = id.from(_N, "DescribeBackupAccessPointOutput", "StatusMessage"),
+            type = "string",
+            name = "StatusMessage",
+            target_id = prelude.String.id,
+        }),
+    },
 })
 
 M.DependencyFailureException = schema.new({
@@ -6291,6 +6606,173 @@ M.GetTieringConfigurationOutput = schema.new({
             name = "TieringConfiguration",
             target_id = id.from(_N, "TieringConfiguration"),
             target = M.TieringConfiguration,
+        }),
+    },
+})
+
+M.ListBackupAccessPointsInput = schema.new({
+    id = id.from(_N, "ListBackupAccessPointsRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.ListBackupAccessPointsOutput = schema.new({
+    id = id.from(_N, "ListBackupAccessPointsResponse"),
+    type = "structure",
+    members = {
+        BackupAccessPoints = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsOutput", "BackupAccessPoints"),
+            type = "list",
+            name = "BackupAccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.ListAccessPointsMember,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBackupAccessPointsByRecoveryPointInput = schema.new({
+    id = id.from(_N, "ListBackupAccessPointsByRecoveryPointRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByRecoveryPointInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByRecoveryPointInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        RecoveryPointArn = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByRecoveryPointInput", "RecoveryPointArn"),
+            type = "string",
+            name = "RecoveryPointArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListBackupAccessPointsByRecoveryPointOutput = schema.new({
+    id = id.from(_N, "ListBackupAccessPointsByRecoveryPointResponse"),
+    type = "structure",
+    members = {
+        BackupAccessPoints = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByRecoveryPointOutput", "BackupAccessPoints"),
+            type = "list",
+            name = "BackupAccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.ListAccessPointsMember,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByRecoveryPointOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListBackupAccessPointsByResourceInput = schema.new({
+    id = id.from(_N, "ListBackupAccessPointsByResourceRequest"),
+    type = "structure",
+    members = {
+        MaxResults = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByResourceInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 100 },
+                [traits.HTTP_QUERY] = { name = "MaxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByResourceInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "NextToken" },
+            },
+        }),
+        ResourceArn = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByResourceInput", "ResourceArn"),
+            type = "string",
+            name = "ResourceArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.ListBackupAccessPointsByResourceOutput = schema.new({
+    id = id.from(_N, "ListBackupAccessPointsByResourceResponse"),
+    type = "structure",
+    members = {
+        BackupAccessPoints = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByResourceOutput", "BackupAccessPoints"),
+            type = "list",
+            name = "BackupAccessPoints",
+            target_id = prelude.Document.id,
+            list_member = M.ListAccessPointsMember,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListBackupAccessPointsByResourceOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
         }),
     },
 })
@@ -11151,6 +11633,18 @@ M.CancelLegalHold = schema.operation({
     },
 })
 
+M.CreateBackupAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.backup", "CreateBackupAccessPoint"),
+    input = M.CreateBackupAccessPointInput,
+    output = M.CreateBackupAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/backup-access-point/create" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateBackupPlan = schema.operation({
     id = id.from("com.amazonaws.backup", "CreateBackupPlan"),
     input = M.CreateBackupPlanInput,
@@ -11277,6 +11771,18 @@ M.CreateTieringConfiguration = schema.operation({
     output = M.CreateTieringConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/tiering-configurations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteBackupAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.backup", "DeleteBackupAccessPoint"),
+    input = M.DeleteBackupAccessPointInput,
+    output = M.DeleteBackupAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/backup-access-point/delete/{AccessPointArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11421,6 +11927,18 @@ M.DeleteTieringConfiguration = schema.operation({
     output = M.DeleteTieringConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/tiering-configurations/{TieringConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeBackupAccessPoint = schema.operation({
+    id = id.from("com.amazonaws.backup", "DescribeBackupAccessPoint"),
+    input = M.DescribeBackupAccessPointInput,
+    output = M.DescribeBackupAccessPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-access-point/{AccessPointArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -11805,6 +12323,42 @@ M.GetTieringConfiguration = schema.operation({
     output = M.GetTieringConfigurationOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/tiering-configurations/{TieringConfigurationName}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupAccessPoints = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupAccessPoints"),
+    input = M.ListBackupAccessPointsInput,
+    output = M.ListBackupAccessPointsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/backup-access-point" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupAccessPointsByRecoveryPoint = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupAccessPointsByRecoveryPoint"),
+    input = M.ListBackupAccessPointsByRecoveryPointInput,
+    output = M.ListBackupAccessPointsByRecoveryPointOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup-access-point/recovery-point/{RecoveryPointArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListBackupAccessPointsByResource = schema.operation({
+    id = id.from("com.amazonaws.backup", "ListBackupAccessPointsByResource"),
+    input = M.ListBackupAccessPointsByResourceInput,
+    output = M.ListBackupAccessPointsByResourceOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/backup-access-point/resource/{ResourceArn}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

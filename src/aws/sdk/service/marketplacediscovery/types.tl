@@ -416,22 +416,22 @@ local record M
         catalog: string
         -- The display name of the offer. This is free-form text provided by the seller.
         offerName: string
-        -- An encoded string to be passed by the acceptor of the terms when creating an agreement.
-        agreementProposalId: string
         -- The date and time until when the offer can be procured. This value is null for offers that never expire.
         expirationTime: number
         -- The date and time when the offer became available to the buyer.
         availableFromTime: number
         -- The entity responsible for selling the product under this offer.
         sellerOfRecord: SellerInformation
+        -- The products and offer sets associated with this offer.
+        associatedEntities: {OfferAssociatedEntity}
+        -- An encoded string to be passed by the acceptor of the terms when creating an agreement.
+        agreementProposalId: string
         -- The identifier of the existing agreement that this offer would replace. Enables agreement-based offer functionality.
         replacementAgreementId: string
         -- The pricing model that determines how buyers are charged, such as usage-based, contract, BYOL, or free.
         pricingModel: PricingModel
         -- Badges indicating special attributes of the offer, such as private pricing, future dated, or replacement offer.
         badges: {PurchaseOptionBadge}
-        -- The products and offer sets associated with this offer.
-        associatedEntities: {OfferAssociatedEntity}
     end
 
     record GetOfferSetInput
@@ -490,6 +490,7 @@ local record M
         "SupportTerm"
         "ValidityTerm"
         "VariablePaymentTerm"
+        "NetPaymentTerm"
     end
 
     -- Defines a Bring Your Own License (BYOL) pricing term, where buyers use their existing license for the product.
@@ -636,6 +637,14 @@ local record M
         documents: {DocumentItem}
     end
 
+    -- Defines a net payment term that sets how many days after the invoice date the payment is due.
+    record NetPaymentTerm
+        -- The unique identifier of the term.
+        id: string
+        -- The duration after invoice date by which payment is due.
+        paymentDuePeriod: string
+    end
+
     -- A payment installment within a payment schedule term.
     record ScheduleItem
         -- The date when the payment is due.
@@ -736,6 +745,8 @@ local record M
         usageBasedPricingTerm: UsageBasedPricingTerm
         validityTerm: ValidityTerm
         variablePaymentTerm: VariablePaymentTerm
+        -- A net payment term.
+        netPaymentTerm: NetPaymentTerm
     end
 
     record GetOfferTermsOutput
@@ -763,14 +774,14 @@ local record M
         catalog: string
         -- The human-readable display name of the product.
         productName: string
+        -- The entity who manufactured the product.
+        manufacturer: SellerInformation
         -- Indicates whether the product is deployed on AWS infrastructure.
         deployedOnAws: string
         -- A 1–3 sentence summary describing the key aspects of the product.
         shortDescription: string
         -- A detailed description of what the product does, in paragraph format.
         longDescription: string
-        -- The entity who manufactured the product.
-        manufacturer: SellerInformation
         -- The URL of the logo thumbnail image for the product.
         logoThumbnailUrl: string
         -- A summary of fulfillment options available for deploying or accessing the product, such as AMI, SaaS, or Container.
@@ -1234,6 +1245,8 @@ local record M
         listingName: string
         -- The entity who created and published the listing.
         publisher: SellerInformation
+        -- A summary of fulfillment options available for the listing.
+        fulfillmentOptionSummaries: {FulfillmentOptionSummary}
         -- The name of the catalog that the listing belongs to.
         catalog: string
         -- A 1–3 sentence summary describing the key aspects of the listing.
@@ -1242,8 +1255,6 @@ local record M
         logoThumbnailUrl: string
         -- The categories used to classify this listing into logical groups.
         categories: {Category}
-        -- A summary of fulfillment options available for the listing.
-        fulfillmentOptionSummaries: {FulfillmentOptionSummary}
         -- Badges indicating special attributes of the listing.
         badges: {ListingBadge}
         -- A summary of customer reviews for the listing.

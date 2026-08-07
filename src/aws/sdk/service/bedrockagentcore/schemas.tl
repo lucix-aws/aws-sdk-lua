@@ -3653,6 +3653,67 @@ M.UpdateBrowserStreamOutput = schema.new({
     },
 })
 
+M.DeleteCapacityProviderSessionInput = schema.new({
+    id = id.from(_N, "DeleteCapacityProviderSessionRequest"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderSessionInput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        sessionId = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderSessionInput", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCapacityProviderSessionOutput = schema.new({
+    id = id.from(_N, "DeleteCapacityProviderSessionResponse"),
+    type = "structure",
+    members = {
+        capacityProviderArn = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderSessionOutput", "capacityProviderArn"),
+            type = "string",
+            name = "capacityProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sessionId = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderSessionOutput", "sessionId"),
+            type = "string",
+            name = "sessionId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderSessionOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetCodeInterpreterSessionInput = schema.new({
     id = id.from(_N, "GetCodeInterpreterSessionRequest"),
     type = "structure",
@@ -13708,6 +13769,18 @@ M.DeleteBatchEvaluation = schema.operation({
     output = M.DeleteBatchEvaluationOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/evaluations/batch-evaluate/{batchEvaluationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteCapacityProviderSession = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcore", "DeleteCapacityProviderSession"),
+    input = M.DeleteCapacityProviderSessionInput,
+    output = M.DeleteCapacityProviderSessionOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/capacity-providers/{capacityProviderId}/sessions/{sessionId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

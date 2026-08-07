@@ -37,6 +37,10 @@ M.Certificates = schema.new({ type = "list", list_member = M.Certificate })
 
 M.ToolsFileSystemConfigurations = schema.new({ type = "list", list_member = M.ToolsFileSystemConfiguration })
 
+M.CapacityProviderList = schema.new({ type = "list", list_member = M.CapacityProviderSummary })
+
+M.AgentRuntimeVersionSummaryList = schema.new({ type = "list", list_member = M.AgentRuntimeVersionSummary })
+
 M.CodeInterpreterSummaries = schema.new({ type = "list", list_member = M.CodeInterpreterSummary })
 
 M.ConfigurationBundleSummaryList = schema.new({ type = "list", list_member = M.ConfigurationBundleSummary })
@@ -56,6 +60,14 @@ M.DatasetExampleList = schema.new({ type = "list", list_member = prelude.Documen
 M.DatasetVersionSummaryList = schema.new({ type = "list", list_member = M.DatasetVersionSummary })
 
 M.EvaluatorSummaryList = schema.new({ type = "list", list_member = M.EvaluatorSummary })
+
+M.BatchPutLimitEntries = schema.new({ type = "list", list_member = M.BatchPutLimitEntry })
+
+M.GatewayRateLimits = schema.new({ type = "list", list_member = M.GatewayRateLimitDetail })
+
+M.DimensionKeys = schema.new({ type = "list", list_member = prelude.String })
+
+M.LimitEntries = schema.new({ type = "list", list_member = M.LimitEntry })
 
 M.GatewayInterceptorConfigurations = schema.new({ type = "list", list_member = M.GatewayInterceptorConfiguration })
 
@@ -177,6 +189,12 @@ M.AdvertisedScopeMappingType = schema.new({ type = "map", map_key = prelude.Stri
 
 M.CustomClaimValidationsType = schema.new({ type = "list", list_member = M.CustomClaimValidationType })
 
+M.VolumeConfigurationList = schema.new({ type = "list", list_member = M.VolumeConfiguration })
+
+M.Dimensions = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
+
+M.RateConfigs = schema.new({ type = "list", list_member = M.RateConfig })
+
 M.McpSupportedVersions = schema.new({ type = "list", list_member = prelude.String })
 
 M.GatewayInterceptionPoints = schema.new({ type = "list", list_member = prelude.String })
@@ -207,6 +225,10 @@ M.HostingEnvironmentListType = schema.new({ type = "list", list_member = M.Hosti
 
 M.WorkloadIdentityNameListType = schema.new({ type = "list", list_member = prelude.String })
 
+M.SubnetIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.SecurityGroupIdList = schema.new({ type = "list", list_member = prelude.String })
+
 M.NumericalScaleDefinitions = schema.new({ type = "list", list_member = M.NumericalScaleDefinition })
 
 M.CategoricalScaleDefinitions = schema.new({ type = "list", list_member = M.CategoricalScaleDefinition })
@@ -226,6 +248,10 @@ M.InferenceOperationConfigurations = schema.new({ type = "list", list_member = M
 M.HarnessAwsSkillPaths = schema.new({ type = "list", list_member = prelude.String })
 
 M.NamespacesList = schema.new({ type = "list", list_member = prelude.String })
+
+M.EphemeralBlockDeviceMappingList = schema.new({ type = "list", list_member = M.EphemeralBlockDeviceMapping })
+
+M.LicenseSpecificationList = schema.new({ type = "list", list_member = M.LicenseSpecification })
 
 M.InterceptorPayloadExclusionSelectorList = schema.new({ type = "list", list_member = M.InterceptorPayloadExclusionSelector })
 
@@ -248,6 +274,8 @@ M.HttpHeadersMap = schema.new({ type = "map", map_key = prelude.String, map_valu
 M.MetadataSchemaList = schema.new({ type = "list", list_member = M.MetadataSchemaEntry })
 
 M.ContentConfigurationList = schema.new({ type = "list", list_member = M.ContentConfiguration })
+
+M.InstanceTypeList = schema.new({ type = "list", list_member = prelude.String })
 
 M.NonEmptyStringList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -1908,6 +1936,44 @@ M.AuthorizerConfiguration = schema.new({
     },
 })
 
+M.CapacityProviderConfiguration = schema.new({
+    id = id.from(_N, "CapacityProviderConfiguration"),
+    type = "structure",
+    members = {
+        capacityProviderArn = schema.new({
+            id = id.from(_N, "CapacityProviderConfiguration", "capacityProviderArn"),
+            type = "string",
+            name = "capacityProviderArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CapacityProviderVolumeConfiguration = schema.new({
+    id = id.from(_N, "CapacityProviderVolumeConfiguration"),
+    type = "structure",
+    members = {
+        volumeName = schema.new({
+            id = id.from(_N, "CapacityProviderVolumeConfiguration", "volumeName"),
+            type = "string",
+            name = "volumeName",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        mountPath = schema.new({
+            id = id.from(_N, "CapacityProviderVolumeConfiguration", "mountPath"),
+            type = "string",
+            name = "mountPath",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.EfsAccessPointConfiguration = schema.new({
     id = id.from(_N, "EfsAccessPointConfiguration"),
     type = "structure",
@@ -1998,6 +2064,13 @@ M.FilesystemConfiguration = schema.new({
             name = "efsAccessPoint",
             target_id = id.from(_N, "EfsAccessPointConfiguration"),
             target = M.EfsAccessPointConfiguration,
+        }),
+        capacityProviderVolume = schema.new({
+            id = id.from(_N, "FilesystemConfiguration", "capacityProviderVolume"),
+            type = "structure",
+            name = "capacityProviderVolume",
+            target_id = id.from(_N, "CapacityProviderVolumeConfiguration"),
+            target = M.CapacityProviderVolumeConfiguration,
         }),
     },
 })
@@ -2145,9 +2218,6 @@ M.CreateAgentRuntimeInput = schema.new({
             name = "networkConfiguration",
             target_id = id.from(_N, "NetworkConfiguration"),
             target = M.NetworkConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         clientToken = schema.new({
             id = id.from(_N, "CreateAgentRuntimeInput", "clientToken"),
@@ -2206,6 +2276,13 @@ M.CreateAgentRuntimeInput = schema.new({
             name = "filesystemConfigurations",
             target_id = prelude.Document.id,
             list_member = M.FilesystemConfiguration,
+        }),
+        capacityProviderConfiguration = schema.new({
+            id = id.from(_N, "CreateAgentRuntimeInput", "capacityProviderConfiguration"),
+            type = "structure",
+            name = "capacityProviderConfiguration",
+            target_id = id.from(_N, "CapacityProviderConfiguration"),
+            target = M.CapacityProviderConfiguration,
         }),
         tags = schema.new({
             id = id.from(_N, "CreateAgentRuntimeInput", "tags"),
@@ -2311,6 +2388,15 @@ M.DeleteAgentRuntimeInput = schema.new({
                 [traits.HTTP_LABEL] = {},
             },
         }),
+        agentRuntimeVersion = schema.new({
+            id = id.from(_N, "DeleteAgentRuntimeInput", "agentRuntimeVersion"),
+            type = "string",
+            name = "agentRuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "version" },
+            },
+        }),
         clientToken = schema.new({
             id = id.from(_N, "DeleteAgentRuntimeInput", "clientToken"),
             type = "string",
@@ -2341,6 +2427,12 @@ M.DeleteAgentRuntimeOutput = schema.new({
             id = id.from(_N, "DeleteAgentRuntimeOutput", "agentRuntimeId"),
             type = "string",
             name = "agentRuntimeId",
+            target_id = prelude.String.id,
+        }),
+        agentRuntimeVersion = schema.new({
+            id = id.from(_N, "DeleteAgentRuntimeOutput", "agentRuntimeVersion"),
+            type = "string",
+            name = "agentRuntimeVersion",
             target_id = prelude.String.id,
         }),
     },
@@ -2560,6 +2652,13 @@ M.GetAgentRuntimeOutput = schema.new({
             name = "filesystemConfigurations",
             target_id = prelude.Document.id,
             list_member = M.FilesystemConfiguration,
+        }),
+        capacityProviderConfiguration = schema.new({
+            id = id.from(_N, "GetAgentRuntimeOutput", "capacityProviderConfiguration"),
+            type = "structure",
+            name = "capacityProviderConfiguration",
+            target_id = id.from(_N, "CapacityProviderConfiguration"),
+            target = M.CapacityProviderConfiguration,
         }),
     },
 })
@@ -2783,9 +2882,6 @@ M.UpdateAgentRuntimeInput = schema.new({
             name = "networkConfiguration",
             target_id = id.from(_N, "NetworkConfiguration"),
             target = M.NetworkConfiguration,
-            traits = {
-                [traits.REQUIRED] = {},
-            },
         }),
         description = schema.new({
             id = id.from(_N, "UpdateAgentRuntimeInput", "description"),
@@ -2842,6 +2938,13 @@ M.UpdateAgentRuntimeInput = schema.new({
             name = "filesystemConfigurations",
             target_id = prelude.Document.id,
             list_member = M.FilesystemConfiguration,
+        }),
+        capacityProviderConfiguration = schema.new({
+            id = id.from(_N, "UpdateAgentRuntimeInput", "capacityProviderConfiguration"),
+            type = "structure",
+            name = "capacityProviderConfiguration",
+            target_id = id.from(_N, "CapacityProviderConfiguration"),
+            target = M.CapacityProviderConfiguration,
         }),
         clientToken = schema.new({
             id = id.from(_N, "UpdateAgentRuntimeInput", "clientToken"),
@@ -2921,6 +3024,40 @@ M.UpdateAgentRuntimeOutput = schema.new({
         }),
         status = schema.new({
             id = id.from(_N, "UpdateAgentRuntimeOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AgentRuntimeVersionSummary = schema.new({
+    id = id.from(_N, "AgentRuntimeVersionSummary"),
+    type = "structure",
+    members = {
+        agentRuntimeArn = schema.new({
+            id = id.from(_N, "AgentRuntimeVersionSummary", "agentRuntimeArn"),
+            type = "string",
+            name = "agentRuntimeArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        agentRuntimeVersion = schema.new({
+            id = id.from(_N, "AgentRuntimeVersionSummary", "agentRuntimeVersion"),
+            type = "string",
+            name = "agentRuntimeVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AgentRuntimeVersionSummary", "status"),
             type = "string",
             name = "status",
             target_id = prelude.String.id,
@@ -4639,6 +4776,1073 @@ M.ListBrowsersOutput = schema.new({
             type = "string",
             name = "nextToken",
             target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CapacityReservationTarget = schema.new({
+    id = id.from(_N, "CapacityReservationTarget"),
+    type = "structure",
+    members = {
+        capacityReservationId = schema.new({
+            id = id.from(_N, "CapacityReservationTarget", "capacityReservationId"),
+            type = "string",
+            name = "capacityReservationId",
+            target_id = prelude.String.id,
+        }),
+        capacityReservationResourceGroupArn = schema.new({
+            id = id.from(_N, "CapacityReservationTarget", "capacityReservationResourceGroupArn"),
+            type = "string",
+            name = "capacityReservationResourceGroupArn",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.CapacityReservationSpecification = schema.new({
+    id = id.from(_N, "CapacityReservationSpecification"),
+    type = "structure",
+    members = {
+        capacityReservationPreference = schema.new({
+            id = id.from(_N, "CapacityReservationSpecification", "capacityReservationPreference"),
+            type = "string",
+            name = "capacityReservationPreference",
+            target_id = prelude.String.id,
+        }),
+        capacityReservationTarget = schema.new({
+            id = id.from(_N, "CapacityReservationSpecification", "capacityReservationTarget"),
+            type = "structure",
+            name = "capacityReservationTarget",
+            target_id = id.from(_N, "CapacityReservationTarget"),
+            target = M.CapacityReservationTarget,
+        }),
+    },
+})
+
+M.EphemeralEBSVolumeConfiguration = schema.new({
+    id = id.from(_N, "EphemeralEBSVolumeConfiguration"),
+    type = "structure",
+    members = {
+        volumeType = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "volumeType"),
+            type = "string",
+            name = "volumeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "gp3" },
+            },
+        }),
+        iops = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "iops"),
+            type = "integer",
+            name = "iops",
+            target_id = prelude.Integer.id,
+        }),
+        throughput = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "throughput"),
+            type = "integer",
+            name = "throughput",
+            target_id = prelude.Integer.id,
+        }),
+        encrypted = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "encrypted"),
+            type = "boolean",
+            name = "encrypted",
+            target_id = prelude.Boolean.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        snapshotId = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "snapshotId"),
+            type = "string",
+            name = "snapshotId",
+            target_id = prelude.String.id,
+        }),
+        volumeSize = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "volumeSize"),
+            type = "integer",
+            name = "volumeSize",
+            target_id = prelude.Integer.id,
+        }),
+        volumeInitializationRate = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "volumeInitializationRate"),
+            type = "integer",
+            name = "volumeInitializationRate",
+            target_id = prelude.Integer.id,
+        }),
+        ebsCardIndex = schema.new({
+            id = id.from(_N, "EphemeralEBSVolumeConfiguration", "ebsCardIndex"),
+            type = "integer",
+            name = "ebsCardIndex",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.EphemeralBlockDeviceMapping = schema.new({
+    id = id.from(_N, "EphemeralBlockDeviceMapping"),
+    type = "structure",
+    members = {
+        deviceName = schema.new({
+            id = id.from(_N, "EphemeralBlockDeviceMapping", "deviceName"),
+            type = "string",
+            name = "deviceName",
+            target_id = prelude.String.id,
+        }),
+        virtualName = schema.new({
+            id = id.from(_N, "EphemeralBlockDeviceMapping", "virtualName"),
+            type = "string",
+            name = "virtualName",
+            target_id = prelude.String.id,
+        }),
+        ebs = schema.new({
+            id = id.from(_N, "EphemeralBlockDeviceMapping", "ebs"),
+            type = "structure",
+            name = "ebs",
+            target_id = id.from(_N, "EphemeralEBSVolumeConfiguration"),
+            target = M.EphemeralEBSVolumeConfiguration,
+        }),
+    },
+})
+
+M.InstanceRequirements = schema.new({
+    id = id.from(_N, "InstanceRequirements"),
+    type = "structure",
+    members = {
+        allowedInstanceTypes = schema.new({
+            id = id.from(_N, "InstanceRequirements", "allowedInstanceTypes"),
+            type = "list",
+            name = "allowedInstanceTypes",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LicenseSpecification = schema.new({
+    id = id.from(_N, "LicenseSpecification"),
+    type = "structure",
+    members = {
+        licenseConfigurationArn = schema.new({
+            id = id.from(_N, "LicenseSpecification", "licenseConfigurationArn"),
+            type = "string",
+            name = "licenseConfigurationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LaunchParameters = schema.new({
+    id = id.from(_N, "LaunchParameters"),
+    type = "structure",
+    members = {
+        operatingSystem = schema.new({
+            id = id.from(_N, "LaunchParameters", "operatingSystem"),
+            type = "string",
+            name = "operatingSystem",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        instanceRequirements = schema.new({
+            id = id.from(_N, "LaunchParameters", "instanceRequirements"),
+            type = "structure",
+            name = "instanceRequirements",
+            target_id = id.from(_N, "InstanceRequirements"),
+            target = M.InstanceRequirements,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ephemeralVolumes = schema.new({
+            id = id.from(_N, "LaunchParameters", "ephemeralVolumes"),
+            type = "list",
+            name = "ephemeralVolumes",
+            target_id = prelude.Document.id,
+            list_member = M.EphemeralBlockDeviceMapping,
+        }),
+        monitoring = schema.new({
+            id = id.from(_N, "LaunchParameters", "monitoring"),
+            type = "string",
+            name = "monitoring",
+            target_id = prelude.String.id,
+        }),
+        licenseSpecifications = schema.new({
+            id = id.from(_N, "LaunchParameters", "licenseSpecifications"),
+            type = "list",
+            name = "licenseSpecifications",
+            target_id = prelude.Document.id,
+            list_member = M.LicenseSpecification,
+        }),
+        capacityReservationSpecification = schema.new({
+            id = id.from(_N, "LaunchParameters", "capacityReservationSpecification"),
+            type = "structure",
+            name = "capacityReservationSpecification",
+            target_id = id.from(_N, "CapacityReservationSpecification"),
+            target = M.CapacityReservationSpecification,
+        }),
+        sshKeyName = schema.new({
+            id = id.from(_N, "LaunchParameters", "sshKeyName"),
+            type = "string",
+            name = "sshKeyName",
+            target_id = prelude.String.id,
+        }),
+        instanceProfileArn = schema.new({
+            id = id.from(_N, "LaunchParameters", "instanceProfileArn"),
+            type = "string",
+            name = "instanceProfileArn",
+            target_id = prelude.String.id,
+        }),
+        propagatedTags = schema.new({
+            id = id.from(_N, "LaunchParameters", "propagatedTags"),
+            type = "map",
+            name = "propagatedTags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.LaunchTemplateSource = schema.new({
+    id = id.from(_N, "LaunchTemplateSource"),
+    type = "union",
+    members = {
+        launchParameters = schema.new({
+            id = id.from(_N, "LaunchTemplateSource", "launchParameters"),
+            type = "structure",
+            name = "launchParameters",
+            target_id = id.from(_N, "LaunchParameters"),
+            target = M.LaunchParameters,
+        }),
+    },
+})
+
+M.InstanceLifecycleConfiguration = schema.new({
+    id = id.from(_N, "InstanceLifecycleConfiguration"),
+    type = "structure",
+    members = {
+        idleInstanceTimeout = schema.new({
+            id = id.from(_N, "InstanceLifecycleConfiguration", "idleInstanceTimeout"),
+            type = "integer",
+            name = "idleInstanceTimeout",
+            target_id = prelude.Integer.id,
+        }),
+        maxLifetime = schema.new({
+            id = id.from(_N, "InstanceLifecycleConfiguration", "maxLifetime"),
+            type = "integer",
+            name = "maxLifetime",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.RootVolumeConfiguration = schema.new({
+    id = id.from(_N, "RootVolumeConfiguration"),
+    type = "structure",
+    members = {
+        volumeType = schema.new({
+            id = id.from(_N, "RootVolumeConfiguration", "volumeType"),
+            type = "string",
+            name = "volumeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "gp3" },
+            },
+        }),
+        iops = schema.new({
+            id = id.from(_N, "RootVolumeConfiguration", "iops"),
+            type = "integer",
+            name = "iops",
+            target_id = prelude.Integer.id,
+        }),
+        throughput = schema.new({
+            id = id.from(_N, "RootVolumeConfiguration", "throughput"),
+            type = "integer",
+            name = "throughput",
+            target_id = prelude.Integer.id,
+        }),
+        encrypted = schema.new({
+            id = id.from(_N, "RootVolumeConfiguration", "encrypted"),
+            type = "boolean",
+            name = "encrypted",
+            target_id = prelude.Boolean.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "RootVolumeConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        freeSpaceGiB = schema.new({
+            id = id.from(_N, "RootVolumeConfiguration", "freeSpaceGiB"),
+            type = "integer",
+            name = "freeSpaceGiB",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.EbsVolumeConfiguration = schema.new({
+    id = id.from(_N, "EbsVolumeConfiguration"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        sizeGiB = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "sizeGiB"),
+            type = "integer",
+            name = "sizeGiB",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        volumeType = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "volumeType"),
+            type = "string",
+            name = "volumeType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.DEFAULT] = { value = "gp3" },
+            },
+        }),
+        iops = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "iops"),
+            type = "integer",
+            name = "iops",
+            target_id = prelude.Integer.id,
+        }),
+        throughput = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "throughput"),
+            type = "integer",
+            name = "throughput",
+            target_id = prelude.Integer.id,
+        }),
+        encrypted = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "encrypted"),
+            type = "boolean",
+            name = "encrypted",
+            target_id = prelude.Boolean.id,
+        }),
+        kmsKeyId = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "kmsKeyId"),
+            type = "string",
+            name = "kmsKeyId",
+            target_id = prelude.String.id,
+        }),
+        snapshotId = schema.new({
+            id = id.from(_N, "EbsVolumeConfiguration", "snapshotId"),
+            type = "string",
+            name = "snapshotId",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.VolumeConfiguration = schema.new({
+    id = id.from(_N, "VolumeConfiguration"),
+    type = "union",
+    members = {
+        ebsConfiguration = schema.new({
+            id = id.from(_N, "VolumeConfiguration", "ebsConfiguration"),
+            type = "structure",
+            name = "ebsConfiguration",
+            target_id = id.from(_N, "EbsVolumeConfiguration"),
+            target = M.EbsVolumeConfiguration,
+        }),
+    },
+})
+
+M.VpcConfiguration = schema.new({
+    id = id.from(_N, "VpcConfiguration"),
+    type = "structure",
+    members = {
+        subnets = schema.new({
+            id = id.from(_N, "VpcConfiguration", "subnets"),
+            type = "list",
+            name = "subnets",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        securityGroups = schema.new({
+            id = id.from(_N, "VpcConfiguration", "securityGroups"),
+            type = "list",
+            name = "securityGroups",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.Ec2Configuration = schema.new({
+    id = id.from(_N, "Ec2Configuration"),
+    type = "structure",
+    members = {
+        launchTemplateSource = schema.new({
+            id = id.from(_N, "Ec2Configuration", "launchTemplateSource"),
+            type = "union",
+            name = "launchTemplateSource",
+            target_id = id.from(_N, "LaunchTemplateSource"),
+            target = M.LaunchTemplateSource,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        vpcConfiguration = schema.new({
+            id = id.from(_N, "Ec2Configuration", "vpcConfiguration"),
+            type = "structure",
+            name = "vpcConfiguration",
+            target_id = id.from(_N, "VpcConfiguration"),
+            target = M.VpcConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        volumes = schema.new({
+            id = id.from(_N, "Ec2Configuration", "volumes"),
+            type = "list",
+            name = "volumes",
+            target_id = prelude.Document.id,
+            list_member = M.VolumeConfiguration,
+        }),
+        lifecycleConfiguration = schema.new({
+            id = id.from(_N, "Ec2Configuration", "lifecycleConfiguration"),
+            type = "structure",
+            name = "lifecycleConfiguration",
+            target_id = id.from(_N, "InstanceLifecycleConfiguration"),
+            target = M.InstanceLifecycleConfiguration,
+        }),
+        rootVolume = schema.new({
+            id = id.from(_N, "Ec2Configuration", "rootVolume"),
+            type = "structure",
+            name = "rootVolume",
+            target_id = id.from(_N, "RootVolumeConfiguration"),
+            target = M.RootVolumeConfiguration,
+        }),
+    },
+})
+
+M.ComputeConfiguration = schema.new({
+    id = id.from(_N, "ComputeConfiguration"),
+    type = "union",
+    members = {
+        ec2Configuration = schema.new({
+            id = id.from(_N, "ComputeConfiguration", "ec2Configuration"),
+            type = "structure",
+            name = "ec2Configuration",
+            target_id = id.from(_N, "Ec2Configuration"),
+            target = M.Ec2Configuration,
+        }),
+    },
+})
+
+M.PermissionsConfiguration = schema.new({
+    id = id.from(_N, "PermissionsConfiguration"),
+    type = "structure",
+    members = {
+        capacityProviderOperatorRoleArn = schema.new({
+            id = id.from(_N, "PermissionsConfiguration", "capacityProviderOperatorRoleArn"),
+            type = "string",
+            name = "capacityProviderOperatorRoleArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateCapacityProviderInput = schema.new({
+    id = id.from(_N, "CreateCapacityProviderInput"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        permissionsConfiguration = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "permissionsConfiguration"),
+            type = "structure",
+            name = "permissionsConfiguration",
+            target_id = id.from(_N, "PermissionsConfiguration"),
+            target = M.PermissionsConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        tags = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "tags"),
+            type = "map",
+            name = "tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+        computeConfiguration = schema.new({
+            id = id.from(_N, "CreateCapacityProviderInput", "computeConfiguration"),
+            type = "union",
+            name = "computeConfiguration",
+            target_id = id.from(_N, "ComputeConfiguration"),
+            target = M.ComputeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateCapacityProviderOutput = schema.new({
+    id = id.from(_N, "CreateCapacityProviderOutput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "CreateCapacityProviderOutput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        capacityProviderArn = schema.new({
+            id = id.from(_N, "CreateCapacityProviderOutput", "capacityProviderArn"),
+            type = "string",
+            name = "capacityProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CreateCapacityProviderOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateCapacityProviderOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RetryableConflictException = schema.new({
+    id = id.from(_N, "RetryableConflictException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "client" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "RetryableConflictException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCapacityProviderInput = schema.new({
+    id = id.from(_N, "DeleteCapacityProviderInput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderInput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "clientToken" },
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteCapacityProviderOutput = schema.new({
+    id = id.from(_N, "DeleteCapacityProviderOutput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderOutput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteCapacityProviderOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetCapacityProviderInput = schema.new({
+    id = id.from(_N, "GetCapacityProviderInput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "GetCapacityProviderInput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetCapacityProviderOutput = schema.new({
+    id = id.from(_N, "GetCapacityProviderOutput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        capacityProviderArn = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "capacityProviderArn"),
+            type = "string",
+            name = "capacityProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        statusCode = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "statusCode"),
+            type = "string",
+            name = "statusCode",
+            target_id = prelude.String.id,
+        }),
+        statusReason = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "statusReason"),
+            type = "string",
+            name = "statusReason",
+            target_id = prelude.String.id,
+        }),
+        permissionsConfiguration = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "permissionsConfiguration"),
+            type = "structure",
+            name = "permissionsConfiguration",
+            target_id = id.from(_N, "PermissionsConfiguration"),
+            target = M.PermissionsConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        computeConfiguration = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "computeConfiguration"),
+            type = "union",
+            name = "computeConfiguration",
+            target_id = id.from(_N, "ComputeConfiguration"),
+            target = M.ComputeConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "GetCapacityProviderOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListAgentRuntimeVersionsByCapacityProviderInput = schema.new({
+    id = id.from(_N, "ListAgentRuntimeVersionsByCapacityProviderInput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "ListAgentRuntimeVersionsByCapacityProviderInput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAgentRuntimeVersionsByCapacityProviderInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRuntimeVersionsByCapacityProviderInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListAgentRuntimeVersionsByCapacityProviderOutput = schema.new({
+    id = id.from(_N, "ListAgentRuntimeVersionsByCapacityProviderOutput"),
+    type = "structure",
+    members = {
+        agentRuntimes = schema.new({
+            id = id.from(_N, "ListAgentRuntimeVersionsByCapacityProviderOutput", "agentRuntimes"),
+            type = "list",
+            name = "agentRuntimes",
+            target_id = prelude.Document.id,
+            list_member = M.AgentRuntimeVersionSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAgentRuntimeVersionsByCapacityProviderOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ListCapacityProvidersInput = schema.new({
+    id = id.from(_N, "ListCapacityProvidersInput"),
+    type = "structure",
+    members = {
+        maxResults = schema.new({
+            id = id.from(_N, "ListCapacityProvidersInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCapacityProvidersInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.CapacityProviderSummary = schema.new({
+    id = id.from(_N, "CapacityProviderSummary"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "CapacityProviderSummary", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        capacityProviderArn = schema.new({
+            id = id.from(_N, "CapacityProviderSummary", "capacityProviderArn"),
+            type = "string",
+            name = "capacityProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "CapacityProviderSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CapacityProviderSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "CapacityProviderSummary", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListCapacityProvidersOutput = schema.new({
+    id = id.from(_N, "ListCapacityProvidersOutput"),
+    type = "structure",
+    members = {
+        capacityProviders = schema.new({
+            id = id.from(_N, "ListCapacityProvidersOutput", "capacityProviders"),
+            type = "list",
+            name = "capacityProviders",
+            target_id = prelude.Document.id,
+            list_member = M.CapacityProviderSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListCapacityProvidersOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdatedDescription = schema.new({
+    id = id.from(_N, "UpdatedDescription"),
+    type = "structure",
+    members = {
+        optionalValue = schema.new({
+            id = id.from(_N, "UpdatedDescription", "optionalValue"),
+            type = "string",
+            name = "optionalValue",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateCapacityProviderInput = schema.new({
+    id = id.from(_N, "UpdateCapacityProviderInput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderInput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderInput", "description"),
+            type = "structure",
+            name = "description",
+            target_id = id.from(_N, "UpdatedDescription"),
+            target = M.UpdatedDescription,
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateCapacityProviderOutput = schema.new({
+    id = id.from(_N, "UpdateCapacityProviderOutput"),
+    type = "structure",
+    members = {
+        capacityProviderId = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderOutput", "capacityProviderId"),
+            type = "string",
+            name = "capacityProviderId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        capacityProviderArn = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderOutput", "capacityProviderArn"),
+            type = "string",
+            name = "capacityProviderArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderOutput", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        lastUpdatedAt = schema.new({
+            id = id.from(_N, "UpdateCapacityProviderOutput", "lastUpdatedAt"),
+            type = "timestamp",
+            name = "lastUpdatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -7753,6 +8957,744 @@ M.UpdateEvaluatorOutput = schema.new({
             name = "status",
             target_id = prelude.String.id,
             traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.RateConfig = schema.new({
+    id = id.from(_N, "RateConfig"),
+    type = "structure",
+    members = {
+        rate = schema.new({
+            id = id.from(_N, "RateConfig", "rate"),
+            type = "double",
+            name = "rate",
+            target_id = prelude.Double.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        period = schema.new({
+            id = id.from(_N, "RateConfig", "period"),
+            type = "string",
+            name = "period",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.LimitEntry = schema.new({
+    id = id.from(_N, "LimitEntry"),
+    type = "structure",
+    members = {
+        dimensions = schema.new({
+            id = id.from(_N, "LimitEntry", "dimensions"),
+            type = "map",
+            name = "dimensions",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        requests = schema.new({
+            id = id.from(_N, "LimitEntry", "requests"),
+            type = "list",
+            name = "requests",
+            target_id = prelude.Document.id,
+            list_member = M.RateConfig,
+        }),
+        tokens = schema.new({
+            id = id.from(_N, "LimitEntry", "tokens"),
+            type = "list",
+            name = "tokens",
+            target_id = prelude.Document.id,
+            list_member = M.RateConfig,
+        }),
+        connections = schema.new({
+            id = id.from(_N, "LimitEntry", "connections"),
+            type = "list",
+            name = "connections",
+            target_id = prelude.Document.id,
+            list_member = M.RateConfig,
+        }),
+    },
+})
+
+M.BatchPutLimitEntry = schema.new({
+    id = id.from(_N, "BatchPutLimitEntry"),
+    type = "structure",
+    members = {
+        rateLimitId = schema.new({
+            id = id.from(_N, "BatchPutLimitEntry", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "BatchPutLimitEntry", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        dimensionKeys = schema.new({
+            id = id.from(_N, "BatchPutLimitEntry", "dimensionKeys"),
+            type = "list",
+            name = "dimensionKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entries = schema.new({
+            id = id.from(_N, "BatchPutLimitEntry", "entries"),
+            type = "list",
+            name = "entries",
+            target_id = prelude.Document.id,
+            list_member = M.LimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchPutGatewayRateLimitsInput = schema.new({
+    id = id.from(_N, "BatchPutGatewayRateLimitsRequest"),
+    type = "structure",
+    members = {
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "BatchPutGatewayRateLimitsInput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "BatchPutGatewayRateLimitsInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        rateLimits = schema.new({
+            id = id.from(_N, "BatchPutGatewayRateLimitsInput", "rateLimits"),
+            type = "list",
+            name = "rateLimits",
+            target_id = prelude.Document.id,
+            list_member = M.BatchPutLimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GatewayRateLimitDetail = schema.new({
+    id = id.from(_N, "GatewayRateLimitDetail"),
+    type = "structure",
+    members = {
+        rateLimitId = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        dimensionKeys = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "dimensionKeys"),
+            type = "list",
+            name = "dimensionKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entries = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "entries"),
+            type = "list",
+            name = "entries",
+            target_id = prelude.Document.id,
+            list_member = M.LimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GatewayRateLimitDetail", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.BatchPutGatewayRateLimitsOutput = schema.new({
+    id = id.from(_N, "BatchPutGatewayRateLimitsResponse"),
+    type = "structure",
+    members = {
+        rateLimits = schema.new({
+            id = id.from(_N, "BatchPutGatewayRateLimitsOutput", "rateLimits"),
+            type = "list",
+            name = "rateLimits",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayRateLimitDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateGatewayRateLimitInput = schema.new({
+    id = id.from(_N, "CreateGatewayRateLimitRequest"),
+    type = "structure",
+    members = {
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitInput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        clientToken = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitInput", "clientToken"),
+            type = "string",
+            name = "clientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        rateLimitId = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitInput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        dimensionKeys = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitInput", "dimensionKeys"),
+            type = "list",
+            name = "dimensionKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entries = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitInput", "entries"),
+            type = "list",
+            name = "entries",
+            target_id = prelude.Document.id,
+            list_member = M.LimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateGatewayRateLimitOutput = schema.new({
+    id = id.from(_N, "CreateGatewayRateLimitResponse"),
+    type = "structure",
+    members = {
+        rateLimitId = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        dimensionKeys = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "dimensionKeys"),
+            type = "list",
+            name = "dimensionKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entries = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "entries"),
+            type = "list",
+            name = "entries",
+            target_id = prelude.Document.id,
+            list_member = M.LimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "CreateGatewayRateLimitOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteGatewayRateLimitInput = schema.new({
+    id = id.from(_N, "DeleteGatewayRateLimitRequest"),
+    type = "structure",
+    members = {
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "DeleteGatewayRateLimitInput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        rateLimitId = schema.new({
+            id = id.from(_N, "DeleteGatewayRateLimitInput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteGatewayRateLimitOutput = schema.new({
+    id = id.from(_N, "DeleteGatewayRateLimitResponse"),
+    type = "structure",
+    members = {
+        rateLimitId = schema.new({
+            id = id.from(_N, "DeleteGatewayRateLimitOutput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "DeleteGatewayRateLimitOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.GetGatewayRateLimitInput = schema.new({
+    id = id.from(_N, "GetGatewayRateLimitRequest"),
+    type = "structure",
+    members = {
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitInput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        rateLimitId = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitInput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetGatewayRateLimitOutput = schema.new({
+    id = id.from(_N, "GetGatewayRateLimitResponse"),
+    type = "structure",
+    members = {
+        rateLimitId = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        dimensionKeys = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "dimensionKeys"),
+            type = "list",
+            name = "dimensionKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entries = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "entries"),
+            type = "list",
+            name = "entries",
+            target_id = prelude.Document.id,
+            list_member = M.LimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "GetGatewayRateLimitOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.ListGatewayRateLimitsInput = schema.new({
+    id = id.from(_N, "ListGatewayRateLimitsRequest"),
+    type = "structure",
+    members = {
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "ListGatewayRateLimitsInput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListGatewayRateLimitsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewayRateLimitsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.ListGatewayRateLimitsOutput = schema.new({
+    id = id.from(_N, "ListGatewayRateLimitsResponse"),
+    type = "structure",
+    members = {
+        rateLimits = schema.new({
+            id = id.from(_N, "ListGatewayRateLimitsOutput", "rateLimits"),
+            type = "list",
+            name = "rateLimits",
+            target_id = prelude.Document.id,
+            list_member = M.GatewayRateLimitDetail,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListGatewayRateLimitsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateGatewayRateLimitInput = schema.new({
+    id = id.from(_N, "UpdateGatewayRateLimitRequest"),
+    type = "structure",
+    members = {
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitInput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        rateLimitId = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitInput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitInput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        entries = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitInput", "entries"),
+            type = "list",
+            name = "entries",
+            target_id = prelude.Document.id,
+            list_member = M.LimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateGatewayRateLimitOutput = schema.new({
+    id = id.from(_N, "UpdateGatewayRateLimitResponse"),
+    type = "structure",
+    members = {
+        rateLimitId = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "rateLimitId"),
+            type = "string",
+            name = "rateLimitId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        gatewayIdentifier = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "gatewayIdentifier"),
+            type = "string",
+            name = "gatewayIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        description = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "description"),
+            type = "string",
+            name = "description",
+            target_id = prelude.String.id,
+        }),
+        dimensionKeys = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "dimensionKeys"),
+            type = "list",
+            name = "dimensionKeys",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        entries = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "entries"),
+            type = "list",
+            name = "entries",
+            target_id = prelude.Document.id,
+            list_member = M.LimitEntry,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createdAt = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "createdAt"),
+            type = "timestamp",
+            name = "createdAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updatedAt = schema.new({
+            id = id.from(_N, "UpdateGatewayRateLimitOutput", "updatedAt"),
+            type = "timestamp",
+            name = "updatedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+            direct_traits = {
                 [traits.REQUIRED] = {},
             },
         }),
@@ -20694,19 +22636,6 @@ M.ListPolicyEngineSummariesOutput = schema.new({
     },
 })
 
-M.UpdatedDescription = schema.new({
-    id = id.from(_N, "UpdatedDescription"),
-    type = "structure",
-    members = {
-        optionalValue = schema.new({
-            id = id.from(_N, "UpdatedDescription", "optionalValue"),
-            type = "string",
-            name = "optionalValue",
-            target_id = prelude.String.id,
-        }),
-    },
-})
-
 M.UpdatePolicyEngineInput = schema.new({
     id = id.from(_N, "UpdatePolicyEngineRequest"),
     type = "structure",
@@ -26228,6 +28157,18 @@ M.AddDatasetExamples = schema.operation({
     },
 })
 
+M.BatchPutGatewayRateLimits = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "BatchPutGatewayRateLimits"),
+    input = M.BatchPutGatewayRateLimitsInput,
+    output = M.BatchPutGatewayRateLimitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/gateways/{gatewayIdentifier}/rate-limits/batch" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateAgentRuntime = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateAgentRuntime"),
     input = M.CreateAgentRuntimeInput,
@@ -26282,6 +28223,18 @@ M.CreateBrowserProfile = schema.operation({
     output = M.CreateBrowserProfileOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/browser-profiles" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateCapacityProvider"),
+    input = M.CreateCapacityProviderInput,
+    output = M.CreateCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/capacity-providers" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -26354,6 +28307,18 @@ M.CreateGateway = schema.operation({
     output = M.CreateGatewayOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/gateways/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateGatewayRateLimit = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "CreateGatewayRateLimit"),
+    input = M.CreateGatewayRateLimitInput,
+    output = M.CreateGatewayRateLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/gateways/{gatewayIdentifier}/rate-limits" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -26600,6 +28565,18 @@ M.DeleteBrowserProfile = schema.operation({
     },
 })
 
+M.DeleteCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteCapacityProvider"),
+    input = M.DeleteCapacityProviderInput,
+    output = M.DeleteCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/capacity-providers/{capacityProviderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteCodeInterpreter = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteCodeInterpreter"),
     input = M.DeleteCodeInterpreterInput,
@@ -26666,6 +28643,18 @@ M.DeleteGateway = schema.operation({
     output = M.DeleteGatewayOutput,
     traits = {
         [traits.HTTP] = { method = "DELETE", path = "/gateways/{gatewayIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteGatewayRateLimit = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "DeleteGatewayRateLimit"),
+    input = M.DeleteGatewayRateLimitInput,
+    output = M.DeleteGatewayRateLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/gateways/{gatewayIdentifier}/rate-limits/{rateLimitId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -26924,6 +28913,18 @@ M.GetBrowserProfile = schema.operation({
     },
 })
 
+M.GetCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetCapacityProvider"),
+    input = M.GetCapacityProviderInput,
+    output = M.GetCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/capacity-providers/{capacityProviderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetCodeInterpreter = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetCodeInterpreter"),
     input = M.GetCodeInterpreterInput,
@@ -26990,6 +28991,18 @@ M.GetGateway = schema.operation({
     output = M.GetGatewayOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetGatewayRateLimit = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "GetGatewayRateLimit"),
+    input = M.GetGatewayRateLimitInput,
+    output = M.GetGatewayRateLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/rate-limits/{rateLimitId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -27284,6 +29297,18 @@ M.ListAgentRuntimeVersions = schema.operation({
     },
 })
 
+M.ListAgentRuntimeVersionsByCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListAgentRuntimeVersionsByCapacityProvider"),
+    input = M.ListAgentRuntimeVersionsByCapacityProviderInput,
+    output = M.ListAgentRuntimeVersionsByCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/capacity-providers/{capacityProviderId}/runtime-versions" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListApiKeyCredentialProviders = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListApiKeyCredentialProviders"),
     input = M.ListApiKeyCredentialProvidersInput,
@@ -27314,6 +29339,18 @@ M.ListBrowsers = schema.operation({
     output = M.ListBrowsersOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/browsers" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListCapacityProviders = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListCapacityProviders"),
+    input = M.ListCapacityProvidersInput,
+    output = M.ListCapacityProvidersOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/capacity-providers" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -27398,6 +29435,18 @@ M.ListEvaluators = schema.operation({
     output = M.ListEvaluatorsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/evaluators" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListGatewayRateLimits = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "ListGatewayRateLimits"),
+    input = M.ListGatewayRateLimitsInput,
+    output = M.ListGatewayRateLimitsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/gateways/{gatewayIdentifier}/rate-limits" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -27800,6 +29849,18 @@ M.UpdateApiKeyCredentialProvider = schema.operation({
     },
 })
 
+M.UpdateCapacityProvider = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateCapacityProvider"),
+    input = M.UpdateCapacityProviderInput,
+    output = M.UpdateCapacityProviderOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/capacity-providers/{capacityProviderId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.UpdateConfigurationBundle = schema.operation({
     id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateConfigurationBundle"),
     input = M.UpdateConfigurationBundleInput,
@@ -27854,6 +29915,18 @@ M.UpdateGateway = schema.operation({
     output = M.UpdateGatewayOutput,
     traits = {
         [traits.HTTP] = { method = "PUT", path = "/gateways/{gatewayIdentifier}/" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateGatewayRateLimit = schema.operation({
+    id = id.from("com.amazonaws.bedrockagentcorecontrol", "UpdateGatewayRateLimit"),
+    input = M.UpdateGatewayRateLimitInput,
+    output = M.UpdateGatewayRateLimitOutput,
+    traits = {
+        [traits.HTTP] = { method = "PATCH", path = "/gateways/{gatewayIdentifier}/rate-limits/{rateLimitId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
