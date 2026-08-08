@@ -261,6 +261,18 @@ M.Actor = schema.new({
             name = "description",
             target_id = prelude.String.id,
         }),
+        enableEmailMfa = schema.new({
+            id = id.from(_N, "Actor", "enableEmailMfa"),
+            type = "boolean",
+            name = "enableEmailMfa",
+            target_id = prelude.Boolean.id,
+        }),
+        mfaForwardingAddress = schema.new({
+            id = id.from(_N, "Actor", "mfaForwardingAddress"),
+            type = "string",
+            name = "mfaForwardingAddress",
+            target_id = prelude.String.id,
+        }),
     },
 })
 

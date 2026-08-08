@@ -176,6 +176,8 @@ local record M
         "ONLY_NON_EPOCH_LOCKED_ALLOW_OUTPUT_TIMESTAMP_MODE"
         "OUTPUT_TIMESTAMP_MODE_IMMUTABLE"
         "NON_EPOCH_LOCKED_WITH_FORCE_ENDPOINT_ERROR_CONFIGURATION"
+        "ONLY_HLS_INPUT_TYPE_ALLOW_STREAM_NAME_OUTPUT_MODE"
+        "STREAM_NAME_OUTPUT_MODE_IMMUTABLE"
     end
 
     -- The input failed to meet the constraints specified by the AWS service.
@@ -862,6 +864,11 @@ local record M
         OutputTimestampMode: string
     end
 
+    enum StreamNameOutputMode
+        "INDEX"
+        "PASSTHROUGH_NAME"
+    end
+
     enum UriSeparator
         "UNDERSCORE"
         "HYPHEN"
@@ -896,6 +903,8 @@ local record M
         ForceEndpointErrorConfiguration: ForceEndpointErrorConfiguration
         -- The separator character to use in generated URIs for this origin endpoint. This setting applies to all manifest types on the endpoint. If you don't specify a value, the default is UNDERSCORE.
         UriSeparator: string
+        -- The output mode for stream names in egress manifests. This setting is valid only when the associated channel's InputType is HLS. You can't change the stream name output mode after you create the endpoint. INDEX uses numeric indices for stream names (for example, 1, 2, 3). PASSTHROUGH_NAME uses the stream names from the input manifest. If you don't specify a value, the default is INDEX.
+        StreamNameOutputMode: string
         -- A comma-separated list of tag key:value pairs that you define. For example: "Key1": "Value1", "Key2": "Value2"
         Tags: {string : string}
     end
@@ -1033,6 +1042,8 @@ local record M
         ForceEndpointErrorConfiguration: ForceEndpointErrorConfiguration
         -- The separator character used in generated URIs for this origin endpoint.
         UriSeparator: string
+        -- The output mode for stream names in egress manifests for this origin endpoint.
+        StreamNameOutputMode: string
         -- The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.
         ETag: string
         -- The comma-separated list of tag key:value pairs assigned to the origin endpoint.
@@ -1094,6 +1105,8 @@ local record M
         ForceEndpointErrorConfiguration: ForceEndpointErrorConfiguration
         -- The separator character used in generated URIs for this origin endpoint.
         UriSeparator: string
+        -- The output mode for stream names in egress manifests for this origin endpoint.
+        StreamNameOutputMode: string
         -- The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.
         ETag: string
         -- The comma-separated list of tag key:value pairs assigned to the origin endpoint.
@@ -1177,6 +1190,8 @@ local record M
         ForceEndpointErrorConfiguration: ForceEndpointErrorConfiguration
         -- The separator character used in generated URIs for this origin endpoint.
         UriSeparator: string
+        -- The output mode for stream names in egress manifests for this origin endpoint.
+        StreamNameOutputMode: string
     end
 
     record ListOriginEndpointsOutput
@@ -1285,6 +1300,8 @@ local record M
         ForceEndpointErrorConfiguration: ForceEndpointErrorConfiguration
         -- The separator character to use in generated URIs for this origin endpoint. This setting applies to all manifest types on the endpoint. If you don't specify a value in the update request, the current value is preserved.
         UriSeparator: string
+        -- The output mode for stream names in egress manifests. If you provide a value, it must match the current value. You can't change the stream name output mode after you create the endpoint.
+        StreamNameOutputMode: string
         -- The expected current Entity Tag (ETag) for the resource. If the specified ETag does not match the resource's current entity tag, the update request will be rejected.
         ETag: string
     end
@@ -1320,6 +1337,8 @@ local record M
         ForceEndpointErrorConfiguration: ForceEndpointErrorConfiguration
         -- The separator character used in generated URIs for this origin endpoint.
         UriSeparator: string
+        -- The output mode for stream names in egress manifests for this origin endpoint.
+        StreamNameOutputMode: string
         -- The current Entity Tag (ETag) associated with this resource. The entity tag can be used to safely make concurrent updates to the resource.
         ETag: string
         -- The comma-separated list of tag key:value pairs assigned to the origin endpoint.

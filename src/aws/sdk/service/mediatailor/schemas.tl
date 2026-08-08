@@ -1135,6 +1135,19 @@ M.HttpRequest = schema.new({
     },
 })
 
+M.VastResponse = schema.new({
+    id = id.from(_N, "VastResponse"),
+    type = "structure",
+    members = {
+        AdSequencingMode = schema.new({
+            id = id.from(_N, "VastResponse", "AdSequencingMode"),
+            type = "string",
+            name = "AdSequencingMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.AdDecisionServerConfiguration = schema.new({
     id = id.from(_N, "AdDecisionServerConfiguration"),
     type = "structure",
@@ -1145,6 +1158,13 @@ M.AdDecisionServerConfiguration = schema.new({
             name = "HttpRequest",
             target_id = id.from(_N, "HttpRequest"),
             target = M.HttpRequest,
+        }),
+        VastResponse = schema.new({
+            id = id.from(_N, "AdDecisionServerConfiguration", "VastResponse"),
+            type = "structure",
+            name = "VastResponse",
+            target_id = id.from(_N, "VastResponse"),
+            target = M.VastResponse,
         }),
     },
 })
@@ -1318,6 +1338,33 @@ M.HlsConfiguration = schema.new({
     },
 })
 
+M.PreRollVastResponse = schema.new({
+    id = id.from(_N, "PreRollVastResponse"),
+    type = "structure",
+    members = {
+        AdSequencingMode = schema.new({
+            id = id.from(_N, "PreRollVastResponse", "AdSequencingMode"),
+            type = "string",
+            name = "AdSequencingMode",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.PreRollAdDecisionServerConfiguration = schema.new({
+    id = id.from(_N, "PreRollAdDecisionServerConfiguration"),
+    type = "structure",
+    members = {
+        VastResponse = schema.new({
+            id = id.from(_N, "PreRollAdDecisionServerConfiguration", "VastResponse"),
+            type = "structure",
+            name = "VastResponse",
+            target_id = id.from(_N, "PreRollVastResponse"),
+            target = M.PreRollVastResponse,
+        }),
+    },
+})
+
 M.LivePreRollConfiguration = schema.new({
     id = id.from(_N, "LivePreRollConfiguration"),
     type = "structure",
@@ -1333,6 +1380,13 @@ M.LivePreRollConfiguration = schema.new({
             type = "integer",
             name = "MaxDurationSeconds",
             target_id = prelude.Integer.id,
+        }),
+        AdDecisionServerConfiguration = schema.new({
+            id = id.from(_N, "LivePreRollConfiguration", "AdDecisionServerConfiguration"),
+            type = "structure",
+            name = "AdDecisionServerConfiguration",
+            target_id = id.from(_N, "PreRollAdDecisionServerConfiguration"),
+            target = M.PreRollAdDecisionServerConfiguration,
         }),
     },
 })

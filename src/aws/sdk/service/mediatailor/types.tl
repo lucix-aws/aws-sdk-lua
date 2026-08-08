@@ -447,10 +447,25 @@ local record M
         CompressRequest: string
     end
 
+    enum AdSequencingMode
+        "FOLLOW_AD_SEQUENCE"
+        "IGNORE_AD_SEQUENCE"
+        "FOLLOW_AD_SEQUENCE_ONLY_LIVE"
+        "FOLLOW_AD_SEQUENCE_ONLY_VOD"
+    end
+
+    -- The settings that control how MediaTailor processes VAST responses from the ad decision server.
+    record VastResponse
+        -- The ad sequencing mode that controls how MediaTailor handles sequenced and standalone ads in VAST responses. FOLLOW_AD_SEQUENCE inserts sequenced ads in increasing order for both live and VOD workflows, using standalone ads only as replacements when a sequenced ad fails. FOLLOW_AD_SEQUENCE_ONLY_LIVE enables ad sequencing for live workflows only. FOLLOW_AD_SEQUENCE_ONLY_VOD enables ad sequencing for VOD workflows only. IGNORE_AD_SEQUENCE inserts ads in the order they appear in the VAST response, regardless of sequence attributes. The default behavior is IGNORE_AD_SEQUENCE.
+        AdSequencingMode: string
+    end
+
     -- Configuration parameters for customizing HTTP requests sent to the ad decision server (ADS). This allows you to specify the HTTP method, headers, request body, and compression settings for ADS requests.
     record AdDecisionServerConfiguration
         -- The HTTP request configuration parameters for the ad decision server.
         HttpRequest: HttpRequest
+        -- The settings that control how MediaTailor processes VAST responses from the ad decision server.
+        VastResponse: VastResponse
     end
 
     -- The concurrency settings for ad decision server interactions during ad personalization.
@@ -547,12 +562,31 @@ local record M
         "PLAYER_SELECT"
     end
 
+    enum PreRollAdSequencingMode
+        "FOLLOW_AD_SEQUENCE"
+        "IGNORE_AD_SEQUENCE"
+    end
+
+    -- The settings that control how MediaTailor processes VAST responses from the ad decision server for live pre-roll ad breaks.
+    record PreRollVastResponse
+        -- The ad sequencing mode for live pre-roll ads. FOLLOW_AD_SEQUENCE inserts sequenced ads in increasing order and uses standalone ads only as replacements when a sequenced ad fails. IGNORE_AD_SEQUENCE inserts ads in the order they appear in the VAST response, regardless of sequence attributes. The default behavior is IGNORE_AD_SEQUENCE.
+        AdSequencingMode: string
+    end
+
+    -- The ad decision server configuration for live pre-roll ads. It contains settings that control how MediaTailor processes VAST responses for pre-roll ad breaks.
+    record PreRollAdDecisionServerConfiguration
+        -- The settings that control how MediaTailor processes VAST responses for live pre-roll ad breaks.
+        VastResponse: PreRollVastResponse
+    end
+
     -- The configuration for pre-roll ad insertion.
     record LivePreRollConfiguration
         -- The URL for the ad decision server (ADS) for pre-roll ads. This includes the specification of static parameters and placeholders for dynamic parameters. AWS Elemental MediaTailor substitutes player-specific and session-specific parameters as needed when calling the ADS. Alternately, for testing, you can provide a static VAST URL. The maximum length is 25,000 characters.
         AdDecisionServerUrl: string
         -- The maximum allowed duration for the pre-roll ad avail. AWS Elemental MediaTailor won't play pre-roll ads to exceed this duration, regardless of the total duration of ads that the ADS returns.
         MaxDurationSeconds: number
+        -- The configuration for the ad decision server (ADS) for live pre-roll ads. The configuration contains settings that control how MediaTailor processes VAST responses for pre-roll ad breaks.
+        AdDecisionServerConfiguration: PreRollAdDecisionServerConfiguration
     end
 
     -- Settings for customizing what events are included in logs for interactions with the ad decision server (ADS). For more information about ADS logs, inlcuding descriptions of the event types, see MediaTailor ADS logs description and event types in Elemental MediaTailor User Guide.

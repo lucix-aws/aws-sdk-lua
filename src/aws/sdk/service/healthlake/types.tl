@@ -1018,6 +1018,8 @@ local record M
         ProfileId: string
         InputFormat: string
         DriftDetectionEnabled: boolean
+        -- Specifies whether to enable provenance for the import job.
+        ProvenanceEnabled: boolean
     end
 
     record StartFHIRImportJobOutput

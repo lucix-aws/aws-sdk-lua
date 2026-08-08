@@ -38,6 +38,10 @@ local record M
         authentication: Authentication
         -- A description of the actor.
         description: string
+        -- Whether email-based MFA is enabled for this actor.
+        enableEmailMfa: boolean
+        -- Server-generated email forwarding address for receiving MFA codes.
+        mfaForwardingAddress: string
     end
 
     enum ArtifactType

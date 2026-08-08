@@ -65,6 +65,7 @@ local record Client
     authorizeClientVpnIngress: function(Client, types.AuthorizeClientVpnIngressInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeClientVpnIngressOutput>
     authorizeSecurityGroupEgress: function(Client, types.AuthorizeSecurityGroupEgressInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeSecurityGroupEgressOutput>
     authorizeSecurityGroupIngress: function(Client, types.AuthorizeSecurityGroupIngressInput, ? base_client.InvokeOptions): async.Operation<types.AuthorizeSecurityGroupIngressOutput>
+    batchModifyIpamRoutingPolicyRegistrations: function(Client, types.BatchModifyIpamRoutingPolicyRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.BatchModifyIpamRoutingPolicyRegistrationsOutput>
     bundleInstance: function(Client, types.BundleInstanceInput, ? base_client.InvokeOptions): async.Operation<types.BundleInstanceOutput>
     cancelBundleTask: function(Client, types.CancelBundleTaskInput, ? base_client.InvokeOptions): async.Operation<types.CancelBundleTaskOutput>
     cancelCapacityReservation: function(Client, types.CancelCapacityReservationInput, ? base_client.InvokeOptions): async.Operation<types.CancelCapacityReservationOutput>
@@ -111,11 +112,13 @@ local record Client
     createInterruptibleCapacityReservationAllocation: function(Client, types.CreateInterruptibleCapacityReservationAllocationInput, ? base_client.InvokeOptions): async.Operation<types.CreateInterruptibleCapacityReservationAllocationOutput>
     createIpam: function(Client, types.CreateIpamInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamOutput>
     createIpamExternalResourceVerificationToken: function(Client, types.CreateIpamExternalResourceVerificationTokenInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
+    createIpamInternetRegistryAssociation: function(Client, types.CreateIpamInternetRegistryAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamInternetRegistryAssociationOutput>
     createIpamPolicy: function(Client, types.CreateIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPolicyOutput>
     createIpamPool: function(Client, types.CreateIpamPoolInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPoolOutput>
     createIpamPrefixListResolver: function(Client, types.CreateIpamPrefixListResolverInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPrefixListResolverOutput>
     createIpamPrefixListResolverTarget: function(Client, types.CreateIpamPrefixListResolverTargetInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamPrefixListResolverTargetOutput>
     createIpamResourceDiscovery: function(Client, types.CreateIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamResourceDiscoveryOutput>
+    createIpamRoutingPolicyRegistration: function(Client, types.CreateIpamRoutingPolicyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamRoutingPolicyRegistrationOutput>
     createIpamScope: function(Client, types.CreateIpamScopeInput, ? base_client.InvokeOptions): async.Operation<types.CreateIpamScopeOutput>
     createKeyPair: function(Client, types.CreateKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.CreateKeyPairOutput>
     createLaunchTemplate: function(Client, types.CreateLaunchTemplateInput, ? base_client.InvokeOptions): async.Operation<types.CreateLaunchTemplateOutput>
@@ -208,11 +211,13 @@ local record Client
     deleteInternetGateway: function(Client, types.DeleteInternetGatewayInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInternetGatewayOutput>
     deleteIpam: function(Client, types.DeleteIpamInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamOutput>
     deleteIpamExternalResourceVerificationToken: function(Client, types.DeleteIpamExternalResourceVerificationTokenInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
+    deleteIpamInternetRegistryAssociation: function(Client, types.DeleteIpamInternetRegistryAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamInternetRegistryAssociationOutput>
     deleteIpamPolicy: function(Client, types.DeleteIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPolicyOutput>
     deleteIpamPool: function(Client, types.DeleteIpamPoolInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPoolOutput>
     deleteIpamPrefixListResolver: function(Client, types.DeleteIpamPrefixListResolverInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPrefixListResolverOutput>
     deleteIpamPrefixListResolverTarget: function(Client, types.DeleteIpamPrefixListResolverTargetInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamPrefixListResolverTargetOutput>
     deleteIpamResourceDiscovery: function(Client, types.DeleteIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamResourceDiscoveryOutput>
+    deleteIpamRoutingPolicyRegistration: function(Client, types.DeleteIpamRoutingPolicyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamRoutingPolicyRegistrationOutput>
     deleteIpamScope: function(Client, types.DeleteIpamScopeInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIpamScopeOutput>
     deleteKeyPair: function(Client, types.DeleteKeyPairInput, ? base_client.InvokeOptions): async.Operation<types.DeleteKeyPairOutput>
     deleteLaunchTemplate: function(Client, types.DeleteLaunchTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeleteLaunchTemplateOutput>
@@ -369,6 +374,7 @@ local record Client
     describeInternetGateways: function(Client, types.DescribeInternetGatewaysInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInternetGatewaysOutput>
     describeIpamByoasn: function(Client, types.DescribeIpamByoasnInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamByoasnOutput>
     describeIpamExternalResourceVerificationTokens: function(Client, types.DescribeIpamExternalResourceVerificationTokensInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
+    describeIpamInternetRegistryAssociations: function(Client, types.DescribeIpamInternetRegistryAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamInternetRegistryAssociationsOutput>
     describeIpamPolicies: function(Client, types.DescribeIpamPoliciesInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoliciesOutput>
     describeIpamPoolAllocations: function(Client, types.DescribeIpamPoolAllocationsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolAllocationsOutput>
     describeIpamPools: function(Client, types.DescribeIpamPoolsInput, ? base_client.InvokeOptions): async.Operation<types.DescribeIpamPoolsOutput>
@@ -544,6 +550,7 @@ local record Client
     enableImageDeprecation: function(Client, types.EnableImageDeprecationInput, ? base_client.InvokeOptions): async.Operation<types.EnableImageDeprecationOutput>
     enableImageDeregistrationProtection: function(Client, types.EnableImageDeregistrationProtectionInput, ? base_client.InvokeOptions): async.Operation<types.EnableImageDeregistrationProtectionOutput>
     enableInstanceSqlHaStandbyDetections: function(Client, types.EnableInstanceSqlHaStandbyDetectionsInput, ? base_client.InvokeOptions): async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
+    enableIpamInternetRegistryAssociation: function(Client, types.EnableIpamInternetRegistryAssociationInput, ? base_client.InvokeOptions): async.Operation<types.EnableIpamInternetRegistryAssociationOutput>
     enableIpamOrganizationAdminAccount: function(Client, types.EnableIpamOrganizationAdminAccountInput, ? base_client.InvokeOptions): async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
     enableIpamPolicy: function(Client, types.EnableIpamPolicyInput, ? base_client.InvokeOptions): async.Operation<types.EnableIpamPolicyOutput>
     enableReachabilityAnalyzerOrganizationSharing: function(Client, types.EnableReachabilityAnalyzerOrganizationSharingInput, ? base_client.InvokeOptions): async.Operation<types.EnableReachabilityAnalyzerOrganizationSharingOutput>
@@ -591,6 +598,9 @@ local record Client
     getIpamDiscoveredAccounts: function(Client, types.GetIpamDiscoveredAccountsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredAccountsOutput>
     getIpamDiscoveredPublicAddresses: function(Client, types.GetIpamDiscoveredPublicAddressesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredPublicAddressesOutput>
     getIpamDiscoveredResourceCidrs: function(Client, types.GetIpamDiscoveredResourceCidrsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
+    getIpamDiscoveredRoutes: function(Client, types.GetIpamDiscoveredRoutesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredRoutesOutput>
+    getIpamInternetRegistryAssociationAsns: function(Client, types.GetIpamInternetRegistryAssociationAsnsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamInternetRegistryAssociationAsnsOutput>
+    getIpamInternetRegistryAssociationCidrs: function(Client, types.GetIpamInternetRegistryAssociationCidrsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamInternetRegistryAssociationCidrsOutput>
     getIpamPolicyAllocationRules: function(Client, types.GetIpamPolicyAllocationRulesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPolicyAllocationRulesOutput>
     getIpamPolicyOrganizationTargets: function(Client, types.GetIpamPolicyOrganizationTargetsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPolicyOrganizationTargetsOutput>
     getIpamPoolAllocations: function(Client, types.GetIpamPoolAllocationsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPoolAllocationsOutput>
@@ -599,6 +609,10 @@ local record Client
     getIpamPrefixListResolverVersionEntries: function(Client, types.GetIpamPrefixListResolverVersionEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverVersionEntriesOutput>
     getIpamPrefixListResolverVersions: function(Client, types.GetIpamPrefixListResolverVersionsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamPrefixListResolverVersionsOutput>
     getIpamResourceCidrs: function(Client, types.GetIpamResourceCidrsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamResourceCidrsOutput>
+    getIpamRouteOriginAuthorizations: function(Client, types.GetIpamRouteOriginAuthorizationsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamRouteOriginAuthorizationsOutput>
+    getIpamRouteProtectionFindings: function(Client, types.GetIpamRouteProtectionFindingsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamRouteProtectionFindingsOutput>
+    getIpamRoutingPolicyRegistrationDeltas: function(Client, types.GetIpamRoutingPolicyRegistrationDeltasInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamRoutingPolicyRegistrationDeltasOutput>
+    getIpamRoutingPolicyRegistrations: function(Client, types.GetIpamRoutingPolicyRegistrationsInput, ? base_client.InvokeOptions): async.Operation<types.GetIpamRoutingPolicyRegistrationsOutput>
     getLaunchTemplateData: function(Client, types.GetLaunchTemplateDataInput, ? base_client.InvokeOptions): async.Operation<types.GetLaunchTemplateDataOutput>
     getManagedPrefixListAssociations: function(Client, types.GetManagedPrefixListAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListAssociationsOutput>
     getManagedPrefixListEntries: function(Client, types.GetManagedPrefixListEntriesInput, ? base_client.InvokeOptions): async.Operation<types.GetManagedPrefixListEntriesOutput>
@@ -675,6 +689,7 @@ local record Client
     modifyIpamPrefixListResolverTarget: function(Client, types.ModifyIpamPrefixListResolverTargetInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamPrefixListResolverTargetOutput>
     modifyIpamResourceCidr: function(Client, types.ModifyIpamResourceCidrInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceCidrOutput>
     modifyIpamResourceDiscovery: function(Client, types.ModifyIpamResourceDiscoveryInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceDiscoveryOutput>
+    modifyIpamRoutingPolicyRegistration: function(Client, types.ModifyIpamRoutingPolicyRegistrationInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamRoutingPolicyRegistrationOutput>
     modifyIpamScope: function(Client, types.ModifyIpamScopeInput, ? base_client.InvokeOptions): async.Operation<types.ModifyIpamScopeOutput>
     modifyLaunchTemplate: function(Client, types.ModifyLaunchTemplateInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLaunchTemplateOutput>
     modifyLocalGatewayRoute: function(Client, types.ModifyLocalGatewayRouteInput, ? base_client.InvokeOptions): async.Operation<types.ModifyLocalGatewayRouteOutput>
@@ -1035,6 +1050,10 @@ function C:authorizeSecurityGroupIngress(input: types.AuthorizeSecurityGroupIngr
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.AuthorizeSecurityGroupIngress as schema.OperationSchema, input, options) as async.Operation<types.AuthorizeSecurityGroupIngressOutput>
 end
 
+function C:batchModifyIpamRoutingPolicyRegistrations(input: types.BatchModifyIpamRoutingPolicyRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.BatchModifyIpamRoutingPolicyRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BatchModifyIpamRoutingPolicyRegistrations as schema.OperationSchema, input, options) as async.Operation<types.BatchModifyIpamRoutingPolicyRegistrationsOutput>
+end
+
 function C:bundleInstance(input: types.BundleInstanceInput, options?: base_client.InvokeOptions): async.Operation<types.BundleInstanceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.BundleInstance as schema.OperationSchema, input, options) as async.Operation<types.BundleInstanceOutput>
 end
@@ -1219,6 +1238,10 @@ function C:createIpamExternalResourceVerificationToken(input: types.CreateIpamEx
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamExternalResourceVerificationToken as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamExternalResourceVerificationTokenOutput>
 end
 
+function C:createIpamInternetRegistryAssociation(input: types.CreateIpamInternetRegistryAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamInternetRegistryAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamInternetRegistryAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamInternetRegistryAssociationOutput>
+end
+
 function C:createIpamPolicy(input: types.CreateIpamPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamPolicy as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamPolicyOutput>
 end
@@ -1237,6 +1260,10 @@ end
 
 function C:createIpamResourceDiscovery(input: types.CreateIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamResourceDiscoveryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamResourceDiscoveryOutput>
+end
+
+function C:createIpamRoutingPolicyRegistration(input: types.CreateIpamRoutingPolicyRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamRoutingPolicyRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIpamRoutingPolicyRegistration as schema.OperationSchema, input, options) as async.Operation<types.CreateIpamRoutingPolicyRegistrationOutput>
 end
 
 function C:createIpamScope(input: types.CreateIpamScopeInput, options?: base_client.InvokeOptions): async.Operation<types.CreateIpamScopeOutput>
@@ -1607,6 +1634,10 @@ function C:deleteIpamExternalResourceVerificationToken(input: types.DeleteIpamEx
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamExternalResourceVerificationToken as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamExternalResourceVerificationTokenOutput>
 end
 
+function C:deleteIpamInternetRegistryAssociation(input: types.DeleteIpamInternetRegistryAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamInternetRegistryAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamInternetRegistryAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamInternetRegistryAssociationOutput>
+end
+
 function C:deleteIpamPolicy(input: types.DeleteIpamPolicyInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamPolicyOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamPolicy as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamPolicyOutput>
 end
@@ -1625,6 +1656,10 @@ end
 
 function C:deleteIpamResourceDiscovery(input: types.DeleteIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamResourceDiscoveryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamResourceDiscoveryOutput>
+end
+
+function C:deleteIpamRoutingPolicyRegistration(input: types.DeleteIpamRoutingPolicyRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamRoutingPolicyRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIpamRoutingPolicyRegistration as schema.OperationSchema, input, options) as async.Operation<types.DeleteIpamRoutingPolicyRegistrationOutput>
 end
 
 function C:deleteIpamScope(input: types.DeleteIpamScopeInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteIpamScopeOutput>
@@ -2249,6 +2284,10 @@ end
 
 function C:describeIpamExternalResourceVerificationTokens(input: types.DescribeIpamExternalResourceVerificationTokensInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamExternalResourceVerificationTokens as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamExternalResourceVerificationTokensOutput>
+end
+
+function C:describeIpamInternetRegistryAssociations(input: types.DescribeIpamInternetRegistryAssociationsInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamInternetRegistryAssociationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeIpamInternetRegistryAssociations as schema.OperationSchema, input, options) as async.Operation<types.DescribeIpamInternetRegistryAssociationsOutput>
 end
 
 function C:describeIpamPolicies(input: types.DescribeIpamPoliciesInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeIpamPoliciesOutput>
@@ -2951,6 +2990,10 @@ function C:enableInstanceSqlHaStandbyDetections(input: types.EnableInstanceSqlHa
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableInstanceSqlHaStandbyDetections as schema.OperationSchema, input, options) as async.Operation<types.EnableInstanceSqlHaStandbyDetectionsOutput>
 end
 
+function C:enableIpamInternetRegistryAssociation(input: types.EnableIpamInternetRegistryAssociationInput, options?: base_client.InvokeOptions): async.Operation<types.EnableIpamInternetRegistryAssociationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableIpamInternetRegistryAssociation as schema.OperationSchema, input, options) as async.Operation<types.EnableIpamInternetRegistryAssociationOutput>
+end
+
 function C:enableIpamOrganizationAdminAccount(input: types.EnableIpamOrganizationAdminAccountInput, options?: base_client.InvokeOptions): async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.EnableIpamOrganizationAdminAccount as schema.OperationSchema, input, options) as async.Operation<types.EnableIpamOrganizationAdminAccountOutput>
 end
@@ -3139,6 +3182,18 @@ function C:getIpamDiscoveredResourceCidrs(input: types.GetIpamDiscoveredResource
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamDiscoveredResourceCidrs as schema.OperationSchema, input, options) as async.Operation<types.GetIpamDiscoveredResourceCidrsOutput>
 end
 
+function C:getIpamDiscoveredRoutes(input: types.GetIpamDiscoveredRoutesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamDiscoveredRoutesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamDiscoveredRoutes as schema.OperationSchema, input, options) as async.Operation<types.GetIpamDiscoveredRoutesOutput>
+end
+
+function C:getIpamInternetRegistryAssociationAsns(input: types.GetIpamInternetRegistryAssociationAsnsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamInternetRegistryAssociationAsnsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamInternetRegistryAssociationAsns as schema.OperationSchema, input, options) as async.Operation<types.GetIpamInternetRegistryAssociationAsnsOutput>
+end
+
+function C:getIpamInternetRegistryAssociationCidrs(input: types.GetIpamInternetRegistryAssociationCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamInternetRegistryAssociationCidrsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamInternetRegistryAssociationCidrs as schema.OperationSchema, input, options) as async.Operation<types.GetIpamInternetRegistryAssociationCidrsOutput>
+end
+
 function C:getIpamPolicyAllocationRules(input: types.GetIpamPolicyAllocationRulesInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamPolicyAllocationRulesOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamPolicyAllocationRules as schema.OperationSchema, input, options) as async.Operation<types.GetIpamPolicyAllocationRulesOutput>
 end
@@ -3169,6 +3224,22 @@ end
 
 function C:getIpamResourceCidrs(input: types.GetIpamResourceCidrsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamResourceCidrsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamResourceCidrs as schema.OperationSchema, input, options) as async.Operation<types.GetIpamResourceCidrsOutput>
+end
+
+function C:getIpamRouteOriginAuthorizations(input: types.GetIpamRouteOriginAuthorizationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamRouteOriginAuthorizationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamRouteOriginAuthorizations as schema.OperationSchema, input, options) as async.Operation<types.GetIpamRouteOriginAuthorizationsOutput>
+end
+
+function C:getIpamRouteProtectionFindings(input: types.GetIpamRouteProtectionFindingsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamRouteProtectionFindingsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamRouteProtectionFindings as schema.OperationSchema, input, options) as async.Operation<types.GetIpamRouteProtectionFindingsOutput>
+end
+
+function C:getIpamRoutingPolicyRegistrationDeltas(input: types.GetIpamRoutingPolicyRegistrationDeltasInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamRoutingPolicyRegistrationDeltasOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamRoutingPolicyRegistrationDeltas as schema.OperationSchema, input, options) as async.Operation<types.GetIpamRoutingPolicyRegistrationDeltasOutput>
+end
+
+function C:getIpamRoutingPolicyRegistrations(input: types.GetIpamRoutingPolicyRegistrationsInput, options?: base_client.InvokeOptions): async.Operation<types.GetIpamRoutingPolicyRegistrationsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetIpamRoutingPolicyRegistrations as schema.OperationSchema, input, options) as async.Operation<types.GetIpamRoutingPolicyRegistrationsOutput>
 end
 
 function C:getLaunchTemplateData(input: types.GetLaunchTemplateDataInput, options?: base_client.InvokeOptions): async.Operation<types.GetLaunchTemplateDataOutput>
@@ -3473,6 +3544,10 @@ end
 
 function C:modifyIpamResourceDiscovery(input: types.ModifyIpamResourceDiscoveryInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamResourceDiscoveryOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamResourceDiscovery as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamResourceDiscoveryOutput>
+end
+
+function C:modifyIpamRoutingPolicyRegistration(input: types.ModifyIpamRoutingPolicyRegistrationInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamRoutingPolicyRegistrationOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ModifyIpamRoutingPolicyRegistration as schema.OperationSchema, input, options) as async.Operation<types.ModifyIpamRoutingPolicyRegistrationOutput>
 end
 
 function C:modifyIpamScope(input: types.ModifyIpamScopeInput, options?: base_client.InvokeOptions): async.Operation<types.ModifyIpamScopeOutput>

@@ -1424,7 +1424,7 @@ local record M
         FileIds: {string}
         -- The unique identifier of the Connect instance.
         InstanceId: string
-        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases and Email.
+        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and Task.
         -- This value must be a valid ARN.
         AssociatedResourceArn: string
     end
@@ -1485,8 +1485,8 @@ local record M
         CreatedBy: CreatedByInfo
         -- The use case for the file.
         FileUseCaseType: string
-        -- The resource to which the attached file is (being) uploaded to. Cases are the only current supported
-        -- resource.
+        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and
+        -- Task.
         -- This value must be a valid ARN.
         AssociatedResourceArn: string
         -- The tags used to organize, track, or control access for this resource. For example, { "Tags":
@@ -1718,7 +1718,7 @@ local record M
         InstanceId: string
         -- The unique identifier of the attached file resource.
         FileId: string
-        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases and Email.
+        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and Task.
         -- This value must be a valid ARN.
         AssociatedResourceArn: string
     end
@@ -3778,6 +3778,7 @@ local record M
         "RESOURCE_NAME_ALREADY_EXISTS"
         "REQUIRED_PROPERTY_MISSING"
         "NOT_SUPPORTED"
+        "TYPE_MISMATCH"
     end
 
     -- Contains information about why a property is not valid.
@@ -4437,8 +4438,7 @@ local record M
         InstanceId: string
         -- The unique identifier of the attached file resource.
         FileId: string
-        -- The resource to which the attached file is (being) uploaded to. Cases are the only current supported
-        -- resource.
+        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and Task.
         -- This value must be a valid ARN.
         AssociatedResourceArn: string
     end
@@ -4447,9 +4447,9 @@ local record M
     record DeleteAttachedFileOutput
     end
 
-    -- The contact has not been disconnected and is not in a terminated state. PII can be deleted
-    -- only from a contact that has been disconnected. This error is returned with an HTTP 409 status
-    -- code.
+    -- The contact has not been disconnected and is not in a terminated state. To delete PII,
+    -- disconnect the contact first. Wait for it to reach the terminated state, then retry the
+    -- request.
     record ContactNotTerminatedException
         Message: string
     end
@@ -4463,13 +4463,13 @@ local record M
     record DeleteContactDataInput
         -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
-        -- The identifier of the contact. PII can be deleted only from a contact that has been
+        -- The identifier of the contact. You can delete PII only from a contact that has been
         -- disconnected (is in a terminated state).
         ContactId: string
-        -- The categories of PII to redact from the contact. Valid values are
-        -- CUSTOMER_ENDPOINT, ADDITIONAL_EMAIL_RECIPIENTS, and
-        -- EMAIL_SUBJECT. ADDITIONAL_EMAIL_RECIPIENTS and EMAIL_SUBJECT
-        -- are supported only for contacts in the email channel.
+        -- The categories of PII to redact from the contact. Specify one or more of the following values:
+        -- CUSTOMER_ENDPOINT – The customer's contact endpoint.
+        -- ADDITIONAL_EMAIL_RECIPIENTS – Additional recipients on an email contact (email channel only).
+        -- EMAIL_SUBJECT – The subject line of an email contact (email channel only).
         ContactFields: {string}
     end
 
@@ -7465,7 +7465,7 @@ local record M
         FileId: string
         -- Optional override for the expiry of the pre-signed S3 URL in seconds. The default value is 300.
         UrlExpiryInSeconds: number
-        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases and Email.
+        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and Task.
         -- This value must be a valid ARN.
         AssociatedResourceArn: string
     end
@@ -7494,8 +7494,7 @@ local record M
         FileName: string
         -- The size of the attached file in bytes.
         FileSizeInBytes: number
-        -- The resource to which the attached file is (being) uploaded to. Cases are the only current supported
-        -- resource.
+        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and Task.
         AssociatedResourceArn: string
         -- The use case for the file.
         FileUseCaseType: string
@@ -14037,7 +14036,7 @@ local record M
         -- The use case for the file.
         -- Only ATTACHMENTS are supported.
         FileUseCaseType: string
-        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases and Email.
+        -- The resource to which the attached file is (being) uploaded to. The supported resources are Cases, Email, and Task.
         -- This value must be a valid ARN.
         AssociatedResourceArn: string
         -- Represents the identity that created the file.
@@ -15146,6 +15145,18 @@ local record M
     end
 
     record UpdateContactScheduleOutput
+    end
+
+    record UpdateContactTaskTemplateInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- A unique identifier for the task template. For more information about task templates, see Task templates in the Connect Customer Administrator Guide.
+        TaskTemplateId: string
+        -- The identifier of the contact in this instance of Connect Customer.
+        ContactId: string
+    end
+
+    record UpdateContactTaskTemplateOutput
     end
 
     record UpdateDataTableAttributeInput

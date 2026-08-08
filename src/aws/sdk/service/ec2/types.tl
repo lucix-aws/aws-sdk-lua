@@ -186,6 +186,7 @@ local record M
         "ipam-prefix-list-resolver"
         "ipam-policy"
         "ipam-prefix-list-resolver-target"
+        "ipam-internet-registry-association"
         "secondary-interface"
         "secondary-network"
         "secondary-subnet"
@@ -1543,6 +1544,10 @@ local record M
         -- anycast: IP is advertised from multiple global locations simultaneously (global services like CloudFront)
         -- For more information, see Bring your own IP to CloudFront using IPAM in the Amazon VPC IPAM User Guide.
         AdvertisementType: string
+        -- The ID of the address pool associated with the CIDR.
+        PoolId: string
+        -- The ID of the IPAM pool associated with the CIDR.
+        IpamPoolId: string
     end
 
     record AdvertiseByoipCidrOutput
@@ -3422,6 +3427,42 @@ local record M
         Return: boolean
         -- Information about the inbound (ingress) security group rules that were added.
         SecurityGroupRules: {SecurityGroupRule}
+    end
+
+    record BatchModifyIpamRoutingPolicyRegistrationsInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- The batch modifications to apply, in JSON format.
+        DeltaJson: string
+        -- Forces the batch modification even if individual changes conflict with announced routes. Default: false.
+        Force: boolean
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the operation ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    enum IpamRoutingPolicyRegistrationDeltaState
+        "pending"
+        "published"
+        "failed"
+    end
+
+    -- Contains information about a routing policy registration change, including the changes applied and their publication state.
+    record IpamRoutingPolicyRegistrationDelta
+        -- The unique identifier of the delta.
+        DeltaId: string
+        -- The JSON specification describing the changes applied in this delta.
+        DeltaJson: string
+        -- The state of the delta. Valid values: pending | published | failed.
+        State: string
+        -- A message describing the current state, including error information if the delta failed.
+        StateMessage: string
+    end
+
+    record BatchModifyIpamRoutingPolicyRegistrationsOutput
+        -- Information about the routing policy registration delta created by this batch operation.
+        IpamRoutingPolicyRegistrationDelta: IpamRoutingPolicyRegistrationDelta
     end
 
     -- Describes the storage parameters for Amazon S3 and Amazon S3 buckets for an instance store-backed
@@ -9962,6 +10003,81 @@ local record M
         IpamExternalResourceVerificationToken: IpamExternalResourceVerificationToken
     end
 
+    enum Rir
+        "ripe"
+        "apnic"
+        "arin"
+        "lacnic"
+    end
+
+    record CreateIpamInternetRegistryAssociationInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM to associate with the internet registry.
+        IpamId: string
+        -- The Regional Internet Registry to associate with. Possible values:
+        -- ripe - RIPE NCC (Europe, the Middle East, and Central Asia).
+        -- apnic - APNIC (Asia Pacific).
+        -- arin - ARIN (North America).
+        -- lacnic - LACNIC (Latin America and the Caribbean).
+        Rir: string
+        -- The organization handle at the internet registry (for example, a RIPE NCC organization ID or ARIN Org ID).
+        OrganizationHandle: string
+        -- A description for the internet registry association.
+        Description: string
+        -- The tags to assign to the internet registry association.
+        TagSpecifications: {TagSpecification}
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the operation ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    enum IpamInternetRegistryAssociationState
+        "pending-enable"
+        "create-in-progress"
+        "create-failed"
+        "enable-in-progress"
+        "enable-complete"
+        "enable-failed"
+        "delete-in-progress"
+        "delete-complete"
+        "delete-failed"
+    end
+
+    -- Contains information about an association between an IPAM and a Regional Internet Registry (RIR) for delegated RPKI management.
+    record IpamInternetRegistryAssociation
+        -- The ID of the Amazon Web Services account that owns the internet registry association.
+        OwnerId: string
+        -- The ID of the internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- The Amazon Resource Name (ARN) of the internet registry association.
+        IpamInternetRegistryAssociationArn: string
+        -- The ID of the associated IPAM.
+        IpamId: string
+        -- The Amazon Web Services Region of the IPAM.
+        IpamRegion: string
+        -- The Regional Internet Registry. Possible values:
+        -- ripe - RIPE NCC (Europe, the Middle East, and Central Asia).
+        -- apnic - APNIC (Asia Pacific).
+        -- arin - ARIN (North America).
+        -- lacnic - LACNIC (Latin America and the Caribbean).
+        Rir: string
+        -- The organization handle at the internet registry.
+        OrganizationHandle: string
+        -- The description of the internet registry association.
+        Description: string
+        -- The state of the internet registry association. Valid values: pending-activation | pending-enable | create-in-progress | create-failed | enable-in-progress | enable-complete | enable-failed | delete-in-progress | delete-complete | delete-failed.
+        State: string
+        -- The XML content for the child request to be submitted to the internet registry to complete the BPKI setup.
+        ChildRequestXml: string
+        -- The tags assigned to the internet registry association.
+        Tags: {Tag}
+    end
+
+    record CreateIpamInternetRegistryAssociationOutput
+        -- Information about the internet registry association.
+        IpamInternetRegistryAssociation: IpamInternetRegistryAssociation
+    end
+
     record CreateIpamPolicyInput
         -- A check for whether you have the required permissions for the action without actually making the request
         -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
@@ -10546,6 +10662,32 @@ local record M
     record CreateIpamResourceDiscoveryOutput
         -- An IPAM resource discovery.
         IpamResourceDiscovery: IpamResourceDiscovery
+    end
+
+    record CreateIpamRoutingPolicyRegistrationInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- The IP address prefix in CIDR notation to authorize in the ROA.
+        Cidr: string
+        -- The Autonomous System Numbers (ASNs) authorized to originate the prefix.
+        Asns: {string}
+        -- Specifies whether to permit more specific route announcements than the CIDR prefix. When enabled, ASNs can announce sub-prefixes of the authorized CIDR up to the specified maximum length. Default: false.
+        PermitMoreSpecificAnnouncements: boolean
+        -- The maximum prefix length that the ASNs are authorized to announce. Must be greater than or equal to the prefix length of the CIDR. If not specified, defaults to the prefix length of the CIDR (exact match only).
+        MaxLength: number
+        -- A description for the routing policy registration.
+        Description: string
+        -- Forces the creation of the routing policy registration even if it conflicts with an announced route. Default: false.
+        Force: boolean
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the operation ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    record CreateIpamRoutingPolicyRegistrationOutput
+        -- Information about the routing policy registration delta created by this operation.
+        IpamRoutingPolicyRegistrationDelta: IpamRoutingPolicyRegistrationDelta
     end
 
     enum IpamScopeExternalAuthorityType
@@ -18140,6 +18282,18 @@ local record M
         IpamExternalResourceVerificationToken: IpamExternalResourceVerificationToken
     end
 
+    record DeleteIpamInternetRegistryAssociationInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association to delete.
+        IpamInternetRegistryAssociationId: string
+    end
+
+    record DeleteIpamInternetRegistryAssociationOutput
+        -- Information about the deleted internet registry association.
+        IpamInternetRegistryAssociation: IpamInternetRegistryAssociation
+    end
+
     record DeleteIpamPolicyInput
         -- A check for whether you have the required permissions for the action without actually making the request
         -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
@@ -18213,6 +18367,24 @@ local record M
     record DeleteIpamResourceDiscoveryOutput
         -- The IPAM resource discovery.
         IpamResourceDiscovery: IpamResourceDiscovery
+    end
+
+    record DeleteIpamRoutingPolicyRegistrationInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- The IP address prefix in CIDR notation identifying the routing policy registration to delete.
+        Cidr: string
+        -- Forces the deletion even if it conflicts with an announced route. Default: false.
+        Force: boolean
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the operation ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    record DeleteIpamRoutingPolicyRegistrationOutput
+        -- Information about the routing policy registration delta created by this deletion.
+        IpamRoutingPolicyRegistrationDelta: IpamRoutingPolicyRegistrationDelta
     end
 
     record DeleteIpamScopeInput
@@ -26558,6 +26730,26 @@ local record M
         IpamExternalResourceVerificationTokens: {IpamExternalResourceVerificationToken}
     end
 
+    record DescribeIpamInternetRegistryAssociationsInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The IDs of the internet registry associations to describe.
+        IpamInternetRegistryAssociationIds: {string}
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+        -- One or more filters to apply to the results.
+        Filters: {Filter}
+    end
+
+    record DescribeIpamInternetRegistryAssociationsOutput
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+        -- The internet registry associations.
+        IpamInternetRegistryAssociations: {IpamInternetRegistryAssociation}
+    end
+
     record DescribeIpamPoliciesInput
         -- A check for whether you have the required permissions for the action without actually making the request
         -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
@@ -33885,6 +34077,30 @@ local record M
         Instances: {RegisteredInstance}
     end
 
+    record EnableIpamInternetRegistryAssociationInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association to enable.
+        IpamInternetRegistryAssociationId: string
+        -- The RPKI version to use from the Parent Response XML.
+        RpkiVersion: string
+        -- The RPKI service URI for the publication point from the Parent Response XML.
+        ServiceUri: string
+        -- The child handle for the BPKI certificate hierarchy from the Parent Response XML.
+        ChildHandle: string
+        -- The parent handle for the BPKI certificate hierarchy from the Parent Response XML.
+        ParentHandle: string
+        -- The parent BPKI Trust Anchor certificate in PEM format from the Parent Response XML.
+        ParentBpkiTa: string
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the operation ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    record EnableIpamInternetRegistryAssociationOutput
+        -- Information about the enabled internet registry association.
+        IpamInternetRegistryAssociation: IpamInternetRegistryAssociation
+    end
+
     record EnableIpamOrganizationAdminAccountInput
         -- A check for whether you have the required permissions for the action without actually making the request
         -- and provides an error response. If you have the required permissions, the error response is DryRunOperation.
@@ -35745,6 +35961,138 @@ local record M
         NextToken: string
     end
 
+    record GetIpamDiscoveredRoutesInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM resource discovery.
+        IpamResourceDiscoveryId: string
+        -- The Amazon Web Services Region to retrieve discovered routes for.
+        ResourceRegion: string
+        -- One or more filters to apply to the results.
+        Filters: {Filter}
+        -- The token for the next page of results.
+        NextToken: string
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+    end
+
+    enum IpamByoipAdvertisementType
+        "regional"
+        "global"
+    end
+
+    enum IpamByoipCidrState
+        "advertised"
+        "deprovisioned"
+        "failed-deprovision"
+        "failed-provision"
+        "pending-advertising"
+        "pending-deprovision"
+        "pending-provision"
+        "pending-withdrawal"
+        "provisioned"
+        "provisioned-not-publicly-advertisable"
+    end
+
+    -- Contains information about a BGP route discovered by IPAM resource discovery.
+    record IpamDiscoveredRoute
+        -- The ID of the IPAM resource discovery that discovered the route.
+        IpamResourceDiscoveryId: string
+        -- The Amazon Web Services Region where the route was discovered.
+        ResourceRegion: string
+        -- The ID of the resource owner.
+        ResourceOwnerId: string
+        -- The IP address prefix of the discovered route in CIDR notation.
+        Cidr: string
+        -- The Autonomous System Number (ASN) that originates the route.
+        Asn: string
+        -- The state of the BYOIP CIDR. Possible values:
+        -- advertised - The CIDR is being advertised.
+        -- deprovisioned - The CIDR has been deprovisioned.
+        -- failed-deprovision - Deprovisioning failed.
+        -- failed-provision - Provisioning failed.
+        -- pending-deprovision - Deprovisioning is in progress.
+        -- pending-provision - Provisioning is in progress.
+        -- provisioned - The CIDR is provisioned.
+        -- provisioned-not-publicly-advertisable - The CIDR is provisioned but not publicly advertisable.
+        State: string
+        -- The advertisement type of the route. Possible values:
+        -- regional - The IP address is advertised from a single location (regional services such as Amazon EC2).
+        -- global - The IP address is advertised from multiple global locations simultaneously (global services such as Amazon CloudFront).
+        AdvertisementType: string
+        -- The network border group for the route.
+        NetworkBorderGroup: string
+        -- The ID of the BYOIP pool associated with the route.
+        PoolId: string
+        -- The ID of the IPAM pool associated with the route.
+        IpamPoolId: string
+        -- The time when the route was last sampled.
+        SampleTime: number
+    end
+
+    record GetIpamDiscoveredRoutesOutput
+        -- The discovered BGP routes.
+        IpamDiscoveredRoutes: {IpamDiscoveredRoute}
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+    end
+
+    record GetIpamInternetRegistryAssociationAsnsInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+        -- One or more filters to apply to the results.
+        Filters: {Filter}
+    end
+
+    -- Contains information about an Autonomous System Number (ASN) registered at an internet registry and associated with an IPAM.
+    record IpamInternetRegistryAssociationAsn
+        -- The Autonomous System Number.
+        Asn: string
+        -- The time when the ASN was last observed at the internet registry.
+        LastObservedAt: number
+    end
+
+    record GetIpamInternetRegistryAssociationAsnsOutput
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+        -- The ASNs registered with the internet registry.
+        IpamInternetRegistryAssociationAsns: {IpamInternetRegistryAssociationAsn}
+    end
+
+    record GetIpamInternetRegistryAssociationCidrsInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+        -- One or more filters to apply to the results.
+        Filters: {Filter}
+    end
+
+    -- Contains information about an IP address CIDR registered at an internet registry and associated with an IPAM.
+    record IpamInternetRegistryAssociationCidr
+        -- The IP address prefix in CIDR notation.
+        Cidr: string
+        -- The time when the CIDR was last observed at the internet registry.
+        LastObservedAt: number
+    end
+
+    record GetIpamInternetRegistryAssociationCidrsOutput
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+        -- The CIDRs registered with the internet registry.
+        IpamInternetRegistryAssociationCidrs: {IpamInternetRegistryAssociationCidr}
+    end
+
     enum IpamPolicyResourceType
         "alb"
         "eip"
@@ -36109,6 +36457,222 @@ local record M
         NextToken: string
         -- The resource CIDRs.
         IpamResourceCidrs: {IpamResourceCidr}
+    end
+
+    record GetIpamRouteOriginAuthorizationsInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- Filter results to a specific CIDR prefix.
+        Cidr: string
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    -- Contains information about a Route Origin Authorization (ROA) currently published in the RPKI.
+    record IpamRouteOriginAuthorizationInfo
+        -- The IP address prefix in CIDR notation authorized by the ROA.
+        Cidr: string
+        -- The Autonomous System Number (ASN) authorized to originate the prefix.
+        Asn: string
+        -- The maximum prefix length that the ASN is authorized to announce.
+        MaxLength: number
+    end
+
+    record GetIpamRouteOriginAuthorizationsOutput
+        -- The Route Origin Authorizations published to the RPKI.
+        IpamRouteOriginAuthorizations: {IpamRouteOriginAuthorizationInfo}
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+    end
+
+    record GetIpamRouteProtectionFindingsInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM to retrieve route protection findings for.
+        IpamId: string
+        -- One or more filters to apply to the results.
+        Filters: {Filter}
+        -- The token for the next page of results.
+        NextToken: string
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+    end
+
+    -- Contains information about a Route Origin Authorization (ROA) published in the RPKI. A ROA cryptographically attests that a specific ASN is authorized to originate a specific IP address prefix.
+    record IpamRouteOriginAuthorization
+        -- The Autonomous System Number (ASN) authorized by the ROA.
+        Asn: string
+        -- The IP address prefix authorized by the ROA in CIDR notation.
+        Prefix: string
+        -- The maximum prefix length that the ASN is authorized to announce.
+        MaxLength: number
+        -- Specifies whether the ROA matches the route announcement.
+        Match: boolean
+        -- The expiration date of the ROA.
+        Expiration: number
+    end
+
+    -- Contains information about an overlapping route detected for a BYOIP prefix.
+    record IpamRouteOverlap
+        -- The overlapping IP address prefix in CIDR notation.
+        Prefix: string
+        -- The ASN originating the overlapping route.
+        Asn: string
+        -- The time when the overlap was detected.
+        DetectedAt: number
+    end
+
+    enum IpamRpkiStatus
+        "valid"
+        "invalid"
+        "unknown"
+    end
+
+    enum IpamRpkiStrength
+        "strict"
+        "permissive"
+    end
+
+    -- Contains information about a route protection finding, including the RPKI validation status of a BYOIP route announcement.
+    record IpamRouteProtectionFinding
+        -- The ID of the resource owner.
+        ResourceOwnerId: string
+        -- The Amazon Web Services Region of the resource.
+        ResourceRegion: string
+        -- The ID of the IPAM pool associated with the finding.
+        IpamPoolId: string
+        -- The IP address prefix in CIDR notation.
+        Cidr: string
+        -- The state of the BYOIP CIDR. Possible values:
+        -- advertised - The CIDR is being advertised.
+        -- deprovisioned - The CIDR has been deprovisioned.
+        -- failed-deprovision - Deprovisioning failed.
+        -- failed-provision - Provisioning failed.
+        -- pending-deprovision - Deprovisioning is in progress.
+        -- pending-provision - Provisioning is in progress.
+        -- provisioned - The CIDR is provisioned.
+        -- provisioned-not-publicly-advertisable - The CIDR is provisioned but not publicly advertisable.
+        State: string
+        -- The advertisement type. Possible values:
+        -- regional - The IP address is advertised from a single location (regional services such as Amazon EC2).
+        -- global - The IP address is advertised from multiple global locations simultaneously (global services such as Amazon CloudFront).
+        AdvertisementType: string
+        -- The network border group.
+        NetworkBorderGroup: string
+        -- The ID of the BYOIP pool.
+        PoolId: string
+        -- The Autonomous System Number (ASN) that originates the route.
+        Asn: string
+        -- The RPKI validation status of the route. Possible values:
+        -- valid - The route has a matching ROA that covers the prefix and origin ASN.
+        -- invalid - The route has a ROA for the prefix, but the origin ASN or prefix length does not match.
+        -- unknown - No ROA exists for the prefix, so RPKI validation cannot be performed.
+        RpkiStatus: string
+        -- The RPKI enforcement strength for the route. Possible values:
+        -- strict - Invalid routes are rejected.
+        -- permissive - Invalid routes are accepted but flagged.
+        RpkiStrength: string
+        -- The Route Origin Authorizations (ROAs) that cover the prefix.
+        Roas: {IpamRouteOriginAuthorization}
+        -- The overlapping routes detected for this prefix.
+        RouteOverlaps: {IpamRouteOverlap}
+        -- The time when the route was last sampled.
+        SampleTime: number
+        -- The time when the ROA data was last sampled.
+        RoaSampleTime: number
+    end
+
+    record GetIpamRouteProtectionFindingsOutput
+        -- The ID of the IPAM.
+        IpamId: string
+        -- The route protection findings.
+        RouteProtectionFindings: {IpamRouteProtectionFinding}
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+    end
+
+    enum ChronologicalOrder
+        "forward"
+        "reverse"
+    end
+
+    record GetIpamRoutingPolicyRegistrationDeltasInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- Filter results to a specific delta ID.
+        DeltaId: string
+        -- The start of the time range to filter deltas by.
+        StartTime: number
+        -- The end of the time range to filter deltas by.
+        EndTime: number
+        -- The chronological order to return results in. Valid values: forward | reverse.
+        ChronologicalOrder: string
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    record GetIpamRoutingPolicyRegistrationDeltasOutput
+        -- The routing policy registration deltas.
+        IpamRoutingPolicyRegistrationDeltas: {IpamRoutingPolicyRegistrationDelta}
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
+    end
+
+    record GetIpamRoutingPolicyRegistrationsInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- Filter results to a specific CIDR prefix.
+        Cidr: string
+        -- The maximum number of results to return in a single call. If not specified, all available results are returned. To retrieve the remaining results, make another call with the returned nextToken value.
+        MaxResults: number
+        -- The token for the next page of results.
+        NextToken: string
+    end
+
+    enum IpamRoutingPolicyRegistrationState
+        "pending-activate"
+        "activate-failed"
+        "create-in-progress"
+        "create-complete"
+        "update-in-progress"
+        "update-complete"
+        "delete-in-progress"
+        "delete-complete"
+    end
+
+    -- Contains information about a routing policy registration that represents a Route Origin Authorization (ROA) managed through IPAM.
+    record IpamRoutingPolicyRegistration
+        -- The IP address prefix in CIDR notation authorized by the ROA.
+        Cidr: string
+        -- The Autonomous System Numbers (ASNs) authorized to originate the prefix.
+        Asns: {string}
+        -- Specifies whether to permit more specific route announcements than the CIDR prefix. When enabled, ASNs can announce sub-prefixes of the authorized CIDR up to the specified maximum length. Default: false.
+        PermitMoreSpecificAnnouncements: boolean
+        -- The maximum prefix length that the ASNs are authorized to announce.
+        MaxLength: number
+        -- The description of the routing policy registration.
+        Description: string
+        -- The ID of the most recent delta that modified this registration.
+        LatestDeltaId: string
+        -- The state of the routing policy registration. Valid values: pending-activate | activate-failed | create-in-progress | create-complete | update-in-progress | update-complete | delete-in-progress | delete-complete.
+        State: string
+    end
+
+    record GetIpamRoutingPolicyRegistrationsOutput
+        -- The routing policy registrations.
+        IpamRoutingPolicyRegistrations: {IpamRoutingPolicyRegistration}
+        -- The token to use to retrieve the next page of results.
+        NextToken: string
     end
 
     record GetLaunchTemplateDataInput
@@ -39053,6 +39617,32 @@ local record M
     record ModifyIpamResourceDiscoveryOutput
         -- A resource discovery.
         IpamResourceDiscovery: IpamResourceDiscovery
+    end
+
+    record ModifyIpamRoutingPolicyRegistrationInput
+        -- Checks whether you have the required permissions for the operation, without actually making the request, and provides an error response. If you have the required permissions, the error response is DryRunOperation. Otherwise, it is UnauthorizedOperation.
+        DryRun: boolean
+        -- The ID of the IPAM internet registry association.
+        IpamInternetRegistryAssociationId: string
+        -- The IP address prefix in CIDR notation identifying the routing policy registration to modify.
+        Cidr: string
+        -- The updated list of Autonomous System Numbers (ASNs) authorized to originate the prefix.
+        Asns: {string}
+        -- Specifies whether to permit more specific route announcements than the CIDR prefix. Default: false.
+        PermitMoreSpecificAnnouncements: boolean
+        -- The new maximum prefix length that the ASNs are authorized to announce. Must be greater than or equal to the prefix length of the CIDR.
+        MaxLength: number
+        -- A new description for the routing policy registration.
+        Description: string
+        -- Forces the modification even if it conflicts with an announced route. Default: false.
+        Force: boolean
+        -- A unique, case-sensitive identifier to ensure that the operation completes no more than one time. If this token matches a previous request, the operation ignores the request, but does not return an error.
+        ClientToken: string
+    end
+
+    record ModifyIpamRoutingPolicyRegistrationOutput
+        -- Information about the routing policy registration delta created by this modification.
+        IpamRoutingPolicyRegistrationDelta: IpamRoutingPolicyRegistrationDelta
     end
 
     record ModifyIpamScopeInput

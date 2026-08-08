@@ -347,6 +347,7 @@ local record Client
     updateContactFlowName: function(Client, types.UpdateContactFlowNameInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactFlowNameOutput>
     updateContactRoutingData: function(Client, types.UpdateContactRoutingDataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactRoutingDataOutput>
     updateContactSchedule: function(Client, types.UpdateContactScheduleInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactScheduleOutput>
+    updateContactTaskTemplate: function(Client, types.UpdateContactTaskTemplateInput, ? base_client.InvokeOptions): async.Operation<types.UpdateContactTaskTemplateOutput>
     updateDataTableAttribute: function(Client, types.UpdateDataTableAttributeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTableAttributeOutput>
     updateDataTableMetadata: function(Client, types.UpdateDataTableMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTableMetadataOutput>
     updateDataTablePrimaryValues: function(Client, types.UpdateDataTablePrimaryValuesInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDataTablePrimaryValuesOutput>
@@ -1755,6 +1756,10 @@ end
 
 function C:updateContactSchedule(input: types.UpdateContactScheduleInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactScheduleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContactSchedule as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactScheduleOutput>
+end
+
+function C:updateContactTaskTemplate(input: types.UpdateContactTaskTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateContactTaskTemplateOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateContactTaskTemplate as schema.OperationSchema, input, options) as async.Operation<types.UpdateContactTaskTemplateOutput>
 end
 
 function C:updateDataTableAttribute(input: types.UpdateDataTableAttributeInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateDataTableAttributeOutput>

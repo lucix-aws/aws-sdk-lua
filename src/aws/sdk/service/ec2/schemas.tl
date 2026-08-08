@@ -121,6 +121,8 @@ M.RequestIpamResourceTagList = schema.new({ type = "list", list_member = M.Reque
 
 M.IpamPrefixListResolverRuleRequestSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRuleRequest })
 
+M.AsnList = schema.new({ type = "list", list_member = prelude.String })
+
 M.AddPrefixListEntries = schema.new({ type = "list", list_member = M.AddPrefixListEntry })
 
 M.AvailabilityZoneAddresses = schema.new({ type = "list", list_member = M.AvailabilityZoneAddress })
@@ -420,6 +422,8 @@ M.InternetGatewayList = schema.new({ type = "list", list_member = M.InternetGate
 M.ByoasnSet = schema.new({ type = "list", list_member = M.Byoasn })
 
 M.IpamExternalResourceVerificationTokenSet = schema.new({ type = "list", list_member = M.IpamExternalResourceVerificationToken })
+
+M.IpamInternetRegistryAssociationSet = schema.new({ type = "list", list_member = M.IpamInternetRegistryAssociation })
 
 M.IpamPolicySet = schema.new({ type = "list", list_member = M.IpamPolicy })
 
@@ -853,6 +857,12 @@ M.IpamDiscoveredPublicAddressSet = schema.new({ type = "list", list_member = M.I
 
 M.IpamDiscoveredResourceCidrSet = schema.new({ type = "list", list_member = M.IpamDiscoveredResourceCidr })
 
+M.IpamDiscoveredRouteSet = schema.new({ type = "list", list_member = M.IpamDiscoveredRoute })
+
+M.IpamInternetRegistryAssociationAsnSet = schema.new({ type = "list", list_member = M.IpamInternetRegistryAssociationAsn })
+
+M.IpamInternetRegistryAssociationCidrSet = schema.new({ type = "list", list_member = M.IpamInternetRegistryAssociationCidr })
+
 M.IpamPolicyDocumentSet = schema.new({ type = "list", list_member = M.IpamPolicyDocument })
 
 M.IpamPolicyOrganizationTargetSet = schema.new({ type = "list", list_member = M.IpamPolicyOrganizationTarget })
@@ -868,6 +878,14 @@ M.IpamPrefixListResolverVersionNumberSet = schema.new({ type = "list", list_memb
 M.IpamPrefixListResolverVersionSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverVersion })
 
 M.IpamResourceCidrSet = schema.new({ type = "list", list_member = M.IpamResourceCidr })
+
+M.IpamRouteOriginAuthorizationInfoSet = schema.new({ type = "list", list_member = M.IpamRouteOriginAuthorizationInfo })
+
+M.IpamRouteProtectionFindingSet = schema.new({ type = "list", list_member = M.IpamRouteProtectionFinding })
+
+M.IpamRoutingPolicyRegistrationDeltaSet = schema.new({ type = "list", list_member = M.IpamRoutingPolicyRegistrationDelta })
+
+M.IpamRoutingPolicyRegistrationSet = schema.new({ type = "list", list_member = M.IpamRoutingPolicyRegistration })
 
 M.PrefixListAssociationSet = schema.new({ type = "list", list_member = M.PrefixListAssociation })
 
@@ -1364,6 +1382,10 @@ M.RegionalSummaryList = schema.new({ type = "list", list_member = M.RegionalSumm
 M.IpamPublicAddressSecurityGroupList = schema.new({ type = "list", list_member = M.IpamPublicAddressSecurityGroup })
 
 M.IpamPrefixListResolverRuleConditionSet = schema.new({ type = "list", list_member = M.IpamPrefixListResolverRuleCondition })
+
+M.IpamRouteOriginAuthorizationSet = schema.new({ type = "list", list_member = M.IpamRouteOriginAuthorization })
+
+M.IpamRouteOverlapSet = schema.new({ type = "list", list_member = M.IpamRouteOverlap })
 
 M.RouteServerRouteInstallationDetails = schema.new({ type = "list", list_member = M.RouteServerRouteInstallationDetail })
 
@@ -5980,6 +6002,26 @@ M.ByoipCidr = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "advertisementType" },
                 [traits.EC2_QUERY_NAME] = { name = "AdvertisementType" },
+            },
+        }),
+        PoolId = schema.new({
+            id = id.from(_N, "ByoipCidr", "PoolId"),
+            type = "string",
+            name = "PoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "poolId" },
+                [traits.EC2_QUERY_NAME] = { name = "PoolId" },
+            },
+        }),
+        IpamPoolId = schema.new({
+            id = id.from(_N, "ByoipCidr", "IpamPoolId"),
+            type = "string",
+            name = "IpamPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamPoolId" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamPoolId" },
             },
         }),
     },
@@ -11264,6 +11306,117 @@ M.AuthorizeSecurityGroupIngressOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "securityGroupRuleSet" },
                 [traits.EC2_QUERY_NAME] = { name = "SecurityGroupRuleSet" },
+            },
+        }),
+    },
+})
+
+M.BatchModifyIpamRoutingPolicyRegistrationsInput = schema.new({
+    id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeltaJson = schema.new({
+            id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsInput", "DeltaJson"),
+            type = "string",
+            name = "DeltaJson",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Force = schema.new({
+            id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsInput", "Force"),
+            type = "boolean",
+            name = "Force",
+            target_id = prelude.Boolean.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.IpamRoutingPolicyRegistrationDelta = schema.new({
+    id = id.from(_N, "IpamRoutingPolicyRegistrationDelta"),
+    type = "structure",
+    members = {
+        DeltaId = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistrationDelta", "DeltaId"),
+            type = "string",
+            name = "DeltaId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "deltaId" },
+                [traits.EC2_QUERY_NAME] = { name = "DeltaId" },
+            },
+        }),
+        DeltaJson = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistrationDelta", "DeltaJson"),
+            type = "string",
+            name = "DeltaJson",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "deltaJson" },
+                [traits.EC2_QUERY_NAME] = { name = "DeltaJson" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistrationDelta", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+        StateMessage = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistrationDelta", "StateMessage"),
+            type = "string",
+            name = "StateMessage",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "stateMessage" },
+                [traits.EC2_QUERY_NAME] = { name = "StateMessage" },
+            },
+        }),
+    },
+})
+
+M.BatchModifyIpamRoutingPolicyRegistrationsOutput = schema.new({
+    id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsResult"),
+    type = "structure",
+    members = {
+        IpamRoutingPolicyRegistrationDelta = schema.new({
+            id = id.from(_N, "BatchModifyIpamRoutingPolicyRegistrationsOutput", "IpamRoutingPolicyRegistrationDelta"),
+            type = "structure",
+            name = "IpamRoutingPolicyRegistrationDelta",
+            target_id = id.from(_N, "IpamRoutingPolicyRegistrationDelta"),
+            target = M.IpamRoutingPolicyRegistrationDelta,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRoutingPolicyRegistrationDelta" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRoutingPolicyRegistrationDelta" },
             },
         }),
     },
@@ -21687,6 +21840,207 @@ M.CreateIpamExternalResourceVerificationTokenOutput = schema.new({
     },
 })
 
+M.CreateIpamInternetRegistryAssociationInput = schema.new({
+    id = id.from(_N, "CreateIpamInternetRegistryAssociationRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamId = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationInput", "IpamId"),
+            type = "string",
+            name = "IpamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Rir = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationInput", "Rir"),
+            type = "string",
+            name = "Rir",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        OrganizationHandle = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationInput", "OrganizationHandle"),
+            type = "string",
+            name = "OrganizationHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        TagSpecifications = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationInput", "TagSpecifications"),
+            type = "list",
+            name = "TagSpecifications",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.TagSpecification, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "TagSpecification" },
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.IpamInternetRegistryAssociation = schema.new({
+    id = id.from(_N, "IpamInternetRegistryAssociation"),
+    type = "structure",
+    members = {
+        OwnerId = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "OwnerId"),
+            type = "string",
+            name = "OwnerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ownerId" },
+                [traits.EC2_QUERY_NAME] = { name = "OwnerId" },
+            },
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociationId" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociationId" },
+            },
+        }),
+        IpamInternetRegistryAssociationArn = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "IpamInternetRegistryAssociationArn"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociationArn" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociationArn" },
+            },
+        }),
+        IpamId = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "IpamId"),
+            type = "string",
+            name = "IpamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamId" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamId" },
+            },
+        }),
+        IpamRegion = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "IpamRegion"),
+            type = "string",
+            name = "IpamRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRegion" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRegion" },
+            },
+        }),
+        Rir = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "Rir"),
+            type = "string",
+            name = "Rir",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "rir" },
+                [traits.EC2_QUERY_NAME] = { name = "Rir" },
+            },
+        }),
+        OrganizationHandle = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "OrganizationHandle"),
+            type = "string",
+            name = "OrganizationHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "organizationHandle" },
+                [traits.EC2_QUERY_NAME] = { name = "OrganizationHandle" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "description" },
+                [traits.EC2_QUERY_NAME] = { name = "Description" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+        ChildRequestXml = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "ChildRequestXml"),
+            type = "string",
+            name = "ChildRequestXml",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "childRequestXml" },
+                [traits.EC2_QUERY_NAME] = { name = "ChildRequestXml" },
+            },
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociation", "Tags"),
+            type = "list",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Tag, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "tagSet" },
+                [traits.EC2_QUERY_NAME] = { name = "TagSet" },
+            },
+        }),
+    },
+})
+
+M.CreateIpamInternetRegistryAssociationOutput = schema.new({
+    id = id.from(_N, "CreateIpamInternetRegistryAssociationResult"),
+    type = "structure",
+    members = {
+        IpamInternetRegistryAssociation = schema.new({
+            id = id.from(_N, "CreateIpamInternetRegistryAssociationOutput", "IpamInternetRegistryAssociation"),
+            type = "structure",
+            name = "IpamInternetRegistryAssociation",
+            target_id = id.from(_N, "IpamInternetRegistryAssociation"),
+            target = M.IpamInternetRegistryAssociation,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociation" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociation" },
+            },
+        }),
+    },
+})
+
 M.CreateIpamPolicyInput = schema.new({
     id = id.from(_N, "CreateIpamPolicyRequest"),
     type = "structure",
@@ -23060,6 +23414,99 @@ M.CreateIpamResourceDiscoveryOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ipamResourceDiscovery" },
                 [traits.EC2_QUERY_NAME] = { name = "IpamResourceDiscovery" },
+            },
+        }),
+    },
+})
+
+M.CreateIpamRoutingPolicyRegistrationInput = schema.new({
+    id = id.from(_N, "CreateIpamRoutingPolicyRegistrationRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Asns = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "Asns"),
+            type = "list",
+            name = "Asns",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "Asn" },
+            },
+        }),
+        PermitMoreSpecificAnnouncements = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "PermitMoreSpecificAnnouncements"),
+            type = "boolean",
+            name = "PermitMoreSpecificAnnouncements",
+            target_id = prelude.Boolean.id,
+        }),
+        MaxLength = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "MaxLength"),
+            type = "integer",
+            name = "MaxLength",
+            target_id = prelude.Integer.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Force = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "Force"),
+            type = "boolean",
+            name = "Force",
+            target_id = prelude.Boolean.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.CreateIpamRoutingPolicyRegistrationOutput = schema.new({
+    id = id.from(_N, "CreateIpamRoutingPolicyRegistrationResult"),
+    type = "structure",
+    members = {
+        IpamRoutingPolicyRegistrationDelta = schema.new({
+            id = id.from(_N, "CreateIpamRoutingPolicyRegistrationOutput", "IpamRoutingPolicyRegistrationDelta"),
+            type = "structure",
+            name = "IpamRoutingPolicyRegistrationDelta",
+            target_id = id.from(_N, "IpamRoutingPolicyRegistrationDelta"),
+            target = M.IpamRoutingPolicyRegistrationDelta,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRoutingPolicyRegistrationDelta" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRoutingPolicyRegistrationDelta" },
             },
         }),
     },
@@ -43538,6 +43985,46 @@ M.DeleteIpamExternalResourceVerificationTokenOutput = schema.new({
     },
 })
 
+M.DeleteIpamInternetRegistryAssociationInput = schema.new({
+    id = id.from(_N, "DeleteIpamInternetRegistryAssociationRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "DeleteIpamInternetRegistryAssociationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "DeleteIpamInternetRegistryAssociationInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteIpamInternetRegistryAssociationOutput = schema.new({
+    id = id.from(_N, "DeleteIpamInternetRegistryAssociationResult"),
+    type = "structure",
+    members = {
+        IpamInternetRegistryAssociation = schema.new({
+            id = id.from(_N, "DeleteIpamInternetRegistryAssociationOutput", "IpamInternetRegistryAssociation"),
+            type = "structure",
+            name = "IpamInternetRegistryAssociation",
+            target_id = id.from(_N, "IpamInternetRegistryAssociation"),
+            target = M.IpamInternetRegistryAssociation,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociation" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociation" },
+            },
+        }),
+    },
+})
+
 M.DeleteIpamPolicyInput = schema.new({
     id = id.from(_N, "DeleteIpamPolicyRequest"),
     type = "structure",
@@ -43739,6 +44226,70 @@ M.DeleteIpamResourceDiscoveryOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ipamResourceDiscovery" },
                 [traits.EC2_QUERY_NAME] = { name = "IpamResourceDiscovery" },
+            },
+        }),
+    },
+})
+
+M.DeleteIpamRoutingPolicyRegistrationInput = schema.new({
+    id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Force = schema.new({
+            id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationInput", "Force"),
+            type = "boolean",
+            name = "Force",
+            target_id = prelude.Boolean.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteIpamRoutingPolicyRegistrationOutput = schema.new({
+    id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationResult"),
+    type = "structure",
+    members = {
+        IpamRoutingPolicyRegistrationDelta = schema.new({
+            id = id.from(_N, "DeleteIpamRoutingPolicyRegistrationOutput", "IpamRoutingPolicyRegistrationDelta"),
+            type = "structure",
+            name = "IpamRoutingPolicyRegistrationDelta",
+            target_id = id.from(_N, "IpamRoutingPolicyRegistrationDelta"),
+            target = M.IpamRoutingPolicyRegistrationDelta,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRoutingPolicyRegistrationDelta" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRoutingPolicyRegistrationDelta" },
             },
         }),
     },
@@ -64755,6 +65306,79 @@ M.DescribeIpamExternalResourceVerificationTokensOutput = schema.new({
     },
 })
 
+M.DescribeIpamInternetRegistryAssociationsInput = schema.new({
+    id = id.from(_N, "DescribeIpamInternetRegistryAssociationsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "DescribeIpamInternetRegistryAssociationsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationIds = schema.new({
+            id = id.from(_N, "DescribeIpamInternetRegistryAssociationsInput", "IpamInternetRegistryAssociationIds"),
+            type = "list",
+            name = "IpamInternetRegistryAssociationIds",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "IpamInternetRegistryAssociationId" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "DescribeIpamInternetRegistryAssociationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeIpamInternetRegistryAssociationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "DescribeIpamInternetRegistryAssociationsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+    },
+})
+
+M.DescribeIpamInternetRegistryAssociationsOutput = schema.new({
+    id = id.from(_N, "DescribeIpamInternetRegistryAssociationsResult"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "DescribeIpamInternetRegistryAssociationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+        IpamInternetRegistryAssociations = schema.new({
+            id = id.from(_N, "DescribeIpamInternetRegistryAssociationsOutput", "IpamInternetRegistryAssociations"),
+            type = "list",
+            name = "IpamInternetRegistryAssociations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamInternetRegistryAssociation, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociationSet" },
+            },
+        }),
+    },
+})
+
 M.DescribeIpamPoliciesInput = schema.new({
     id = id.from(_N, "DescribeIpamPoliciesRequest"),
     type = "structure",
@@ -83652,6 +84276,100 @@ M.EnableInstanceSqlHaStandbyDetectionsOutput = schema.new({
     },
 })
 
+M.EnableIpamInternetRegistryAssociationInput = schema.new({
+    id = id.from(_N, "EnableIpamInternetRegistryAssociationRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        RpkiVersion = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "RpkiVersion"),
+            type = "string",
+            name = "RpkiVersion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ServiceUri = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "ServiceUri"),
+            type = "string",
+            name = "ServiceUri",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ChildHandle = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "ChildHandle"),
+            type = "string",
+            name = "ChildHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ParentHandle = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "ParentHandle"),
+            type = "string",
+            name = "ParentHandle",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ParentBpkiTa = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "ParentBpkiTa"),
+            type = "string",
+            name = "ParentBpkiTa",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.EnableIpamInternetRegistryAssociationOutput = schema.new({
+    id = id.from(_N, "EnableIpamInternetRegistryAssociationResult"),
+    type = "structure",
+    members = {
+        IpamInternetRegistryAssociation = schema.new({
+            id = id.from(_N, "EnableIpamInternetRegistryAssociationOutput", "IpamInternetRegistryAssociation"),
+            type = "structure",
+            name = "IpamInternetRegistryAssociation",
+            target_id = id.from(_N, "IpamInternetRegistryAssociation"),
+            target = M.IpamInternetRegistryAssociation,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociation" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociation" },
+            },
+        }),
+    },
+})
+
 M.EnableIpamOrganizationAdminAccountInput = schema.new({
     id = id.from(_N, "EnableIpamOrganizationAdminAccountRequest"),
     type = "structure",
@@ -88777,6 +89495,402 @@ M.GetIpamDiscoveredResourceCidrsOutput = schema.new({
     },
 })
 
+M.GetIpamDiscoveredRoutesInput = schema.new({
+    id = id.from(_N, "GetIpamDiscoveredRoutesRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamResourceDiscoveryId = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesInput", "IpamResourceDiscoveryId"),
+            type = "string",
+            name = "IpamResourceDiscoveryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ResourceRegion = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesInput", "ResourceRegion"),
+            type = "string",
+            name = "ResourceRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.IpamDiscoveredRoute = schema.new({
+    id = id.from(_N, "IpamDiscoveredRoute"),
+    type = "structure",
+    members = {
+        IpamResourceDiscoveryId = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "IpamResourceDiscoveryId"),
+            type = "string",
+            name = "IpamResourceDiscoveryId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamResourceDiscoveryId" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamResourceDiscoveryId" },
+            },
+        }),
+        ResourceRegion = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "ResourceRegion"),
+            type = "string",
+            name = "ResourceRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceRegion" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceRegion" },
+            },
+        }),
+        ResourceOwnerId = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "ResourceOwnerId"),
+            type = "string",
+            name = "ResourceOwnerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceOwnerId" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceOwnerId" },
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "cidr" },
+                [traits.EC2_QUERY_NAME] = { name = "Cidr" },
+            },
+        }),
+        Asn = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "Asn"),
+            type = "string",
+            name = "Asn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "asn" },
+                [traits.EC2_QUERY_NAME] = { name = "Asn" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+        AdvertisementType = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "AdvertisementType"),
+            type = "string",
+            name = "AdvertisementType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "advertisementType" },
+                [traits.EC2_QUERY_NAME] = { name = "AdvertisementType" },
+            },
+        }),
+        NetworkBorderGroup = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "NetworkBorderGroup"),
+            type = "string",
+            name = "NetworkBorderGroup",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "networkBorderGroup" },
+                [traits.EC2_QUERY_NAME] = { name = "NetworkBorderGroup" },
+            },
+        }),
+        PoolId = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "PoolId"),
+            type = "string",
+            name = "PoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "poolId" },
+                [traits.EC2_QUERY_NAME] = { name = "PoolId" },
+            },
+        }),
+        IpamPoolId = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "IpamPoolId"),
+            type = "string",
+            name = "IpamPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamPoolId" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamPoolId" },
+            },
+        }),
+        SampleTime = schema.new({
+            id = id.from(_N, "IpamDiscoveredRoute", "SampleTime"),
+            type = "timestamp",
+            name = "SampleTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "sampleTime" },
+                [traits.EC2_QUERY_NAME] = { name = "SampleTime" },
+            },
+        }),
+    },
+})
+
+M.GetIpamDiscoveredRoutesOutput = schema.new({
+    id = id.from(_N, "GetIpamDiscoveredRoutesResult"),
+    type = "structure",
+    members = {
+        IpamDiscoveredRoutes = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesOutput", "IpamDiscoveredRoutes"),
+            type = "list",
+            name = "IpamDiscoveredRoutes",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamDiscoveredRoute, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamDiscoveredRouteSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamDiscoveredRouteSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamDiscoveredRoutesOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.GetIpamInternetRegistryAssociationAsnsInput = schema.new({
+    id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+    },
+})
+
+M.IpamInternetRegistryAssociationAsn = schema.new({
+    id = id.from(_N, "IpamInternetRegistryAssociationAsn"),
+    type = "structure",
+    members = {
+        Asn = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociationAsn", "Asn"),
+            type = "string",
+            name = "Asn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "asn" },
+                [traits.EC2_QUERY_NAME] = { name = "Asn" },
+            },
+        }),
+        LastObservedAt = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociationAsn", "LastObservedAt"),
+            type = "timestamp",
+            name = "LastObservedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "lastObservedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "LastObservedAt" },
+            },
+        }),
+    },
+})
+
+M.GetIpamInternetRegistryAssociationAsnsOutput = schema.new({
+    id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsResult"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+        IpamInternetRegistryAssociationAsns = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationAsnsOutput", "IpamInternetRegistryAssociationAsns"),
+            type = "list",
+            name = "IpamInternetRegistryAssociationAsns",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamInternetRegistryAssociationAsn, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociationAsnSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociationAsnSet" },
+            },
+        }),
+    },
+})
+
+M.GetIpamInternetRegistryAssociationCidrsInput = schema.new({
+    id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+    },
+})
+
+M.IpamInternetRegistryAssociationCidr = schema.new({
+    id = id.from(_N, "IpamInternetRegistryAssociationCidr"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociationCidr", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "cidr" },
+                [traits.EC2_QUERY_NAME] = { name = "Cidr" },
+            },
+        }),
+        LastObservedAt = schema.new({
+            id = id.from(_N, "IpamInternetRegistryAssociationCidr", "LastObservedAt"),
+            type = "timestamp",
+            name = "LastObservedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "lastObservedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "LastObservedAt" },
+            },
+        }),
+    },
+})
+
+M.GetIpamInternetRegistryAssociationCidrsOutput = schema.new({
+    id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsResult"),
+    type = "structure",
+    members = {
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+        IpamInternetRegistryAssociationCidrs = schema.new({
+            id = id.from(_N, "GetIpamInternetRegistryAssociationCidrsOutput", "IpamInternetRegistryAssociationCidrs"),
+            type = "list",
+            name = "IpamInternetRegistryAssociationCidrs",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamInternetRegistryAssociationCidr, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamInternetRegistryAssociationCidrSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamInternetRegistryAssociationCidrSet" },
+            },
+        }),
+    },
+})
+
 M.GetIpamPolicyAllocationRulesInput = schema.new({
     id = id.from(_N, "GetIpamPolicyAllocationRulesRequest"),
     type = "structure",
@@ -89826,6 +90940,678 @@ M.GetIpamResourceCidrsOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ipamResourceCidrSet" },
                 [traits.EC2_QUERY_NAME] = { name = "IpamResourceCidrSet" },
+            },
+        }),
+    },
+})
+
+M.GetIpamRouteOriginAuthorizationsInput = schema.new({
+    id = id.from(_N, "GetIpamRouteOriginAuthorizationsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "GetIpamRouteOriginAuthorizationsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "GetIpamRouteOriginAuthorizationsInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "GetIpamRouteOriginAuthorizationsInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetIpamRouteOriginAuthorizationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRouteOriginAuthorizationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IpamRouteOriginAuthorizationInfo = schema.new({
+    id = id.from(_N, "IpamRouteOriginAuthorizationInfo"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorizationInfo", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "cidr" },
+                [traits.EC2_QUERY_NAME] = { name = "Cidr" },
+            },
+        }),
+        Asn = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorizationInfo", "Asn"),
+            type = "string",
+            name = "Asn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "asn" },
+                [traits.EC2_QUERY_NAME] = { name = "Asn" },
+            },
+        }),
+        MaxLength = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorizationInfo", "MaxLength"),
+            type = "integer",
+            name = "MaxLength",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxLength" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxLength" },
+            },
+        }),
+    },
+})
+
+M.GetIpamRouteOriginAuthorizationsOutput = schema.new({
+    id = id.from(_N, "GetIpamRouteOriginAuthorizationsResult"),
+    type = "structure",
+    members = {
+        IpamRouteOriginAuthorizations = schema.new({
+            id = id.from(_N, "GetIpamRouteOriginAuthorizationsOutput", "IpamRouteOriginAuthorizations"),
+            type = "list",
+            name = "IpamRouteOriginAuthorizations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamRouteOriginAuthorizationInfo, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRouteOriginAuthorizationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRouteOriginAuthorizationSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRouteOriginAuthorizationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.GetIpamRouteProtectionFindingsInput = schema.new({
+    id = id.from(_N, "GetIpamRouteProtectionFindingsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamId = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsInput", "IpamId"),
+            type = "string",
+            name = "IpamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsInput", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.Filter, traits = { [traits.XML_NAME] = { name = "Filter" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "Filter" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.IpamRouteOriginAuthorization = schema.new({
+    id = id.from(_N, "IpamRouteOriginAuthorization"),
+    type = "structure",
+    members = {
+        Asn = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorization", "Asn"),
+            type = "string",
+            name = "Asn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "asn" },
+                [traits.EC2_QUERY_NAME] = { name = "Asn" },
+            },
+        }),
+        Prefix = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorization", "Prefix"),
+            type = "string",
+            name = "Prefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "prefix" },
+                [traits.EC2_QUERY_NAME] = { name = "Prefix" },
+            },
+        }),
+        MaxLength = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorization", "MaxLength"),
+            type = "integer",
+            name = "MaxLength",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxLength" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxLength" },
+            },
+        }),
+        Match = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorization", "Match"),
+            type = "boolean",
+            name = "Match",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "match" },
+                [traits.EC2_QUERY_NAME] = { name = "Match" },
+            },
+        }),
+        Expiration = schema.new({
+            id = id.from(_N, "IpamRouteOriginAuthorization", "Expiration"),
+            type = "timestamp",
+            name = "Expiration",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "expiration" },
+                [traits.EC2_QUERY_NAME] = { name = "Expiration" },
+            },
+        }),
+    },
+})
+
+M.IpamRouteOverlap = schema.new({
+    id = id.from(_N, "IpamRouteOverlap"),
+    type = "structure",
+    members = {
+        Prefix = schema.new({
+            id = id.from(_N, "IpamRouteOverlap", "Prefix"),
+            type = "string",
+            name = "Prefix",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "prefix" },
+                [traits.EC2_QUERY_NAME] = { name = "Prefix" },
+            },
+        }),
+        Asn = schema.new({
+            id = id.from(_N, "IpamRouteOverlap", "Asn"),
+            type = "string",
+            name = "Asn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "asn" },
+                [traits.EC2_QUERY_NAME] = { name = "Asn" },
+            },
+        }),
+        DetectedAt = schema.new({
+            id = id.from(_N, "IpamRouteOverlap", "DetectedAt"),
+            type = "timestamp",
+            name = "DetectedAt",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "detectedAt" },
+                [traits.EC2_QUERY_NAME] = { name = "DetectedAt" },
+            },
+        }),
+    },
+})
+
+M.IpamRouteProtectionFinding = schema.new({
+    id = id.from(_N, "IpamRouteProtectionFinding"),
+    type = "structure",
+    members = {
+        ResourceOwnerId = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "ResourceOwnerId"),
+            type = "string",
+            name = "ResourceOwnerId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceOwnerId" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceOwnerId" },
+            },
+        }),
+        ResourceRegion = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "ResourceRegion"),
+            type = "string",
+            name = "ResourceRegion",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "resourceRegion" },
+                [traits.EC2_QUERY_NAME] = { name = "ResourceRegion" },
+            },
+        }),
+        IpamPoolId = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "IpamPoolId"),
+            type = "string",
+            name = "IpamPoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamPoolId" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamPoolId" },
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "cidr" },
+                [traits.EC2_QUERY_NAME] = { name = "Cidr" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+        AdvertisementType = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "AdvertisementType"),
+            type = "string",
+            name = "AdvertisementType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "advertisementType" },
+                [traits.EC2_QUERY_NAME] = { name = "AdvertisementType" },
+            },
+        }),
+        NetworkBorderGroup = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "NetworkBorderGroup"),
+            type = "string",
+            name = "NetworkBorderGroup",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "networkBorderGroup" },
+                [traits.EC2_QUERY_NAME] = { name = "NetworkBorderGroup" },
+            },
+        }),
+        PoolId = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "PoolId"),
+            type = "string",
+            name = "PoolId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "poolId" },
+                [traits.EC2_QUERY_NAME] = { name = "PoolId" },
+            },
+        }),
+        Asn = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "Asn"),
+            type = "string",
+            name = "Asn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "asn" },
+                [traits.EC2_QUERY_NAME] = { name = "Asn" },
+            },
+        }),
+        RpkiStatus = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "RpkiStatus"),
+            type = "string",
+            name = "RpkiStatus",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "rpkiStatus" },
+                [traits.EC2_QUERY_NAME] = { name = "RpkiStatus" },
+            },
+        }),
+        RpkiStrength = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "RpkiStrength"),
+            type = "string",
+            name = "RpkiStrength",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "rpkiStrength" },
+                [traits.EC2_QUERY_NAME] = { name = "RpkiStrength" },
+            },
+        }),
+        Roas = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "Roas"),
+            type = "list",
+            name = "Roas",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamRouteOriginAuthorization, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "roaSet" },
+                [traits.EC2_QUERY_NAME] = { name = "RoaSet" },
+            },
+        }),
+        RouteOverlaps = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "RouteOverlaps"),
+            type = "list",
+            name = "RouteOverlaps",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamRouteOverlap, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "routeOverlapSet" },
+                [traits.EC2_QUERY_NAME] = { name = "RouteOverlapSet" },
+            },
+        }),
+        SampleTime = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "SampleTime"),
+            type = "timestamp",
+            name = "SampleTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "sampleTime" },
+                [traits.EC2_QUERY_NAME] = { name = "SampleTime" },
+            },
+        }),
+        RoaSampleTime = schema.new({
+            id = id.from(_N, "IpamRouteProtectionFinding", "RoaSampleTime"),
+            type = "timestamp",
+            name = "RoaSampleTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.XML_NAME] = { name = "roaSampleTime" },
+                [traits.EC2_QUERY_NAME] = { name = "RoaSampleTime" },
+            },
+        }),
+    },
+})
+
+M.GetIpamRouteProtectionFindingsOutput = schema.new({
+    id = id.from(_N, "GetIpamRouteProtectionFindingsResult"),
+    type = "structure",
+    members = {
+        IpamId = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsOutput", "IpamId"),
+            type = "string",
+            name = "IpamId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamId" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamId" },
+            },
+        }),
+        RouteProtectionFindings = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsOutput", "RouteProtectionFindings"),
+            type = "list",
+            name = "RouteProtectionFindings",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamRouteProtectionFinding, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "routeProtectionFindingSet" },
+                [traits.EC2_QUERY_NAME] = { name = "RouteProtectionFindingSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRouteProtectionFindingsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.GetIpamRoutingPolicyRegistrationDeltasInput = schema.new({
+    id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        DeltaId = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "DeltaId"),
+            type = "string",
+            name = "DeltaId",
+            target_id = prelude.String.id,
+        }),
+        StartTime = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "StartTime"),
+            type = "timestamp",
+            name = "StartTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        EndTime = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "EndTime"),
+            type = "timestamp",
+            name = "EndTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        ChronologicalOrder = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "ChronologicalOrder"),
+            type = "string",
+            name = "ChronologicalOrder",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.GetIpamRoutingPolicyRegistrationDeltasOutput = schema.new({
+    id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasResult"),
+    type = "structure",
+    members = {
+        IpamRoutingPolicyRegistrationDeltas = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasOutput", "IpamRoutingPolicyRegistrationDeltas"),
+            type = "list",
+            name = "IpamRoutingPolicyRegistrationDeltas",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamRoutingPolicyRegistrationDelta, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRoutingPolicyRegistrationDeltaSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRoutingPolicyRegistrationDeltaSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationDeltasOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
+            },
+        }),
+    },
+})
+
+M.GetIpamRoutingPolicyRegistrationsInput = schema.new({
+    id = id.from(_N, "GetIpamRoutingPolicyRegistrationsRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationsInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationsInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationsInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.IpamRoutingPolicyRegistration = schema.new({
+    id = id.from(_N, "IpamRoutingPolicyRegistration"),
+    type = "structure",
+    members = {
+        Cidr = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistration", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "cidr" },
+                [traits.EC2_QUERY_NAME] = { name = "Cidr" },
+            },
+        }),
+        Asns = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistration", "Asns"),
+            type = "list",
+            name = "Asns",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "asnSet" },
+                [traits.EC2_QUERY_NAME] = { name = "AsnSet" },
+            },
+        }),
+        PermitMoreSpecificAnnouncements = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistration", "PermitMoreSpecificAnnouncements"),
+            type = "boolean",
+            name = "PermitMoreSpecificAnnouncements",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.XML_NAME] = { name = "permitMoreSpecificAnnouncements" },
+                [traits.EC2_QUERY_NAME] = { name = "PermitMoreSpecificAnnouncements" },
+            },
+        }),
+        MaxLength = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistration", "MaxLength"),
+            type = "integer",
+            name = "MaxLength",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.XML_NAME] = { name = "maxLength" },
+                [traits.EC2_QUERY_NAME] = { name = "MaxLength" },
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistration", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "description" },
+                [traits.EC2_QUERY_NAME] = { name = "Description" },
+            },
+        }),
+        LatestDeltaId = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistration", "LatestDeltaId"),
+            type = "string",
+            name = "LatestDeltaId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "latestDeltaId" },
+                [traits.EC2_QUERY_NAME] = { name = "LatestDeltaId" },
+            },
+        }),
+        State = schema.new({
+            id = id.from(_N, "IpamRoutingPolicyRegistration", "State"),
+            type = "string",
+            name = "State",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "state" },
+                [traits.EC2_QUERY_NAME] = { name = "State" },
+            },
+        }),
+    },
+})
+
+M.GetIpamRoutingPolicyRegistrationsOutput = schema.new({
+    id = id.from(_N, "GetIpamRoutingPolicyRegistrationsResult"),
+    type = "structure",
+    members = {
+        IpamRoutingPolicyRegistrations = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationsOutput", "IpamRoutingPolicyRegistrations"),
+            type = "list",
+            name = "IpamRoutingPolicyRegistrations",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "structure", target = M.IpamRoutingPolicyRegistration, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRoutingPolicyRegistrationSet" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRoutingPolicyRegistrationSet" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "GetIpamRoutingPolicyRegistrationsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.XML_NAME] = { name = "nextToken" },
+                [traits.EC2_QUERY_NAME] = { name = "NextToken" },
             },
         }),
     },
@@ -97301,6 +99087,99 @@ M.ModifyIpamResourceDiscoveryOutput = schema.new({
             traits = {
                 [traits.XML_NAME] = { name = "ipamResourceDiscovery" },
                 [traits.EC2_QUERY_NAME] = { name = "IpamResourceDiscovery" },
+            },
+        }),
+    },
+})
+
+M.ModifyIpamRoutingPolicyRegistrationInput = schema.new({
+    id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationRequest"),
+    type = "structure",
+    members = {
+        DryRun = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "DryRun"),
+            type = "boolean",
+            name = "DryRun",
+            target_id = prelude.Boolean.id,
+        }),
+        IpamInternetRegistryAssociationId = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "IpamInternetRegistryAssociationId"),
+            type = "string",
+            name = "IpamInternetRegistryAssociationId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Cidr = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "Cidr"),
+            type = "string",
+            name = "Cidr",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Asns = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "Asns"),
+            type = "list",
+            name = "Asns",
+            target_id = prelude.Document.id,
+            list_member = schema.new({ type = "string", target = prelude.String, traits = { [traits.XML_NAME] = { name = "item" } } }),
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.XML_NAME] = { name = "Asn" },
+            },
+        }),
+        PermitMoreSpecificAnnouncements = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "PermitMoreSpecificAnnouncements"),
+            type = "boolean",
+            name = "PermitMoreSpecificAnnouncements",
+            target_id = prelude.Boolean.id,
+        }),
+        MaxLength = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "MaxLength"),
+            type = "integer",
+            name = "MaxLength",
+            target_id = prelude.Integer.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        Force = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "Force"),
+            type = "boolean",
+            name = "Force",
+            target_id = prelude.Boolean.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+    },
+})
+
+M.ModifyIpamRoutingPolicyRegistrationOutput = schema.new({
+    id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationResult"),
+    type = "structure",
+    members = {
+        IpamRoutingPolicyRegistrationDelta = schema.new({
+            id = id.from(_N, "ModifyIpamRoutingPolicyRegistrationOutput", "IpamRoutingPolicyRegistrationDelta"),
+            type = "structure",
+            name = "IpamRoutingPolicyRegistrationDelta",
+            target_id = id.from(_N, "IpamRoutingPolicyRegistrationDelta"),
+            target = M.IpamRoutingPolicyRegistrationDelta,
+            traits = {
+                [traits.XML_NAME] = { name = "ipamRoutingPolicyRegistrationDelta" },
+                [traits.EC2_QUERY_NAME] = { name = "IpamRoutingPolicyRegistrationDelta" },
             },
         }),
     },
@@ -108989,6 +110868,17 @@ M.AuthorizeSecurityGroupIngress = schema.operation({
     },
 })
 
+M.BatchModifyIpamRoutingPolicyRegistrations = schema.operation({
+    id = id.from("com.amazonaws.ec2", "BatchModifyIpamRoutingPolicyRegistrations"),
+    input = M.BatchModifyIpamRoutingPolicyRegistrationsInput,
+    output = M.BatchModifyIpamRoutingPolicyRegistrationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.BundleInstance = schema.operation({
     id = id.from("com.amazonaws.ec2", "BundleInstance"),
     input = M.BundleInstanceInput,
@@ -109495,6 +111385,17 @@ M.CreateIpamExternalResourceVerificationToken = schema.operation({
     },
 })
 
+M.CreateIpamInternetRegistryAssociation = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateIpamInternetRegistryAssociation"),
+    input = M.CreateIpamInternetRegistryAssociationInput,
+    output = M.CreateIpamInternetRegistryAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateIpamPolicy = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateIpamPolicy"),
     input = M.CreateIpamPolicyInput,
@@ -109543,6 +111444,17 @@ M.CreateIpamResourceDiscovery = schema.operation({
     id = id.from("com.amazonaws.ec2", "CreateIpamResourceDiscovery"),
     input = M.CreateIpamResourceDiscoveryInput,
     output = M.CreateIpamResourceDiscoveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.CreateIpamRoutingPolicyRegistration = schema.operation({
+    id = id.from("com.amazonaws.ec2", "CreateIpamRoutingPolicyRegistration"),
+    input = M.CreateIpamRoutingPolicyRegistrationInput,
+    output = M.CreateIpamRoutingPolicyRegistrationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -110562,6 +112474,17 @@ M.DeleteIpamExternalResourceVerificationToken = schema.operation({
     },
 })
 
+M.DeleteIpamInternetRegistryAssociation = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DeleteIpamInternetRegistryAssociation"),
+    input = M.DeleteIpamInternetRegistryAssociationInput,
+    output = M.DeleteIpamInternetRegistryAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteIpamPolicy = schema.operation({
     id = id.from("com.amazonaws.ec2", "DeleteIpamPolicy"),
     input = M.DeleteIpamPolicyInput,
@@ -110610,6 +112533,17 @@ M.DeleteIpamResourceDiscovery = schema.operation({
     id = id.from("com.amazonaws.ec2", "DeleteIpamResourceDiscovery"),
     input = M.DeleteIpamResourceDiscoveryInput,
     output = M.DeleteIpamResourceDiscoveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DeleteIpamRoutingPolicyRegistration = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DeleteIpamRoutingPolicyRegistration"),
+    input = M.DeleteIpamRoutingPolicyRegistrationInput,
+    output = M.DeleteIpamRoutingPolicyRegistrationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -112326,6 +114260,17 @@ M.DescribeIpamExternalResourceVerificationTokens = schema.operation({
     id = id.from("com.amazonaws.ec2", "DescribeIpamExternalResourceVerificationTokens"),
     input = M.DescribeIpamExternalResourceVerificationTokensInput,
     output = M.DescribeIpamExternalResourceVerificationTokensOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeIpamInternetRegistryAssociations = schema.operation({
+    id = id.from("com.amazonaws.ec2", "DescribeIpamInternetRegistryAssociations"),
+    input = M.DescribeIpamInternetRegistryAssociationsInput,
+    output = M.DescribeIpamInternetRegistryAssociationsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -114258,6 +116203,17 @@ M.EnableInstanceSqlHaStandbyDetections = schema.operation({
     },
 })
 
+M.EnableIpamInternetRegistryAssociation = schema.operation({
+    id = id.from("com.amazonaws.ec2", "EnableIpamInternetRegistryAssociation"),
+    input = M.EnableIpamInternetRegistryAssociationInput,
+    output = M.EnableIpamInternetRegistryAssociationOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.EnableIpamOrganizationAdminAccount = schema.operation({
     id = id.from("com.amazonaws.ec2", "EnableIpamOrganizationAdminAccount"),
     input = M.EnableIpamOrganizationAdminAccountInput,
@@ -114775,6 +116731,39 @@ M.GetIpamDiscoveredResourceCidrs = schema.operation({
     },
 })
 
+M.GetIpamDiscoveredRoutes = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetIpamDiscoveredRoutes"),
+    input = M.GetIpamDiscoveredRoutesInput,
+    output = M.GetIpamDiscoveredRoutesOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIpamInternetRegistryAssociationAsns = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetIpamInternetRegistryAssociationAsns"),
+    input = M.GetIpamInternetRegistryAssociationAsnsInput,
+    output = M.GetIpamInternetRegistryAssociationAsnsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIpamInternetRegistryAssociationCidrs = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetIpamInternetRegistryAssociationCidrs"),
+    input = M.GetIpamInternetRegistryAssociationCidrsInput,
+    output = M.GetIpamInternetRegistryAssociationCidrsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetIpamPolicyAllocationRules = schema.operation({
     id = id.from("com.amazonaws.ec2", "GetIpamPolicyAllocationRules"),
     input = M.GetIpamPolicyAllocationRulesInput,
@@ -114856,6 +116845,50 @@ M.GetIpamResourceCidrs = schema.operation({
     id = id.from("com.amazonaws.ec2", "GetIpamResourceCidrs"),
     input = M.GetIpamResourceCidrsInput,
     output = M.GetIpamResourceCidrsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIpamRouteOriginAuthorizations = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetIpamRouteOriginAuthorizations"),
+    input = M.GetIpamRouteOriginAuthorizationsInput,
+    output = M.GetIpamRouteOriginAuthorizationsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIpamRouteProtectionFindings = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetIpamRouteProtectionFindings"),
+    input = M.GetIpamRouteProtectionFindingsInput,
+    output = M.GetIpamRouteProtectionFindingsOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIpamRoutingPolicyRegistrationDeltas = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetIpamRoutingPolicyRegistrationDeltas"),
+    input = M.GetIpamRoutingPolicyRegistrationDeltasInput,
+    output = M.GetIpamRoutingPolicyRegistrationDeltasOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.GetIpamRoutingPolicyRegistrations = schema.operation({
+    id = id.from("com.amazonaws.ec2", "GetIpamRoutingPolicyRegistrations"),
+    input = M.GetIpamRoutingPolicyRegistrationsInput,
+    output = M.GetIpamRoutingPolicyRegistrationsOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
@@ -115692,6 +117725,17 @@ M.ModifyIpamResourceDiscovery = schema.operation({
     id = id.from("com.amazonaws.ec2", "ModifyIpamResourceDiscovery"),
     input = M.ModifyIpamResourceDiscoveryInput,
     output = M.ModifyIpamResourceDiscoveryOutput,
+    traits = {
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ModifyIpamRoutingPolicyRegistration = schema.operation({
+    id = id.from("com.amazonaws.ec2", "ModifyIpamRoutingPolicyRegistration"),
+    input = M.ModifyIpamRoutingPolicyRegistrationInput,
+    output = M.ModifyIpamRoutingPolicyRegistrationOutput,
     traits = {
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },

@@ -13805,6 +13805,8 @@ local record M
         "Failed"
         "Deleting"
         "Updating"
+        "PendingMaintenance"
+        "InMaintenance"
     end
 
     record DescribeNotebookInstanceOutput

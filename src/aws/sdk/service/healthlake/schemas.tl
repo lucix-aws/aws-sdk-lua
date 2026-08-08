@@ -3033,6 +3033,15 @@ M.StartFHIRImportJobInput = schema.new({
                 [traits.DEFAULT] = { value = false },
             },
         }),
+        ProvenanceEnabled = schema.new({
+            id = id.from(_N, "StartFHIRImportJobInput", "ProvenanceEnabled"),
+            type = "boolean",
+            name = "ProvenanceEnabled",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = true },
+            },
+        }),
     },
 })
 

@@ -1983,6 +1983,12 @@ M.CreateOriginEndpointInput = schema.new({
             name = "UriSeparator",
             target_id = prelude.String.id,
         }),
+        StreamNameOutputMode = schema.new({
+            id = id.from(_N, "CreateOriginEndpointInput", "StreamNameOutputMode"),
+            type = "string",
+            name = "StreamNameOutputMode",
+            target_id = prelude.String.id,
+        }),
         Tags = schema.new({
             id = id.from(_N, "CreateOriginEndpointInput", "Tags"),
             type = "map",
@@ -2469,6 +2475,12 @@ M.CreateOriginEndpointOutput = schema.new({
             name = "UriSeparator",
             target_id = prelude.String.id,
         }),
+        StreamNameOutputMode = schema.new({
+            id = id.from(_N, "CreateOriginEndpointOutput", "StreamNameOutputMode"),
+            type = "string",
+            name = "StreamNameOutputMode",
+            target_id = prelude.String.id,
+        }),
         ETag = schema.new({
             id = id.from(_N, "CreateOriginEndpointOutput", "ETag"),
             type = "string",
@@ -2699,6 +2711,12 @@ M.GetOriginEndpointOutput = schema.new({
             id = id.from(_N, "GetOriginEndpointOutput", "UriSeparator"),
             type = "string",
             name = "UriSeparator",
+            target_id = prelude.String.id,
+        }),
+        StreamNameOutputMode = schema.new({
+            id = id.from(_N, "GetOriginEndpointOutput", "StreamNameOutputMode"),
+            type = "string",
+            name = "StreamNameOutputMode",
             target_id = prelude.String.id,
         }),
         ETag = schema.new({
@@ -2970,6 +2988,12 @@ M.OriginEndpointListConfiguration = schema.new({
             id = id.from(_N, "OriginEndpointListConfiguration", "UriSeparator"),
             type = "string",
             name = "UriSeparator",
+            target_id = prelude.String.id,
+        }),
+        StreamNameOutputMode = schema.new({
+            id = id.from(_N, "OriginEndpointListConfiguration", "StreamNameOutputMode"),
+            type = "string",
+            name = "StreamNameOutputMode",
             target_id = prelude.String.id,
         }),
     },
@@ -3374,6 +3398,12 @@ M.UpdateOriginEndpointInput = schema.new({
             name = "UriSeparator",
             target_id = prelude.String.id,
         }),
+        StreamNameOutputMode = schema.new({
+            id = id.from(_N, "UpdateOriginEndpointInput", "StreamNameOutputMode"),
+            type = "string",
+            name = "StreamNameOutputMode",
+            target_id = prelude.String.id,
+        }),
         ETag = schema.new({
             id = id.from(_N, "UpdateOriginEndpointInput", "ETag"),
             type = "string",
@@ -3507,6 +3537,12 @@ M.UpdateOriginEndpointOutput = schema.new({
             id = id.from(_N, "UpdateOriginEndpointOutput", "UriSeparator"),
             type = "string",
             name = "UriSeparator",
+            target_id = prelude.String.id,
+        }),
+        StreamNameOutputMode = schema.new({
+            id = id.from(_N, "UpdateOriginEndpointOutput", "StreamNameOutputMode"),
+            type = "string",
+            name = "StreamNameOutputMode",
             target_id = prelude.String.id,
         }),
         ETag = schema.new({

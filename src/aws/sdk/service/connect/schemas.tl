@@ -35569,6 +35569,45 @@ M.UpdateContactScheduleOutput = schema.new({
     type = "structure",
 })
 
+M.UpdateContactTaskTemplateInput = schema.new({
+    id = id.from(_N, "UpdateContactTaskTemplateRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "UpdateContactTaskTemplateInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        TaskTemplateId = schema.new({
+            id = id.from(_N, "UpdateContactTaskTemplateInput", "TaskTemplateId"),
+            type = "string",
+            name = "TaskTemplateId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        ContactId = schema.new({
+            id = id.from(_N, "UpdateContactTaskTemplateInput", "ContactId"),
+            type = "string",
+            name = "ContactId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.UpdateContactTaskTemplateOutput = schema.new({
+    id = id.from(_N, "UpdateContactTaskTemplateResponse"),
+    type = "structure",
+})
+
 M.UpdateDataTableAttributeInput = schema.new({
     id = id.from(_N, "UpdateDataTableAttributeRequest"),
     type = "structure",
@@ -46162,6 +46201,18 @@ M.UpdateContactSchedule = schema.operation({
     output = M.UpdateContactScheduleOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/contact/schedule" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateContactTaskTemplate = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateContactTaskTemplate"),
+    input = M.UpdateContactTaskTemplateInput,
+    output = M.UpdateContactTaskTemplateOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/contact/task-template" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
