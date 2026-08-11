@@ -11,6 +11,10 @@ local M: {string:any} = {}
 
 M.TagMap = schema.new({ type = "map", map_key = prelude.String, map_value = prelude.String })
 
+M.SearchFilterList = schema.new({ type = "list", list_member = M.SearchFilter })
+
+M.FixtureSummaryList = schema.new({ type = "list", list_member = M.FixtureSummary })
+
 M.TagKeyList = schema.new({ type = "list", list_member = prelude.String })
 
 M.DictionarySummaryList = schema.new({ type = "list", list_member = M.DictionarySummary })
@@ -26,6 +30,10 @@ M.StringList = schema.new({ type = "list", list_member = prelude.String })
 M.GetOutputList = schema.new({ type = "list", list_member = M.GetOutput })
 
 M.UpdateOutputList = schema.new({ type = "list", list_member = M.UpdateOutput })
+
+M.FilterValueList = schema.new({ type = "list", list_member = prelude.String })
+
+M.CompetitorList = schema.new({ type = "list", list_member = M.Competitor })
 
 M.TemplateGroupList = schema.new({ type = "list", list_member = M.TemplateGroup })
 
@@ -75,6 +83,22 @@ M.AspectRatio = schema.new({
     },
 })
 
+M.DataSourceConfiguration = schema.new({
+    id = id.from(_N, "DataSourceConfiguration"),
+    type = "structure",
+    members = {
+        fixtureId = schema.new({
+            id = id.from(_N, "DataSourceConfiguration", "fixtureId"),
+            type = "string",
+            name = "fixtureId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ClippingConfig = schema.new({
     id = id.from(_N, "ClippingConfig"),
     type = "structure",
@@ -84,6 +108,13 @@ M.ClippingConfig = schema.new({
             type = "string",
             name = "callbackMetadata",
             target_id = prelude.String.id,
+        }),
+        dataSourceConfiguration = schema.new({
+            id = id.from(_N, "ClippingConfig", "dataSourceConfiguration"),
+            type = "structure",
+            name = "dataSourceConfiguration",
+            target_id = id.from(_N, "DataSourceConfiguration"),
+            target = M.DataSourceConfiguration,
         }),
     },
 })
@@ -413,6 +444,25 @@ M.ValidationException = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+    },
+})
+
+M.Competitor = schema.new({
+    id = id.from(_N, "Competitor"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "Competitor", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        isHome = schema.new({
+            id = id.from(_N, "Competitor", "isHome"),
+            type = "boolean",
+            name = "isHome",
+            target_id = prelude.Boolean.id,
         }),
     },
 })
@@ -1575,6 +1625,202 @@ M.ListTagsForResourceOutput = schema.new({
     },
 })
 
+M.GatewayTimedOutException = schema.new({
+    id = id.from(_N, "GatewayTimedOutException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "GatewayTimedOutException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchFilter = schema.new({
+    id = id.from(_N, "SearchFilter"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "SearchFilter", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        values = schema.new({
+            id = id.from(_N, "SearchFilter", "values"),
+            type = "list",
+            name = "values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchFixturesInput = schema.new({
+    id = id.from(_N, "SearchFixturesRequest"),
+    type = "structure",
+    members = {
+        sport = schema.new({
+            id = id.from(_N, "SearchFixturesInput", "sport"),
+            type = "string",
+            name = "sport",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startDate = schema.new({
+            id = id.from(_N, "SearchFixturesInput", "startDate"),
+            type = "string",
+            name = "startDate",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        endDate = schema.new({
+            id = id.from(_N, "SearchFixturesInput", "endDate"),
+            type = "string",
+            name = "endDate",
+            target_id = prelude.String.id,
+        }),
+        filters = schema.new({
+            id = id.from(_N, "SearchFixturesInput", "filters"),
+            type = "list",
+            name = "filters",
+            target_id = prelude.Document.id,
+            list_member = M.SearchFilter,
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "SearchFixturesInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchFixturesInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.FixtureSummary = schema.new({
+    id = id.from(_N, "FixtureSummary"),
+    type = "structure",
+    members = {
+        fixtureId = schema.new({
+            id = id.from(_N, "FixtureSummary", "fixtureId"),
+            type = "string",
+            name = "fixtureId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        name = schema.new({
+            id = id.from(_N, "FixtureSummary", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        fixtureGroup = schema.new({
+            id = id.from(_N, "FixtureSummary", "fixtureGroup"),
+            type = "string",
+            name = "fixtureGroup",
+            target_id = prelude.String.id,
+        }),
+        scheduledStart = schema.new({
+            id = id.from(_N, "FixtureSummary", "scheduledStart"),
+            type = "timestamp",
+            name = "scheduledStart",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "FixtureSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        competitors = schema.new({
+            id = id.from(_N, "FixtureSummary", "competitors"),
+            type = "list",
+            name = "competitors",
+            target_id = prelude.Document.id,
+            list_member = M.Competitor,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.SearchFixturesOutput = schema.new({
+    id = id.from(_N, "SearchFixturesResponse"),
+    type = "structure",
+    members = {
+        fixtures = schema.new({
+            id = id.from(_N, "SearchFixturesOutput", "fixtures"),
+            type = "list",
+            name = "fixtures",
+            target_id = prelude.Document.id,
+            list_member = M.FixtureSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "SearchFixturesOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.ServiceUnavailableException = schema.new({
+    id = id.from(_N, "ServiceUnavailableException"),
+    type = "structure",
+    traits = {
+        [traits.ERROR] = { value = "server" },
+    },
+    members = {
+        message = schema.new({
+            id = id.from(_N, "ServiceUnavailableException", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.TagResourceInput = schema.new({
     id = id.from(_N, "TagResourceRequest"),
     type = "structure",
@@ -1798,6 +2044,18 @@ M.ListTagsForResource = schema.operation({
     output = M.ListTagsForResourceOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/v1/tags/{resourceArn}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchFixtures = schema.operation({
+    id = id.from("com.amazonaws.elementalinference", "SearchFixtures"),
+    input = M.SearchFixturesInput,
+    output = M.SearchFixturesOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/v1/fixtures" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

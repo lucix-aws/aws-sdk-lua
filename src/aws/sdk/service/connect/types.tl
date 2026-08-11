@@ -2571,6 +2571,7 @@ local record M
         "ja-JP"
         "ko-KR"
         "zh-CN"
+        "ms-MY"
     end
 
     -- Language configuration for an evaluation form.

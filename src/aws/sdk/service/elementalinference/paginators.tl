@@ -40,4 +40,22 @@ function M.items_list_feeds(client, input)
     })
 end
 
+--- Returns a page iterator for searchFixtures.
+function M.pages_search_fixtures(client, input)
+    return paginator.pages(client, "searchFixtures", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fixtures",
+    })
+end
+
+--- Returns an item iterator for searchFixtures.
+function M.items_search_fixtures(client, input)
+    return paginator.items(client, "searchFixtures", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "fixtures",
+    })
+end
+
 return M

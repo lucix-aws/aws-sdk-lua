@@ -155,6 +155,15 @@ M.InvokeEndpointInput = schema.new({
                 [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-Session-Id" },
             },
         }),
+        PrefixAwareId = schema.new({
+            id = id.from(_N, "InvokeEndpointInput", "PrefixAwareId"),
+            type = "string",
+            name = "PrefixAwareId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-Prefix-Aware-Id" },
+            },
+        }),
     },
 })
 
@@ -550,6 +559,15 @@ M.InvokeEndpointWithResponseStreamInput = schema.new({
             target_id = prelude.String.id,
             traits = {
                 [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-Session-Id" },
+            },
+        }),
+        PrefixAwareId = schema.new({
+            id = id.from(_N, "InvokeEndpointWithResponseStreamInput", "PrefixAwareId"),
+            type = "string",
+            name = "PrefixAwareId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_HEADER] = { name = "X-Amzn-SageMaker-Prefix-Aware-Id" },
             },
         }),
     },

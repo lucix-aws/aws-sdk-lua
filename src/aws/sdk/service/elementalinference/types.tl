@@ -15,10 +15,18 @@ local record M
         height: number
     end
 
+    -- Contains the data source configuration for a clipping output. It identifies the fixture whose event data Elemental Inference maps onto the clipping metadata. It is used in the dataSourceConfiguration property of a ClippingConfig.
+    record DataSourceConfiguration
+        -- The ID of the fixture whose event data you want Elemental Inference to map onto this clipping output. The fixture should be the sports event in the source media that the feed is processing. To obtain this ID, use the SearchFixtures operation to find the fixture, then use the fixtureId from the matching FixtureSummary.
+        fixtureId: string
+    end
+
     -- A type of OutputConfig, used when the output in a feed is for the clip feature.
     record ClippingConfig
         -- A string that you want Elemental Inference to always include in the event clipping metadata for this output. The string might identify the sports event in the source media, for example.
         callbackMetadata: string
+        -- The data source to map onto this clipping output. This parameter is optional. When you include this parameter, Elemental Inference reads the event data for the fixture that you specify, and includes that data in the event clipping metadata for this output. If you omit this parameter, Elemental Inference doesn't map a data source onto this output.
+        dataSourceConfiguration: DataSourceConfiguration
     end
 
     -- A named set of graphics-compositing templates used by the crop feature, specified in the templateGroups array of a CroppingConfig.
@@ -140,6 +148,14 @@ local record M
         message: string
     end
 
+    -- Contains information about one competitor in a fixture. It is used in the FixtureSummary that is in the SearchFixtures response.
+    record Competitor
+        -- The name of the competitor, as provided by the data source.
+        name: string
+        -- Specifies whether this competitor is the home side in the fixture. If true, this competitor is the home side. If false, this competitor is the away side.
+        isHome: boolean
+    end
+
     enum DictionaryLanguage
         "eng"
         "fra"
@@ -243,6 +259,11 @@ local record M
         association: FeedAssociation
         -- Any tags that you included when you created the feed.
         tags: {string : string}
+    end
+
+    enum DataSourceSport
+        "basketball"
+        "american-football"
     end
 
     record DeleteDictionaryInput
@@ -481,6 +502,66 @@ local record M
     record ListTagsForResourceOutput
         -- A list of the tags that belong to this resource.
         tags: {string : string}
+    end
+
+    -- The request timed out before the service returned a response. This is a temporary condition. Retry the request. If the problem persists, contact AWS Support.
+    record GatewayTimedOutException
+        message: string
+    end
+
+    enum FilterName
+        "COMPETITOR"
+    end
+
+    -- A filter for a fixture search. It is used in the filters array of a SearchFixtures request.
+    record SearchFilter
+        -- The dimension of the fixture to filter on. Valid values: COMPETITOR.
+        name: string
+        -- An array of values to match in the dimension that you specified in name. You can specify up to 10 values. A fixture appears in the results if it matches at least one of these values.
+        values: {string}
+    end
+
+    record SearchFixturesInput
+        -- The sport to search for fixtures. Valid values: basketball (search for basketball fixtures), american-football (search for american-football fixtures).
+        sport: string
+        -- The first day of the search window, in UTC. The search includes fixtures that are scheduled on this day. Specify the date in ISO 8601 format, as YYYY-MM-DD. For example, 2026-03-14.
+        startDate: string
+        -- The last day of the search window, in UTC. The search includes fixtures that are scheduled on this day. Specify the date in ISO 8601 format, as YYYY-MM-DD. If you omit this parameter, Elemental Inference searches only the day that you specified in startDate. The window from startDate through endDate must not exceed seven days.
+        endDate: string
+        -- An array of filters that narrow the results. Each filter applies to one dimension of a fixture, such as the competitor. You can specify up to 10 filters. A fixture must satisfy every filter in the array in order to appear in the results. Within one filter, a fixture must match at least one of the values.
+        filters: {SearchFilter}
+        -- The maximum number of fixtures to return for each API request. The service might return fewer fixtures than the maxResults value. When more fixtures match the search, the response also includes a nextToken value that you can use to fetch the next batch of results.
+        maxResults: number
+        -- The token that identifies the batch of results that you want to see. For example, you submit a SearchFixtures request with maxResults set at 5. The service returns the first batch of results (up to 5) and a nextToken value. To see the next batch of results, you submit the SearchFixtures request a second time, with the same search criteria, and specify the nextToken value.
+        nextToken: string
+    end
+
+    -- Contains information about one fixture. It is used in the SearchFixtures response. Elemental Inference relays the information in this structure from the data source, so that you can identify the fixture that matches your source media.
+    record FixtureSummary
+        -- The ID of the fixture. Specify this ID in the clipping output of a feed, to identify the fixture whose event data you want Elemental Inference to map onto the clipping metadata.
+        fixtureId: string
+        -- The name of the fixture, as provided by the data source. For example, the names of the two competing teams.
+        name: string
+        -- The group that the fixture belongs to, such as the competition, league, or tournament. The data source doesn't provide this information for every fixture.
+        fixtureGroup: string
+        -- The scheduled start time of the fixture, as provided by the data source. The actual start time might differ.
+        scheduledStart: number
+        -- The status of the fixture in its lifecycle, as provided by the data source. For example, Scheduled or Completed.
+        status: string
+        -- An array of the competitors (the teams or individuals) in the fixture.
+        competitors: {Competitor}
+    end
+
+    record SearchFixturesOutput
+        -- An array of FixtureSummary objects, one for each fixture that matches the search. The array is empty if no fixtures match.
+        fixtures: {FixtureSummary}
+        -- The token that identifies the next batch of results. To see the next batch, submit the SearchFixtures request again, with the same search criteria, and specify this value in nextToken. This parameter is absent when there are no more results to return.
+        nextToken: string
+    end
+
+    -- The service is temporarily unable to handle the request. Retry the request. If the problem persists, contact AWS Support.
+    record ServiceUnavailableException
+        message: string
     end
 
     record TagResourceInput

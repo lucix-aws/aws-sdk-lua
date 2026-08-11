@@ -1297,6 +1297,8 @@ local record M
         Url: string
         -- username for destination
         Username: string
+        -- Specifies the source IP address for outbound multicast packets.
+        VirtualSourceAddress: string
     end
 
     enum ConnectionMode

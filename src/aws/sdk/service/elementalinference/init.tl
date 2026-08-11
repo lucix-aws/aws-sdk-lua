@@ -30,6 +30,7 @@ local record Client
     listDictionaries: function(Client, types.ListDictionariesInput, ? base_client.InvokeOptions): async.Operation<types.ListDictionariesOutput>
     listFeeds: function(Client, types.ListFeedsInput, ? base_client.InvokeOptions): async.Operation<types.ListFeedsOutput>
     listTagsForResource: function(Client, types.ListTagsForResourceInput, ? base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
+    searchFixtures: function(Client, types.SearchFixturesInput, ? base_client.InvokeOptions): async.Operation<types.SearchFixturesOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
     untagResource: function(Client, types.UntagResourceInput, ? base_client.InvokeOptions): async.Operation<types.UntagResourceOutput>
     updateDictionary: function(Client, types.UpdateDictionaryInput, ? base_client.InvokeOptions): async.Operation<types.UpdateDictionaryOutput>
@@ -124,6 +125,10 @@ end
 
 function C:listTagsForResource(input: types.ListTagsForResourceInput, options?: base_client.InvokeOptions): async.Operation<types.ListTagsForResourceOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListTagsForResource as schema.OperationSchema, input, options) as async.Operation<types.ListTagsForResourceOutput>
+end
+
+function C:searchFixtures(input: types.SearchFixturesInput, options?: base_client.InvokeOptions): async.Operation<types.SearchFixturesOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchFixtures as schema.OperationSchema, input, options) as async.Operation<types.SearchFixturesOutput>
 end
 
 function C:tagResource(input: types.TagResourceInput, options?: base_client.InvokeOptions): async.Operation<types.TagResourceOutput>

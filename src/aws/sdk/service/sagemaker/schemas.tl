@@ -14798,6 +14798,25 @@ M.ProductionVariantManagedInstanceScaling = schema.new({
     },
 })
 
+M.PrefixAwareRoutingConfig = schema.new({
+    id = id.from(_N, "PrefixAwareRoutingConfig"),
+    type = "structure",
+    members = {
+        PrefixLength = schema.new({
+            id = id.from(_N, "PrefixAwareRoutingConfig", "PrefixLength"),
+            type = "integer",
+            name = "PrefixLength",
+            target_id = prelude.Integer.id,
+        }),
+        ConcurrencyThreshold = schema.new({
+            id = id.from(_N, "PrefixAwareRoutingConfig", "ConcurrencyThreshold"),
+            type = "integer",
+            name = "ConcurrencyThreshold",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
 M.ProductionVariantRoutingConfig = schema.new({
     id = id.from(_N, "ProductionVariantRoutingConfig"),
     type = "structure",
@@ -14810,6 +14829,13 @@ M.ProductionVariantRoutingConfig = schema.new({
             traits = {
                 [traits.REQUIRED] = {},
             },
+        }),
+        PrefixAwareRoutingConfig = schema.new({
+            id = id.from(_N, "ProductionVariantRoutingConfig", "PrefixAwareRoutingConfig"),
+            type = "structure",
+            name = "PrefixAwareRoutingConfig",
+            target_id = id.from(_N, "PrefixAwareRoutingConfig"),
+            target = M.PrefixAwareRoutingConfig,
         }),
     },
 })

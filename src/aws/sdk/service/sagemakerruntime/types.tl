@@ -75,6 +75,14 @@ local record M
         -- request. You can get the ID and timestamp from the NewSessionId response
         -- parameter. For any subsequent request where you specify that session ID, SageMaker AI routes the request to the same instance that supports the session.
         SessionId: string
+        -- An optional, stable identifier that serves as a routing hint for prefix-aware routing.
+        -- The service routes requests with the same prefix and the same identifier to the same
+        -- instance. If requests from different applications might have the same prompt prefix, set
+        -- a different identifier for each application to differentiate their routing
+        -- decisions.
+        -- Applies only to endpoints configured with a
+        -- RoutingStrategy of PREFIX_AWARE.
+        PrefixAwareId: string
     end
 
     record InvokeEndpointOutput
@@ -263,6 +271,14 @@ local record M
         -- response to that request provides the session ID for the NewSessionId
         -- response parameter.
         SessionId: string
+        -- An optional, stable identifier that serves as a routing hint for prefix-aware routing.
+        -- The service routes requests with the same prefix and the same identifier to the same
+        -- instance. If requests from different applications might have the same prompt prefix, set
+        -- a different identifier for each application to differentiate their routing
+        -- decisions.
+        -- Applies only to endpoints configured with a
+        -- RoutingStrategy of PREFIX_AWARE.
+        PrefixAwareId: string
     end
 
     -- An error occurred while streaming the response body. This error can have the
