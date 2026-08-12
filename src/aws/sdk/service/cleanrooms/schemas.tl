@@ -89,6 +89,8 @@ M.ParameterMap = schema.new({ type = "map", map_key = prelude.String, map_value 
 
 M.MembershipSummaryList = schema.new({ type = "list", list_member = M.MembershipSummary })
 
+M.AnalysisLogExportSummaryList = schema.new({ type = "list", list_member = M.AnalysisLogExportSummary })
+
 M.PrivacyBudgetSummaryList = schema.new({ type = "list", list_member = M.PrivacyBudgetSummary })
 
 M.ProtectedJobSummaryList = schema.new({ type = "list", list_member = M.ProtectedJobSummary })
@@ -470,6 +472,226 @@ M.AggregationConstraint = schema.new({
             type = "string",
             name = "type",
             target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnalysisLogExportError = schema.new({
+    id = id.from(_N, "AnalysisLogExportError"),
+    type = "structure",
+    members = {
+        code = schema.new({
+            id = id.from(_N, "AnalysisLogExportError", "code"),
+            type = "string",
+            name = "code",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        message = schema.new({
+            id = id.from(_N, "AnalysisLogExportError", "message"),
+            type = "string",
+            name = "message",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnalysisLogExportS3OutputConfiguration = schema.new({
+    id = id.from(_N, "AnalysisLogExportS3OutputConfiguration"),
+    type = "structure",
+    members = {
+        bucket = schema.new({
+            id = id.from(_N, "AnalysisLogExportS3OutputConfiguration", "bucket"),
+            type = "string",
+            name = "bucket",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        keyPrefix = schema.new({
+            id = id.from(_N, "AnalysisLogExportS3OutputConfiguration", "keyPrefix"),
+            type = "string",
+            name = "keyPrefix",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.AnalysisLogExportOutputConfiguration = schema.new({
+    id = id.from(_N, "AnalysisLogExportOutputConfiguration"),
+    type = "structure",
+    members = {
+        s3 = schema.new({
+            id = id.from(_N, "AnalysisLogExportOutputConfiguration", "s3"),
+            type = "structure",
+            name = "s3",
+            target_id = id.from(_N, "AnalysisLogExportS3OutputConfiguration"),
+            target = M.AnalysisLogExportS3OutputConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnalysisLogExportResultConfiguration = schema.new({
+    id = id.from(_N, "AnalysisLogExportResultConfiguration"),
+    type = "structure",
+    members = {
+        outputConfiguration = schema.new({
+            id = id.from(_N, "AnalysisLogExportResultConfiguration", "outputConfiguration"),
+            type = "structure",
+            name = "outputConfiguration",
+            target_id = id.from(_N, "AnalysisLogExportOutputConfiguration"),
+            target = M.AnalysisLogExportOutputConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.AnalysisLogExport = schema.new({
+    id = id.from(_N, "AnalysisLogExport"),
+    type = "structure",
+    members = {
+        analysisLogExportId = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "analysisLogExportId"),
+            type = "string",
+            name = "analysisLogExportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisType = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "analysisType"),
+            type = "string",
+            name = "analysisType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        membershipId = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "membershipId"),
+            type = "string",
+            name = "membershipId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resultConfiguration = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "resultConfiguration"),
+            type = "structure",
+            name = "resultConfiguration",
+            target_id = id.from(_N, "AnalysisLogExportResultConfiguration"),
+            target = M.AnalysisLogExportResultConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createTime = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "createTime"),
+            type = "timestamp",
+            name = "createTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        updateTime = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "updateTime"),
+            type = "timestamp",
+            name = "updateTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        error = schema.new({
+            id = id.from(_N, "AnalysisLogExport", "error"),
+            type = "structure",
+            name = "error",
+            target_id = id.from(_N, "AnalysisLogExportError"),
+            target = M.AnalysisLogExportError,
+        }),
+    },
+})
+
+M.AnalysisLogExportSummary = schema.new({
+    id = id.from(_N, "AnalysisLogExportSummary"),
+    type = "structure",
+    members = {
+        analysisLogExportId = schema.new({
+            id = id.from(_N, "AnalysisLogExportSummary", "analysisLogExportId"),
+            type = "string",
+            name = "analysisLogExportId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "AnalysisLogExportSummary", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisType = schema.new({
+            id = id.from(_N, "AnalysisLogExportSummary", "analysisType"),
+            type = "string",
+            name = "analysisType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "AnalysisLogExportSummary", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        createTime = schema.new({
+            id = id.from(_N, "AnalysisLogExportSummary", "createTime"),
+            type = "timestamp",
+            name = "createTime",
+            target_id = prelude.Timestamp.id,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -12023,6 +12245,50 @@ M.DisallowIntermediateTableOutput = schema.new({
     type = "structure",
 })
 
+M.GetAnalysisLogExportInput = schema.new({
+    id = id.from(_N, "GetAnalysisLogExportInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "GetAnalysisLogExportInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisLogExportIdentifier = schema.new({
+            id = id.from(_N, "GetAnalysisLogExportInput", "analysisLogExportIdentifier"),
+            type = "string",
+            name = "analysisLogExportIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.GetAnalysisLogExportOutput = schema.new({
+    id = id.from(_N, "GetAnalysisLogExportOutput"),
+    type = "structure",
+    members = {
+        analysisLogExport = schema.new({
+            id = id.from(_N, "GetAnalysisLogExportOutput", "analysisLogExport"),
+            type = "structure",
+            name = "analysisLogExport",
+            target_id = id.from(_N, "AnalysisLogExport"),
+            target = M.AnalysisLogExport,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.GetMembershipInput = schema.new({
     id = id.from(_N, "GetMembershipInput"),
     type = "structure",
@@ -13032,6 +13298,82 @@ M.GetProtectedQueryOutput = schema.new({
     },
 })
 
+M.ListAnalysisLogExportsInput = schema.new({
+    id = id.from(_N, "ListAnalysisLogExportsInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "ListAnalysisLogExportsInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisIdentifier = schema.new({
+            id = id.from(_N, "ListAnalysisLogExportsInput", "analysisIdentifier"),
+            type = "string",
+            name = "analysisIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "analysisIdentifier" },
+            },
+        }),
+        status = schema.new({
+            id = id.from(_N, "ListAnalysisLogExportsInput", "status"),
+            type = "string",
+            name = "status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "status" },
+            },
+        }),
+        nextToken = schema.new({
+            id = id.from(_N, "ListAnalysisLogExportsInput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+        maxResults = schema.new({
+            id = id.from(_N, "ListAnalysisLogExportsInput", "maxResults"),
+            type = "integer",
+            name = "maxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+    },
+})
+
+M.ListAnalysisLogExportsOutput = schema.new({
+    id = id.from(_N, "ListAnalysisLogExportsOutput"),
+    type = "structure",
+    members = {
+        nextToken = schema.new({
+            id = id.from(_N, "ListAnalysisLogExportsOutput", "nextToken"),
+            type = "string",
+            name = "nextToken",
+            target_id = prelude.String.id,
+        }),
+        analysisLogExports = schema.new({
+            id = id.from(_N, "ListAnalysisLogExportsOutput", "analysisLogExports"),
+            type = "list",
+            name = "analysisLogExports",
+            target_id = prelude.Document.id,
+            list_member = M.AnalysisLogExportSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.ListMembershipsInput = schema.new({
     id = id.from(_N, "ListMembershipsInput"),
     type = "structure",
@@ -13910,6 +14252,68 @@ M.PreviewPrivacyImpactOutput = schema.new({
             name = "privacyImpact",
             target_id = id.from(_N, "PrivacyImpact"),
             target = M.PrivacyImpact,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartAnalysisLogExportInput = schema.new({
+    id = id.from(_N, "StartAnalysisLogExportInput"),
+    type = "structure",
+    members = {
+        membershipIdentifier = schema.new({
+            id = id.from(_N, "StartAnalysisLogExportInput", "membershipIdentifier"),
+            type = "string",
+            name = "membershipIdentifier",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        analysisId = schema.new({
+            id = id.from(_N, "StartAnalysisLogExportInput", "analysisId"),
+            type = "string",
+            name = "analysisId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        analysisType = schema.new({
+            id = id.from(_N, "StartAnalysisLogExportInput", "analysisType"),
+            type = "string",
+            name = "analysisType",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        resultConfiguration = schema.new({
+            id = id.from(_N, "StartAnalysisLogExportInput", "resultConfiguration"),
+            type = "structure",
+            name = "resultConfiguration",
+            target_id = id.from(_N, "AnalysisLogExportResultConfiguration"),
+            target = M.AnalysisLogExportResultConfiguration,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.StartAnalysisLogExportOutput = schema.new({
+    id = id.from(_N, "StartAnalysisLogExportOutput"),
+    type = "structure",
+    members = {
+        analysisLogExport = schema.new({
+            id = id.from(_N, "StartAnalysisLogExportOutput", "analysisLogExport"),
+            type = "structure",
+            name = "analysisLogExport",
+            target_id = id.from(_N, "AnalysisLogExport"),
+            target = M.AnalysisLogExport,
             traits = {
                 [traits.REQUIRED] = {},
             },
@@ -15328,6 +15732,18 @@ M.DisallowIntermediateTable = schema.operation({
     },
 })
 
+M.GetAnalysisLogExport = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "GetAnalysisLogExport"),
+    input = M.GetAnalysisLogExportInput,
+    output = M.GetAnalysisLogExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/analysislogexports/{analysisLogExportIdentifier}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.GetAnalysisTemplate = schema.operation({
     id = id.from("com.amazonaws.cleanrooms", "GetAnalysisTemplate"),
     input = M.GetAnalysisTemplateInput,
@@ -15586,6 +16002,18 @@ M.GetSchemaAnalysisRule = schema.operation({
     output = M.GetSchemaAnalysisRuleOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/collaborations/{collaborationIdentifier}/schemas/{name}/analysisRule/{type}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.ListAnalysisLogExports = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "ListAnalysisLogExports"),
+    input = M.ListAnalysisLogExportsInput,
+    output = M.ListAnalysisLogExportsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/memberships/{membershipIdentifier}/analysislogexports" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -15898,6 +16326,18 @@ M.PreviewPrivacyImpact = schema.operation({
     output = M.PreviewPrivacyImpactOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/previewprivacyimpact" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.StartAnalysisLogExport = schema.operation({
+    id = id.from("com.amazonaws.cleanrooms", "StartAnalysisLogExport"),
+    input = M.StartAnalysisLogExportInput,
+    output = M.StartAnalysisLogExportOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/memberships/{membershipIdentifier}/analysislogexports" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

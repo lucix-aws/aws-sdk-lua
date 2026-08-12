@@ -163,6 +163,13 @@ local record M
 
     -- Sets up the human review workflow the document will be sent to if one of the conditions
     -- is met. You can also set certain attributes of the image before review.
+    -- Amazon Textract uses Amazon Augmented AI (A2I) to run the human review
+    -- workflows that you specify in HumanLoopConfig. A2I entered
+    -- maintenance mode in July 2026 and no longer accepts new customers. If your account is not an
+    -- existing A2I customer, requests fail with an
+    -- InvalidParameterException. For more information, see AWS
+    -- service availability. If you're an existing A2I customer but receive
+    -- this error, contact AWS Support and request assistance from the A2I team.
     record HumanLoopConfig
         -- The name of the human workflow used for this image. This should be kept unique within a
         -- region.
@@ -210,6 +217,13 @@ local record M
         FeatureTypes: {string}
         -- Sets the configuration for the human in the loop workflow for analyzing
         -- documents.
+        -- Amazon Textract uses Amazon Augmented AI (A2I) to run the human review
+        -- workflows that you specify in HumanLoopConfig. A2I entered
+        -- maintenance mode in July 2026 and no longer accepts new customers. If your account is not an
+        -- existing A2I customer, requests fail with an
+        -- InvalidParameterException. For more information, see AWS
+        -- service availability. If you're an existing A2I customer but receive
+        -- this error, contact AWS Support and request assistance from the A2I team.
         HumanLoopConfig: HumanLoopConfig
         -- Contains Queries and the alias for those Queries, as determined by the input.
         QueriesConfig: QueriesConfig
@@ -306,7 +320,8 @@ local record M
         BoundingBox: BoundingBox
         -- Within the bounding box, a fine-grained polygon around the recognized item.
         Polygon: {Point}
-        -- Provides a numerical value corresponding to the rotation of the text.
+        -- Provides a numerical value corresponding to the rotation of the WORD block.
+        -- Possible values are 0, 90, 180, and 270.
         RotationAngle: number
     end
 
@@ -527,7 +542,7 @@ local record M
     end
 
     -- Amazon Textract isn't able to read the document. For more information on the document
-    -- limits in Amazon Textract, see limits.
+    -- limits in Amazon Textract, see Hard limits.
     record BadDocumentException
         Message: string
         Code: string

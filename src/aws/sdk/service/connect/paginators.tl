@@ -584,6 +584,24 @@ function M.items_list_lex_bots(client, input)
     })
 end
 
+--- Returns a page iterator for listMetrics.
+function M.pages_list_metrics(client, input)
+    return paginator.pages(client, "listMetrics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricSummaryList",
+    })
+end
+
+--- Returns an item iterator for listMetrics.
+function M.items_list_metrics(client, input)
+    return paginator.items(client, "listMetrics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "MetricSummaryList",
+    })
+end
+
 --- Returns a page iterator for listPhoneNumbers.
 function M.pages_list_phone_numbers(client, input)
     return paginator.pages(client, "listPhoneNumbers", input, {
@@ -1237,6 +1255,24 @@ function M.items_search_hours_of_operations(client, input)
         input_token = "NextToken",
         output_token = "NextToken",
         items = "HoursOfOperations",
+    })
+end
+
+--- Returns a page iterator for searchMetrics.
+function M.pages_search_metrics(client, input)
+    return paginator.pages(client, "searchMetrics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Metrics",
+    })
+end
+
+--- Returns an item iterator for searchMetrics.
+function M.items_search_metrics(client, input)
+    return paginator.items(client, "searchMetrics", input, {
+        input_token = "NextToken",
+        output_token = "NextToken",
+        items = "Metrics",
     })
 end
 

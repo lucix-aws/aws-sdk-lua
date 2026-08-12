@@ -150,6 +150,8 @@ local record M
         filterIds: {string}
         -- The status of the asset scope.
         status: string
+        -- The name of the materialized asset scope.
+        scopeName: string
         -- The error message of the asset scope.
         errorMessage: string
     end

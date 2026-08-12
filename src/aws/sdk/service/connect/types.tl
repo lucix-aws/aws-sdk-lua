@@ -2877,6 +2877,128 @@ local record M
         IntegrationAssociationArn: string
     end
 
+    enum MetricFilterBooleanConditionComparison
+        "IS_TRUE"
+        "IS_FALSE"
+    end
+
+    -- A boolean comparison condition for metric filters.
+    record MetricFilterBooleanCondition
+        -- The comparison operator. Valid values: IS_TRUE (matches when the field is true) | IS_FALSE (matches when the field is false).
+        Comparison: string
+    end
+
+    enum MetricFilterNumberConditionComparison
+        "LESSER"
+        "LESSER_OR_EQUAL"
+        "GREATER"
+        "GREATER_OR_EQUAL"
+    end
+
+    -- A numeric comparison condition for metric filters.
+    record MetricFilterNumberCondition
+        -- The comparison operator. Valid values: LESSER (less than) | LESSER_OR_EQUAL (less than or equal to) | GREATER (greater than) | GREATER_OR_EQUAL (greater than or equal to).
+        Comparison: string
+        -- The numeric values to compare against.
+        Values: {number}
+    end
+
+    enum MetricFilterStringConditionComparison
+        "MATCHES_ANY"
+        "MATCHES_NONE"
+    end
+
+    -- A string comparison condition for metric filters.
+    record MetricFilterStringCondition
+        -- The comparison operator. Valid values: MATCHES_ANY (matches any of the specified values) | MATCHES_NONE (matches none of the specified values).
+        Comparison: string
+        -- The string values to compare against.
+        Values: {string}
+    end
+
+    -- A filter condition applied to a metric component in a calculation. Filters restrict the data included in the metric computation.
+    record MetricFilter
+        -- The key identifying the field to filter on.
+        MetricFilterKey: string
+        -- Specifies whether the filter condition is negated. When set to true, the filter excludes matching data instead of including it.
+        Negate: boolean
+        -- A numeric comparison condition.
+        NumberCondition: MetricFilterNumberCondition
+        -- A string comparison condition.
+        StringCondition: MetricFilterStringCondition
+        -- A boolean comparison condition.
+        BooleanCondition: MetricFilterBooleanCondition
+    end
+
+    -- Represents a component metric referenced in a custom metric calculation formula.
+    record CalculationComponent
+        -- The alias used to reference this component in the calculation expression.
+        Alias: string
+        -- The name of an AWS-managed metric used in this calculation component (for example, CONTACTS_HANDLED). Mutually exclusive with MetricId.
+        MetricName: string
+        -- The ARN of an AWS-managed metric used in this calculation component. Mutually exclusive with MetricName.
+        MetricId: string
+        -- The filters applied to the calculation component.
+        MetricFilters: {MetricFilter}
+    end
+
+    -- Contains the formula and component metrics that define a custom metric calculation.
+    record MetricCalculation
+        -- The list of component metrics referenced in the calculation formula. Each component has an alias used in the formula expression.
+        CalculationComponents: {CalculationComponent}
+        -- The formula expression that defines how the metric is calculated. Uses component aliases (for example, 100 * SUM(M1) / SUM(M2)).
+        Calculation: string
+    end
+
+    enum TrendIndicator
+        "POSITIVE"
+        "NEGATIVE"
+        "NEUTRAL"
+    end
+
+    enum MetricStatus
+        "PUBLISHED"
+        "SAVED"
+    end
+
+    enum MetricUnit
+        "INTEGER"
+        "DOUBLE"
+        "PERCENT"
+        "SECONDS"
+    end
+
+    record CreateMetricInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The name of the metric.
+        Name: string
+        -- The calculation definition for the metric, including the formula expression and the component metrics it references.
+        MetricCalculation: MetricCalculation
+        -- The display unit for the metric's data.
+        Unit: string
+        -- The publish status of the metric. Set to PUBLISHED to make the metric available for use in dashboards and reports, or SAVED to keep it in draft state.
+        Status: string
+        -- A unique, case-sensitive identifier that you provide to ensure the idempotency of the
+        -- request. If not provided, the Amazon Web Services
+        -- SDK populates this field. For more information about idempotency, see
+        -- Making retries safe with idempotent APIs.
+        ClientToken: string
+        -- The description of the metric.
+        Description: string
+        -- How an increase in the metric value should be interpreted. Valid values: POSITIVE, NEUTRAL, NEGATIVE.
+        PositiveTrendIndicator: string
+        -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
+        Tags: {string : string}
+    end
+
+    record CreateMetricOutput
+        -- The Amazon Resource Name (ARN) of the metric.
+        MetricArn: string
+        -- The identifier of the metric.
+        MetricId: string
+    end
+
     enum LocaleCode
         "en_US"
         "de_DE"
@@ -4635,6 +4757,16 @@ local record M
     record DeleteIntegrationAssociationOutput
     end
 
+    record DeleteMetricInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the metric to delete.
+        MetricId: string
+    end
+
+    record DeleteMetricOutput
+    end
+
     record DeleteNotificationInput
         -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -6115,6 +6247,99 @@ local record M
     record DescribeInstanceStorageConfigOutput
         -- A valid storage type.
         StorageConfig: InstanceStorageConfig
+    end
+
+    record DescribeMetricInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the metric to describe. Adding the $SAVED qualifier will describe the saved version of the metric. Adding $LATEST or omitting a qualifier will describe the published version.
+        MetricId: string
+    end
+
+    enum MetricCreationMethod
+        "SERVICE_LEVEL_BUILDER"
+        "METRIC_BUILDER"
+    end
+
+    enum AvailableFilterType
+        "METRIC_LEVEL"
+        "RESOURCE_LEVEL"
+    end
+
+    -- A filter that is available for use with the metric. Part of an AvailableFilterList that describes the filters that are available for use with the metric.
+    record AvailableFilter
+        -- The identifier of the filter.
+        Id: string
+        -- The type of the filter. Valid values: METRIC_LEVEL | RESOURCE_LEVEL.
+        Type: string
+    end
+
+    enum MetricType
+        "AWS_MANAGED"
+        "CUSTOMER_MANAGED"
+    end
+
+    -- Contains the full definition of a metric, including its calculation, unit, status, and trend indicator.
+    record MetricDefinition
+        -- The Amazon Resource Name (ARN) of the metric. May be qualified with $SAVED or $LATEST.
+        Arn: string
+        -- The identifier of the metric.
+        Id: string
+        -- The name of the metric.
+        Name: string
+        -- The description of the metric.
+        Description: string
+        -- The calculation definition for the metric.
+        MetricCalculation: MetricCalculation
+        -- The method used to create the metric. Valid values: SERVICE_LEVEL_BUILDER (created with the guided service-level experience) | METRIC_BUILDER (created with the free-form metric builder).
+        CreationMethod: string
+        -- The publish status of the metric. Valid values: PUBLISHED | SAVED.
+        Status: string
+        -- The type of the metric. Valid values: AWS_MANAGED | CUSTOMER_MANAGED.
+        Type: string
+        -- The display unit for the metric's data.
+        Unit: string
+        -- How an increase in the metric value should be interpreted. Valid values: POSITIVE, NEUTRAL, NEGATIVE.
+        PositiveTrendIndicator: string
+        -- The groupings available for this metric.
+        Groupings: {string}
+        -- The filters applied to the metric.
+        Filters: {AvailableFilter}
+        -- The earliest time that can be queried for this metric.
+        EffectiveTime: number
+        -- The minimum interval, in seconds, between data refreshes for this metric.
+        RefreshRate: number
+        -- The category of the metric.
+        Category: string
+        -- The stat aggregations available for this metric.
+        SupportedStats: {string}
+        -- The default stat aggregation for the metric.
+        DefaultStat: string
+        -- Specifies whether the metric can be used inside aggregating statistical functions (SUM, AVG, etc.) in custom metric calculations.
+        SupportsPreaggregateCalculation: boolean
+        -- Specifies whether the metric can be used as a component of custom metrics.
+        SupportsCustomCalculation: boolean
+        -- The primary event source for the metric data.
+        PrimaryEventSource: string
+        -- The timestamp type that determines where the metric appears on a time series.
+        PrimaryEventSourceEffectiveTimestampType: string
+        -- The timestamp of when the metric was created.
+        CreatedTime: number
+        -- The user that created the metric. The creator for metrics created through the CreateMetric API will be Amazon Connect API.
+        CreatedUser: CreatedByInfo
+        -- The region where the metric was last modified.
+        LastModifiedRegion: string
+        -- The timestamp of when the metric was last modified.
+        LastModifiedTime: number
+        -- The user that last modified the metric. For modifications made through the API, this will be Amazon Connect API.
+        LastModifiedUser: CreatedByInfo
+        -- The tags used to organize, track, or control access for this resource. For example, { "Tags": {"key1":"value1", "key2":"value2"} }.
+        Tags: {string : string}
+    end
+
+    record DescribeMetricOutput
+        -- The metric definition.
+        Metric: MetricDefinition
     end
 
     record DescribeNotificationInput
@@ -10958,6 +11183,43 @@ local record M
         NextToken: string
     end
 
+    record ListMetricsInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The type of metrics to list. Valid values: AWS_MANAGED | CUSTOMER_MANAGED.
+        Type: string
+        -- The maximum number of results to return per page.
+        MaxResults: number
+        -- The token for the next set of results. Use the value returned in the previous
+        -- response in the next request to retrieve the next set of results.
+        NextToken: string
+    end
+
+    -- Contains summary information about a metric.
+    record MetricSummary
+        -- The Amazon Resource Name (ARN) of the metric.
+        Arn: string
+        -- The identifier of the metric.
+        Id: string
+        -- The name of the metric.
+        Name: string
+        -- The publish status of the metric.
+        Status: string
+        -- The type of the metric.
+        Type: string
+        -- The region where the metric was last modified.
+        LastModifiedRegion: string
+        -- The timestamp of when the metric was last modified.
+        LastModifiedTime: number
+    end
+
+    record ListMetricsOutput
+        -- The list of metric summaries.
+        MetricSummaryList: {MetricSummary}
+        -- If there are additional results, this is the token for the next set of results.
+        NextToken: string
+    end
+
     record ListNotificationsInput
         -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -13205,6 +13467,23 @@ local record M
         ApproximateTotalCount: number
     end
 
+    -- Filters to apply when searching for metrics.
+    record MetricSearchFilter
+        -- An object that can be used to specify tag conditions inside the SearchFilter. This accepts an OR of AND (List of List) input where:
+        -- The top level list specifies conditions that need to be applied with OR operator.
+        -- The inner list specifies conditions that need to be applied with AND operator.
+        TagFilter: ControlPlaneTagFilter
+    end
+
+    record SearchMetricsOutput
+        -- The metrics that matched the search criteria.
+        Metrics: {MetricDefinition}
+        -- If there are additional results, this is the token for the next set of results.
+        NextToken: string
+        -- The approximate total number of metrics that matched your search criteria.
+        ApproximateTotalCount: number
+    end
+
     -- Filters to apply when searching for notifications.
     record NotificationSearchFilter
         -- Attribute-based filters to apply to the search results.
@@ -13343,6 +13622,7 @@ local record M
         -- contact-flow
         -- flow- module
         -- transfer-destination (also known as quick connect)
+        -- metric
         ResourceTypes: {string}
         -- The token for the next set of results. Use the value returned in the previous response in the next request to
         -- retrieve the next set of results.
@@ -15355,6 +15635,36 @@ local record M
     record UpdateInstanceStorageConfigOutput
     end
 
+    record UpdateMetricContentInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the metric to update. Adding the $SAVED qualifier will update the saved version of the metric. Adding $LATEST or omitting a qualifier will update the published version.
+        MetricId: string
+        -- The updated calculation definition for the metric.
+        MetricCalculation: MetricCalculation
+        -- The updated display unit for the metric.
+        Unit: string
+        -- How an increase in the metric value should be interpreted. Valid values: POSITIVE, NEUTRAL, NEGATIVE.
+        PositiveTrendIndicator: string
+    end
+
+    record UpdateMetricContentOutput
+    end
+
+    record UpdateMetricMetadataInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The identifier of the metric to update. Adding the $SAVED qualifier will update the saved version of the metric. Adding $LATEST or omitting a qualifier will update the published version.
+        MetricId: string
+        -- The updated name of the metric.
+        Name: string
+        -- The updated description of the metric.
+        Description: string
+    end
+
+    record UpdateMetricMetadataOutput
+    end
+
     record UpdateNotificationContentInput
         -- The identifier of the Amazon Connect instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
         InstanceId: string
@@ -16258,6 +16568,16 @@ local record M
         StringCondition: StringCondition
     end
 
+    -- Defines the search criteria for filtering metrics.
+    record MetricSearchCriteria
+        -- A list of conditions to be met, where at least one condition must be satisfied.
+        OrConditions: {MetricSearchCriteria}
+        -- A list of conditions that must all be satisfied.
+        AndConditions: {MetricSearchCriteria}
+        StringCondition: StringCondition
+        BooleanCondition: BooleanCondition
+    end
+
     -- The search criteria to be used to return notifications.
     record NotificationSearchCriteria
         -- A list of conditions to be met, where at least one condition must be satisfied.
@@ -16615,6 +16935,20 @@ local record M
         SearchFilter: HoursOfOperationSearchFilter
         -- The search criteria to be used to return hours of operations.
         SearchCriteria: HoursOfOperationSearchCriteria
+    end
+
+    record SearchMetricsInput
+        -- The identifier of the Connect Customer instance. You can find the instance ID in the Amazon Resource Name (ARN) of the instance.
+        InstanceId: string
+        -- The token for the next set of results. Use the value returned in the previous
+        -- response in the next request to retrieve the next set of results.
+        NextToken: string
+        -- The maximum number of results to return per page.
+        MaxResults: number
+        -- Filters to be applied to search results.
+        SearchFilter: MetricSearchFilter
+        -- The search criteria to filter the metrics.
+        SearchCriteria: MetricSearchCriteria
     end
 
     record SearchNotificationsInput

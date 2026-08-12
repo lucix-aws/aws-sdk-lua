@@ -4,6 +4,24 @@ local paginator = require("smithy.paginator")
 
 local M = {}
 
+--- Returns a page iterator for listAnalysisLogExports.
+function M.pages_list_analysis_log_exports(client, input)
+    return paginator.pages(client, "listAnalysisLogExports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "analysisLogExports",
+    })
+end
+
+--- Returns an item iterator for listAnalysisLogExports.
+function M.items_list_analysis_log_exports(client, input)
+    return paginator.items(client, "listAnalysisLogExports", input, {
+        input_token = "nextToken",
+        output_token = "nextToken",
+        items = "analysisLogExports",
+    })
+end
+
 --- Returns a page iterator for listAnalysisTemplates.
 function M.pages_list_analysis_templates(client, input)
     return paginator.pages(client, "listAnalysisTemplates", input, {

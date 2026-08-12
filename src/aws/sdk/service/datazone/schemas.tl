@@ -783,6 +783,12 @@ M.AssetScope = schema.new({
                 [traits.REQUIRED] = {},
             },
         }),
+        scopeName = schema.new({
+            id = id.from(_N, "AssetScope", "scopeName"),
+            type = "string",
+            name = "scopeName",
+            target_id = prelude.String.id,
+        }),
         errorMessage = schema.new({
             id = id.from(_N, "AssetScope", "errorMessage"),
             type = "string",

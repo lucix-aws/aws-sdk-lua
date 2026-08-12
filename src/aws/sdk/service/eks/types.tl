@@ -269,6 +269,12 @@ local record M
         recommendedManagedPolicies: {string}
     end
 
+    -- A constraint specifying the allowed values for a parameter.
+    record AllowedValuesConstraint
+        -- The list of allowed values.
+        allowedValues: {string}
+    end
+
     enum AMITypes
         "AL2_x86_64"
         "AL2_x86_64_GPU"
@@ -627,6 +633,9 @@ local record M
         "WarmPoolState"
         "WarmPoolReuseOnScaleIn"
         "ControlPlaneEgressMode"
+        "KubeApiServerConfig"
+        "KubeSchedulerConfig"
+        "KubeControllerManagerConfig"
     end
 
     -- An object representing the details of an update request.
@@ -663,6 +672,7 @@ local record M
         "VendedLogsUpdate"
         "ControlPlaneEgressUpdate"
         "VersionRollback"
+        "ControlPlaneComponentConfigUpdate"
     end
 
     -- An object representing an asynchronous update.
@@ -1111,6 +1121,34 @@ local record M
         tier: string
     end
 
+    -- The port range for Kubernetes NodePort services.
+    record ServiceNodePortRange
+        -- The minimum port number in the range.
+        minPort: number
+        -- The maximum port number in the range.
+        maxPort: number
+    end
+
+    -- The configuration for the Kubernetes API server on an Amazon EKS cluster.
+    record KubeApiServerConfigRequest
+        -- The duration that Kubernetes events are retained. Valid values are single-unit durations such as 30m or 1h.
+        eventTtl: string
+        -- The port range for NodePort services.
+        serviceNodePortRange: ServiceNodePortRange
+    end
+
+    -- The horizontal pod autoscaler controller configuration for the Kubernetes controller manager.
+    record HorizontalPodAutoscalerControllerConfigRequest
+        -- The interval between each sync of the horizontal pod autoscaler. Valid values are single-unit durations such as 15s or 1m.
+        horizontalPodAutoscalerSyncPeriod: string
+    end
+
+    -- The configuration for the Kubernetes controller manager on an Amazon EKS cluster.
+    record KubeControllerManagerConfigRequest
+        -- The horizontal pod autoscaler controller configuration.
+        horizontalPodAutoscalerControllerConfig: HorizontalPodAutoscalerControllerConfigRequest
+    end
+
     -- Indicates the current configuration of the load balancing capability on your EKS Auto
     -- Mode cluster. For example, if the capability is enabled or disabled. For more
     -- information, see EKS Auto Mode load balancing capability in the Amazon EKS User Guide.
@@ -1162,6 +1200,37 @@ local record M
         -- cluster. For more information, see EKS Auto Mode load balancing capability in the
         -- Amazon EKS User Guide.
         elasticLoadBalancing: ElasticLoadBalancing
+    end
+
+    -- A resource weight entry for the scheduler scoring strategy.
+    record ResourceWeight
+        -- The name of the resource (for example, cpu or memory).
+        name: string
+        -- The weight assigned to the resource for scoring. Must be between 1 and 100.
+        weight: number
+    end
+
+    enum ScoringStrategyType
+        "LeastAllocated"
+        "MostAllocated"
+    end
+
+    -- The scoring strategy configuration for the NodeResourcesFit scheduler plugin.
+    record ScoringStrategy
+        -- The resource weights used for scoring nodes.
+        resources: {ResourceWeight}
+    end
+
+    -- The NodeResourcesFit plugin configuration for the Kubernetes scheduler.
+    record NodeResourcesFitConfig
+        -- The scoring strategy used to rank nodes during scheduling.
+        scoringStrategy: ScoringStrategy
+    end
+
+    -- The configuration for the Kubernetes scheduler on an Amazon EKS cluster.
+    record KubeSchedulerConfigRequest
+        -- The node resource fit scoring configuration for the scheduler.
+        nodeResourcesFit: NodeResourcesFitConfig
     end
 
     enum LogType
@@ -1557,6 +1626,12 @@ local record M
         deletionProtection: boolean
         -- The control plane scaling tier configuration. For more information, see EKS Provisioned Control Plane in the Amazon EKS User Guide.
         controlPlaneScalingConfig: ControlPlaneScalingConfig
+        -- The Kubernetes API server configuration for the new cluster.
+        kubeApiServerConfig: KubeApiServerConfigRequest
+        -- The Kubernetes scheduler configuration for the new cluster.
+        kubeSchedulerConfig: KubeSchedulerConfigRequest
+        -- The Kubernetes controller manager configuration for the new cluster.
+        kubeControllerManagerConfig: KubeControllerManagerConfigRequest
     end
 
     -- An object representing the certificate-authority-data for your
@@ -1651,6 +1726,26 @@ local record M
         oidc: OIDC
     end
 
+    -- The Kubernetes API server configuration for an Amazon EKS cluster.
+    record KubeApiServerConfigResponse
+        -- The duration that Kubernetes events are retained.
+        eventTtl: string
+        -- The port range for NodePort services.
+        serviceNodePortRange: ServiceNodePortRange
+    end
+
+    -- The horizontal pod autoscaler controller configuration for the Kubernetes controller manager.
+    record HorizontalPodAutoscalerControllerConfigResponse
+        -- The interval between each sync of the horizontal pod autoscaler.
+        horizontalPodAutoscalerSyncPeriod: string
+    end
+
+    -- The Kubernetes controller manager configuration for an Amazon EKS cluster.
+    record KubeControllerManagerConfigResponse
+        -- The horizontal pod autoscaler controller configuration.
+        horizontalPodAutoscalerControllerConfig: HorizontalPodAutoscalerControllerConfigResponse
+    end
+
     -- The Kubernetes network configuration for the cluster. The response contains a value for
     -- serviceIpv6Cidr or serviceIpv4Cidr, but not both.
     record KubernetesNetworkConfigResponse
@@ -1677,6 +1772,12 @@ local record M
         -- Indicates the current configuration of the load balancing capability on your EKS Auto
         -- Mode cluster. For example, if the capability is enabled or disabled.
         elasticLoadBalancing: ElasticLoadBalancing
+    end
+
+    -- The Kubernetes scheduler configuration for an Amazon EKS cluster.
+    record KubeSchedulerConfigResponse
+        -- The node resource fit scoring configuration for the scheduler.
+        nodeResourcesFit: NodeResourcesFitConfig
     end
 
     -- The placement configuration for all the control plane instances of your local Amazon EKS
@@ -1898,6 +1999,12 @@ local record M
         deletionProtection: boolean
         -- The control plane scaling tier configuration. For more information, see EKS Provisioned Control Plane in the Amazon EKS User Guide.
         controlPlaneScalingConfig: ControlPlaneScalingConfig
+        -- The Kubernetes API server configuration for the cluster.
+        kubeApiServerConfig: KubeApiServerConfigResponse
+        -- The Kubernetes scheduler configuration for the cluster.
+        kubeSchedulerConfig: KubeSchedulerConfigResponse
+        -- The Kubernetes controller manager configuration for the cluster.
+        kubeControllerManagerConfig: KubeControllerManagerConfigResponse
     end
 
     record CreateClusterOutput
@@ -3084,6 +3191,126 @@ local record M
         versionStatus: string
     end
 
+    -- Constraints for a duration parameter.
+    record DurationConstraints
+        -- The minimum allowed duration value.
+        min: string
+        -- The maximum allowed duration value.
+        max: string
+    end
+
+    -- A duration parameter configuration with default value and constraints.
+    record DurationParameterConfig
+        -- The default value for the duration parameter.
+        defaultValue: string
+        -- The constraints for the duration parameter.
+        constraints: DurationConstraints
+    end
+
+    -- An integer range constraint specifying minimum and maximum allowed values.
+    record IntegerRangeConstraint
+        -- The minimum allowed value.
+        min: number
+        -- The maximum allowed value.
+        max: number
+    end
+
+    -- Constraints for a port range parameter.
+    record PortRangeConstraints
+        -- The constraints for the minimum port value.
+        minPort: IntegerRangeConstraint
+        -- The constraints for the maximum port value.
+        maxPort: IntegerRangeConstraint
+    end
+
+    -- A port range parameter configuration with default value and constraints.
+    record PortRangeParameterConfig
+        -- The default port range value.
+        defaultValue: ServiceNodePortRange
+        -- The constraints for the port range parameter.
+        constraints: PortRangeConstraints
+    end
+
+    -- The Kubernetes API server version-specific configuration defaults and constraints.
+    record KubeApiServerVersionConfig
+        -- The event TTL configuration with default value and constraints.
+        eventTtl: DurationParameterConfig
+        -- The service node port range configuration with default value and constraints.
+        serviceNodePortRange: PortRangeParameterConfig
+    end
+
+    -- The horizontal pod autoscaler controller version configuration.
+    record HorizontalPodAutoscalerControllerVersionConfig
+        -- The HPA sync period configuration with default value and constraints.
+        horizontalPodAutoscalerSyncPeriod: DurationParameterConfig
+    end
+
+    -- The Kubernetes controller manager version-specific configuration defaults and constraints.
+    record KubeControllerManagerVersionConfig
+        -- The horizontal pod autoscaler controller configuration with default value and constraints.
+        horizontalPodAutoscalerControllerConfig: HorizontalPodAutoscalerControllerVersionConfig
+    end
+
+    -- Constraints for resource weight entries.
+    record ResourceConstraints
+        -- The allowed values for resource names.
+        name: AllowedValuesConstraint
+        -- The allowed range for resource weight values.
+        weight: IntegerRangeConstraint
+    end
+
+    -- Constraints for the scoring strategy configuration.
+    record ScoringStrategyConstraints
+        -- The allowed values for the scoring strategy type.
+        scoringStrategy: AllowedValuesConstraint
+        -- The constraints for resource weights.
+        resources: ResourceConstraints
+    end
+
+    -- The scoring strategy configuration with default value and constraints.
+    record ScoringStrategyConfig
+        -- The default scoring strategy.
+        defaultValue: ScoringStrategy
+        -- The constraints for the scoring strategy.
+        constraints: ScoringStrategyConstraints
+    end
+
+    -- The NodeResourcesFit version configuration with default value and constraints.
+    record NodeResourcesFitVersionConfig
+        -- The scoring strategy configuration with default value and constraints.
+        scoringStrategy: ScoringStrategyConfig
+    end
+
+    -- The Kubernetes scheduler version-specific configuration defaults and constraints.
+    record KubeSchedulerVersionConfig
+        -- The NodeResourcesFit configuration with default value and constraints.
+        nodeResourcesFit: NodeResourcesFitVersionConfig
+    end
+
+    -- The control plane component configuration defaults and constraints.
+    record ControlPlaneConfigInfo
+        -- The Kubernetes API server configuration defaults and constraints.
+        kubeApiServerConfig: KubeApiServerVersionConfig
+        -- The Kubernetes scheduler configuration defaults and constraints.
+        kubeSchedulerConfig: KubeSchedulerVersionConfig
+        -- The Kubernetes controller manager configuration defaults and constraints.
+        kubeControllerManagerConfig: KubeControllerManagerVersionConfig
+    end
+
+    -- Information about a provisioned control plane scaling tier.
+    record ControlPlaneScalingTierInfo
+        -- The name of the scaling tier.
+        tierName: string
+        -- The maximum API request concurrency supported by this tier.
+        apiRequestConcurrency: number
+        -- The maximum pod scheduling rate per second supported by this tier.
+        podSchedulingRatePerSecond: number
+        -- The maximum cluster database size in GB supported by this tier.
+        clusterDatabaseSizeGb: number
+        -- The control plane component configuration overrides specific to this scaling tier.
+        controlPlaneComponentConfigOverrides: ControlPlaneConfigInfo
+    end
+
     -- Contains details about a specific EKS cluster version.
     record ClusterVersionInformation
         -- The Kubernetes version for the cluster.
@@ -3108,6 +3335,10 @@ local record M
         versionStatus: string
         -- The patch version of Kubernetes for this cluster version.
         kubernetesPatchVersion: string
+        -- The available provisioned control plane scaling tiers and their capabilities for this Kubernetes version.
+        controlPlaneScalingTiers: {ControlPlaneScalingTierInfo}
+        -- The default control plane component configuration and constraints for this Kubernetes version.
+        controlPlaneComponentConfig: ControlPlaneConfigInfo
     end
 
     record DescribeClusterVersionsOutput
@@ -4225,6 +4456,12 @@ local record M
         deletionProtection: boolean
         -- The control plane scaling tier configuration. For more information, see EKS Provisioned Control Plane in the Amazon EKS User Guide.
         controlPlaneScalingConfig: ControlPlaneScalingConfig
+        -- The Kubernetes API server configuration for the updated cluster.
+        kubeApiServerConfig: KubeApiServerConfigRequest
+        -- The Kubernetes scheduler configuration for the updated cluster.
+        kubeSchedulerConfig: KubeSchedulerConfigRequest
+        -- The Kubernetes controller manager configuration for the updated cluster.
+        kubeControllerManagerConfig: KubeControllerManagerConfigRequest
     end
 
     record UpdateClusterConfigOutput

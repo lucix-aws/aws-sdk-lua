@@ -154,6 +154,80 @@ local record M
         "PYSPARK_1_0"
     end
 
+    enum LogExportAnalysisType
+        "PROTECTED_QUERY"
+    end
+
+    -- The analysis log export error.
+    record AnalysisLogExportError
+        -- The error code for the analysis log export.
+        code: string
+        -- The message for the analysis log export error.
+        message: string
+    end
+
+    -- Contains output information for an analysis log export with an S3 output type. The exported logs are written under the bucket and key prefix that you specify. The path includes the collaboration ID, the protected query ID, and the analysis log export ID. Because the path includes the export ID, exporting the same query more than once doesn't overwrite the logs from an earlier export. The exported logs are encrypted using the default encryption configuration of the destination bucket. Clean Rooms doesn't accept a KMS key for log export. To encrypt the exported logs with a customer managed key, configure the bucket's default encryption to use that key before you export.
+    record AnalysisLogExportS3OutputConfiguration
+        -- The S3 bucket that the exported analysis logs are written to. The bucket must be in the same Amazon Web Services Region as the collaboration.
+        bucket: string
+        -- The S3 key prefix under which the exported analysis logs are written. Only one export can be in progress at a time for a given query and destination. To export the same query twice at once, use a different key prefix for the second export.
+        keyPrefix: string
+    end
+
+    -- Contains configuration details for analysis log export output.
+    record AnalysisLogExportOutputConfiguration
+        -- Required configuration for an analysis log export with an s3 output type.
+        s3: AnalysisLogExportS3OutputConfiguration
+    end
+
+    -- Contains configurations for analysis log export results.
+    record AnalysisLogExportResultConfiguration
+        -- The configuration for analysis log export results.
+        outputConfiguration: AnalysisLogExportOutputConfiguration
+    end
+
+    enum AnalysisLogExportStatus
+        "IN_PROGRESS"
+        "SUCCESS"
+        "FAILED"
+    end
+
+    -- An export of the redacted Apache Spark logs for a protected query.
+    record AnalysisLogExport
+        -- The unique identifier of the analysis log export.
+        analysisLogExportId: string
+        -- The unique identifier of the protected query that the analysis logs were exported for.
+        analysisId: string
+        -- The type of analysis that the logs were exported for. Currently, only PROTECTED_QUERY is supported.
+        analysisType: string
+        -- The unique identifier of the membership that the analysis log export belongs to.
+        membershipId: string
+        -- The status of the analysis log export. Possible values are: IN_PROGRESS – The export is currently running. SUCCESS – The export completed successfully. FAILED – The export failed. See the error field for details.
+        status: string
+        -- Contains the details needed to write the exported analysis logs.
+        resultConfiguration: AnalysisLogExportResultConfiguration
+        -- The time the analysis log export was created.
+        createTime: number
+        -- The time the analysis log export was last updated.
+        updateTime: number
+        -- The analysis log export error. This is present only when the export status is FAILED.
+        error: AnalysisLogExportError
+    end
+
+    -- A summary of an analysis log export, including its identifier, status, analysis type, and creation time. Returned by ListAnalysisLogExports.
+    record AnalysisLogExportSummary
+        -- The unique identifier of the analysis log export.
+        analysisLogExportId: string
+        -- The unique identifier of the protected query that the analysis logs were exported for.
+        analysisId: string
+        -- The type of analysis that the logs were exported for. Currently, only PROTECTED_QUERY is supported.
+        analysisType: string
+        -- The status of the analysis log export. Possible values are: IN_PROGRESS – The export is currently running. SUCCESS – The export completed successfully. FAILED – The export failed.
+        status: string
+        -- The time the analysis log export was created.
+        createTime: number
+    end
+
     enum AnalysisMethod
         "DIRECT_QUERY"
         "DIRECT_JOB"
@@ -900,6 +974,8 @@ local record M
         "ADD_MEMBER"
         "GRANT_RECEIVE_RESULTS_ABILITY"
         "REVOKE_RECEIVE_RESULTS_ABILITY"
+        "GRANT_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
+        "REVOKE_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
     end
 
     record BatchGetCollaborationAnalysisTemplateInput
@@ -1165,6 +1241,7 @@ local record M
         "CAN_QUERY"
         "CAN_RECEIVE_RESULTS"
         "CAN_RUN_JOB"
+        "CAN_EXPORT_QUERY_ANALYSIS_LOG"
     end
 
     enum CustomMLMemberAbility
@@ -1359,7 +1436,7 @@ local record M
     record MemberChangeSpecification
         -- The Amazon Web Services account ID of the member to add to the collaboration.
         accountId: string
-        -- The abilities granted to the collaboration member. These determine what actions the member can perform within the collaboration. The following values are currently not supported: CAN_QUERY and CAN_RUN_JOB. Set the value of memberAbilities to [] to allow a member to contribute data. Set the value of memberAbilities to [CAN_RECEIVE_RESULTS] to allow a member to contribute data and receive results.
+        -- The abilities granted to the collaboration member. These determine what actions the member can perform within the collaboration. The following values are currently not supported: CAN_QUERY and CAN_RUN_JOB. Set the value of memberAbilities to [] to allow a member to contribute data. Set the value of memberAbilities to [CAN_RECEIVE_RESULTS] to allow a member to contribute data and receive results. Set the value of memberAbilities to [CAN_EXPORT_QUERY_ANALYSIS_LOG] so that the member can export the analysis logs for a protected query. Having this ability isn't sufficient on its own: You can export logs only for queries that you ran or paid for.
         memberAbilities: {string}
         mlMemberAbilities: MLMemberAbilities
         paymentConfiguration: PaymentConfiguration
@@ -1406,6 +1483,8 @@ local record M
         "GRANT_CAN_RECEIVE_INFERENCE_OUTPUT"
         "REVOKE_CAN_RECEIVE_MODEL_OUTPUT"
         "REVOKE_CAN_RECEIVE_INFERENCE_OUTPUT"
+        "GRANT_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
+        "REVOKE_EXPORT_QUERY_ANALYSIS_LOG_ABILITY"
     end
 
     -- Represents a single change within a collaboration change request, containing the change identifier and specification.
@@ -3046,7 +3125,7 @@ local record M
 
     -- Contains the SQL parameters used to populate an intermediate table.
     record PopulationAnalysisSqlParameters
-        -- The SQL query string used to populate the intermediate table. Maximum length of 500,000 characters.
+        -- The SQL query string used to populate the intermediate table.
         queryString: string
         -- The Amazon Resource Name (ARN) of the analysis template to use for populating the intermediate table.
         analysisTemplateArn: string
@@ -3065,11 +3144,11 @@ local record M
         name: string
         -- A description of the intermediate table.
         description: string
-        -- The configuration that defines the analysis used to populate the intermediate table. This configuration contains the SQL query or analysis template reference.
+        -- The configuration that defines the analysis used to populate the intermediate table.
         populationAnalysisConfiguration: PopulationAnalysisConfiguration
         -- The Amazon Resource Name (ARN) of the customer-managed KMS key used to encrypt the intermediate table data.
         kmsKeyArn: string
-        -- The number of days to retain populated data versions. Minimum value of 1, maximum value of 365.
+        -- The number of days to retain populated data versions.
         retentionInDays: number
         -- An optional label that you can assign to a resource when you create it. Each tag consists of a key and an optional value, both of which you define. When you use tagging, you can also use tag-based access control in IAM policies to control access to this resource.
         tags: {string : string}
@@ -3230,7 +3309,7 @@ local record M
         id: string
         -- The name of the dependency table.
         name: string
-        -- Whether the dependency is direct or indirect. A direct dependency is a table explicitly referenced in the stored query, while an indirect dependency is referenced through another intermediate table.
+        -- The type of dependency, either direct or indirect. A direct dependency is a table explicitly referenced in the stored query. An indirect dependency is a table referenced through another intermediate table.
         parentType: string
         -- The Amazon Web Services account ID of the member who owns the dependency table.
         creatorAccountId: string
@@ -3505,7 +3584,7 @@ local record M
         properties: WorkerComputeConfigurationProperties
     end
 
-    -- The compute configuration for an intermediate table population operation.
+    -- Contains the compute configuration for an intermediate table population operation.
     record IntermediateTableComputeConfiguration
         queryComputeConfiguration: WorkerComputeConfiguration
     end
@@ -3524,7 +3603,7 @@ local record M
     end
 
     record PopulateIntermediateTableOutput
-        -- The identifier for the protected query execution. Use this value with GetProtectedQuery to track the population progress.
+        -- The identifier for the protected query execution that populated the intermediate table.
         analysisId: string
         -- The type of analysis performed to populate the intermediate table.
         analysisType: string
@@ -3782,6 +3861,18 @@ local record M
     end
 
     record DisallowIntermediateTableOutput
+    end
+
+    record GetAnalysisLogExportInput
+        -- A unique identifier for the membership that the analysis log export belongs to. Currently accepts the membership ID.
+        membershipIdentifier: string
+        -- The unique identifier of the analysis log export to retrieve.
+        analysisLogExportIdentifier: string
+    end
+
+    record GetAnalysisLogExportOutput
+        -- The analysis log export processing metadata.
+        analysisLogExport: AnalysisLogExport
     end
 
     record GetMembershipInput
@@ -4137,6 +4228,26 @@ local record M
         protectedQuery: ProtectedQuery
     end
 
+    record ListAnalysisLogExportsInput
+        -- A unique identifier for the membership to list analysis log exports for. Currently accepts the membership ID.
+        membershipIdentifier: string
+        -- A filter on the unique identifier of the protected query that the analysis logs were exported for.
+        analysisIdentifier: string
+        -- A filter on the status of the analysis log export.
+        status: string
+        -- The pagination token that's used to fetch the next set of results.
+        nextToken: string
+        -- The maximum number of results that are returned for an API request call. The service chooses a default number if you don't set one. The service might return a nextToken even if the maxResults value has not been met.
+        maxResults: number
+    end
+
+    record ListAnalysisLogExportsOutput
+        -- The pagination token that's used to fetch the next set of results.
+        nextToken: string
+        -- A list of analysis log exports.
+        analysisLogExports: {AnalysisLogExportSummary}
+    end
+
     record ListMembershipsInput
         -- The pagination token that's used to fetch the next set of results.
         nextToken: string
@@ -4387,6 +4498,22 @@ local record M
     record PreviewPrivacyImpactOutput
         -- An estimate of the number of aggregation functions that the member who can query can run given the epsilon and noise parameters. This does not change the privacy budget.
         privacyImpact: PrivacyImpact
+    end
+
+    record StartAnalysisLogExportInput
+        -- A unique identifier for the membership to export the analysis logs for. Currently accepts a membership ID.
+        membershipIdentifier: string
+        -- The unique identifier of the protected query that you want to export the analysis logs for.
+        analysisId: string
+        -- The type of analysis that the logs are exported for. Currently, only PROTECTED_QUERY is supported.
+        analysisType: string
+        -- The details needed to write the exported analysis logs. You don't need to create an IAM role for log export. Clean Rooms writes the exported logs using your own identity, so Clean Rooms writes the exported logs only where your existing permissions allow.
+        resultConfiguration: AnalysisLogExportResultConfiguration
+    end
+
+    record StartAnalysisLogExportOutput
+        -- The analysis log export that was started. The status is IN_PROGRESS.
+        analysisLogExport: AnalysisLogExport
     end
 
     -- The protected job member output configuration input.

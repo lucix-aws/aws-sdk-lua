@@ -249,6 +249,8 @@ M.FunctionArnsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.LexBotsList = schema.new({ type = "list", list_member = M.LexBot })
 
+M.MetricSummaryList = schema.new({ type = "list", list_member = M.MetricSummary })
+
 M.NotificationSummaryList = schema.new({ type = "list", list_member = M.Notification })
 
 M.PhoneNumberTypes = schema.new({ type = "list", list_member = prelude.String })
@@ -341,6 +343,8 @@ M.EvaluationFormSearchSummaryList = schema.new({ type = "list", list_member = M.
 
 M.HoursOfOperationList = schema.new({ type = "list", list_member = M.HoursOfOperation })
 
+M.MetricSearchSummaryList = schema.new({ type = "list", list_member = M.MetricDefinition })
+
 M.NotificationSearchSummaryList = schema.new({ type = "list", list_member = M.NotificationSearchSummary })
 
 M.PredefinedAttributeSearchSummaryList = schema.new({ type = "list", list_member = M.PredefinedAttribute })
@@ -403,6 +407,8 @@ M.EvaluationFormScoreThresholdList = schema.new({ type = "list", list_member = M
 
 M.EvaluationReviewNotificationRecipientList = schema.new({ type = "list", list_member = M.EvaluationReviewNotificationRecipient })
 
+M.CalculationComponentList = schema.new({ type = "list", list_member = M.CalculationComponent })
+
 M.PredefinedAttributeStringValuesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.RequiredTaskTemplateFields = schema.new({ type = "list", list_member = M.RequiredFieldInfo })
@@ -428,6 +434,12 @@ M.EvaluationScoresMap = schema.new({ type = "map", map_key = prelude.String, map
 M.ParentHoursOfOperationsList = schema.new({ type = "list", list_member = M.HoursOfOperationsIdentifier })
 
 M.ReplicationStatusSummaryList = schema.new({ type = "list", list_member = M.ReplicationStatusSummary })
+
+M.MetricGroupingList = schema.new({ type = "list", list_member = prelude.String })
+
+M.AvailableFilterList = schema.new({ type = "list", list_member = M.AvailableFilter })
+
+M.SupportedStatsList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AssociatedQueueIdList = schema.new({ type = "list", list_member = prelude.String })
 
@@ -482,6 +494,8 @@ M.EvaluationFormSearchConditionList = schema.new({ type = "list", list_member = 
 M.HoursOfOperationOverrideSearchConditionList = schema.new({ type = "list", list_member = M.HoursOfOperationOverrideSearchCriteria })
 
 M.HoursOfOperationSearchConditionList = schema.new({ type = "list", list_member = M.HoursOfOperationSearchCriteria })
+
+M.MetricSearchConditionList = schema.new({ type = "list", list_member = M.MetricSearchCriteria })
 
 M.NotificationSearchConditionList = schema.new({ type = "list", list_member = M.NotificationSearchCriteria })
 
@@ -619,6 +633,8 @@ M.EmailHeaders = schema.new({ type = "map", map_key = prelude.String, map_value 
 
 M.ParticipantTimerConfigList = schema.new({ type = "list", list_member = M.ParticipantTimerConfiguration })
 
+M.MetricFilterList = schema.new({ type = "list", list_member = M.MetricFilter })
+
 M.FieldValues = schema.new({ type = "list", list_member = M.FieldValue })
 
 M.PrimaryAttributeValuesSet = schema.new({ type = "list", list_member = M.PrimaryAttributeValue })
@@ -680,6 +696,10 @@ M.EvaluationFormSingleSelectQuestionAutomationOptionList = schema.new({ type = "
 M.EvaluationFormMultiSelectQuestionAutomationOptionList = schema.new({ type = "list", list_member = M.EvaluationFormMultiSelectQuestionAutomationOption })
 
 M.ReferenceIdList = schema.new({ type = "list", list_member = prelude.String })
+
+M.NumberValueList = schema.new({ type = "list", list_member = prelude.Double })
+
+M.StringValueList = schema.new({ type = "list", list_member = prelude.String })
 
 M.EvaluationTranscriptPointsOfInterest = schema.new({ type = "list", list_member = M.EvaluationTranscriptPointOfInterest })
 
@@ -7487,6 +7507,286 @@ M.CreateIntegrationAssociationOutput = schema.new({
     },
 })
 
+M.MetricFilterBooleanCondition = schema.new({
+    id = id.from(_N, "MetricFilterBooleanCondition"),
+    type = "structure",
+    members = {
+        Comparison = schema.new({
+            id = id.from(_N, "MetricFilterBooleanCondition", "Comparison"),
+            type = "string",
+            name = "Comparison",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetricFilterNumberCondition = schema.new({
+    id = id.from(_N, "MetricFilterNumberCondition"),
+    type = "structure",
+    members = {
+        Comparison = schema.new({
+            id = id.from(_N, "MetricFilterNumberCondition", "Comparison"),
+            type = "string",
+            name = "Comparison",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "MetricFilterNumberCondition", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.Double,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetricFilterStringCondition = schema.new({
+    id = id.from(_N, "MetricFilterStringCondition"),
+    type = "structure",
+    members = {
+        Comparison = schema.new({
+            id = id.from(_N, "MetricFilterStringCondition", "Comparison"),
+            type = "string",
+            name = "Comparison",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Values = schema.new({
+            id = id.from(_N, "MetricFilterStringCondition", "Values"),
+            type = "list",
+            name = "Values",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.MetricFilter = schema.new({
+    id = id.from(_N, "MetricFilter"),
+    type = "structure",
+    members = {
+        MetricFilterKey = schema.new({
+            id = id.from(_N, "MetricFilter", "MetricFilterKey"),
+            type = "string",
+            name = "MetricFilterKey",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Negate = schema.new({
+            id = id.from(_N, "MetricFilter", "Negate"),
+            type = "boolean",
+            name = "Negate",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        NumberCondition = schema.new({
+            id = id.from(_N, "MetricFilter", "NumberCondition"),
+            type = "structure",
+            name = "NumberCondition",
+            target_id = id.from(_N, "MetricFilterNumberCondition"),
+            target = M.MetricFilterNumberCondition,
+        }),
+        StringCondition = schema.new({
+            id = id.from(_N, "MetricFilter", "StringCondition"),
+            type = "structure",
+            name = "StringCondition",
+            target_id = id.from(_N, "MetricFilterStringCondition"),
+            target = M.MetricFilterStringCondition,
+        }),
+        BooleanCondition = schema.new({
+            id = id.from(_N, "MetricFilter", "BooleanCondition"),
+            type = "structure",
+            name = "BooleanCondition",
+            target_id = id.from(_N, "MetricFilterBooleanCondition"),
+            target = M.MetricFilterBooleanCondition,
+        }),
+    },
+})
+
+M.CalculationComponent = schema.new({
+    id = id.from(_N, "CalculationComponent"),
+    type = "structure",
+    members = {
+        Alias = schema.new({
+            id = id.from(_N, "CalculationComponent", "Alias"),
+            type = "string",
+            name = "Alias",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricName = schema.new({
+            id = id.from(_N, "CalculationComponent", "MetricName"),
+            type = "string",
+            name = "MetricName",
+            target_id = prelude.String.id,
+        }),
+        MetricId = schema.new({
+            id = id.from(_N, "CalculationComponent", "MetricId"),
+            type = "string",
+            name = "MetricId",
+            target_id = prelude.String.id,
+        }),
+        MetricFilters = schema.new({
+            id = id.from(_N, "CalculationComponent", "MetricFilters"),
+            type = "list",
+            name = "MetricFilters",
+            target_id = prelude.Document.id,
+            list_member = M.MetricFilter,
+        }),
+    },
+})
+
+M.MetricCalculation = schema.new({
+    id = id.from(_N, "MetricCalculation"),
+    type = "structure",
+    members = {
+        CalculationComponents = schema.new({
+            id = id.from(_N, "MetricCalculation", "CalculationComponents"),
+            type = "list",
+            name = "CalculationComponents",
+            target_id = prelude.Document.id,
+            list_member = M.CalculationComponent,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Calculation = schema.new({
+            id = id.from(_N, "MetricCalculation", "Calculation"),
+            type = "string",
+            name = "Calculation",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
+M.CreateMetricInput = schema.new({
+    id = id.from(_N, "CreateMetricRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "CreateMetricInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "CreateMetricInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricCalculation = schema.new({
+            id = id.from(_N, "CreateMetricInput", "MetricCalculation"),
+            type = "structure",
+            name = "MetricCalculation",
+            target_id = id.from(_N, "MetricCalculation"),
+            target = M.MetricCalculation,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Unit = schema.new({
+            id = id.from(_N, "CreateMetricInput", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "CreateMetricInput", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        ClientToken = schema.new({
+            id = id.from(_N, "CreateMetricInput", "ClientToken"),
+            type = "string",
+            name = "ClientToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.IDEMPOTENCY_TOKEN] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "CreateMetricInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        PositiveTrendIndicator = schema.new({
+            id = id.from(_N, "CreateMetricInput", "PositiveTrendIndicator"),
+            type = "string",
+            name = "PositiveTrendIndicator",
+            target_id = prelude.String.id,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "CreateMetricInput", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.CreateMetricOutput = schema.new({
+    id = id.from(_N, "CreateMetricResponse"),
+    type = "structure",
+    members = {
+        MetricArn = schema.new({
+            id = id.from(_N, "CreateMetricOutput", "MetricArn"),
+            type = "string",
+            name = "MetricArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        MetricId = schema.new({
+            id = id.from(_N, "CreateMetricOutput", "MetricId"),
+            type = "string",
+            name = "MetricId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+    },
+})
+
 M.CreateNotificationInput = schema.new({
     id = id.from(_N, "CreateNotificationRequest"),
     type = "structure",
@@ -11812,6 +12112,38 @@ M.DeleteIntegrationAssociationInput = schema.new({
 
 M.DeleteIntegrationAssociationOutput = prelude.Unit
 
+M.DeleteMetricInput = schema.new({
+    id = id.from(_N, "DeleteMetricRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DeleteMetricInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MetricId = schema.new({
+            id = id.from(_N, "DeleteMetricInput", "MetricId"),
+            type = "string",
+            name = "MetricId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.DeleteMetricOutput = schema.new({
+    id = id.from(_N, "DeleteMetricResponse"),
+    type = "structure",
+})
+
 M.DeleteNotificationInput = schema.new({
     id = id.from(_N, "DeleteNotificationRequest"),
     type = "structure",
@@ -15570,6 +15902,281 @@ M.DescribeInstanceStorageConfigOutput = schema.new({
             name = "StorageConfig",
             target_id = id.from(_N, "InstanceStorageConfig"),
             target = M.InstanceStorageConfig,
+        }),
+    },
+})
+
+M.DescribeMetricInput = schema.new({
+    id = id.from(_N, "DescribeMetricRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "DescribeMetricInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MetricId = schema.new({
+            id = id.from(_N, "DescribeMetricInput", "MetricId"),
+            type = "string",
+            name = "MetricId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+    },
+})
+
+M.AvailableFilter = schema.new({
+    id = id.from(_N, "AvailableFilter"),
+    type = "structure",
+    members = {
+        Id = schema.new({
+            id = id.from(_N, "AvailableFilter", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "AvailableFilter", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.MetricDefinition = schema.new({
+    id = id.from(_N, "MetricDefinition"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "MetricDefinition", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "MetricDefinition", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "MetricDefinition", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Description = schema.new({
+            id = id.from(_N, "MetricDefinition", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+        MetricCalculation = schema.new({
+            id = id.from(_N, "MetricDefinition", "MetricCalculation"),
+            type = "structure",
+            name = "MetricCalculation",
+            target_id = id.from(_N, "MetricCalculation"),
+            target = M.MetricCalculation,
+        }),
+        CreationMethod = schema.new({
+            id = id.from(_N, "MetricDefinition", "CreationMethod"),
+            type = "string",
+            name = "CreationMethod",
+            target_id = prelude.String.id,
+        }),
+        Status = schema.new({
+            id = id.from(_N, "MetricDefinition", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+        }),
+        Type = schema.new({
+            id = id.from(_N, "MetricDefinition", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Unit = schema.new({
+            id = id.from(_N, "MetricDefinition", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        PositiveTrendIndicator = schema.new({
+            id = id.from(_N, "MetricDefinition", "PositiveTrendIndicator"),
+            type = "string",
+            name = "PositiveTrendIndicator",
+            target_id = prelude.String.id,
+        }),
+        Groupings = schema.new({
+            id = id.from(_N, "MetricDefinition", "Groupings"),
+            type = "list",
+            name = "Groupings",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Filters = schema.new({
+            id = id.from(_N, "MetricDefinition", "Filters"),
+            type = "list",
+            name = "Filters",
+            target_id = prelude.Document.id,
+            list_member = M.AvailableFilter,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        EffectiveTime = schema.new({
+            id = id.from(_N, "MetricDefinition", "EffectiveTime"),
+            type = "timestamp",
+            name = "EffectiveTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        RefreshRate = schema.new({
+            id = id.from(_N, "MetricDefinition", "RefreshRate"),
+            type = "long",
+            name = "RefreshRate",
+            target_id = prelude.Long.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        Category = schema.new({
+            id = id.from(_N, "MetricDefinition", "Category"),
+            type = "string",
+            name = "Category",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        SupportedStats = schema.new({
+            id = id.from(_N, "MetricDefinition", "SupportedStats"),
+            type = "list",
+            name = "SupportedStats",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+        DefaultStat = schema.new({
+            id = id.from(_N, "MetricDefinition", "DefaultStat"),
+            type = "string",
+            name = "DefaultStat",
+            target_id = prelude.String.id,
+        }),
+        SupportsPreaggregateCalculation = schema.new({
+            id = id.from(_N, "MetricDefinition", "SupportsPreaggregateCalculation"),
+            type = "boolean",
+            name = "SupportsPreaggregateCalculation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        SupportsCustomCalculation = schema.new({
+            id = id.from(_N, "MetricDefinition", "SupportsCustomCalculation"),
+            type = "boolean",
+            name = "SupportsCustomCalculation",
+            target_id = prelude.Boolean.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.DEFAULT] = { value = false },
+            },
+        }),
+        PrimaryEventSource = schema.new({
+            id = id.from(_N, "MetricDefinition", "PrimaryEventSource"),
+            type = "string",
+            name = "PrimaryEventSource",
+            target_id = prelude.String.id,
+        }),
+        PrimaryEventSourceEffectiveTimestampType = schema.new({
+            id = id.from(_N, "MetricDefinition", "PrimaryEventSourceEffectiveTimestampType"),
+            type = "string",
+            name = "PrimaryEventSourceEffectiveTimestampType",
+            target_id = prelude.String.id,
+        }),
+        CreatedTime = schema.new({
+            id = id.from(_N, "MetricDefinition", "CreatedTime"),
+            type = "timestamp",
+            name = "CreatedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        CreatedUser = schema.new({
+            id = id.from(_N, "MetricDefinition", "CreatedUser"),
+            type = "union",
+            name = "CreatedUser",
+            target_id = id.from(_N, "CreatedByInfo"),
+            target = M.CreatedByInfo,
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "MetricDefinition", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "MetricDefinition", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+        LastModifiedUser = schema.new({
+            id = id.from(_N, "MetricDefinition", "LastModifiedUser"),
+            type = "union",
+            name = "LastModifiedUser",
+            target_id = id.from(_N, "CreatedByInfo"),
+            target = M.CreatedByInfo,
+        }),
+        Tags = schema.new({
+            id = id.from(_N, "MetricDefinition", "Tags"),
+            type = "map",
+            name = "Tags",
+            target_id = prelude.Document.id,
+            map_key = prelude.String,
+            map_value = prelude.String,
+        }),
+    },
+})
+
+M.DescribeMetricOutput = schema.new({
+    id = id.from(_N, "DescribeMetricResponse"),
+    type = "structure",
+    members = {
+        Metric = schema.new({
+            id = id.from(_N, "DescribeMetricOutput", "Metric"),
+            type = "structure",
+            name = "Metric",
+            target_id = id.from(_N, "MetricDefinition"),
+            target = M.MetricDefinition,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
         }),
     },
 })
@@ -24459,6 +25066,137 @@ M.ListLexBotsOutput = schema.new({
     },
 })
 
+M.ListMetricsInput = schema.new({
+    id = id.from(_N, "ListMetricsRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "ListMetricsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "ListMetricsInput", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "type" },
+            },
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "ListMetricsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "maxResults" },
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListMetricsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.HTTP_QUERY] = { name = "nextToken" },
+            },
+        }),
+    },
+})
+
+M.MetricSummary = schema.new({
+    id = id.from(_N, "MetricSummary"),
+    type = "structure",
+    members = {
+        Arn = schema.new({
+            id = id.from(_N, "MetricSummary", "Arn"),
+            type = "string",
+            name = "Arn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Id = schema.new({
+            id = id.from(_N, "MetricSummary", "Id"),
+            type = "string",
+            name = "Id",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "MetricSummary", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Status = schema.new({
+            id = id.from(_N, "MetricSummary", "Status"),
+            type = "string",
+            name = "Status",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        Type = schema.new({
+            id = id.from(_N, "MetricSummary", "Type"),
+            type = "string",
+            name = "Type",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        LastModifiedRegion = schema.new({
+            id = id.from(_N, "MetricSummary", "LastModifiedRegion"),
+            type = "string",
+            name = "LastModifiedRegion",
+            target_id = prelude.String.id,
+        }),
+        LastModifiedTime = schema.new({
+            id = id.from(_N, "MetricSummary", "LastModifiedTime"),
+            type = "timestamp",
+            name = "LastModifiedTime",
+            target_id = prelude.Timestamp.id,
+        }),
+    },
+})
+
+M.ListMetricsOutput = schema.new({
+    id = id.from(_N, "ListMetricsResponse"),
+    type = "structure",
+    members = {
+        MetricSummaryList = schema.new({
+            id = id.from(_N, "ListMetricsOutput", "MetricSummaryList"),
+            type = "list",
+            name = "MetricSummaryList",
+            target_id = prelude.Document.id,
+            list_member = M.MetricSummary,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "ListMetricsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
 M.ListNotificationsInput = schema.new({
     id = id.from(_N, "ListNotificationsRequest"),
     type = "structure",
@@ -30602,6 +31340,46 @@ M.SearchHoursOfOperationsOutput = schema.new({
     },
 })
 
+M.MetricSearchFilter = schema.new({
+    id = id.from(_N, "MetricSearchFilter"),
+    type = "structure",
+    members = {
+        TagFilter = schema.new({
+            id = id.from(_N, "MetricSearchFilter", "TagFilter"),
+            type = "structure",
+            name = "TagFilter",
+            target_id = id.from(_N, "ControlPlaneTagFilter"),
+            target = M.ControlPlaneTagFilter,
+        }),
+    },
+})
+
+M.SearchMetricsOutput = schema.new({
+    id = id.from(_N, "SearchMetricsResponse"),
+    type = "structure",
+    members = {
+        Metrics = schema.new({
+            id = id.from(_N, "SearchMetricsOutput", "Metrics"),
+            type = "list",
+            name = "Metrics",
+            target_id = prelude.Document.id,
+            list_member = M.MetricDefinition,
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchMetricsOutput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        ApproximateTotalCount = schema.new({
+            id = id.from(_N, "SearchMetricsOutput", "ApproximateTotalCount"),
+            type = "long",
+            name = "ApproximateTotalCount",
+            target_id = prelude.Long.id,
+        }),
+    },
+})
+
 M.NotificationSearchFilter = schema.new({
     id = id.from(_N, "NotificationSearchFilter"),
     type = "structure",
@@ -36203,6 +36981,101 @@ M.UpdateInstanceStorageConfigInput = schema.new({
 
 M.UpdateInstanceStorageConfigOutput = prelude.Unit
 
+M.UpdateMetricContentInput = schema.new({
+    id = id.from(_N, "UpdateMetricContentRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "UpdateMetricContentInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MetricId = schema.new({
+            id = id.from(_N, "UpdateMetricContentInput", "MetricId"),
+            type = "string",
+            name = "MetricId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MetricCalculation = schema.new({
+            id = id.from(_N, "UpdateMetricContentInput", "MetricCalculation"),
+            type = "structure",
+            name = "MetricCalculation",
+            target_id = id.from(_N, "MetricCalculation"),
+            target = M.MetricCalculation,
+        }),
+        Unit = schema.new({
+            id = id.from(_N, "UpdateMetricContentInput", "Unit"),
+            type = "string",
+            name = "Unit",
+            target_id = prelude.String.id,
+        }),
+        PositiveTrendIndicator = schema.new({
+            id = id.from(_N, "UpdateMetricContentInput", "PositiveTrendIndicator"),
+            type = "string",
+            name = "PositiveTrendIndicator",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateMetricContentOutput = schema.new({
+    id = id.from(_N, "UpdateMetricContentResponse"),
+    type = "structure",
+})
+
+M.UpdateMetricMetadataInput = schema.new({
+    id = id.from(_N, "UpdateMetricMetadataRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "UpdateMetricMetadataInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        MetricId = schema.new({
+            id = id.from(_N, "UpdateMetricMetadataInput", "MetricId"),
+            type = "string",
+            name = "MetricId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.HTTP_LABEL] = {},
+            },
+        }),
+        Name = schema.new({
+            id = id.from(_N, "UpdateMetricMetadataInput", "Name"),
+            type = "string",
+            name = "Name",
+            target_id = prelude.String.id,
+        }),
+        Description = schema.new({
+            id = id.from(_N, "UpdateMetricMetadataInput", "Description"),
+            type = "string",
+            name = "Description",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.UpdateMetricMetadataOutput = schema.new({
+    id = id.from(_N, "UpdateMetricMetadataResponse"),
+    type = "structure",
+})
+
 M.UpdateNotificationContentInput = schema.new({
     id = id.from(_N, "UpdateNotificationContentRequest"),
     type = "structure",
@@ -38823,6 +39696,41 @@ M.HoursOfOperationSearchCriteria = schema.new({
     },
 })
 
+M.MetricSearchCriteria = schema.new({
+    id = id.from(_N, "MetricSearchCriteria"),
+    type = "structure",
+    members = {
+        OrConditions = schema.new({
+            id = id.from(_N, "MetricSearchCriteria", "OrConditions"),
+            type = "list",
+            name = "OrConditions",
+            target_id = prelude.Document.id,
+            list_member = M.MetricSearchCriteria,
+        }),
+        AndConditions = schema.new({
+            id = id.from(_N, "MetricSearchCriteria", "AndConditions"),
+            type = "list",
+            name = "AndConditions",
+            target_id = prelude.Document.id,
+            list_member = M.MetricSearchCriteria,
+        }),
+        StringCondition = schema.new({
+            id = id.from(_N, "MetricSearchCriteria", "StringCondition"),
+            type = "structure",
+            name = "StringCondition",
+            target_id = id.from(_N, "StringCondition"),
+            target = M.StringCondition,
+        }),
+        BooleanCondition = schema.new({
+            id = id.from(_N, "MetricSearchCriteria", "BooleanCondition"),
+            type = "structure",
+            name = "BooleanCondition",
+            target_id = id.from(_N, "BooleanCondition"),
+            target = M.BooleanCondition,
+        }),
+    },
+})
+
 M.NotificationSearchCriteria = schema.new({
     id = id.from(_N, "NotificationSearchCriteria"),
     type = "structure",
@@ -39767,6 +40675,48 @@ M.SearchHoursOfOperationsInput = schema.new({
             name = "SearchCriteria",
             target_id = id.from(_N, "HoursOfOperationSearchCriteria"),
             target = M.HoursOfOperationSearchCriteria,
+        }),
+    },
+})
+
+M.SearchMetricsInput = schema.new({
+    id = id.from(_N, "SearchMetricsRequest"),
+    type = "structure",
+    members = {
+        InstanceId = schema.new({
+            id = id.from(_N, "SearchMetricsInput", "InstanceId"),
+            type = "string",
+            name = "InstanceId",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        NextToken = schema.new({
+            id = id.from(_N, "SearchMetricsInput", "NextToken"),
+            type = "string",
+            name = "NextToken",
+            target_id = prelude.String.id,
+        }),
+        MaxResults = schema.new({
+            id = id.from(_N, "SearchMetricsInput", "MaxResults"),
+            type = "integer",
+            name = "MaxResults",
+            target_id = prelude.Integer.id,
+        }),
+        SearchFilter = schema.new({
+            id = id.from(_N, "SearchMetricsInput", "SearchFilter"),
+            type = "structure",
+            name = "SearchFilter",
+            target_id = id.from(_N, "MetricSearchFilter"),
+            target = M.MetricSearchFilter,
+        }),
+        SearchCriteria = schema.new({
+            id = id.from(_N, "SearchMetricsInput", "SearchCriteria"),
+            type = "structure",
+            name = "SearchCriteria",
+            target_id = id.from(_N, "MetricSearchCriteria"),
+            target = M.MetricSearchCriteria,
         }),
     },
 })
@@ -42847,6 +43797,18 @@ M.CreateIntegrationAssociation = schema.operation({
     },
 })
 
+M.CreateMetric = schema.operation({
+    id = id.from("com.amazonaws.connect", "CreateMetric"),
+    input = M.CreateMetricInput,
+    output = M.CreateMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "PUT", path = "/metrics/definitions/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.CreateNotification = schema.operation({
     id = id.from("com.amazonaws.connect", "CreateNotification"),
     input = M.CreateNotificationInput,
@@ -43315,6 +44277,18 @@ M.DeleteIntegrationAssociation = schema.operation({
     },
 })
 
+M.DeleteMetric = schema.operation({
+    id = id.from("com.amazonaws.connect", "DeleteMetric"),
+    input = M.DeleteMetricInput,
+    output = M.DeleteMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "DELETE", path = "/metrics/definitions/{InstanceId}/{MetricId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.DeleteNotification = schema.operation({
     id = id.from("com.amazonaws.connect", "DeleteNotification"),
     input = M.DeleteNotificationInput,
@@ -43777,6 +44751,18 @@ M.DescribeInstanceStorageConfig = schema.operation({
     output = M.DescribeInstanceStorageConfigOutput,
     traits = {
         [traits.HTTP] = { method = "GET", path = "/instance/{InstanceId}/storage-config/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.DescribeMetric = schema.operation({
+    id = id.from("com.amazonaws.connect", "DescribeMetric"),
+    input = M.DescribeMetricInput,
+    output = M.DescribeMetricOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metrics/definitions/{InstanceId}/{MetricId}" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -44827,6 +45813,18 @@ M.ListLexBots = schema.operation({
     },
 })
 
+M.ListMetrics = schema.operation({
+    id = id.from("com.amazonaws.connect", "ListMetrics"),
+    input = M.ListMetricsInput,
+    output = M.ListMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "GET", path = "/metrics/definitions/{InstanceId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
 M.ListNotifications = schema.operation({
     id = id.from("com.amazonaws.connect", "ListNotifications"),
     input = M.ListNotificationsInput,
@@ -45469,6 +46467,18 @@ M.SearchHoursOfOperations = schema.operation({
     output = M.SearchHoursOfOperationsOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/search-hours-of-operations" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.SearchMetrics = schema.operation({
+    id = id.from("com.amazonaws.connect", "SearchMetrics"),
+    input = M.SearchMetricsInput,
+    output = M.SearchMetricsOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/search-metrics" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },
@@ -46321,6 +47331,30 @@ M.UpdateInstanceStorageConfig = schema.operation({
     output = M.UpdateInstanceStorageConfigOutput,
     traits = {
         [traits.HTTP] = { method = "POST", path = "/instance/{InstanceId}/storage-config/{AssociationId}" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMetricContent = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateMetricContent"),
+    input = M.UpdateMetricContentInput,
+    output = M.UpdateMetricContentOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics/definitions/{InstanceId}/{MetricId}/content" },
+        [traits.AUTH] = {
+            { scheme_id = "aws.auth#sigv4" },
+        },
+    },
+})
+
+M.UpdateMetricMetadata = schema.operation({
+    id = id.from("com.amazonaws.connect", "UpdateMetricMetadata"),
+    input = M.UpdateMetricMetadataInput,
+    output = M.UpdateMetricMetadataOutput,
+    traits = {
+        [traits.HTTP] = { method = "POST", path = "/metrics/definitions/{InstanceId}/{MetricId}/metadata" },
         [traits.AUTH] = {
             { scheme_id = "aws.auth#sigv4" },
         },

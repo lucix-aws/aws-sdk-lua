@@ -1843,6 +1843,42 @@ M.CloudWatchLogsTraceConfig = schema.new({
     },
 })
 
+M.OnlineEvaluationTraceConfig = schema.new({
+    id = id.from(_N, "OnlineEvaluationTraceConfig"),
+    type = "structure",
+    members = {
+        onlineEvaluationConfigArn = schema.new({
+            id = id.from(_N, "OnlineEvaluationTraceConfig", "onlineEvaluationConfigArn"),
+            type = "string",
+            name = "onlineEvaluationConfigArn",
+            target_id = prelude.String.id,
+            traits = {
+                [traits.REQUIRED] = {},
+            },
+        }),
+        startTime = schema.new({
+            id = id.from(_N, "OnlineEvaluationTraceConfig", "startTime"),
+            type = "timestamp",
+            name = "startTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+        endTime = schema.new({
+            id = id.from(_N, "OnlineEvaluationTraceConfig", "endTime"),
+            type = "timestamp",
+            name = "endTime",
+            target_id = prelude.Timestamp.id,
+            traits = {
+                [traits.REQUIRED] = {},
+                [traits.TIMESTAMP_FORMAT] = { format = "date-time" },
+            },
+        }),
+    },
+})
+
 M.AgentTracesConfig = schema.new({
     id = id.from(_N, "AgentTracesConfig"),
     type = "union",
@@ -1867,6 +1903,13 @@ M.AgentTracesConfig = schema.new({
             name = "batchEvaluation",
             target_id = id.from(_N, "BatchEvaluationTraceConfig"),
             target = M.BatchEvaluationTraceConfig,
+        }),
+        onlineEvaluation = schema.new({
+            id = id.from(_N, "AgentTracesConfig", "onlineEvaluation"),
+            type = "structure",
+            name = "onlineEvaluation",
+            target_id = id.from(_N, "OnlineEvaluationTraceConfig"),
+            target = M.OnlineEvaluationTraceConfig,
         }),
     },
 })

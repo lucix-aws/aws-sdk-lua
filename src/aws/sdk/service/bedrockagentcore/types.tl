@@ -549,6 +549,16 @@ local record M
         rule: CloudWatchLogsRule
     end
 
+    -- Contains the configuration for reusing agent traces from an online evaluation configuration for recommendation analysis. Because online evaluation is a continuous stream, a time range specifies which evaluated sessions the recommendation includes.
+    record OnlineEvaluationTraceConfig
+        -- The ARN of the online evaluation configuration to reuse sessions from.
+        onlineEvaluationConfigArn: string
+        -- The start time of the time range. Only sessions evaluated at or after this timestamp are included.
+        startTime: number
+        -- The end time of the time range. Only sessions evaluated before this timestamp are included.
+        endTime: number
+    end
+
     -- The configuration specifying where to read agent traces from for recommendation analysis.
     record AgentTracesConfig
         -- Agent traces provided as inline session spans in OpenTelemetry format.
@@ -557,6 +567,8 @@ local record M
         cloudwatchLogs: CloudWatchLogsTraceConfig
         -- Use a completed batch evaluation as the source of agent traces.
         batchEvaluation: BatchEvaluationTraceConfig
+        -- Agent traces from an online evaluation configuration over a specified time range.
+        onlineEvaluation: OnlineEvaluationTraceConfig
     end
 
     record SaveBrowserSessionProfileInput

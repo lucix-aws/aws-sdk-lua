@@ -30,6 +30,9 @@ local record M
         -- followed by from 8 to 32 lowercase letters or digits.
         Id: string
         -- The type of ID for the participant.
+        -- ORGANIZATION is valid only in the response context (identifying the inviting
+        -- organization). Valid input values for the Target parameter are ACCOUNT and EMAIL
+        -- only.
         Type: string
     end
 

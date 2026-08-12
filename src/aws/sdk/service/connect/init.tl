@@ -67,6 +67,7 @@ local record Client
     createHoursOfOperationOverride: function(Client, types.CreateHoursOfOperationOverrideInput, ? base_client.InvokeOptions): async.Operation<types.CreateHoursOfOperationOverrideOutput>
     createInstance: function(Client, types.CreateInstanceInput, ? base_client.InvokeOptions): async.Operation<types.CreateInstanceOutput>
     createIntegrationAssociation: function(Client, types.CreateIntegrationAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreateIntegrationAssociationOutput>
+    createMetric: function(Client, types.CreateMetricInput, ? base_client.InvokeOptions): async.Operation<types.CreateMetricOutput>
     createNotification: function(Client, types.CreateNotificationInput, ? base_client.InvokeOptions): async.Operation<types.CreateNotificationOutput>
     createParticipant: function(Client, types.CreateParticipantInput, ? base_client.InvokeOptions): async.Operation<types.CreateParticipantOutput>
     createPersistentContactAssociation: function(Client, types.CreatePersistentContactAssociationInput, ? base_client.InvokeOptions): async.Operation<types.CreatePersistentContactAssociationOutput>
@@ -106,6 +107,7 @@ local record Client
     deleteHoursOfOperationOverride: function(Client, types.DeleteHoursOfOperationOverrideInput, ? base_client.InvokeOptions): async.Operation<types.DeleteHoursOfOperationOverrideOutput>
     deleteInstance: function(Client, types.DeleteInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DeleteInstanceOutput>
     deleteIntegrationAssociation: function(Client, types.DeleteIntegrationAssociationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteIntegrationAssociationOutput>
+    deleteMetric: function(Client, types.DeleteMetricInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMetricOutput>
     deleteNotification: function(Client, types.DeleteNotificationInput, ? base_client.InvokeOptions): async.Operation<types.DeleteNotificationOutput>
     deletePredefinedAttribute: function(Client, types.DeletePredefinedAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DeletePredefinedAttributeOutput>
     deletePrompt: function(Client, types.DeletePromptInput, ? base_client.InvokeOptions): async.Operation<types.DeletePromptOutput>
@@ -145,6 +147,7 @@ local record Client
     describeInstance: function(Client, types.DescribeInstanceInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceOutput>
     describeInstanceAttribute: function(Client, types.DescribeInstanceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceAttributeOutput>
     describeInstanceStorageConfig: function(Client, types.DescribeInstanceStorageConfigInput, ? base_client.InvokeOptions): async.Operation<types.DescribeInstanceStorageConfigOutput>
+    describeMetric: function(Client, types.DescribeMetricInput, ? base_client.InvokeOptions): async.Operation<types.DescribeMetricOutput>
     describeNotification: function(Client, types.DescribeNotificationInput, ? base_client.InvokeOptions): async.Operation<types.DescribeNotificationOutput>
     describePhoneNumber: function(Client, types.DescribePhoneNumberInput, ? base_client.InvokeOptions): async.Operation<types.DescribePhoneNumberOutput>
     describePredefinedAttribute: function(Client, types.DescribePredefinedAttributeInput, ? base_client.InvokeOptions): async.Operation<types.DescribePredefinedAttributeOutput>
@@ -232,6 +235,7 @@ local record Client
     listIntegrationAssociations: function(Client, types.ListIntegrationAssociationsInput, ? base_client.InvokeOptions): async.Operation<types.ListIntegrationAssociationsOutput>
     listLambdaFunctions: function(Client, types.ListLambdaFunctionsInput, ? base_client.InvokeOptions): async.Operation<types.ListLambdaFunctionsOutput>
     listLexBots: function(Client, types.ListLexBotsInput, ? base_client.InvokeOptions): async.Operation<types.ListLexBotsOutput>
+    listMetrics: function(Client, types.ListMetricsInput, ? base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
     listNotifications: function(Client, types.ListNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.ListNotificationsOutput>
     listPhoneNumbers: function(Client, types.ListPhoneNumbersInput, ? base_client.InvokeOptions): async.Operation<types.ListPhoneNumbersOutput>
     listPhoneNumbersV2: function(Client, types.ListPhoneNumbersV2Input, ? base_client.InvokeOptions): async.Operation<types.ListPhoneNumbersV2Output>
@@ -286,6 +290,7 @@ local record Client
     searchEvaluationForms: function(Client, types.SearchEvaluationFormsInput, ? base_client.InvokeOptions): async.Operation<types.SearchEvaluationFormsOutput>
     searchHoursOfOperationOverrides: function(Client, types.SearchHoursOfOperationOverridesInput, ? base_client.InvokeOptions): async.Operation<types.SearchHoursOfOperationOverridesOutput>
     searchHoursOfOperations: function(Client, types.SearchHoursOfOperationsInput, ? base_client.InvokeOptions): async.Operation<types.SearchHoursOfOperationsOutput>
+    searchMetrics: function(Client, types.SearchMetricsInput, ? base_client.InvokeOptions): async.Operation<types.SearchMetricsOutput>
     searchNotifications: function(Client, types.SearchNotificationsInput, ? base_client.InvokeOptions): async.Operation<types.SearchNotificationsOutput>
     searchPredefinedAttributes: function(Client, types.SearchPredefinedAttributesInput, ? base_client.InvokeOptions): async.Operation<types.SearchPredefinedAttributesOutput>
     searchPrompts: function(Client, types.SearchPromptsInput, ? base_client.InvokeOptions): async.Operation<types.SearchPromptsOutput>
@@ -357,6 +362,8 @@ local record Client
     updateHoursOfOperationOverride: function(Client, types.UpdateHoursOfOperationOverrideInput, ? base_client.InvokeOptions): async.Operation<types.UpdateHoursOfOperationOverrideOutput>
     updateInstanceAttribute: function(Client, types.UpdateInstanceAttributeInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceAttributeOutput>
     updateInstanceStorageConfig: function(Client, types.UpdateInstanceStorageConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateInstanceStorageConfigOutput>
+    updateMetricContent: function(Client, types.UpdateMetricContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMetricContentOutput>
+    updateMetricMetadata: function(Client, types.UpdateMetricMetadataInput, ? base_client.InvokeOptions): async.Operation<types.UpdateMetricMetadataOutput>
     updateNotificationContent: function(Client, types.UpdateNotificationContentInput, ? base_client.InvokeOptions): async.Operation<types.UpdateNotificationContentOutput>
     updateParticipantAuthentication: function(Client, types.UpdateParticipantAuthenticationInput, ? base_client.InvokeOptions): async.Operation<types.UpdateParticipantAuthenticationOutput>
     updateParticipantRoleConfig: function(Client, types.UpdateParticipantRoleConfigInput, ? base_client.InvokeOptions): async.Operation<types.UpdateParticipantRoleConfigOutput>
@@ -638,6 +645,10 @@ function C:createIntegrationAssociation(input: types.CreateIntegrationAssociatio
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateIntegrationAssociation as schema.OperationSchema, input, options) as async.Operation<types.CreateIntegrationAssociationOutput>
 end
 
+function C:createMetric(input: types.CreateMetricInput, options?: base_client.InvokeOptions): async.Operation<types.CreateMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateMetric as schema.OperationSchema, input, options) as async.Operation<types.CreateMetricOutput>
+end
+
 function C:createNotification(input: types.CreateNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.CreateNotificationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.CreateNotification as schema.OperationSchema, input, options) as async.Operation<types.CreateNotificationOutput>
 end
@@ -794,6 +805,10 @@ function C:deleteIntegrationAssociation(input: types.DeleteIntegrationAssociatio
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteIntegrationAssociation as schema.OperationSchema, input, options) as async.Operation<types.DeleteIntegrationAssociationOutput>
 end
 
+function C:deleteMetric(input: types.DeleteMetricInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteMetric as schema.OperationSchema, input, options) as async.Operation<types.DeleteMetricOutput>
+end
+
 function C:deleteNotification(input: types.DeleteNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.DeleteNotificationOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DeleteNotification as schema.OperationSchema, input, options) as async.Operation<types.DeleteNotificationOutput>
 end
@@ -948,6 +963,10 @@ end
 
 function C:describeInstanceStorageConfig(input: types.DescribeInstanceStorageConfigInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeInstanceStorageConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeInstanceStorageConfig as schema.OperationSchema, input, options) as async.Operation<types.DescribeInstanceStorageConfigOutput>
+end
+
+function C:describeMetric(input: types.DescribeMetricInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeMetricOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DescribeMetric as schema.OperationSchema, input, options) as async.Operation<types.DescribeMetricOutput>
 end
 
 function C:describeNotification(input: types.DescribeNotificationInput, options?: base_client.InvokeOptions): async.Operation<types.DescribeNotificationOutput>
@@ -1298,6 +1317,10 @@ function C:listLexBots(input: types.ListLexBotsInput, options?: base_client.Invo
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListLexBots as schema.OperationSchema, input, options) as async.Operation<types.ListLexBotsOutput>
 end
 
+function C:listMetrics(input: types.ListMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.ListMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListMetrics as schema.OperationSchema, input, options) as async.Operation<types.ListMetricsOutput>
+end
+
 function C:listNotifications(input: types.ListNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.ListNotificationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListNotifications as schema.OperationSchema, input, options) as async.Operation<types.ListNotificationsOutput>
 end
@@ -1512,6 +1535,10 @@ end
 
 function C:searchHoursOfOperations(input: types.SearchHoursOfOperationsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchHoursOfOperationsOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchHoursOfOperations as schema.OperationSchema, input, options) as async.Operation<types.SearchHoursOfOperationsOutput>
+end
+
+function C:searchMetrics(input: types.SearchMetricsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchMetricsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.SearchMetrics as schema.OperationSchema, input, options) as async.Operation<types.SearchMetricsOutput>
 end
 
 function C:searchNotifications(input: types.SearchNotificationsInput, options?: base_client.InvokeOptions): async.Operation<types.SearchNotificationsOutput>
@@ -1796,6 +1823,14 @@ end
 
 function C:updateInstanceStorageConfig(input: types.UpdateInstanceStorageConfigInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateInstanceStorageConfigOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateInstanceStorageConfig as schema.OperationSchema, input, options) as async.Operation<types.UpdateInstanceStorageConfigOutput>
+end
+
+function C:updateMetricContent(input: types.UpdateMetricContentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMetricContentOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMetricContent as schema.OperationSchema, input, options) as async.Operation<types.UpdateMetricContentOutput>
+end
+
+function C:updateMetricMetadata(input: types.UpdateMetricMetadataInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateMetricMetadataOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.UpdateMetricMetadata as schema.OperationSchema, input, options) as async.Operation<types.UpdateMetricMetadataOutput>
 end
 
 function C:updateNotificationContent(input: types.UpdateNotificationContentInput, options?: base_client.InvokeOptions): async.Operation<types.UpdateNotificationContentOutput>

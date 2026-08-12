@@ -50,6 +50,7 @@ local record Client
     deleteMembership: function(Client, types.DeleteMembershipInput, ? base_client.InvokeOptions): async.Operation<types.DeleteMembershipOutput>
     deletePrivacyBudgetTemplate: function(Client, types.DeletePrivacyBudgetTemplateInput, ? base_client.InvokeOptions): async.Operation<types.DeletePrivacyBudgetTemplateOutput>
     disallowIntermediateTable: function(Client, types.DisallowIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.DisallowIntermediateTableOutput>
+    getAnalysisLogExport: function(Client, types.GetAnalysisLogExportInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalysisLogExportOutput>
     getAnalysisTemplate: function(Client, types.GetAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetAnalysisTemplateOutput>
     getCollaboration: function(Client, types.GetCollaborationInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationOutput>
     getCollaborationAnalysisTemplate: function(Client, types.GetCollaborationAnalysisTemplateInput, ? base_client.InvokeOptions): async.Operation<types.GetCollaborationAnalysisTemplateOutput>
@@ -72,6 +73,7 @@ local record Client
     getProtectedQuery: function(Client, types.GetProtectedQueryInput, ? base_client.InvokeOptions): async.Operation<types.GetProtectedQueryOutput>
     getSchema: function(Client, types.GetSchemaInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaOutput>
     getSchemaAnalysisRule: function(Client, types.GetSchemaAnalysisRuleInput, ? base_client.InvokeOptions): async.Operation<types.GetSchemaAnalysisRuleOutput>
+    listAnalysisLogExports: function(Client, types.ListAnalysisLogExportsInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysisLogExportsOutput>
     listAnalysisTemplates: function(Client, types.ListAnalysisTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListAnalysisTemplatesOutput>
     listCollaborationAnalysisTemplates: function(Client, types.ListCollaborationAnalysisTemplatesInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationAnalysisTemplatesOutput>
     listCollaborationChangeRequests: function(Client, types.ListCollaborationChangeRequestsInput, ? base_client.InvokeOptions): async.Operation<types.ListCollaborationChangeRequestsOutput>
@@ -98,6 +100,7 @@ local record Client
     populateIdMappingTable: function(Client, types.PopulateIdMappingTableInput, ? base_client.InvokeOptions): async.Operation<types.PopulateIdMappingTableOutput>
     populateIntermediateTable: function(Client, types.PopulateIntermediateTableInput, ? base_client.InvokeOptions): async.Operation<types.PopulateIntermediateTableOutput>
     previewPrivacyImpact: function(Client, types.PreviewPrivacyImpactInput, ? base_client.InvokeOptions): async.Operation<types.PreviewPrivacyImpactOutput>
+    startAnalysisLogExport: function(Client, types.StartAnalysisLogExportInput, ? base_client.InvokeOptions): async.Operation<types.StartAnalysisLogExportOutput>
     startProtectedJob: function(Client, types.StartProtectedJobInput, ? base_client.InvokeOptions): async.Operation<types.StartProtectedJobOutput>
     startProtectedQuery: function(Client, types.StartProtectedQueryInput, ? base_client.InvokeOptions): async.Operation<types.StartProtectedQueryOutput>
     tagResource: function(Client, types.TagResourceInput, ? base_client.InvokeOptions): async.Operation<types.TagResourceOutput>
@@ -290,6 +293,10 @@ function C:disallowIntermediateTable(input: types.DisallowIntermediateTableInput
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.DisallowIntermediateTable as schema.OperationSchema, input, options) as async.Operation<types.DisallowIntermediateTableOutput>
 end
 
+function C:getAnalysisLogExport(input: types.GetAnalysisLogExportInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnalysisLogExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnalysisLogExport as schema.OperationSchema, input, options) as async.Operation<types.GetAnalysisLogExportOutput>
+end
+
 function C:getAnalysisTemplate(input: types.GetAnalysisTemplateInput, options?: base_client.InvokeOptions): async.Operation<types.GetAnalysisTemplateOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetAnalysisTemplate as schema.OperationSchema, input, options) as async.Operation<types.GetAnalysisTemplateOutput>
 end
@@ -376,6 +383,10 @@ end
 
 function C:getSchemaAnalysisRule(input: types.GetSchemaAnalysisRuleInput, options?: base_client.InvokeOptions): async.Operation<types.GetSchemaAnalysisRuleOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.GetSchemaAnalysisRule as schema.OperationSchema, input, options) as async.Operation<types.GetSchemaAnalysisRuleOutput>
+end
+
+function C:listAnalysisLogExports(input: types.ListAnalysisLogExportsInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnalysisLogExportsOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.ListAnalysisLogExports as schema.OperationSchema, input, options) as async.Operation<types.ListAnalysisLogExportsOutput>
 end
 
 function C:listAnalysisTemplates(input: types.ListAnalysisTemplatesInput, options?: base_client.InvokeOptions): async.Operation<types.ListAnalysisTemplatesOutput>
@@ -480,6 +491,10 @@ end
 
 function C:previewPrivacyImpact(input: types.PreviewPrivacyImpactInput, options?: base_client.InvokeOptions): async.Operation<types.PreviewPrivacyImpactOutput>
     return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.PreviewPrivacyImpact as schema.OperationSchema, input, options) as async.Operation<types.PreviewPrivacyImpactOutput>
+end
+
+function C:startAnalysisLogExport(input: types.StartAnalysisLogExportInput, options?: base_client.InvokeOptions): async.Operation<types.StartAnalysisLogExportOutput>
+    return self:invokeOperation(schemas.Service as schema.ServiceSchema, schemas.StartAnalysisLogExport as schema.OperationSchema, input, options) as async.Operation<types.StartAnalysisLogExportOutput>
 end
 
 function C:startProtectedJob(input: types.StartProtectedJobInput, options?: base_client.InvokeOptions): async.Operation<types.StartProtectedJobOutput>

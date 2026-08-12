@@ -93,17 +93,23 @@ M.IssueList = schema.new({ type = "list", list_member = M.Issue })
 
 M.AddonVersionInfoList = schema.new({ type = "list", list_member = M.AddonVersionInfo })
 
+M.ControlPlaneScalingTierList = schema.new({ type = "list", list_member = M.ControlPlaneScalingTierInfo })
+
 M.DeprecationDetails = schema.new({ type = "list", list_member = M.DeprecationDetail })
 
 M.AddonCompatibilityDetails = schema.new({ type = "list", list_member = M.AddonCompatibilityDetail })
 
 M.LogTypes = schema.new({ type = "list", list_member = prelude.String })
 
+M.ResourceWeightList = schema.new({ type = "list", list_member = M.ResourceWeight })
+
 M.SsoIdentityList = schema.new({ type = "list", list_member = M.SsoIdentity })
 
 M.Compatibilities = schema.new({ type = "list", list_member = M.Compatibility })
 
 M.ClientStats = schema.new({ type = "list", list_member = M.ClientStat })
+
+M.AllowedValuesList = schema.new({ type = "list", list_member = prelude.String })
 
 M.AccessConfigResponse = schema.new({
     id = id.from(_N, "AccessConfigResponse"),
@@ -628,6 +634,20 @@ M.AddonPodIdentityConfiguration = schema.new({
             id = id.from(_N, "AddonPodIdentityConfiguration", "recommendedManagedPolicies"),
             type = "list",
             name = "recommendedManagedPolicies",
+            target_id = prelude.Document.id,
+            list_member = prelude.String,
+        }),
+    },
+})
+
+M.AllowedValuesConstraint = schema.new({
+    id = id.from(_N, "AllowedValuesConstraint"),
+    type = "structure",
+    members = {
+        allowedValues = schema.new({
+            id = id.from(_N, "AllowedValuesConstraint", "allowedValues"),
+            type = "list",
+            name = "allowedValues",
             target_id = prelude.Document.id,
             list_member = prelude.String,
         }),
@@ -2130,6 +2150,78 @@ M.ControlPlaneScalingConfig = schema.new({
     },
 })
 
+M.ServiceNodePortRange = schema.new({
+    id = id.from(_N, "ServiceNodePortRange"),
+    type = "structure",
+    members = {
+        minPort = schema.new({
+            id = id.from(_N, "ServiceNodePortRange", "minPort"),
+            type = "integer",
+            name = "minPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+        maxPort = schema.new({
+            id = id.from(_N, "ServiceNodePortRange", "maxPort"),
+            type = "integer",
+            name = "maxPort",
+            target_id = prelude.Integer.id,
+            traits = {
+                [traits.DEFAULT] = { value = 0 },
+            },
+        }),
+    },
+})
+
+M.KubeApiServerConfigRequest = schema.new({
+    id = id.from(_N, "KubeApiServerConfigRequest"),
+    type = "structure",
+    members = {
+        eventTtl = schema.new({
+            id = id.from(_N, "KubeApiServerConfigRequest", "eventTtl"),
+            type = "string",
+            name = "eventTtl",
+            target_id = prelude.String.id,
+        }),
+        serviceNodePortRange = schema.new({
+            id = id.from(_N, "KubeApiServerConfigRequest", "serviceNodePortRange"),
+            type = "structure",
+            name = "serviceNodePortRange",
+            target_id = id.from(_N, "ServiceNodePortRange"),
+            target = M.ServiceNodePortRange,
+        }),
+    },
+})
+
+M.HorizontalPodAutoscalerControllerConfigRequest = schema.new({
+    id = id.from(_N, "HorizontalPodAutoscalerControllerConfigRequest"),
+    type = "structure",
+    members = {
+        horizontalPodAutoscalerSyncPeriod = schema.new({
+            id = id.from(_N, "HorizontalPodAutoscalerControllerConfigRequest", "horizontalPodAutoscalerSyncPeriod"),
+            type = "string",
+            name = "horizontalPodAutoscalerSyncPeriod",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KubeControllerManagerConfigRequest = schema.new({
+    id = id.from(_N, "KubeControllerManagerConfigRequest"),
+    type = "structure",
+    members = {
+        horizontalPodAutoscalerControllerConfig = schema.new({
+            id = id.from(_N, "KubeControllerManagerConfigRequest", "horizontalPodAutoscalerControllerConfig"),
+            type = "structure",
+            name = "horizontalPodAutoscalerControllerConfig",
+            target_id = id.from(_N, "HorizontalPodAutoscalerControllerConfigRequest"),
+            target = M.HorizontalPodAutoscalerControllerConfigRequest,
+        }),
+    },
+})
+
 M.ElasticLoadBalancing = schema.new({
     id = id.from(_N, "ElasticLoadBalancing"),
     type = "structure",
@@ -2165,6 +2257,73 @@ M.KubernetesNetworkConfigRequest = schema.new({
             name = "elasticLoadBalancing",
             target_id = id.from(_N, "ElasticLoadBalancing"),
             target = M.ElasticLoadBalancing,
+        }),
+    },
+})
+
+M.ResourceWeight = schema.new({
+    id = id.from(_N, "ResourceWeight"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ResourceWeight", "name"),
+            type = "string",
+            name = "name",
+            target_id = prelude.String.id,
+        }),
+        weight = schema.new({
+            id = id.from(_N, "ResourceWeight", "weight"),
+            type = "integer",
+            name = "weight",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.ScoringStrategy = schema.new({
+    id = id.from(_N, "ScoringStrategy"),
+    type = "structure",
+    members = {
+        type = schema.new({
+            id = id.from(_N, "ScoringStrategy", "type"),
+            type = "string",
+            name = "type",
+            target_id = prelude.String.id,
+        }),
+        resources = schema.new({
+            id = id.from(_N, "ScoringStrategy", "resources"),
+            type = "list",
+            name = "resources",
+            target_id = prelude.Document.id,
+            list_member = M.ResourceWeight,
+        }),
+    },
+})
+
+M.NodeResourcesFitConfig = schema.new({
+    id = id.from(_N, "NodeResourcesFitConfig"),
+    type = "structure",
+    members = {
+        scoringStrategy = schema.new({
+            id = id.from(_N, "NodeResourcesFitConfig", "scoringStrategy"),
+            type = "structure",
+            name = "scoringStrategy",
+            target_id = id.from(_N, "ScoringStrategy"),
+            target = M.ScoringStrategy,
+        }),
+    },
+})
+
+M.KubeSchedulerConfigRequest = schema.new({
+    id = id.from(_N, "KubeSchedulerConfigRequest"),
+    type = "structure",
+    members = {
+        nodeResourcesFit = schema.new({
+            id = id.from(_N, "KubeSchedulerConfigRequest", "nodeResourcesFit"),
+            type = "structure",
+            name = "nodeResourcesFit",
+            target_id = id.from(_N, "NodeResourcesFitConfig"),
+            target = M.NodeResourcesFitConfig,
         }),
     },
 })
@@ -2573,6 +2732,27 @@ M.CreateClusterInput = schema.new({
             target_id = id.from(_N, "ControlPlaneScalingConfig"),
             target = M.ControlPlaneScalingConfig,
         }),
+        kubeApiServerConfig = schema.new({
+            id = id.from(_N, "CreateClusterInput", "kubeApiServerConfig"),
+            type = "structure",
+            name = "kubeApiServerConfig",
+            target_id = id.from(_N, "KubeApiServerConfigRequest"),
+            target = M.KubeApiServerConfigRequest,
+        }),
+        kubeSchedulerConfig = schema.new({
+            id = id.from(_N, "CreateClusterInput", "kubeSchedulerConfig"),
+            type = "structure",
+            name = "kubeSchedulerConfig",
+            target_id = id.from(_N, "KubeSchedulerConfigRequest"),
+            target = M.KubeSchedulerConfigRequest,
+        }),
+        kubeControllerManagerConfig = schema.new({
+            id = id.from(_N, "CreateClusterInput", "kubeControllerManagerConfig"),
+            type = "structure",
+            name = "kubeControllerManagerConfig",
+            target_id = id.from(_N, "KubeControllerManagerConfigRequest"),
+            target = M.KubeControllerManagerConfigRequest,
+        }),
     },
 })
 
@@ -2719,6 +2899,53 @@ M.Identity = schema.new({
     },
 })
 
+M.KubeApiServerConfigResponse = schema.new({
+    id = id.from(_N, "KubeApiServerConfigResponse"),
+    type = "structure",
+    members = {
+        eventTtl = schema.new({
+            id = id.from(_N, "KubeApiServerConfigResponse", "eventTtl"),
+            type = "string",
+            name = "eventTtl",
+            target_id = prelude.String.id,
+        }),
+        serviceNodePortRange = schema.new({
+            id = id.from(_N, "KubeApiServerConfigResponse", "serviceNodePortRange"),
+            type = "structure",
+            name = "serviceNodePortRange",
+            target_id = id.from(_N, "ServiceNodePortRange"),
+            target = M.ServiceNodePortRange,
+        }),
+    },
+})
+
+M.HorizontalPodAutoscalerControllerConfigResponse = schema.new({
+    id = id.from(_N, "HorizontalPodAutoscalerControllerConfigResponse"),
+    type = "structure",
+    members = {
+        horizontalPodAutoscalerSyncPeriod = schema.new({
+            id = id.from(_N, "HorizontalPodAutoscalerControllerConfigResponse", "horizontalPodAutoscalerSyncPeriod"),
+            type = "string",
+            name = "horizontalPodAutoscalerSyncPeriod",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.KubeControllerManagerConfigResponse = schema.new({
+    id = id.from(_N, "KubeControllerManagerConfigResponse"),
+    type = "structure",
+    members = {
+        horizontalPodAutoscalerControllerConfig = schema.new({
+            id = id.from(_N, "KubeControllerManagerConfigResponse", "horizontalPodAutoscalerControllerConfig"),
+            type = "structure",
+            name = "horizontalPodAutoscalerControllerConfig",
+            target_id = id.from(_N, "HorizontalPodAutoscalerControllerConfigResponse"),
+            target = M.HorizontalPodAutoscalerControllerConfigResponse,
+        }),
+    },
+})
+
 M.KubernetesNetworkConfigResponse = schema.new({
     id = id.from(_N, "KubernetesNetworkConfigResponse"),
     type = "structure",
@@ -2747,6 +2974,20 @@ M.KubernetesNetworkConfigResponse = schema.new({
             name = "elasticLoadBalancing",
             target_id = id.from(_N, "ElasticLoadBalancing"),
             target = M.ElasticLoadBalancing,
+        }),
+    },
+})
+
+M.KubeSchedulerConfigResponse = schema.new({
+    id = id.from(_N, "KubeSchedulerConfigResponse"),
+    type = "structure",
+    members = {
+        nodeResourcesFit = schema.new({
+            id = id.from(_N, "KubeSchedulerConfigResponse", "nodeResourcesFit"),
+            type = "structure",
+            name = "nodeResourcesFit",
+            target_id = id.from(_N, "NodeResourcesFitConfig"),
+            target = M.NodeResourcesFitConfig,
         }),
     },
 })
@@ -3143,6 +3384,27 @@ M.Cluster = schema.new({
             name = "controlPlaneScalingConfig",
             target_id = id.from(_N, "ControlPlaneScalingConfig"),
             target = M.ControlPlaneScalingConfig,
+        }),
+        kubeApiServerConfig = schema.new({
+            id = id.from(_N, "Cluster", "kubeApiServerConfig"),
+            type = "structure",
+            name = "kubeApiServerConfig",
+            target_id = id.from(_N, "KubeApiServerConfigResponse"),
+            target = M.KubeApiServerConfigResponse,
+        }),
+        kubeSchedulerConfig = schema.new({
+            id = id.from(_N, "Cluster", "kubeSchedulerConfig"),
+            type = "structure",
+            name = "kubeSchedulerConfig",
+            target_id = id.from(_N, "KubeSchedulerConfigResponse"),
+            target = M.KubeSchedulerConfigResponse,
+        }),
+        kubeControllerManagerConfig = schema.new({
+            id = id.from(_N, "Cluster", "kubeControllerManagerConfig"),
+            type = "structure",
+            name = "kubeControllerManagerConfig",
+            target_id = id.from(_N, "KubeControllerManagerConfigResponse"),
+            target = M.KubeControllerManagerConfigResponse,
         }),
     },
 })
@@ -5189,6 +5451,312 @@ M.DescribeClusterVersionsInput = schema.new({
     },
 })
 
+M.DurationConstraints = schema.new({
+    id = id.from(_N, "DurationConstraints"),
+    type = "structure",
+    members = {
+        min = schema.new({
+            id = id.from(_N, "DurationConstraints", "min"),
+            type = "string",
+            name = "min",
+            target_id = prelude.String.id,
+        }),
+        max = schema.new({
+            id = id.from(_N, "DurationConstraints", "max"),
+            type = "string",
+            name = "max",
+            target_id = prelude.String.id,
+        }),
+    },
+})
+
+M.DurationParameterConfig = schema.new({
+    id = id.from(_N, "DurationParameterConfig"),
+    type = "structure",
+    members = {
+        defaultValue = schema.new({
+            id = id.from(_N, "DurationParameterConfig", "defaultValue"),
+            type = "string",
+            name = "defaultValue",
+            target_id = prelude.String.id,
+        }),
+        constraints = schema.new({
+            id = id.from(_N, "DurationParameterConfig", "constraints"),
+            type = "structure",
+            name = "constraints",
+            target_id = id.from(_N, "DurationConstraints"),
+            target = M.DurationConstraints,
+        }),
+    },
+})
+
+M.IntegerRangeConstraint = schema.new({
+    id = id.from(_N, "IntegerRangeConstraint"),
+    type = "structure",
+    members = {
+        min = schema.new({
+            id = id.from(_N, "IntegerRangeConstraint", "min"),
+            type = "integer",
+            name = "min",
+            target_id = prelude.Integer.id,
+        }),
+        max = schema.new({
+            id = id.from(_N, "IntegerRangeConstraint", "max"),
+            type = "integer",
+            name = "max",
+            target_id = prelude.Integer.id,
+        }),
+    },
+})
+
+M.PortRangeConstraints = schema.new({
+    id = id.from(_N, "PortRangeConstraints"),
+    type = "structure",
+    members = {
+        minPort = schema.new({
+            id = id.from(_N, "PortRangeConstraints", "minPort"),
+            type = "structure",
+            name = "minPort",
+            target_id = id.from(_N, "IntegerRangeConstraint"),
+            target = M.IntegerRangeConstraint,
+        }),
+        maxPort = schema.new({
+            id = id.from(_N, "PortRangeConstraints", "maxPort"),
+            type = "structure",
+            name = "maxPort",
+            target_id = id.from(_N, "IntegerRangeConstraint"),
+            target = M.IntegerRangeConstraint,
+        }),
+    },
+})
+
+M.PortRangeParameterConfig = schema.new({
+    id = id.from(_N, "PortRangeParameterConfig"),
+    type = "structure",
+    members = {
+        defaultValue = schema.new({
+            id = id.from(_N, "PortRangeParameterConfig", "defaultValue"),
+            type = "structure",
+            name = "defaultValue",
+            target_id = id.from(_N, "ServiceNodePortRange"),
+            target = M.ServiceNodePortRange,
+        }),
+        constraints = schema.new({
+            id = id.from(_N, "PortRangeParameterConfig", "constraints"),
+            type = "structure",
+            name = "constraints",
+            target_id = id.from(_N, "PortRangeConstraints"),
+            target = M.PortRangeConstraints,
+        }),
+    },
+})
+
+M.KubeApiServerVersionConfig = schema.new({
+    id = id.from(_N, "KubeApiServerVersionConfig"),
+    type = "structure",
+    members = {
+        eventTtl = schema.new({
+            id = id.from(_N, "KubeApiServerVersionConfig", "eventTtl"),
+            type = "structure",
+            name = "eventTtl",
+            target_id = id.from(_N, "DurationParameterConfig"),
+            target = M.DurationParameterConfig,
+        }),
+        serviceNodePortRange = schema.new({
+            id = id.from(_N, "KubeApiServerVersionConfig", "serviceNodePortRange"),
+            type = "structure",
+            name = "serviceNodePortRange",
+            target_id = id.from(_N, "PortRangeParameterConfig"),
+            target = M.PortRangeParameterConfig,
+        }),
+    },
+})
+
+M.HorizontalPodAutoscalerControllerVersionConfig = schema.new({
+    id = id.from(_N, "HorizontalPodAutoscalerControllerVersionConfig"),
+    type = "structure",
+    members = {
+        horizontalPodAutoscalerSyncPeriod = schema.new({
+            id = id.from(_N, "HorizontalPodAutoscalerControllerVersionConfig", "horizontalPodAutoscalerSyncPeriod"),
+            type = "structure",
+            name = "horizontalPodAutoscalerSyncPeriod",
+            target_id = id.from(_N, "DurationParameterConfig"),
+            target = M.DurationParameterConfig,
+        }),
+    },
+})
+
+M.KubeControllerManagerVersionConfig = schema.new({
+    id = id.from(_N, "KubeControllerManagerVersionConfig"),
+    type = "structure",
+    members = {
+        horizontalPodAutoscalerControllerConfig = schema.new({
+            id = id.from(_N, "KubeControllerManagerVersionConfig", "horizontalPodAutoscalerControllerConfig"),
+            type = "structure",
+            name = "horizontalPodAutoscalerControllerConfig",
+            target_id = id.from(_N, "HorizontalPodAutoscalerControllerVersionConfig"),
+            target = M.HorizontalPodAutoscalerControllerVersionConfig,
+        }),
+    },
+})
+
+M.ResourceConstraints = schema.new({
+    id = id.from(_N, "ResourceConstraints"),
+    type = "structure",
+    members = {
+        name = schema.new({
+            id = id.from(_N, "ResourceConstraints", "name"),
+            type = "structure",
+            name = "name",
+            target_id = id.from(_N, "AllowedValuesConstraint"),
+            target = M.AllowedValuesConstraint,
+        }),
+        weight = schema.new({
+            id = id.from(_N, "ResourceConstraints", "weight"),
+            type = "structure",
+            name = "weight",
+            target_id = id.from(_N, "IntegerRangeConstraint"),
+            target = M.IntegerRangeConstraint,
+        }),
+    },
+})
+
+M.ScoringStrategyConstraints = schema.new({
+    id = id.from(_N, "ScoringStrategyConstraints"),
+    type = "structure",
+    members = {
+        scoringStrategy = schema.new({
+            id = id.from(_N, "ScoringStrategyConstraints", "scoringStrategy"),
+            type = "structure",
+            name = "scoringStrategy",
+            target_id = id.from(_N, "AllowedValuesConstraint"),
+            target = M.AllowedValuesConstraint,
+        }),
+        resources = schema.new({
+            id = id.from(_N, "ScoringStrategyConstraints", "resources"),
+            type = "structure",
+            name = "resources",
+            target_id = id.from(_N, "ResourceConstraints"),
+            target = M.ResourceConstraints,
+        }),
+    },
+})
+
+M.ScoringStrategyConfig = schema.new({
+    id = id.from(_N, "ScoringStrategyConfig"),
+    type = "structure",
+    members = {
+        defaultValue = schema.new({
+            id = id.from(_N, "ScoringStrategyConfig", "defaultValue"),
+            type = "structure",
+            name = "defaultValue",
+            target_id = id.from(_N, "ScoringStrategy"),
+            target = M.ScoringStrategy,
+        }),
+        constraints = schema.new({
+            id = id.from(_N, "ScoringStrategyConfig", "constraints"),
+            type = "structure",
+            name = "constraints",
+            target_id = id.from(_N, "ScoringStrategyConstraints"),
+            target = M.ScoringStrategyConstraints,
+        }),
+    },
+})
+
+M.NodeResourcesFitVersionConfig = schema.new({
+    id = id.from(_N, "NodeResourcesFitVersionConfig"),
+    type = "structure",
+    members = {
+        scoringStrategy = schema.new({
+            id = id.from(_N, "NodeResourcesFitVersionConfig", "scoringStrategy"),
+            type = "structure",
+            name = "scoringStrategy",
+            target_id = id.from(_N, "ScoringStrategyConfig"),
+            target = M.ScoringStrategyConfig,
+        }),
+    },
+})
+
+M.KubeSchedulerVersionConfig = schema.new({
+    id = id.from(_N, "KubeSchedulerVersionConfig"),
+    type = "structure",
+    members = {
+        nodeResourcesFit = schema.new({
+            id = id.from(_N, "KubeSchedulerVersionConfig", "nodeResourcesFit"),
+            type = "structure",
+            name = "nodeResourcesFit",
+            target_id = id.from(_N, "NodeResourcesFitVersionConfig"),
+            target = M.NodeResourcesFitVersionConfig,
+        }),
+    },
+})
+
+M.ControlPlaneConfigInfo = schema.new({
+    id = id.from(_N, "ControlPlaneConfigInfo"),
+    type = "structure",
+    members = {
+        kubeApiServerConfig = schema.new({
+            id = id.from(_N, "ControlPlaneConfigInfo", "kubeApiServerConfig"),
+            type = "structure",
+            name = "kubeApiServerConfig",
+            target_id = id.from(_N, "KubeApiServerVersionConfig"),
+            target = M.KubeApiServerVersionConfig,
+        }),
+        kubeSchedulerConfig = schema.new({
+            id = id.from(_N, "ControlPlaneConfigInfo", "kubeSchedulerConfig"),
+            type = "structure",
+            name = "kubeSchedulerConfig",
+            target_id = id.from(_N, "KubeSchedulerVersionConfig"),
+            target = M.KubeSchedulerVersionConfig,
+        }),
+        kubeControllerManagerConfig = schema.new({
+            id = id.from(_N, "ControlPlaneConfigInfo", "kubeControllerManagerConfig"),
+            type = "structure",
+            name = "kubeControllerManagerConfig",
+            target_id = id.from(_N, "KubeControllerManagerVersionConfig"),
+            target = M.KubeControllerManagerVersionConfig,
+        }),
+    },
+})
+
+M.ControlPlaneScalingTierInfo = schema.new({
+    id = id.from(_N, "ControlPlaneScalingTierInfo"),
+    type = "structure",
+    members = {
+        tierName = schema.new({
+            id = id.from(_N, "ControlPlaneScalingTierInfo", "tierName"),
+            type = "string",
+            name = "tierName",
+            target_id = prelude.String.id,
+        }),
+        apiRequestConcurrency = schema.new({
+            id = id.from(_N, "ControlPlaneScalingTierInfo", "apiRequestConcurrency"),
+            type = "integer",
+            name = "apiRequestConcurrency",
+            target_id = prelude.Integer.id,
+        }),
+        podSchedulingRatePerSecond = schema.new({
+            id = id.from(_N, "ControlPlaneScalingTierInfo", "podSchedulingRatePerSecond"),
+            type = "integer",
+            name = "podSchedulingRatePerSecond",
+            target_id = prelude.Integer.id,
+        }),
+        clusterDatabaseSizeGb = schema.new({
+            id = id.from(_N, "ControlPlaneScalingTierInfo", "clusterDatabaseSizeGb"),
+            type = "integer",
+            name = "clusterDatabaseSizeGb",
+            target_id = prelude.Integer.id,
+        }),
+        controlPlaneComponentConfigOverrides = schema.new({
+            id = id.from(_N, "ControlPlaneScalingTierInfo", "controlPlaneComponentConfigOverrides"),
+            type = "structure",
+            name = "controlPlaneComponentConfigOverrides",
+            target_id = id.from(_N, "ControlPlaneConfigInfo"),
+            target = M.ControlPlaneConfigInfo,
+        }),
+    },
+})
+
 M.ClusterVersionInformation = schema.new({
     id = id.from(_N, "ClusterVersionInformation"),
     type = "structure",
@@ -5255,6 +5823,20 @@ M.ClusterVersionInformation = schema.new({
             type = "string",
             name = "kubernetesPatchVersion",
             target_id = prelude.String.id,
+        }),
+        controlPlaneScalingTiers = schema.new({
+            id = id.from(_N, "ClusterVersionInformation", "controlPlaneScalingTiers"),
+            type = "list",
+            name = "controlPlaneScalingTiers",
+            target_id = prelude.Document.id,
+            list_member = M.ControlPlaneScalingTierInfo,
+        }),
+        controlPlaneComponentConfig = schema.new({
+            id = id.from(_N, "ClusterVersionInformation", "controlPlaneComponentConfig"),
+            type = "structure",
+            name = "controlPlaneComponentConfig",
+            target_id = id.from(_N, "ControlPlaneConfigInfo"),
+            target = M.ControlPlaneConfigInfo,
         }),
     },
 })
@@ -7663,6 +8245,27 @@ M.UpdateClusterConfigInput = schema.new({
             name = "controlPlaneScalingConfig",
             target_id = id.from(_N, "ControlPlaneScalingConfig"),
             target = M.ControlPlaneScalingConfig,
+        }),
+        kubeApiServerConfig = schema.new({
+            id = id.from(_N, "UpdateClusterConfigInput", "kubeApiServerConfig"),
+            type = "structure",
+            name = "kubeApiServerConfig",
+            target_id = id.from(_N, "KubeApiServerConfigRequest"),
+            target = M.KubeApiServerConfigRequest,
+        }),
+        kubeSchedulerConfig = schema.new({
+            id = id.from(_N, "UpdateClusterConfigInput", "kubeSchedulerConfig"),
+            type = "structure",
+            name = "kubeSchedulerConfig",
+            target_id = id.from(_N, "KubeSchedulerConfigRequest"),
+            target = M.KubeSchedulerConfigRequest,
+        }),
+        kubeControllerManagerConfig = schema.new({
+            id = id.from(_N, "UpdateClusterConfigInput", "kubeControllerManagerConfig"),
+            type = "structure",
+            name = "kubeControllerManagerConfig",
+            target_id = id.from(_N, "KubeControllerManagerConfigRequest"),
+            target = M.KubeControllerManagerConfigRequest,
         }),
     },
 })
